@@ -33,9 +33,25 @@ class AuthorController extends FrontController
         $this->seo->setDescription($item->description); // Issues have no blocks
         $this->seo->setImage($item->imageFront('author_image'));
 
+        $breadcrumbs = [
+            [
+                'label' => 'The Collection',
+                'href' => '/collection',
+            ],
+            [
+                'label' => 'Writings',
+                'href' => '/articles_publications',
+            ],
+            [
+                'label' => 'Authors',
+                'href' => '/authors',
+            ],
+        ];
+
         return view('site.authorDetail', [
             'item' => $item,
             'canonicalUrl' => route('authors.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 }

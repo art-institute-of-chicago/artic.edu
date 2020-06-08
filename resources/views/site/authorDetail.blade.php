@@ -9,6 +9,7 @@
 
 @component('components.molecules._m-header-block')
     @slot('itemprop','name')
+    @slot('breadcrumbs', $breadcrumbs)
     {!! $item->present()->title_display ?? $item->present()->title !!}
 @endcomponent
 
