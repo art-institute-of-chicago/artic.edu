@@ -15,6 +15,7 @@ class Author extends AbstractModel
         'published',
         'title',
         'description',
+        'list_description'
     ];
 
     public $slugAttributes = [

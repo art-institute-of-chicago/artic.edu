@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Repositories\AuthorRepository;
 
 class AuthorController extends FrontController
@@ -13,6 +14,35 @@ class AuthorController extends FrontController
         $this->repository = $repository;
 
         parent::__construct();
+    }
+
+    public function index(Request $request)
+    {
+        $items = $this->repository->published()->paginate();
+        $title = 'Authors';
+
+        $subNav = [
+            ['label' => $title, 'href' => route('selections.index'), 'active' => true]
+        ];
+
+        $nav = [
+            [ 'label' => 'The Collection', 'href' => route('collection'), 'links' => $subNav ]
+        ];
+
+        $this->seo->setTitle($title);
+
+        $view_data = [
+            'title'  => $title,
+            'subNav' => $subNav,
+            'nav'    => $nav,
+            'wideBody' => true,
+            'filters'    => null,
+            'listingCountText' => 'Showing '.$items->total().' authors',
+            'listingItems' => $items,
+        ];
+
+
+        return view('site.genericPage.index', $view_data);
     }
 
     public function show($id, $slug = null)
@@ -30,7 +60,7 @@ class AuthorController extends FrontController
         }
 
         $this->seo->setTitle($item->title);
-        $this->seo->setDescription($item->description); // Issues have no blocks
+        $this->seo->setDescription($item->list_description ?? $item->description); // Issues have no blocks
         $this->seo->setImage($item->imageFront('author_image'));
 
         $breadcrumbs = [

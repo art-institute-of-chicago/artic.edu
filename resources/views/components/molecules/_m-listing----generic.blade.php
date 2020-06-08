@@ -60,10 +60,10 @@
                 {!! count($item['links']) > 1 ? '</ul>' : '</span>' !!}
             @else
                 @php
-                    $listDescription = $item->present()->intro
-                     ?? $item->present()->shortDesc
+                    $listDescription = $item->present()->shortDesc
                      ?? $item->present()->listing_description
                      ?? $item->present()->list_description
+                     ?? $item->present()->intro
                      ?? null;
                 @endphp
                 @if (!empty($listDescription))

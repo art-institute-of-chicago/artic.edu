@@ -11,6 +11,10 @@ class AuthorPresenter extends BasePresenter
         return $this->entity->description;
     }
 
+    public function url() {
+        return route('authors.show', [$this->entity->id, $this->entity->getSlug()]);
+    }
+
     public function getRelatedWritings()
     {
 

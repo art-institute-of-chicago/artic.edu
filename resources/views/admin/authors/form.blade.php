@@ -12,6 +12,17 @@
         ],
     ])
 
+    @formField('wysiwyg', [
+        'name' => 'list_description',
+        'label' => 'Listing Description',
+        'type' => 'textarea',
+        'maxlength' => 300,
+        'note' => 'Used in listings and for social media',
+        'toolbarOptions' => [
+            'italic'
+        ],
+    ])
+
     @formField('medias', [
         'label' => 'Hero Image',
         'name' => 'hero',
