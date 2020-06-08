@@ -820,6 +820,10 @@
       color: $color__text--title-contrast;
     }
 
+    a:hover {
+      color: $color__black--25;
+    }
+
     .m-article-header__logo {
       align-self: flex-start;
     }
@@ -945,6 +949,19 @@
 
 .m-article-header--magazine {
 
+  .m-article-header__img img {
+    transition: opacity .25s;
+    opacity: 0;
+
+    &:first-child {
+      opacity: 1;
+    }
+
+    &.is-slideshow-active {
+      opacity: 1;
+    }
+  }
+
   .m-article-header__text {
     justify-content: flex-end;
 
@@ -952,6 +969,10 @@
       @include breakpoint('#{$name}') {
         padding: #{map-get($journal-header-padding, $name)} 0;
       }
+    }
+
+    a.is-slideshow-active {
+      text-decoration: underline;
     }
 
     .m-article-header__logo {

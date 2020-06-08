@@ -61,3 +61,4 @@ export { default as fixedOnScroll } from './fixedOnScroll';
 export { default as stickySidebar } from './stickySidebar';
 export { default as viewer360 } from './viewer360';
 export { default as fitText } from './fitText';
+export { default as magazineHeader } from './magazineHeader';

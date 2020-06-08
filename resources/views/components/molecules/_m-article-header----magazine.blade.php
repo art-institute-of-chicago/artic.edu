@@ -1,13 +1,15 @@
-<{{ $tag ?? 'header' }} class="m-article-header m-article-header--publication m-article-header--magazine">
+<{{ $tag ?? 'header' }} class="m-article-header m-article-header--publication m-article-header--magazine" data-behavior="magazineHeader">
     <div class="m-article-header__img">
-        @if ($img)
-            @component('components.atoms._img')
-                @slot('image', $img)
-                @slot('settings', array(
-                    'srcset' => array(300,600,1000,1500,3000),
-                    'sizes' => '100vw',
-                ))
-            @endcomponent
+        @if (isset($images))
+            @foreach ($images as $image) {
+                @component('components.atoms._img')
+                    @slot('image', $image)
+                    @slot('settings', array(
+                        'srcset' => array(300,600,1000,1500,3000),
+                        'sizes' => '100vw',
+                    ))
+                @endcomponent
+            @endforeach
         @endif
     </div>
     <div class="m-article-header__text{{ isset($credit) ? ' m-article-header__text--with-credit' : '' }}">

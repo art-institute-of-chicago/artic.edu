@@ -3,15 +3,12 @@
 @section('content')
 
 <article class="o-article">
-    {{-- TODO: New header treatment --}}
-    @if ($heroImage = $item->imageFront('hero') ?? null)
-        @component('components.molecules._m-article-header----magazine')
-            @slot('img', $heroImage)
-            @slot('title', $item->present()->title ?? null)
-            @slot('credit', $item->hero_caption ?? null)
-            @slot('intro', $item->hero_text ?? null)
-        @endcomponent
-    @endif
+    @component('components.molecules._m-article-header----magazine')
+        @slot('images', $item->imagesFront('hero') ?? null)
+        @slot('title', $item->present()->title ?? null)
+        @slot('credit', $item->hero_caption ?? null)
+        @slot('intro', $item->hero_text ?? null)
+    @endcomponent
 
     <div class="o-article__primary-actions">
         @component('components.molecules._m-article-actions----magazine-issue')

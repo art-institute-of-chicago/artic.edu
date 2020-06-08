@@ -21,7 +21,17 @@
             ],
         ])
 
-        @include('admin.partials.hero')
+        {{-- We cannot @include('admin.partials.hero') here, but let's keep parity with it! --}}
+
+        @formField('wysiwyg', [
+            'type' => 'textarea',
+            'name' => 'hero_caption',
+            'label' => 'Hero caption',
+            'note' => 'Copyright for all images',
+            'toolbarOptions' => [
+                'italic', 'link',
+            ],
+        ])
 
         @formField('wysiwyg', [
             'type' => 'textarea',
@@ -30,6 +40,16 @@
             'toolbarOptions' => [
                 'italic', 'link',
             ],
+        ])
+
+        @formField('medias', [
+            'name' => 'hero',
+            'label' => 'Hero images',
+            'withAddInfo' => false,
+            'withVideoUrl' => false,
+            'withCaption' => false,
+            'note' => 'Order should match links in header text',
+            'max' => 20,
         ])
     </a17-fieldset>
 
