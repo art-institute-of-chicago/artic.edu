@@ -11,7 +11,7 @@
         $item = MagazineItem::findByType($featureType, $ids);
 
         if ($item) {
-            $href = $item->url;
+            $href = $item->present()->url;
             $image = $item->imageFront('hero');
             $type = $item->present()->type;
             $title = $item->present()->title;
@@ -26,6 +26,7 @@
             $isBlockReady = true;
         }
     } else {
+        $href = $block->input('url');
         $image = $block->imageAsArray('listing_image', 'default');
         $type = $block->input('tag');
         $title = $block->input('title');

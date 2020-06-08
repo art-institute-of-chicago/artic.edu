@@ -13,6 +13,6 @@ class ExperiencePresenter extends BasePresenter
 
     public function url()
     {
-        return route('collection.interactive_features.experiences', $this->entity);
+        return route('interactiveFeatures.show', $this->entity->getSlug());
     }
 }

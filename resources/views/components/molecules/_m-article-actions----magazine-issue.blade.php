@@ -1,7 +1,7 @@
 <div class="o-sticky-sidebar__sticker"  data-behavior="stickySidebar" data-sticky-offset="30">{{-- See :nth-child(x) in _o-article.scss --}}
 
     <div class="m-article-actions--journal__logo u-hide@xsmall u-hide@small u-hide@medium">
-        <a href="/journal">
+        <a href="/magazine">
             <svg class="icon--magazine-logo">
                 <use xlink:href="#icon--magazine-logo"></use>
             </svg>
@@ -32,7 +32,10 @@
         @foreach($issues as $issue)
             <li>
                 @component('components.atoms._tag')
-                    @slot('href', $issue->title)
+                    @slot('href', route('magazine-issues.show', [
+                        'id' => $issue->id,
+                        'slug' => $issue->getSlug(),
+                    ]))
                     @slot('dataAttributes',' data-ajax-scroll-target="collection"')
                     @slot('variation', 'tag--magazine tag--senary tag--w-image')
                     @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $issue->title ) . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="magazine-sidebar-issue"')
