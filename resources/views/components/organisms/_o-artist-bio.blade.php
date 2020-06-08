@@ -1,4 +1,4 @@
-<section class="o-artist-bio">
+<section class="o-artist-bio{{isset($variation) ? ' o-'.$variation.'-bio' : ''}}">
     <div class="o-artist-bio__inner">
         @if ($item->imageFront('hero'))
             <figure class="o-artist-bio__image">
@@ -56,7 +56,7 @@
                 </dl>
             @endif
 
-            @if (gettype($item->intro) === 'string' and $item->intro !== "")
+            @if (gettype($item->present()->intro) === 'string' and $item->present()->intro !== "")
                 <div class="o-artist-bio__body o-blocks" itemprop="description">
                     {!! $item->present()->intro !!}
                 </div>

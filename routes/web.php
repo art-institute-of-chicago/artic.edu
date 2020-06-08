@@ -88,6 +88,9 @@ Route::name('issue-articles.show')->get('/journal/articles/{id}/{slug?}', 'Issue
 // Magazine issue routes
 Route::name('magazine-issues.show')->get('/magazine/issues/{id}/{slug?}', 'MagazineIssueController@show');
 
+// Author routes
+Route::name('authors.show')->get('/authors/{id}/{slug?}', 'AuthorController@show');
+
 // Videos routes
 Route::name('videos')->get('videos', function () {return abort(404);});
 Route::name('videos.show')->get('/videos/{id}/{slug?}', 'VideoController@show');

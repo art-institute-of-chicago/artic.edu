@@ -11,4 +11,10 @@
             'bold', 'italic', 'link'
         ],
     ])
+
+    @formField('medias', [
+        'label' => 'Hero Image',
+        'name' => 'hero',
+        'note' => 'Minimum image width 2000px'
+    ])
 @stop
