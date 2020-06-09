@@ -176,6 +176,16 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-aic_3d_embed'
         ],
+        '360_embed' => [
+            'title' => '360 Embed',
+            'icon' => 'image',
+            'component' => 'a17-block-threesixty_embed'
+        ],
+        '360_modal' => [
+            'title' => '360 Modal',
+            'icon' => 'image',
+            'component' => 'a17-block-threesixty_modal'
+        ],
         'artists' => [
             'title' => 'Artists',
             'icon' => 'image',

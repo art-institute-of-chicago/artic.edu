@@ -1,4 +1,5 @@
 .m-media {
+  
   &--3d-tour {
     position:relative;
     pointer-events:none;
@@ -155,6 +156,49 @@
       }
     }
   }
+
+  .m-viewer-360-control {
+    opacity: 0;
+    transition: opacity .35s;
+    background: rgba(#1a1a1a, 0.5);
+    bottom: 70px;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 30px;
+    padding: 20px 30px;
+    line-height: 0;
+
+    input {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 5px;
+      background: #eee;
+      outline: none;
+      padding: 0;
+      margin: 0;
+
+      &::-webkit-slider-thumb {
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #eee;
+        cursor: pointer;
+        transition: background 0.15s ease-in-out;
+      }
+
+      &::-moz-range-thumb {
+        width: 15px;
+        height: 15px;
+        border: 0;
+        border-radius: 50%;
+        background: #eee;
+        cursor: pointer;
+        transition: background 0.15s ease-in-out;
+      }
+    }
+  }
 }
 
 .m-media__img {
@@ -207,6 +251,15 @@
   &:focus[data-focus-method="key"] {
     outline: 3px solid rgba(131, 192, 253, .5);
   }
+}
+
+.m-media--360-embed {
+  background: none;
+}
+
+.m-viewer-360-image {
+  opacity: 0;
+  transition: opacity .35s;
 }
 
 .m-media__img img,
