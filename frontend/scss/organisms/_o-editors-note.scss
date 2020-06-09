@@ -7,13 +7,17 @@
     color: $color__text--title;
   }
 
-  a, .f-deck, .f-body-editorial {
+  a .f-deck,
+  a .f-body-editorial {
     transition: color .15s;
     color: $color__black--42;
+  }
 
-    &:hover, &:focus {
-      color: $color__black--61;
-    }
+  a:hover .f-deck,
+  a:focus .f-deck,
+  a:hover .f-body-editorial,
+  a:focus .f-body-editorial {
+    color: $color__black--61;
   }
 
   .o-editors-note__tag {
