@@ -2027,3 +2027,17 @@ $f-audio-subtitle: generate-font-obj(
     color: $color__plum;
   }
 }
+
+// variant for author pages
+.m-listing--author {
+  .m-listing__img img {
+    transition: none;
+  }
+}
+
+.m-listing--author:hover,
+.m-listing--author:focus {
+  .m-listing__img img {
+    transform: none;
+  }
+}

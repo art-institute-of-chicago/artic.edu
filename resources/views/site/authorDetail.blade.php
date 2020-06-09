@@ -38,7 +38,7 @@
             @slot('cols_xlarge','2')
             @foreach ($item->present()->getRelatedWritings() as $item)
                 @component('components.molecules._m-listing----publication')
-                    @slot('variation', 'm-listing--journal')
+                    @slot('variation', 'm-listing--author')
                     @slot('href', $item->present()->url)
                     @slot('image', $item->imageFront('hero'))
                     @slot('type', $item->present()->type)
