@@ -13,7 +13,7 @@
         <br>
         @if ($link_text)
             <span class="m-listing__meta-bottom">
-                <span class="f-module-title-2">{{ $link_text }}</span>
+                <span class="btn f-buttons btn--magazine">{{ $link_text }}</span>
             </span>
         @endif
     </span>

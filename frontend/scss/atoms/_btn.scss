@@ -292,6 +292,24 @@ Example usage:
   }
 }
 
+.btn--magazine {
+  border-color: rgba($color__white, .8);
+  background-color: $color__plum;
+  color: $color__white;
+
+  &:hover,
+  &:focus:hover {
+    background-color: $color__white;
+    color: $color__plum;
+  }
+
+  &.s-active,
+  &:active:hover {
+    background-color: $color__white;
+    color: $color__plum;
+  }
+}
+
 .btn--contrast {
   border-color: rgba($color__white, .2);
   background-color: transparent;
