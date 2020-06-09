@@ -61,7 +61,7 @@ class AuthorController extends FrontController
 
         $this->seo->setTitle($item->title);
         $this->seo->setDescription($item->list_description ?? $item->description); // Issues have no blocks
-        $this->seo->setImage($item->imageFront('author_image'));
+        $this->seo->setImage($item->imageFront('hero'));
 
         $breadcrumbs = [
             [
