@@ -7,11 +7,11 @@
       @slot('itemprops',$item->present()->itemprops ?? null)
     @endcomponent
 
-@component('components.molecules._m-header-block')
-    @slot('itemprop','name')
-    @slot('breadcrumbs', $breadcrumbs)
-    {!! $item->present()->title_display ?? $item->present()->title !!}
-@endcomponent
+    @component('components.molecules._m-header-block')
+        @slot('itemprop','name')
+        @slot('breadcrumbs', $breadcrumbs)
+        {!! $item->present()->title_display ?? $item->present()->title !!}
+    @endcomponent
 
     @component('components.organisms._o-artist-bio')
         @slot('item', $item)
