@@ -758,6 +758,13 @@
     }
   }
 
+  .f-subheading-1,
+  .f-subheading-2,
+  a {
+    // text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+    color: $color__text--title-contrast;
+  }
+
   .m-article-header__img {
     position: absolute;
     z-index: 1;
@@ -813,11 +820,6 @@
 
     @include breakpoint('xlarge') {
       width: colspan(58, xlarge);
-    }
-
-    * {
-      text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
-      color: $color__text--title-contrast;
     }
 
     a:hover {
@@ -962,6 +964,16 @@
     }
   }
 
+  $magazine-intro-width: (
+    xsmall: 75%,
+    small: 33%,
+    medium: 33%,
+    large: 33%,
+    xlarge: 25%,
+  );
+
+  $pip-offset: 12px;
+
   .m-article-header__text {
     justify-content: flex-end;
 
@@ -975,6 +987,23 @@
       text-decoration: underline;
     }
 
+    .m-article-header__pip {
+      display: inline-block;
+      color: $color__text--title-contrast;
+      cursor: pointer;
+
+      margin-right: 4px;
+
+      &.is-slideshow-active {
+        color: $color__black--40;
+      }
+
+      .icon--circle {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
     .m-article-header__logo {
       flex-grow: 1;
     }
@@ -984,30 +1013,30 @@
     }
 
     .m-article-header__intro {
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          width: map-get($magazine-intro-width, $name);
+        }
+      }
+
       @include breakpoint('xsmall') {
-        width: 75%;
         align-self: flex-start;
-      }
-
-      @include breakpoint('small') {
-        width: 33%;
-      }
-
-      @include breakpoint('medium') {
-        width: 33%;
-      }
-
-      @include breakpoint('large') {
-        width: 33%;
-      }
-
-      @include breakpoint('xlarge') {
-        width: 25%;
       }
     }
 
     .m-article-header__title-lockup {
       align-self: flex-start;
+    }
+
+    .m-article-header__controls {
+      position: absolute;
+
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          left: #{100% - map-get($magazine-intro-width, $name)};
+          bottom: #{map-get($journal-header-padding, $name) + $pip-offset};
+        }
+      }
     }
   }
 
@@ -1017,6 +1046,14 @@
       @include breakpoint('#{$name}') {
         padding-top: #{map-get($journal-header-padding, $name)};
         padding-bottom: #{map-get($journal-header-padding, $name) + 28px};
+      }
+    }
+
+    .m-article-header__controls {
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          bottom: #{map-get($journal-header-padding, $name) + 20px + $pip-offset};
+        }
       }
     }
 

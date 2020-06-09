@@ -37,6 +37,16 @@
                 @endcomponent
             </div>
         @endif
+        <div class="m-article-header__controls">
+            {{-- Populated via magazineHeader.js using template in script tag --}}
+        </div>
+        <script class="m-article-header__pip__template" type="text/template">
+            <div class="m-article-header__pip">
+                <svg class="icon--circle">
+                    <use xlink:href="#icon--circle"></use>
+                </svg>
+            </div>
+        </script>
         @if (!empty($credit))
             <button class="m-article-header__info-trigger m-article-header__info-trigger--inverse" id="image-credit-trigger" aria-selected="false" aria-controls="image-credit" aria-expanded="false" data-behavior="imageInfo">
                 <svg class="icon--info" aria-label="Image credit"><use xlink:href="#icon--info" /></svg>
