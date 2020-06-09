@@ -39,7 +39,7 @@
             @foreach ($item->present()->getRelatedWritings() as $item)
                 @component('components.molecules._m-listing----publication')
                     @slot('variation', 'm-listing--journal')
-                    @slot('href', route('issue-articles.show', $item))
+                    @slot('href', $item->present()->url)
                     @slot('image', $item->imageFront('hero'))
                     @slot('type', $item->present()->type)
                     @slot('title', $item->present()->title)
