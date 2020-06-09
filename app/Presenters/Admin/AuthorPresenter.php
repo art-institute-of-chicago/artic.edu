@@ -40,7 +40,7 @@ class AuthorPresenter extends BasePresenter
         }
 
 
-        return $this->writingsCache = collect($writings)->flatten(1)->filter()->sortBy('date');
+        return $this->writingsCache = collect($writings)->flatten(1)->filter()->sortByDesc('date');
     }
 
     private function _prepWriting($element, $type = 'article') {
