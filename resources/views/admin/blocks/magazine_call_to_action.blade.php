@@ -1,3 +1,20 @@
+@formField('radios', [
+    'name' => 'color',
+    'label' => 'Color',
+    'default' => 'default',
+    'inline' => true,
+    'options' => [
+        [
+            'value' => 'default',
+            'label' => 'Default'
+        ],
+        [
+            'value' => 'alternate',
+            'label' => 'Alternate'
+        ],
+    ]
+])
+
 @formField('input', [
     'name' => 'tag',
     'label' => 'Tag',

@@ -2033,6 +2033,25 @@ $f-audio-subtitle: generate-font-obj(
   }
 }
 
+.m-listing--publication-call-to-action-alternate {
+  background-color: $color__white;
+  border: 1px solid $color__text--type;
+
+  .m-listing__meta {
+    > .f-tag {
+      color: $color__plum;
+    }
+    .f-headline {
+      color: $color__plum;
+    }
+  }
+  .m-listing__meta-bottom {
+    .f-module-title-2 {
+      color: $color__plum;
+    }
+  }
+}
+
 // variant for Art Institute Review
 .m-listing--journal {
   .m-listing__meta > .f-tag {
