@@ -2014,6 +2014,25 @@ $f-audio-subtitle: generate-font-obj(
   }
 }
 
+.m-listing--publication-call-to-action {
+  background-color: $color__plum;
+  border: 0;
+
+  .m-listing__meta {
+    > .f-tag {
+      color: $color__white;
+    }
+    .f-headline {
+      color: $color__white;
+    }
+  }
+  .m-listing__meta-bottom {
+    .f-module-title-2 {
+      color: $color__white;
+    }
+  }
+}
+
 // variant for Art Institute Review
 .m-listing--journal {
   .m-listing__meta > .f-tag {
