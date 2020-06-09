@@ -87,6 +87,7 @@ Route::name('issue-articles.show')->get('/journal/articles/{id}/{slug?}', 'Issue
 
 // Magazine issue routes
 Route::name('magazine-issues.show')->get('/magazine/issues/{id}/{slug?}', 'MagazineIssueController@show');
+Route::name('magazine-issues.latest')->get('/magazine', 'MagazineIssueController@latest');
 
 // Author routes
 Route::name('authors.index')->get('/authors', 'AuthorController@index');

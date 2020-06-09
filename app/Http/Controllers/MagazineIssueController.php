@@ -15,7 +15,13 @@ class MagazineIssueController extends FrontController
         parent::__construct();
     }
 
-    public function show($id, $slug = null)
+    public function latest()
+    {
+        $mag = $this->repository->getLatestIssue();
+        return $this->show($mag->id, $mag->getSlug(), true);
+    }
+
+    public function show($id, $slug = null, $isRequestForLatest = false)
     {
         $issues = $this->repository->published()->get();
         $item = $issues->where('id', (Integer) $id)->first();
@@ -24,10 +30,12 @@ class MagazineIssueController extends FrontController
             abort(404);
         }
 
-        // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('magazine-issues.show', ['id' => $item->id, 'slug' => $item->getSlug()], false);
-        if ('/' .request()->path() != $canonicalPath) {
-            return redirect($canonicalPath, 301);
+        if (!$isRequestForLatest) {
+            // Redirect to the canonical page if it wasn't requested
+            $canonicalPath = route('magazine-issues.show', ['id' => $item->id, 'slug' => $item->getSlug()], false);
+            if ('/' .request()->path() != $canonicalPath) {
+                return redirect($canonicalPath, 301);
+            }
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

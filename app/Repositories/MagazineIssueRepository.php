@@ -22,6 +22,10 @@ class MagazineIssueRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function getLatestIssue() {
+        return MagazineIssue::query()->published()->orderBy('publish_start_date', 'desc')->first();
+    }
+
     public function afterSave($object, $fields)
     {
         $this->updateRelatedBrowser($object, $fields, 'welcome_note');
