@@ -257,6 +257,11 @@
   background: none;
 }
 
+.m-viewer-360-image {
+  opacity: 0;
+  transition: opacity .35s;
+}
+
 .m-media__img img,
 .m-media__img > svg:not([class*=icon--]) {
   display: block;
