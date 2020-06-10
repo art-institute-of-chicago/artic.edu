@@ -103,14 +103,23 @@ class InteractiveFeatureExperiencesController extends FrontController
 
         $view = 'site.experienceDetail';
 
-        $articles = Article::published()
-            ->orderBy('date', 'desc')
-            ->paginate(4);
+        $articles = null;
+        $alsoInThisIssue = null;
+
+        if ($experience->is_unlisted) {
+            $alsoInThisIssue = $this->repository->getAlsoInThisIssue($experience) ?? null;
+        }
+        else {
+            $articles = Article::published()
+                ->orderBy('date', 'desc')
+                ->paginate(4);
+        }
 
         return view($view, [
             'contrastHeader' => true,
             'experience' => $experience,
             'furtherReading' => $articles,
+            'alsoInThisIssue' => $alsoInThisIssue,
             'canonicalUrl' => route('interactiveFeatures.show',
                 [
                     'slug' => $experience->getSlug()

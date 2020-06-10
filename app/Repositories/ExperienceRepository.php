@@ -12,10 +12,13 @@ use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Experience;
 use App\Repositories\Behaviors\HandleExperienceModule;
+use App\Repositories\Behaviors\HandleMagazine;
 
 class ExperienceRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleRepeaters, HandleExperienceModule;
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleRepeaters, HandleExperienceModule, HandleMagazine;
+
+    protected $morphType = 'experiences';
 
     public function __construct(Experience $model)
     {
