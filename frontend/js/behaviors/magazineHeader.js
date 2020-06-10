@@ -86,7 +86,7 @@ const magazineHeader = function(container){
   }
 
   function _hoverLink(event) {
-    let link = event.target;
+    let link = event.target.closest('a');
     let index = Array.prototype.indexOf.call(links, link);
 
     _activateSlide(index);
