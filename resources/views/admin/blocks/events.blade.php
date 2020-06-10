@@ -2,17 +2,17 @@
 $audiences = [];
 $types = [];
 
-foreach (\App\Models\Event::$eventAudiences as $key => $audience) {
+foreach (\App\Models\Event::$eventAudiences as $key => $eventAudience) {
     array_push($audiences, [
         'value'  => $key,
-        'label' => $audience,
+        'label' => $eventAudience,
     ]);
 }
 
-foreach (\App\Models\Event::$eventTypes as $key => $type) {
+foreach (\App\Models\Event::$eventTypes as $key => $eventType) {
     array_push($types, [
         'value'  => $key,
-        'label' => $type,
+        'label' => $eventType,
     ]);
 }
 @endphp
