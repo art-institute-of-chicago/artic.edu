@@ -134,7 +134,7 @@ const magazineHeader = function(container){
     });
 
     pips.forEach(pip => {
-      pip.addEventListener('click', _clickPip, false);
+      pip.removeEventListener('click', _clickPip);
     });
 
     // remove properties of this behavior
