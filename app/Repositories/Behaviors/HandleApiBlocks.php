@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Behaviors;
 
+use ImageService;
 use Illuminate\Support\Str;
 
 trait HandleApiBlocks
@@ -27,13 +28,36 @@ trait HandleApiBlocks
                 if (method_exists($relatedElement, 'hasAugmentedModel')) {
                     if ($relatedElement->hasAugmentedModel() && $relatedElement->getAugmentedModel()) {
                         $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'edit', $relatedElement->getAugmentedModel()->id);
+
+                        if (classHasTrait($relatedElement->getAugmentedModel(), \App\Models\Behaviors\HasMedias::class)) {
+                            $data['thumbnail'] = $relatedElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
+                        }
+
+                        // TODO: Refactor me!
+                        if (((
+                            !isset($data['thumbnail'])
+                        ) || (
+                            isset($data['thumbnail']) && $data['thumbnail'] === ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100])
+                        )) && (
+                            classHasTrait($relatedElement, \App\Models\Behaviors\HasMediasApi::class)
+                        )) {
+                            $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
+                        }
+                    } else {
+                        // WEB-1187: This is reached after page refresh, if the model hasn't been augmented
+                        if (moduleRouteExists($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'augment')) {
+                            $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'augment', $relatedElement->id);
+                        }
+
+                        if (classHasTrait($relatedElement, \App\Models\Behaviors\HasMediasApi::class)) {
+                            $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
+                        }
                     }
                 } else {
                     // Load a normal edit
                     $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'edit', $relatedElement->id);
+                    $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
                 }
-
-                $data['thumbnail'] = (method_exists($relatedElement, 'getAugmentedModel') ? $relatedElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]) : $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100])) ?? ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100]);
 
                 return [
                     'id' => $relatedElement->id,
