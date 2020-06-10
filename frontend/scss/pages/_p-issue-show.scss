@@ -1,5 +1,6 @@
 // This file contains styles for both journal issues and magazine issues
 .p-magazineissue-show,
+.p-magazineissue-latest,
 .p-issue-show {
 
   .o-article__body {
@@ -165,8 +166,9 @@
 }
 
 // Styles specific to magazine issues:
-.p-magazineissue-show {
-  .o-article__primary-actions {
+.p-magazineissue-show,
+.p-magazineissue-latest {
+    .o-article__primary-actions {
     hr {
       margin-bottom: 24px;
 
