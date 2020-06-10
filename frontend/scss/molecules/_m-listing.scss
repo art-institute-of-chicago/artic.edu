@@ -2019,11 +2019,41 @@ $f-audio-subtitle: generate-font-obj(
   border: 0;
 
   .m-listing__meta {
-    > .f-tag {
-      color: $color__white;
+    .m-listing__title {
+      display: flex;
+      flex-wrap: nowrap;
+
+      // Redo padding from .m-listing--publication.m-listing__meta
+      // Needed for full `padding-bottom` calculation in :after
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          margin-left: -#{colspan(1, #{$name})};
+          margin-right: -#{colspan(1, #{$name})};
+
+          .title {
+            padding-left: colspan(1, #{$name});
+            padding-right: colspan(1, #{$name});
+          }
+        }
+      }
+
+      &:after {
+        content: '';
+        // Typical .m-listing-meta height (160) minus button (50) and tag (40)
+        height: 70px;
+        padding-bottom: 56.25%;
+        box-sizing: content-box;
+      }
     }
+
+    .f-tag {
+      color: $color__white;
+      margin-bottom: 12px;
+    }
+
     .f-headline {
       color: $color__white;
+      margin-bottom: 48px;
     }
   }
   .m-listing__meta-bottom {
