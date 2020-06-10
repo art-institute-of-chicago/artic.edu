@@ -53,7 +53,7 @@ class MagazineItem extends Model
 
     public function magazineIssue()
     {
-        return $this->belongsTo(MagazineIssue::class)->orderBy('position');
+        return $this->belongsTo(MagazineIssue::class);
     }
 
     public function magazinable()
