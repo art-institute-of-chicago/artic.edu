@@ -126,12 +126,21 @@ class ArticleController extends FrontController
             $item->topics = $item->categories;
         }
 
-        $featuredArticles = $this->repository->getRelatedItems($item) ?? null;
+        $featuredArticles = null;
+        $alsoInThisIssue = null;
+
+        if ($item->is_unlisted) {
+            $alsoInThisIssue = $this->repository->getAlsoInThisIssue($item) ?? null;
+        }
+        else {
+            $featuredArticles = $this->repository->getRelatedItems($item) ?? null;
+        }
 
         return view('site.articleDetail', [
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
             'featuredArticles'     => $featuredArticles ?? null,
+            'alsoInThisIssue'     => $alsoInThisIssue ?? null,
             'canonicalUrl' => route('articles.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
         ]);
     }
