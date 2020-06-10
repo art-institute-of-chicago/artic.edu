@@ -38,7 +38,18 @@
             </div>
         @endif
         <div class="m-article-header__controls">
-            {{-- Populated via magazineHeader.js using template in script tag --}}
+            <div class="m-article-header__pips">
+                {{-- Populated via magazineHeader.js using template in script tag --}}
+            </div>
+            {{-- Similar to _media-play-pause-video, but without the behavior --}}
+            <button class="m-article-header__play-pause btn btn--nonary btn--icon media-play-pause-video" aria-label="Pause animation">
+                <svg aria-hidden="true" class="icon--pause">
+                  <use xlink:href="#icon--pause"></use>
+                </svg>
+                <svg aria-hidden="true" class="icon--play">
+                  <use xlink:href="#icon--play"></use>
+                </svg>
+            </button>
         </div>
         <script class="m-article-header__pip__template" type="text/template">
             <div class="m-article-header__pip">

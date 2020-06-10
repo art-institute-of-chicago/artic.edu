@@ -11,19 +11,21 @@ const magazineHeader = function(container){
   let pipTemplate;
   let pips;
 
+  let playPauseBtn;
+
   let isAutoplaying = true;
 
   let idleTimer;
   let idleTimeout = 2000;
 
   let autoTimer;
-  let autoTimeout = 5000;
+  let autoTimeout = 4000;
 
   let activeClass = 'is-slideshow-active';
 
   function _startIdleTimer() {
     _stopAutoTimer();
-    _stopIdleTimer()
+    _stopIdleTimer();
     idleTimer = setTimeout(function() {
       _startAutoTimer();
     }, idleTimeout);
@@ -37,14 +39,14 @@ const magazineHeader = function(container){
 
   function _startAutoTimer() {
     _stopAutoTimer();
-    isAutoplaying = true;
-    autoTimer = setTimeout(function() {
-      _tickAutoplay();
-    }, autoTimeout);
+    if (isAutoplaying) {
+      autoTimer = setTimeout(function() {
+        _tickAutoplay();
+      }, autoTimeout);
+    }
   }
 
   function _stopAutoTimer() {
-    isAutoplaying = false;
     if (autoTimer) {
       clearTimeout(autoTimer);
     }
@@ -53,10 +55,7 @@ const magazineHeader = function(container){
   function _tickAutoplay() {
     _advanceCurrentSlide();
     _activateSlide(currentSlide);
-
-    if (isAutoplaying) {
-      _startAutoTimer();
-    }
+    _startAutoTimer();
   }
 
   function _activateElement(index, elements) {
@@ -101,12 +100,39 @@ const magazineHeader = function(container){
     _activateSlide(index);
   }
 
+  function _clickButton(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (isAutoplaying) {
+      _pauseAutoplay();
+    } else {
+      _resumeAutoplay();
+    }
+  }
+
+  function _pauseAutoplay() {
+    isAutoplaying = false;
+    playPauseBtn.classList.add('s-paused');
+    playPauseBtn.setAttribute('aria-label','Play video');
+    _stopAutoTimer();
+    _stopIdleTimer();
+  }
+
+  function _resumeAutoplay() {
+    isAutoplaying = true;
+    playPauseBtn.classList.remove('s-paused');
+    playPauseBtn.setAttribute('aria-label','Pause video');
+    _startAutoTimer();
+  }
+
   function _init() {
     links = container.querySelectorAll('a');
     images = container.querySelectorAll('.m-article-header__img img');
 
-    pipContainer = container.querySelector('.m-article-header__controls');
+    pipContainer = container.querySelector('.m-article-header__pips');
     pipTemplate = container.querySelector('.m-article-header__pip__template').innerHTML;
+
+    playPauseBtn = container.querySelector('.m-article-header__play-pause');
 
     links.forEach(link => {
       link.addEventListener('mouseover', _stopIdleTimer, false);
@@ -122,6 +148,8 @@ const magazineHeader = function(container){
       pip.addEventListener('click', _clickPip, false);
     });
 
+    playPauseBtn.addEventListener('click', _clickButton, false);
+
     _activateSlide(0);
     _startAutoTimer();
   }
@@ -136,6 +164,8 @@ const magazineHeader = function(container){
     pips.forEach(pip => {
       pip.removeEventListener('click', _clickPip);
     });
+
+    playPauseBtn.removeEventListener('click', _clickButton);
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
