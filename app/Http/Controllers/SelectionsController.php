@@ -68,6 +68,12 @@ class SelectionsController extends FrontController
         $artworks = $item->artworks(0);
         $exploreFurther = new ExploreFurther($item, $artworks->getMetadata('aggregations'));
 
+        $alsoInThisIssue = null;
+
+        if ($item->is_unlisted) {
+            $alsoInThisIssue = $this->repository->getAlsoInThisIssue($item) ?? null;
+        }
+
         return view('site.selectionDetail', [
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
@@ -75,6 +81,7 @@ class SelectionsController extends FrontController
             'exploreFurther'        => $exploreFurther->collection(request()->all()),
             'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
+            'alsoInThisIssue'       => $alsoInThisIssue ?? null,
             'canonicalUrl' => $canonicalPath,
         ]);
     }

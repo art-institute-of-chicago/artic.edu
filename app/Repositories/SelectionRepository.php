@@ -13,15 +13,18 @@ use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
+use App\Repositories\Behaviors\HandleMagazine;
 
 use App\Repositories\Api\BaseApiRepository;
 
 class SelectionRepository extends ModuleRepository
 {
 
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations, HandleFeaturedRelated {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations, HandleMagazine, HandleFeaturedRelated {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
+
+    protected $morphType = 'selections';
 
     public function __construct(Selection $model)
     {
