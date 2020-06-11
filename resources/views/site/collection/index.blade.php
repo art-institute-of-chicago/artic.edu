@@ -154,7 +154,7 @@
     @endcomponent
 @endif
 
-@if ($artworks->hasMorePages())
+@if ($artworks->hasMorePages() || $artworks->lastPage() == $artworks->currentPage())
     {!! $artworks->appends(request()->input())->links() !!}
 @endif
 
