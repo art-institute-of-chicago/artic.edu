@@ -18,7 +18,8 @@ const viewer360 = function(container) {
 	let protect = protectFromUnmount();
 
 	//get JSON content from web page
-	let assetLibrary = document.getElementById("assetLibrary").textContent;
+	let sequenceId = wrapper.dataset.id;
+	let assetLibrary = document.getElementById(sequenceId).textContent;
 	let viewer360Files = JSON.parse(assetLibrary);
 	let frames360 = viewer360Files.src;
 	//optimize image size with imgix urls
