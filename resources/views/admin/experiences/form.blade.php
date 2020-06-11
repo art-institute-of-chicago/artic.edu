@@ -44,6 +44,20 @@
         ],
     ])
 
+    @formField('input', [
+        'name' => 'author_display',
+        'label' => 'Author display',
+        'maxlength' => 255
+    ])
+
+    @formField('browser', [
+        'routePrefix' => 'collection',
+        'moduleName' => 'authors',
+        'name' => 'authors',
+        'label' => 'Authors',
+        'max' => 10
+    ])
+
     @formField('checkbox', [
         'name' => 'archived',
         'label' => 'Archived'
@@ -58,4 +72,10 @@
         'name' => 'show_on_articles',
         'label' => 'Show on "Articles" listing',
     ])
+
+    @formField('checkbox', [
+        'name' => 'is_unlisted',
+        'label' => 'Don\'t show this experience in listings',
+    ])
+
 @stop

@@ -43,6 +43,25 @@
         'placeholder' => 'Select a type',
     ])
 
+    @formField('checkbox', [
+        'name' => 'is_unlisted',
+        'label' => 'Don\'t show this highlight in listings',
+    ])
+
+    @formField('input', [
+        'name' => 'author_display',
+        'label' => 'Author display',
+        'maxlength' => 255
+    ])
+
+    @formField('browser', [
+        'routePrefix' => 'collection',
+        'moduleName' => 'authors',
+        'name' => 'authors',
+        'label' => 'Authors',
+        'max' => 10
+    ])
+
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'gallery', 'video', 'media_embed',

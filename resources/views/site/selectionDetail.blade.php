@@ -81,6 +81,39 @@
 
 </article>
 
+@if (isset($alsoInThisIssue) && $alsoInThisIssue)
+    @component('components.molecules._m-title-bar')
+        Also in this Issue
+    @endcomponent
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
+        @slot('behavior','dragScroll')
+        @foreach ($alsoInThisIssue as $item)
+            @component('components.molecules._m-listing----' . strtolower($item->type))
+                @slot('item', $item)
+                @slot('subtype', $item->type)
+                @slot('hideDescription', true)
+                @slot('imgVariation', ' ')
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                        'xsmall' => '216px',
+                        'small' => '216px',
+                        'medium' => '18',
+                        'large' => '13',
+                        'xlarge' => '13',
+                    )),
+                ))
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
+
 @if ($exploreFurther || $exploreFurtherAllTags)
 <div id="exploreFurther">
     @component('components.molecules._m-title-bar')

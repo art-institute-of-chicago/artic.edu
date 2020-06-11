@@ -68,9 +68,17 @@
     ])
 
     @formField('input', [
-        'name' => 'author',
-        'label' => 'Author',
+        'name' => 'author_display',
+        'label' => 'Author display',
         'maxlength' => 255
+    ])
+
+    @formField('browser', [
+        'routePrefix' => 'collection',
+        'moduleName' => 'authors',
+        'name' => 'authors',
+        'label' => 'Authors',
+        'max' => 10
     ])
 
     @formField('medias', [
@@ -84,6 +92,11 @@
     @formField('checkbox', [
         'name' => 'is_boosted',
         'label' => 'Boost this article on search results'
+    ])
+
+    @formField('checkbox', [
+        'name' => 'is_unlisted',
+        'label' => 'Don\'t show this article in listings',
     ])
 
     @formField('wysiwyg', [

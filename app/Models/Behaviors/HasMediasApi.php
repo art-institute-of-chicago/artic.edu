@@ -49,6 +49,17 @@ trait HasMediasApi
         }
     }
 
+    public function defaultCmsImage($params = [])
+    {
+        $image = LakeviewImageService::getImage($this, 'image_id', 100, 100);
+
+        if ($image) {
+            return $image['src'];
+        }
+
+        return ImageService::getTransparentFallbackUrl($params);
+    }
+
     protected function getImageField($role, $crop)
     {
         if (isset($this->mediasParams[$role][$crop]['field'])) {

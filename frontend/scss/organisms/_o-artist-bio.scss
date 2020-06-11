@@ -49,7 +49,20 @@ $bioBreakpoints: (
   }
 }
 
-.o-artist-bio__image {
+.o-author-bio .o-artist-bio__image {
+  @each $name, $point in $bioBreakpoints {
+    @include breakpoint('#{$name}') {
+     width: calc(#{colspan(grid-cols-to-colspan(2), $name)} * .5);
+    }
+  }
+}
+
+.o-author-bio .o-artist-bio__main {
+  @each $name, $point in $bioBreakpoints {
+    @include breakpoint('#{$name}') {
+      width: calc(#{colspan(grid-cols-to-colspan(2), $name)} * 1.5);
+    }
+  }
 }
 
 // WEB-1163: Hyper-specific override for _m-media.scss

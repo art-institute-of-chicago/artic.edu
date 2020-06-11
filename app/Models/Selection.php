@@ -7,18 +7,20 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Api\Artwork;
 use App\Models\Api\Search;
+use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
+use App\Models\Behaviors\HasUnlisted;
 
 use Illuminate\Support\Str;
 
 class Selection extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
+    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated, HasUnlisted, HasAuthors;
 
     protected $presenterAdmin = 'App\Presenters\Admin\SelectionPresenter';
     protected $presenter = 'App\Presenters\Admin\SelectionPresenter';
@@ -35,6 +37,8 @@ class Selection extends AbstractModel
         'publish_start_date',
         'publish_end_date',
         'highlight_type',
+        'is_unlisted',
+        'author_display'
     ];
 
     public $slugAttributes = [
@@ -55,6 +59,7 @@ class Selection extends AbstractModel
     // those fields get auto set to false if not submited
     public $checkboxes = [
         'published',
+        'is_unlisted'
     ];
 
     public $dates = [
@@ -78,6 +83,11 @@ class Selection extends AbstractModel
             ],
         ],
     ];
+
+    public function getListDescriptionAttribute()
+    {
+        return $this->short_copy;
+    }
 
     // Generates the id-slug type of URL
     public function getRouteKeyName()

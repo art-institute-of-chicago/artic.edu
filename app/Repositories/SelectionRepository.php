@@ -13,15 +13,18 @@ use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
+use App\Repositories\Behaviors\HandleMagazine;
 
 use App\Repositories\Api\BaseApiRepository;
 
 class SelectionRepository extends ModuleRepository
 {
 
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations, HandleFeaturedRelated {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations, HandleMagazine, HandleFeaturedRelated {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
+
+    protected $morphType = 'selections';
 
     public function __construct(Selection $model)
     {
@@ -42,8 +45,18 @@ class SelectionRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
+        $this->updateBrowser($object, $fields, 'authors');
 
         parent::afterSave($object, $fields);
+    }
+
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+
+        $fields['browsers']['authors'] = $this->getFormFieldsForBrowser($object, 'authors', 'collection');
+
+        return $fields;
     }
 
     // Show data, moved here to allow preview

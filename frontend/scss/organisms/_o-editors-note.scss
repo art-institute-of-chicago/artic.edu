@@ -1,10 +1,26 @@
 .o-editors-note {
+  *:before, *:after {
+    content: none;
+  }
 
   .deck--black {
     color: $color__text--title;
   }
 
-  .f-tag {
+  a .f-deck,
+  a .f-body-editorial {
+    transition: color .15s;
+    color: $color__black--42;
+  }
+
+  a:hover .f-deck,
+  a:focus .f-deck,
+  a:hover .f-body-editorial,
+  a:focus .f-body-editorial {
+    color: $color__black--61;
+  }
+
+  .o-editors-note__tag {
     margin-bottom: 9px;
 
     @include breakpoint('small+') {
@@ -52,6 +68,26 @@
     }
 
     .o-editors-note__title-lockup {
+      * {
+        display: inline;
+      }
+
+      .icon--arrow {
+        color: $color__text--accent;
+        width: 32px;
+        height: 32px;
+        vertical-align: text-bottom;
+      }
     }
+  }
+}
+
+.o-editors-note--magazine {
+  .o-editors-note__tag {
+    color: $color__plum;
+  }
+
+  .o-editors-note__author {
+    margin-top: 12px;
   }
 }

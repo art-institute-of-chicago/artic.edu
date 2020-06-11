@@ -1,4 +1,4 @@
-<{{ $tag ?? 'header' }} class="m-article-header m-article-header--journal">
+<{{ $tag ?? 'header' }} class="m-article-header m-article-header--publication m-article-header--journal">
   <div class="m-article-header__img">
       @if ($img)
         @component('components.atoms._img')
@@ -11,9 +11,11 @@
       @endif
   </div>
   <div class="m-article-header__text{{ isset($credit) ? ' m-article-header__text--with-credit' : '' }}">
-      <svg class="icon--journal-logo">
-        <use xlink:href="#icon--journal-logo"></use>
-      </svg>
+      <div class="m-article-header__logo">
+        <svg class="icon--journal-logo">
+          <use xlink:href="#icon--journal-logo"></use>
+        </svg>
+      </div>
       @if (isset($intro))
         @component('components.blocks._text')
             @slot('font','f-deck')

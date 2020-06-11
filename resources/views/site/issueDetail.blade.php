@@ -21,7 +21,7 @@
     <div class="o-article__body o-blocks">
         @if ($item->present()->editorsNote)
             <div class="o-issue__intro">
-                @component('components.organisms._o-editors-note')
+                @component('components.organisms._o-editors-note----journal')
                     @slot('title', $item->present()->editorsNote->present()->shortTitle)
                     @slot('description', $item->present()->editorsNote->present()->listDescription)
                     @slot('issueNumber', $item->issue_number ?? null)
@@ -39,8 +39,15 @@
                 @slot('cols_large','2')
                 @slot('cols_xlarge','2')
                 @foreach ($item->present()->articlesForLanding as $item)
-                    @component('components.molecules._m-listing----journal')
-                        @slot('item', $item)
+                    @component('components.molecules._m-listing----publication')
+                        @slot('variation', 'm-listing--journal')
+                        @slot('href', route('issue-articles.show', $item))
+                        @slot('image', $item->imageFront('hero'))
+                        @slot('type', $item->present()->type)
+                        @slot('title', $item->present()->title)
+                        @slot('title_display', $item->present()->title_display)
+                        @slot('list_description', $item->present()->list_description)
+                        @slot('author_display', $item->author_display)
                         @slot('imageSettings', array(
                             'fit' => 'crop',
                             'ratio' => '16:9',
@@ -64,6 +71,6 @@
 
 <hr>
 
-@include('components.organisms._o-journal-footer')
+@include('components.organisms._o-publication-footer----journal')
 
 @endsection

@@ -124,6 +124,6 @@
 
 <hr>
 
-@include('components.organisms._o-journal-footer')
+@include('components.organisms._o-publication-footer----journal')
 
 @endsection

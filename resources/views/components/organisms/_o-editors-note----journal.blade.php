@@ -1,4 +1,4 @@
-<div class="o-editors-note">
+<div class="o-editors-note o-editors-note--journal">
     @component('components.atoms._link')
         @slot('font', '')
         @slot('href', $articleLink)

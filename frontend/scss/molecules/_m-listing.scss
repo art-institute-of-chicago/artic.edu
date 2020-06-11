@@ -1884,6 +1884,8 @@ $f-audio-subtitle: generate-font-obj(
 
 // adding gradients to homepage features and selections
 @mixin m-listing__img__overlay {
+  display: block;
+
   position: absolute;
   top: 0;
 
@@ -1898,6 +1900,10 @@ $f-audio-subtitle: generate-font-obj(
     $color__black--85,
     transparent
   );
+}
+
+.m-listing__img__overlay {
+  display: none;
 }
 
 .m-listing--selection .m-listing__img .m-listing__img__overlay {
@@ -1945,9 +1951,8 @@ $f-audio-subtitle: generate-font-obj(
   margin-top: 15px;
 }
 
-
-// variant `m-listing--journal` for Art Institute Review
-.m-listing--journal {
+// shared styles for .m-listing--journal and .m-listing--magazine
+.m-listing--publication {
   border: thin solid $color__grey--100;
 
   .m-listing__img img {
@@ -1966,7 +1971,6 @@ $f-audio-subtitle: generate-font-obj(
     > .f-tag {
       margin-top: 0;
       margin-bottom: 12px;
-      color: $color__blue--100;
     }
 
     .title {
@@ -1995,8 +1999,8 @@ $f-audio-subtitle: generate-font-obj(
     }
   }
 
-  &:hover,
-  &:focus {
+  .m-listing__link:hover,
+  .m-listing__link:focus {
     .m-listing__img img {
       transform: scale(1.1);
     }
@@ -2010,3 +2014,202 @@ $f-audio-subtitle: generate-font-obj(
   }
 }
 
+.m-listing--publication-call-to-action {
+  background-color: $color__plum;
+  border: 0;
+
+  .m-listing__meta {
+    .m-listing__title {
+      display: flex;
+      flex-wrap: nowrap;
+
+      // Redo padding from .m-listing--publication.m-listing__meta
+      // Needed for full `padding-bottom` calculation in :after
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          margin-left: -#{colspan(1, #{$name})};
+          margin-right: -#{colspan(1, #{$name})};
+
+          .title {
+            padding-left: colspan(1, #{$name});
+            padding-right: colspan(1, #{$name});
+          }
+        }
+      }
+
+      &:after {
+        content: '';
+        // Typical .m-listing-meta height (160) minus button (50) and tag (40)
+        height: 70px;
+        padding-bottom: 56.25%;
+        box-sizing: content-box;
+      }
+    }
+
+    .f-tag {
+      color: $color__white;
+      margin-bottom: 12px;
+    }
+
+    .f-headline {
+      color: $color__white;
+      margin-bottom: 48px;
+    }
+  }
+  .m-listing__meta-bottom {
+    .f-module-title-2 {
+      color: $color__white;
+    }
+  }
+
+  .btn--magazine {
+    border-color: rgba($color__white, .8);
+    background-color: $color__plum;
+    color: $color__white;
+  }
+
+  a:hover .btn--magazine,
+  a:focus:hover .btn--magazine {
+    background-color: $color__white;
+    color: $color__plum;
+  }
+}
+
+.m-listing--publication-call-to-action-alternate {
+  background-color: $color__white;
+  border: 1px solid $color__text--type;
+
+  .m-listing__meta {
+    > .f-tag {
+      color: $color__plum;
+    }
+
+    .f-headline {
+      color: $color__plum;
+    }
+  }
+
+  .m-listing__meta-bottom {
+    .f-module-title-2 {
+      color: $color__plum;
+    }
+  }
+
+  .btn--magazine {
+    border-color: rgba($color__plum, .8);
+  }
+}
+
+.m-listing--publication-happenings {
+  @each $name, $point in ('xsmall', 'small', 'medium') {
+    @include breakpoint('#{$name}') {
+      width: colspan(58, $name) !important;
+    }
+  }
+
+  @each $name, $point in ('large', 'xlarge') {
+    @include breakpoint('#{$name}') {
+      width: colspan(43, $name) !important;
+    }
+  }
+
+  .m-listing__meta {
+    padding-top: 28px;
+
+    .title {
+      margin-bottom: 12px;
+    }
+
+    .btn--publication-happening {
+      color: $color__text--title;
+      border-color: $color__text--title;
+      background-color: $color__white;
+
+      &:hover,
+      &:focus {
+        color: $color__black--42;
+        border-color: $color__black--42;
+      }
+    }
+
+    .m-listing--publication-happenings__items {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      margin-bottom: 24px;
+
+      @each $name, $point in ('small', 'medium', 'large', 'xlarge') {
+        @include breakpoint('#{$name}') {
+          margin-left: -#{colspan(1, $name)};
+          margin-right: -#{colspan(1, $name)};
+        }
+      }
+
+      .m-listing--publication-happenings__item {
+        margin: 24px 0;
+
+        @include breakpoint('xsmall') {
+          flex-basis: 100%;
+        }
+
+        @each $name, $point in ('small', 'medium', 'large', 'xlarge') {
+          @include breakpoint('#{$name}') {
+            margin-left: colspan(1, $name);
+            margin-right: colspan(1, $name);
+          }
+        }
+
+        @each $name, $point in ('small', 'medium') {
+          @include breakpoint('#{$name}') {
+            width: colspan(26, medium);
+          }
+        }
+
+        @each $name, $point in ('large', 'xlarge') {
+          @include breakpoint('#{$name}') {
+            width: colspan(18.5, $name);
+          }
+        }
+
+        &:hover {
+          .f-module-title-1 {
+            text-decoration: underline;
+          }
+        }
+
+        .f-tag {
+          margin-top: 0px;
+          margin-bottom: 6px;
+        }
+      }
+    }
+  }
+}
+
+// variant for Art Institute Review
+.m-listing--journal {
+  .m-listing__meta > .f-tag {
+    color: $color__blue;
+  }
+}
+
+// variant for Member Magazine
+.m-listing--magazine {
+  .m-listing__meta > .f-tag {
+    color: $color__plum;
+  }
+}
+
+// variant for author pages
+.m-listing--author {
+  .m-listing__img img {
+    transition: none;
+  }
+}
+
+.m-listing--author:hover,
+.m-listing--author:focus {
+  .m-listing__img img {
+    transform: none;
+  }
+}

@@ -84,6 +84,10 @@ $nav = [
             'emailSeries' => [
                 'title' => 'Email Series',
                 'module' => true
+            ],
+            'magazineIssues' => [
+                'title' => 'Magazine Issues',
+                'module' => true
             ]
         ]
     ],

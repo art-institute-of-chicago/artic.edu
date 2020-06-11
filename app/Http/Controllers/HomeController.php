@@ -84,7 +84,7 @@ class HomeController extends FrontController
     {
         $page = Page::forType('Articles and Publications')->first();
 
-        return $page->experiences()->webPublished()->get();
+        return $page->experiences()->webPublished()->listed()->get();
     }
 
     private function getLightboxes()

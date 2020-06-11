@@ -85,6 +85,14 @@ Route::name('articles.show')->get('/articles/{id}/{slug?}', 'ArticleController@s
 Route::name('issues.show')->get('/journal/issues/{issueNumber}/{slug?}', 'IssueController@show');
 Route::name('issue-articles.show')->get('/journal/articles/{id}/{slug?}', 'IssueArticleController@show');
 
+// Magazine issue routes
+Route::name('magazine-issues.show')->get('/magazine/issues/{id}/{slug?}', 'MagazineIssueController@show');
+Route::name('magazine-issues.latest')->get('/magazine', 'MagazineIssueController@latest');
+
+// Author routes
+Route::name('authors.index')->get('/authors', 'AuthorController@index');
+Route::name('authors.show')->get('/authors/{id}/{slug?}', 'AuthorController@show');
+
 // Videos routes
 Route::name('videos')->get('videos', function () {return abort(404);});
 Route::name('videos.show')->get('/videos/{id}/{slug?}', 'VideoController@show');

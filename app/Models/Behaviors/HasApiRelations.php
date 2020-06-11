@@ -79,8 +79,12 @@ trait HasApiRelations
                         $element = $relatedElement->related;
                         $element->position = $relatedElement->position;
 
+                        if (!$element->isListed ?? false) {
+                            return false;
+                        }
+
                         return $element;
-                    });
+                    })->filter();
                 }
             })->flatten(1)->sortBy('position');
     }

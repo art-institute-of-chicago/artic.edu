@@ -414,30 +414,34 @@ class Event extends AbstractModel
 
     // NOTE: This works only while there are less than 10 possible type values
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
-    public function scopeByType($query, $type)
+    public function scopeByType($query, $types)
     {
-        $type = (int) $type; // for safety and comparison
+        collect($types)->map(function($type) {
+            return (int) $type;
+        })->filter(function($type) {
+            return array_key_exists($type, self::$eventTypes);
+        })->each(function($type) use ($query) {
+            $query->where('event_type', '=', $type)
+                ->orWhereRaw($this->getWhereJsonContainsRaw('alt_types', $type));
+        });
 
-        if (!array_key_exists($type, self::$eventTypes)) {
-            return $query;
-        }
-
-        return $query->where('event_type', '=', $type)
-            ->orWhereRaw($this->getWhereJsonContainsRaw('alt_types', $type));
+        return $query;
     }
 
     // NOTE: This works only while there are less than 10 possible audience values
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
-    public function scopeByAudience($query, $audience)
+    public function scopeByAudience($query, $audiences)
     {
-        $audience = (int) $audience; // for safety and comparison
+        collect($audiences)->map(function($audience) {
+            return (int) $audience;
+        })->filter(function($audience) {
+            return array_key_exists($audience, self::$eventAudiences);
+        })->each(function($audience) use ($query) {
+            $query->where('audience', '=', $audience)
+                ->orWhereRaw($this->getWhereJsonContainsRaw('alt_audiences', $audience));
+        });
 
-        if (!array_key_exists($audience, self::$eventAudiences)) {
-            return $query;
-        }
-
-        return $query->where('audience', '=', $audience)
-            ->orWhereRaw($this->getWhereJsonContainsRaw('alt_audiences', $audience));
+        return $query;
     }
 
     public function scopeByProgram($query, $program = null)
