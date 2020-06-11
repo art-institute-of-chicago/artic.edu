@@ -15,7 +15,7 @@ trait HasUnlisted
 
     public function getIsListedAttribute()
     {
-        return static::listed()->find($this->id) !== null;
+        return isset($this->is_unlisted) ? !$this->is_unlisted : true;
     }
 
 }
