@@ -1,6 +1,6 @@
 $bioBreakpoints: (
-  large,
-  xlarge
+  'large',
+  'xlarge',
 );
 
 .o-artist-bio {
@@ -62,6 +62,14 @@ $bioBreakpoints: (
     @include breakpoint('#{$name}') {
       width: calc(#{colspan(grid-cols-to-colspan(2), $name)} * 1.5);
     }
+  }
+}
+
+.o-author-bio .o-artist-bio__main .o-artist-bio__body {
+  margin-top: 24px;
+
+  @include breakpoint('large+') {
+    margin-top: 0;
   }
 }
 
