@@ -16,7 +16,7 @@
             @slot('title', $pageTitle ? $pageTitle.' - Inline 360' : 'Inline 360')
         @endcomponent
         </div>
-        @if ($caption)
+        @if ($caption_title || $caption)
             <figcaption>
                 @if (isset($caption_title))
                     <div class="f-caption-title">{!! $caption_title !!}</div><br>
