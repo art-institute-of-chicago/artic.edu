@@ -2070,7 +2070,6 @@ $f-audio-subtitle: generate-font-obj(
 
   a:hover .btn--magazine,
   a:focus:hover .btn--magazine {
-    border-color: rgba($color__plum, .8);
     background-color: $color__white;
     color: $color__plum;
   }
@@ -2084,14 +2083,20 @@ $f-audio-subtitle: generate-font-obj(
     > .f-tag {
       color: $color__plum;
     }
+
     .f-headline {
       color: $color__plum;
     }
   }
+
   .m-listing__meta-bottom {
     .f-module-title-2 {
       color: $color__plum;
     }
+  }
+
+  .btn--magazine {
+    border-color: rgba($color__plum, .8);
   }
 }
 
@@ -2119,12 +2124,11 @@ $f-audio-subtitle: generate-font-obj(
       color: $color__text--title;
       border-color: $color__text--title;
       background-color: $color__white;
-      border-width: 2px;
 
       &:hover,
       &:focus {
-        color: $color__black--54;
-        border-color: $color__black--54;
+        color: $color__black--42;
+        border-color: $color__black--42;
       }
     }
 
