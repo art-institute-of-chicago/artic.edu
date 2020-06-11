@@ -12,10 +12,11 @@ use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Repositories\Behaviors\HandleMagazine;
+use App\Repositories\Behaviors\HandleAuthors;
 
 class ArticleRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiRelations, HandleApiBlocks, HandleBlocks, HandleMagazine, HandleFeaturedRelated {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiRelations, HandleApiBlocks, HandleBlocks, HandleMagazine, HandleFeaturedRelated, HandleAuthors {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
@@ -30,7 +31,6 @@ class ArticleRepository extends ModuleRepository
     {
         $object->categories()->sync($fields['categories'] ?? []);
 
-        $this->updateBrowser($object, $fields, 'authors');
         $this->updateMultiBrowserApiRelated($object, $fields, 'further_reading_items', [
             'articles' => false,
             'experiences' => false
@@ -43,7 +43,6 @@ class ArticleRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($object);
 
-        $fields['browsers']['authors'] = $this->getFormFieldsForBrowser($object, 'authors', 'collection');
         $fields['browsers']['further_reading_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'further_reading_items', [], [
             'articles' => false,
             'experiences' => false

@@ -13,32 +13,17 @@ use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Experience;
 use App\Repositories\Behaviors\HandleExperienceModule;
 use App\Repositories\Behaviors\HandleMagazine;
+use App\Repositories\Behaviors\HandleAuthors;
 
 class ExperienceRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleRepeaters, HandleExperienceModule, HandleMagazine;
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleRepeaters, HandleExperienceModule, HandleMagazine, HandleAuthors;
 
     protected $morphType = 'experiences';
 
     public function __construct(Experience $model)
     {
         $this->model = $model;
-    }
-
-    public function afterSave($object, $fields)
-    {
-        $this->updateBrowser($object, $fields, 'authors');
-
-        parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-
-        $fields['browsers']['authors'] = $this->getFormFieldsForBrowser($object, 'authors', 'collection');
-
-        return $fields;
     }
 
     public function getCountByStatusSlug($slug, $scope = [])
