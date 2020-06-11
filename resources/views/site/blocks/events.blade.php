@@ -23,20 +23,20 @@
     );
 
     $items = $events->map(function($event) {
-      return [
-        'title' => $event->title_display ?? $event->title,
-        'dateDisplay' => $event->present()->formattedBlockDate(),
-        'href' => route('events.show', $event),
-      ];
+        return [
+            'title' => $event->title_display ?? $event->title,
+            'dateDisplay' => $event->present()->formattedBlockDate(),
+            'href' => route('events.show', $event),
+        ];
     });
 @endphp
 
 @if ($items && $items->count() > 0)
-  @component('components.molecules._m-listing----publication-happenings')
-    @slot('variation', 'm-listing--publication-happenings--events m-listing--magazine')
-    @slot('title', $block->input('title') ?? null)
-    @slot('btnText', 'See all events')
-    @slot('btnHref', route('events'))
-    @slot('items', $items)
-  @endcomponent
+    @component('components.molecules._m-listing----publication-happenings')
+        @slot('variation', 'm-listing--publication-happenings--events m-listing--magazine')
+        @slot('title', $block->input('title') ?? null)
+        @slot('btnText', 'See all events')
+        @slot('btnHref', route('events'))
+        @slot('items', $items)
+    @endcomponent
 @endif
