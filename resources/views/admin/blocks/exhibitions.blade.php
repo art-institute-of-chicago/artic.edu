@@ -5,7 +5,7 @@
 
 @formField('browser', [
     'routePrefix' => 'exhibitions_events',
-    'max' => 5,
+    'max' => 4,
     'moduleName' => 'exhibitions',
     'name' => 'exhibitions',
     'label' => 'Exhibitions'
