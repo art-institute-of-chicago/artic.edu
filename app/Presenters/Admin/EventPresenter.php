@@ -69,6 +69,23 @@ class EventPresenter extends BasePresenter
         }
     }
 
+    protected function formatDate($date)
+    {
+        return '<time datetime="'.$date->format("c").'" itemprop="startDate">'.$date->format('M j, Y').'</time>';
+    }
+
+    public function formattedBlockDate()
+    {
+        if (!empty($this->entity->forced_date)) {
+            return $this->entity->forced_date;
+        } else {
+            // EventRepository::getEventsFiltered() adds this from `event_metas`
+            if (isset($this->entity->date)) {
+                return $this->formatDate($this->entity->date);
+            }
+        }
+    }
+
     public function formattedNextOcurrence()
     {
         if (!empty($this->entity->forced_date)) {
@@ -86,7 +103,7 @@ class EventPresenter extends BasePresenter
     public function nextOcurrenceDate()
     {
         if ($next = $this->entity->nextOcurrence) {
-            return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('M j, Y').'</time>';
+            return $this->formatDate($next->date);
         }
     }
 

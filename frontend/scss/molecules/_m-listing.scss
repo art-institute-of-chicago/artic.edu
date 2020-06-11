@@ -1999,8 +1999,8 @@ $f-audio-subtitle: generate-font-obj(
     }
   }
 
-  &:hover,
-  &:focus {
+  .m-listing__link:hover,
+  .m-listing__link:focus {
     .m-listing__img img {
       transform: scale(1.1);
     }
@@ -2091,6 +2091,87 @@ $f-audio-subtitle: generate-font-obj(
   .m-listing__meta-bottom {
     .f-module-title-2 {
       color: $color__plum;
+    }
+  }
+}
+
+.m-listing--publication-happenings {
+  @each $name, $point in ('xsmall', 'small', 'medium') {
+    @include breakpoint('#{$name}') {
+      width: colspan(58, $name) !important;
+    }
+  }
+
+  @each $name, $point in ('large', 'xlarge') {
+    @include breakpoint('#{$name}') {
+      width: colspan(43, $name) !important;
+    }
+  }
+
+  .m-listing__meta {
+    padding-top: 28px;
+
+    .title {
+      margin-bottom: 12px;
+    }
+
+    .btn--publication-happening {
+      color: $color__text--title;
+      border-color: $color__text--title;
+      background-color: $color__white;
+      border-width: 2px;
+
+      &:hover,
+      &:focus {
+        color: $color__black--54;
+        border-color: $color__black--54;
+      }
+    }
+
+    .m-listing--publication-happenings__items {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      margin-bottom: 24px;
+
+      @each $name, $point in ('medium', 'large', 'xlarge') {
+        @include breakpoint('#{$name}') {
+          margin-left: -#{colspan(1, $name)};
+          margin-right: -#{colspan(1, $name)};
+        }
+      }
+
+      .m-listing--publication-happenings__item {
+        margin: 24px 0;
+
+        @each $name, $point in ('medium', 'large', 'xlarge') {
+          @include breakpoint('#{$name}') {
+            margin-left: colspan(1, $name);
+            margin-right: colspan(1, $name);
+          }
+        }
+
+        @include breakpoint('medium') {
+          width: colspan(26, medium);
+        }
+
+        @each $name, $point in ('large', 'xlarge') {
+          @include breakpoint('#{$name}') {
+            width: colspan(18.5, $name);
+          }
+        }
+
+        &:hover {
+          .f-module-title-1 {
+            text-decoration: underline;
+          }
+        }
+
+        .f-tag {
+          margin-top: 0px;
+          margin-bottom: 6px;
+        }
+      }
     }
   }
 }
