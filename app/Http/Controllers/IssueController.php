@@ -39,7 +39,7 @@ class IssueController extends FrontController
             'borderlessHeader' => false,
             'item' => $item,
             'issues' => $issues,
-            'canonicalUrl' => route('issues.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
+            'canonicalUrl' => route('issues.show', ['issueNumber' => $item->issue_number, 'slug' => $item->getSlug()]),
         ]);
     }
 }

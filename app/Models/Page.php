@@ -204,6 +204,11 @@ class Page extends AbstractModel
         return $query->where('type', array_flip(self::$types)[$type]);
     }
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     public function homeExhibitions()
     {
         return $this->apiElements()->where('relation', 'homeExhibitions');

@@ -20,7 +20,7 @@
 
     <hr>
 
-    <ul>
+    <ul class="m-article-actions--journal__issues">
         @foreach($issues as $issue)
             <li>
                 @component('components.atoms._tag')

@@ -77,7 +77,7 @@ class LakeviewImageService implements ImageServiceInterface
 
         $dimensions = '!3000,3000';
         if ($width != '' || $height != '') {
-            $dimensions = $width . ',' . $height;
+            $dimensions = '!' . $width . ',' . $height;
         }
 
         return $this->base_url . $this->version . '/' . $id . '/' . $size . '/' . $dimensions . '/0/default.jpg';

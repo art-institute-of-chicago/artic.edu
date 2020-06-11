@@ -18,7 +18,8 @@ const viewer360 = function(container) {
 	let protect = protectFromUnmount();
 
 	//get JSON content from web page
-	let assetLibrary = document.getElementById("assetLibrary").textContent;
+	let sequenceId = wrapper.dataset.id;
+	let assetLibrary = document.getElementById(sequenceId).textContent;
 	let viewer360Files = JSON.parse(assetLibrary);
 	let frames360 = viewer360Files.src;
 	//optimize image size with imgix urls
@@ -89,13 +90,13 @@ const viewer360 = function(container) {
 
 	//inputs
 	wrapper.addEventListener("wheel", handleMouseWheel.bind(this));
-	window.addEventListener("mousedown", handleEvents.bind(this));
-	window.addEventListener("mousemove", handleEvents.bind(this));
-	window.addEventListener("mouseup", handleEvents.bind(this));
-	window.addEventListener("touchstart", handleEvents.bind(this));
-	window.addEventListener("touchmove", handleEvents.bind(this));
-	window.addEventListener("touchend", handleEvents.bind(this));
-	window.addEventListener("touchcancel", handleEvents.bind(this));
+	wrapper.addEventListener("mousedown", handleEvents.bind(this));
+	wrapper.addEventListener("mousemove", handleEvents.bind(this));
+	wrapper.addEventListener("mouseup", handleEvents.bind(this));
+	wrapper.addEventListener("touchstart", handleEvents.bind(this));
+	wrapper.addEventListener("touchmove", handleEvents.bind(this));
+	wrapper.addEventListener("touchend", handleEvents.bind(this));
+	wrapper.addEventListener("touchcancel", handleEvents.bind(this));
 
 	function handleEvents(e) {
 		let { pageX, touches } = e;

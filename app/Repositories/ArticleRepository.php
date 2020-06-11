@@ -11,12 +11,16 @@ use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
+use App\Repositories\Behaviors\HandleMagazine;
+use App\Repositories\Behaviors\HandleAuthors;
 
 class ArticleRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiRelations, HandleApiBlocks, HandleBlocks, HandleFeaturedRelated {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiRelations, HandleApiBlocks, HandleBlocks, HandleMagazine, HandleFeaturedRelated, HandleAuthors {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
+
+    protected $morphType = 'articles';
 
     public function __construct(Article $model)
     {

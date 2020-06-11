@@ -741,7 +741,9 @@
 
 
 
-.m-article-header--journal {
+
+// shared styles for .m-article-header--journal .m-article-header--magazine
+.m-article-header--publication {
   padding-top: 0;
 
   @include breakpoint('large+') {
@@ -756,6 +758,13 @@
     }
   }
 
+  .f-subheading-1,
+  .f-subheading-2,
+  a {
+    // text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+    color: $color__text--title-contrast;
+  }
+
   .m-article-header__img {
     position: absolute;
     z-index: 1;
@@ -766,40 +775,6 @@
     height: 100%;
     margin-left: -50vw;
     overflow: hidden;
-  }
-
-  .m-article-header__img::after {
-    content: '';
-    border: solid thin white;
-    position: absolute;
-
-    z-index: 3;
-
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    height: calc(100% - #{12px * 2});
-    width: colspan(58, xsmall);
-
-    @include breakpoint('small+') {
-      height: calc(100% - #{24px * 2});
-      width: colspan(58, small);
-    }
-
-    @include breakpoint('medium+') {
-      height: calc(100% - #{24px * 2});
-      width: colspan(58, medium);
-    }
-
-    @include breakpoint('large+') {
-      height: calc(100% - #{40px * 2});
-      width: colspan(58, large);
-    }
-
-    @include breakpoint('xlarge') {
-      width: colspan(58, xlarge);
-    }
   }
 
   .m-article-header__img::before {
@@ -839,37 +814,74 @@
 
     min-height: 60vh;
 
-    // We will account for the credit icon later
-    padding: calc(#{colspan(2, xsmall)} + 12px) colspan(2, xsmall);
-
-    @include breakpoint('small+') {
-      padding: calc(#{colspan(2, small)} + 24px) colspan(2, small);
-    }
-
-    @include breakpoint('medium+') {
-      padding: calc(#{colspan(2, medium)} + 24px) colspan(2, medium);
-    }
-
     @include breakpoint('large+') {
-      padding: calc(#{colspan(2, large)} + 40px) colspan(2, large);
       min-height: 80vh;
     }
 
     @include breakpoint('xlarge') {
-      padding: calc(#{colspan(2, xlarge)} + 40px) colspan(2, xlarge);
       width: colspan(58, xlarge);
     }
 
-    * {
-      text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
-      color: $color__text--title-contrast;
+    a:hover {
+      color: $color__black--25;
+    }
+
+    .m-article-header__logo {
+      align-self: flex-start;
+    }
+
+    .m-article-header__title-lockup {
+      margin-top: 32px;
+
+      @include breakpoint('small+') {
+        margin-top: 36px;
+      }
+
+      @include breakpoint('medium+') {
+        margin-top: 58px;
+      }
+
+      @include breakpoint('large+') {
+        margin-top: 60px;
+      }
+    }
+
+  }
+}
+
+.m-article-header--journal {
+
+  .m-article-header__img::after {
+    content: '';
+    border: solid thin white;
+    position: absolute;
+
+    z-index: 3;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        height: calc(100% - #{map-get($journal-header-padding, $name) * 2});
+        width: colspan(58, $name);
+      }
+    }
+  }
+
+  .m-article-header__text {
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        padding: calc(#{colspan(2, $name)} + #{map-get($journal-header-padding, $name)}) colspan(2, $name);
+      }
     }
 
     .icon--journal-logo {
       height: 92px;
       width: 120px;
       color: white;
-      align-self: flex-start;
     }
 
     .m-article-header__intro,
@@ -892,11 +904,11 @@
     .m-article-header__intro {
       margin-top: 36px;
 
-      @include breakpoint('small+') {
+      @include breakpoint('small') {
         margin-top: 48px;
       }
 
-      @include breakpoint('medium+') {
+      @include breakpoint('medium') {
         margin-top: 64px;
       }
 
@@ -904,94 +916,192 @@
         margin-top: 74px;
       }
     }
+  }
 
-    .m-article-header__title-lockup {
-      margin-top: 32px;
+  .m-article-header__text--with-credit {
 
-      @include breakpoint('small+') {
-        margin-top: 36px;
-      }
-
-      @include breakpoint('medium+') {
-        margin-top: 58px;
-      }
-
-      @include breakpoint('large+') {
-        margin-top: 60px;
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        padding: calc(#{colspan(2, $name)} + #{map-get($journal-header-padding, $name)}) colspan(2, $name) calc(#{colspan(2, $name)} + #{map-get($journal-header-padding, $name)} + 28px);
       }
     }
 
-    &.m-article-header__text--with-credit {
-      padding: calc(#{colspan(2, xsmall)} + 12px) colspan(2, xsmall) calc(#{colspan(2, xsmall)} + 12px + 28px);
+    // Mirror the padding for .m-article-header__text
+    .m-article-header__info-trigger {
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          right: colspan(1, $name);
+          bottom: calc(#{colspan(1, $name)} + #{map-get($journal-header-padding, $name)});
+        }
+      }
+    }
 
-      @include breakpoint('small+') {
-        padding: calc(#{colspan(2, small)} + 24px) colspan(2, small) calc(#{colspan(2, small)} + 24px + 28px);
+    .m-article-header__info {
+      $button-vertical-offset: 30px;
+
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          right: colspan(1, $name);
+          bottom: calc(#{colspan(1, $name)} + #{map-get($journal-header-padding, $name)} + #{$button-vertical-offset});
+        }
+      }
+    }
+  }
+}
+
+.m-article-header--magazine {
+
+  .m-article-header__img img {
+    transition: opacity .25s;
+    opacity: 0;
+
+    &:first-child {
+      opacity: 1;
+    }
+
+    &.is-slideshow-active {
+      opacity: 1;
+    }
+  }
+
+  $magazine-intro-width: (
+    xsmall: 75%,
+    small: 33%,
+    medium: 33%,
+    large: 33%,
+    xlarge: 25%,
+  );
+
+  $magazine-controls-offset: -2px;
+
+  .m-article-header__text {
+    justify-content: flex-end;
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        padding: #{map-get($journal-header-padding, $name)} 0;
+      }
+    }
+
+    a.is-slideshow-active {
+      text-decoration: underline;
+    }
+
+    .m-article-header__pip {
+      display: inline-block;
+      color: $color__text--title-contrast;
+      cursor: pointer;
+
+      margin-right: 4px;
+
+      &.is-slideshow-active {
+        color: $color__black--40;
       }
 
-      @include breakpoint('medium+') {
-        padding: calc(#{colspan(2, medium)} + 24px) colspan(2, medium) calc(#{colspan(2, medium)} + 24px + 28px);
+      .icon--circle {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    .m-article-header__logo {
+      flex-grow: 1;
+
+      @include breakpoint('xsmall') {
+        margin-top: 6px;
+      }
+    }
+
+    .icon--magazine-logo {
+      color: white;
+    }
+
+    .m-article-header__intro {
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          width: map-get($magazine-intro-width, $name);
+        }
       }
 
-      @include breakpoint('large+') {
-        padding: calc(#{colspan(2, large)} + 40px) colspan(2, large) calc(#{colspan(2, large)} + 40px + 28px);
-        min-height: 80vh;
+      @include breakpoint('xsmall') {
+        align-self: flex-start;
       }
+    }
 
-      @include breakpoint('xlarge') {
-        padding: calc(#{colspan(2, xlarge)} + 40px) colspan(2, xlarge) calc(#{colspan(2, xlarge)} + 40px + 28px);
-        width: colspan(58, xlarge);
-      }
+    .m-article-header__title-lockup {
+      align-self: flex-start;
+    }
 
-      // Mirror the padding for .m-article-header__text
-      .m-article-header__info-trigger {
+    .m-article-header__controls {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      user-select: none;
+
+      @include breakpoint('xsmall') {
+        top: map-get($journal-header-padding, xsmall);
         right: colspan(1, xsmall);
-        bottom: calc(#{colspan(1, xsmall)} + 12px);
+      }
+
+      @each $name, $point in ('small', 'medium', 'large', 'xlarge') {
+        @include breakpoint('#{$name}') {
+          left: #{100% - map-get($magazine-intro-width, $name)};
+          bottom: #{map-get($journal-header-padding, $name) + $magazine-controls-offset};
+        }
+      }
+
+      .m-article-header__play-pause {
+        display: inline-block; // show on mobile
 
         @include breakpoint('small+') {
-          right: colspan(1, small);
-          bottom: calc(#{colspan(1, small)} + 24px);
-        }
-
-        @include breakpoint('medium+') {
-          right: colspan(1, medium);
-          bottom: calc(#{colspan(1, medium)} + 24px);
-        }
-
-        @include breakpoint('large+') {
-          right: colspan(1, large);
-          bottom: calc(#{colspan(1, large)} + 40px);
-        }
-
-        @include breakpoint('xlarge') {
-          right: colspan(1, xlarge);
-          bottom: calc(#{colspan(1, xlarge)} + 40px);
+          margin-left: 12px;
         }
       }
 
-      .m-article-header__info {
-        $button-vertical-offset: 30px;
-
-        right: colspan(1, xsmall);
-        bottom: calc(#{colspan(1, xsmall)} + 12px + #{$button-vertical-offset});
+      .m-article-header__pips {
+        display: none;
 
         @include breakpoint('small+') {
-          right: colspan(1, small);
-          bottom: calc(#{colspan(1, small)} + 24px + #{$button-vertical-offset});
+          display: block;
         }
+      }
+    }
+  }
 
-        @include breakpoint('medium+') {
-          right: colspan(1, medium);
-          bottom: calc(#{colspan(1, medium)} + 24px + #{$button-vertical-offset});
+  .m-article-header__text--with-credit {
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        padding-top: #{map-get($journal-header-padding, $name)};
+        padding-bottom: #{map-get($journal-header-padding, $name) + 28px};
+      }
+    }
+
+    .m-article-header__controls {
+      @each $name, $point in ('small', 'medium', 'large', 'xlarge') {
+        @include breakpoint('#{$name}') {
+          bottom: #{map-get($journal-header-padding, $name) + 20px + $magazine-controls-offset};
         }
+      }
+    }
 
-        @include breakpoint('large+') {
-          right: colspan(1, large);
-          bottom: calc(#{colspan(1, large)} + 40px + #{$button-vertical-offset});
+    // Mirror the padding for .m-article-header__text
+    .m-article-header__info-trigger {
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          right: colspan(1, $name);
+          bottom: #{map-get($journal-header-padding, $name) + 20px};
         }
+      }
+    }
 
-        @include breakpoint('xlarge') {
-          right: colspan(1, xlarge);
-          bottom: calc(#{colspan(1, xlarge)} + 40px + #{$button-vertical-offset});
+    .m-article-header__info {
+      $button-vertical-offset: 30px;
+
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          right: colspan(1, $name);
+          bottom: #{map-get($journal-header-padding, $name) + 20px + $button-vertical-offset};
         }
       }
     }

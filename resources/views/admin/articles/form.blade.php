@@ -67,11 +67,7 @@
         ],
     ])
 
-    @formField('input', [
-        'name' => 'author',
-        'label' => 'Author',
-        'maxlength' => 255
-    ])
+    @include('admin.partials.authors')
 
     @formField('medias', [
         'with_multiple' => false,
@@ -84,6 +80,11 @@
     @formField('checkbox', [
         'name' => 'is_boosted',
         'label' => 'Boost this article on search results'
+    ])
+
+    @formField('checkbox', [
+        'name' => 'is_unlisted',
+        'label' => 'Don\'t show this article in listings',
     ])
 
     @formField('wysiwyg', [
@@ -101,7 +102,7 @@
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
             'list', 'artwork', 'artworks', 'hr', 'citation', 'split_block',
             'membership_banner', 'digital_label', 'tour_stop', 'button', 'mobile_app',
-            '3d_model', '3d_tour', '3d_embed'
+            '3d_model', '3d_tour', '3d_embed', '360_embed', '360_modal'
         ])
     ])
 

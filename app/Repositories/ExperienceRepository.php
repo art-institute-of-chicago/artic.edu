@@ -12,25 +12,18 @@ use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Experience;
 use App\Repositories\Behaviors\HandleExperienceModule;
+use App\Repositories\Behaviors\HandleMagazine;
+use App\Repositories\Behaviors\HandleAuthors;
 
 class ExperienceRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleRepeaters, HandleExperienceModule;
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleRepeaters, HandleExperienceModule, HandleMagazine, HandleAuthors;
+
+    protected $morphType = 'experiences';
 
     public function __construct(Experience $model)
     {
         $this->model = $model;
-    }
-
-    public function afterSave($object, $fields)
-    {
-        parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-        return $fields;
     }
 
     public function getCountByStatusSlug($slug, $scope = [])

@@ -43,6 +43,13 @@
         'placeholder' => 'Select a type',
     ])
 
+    @formField('checkbox', [
+        'name' => 'is_unlisted',
+        'label' => 'Don\'t show this highlight in listings',
+    ])
+
+    @include('admin.partials.authors')
+
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'gallery', 'video', 'media_embed',

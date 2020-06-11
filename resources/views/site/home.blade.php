@@ -61,7 +61,7 @@
                   'xlarge' => '18',
             )),
         ))
-        @slot('items', $videos->map(function($item) {
+        @slot('items', $videos->map(function($item, $key) use ($seo) {
             $item->type = 'embed';
             $item->size = 'gallery';
             $item->restrict = false;
@@ -71,8 +71,10 @@
                 'embed' => \App\Facades\EmbedConverterFacade::convertUrl($item->video_url),
             ];
             // Setting caption to empty string forces the title to be bolded
-            $item->captionTitle = getTitleWithFigureNumber($item->present()->title_display ?? $item->present()->title);
-            $item->caption = getSubtitleWithFigureNumber($item->list_description, $item->title) ?? '';
+            $item->captionTitle = $item->present()->title_display ?? $item->present()->title;
+            $item->caption = $item->list_description ?? '';
+            $item->gtmAttributes = 'data-gtm-event="'. $item->captionTitle . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="video-' . ($key) . '"';
+
             return $item;
         }))
     @endcomponent
@@ -236,7 +238,7 @@
         @slot('items', $homeArtists->filter(function($item) {
             $artist = $item->apiModels('artists', 'Artist')->first();
             return ($item->imageFront('artist_image') ?? $artist->imageFront('hero')) !== null;
-        })->map(function($item) {
+        })->map(function($item, $key) use ($seo) {
             $artist = $item->apiModels('artists', 'Artist')->first();
             return [
                 'type' => 'artist',
@@ -244,6 +246,7 @@
                 'media' => $item->imageFront('artist_image') ?? $artist->imageFront('hero'),
                 'captionTitle' => $artist->short_name_display,
                 'href' => route('artists.show', $artist),
+                'gtmAttributes' => 'data-gtm-event="artist-'. $artist->datahub_id . '-' . $artist->short_name_display . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="artist-listing-' . ($key + 1) . '"',
             ];
         }))
     @endcomponent

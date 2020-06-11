@@ -4,19 +4,21 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
+use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
+use App\Models\Behaviors\HasUnlisted;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
 class Article extends AbstractModel implements Feedable
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated, HasUnlisted, HasAuthors;
 
     protected $presenter = 'App\Presenters\Admin\ArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
@@ -34,7 +36,7 @@ class Article extends AbstractModel implements Feedable
         'title_display',
         'heading',
         'list_description',
-        'author',
+        'author_display',
         'copy',
         'subtype',
         'citation',
@@ -47,6 +49,7 @@ class Article extends AbstractModel implements Feedable
         'meta_description',
         'publish_start_date',
         'publish_end_date',
+        'is_unlisted',
     ];
 
     public $slugAttributes = [
@@ -63,7 +66,7 @@ class Article extends AbstractModel implements Feedable
 
     public $nullable = [];
 
-    public $checkboxes = ['published', 'is_boosted'];
+    public $checkboxes = ['published', 'is_boosted', 'is_unlisted'];
 
     public $dates = [
         'date',
@@ -112,7 +115,7 @@ class Article extends AbstractModel implements Feedable
         return 'article';
     }
 
-    public function getTrackingSlugAttribute()
+    public function getTrackingTitleAttribute()
     {
         return $this->title;
     }

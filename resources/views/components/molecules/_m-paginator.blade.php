@@ -54,12 +54,6 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
                     <li><span class="f-buttons">&hellip;</span></li>
-                    @php
-                        $dotCount++;
-                        if ($dotCount > $maxDotCount) {
-                            break;
-                        }
-                    @endphp
                 @endif
 
                 {{-- Array Of Links --}}

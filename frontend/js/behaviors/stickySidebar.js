@@ -24,23 +24,31 @@ const stickySidebar = function(container){
 
   function update() {
     if(scrollTop > containerTop - stickyOffset) {
-      if(document.documentElement.classList.contains('is-sidebar-top')) {
-        document.documentElement.classList.remove('is-sidebar-top');
-      }
-      if(!document.documentElement.classList.contains('is-sidebar-fixed')) {
-        document.documentElement.classList.add('is-sidebar-fixed');
-      }
-      let offsetTop = (30 - Math.max(0, scrollTop + containerHeight + stickyOffset - stopperOffset));
-      container.setAttribute('style','top:' + offsetTop + 'px');
+      sticky();
     } else {
-      if(document.documentElement.classList.contains('is-sidebar-top')) {
-        document.documentElement.classList.remove('is-sidebar-top');
-      }
-      if(document.documentElement.classList.contains('is-sidebar-fixed')) {
-        document.documentElement.classList.remove('is-sidebar-fixed');
-      }
-      container.removeAttribute('style');
+      unsticky();
     }
+  }
+
+  function sticky() {
+    if(document.documentElement.classList.contains('is-sidebar-top')) {
+      document.documentElement.classList.remove('is-sidebar-top');
+    }
+    if(!document.documentElement.classList.contains('is-sidebar-fixed')) {
+      document.documentElement.classList.add('is-sidebar-fixed');
+    }
+    let offsetTop = (stickyOffset - Math.max(0, scrollTop + containerHeight + stickyOffset - stopperOffset));
+    container.setAttribute('style','top:' + offsetTop + 'px');
+  }
+
+  function unsticky() {
+    if(document.documentElement.classList.contains('is-sidebar-top')) {
+      document.documentElement.classList.remove('is-sidebar-top');
+    }
+    if(document.documentElement.classList.contains('is-sidebar-fixed')) {
+      document.documentElement.classList.remove('is-sidebar-fixed');
+    }
+    container.removeAttribute('style');
   }
 
   function handleScroll() {
@@ -50,6 +58,7 @@ const stickySidebar = function(container){
   }
 
   function handleResize() {
+    unsticky();
     windowHeight = window.innerHeight || document.documentElement.clientHeight;
     containerHeight = container.offsetHeight;
     containerTop = getOffsetTop(container) + document.body.scrollTop;

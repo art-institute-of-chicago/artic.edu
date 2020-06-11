@@ -1,6 +1,8 @@
 <section>
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Browse all articles', 'href' => route('articles'))))
+        @slot('links',
+            array(array('label' => 'Browse all articles', 'href' => route('articles'), 'gtmAttributes' => 'data-gtm-event="browse-all-articles" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'))
+        )
         @slot('variation', 'm-title-bar--no-hr')
         Blog
     @endcomponent
@@ -28,6 +30,7 @@
                         'xlarge' => '28',
                     )),
                 ))
+                @slot('gtmAttributes', 'data-gtm-event="article-'. $featureHero->id . '-' . $featureHero->trackingTitle . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="blog-listing-1"')
             @endcomponent
         @endif
 
@@ -49,6 +52,7 @@
                             'xlarge' => '13',
                         )),
                     ))
+                @slot('gtmAttributes', 'data-gtm-event="article-'. $editorial->id . '-' . $editorial->trackingTitle . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="blog-listing-' . ($loop->index + 2) . '"')
                 @endcomponent
             @endif
         @endforeach
@@ -71,6 +75,7 @@
                             'xlarge' => '13',
                         )),
                     ))
+                    @slot('gtmAttributes', 'data-gtm-event="'. ($editorial->title_display ?? $editorial->title) . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="blog-listing-' . ($loop->index + 2) . '"')
                 @endcomponent
             @endif
         @endforeach
@@ -83,7 +88,8 @@
             array(
                 'label' => 'Browse all articles',
                 'href' => route('articles'),
-                'variation' => 'btn btn--secondary'
+                'variation' => 'btn btn--secondary',
+                'gtmAttributes' => 'data-gtm-event="browse-all-articles" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
             ),
         ))
     @endcomponent

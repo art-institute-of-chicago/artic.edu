@@ -1,5 +1,5 @@
-// derived from _m-split-block
-.o-journal-footer {
+// derived from _m-split-block, used for journal and magazine
+.o-publication-footer {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -13,7 +13,7 @@
       margin-top: #{map-get((
         xsmall: 24,
         small: 36,
-        medium: 12,
+        medium: 36,
         large: 40,
         xlarge: 40
       ), $name)}px;
@@ -24,7 +24,25 @@
     flex-flow: row nowrap;
   }
 
-  .o-journal-footer__logo {
+  .o-publication-footer__text {
+    flex-basis: 100%;
+
+    p:before, p:after {
+      content: initial !important;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  + .m-aside-newsletter {
+    margin-top: 36px;
+  }
+}
+
+.o-publication-footer--journal {
+  .o-publication-footer__logo {
     @each $name, $point in $breakpoints {
       @include breakpoint('#{$name}') {
         margin-right: colspan(2, '#{$name}');
@@ -40,16 +58,22 @@
       width: 120px;
     }
   }
+}
 
-  .o-journal-footer__text {
-    flex-basis: 100%;
-
-    p:before, p:after {
-      content: initial !important;
+.o-publication-footer--magazine {
+  .o-publication-footer__logo {
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        margin-right: colspan(4, '#{$name}');
+      }
     }
-  }
 
-  + .m-aside-newsletter {
-    margin-top: 36px;
+    @include breakpoint('xsmall') {
+      display: none;
+    }
+
+    .icon--magazine-logo {
+      //
+    }
   }
 }

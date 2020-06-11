@@ -92,6 +92,9 @@
     if ($fullscreen and $type == 'module3d') {
       $mediaBehavior = 'triggerMediaModal';
     }
+    if ($type == 'module360') {
+      $mediaBehavior = 'triggerMediaModal';
+    }
     if ($fullscreen and $type == 'embed') {
       $mediaBehavior = 'triggerMediaModal';
     }
@@ -123,7 +126,7 @@
     <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}"{!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
         @if ($type == 'image')
             @if ($showUrlFullscreen)
-                <a href="{!! $item['urlTitle'] !!}">
+                <a href="{!! $item['urlTitle'] !!}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
             @endif
             @component('components.atoms._img')
                 @slot('image', $media)
@@ -146,6 +149,11 @@
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
         @elseif ($type == 'module3d' and $poster)
+            @component('components.atoms._img')
+                @slot('image', $poster)
+                @slot('settings', $imageSettings ?? '')
+            @endcomponent
+        @elseif ($type == 'module360' and $poster)
             @component('components.atoms._img')
                 @slot('image', $poster)
                 @slot('settings', $imageSettings ?? '')
@@ -198,6 +206,14 @@
                 @slot('ariaLabel', 'Open the 3D module')
             @endcomponent
         @endif
+        @if ($type == 'module360')
+            @component('components.atoms._btn')
+                @slot('variation', 'm-media__btn-module360 btn--septenary btn--icon btn--icon-sq')
+                @slot('font', '')
+                @slot('icon', 'icon--view360')
+                @slot('ariaLabel', 'Open 360 Viewer')
+            @endcomponent
+        @endif
 
         @if ($type == 'embed' and $poster)
             <svg class="icon--play-multi">
@@ -221,6 +237,13 @@
                 @slot('guided', $media['guided'])
                 @slot('title', $media['title'] ? $media['title'].' - Modal 3D' : 'Modal 3D')
             @endcomponent</textarea>
+        @endif
+
+        @if ($type == 'module360')
+        <textarea style="display: none;">@component('components.molecules._m-viewer-360')
+            @slot('type', 'modal')
+            @slot('title', $media['title'] ? $media['title'].' - Modal 360' : 'Modal 360')
+          @endcomponent</textarea>
         @endif
 
     </div>

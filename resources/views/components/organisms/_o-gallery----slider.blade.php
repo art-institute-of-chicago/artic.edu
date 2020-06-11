@@ -42,7 +42,10 @@
                         }
                     @endphp
                     @if ($item['href'] ?? false)
-                        <a href="{!! $item['href'] !!}">
+                        <a href="{!! $item['href'] !!}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
+                        @php
+                            unset($item['gtmAttributes']);
+                        @endphp
                     @endif
                     @component('components.molecules._m-media')
                         @slot('item', $item)

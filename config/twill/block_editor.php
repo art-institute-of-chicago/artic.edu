@@ -115,10 +115,30 @@ return [
             'icon' => 'text',
             'component' => 'a17-block-mobile_app',
         ],
+        'magazine_item' => [
+            'title' => 'Magazine Item',
+            'icon' => 'text',
+            'component' => 'a17-block-magazine_item'
+        ],
+        'magazine_call_to_action' => [
+            'title' => 'Magazine Call to Action',
+            'icon' => 'text',
+            'component' => 'a17-block-magazine_call_to_action'
+        ],
         'event' => [
             'title' => 'Event',
             'icon' => 'text',
             'component' => 'a17-block-event',
+        ],
+        'events' => [
+            'title' => 'Events',
+            'icon' => 'text',
+            'component' => 'a17-block-events',
+        ],
+        'exhibitions' => [
+            'title' => 'Exhibitions',
+            'icon' => 'text',
+            'component' => 'a17-block-exhibitions',
         ],
         'newsletter_signup_inline' => [
             'title' => 'Newsletter signup inline',
@@ -175,6 +195,16 @@ return [
             'title' => '3D Embed',
             'icon' => 'image',
             'component' => 'a17-block-aic_3d_embed'
+        ],
+        '360_embed' => [
+            'title' => '360 Embed',
+            'icon' => 'image',
+            'component' => 'a17-block-threesixty_embed'
+        ],
+        '360_modal' => [
+            'title' => '360 Modal',
+            'icon' => 'image',
+            'component' => 'a17-block-threesixty_modal'
         ],
         'artists' => [
             'title' => 'Artists',
@@ -470,8 +500,12 @@ return [
     ],
     'browser_route_prefixes' => [
         'events' => 'exhibitions_events',
+        'exhibitions' => 'exhibitions_events',
         'selections' => 'collection',
         'artworks' => 'collection',
         'authors' => 'collection',
+        'selections' => 'collection',
+        'articles' => 'collection.articles_publications',
+        'experiences' => 'collection.interactive_features',
     ],
 ];
