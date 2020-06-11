@@ -1,16 +1,16 @@
 @formField('radios', [
-    'name' => 'color',
-    'label' => 'Color',
-    'default' => 'default',
+    'name' => 'theme',
+    'label' => 'Theme',
+    'default' => 'dark',
     'inline' => true,
     'options' => [
         [
-            'value' => 'default',
-            'label' => 'Default'
+            'value' => 'dark',
+            'label' => 'Dark'
         ],
         [
-            'value' => 'alternate',
-            'label' => 'Alternate'
+            'value' => 'light',
+            'label' => 'Light'
         ],
     ]
 ])
