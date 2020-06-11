@@ -90,13 +90,13 @@ const viewer360 = function(container) {
 
 	//inputs
 	wrapper.addEventListener("wheel", handleMouseWheel.bind(this));
-	window.addEventListener("mousedown", handleEvents.bind(this));
-	window.addEventListener("mousemove", handleEvents.bind(this));
-	window.addEventListener("mouseup", handleEvents.bind(this));
-	window.addEventListener("touchstart", handleEvents.bind(this));
-	window.addEventListener("touchmove", handleEvents.bind(this));
-	window.addEventListener("touchend", handleEvents.bind(this));
-	window.addEventListener("touchcancel", handleEvents.bind(this));
+	wrapper.addEventListener("mousedown", handleEvents.bind(this));
+	wrapper.addEventListener("mousemove", handleEvents.bind(this));
+	wrapper.addEventListener("mouseup", handleEvents.bind(this));
+	wrapper.addEventListener("touchstart", handleEvents.bind(this));
+	wrapper.addEventListener("touchmove", handleEvents.bind(this));
+	wrapper.addEventListener("touchend", handleEvents.bind(this));
+	wrapper.addEventListener("touchcancel", handleEvents.bind(this));
 
 	function handleEvents(e) {
 		let { pageX, touches } = e;
