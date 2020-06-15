@@ -240,15 +240,20 @@
             return ($item->imageFront('artist_image') ?? $artist->imageFront('hero')) !== null;
         })->map(function($item, $key) use ($seo) {
             $artist = $item->apiModels('artists', 'Artist')->first();
-            return [
-                'type' => 'artist',
-                'size' => 'gallery',
-                'media' => $item->imageFront('artist_image') ?? $artist->imageFront('hero'),
-                'captionTitle' => $artist->short_name_display,
-                'href' => route('artists.show', $artist),
-                'gtmAttributes' => 'data-gtm-event="artist-'. $artist->datahub_id . '-' . $artist->short_name_display . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="artist-listing-' . ($key + 1) . '"',
-            ];
-        }))
+            if ($artist) {
+                return [
+                    'type' => 'artist',
+                    'size' => 'gallery',
+                    'media' => $item->imageFront('artist_image') ?? $artist->imageFront('hero'),
+                    'captionTitle' => $artist->short_name_display,
+                    'href' => route('artists.show', $artist),
+                    'gtmAttributes' => 'data-gtm-event="artist-'. $artist->datahub_id . '-' . $artist->short_name_display . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="artist-listing-' . ($key + 1) . '"',
+                ];
+            }
+            else {
+                return [];
+            }
+        })->filter())
     @endcomponent
 @endif
 
