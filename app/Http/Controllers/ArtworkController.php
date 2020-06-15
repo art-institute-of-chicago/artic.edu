@@ -122,11 +122,11 @@ class ArtworkController extends BaseScopedController
     {
         try {
             $item = Artwork::query()
-                ->include(['artist_pivots', 'place_pivots', 'dates'])
+                ->include(['artist_pivots'])
                 ->findOrFail((Integer) $id);
         } catch (\Throwable $e) {
             $item = Artwork::query()->forceEndpoint('deaccession')
-                ->include(['artist_pivots', 'place_pivots', 'dates'])
+                ->include(['artist_pivots'])
                 ->findOrFail((Integer) $id);
         }
 

@@ -35,7 +35,7 @@ class Artwork extends BaseApiModel
     protected $appends = ['fullTitle'];
 
     protected static $defaultScopes = [
-        'include' => ['artist_pivots', 'place_pivots', 'dates']
+        'include' => ['artist_pivots']
     ];
 
     // Fields used when performing a search so we avoid a double call retrieving the complete entities
