@@ -146,6 +146,12 @@ class ExperienceController extends ModuleController
         ];
     }
 
+    protected function indexData($request)
+    {
+        return [
+            'groupingsList' => InteractiveFeature::all()->pluck('title', 'id')
+        ];
+    }
 
     protected function getBrowserTableData($items)
     {
