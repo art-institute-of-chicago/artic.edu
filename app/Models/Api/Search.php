@@ -514,6 +514,7 @@ class Search extends BaseApiModel
             $shoulds = [
                 $this->basicQuery('style_titles', $item->artworks()->getMetadata('aggregations')->styles->buckets[0]->key ?? null, 0, 'match'),
                 $this->basicQuery('place_of_origin', $item->artworks()->getMetadata('aggregations')->place_of_origin->buckets[0]->key ?? null, 0, 'match'),
+                $this->basicQuery('classification_titles', $item->artworks()->getMetadata('aggregations')->classifications->buckets[0]->key ?? null, 0, 'match'),
             ];
 
             $dateQuery = $this->dateQuery($item->birth_date, $item->death_date);

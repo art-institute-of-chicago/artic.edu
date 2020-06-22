@@ -78,6 +78,12 @@ class BaseService
                 $tags['style'] = collect([$style => $style]);
             }
 
+            // Build Classification Tag
+            $classification = $this->resource->artworks()->getMetadata('aggregations')->classifications->buckets[0]->key ?? false;
+            if ($classification) {
+                $tags['classification'] = collect([$classification => $classification]);
+            }
+
             // Build Place tag
             $place = $this->resource->artworks()->getMetadata('aggregations')->place_of_origin->buckets[0]->key ?? false;
             if ($place) {
