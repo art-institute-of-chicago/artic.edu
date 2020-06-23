@@ -180,7 +180,7 @@
 @endcomponent
 
 
-@if ($highlights->count() > 0)
+@if (isset($highlights) && $highlights->count() > 0)
     @component('components.molecules._m-title-bar')
         @slot('links',
             array(array('label' => 'See all highlights', 'href' => route('selections.index'), 'gtmAttributes' => 'data-gtm-event="home-highlights" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'))
@@ -217,7 +217,7 @@
     @endcomponent
 @endif
 
-@if ($homeArtists->count() > 0)
+@if (isset($homeArtists) && $homeArtists->count() > 0)
     @component('components.organisms._o-gallery----slider')
         @slot('variation', 'o-gallery----theme-2 o-gallery--artist')
         @slot('title', 'Artists')
@@ -240,26 +240,32 @@
             return ($item->imageFront('artist_image') ?? $artist->imageFront('hero')) !== null;
         })->map(function($item, $key) use ($seo) {
             $artist = $item->apiModels('artists', 'Artist')->first();
-            return [
-                'type' => 'artist',
-                'size' => 'gallery',
-                'media' => $item->imageFront('artist_image') ?? $artist->imageFront('hero'),
-                'captionTitle' => $artist->short_name_display,
-                'href' => route('artists.show', $artist),
-                'gtmAttributes' => 'data-gtm-event="artist-'. $artist->datahub_id . '-' . $artist->short_name_display . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="artist-listing-' . ($key + 1) . '"',
-            ];
-        }))
+            if ($artist) {
+                return [
+                    'type' => 'artist',
+                    'size' => 'gallery',
+                    'media' => $item->imageFront('artist_image') ?? $artist->imageFront('hero'),
+                    'captionTitle' => $artist->short_name_display,
+                    'href' => route('artists.show', $artist),
+                    'gtmAttributes' => 'data-gtm-event="artist-'. $artist->datahub_id . '-' . $artist->short_name_display . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="artist-listing-' . ($key + 1) . '"',
+                ];
+            }
+            else {
+                return [];
+            }
+        })->filter())
     @endcomponent
 @endif
 
 
-@component('site.articles_publications._articleFeature')
-    @slot('featureHero', $articles['featureHero'] ?? null)
-    @slot('features', $articles['features'] ?? null)
-@endcomponent
+@if (isset($articles))
+    @component('site.articles_publications._articleFeature')
+        @slot('featureHero', $articles['featureHero'] ?? null)
+        @slot('features', $articles['features'] ?? null)
+    @endcomponent
+@endif
 
-
-@if ($artworks->count() > 0)
+@if (isset($artworks) && $artworks->count() > 0)
     @component('components.molecules._m-title-bar')
         @slot('links',
             array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'))
@@ -299,13 +305,13 @@
     @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title .'"  data-gtm-event-category="nav-link"')))
 @endcomponent
 
-@if ($experiences->count() > 0)
+@if (isset($experiences) && $experiences->count() > 0)
     @component('site.articles_publications._interactiveFeature')
         @slot('experiences', $experiences)
     @endcomponent
 @endif
 
-@if ($products->count() > 0)
+@if (isset($products) && $products->count() > 0)
     @component('site.shared._featuredProducts')
         @slot('title', 'From the shop')
         @slot('titleLinks', [

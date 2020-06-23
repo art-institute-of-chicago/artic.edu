@@ -29,15 +29,28 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $page    = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
         $perPage = is_null($perPage) ? $this->model->getPerPage() : $perPage;
 
+        if ($columns) {
+            $columns = array_merge(['thumbnail', 'api_model', 'is_boosted', 'api_link', 'id', 'title', 'timestamp'],
+                                     $columns);
+        }
         $results = $this->forPage($page, $perPage)->get($columns);
 
         $paginationData = $results->getMetadata('pagination');
         $total = $paginationData ? $paginationData->total : $results->count();
 
-        if (isset($options['segregated']) && $options['segregated']) {
-            $models = $this->extractModels($results);
-        } else {
-            $models = $this->extractModelsFlat($results);
+        if (isset($options['do-not-extract']) && $options['do-not-extract']) {
+            if (isset($options['segregated']) && $options['segregated']) {
+                $models = $this->makeModels($results);
+            } else {
+                $models = $this->makeModelsFlat($results);
+            }
+        }
+        else {
+            if (isset($options['segregated']) && $options['segregated']) {
+                $models = $this->extractModels($results);
+            } else {
+                $models = $this->extractModelsFlat($results);
+            }
         }
 
         return $this->paginator($models, $total, $perPage ?: 1, $page, [
@@ -117,6 +130,60 @@ class ApiModelBuilderSearch extends ApiModelBuilder
                     $elements->ttl($this->ttl);
                 }
                 return $elements->get();
+            } elseif (!$class) {
+                return $collection; // e.g. static-pages
+            }
+        });
+
+        // Remove empty categories
+        $filtered = $segregatedResults->filter(function($value, $key) {
+            return !empty($value);
+        });
+
+        return $filtered;
+    }
+
+    protected function makeModelsFlat($results) {
+        $original = clone $results;
+
+        // It's more efficient to get segregated results, and then reshuffle them into the
+        // original order
+        $segregatedResults = $this->makeModels($results);
+
+        // Mix them all up together
+        $flatResults = collectApi(array_filter(Arr::flatten($segregatedResults)));
+
+        // Sort results in their original order
+        $sorted = $flatResults->sortBy(function($model, $key) use ($original) {
+            return $original->search(function($item, $key) use ($model) {
+                if (isset($this->getTypeMap()[$item->api_model])) {
+                    return $this->getTypeMap()[$item->api_model] == (string) get_class($model) && $item->id == $model->id;
+                }
+            });
+        })->values();
+
+        // Preserve metadata
+        $sorted->setMetadata($original->getMetadata());
+
+        return $sorted;
+    }
+
+    protected function makeModels($results) {
+        $original = clone $results;
+
+        // Group results by type
+        $resultsByType = $results->groupBy('api_model');
+
+        // Segregate results to load a single query per entity to load them all
+        $segregatedResults = $resultsByType->map(function ($collection, $type) {
+            $class = $this->getTypeMap()[$type];
+
+            if (isset($class) && $class) {
+                $elements = $collection->map(function ($searchItem) use ($class) {
+                    $item = new $class($searchItem->getAttributes());
+                    return $item;
+                });
+                return $elements;
             } elseif (!$class) {
                 return $collection; // e.g. static-pages
             }
