@@ -38,4 +38,13 @@ class ArticlePresenter extends BasePresenter
     {
         return route('articles.show', $this->entity);
     }
+
+    public function author()
+    {
+        if ($this->entity->authors->isNotEmpty()) {
+            $array = $this->entity->authors->pluck('title')->all();
+            return join(' and ', array_filter(array_merge(array(join(', ', array_slice($array, 0, -1))), array_slice($array, -1)), 'strlen'));
+        }
+        return $this->entity->author_display;
+    }
 }

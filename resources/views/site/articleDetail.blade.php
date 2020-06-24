@@ -26,7 +26,7 @@
         @endcomponent
     @endif
 
-    @if ($item->author)
+    @if ($item->present()->author)
         @component('components.molecules._m-author')
             @slot('variation', 'm-author---keyline-top')
             @slot('editorial', ($item->articleType === 'editorial'))
