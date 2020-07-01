@@ -21,7 +21,7 @@
         </div>
         @if (isset($intro))
             @component('components.blocks._text')
-                @slot('font', 'f-subheading-1')
+                @slot('font', 'f-subheading-3')
                 @slot('variation', 'm-article-header__intro')
                 @slot('tag', 'div')
                 {!! SmartyPants::defaultTransform($intro) !!}
