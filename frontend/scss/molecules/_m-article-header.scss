@@ -1089,7 +1089,6 @@
     .m-article-header__info-trigger {
       @each $name, $point in $breakpoints {
         @include breakpoint('#{$name}') {
-          right: colspan(1, $name);
           bottom: #{map-get($journal-header-padding, $name) + 20px};
         }
       }
@@ -1100,7 +1099,6 @@
 
       @each $name, $point in $breakpoints {
         @include breakpoint('#{$name}') {
-          right: colspan(1, $name);
           bottom: #{map-get($journal-header-padding, $name) + 20px + $button-vertical-offset};
         }
       }
