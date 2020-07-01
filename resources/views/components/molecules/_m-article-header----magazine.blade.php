@@ -1,9 +1,10 @@
 <{{ $tag ?? 'header' }} class="m-article-header m-article-header--publication m-article-header--magazine" data-behavior="magazineHeader">
     <div class="m-article-header__img">
         @if (isset($images))
-            @foreach ($images as $image) {
+            @foreach ($images as $key => $image)
                 @component('components.atoms._img')
                     @slot('image', $image)
+                    @slot('class', $key === 0 ? 'is-slideshow-active' : null)
                     @slot('settings', array(
                         'srcset' => array(300,600,1000,1500,3000),
                         'sizes' => '100vw',
