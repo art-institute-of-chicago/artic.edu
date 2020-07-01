@@ -14,8 +14,8 @@ class MagazineIssue extends AbstractModel
 {
     use HasSlug, HasRevisions, HasBlocks, HasMedias, HasMediasEloquent, HasRelated;
 
-    protected $presenter = 'App\Presenters\Admin\GenericPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
+    protected $presenter = 'App\Presenters\Admin\MagazineIssuePresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\MagazineIssuePresenter';
 
     protected $fillable = [
         'title',
