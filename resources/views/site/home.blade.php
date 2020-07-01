@@ -211,7 +211,7 @@
                         'xlarge' => '3',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="' . $item->type . '-' . $item->id . '-' . $item->trackingTitle . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="highlight-listing-' . ($loop->index + 1) . '"')
+                @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="highlight-listing-' . ($loop->index + 1) . '"')
             @endcomponent
         @endforeach
     @endcomponent
@@ -247,7 +247,7 @@
                     'media' => $item->imageFront('artist_image') ?? $artist->imageFront('hero'),
                     'captionTitle' => $artist->short_name_display,
                     'href' => route('artists.show', $artist),
-                    'gtmAttributes' => 'data-gtm-event="artist-'. $artist->datahub_id . '-' . $artist->short_name_display . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="artist-listing-' . ($key + 1) . '"',
+                    'gtmAttributes' => 'data-gtm-event="'. $artist->title . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="artist-listing-' . ($key + 1) . '"',
                 ];
             }
             else {
@@ -294,7 +294,7 @@
                         'xlarge' => '3',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="artwork-' . $item->id . '-' . $item->trackingTitle . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-' . ($loop->index + 1) . '"')
+                @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-' . ($loop->index + 1) . '"')
             @endcomponent
         @endforeach
     @endcomponent
