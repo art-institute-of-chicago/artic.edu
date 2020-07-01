@@ -80,7 +80,8 @@ Basic flexed set up
       } @else {
         margin-left: colspan(2, #{$name});
       }
-      border-top: 0 none;
+      border-top-style: none;
+      border-top-width: 0;
     }
   }
 }
@@ -902,7 +903,8 @@ Draws boxes around each grid item
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       &[class*="col@#{$name}"] > * {
-        border-top: thin solid;
+        border-top-style: solid;
+        border-top-width: thin;
       }
     }
   }
