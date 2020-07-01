@@ -28,7 +28,7 @@
                     'srcset' => array(300,600,1000,1500,3000),
                     'sizes' => '100vw',
                 ))
-                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'"  data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-hero-' . $countMain . '"')
+                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.(ltrim(parse_url($item->url, PHP_URL_PATH),'/') ?? 'unknown title').'"  data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.(ltrim(parse_url($item->url, PHP_URL_PATH),'/') ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-hero-' . $countMain . '"')
             @endcomponent
         @endif
     @endforeach
