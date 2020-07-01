@@ -8,7 +8,7 @@
         </a>
     </div>
 
-    <p class="m-article-actions--journal__blurb f-secondary">The Member Magazine is a curated selection of exhibitions, events, and behind-the-scenes at the Art Institute of Chicago. The magazine comes out 6 times a year.</p>
+    <p class="m-article-actions--journal__blurb f-secondary">The Art Institute magazine is a quarterly publication offering members an in-depth look at our collection, exhibitions, and ongoing initiatives.</p>
 
     <hr>
 
