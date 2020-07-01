@@ -989,13 +989,13 @@
 
     .m-article-header__pip {
       display: inline-block;
-      color: $color__text--title-contrast;
+      color: $color__black--40;
       cursor: pointer;
 
       margin-right: 4px;
 
       &.is-slideshow-active {
-        color: $color__black--40;
+        color: $color__text--title-contrast;
       }
 
       .icon--circle {
