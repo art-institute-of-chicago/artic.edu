@@ -96,6 +96,17 @@ $bioBreakpoints: (
   @extend %f-caption;
   margin-top: 8px;
   color: $color__text--secondary;
+
+  p a {
+    @include text-underline(20px, $color__rules--primary);
+    padding-bottom: 1px;
+    color: $color__text--accent;
+  }
+
+  p a:hover,
+  p a:focus {
+    @include text-underline(20px, $color__rules--brand);
+  }
 }
 
 .o-artist-bio__main {

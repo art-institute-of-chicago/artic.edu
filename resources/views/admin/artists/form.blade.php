@@ -15,9 +15,12 @@
         'note' => 'Minimum image width 2000px'
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'caption',
-        'label' => 'Caption'
+        'label' => 'Caption',
+        'toolbarOptions' => [
+            'italic', 'link'
+        ],
     ])
 
     @formField('input', [
