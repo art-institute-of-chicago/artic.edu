@@ -122,7 +122,7 @@
     global $_figureCount;
 
 @endphp
-<{{ $tag ?? 'figure' }} {!! isset($_figureCount) ? 'id="fig-' . $_figureCount . '" ' : '' !!} data-type="{{ $type }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'figure' }} {!! isset($_figureCount) ? 'id="fig-' . $_figureCount . '" ' : '' !!} data-type="{{ $type }}" data-title="{{ $item['captionTitle'] ?? $item['caption'] }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
     <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}"{!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
         @if ($type == 'image')
             @if ($showUrlFullscreen)

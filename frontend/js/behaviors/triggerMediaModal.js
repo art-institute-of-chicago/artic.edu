@@ -25,11 +25,18 @@ const triggerMediaModal = function(container) {
             'eventAction': container.dataset.title+' - Modal 3D'
           });
         }
-        if(container.parentNode.dataset.type == 'module360' && container.dataset.title) {
+        else if (container.parentNode.dataset.type == 'module360' && container.dataset.title) {
           triggerCustomEvent(document, 'gtm:push', {
             'event': '360-open-modal',
             'eventCategory': 'in-page',
             'eventAction': container.dataset.title+' - Modal 360'
+          });
+        }
+        else {
+          triggerCustomEvent(document, 'gtm:push', {
+            'event': container.parentNode.dataset.gtmEvent || (container.parentNode.dataset.type + '-open-modal'),
+            'eventCategory': container.parentNode.dataset.gtmEventCategory || 'in-page',
+            'eventAction': container.parentNode.dataset.gtmEventAction || (container.parentNode.dataset.title+' - ' + container.parentNode.dataset.type)
           });
         }
       }
