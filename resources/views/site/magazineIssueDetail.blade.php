@@ -22,7 +22,8 @@
                 @component('components.organisms._o-editors-note----magazine')
                     @slot('description', $item->welcome_note_display ?? $welcomeNote->present()->listDescription)
                     @slot('articleLink', $welcomeNote->present()->url)
-                    @slot('authorDisplay', $welcomeNote->author_display ?? $welcomeNote->author);
+                    @slot('authorDisplay', $welcomeNote->author_display ?? $welcomeNote->author)
+                    @slot('gtmAttributes', 'data-gtm-event="' . $welcomeNote->title . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="mag-note"')
                 @endcomponent
             </div>
         @endif
@@ -50,7 +51,7 @@
       </svg>
     </div>
     <div class="o-publication-footer__text">
-        <p class="f-secondary">Become a member or renew your membership today. Receive access to exhibition previews, exclusive events, and free admission year-round. <a href="/support-us/membership">Learn more</a>.</p>
+    <p class="f-secondary">Become a member or renew your membership today. Receive access to exhibition previews, exclusive events, and free admission year-round. <a href="/support-us/membership" data-gtm-event="Membership" data-gtm-event-action="{{ $seo->title }}" data-gtm-event-category="internal-ad">Learn more</a>.</p>
     </div>
 </div>
 
