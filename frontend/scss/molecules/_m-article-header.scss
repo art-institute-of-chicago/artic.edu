@@ -1016,10 +1016,21 @@
       color: white;
     }
 
+    $magazine-intro-width-basis: (
+      // derived from .o-grid-listing--2-col\@foobar
+      xsmall: colspan(grid-cols-to-colspan(2, 58, 6), 'xsmall'),
+      small: colspan(grid-cols-to-colspan(2), 'small'),
+      medium: colspan(grid-cols-to-colspan(2), 'medium'),
+      // derived from .o-grid-listing--2-col\@foobar
+      large: colspan(20.5, 'large'),
+      xlarge: colspan(20.5, 'xlarge'),
+    );
+
     .m-article-header__intro {
       @each $name, $point in $breakpoints {
         @include breakpoint('#{$name}') {
           width: map-get($magazine-intro-width, $name);
+          margin-right: calc(#{map-get($magazine-intro-width-basis, $name)} - #{map-get($magazine-intro-width, $name)});
         }
       }
 
@@ -1045,7 +1056,7 @@
 
       @each $name, $point in ('small', 'medium', 'large', 'xlarge') {
         @include breakpoint('#{$name}') {
-          left: #{100% - map-get($magazine-intro-width, $name)};
+          left: calc(100% - #{map-get($magazine-intro-width-basis, $name)});
           bottom: #{map-get($journal-header-padding, $name) + $magazine-controls-offset};
         }
       }
