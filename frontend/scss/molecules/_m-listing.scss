@@ -2202,14 +2202,10 @@ $f-audio-subtitle: generate-font-obj(
 // variant for author pages
 .m-listing--author {
   border-color: $color__rules--primary;
-  .m-listing__img img {
-    transition: none;
-  }
-}
-
-.m-listing--author:hover,
-.m-listing--author:focus {
-  .m-listing__img img {
-    transform: none;
+  .m-listing__link:hover,
+  .m-listing__link:focus {
+    .m-listing__img img {
+      transform: none;
+    }
   }
 }
