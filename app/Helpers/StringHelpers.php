@@ -225,3 +225,28 @@ if (!function_exists('rightTrim')) {
         return $string;
     }
 }
+
+if (!function_exists('summation')) {
+
+    /**
+     * Helper method that converts `['item', 'hey', 'wow']` to `item, hey, and wow`.
+     * Per request from communications, we use the Oxford comma.
+     *
+     * @return string
+     */
+    function summation(array $array = []) {
+        switch (count($array)) {
+            case 0;
+                return null;
+            case 1;
+                return array_pop($array);
+                break;
+            case 2;
+                return implode(' and ', $array);
+                break;
+            default;
+                $last = array_pop($array);
+                return implode(', ', $array) . ', and ' . $last;
+        }
+    }
+}
