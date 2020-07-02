@@ -393,6 +393,42 @@ $f-subheading-1: generate-font-obj(
 
 /***
 
+f-subheading-3
+
+```
+<p class="f-subheading-3">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-subheading-3: generate-font-obj(
+  (
+    font-family: $sans-serif-font,
+    font-family-loaded: $sans-serif-font--loaded,
+    font-loaded-class: $sans-serif-font-loaded-class,
+    settings: (
+      'xsmall': (font-size: 19, line-height: 26, letter-spacing: 0.01em, push: 0),
+      'medium+': (font-size: 21, line-height: 30, push: 0),
+      'xlarge': (font-size: 24, line-height: 34, push: 0)
+    )
+  )
+);
+
+@mixin f-subheading-3() {
+  @include font-styles($f-subheading-3);
+  font-feature-settings: 'lnum' on;
+  // color: $color__text--title;
+}
+
+%f-subheading-3,
+.f-subheading-3,
+%f-subheading-3-editorial,
+.f-subheading-3-editorial {
+  @include f-subheading-3;
+}
+
+/***
+
 f-body
 
 ```

@@ -19,7 +19,7 @@ const magazineHeader = function(container){
   let idleTimeout = 2000;
 
   let autoTimer;
-  let autoTimeout = 4000;
+  let autoTimeout = 5000;
 
   let activeClass = 'is-slideshow-active';
 

@@ -6,14 +6,12 @@ $bioBreakpoints: (
 .o-artist-bio {
   position: relative;
   margin-top: 24px;
+  padding-top: 24px;
 
   @include breakpoint('small+') {
     margin-top: 40px;
   }
 
-  @include breakpoint('large+') {
-    padding-top: 40px;
-  }
 }
 
 .o-artist-bio::before {
@@ -29,12 +27,19 @@ $bioBreakpoints: (
 .o-artist-bio__inner {
   display: flex;
   position: relative;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
 
   @each $name, $point in $bioBreakpoints {
     @include breakpoint('#{$name}') {
+      flex-flow: row wrap;
       margin-left: colspan(2, $name, 0, true);
     }
+  }
+}
+
+.o-author-bio .o-artist-bio__inner {
+  @include breakpoint('medium') {
+    flex-flow: row wrap;
   }
 }
 
@@ -50,17 +55,34 @@ $bioBreakpoints: (
 }
 
 .o-author-bio .o-artist-bio__image {
-  @each $name, $point in $bioBreakpoints {
+  @each $name, $point in ('xsmall', 'small') {
     @include breakpoint('#{$name}') {
-     width: calc(#{colspan(grid-cols-to-colspan(2), $name)} * .5);
+      width: 300px;
+      align-self: center;
     }
+  }
+
+  @each $name, $point in ('medium', 'large', 'xlarge') {
+    @include breakpoint('#{$name}') {
+      // width: calc(#{colspan(grid-cols-to-colspan(2), $name)} * .5);
+      width: 300px;
+    }
+  }
+
+  .m-media__img {
+    background: none;
+  }
+
+  img {
+    border-radius: 50%;
   }
 }
 
 .o-author-bio .o-artist-bio__main {
-  @each $name, $point in $bioBreakpoints {
+  @each $name, $point in ('medium', 'large', 'xlarge') {
     @include breakpoint('#{$name}') {
-      width: calc(#{colspan(grid-cols-to-colspan(2), $name)} * 1.5);
+      width: calc(#{colspan(58, $name)} - 300px - #{colspan(2, $name)});
+      margin-left: colspan(2, #{$name});
     }
   }
 }
@@ -68,7 +90,7 @@ $bioBreakpoints: (
 .o-author-bio .o-artist-bio__main .o-artist-bio__body {
   margin-top: 24px;
 
-  @include breakpoint('large+') {
+  @include breakpoint('medium+') {
     margin-top: 0;
   }
 }

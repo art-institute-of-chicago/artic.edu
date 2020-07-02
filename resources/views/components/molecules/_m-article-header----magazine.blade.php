@@ -1,9 +1,10 @@
 <{{ $tag ?? 'header' }} class="m-article-header m-article-header--publication m-article-header--magazine" data-behavior="magazineHeader">
     <div class="m-article-header__img">
         @if (isset($images))
-            @foreach ($images as $image) {
+            @foreach ($images as $key => $image)
                 @component('components.atoms._img')
                     @slot('image', $image)
+                    @slot('class', $key === 0 ? 'is-slideshow-active' : null)
                     @slot('settings', array(
                         'srcset' => array(300,600,1000,1500,3000),
                         'sizes' => '100vw',
@@ -20,7 +21,7 @@
         </div>
         @if (isset($intro))
             @component('components.blocks._text')
-                @slot('font', 'f-subheading-1')
+                @slot('font', 'f-subheading-3')
                 @slot('variation', 'm-article-header__intro')
                 @slot('tag', 'div')
                 {!! SmartyPants::defaultTransform($intro) !!}

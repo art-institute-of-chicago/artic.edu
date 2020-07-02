@@ -760,6 +760,7 @@
 
   .f-subheading-1,
   .f-subheading-2,
+  .f-subheading-3,
   a {
     // text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
     color: $color__text--title-contrast;
@@ -784,7 +785,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.2);
     z-index: 2;
   }
 
@@ -955,10 +956,6 @@
     transition: opacity .25s;
     opacity: 0;
 
-    &:first-child {
-      opacity: 1;
-    }
-
     &.is-slideshow-active {
       opacity: 1;
     }
@@ -989,13 +986,13 @@
 
     .m-article-header__pip {
       display: inline-block;
-      color: $color__text--title-contrast;
+      color: $color__black--40;
       cursor: pointer;
 
       margin-right: 4px;
 
       &.is-slideshow-active {
-        color: $color__black--40;
+        color: $color__text--title-contrast;
       }
 
       .icon--circle {
@@ -1016,10 +1013,21 @@
       color: white;
     }
 
+    $magazine-intro-width-basis: (
+      // derived from .o-grid-listing--2-col\@foobar
+      xsmall: colspan(grid-cols-to-colspan(2, 58, 6), 'xsmall'),
+      small: colspan(grid-cols-to-colspan(2), 'small'),
+      medium: colspan(grid-cols-to-colspan(2), 'medium'),
+      // derived from .o-grid-listing--2-col\@foobar
+      large: colspan(20.5, 'large'),
+      xlarge: colspan(20.5, 'xlarge'),
+    );
+
     .m-article-header__intro {
       @each $name, $point in $breakpoints {
         @include breakpoint('#{$name}') {
           width: map-get($magazine-intro-width, $name);
+          margin-right: calc(#{map-get($magazine-intro-width-basis, $name)} - #{map-get($magazine-intro-width, $name)});
         }
       }
 
@@ -1045,7 +1053,7 @@
 
       @each $name, $point in ('small', 'medium', 'large', 'xlarge') {
         @include breakpoint('#{$name}') {
-          left: #{100% - map-get($magazine-intro-width, $name)};
+          left: calc(100% - #{map-get($magazine-intro-width-basis, $name)});
           bottom: #{map-get($journal-header-padding, $name) + $magazine-controls-offset};
         }
       }
@@ -1089,7 +1097,6 @@
     .m-article-header__info-trigger {
       @each $name, $point in $breakpoints {
         @include breakpoint('#{$name}') {
-          right: colspan(1, $name);
           bottom: #{map-get($journal-header-padding, $name) + 20px};
         }
       }
@@ -1100,7 +1107,6 @@
 
       @each $name, $point in $breakpoints {
         @include breakpoint('#{$name}') {
-          right: colspan(1, $name);
           bottom: #{map-get($journal-header-padding, $name) + 20px + $button-vertical-offset};
         }
       }
