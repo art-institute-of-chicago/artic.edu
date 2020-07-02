@@ -1991,9 +1991,7 @@ $f-audio-subtitle: generate-font-obj(
       @include untuck;
       margin-bottom: 20px;
 
-      .f-tag {
-        text-transform: initial;
-        letter-spacing: 0.04em;
+      .f-secondary {
         color: $color__black--54;
       }
     }

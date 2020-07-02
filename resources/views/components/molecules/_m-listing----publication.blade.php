@@ -36,7 +36,7 @@
         <br>
         @if ($author_display)
             <span class="m-listing__meta-bottom">
-                <span class="f-tag">{{ $author_display }}</span>
+                <span class="f-secondary">{{ $author_display }}</span>
             </span>
         @endif
     </span>
