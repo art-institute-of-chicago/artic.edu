@@ -82,6 +82,9 @@ trait HasApiRelations
                         if (!$element->isListed ?? false) {
                             return false;
                         }
+                        if (!$element->isPublished ?? false) {
+                            return false;
+                        }
 
                         return $element;
                     })->filter();

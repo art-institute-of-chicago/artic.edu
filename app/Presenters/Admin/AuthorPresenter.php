@@ -50,6 +50,9 @@ class AuthorPresenter extends BasePresenter
         if (!$element->isListed ?? false) {
             return false;
         }
+        if (!$element->isPublished ?? false) {
+            return false;
+        }
 
         return $element;
     }
