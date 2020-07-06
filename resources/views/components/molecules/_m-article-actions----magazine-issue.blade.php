@@ -26,35 +26,37 @@
         </ul>
     </div>
 
-    <hr>
+    @if (isset($issues) && $issues->count() > 1)
+        <hr>
 
-    <ul class="m-article-actions--journal__issues">
-        @foreach($issues as $issue)
-            <li>
-                @component('components.atoms._tag')
-                    @slot('href', route('magazine-issues.show', [
-                        'id' => $issue->id,
-                        'slug' => $issue->getSlug(),
-                    ]))
-                    @slot('dataAttributes',' data-ajax-scroll-target="collection"')
-                    @slot('variation', 'tag--magazine tag--senary tag--w-image')
-                    @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $issue->title ) . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="magazine-sidebar-issue"')
-                    @if (!empty($issue->imageFront('hero', 'default')))
-                        @component('components.atoms._img')
-                            @slot('image', $issue->imageFront('hero', 'default'))
-                            @slot('settings', array(
-                                'fit' => 'crop',
-                                'ratio' => '1:1',
-                                'srcset' => array(30,60),
-                                'sizes' => '60px',
-                            ))
-                        @endcomponent
-                    @endif
-                    {!! $issue->present()->title !!}
-                @endcomponent
-            </li>
-        @endforeach
-    </ul>
+        <ul class="m-article-actions--journal__issues">
+            @foreach($issues as $issue)
+                <li>
+                    @component('components.atoms._tag')
+                        @slot('href', route('magazine-issues.show', [
+                            'id' => $issue->id,
+                            'slug' => $issue->getSlug(),
+                        ]))
+                        @slot('dataAttributes',' data-ajax-scroll-target="collection"')
+                        @slot('variation', 'tag--magazine tag--senary tag--w-image')
+                        @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $issue->title ) . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="magazine-sidebar-issue"')
+                        @if (!empty($issue->imageFront('hero', 'default')))
+                            @component('components.atoms._img')
+                                @slot('image', $issue->imageFront('hero', 'default'))
+                                @slot('settings', array(
+                                    'fit' => 'crop',
+                                    'ratio' => '1:1',
+                                    'srcset' => array(30,60),
+                                    'sizes' => '60px',
+                                ))
+                            @endcomponent
+                        @endif
+                        {!! $issue->present()->title !!}
+                    @endcomponent
+                </li>
+            @endforeach
+        </ul>
+    @endif
 
     <hr class="u-hide@large u-hide@xlarge">
 
