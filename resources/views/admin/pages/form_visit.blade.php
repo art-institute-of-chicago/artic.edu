@@ -156,6 +156,11 @@
             'required' => true
         ])
 
+        @formField('input', [
+            'name' => 'visit_parking_accessibility_link',
+            'field_name' => 'visit_parking_accessibility_link',
+            'label' => 'Visitors with Mobility Needs',
+        ])
 
         @formField('repeater', ['type' => 'locations', 'max' => 2])
     </a17-fieldset>

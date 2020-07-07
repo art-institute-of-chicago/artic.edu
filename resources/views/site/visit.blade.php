@@ -410,6 +410,12 @@
               @slot('itemprop','hasMap')
               {{ $directions['link']['label'] }}
           @endcomponent
+
+          @component('components.atoms._arrow-link')
+              @slot('href', $directions['accessibility_link']['href'])
+              @slot('itemprop','hasMap')
+              {{ $directions['accessibility_link']['label'] }}
+          @endcomponent
         </span>
       </div>
     </div>

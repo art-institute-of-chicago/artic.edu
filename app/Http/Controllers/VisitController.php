@@ -119,6 +119,10 @@ class VisitController extends FrontController
                 'href' => $page->visit_parking_link,
                 'label' => __('Directions, Parking, and Public Transportation'),
             ),
+            'accessibility_link' => array(
+                'href' => $page->visit_parking_accessibility_link,
+                'label' => __('Visitors with Mobility Needs'),
+            ),
         );
 
         $questions = array();
