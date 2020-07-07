@@ -160,26 +160,4 @@
         @formField('repeater', ['type' => 'locations', 'max' => 2])
     </a17-fieldset>
 
-    <a17-fieldset title="Dining" id="dining_hours">
-        @formField('input', [
-            'name' => 'visit_dining_link',
-            'label' => 'Explore all dining link'
-        ])
-
-        @formField('repeater', ['type' => 'dining_hours'])
-    </a17-fieldset>
-
-    <a17-fieldset title="Tour Pages" id="tourpages">
-        @formField('browser', [
-        'routePrefix' => 'generic',
-            'max' => 3,
-            'moduleName' => 'genericPages',
-            'name' => 'visitTourPages',
-            'label' => 'Tour pages'
-        ])
-    </a17-fieldset>
-
-    <a17-fieldset title="Families, teens and educators" id="families">
-        @formField('repeater', ['type' => 'families'])
-    </a17-fieldset>
 @stop

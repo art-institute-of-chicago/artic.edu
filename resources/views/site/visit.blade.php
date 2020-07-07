@@ -28,9 +28,6 @@
           array('label' => __('Admission'), 'href' => '#admission'),
           array('label' => __('FAQs'), 'href' => '#faqs'),
           array('label' => __('Directions'), 'href' => '#directions'),
-          array('label' => __('Dining'), 'href' => '#dining'),
-          array('label' => __('Tours'), 'href' => '#tours'),
-          array('label' => __('Families, Teens, and Educators'), 'href' => '#familes_teens_educators'),
         ))
          @slot('secondaryHtml')
           <li class="m-links-bar__item  m-links-bar__item--primary">
@@ -416,122 +413,6 @@
         </span>
       </div>
     </div>
-
-    @component('components.molecules._m-title-bar')
-        @slot('links', [
-            [
-                'label' => __('Explore all dining'),
-                'href'  => $page->visit_dining_link,
-                'gtmAttributes' => 'data-gtm-event="dining" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
-            ]
-        ]
-        )
-        @slot('id', 'dining')
-        @lang('Dining')
-    @endcomponent
-
-    @component('components.atoms._hr')
-    @endcomponent
-
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','3')
-        @slot('ariaLabel', 'h-dining')
-        @foreach ($dining as $item)
-            @component('components.molecules._m-listing----multi-links')
-                @slot('variation', 'm-listing--row@small m-listing--row@medium')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '23',
-                          'medium' => '22',
-                          'large' => '18',
-                          'xlarge' => '18',
-                    )),
-                ))
-            @endcomponent
-        @endforeach
-    @endcomponent
-
-    @component('components.molecules._m-links-bar')
-        @slot('variation', 'm-links-bar--title-bar-companion')
-        @slot('linksPrimary', array(
-          array('label' => __('Explore all dining'), 'href' => $page->visit_dining_link, 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="dining" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'),
-        ))
-    @endcomponent
-
-    @component('components.molecules._m-title-bar')
-        @slot('id', 'tours')
-        @lang('Tours')
-    @endcomponent
-
-    @component('components.atoms._hr')
-    @endcomponent
-
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','3')
-        @slot('ariaLabel', 'h-tours')
-        @foreach ($tours as $item)
-            @component('components.molecules._m-listing----multi-links')
-                @slot('variation', 'm-listing--row@small m-listing--row@medium')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '23',
-                          'medium' => '22',
-                          'large' => '18',
-                          'xlarge' => '18',
-                    )),
-                ))
-                @slot('gtmAttributes', 'data-gtm-event="tours" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
-            @endcomponent
-        @endforeach
-    @endcomponent
-
-    @component('components.molecules._m-title-bar')
-        @slot('id', 'familes_teens_educators')
-        @lang('Families, Teens, and Educators')
-    @endcomponent
-
-    @component('components.atoms._hr')
-    @endcomponent
-
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','3')
-        @slot('ariaLabel', 'h-familes_teens_educators')
-        @foreach ($families as $item)
-            @component('components.molecules._m-listing----multi-links')
-                @slot('variation', 'm-listing--row@small m-listing--row@medium')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '23',
-                          'medium' => '22',
-                          'large' => '18',
-                          'xlarge' => '18',
-                    )),
-                ))
-                @slot('gtmAttributes', 'data-gtm-event="special-audiences" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')
-            @endcomponent
-        @endforeach
-    @endcomponent
 
   </section>
 

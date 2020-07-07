@@ -110,14 +110,6 @@ class VisitController extends FrontController
                 'link' => $page->visit_buy_tickets_link,
             ),
         );
-        $dining = array();
-        foreach ($page->dining_hours as $hour) {
-            array_push($dining, array(
-                'image' => $hour->imageFront('dining_cover'),
-                'title' => $hour->name,
-                'text' => $hour->accessible_hours,
-            ));
-        };
 
         $directions = array(
             'intro' => __('Located in the heart of Chicago—across from Millennium Park and steps from Lake Michigan—the Art Institute welcomes visitors at two entrances.'),
@@ -143,37 +135,6 @@ class VisitController extends FrontController
             'questions' => $questions,
         );
 
-        $families = array();
-        foreach ($page->families as $item) {
-            array_push($families, array(
-                'image' => $item->imageFront('family_cover'),
-                'title' => $item->title,
-                'text' => $item->text,
-                'titleLink' => $item->associated_generic_page_link ?? $item->external_link,
-                'links' => array(array(
-                    'href' => $item->external_link,
-                    'label' => $item->link_label,
-                )),
-            ));
-        };
-
-        $tours = [];
-        foreach ($page->visitTourPages as $item) {
-            $links = [];
-            foreach ($item->children()->orderBy('position')->published()->get() as $child) {
-                array_push($links, array(
-                    'href' => $child->url,
-                    'label' => $child->title,
-                ));
-            }
-            array_push($tours, array(
-                'title' => $item->title,
-                'titleLink' => $item->url,
-                'image' => $item->imageFront('listing'),
-                'links' => $links,
-            ));
-        }
-
         $itemprops = [
             'name' => 'Art Institute of Chicago',
             'telephone' => '+13124433600',
@@ -189,11 +150,8 @@ class VisitController extends FrontController
             'headerMedia' => $headerMedia,
             'hours' => $hours,
             'admission' => $admission,
-            'dining' => $dining,
             'directions' => $directions,
             'faq' => $faq,
-            'families' => $families,
-            'tours' => $tours,
             'itemprops' => $itemprops,
         ]);
     }
