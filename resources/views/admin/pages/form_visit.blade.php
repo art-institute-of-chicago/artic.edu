@@ -81,6 +81,19 @@
         ])
     </a17-fieldset>
 
+    <a17-fieldset title="FAQs" id="faq">
+        @formField('input', [
+            'name' => 'visit_faq_accessibility_link',
+            'label' => 'Accessibility information link'
+        ])
+        @formField('input', [
+            'name' => 'visit_faq_more_link',
+            'label' => "More FAQs and guidelines link"
+        ])
+
+        @formField('repeater', ['type' => 'faqs'])
+    </a17-fieldset>
+
     {{--
       -- Remove CityPASS promo
 
@@ -154,19 +167,6 @@
         ])
 
         @formField('repeater', ['type' => 'dining_hours'])
-    </a17-fieldset>
-
-    <a17-fieldset title="FAQs" id="faq">
-        @formField('input', [
-            'name' => 'visit_faq_accessibility_link',
-            'label' => 'Accessibility information link'
-        ])
-        @formField('input', [
-            'name' => 'visit_faq_more_link',
-            'label' => "More FAQs and guidelines link"
-        ])
-
-        @formField('repeater', ['type' => 'faqs'])
     </a17-fieldset>
 
     <a17-fieldset title="Tour Pages" id="tourpages">

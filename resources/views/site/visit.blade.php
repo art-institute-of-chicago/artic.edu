@@ -26,9 +26,9 @@
         @slot('linksPrimary', array(
           array('label' => __('Hours'), 'href' => '#hours'),
           array('label' => __('Admission'), 'href' => '#admission'),
+          array('label' => __('FAQs'), 'href' => '#faqs'),
           array('label' => __('Directions'), 'href' => '#directions'),
           array('label' => __('Dining'), 'href' => '#dining'),
-          array('label' => __('FAQs'), 'href' => '#faqs'),
           array('label' => __('Tours'), 'href' => '#tours'),
           array('label' => __('Families, Teens, and Educators'), 'href' => '#familes_teens_educators'),
         ))
@@ -313,6 +313,27 @@
         </div>
     @endcomponent
 
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(
+        array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link']),
+        array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
+        ))
+        @slot('id', 'faqs')
+        @lang('FAQs')
+    @endcomponent
+
+    @component('components.molecules._m-link-list')
+        @slot('screenreaderTitle', 'Example questions')
+        @slot('links', $faq['questions'])
+    @endcomponent
+
+    @component('components.molecules._m-links-bar')
+        @slot('variation', 'm-links-bar--title-bar-companion')
+        @slot('linksPrimary', array(
+        array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link'], 'variation' => 'btn--secondary'),
+        array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
+        ))
+    @endcomponent
     {{--
       -- Remove CityPASS promo
 
@@ -441,28 +462,6 @@
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
           array('label' => __('Explore all dining'), 'href' => $page->visit_dining_link, 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="dining" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'),
-        ))
-    @endcomponent
-
-    @component('components.molecules._m-title-bar')
-        @slot('links', array(
-          array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link']),
-          array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
-        ))
-        @slot('id', 'faqs')
-        @lang('FAQs')
-    @endcomponent
-
-    @component('components.molecules._m-link-list')
-        @slot('screenreaderTitle', 'Sample questions')
-        @slot('links', $faq['questions'])
-    @endcomponent
-
-    @component('components.molecules._m-links-bar')
-        @slot('variation', 'm-links-bar--title-bar-companion')
-        @slot('linksPrimary', array(
-          array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link'], 'variation' => 'btn--secondary'),
-          array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
         ))
     @endcomponent
 
