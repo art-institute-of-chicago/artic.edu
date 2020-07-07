@@ -61,6 +61,7 @@ class VisitController extends FrontController
             'primary' => $page->visit_hour_header,
             'secondary' => $page->visit_hour_subheader,
             'sections' => $page->featured_hours,
+            'intro' => $page->visit_hour_intro
         );
 
         // Get prices grid for admissions

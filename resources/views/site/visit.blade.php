@@ -63,6 +63,16 @@
         @lang('Hours')
     @endcomponent
 
+    @if ($hours['intro'])
+        @component('components.atoms._hr')
+        @endcomponent
+
+        @component('components.molecules._m-intro-block')
+            @slot('itemprop','description')
+            {!! SmartyPants::defaultTransform($hours['intro']) !!}
+        @endcomponent
+    @endif
+
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--gridlines-rows')
         @slot('cols_medium','2')

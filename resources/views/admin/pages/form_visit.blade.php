@@ -20,6 +20,13 @@
 
 @section('fieldsets')
     <a17-fieldset title="Hours" id="hours">
+        @formField('input', [
+            'name' => 'visit_hour_intro',
+            'label' => 'Intro text',
+            'type' => 'textarea',
+            'translated' => true
+        ])
+
         @formField('medias', [
             'name' => 'visit_featured_hour',
             'label' => 'Image',
