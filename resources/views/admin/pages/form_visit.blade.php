@@ -81,6 +81,9 @@
         ])
     </a17-fieldset>
 
+    {{--
+      -- Remove CityPASS promo
+
     <a17-fieldset title="Featured Offer" id="featured_offer">
         @formField('medias', [
             'name' => 'visit_city_pass',
@@ -117,6 +120,7 @@
             'translated' => true
         ])
     </a17-fieldset>
+    --}}
 
     <a17-fieldset title="Directions" id="directions">
 

@@ -313,6 +313,9 @@
         </div>
     @endcomponent
 
+    {{--
+      -- Remove CityPASS promo
+
     <div class="m-mini-promo">
       @component('components.atoms._img')
           @slot('image', $admission['cityPass']['image'])
@@ -348,6 +351,7 @@
           {!! SmartyPants::defaultTransform($admission['cityPass']['link']['label']) !!}
       @endcomponent
     </div>
+    --}}
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'directions')
