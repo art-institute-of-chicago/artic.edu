@@ -98,8 +98,46 @@
           @endcomponent
         </div>
         <div class="o-blocks">
+          <div class="m-table m-table--minimal">
+            <table>
+              <tbody>
+                <tr>
+                  <th>
+                    <span class="f-module-title-1">Monday</span>
+                  </th>
+                  <td>
+                    <span class="f-module-title-1">10:00am&ndash;6:00pm*</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <span class="f-module-title-1">Tuesday&ndash;Wednesday</span>
+                  </th>
+                  <td>
+                    <span class="f-module-title-1">Closed</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <span class="f-module-title-1">Thursday&ndash;Friday</span>
+                  </th>
+                  <td>
+                    <span class="f-module-title-1">12:00pm&ndash;8:00pm*</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <span class="f-module-title-1">Saturday&ndash;Sunday</span>
+                  </th>
+                  <td>
+                    <span class="f-module-title-1">10:00am&ndash;6:00pm*</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           @component('components.blocks._text')
-              @slot('font','f-list-4')
+              @slot('font','f-body')
               {!! SmartyPants::defaultTransform($hours['primary']) !!}
           @endcomponent
           @component('components.blocks._text')
