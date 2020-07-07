@@ -12,7 +12,7 @@
 
     <hr>
 
-    <p class="m-article-actions--journal__blurb f-secondary"><a href="https://sales.artic.edu/memberships">Become a member</a> or <a href="https://sales.artic.edu/Profile/VerifyMembership">renew your membership</a>.</p>
+<p class="m-article-actions--journal__blurb f-secondary"><a href="https://sales.artic.edu/memberships" data-gtm-event-category="nav-link" data-gtm-event-action="{{ $seo->title }}" data-gtm-event="Membership">Become a member</a> or <a href="https://sales.artic.edu/Profile/VerifyMembership"data-gtm-event-category="nav-link" data-gtm-event-action="{{ $seo->title }}" data-gtm-event="Verify Membership">renew your membership</a>.</p>
 
     <hr>
 
