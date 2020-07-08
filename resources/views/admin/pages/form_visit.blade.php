@@ -94,47 +94,6 @@
         @formField('repeater', ['type' => 'faqs'])
     </a17-fieldset>
 
-    {{--
-      -- Remove CityPASS promo
-
-    <a17-fieldset title="Featured Offer" id="featured_offer">
-        @formField('medias', [
-            'name' => 'visit_city_pass',
-            'label' => 'Image',
-            'note' => 'Minimum image width 2000px'
-        ])
-        @formField('input', [
-            'name' => 'visit_city_pass_title',
-            'field_name' => 'visit_city_pass_title',
-            'label' => 'Title',
-            'required' => true,
-            'translated' => true
-        ])
-        @formField('input', [
-            'name' => 'visit_city_pass_text',
-            'field_name' => 'visit_city_pass_text',
-            'label' => 'Text',
-            'rows' => 3,
-            'type' => 'textarea',
-            'translated' => true
-        ])
-        @formField('input', [
-            'name' => 'visit_city_pass_button_label',
-            'field_name' => 'visit_city_pass_button_label',
-            'label' => 'Button label',
-            'required' => true,
-            'translated' => true
-        ])
-        @formField('input', [
-            'name' => 'visit_city_pass_link',
-            'field_name' => 'visit_city_pass_link',
-            'label' => 'Button link',
-            'required' => true,
-            'translated' => true
-        ])
-    </a17-fieldset>
-    --}}
-
     <a17-fieldset title="Directions" id="directions">
 
         @formField('medias', [

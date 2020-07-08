@@ -331,45 +331,7 @@
         array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
         ))
     @endcomponent
-    {{--
-      -- Remove CityPASS promo
 
-    <div class="m-mini-promo">
-      @component('components.atoms._img')
-          @slot('image', $admission['cityPass']['image'])
-          @slot('settings', array(
-              'fit' => 'crop',
-              'ratio' => '9:5',
-              'srcset' => array(200,400,600),
-              'sizes' => aic_imageSizes(array(
-                    'xsmall' => '23',
-                    'small' => '13',
-                    'medium' => '13',
-                    'large' => '13',
-                    'xlarge' => '13',
-              )),
-          ))
-      @endcomponent
-      <div class="m-mini-promo__text">
-        @component('components.atoms._title')
-            @slot('font', 'f-module-title-1')
-            @slot('tag','h3')
-            {!! SmartyPants::defaultTransform($admission['cityPass']['title']) !!}
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-secondary')
-            {!! SmartyPants::defaultTransform($admission['cityPass']['text']) !!}
-        @endcomponent
-      </div>
-      @component('components.atoms._btn')
-          @slot('variation', 'btn--tertiary')
-          @slot('tag', 'a')
-          @slot('href', $admission['cityPass']['link']['href'])
-          @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $admission['cityPass']['link']['label']) . ' " data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-cta-button"')
-          {!! SmartyPants::defaultTransform($admission['cityPass']['link']['label']) !!}
-      @endcomponent
-    </div>
-    --}}
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'directions')
