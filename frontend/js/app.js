@@ -135,9 +135,12 @@ if (typeof console === 'undefined') {
   };
 }
 
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
+document.addEventListener('ajaxPageLoad:complete', function _setScrollRestoration(){
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+    document.removeEventListener('ajaxPageLoad:complete', _setScrollRestoration);
+  }
+}, false);
 
 // polyfil .closest
 if (window.Element && !Element.prototype.closest) {
