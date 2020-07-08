@@ -27,6 +27,7 @@
           array('label' => __('Hours'), 'href' => '#hours'),
           array('label' => __('Admission'), 'href' => '#admission'),
           array('label' => __('FAQs'), 'href' => '#faqs'),
+          array('label' => __('Accessibility'), 'href' => '#accessibility'),
           array('label' => __('Directions'), 'href' => '#directions'),
         ))
          @slot('secondaryHtml')
@@ -332,6 +333,45 @@
         ))
     @endcomponent
 
+    @component('components.molecules._m-title-bar')
+        @slot('id', 'accessibility')
+        @lang('Accessibility')
+    @endcomponent
+
+    <div class="m-mini-promo">
+        @component('components.atoms._img')
+            @slot('image', $accessibility['image'])
+            @slot('settings', array(
+                'fit' => 'crop',
+                'ratio' => '9:5',
+                'srcset' => array(200,400,600),
+                'sizes' => aic_imageSizes(array(
+                      'xsmall' => '23',
+                      'small' => '13',
+                      'medium' => '13',
+                      'large' => '13',
+                      'xlarge' => '13',
+                )),
+            ))
+        @endcomponent
+        <div class="m-mini-promo__text">
+            @component('components.atoms._title')
+                @slot('font', 'f-module-title-1')
+                @slot('tag','h3')
+            @endcomponent
+            @component('components.blocks._text')
+                @slot('font', 'f-secondary')
+                {!! SmartyPants::defaultTransform($accessibility['text']) !!}
+          @endcomponent
+        </div>
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--secondary')
+            @slot('tag', 'a')
+            @slot('href', $accessibility['link_url'])
+            @slot('gtmAttributes', 'data-gtm-event="' . $accessibility['link_text'] . ' " data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-cta-button"')
+            {!! SmartyPants::defaultTransform($accessibility['link_text']) !!}
+        @endcomponent
+    </div>
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'directions')

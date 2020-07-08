@@ -139,6 +139,14 @@ class VisitController extends FrontController
             'questions' => $questions,
         );
 
+        $accessibility = array(
+            'image' => $page->imageFront('visit_accessibility'),
+            'text' => $page->visit_accessibility_text,
+            'link_text' => $page->visit_accessibility_link_text,
+            'link_url' => $page->visit_accessibility_link_url,
+        );
+        ;
+
         $itemprops = [
             'name' => 'Art Institute of Chicago',
             'telephone' => '+13124433600',
@@ -156,6 +164,7 @@ class VisitController extends FrontController
             'admission' => $admission,
             'directions' => $directions,
             'faq' => $faq,
+            'accessibility' => $accessibility,
             'itemprops' => $itemprops,
         ]);
     }
