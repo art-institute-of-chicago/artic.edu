@@ -78,7 +78,7 @@
         @slot('cols_xlarge','2')
         @slot('tag', 'div')
 
-        <div class="o-blocks">
+        <div class="o-blocks u-hide@small-">
           @component('components.molecules._m-media')
             @slot('item', $hours['media'])
             @slot('imageSettings', array(
