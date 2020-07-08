@@ -91,6 +91,7 @@ class PageController extends ModuleController
             ['fieldset' => 'hours', 'label' => 'Hours'],
             ['fieldset' => 'admissions', 'label' => 'Admissions'],
             ['fieldset' => 'faq', 'label' => 'FAQ'],
+            ['fieldset' => 'accessibility', 'label' => 'Accessibility'],
             ['fieldset' => 'directions', 'label' => 'Directions'],
         ];
 

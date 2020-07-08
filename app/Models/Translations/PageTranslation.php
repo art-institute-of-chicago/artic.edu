@@ -18,6 +18,8 @@ class PageTranslation extends Model
         'visit_admission_description',
         'visit_buy_tickets_label',
         'visit_become_member_label',
+        'visit_accessibility_text',
+        'visit_accessibility_link_text',
         'active',
         'locale',
     ];

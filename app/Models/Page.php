@@ -80,20 +80,15 @@ class Page extends AbstractModel
         'resources_landing_title',
         'resources_landing_intro',
 
+        // Visit page
         'visit_dining_link',
-
         'visit_transportation_link',
-
         'visit_parking_link',
-
         'visit_buy_tickets_link',
-
         'visit_become_member_link',
-
         'visit_faq_accessibility_link',
-
         'visit_faq_more_link',
-
+        'visit_accessibility_link_url',
     ];
 
     public $translatedAttributes = [
@@ -109,6 +104,8 @@ class Page extends AbstractModel
         'visit_admission_description',
         'visit_buy_tickets_label',
         'visit_become_member_label',
+        'visit_accessibility_text',
+        'visit_accessibility_link_text',
         'active'
     ];
 
@@ -136,6 +133,14 @@ class Page extends AbstractModel
             ],
         ],
         'visit_featured_hour' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
+        'visit_accessibility' => [
             'default' => [
                 [
                     'name' => 'default',

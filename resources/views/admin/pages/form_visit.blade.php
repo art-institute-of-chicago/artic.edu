@@ -94,6 +94,31 @@
         @formField('repeater', ['type' => 'faqs'])
     </a17-fieldset>
 
+    <a17-fieldset title="Accessibility" id="accessibility">
+        @formField('medias', [
+            'name' => 'visit_accessibility',
+            'label' => 'Image',
+        ])
+
+        @formField('input', [
+            'name' => 'visit_accessibility_text',
+            'label' => 'Accessibility text',
+            'type' => 'textarea',
+            'translated' => true
+        ])
+
+        @formField('input', [
+            'name' => 'visit_accessibility_link_text',
+            'label' => 'Link text',
+            'translated' => true
+        ])
+
+        @formField('input', [
+            'name' => 'visit_accessibility_link_url',
+            'label' => 'Link URL',
+        ])
+</a17-fieldset>
+
     <a17-fieldset title="Directions" id="directions">
 
         @formField('medias', [
