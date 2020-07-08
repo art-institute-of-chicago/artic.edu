@@ -73,7 +73,6 @@
     @endif
 
     @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--gridlines-rows')
         @slot('cols_medium','2')
         @slot('cols_large','2')
         @slot('cols_xlarge','2')
