@@ -29,6 +29,7 @@
           array('label' => __('FAQs'), 'href' => '#faqs'),
           array('label' => __('Accessibility'), 'href' => '#accessibility'),
           array('label' => __('Directions'), 'href' => '#directions'),
+          array('label' => __('Explore on your own'), 'href' => '#explore'),
         ))
          @slot('secondaryHtml')
           <li class="m-links-bar__item  m-links-bar__item--primary">
@@ -421,6 +422,40 @@
         </span>
       </div>
     </div>
+
+    @component('components.molecules._m-title-bar')
+        @slot('id', 'explore')
+        @lang('Explore on your own')
+    @endcomponent
+
+    @component('components.atoms._hr')
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','3')
+        @slot('ariaLabel', 'h-familes_teens_educators')
+        @foreach ($explore as $item)
+            @component('components.molecules._m-listing----multi-links')
+                @slot('variation', 'm-listing--row@small m-listing--row@medium')
+                @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                        'xsmall' => '58',
+                        'small' => '23',
+                        'medium' => '22',
+                        'large' => '18',
+                        'xlarge' => '18',
+                    )),
+                ))
+                @slot('gtmAttributes', 'data-gtm-event="explore-on-your-own" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')
+            @endcomponent
+        @endforeach
+    @endcomponent
 
   </section>
 

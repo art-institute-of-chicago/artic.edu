@@ -145,7 +145,20 @@ class VisitController extends FrontController
             'link_text' => $page->visit_accessibility_link_text,
             'link_url' => $page->visit_accessibility_link_url,
         );
-        ;
+
+        $explore = array();
+        foreach ($page->families as $item) {
+            array_push($explore, array(
+                'image' => $item->imageFront('family_cover'),
+                'title' => $item->title,
+                'text' => $item->text,
+                'titleLink' => $item->associated_generic_page_link ?? $item->external_link,
+                'links' => array(array(
+                    'href' => $item->external_link,
+                    'label' => $item->link_label,
+                )),
+            ));
+        };
 
         $itemprops = [
             'name' => 'Art Institute of Chicago',
@@ -165,6 +178,7 @@ class VisitController extends FrontController
             'directions' => $directions,
             'faq' => $faq,
             'accessibility' => $accessibility,
+            'explore' => $explore,
             'itemprops' => $itemprops,
         ]);
     }

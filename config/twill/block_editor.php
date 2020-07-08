@@ -244,7 +244,7 @@ return [
             'max' => 5,
         ],
         'families' => [
-            'title' => 'Families, teens and educators',
+            'title' => 'Explore on your own',
             'trigger' => 'Add item',
             'component' => 'a17-block-families',
             'max' => 3,

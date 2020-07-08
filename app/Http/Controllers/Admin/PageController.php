@@ -93,6 +93,7 @@ class PageController extends ModuleController
             ['fieldset' => 'faq', 'label' => 'FAQ'],
             ['fieldset' => 'accessibility', 'label' => 'Accessibility'],
             ['fieldset' => 'directions', 'label' => 'Directions'],
+            ['fieldset' => 'explore', 'label' => 'Explore on your own'],
         ];
 
         $fields = $this->form($page->id);
