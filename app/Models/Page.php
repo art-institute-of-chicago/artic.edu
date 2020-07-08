@@ -89,6 +89,7 @@ class Page extends AbstractModel
         'visit_faq_accessibility_link',
         'visit_faq_more_link',
         'visit_accessibility_link_url',
+        'visit_cta_module_action_url',
         'visit_what_to_expect_more_link',
     ];
 
@@ -107,6 +108,9 @@ class Page extends AbstractModel
         'visit_become_member_label',
         'visit_accessibility_text',
         'visit_accessibility_link_text',
+        'visit_cta_module_header',
+        'visit_cta_module_body',
+        'visit_cta_module_button_text',
         'visit_what_to_expect_more_text',
         'active'
     ];

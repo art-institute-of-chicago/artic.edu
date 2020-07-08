@@ -50,6 +50,35 @@
         @formField('repeater', ['type' => 'featured_hours'])
     </a17-fieldset>
 
+    <a17-fieldset title="Call to Action" id="call-to-action">
+        @formField('input', [
+            'name' => 'visit_cta_module_header',
+            'label' => 'Header',
+            'translated' => true,
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'visit_cta_module_body',
+            'label' => 'Body',
+            'toolbarOptions' => [
+                'italic'
+            ],
+            'translated' => true,
+        ])
+
+        @formField('input', [
+            'name' => 'visit_cta_module_button_text',
+            'label' => 'Button text',
+            'translated' => true,
+        ])
+
+        @formField('input', [
+            'name' => 'visit_cta_module_action_url',
+            'label' => 'Button URL',
+            'note' => 'e.g. https://sales.artic.edu/admissions',
+        ])
+    </a17-fieldset>
+
     <a17-fieldset title="What to Expect" id="expect">
         @formField('input', [
             'name' => 'visit_what_to_expect_more_text',
