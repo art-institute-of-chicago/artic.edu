@@ -89,6 +89,7 @@ class PageController extends ModuleController
 
         $additionalFieldsets = [
             ['fieldset' => 'hours', 'label' => 'Hours'],
+            ['fieldset' => 'call-to-action', 'label' => 'CTA'],
             ['fieldset' => 'expect', 'label' => 'What to Expect'],
             ['fieldset' => 'admissions', 'label' => 'Admissions'],
             ['fieldset' => 'faq', 'label' => 'FAQ'],
