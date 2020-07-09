@@ -89,6 +89,7 @@ class Page extends AbstractModel
         'visit_faq_accessibility_link',
         'visit_faq_more_link',
         'visit_accessibility_link_url',
+        'visit_what_to_expect_more_link',
     ];
 
     public $translatedAttributes = [
@@ -106,6 +107,7 @@ class Page extends AbstractModel
         'visit_become_member_label',
         'visit_accessibility_text',
         'visit_accessibility_link_text',
+        'visit_what_to_expect_more_text',
         'active'
     ];
 
@@ -213,7 +215,7 @@ class Page extends AbstractModel
         4 => 'No Checkroom',
         5 => 'No Dining',
         6 => 'Caution',
-        7 => 'Entrance Floor',
+        7 => 'Floor Icon',
         8 => 'Virtual Queue',
     ];
 

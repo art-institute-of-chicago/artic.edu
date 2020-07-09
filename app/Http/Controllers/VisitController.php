@@ -64,6 +64,19 @@ class VisitController extends FrontController
             'intro' => $page->visit_hour_intro
         );
 
+        $expects = array();
+        foreach ($page->whatToExpects as $item) {
+            array_push($expects, array(
+                'iconType' => $item->icon_type,
+                'text' => $item->text,
+            ));
+        };
+        $whatToExpect = array(
+            'more_link' => $page->visit_what_to_expect_more_link,
+            'more_text' => $page->visit_what_to_expect_more_text,
+            'items' => $expects,
+        );
+
         // Get prices grid for admissions
         // This should be moved away from the controller.
         $fees = Fee::all();
@@ -174,6 +187,7 @@ class VisitController extends FrontController
             'filledLogo' => true,
             'headerMedia' => $headerMedia,
             'hours' => $hours,
+            'whatToExpect' => $whatToExpect,
             'admission' => $admission,
             'directions' => $directions,
             'faq' => $faq,

@@ -51,6 +51,17 @@
     </a17-fieldset>
 
     <a17-fieldset title="What to Expect" id="expect">
+        @formField('input', [
+            'name' => 'visit_what_to_expect_more_text',
+            'field_name' => 'visit_what_to_expect_more_text',
+            'label' => 'More link text',
+            'translated' => true
+        ])
+        @formField('input', [
+            'name' => 'visit_what_to_expect_more_link',
+            'field_name' => 'visit_what_to_expect_more_link',
+            'label' => 'More link'
+        ])
         @formField('repeater', ['type' => 'whatToExpects'])
     </a17-fieldset>
 

@@ -25,6 +25,7 @@
         @slot('isPrimaryPageNav', true)
         @slot('linksPrimary', array(
           array('label' => __('Hours'), 'href' => '#hours'),
+          array('label' => __('What to Expect'), 'href' => '#expect'),
           array('label' => __('Admission'), 'href' => '#admission'),
           array('label' => __('FAQs'), 'href' => '#faqs'),
           array('label' => __('Accessibility'), 'href' => '#accessibility'),
@@ -179,6 +180,32 @@
       @endcomponent
 
     @endforeach
+
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(
+            array('label' => $whatToExpect['more_text'], 'href' => $whatToExpect['more_link'], 'gtmAttributes' => 'data-gtm-event="What to Expect" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
+        ))
+        @slot('id', 'expect')
+        @lang('What to Expect')
+    @endcomponent
+
+    @component('components.atoms._hr')
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_small','2')
+        @slot('cols_medium','2')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','3')
+        @slot('ariaLabel', 'h-familes_teens_educators')
+        @foreach ($whatToExpect['items'] as $item)
+            @component('components.molecules._m-listing----icon')
+                @slot('variation', 'm-listing--row@small m-listing--row@medium')
+                @slot('item', $item)
+            @endcomponent
+        @endforeach
+    @endcomponent
 
     <div class="m-table">
       <table>

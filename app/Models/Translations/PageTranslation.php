@@ -20,6 +20,7 @@ class PageTranslation extends Model
         'visit_become_member_label',
         'visit_accessibility_text',
         'visit_accessibility_link_text',
+        'visit_what_to_expect_more_text',
         'active',
         'locale',
     ];
