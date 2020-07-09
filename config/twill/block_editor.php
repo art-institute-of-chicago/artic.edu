@@ -249,6 +249,12 @@ return [
             'component' => 'a17-block-families',
             'max' => 3,
         ],
+        'whatToExpects' => [
+            'title' => 'What to Expect',
+            'trigger' => 'Add item',
+            'component' => 'a17-block-what_to_expect',
+            'max' => 9,
+        ],
         'accordion_item' => [
             'title' => 'Accordion Item',
             'trigger' => 'Add accordion item',

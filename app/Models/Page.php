@@ -205,6 +205,18 @@ class Page extends AbstractModel
     ];
     public $filesParams = ['video']; // a list of file roles
 
+    public static $iconTypes = [
+        0 => 'Face Coverings',
+        1 => 'Physical Distancing',
+        2 => 'Mobile Ticket',
+        3 => 'Showing Symptoms',
+        4 => 'No Checkroom',
+        5 => 'No Dining',
+        6 => 'Caution',
+        7 => 'Entrance Floor',
+        8 => 'Virtual Queue',
+    ];
+
     public function scopeForType($query, $type)
     {
         return $query->where('type', array_flip(self::$types)[$type]);
@@ -308,6 +320,11 @@ class Page extends AbstractModel
         return $this->hasMany(FeaturedHour::class)->orderBy('position');
     }
 
+    public function whatToExpects()
+    {
+        return $this->hasMany(WhatToExpect::class)->orderBy('position');
+    }
+
     public function articlesCategories()
     {
         return $this->belongsToMany('App\Models\Category', 'page_article_category')->withPivot('position')->orderBy('position');
@@ -361,6 +378,11 @@ class Page extends AbstractModel
     public function researchResourcesStudyRoomMore()
     {
         return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_more_pages')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
+    }
+
+    public static function getIconTypes()
+    {
+        return collect(self::$iconTypes);
     }
 
     protected function transformMappingInternal()

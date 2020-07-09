@@ -50,6 +50,10 @@
         @formField('repeater', ['type' => 'featured_hours'])
     </a17-fieldset>
 
+    <a17-fieldset title="What to Expect" id="expect">
+        @formField('repeater', ['type' => 'whatToExpects'])
+    </a17-fieldset>
+
     <a17-fieldset title="Admissions" id="admissions">
         @formField('wysiwyg', [
             'name' => 'visit_admission_description',
