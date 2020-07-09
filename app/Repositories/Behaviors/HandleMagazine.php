@@ -12,6 +12,10 @@ trait HandleMagazine
     public function getAlsoInThisIssue($item)
     {
         $magItem = MagazineItem::where('magazinable_type', $this->morphType)->where('magazinable_id', $item->id)->first();
+
+        if (!$magItem) {
+            return null;
+        }
         $position = $magItem->position;
         $magIssue = $magItem->magazineIssue;
 
