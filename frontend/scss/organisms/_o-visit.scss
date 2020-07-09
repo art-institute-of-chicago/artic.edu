@@ -10,6 +10,34 @@
     }
   }
 
+.o-visit .m-cta-banner {
+  margin-top: 0;
+
+  & + * {
+    margin-top: 0;
+  }
+
+  @include breakpoint('small+') {
+    margin-top: 0;
+
+    & + * {
+      margin-top: 0;
+    }
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 0;
+
+    & + * {
+      margin-top: 0;
+    }
+  }
+
+  + .m-title-bar {
+    margin-top: 0;
+  }
+}
+
 .o-visit .m-title-bar {
   margin-top: 52px;
 

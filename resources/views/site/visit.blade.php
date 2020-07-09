@@ -181,6 +181,18 @@
 
     @endforeach
 
+    <hr>
+
+    @if (isset($page->visit_cta_module_header) && isset($page->visit_cta_module_body) && isset($page->visit_cta_module_button_text) && isset($page->visit_cta_module_action_url))
+        @component('components.molecules._m-cta-banner')
+            @slot('href', $page->visit_cta_module_action_url)
+            @slot('header', $page->visit_cta_module_header)
+            @slot('body', $page->visit_cta_module_body)
+            @slot('button_text', $page->visit_cta_module_button_text)
+            @slot('gtmAttributes', 'data-gtm-event="'. $page->visit_cta_module_button_text . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
+        @endcomponent
+    @endif
+
     @component('components.molecules._m-title-bar')
         @slot('links', array(
             array('label' => $whatToExpect['more_text'], 'href' => $whatToExpect['more_link'], 'gtmAttributes' => 'data-gtm-event="What to Expect" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')

@@ -38,6 +38,10 @@
     right: 0;
     z-index: 3;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     @include breakpoint('small+') {
       top: 20px;
       padding-right: colspan(17, small);
@@ -95,11 +99,17 @@
   }
 
   .m-cta-banner__title.f-module-title-2 {
-    @include tucked-margin-top($f-module-title-2, ('xsmall': 40, 'small+': 48, 'large+': 60));
+    @include untuck();
   }
 
   .m-cta-banner__msg.f-list-2 {
-    @include tucked-margin-top($f-list-2, ('xsmall': 40, 'small+': 40, 'large+': 48));
+    @include untuck();
+
+    margin-top: 16px;
+
+    @include breakpoint('large+') {
+      margin-top: 24x
+    }
   }
 }
 
