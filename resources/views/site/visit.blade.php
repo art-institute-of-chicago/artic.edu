@@ -29,7 +29,7 @@
           array('label' => __('FAQs'), 'href' => '#faqs'),
           array('label' => __('Accessibility'), 'href' => '#accessibility'),
           array('label' => __('Directions'), 'href' => '#directions'),
-          array('label' => __('Explore on your own'), 'href' => '#explore'),
+          array('label' => __('Ways to Explore'), 'href' => '#explore'),
         ))
          @slot('secondaryHtml')
           <li class="m-links-bar__item  m-links-bar__item--primary">
@@ -98,13 +98,19 @@
         <div class="o-blocks">
           <div class="m-table m-table--minimal">
             <table>
+              <thead>
+                <tr>
+                  <th> </th>
+                  <th aria-labelledby="h-public-hours"><span class="f-module-title-1" id="h-public-hours">Public Hours</span></th>
+                </tr>
+              </thead>
               <tbody>
                 <tr>
                   <th>
                     <span class="f-module-title-1">Monday</span>
                   </th>
                   <td>
-                    <span class="f-module-title-1">10:00am&ndash;6:00pm*</span>
+                    <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
                   </td>
                 </tr>
                 <tr>
@@ -112,7 +118,7 @@
                     <span class="f-module-title-1">Tuesday&ndash;Wednesday</span>
                   </th>
                   <td>
-                    <span class="f-module-title-1">Closed</span>
+                    <span class="f-secondary">Closed</span>
                   </td>
                 </tr>
                 <tr>
@@ -120,7 +126,7 @@
                     <span class="f-module-title-1">Thursday&ndash;Friday</span>
                   </th>
                   <td>
-                    <span class="f-module-title-1">12:00pm&ndash;8:00pm*</span>
+                    <span class="f-secondary">1&ndash;8 p.m.</span>
                   </td>
                 </tr>
                 <tr>
@@ -128,7 +134,7 @@
                     <span class="f-module-title-1">Saturday&ndash;Sunday</span>
                   </th>
                   <td>
-                    <span class="f-module-title-1">10:00am&ndash;6:00pm*</span>
+                    <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
                   </td>
                 </tr>
               </tbody>
@@ -313,8 +319,7 @@
 
     @component('components.molecules._m-title-bar')
         @slot('links', array(
-        array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link']),
-        array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
+          array('label' => __('More FAQs'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
         ))
         @slot('id', 'faqs')
         @lang('FAQs')
@@ -424,7 +429,7 @@
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'explore')
-        @lang('Explore on your own')
+        @lang('Ways to Explore')
     @endcomponent
 
     @component('components.atoms._hr')

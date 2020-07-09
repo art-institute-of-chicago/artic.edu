@@ -149,7 +149,7 @@
         @formField('repeater', ['type' => 'locations', 'max' => 2])
     </a17-fieldset>
 
-    <a17-fieldset title="Explore on your own" id="explore">
+    <a17-fieldset title="Ways to Explore" id="explore">
         @formField('repeater', ['type' => 'families'])
     </a17-fieldset>
 
