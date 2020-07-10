@@ -74,7 +74,7 @@
             @endif
 
             @if ($block['type'] === 'become-a-member')
-                @component('components.molecules._m-cta-banner----become-a-member')
+                @component('components.molecules._m-cta-banner')
                     @slot('variation', 'o-blocks__block')
                 @endcomponent
             @endif

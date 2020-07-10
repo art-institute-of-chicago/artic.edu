@@ -89,13 +89,13 @@ class PageController extends ModuleController
 
         $additionalFieldsets = [
             ['fieldset' => 'hours', 'label' => 'Hours'],
+            ['fieldset' => 'call-to-action', 'label' => 'CTA'],
+            ['fieldset' => 'expect', 'label' => 'What to Expect'],
             ['fieldset' => 'admissions', 'label' => 'Admissions'],
-            ['fieldset' => 'featured_offer', 'label' => 'Featured offer'],
-            ['fieldset' => 'directions', 'label' => 'Museum address'],
-            ['fieldset' => 'dining_hours', 'label' => 'Dining'],
             ['fieldset' => 'faq', 'label' => 'FAQ'],
-            ['fieldset' => 'tourpages', 'label' => 'Tours'],
-            ['fieldset' => 'families', 'label' => 'Families, teens and educators'],
+            ['fieldset' => 'accessibility', 'label' => 'Accessibility'],
+            ['fieldset' => 'directions', 'label' => 'Directions'],
+            ['fieldset' => 'explore', 'label' => 'Ways to Explore'],
         ];
 
         $fields = $this->form($page->id);

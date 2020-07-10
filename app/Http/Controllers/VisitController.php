@@ -61,6 +61,20 @@ class VisitController extends FrontController
             'primary' => $page->visit_hour_header,
             'secondary' => $page->visit_hour_subheader,
             'sections' => $page->featured_hours,
+            'intro' => $page->visit_hour_intro
+        );
+
+        $expects = array();
+        foreach ($page->whatToExpects as $item) {
+            array_push($expects, array(
+                'iconType' => $item->icon_type,
+                'text' => $item->text,
+            ));
+        };
+        $whatToExpect = array(
+            'more_link' => $page->visit_what_to_expect_more_link,
+            'more_text' => $page->visit_what_to_expect_more_text,
+            'items' => $expects,
         );
 
         // Get prices grid for admissions
@@ -109,14 +123,6 @@ class VisitController extends FrontController
                 'link' => $page->visit_buy_tickets_link,
             ),
         );
-        $dining = array();
-        foreach ($page->dining_hours as $hour) {
-            array_push($dining, array(
-                'image' => $hour->imageFront('dining_cover'),
-                'title' => $hour->name,
-                'text' => $hour->accessible_hours,
-            ));
-        };
 
         $directions = array(
             'intro' => __('Located in the heart of Chicago—across from Millennium Park and steps from Lake Michigan—the Art Institute welcomes visitors at two entrances.'),
@@ -125,6 +131,10 @@ class VisitController extends FrontController
             'link' => array(
                 'href' => $page->visit_parking_link,
                 'label' => __('Directions, Parking, and Public Transportation'),
+            ),
+            'accessibility_link' => array(
+                'href' => $page->visit_parking_accessibility_link,
+                'label' => __('Visitors with Mobility Needs'),
             ),
         );
 
@@ -142,9 +152,16 @@ class VisitController extends FrontController
             'questions' => $questions,
         );
 
-        $families = array();
+        $accessibility = array(
+            'image' => $page->imageFront('visit_accessibility'),
+            'text' => $page->visit_accessibility_text,
+            'link_text' => $page->visit_accessibility_link_text,
+            'link_url' => $page->visit_accessibility_link_url,
+        );
+
+        $explore = array();
         foreach ($page->families as $item) {
-            array_push($families, array(
+            array_push($explore, array(
                 'image' => $item->imageFront('family_cover'),
                 'title' => $item->title,
                 'text' => $item->text,
@@ -155,23 +172,6 @@ class VisitController extends FrontController
                 )),
             ));
         };
-
-        $tours = [];
-        foreach ($page->visitTourPages as $item) {
-            $links = [];
-            foreach ($item->children()->orderBy('position')->published()->get() as $child) {
-                array_push($links, array(
-                    'href' => $child->url,
-                    'label' => $child->title,
-                ));
-            }
-            array_push($tours, array(
-                'title' => $item->title,
-                'titleLink' => $item->url,
-                'image' => $item->imageFront('listing'),
-                'links' => $links,
-            ));
-        }
 
         $itemprops = [
             'name' => 'Art Institute of Chicago',
@@ -187,12 +187,12 @@ class VisitController extends FrontController
             'filledLogo' => true,
             'headerMedia' => $headerMedia,
             'hours' => $hours,
+            'whatToExpect' => $whatToExpect,
             'admission' => $admission,
-            'dining' => $dining,
             'directions' => $directions,
             'faq' => $faq,
-            'families' => $families,
-            'tours' => $tours,
+            'accessibility' => $accessibility,
+            'explore' => $explore,
             'itemprops' => $itemprops,
         ]);
     }

@@ -170,7 +170,7 @@
     @slot('variation', 'u-show@small+')
 @endcomponent
 
-@component('components.molecules._m-cta-banner----become-a-member')
+@component('components.molecules._m-cta-banner')
     @slot('image', $cta_module_image)
     @slot('href', $cta_module_action_url)
     @slot('header', $cta_module_header)

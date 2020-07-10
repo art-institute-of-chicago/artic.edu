@@ -80,20 +80,17 @@ class Page extends AbstractModel
         'resources_landing_title',
         'resources_landing_intro',
 
+        // Visit page
         'visit_dining_link',
-
         'visit_transportation_link',
-
         'visit_parking_link',
-
         'visit_buy_tickets_link',
-
         'visit_become_member_link',
-
         'visit_faq_accessibility_link',
-
         'visit_faq_more_link',
-
+        'visit_accessibility_link_url',
+        'visit_cta_module_action_url',
+        'visit_what_to_expect_more_link',
     ];
 
     public $translatedAttributes = [
@@ -101,6 +98,7 @@ class Page extends AbstractModel
         'visit_intro',
         'visit_hour_header',
         'visit_hour_subheader',
+        'visit_hour_intro',
         'visit_city_pass_title',
         'visit_city_pass_text',
         'visit_city_pass_button_label',
@@ -108,6 +106,12 @@ class Page extends AbstractModel
         'visit_admission_description',
         'visit_buy_tickets_label',
         'visit_become_member_label',
+        'visit_accessibility_text',
+        'visit_accessibility_link_text',
+        'visit_cta_module_header',
+        'visit_cta_module_body',
+        'visit_cta_module_button_text',
+        'visit_what_to_expect_more_text',
         'active'
     ];
 
@@ -135,6 +139,14 @@ class Page extends AbstractModel
             ],
         ],
         'visit_featured_hour' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
+        'visit_accessibility' => [
             'default' => [
                 [
                     'name' => 'default',
@@ -198,6 +210,18 @@ class Page extends AbstractModel
         ],
     ];
     public $filesParams = ['video']; // a list of file roles
+
+    public static $iconTypes = [
+        0 => 'Face Coverings',
+        1 => 'Physical Distancing',
+        2 => 'Mobile Ticket',
+        3 => 'Showing Symptoms',
+        4 => 'No Checkroom',
+        5 => 'No Dining',
+        6 => 'Caution',
+        7 => 'Floor Icon',
+        8 => 'Virtual Queue',
+    ];
 
     public function scopeForType($query, $type)
     {
@@ -302,6 +326,11 @@ class Page extends AbstractModel
         return $this->hasMany(FeaturedHour::class)->orderBy('position');
     }
 
+    public function whatToExpects()
+    {
+        return $this->hasMany(WhatToExpect::class)->orderBy('position');
+    }
+
     public function articlesCategories()
     {
         return $this->belongsToMany('App\Models\Category', 'page_article_category')->withPivot('position')->orderBy('position');
@@ -355,6 +384,11 @@ class Page extends AbstractModel
     public function researchResourcesStudyRoomMore()
     {
         return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_more_pages')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
+    }
+
+    public static function getIconTypes()
+    {
+        return collect(self::$iconTypes);
     }
 
     protected function transformMappingInternal()

@@ -25,12 +25,12 @@
         @slot('isPrimaryPageNav', true)
         @slot('linksPrimary', array(
           array('label' => __('Hours'), 'href' => '#hours'),
+          array('label' => __('What to Expect'), 'href' => '#expect'),
           array('label' => __('Admission'), 'href' => '#admission'),
-          array('label' => __('Directions'), 'href' => '#directions'),
-          array('label' => __('Dining'), 'href' => '#dining'),
           array('label' => __('FAQs'), 'href' => '#faqs'),
-          array('label' => __('Tours'), 'href' => '#tours'),
-          array('label' => __('Families, Teens, and Educators'), 'href' => '#familes_teens_educators'),
+          array('label' => __('Accessibility'), 'href' => '#accessibility'),
+          array('label' => __('Directions'), 'href' => '#directions'),
+          array('label' => __('Ways to Explore'), 'href' => '#explore'),
         ))
          @slot('secondaryHtml')
           <li class="m-links-bar__item  m-links-bar__item--primary">
@@ -63,14 +63,23 @@
         @lang('Hours')
     @endcomponent
 
+    @if ($hours['intro'])
+        @component('components.atoms._hr')
+        @endcomponent
+
+        @component('components.molecules._m-intro-block')
+            @slot('itemprop','description')
+            {!! SmartyPants::defaultTransform($hours['intro']) !!}
+        @endcomponent
+    @endif
+
     @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--gridlines-rows')
         @slot('cols_medium','2')
         @slot('cols_large','2')
         @slot('cols_xlarge','2')
         @slot('tag', 'div')
 
-        <div class="o-blocks">
+        <div class="o-blocks u-hide@small-">
           @component('components.molecules._m-media')
             @slot('item', $hours['media'])
             @slot('imageSettings', array(
@@ -88,8 +97,52 @@
           @endcomponent
         </div>
         <div class="o-blocks">
+          <div class="m-table m-table--minimal">
+            <table>
+              <thead>
+                <tr>
+                  <th> </th>
+                  <th aria-labelledby="h-public-hours"><span class="f-module-title-1" id="h-public-hours">Public Hours</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    <span class="f-module-title-1">Monday</span>
+                  </th>
+                  <td>
+                    <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <span class="f-module-title-1">Tuesday&ndash;Wednesday</span>
+                  </th>
+                  <td>
+                    <span class="f-secondary">Closed</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <span class="f-module-title-1">Thursday&ndash;Friday</span>
+                  </th>
+                  <td>
+                    <span class="f-secondary">1&ndash;8 p.m.</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <span class="f-module-title-1">Saturday&ndash;Sunday</span>
+                  </th>
+                  <td>
+                    <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           @component('components.blocks._text')
-              @slot('font','f-list-4')
+              @slot('font','f-body')
               {!! SmartyPants::defaultTransform($hours['primary']) !!}
           @endcomponent
           @component('components.blocks._text')
@@ -127,6 +180,44 @@
       @endcomponent
 
     @endforeach
+
+    <hr>
+
+    @if (isset($page->visit_cta_module_header) && isset($page->visit_cta_module_body) && isset($page->visit_cta_module_button_text) && isset($page->visit_cta_module_action_url))
+        @component('components.molecules._m-cta-banner')
+            @slot('href', $page->visit_cta_module_action_url)
+            @slot('header', $page->visit_cta_module_header)
+            @slot('body', $page->visit_cta_module_body)
+            @slot('button_text', $page->visit_cta_module_button_text)
+            @slot('gtmAttributes', 'data-gtm-event="'. $page->visit_cta_module_button_text . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
+        @endcomponent
+    @endif
+
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(
+            array('label' => $whatToExpect['more_text'], 'href' => $whatToExpect['more_link'], 'gtmAttributes' => 'data-gtm-event="What to Expect" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
+        ))
+        @slot('id', 'expect')
+        @lang('What to Expect')
+    @endcomponent
+
+    @component('components.atoms._hr')
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_small','2')
+        @slot('cols_medium','2')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','3')
+        @slot('ariaLabel', 'h-familes_teens_educators')
+        @foreach ($whatToExpect['items'] as $item)
+            @component('components.molecules._m-listing----icon')
+                @slot('variation', 'm-listing--row@small m-listing--row@medium')
+                @slot('item', $item)
+            @endcomponent
+        @endforeach
+    @endcomponent
 
     <div class="m-table">
       <table>
@@ -265,40 +356,65 @@
         </div>
     @endcomponent
 
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(
+          array('label' => __('More FAQs'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
+        ))
+        @slot('id', 'faqs')
+        @lang('FAQs')
+    @endcomponent
+
+    @component('components.molecules._m-link-list')
+        @slot('screenreaderTitle', 'Example questions')
+        @slot('links', $faq['questions'])
+    @endcomponent
+
+    @component('components.molecules._m-links-bar')
+        @slot('variation', 'm-links-bar--title-bar-companion')
+        @slot('linksPrimary', array(
+        array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link'], 'variation' => 'btn--secondary'),
+        array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
+        ))
+    @endcomponent
+
+    @component('components.molecules._m-title-bar')
+        @slot('id', 'accessibility')
+        @lang('Accessibility')
+    @endcomponent
+
     <div class="m-mini-promo">
-      @component('components.atoms._img')
-          @slot('image', $admission['cityPass']['image'])
-          @slot('settings', array(
-              'fit' => 'crop',
-              'ratio' => '9:5',
-              'srcset' => array(200,400,600),
-              'sizes' => aic_imageSizes(array(
-                    'xsmall' => '23',
-                    'small' => '13',
-                    'medium' => '13',
-                    'large' => '13',
-                    'xlarge' => '13',
-              )),
-          ))
-      @endcomponent
-      <div class="m-mini-promo__text">
-        @component('components.atoms._title')
-            @slot('font', 'f-module-title-1')
-            @slot('tag','h3')
-            {!! SmartyPants::defaultTransform($admission['cityPass']['title']) !!}
+        @component('components.atoms._img')
+            @slot('image', $accessibility['image'])
+            @slot('settings', array(
+                'fit' => 'crop',
+                'ratio' => '9:5',
+                'srcset' => array(200,400,600),
+                'sizes' => aic_imageSizes(array(
+                      'xsmall' => '23',
+                      'small' => '13',
+                      'medium' => '13',
+                      'large' => '13',
+                      'xlarge' => '13',
+                )),
+            ))
         @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-secondary')
-            {!! SmartyPants::defaultTransform($admission['cityPass']['text']) !!}
+        <div class="m-mini-promo__text">
+            @component('components.atoms._title')
+                @slot('font', 'f-module-title-1')
+                @slot('tag','h3')
+            @endcomponent
+            @component('components.blocks._text')
+                @slot('font', 'f-secondary')
+                {!! SmartyPants::defaultTransform($accessibility['text']) !!}
+          @endcomponent
+        </div>
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--secondary')
+            @slot('tag', 'a')
+            @slot('href', $accessibility['link_url'])
+            @slot('gtmAttributes', 'data-gtm-event="' . $accessibility['link_text'] . ' " data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-cta-button"')
+            {!! SmartyPants::defaultTransform($accessibility['link_text']) !!}
         @endcomponent
-      </div>
-      @component('components.atoms._btn')
-          @slot('variation', 'btn--tertiary')
-          @slot('tag', 'a')
-          @slot('href', $admission['cityPass']['link']['href'])
-          @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $admission['cityPass']['link']['label']) . ' " data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-cta-button"')
-          {!! SmartyPants::defaultTransform($admission['cityPass']['link']['label']) !!}
-      @endcomponent
     </div>
 
     @component('components.molecules._m-title-bar')
@@ -340,117 +456,19 @@
               @slot('itemprop','hasMap')
               {{ $directions['link']['label'] }}
           @endcomponent
+
+          @component('components.atoms._arrow-link')
+              @slot('href', $directions['accessibility_link']['href'])
+              @slot('itemprop','hasMap')
+              {{ $directions['accessibility_link']['label'] }}
+          @endcomponent
         </span>
       </div>
     </div>
 
     @component('components.molecules._m-title-bar')
-        @slot('links', [
-            [
-                'label' => __('Explore all dining'),
-                'href'  => $page->visit_dining_link,
-                'gtmAttributes' => 'data-gtm-event="dining" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
-            ]
-        ]
-        )
-        @slot('id', 'dining')
-        @lang('Dining')
-    @endcomponent
-
-    @component('components.atoms._hr')
-    @endcomponent
-
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','3')
-        @slot('ariaLabel', 'h-dining')
-        @foreach ($dining as $item)
-            @component('components.molecules._m-listing----multi-links')
-                @slot('variation', 'm-listing--row@small m-listing--row@medium')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '23',
-                          'medium' => '22',
-                          'large' => '18',
-                          'xlarge' => '18',
-                    )),
-                ))
-            @endcomponent
-        @endforeach
-    @endcomponent
-
-    @component('components.molecules._m-links-bar')
-        @slot('variation', 'm-links-bar--title-bar-companion')
-        @slot('linksPrimary', array(
-          array('label' => __('Explore all dining'), 'href' => $page->visit_dining_link, 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="dining" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'),
-        ))
-    @endcomponent
-
-    @component('components.molecules._m-title-bar')
-        @slot('links', array(
-          array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link']),
-          array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
-        ))
-        @slot('id', 'faqs')
-        @lang('FAQs')
-    @endcomponent
-
-    @component('components.molecules._m-link-list')
-        @slot('screenreaderTitle', 'Sample questions')
-        @slot('links', $faq['questions'])
-    @endcomponent
-
-    @component('components.molecules._m-links-bar')
-        @slot('variation', 'm-links-bar--title-bar-companion')
-        @slot('linksPrimary', array(
-          array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link'], 'variation' => 'btn--secondary'),
-          array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
-        ))
-    @endcomponent
-
-    @component('components.molecules._m-title-bar')
-        @slot('id', 'tours')
-        @lang('Tours')
-    @endcomponent
-
-    @component('components.atoms._hr')
-    @endcomponent
-
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','3')
-        @slot('ariaLabel', 'h-tours')
-        @foreach ($tours as $item)
-            @component('components.molecules._m-listing----multi-links')
-                @slot('variation', 'm-listing--row@small m-listing--row@medium')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '23',
-                          'medium' => '22',
-                          'large' => '18',
-                          'xlarge' => '18',
-                    )),
-                ))
-                @slot('gtmAttributes', 'data-gtm-event="tours" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
-            @endcomponent
-        @endforeach
-    @endcomponent
-
-    @component('components.molecules._m-title-bar')
-        @slot('id', 'familes_teens_educators')
-        @lang('Families, Teens, and Educators')
+        @slot('id', 'explore')
+        @lang('Ways to Explore')
     @endcomponent
 
     @component('components.atoms._hr')
@@ -461,7 +479,7 @@
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
         @slot('ariaLabel', 'h-familes_teens_educators')
-        @foreach ($families as $item)
+        @foreach ($explore as $item)
             @component('components.molecules._m-listing----multi-links')
                 @slot('variation', 'm-listing--row@small m-listing--row@medium')
                 @slot('item', $item)
@@ -470,14 +488,14 @@
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
                     'sizes' => aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '23',
-                          'medium' => '22',
-                          'large' => '18',
-                          'xlarge' => '18',
+                        'xsmall' => '58',
+                        'small' => '23',
+                        'medium' => '22',
+                        'large' => '18',
+                        'xlarge' => '18',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="special-audiences" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')
+                @slot('gtmAttributes', 'data-gtm-event="explore-on-your-own" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent
