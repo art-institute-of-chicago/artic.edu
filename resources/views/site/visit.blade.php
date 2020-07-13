@@ -412,7 +412,7 @@
             @slot('variation', 'btn--secondary')
             @slot('tag', 'a')
             @slot('href', $accessibility['link_url'])
-            @slot('gtmAttributes', 'data-gtm-event="' . $accessibility['link_text'] . ' " data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-cta-button"')
+            @slot('gtmAttributes', 'data-gtm-event="' . strip_tags($accessibility['link_text']) . ' " data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-cta-button"')
             {!! SmartyPants::defaultTransform($accessibility['link_text']) !!}
         @endcomponent
     </div>
