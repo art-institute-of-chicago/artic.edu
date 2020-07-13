@@ -4,10 +4,6 @@
   height: 240px;
   overflow: hidden;
 
-  @include breakpoint('small+') {
-    height: 200px;
-  }
-
   margin-top: 36px;
 
   & + * {
@@ -23,6 +19,7 @@
   }
 
   @include breakpoint('medium+') {
+    height: 200px;
     margin-top: 60px;
 
     & + * {
@@ -32,8 +29,7 @@
 
   .m-cta-banner__txt {
     position: absolute;
-    top: 0;
-    bottom: 20px;
+    top: 46px;
     left: 0;
     right: 0;
     z-index: 3;
@@ -42,12 +38,9 @@
     flex-direction: column;
     justify-content: center;
 
-    @include breakpoint('small+') {
-      top: 20px;
-      padding-right: colspan(17, small);
-    }
-
     @include breakpoint('medium+') {
+      top: 0;
+      bottom: 0;
       padding-right: colspan(20, medium);
     }
 
@@ -62,18 +55,15 @@
 
   .m-cta-banner__action {
     position: absolute;
-    left: 0;
     right: 0;
     bottom: 0;
-
-    @include breakpoint('small+') {
-      left: auto;
-      top: 56px;
-      bottom: auto;
-      width: colspan(14, small);
-    }
+    left: auto;
+    bottom: auto;
+    top: 96px;
+    width: 100%;
 
     @include breakpoint('medium+') {
+      top: 76px;
       width: colspan(14, medium);
     }
 

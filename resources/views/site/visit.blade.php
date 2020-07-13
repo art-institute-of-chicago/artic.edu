@@ -97,7 +97,16 @@
           @endcomponent
         </div>
         <div class="o-blocks">
-          <div class="m-table m-table--minimal">
+        @component('components.blocks._text')
+            @slot('font','f-body')
+            {!! SmartyPants::defaultTransform($hours['primary']) !!}
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('tag','span')
+            @slot('font','f-secondary')
+            {!! SmartyPants::defaultTransform($hours['secondary']) !!}
+        @endcomponent
+        <div class="m-table m-table--minimal">
             <table>
               <thead>
                 <tr>
@@ -141,15 +150,6 @@
               </tbody>
             </table>
           </div>
-          @component('components.blocks._text')
-              @slot('font','f-body')
-              {!! SmartyPants::defaultTransform($hours['primary']) !!}
-          @endcomponent
-          @component('components.blocks._text')
-              @slot('tag','span')
-              @slot('font','f-secondary')
-              {!! SmartyPants::defaultTransform($hours['secondary']) !!}
-          @endcomponent
         </div>
     @endcomponent
 
@@ -412,7 +412,7 @@
             @slot('variation', 'btn--secondary')
             @slot('tag', 'a')
             @slot('href', $accessibility['link_url'])
-            @slot('gtmAttributes', 'data-gtm-event="' . $accessibility['link_text'] . ' " data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-cta-button"')
+            @slot('gtmAttributes', 'data-gtm-event="' . strip_tags($accessibility['link_text']) . ' " data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-cta-button"')
             {!! SmartyPants::defaultTransform($accessibility['link_text']) !!}
         @endcomponent
     </div>

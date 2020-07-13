@@ -67,7 +67,6 @@ Intended for very simple m-tables..
 
 .m-table table {
   width: 100%;
-  min-width: 500px;
   border-collapse: collapse;
 }
 
@@ -83,6 +82,10 @@ Intended for very simple m-tables..
   font-weight: normal;
   text-align: left;
   white-space: nowrap;
+}
+
+.m-table--minimal {
+  margin-top: 20px;
 }
 
 .m-table.m-table--minimal th,

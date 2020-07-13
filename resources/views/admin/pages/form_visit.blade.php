@@ -160,6 +160,7 @@
         @formField('input', [
             'name' => 'visit_accessibility_link_url',
             'label' => 'Link URL',
+            'note' => 'Accepts HTML tags',
         ])
     </a17-fieldset>
 
