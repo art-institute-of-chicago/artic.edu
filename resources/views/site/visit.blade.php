@@ -97,7 +97,16 @@
           @endcomponent
         </div>
         <div class="o-blocks">
-          <div class="m-table m-table--minimal">
+        @component('components.blocks._text')
+            @slot('font','f-body')
+            {!! SmartyPants::defaultTransform($hours['primary']) !!}
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('tag','span')
+            @slot('font','f-secondary')
+            {!! SmartyPants::defaultTransform($hours['secondary']) !!}
+        @endcomponent
+        <div class="m-table m-table--minimal">
             <table>
               <thead>
                 <tr>
@@ -141,15 +150,6 @@
               </tbody>
             </table>
           </div>
-          @component('components.blocks._text')
-              @slot('font','f-body')
-              {!! SmartyPants::defaultTransform($hours['primary']) !!}
-          @endcomponent
-          @component('components.blocks._text')
-              @slot('tag','span')
-              @slot('font','f-secondary')
-              {!! SmartyPants::defaultTransform($hours['secondary']) !!}
-          @endcomponent
         </div>
     @endcomponent
 
