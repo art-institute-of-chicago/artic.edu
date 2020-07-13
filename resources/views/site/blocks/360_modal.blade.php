@@ -20,7 +20,7 @@
                 'width' => $image['width'] ?? 0,
                 'height' => $image['height'] ?? 0,
                 'alt' => $image['alt'],
-                'title' => $pageTitle
+                'title' => isset($pageTitle) ? $pageTitle : ''
             ],
             'poster' => $image,
             'captionTitle' => getTitleWithFigureNumber($caption_title),
