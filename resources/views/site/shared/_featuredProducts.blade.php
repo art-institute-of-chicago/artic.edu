@@ -30,7 +30,7 @@
                       'xlarge' => '13',
                 )),
             ))
-            @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($item['title'] ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="shop-listing'.($loop->index + 1).'"')
+            @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($item['title'] ?? 'unknown title').'" data-gtm-event-category="shop-listing'.($loop->index + 1).'"')
         @endcomponent
     @endforeach
 @endcomponent

@@ -16,7 +16,7 @@
                     'srcset' => array(300,600,1000,1500,3000),
                     'sizes' => '100vw',
                 ))
-                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'"  data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-hero-' . $countMain . '"')
+                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
             @endcomponent
         @elseif ($item->url)
             @component('components.molecules._m-listing----custom')
@@ -28,7 +28,7 @@
                     'srcset' => array(300,600,1000,1500,3000),
                     'sizes' => '100vw',
                 ))
-                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.(ltrim(parse_url($item->url, PHP_URL_PATH),'/') ?? 'unknown title').'"  data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.(ltrim(parse_url($item->url, PHP_URL_PATH),'/') ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-hero-' . $countMain . '"')
+                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.(ltrim(parse_url($item->url, PHP_URL_PATH),'/') ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.(ltrim(parse_url($item->url, PHP_URL_PATH),'/') ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
             @endcomponent
         @endif
     @endforeach
@@ -36,7 +36,7 @@
 
 @component('components.molecules._m-intro-block')
     @slot('links', array(
-        array('label' => 'Visit us online', 'href' => $_pages['visit'], 'variation' => 'btn', 'font' => 'f-buttons', 'gtmAttributes' => 'data-gtm-event="Visit us online" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"'),
+        array('label' => 'Visit us online', 'href' => $_pages['visit'], 'variation' => 'btn', 'font' => 'f-buttons', 'gtmAttributes' => 'data-gtm-event="Visit us online" data-gtm-event-category="nav-cta-button"'),
         array('label' => SmartyPants::defaultTransform($plan_your_visit_link_1_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_1_url),
         array('label' => SmartyPants::defaultTransform($plan_your_visit_link_2_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_2_url),
         array('label' => SmartyPants::defaultTransform($plan_your_visit_link_3_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_3_url),
@@ -73,7 +73,7 @@
             // Setting caption to empty string forces the title to be bolded
             $item->captionTitle = $item->present()->title_display ?? $item->present()->title;
             $item->caption = $item->list_description ?? '';
-            $item->gtmAttributes = 'data-gtm-event="'. $item->captionTitle . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="video-' . ($key) . '"';
+            $item->gtmAttributes = 'data-gtm-event="'. $item->captionTitle . '" data-gtm-event-category="video-' . ($key) . '"';
 
             return $item;
         }))
@@ -87,7 +87,7 @@
         array(
             'label' => 'All current exhibitions and events',
             'href' => $_pages['exhibitions'],
-            'gtmAttributes' => 'data-gtm-event="home-exhibitions-and-events" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
+            'gtmAttributes' => 'data-gtm-event="home-exhibitions-and-events" data-gtm-event-category="nav-link"'
         ),
     ))
     Exhibitions and Events
@@ -118,7 +118,7 @@
                       'xlarge' => '2',
                 )),
             ))
-            @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')
+            @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="nav-link"')
         @endcomponent
     @endforeach
 @endcomponent
@@ -148,7 +148,7 @@
                 )),
             ))
             ))
-            @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')
+            @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="nav-link"')
         @endcomponent
     @endforeach
 @endcomponent
@@ -160,7 +160,7 @@
             'label' => 'All current exhibitions and events',
             'href' => $_pages['exhibitions'],
             'variation' => 'btn btn--secondary',
-            'gtmAttributes' => 'data-gtm-event="home-exhibitions-and-events" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
+            'gtmAttributes' => 'data-gtm-event="home-exhibitions-and-events" data-gtm-event-category="nav-link"'
         ),
     ))
 @endcomponent
@@ -176,14 +176,14 @@
     @slot('header', $cta_module_header)
     @slot('body', $cta_module_body)
     @slot('button_text', $cta_module_button_text)
-    @slot('gtmAttributes', 'data-gtm-event="'. $cta_module_button_text . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
+    @slot('gtmAttributes', 'data-gtm-event="'. $cta_module_button_text . '" data-gtm-event-category="internal-ad-click"')
 @endcomponent
 
 
 @if (isset($highlights) && $highlights->count() > 0)
     @component('components.molecules._m-title-bar')
         @slot('links',
-            array(array('label' => 'See all highlights', 'href' => route('selections.index'), 'gtmAttributes' => 'data-gtm-event="home-highlights" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'))
+            array(array('label' => 'See all highlights', 'href' => route('selections.index'), 'gtmAttributes' => 'data-gtm-event="home-highlights" data-gtm-event-category="nav-link"'))
         )
         Highlights
     @endcomponent
@@ -211,7 +211,7 @@
                         'xlarge' => '3',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="highlight-listing-' . ($loop->index + 1) . '"')
+                @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="highlight-listing-' . ($loop->index + 1) . '"')
             @endcomponent
         @endforeach
     @endcomponent
@@ -247,7 +247,7 @@
                     'media' => $item->imageFront('artist_image') ?? $artist->imageFront('hero'),
                     'captionTitle' => $artist->short_name_display,
                     'href' => route('artists.show', $artist),
-                    'gtmAttributes' => 'data-gtm-event="'. $artist->title . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="artist-listing-' . ($key + 1) . '"',
+                    'gtmAttributes' => 'data-gtm-event="'. $artist->title . '" data-gtm-event-category="artist-listing-' . ($key + 1) . '"',
                 ];
             }
             else {
@@ -268,7 +268,7 @@
 @if (isset($artworks) && $artworks->count() > 0)
     @component('components.molecules._m-title-bar')
         @slot('links',
-            array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'))
+            array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-category="nav-link"'))
         )
         Artworks
     @endcomponent
@@ -294,7 +294,7 @@
                         'xlarge' => '3',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-' . ($loop->index + 1) . '"')
+                @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="collection-listing-' . ($loop->index + 1) . '"')
             @endcomponent
         @endforeach
     @endcomponent
@@ -302,7 +302,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title .'"  data-gtm-event-category="nav-link"')))
+    @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-category="nav-link"')))
 @endcomponent
 
 @if (isset($experiences) && $experiences->count() > 0)
@@ -318,14 +318,14 @@
             [
                 'label' => 'Explore the shop',
                 'href' => $_pages['shop'],
-                'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
+                'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-category="nav-link"'
             ]
         ])
         @slot('products', $products)
     @endcomponent
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--title-bar-companion')
-        @slot('linksPrimary', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')))
+        @slot('linksPrimary', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-category="nav-link"')))
     @endcomponent
 @endif
 

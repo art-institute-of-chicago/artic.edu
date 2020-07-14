@@ -12,6 +12,6 @@
     @slot('type', $type ?? null)
     @slot('title_display', $title_display ?? null)
     @slot('link_text', $link_text ?? null)
-    @slot('gtmAttributes', 'data-gtm-event="' . strip_tags($title_display) . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="mag-content-' . $block->position . '"')
+    @slot('gtmAttributes', 'data-gtm-event="' . strip_tags($title_display) . '" data-gtm-event-category="mag-content-' . $block->position . '"')
 @endcomponent
 

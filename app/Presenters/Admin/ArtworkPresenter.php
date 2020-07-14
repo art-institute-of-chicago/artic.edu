@@ -142,7 +142,6 @@ class ArtworkPresenter extends BasePresenter
             'label' => $label,
             'href' => $href,
             'gtmAttributes' => 'data-gtm-event="'. $pivot->artist_title . '"'
-                . ' data-gtm-event-action="' . $this->entity->title . '"'
                 . ' data-gtm-event-category="collection-nav"',
         ];
     }

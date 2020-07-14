@@ -42,16 +42,16 @@
           <h2 class="sr-only" id="h-nav-primary-header">Primary Navigation</h2>
           <ul class="f-main-nav" aria-labelledby="h-nav-primary-header">
             <li class='u-hide@small+'>
-              <a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="buy-tickets">Buy Tickets</a>
+              <a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event="buy-tickets">Buy Tickets</a>
             </li>
             <li{!! (isset($primaryNavCurrent) && $primaryNavCurrent == 'visit') ? ' class="s-current"' : '' !!}>
-              <a href="{{ $_pages['visit'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="visit">Visit</a>
+              <a href="{{ $_pages['visit'] }}" data-gtm-event-category="top-nav" data-gtm-event="visit">Visit</a>
             </li>
             <li class="u-show@small+{{ (isset($primaryNavCurrent) && $primaryNavCurrent == 'exhibitions_and_events') ? ' s-current' : '' }}">
-              <a href="{{ $_pages['exhibitions'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="exhibitions-and-events">Exhibitions &amp; Events</a>
+              <a href="{{ $_pages['exhibitions'] }}" data-gtm-event-category="top-nav" data-gtm-event="exhibitions-and-events">Exhibitions &amp; Events</a>
             </li>
             <li class="u-show@small+{{ (isset($primaryNavCurrent) && $primaryNavCurrent == 'collection') ? ' s-current' : '' }}">
-              <a href="{{ $_pages['collection'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="collection">The Collection</a>
+              <a href="{{ $_pages['collection'] }}" data-gtm-event-category="top-nav" data-gtm-event="collection">The Collection</a>
             </li>
             <li class="u-show@small+"><button id="global-search-icon" data-behavior="globalSearchOpen" aria-label="Search site"><svg class="icon--search--24" aria-hidden="true"><use xlink:href="#icon--search--24" /></svg></button></li>
           </ul>
@@ -60,9 +60,9 @@
       <nav class="g-header__nav-secondary" aria-label="secondary">
         <h2 class="sr-only" id="h-nav-secondary-header">Secondary Navigation</h2>
         <ul class="f-secondary" aria-labelledby="h-nav-secondary-header">
-          <li><a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="buy-tickets">Buy Tickets</a></li>
-          <li><a href="{{ $_pages['become-a-member'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="become-a-member">Become a Member</a></li>
-          <li><a href="{{ $_pages['shop'] }}" target="_blank" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="top-nav" data-gtm-event="shop">Shop</a></li>
+          <li><a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event="buy-tickets">Buy Tickets</a></li>
+          <li><a href="{{ $_pages['become-a-member'] }}" data-gtm-event-category="top-nav" data-gtm-event="become-a-member">Become a Member</a></li>
+          <li><a href="{{ $_pages['shop'] }}" target="_blank" data-gtm-event-category="top-nav" data-gtm-event="shop">Shop</a></li>
         </ul>
       </nav>
       @if ($_hours['general'])

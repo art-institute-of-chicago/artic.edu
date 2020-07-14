@@ -181,7 +181,7 @@
                 @component('components.atoms._arrow-link')
                     @slot('font','f-null')
                     @slot('href', $section['external_link'])
-                    @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($section['title'] ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
+                    @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($section['title'] ?? 'unknown title').'" data-gtm-event-category="nav-link"')
                     {!! SmartyPants::defaultTransform($section['title']) !!}
                 @endcomponent
             @endcomponent
@@ -201,13 +201,13 @@
             @slot('header', $page->visit_cta_module_header)
             @slot('body', $page->visit_cta_module_body)
             @slot('button_text', $page->visit_cta_module_button_text)
-            @slot('gtmAttributes', 'data-gtm-event="'. $page->visit_cta_module_button_text . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
+            @slot('gtmAttributes', 'data-gtm-event="'. $page->visit_cta_module_button_text . '" data-gtm-event-category="internal-ad-click"')
         @endcomponent
     @endif
 
     @component('components.molecules._m-title-bar')
         @slot('links', array(
-            array('label' => $whatToExpect['more_text'], 'href' => $whatToExpect['more_link'], 'gtmAttributes' => 'data-gtm-event="What to Expect" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
+            array('label' => $whatToExpect['more_text'], 'href' => $whatToExpect['more_link'], 'gtmAttributes' => 'data-gtm-event="What to Expect" data-gtm-event-category="nav-link"')
         ))
         @slot('id', 'expect')
         @lang('What to Expect')
@@ -351,7 +351,7 @@
                       @slot('variation', 'btn--full')
                       @slot('tag', 'a')
                       @slot('href', $admission['buy_tickets']['link'])
-                      @slot('gtmAttributes', 'data-gtm-event="'. getUtf8Slug($admission['buy_tickets']['label']) .'" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"')
+                      @slot('gtmAttributes', 'data-gtm-event="'. getUtf8Slug($admission['buy_tickets']['label']) .'" data-gtm-event-category="nav-cta-button"')
                       {!! SmartyPants::defaultTransform($admission['buy_tickets']['label']) !!}
                   @endcomponent
               </li>
@@ -360,7 +360,7 @@
                       @slot('variation', 'btn--secondary btn--full')
                       @slot('tag', 'a')
                       @slot('href', $admission['become_member']['link'])
-                      @slot('gtmAttributes', 'data-gtm-event="become-a-member" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"')
+                      @slot('gtmAttributes', 'data-gtm-event="become-a-member" data-gtm-event-category="nav-cta-button"')
                       {!! SmartyPants::defaultTransform($admission['become_member']['label']) !!}
                   @endcomponent
               </li>
@@ -370,7 +370,7 @@
 
     @component('components.molecules._m-title-bar')
         @slot('links', array(
-          array('label' => __('More FAQs'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
+          array('label' => __('More FAQs'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-category="nav-link"')
         ))
         @slot('id', 'faqs')
         @lang('FAQs')
@@ -385,7 +385,7 @@
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
         array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link'], 'variation' => 'btn--secondary'),
-        array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
+        array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-category="nav-link"')
         ))
     @endcomponent
 
@@ -424,7 +424,7 @@
             @slot('variation', 'btn--secondary')
             @slot('tag', 'a')
             @slot('href', $accessibility['link_url'])
-            @slot('gtmAttributes', 'data-gtm-event="' . strip_tags($accessibility['link_text']) . ' " data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-cta-button"')
+            @slot('gtmAttributes', 'data-gtm-event="' . strip_tags($accessibility['link_text']) . ' " data-gtm-event-category="nav-cta-button"')
             {!! SmartyPants::defaultTransform($accessibility['link_text']) !!}
         @endcomponent
     </div>
@@ -507,7 +507,7 @@
                         'xlarge' => '18',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="explore-on-your-own" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')
+                @slot('gtmAttributes', 'data-gtm-event="explore-on-your-own" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent
