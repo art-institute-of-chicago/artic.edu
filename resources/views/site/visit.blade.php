@@ -97,21 +97,13 @@
           @endcomponent
         </div>
         <div class="o-blocks">
-        @component('components.blocks._text')
-            @slot('font','f-body')
-            {!! SmartyPants::defaultTransform($hours['primary']) !!}
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('tag','span')
-            @slot('font','f-secondary')
-            {!! SmartyPants::defaultTransform($hours['secondary']) !!}
-        @endcomponent
-        <div class="m-table m-table--minimal">
+          <div class="m-table m-table--minimal">
             <table>
               <thead>
                 <tr>
                   <th> </th>
-                  <th aria-labelledby="h-public-hours"><span class="f-module-title-1" id="h-public-hours">Public Hours</span></th>
+                  <th aria-labelledby="h-member-hours"><span class="f-module-title-1" id="h-member-hours">Members-Only</span></th>
+                  <th aria-labelledby="h-public-hours"><span class="f-module-title-1" id="h-public-hours">Public</span></th>
                 </tr>
               </thead>
               <tbody>
@@ -119,6 +111,9 @@
                   <th>
                     <span class="f-module-title-1">Monday</span>
                   </th>
+                  <td>
+                    <span class="f-secondary">10&ndash;11 a.m.</span>
+                  </td>
                   <td>
                     <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
                   </td>
@@ -130,11 +125,17 @@
                   <td>
                     <span class="f-secondary">Closed</span>
                   </td>
+                  <td>
+                    <span class="f-secondary">Closed</span>
+                  </td>
                 </tr>
                 <tr>
                   <th>
                     <span class="f-module-title-1">Thursday&ndash;Friday</span>
                   </th>
+                  <td>
+                    <span class="f-secondary">12&ndash;1 p.m.</span>
+                  </td>
                   <td>
                     <span class="f-secondary">1&ndash;8 p.m.</span>
                   </td>
@@ -144,12 +145,24 @@
                     <span class="f-module-title-1">Saturday&ndash;Sunday</span>
                   </th>
                   <td>
+                    <span class="f-secondary">10&ndash;11 a.m.</span>
+                  </td>
+                  <td>
                     <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
+          @component('components.blocks._text')
+              @slot('font','f-body')
+              {!! SmartyPants::defaultTransform($hours['primary']) !!}
+          @endcomponent
+          @component('components.blocks._text')
+              @slot('tag','span')
+              @slot('font','f-secondary')
+              {!! SmartyPants::defaultTransform($hours['secondary']) !!}
+          @endcomponent
         </div>
     @endcomponent
 
