@@ -74,12 +74,11 @@
     @endif
 
     @component('components.organisms._o-grid-listing')
-        @slot('cols_medium','2')
         @slot('cols_large','2')
         @slot('cols_xlarge','2')
         @slot('tag', 'div')
 
-        <div class="o-blocks u-hide@small-">
+        <div class="o-blocks u-hide@medium-">
           @component('components.molecules._m-media')
             @slot('item', $hours['media'])
             @slot('imageSettings', array(
@@ -102,7 +101,7 @@
               <thead>
                 <tr>
                   <th> </th>
-                  <th aria-labelledby="h-member-hours"><span class="f-module-title-1" id="h-member-hours">Members-Only</span></th>
+                  <th aria-labelledby="h-member-hours"><span class="f-module-title-1" id="h-member-hours">Members Only</span></th>
                   <th aria-labelledby="h-public-hours"><span class="f-module-title-1" id="h-public-hours">Public</span></th>
                 </tr>
               </thead>
