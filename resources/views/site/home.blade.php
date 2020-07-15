@@ -44,53 +44,15 @@
     {!! SmartyPants::defaultTransform($intro) !!}
 @endcomponent
 
-
-@if ($videos->count() > 0)
-    @component('components.organisms._o-gallery----slider')
-        @slot('variation', 'o-gallery----theme-2')
-        @slot('title', $video_title ?? 'Videos')
-        @slot('caption', $video_description ?? null)
-        @slot('allLink', null);
-        @slot('imageSettings', array(
-            'srcset' => array(200,400,600,1000,1500,3000),
-            'sizes' => aic_imageSizes(array(
-                  'xsmall' => '50',
-                  'small' => '35',
-                  'medium' => '23',
-                  'large' => '23',
-                  'xlarge' => '18',
-            )),
-        ))
-        @slot('items', $videos->map(function($item, $key) use ($seo) {
-            $item->type = 'embed';
-            $item->size = 'gallery';
-            $item->restrict = false;
-            $item->fullscreen = true;
-            $item->poster = $item->imageAsArray('hero');
-            $item->media = [
-                'embed' => \App\Facades\EmbedConverterFacade::convertUrl($item->video_url),
-            ];
-            // Setting caption to empty string forces the title to be bolded
-            $item->captionTitle = $item->present()->title_display ?? $item->present()->title;
-            $item->caption = $item->list_description ?? '';
-            $item->gtmAttributes = 'data-gtm-event="'. $item->captionTitle . '" data-gtm-event-category="video-' . ($key) . '"';
-
-            return $item;
-        }))
-    @endcomponent
-@endif
-
-
-{{-- Remove events from homepage during COVID-19 cancellations
 @component('components.molecules._m-title-bar')
     @slot('links', array(
         array(
-            'label' => 'All current exhibitions and events',
+            'label' => 'All current exhibitions',
             'href' => $_pages['exhibitions'],
             'gtmAttributes' => 'data-gtm-event="home-exhibitions-and-events" data-gtm-event-category="nav-link"'
         ),
     ))
-    Exhibitions and Events
+    Exhibitions
 @endcomponent
 
 @component('components.atoms._hr')
@@ -123,6 +85,7 @@
     @endforeach
 @endcomponent
 
+{{-- Remove events from homepage during COVID-19 cancellations
 @component('components.atoms._hr')
 @endcomponent
 
@@ -165,6 +128,41 @@
     ))
 @endcomponent
 --}}
+
+@if ($videos->count() > 0)
+    @component('components.organisms._o-gallery----slider')
+        @slot('variation', 'o-gallery----theme-2')
+        @slot('title', $video_title ?? 'Videos')
+        @slot('caption', $video_description ?? null)
+        @slot('allLink', null);
+        @slot('imageSettings', array(
+            'srcset' => array(200,400,600,1000,1500,3000),
+            'sizes' => aic_imageSizes(array(
+                  'xsmall' => '50',
+                  'small' => '35',
+                  'medium' => '23',
+                  'large' => '23',
+                  'xlarge' => '18',
+            )),
+        ))
+        @slot('items', $videos->map(function($item, $key) use ($seo) {
+            $item->type = 'embed';
+            $item->size = 'gallery';
+            $item->restrict = false;
+            $item->fullscreen = true;
+            $item->poster = $item->imageAsArray('hero');
+            $item->media = [
+                'embed' => \App\Facades\EmbedConverterFacade::convertUrl($item->video_url),
+            ];
+            // Setting caption to empty string forces the title to be bolded
+            $item->captionTitle = $item->present()->title_display ?? $item->present()->title;
+            $item->caption = $item->list_description ?? '';
+            $item->gtmAttributes = 'data-gtm-event="'. $item->captionTitle . '" data-gtm-event-category="video-' . ($key) . '"';
+
+            return $item;
+        }))
+    @endcomponent
+@endif
 
 @component('components.atoms._hr')
     @slot('variation', 'u-show@small+')
