@@ -60,5 +60,6 @@
                   'xlarge' => '13',
             )),
         ))
+        @slot('gtmAttributes', 'data-gtm-event="' . $title . '" data-gtm-event-category="mag-content-' . $block->position . '"')
     @endcomponent
 @endif

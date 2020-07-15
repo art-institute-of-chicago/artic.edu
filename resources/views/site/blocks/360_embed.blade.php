@@ -14,7 +14,7 @@
         <div class="m-media__img m-media--360-embed" data-behavior="fitText">
         @component('components.molecules._m-viewer-360')
             @slot('type', 'standalone')
-            @slot('title', $pageTitle ? $pageTitle.' - Inline 360' : 'Inline 360')
+            @slot('title', isset($pageTitle) ? $pageTitle.' - Inline 360' : 'Inline 360')
             @slot('id', 'assetLibrary-'.$sequence_id);
         @endcomponent
         </div>

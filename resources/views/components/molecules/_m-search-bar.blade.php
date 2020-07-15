@@ -32,7 +32,14 @@
     <span class="checkbox f-secondary">
         <input type="checkbox" value="{{ request()->url() }}" id="limit-search" name="limit-search"  data-behavior="limitSearch">
         <span class="f-secondary">
-            <label for="limit-search">Limit my search to {{ Str::title(str_replace('-', ' ', request()->segment(count(request()->segments())))) }}</label>
+            @php
+                $limitTo = request()->segment(count(request()->segments()));
+                $limitTo = Str::title(str_replace('-', ' ', $limitTo));
+                if ($limitTo == 'Artists') {
+                    $limitTo = 'Artists/Cultures';
+                }
+            @endphp
+            <label for="limit-search">Limit my search to {{ $limitTo }}</label>
         </span>
     </span>
     @endif

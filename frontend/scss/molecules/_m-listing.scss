@@ -122,6 +122,10 @@
   padding-bottom: percentage(4 / 3); // 3:4
 }
 
+.m-listing__img--icon::before {
+  padding-bottom: 0; // 16:9
+}
+
 .m-listing--hover-bar .m-listing__img::after {
   content: '';
   position: absolute;
@@ -1991,9 +1995,7 @@ $f-audio-subtitle: generate-font-obj(
       @include untuck;
       margin-bottom: 20px;
 
-      .f-tag {
-        text-transform: initial;
-        letter-spacing: 0.04em;
+      .f-secondary {
         color: $color__black--54;
       }
     }
@@ -2195,6 +2197,7 @@ $f-audio-subtitle: generate-font-obj(
 
 // variant for Member Magazine
 .m-listing--magazine {
+  border-color: $color__rules--primary;
   .m-listing__meta > .f-tag {
     color: $color__plum;
   }
@@ -2202,14 +2205,49 @@ $f-audio-subtitle: generate-font-obj(
 
 // variant for author pages
 .m-listing--author {
-  .m-listing__img img {
-    transition: none;
+  border-color: $color__rules--primary;
+  .m-listing__link:hover,
+  .m-listing__link:focus {
+    .m-listing__img img {
+      transform: none;
+    }
   }
 }
 
-.m-listing--author:hover,
-.m-listing--author:focus {
-  .m-listing__img img {
-    transform: none;
+// variant for visit page
+.m-listing--icon {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  .m-listing__img {
+    @include breakpoint('small+') {
+      width: initial;
+      align-self: initial;
+    }
+  }
+
+  svg {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+
+    @include breakpoint('large') {
+      width: 120px;
+      height: 120px;
+      margin-right: 40px;
+    }
+  }
+
+  .m-listing__meta {
+    flex-basis: 0;
+    min-height: initial;
+    padding: 20px 0;
+
+    .f-body {
+      @include untuck();
+      margin-top: 0;
+    }
   }
 }

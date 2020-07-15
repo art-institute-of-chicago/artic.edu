@@ -4,14 +4,11 @@
   display: flex;
   flex-flow: row-reverse wrap;
   align-items: flex-start;
-  margin-top: 60px;
+  margin-top: 30px;
   padding-top: .2px;
 
-  @include breakpoint('small') {
-    margin-top: 40px;
-  }
-
   @include breakpoint('small+') {
+    margin-top: 40px;
     flex-flow: row wrap;
   }
 
@@ -82,9 +79,7 @@
   padding-left: 0;
 
   @include breakpoint('small+') {
-    width: colspan(13, small);
     margin-top: 40px;
-    margin-left: colspan(2, small);
   }
 
   @include breakpoint('medium+') {

@@ -34,6 +34,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--calendar--24">
     <use xlink:href="#icon--calendar--24"></use>
   </svg>
+  <svg class="icon--caution">
+    <use xlink:href="#icon--caution"></use>
+  </svg>
   <svg class="icon--check">
     <use xlink:href="#icon--check"></use>
   </svg>
@@ -64,8 +67,14 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--download--24">
     <use xlink:href="#icon--download--24"></use>
   </svg>
+  <svg class="icon--face-coverings">
+    <use xlink:href="#icon--face-coverings"></use>
+  </svg>
   <svg class="icon--filter--24">
     <use xlink:href="#icon--filter--24"></use>
+  </svg>
+  <svg class="icon--floor-icon">
+    <use xlink:href="#icon--floor-icon"></use>
   </svg>
   <svg class="icon--footer_map_120x92">
     <use xlink:href="#icon--footer_map_120x92"></use>
@@ -124,8 +133,17 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--mobile-app">
     <use xlink:href="#icon--mobile-app"></use>
   </svg>
+  <svg class="icon--mobile-ticket">
+    <use xlink:href="#icon--mobile-ticket"></use>
+  </svg>
   <svg class="icon--new-window">
     <use xlink:href="#icon--new-window"></use>
+  </svg>
+  <svg class="icon--no-checkroom">
+    <use xlink:href="#icon--no-checkroom"></use>
+  </svg>
+  <svg class="icon--no-dining">
+    <use xlink:href="#icon--no-dining"></use>
   </svg>
   <svg class="icon--no-image">
     <use xlink:href="#icon--no-image"></use>
@@ -135,6 +153,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   </svg>
   <svg class="icon--pencil">
     <use xlink:href="#icon--pencil"></use>
+  </svg>
+  <svg class="icon--physical-distancing">
+    <use xlink:href="#icon--physical-distancing"></use>
   </svg>
   <svg class="icon--play">
     <use xlink:href="#icon--play"></use>
@@ -175,6 +196,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--share--24">
     <use xlink:href="#icon--share--24"></use>
   </svg>
+  <svg class="icon--showing-symptoms">
+    <use xlink:href="#icon--showing-symptoms"></use>
+  </svg>
   <svg class="icon--slideshow--24">
     <use xlink:href="#icon--slideshow--24"></use>
   </svg>
@@ -186,6 +210,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   </svg>
   <svg class="icon--view360">
     <use xlink:href="#icon--view360"></use>
+  </svg>
+  <svg class="icon--virtual-queue">
+    <use xlink:href="#icon--virtual-queue"></use>
   </svg>
   <svg class="icon--zoom--24">
     <use xlink:href="#icon--zoom--24"></use>
@@ -264,6 +291,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
   height: 24px;
 }
 
+.icon--caution {
+  width: 200px;
+  height: 200px;
+}
+
 .icon--check {
   width: 16px;
   height: 16px;
@@ -314,9 +346,19 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
   height: 24px;
 }
 
+.icon--face-coverings {
+  width: 200px;
+  height: 200px;
+}
+
 .icon--filter--24 {
   width: 24px;
   height: 24px;
+}
+
+.icon--floor-icon {
+  width: 200px;
+  height: 200px;
 }
 
 .icon--footer_map_120x92 {
@@ -414,9 +456,24 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
   height: 56.9px;
 }
 
+.icon--mobile-ticket {
+  width: 200px;
+  height: 200px;
+}
+
 .icon--new-window {
   width: 16px;
   height: 16px;
+}
+
+.icon--no-checkroom {
+  width: 200px;
+  height: 200px;
+}
+
+.icon--no-dining {
+  width: 200px;
+  height: 200px;
 }
 
 .icon--no-image {
@@ -432,6 +489,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--pencil {
   width: 16px;
   height: 16px;
+}
+
+.icon--physical-distancing {
+  width: 200px;
+  height: 200px;
 }
 
 .icon--play {
@@ -499,6 +561,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
   height: 24px;
 }
 
+.icon--showing-symptoms {
+  width: 200px;
+  height: 200px;
+}
+
 .icon--slideshow--24 {
   width: 24px;
   height: 24px;
@@ -517,6 +584,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--view360 {
   width: 24px;
   height: 24px;
+}
+
+.icon--virtual-queue {
+  width: 200px;
+  height: 200px;
 }
 
 .icon--zoom--24 {

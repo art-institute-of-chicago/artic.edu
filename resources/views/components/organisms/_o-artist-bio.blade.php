@@ -1,6 +1,7 @@
 <section class="o-artist-bio{{isset($variation) ? ' o-'.$variation.'-bio' : ''}}">
     <div class="o-artist-bio__inner">
         @if ($item->imageFront('hero'))
+            {{-- TODO: This causes two `figure` blocks to be nested in each other --}}
             <figure class="o-artist-bio__image">
                 {{-- Mimicking an image block here. --}}
                 @component('components.molecules._m-media')

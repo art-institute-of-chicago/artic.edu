@@ -2,7 +2,7 @@
     $page = $block->blockable;
     $image = $block->imageAsArray('membership_banner_image', 'desktop');
 @endphp
-@component('components.molecules._m-cta-banner----become-a-member')
+@component('components.molecules._m-cta-banner')
     @slot('image', $image)
     @slot('headline', $block->present()->input('headline'))
     @slot('short_copy', $block->present()->input('short_copy'))

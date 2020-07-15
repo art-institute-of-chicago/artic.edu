@@ -2,6 +2,7 @@
     @component('components.atoms._link')
         @slot('font', '')
         @slot('href', $articleLink)
+        @slot('gtmAttributes', $gtmAttributes)
 
         @component('components.blocks._text')
             @slot('font', 'f-tag')

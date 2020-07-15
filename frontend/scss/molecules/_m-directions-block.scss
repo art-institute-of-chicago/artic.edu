@@ -49,6 +49,18 @@
     width: colspan(18, xlarge);
     margin-left: colspan(2, xlarge);
   }
+
+  h3 {
+    @include breakpoint('small+') {
+      margin-top: 11px;
+    }
+    @include breakpoint('medium+') {
+      margin-top: 16px;
+    }
+    @include breakpoint('large+') {
+      margin-top: 0;
+    }
+  }
 }
 
 .m-directions-block__links {

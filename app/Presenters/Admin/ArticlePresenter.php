@@ -41,10 +41,14 @@ class ArticlePresenter extends BasePresenter
 
     public function author()
     {
-        if ($this->entity->authors->isNotEmpty()) {
-            $array = $this->entity->authors->pluck('title')->all();
-            return join(' and ', array_filter(array_merge(array(join(', ', array_slice($array, 0, -1))), array_slice($array, -1)), 'strlen'));
+        if ($this->entity->author_display) {
+            return $this->entity->author_display;
         }
-        return $this->entity->author_display;
+
+        if ($this->entity->authors->isNotEmpty()) {
+            $names = $this->entity->authors->pluck('title')->all();
+
+            return summation($names);
+        }
     }
 }

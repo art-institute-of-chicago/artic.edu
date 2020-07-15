@@ -352,19 +352,7 @@ $f-ui: (
   $pos - vertical position
 */
 @mixin text-underline($pos: .85em, $underline: $color__text, $background: $color__white) {
-  background: {
-    image: linear-gradient(to bottom, rgba($underline, 0) 50%, rgba($underline, 1) 50%);
-    repeat: repeat-x;
-    size: 2px 2px;
-    position: 0 $pos;
-  }
-  text-decoration: none;
-  text-shadow: 0 .08em 0 $background, 0 -.08em 0 $background, .08em 0 0 $background, -.08em 0 0 $background;
-
-  .s-print & {
-    text-decoration: underline;
-    text-shadow: none;
-  }
+  text-decoration: underline !important;
 }
 
 

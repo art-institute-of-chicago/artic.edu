@@ -161,7 +161,7 @@ class SearchController extends BaseScopedController
                     break;
                 case 'Artist':
                     $item->url = route('artists.show', $item);
-                    $item->section = 'Artists';
+                    $item->section = 'Artists/Cultures';
                     break;
                 case 'Event':
                     $item->url = route('events.show', $item);
@@ -405,7 +405,7 @@ class SearchController extends BaseScopedController
         array_push($links, $this->buildLabel('All', $all->getMetadata('pagination')->total, route('search', ['q' => request('q')]), $active == 'all'));
 
         if (extractAggregation($aggregations, 'agents')) {
-            array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
+            array_push($links, $this->buildLabel('Artists/Cultures', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }
         if (extractAggregation($aggregations, 'generic-pages')) {
             array_push($links, $this->buildLabel('Pages', extractAggregation($aggregations, 'generic-pages'), route('search.pages', ['q' => request('q')]), $active == 'generic-pages'));

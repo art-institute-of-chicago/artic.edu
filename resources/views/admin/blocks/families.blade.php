@@ -27,14 +27,14 @@
         @formField('input', [
             'name' => 'link_label',
             'field_name' => 'link_label',
-            'label' => 'Audience link Label',
+            'label' => 'Link Label',
             'required' => true,
             'translated' => true
         ])
         @formField('input', [
             'name' => 'external_link',
             'field_name' => 'external_link',
-            'label' => 'Audience link',
+            'label' => 'Link URL',
             'required' => true
         ])
     </div>

@@ -244,10 +244,16 @@ return [
             'max' => 5,
         ],
         'families' => [
-            'title' => 'Families, teens and educators',
+            'title' => 'Explore on your own',
             'trigger' => 'Add item',
             'component' => 'a17-block-families',
             'max' => 3,
+        ],
+        'whatToExpects' => [
+            'title' => 'What to Expect',
+            'trigger' => 'Add item',
+            'component' => 'a17-block-what_to_expect',
+            'max' => 9,
         ],
         'accordion_item' => [
             'title' => 'Accordion Item',

@@ -78,8 +78,10 @@ trait HasApiRelations
                     return $items->map(function ($relatedElement) {
                         $element = $relatedElement->related;
                         $element->position = $relatedElement->position;
-
-                        if (!$element->isListed ?? false) {
+                        if ($element->isListed === false) {
+                            return false;
+                        }
+                        if ($element->isPublished === false) {
                             return false;
                         }
 

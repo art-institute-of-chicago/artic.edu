@@ -20,6 +20,13 @@
 
 @section('fieldsets')
     <a17-fieldset title="Hours" id="hours">
+        @formField('input', [
+            'name' => 'visit_hour_intro',
+            'label' => 'Intro text',
+            'type' => 'textarea',
+            'translated' => true
+        ])
+
         @formField('medias', [
             'name' => 'visit_featured_hour',
             'label' => 'Image',
@@ -41,6 +48,50 @@
             'translated' => true,
         ])
         @formField('repeater', ['type' => 'featured_hours'])
+    </a17-fieldset>
+
+    <a17-fieldset title="Call to Action" id="call-to-action">
+        @formField('input', [
+            'name' => 'visit_cta_module_header',
+            'label' => 'Header',
+            'translated' => true,
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'visit_cta_module_body',
+            'label' => 'Body',
+            'toolbarOptions' => [
+                'italic'
+            ],
+            'translated' => true,
+        ])
+
+        @formField('input', [
+            'name' => 'visit_cta_module_button_text',
+            'label' => 'Button text',
+            'translated' => true,
+        ])
+
+        @formField('input', [
+            'name' => 'visit_cta_module_action_url',
+            'label' => 'Button URL',
+            'note' => 'e.g. https://sales.artic.edu/admissions',
+        ])
+    </a17-fieldset>
+
+    <a17-fieldset title="What to Expect" id="expect">
+        @formField('input', [
+            'name' => 'visit_what_to_expect_more_text',
+            'field_name' => 'visit_what_to_expect_more_text',
+            'label' => 'More link text',
+            'translated' => true
+        ])
+        @formField('input', [
+            'name' => 'visit_what_to_expect_more_link',
+            'field_name' => 'visit_what_to_expect_more_link',
+            'label' => 'More link'
+        ])
+        @formField('repeater', ['type' => 'whatToExpects'])
     </a17-fieldset>
 
     <a17-fieldset title="Admissions" id="admissions">
@@ -74,40 +125,42 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset title="Featured Offer" id="featured_offer">
+    <a17-fieldset title="FAQs" id="faq">
+        @formField('input', [
+            'name' => 'visit_faq_accessibility_link',
+            'label' => 'Accessibility information link'
+        ])
+        @formField('input', [
+            'name' => 'visit_faq_more_link',
+            'label' => "More FAQs and guidelines link"
+        ])
+
+        @formField('repeater', ['type' => 'faqs'])
+    </a17-fieldset>
+
+    <a17-fieldset title="Accessibility" id="accessibility">
         @formField('medias', [
-            'name' => 'visit_city_pass',
+            'name' => 'visit_accessibility',
             'label' => 'Image',
-            'note' => 'Minimum image width 2000px'
         ])
+
         @formField('input', [
-            'name' => 'visit_city_pass_title',
-            'field_name' => 'visit_city_pass_title',
-            'label' => 'Title',
-            'required' => true,
-            'translated' => true
-        ])
-        @formField('input', [
-            'name' => 'visit_city_pass_text',
-            'field_name' => 'visit_city_pass_text',
-            'label' => 'Text',
-            'rows' => 3,
+            'name' => 'visit_accessibility_text',
+            'label' => 'Accessibility text',
             'type' => 'textarea',
             'translated' => true
         ])
+
         @formField('input', [
-            'name' => 'visit_city_pass_button_label',
-            'field_name' => 'visit_city_pass_button_label',
-            'label' => 'Button label',
-            'required' => true,
+            'name' => 'visit_accessibility_link_text',
+            'label' => 'Link text',
             'translated' => true
         ])
+
         @formField('input', [
-            'name' => 'visit_city_pass_link',
-            'field_name' => 'visit_city_pass_link',
-            'label' => 'Button link',
-            'required' => true,
-            'translated' => true
+            'name' => 'visit_accessibility_link_url',
+            'label' => 'Link URL',
+            'note' => 'Accepts HTML tags',
         ])
     </a17-fieldset>
 
@@ -132,43 +185,17 @@
             'required' => true
         ])
 
+        @formField('input', [
+            'name' => 'visit_parking_accessibility_link',
+            'field_name' => 'visit_parking_accessibility_link',
+            'label' => 'Visitors with Mobility Needs',
+        ])
 
         @formField('repeater', ['type' => 'locations', 'max' => 2])
     </a17-fieldset>
 
-    <a17-fieldset title="Dining" id="dining_hours">
-        @formField('input', [
-            'name' => 'visit_dining_link',
-            'label' => 'Explore all dining link'
-        ])
-
-        @formField('repeater', ['type' => 'dining_hours'])
-    </a17-fieldset>
-
-    <a17-fieldset title="FAQs" id="faq">
-        @formField('input', [
-            'name' => 'visit_faq_accessibility_link',
-            'label' => 'Accessibility information link'
-        ])
-        @formField('input', [
-            'name' => 'visit_faq_more_link',
-            'label' => "More FAQs and guidelines link"
-        ])
-
-        @formField('repeater', ['type' => 'faqs'])
-    </a17-fieldset>
-
-    <a17-fieldset title="Tour Pages" id="tourpages">
-        @formField('browser', [
-        'routePrefix' => 'generic',
-            'max' => 3,
-            'moduleName' => 'genericPages',
-            'name' => 'visitTourPages',
-            'label' => 'Tour pages'
-        ])
-    </a17-fieldset>
-
-    <a17-fieldset title="Families, teens and educators" id="families">
+    <a17-fieldset title="Ways to Explore" id="explore">
         @formField('repeater', ['type' => 'families'])
     </a17-fieldset>
+
 @stop

@@ -1,4 +1,4 @@
-<div class="g-search" data-behavior="globalSearch" data-autocomplete-url="{!! route('search.autocomplete') !!}" aria-modal="true" data-gtm-event-category="site search" data-gtm-event-action="{{$seo->title}}" aria-label="Search">
+<div class="g-search" data-behavior="globalSearch" data-autocomplete-url="{!! route('search.autocomplete') !!}" aria-modal="true" data-gtm-event-category="site search" aria-label="Search">
     <div class="g-search__scroll">
         <div class="g-search__inner" data-search-inner>
             <form action="/search" class="g-search__form" role="search">

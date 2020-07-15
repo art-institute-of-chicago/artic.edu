@@ -47,7 +47,10 @@ class AuthorPresenter extends BasePresenter
         $element->date = $element->date ?? $element->publish_start_date ?? $element->updated_at;
         $element->writingType = $type;
 
-        if (!$element->isListed ?? false) {
+        if ($element->isListed === false) {
+            return false;
+        }
+        if ($element->isPublished === false) {
             return false;
         }
 

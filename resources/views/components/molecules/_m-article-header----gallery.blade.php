@@ -80,7 +80,7 @@ if ($maxZoomWindowSize > 843) {
               @slot('dataAttributes', 'data-gallery-module360')
               @slot('behavior', 'triggerMediaModal')
               @slot('ariaLabel', '360 Viewer')
-              @slot('gtmAttributes', 'data-gtm-event="360-open-modal" data-gtm-event-action="' . $title . '" data-gtm-event-category="in-page"')
+              @slot('gtmAttributes', 'data-gtm-event="360-open-modal" data-gtm-event-category="in-page"')
             @endcomponent
             <textarea style="display: none;">@component('components.molecules._m-viewer-360')
               @slot('style', $style)
@@ -89,8 +89,8 @@ if ($maxZoomWindowSize > 843) {
               @slot('title', $title)
             @endcomponent</textarea>
         </li>
-        @endif 
-        
+        @endif
+
         @if(isset($module3d) && $module3d)
         <li data-type="module3d"
         @if(!isset($isPublicDomain) || !$isPublicDomain)
@@ -104,7 +104,7 @@ if ($maxZoomWindowSize > 843) {
               @slot('dataAttributes', 'data-gallery-module3d')
               @slot('behavior', 'triggerMediaModal')
               @slot('ariaLabel', 'View 3D Module')
-              @slot('gtmAttributes', 'data-gtm-event="3D-open-modal" data-gtm-event-action="' . $title . '" data-gtm-event-category="in-page"')
+              @slot('gtmAttributes', 'data-gtm-event="3D-open-modal" data-gtm-event-category="in-page"')
             @endcomponent
             <textarea style="display: none;">@component('components.molecules._m-viewer-3d')
               @slot('type', 'modal')
@@ -115,7 +115,7 @@ if ($maxZoomWindowSize > 843) {
               @slot('title', $title)
             @endcomponent</textarea>
         </li>
-        @endif 
+        @endif
 
         @if(isset($isPublicDomain) && $isPublicDomain)
         <li>
@@ -192,7 +192,8 @@ if ($maxZoomWindowSize > 843) {
             @if (isset($image['iiifId']))
                 data-gallery-img-iiifId="{{ $image['iiifId'] }}"
             @endif
-            data-gtm-event="{{$image['shareTitle']}}" data-gtm-event-action="{{$title}}" data-gtm-event-category="in-page"
+            data-gtm-event="{{$image['shareTitle']}}"
+            data-gtm-event-category="in-page"
             aria-label="show alternative image"
             disabled
           >Show this image</button>

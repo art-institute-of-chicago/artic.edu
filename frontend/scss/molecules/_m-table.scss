@@ -67,7 +67,6 @@ Intended for very simple m-tables..
 
 .m-table table {
   width: 100%;
-  min-width: 500px;
   border-collapse: collapse;
 }
 
@@ -83,12 +82,27 @@ Intended for very simple m-tables..
   font-weight: normal;
   text-align: left;
   white-space: nowrap;
+
+  @include breakpoint('xsmall') {
+    padding-right: 7px;
+  }
+}
+
+.m-table.m-table--minimal th,
+.m-table.m-table--minimal td {
+  border-top: 0;
 }
 
 .m-table th:first-child,
 .m-table td:first-child {
   padding-left: 0;
 }
+
+.m-table.m-table--minimal tr:last-child th,
+.m-table.m-table--minimal tr:last-child td{
+  border-bottom: 0;
+}
+
 
 .m-table td[rowspan],
 .m-table td[colspan] {

@@ -89,9 +89,9 @@
 @if (isset($artists) && $artists->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $artists->getMetadata('pagination')->total.' '. Str::plural('artist', $artists->getMetadata('pagination')->total), 'href' => route('search.artists', request()->input()))))
+            @slot('links', array(array('label' => 'See all '. $artists->getMetadata('pagination')->total.' '. Str::plural('artist', $artists->getMetadata('pagination')->total) .'/' . Str::plural('culture', $artists->getMetadata('pagination')->total), 'href' => route('search.artists', request()->input()))))
         @endunless
-        Artists
+        Artists/Cultures
     @endcomponent
     @component('components.atoms._hr')
     @endcomponent
