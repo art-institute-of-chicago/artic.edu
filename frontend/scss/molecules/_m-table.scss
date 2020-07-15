@@ -82,6 +82,10 @@ Intended for very simple m-tables..
   font-weight: normal;
   text-align: left;
   white-space: nowrap;
+
+  @include breakpoint('xsmall') {
+    padding-right: 7px;
+  }
 }
 
 .m-table.m-table--minimal th,

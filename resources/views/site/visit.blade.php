@@ -101,7 +101,7 @@
               <thead>
                 <tr>
                   <th> </th>
-                  <th aria-labelledby="h-member-hours"><span class="f-module-title-1" id="h-member-hours">Members Only</span></th>
+                  <th aria-labelledby="h-member-hours"><span class="f-module-title-1" id="h-member-hours">Members <div class="u-hide@small+"></div>Only</span></th>
                   <th aria-labelledby="h-public-hours"><span class="f-module-title-1" id="h-public-hours">Public</span></th>
                 </tr>
               </thead>
@@ -119,7 +119,7 @@
                 </tr>
                 <tr>
                   <th>
-                    <span class="f-module-title-1">Tuesday&ndash;Wednesday</span>
+                    <span class="f-module-title-1">Tuesday&ndash;<div class="u-hide@small+"></div>Wednesday</span>
                   </th>
                   <td>
                     <span class="f-secondary">Closed</span>
@@ -130,7 +130,7 @@
                 </tr>
                 <tr>
                   <th>
-                    <span class="f-module-title-1">Thursday&ndash;Friday</span>
+                    <span class="f-module-title-1">Thursday&ndash;<div class="u-hide@small+"></div>Friday</span>
                   </th>
                   <td>
                     <span class="f-secondary">12&ndash;1 p.m.</span>
@@ -141,7 +141,7 @@
                 </tr>
                 <tr>
                   <th>
-                    <span class="f-module-title-1">Saturday&ndash;Sunday</span>
+                    <span class="f-module-title-1">Saturday&ndash;<div class="u-hide@small+"></div>Sunday</span>
                   </th>
                   <td>
                     <span class="f-secondary">10&ndash;11 a.m.</span>
