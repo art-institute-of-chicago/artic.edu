@@ -163,7 +163,7 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with([
                 '_pages' => [
-                    'visit' => '/visit-us-virtually'
+                    'visit' => route('visit')
                     , 'hours' => route('visit') . '#hours'
                     , 'directions' => route('visit') . '#directions'
 
