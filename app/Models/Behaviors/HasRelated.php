@@ -7,7 +7,6 @@ use A17\Twill\Models\Behaviors\HasRelated as BaseHasRelated;
 
 trait HasRelated
 {
-
     use BaseHasRelated;
 
     public function relatedTos()
@@ -17,17 +16,27 @@ trait HasRelated
 
     public function transformRelated()
     {
-        return $this->relatedItems->map(function ($item) { return $this->_transformRelatedItem($item); })
-            ->union($this->relatedTos->map(function ($item) { return $this->_transformRelatedItem($item, 'subject'); }))
+        return $this->relatedItems->map(function ($item) {
+                return $this->transformRelatedItem($item, 'related');
+            })
+            ->union($this->relatedTos->map(function ($item) {
+                return $this->transformRelatedItem($item, 'subject');
+            }))
+            ->filter()
             ->all();
     }
 
-    static function _transformRelatedItem($item, $prefix = 'related') {
-        $ret = collect($item->getAttributes())->only([$prefix .'_id', $prefix .'_type'])->all();
-        $return = [];
-        $return['id'] = $ret[$prefix .'_id'];
-        $return['type'] = $ret[$prefix .'_type'];
-        $return['title'] = $item->$prefix->title;
-        return $return;
+    private function transformRelatedItem($item, $prefix)
+    {
+        // WEB-1753: Fix this trait to work with `api_relatables`
+        if ($item->{$prefix . '_type'} === 'exhibitions') {
+            return;
+        }
+
+        return [
+            'id' => $item->{$prefix . '_id'},
+            'type' => $item->{$prefix . '_type'},
+            'title' => $item->{$prefix}->title,
+        ];
     }
 }
