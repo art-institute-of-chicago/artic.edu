@@ -37,6 +37,8 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  <meta name="svg-sprite-src" content="{{ revAsset('icons/icons.svg') }}">
+
   @include('partials._head-js')
   @if ($print)
       <script>A17.print = true;</script>
@@ -73,8 +75,6 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 <body onload="setTimeout(function(){ window.print(); }, 500);">
 @else
 <body>
-
-@include('partials._icons')
 
 @endif
     @if (config('services.google_tag_manager.enabled'))

@@ -50,6 +50,19 @@
     }
   }
 
+  // insert sprite SVG on DOM ready
+  function insSvg() {
+    if (/in/.test(d.readyState)) {
+      setTimeout(insSvg,9);
+    } else {
+      var db = d.body;
+      var s = d.createElement('div');
+      s.className = 'svg-sprite';
+      s.innerHTML = a.responseText;
+      db.insertBefore(s, db.childNodes[0]);
+    }
+  }
+
   if(A17.browserSpec === 'html4'){
     // if an old browser - sort the page out for showing the html4css
     s = d.createElement('link');
@@ -66,5 +79,16 @@
     s = d.createElement('script');
     s.src = '//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js';
     h.appendChild(s);
+    // if not an old browser - ajax in the sprite
+    a = new XMLHttpRequest();
+    var em = d.querySelector('meta[name="svg-sprite-src"]');
+    var url = typeof em !== 'undefined' ? em.content : '/dist/icons/icons.svg';
+    a.open('GET', url, true);
+    a.send();
+    a.onload = function(e) {
+      if (a.status >= 200 && a.status < 400){
+        insSvg();
+      }
+    };
   }
 })(document);
