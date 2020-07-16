@@ -24,6 +24,8 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  <meta name="svg-sprite-src" content="{{ revAsset('icons/icons.svg') }}">
+
   @include('partials._head-js')
 
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />

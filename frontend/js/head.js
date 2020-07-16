@@ -81,7 +81,9 @@
     h.appendChild(s);
     // if not an old browser - ajax in the sprite
     a = new XMLHttpRequest();
-    a.open('GET', '/dist/icons/icons.svg', true);
+    var em = d.querySelector('meta[name="svg-sprite-src"]');
+    var url = typeof em !== 'undefined' ? em.content : '/dist/icons/icons.svg';
+    a.open('GET', url, true);
     a.send();
     a.onload = function(e) {
       if (a.status >= 200 && a.status < 400){
