@@ -27,6 +27,9 @@ $print = app('printservice')->isPrintMode();
 </head>
 
 <body>
+
+@include('partials._icons')
+
 <div id="a17">
   <main id="content">
     <article class="o-article">

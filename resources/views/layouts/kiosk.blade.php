@@ -56,6 +56,8 @@
 
 <body>
 
+@include('partials._icons')
+
 @if (config('services.google_tag_manager.enabled'))
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={!! config('services.google_tag_manager.id') !!}"

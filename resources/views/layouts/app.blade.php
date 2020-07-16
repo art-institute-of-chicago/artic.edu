@@ -73,6 +73,9 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 <body onload="setTimeout(function(){ window.print(); }, 500);">
 @else
 <body>
+
+@include('partials._icons')
+
 @endif
     @if (config('services.google_tag_manager.enabled'))
         <!-- Google Tag Manager (noscript) -->
