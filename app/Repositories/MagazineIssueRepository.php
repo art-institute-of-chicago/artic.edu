@@ -22,7 +22,8 @@ class MagazineIssueRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getLatestIssue() {
+    public function getLatestIssue()
+    {
         return MagazineIssue::query()->published()->orderBy('publish_start_date', 'desc')->first();
     }
 
@@ -47,7 +48,13 @@ class MagazineIssueRepository extends ModuleRepository
 
     public function getWelcomeNote($item)
     {
-        return $item->getRelated('welcome_note')->where('published', true)->first();
+        $welcomeNotes = $item->getRelated('welcome_note');
+
+        if (!config('aic.is_preview_mode')) {
+            $welcomeNotes = $welcomeNotes->where('published', true);
+        }
+
+        return $welcomeNotes->first();
     }
 
     /**
