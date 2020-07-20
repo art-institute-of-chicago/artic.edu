@@ -17,6 +17,7 @@
         @slot('item', $item)
         @slot('variation', 'author')
         @slot('imageSettings', array(
+            'monochrome' => true,
             'srcset' => array(200,400,600,1000,1500,2000),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '58',
