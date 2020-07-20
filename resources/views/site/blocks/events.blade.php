@@ -3,6 +3,7 @@
     use App\Models\Event;
     use Carbon\Carbon;
 
+    //dd($block->position);
     $dateStart = $block->input('date_start') ? Carbon::parse($block->input('date_start')) : Carbon::now();
     $dateEnd = $block->input('date_end') ? Carbon::parse($block->input('date_end')) : Carbon::tomorrow()->addMonths(6);
 
@@ -22,11 +23,16 @@
         }
     );
 
-    $items = $events->map(function($event) {
+    $items = $events->map(function($event) use ($block) {
+        $href = route('events.show', $event);
+        $url = parse_url($href, PHP_URL_PATH);
+        $gtmEvent = substr($url, strrpos($url, '/')+1);
+
         return [
             'title' => $event->title_display ?? $event->title,
             'dateDisplay' => $event->present()->formattedBlockDate(),
-            'href' => route('events.show', $event),
+            'href' => $href,
+            'gtmAttributes' => 'data-gtm-event="' . $gtmEvent . '" data-gtm-event-category="mag-content-' . $block->position . '"',
         ];
     });
 @endphp
@@ -38,5 +44,6 @@
         @slot('btnText', 'See all events')
         @slot('btnHref', route('events'))
         @slot('items', $items)
+        @slot('gtmAttributes', 'data-gtm-event="events" data-gtm-event-category="mag-content-' . $block->position . '"')
     @endcomponent
 @endif

@@ -9,11 +9,16 @@
         return $exhibitions->firstWhere('id', $id);
     });
 
-    $items = $orderedExhibitions->map(function($exhibition) {
+    $items = $orderedExhibitions->map(function($exhibition) use ($block) {
+        $href = route('exhibitions.show', ['id' => $exhibition->id, 'slug' => $exhibition->titleSlug ]);
+        $url = parse_url($href, PHP_URL_PATH);
+        $gtmEvent = substr($url, strrpos($url, '/')+1);
+
         return [
             'title' => $exhibition->title_display ?? $exhibition->title,
             'dateDisplay' => $exhibition->present()->formattedDate(),
-            'href' => route('exhibitions.show', ['id' => $exhibition->id, 'slug' => $exhibition->titleSlug ]),
+            'href' => $href,
+            'gtmAttributes' => 'data-gtm-event="' . $gtmEvent . '" data-gtm-event-category="mag-content-' . $block->position . '"',
         ];
     });
 @endphp
@@ -25,5 +30,6 @@
         @slot('btnText', 'See all exhibitions')
         @slot('btnHref', route('exhibitions'))
         @slot('items', $items)
+        @slot('gtmAttributes', 'data-gtm-event="exhibitions" data-gtm-event-category="mag-content-' . $block->position . '"')
     @endcomponent
 @endif
