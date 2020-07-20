@@ -29,6 +29,7 @@
             }
 
             $isBlockReady = true;
+            $gtmEvent = $title;
         }
     } else {
         $href = $block->input('url');
@@ -40,6 +41,9 @@
         $author_display = $block->input('author_display');
 
         $isBlockReady = true;
+
+        $url = parse_url($href, PHP_URL_PATH);
+        $gtmEvent = substr($url, strrpos($url, '/')+1); // Last part of path
     }
 @endphp
 
@@ -65,6 +69,6 @@
                   'xlarge' => '13',
             )),
         ))
-        @slot('gtmAttributes', 'data-gtm-event="' . $title . '" data-gtm-event-category="mag-content-' . $block->position . '"')
+        @slot('gtmAttributes', 'data-gtm-event="' . $gtmEvent . '" data-gtm-event-category="mag-content-' . $block->position . '"')
     @endcomponent
 @endif
