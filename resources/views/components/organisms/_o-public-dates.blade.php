@@ -4,12 +4,14 @@
         {!! $formattedDate !!}
     @endcomponent
 @elseif (empty($dateStart) and empty($dateEnd))
-@elseif (empty($dateEnd) and !empty($dateStart))
+    {{-- Nothing we can do --}}
+@elseif (!empty($dateStart) and empty($dateEnd))
     @component('components.atoms._date')
         @slot('tag', $tag ?? null)
         <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time>
     @endcomponent
 @elseif (empty($dateStart))
+    {{-- Intentionally left blank --}}
 @elseif ($dateStart and $dateEnd)
     @component('components.atoms._date')
         @slot('tag', $tag ?? null)
