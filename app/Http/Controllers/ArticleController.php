@@ -121,6 +121,10 @@ class ArticleController extends FrontController
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->heading ?: truncateStr(strip_tags($item->present()->copy()), 297));
         $this->seo->setImage($item->imageFront('hero'));
+        if ($item->is_unlisted) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
 
         if ($item->categories->first()) {
             $item->topics = $item->categories;
