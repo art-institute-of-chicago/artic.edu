@@ -28,26 +28,13 @@
         @endcomponent
 
         {{-- Regular dates --}}
-        @if (!empty($dateStart) and empty($dateEnd))
-            @component('components.atoms._date')
-                @slot('tag','p')
-                <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time>
-            @endcomponent
-        @elseif (!empty($dateStart) and !empty($dateEnd))
-            @component('components.atoms._date')
-                @slot('tag','p')
-                @if($dateStart->format("Y") == $dateEnd->format("Y"))
-                    <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j') }}</time>&ndash;<time datetime="{{ $dateEnd->format("Y-m-d") }}" itemprop="endDate">{{ $dateEnd->format('M j, Y') }}</time>
-                @else
-                    <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time>&ndash;<time datetime="{{ $dateEnd->format("Y-m-d") }}" itemprop="endDate">{{ $dateEnd->format('M j, Y') }}</time>
-                @endif
-            @endcomponent
-        @elseif (isset($date) and !empty($date))
-            @component('components.atoms._date')
-                @slot('tag','p')
-                <time datetime="{{ $date->format("Y-m-d") }}" itemprop="startDate">{{ $date->format('F j, Y') }}</time>
-            @endcomponent
-        @endif
+        @component('components.organisms._o-public-dates')
+            @slot('tag', 'p')
+            @slot('formattedDate', $formattedDate ?? null)
+            @slot('dateStart', $dateStart ?? null)
+            @slot('dateEnd', $dateEnd ?? null)
+            @slot('date', $date ?? null)
+        @endcomponent
 
         @if (isset($type))
             @component('components.atoms._type')
@@ -55,6 +42,7 @@
                 {{ $type }}
             @endcomponent
         @endif
+
         @if (isset($intro))
             @component('components.atoms._hr')
             @endcomponent
@@ -65,6 +53,7 @@
                 {!! SmartyPants::defaultTransform($intro) !!}
             @endcomponent
         @endif
+
         @if ((isset($credit) and !empty($credit)) or ($img and isset($img['credit']) and $img['credit'] !== ""))
             @if (isset($creditUrl))
                 <a href="{{ $creditUrl ?? $img['creditUrl'] }}" class="m-article-header__info-trigger">
