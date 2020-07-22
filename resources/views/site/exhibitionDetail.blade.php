@@ -13,16 +13,16 @@
     {{-- @slot('variation', ($item->headerVariation ?? null)) --}}
     @slot('title', $item->present()->title)
     @slot('title_display', $item->present()->title_display)
-    @slot('date', $item->present()->date)
-    @slot('previewDateStart', $item->member_preview_start_date)
-    @slot('previewDateEnd', $item->member_preview_end_date)
-    @slot('dateStart', $item->present()->startAt)
-    @slot('dateEnd', $item->present()->endAt)
     @slot('type', $item->present()->exhibitionType)
     @slot('intro', $item->present()->header_copy)
     @slot('img', $item->imageAsArray('hero', $item->cms_exhibition_type == \App\Models\Exhibition::SPECIAL ? 'special' : 'default'))
     @slot('credit', $item->present()->hero_caption)
+    @slot('previewDateStart', $item->member_preview_start_date)
+    @slot('previewDateEnd', $item->member_preview_end_date)
     @slot('formattedDate', $item->present()->date_display_override)
+    @slot('dateStart', $item->present()->startAt)
+    @slot('dateEnd', $item->present()->endAt)
+    @slot('date', $item->present()->date)
   @endcomponent
 
   <div class="o-article__primary-actions">

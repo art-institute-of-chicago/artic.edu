@@ -24,7 +24,7 @@
 
         <span class="m-listing__meta-bottom">
             @component('components.atoms._date')
-                {!! $item->present()->formattedDate !!}
+                {!! $item->present()->formattedDateCannonical !!}
             @endcomponent
         </span>
     </span>
