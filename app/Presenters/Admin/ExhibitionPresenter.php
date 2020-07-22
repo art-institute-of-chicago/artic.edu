@@ -84,6 +84,7 @@ class ExhibitionPresenter extends BasePresenter
             'dateStart' => $this->startAt,
             'dateEnd' => $this->endAt,
             'date' => $this->date,
+            'font' => '', // defaults to f-secondary
         ]);
     }
 

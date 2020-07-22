@@ -5,7 +5,7 @@
     @elseif (!empty($previewDateStart) and empty($previewDateEnd))
         @component('components.atoms._date')
             @slot('tag','p')
-            @slot('variation','f-previewdate')
+            @slot('variation', 'f-previewdate')
             Member preview: <time datetime="{{ $previewDateStart->format("Y-m-d") }}">{{ $previewDateStart->format('M j, Y') }}</time>
         @endcomponent
     @elseif (empty($previewDateStart))
@@ -13,7 +13,7 @@
     @elseif ($previewDateStart and $previewDateEnd)
         @component('components.atoms._date')
             @slot('tag','p')
-            @slot('variation','f-previewdate')
+            @slot('variation', 'f-previewdate')
             Member previews:
             @if($previewDateStart->format("Y") == $previewDateEnd->format("Y"))
                 @if($previewDateStart->format("M") == $previewDateEnd->format("M"))
