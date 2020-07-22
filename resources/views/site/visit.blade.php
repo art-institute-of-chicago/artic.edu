@@ -231,6 +231,45 @@
         @endforeach
     @endcomponent
 
+    @if (!empty($page->visit_capacity_text))
+        <hr/>
+
+        <div class="o-visit-capacity">
+            <div class="o-visit-capacity__graph">
+                <svg role="img" aria-label="{{ $page->visit_capacity_alt }}">
+                    <use xlink:href="#icon--logo--92" />
+                </svg>
+            </div>
+            <div class="o-visit-capacity__text">
+                @if (!empty($page->visit_capacity_heading))
+                    <h2 class="f-list-3">{{ $page->visit_capacity_heading }}</h2>
+                @endif
+                {!! $page->visit_capacity_text !!}
+             </div>
+            <div class="o-visit-capacity__actions">
+                @if (!empty($page->visit_capacity_btn_text_1) && !empty($page->visit_capacity_btn_url_1))
+                    @component('components.atoms._btn')
+                        @slot('variation', 'btn--secondary btn--full')
+                        @slot('tag', 'a')
+                        @slot('href', $page->visit_capacity_btn_url_1)
+                        @slot('gtmAttributes', 'data-gtm-event="capacity-btn-1" data-gtm-event-category="nav-cta-button"')
+                        {!! SmartyPants::defaultTransform($page->visit_capacity_btn_text_1) !!}
+                    @endcomponent
+                @endif
+
+                @if (!empty($page->visit_capacity_btn_text_2) && !empty($page->visit_capacity_btn_url_2))
+                    @component('components.atoms._btn')
+                        @slot('variation', 'btn--secondary btn--full')
+                        @slot('tag', 'a')
+                        @slot('href', $page->visit_capacity_btn_url_2)
+                        @slot('gtmAttributes', 'data-gtm-event="capacity-btn-2" data-gtm-event-category="nav-cta-button"')
+                        {!! SmartyPants::defaultTransform($page->visit_capacity_btn_text_2) !!}
+                    @endcomponent
+                @endif
+            </div>
+        </div>
+    @endif
+
     <div class="m-table">
       <table>
         <caption>

@@ -91,6 +91,7 @@ class PageController extends ModuleController
             ['fieldset' => 'hours', 'label' => 'Hours'],
             ['fieldset' => 'call-to-action', 'label' => 'CTA'],
             ['fieldset' => 'expect', 'label' => 'Expect'],
+            ['fieldset' => 'capacity', 'label' => 'Cap.'],
             ['fieldset' => 'admissions', 'label' => 'Adm.'],
             ['fieldset' => 'faq', 'label' => 'FAQ'],
             ['fieldset' => 'accessibility', 'label' => 'A11y'],

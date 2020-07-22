@@ -136,3 +136,81 @@
 .o-visit .m-link-list__item:first-child {
   margin-top: 0;
 }
+
+.o-visit-capacity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @each $name, $margin in (
+    'xsmall': 36,
+    'small+': 40,
+    'medium+': 52,
+  ) {
+    @include breakpoint('#{$name}') {
+      margin-top: #{$margin}px;
+    }
+  }
+
+  .o-visit-capacity__graph {
+    margin-bottom: 24px;
+  }
+  .o-visit-capacity__text {
+    margin-bottom: 24px;
+    @include f-secondary;
+    @include untuck;
+
+    h2 {
+      @include f-list-3;
+      @include untuck;
+      margin-bottom: 12px;
+    }
+  }
+  .o-visit-capacity__actions {
+    width: 100%;
+
+    .btn {
+      margin-left: 0;
+
+      &:not(:first-child) {
+        margin-top: 12px;
+      }
+    }
+  }
+
+  @include breakpoint('medium+') {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  @include breakpoint('medium') {
+    .o-visit-capacity__graph {
+      width: colspan(24, 'medium');
+      padding-right: colspan(2, 'medium');
+    }
+
+    .o-visit-capacity__text {
+      width: colspan(34, 'medium');
+    }
+  }
+
+  @each $name in ('large', 'xlarge') {
+    @include breakpoint('#{$name}') {
+      .o-visit-capacity__graph {
+        width: colspan(20, $name);
+        padding-right: colspan(2, $name);
+        margin-bottom: 0;
+      }
+
+      .o-visit-capacity__text {
+        width: colspan(22, $name);
+        padding-right: colspan(2, $name);
+        margin-bottom: 0;
+      }
+
+      .o-visit-capacity__actions {
+        width: colspan(16, $name);
+      }
+    }
+  }
+}
