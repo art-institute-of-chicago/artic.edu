@@ -321,6 +321,7 @@
             'note' => 'To view program URLS, select programs below, update event, and refresh the page',
             'options' => $eventProgramsList,
         ])
+
         @formField('input', [
             'name' => 'program_urls',
             'label' => 'Program URLs',

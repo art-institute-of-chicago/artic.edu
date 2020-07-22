@@ -13,7 +13,7 @@
         null,
         $block->input('type'),
         $block->input('audience'),
-        null,
+        $block->input('program'),
         4,
         null,
         false,
