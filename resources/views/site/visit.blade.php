@@ -236,8 +236,8 @@
 
         <div class="o-visit-capacity">
             <div class="o-visit-capacity__graph">
-                <svg role="img" aria-label="{{ $page->visit_capacity_alt }}">
-                    <use xlink:href="#icon--logo--92" />
+                <svg role="img" aria-label="{{ $page->visit_capacity_alt }}" class="icon--visit-capacity">
+                    <use xlink:href="#icon--visit-capacity"></use>
                 </svg>
             </div>
             <div class="o-visit-capacity__text">
