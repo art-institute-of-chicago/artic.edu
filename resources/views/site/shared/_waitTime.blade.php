@@ -1,5 +1,4 @@
-@if ($waitTime)
-    @component('components.organisms._o-wait-time')
-        @slot('waitTime', $waitTime)
-    @endcomponent
-@endif
+@component('components.molecules._m-link-list')
+    @slot('variation', isset($variation) ? $variation : '')
+    @slot('links', $item->present()->navigationWithWaitTime())
+@endcomponent

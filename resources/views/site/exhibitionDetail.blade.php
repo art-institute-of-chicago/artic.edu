@@ -31,21 +31,23 @@
     @endcomponent
 
     @if ($item->present()->navigation)
-        {{-- dupe 😢 - shows xlarge+ --}}
-        @component('components.molecules._m-link-list')
-            @slot('variation', 'u-show@large+')
-            @slot('links', $item->present()->navigation)
-        @endcomponent
+        <div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('exhibitions.waitTime', ['id' => $item->id, 'slug' => $item->getSlug(), 'variation' => 'u-show@large+']) !!}">
+            {{-- dupe 😢 - shows xlarge+ --}}
+            @component('components.molecules._m-link-list')
+                @slot('variation', 'u-show@large+')
+                @slot('links', $item->present()->navigation)
+            @endcomponent
+        </div>
     @endif
   </div>
 
   {{-- dupe 😢 - hides xlarge+ --}}
   @if ($item->present()->navigation)
-      <div class="o-article__meta">
+        <div class="o-article__meta o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('exhibitions.waitTime', ['id' => $item->id, 'slug' => $item->getSlug()]) !!}">
             @component('components.molecules._m-link-list')
                 @slot('links', $item->present()->navigation);
             @endcomponent
-      </div>
+        </div>
   @endif
 
   <div class="o-article__secondary-actions">
