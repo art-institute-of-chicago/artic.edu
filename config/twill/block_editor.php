@@ -46,12 +46,12 @@ return [
             'component' => 'a17-block-gallery_new',
         ],
         'gallery' => [
-            'title' => 'Gallery',
+            'title' => 'Gallery (old)',
             'icon' => 'image',
             'component' => 'a17-block-gallery',
         ],
         'artworks' => [
-            'title' => 'Artworks gallery',
+            'title' => 'Artworks gallery (old)',
             'icon' => 'image',
             'component' => 'a17-block-artworks',
         ],
