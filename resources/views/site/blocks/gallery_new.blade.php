@@ -1,6 +1,27 @@
 @php
     $subtype = $block->input('layout') == 1 ? 'mosaic' : 'slider';
 
+    // Preload all artworks ahead of time
+    $ids = $block->childs
+        ->filter(function($item) {
+            return $item->input('gallery_item_type') === \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK;
+        })
+        ->map(function($item) {
+            return $item->browserIds('artwork');
+        })
+        ->map(function($ids) {
+            return $ids[0] ?? null;
+        })
+        ->filter()
+        ->values()
+        ->all();
+
+    if (count($ids) > 0) {
+        $artworks = \App\Models\Api\Artwork::query()->ids($ids)->get();
+    } else {
+        $artworks = collect([]);
+    }
+
     $items = [];
 
     foreach ($block->childs as $item) {
@@ -20,13 +41,16 @@
 
                 break;
             case \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK:
-                // TODO: Preload all artworks ahead of time
                 $ids = $item->browserIds('artwork');
-                $artworks = \App\Models\Api\Artwork::query()->ids($ids)->get();
-                $artwork = $artworks[0];
+
+                if (!$ids) {
+                    break;
+                }
+
+                $artwork = $artworks->where('id', '=', $ids[0])->first();
 
                 if (!$artwork) {
-                  break;
+                    break;
                 }
 
                 $image = $artwork->imageFront('hero', 'thumbnail');
