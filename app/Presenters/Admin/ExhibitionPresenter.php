@@ -119,6 +119,11 @@ class ExhibitionPresenter extends BasePresenter
         return array_filter([$this->galleryLink(), $this->relatedEventsLink(), $this->closingSoonLink()]);
     }
 
+    public function navigationWithWaitTime()
+    {
+        return array_filter([$this->galleryLink(), $this->waitTime(), $this->relatedEventsLink(), $this->closingSoonLink()]);
+    }
+
     public function itemprops() {
         return [
             'description' => $this->entity->short_description,
@@ -134,6 +139,15 @@ class ExhibitionPresenter extends BasePresenter
                 'iconBefore' => 'location'
             ];
         }
+    }
+
+    protected function waitTime() {
+        $waitTime  = $this->entity->apiModels('waitTimes', 'WaitTime')->first();
+
+        return [
+            'label' => 'Average wait time: ' . $waitTime->present()->display,
+            'iconBefore' => 'clock'
+        ];
     }
 
     protected function relatedEventsLink() {

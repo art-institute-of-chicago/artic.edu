@@ -36,7 +36,7 @@ class ExhibitionRepository extends BaseApiRepository
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
 
-        $this->updateBrowserApiRelated($object, $fields, ['exhibitions', 'shopItems']);
+        $this->updateBrowserApiRelated($object, $fields, ['exhibitions', 'shopItems', 'waitTimes']);
         $this->updateBrowser($object, $fields, 'events');
 
         $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
@@ -52,6 +52,7 @@ class ExhibitionRepository extends BaseApiRepository
 
         $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events');
         $fields['browsers']['shopItems'] = $this->getFormFieldsForBrowserApi($object, 'shopItems', 'App\Models\Api\ShopItem', 'general');
+        $fields['browsers']['waitTimes'] = $this->getFormFieldsForBrowserApi($object, 'waitTimes', 'App\Models\Api\WaitTime', 'exhibitions_events');
         $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'exhibitions_events');
         $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
 

@@ -134,6 +134,17 @@
         ])
     </a17-fieldset>
 
+    <a17-fieldset id="waitTime" title="Wait time">
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'moduleName' => 'waitTimes',
+            'name' => 'waitTimes',
+            'label' => 'Wait Time',
+            'note' => 'Select a queue to display the wait time for',
+            'max' => 1
+        ])
+    </a17-fieldset>
+
     <a17-fieldset id="attributes" title="Attributes">
         @formField('input', [
             'name' => 'datahub_id',

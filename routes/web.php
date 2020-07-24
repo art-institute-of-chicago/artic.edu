@@ -109,6 +109,7 @@ Route::name('exhibitions')->get('/exhibitions', 'ExhibitionsController@index');
 Route::name('exhibitions.upcoming')->get('/exhibitions/upcoming', 'ExhibitionsController@upcoming');
 Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/relatedEvents', 'ExhibitionsController@loadMoreRelatedEvents')->where('id', '(.*)');
 Route::name('exhibitions.show')->get('/exhibitions/{id}/{slug?}', 'ExhibitionsController@show');
+Route::name('exhibitions.waitTime')->get('/exhibitions/waitTime/{id}/{slug?}/{variation?}', 'ExhibitionsController@waitTime');
 
 // Artwork routes
 Route::name('artworks.recentlyViewed')->get('/artworks/recentlyViewed', 'ArtworkController@recentlyViewed');

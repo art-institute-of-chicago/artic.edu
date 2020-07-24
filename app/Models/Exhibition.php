@@ -121,6 +121,11 @@ class Exhibition extends AbstractModel
         return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
     }
 
+    public function waitTimes()
+    {
+        return $this->apiElements()->where('relation', 'waitTimes');
+    }
+
     public function getTitleInBucketAttribute()
     {
         return $this->title;

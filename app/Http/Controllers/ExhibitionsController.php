@@ -115,4 +115,16 @@ class ExhibitionsController extends FrontController
         return $view;
     }
 
+    public function waitTime($id, $slug = null, $variation = null)
+    {
+        $item = $this->repository->getById((Integer) $id);
+
+        $view['html'] = view('site.shared._waitTime', [
+            'item' => $item,
+            'variation' => $variation,
+        ])->render();
+
+        return $view;
+    }
+
 }
