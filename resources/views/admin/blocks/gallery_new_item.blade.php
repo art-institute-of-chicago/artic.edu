@@ -63,8 +63,8 @@
     ])
 
     @formField('wysiwyg', [
-        'name' => 'captionAddenum',
-        'label' => 'Caption addenum',
+        'name' => 'captionAddendum',
+        'label' => 'Caption addendum',
         'note' => 'Appended to generated tombstone',
         'toolbarOptions' => [
             'italic', 'link',

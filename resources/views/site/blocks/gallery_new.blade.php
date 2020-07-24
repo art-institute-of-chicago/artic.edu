@@ -64,8 +64,8 @@
                     $caption = '<p>' . $artwork->present()->place_of_origin . '</p>';
                 }
 
-                if (!empty($item->input('captionAddenum'))) {
-                    $caption .= $item->input('captionAddenum');
+                if (!empty($item->input('captionAddendum'))) {
+                    $caption .= $item->input('captionAddendum');
                 }
 
                 $items[] = [
