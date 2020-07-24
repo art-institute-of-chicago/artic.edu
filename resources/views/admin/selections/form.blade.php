@@ -52,8 +52,9 @@
 
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
-            'paragraph', 'image', 'gallery', 'video', 'media_embed',
-            'artwork', 'artworks', 'hr', 'tour_stop', 'button', '3d_model'
+            'paragraph', 'image', 'video', 'media_embed',
+            'artwork', 'hr', 'tour_stop', 'button', '3d_model',
+            'gallery', 'artworks', 'gallery_new',
         ])
     ])
 @stop
