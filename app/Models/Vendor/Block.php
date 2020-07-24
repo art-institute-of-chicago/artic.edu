@@ -12,6 +12,9 @@ class Block extends BaseModel
 {
     use LintsAttributes, HasMedias;
 
+    const GALLERY_ITEM_TYPE_CUSTOM = 'custom';
+    const GALLERY_ITEM_TYPE_ARTWORK = 'artwork';
+
     public function getAssetLibraryAttribute()
     {
         // Include image sequence

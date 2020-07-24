@@ -70,11 +70,12 @@
 
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
-            'paragraph', 'image', 'video', 'gallery', 'media_embed', 'list',
+            'paragraph', 'image', 'video', 'media_embed', 'list',
             'child_pages', 'accordion', 'membership_banner', 'timeline',
-            'link', 'newsletter_signup_inline', 'artwork', 'artworks',
+            'link', 'newsletter_signup_inline', 'artwork',
             'hr', 'split_block', 'search_bar', 'tour_stop', 'button',
-            'mobile_app', 'grid', 'table', '3d_model'
+            'mobile_app', 'grid', 'table', '3d_model',
+            'gallery', 'artworks', 'gallery_new',
         ])
     ])
 @stop

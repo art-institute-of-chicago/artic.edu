@@ -1,5 +1,4 @@
-<p style="color: red">This block is deprecated. Its content will be migrated in a future release. Please use "Gallery (new)" for new content.</p>
-
+{{-- WEB-1251: After removing the old `gallery` and `artworks` blocks, inline contents partial --}}
 @include('admin.partials.gallery-shared')
 
 @formField('input', [
@@ -17,4 +16,6 @@
     'note' => 'Will be hidden if title is empty',
 ])
 
-@formField('repeater', ['type' => 'gallery_item'])
+@formField('repeater', [
+    'type' => 'gallery_new_item',
+])
