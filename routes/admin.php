@@ -29,6 +29,7 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
 
     Route::module('events');
     Route::module('sponsors');
+    Route::module('waitTimes');
 
     Route::module('ticketedEvents');
 
