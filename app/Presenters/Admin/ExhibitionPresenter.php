@@ -66,7 +66,7 @@ class ExhibitionPresenter extends BasePresenter
     }
 
     // Used in _m-listing----exhibition-history-row
-    public function formattedDateCannonical()
+    public function formattedDateCanonical()
     {
         return view('components.organisms._o-public-dates' , [
             'formattedDate' => $this->date_display_override,
