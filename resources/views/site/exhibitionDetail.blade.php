@@ -31,7 +31,7 @@
     @endcomponent
 
     @if ($item->present()->navigation)
-        <div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('exhibitions.waitTime', ['id' => $item->id, 'slug' => $item->getSlug(), 'variation' => 'u-show@large+']) !!}">
+        <div {!! $item->present()->addInjectAttributes('u-show@large+') !!}>
             {{-- dupe 😢 - shows xlarge+ --}}
             @component('components.molecules._m-link-list')
                 @slot('variation', 'u-show@large+')
@@ -43,7 +43,7 @@
 
   {{-- dupe 😢 - hides xlarge+ --}}
   @if ($item->present()->navigation)
-        <div class="o-article__meta o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('exhibitions.waitTime', ['id' => $item->id, 'slug' => $item->getSlug()]) !!}">
+        <div class="o-article__meta" {!! $item->present()->addInjectAttributes() !!}>
             @component('components.molecules._m-link-list')
                 @slot('links', $item->present()->navigation);
             @endcomponent
