@@ -170,6 +170,10 @@
       @include untuck;
       margin-bottom: 12px;
     }
+
+    a {
+      @include text-underline(1.02em, $color__rules--secondary);
+    }
   }
 
   .o-visit-capacity__actions {
