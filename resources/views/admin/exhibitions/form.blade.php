@@ -112,10 +112,12 @@
 
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
-            'event', 'paragraph', 'image', 'video', 'gallery',
+            'event', 'paragraph', 'image', 'video',
             'media_embed', 'quote', 'list', 'accordion', 'newsletter_signup_inline',
-            'timeline', 'link', 'artwork', 'artworks',
-            'hr', 'split_block', 'tour_stop', 'button', 'mobile_app', '3d_model', '360_embed', '360_modal'
+            'timeline', 'link', 'artwork',
+            'hr', 'split_block', 'tour_stop', 'button', 'mobile_app',
+            '3d_model', '360_embed', '360_modal',
+            'gallery', 'artworks', 'gallery_new',
         ])
     ])
 @stop
@@ -128,6 +130,17 @@
             'name' => 'sponsors',
             'label' => 'Sponsors',
             'note' => 'Display content blocks from this sponsor',
+            'max' => 1
+        ])
+    </a17-fieldset>
+
+    <a17-fieldset id="waitTime" title="Wait time">
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'moduleName' => 'waitTimes',
+            'name' => 'waitTimes',
+            'label' => 'Wait Time',
+            'note' => 'Select a queue to display the wait time for',
             'max' => 1
         ])
     </a17-fieldset>

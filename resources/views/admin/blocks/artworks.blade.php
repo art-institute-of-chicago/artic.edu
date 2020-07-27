@@ -1,3 +1,5 @@
+<p style="color: red">This block is deprecated. Its content will be migrated in a future release. Please use "Gallery (new)" for new content.</p>
+
 @formField('browser', [
     'routePrefix' => 'collection',
     'name' => 'artworks',

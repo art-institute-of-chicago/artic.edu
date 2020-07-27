@@ -392,6 +392,10 @@ function aic_imageSettings($data) {
             $imgixSettings['crop'] = $settings['crop'];
         }
 
+        if ($settings['monochrome'] ?? false) {
+            $imgixSettings['monochrome'] = '808080';
+        }
+
         // Special settings for GIFs [WEB-955]
         if (Str::endsWith(explode('?', $originalSrc)[0], 'gif')) {
             $imgixSettings['auto'] = 'format,compress';

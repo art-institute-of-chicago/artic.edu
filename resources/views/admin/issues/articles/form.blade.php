@@ -108,10 +108,11 @@
 
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
-            'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
-            'list', 'artwork', 'artworks', 'hr', 'citation', 'split_block',
+            'paragraph', 'image', 'video', 'media_embed', 'quote',
+            'list', 'artwork', 'hr', 'citation', 'split_block',
             'membership_banner', 'digital_label', 'tour_stop', 'button', 'mobile_app',
-            '3d_model', '3d_tour', '3d_embed'
+            '3d_model', '3d_tour', '3d_embed',
+            'gallery', 'artworks', 'gallery_new',
         ])
     ])
 

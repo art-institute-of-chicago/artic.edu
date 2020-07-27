@@ -42,24 +42,28 @@
 }
 
 .o-gallery__title,
-.o-gallery figcaption strong,
-.o-gallery .m-media figcaption strong.f-caption {
+.o-gallery figcaption,
+.o-gallery .m-media figcaption .f-caption-title {
   color: $color__text--title-contrast;
 }
 
-.o-gallery .m-media figcaption strong a {
+.o-gallery .m-media figcaption a {
   color: $color__text--title-contrast;
 }
 
-.o-gallery .m-media figcaption strong a:hover,
-.o-gallery .m-media a.m-media__img:hover + figcaption strong a {
+.o-gallery .m-media figcaption a:hover,
+.o-gallery .m-media a.m-media__img:hover + figcaption a {
   @include text-underline(1.05em, $color__text--title-contrast, $color__bg--gallery);
 }
 
-.o-gallery .m-media figcaption strong a:active {
+.o-gallery .m-media figcaption a:active {
   background-image: none;
   color: $color__text--title-contrast;
   text-shadow: 0;
+}
+
+.o-gallery .m-media figcaption .f-caption p {
+  margin-bottom: 12px;
 }
 
 .o-gallery hr,
@@ -437,7 +441,6 @@
     &:first-child {
       margin-left: 0;
 
-
       @include breakpoint('small+') {
         margin-left: 0;
       }
@@ -469,13 +472,28 @@
     }
   }
 
+  figcaption {
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        max-width: colspan(map-get((
+          xsmall: 48,
+          small: 36,
+          medium: 24,
+          large: 24,
+          xlarge: 18
+        ), $name), $name);
+      }
+    }
+  }
+
   .m-media__img:not(.m-media__img--video) img {
     width: auto;
     min-width: 200px;
     max-width: 600px;
     max-height: 400px;
     object-fit: contain;
-    object-position: center top;
+    object-position: left top;
+    margin: initial;
 
     @include breakpoint('small+') {
       max-height: 480px;
@@ -580,20 +598,20 @@
 
   .o-gallery__title,
   figcaption strong,
-  .m-media figcaption strong.f-caption {
+  .m-media figcaption .f-caption-title {
     color: $color__text--title;
   }
 
-  .m-media figcaption strong a {
+  .m-media figcaption a {
     color: $color__text--title;
   }
 
-  .m-media figcaption strong a:hover,
-  .m-media a.m-media__img:hover + figcaption strong a {
+  .m-media figcaption a:hover,
+  .m-media a.m-media__img:hover + figcaption a {
     @include text-underline(1.05em, $color__text--title, $color__bg--primary);
   }
 
-  .m-media figcaption strong a:active {
+  .m-media figcaption a:active {
     background-image: none;
     color: $color__text--title;
     text-shadow: 0;

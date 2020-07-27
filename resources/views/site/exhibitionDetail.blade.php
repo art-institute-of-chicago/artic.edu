@@ -13,16 +13,16 @@
     {{-- @slot('variation', ($item->headerVariation ?? null)) --}}
     @slot('title', $item->present()->title)
     @slot('title_display', $item->present()->title_display)
-    @slot('date', $item->present()->date)
-    @slot('previewDateStart', $item->member_preview_start_date)
-    @slot('previewDateEnd', $item->member_preview_end_date)
-    @slot('dateStart', $item->present()->startAt)
-    @slot('dateEnd', $item->present()->endAt)
     @slot('type', $item->present()->exhibitionType)
     @slot('intro', $item->present()->header_copy)
     @slot('img', $item->imageAsArray('hero', $item->cms_exhibition_type == \App\Models\Exhibition::SPECIAL ? 'special' : 'default'))
     @slot('credit', $item->present()->hero_caption)
+    @slot('previewDateStart', $item->member_preview_start_date)
+    @slot('previewDateEnd', $item->member_preview_end_date)
     @slot('formattedDate', $item->present()->date_display_override)
+    @slot('dateStart', $item->present()->startAt)
+    @slot('dateEnd', $item->present()->endAt)
+    @slot('date', $item->present()->date)
   @endcomponent
 
   <div class="o-article__primary-actions">
@@ -31,21 +31,23 @@
     @endcomponent
 
     @if ($item->present()->navigation)
-        {{-- dupe 😢 - shows xlarge+ --}}
-        @component('components.molecules._m-link-list')
-            @slot('variation', 'u-show@large+')
-            @slot('links', $item->present()->navigation)
-        @endcomponent
+        <div {!! $item->present()->addInjectAttributes('u-show@large+') !!}>
+            {{-- dupe 😢 - shows xlarge+ --}}
+            @component('components.molecules._m-link-list')
+                @slot('variation', 'u-show@large+')
+                @slot('links', $item->present()->navigation)
+            @endcomponent
+        </div>
     @endif
   </div>
 
   {{-- dupe 😢 - hides xlarge+ --}}
   @if ($item->present()->navigation)
-      <div class="o-article__meta">
+        <div class="o-article__meta" {!! $item->present()->addInjectAttributes() !!}>
             @component('components.molecules._m-link-list')
                 @slot('links', $item->present()->navigation);
             @endcomponent
-      </div>
+        </div>
   @endif
 
   <div class="o-article__secondary-actions">

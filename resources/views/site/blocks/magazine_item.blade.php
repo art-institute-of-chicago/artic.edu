@@ -13,17 +13,23 @@
         if ($item) {
             $href = $item->present()->url;
             $image = $item->imageFront('hero');
-            $type = $item->present()->type;
             $title = $item->present()->title;
             $title_display = $item->present()->title_display;
             $list_description = $block->input('list_description') ?? $item->present()->list_description;
             $author_display = $item->author_display;
+
+            if ($featureType === MagazineItem::ITEM_TYPE_ARTICLE) {
+                $type = $item->present()->subtype;
+            } else {
+                $type = $item->present()->type;
+            }
 
             if ($featureType === MagazineItem::ITEM_TYPE_SELECTION) {
                 $variation[] = 'm-listing--selection';
             }
 
             $isBlockReady = true;
+            $gtmEvent = $title;
         }
     } else {
         $href = $block->input('url');
@@ -35,6 +41,9 @@
         $author_display = $block->input('author_display');
 
         $isBlockReady = true;
+
+        $url = parse_url($href, PHP_URL_PATH);
+        $gtmEvent = substr($url, strrpos($url, '/')+1); // Last part of path
     }
 @endphp
 
@@ -60,6 +69,6 @@
                   'xlarge' => '13',
             )),
         ))
-        @slot('gtmAttributes', 'data-gtm-event="' . $title . '" data-gtm-event-category="mag-content-' . $block->position . '"')
+        @slot('gtmAttributes', 'data-gtm-event="' . $gtmEvent . '" data-gtm-event-category="mag-content-' . $block->position . '"')
     @endcomponent
 @endif

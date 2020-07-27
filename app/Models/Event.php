@@ -444,14 +444,18 @@ class Event extends AbstractModel
         return $query;
     }
 
-    public function scopeByProgram($query, $program = null)
+    public function scopeByProgram($query, $programs = null)
     {
-        if (empty($program)) {
+        if (empty($programs)) {
             return $query;
         }
 
-        return $query->whereHas('programs', function ($query) use ($program) {
-            $query->where('event_program_id', $program);
+        $programs = collect($programs)->map(function($program) {
+            return (int) $program;
+        })->all();
+
+        return $query->whereHas('programs', function ($query) use ($programs) {
+            $query->whereIn('event_program_id', $programs);
         });
     }
 

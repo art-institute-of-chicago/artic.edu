@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Libraries;
+
 use Cache;
 use App\Models\Api\Search;
+use Illuminate\Support\Facades\Cookie;
 
 /**
  *
@@ -23,20 +25,20 @@ class RecentlyViewedService
      */
     function addArtwork($item)
     {
-        $recentlyViewed = session('recently_viewed_artwork') ?? collect([]);
+        $recentlyViewed = $this->getArtworkIds();
 
         // Remove the id if it was previously viewed
-        $recentlyViewed = $recentlyViewed->filter(function ($value, $key) use( $item ) {
-            return $value->id != $item->id;
+        $recentlyViewed = $recentlyViewed->filter(function ($value, $key) use ($item) {
+            return $value != $item->id;
         });
 
         // Add it to beginning of list
-        $recentlyViewed->prepend($item);
+        $recentlyViewed->prepend($item->id);
 
         // Keep 20 items max
         $recentlyViewed = $recentlyViewed->slice(0, 20);
 
-        session(['recently_viewed_artwork' => $recentlyViewed]);
+        Cookie::queue('recently_viewed_artwork', json_encode($recentlyViewed), 60*24*14); // 14 days
     }
 
     /**
@@ -46,7 +48,7 @@ class RecentlyViewedService
      */
     function clear()
     {
-        session()->forget('recently_viewed_artwork');
+        Cookie::queue('recently_viewed_artwork', '', 1);
     }
 
     /**
@@ -54,9 +56,34 @@ class RecentlyViewedService
      *
      * @return null
      */
+    function getArtworkIds()
+    {
+        $cookie = Cookie::get('recently_viewed_artwork');
+
+        $ids = json_decode($cookie);
+
+        if (!$ids) {
+            return collect([]);
+        }
+
+        return collect($ids);
+    }
+
     function getArtworks()
     {
-        return session('recently_viewed_artwork') ?? collect([]);
+        $ids = $this->getArtworkIds();
+
+        if ($ids->isEmpty()) {
+            return collect([]);
+        }
+
+        $artworks = \App\Models\Api\Artwork::query()->findMany($ids->toArray());
+
+        $artworksSorted = [];
+        foreach ($ids as $id) {
+            $artworksSorted[] = $artworks->firstWhere('id', $id);
+        }
+        return collect($artworksSorted)->filter();
     }
 
     /**
@@ -67,7 +94,7 @@ class RecentlyViewedService
     function getThemes()
     {
         $themes = [];
-        $ids    = $this->getArtworks()->pluck('id')->toArray();
+        $ids    = $this->getArtworkIds()->toArray();
 
         // If we have recently viewed elements
         if (!empty($ids)) {

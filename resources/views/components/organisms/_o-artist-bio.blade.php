@@ -6,9 +6,9 @@
                 {{-- Mimicking an image block here. --}}
                 @component('components.molecules._m-media')
                     @slot('variation', 'o-blocks__block')
+                    @slot('imageSettings', $imageSettings ?? '')
                     @slot('item', [
                         'type' => 'image',
-                        'imageSettings' => $imageSettings ?? '',
                         'media' => $item->imageFront('hero'),
                     ])
                 @endcomponent

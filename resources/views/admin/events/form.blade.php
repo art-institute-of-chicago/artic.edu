@@ -256,10 +256,11 @@
 
         @formField('block_editor', [
             'blocks' => getBlocksForEditor([
-                'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
+                'paragraph', 'image', 'video', 'media_embed', 'quote',
                 'list', 'newsletter_signup_inline', 'timeline', 'link',
-                'artworks', 'artwork', 'hr', 'split_block', 'tour_stop', 'button',
-                'mobile_app', '3d_model'
+                'artwork', 'hr', 'split_block', 'tour_stop', 'button',
+                'mobile_app', '3d_model',
+                'gallery', 'artworks', 'gallery_new',
             ])
         ])
     </a17-fieldset>
@@ -321,6 +322,7 @@
             'note' => 'To view program URLS, select programs below, update event, and refresh the page',
             'options' => $eventProgramsList,
         ])
+
         @formField('input', [
             'name' => 'program_urls',
             'label' => 'Program URLs',

@@ -8,5 +8,6 @@ return [
     'prince_command' => env('PRINCE_COMMAND', '/usr/bin/prince'),
     'protocol' => env('APP_PROTOCOL', 'https'),
     'iiif_s3_endpoint' => env('IIIF_S3_ENDPOINT'),
+    'sales_site_url' => env('SALES_SITE_URL', 'https://sales.artic.edu'),
 
 ];

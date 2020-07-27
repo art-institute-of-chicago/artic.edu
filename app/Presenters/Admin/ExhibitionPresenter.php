@@ -65,37 +65,27 @@ class ExhibitionPresenter extends BasePresenter
         return $this->entity->isOngoing ? 'Ongoing' : 'Exhibition';
     }
 
-    // For exhibition listings. Pass to _m-article-header..?
+    // Used in _m-listing----exhibition-history-row
+    public function formattedDateCanonical()
+    {
+        return view('components.organisms._o-public-dates' , [
+            'formattedDate' => $this->date_display_override,
+            'dateStart' => $this->dateStart, // see getter
+            'dateEnd' => $this->dateEnd, // see getter
+            'date' => $this->date,
+        ]);
+    }
+
+    // Used in member magazine
     public function formattedDate()
     {
-        if (!empty($this->entity->date_display_override)) {
-            return $this->entity->date_display_override;
-        }
-
-        $date = '';
-        $date_format = false;
-
-        if (!empty($this->entity->dateStart)) {
-            $year_start = $this->entity->dateStart->format("Y");
-            if (!empty($this->entity->dateEnd)) {
-             $year_end = $this->entity->dateEnd->format("Y");
-             if($year_start == $year_end) {
-                $date_format = true;
-             }
-            }
-
-            if($date_format == true) {
-                $date .= '<time datetime="'.$this->entity->dateStart->format("Y-m-d").'" itemprop="startDate">'.$this->entity->dateStart->format('M j').'</time>';
-            } else {
-                $date .= '<time datetime="'.$this->entity->dateStart->format("Y-m-d").'" itemprop="startDate">'.$this->entity->dateStart->format('M j, Y').'</time>';
-            }
-
-        }
-        if (!empty($this->entity->dateEnd)) {
-            $date .= '&ndash;<time datetime="'.$this->entity->dateEnd->format("Y-m-d").'" itemprop="endDate">'.$this->entity->dateEnd->format('M j, Y').'</time>';
-        }
-
-        return $date;
+        return view('components.organisms._o-public-dates' , [
+            'formattedDate' => $this->date_display_override,
+            'dateStart' => $this->startAt,
+            'dateEnd' => $this->endAt,
+            'date' => $this->date,
+            'font' => '', // defaults to f-secondary
+        ]);
     }
 
     public function startAt()
@@ -129,6 +119,11 @@ class ExhibitionPresenter extends BasePresenter
         return array_filter([$this->galleryLink(), $this->relatedEventsLink(), $this->closingSoonLink()]);
     }
 
+    public function navigationWithWaitTime()
+    {
+        return array_filter([$this->galleryLink(), $this->waitTime(), $this->relatedEventsLink(), $this->closingSoonLink()]);
+    }
+
     public function itemprops() {
         return [
             'description' => $this->entity->short_description,
@@ -144,6 +139,15 @@ class ExhibitionPresenter extends BasePresenter
                 'iconBefore' => 'location'
             ];
         }
+    }
+
+    protected function waitTime() {
+        $waitTime  = $this->entity->apiModels('waitTimes', 'WaitTime')->first();
+
+        return [
+            'label' => 'Average wait time: ' . $waitTime->present()->display,
+            'iconBefore' => 'clock'
+        ];
     }
 
     protected function relatedEventsLink() {
@@ -189,5 +193,12 @@ class ExhibitionPresenter extends BasePresenter
 
     protected function augmented() {
         return $this->entity->getAugmentedModel() ? 'Yes' : 'No';
+    }
+
+    public function addInjectAttributes($variation = null) {
+        if (date('H') >= 10 && date('H') < 20) {
+            return 'class="o-injected-container" data-behavior="injectContent" data-injectContent-url="' . route('exhibitions.waitTime', ['id' => $this->entity->id, 'slug' => $this->entity->getSlug(), 'variation' => $variation]) . '"';
+        }
+        return null;
     }
 }

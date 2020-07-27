@@ -15,6 +15,8 @@ $print = app('printservice')->isPrintMode();
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
   <![endif]-->
 
+  <meta name="svg-sprite-src" content="{{ revAsset('icons/icons.svg') }}">
+
   @include('partials._head-js')
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
   <style>
@@ -27,6 +29,7 @@ $print = app('printservice')->isPrintMode();
 </head>
 
 <body>
+
 <div id="a17">
   <main id="content">
     <article class="o-article">

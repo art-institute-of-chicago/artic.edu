@@ -40,13 +40,18 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-grid',
         ],
+        'gallery_new' => [
+            'title' => 'Gallery (new)',
+            'icon' => 'image',
+            'component' => 'a17-block-gallery_new',
+        ],
         'gallery' => [
-            'title' => 'Gallery',
+            'title' => 'Gallery (old)',
             'icon' => 'image',
             'component' => 'a17-block-gallery',
         ],
         'artworks' => [
-            'title' => 'Artworks gallery',
+            'title' => 'Artworks gallery (old)',
             'icon' => 'image',
             'component' => 'a17-block-artworks',
         ],
@@ -272,6 +277,12 @@ return [
             'trigger' => 'Add Grid Item',
             'component' => 'a17-block-grid_item',
             'max' => 48,
+        ],
+        'gallery_new_item' => [
+            'title' => 'Gallery Item',
+            'trigger' => 'Add gallery item',
+            'component' => 'a17-block-gallery_new_item',
+            'max' => 10,
         ],
         'gallery_item' => [
             'title' => 'Gallery Item',

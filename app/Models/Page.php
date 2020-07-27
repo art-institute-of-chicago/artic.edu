@@ -91,6 +91,8 @@ class Page extends AbstractModel
         'visit_accessibility_link_url',
         'visit_cta_module_action_url',
         'visit_what_to_expect_more_link',
+        'visit_capacity_btn_url_1',
+        'visit_capacity_btn_url_2',
     ];
 
     public $translatedAttributes = [
@@ -112,7 +114,12 @@ class Page extends AbstractModel
         'visit_cta_module_body',
         'visit_cta_module_button_text',
         'visit_what_to_expect_more_text',
-        'active'
+        'visit_capacity_alt',
+        'visit_capacity_heading',
+        'visit_capacity_text',
+        'visit_capacity_btn_text_1',
+        'visit_capacity_btn_text_2',
+        'active',
     ];
 
     public $slugAttributes = [

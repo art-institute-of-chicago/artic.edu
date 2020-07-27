@@ -9,9 +9,18 @@ module.exports = function(gulp, data, util, taskName) {
       distPath     = data.manifest.paths.dist;
 
   // Task declaration
-  gulp.task(taskName, ['styles', 'scripts'], function() {
+  gulp.task(taskName, ['styles', 'scripts', 'icons'], function() {
     if (data.enabled.rev) {
-      return gulp.src([distPath + '**/*.css', distPath + '**/*.js'], {base: distPath})
+      return gulp.src(
+          [
+            distPath + '**/*.css',
+            distPath + '**/*.js',
+            distPath + '**/*.svg',
+          ],
+          {
+            base: distPath
+          }
+        )
         .pipe($.rev())
         .pipe($.revDeleteOriginal())
         .pipe(gulp.dest(distPath))

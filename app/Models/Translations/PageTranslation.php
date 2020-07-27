@@ -24,6 +24,11 @@ class PageTranslation extends Model
         'visit_cta_module_body',
         'visit_cta_module_button_text',
         'visit_what_to_expect_more_text',
+        'visit_capacity_alt',
+        'visit_capacity_heading',
+        'visit_capacity_text',
+        'visit_capacity_btn_text_1',
+        'visit_capacity_btn_text_2',
         'active',
         'locale',
     ];

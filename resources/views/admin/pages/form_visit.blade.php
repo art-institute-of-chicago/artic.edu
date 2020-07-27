@@ -94,6 +94,55 @@
         @formField('repeater', ['type' => 'whatToExpects'])
     </a17-fieldset>
 
+    <a17-fieldset title="Capacity" id="capacity">
+        @formField('input', [
+            'name' => 'visit_capacity_alt',
+            'field_name' => 'visit_capacity_alt',
+            'label' => 'Graph alt text',
+            'translated' => true,
+            'note' => 'For screenreaders',
+        ])
+        @formField('input', [
+            'name' => 'visit_capacity_heading',
+            'field_name' => 'visit_capacity_heading',
+            'label' => 'Capacity heading',
+            'translated' => true,
+        ])
+        @formField('wysiwyg', [
+            'name' => 'visit_capacity_text',
+            'field_name' => 'visit_capacity_text',
+            'label' => 'Capacity text',
+            'toolbarOptions' => [
+                'italic', 'link'
+            ],
+            'translated' => true,
+        ])
+        <hr>
+        <p>Up to two buttons can be defined. We will only display a button if both its label and URL are filled out.</p>
+        @formField('input', [
+            'name' => 'visit_capacity_btn_text_1',
+            'field_name' => 'visit_capacity_btn_text_1',
+            'label' => 'Button #1 label',
+            'translated' => true,
+        ])
+        @formField('input', [
+            'name' => 'visit_capacity_btn_url_1',
+            'field_name' => 'visit_capacity_btn_url_1',
+            'label' => 'Button #1 URL',
+        ])
+        @formField('input', [
+            'name' => 'visit_capacity_btn_text_2',
+            'field_name' => 'visit_capacity_btn_text_2',
+            'label' => 'Button #2 label',
+            'translated' => true,
+        ])
+        @formField('input', [
+            'name' => 'visit_capacity_btn_url_2',
+            'field_name' => 'visit_capacity_btn_url_2',
+            'label' => 'Button #2 URL',
+        ])
+    </a17-fieldset>
+
     <a17-fieldset title="Admissions" id="admissions">
         @formField('wysiwyg', [
             'name' => 'visit_admission_description',

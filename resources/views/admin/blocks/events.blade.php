@@ -1,4 +1,7 @@
 @php
+
+use App\Repositories\EventProgramRepository;
+
 $audiences = [];
 $types = [];
 
@@ -15,6 +18,9 @@ foreach (\App\Models\Event::$eventTypes as $key => $eventType) {
         'label' => $eventType,
     ]);
 }
+
+$programs = app(EventProgramRepository::class)->listAll('name');
+
 @endphp
 
 @formField('input', [
@@ -34,6 +40,12 @@ foreach (\App\Models\Event::$eventTypes as $key => $eventType) {
     'options' => $types,
 ])
 
+@formField('multi_select', [
+    'name' => 'program',
+    'label' => 'Program',
+    'options' => $programs,
+])
+
 @component('twill::partials.form.utils._columns')
 @slot('left')
     @formField('date_picker', [
@@ -50,3 +62,4 @@ foreach (\App\Models\Event::$eventTypes as $key => $eventType) {
     ])
 @endslot
 @endcomponent
+

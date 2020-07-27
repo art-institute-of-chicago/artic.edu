@@ -90,12 +90,13 @@ class PageController extends ModuleController
         $additionalFieldsets = [
             ['fieldset' => 'hours', 'label' => 'Hours'],
             ['fieldset' => 'call-to-action', 'label' => 'CTA'],
-            ['fieldset' => 'expect', 'label' => 'What to Expect'],
-            ['fieldset' => 'admissions', 'label' => 'Admissions'],
+            ['fieldset' => 'expect', 'label' => 'Expect'],
+            ['fieldset' => 'capacity', 'label' => 'Cap.'],
+            ['fieldset' => 'admissions', 'label' => 'Adm.'],
             ['fieldset' => 'faq', 'label' => 'FAQ'],
-            ['fieldset' => 'accessibility', 'label' => 'Accessibility'],
-            ['fieldset' => 'directions', 'label' => 'Directions'],
-            ['fieldset' => 'explore', 'label' => 'Ways to Explore'],
+            ['fieldset' => 'accessibility', 'label' => 'A11y'],
+            ['fieldset' => 'directions', 'label' => 'Dir.'],
+            ['fieldset' => 'explore', 'label' => 'Explore'],
         ];
 
         $fields = $this->form($page->id);

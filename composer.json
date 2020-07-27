@@ -104,5 +104,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
+    },
+    "conflict": {
+      "symfony/polyfill-php80": "*"
     }
 }
