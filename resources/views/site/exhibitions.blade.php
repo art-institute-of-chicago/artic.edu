@@ -131,7 +131,7 @@
     @endcomponent
 @endunless
 
-@if (!empty($eventsByDay))
+@if (!empty($eventsByDay) && $eventsByDay->count() > 0)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'Browse events', 'href' => route('events'))))
         Upcoming Events
