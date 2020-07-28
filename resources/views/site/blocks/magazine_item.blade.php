@@ -16,7 +16,7 @@
             $title = $item->present()->title;
             $title_display = $item->present()->title_display;
             $list_description = $block->input('list_description') ?? $item->present()->list_description;
-            $author_display = $item->author_display;
+            $author_display = $item->showAuthors();
 
             if ($featureType === MagazineItem::ITEM_TYPE_ARTICLE) {
                 $type = $item->present()->subtype;

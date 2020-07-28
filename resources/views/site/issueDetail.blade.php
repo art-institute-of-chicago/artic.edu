@@ -47,7 +47,7 @@
                         @slot('title', $item->present()->title)
                         @slot('title_display', $item->present()->title_display)
                         @slot('list_description', $item->present()->list_description)
-                        @slot('author_display', $item->author_display)
+                        @slot('author_display', $item->showAuthors())
                         @slot('imageSettings', array(
                             'fit' => 'crop',
                             'ratio' => '16:9',

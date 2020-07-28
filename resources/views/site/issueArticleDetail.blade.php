@@ -38,11 +38,11 @@
     @endif
 
     <div class="o-article__body o-blocks o-blocks--with-sidebar">
-        @if ($item->author_display)
+        @if ($item->showAuthors())
             @component('components.blocks._text')
                 @slot('font', 'f-tag-2')
                 @slot('tag', 'div')
-                {!! $item->present()->author_display !!}
+                {!! $item->showAuthors() !!}
             @endcomponent
             <hr>
         @endif

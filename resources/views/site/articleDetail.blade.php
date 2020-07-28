@@ -26,12 +26,12 @@
         @endcomponent
     @endif
 
-    @if ($item->present()->author)
+    @if ($item->showAuthors())
         @component('components.molecules._m-author')
             @slot('variation', 'm-author---keyline-top')
             @slot('editorial', ($item->articleType === 'editorial'))
             @slot('img', $item->imageFront('author', 'square'));
-            @slot('name', $item->present()->author ?? null);
+            @slot('name', $item->showAuthors() ?? null);
             @slot('link', null);
             @slot('date', $item->date ?? null);
         @endcomponent

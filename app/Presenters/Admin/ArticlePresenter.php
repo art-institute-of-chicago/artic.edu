@@ -39,16 +39,4 @@ class ArticlePresenter extends BasePresenter
         return route('articles.show', $this->entity);
     }
 
-    public function author()
-    {
-        if ($this->entity->author_display) {
-            return $this->entity->author_display;
-        }
-
-        if ($this->entity->authors->isNotEmpty()) {
-            $names = $this->entity->authors->pluck('title')->all();
-
-            return summation($names);
-        }
-    }
 }
