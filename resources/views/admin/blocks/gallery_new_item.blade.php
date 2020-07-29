@@ -56,7 +56,7 @@
 ])
     @formField('browser', [
         'routePrefix' => 'collection',
-        'name' => 'artwork',
+        'name' => 'artworks',
         'moduleName' => 'artworks',
         'label' => 'Artwork',
         'max' => 1
