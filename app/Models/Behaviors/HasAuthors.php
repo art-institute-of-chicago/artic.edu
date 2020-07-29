@@ -18,7 +18,7 @@ trait HasAuthors
         }
 
         if ($this->author_display) {
-            return $this->entity->author_display;
+            return $this->author_display;
         }
     }
 }
