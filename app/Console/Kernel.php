@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('sitemap:generate')->twiceDaily();
         $schedule->command('update:links')->daily();
         $schedule->command('update:cloudfront-ips')->hourly();
+        $schedule->command('fix:galleries')->everyMinute();
     }
 
     /**
