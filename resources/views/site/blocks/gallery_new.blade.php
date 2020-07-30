@@ -7,7 +7,7 @@
             return $item->input('gallery_item_type') === \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK;
         })
         ->map(function($item) {
-            return $item->browserIds('artwork');
+            return $item->browserIds('artworks');
         })
         ->map(function($ids) {
             return $ids[0] ?? null;
@@ -41,7 +41,7 @@
 
                 break;
             case \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK:
-                $ids = $item->browserIds('artwork');
+                $ids = $item->browserIds('artworks');
 
                 if (!$ids) {
                     break;
