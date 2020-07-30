@@ -40,7 +40,7 @@ class MagazineIssue extends AbstractModel
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 2.4,
+                    'ratio' => 21 / 9,
                 ],
             ],
         ],

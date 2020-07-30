@@ -50,7 +50,7 @@ class Issue extends AbstractModel implements Sortable
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 2.4,
+                    'ratio' => 21 / 9,
                 ],
             ],
         ],
