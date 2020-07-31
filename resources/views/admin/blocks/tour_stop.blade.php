@@ -5,3 +5,8 @@
     'label' => 'Audio Tour Stop',
     'max' => 1
 ])
+
+@formField('checkbox', [
+    'name' => 'hidePromoText',
+    'label' => 'Hide promo text'
+])
