@@ -143,11 +143,17 @@ class ExhibitionPresenter extends BasePresenter
 
     protected function waitTime() {
         $waitTime  = $this->entity->apiModels('waitTimes', 'WaitTime')->first();
+        $waitTimeMember  = $this->entity->apiModels('waitTimes', 'WaitTime')->first();
 
-        return [
-            'label' => 'Average wait time: ' . $waitTime->present()->display,
-            'iconBefore' => 'clock'
-        ];
+        if ($waitTime || $waitTimeMember) {
+            return [
+                'label' => 'Current wait times<br/>'
+                 . 'General Admission: ' . $waitTime->present()->display . '<br/>'
+                 . 'Members: ' . $waitTimeMember->present()->display,
+                'iconBefore' => 'clock'
+            ];
+        }
+        return [];
     }
 
     protected function relatedEventsLink() {
