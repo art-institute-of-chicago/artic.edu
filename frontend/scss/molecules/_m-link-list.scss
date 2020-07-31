@@ -196,3 +196,12 @@ a.m-link-list__trigger.f-secondary {
     width: 33%;
   }
 }
+
+.m-link-list__trigger--wait-time {
+  display: flex;
+  padding-bottom: .02px;
+  svg {
+    margin-top: 8px;
+    margin-right: 8px;
+  }
+}

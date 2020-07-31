@@ -150,7 +150,8 @@ class ExhibitionPresenter extends BasePresenter
                 'label' => 'Current wait times<br/>'
                  . 'General Admission: ' . $waitTime->present()->display . '<br/>'
                  . 'Members: ' . $waitTimeMember->present()->display,
-                'iconBefore' => 'clock'
+                'iconBefore' => 'clock',
+                'variation' => 'm-link-list__trigger--wait-time',
             ];
         }
         return [];
