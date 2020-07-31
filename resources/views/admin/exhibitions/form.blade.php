@@ -139,7 +139,16 @@
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'waitTimes',
             'name' => 'waitTimes',
-            'label' => 'Wait Time',
+            'label' => 'Wait Time - GA',
+            'note' => 'Select a queue to display the wait time for',
+            'max' => 1
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'moduleName' => 'waitTimes',
+            'name' => 'waitTimesMember',
+            'label' => 'Wait Time - Member',
             'note' => 'Select a queue to display the wait time for',
             'max' => 1
         ])

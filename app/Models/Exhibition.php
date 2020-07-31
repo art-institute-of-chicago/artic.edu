@@ -126,6 +126,11 @@ class Exhibition extends AbstractModel
         return $this->apiElements()->where('relation', 'waitTimes');
     }
 
+    public function waitTimesMember()
+    {
+        return $this->apiElements()->where('relation', 'waitTimesMember');
+    }
+
     public function getTitleInBucketAttribute()
     {
         return $this->title;
