@@ -147,7 +147,9 @@
                   'xlarge' => '18',
             )),
         ))
-        @slot('items', $videos->map(function($item, $key) use ($seo) {
+        @php ($count = 0)
+        @slot('items', $videos->map(function($item, $key) use ($seo, &$count) {
+            $count += 1;
             $item->type = 'embed';
             $item->size = 'gallery';
             $item->restrict = false;
@@ -159,7 +161,7 @@
             // Setting caption to empty string forces the title to be bolded
             $item->captionTitle = $item->present()->title_display ?? $item->present()->title;
             $item->caption = $item->list_description ?? '';
-            $item->gtmAttributes = 'data-gtm-event="'. $item->captionTitle . '" data-gtm-event-category="video-' . ($key) . '"';
+            $item->gtmAttributes = 'data-gtm-event="'. $item->captionTitle . '" data-gtm-event-category="video-' . ($count) . '"';
 
             return $item;
         }))
