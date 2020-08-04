@@ -37,9 +37,9 @@
 @component('components.molecules._m-intro-block')
     @slot('links', array(
         array('label' => 'Visit', 'href' => $_pages['visit'], 'variation' => 'btn', 'font' => 'f-buttons', 'gtmAttributes' => 'data-gtm-event="Visit" data-gtm-event-category="nav-cta-button"'),
-        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_1_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_1_url),
-        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_2_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_2_url),
-        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_3_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_3_url),
+        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_1_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_1_url, 'gtmAttributes' => 'data-gtm-event="' . lastUrlSegment($plan_your_visit_link_1_url). '" data-gtm-event-category="nav-link"'),
+        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_2_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_2_url, 'gtmAttributes' => 'data-gtm-event="' . lastUrlSegment($plan_your_visit_link_2_url). '" data-gtm-event-category="nav-link"'),
+        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_3_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_3_url, 'gtmAttributes' => 'data-gtm-event="' . lastUrlSegment($plan_your_visit_link_3_url). '" data-gtm-event-category="nav-link"'),
     ))
     {!! SmartyPants::defaultTransform($intro) !!}
 @endcomponent
