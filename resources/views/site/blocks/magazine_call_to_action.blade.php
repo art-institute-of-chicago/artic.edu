@@ -6,7 +6,7 @@
     $theme = $block->input('theme');
     $gtmEvent = lastUrlSegment($href);
     if (!$gtmEvent) {
-        $gtmEvent = $title_display;
+        $gtmEvent = strip_tags($title_display);
     }
 @endphp
 
