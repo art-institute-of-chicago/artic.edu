@@ -29,12 +29,17 @@
             $caption = $artwork->present()->place_of_origin;
         }
 
+        $captionAddendum = '';
+        if (!empty($block->input('captionAddendum'))) {
+            $captionAddendum .= $block->input('captionAddendum');
+        }
+
         $artworkItem = array();
         $artworkItem['type'] = 'image';
         $artworkItem['size'] = 's';
         $artworkItem['media'] = $image;
         $artworkItem['captionTitle'] = $title;
-        $artworkItem['caption'] = $caption.'<br>'.$galleryLocation;
+        $artworkItem['caption'] = $caption.'<br>'.$galleryLocation.($captionAddendum ? '<br>'.$captionAddendum : '');
         $artworkItem['fullscreen'] = true;
         $artworkItem['urlTitle'] = route('artworks.show', $artwork);
         $artworkItem['showUrl'] = true;
