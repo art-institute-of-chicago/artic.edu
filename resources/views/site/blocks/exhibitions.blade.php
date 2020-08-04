@@ -11,8 +11,7 @@
 
     $items = $orderedExhibitions->map(function($exhibition) use ($block) {
         $href = route('exhibitions.show', ['id' => $exhibition->id, 'slug' => $exhibition->titleSlug ]);
-        $url = parse_url($href, PHP_URL_PATH);
-        $gtmEvent = substr($url, strrpos($url, '/')+1);
+        $gtmEvent = lastUrlSegment($href);
 
         return [
             'title' => $exhibition->title_display ?? $exhibition->title,

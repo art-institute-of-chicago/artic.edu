@@ -25,8 +25,7 @@
 
     $items = $events->map(function($event) use ($block) {
         $href = route('events.show', $event);
-        $url = parse_url($href, PHP_URL_PATH);
-        $gtmEvent = substr($url, strrpos($url, '/')+1);
+        $gtmEvent = lastUrlSegment($href);
 
         return [
             'title' => $event->title_display ?? $event->title,

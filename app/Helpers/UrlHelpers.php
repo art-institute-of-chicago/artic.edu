@@ -40,3 +40,13 @@ if (!function_exists('moduleRouteExists')) {
         return Route::has($routeName);
     }
 }
+
+
+if (!function_exists('lastUrlSegment')) {
+    function lastUrlSegment($href)
+    {
+        $url = parse_url($href, PHP_URL_PATH);
+        return substr($url, strrpos($url, '/')+1);
+    }
+}
+
