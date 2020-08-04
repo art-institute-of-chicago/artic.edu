@@ -23,6 +23,7 @@ class MagazineIssue extends AbstractModel
         'hero_caption',
         'hero_text',
         'welcome_note_display',
+        'welcome_note_author_override',
         'publish_start_date',
         'published',
     ];

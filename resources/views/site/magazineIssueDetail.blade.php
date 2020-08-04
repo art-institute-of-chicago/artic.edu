@@ -22,7 +22,7 @@
                 @component('components.organisms._o-editors-note----magazine')
                     @slot('description', $item->welcome_note_display ?? $welcomeNote->present()->listDescription)
                     @slot('articleLink', $welcomeNote->present()->url)
-                    @slot('authorDisplay', $welcomeNote->showAuthors())
+                    @slot('authorDisplay', $item->welcome_note_author_override ?? $welcomeNote->showAuthors())
                     @slot('gtmAttributes', 'data-gtm-event="' . $welcomeNote->title . '" data-gtm-event-category="mag-note"')
                 @endcomponent
             </div>
