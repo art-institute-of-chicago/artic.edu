@@ -46,7 +46,13 @@ if (!function_exists('lastUrlSegment')) {
     function lastUrlSegment($href)
     {
         $url = parse_url($href, PHP_URL_PATH);
-        return substr($url, strrpos($url, '/')+1);
+        $ret = substr($url, strrpos($url, '/')+1);
+
+        $fragment = parse_url($href, PHP_URL_FRAGMENT);
+        if ($fragment) {
+            return $ret . '#' . $fragment;
+        }
+        return $ret;
     }
 }
 
