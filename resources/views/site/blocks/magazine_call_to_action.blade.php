@@ -4,8 +4,7 @@
     $link_text = $block->input('link_text');
     $href = $block->input('link_url');
     $theme = $block->input('theme');
-    $url = parse_url($href, PHP_URL_PATH);
-    $gtmEvent = substr($url, strrpos($url, '/')+1); // Last part of path
+    $gtmEvent = lastUrlSegment($href);
     if (!$gtmEvent) {
         $gtmEvent = $title_display;
     }
