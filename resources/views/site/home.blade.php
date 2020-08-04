@@ -3,7 +3,7 @@
 @section('content')
 
 @component('components.organisms._o-features')
-     @php ($countMain = 0)
+    @php ($countMain = 0)
     @foreach ($mainFeatures as $key => $item)
         @php ($countMain = $countMain + 1)
         @if ($item->enclosedItem())
@@ -64,7 +64,9 @@
     @slot('cols_medium','2')
     @slot('cols_large','2')
     @slot('cols_xlarge','2')
+    @php ($count = 0)
     @foreach ($exhibitions as $item)
+        @php ($count += 1)
         @component('components.molecules._m-listing----exhibition')
             @slot('titleFont', 'f-list-4')
             @slot('item', $item)
@@ -80,7 +82,7 @@
                       'xlarge' => '2',
                 )),
             ))
-            @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="nav-link"')
+            @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="exhibition-' . $count . '"')
         @endcomponent
     @endforeach
 @endcomponent
