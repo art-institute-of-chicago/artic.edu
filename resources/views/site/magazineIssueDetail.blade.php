@@ -51,7 +51,7 @@
       </svg>
     </div>
     <div class="o-publication-footer__text">
-    <p class="f-secondary">Become a member or renew your membership today. Receive access to exhibition previews, exclusive events, and free admission year-round. <a href="/support-us/membership" data-gtm-event="Membership" data-gtm-event-category="internal-ad">Learn more</a>.</p>
+    <p class="f-secondary">The Art Institute is grateful to <a href="/thanks-to-our-supporters">our generous sponsors</a> for supporting our mission to inspire an expansive understanding of human creativity through our collection of works of art across time, cultures, geographies, and identities.</p>
     </div>
 </div>
 
