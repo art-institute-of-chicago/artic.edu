@@ -1,5 +1,6 @@
 @extends('twill::layouts.form', [
     'additionalFieldsets' => [
+        ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
         ['fieldset' => 'related', 'label' => 'Further Reading'],
         ['fieldset' => 'side_related', 'label' => 'Sidebar Related']
@@ -110,6 +111,17 @@
 @stop
 
 @section('fieldsets')
+    <a17-fieldset id="sponsors" title="Sponsors">
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'moduleName' => 'sponsors',
+            'name' => 'sponsors',
+            'label' => 'Sponsors',
+            'note' => 'Display content blocks from this sponsor',
+            'max' => 1
+        ])
+    </a17-fieldset>
+
     <a17-fieldset id="related" title="Further Reading">
         <p>Use "Custom related items" to relate up to 4 articles to show on the article page. See special note on articles below.</p>
 

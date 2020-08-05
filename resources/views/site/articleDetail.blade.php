@@ -129,6 +129,14 @@
       'pageTitle' => $item->meta_title ?: $item->title
     ]) !!}
 
+    @if ($sponsors = $item->sponsors)
+        <hr>
+
+        @component('site.shared._sponsors')
+            @slot('sponsors', $item->sponsors)
+        @endcomponent
+    @endif
+
     @if (sizeof($_collectedReferences))
         @component('components.organisms._o-accordion')
             @slot('variation', 'o-accordion--section o-blocks__block')

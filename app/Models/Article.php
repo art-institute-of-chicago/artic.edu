@@ -100,6 +100,20 @@ class Article extends AbstractModel implements Feedable
         ],
     ];
 
+    /**
+     * WEB-1787: See ArticleRepository for browser definitions.
+     */
+    public function getSponsorsAttribute()
+    {
+        $sponsors = $this->getRelated('sponsors');
+
+        if (!config('aic.is_preview_mode')) {
+            $sponsors = $sponsors->where('published', true);
+        }
+
+        return $sponsors->first();
+    }
+
     public function getIntroAttribute()
     {
         return $this->heading;
