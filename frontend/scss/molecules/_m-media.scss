@@ -1,5 +1,5 @@
 .m-media {
-  
+
   &--3d-tour {
     position:relative;
     pointer-events:none;
@@ -393,6 +393,18 @@ a.m-media__img:hover object {
 
 .m-media figcaption > br {
   display: none;
+}
+
+.m-media figcaption a {
+  color: $color__link--accent;
+}
+
+.m-media figcaption a:hover {
+  color: $color__link--accent-hover;
+}
+
+.m-media figcaption a:active {
+  color: $color__link--accent-active;
 }
 
 .m-media figcaption strong a {

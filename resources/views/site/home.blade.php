@@ -3,7 +3,7 @@
 @section('content')
 
 @component('components.organisms._o-features')
-     @php ($countMain = 0)
+    @php ($countMain = 0)
     @foreach ($mainFeatures as $key => $item)
         @php ($countMain = $countMain + 1)
         @if ($item->enclosedItem())
@@ -16,7 +16,7 @@
                     'srcset' => array(300,600,1000,1500,3000),
                     'sizes' => '100vw',
                 ))
-                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
+                @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
             @endcomponent
         @elseif ($item->url)
             @component('components.molecules._m-listing----custom')
@@ -28,7 +28,7 @@
                     'srcset' => array(300,600,1000,1500,3000),
                     'sizes' => '100vw',
                 ))
-                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.(ltrim(parse_url($item->url, PHP_URL_PATH),'/') ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.(ltrim(parse_url($item->url, PHP_URL_PATH),'/') ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
+                @slot('gtmAttributes', 'data-gtm-event="'.(lastUrlSegment($item->url) ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
             @endcomponent
         @endif
     @endforeach
@@ -37,9 +37,9 @@
 @component('components.molecules._m-intro-block')
     @slot('links', array(
         array('label' => 'Visit', 'href' => $_pages['visit'], 'variation' => 'btn', 'font' => 'f-buttons', 'gtmAttributes' => 'data-gtm-event="Visit" data-gtm-event-category="nav-cta-button"'),
-        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_1_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_1_url),
-        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_2_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_2_url),
-        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_3_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_3_url),
+        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_1_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_1_url, 'gtmAttributes' => 'data-gtm-event="' . lastUrlSegment($plan_your_visit_link_1_url). '" data-gtm-event-category="nav-link"'),
+        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_2_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_2_url, 'gtmAttributes' => 'data-gtm-event="' . lastUrlSegment($plan_your_visit_link_2_url). '" data-gtm-event-category="nav-link"'),
+        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_3_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_3_url, 'gtmAttributes' => 'data-gtm-event="' . lastUrlSegment($plan_your_visit_link_3_url). '" data-gtm-event-category="nav-link"'),
     ))
     {!! SmartyPants::defaultTransform($intro) !!}
 @endcomponent
@@ -64,7 +64,9 @@
     @slot('cols_medium','2')
     @slot('cols_large','2')
     @slot('cols_xlarge','2')
+    @php ($count = 0)
     @foreach ($exhibitions as $item)
+        @php ($count += 1)
         @component('components.molecules._m-listing----exhibition')
             @slot('titleFont', 'f-list-4')
             @slot('item', $item)
@@ -80,7 +82,7 @@
                       'xlarge' => '2',
                 )),
             ))
-            @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="nav-link"')
+            @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="exhibition-' . $count . '"')
         @endcomponent
     @endforeach
 @endcomponent
@@ -145,7 +147,9 @@
                   'xlarge' => '18',
             )),
         ))
-        @slot('items', $videos->map(function($item, $key) use ($seo) {
+        @php ($count = 0)
+        @slot('items', $videos->map(function($item, $key) use ($seo, &$count) {
+            $count += 1;
             $item->type = 'embed';
             $item->size = 'gallery';
             $item->restrict = false;
@@ -157,7 +161,7 @@
             // Setting caption to empty string forces the title to be bolded
             $item->captionTitle = $item->present()->title_display ?? $item->present()->title;
             $item->caption = $item->list_description ?? '';
-            $item->gtmAttributes = 'data-gtm-event="'. $item->captionTitle . '" data-gtm-event-category="video-' . ($key) . '"';
+            $item->gtmAttributes = 'data-gtm-event="'. $item->captionTitle . '" data-gtm-event-category="video-' . ($count) . '"';
 
             return $item;
         }))

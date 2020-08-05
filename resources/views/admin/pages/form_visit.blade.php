@@ -33,6 +33,16 @@
             'max' => '1',
             'note' => 'Minimum image width 2000px'
         ])
+        @formField('wysiwyg', [
+            'name' => 'visit_hour_image_caption',
+            'field_name' => 'visit_hour_image_caption',
+            'label' => 'Image caption',
+            'translated' => true,
+            'toolbarOptions' => [
+                'italic', 'link'
+            ],
+
+        ])
         @formField('input', [
             'name' => 'visit_hour_header',
             'field_name' => 'visit_hour_header',

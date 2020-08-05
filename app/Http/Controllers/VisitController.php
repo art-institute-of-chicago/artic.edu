@@ -56,7 +56,7 @@ class VisitController extends FrontController
                 'type' => 'image',
                 'size' => 's',
                 'media' => $page->imageFront('visit_featured_hour'),
-                'hideCaption' => true,
+                'caption' => $page->visit_hour_image_caption,
             ),
             'primary' => $page->visit_hour_header,
             'secondary' => $page->visit_hour_subheader,

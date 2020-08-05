@@ -58,13 +58,13 @@
             'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'articles',
             'name' => 'welcome_note',
-            'label' => 'Welcome Note',
+            'label' => 'Welcome note',
             'note' => 'Select one article',
         ])
 
         @formField('wysiwyg', [
             'name' => 'welcome_note_display',
-            'label' => 'Preview Text',
+            'label' => 'Preview text',
             'maxlength' => 255,
             'note' => 'If empty, we use the article\'s "List description"',
             'toolbarOptions' => [
@@ -72,7 +72,11 @@
             ],
         ])
 
-        <p>For the attribution, we use the "Author Display" field from the linked article.</p>
+        @formField('input', [
+            'name' => 'welcome_note_author_override',
+            'label' => 'Author override',
+            'note' => 'If empty, we use the article\'s author logic'
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="content" title="Content">

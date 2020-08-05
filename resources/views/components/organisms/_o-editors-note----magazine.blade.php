@@ -7,7 +7,7 @@
         @component('components.blocks._text')
             @slot('font', 'f-tag')
             @slot('variation', 'o-editors-note__tag')
-            Welcome Note
+            To Our Community
         @endcomponent
 
         <div class="o-editors-note__inner">

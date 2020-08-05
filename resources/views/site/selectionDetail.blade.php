@@ -94,7 +94,7 @@
         @foreach ($alsoInThisIssue as $item)
             @component('components.molecules._m-listing----' . strtolower($item->type))
                 @slot('item', $item)
-                @slot('subtype', $item->type)
+                @slot('subtype', $item->subtype ?? $item->type)
                 @slot('hideDescription', true)
                 @slot('imgVariation', ' ')
                 @slot('imageSettings', array(

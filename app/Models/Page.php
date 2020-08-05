@@ -101,6 +101,7 @@ class Page extends AbstractModel
         'visit_hour_header',
         'visit_hour_subheader',
         'visit_hour_intro',
+        'visit_hour_image_caption',
         'visit_city_pass_title',
         'visit_city_pass_text',
         'visit_city_pass_button_label',
