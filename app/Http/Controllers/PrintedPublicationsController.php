@@ -56,7 +56,7 @@ class PrintedPublicationsController extends BaseScopedController
 
     public function show($id)
     {
-        $page = $this->repository->safeForSlug($id);
+        $page = $this->repository->forSlug($id);
         if (!$page) {
             $page = $this->repository->find((Integer) $id) ?? abort(404);
         }
