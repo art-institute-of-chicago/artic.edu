@@ -73,7 +73,7 @@ class EducatorResourcesController extends BaseScopedController
     {
         $page = $this->repository->find((Integer) $id);
         if (!$page) {
-            $page = $this->repository->forSlug($id);
+            $page = $this->repository->safeForSlug($id);
 
             if (!$page) {
                 abort(404);

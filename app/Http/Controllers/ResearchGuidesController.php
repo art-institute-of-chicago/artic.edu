@@ -57,7 +57,7 @@ class ResearchGuidesController extends FrontController
     {
         $page = $this->repository->find((Integer) $id);
         if (!$page) {
-            $page = $this->repository->forSlug($id);
+            $page = $this->repository->safeForSlug($id);
 
             if (!$page) {
                 abort(404);
