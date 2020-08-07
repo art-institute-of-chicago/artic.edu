@@ -129,7 +129,7 @@
       'pageTitle' => $item->meta_title ?: $item->title
     ]) !!}
 
-    @if ($sponsors = $item->sponsors)
+    @if ($item->sponsors->count() > 0)
         <hr>
 
         @component('site.shared._sponsors')

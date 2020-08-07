@@ -111,7 +111,8 @@ class Article extends AbstractModel implements Feedable
             $sponsors = $sponsors->where('published', true);
         }
 
-        return $sponsors->first();
+        // 'site.shared._sponsors' calls `first()` on the collection
+        return $sponsors;
     }
 
     public function getIntroAttribute()
