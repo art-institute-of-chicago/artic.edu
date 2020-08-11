@@ -66,16 +66,6 @@
       padding: 40vh 0 80vh 0;
     }
 
-    &.is-not-loaded {
-      padding-bottom:0;
-      margin-top:0 !important;
-
-      .m-viewer-3d {
-        opacity:0;
-        //visibility:hidden;
-      }
-    }
-
     &.no-annotations {
       .m-media--3d-tour__p {
         opacity:0;

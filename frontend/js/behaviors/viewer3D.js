@@ -259,7 +259,6 @@ const viewer3D = function(container) {
         blockText.innerHTML = '<p class="m-media--3d-tour__p">' + annot.content.raw + '</p>';
         containerText.appendChild(blockWindow);
         containerText.appendChild(blockText);
-        containerText.classList.remove('is-not-loaded');
       }
 
       if(i == 0) {
