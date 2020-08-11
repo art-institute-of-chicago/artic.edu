@@ -256,7 +256,7 @@ const viewer3D = function(container) {
         var blockWindow = document.createElement("div");
         blockWindow.classList.add('m-media--3d-tour__sep');
         blockWindow.setAttribute('data-hotspot', i);
-        blockText.innerHTML = '<p class="m-media--3d-tour__p"><strong>' + annot.name + '</strong>' + annot.content.raw + '</p>';
+        blockText.innerHTML = '<p class="m-media--3d-tour__p">' + annot.content.raw + '</p>';
         containerText.appendChild(blockWindow);
         containerText.appendChild(blockText);
         containerText.classList.remove('is-not-loaded');
