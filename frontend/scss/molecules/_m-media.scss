@@ -311,12 +311,6 @@
   object-fit: contain;
 }
 
-.m-media--m .m-media__img img,
-.m-media--l .m-media__img img,
-.m-media__img.m-media__img--video img {
-  object-fit: cover;
-}
-
 .m-media__img .icon--play-multi {
   position: absolute;
   top: 50%;
