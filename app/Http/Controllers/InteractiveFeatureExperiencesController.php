@@ -116,6 +116,7 @@ class InteractiveFeatureExperiencesController extends FrontController
         else {
             $articles = Article::published()
                 ->orderBy('date', 'desc')
+                ->listed()
                 ->paginate(4);
         }
 
