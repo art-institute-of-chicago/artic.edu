@@ -16,6 +16,7 @@ const viewer3D = function(container) {
   let btnExplore = wrapper.querySelector('.m-viewer-3d__overlay');
   let btnCloseAnnotation = descriptionBlock.querySelector('.m-viewer-3d__annotation__close');
   let hideAnnots = JSON.parse(wrapper.dataset.hideannot);
+  let hideAnnotTitles = JSON.parse(wrapper.dataset.hideannottitle);
   let cc0 = JSON.parse(wrapper.dataset.cc);
   let isGuided = JSON.parse(wrapper.dataset.guided);
   let uid = wrapper.dataset.uid;
@@ -256,7 +257,11 @@ const viewer3D = function(container) {
         var blockWindow = document.createElement("div");
         blockWindow.classList.add('m-media--3d-tour__sep');
         blockWindow.setAttribute('data-hotspot', i);
-        blockText.innerHTML = '<p class="m-media--3d-tour__p">' + annot.content.raw + '</p>';
+        if(hideAnnotTitles) {
+          blockText.innerHTML = '<p class="m-media--3d-tour__p">' + annot.content.raw + '</p>';
+        } else {
+          blockText.innerHTML = '<p class="m-media--3d-tour__p"><strong>' + annot.name + '</strong>' + annot.content.raw + '</p>';
+        }
         containerText.appendChild(blockWindow);
         containerText.appendChild(blockText);
       }

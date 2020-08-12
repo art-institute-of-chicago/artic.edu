@@ -5,6 +5,7 @@
     $camera_target = $block->input('camera_target');
     $annotation_list = $block->input('annotation_list');
     $hide_annotation = $block->input('hide_annotation');
+    $hide_annotation_title = $block->input('hide_annotation_title');
 @endphp
 
 @if ($model_url)
@@ -14,6 +15,7 @@
             @slot('uid', $model_id)
             @slot('annotations', $annotation_list)
             @slot('hideannot', $hide_annotation)
+            @slot('hideannottitle', $hide_annotation_title)
         @endcomponent
     </div>
 @endif

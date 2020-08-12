@@ -58,6 +58,13 @@
       &:before {
         display:none;
       }
+
+      >strong {
+        font-weight:bold;
+        color:white;
+        margin-bottom:4px;
+        display:block;
+      }
     }
 
     &__sep {
