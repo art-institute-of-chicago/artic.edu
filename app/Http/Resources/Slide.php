@@ -212,7 +212,8 @@ class Slide extends JsonResource
                 'model_id' => $model3d->model_id,
                 'camera_position' => $model3d->camera_position,
                 'camera_target' => $model3d->camera_target,
-                'annotation_list' => json_decode($model3d->annotation_list)
+                'annotation_list' => json_decode($model3d->annotation_list),
+                'hide_annotation_title' => $model3d->hide_annotation_title
             ];
         } else {
             return [
