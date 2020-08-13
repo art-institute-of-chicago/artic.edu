@@ -6,7 +6,6 @@ use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
-use A17\Twill\Repositories\ModuleRepository;
 use App\Models\ExperienceModal;
 use App\Repositories\Behaviors\HandleExperienceModule;
 use App\Repositories\Behaviors\Handle3DModel;
@@ -42,7 +41,7 @@ class ExperienceModalRepository extends ModuleRepository
             $fields['repeaters'] = $fields['blocks'];
             unset($fields['blocks']);
         };
-        
+
         return parent::prepareFieldsBeforeCreate($fields);
     }
 }

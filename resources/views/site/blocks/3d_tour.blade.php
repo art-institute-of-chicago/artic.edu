@@ -5,15 +5,17 @@
     $camera_target = $block->input('camera_target');
     $annotation_list = $block->input('annotation_list');
     $hide_annotation = $block->input('hide_annotation');
+    $hide_annotation_title = $block->input('hide_annotation_title');
 @endphp
 
 @if ($model_url)
-    <div class="m-media m-media--l m-media--3d-tour is-not-loaded o-blocks__block" data-behavior="fixedOnScroll">
+    <div class="m-media m-media--l m-media--3d-tour o-blocks__block" data-behavior="fixedOnScroll">
         @component('components.molecules._m-viewer-3d')
             @slot('type', 'article')
             @slot('uid', $model_id)
             @slot('annotations', $annotation_list)
             @slot('hideannot', $hide_annotation)
+            @slot('hideannottitle', $hide_annotation_title)
         @endcomponent
     </div>
 @endif

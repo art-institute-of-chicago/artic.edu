@@ -14,6 +14,7 @@
         @slot('item', [
             'type' => 'image',
             'size' => $block->input('size'),
+            'useContain' => $block->input('use_contain'),
             'caption' => $subtitle,
             'captionTitle' => $title,
             'media' => [

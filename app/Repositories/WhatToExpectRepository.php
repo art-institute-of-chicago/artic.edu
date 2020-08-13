@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
-use A17\Twill\Repositories\ModuleRepository;
 use App\Models\WhatToExpect;
 
 class WhatToExpectRepository extends ModuleRepository

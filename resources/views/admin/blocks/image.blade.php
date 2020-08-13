@@ -19,6 +19,11 @@
     ]
 ])
 
+@formField('checkbox', [
+    'name' => 'use_contain',
+    'label' => 'Always show the whole image instead of cropping to the container',
+])
+
 @formField('medias', [
     'name' => 'image',
     'label' => 'Image'

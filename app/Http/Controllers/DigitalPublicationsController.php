@@ -41,7 +41,7 @@ class DigitalPublicationsController extends BaseScopedController
 
     public function show($id)
     {
-        $page = $this->repository->forSlug($id);
+        $page = $this->repository->safeForSlug($id);
         if (!$page) {
             $page = $this->repository->find((Integer) $id) ?? abort(404);
         }

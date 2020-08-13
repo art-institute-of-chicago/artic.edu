@@ -91,7 +91,7 @@ class InteractiveFeatureExperiencesController extends FrontController
             );
         }
 
-        $experience = $this->repository->forSlug($slug);
+        $experience = $this->repository->safeForSlug($slug);
 
         if (!$experience || $experience->kiosk_only === true) {
             abort(404);
@@ -116,6 +116,7 @@ class InteractiveFeatureExperiencesController extends FrontController
         else {
             $articles = Article::published()
                 ->orderBy('date', 'desc')
+                ->listed()
                 ->paginate(4);
         }
 
@@ -134,7 +135,7 @@ class InteractiveFeatureExperiencesController extends FrontController
 
     protected function showKiosk($slug)
     {
-        $experience = $this->repository->forSlug($slug);
+        $experience = $this->repository->safeForSlug($slug);
         if (!$experience) {
             abort(404);
         }

@@ -51,7 +51,7 @@ class GenericPagesController extends FrontController
     protected function getPage($slug)
     {
         $idSlug = collect(explode("/", $slug))->last();
-        $page = $this->genericPageRepository->forSlug($idSlug);
+        $page = $this->genericPageRepository->safeForSlug($idSlug);
         if (empty($page)) {
             $page = $this->genericPageRepository->getById((integer) $idSlug);
             if (!$page) {
