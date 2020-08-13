@@ -143,13 +143,14 @@ class ExhibitionPresenter extends BasePresenter
 
     protected function waitTime() {
         $waitTime  = $this->entity->apiModels('waitTimes', 'WaitTime')->first();
-        $waitTimeMember  = $this->entity->apiModels('waitTimes', 'WaitTime')->first();
+        $waitTimeMember  = $this->entity->apiModels('waitTimesMember', 'WaitTime')->first();
 
         if ($waitTime || $waitTimeMember) {
             return [
                 'label' => 'Current wait times<br/>'
-                 . 'General Admission: ' . $waitTime->present()->display . '<br/>'
-                 . 'Members: ' . $waitTimeMember->present()->display,
+                 . ($waitTime ? ('General Admission: ' . $waitTime->present()->display) : '')
+                 . ($waitTime && $waitTimeMember ? '<br/>' : '')
+                 . ($waitTimeMember ? ('Members: ' . $waitTimeMember->present()->display) : ''),
                 'iconBefore' => 'clock',
                 'variation' => 'm-link-list__trigger--wait-time',
             ];
