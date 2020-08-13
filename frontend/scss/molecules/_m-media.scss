@@ -205,6 +205,7 @@
     content: '';
     display: block;
     height: 0;
+    // TODO: Make this into a CMS field?
     padding-bottom: percentage(10 / 16);
   }
 
@@ -299,6 +300,12 @@
 .m-media__img.m-media__img--video img {
   @include objectFitFix;
   object-fit: contain;
+}
+
+.m-media--m:not(.m-media--contain) .m-media__img img,
+.m-media--l:not(.m-media--contain) .m-media__img img,
+.m-media__img.m-media__img--video img {
+  object-fit: cover;
 }
 
 .m-media__img .icon--play-multi {
