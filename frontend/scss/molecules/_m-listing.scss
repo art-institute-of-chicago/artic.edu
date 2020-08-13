@@ -1417,7 +1417,7 @@ $f-audio-subtitle: generate-font-obj(
 
 // Quick aside for artwork detail's sound variant
 .m-listing--inline.m-listing--sound {
-  .m-listing__meta {
+  .m-listing__meta--sound {
     @include font-styles($f-module-title-1);
   }
 

@@ -1,7 +1,7 @@
 {{-- This assumes `href` is a direct link to an MP3 file --}}
 <li class="m-listing m-listing--inline m-listing--sound">
     <div class="m-listing__link">
-        <div class="m-listing__meta">
+        <div class="m-listing__meta--sound">
             {!! $item->title !!}
         </div>
         <div>
