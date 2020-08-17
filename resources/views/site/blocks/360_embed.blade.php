@@ -1,6 +1,7 @@
 @php
     $image_sequence_file = $block->assetLibrary;
     $sequence_id = $image_sequence_file['id'];
+    $alt_text = $block->input('alt_text');
     $caption = $block->input('caption');
     $caption_title = $block->input('caption_title');
 @endphp
@@ -14,7 +15,7 @@
         <div class="m-media__img m-media--360-embed" data-behavior="fitText">
         @component('components.molecules._m-viewer-360')
             @slot('type', 'standalone')
-            @slot('title', isset($pageTitle) ? $pageTitle.' - Inline 360' : 'Inline 360')
+            @slot('title', $alt_text ?? (isset($pageTitle) ? $pageTitle.' - Inline 360' : 'Inline 360'))
             @slot('id', 'assetLibrary-'.$sequence_id);
         @endcomponent
         </div>
