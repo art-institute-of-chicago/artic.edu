@@ -8,12 +8,12 @@ use A17\Twill\Models\Behaviors\HasBlocks as BaseHasBlocks;
 trait HasUnlisted
 {
 
-    public function scopeListed($query)
+    public function scopeNotUnlisted($query)
     {
         return $query->whereIsUnlisted(false);
     }
 
-    public function getIsListedAttribute()
+    public function getIsNotUnlistedAttribute()
     {
         return isset($this->is_unlisted) ? !$this->is_unlisted : true;
     }

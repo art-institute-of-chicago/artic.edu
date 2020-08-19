@@ -127,7 +127,7 @@ class ExperienceController extends ModuleController
     {
         $articles = Article::published()
         ->orderBy('date', 'desc')
-        ->listed()
+        ->notUnlisted()
         ->paginate(4);
 
         return [

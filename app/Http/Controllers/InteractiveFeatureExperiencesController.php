@@ -32,7 +32,7 @@ class InteractiveFeatureExperiencesController extends FrontController
 
     public function index(Request $request)
     {
-        $items = Experience::webPublished()->listed()->ordered()->paginate();
+        $items = Experience::webPublished()->notUnlisted()->ordered()->paginate();
         $title = 'Interactive Features';
 
         $this->seo->setTitle($title);
@@ -116,7 +116,7 @@ class InteractiveFeatureExperiencesController extends FrontController
         else {
             $articles = Article::published()
                 ->orderBy('date', 'desc')
-                ->listed()
+                ->notUnlisted()
                 ->paginate(4);
         }
 

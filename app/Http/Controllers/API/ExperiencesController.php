@@ -20,6 +20,6 @@ class ExperiencesController extends BaseController
      */
     protected function paginate($limit)
     {
-        return ($this->model)::listed()->orderBy('updated_at', 'desc')->paginate($limit);
+        return ($this->model)::notUnlisted()->orderBy('updated_at', 'desc')->paginate($limit);
     }
 }
