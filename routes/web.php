@@ -25,9 +25,9 @@ return redirect('//aggregator-data-test.artic.edu/api/v1/autocomplete?q='.reques
 });
  */
 Route::group([
-    "domain" => config('api.base_uri'),
+    'domain' => config('api.public_uri'),
 ], function () {
-    Route::get("api/v1/msuggest")->name("collection.autocomplete");
+    Route::get('api/v1/msuggest')->name('collection.autocomplete');
 });
 Route::name('collection.categorySearch')->get('/collection/categorySearch/{categoryName}', 'CollectionController@categorySearch');
 
