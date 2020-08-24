@@ -27,7 +27,6 @@ class InvalidationListener
      */
     public function handle($event)
     {
-        Artisan::call('cache:clear');
         Artisan::call('cache:invalidate-cloudfront', ['urls' => $event->urls]);
     }
 }
