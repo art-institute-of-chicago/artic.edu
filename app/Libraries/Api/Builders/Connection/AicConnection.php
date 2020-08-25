@@ -114,7 +114,7 @@ class AicConnection implements ApiConnectionInterface
             // Use default TTL if no explicit has been defined
             $ttl = $this->ttl ?? config('api.cache_ttl');
 
-            $response =  \Cache::remember($cacheKey, $ttl, function () use ($verb, $endpoint, $options) {
+            $response = \Cache::remember($cacheKey, $ttl, function () use ($verb, $endpoint, $options) {
                 // TODO: Somewhere here – figure out if the request failed?
                 return $this->client->request($verb, $endpoint, $options);
             });
@@ -129,7 +129,11 @@ class AicConnection implements ApiConnectionInterface
         }
     }
 
-    protected function buildCacheKey() {
-        return json_encode(func_get_args());
+    /**
+     * WEB-1805: The cache key *must* be 250 bytes or less! Otherwise, it'll silently fail on the lookup.
+     */
+    protected function buildCacheKey()
+    {
+        return md5(json_encode(func_get_args()));
     }
 }
