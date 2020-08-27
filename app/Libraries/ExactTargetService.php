@@ -145,7 +145,7 @@ class ExactTargetService
 
     function get()
     {
-        $client = new ET_Client(false, true, config('exact-target'));
+        $client = new ET_Client(false, config('app.debug'), config('exact-target'));
 
         $deRow  = new ET_DataExtension_Row();
         $deRow->authStub = $client;
