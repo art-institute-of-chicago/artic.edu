@@ -12,11 +12,11 @@
     $type = $type === 'artist' ? 'image' : $type;
 
     // WEB-912: For Gallery Items; image module is an array, but gallery item is object?
-    if (!is_array($item) && !empty($item->present()->input('videoUrl')))
+    if (isset($item['videoUrl']) || (!is_array($item) && !empty($item->present()->input('videoUrl'))))
     {
         $type = 'embed';
         $poster = $media;
-        $media['embed'] = \App\Facades\EmbedConverterFacade::convertUrl($item->present()->input('videoUrl'));
+        $media['embed'] = \App\Facades\EmbedConverterFacade::convertUrl($item['videoUrl'] ?? $item->present()->input('videoUrl'));
     }
 
     if ($type === 'embed' and strrpos($media['embed'],'api.soundcloud.com')) {

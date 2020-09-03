@@ -37,6 +37,7 @@
                     'media' => $item->imageAsArray('image', 'desktop'),
                     'captionTitle' => getTitleWithFigureNumber($title),
                     'caption' => getSubtitleWithFigureNumber($subtitle, $title),
+                    'videoUrl' => $item->input('videoUrl'),
                 ];
 
                 break;
