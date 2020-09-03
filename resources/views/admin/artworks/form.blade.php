@@ -60,6 +60,21 @@
             'note' => 'Upload a .zip file'
         ])
     </a17-fieldset>
+
+    <a17-fieldset id="mirador" title="Mirador">
+        <p>Add a Mirador modal to the artwork page by either checking the box below to use the default manifest file or uploading your own.</p>
+        @formField('checkbox', [
+            'name' => 'default_manifest_url',
+            'label' => 'Use default manifest file.',
+            'note' => 'i.e.: http://aggregator-data.artic.edu/api/v1/artworks/28560/manifest.json',
+            'default' => false,
+        ])
+        @formField('files', [
+            'name' => 'upload_manifest_file',
+            'label' => 'Alternative manifest file',
+            'note' => 'Upload a .json file'
+        ])
+    </a17-fieldset>
 @stop
 
 @push('vuexStore')

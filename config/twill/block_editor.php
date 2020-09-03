@@ -535,6 +535,7 @@ return [
         'attachment',
         'video',
         'image_sequence_file',
+        'upload_manifest_file',
     ],
     'browser_route_prefixes' => [
         'events' => 'exhibitions_events',

@@ -22,6 +22,7 @@ class Artwork extends AbstractModel
         'datahub_id',
         'meta_title',
         'meta_description',
+        'default_manifest_url',
     ];
 
     public $mediasParams = [
@@ -35,7 +36,9 @@ class Artwork extends AbstractModel
         ],
     ];
 
-    public $filesParams = ['image_sequence_file'];
+    public $filesParams = ['image_sequence_file', 'upload_manifest_file'];
+
+    public $checkboxes = ['default_manifest_url'];
 
     public function getFullTitleAttribute()
     {
