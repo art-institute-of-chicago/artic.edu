@@ -36,4 +36,16 @@ class Block extends BaseModel
         }
         return null;
     }
+
+    /**
+     * @link https://github.com/openseadragon/openseadragon/pull/1285/files
+     */
+    public function getImgixTileSource($role, $crop = 'default')
+    {
+        $media = $this->findMedia($role, $crop);
+
+        if ($media) {
+            return 'https://' . config('twill.imgix_source_host') . '/' . $media->uuid . '?fm=json&osd=imgix';
+        }
+    }
 }

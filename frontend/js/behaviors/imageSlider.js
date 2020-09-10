@@ -1,77 +1,160 @@
 import { purgeProperties } from '@area17/a17-helpers';
+import OpenSeadragon from '../libs/openseadragon';
+import '../libs/imgixtilesource';
 
 const imageSlider = function(container) {
 
-let dragWidth;
-let xPosition;
-let containerOffset;
-let containerWidth;
-let minLeft;
-let maxLeft;
+  const handleElement = container.querySelector('.m-image-slider__handle');
+  const viewerElement = container;
 
-const dragElement = container.querySelector('.m-image-slider__handle');
-  const resizeElement = container.querySelector('.m-image-slider__resize-img');
+  const imageData = JSON.parse(container.dataset.images);
 
-  function enableDragFunction(event) {
-    dragElement.classList.add('draggable')
-    resizeElement.classList.add('resizable');
+  let viewer;
+  let middle;
 
-    dragWidth = dragElement.outerWidth(),
-    xPosition = dragElement.offset().left + dragWidth - event.pageX,
-    containerOffset = container.offset().left,
-    containerWidth = container.outerWidth(),
-    minLeft = containerOffset + 10,
-    maxLeft = containerOffset + containerWidth - dragWidth - 10;
+  let leftImage = null;
+  let rightImage = null;
 
-    event.preventDefault();
+  let leftRect = new OpenSeadragon.Rect(0,0,0,0);
+  let rightRect = new OpenSeadragon.Rect(0,0,0,0);
+
+  function updateMiddle(offset) {
+    middle.x = offset;
   }
 
-  function enableParentDragFunction(event) {
-    let leftValue = event.pageX + xPosition - dragWidth;
+  function imagesLoaded() {
+    if (leftImage && rightImage) {
+      leftRect.height = leftImage.getContentSize().y;
+      rightRect.height = rightImage.getContentSize().y;
+      imagesClip();
+      initClip();
+    }
+  }
 
-    //constrain the draggable element to move inside its container
-    if(leftValue < minLeft ) {
-        leftValue = minLeft;
-    } else if ( leftValue > maxLeft) {
-        leftValue = maxLeft;
+  function imagesClip() {
+    var rox = rightImage.viewerElementToImageCoordinates(middle).x;
+    var lox = leftImage.viewerElementToImageCoordinates(middle).x;
+
+    rightRect.x = rox;
+    rightRect.width = rightImage.getContentSize().x - rox;
+
+    leftRect.width = lox;
+
+    leftImage.setClip(leftRect);
+    rightImage.setClip(rightRect);
+  }
+
+  function initClip() {
+    // We will assume that the width of the handle element does not change
+    var dragWidth = handleElement.offsetWidth;
+
+    // However, we will track when the container resizes
+    var containerWidth, containerOffset, minLeft, maxLeft;
+
+    function updateContainerDimensions() {
+      containerWidth = viewerElement.offsetWidth;
+      containerOffset = viewerElement.getBoundingClientRect().left + window.scrollX;
+      minLeft = containerOffset + 10;
+      maxLeft = containerOffset + containerWidth - dragWidth - 10;
+
+      // Spoof the mouse events
+      var offset = handleElement.getBoundingClientRect().left + window.scrollX + dragWidth / 2;
+      var event;
+
+      // Bind the drag event
+      event = new Event('mousedown');
+      event.pageX = offset;
+
+      handleElement.dispatchEvent(event);
+
+      // Execute the drag event
+      event = new Event('mousemove');
+      event.pageX = offset;
+
+      viewerElement.dispatchEvent(event);
+
+      // Unbind the drag event
+      handleElement.dispatchEvent(new Event('mouseup'));
     }
 
-    let widthValue = (leftValue + dragWidth/2 - containerOffset)*100/containerWidth+'%';
+    // Retrieve initial container dimention
+    updateContainerDimensions();
 
-    dragElement.style.left = widthValue;
-    resizeElement.style.width = widthValue;
-  }
+    // Bind the container resize
+    window.addEventListener('resize', updateContainerDimensions);
 
-  function disableDragFunction(event) {
-    dragElement.classList.remove('draggable');
-    resizeElement.classList.remove('resizable');
+    function handleMouseDown(event) {
+      var xPosition = handleElement.getBoundingClientRect().left + window.scrollX + dragWidth - event.pageX;
+
+      function trackDrag(event) {
+        var leftValue = event.pageX + xPosition - dragWidth;
+
+        //constrain the draggable element to move inside its container
+        leftValue = Math.max(leftValue, minLeft);
+        leftValue = Math.min(leftValue, maxLeft);
+
+        var widthPixel = (leftValue + dragWidth/2 - containerOffset);
+        var widthFraction = widthPixel/containerWidth;
+        var widthPercent = widthFraction*100+'%';
+
+        handleElement.style.left = widthPercent;
+
+        updateMiddle(widthPixel);
+        imagesClip();
+      }
+
+      viewerElement.addEventListener('mousemove', trackDrag);
+      viewerElement.addEventListener('vmousemove', trackDrag);
+
+      function unbindTrackDrag(event) {
+        viewerElement.removeEventListener('mousemove', trackDrag);
+        viewerElement.removeEventListener('vmousemove', trackDrag);
+      }
+
+      document.addEventListener('mouseup', unbindTrackDrag, {once: true});
+      document.addEventListener('vmouseup', unbindTrackDrag, {once: true});
+
+      event.preventDefault();
+    }
+
+    handleElement.addEventListener('mousedown', handleMouseDown);
+    handleElement.addEventListener('vmousedown', handleMouseDown);
   }
 
   this.destroy = function() {
-    dragElement.removeEventListener('mousedown', enableDragFunction);
-    dragElement.removeEventListener('vmousedown', enableDragFunction);
-    dragElement.removeEventListener('mouseup', disableDragFunction);
-    dragElement.removeEventListener('vmouseup', disableDragFunction);
-
-    dragElement.parentNode.removeEventListener('mousedown', enableDragFunction);
-    dragElement.parentNode.removeEventListener('vmousedown', enableDragFunction);
-    dragElement.parentNode.removeEventListener('mouseup', disableDragFunction);
-    dragElement.parentNode.removeEventListener('vmouseup', disableDragFunction);
-
     // remove properties of this behavior
     purgeProperties(this);
   };
 
   this.init = function() {
-    dragElement.addEventListener('mousedown', enableDragFunction, false);
-    dragElement.addEventListener('vmousedown', enableDragFunction, false);
-    dragElement.addEventListener("mouseup", disableDragFunction);
-    dragElement.addEventListener("vmouseup", disableDragFunction);
 
-    dragElement.parentNode.addEventListener('mousedown', enableParentDragFunction, false);
-    dragElement.parentNode.addEventListener('vmousedown', enableParentDragFunction, false);
-    dragElement.parentNode.addEventListener("mouseup", disableDragFunction);
-    dragElement.parentNode.addEventListener("vmouseup", disableDragFunction);
+    viewer = OpenSeadragon({
+      element:         viewerElement,
+      xmlns:           'http://schemas.microsoft.com/deepzoom/2008',
+      prefixUrl:       '//openseadragon.github.io/openseadragon/images/',
+    });
+
+    middle = new OpenSeadragon.Point(viewerElement.clientWidth / 2, viewerElement.clientHeight / 2);
+
+    viewer.addHandler('animation', function (viewer) {
+        imagesClip();
+    })
+
+    viewer.addTiledImage({
+        tileSource: imageData.leftImage,
+        success: function(event) {
+            leftImage = event.item;
+            imagesLoaded();
+        }
+    });
+
+    viewer.addTiledImage( {
+        tileSource: imageData.rightImage,
+        success: function(event) {
+            rightImage = event.item;
+            imagesLoaded();
+        }
+    });
   };
 };
 

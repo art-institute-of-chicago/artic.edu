@@ -81,10 +81,10 @@
     }
   }
 
-  &--3d-embed, &--image_slider {
+  &--3d-embed {
     position: relative;
 
-    .m-viewer-3d, .m-image-slider {
+    .m-viewer-3d {
       min-height:0;
       height:60vw;
       max-height:90vh;
