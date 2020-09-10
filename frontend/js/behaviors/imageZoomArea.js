@@ -1,5 +1,6 @@
 import { purgeProperties, setFocusOnTarget, forEach, getIndex, triggerCustomEvent } from '@area17/a17-helpers';
 import { focusTrap } from '../functions';
+import OpenSeadragon from '../libs/openseadragon';
 
 const imageZoomArea = function(container) {
 
