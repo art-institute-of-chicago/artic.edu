@@ -44,6 +44,39 @@ const imageSlider = function(container) {
     rightImage.setClip(rightRect);
   }
 
+  var oldSpringX = 0.5;
+
+  function imagesClipAggressive() {
+    var newSpringX = viewer.viewport.centerSpringX.current.value;
+    var deltaSpringX = newSpringX - oldSpringX;
+    oldSpringX = newSpringX;
+
+    var fixedMiddle = viewer.viewport.viewerElementToViewportCoordinates(middle);
+    fixedMiddle.x += deltaSpringX;
+
+    var rox = rightImage.viewportToImageCoordinates(fixedMiddle).x;
+    var lox = leftImage.viewportToImageCoordinates(fixedMiddle).x;
+
+    imagesClipShared(rox, lox);
+  }
+
+  function imagesClip() {
+    var rox = rightImage.viewerElementToImageCoordinates(middle).x;
+    var lox = leftImage.viewerElementToImageCoordinates(middle).x;
+
+    imagesClipShared(rox, lox);
+  }
+
+  function imagesClipShared(rox, lox) {
+    rightRect.x = rox ;
+    rightRect.width = rightImage.getContentSize().x - rox;
+
+    leftRect.width = lox;
+
+    leftImage.setClip(leftRect);
+    rightImage.setClip(rightRect);
+  }
+
   function initClip() {
     // We will assume that the width of the handle element does not change
     var dragWidth = handleElement.offsetWidth;
@@ -136,9 +169,8 @@ const imageSlider = function(container) {
 
     middle = new OpenSeadragon.Point(viewerElement.clientWidth / 2, viewerElement.clientHeight / 2);
 
-    viewer.addHandler('animation', function (viewer) {
-        imagesClip();
-    })
+    viewer.addHandler('animation-start', imagesClip);
+    viewer.addHandler('animation', imagesClipAggressive);
 
     viewer.addTiledImage({
         tileSource: imageData.leftImage,
