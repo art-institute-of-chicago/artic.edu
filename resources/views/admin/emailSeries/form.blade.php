@@ -31,8 +31,8 @@
     ])
 
     @formField('checkbox', [
-        'name' => 'show_sustaining_fellow',
-        'label' => 'Show "Include sustaining fellow-specific copy" option'
+        'name' => 'show_luminary',
+        'label' => 'Show "Include luminary-specific copy" option'
     ])
 
     @formField('checkbox', [
@@ -73,8 +73,8 @@
         ])
 
         @formField('checkbox', [
-            'name' => 'show_sustaining_fellow_test',
-            'label' => 'Show "Send sustaining fellow test" option'
+            'name' => 'show_luminary_test',
+            'label' => 'Show "Send luminary test" option'
         ])
 
         @formField('checkbox', [

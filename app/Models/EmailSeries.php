@@ -16,7 +16,7 @@ class EmailSeries extends AbstractModel implements Sortable
     public static $memberTypes = [
         'affiliate' => 'affiliate',
         'member' => 'member',
-        'sustaining_fellow' => 'sustaining fellow',
+        'luminary' => 'luminary',
         'nonmember' => 'nonmember',
     ];
 
@@ -26,11 +26,11 @@ class EmailSeries extends AbstractModel implements Sortable
         'alert_message',
         'show_affiliate',
         'show_member',
-        'show_sustaining_fellow',
+        'show_luminary',
         'show_nonmember',
         'show_affiliate_test',
         'show_member_test',
-        'show_sustaining_fellow_test',
+        'show_luminary_test',
         'show_nonmember_test',
         'position',
         'published',
@@ -39,11 +39,11 @@ class EmailSeries extends AbstractModel implements Sortable
     public $checkboxes = [
         'show_affiliate',
         'show_member',
-        'show_sustaining_fellow',
+        'show_luminary',
         'show_nonmember',
         'show_affiliate_test',
         'show_member_test',
-        'show_sustaining_fellow_test',
+        'show_luminary_test',
         'show_nonmember_test',
         'published',
     ];
@@ -51,11 +51,11 @@ class EmailSeries extends AbstractModel implements Sortable
     public $casts = [
         'show_affiliate' => 'boolean',
         'show_member' => 'boolean',
-        'show_sustaining_fellow' => 'boolean',
+        'show_luminary' => 'boolean',
         'show_nonmember' => 'boolean',
         'show_affiliate_test' => 'boolean',
         'show_member_test' => 'boolean',
-        'show_sustaining_fellow_test' => 'boolean',
+        'show_luminary_test' => 'boolean',
         'show_nonmember_test' => 'boolean',
         'published' => 'boolean',
     ];
@@ -94,10 +94,10 @@ class EmailSeries extends AbstractModel implements Sortable
                 'value' => function () {return $this->show_member;},
             ],
             [
-                "name" => 'show_sustaining_fellow',
-                'doc' => 'Whether to show the "Include sustaining fellow-specific copy" option',
+                "name" => 'show_luminary',
+                'doc' => 'Whether to show the "Include luminary-specific copy" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_sustaining_fellow;},
+                'value' => function () {return $this->show_luminary;},
             ],
             [
                 "name" => 'show_nonmember',
@@ -118,10 +118,10 @@ class EmailSeries extends AbstractModel implements Sortable
                 'value' => function () {return $this->show_member_test;},
             ],
             [
-                "name" => 'show_sustaining_fellow_test',
-                'doc' => 'Whether to show the "Send sustaining fellow test" option',
+                "name" => 'show_luminary_test',
+                'doc' => 'Whether to show the "Send luminary test" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_sustaining_fellow_test;},
+                'value' => function () {return $this->show_luminary_test;},
             ],
             [
                 "name" => 'show_nonmember_test',

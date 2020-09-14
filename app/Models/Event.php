@@ -124,7 +124,7 @@ class Event extends AbstractModel
     const RESEARCHERS_SCHOLARS = 5;
     const TEACHERS = 6;
     const EVENING_ASSOCIATES = 7;
-    const SUSTAINING_FELLOWS = 8;
+    const LUMINARY = 8;
 
     public static $eventAudiences = [
         self::FAMILIES => 'Families',
@@ -134,7 +134,7 @@ class Event extends AbstractModel
         self::RESEARCHERS_SCHOLARS => 'Researchers/Scholars',
         self::TEACHERS => 'Teachers',
         self::EVENING_ASSOCIATES => 'Evening Associates',
-        self::SUSTAINING_FELLOWS => 'Sustaining Fellows',
+        self::LUMINARY => 'Luminary',
     ];
 
     const BASIC_LAYOUT = 0;
@@ -214,15 +214,15 @@ class Event extends AbstractModel
             ->withPivot(
                 'send_affiliate_test',
                 'send_member_test',
-                'send_sustaining_fellow_test',
+                'send_luminary_test',
                 'send_nonmember_test',
                 'override_affiliate',
                 'override_member',
-                'override_sustaining_fellow',
+                'override_luminary',
                 'override_nonmember',
                 'affiliate_copy',
                 'member_copy',
-                'sustaining_fellow_copy',
+                'luminary_copy',
                 'nonmember_copy'
             );
     }
@@ -883,7 +883,7 @@ class Event extends AbstractModel
                         foreach ([
                             'affiliate_copy',
                             'member_copy',
-                            'sustaining_fellow_copy',
+                            'luminary_copy',
                             'nonmember_copy',
                         ] as $field) {
                             if (isset($item->$field)) {

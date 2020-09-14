@@ -38,10 +38,10 @@
                 @slot('variation', 'type--membership')
                 Member Exclusive
             @endcomponent
-        @elseif ($item->audience === \App\Models\Event::SUSTAINING_FELLOWS)
+        @elseif ($item->audience === \App\Models\Event::LUMINARY)
             @component('components.atoms._type')
                 @slot('variation', 'type--membership')
-                Sustaining Fellows
+                Luminary
             @endcomponent
         @else
             @component('components.atoms._type')

@@ -80,7 +80,7 @@ class EventRepository extends ModuleRepository
                 $isOnlyOneTestAudienceFieldShown = 1 === collect([
                     $series->show_affiliate_test,
                     $series->show_member_test,
-                    $series->show_sustaining_fellow_test,
+                    $series->show_luminary_test,
                     $series->show_nonmember_test,
                 ])->filter()->count();
 
