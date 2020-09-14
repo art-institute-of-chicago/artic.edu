@@ -2,7 +2,6 @@
     'additionalFieldsets' => [
         ['fieldset' => 'duration', 'label' => 'Duration'],
         ['fieldset' => 'metadata', 'label' => 'Metadata'],
-        ['fieldset' => 'deprecated', 'label' => 'Deprecated'],
     ]
 ])
 
@@ -66,7 +65,7 @@
             ],
             [
                 'value' => \App\Models\Lightbox::VARIATION_EMAIL,
-                'label' => 'Email capture (button + email input)'
+                'label' => 'Email capture to landing page(button + email input)'
             ],
         ], app()->environment('production') ? [] : [
             [
@@ -127,69 +126,6 @@
             'label' => 'Action URL',
             'note' => 'e.g. https://join.artic.edu/secure/holiday-annual-fund',
         ])
-
-        @formField('input', [
-            'name' => 'form_tlc_source',
-            'label' => 'Form TLC Source',
-            'note' => 'e.g. AIC17137L01',
-        ])
-
-        @formField('input', [
-            'name' => 'form_token',
-            'label' => 'Form Token',
-            'note' => 'e.g. pa5U17siEjW4suerjWEB5LP7sFJYgAwLZYMS6kNTEag',
-        ])
-
-        @formField('input', [
-            'name' => 'form_id',
-            'label' => 'Form ID',
-            'note' => 'e.g. webform_client_form_5111',
-        ])
-
-    </a17-fieldset>
-
-    <a17-fieldset id="deprecated" title="Deprecated">
-
-        @formField('medias', [
-            'with_multiple' => false,
-            'label' => 'Cover Image',
-            'name' => 'cover',
-        ])
-
-        @formField('wysiwyg', [
-            'type' => 'textarea',
-            'name' => 'cover_caption',
-            'label' => 'Cover Image Caption',
-            'note' => 'Usually used for copyright',
-            'maxlength' => 255,
-            'toolbarOptions' => [
-                'italic', 'link',
-            ],
-        ])
-
-        @formField('input', [
-            'name' => 'subheader',
-            'label' => 'Subheader',
-            'note' => 'Use "Title Case"',
-        ])
-
-        @formField('checkbox', [
-            'name' => 'hide_fields',
-            'label' => 'Hide first name, last name, and email fields',
-            'default' => false,
-        ])
-
-        @formField('wysiwyg', [
-            'name' => 'terms_text',
-            'label' => '"Terms and Conditions" Line',
-            'note' => 'e.g "By joining you agree to the Terms and Conditions"',
-            'toolbarOptions' => [
-                'italic',
-                'link',
-            ],
-        ])
-
-        <p>Please use "/terms" as the "Terms and Conditions" link.</p>
 
     </a17-fieldset>
 
