@@ -246,16 +246,6 @@
             'disabled' => true
         ])
         @formField('input', [
-            'name' => 'start_at',
-            'label' => 'Start at',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'end_at',
-            'label' => 'End at',
-            'disabled' => true
-        ])
-        @formField('input', [
             'name' => 'status',
             'label' => 'Status',
             'disabled' => true

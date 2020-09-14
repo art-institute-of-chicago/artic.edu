@@ -315,14 +315,14 @@ $params = [
     'must' => [
       0 => [
         'range' => [
-          'start_at' => [
+          'aic_start_at' => [
             'lte' => 'now+2w',
           ],
         ],
       ],
       1 => [
         'range' => [
-          'end_at' => [
+          'aic_end_at' => [
             'gte' => 'now',
           ],
         ],
@@ -351,14 +351,14 @@ public function scopeNextTwoWeeks($query) {
         'must' => [
           0 => [
             'range' => [
-              'start_at' => [
+              'aic_start_at' => [
                 'lte' => 'now+2w',
               ],
             ],
           ],
           1 => [
             'range' => [
-              'end_at' => [
+              'aic_end_at' => [
                 'gte' => 'now',
               ],
             ],
