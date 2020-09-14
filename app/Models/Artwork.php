@@ -81,4 +81,17 @@ class Artwork extends AbstractModel
         }
         return null;
     }
+
+    public function getMiradorManifest()
+    {
+        if ($this->default_manifest_url OR $this->file('upload_manifest_file')) {
+            if ($this->file('upload_manifest_file')) {
+                $manifestFile = $this->file('upload_manifest_file');
+            } else {
+                $manifestFile = 'http://aggregator-data.artic.edu/api/v1/artworks/'.$this->datahub_id.'/manifest.json';
+            }
+            return $manifestFile;
+        }
+		return null;
+    }
 }
