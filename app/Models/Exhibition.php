@@ -245,7 +245,10 @@ class Exhibition extends AbstractModel
                 "name" => "date_display",
                 "doc" => "Formatted date with override",
                 "type" => "string",
-                "value" => function () {return trim(html_entity_decode(strip_tags($this->getApiModelFilledCached()->present()->formattedDate()->render())));},
+                "value" => function () {
+                    // WEB-1822, WEB-1830: This causes errors when the API model isn't found, needs more work on several fronts
+                    // return trim(html_entity_decode(strip_tags($this->getApiModelFilledCached()->present()->formattedDate()->render())));
+                },
             ],
             [
                 "name" => 'related',
