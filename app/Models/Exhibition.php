@@ -230,16 +230,25 @@ class Exhibition extends AbstractModel
                 "value" => function () {return $this->exhibition_message;},
             ],
             [
-                "name" => 'exhibition_location',
-                "doc" => "Location",
+                "name" => "public_start_at",
+                "doc" => "Public opening at",
                 "type" => "string",
-                "value" => function () {return $this->exhibition_location;},
+                "value" => function () {return $this->public_start_date ? $this->public_start_date->toIso8601String() : null;},
             ],
             [
-                "name" => 'cms_exhibition_type',
-                "doc" => "CMS Type",
-                "type" => "number",
-                "value" => function () {return $this->cms_exhibition_type;},
+                "name" => "public_end_at",
+                "doc" => "Public closing at",
+                "type" => "string",
+                "value" => function () {return $this->public_end_date ? $this->public_end_date->toIso8601String() : null;},
+            ],
+            [
+                "name" => "date_display",
+                "doc" => "Formatted date with override",
+                "type" => "string",
+                "value" => function () {
+                    // WEB-1822, WEB-1830: This causes errors when the API model isn't found, needs more work on several fronts
+                    // return trim(html_entity_decode(strip_tags($this->getApiModelFilledCached()->present()->formattedDate()->render())));
+                },
             ],
             [
                 "name" => 'related',

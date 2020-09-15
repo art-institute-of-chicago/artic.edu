@@ -13,7 +13,7 @@
     @slot('title', $item->present()->title)
     @slot('title_display', $item->present()->title_display)
     @slot('formattedDate', $item->present()->formattedNextOcurrence)
-    @slot('type', $item->is_member_exclusive ? 'Member Exclusive' : ($item->audience === \App\Models\Event::SUSTAINING_FELLOWS ? 'Sustaining Fellows' : $item->present()->type))
+    @slot('type', $item->is_member_exclusive ? 'Member Exclusive' : ($item->audience === \App\Models\Event::LUMINARY ? 'Luminary' : $item->present()->type))
     @slot('img', $item->imageAsArray('hero'))
     @slot('credit', $item->present()->hero_caption)
   @endcomponent
