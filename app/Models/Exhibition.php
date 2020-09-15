@@ -230,6 +230,18 @@ class Exhibition extends AbstractModel
                 "value" => function () {return $this->exhibition_message;},
             ],
             [
+                "name" => "public_start_at",
+                "doc" => "Public opening at",
+                "type" => "string",
+                "value" => function () {return $this->public_start_date ? $this->public_start_date->toIso8601String() : null;},
+            ],
+            [
+                "name" => "public_end_at",
+                "doc" => "Public closing at",
+                "type" => "string",
+                "value" => function () {return $this->public_end_date ? $this->public_end_date->toIso8601String() : null;},
+            ],
+            [
                 "name" => 'related',
                 "doc" => "Related Content",
                 "type" => "array",
