@@ -242,6 +242,12 @@ class Exhibition extends AbstractModel
                 "value" => function () {return $this->public_end_date ? $this->public_end_date->toIso8601String() : null;},
             ],
             [
+                "name" => "date_display",
+                "doc" => "Formatted date with override",
+                "type" => "string",
+                "value" => function () {return trim(html_entity_decode(strip_tags($this->getApiModelFilledCached()->present()->formattedDate()->render())));},
+            ],
+            [
                 "name" => 'related',
                 "doc" => "Related Content",
                 "type" => "array",
