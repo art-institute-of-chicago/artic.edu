@@ -230,18 +230,6 @@ class Exhibition extends AbstractModel
                 "value" => function () {return $this->exhibition_message;},
             ],
             [
-                "name" => 'exhibition_location',
-                "doc" => "Location",
-                "type" => "string",
-                "value" => function () {return $this->exhibition_location;},
-            ],
-            [
-                "name" => 'cms_exhibition_type',
-                "doc" => "CMS Type",
-                "type" => "number",
-                "value" => function () {return $this->cms_exhibition_type;},
-            ],
-            [
                 "name" => 'related',
                 "doc" => "Related Content",
                 "type" => "array",
