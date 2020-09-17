@@ -71,3 +71,10 @@
       <button class="g-header__menu-link f-secondary" data-behavior="openNavMobile" aria-label="Show menu">Menu<svg class="icon--menu--24" aria-hidden="true"><use xlink:href="#icon--menu--24" /></svg></button>
   </div>
 </header>
+
+<div class="print-header">
+     <div class="logo">
+         {{ include base_path('frontend/icons/logo--outline--92.svg') }}
+     </div>
+     {{-- Add AIR logo and issue name if this is a Journal article --}}
+</div>
