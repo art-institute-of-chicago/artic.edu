@@ -440,3 +440,13 @@ img {
   padding: 0;
   background: transparent;
 }
+
+/* Remove `linear-gradient` css that Prince doesn't support */
+.m-article-header--feature .m-article-header__img::before,
+.m-article-header--feature .m-article-header__text::after,
+.m-article-header--hero .m-article-header__img::after,
+.m-article-header--super-hero .m-article-header__img::after,
+.m-listing--hero .m-listing__img::after,
+.m-media--hero .m-media__img::after {
+  background-image: none;
+}
