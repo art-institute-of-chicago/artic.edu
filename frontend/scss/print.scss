@@ -42,7 +42,7 @@ header {
 
 .print-header {
   display: block;
-  margin: .5in .5in .3in;
+  //margin: .5in .5in .3in;
 
   .logo {
     width: 150px;
@@ -51,7 +51,7 @@ header {
     svg {
       width: 100%;
       height: 100%;
-      fill: currectcolor;
+      fill: currentColor;
     }
   }
 }
@@ -449,4 +449,27 @@ img {
 .m-listing--hero .m-listing__img::after,
 .m-media--hero .m-media__img::after {
   background-image: none;
+}
+
+/* Layout hero images in header */
+.m-article-header--feature .m-article-header__img {
+  width: 66%;
+  left: auto;
+  height: auto;
+  margin: .5in 0 0 0;
+
+  img {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+  }
+}
+
+/* Layout title in hero header */
+.m-article-header--feature .m-article-header__text {
+  position: relative;
+  padding: 0;
+  width: 66%;
 }
