@@ -47,6 +47,11 @@ const imageSlider = function(container) {
   var oldSpringX = 0.5;
 
   function imagesClipAggressive() {
+    if (!rightImage || !leftImage) {
+      window.setTimeout(imagesClipAggressive, 200);
+      return;
+    }
+
     var newSpringX = viewer.viewport.centerSpringX.current.value;
     var deltaSpringX = newSpringX - oldSpringX;
     oldSpringX = newSpringX;
