@@ -11,6 +11,7 @@
         @component('components.molecules._m-image-slider')
             @slot('leftImage', $leftImage)
             @slot('rightImage', $rightImage)
+            @slot('isSliderZoomable', $block->input('is_slider_zoomable'))
             @slot('artwork', $artwork_id ? $artwork : '')
         @endcomponent
     </div>
