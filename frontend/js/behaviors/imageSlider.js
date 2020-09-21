@@ -170,6 +170,17 @@ const imageSlider = function(container) {
       element:         viewerElement,
       xmlns:           'http://schemas.microsoft.com/deepzoom/2008',
       prefixUrl:       '//openseadragon.github.io/openseadragon/images/',
+      springStiffness: 15, // 6.5
+      visibilityRatio: 1, // 0.5
+      zoomPerClick: 1.3, // 2.0
+      constrainDuringPan: true, // false
+      animationTime: 1.5, // 1.2
+      minZoomLevel: 0, // null
+      maxZoomPixelRatio: 1.0, // 1.1
+      minZoomImageRatio: 1.0, // 0.9
+      gestureSettingsMouse: {
+        scrollToZoom: false,
+      },
     });
 
     middle = new OpenSeadragon.Point(viewerElement.clientWidth / 2, viewerElement.clientHeight / 2);
