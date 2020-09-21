@@ -181,6 +181,13 @@ const imageSlider = function(container) {
       gestureSettingsMouse: {
         scrollToZoom: false,
       },
+      zoomInButton: imageData.zoomInButtonId,
+      zoomOutButton: imageData.zoomOutButtonId,
+      showZoomControl: true,
+      showHomeControl: true,
+      showFullPageControl: false,
+      showRotationControl: false,
+      showSequenceControl: false,
     });
 
     middle = new OpenSeadragon.Point(viewerElement.clientWidth / 2, viewerElement.clientHeight / 2);

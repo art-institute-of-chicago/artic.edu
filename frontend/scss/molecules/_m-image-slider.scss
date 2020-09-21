@@ -1,7 +1,9 @@
 .m-image-slider {
   height: 60vw;
-  max-height: 90vh;
+  max-height: calc(90vh - 189px);
   clear: both;
+  position: relative;
+  background-color: #333;
 
   .m-image-slider__viewer {
     height: 100%;
@@ -31,6 +33,51 @@
 
     &.draggable {
       background-color: #445b7c;
+    }
+  }
+
+  // Actions adapted from o-fullscreen-image
+  .m-image-slider__actions {
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    flex-flow: row no-wrap;
+    justify-content: center;
+
+    @include breakpoint('small+') {
+      left: auto;
+      right: 32px;
+      bottom: 32px;
+    }
+
+    .s-dragging ~ & {
+      opacity: .5;
+      pointer-actions: none;
+    }
+
+    > li {
+      flex: 0 0 auto;
+
+      &:not(:first-child) {
+        margin-left: 1px;
+      }
+
+      .btn {
+        border-radius: 0;
+      }
+
+      &:first-child .btn {
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+      }
+
+      &:last-child .btn {
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
     }
   }
 }
