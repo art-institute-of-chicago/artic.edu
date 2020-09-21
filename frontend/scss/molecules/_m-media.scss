@@ -6,7 +6,7 @@
     padding-bottom:50vh;
     min-height:100vh;
 
-    .m-viewer-3d {
+    .m-viewer-3d, .m-image-slider {
       opacity:1;
       visibility:visible;
       position:absolute;//fixed;
@@ -89,7 +89,7 @@
       height:60vw;
       max-height:90vh;
 
-      iframe {
+      iframe, figure {
         height:100%;
       }
     }
@@ -188,6 +188,12 @@
       }
     }
   }
+}
+
+// fix sidebars overlapping with wide images
+.m-media--m,
+.m-media--l {
+  clear: both;
 }
 
 .m-media__img {
