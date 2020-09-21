@@ -61,6 +61,11 @@ const imageSlider = function(container) {
   }
 
   function imagesClip() {
+    if (!rightImage || !leftImage) {
+      window.setTimeout(imagesClip, 200);
+      return;
+    }
+
     var rox = rightImage.viewerElementToImageCoordinates(middle).x;
     var lox = leftImage.viewerElementToImageCoordinates(middle).x;
 
