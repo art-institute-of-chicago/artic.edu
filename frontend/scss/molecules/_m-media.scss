@@ -190,6 +190,12 @@
   }
 }
 
+// fix sidebars overlapping with wide images
+.m-media--m,
+.m-media--l {
+  clear: both;
+}
+
 .m-media__img {
   display: block;
   position: relative;
