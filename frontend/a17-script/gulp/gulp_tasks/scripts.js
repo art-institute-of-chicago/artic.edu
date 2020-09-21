@@ -44,7 +44,11 @@ module.exports = function(gulp, data, util, taskName) {
                   edge: 14
                 }
               }
-            }
+            },
+            {
+              test: /\.css$/i,
+              use: ['css-loader'],
+            },
           ],
         },
         plugins: [],

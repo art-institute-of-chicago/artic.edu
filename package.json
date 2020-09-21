@@ -54,6 +54,7 @@
   "devDependencies": {
     "@antoine_a17/a17-node-sassdown": "1.0.7",
     "concurrently": "^3.5.0",
+    "css-loader": "^4.3.0",
     "watch": "^1.0.2"
   },
   "scripts": {
