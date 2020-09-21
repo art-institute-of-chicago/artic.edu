@@ -73,8 +73,10 @@
 </header>
 
 <div class="print-header">
-     <div class="logo">
-         {{ include base_path('frontend/icons/logo--outline--92.svg') }}
-     </div>
+    <div class="logo">
+        @php
+            include base_path('frontend/icons/logo--outline--92.svg')
+        @endphp
+    </div>
      {{-- Add AIR logo and issue name if this is a Journal article --}}
 </div>
