@@ -126,11 +126,27 @@ const imageSlider = function(container) {
     // Bind the container resize
     window.addEventListener('resize', updateContainerDimensions);
 
-    function handleMouseDown(event) {
-      var xPosition = handleElement.getBoundingClientRect().left + window.scrollX + dragWidth - event.pageX;
+    function handleTouchStart(event) {
+      handleStartShared(event.targetTouches[0].pageX);
+    }
 
-      function trackDrag(event) {
-        var leftValue = event.pageX + xPosition - dragWidth;
+    function handleMouseDown(event) {
+      handleStartShared(event.pageX);
+    }
+
+    function handleStartShared(pageX) {
+      var xPosition = handleElement.getBoundingClientRect().left + window.scrollX + dragWidth - pageX;
+
+      function trackDragMouse(event) {
+        trackDragShared(event.pageX);
+      }
+
+      function trackDragTouch(event) {
+        trackDragShared(event.changedTouches[0].pageX);
+      }
+
+      function trackDragShared(pageX) {
+        var leftValue = pageX + xPosition - dragWidth;
 
         //constrain the draggable element to move inside its container
         leftValue = Math.max(leftValue, minLeft);
@@ -146,22 +162,22 @@ const imageSlider = function(container) {
         imagesClip();
       }
 
-      viewerElement.addEventListener('mousemove', trackDrag);
-      viewerElement.addEventListener('vmousemove', trackDrag);
+      viewerElement.addEventListener('mousemove', trackDragMouse);
+      viewerElement.addEventListener('touchmove', trackDragTouch);
 
       function unbindTrackDrag(event) {
-        viewerElement.removeEventListener('mousemove', trackDrag);
-        viewerElement.removeEventListener('vmousemove', trackDrag);
+        viewerElement.removeEventListener('mousemove', trackDragMouse);
+        viewerElement.removeEventListener('touchmove', trackDragTouch);
       }
 
       document.addEventListener('mouseup', unbindTrackDrag, {once: true});
-      document.addEventListener('vmouseup', unbindTrackDrag, {once: true});
+      document.addEventListener('touchend', unbindTrackDrag, {once: true});
 
       event.preventDefault();
     }
 
     handleElement.addEventListener('mousedown', handleMouseDown);
-    handleElement.addEventListener('vmousedown', handleMouseDown);
+    handleElement.addEventListener('touchstart', handleTouchStart);
   }
 
   this.destroy = function() {
