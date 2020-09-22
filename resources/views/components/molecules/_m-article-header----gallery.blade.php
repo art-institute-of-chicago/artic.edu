@@ -67,6 +67,30 @@ if ($maxZoomWindowSize > 843) {
         </li>
         @endif
 
+        @if(isset($moduleMirador) && $moduleMirador)
+        <li data-type="moduleMirador"
+        @if(!isset($isPublicDomain) || !$isPublicDomain)
+          data-restricted="true"
+        @endif
+        >
+            @component('components.atoms._btn')
+              @slot('variation', 'btn--septenary btn--icon-sq')
+              @slot('font', '')
+              @slot('icon', 'icon--view360')
+              @slot('dataAttributes', 'data-gallery-moduleMirador')
+              @slot('behavior', 'triggerMediaModal')
+              @slot('ariaLabel', 'Mirador Viewer')
+              @slot('gtmAttributes', 'data-gtm-event="mirador-open-modal" data-gtm-event-category="in-page"')
+            @endcomponent
+            <textarea style="display: none;">@component('components.molecules._m-viewer-mirador')
+              @slot('style', $style)
+              @slot('type', 'modal')
+              @slot('cc', isset($isPublicDomain) ? $isPublicDomain : false)
+              @slot('title', $title)
+            @endcomponent</textarea>
+        </li>
+        @endif
+
         @if(isset($module360) && $module360)
         <li data-type="module360"
         @if(!isset($isPublicDomain) || !$isPublicDomain)
