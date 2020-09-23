@@ -22,7 +22,14 @@ class IssueArticlePresenter extends BasePresenter
     public function issueNumber()
     {
         if ($this->entity->issue) {
-            return $this->entity->issue->present()->issueNumber;
+            return $this->entity->issue->issue_number;
+        }
+    }
+
+    public function issueTitle()
+    {
+        if ($this->entity->issue) {
+            return $this->entity->issue->title_display ?? $this->entity->issue->title;
         }
     }
 

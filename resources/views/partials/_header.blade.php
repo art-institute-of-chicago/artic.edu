@@ -74,9 +74,21 @@
 
 <div class="print-header">
     <div class="logo">
+        {{-- Rather than using CSS to display SVGs, Prince XML requires the HTML to be inline --}}
         @php
             include base_path('frontend/icons/logo--outline--92.svg')
         @endphp
     </div>
-     {{-- Add AIR logo and issue name if this is a Journal article --}}
+    @if (isset($item) && (get_class($item) == 'App\Models\Issue' || get_class($item) == 'App\Models\IssueArticle'))
+        <div class="journal-logo">
+            {{-- Rather than using CSS to display SVGs, Prince XML requires the HTML to be inline --}}
+            @php
+                include base_path('frontend/icons/journal-logo.svg')
+            @endphp
+        </div>
+        <div class="issue-number f-module-title-2">
+            Issue {{ $item->present()->issueNumber }}<br/>
+            {{ $item->present()->issueTitle }}
+        </div>
+    @endif
 </div>
