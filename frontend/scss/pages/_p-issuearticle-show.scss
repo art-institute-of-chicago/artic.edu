@@ -41,4 +41,23 @@
     //   @include f-dropcap-editorial;
     // }
   }
+
+  .o-article__intro {
+    padding-top: 30px;
+    margin-top: 0;
+  }
+
+  .o-article--journal_abstract {
+    margin-top: 30px;
+  }
+
+  .o-article__body {
+    padding-top: 0;
+    margin-top: 20px;
+  }
+
+  .o-article__secondary-actions {
+    margin-top: 0;
+    padding-top: 0;
+  }
 }

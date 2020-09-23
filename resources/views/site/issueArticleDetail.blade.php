@@ -50,6 +50,7 @@
         @if ($item->abstract)
             @component('components.blocks._text')
                 @slot('font', 'f-body-editorial-emphasis')
+                @slot('variation', 'o-article--journal_abstract')
                 @slot('tag', 'div')
                 {!! $item->present()->abstract !!}
             @endcomponent
