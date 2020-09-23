@@ -42,12 +42,11 @@ header {
 
 .print-header {
   display: block;
-  //margin: .5in .5in .3in;
 
   .logo {
     width: 150px;
     height: 150px;
-    color: #767676;
+    color: $color__black--54;
     svg {
       width: 100%;
       height: 100%;
@@ -106,7 +105,7 @@ table {
 }
 
 body > *:not(#a17),
-#a17 > *:not(#content):not(.g-header):not(.print-header),
+#a17 > *:not(#content):not(.g-header):not(.print-header):not(.print-authors),
 #content > *:not(.o-article),
 svg[class*=icon--play],
 .icon--return,
@@ -467,9 +466,32 @@ img {
   }
 }
 
-/* Layout title in hero header */
+/* Lay out title in hero header */
 .m-article-header--feature .m-article-header__text {
   position: relative;
   padding: 0;
   width: 66%;
+  min-height: auto;
+}
+
+/* Lay out intro text */
+.o-article__intro {
+  width: 66%;
+  p {
+    color: $color__black--54;
+  }
+}
+
+
+/* Move content elements all the way to the left */
+.o-article__inline-header,
+.o-article__intro,
+.o-blocks {
+  margin-left: 0;
+}
+
+.print-authors {
+  display: block;
+  margin: .25in 0;
+  margin-left: 0;
 }
