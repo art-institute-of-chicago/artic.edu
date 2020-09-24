@@ -71,3 +71,24 @@
       <button class="g-header__menu-link f-secondary" data-behavior="openNavMobile" aria-label="Show menu">Menu<svg class="icon--menu--24" aria-hidden="true"><use xlink:href="#icon--menu--24" /></svg></button>
   </div>
 </header>
+
+<div class="print-header">
+    <div class="logo">
+        {{-- Rather than using CSS to display SVGs, Prince XML requires the HTML to be inline --}}
+        @php
+            include base_path('frontend/icons/logo--outline--92.svg')
+        @endphp
+    </div>
+    @if (isset($item) && (get_class($item) == 'App\Models\Issue' || get_class($item) == 'App\Models\IssueArticle'))
+        <div class="journal-logo">
+            {{-- Rather than using CSS to display SVGs, Prince XML requires the HTML to be inline --}}
+            @php
+                include base_path('frontend/icons/journal-logo.svg')
+            @endphp
+        </div>
+        <div class="issue-number f-module-title-2">
+            Issue {{ $item->present()->issueNumber }}<br/>
+            {{ $item->present()->issueTitle }}
+        </div>
+    @endif
+</div>
