@@ -85,9 +85,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 </head>
 
 @if ($print)
-{{-- Wait a fraction of a second before printing so sprites can load first.
-     They're cached locally by now, so just waiting a beat should be enough. --}}
-<body onload="setTimeout(function(){ window.print(); }, 500);">
+<body onload="window.print();" class="s-serif-loaded s-sans-serif-loaded">
 @else
 <body>
 
