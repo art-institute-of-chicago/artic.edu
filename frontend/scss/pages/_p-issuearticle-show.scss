@@ -32,7 +32,7 @@
   .s-serif-loaded .o-blocks>p:not([class*=f-]),
   .s-serif-loaded .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
   .s-serif-loaded .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
-    font-family: $serif-font-loaded-class;
+    font-family: $serif-font--loaded;
   }
 
   .o-blocks > p {
