@@ -87,6 +87,7 @@ if ($maxZoomWindowSize > 843) {
               @slot('type', 'modal')
               @slot('cc', isset($isPublicDomain) ? $isPublicDomain : false)
               @slot('title', $title)
+              @slot('manifest', $moduleMirador)
             @endcomponent</textarea>
         </li>
         @endif

@@ -1,11 +1,15 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import mirador from 'mirador/dist/es/src/index';
+import aicZoomButtonsPlugin from '../libs/mirador/aicZoomButtonsPlugin';
+import aicNavigationButtonsPlugin from '../libs/mirador/aicNavigationButtonsPlugin';
+import aicRemoveNavPlugin from '../libs/mirador/aicRemoveNavPlugin';
+import aicThumbnailCustomization from '../libs/mirador/aicThumbnailCustomizationPlugin';
 
 
 const viewerMirador = function(container) {
   const config = {
-    id: 'demo',
+    id: 'm-viewer-mirador',
     selectedTheme: 'aicTheme',
     themes: {
       aicTheme:{
@@ -49,7 +53,7 @@ const viewerMirador = function(container) {
     },
     language: 'en',
     windows: [{
-      loadedManifest: 'http://aggregator-data.artic.edu/api/v1/artworks/28560/manifest.json',
+      loadedManifest: container.dataset.manifest,
     }],
     thumbnailNavigation: {
       defaultPosition: 'far-bottom', // Which position for the thumbnail navigation to be be displayed. Other possible values are "far-bottom" or "far-right"
@@ -103,7 +107,9 @@ const viewerMirador = function(container) {
     },
   }
   this.init = function() {
-    mirador.viewer(config);
+    mirador.viewer(config, [
+      aicZoomButtonsPlugin, aicNavigationButtonsPlugin, aicRemoveNavPlugin, aicThumbnailCustomization
+    ]);
   };  
 }
 
