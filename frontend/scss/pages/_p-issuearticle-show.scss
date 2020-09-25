@@ -1,4 +1,6 @@
 .p-issuearticle-show {
+  @extend %sticky-sidebar;
+
   .o-article__body::before {
     position: absolute;
     background-color: $color__rules--primary;
@@ -58,10 +60,18 @@
   }
 
   .o-article__primary-actions {
+    padding-top: initial;
+    margin-top: 0;
+
     display: none;
 
     @include breakpoint('large+') {
       display: block;
+    }
+
+    .icon--journal-logo {
+      height: 92px;
+      width: 120px;
     }
   }
 
@@ -134,5 +144,4 @@
       }
     }
   }
-
 }

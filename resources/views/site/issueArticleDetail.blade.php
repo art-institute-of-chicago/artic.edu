@@ -5,7 +5,9 @@
 <article class="o-article">
 
     <div class="o-article__primary-actions">
-        {{-- WEB-1549: Add static sidebar for articles --}}
+        @component('components.molecules._m-article-actions----journal-issue')
+            @slot('issues', [])
+        @endcomponent
     </div>
 
     @component('components.molecules._m-article-header----journal-article')
