@@ -5,8 +5,8 @@
 <article class="o-article">
 
     <div class="o-article__primary-actions">
-        @component('components.molecules._m-article-actions----journal-issue')
-            @slot('issues', [])
+        @component('components.molecules._m-article-actions----journal-article')
+            @slot('item', $item)
         @endcomponent
     </div>
 

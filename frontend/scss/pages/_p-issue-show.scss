@@ -80,16 +80,6 @@
         text-decoration: underline;
       }
     }
-
-    .tag--magazine,
-    .tag--journal {
-      padding-right: 16px;
-      text-align: left;
-
-      @include breakpoint('large+') {
-        display: block;
-      }
-    }
   }
 
   .o-article__body::before {
@@ -130,18 +120,6 @@
       .m-search-bar__clear {
         width: 42px;
         height: 42px;
-      }
-    }
-
-    .tag--journal {
-      height: 60px;
-      line-height: 23px;
-      padding-top: 7px;
-      padding-left: 76px;
-
-      img {
-        width: 60px;
-        height: 60px;
       }
     }
   }

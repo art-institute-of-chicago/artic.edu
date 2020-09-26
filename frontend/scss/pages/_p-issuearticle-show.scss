@@ -60,7 +60,7 @@
   }
 
   .o-article__primary-actions {
-    padding-top: initial;
+    padding-top: 30px;
     margin-top: 0;
 
     display: none;
@@ -69,9 +69,29 @@
       display: block;
     }
 
-    .icon--journal-logo {
-      height: 92px;
-      width: 120px;
+    .m-article-actions--journal__logo {
+      a {
+        color: $color__black--90;
+      }
+
+      .icon--journal-logo {
+        height: 92px;
+        width: 120px;
+      }
+    }
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        .m-article-actions--journal__issues {
+          margin-top: #{map-get((
+            xsmall: 24,
+            small: 24,
+            medium: 24,
+            large: 24,
+            xlarge: 30
+          ), $name)}px;
+        }
+      }
     }
   }
 

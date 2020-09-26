@@ -37,7 +37,6 @@
                             'id' => $issue->id,
                             'slug' => $issue->getSlug(),
                         ]))
-                        @slot('dataAttributes',' data-ajax-scroll-target="collection"')
                         @slot('variation', 'tag--magazine tag--senary tag--w-image')
                         @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $issue->title ) . '" data-gtm-event-category="magazine-sidebar-issue"')
                         @if (!empty($issue->imageFront('hero', 'default')))
