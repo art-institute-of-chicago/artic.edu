@@ -208,6 +208,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--video">
     <use xlink:href="#icon--video"></use>
   </svg>
+  <svg class="icon--view-mirador">
+    <use xlink:href="#icon--view-mirador"></use>
+  </svg>
   <svg class="icon--view360">
     <use xlink:href="#icon--view360"></use>
   </svg>
@@ -582,6 +585,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--video {
   width: 16px;
   height: 16px;
+}
+
+.icon--view-mirador {
+  width: 24px;
+  height: 24px;
 }
 
 .icon--view360 {

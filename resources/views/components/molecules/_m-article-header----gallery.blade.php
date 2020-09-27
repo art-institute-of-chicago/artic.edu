@@ -76,7 +76,7 @@ if ($maxZoomWindowSize > 843) {
             @component('components.atoms._btn')
               @slot('variation', 'btn--septenary btn--icon-sq')
               @slot('font', '')
-              @slot('icon', 'icon--view360')
+              @slot('icon', 'icon--view-mirador')
               @slot('dataAttributes', 'data-gallery-moduleMirador')
               @slot('behavior', 'triggerMediaModal')
               @slot('ariaLabel', 'Mirador Viewer')
