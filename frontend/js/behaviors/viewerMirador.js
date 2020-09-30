@@ -28,7 +28,7 @@ const viewerMirador = function(container) {
           },
         },
         typography:{
-          fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+          fontFamily: 'Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif',
         },
         overrides: {
           MuiToolbar: {

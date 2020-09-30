@@ -78,7 +78,7 @@ class ZoomButtonsPlugin extends Component {
   // add aria labels to buttons
   render() {
     return (
-      <div style={{position: 'absolute', bottom: 32, right: 32, left:'auto', zIndex:500}}>
+      <div style={{position: 'absolute', bottom: 58, right: 32, left:'auto', zIndex:500}}>
         <ButtonGroup size='large' disableElevation variant='contained' color='primary' >
           <CustomButton aria-label='zoom in' onClick={this.handleZoomInClick}>
             <ZoomInIcon />
