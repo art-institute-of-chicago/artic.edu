@@ -284,6 +284,76 @@
   }
 }
 
+.g-modal--moduleMirador {
+  border-radius: $border-radius;
+  background-color: $color__black--80;
+  overflow: hidden;
+  padding-top:0;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  transform:none;
+
+  @media screen and (min-width: 1280px), screen and (min-height: 1024px) {
+    left: 50%;
+    top: 50%;
+    width: calc(100vw - 80px);
+    max-width: 1280px;
+    height: calc(100vh - 80px);
+    max-height: 1024px;
+    transform: translate(-50%, -50%);
+  }
+
+  .mosaic-window-body {
+    height: 100%
+  }
+
+  .mirador-mosaic {
+    height: 100%
+  }
+
+  .mosaic-root {
+    height: 100%
+  }
+
+  .mosaic-tile {
+    height: 100%
+  }
+
+  .mosaic-window {
+    height: 100%
+  }
+
+  .g-modal__content {
+    width:auto;
+    min-width:100%;
+    min-height:100%;
+    padding-bottom:0;
+    max-height:auto;
+  }
+
+  .g-modal__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 25px;
+    padding: 15px;
+    background-color: rgba(0,0,0,0.5);
+    transition: background-color 0.4s ease;
+    border-radius: 50%;
+
+    >svg {
+      display: block;
+    }
+
+    &:hover,
+    &:active {
+      background-color: black !important;
+    }
+  }
+}
+
 .g-modal--restricted {
   .g-modal__content {
     max-width:1280px !important;
@@ -307,7 +377,7 @@
     }
   }
 
-  &.g-modal--module360 {
+  &.g-modal--module360, .g-modal--moduleMirador {
     max-width:1280px !important;
     max-height:1024px !important;
     left:50%;
