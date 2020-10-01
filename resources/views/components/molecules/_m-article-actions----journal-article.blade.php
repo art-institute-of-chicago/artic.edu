@@ -8,6 +8,10 @@
         </a>
     </div>
 
+    @if (!empty($item->pdf_download_path))
+        <p><a href="{!! $item->present()->pdfDownloadPath() !!}">[Download]</a></p>
+    @endif
+
     @if (!empty($item->issue))
         @component('components.molecules._m-article-actions----journal__issues')
             @slot('issues', [$item->issue])
