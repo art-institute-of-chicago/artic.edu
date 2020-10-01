@@ -71,6 +71,9 @@ class GeneratePdfs extends Command
 
                 // Stream the file to S3; be sure to set `AWS_BUCKET` in `.env` and otherwise configure credentials
                 Storage::disk('pdf_s3')->putFileAs('/pdf/static', new File($pdfPath), $pdfFileName, 'public');
+
+                $model->pdf_download_path = '/pdf/static/' . $pdfFileName;
+                $model->save();
             }
         }
     }
