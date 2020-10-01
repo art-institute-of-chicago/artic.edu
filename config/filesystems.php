@@ -71,6 +71,14 @@ return [
             'bucket' => env('IIIF_S3_BUCKET'),
         ],
 
+        'pdf_s3' => [
+            'driver' => 's3',
+            'key' => env('PDF_S3_KEY', env('S3_KEY')),
+            'secret' => env('PDF_S3_SECRET', env('S3_SECRET')),
+            'region' => env('PDF_S3_REGION'),
+            'bucket' => env('PDF_S3_BUCKET'),
+        ],
+
     ],
 
 ];

@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\IssueArticle;
 use Prince\Prince;
@@ -54,10 +56,6 @@ class GeneratePdfs extends Command
                 $prince = new Prince(config('aic.prince_command'));
                 $prince->setBaseURL(config('aic.protocol') . '://' . config('app.url'));
                 $prince->setMedia('print');
-                if (config('app.env') !== 'production')
-                {
-                    $prince->setVerbose(true);
-                }
 
                 if (config('app.debug')) {
                     $prince->setVerbose(true);
@@ -67,7 +65,12 @@ class GeneratePdfs extends Command
                 set_time_limit(0);
                 $html = file_get_contents($path . "?print=true");
 
-                $prince->convert_string_to_file($html, storage_path('app/download-' . $route . '-' . $model->id . '.pdf'));
+                $pdfFileName = 'download-' . $route . '-' . $model->id . '.pdf';
+                $pdfPath = storage_path('app/' . $pdfFileName);
+                $prince->convert_string_to_file($html, $pdfPath);
+
+                // Stream the file to S3; be sure to set `AWS_BUCKET` in `.env` and otherwise configure credentials
+                Storage::disk('pdf_s3')->putFileAs('/pdf/static', new File($pdfPath), $pdfFileName, 'public');
             }
         }
     }
