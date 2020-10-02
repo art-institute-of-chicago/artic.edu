@@ -9,9 +9,13 @@ const styles = theme => ({
 
 class ThumbnailPlugin extends Component {
   render() {
-    const { TargetComponent } = this.props;
+    //accessing target component and its props
+    const { TargetComponent, targetProps } = this.props
+    //copy classes 
+    targetProps.classes = this.props.classes;
     return (
-      <TargetComponent {...this.props}/>
+      //return one set of thumbnails instead of two
+      <TargetComponent {...this.props.targetProps}/>
     );
   }
 }
