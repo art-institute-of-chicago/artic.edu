@@ -226,6 +226,11 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-mirador_embed'
         ],
+        'mirador_modal' => [
+            'title' => 'Mirador Modal',
+            'icon' => 'image',
+            'component' => 'a17-block-mirador_modal'
+        ],
     ],
     'repeaters' => [
         'admissions' => [
