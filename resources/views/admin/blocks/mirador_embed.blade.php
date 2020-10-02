@@ -10,3 +10,21 @@
 	'label' => 'Alternative manifest file',
 	'note' => 'Upload a .json file'
 ])
+
+@formField('wysiwyg', [
+	'name' => 'caption_title',
+	'label' => 'Caption title',
+	'toolbarOptions' => [
+	'italic',
+	],
+])
+
+@formField('wysiwyg', [
+	'name' => 'caption',
+	'label' => 'Caption',
+	'maxlength' => 300,
+	'note' => 'Max 300 characters',
+	'toolbarOptions' => [
+	'italic', 'link',
+	],
+])
