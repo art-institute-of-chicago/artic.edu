@@ -264,6 +264,17 @@
   transition: opacity .35s;
 }
 
+.m-media--mirador-embed {
+  height:50vh;
+
+  .mirador-primary-window {
+    padding-top: 10px;
+  }
+  .mosaic-window-body, .mirador-mosaic, .mosaic-root, .mosaic-tile, .mosaic-window {
+    height: 100%
+  }
+}
+
 .m-media__img img,
 .m-media__img > svg:not([class*=icon--]) {
   display: block;
