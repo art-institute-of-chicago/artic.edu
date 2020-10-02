@@ -86,22 +86,19 @@ const viewerMirador = function(container) {
      workspaceControlPanel: {
       enabled: false,
     },
-    osdConfig: { // Config used for OpenSeadragon
-      preserveViewport: true,
+    osdConfig: { // Openseadragon config
       springStiffness: 15,
       visibilityRatio: 1,
-      zoomPerScroll: 1.2,
+      zoomPerScroll: 1.3,
       zoomPerClick: 1.3,
-      immediateRender:false,
       constrainDuringPan: true,
-      animationTime: 1,
+      animationTime: 1.5,
+      maxZoomPixelRatio: 1,
+      minZoomImageRatio: 1,
       minZoomLevel: 0,
-      minZoomImageRatio: 0.8,
-      maxZoomPixelRatio: 1.0,
-      defaultZoomLevel: 0,
       gestureSettingsMouse: {
         scrollToZoom: true,
-        clickToZoom: true,
+        clickToZoom: false,
         dblClickToZoom: false,
       },
     },
