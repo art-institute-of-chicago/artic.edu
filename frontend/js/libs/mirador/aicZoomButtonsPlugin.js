@@ -39,6 +39,13 @@ const CustomButton = withStyles({
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,.6)',
     },
+    '&:disabled': {
+      color: 'rgba(255,255,255,.2)',
+      backgroundColor: 'rgba(0,0,0,.5)',
+    },
+    '&:not(:last-child)': {
+      border: 0,
+    }
   },
 })(Button);
 
@@ -57,33 +64,37 @@ class ZoomButtonsPlugin extends Component {
    * @private
    */
   handleZoomInClick() {
-    const { windowId, updateViewport, windowViewProperties } = this.props;
-
-    updateViewport(windowId, {
-      zoom: windowViewProperties.zoom * 2,
-    });
+    const { windowId, updateViewport, viewer, windowViewProperties } = this.props;
+    if (windowViewProperties.zoom <= viewer.viewport.getMaxZoom()) {
+      updateViewport(windowId, {
+        zoom: windowViewProperties.zoom * 2,
+      });
+    }
   }
 
   /**
    * @private
    */
   handleZoomOutClick() {
-    const { windowId, updateViewport, windowViewProperties } = this.props;
-
-    updateViewport(windowId, {
-      zoom: windowViewProperties.zoom / 2,
-    });
+    const { windowId, updateViewport, viewer, windowViewProperties } = this.props;
+    if (windowViewProperties.zoom >= viewer.viewport.getMinZoom()) {
+      updateViewport(windowId, {
+        zoom: windowViewProperties.zoom / 2,
+      });
+    }
   }
 
-  // add aria labels to buttons
   render() {
+    const { viewer, windowViewProperties } = this.props;
+    const zoomIn = ( windowViewProperties && viewer && windowViewProperties.zoom < viewer.viewport.getMaxZoom() );
+    const zoomOut = ( windowViewProperties && viewer && windowViewProperties.zoom > viewer.viewport.getMinZoom() );
     return (
-      <div style={{position: 'absolute', bottom: 58, right: 32, left:'auto', zIndex:500}}>
+      <div style={{position: 'absolute', bottom: 58, right: 32, left: 'auto', zIndex: 500}}>
         <ButtonGroup size='large' disableElevation variant='contained' color='primary' >
-          <CustomButton aria-label='zoom in' onClick={this.handleZoomInClick}>
+          <CustomButton aria-label='zoom in' onClick={this.handleZoomInClick} disabled={!zoomIn}>
             <ZoomInIcon />
           </CustomButton>
-          <CustomButton aria-label='zoom out' onClick={this.handleZoomOutClick}>
+          <CustomButton aria-label='zoom out' onClick={this.handleZoomOutClick} disabled={!zoomOut}>
             <ZoomOutIcon />
           </CustomButton>
         </ButtonGroup>
