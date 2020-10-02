@@ -36,7 +36,10 @@ class GeneratePdfsOne extends GeneratePdfs
             $modelClass = $this->argument('model');
             $id = $this->argument('id');
             $model = $modelClass::published()->find($id);
-            $this->generatePdf($model);
+            if ($model)
+            {
+                $this->generatePdf($model);
+            }
         }
     }
 }
