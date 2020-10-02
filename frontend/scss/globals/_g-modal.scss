@@ -305,23 +305,7 @@
     transform: translate(-50%, -50%);
   }
 
-  .mosaic-window-body {
-    height: 100%
-  }
-
-  .mirador-mosaic {
-    height: 100%
-  }
-
-  .mosaic-root {
-    height: 100%
-  }
-
-  .mosaic-tile {
-    height: 100%
-  }
-
-  .mosaic-window {
+  .mosaic-window-body, .mirador-mosaic, .mosaic-root, .mosaic-tile, .mosaic-window {
     height: 100%
   }
 
