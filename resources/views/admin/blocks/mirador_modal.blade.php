@@ -1,5 +1,5 @@
 @formField('medias', [
-    'name' => 'image',
+  'name' => 'image',
 	'label' => 'Mirador Image',
 	'max' => '1'
 ])

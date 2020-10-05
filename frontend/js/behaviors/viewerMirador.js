@@ -6,7 +6,6 @@ import aicNavigationButtonsPlugin from '../libs/mirador/aicNavigationButtonsPlug
 import aicRemoveNavPlugin from '../libs/mirador/aicRemoveNavPlugin';
 import aicThumbnailCustomization from '../libs/mirador/aicThumbnailCustomizationPlugin';
 
-
 const viewerMirador = function(container) {
   const config = {
     id: 'm-viewer-mirador',
