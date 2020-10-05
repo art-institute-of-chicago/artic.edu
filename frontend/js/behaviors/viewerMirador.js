@@ -107,6 +107,10 @@ const viewerMirador = function(container) {
     mirador.viewer(config, [
       aicZoomButtonsPlugin, aicNavigationButtonsPlugin, aicRemoveNavPlugin, aicThumbnailCustomization
     ]);
+
+    if(document.getElementsByClassName('mirador-viewer')) {
+      container.classList.remove('loader');
+    }; 
   };  
 }
 

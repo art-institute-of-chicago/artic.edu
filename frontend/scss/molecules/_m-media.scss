@@ -266,6 +266,16 @@
 
 .m-media--mirador-embed {
   height:50vh;
+  
+  .loader {
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center;
+    position: relative;
+    height: 100%;
+    width: auto;
+  }
 
   .mirador-primary-window {
     padding-top: 10px;
