@@ -19,6 +19,7 @@ $include-icons: false; // see icons.scss!
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ functions/mixins
 
 @import 'setup/mixins';
+@import 'state/s-sticky-sidebar'; // refactor?
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ typography */
 

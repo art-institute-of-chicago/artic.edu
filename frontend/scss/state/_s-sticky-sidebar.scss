@@ -1,0 +1,29 @@
+/***
+
+Fixed sidebar
+============================
+
+For _p-issuearticle-show.scss and _p-issue-show.scss
+
+***/
+
+%sticky-sidebar {
+  @include breakpoint('large+') {
+    &.is-sidebar-fixed {
+      .o-sticky-sidebar__sticker {
+        position: fixed;
+        @each $name in ('large', 'xlarge') {
+          @include breakpoint('#{$name}') {
+            width: #{colspan(13, '#{$name}')};
+          }
+        }
+      }
+      .o-sticky-sidebar__placeholder::before {
+        content: '';
+      }
+      .o-sticky-sidebar__stopper {
+        clear: both;
+      }
+    }
+  }
+}

@@ -1,4 +1,3 @@
-
 .o-article {
   @include float-clear;
   position: relative;
@@ -14,7 +13,6 @@
 }
 
 .o-article .m-article-header:not(.m-article-header--gallery):not(.m-article-header--journal) {
-
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
     width: 100%;
@@ -65,60 +63,59 @@
   }
 }
 
-  .m-article-header ~ .o-article__primary-actions::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 1px;
-    background-color: $color__rules--primary;
-  }
+.m-article-header ~ .o-article__primary-actions::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+}
 
-  .o-article__primary-actions > *:not(:nth-child(1)):not([class*=f-]):not(.o-collapsing-nav) {
+.o-article__primary-actions > *:not(:nth-child(1)):not([class*='f-']):not(.o-collapsing-nav) {
+  margin-top: 8px;
+
+  @include breakpoint('large+') {
+    margin-top: 52px;
+  }
+}
+
+.o-article__primary-actions > *.f-secondary:not(:nth-child(1)) {
+  @include tucked-margin-top($f-secondary, ('xsmall': 52));
+}
+
+.o-article__primary-actions > .m-article-actions:nth-child(1) {
+  @include breakpoint('large+') {
     margin-top: 8px;
+  }
+}
 
-    @include breakpoint('large+') {
-      margin-top: 52px;
+.m-article-header--feature ~ .o-article__primary-actions,
+.m-article-header--hero ~ .o-article__primary-actions,
+.m-article-header--super-hero ~ .o-article__primary-actions {
+  @include breakpoint('medium-') {
+    margin-top: 0;
+
+    &::before {
+      content: none;
+      display: none;
     }
   }
+}
 
-  .o-article__primary-actions > *.f-secondary:not(:nth-child(1)) {
-    @include tucked-margin-top($f-secondary, ('xsmall': 52));
+.o-article__primary-actions *.f-secondary:not(.m-author):not(.m-link-list) a {
+  @include text-underline(1.02em, $color__rules--secondary);
+
+  &:hover,
+  &:focus:hover {
+    @include text-underline(1.02em, $color__link--hover);
   }
 
-  .o-article__primary-actions > .m-article-actions:nth-child(1) {
-    @include breakpoint('large+') {
-      margin-top: 8px;
-    }
+  &:active:hover {
+    @include text-underline(1.02em, $color__link--active);
   }
-
-  .m-article-header--feature ~ .o-article__primary-actions,
-  .m-article-header--hero ~ .o-article__primary-actions,
-  .m-article-header--super-hero ~ .o-article__primary-actions {
-    @include breakpoint('medium-') {
-      margin-top: 0;
-
-      &::before {
-        content: none;
-        display: none;
-      }
-    }
-  }
-
-  .o-article__primary-actions *.f-secondary:not(.m-author):not(.m-link-list) a {
-    @include text-underline(1.02em, $color__rules--secondary);
-
-    &:hover,
-    &:focus:hover {
-      @include text-underline(1.02em, $color__link--hover);
-    }
-
-    &:active:hover {
-      @include text-underline(1.02em, $color__link--active);
-    }
-  }
-
+}
 
 .o-article__meta {
   position: relative;
@@ -140,10 +137,9 @@
   }
 }
 
-  .o-article__meta .m-link-list:first-child {
-    margin-top: 0;
-  }
-
+.o-article__meta .m-link-list:first-child {
+  margin-top: 0;
+}
 
 .o-article__secondary-actions {
   position: relative;
@@ -193,11 +189,11 @@
   }
 }
 
-  .o-article__secondary-actions > .m-article-actions:nth-child(1) {
-    @include breakpoint('medium+') {
-      margin-top: 8px;
-    }
+.o-article__secondary-actions > .m-article-actions:nth-child(1) {
+  @include breakpoint('medium+') {
+    margin-top: 8px;
   }
+}
 
 
 
@@ -240,8 +236,8 @@
 .o-article__intro {
   position: relative;
   margin-top: 28px;
-  padding-top: .02px;
-  padding-bottom: .02px;
+  padding-top: 0.02px;
+  padding-bottom: 0.02px;
 
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
@@ -282,11 +278,11 @@
 
 .o-article__inline-header {
   position: relative;
-  padding-top: .02px;
+  padding-top: 0.02px;
   padding-bottom: 28px;
 
   @include breakpoint('small') {
-    padding-right: colspan(10,small);
+    padding-right: colspan(10, small);
   }
 
   @include breakpoint('medium+') {
@@ -295,7 +291,7 @@
   }
 }
 
-.o-article__inline-header .title.f-headline-editorial+.f-secondary {
+.o-article__inline-header .title.f-headline-editorial + .f-secondary {
   margin-top: 25px;
 }
 
@@ -390,22 +386,22 @@
   }
 }
 
-  .o-article--video .o-article__body,
-  .o-article__secondary-actions ~ .o-article__body {
-    @include breakpoint('medium+') {
-      float: left;
-      width: colspan(38, medium);
-    }
-
-    @include breakpoint('large+') {
-      float: none;
-      width: colspan(28, large);
-    }
-
-    @include breakpoint('xlarge') {
-      width: colspan(28, xlarge);
-    }
+.o-article--video .o-article__body,
+.o-article__secondary-actions ~ .o-article__body {
+  @include breakpoint('medium+') {
+    float: left;
+    width: colspan(38, medium);
   }
+
+  @include breakpoint('large+') {
+    float: none;
+    width: colspan(28, large);
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(28, xlarge);
+  }
+}
 
 .o-article__body--no-description.o-blocks > .deflist:first-child {
   margin-top: 0;
@@ -447,7 +443,6 @@
 }
 
 .o-article--generic-page {
-
   .o-article__primary-actions {
     padding-top: 0;
 
@@ -558,7 +553,7 @@
     flex-direction: column;
   }
 
-  >:not(:nth-child(1)):not([class*=f-]):not(.o-collapsing-nav) {
+  > :not(:nth-child(1)):not([class*='f-']):not(.o-collapsing-nav) {
     margin-top: auto;
   }
 

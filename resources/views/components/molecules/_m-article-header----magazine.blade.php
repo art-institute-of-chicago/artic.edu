@@ -1,4 +1,4 @@
-<{{ $tag ?? 'header' }} class="m-article-header m-article-header--publication m-article-header--magazine" data-behavior="magazineHeader">
+<header class="m-article-header m-article-header--publication m-article-header--magazine" data-behavior="magazineHeader">
     <div class="m-article-header__img">
         @if (isset($images))
             @foreach ($images as $key => $image)
@@ -68,4 +68,4 @@
             </div>
         @endif
     </div>
-</{{ $tag ?? 'header' }}>
+</header>

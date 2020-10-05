@@ -1,4 +1,6 @@
 .p-issuearticle-show {
+  @extend %sticky-sidebar;
+
   .o-article__body::before {
     position: absolute;
     background-color: $color__rules--primary;
@@ -40,5 +42,126 @@
     // &:first-of-type {
     //   @include f-dropcap-editorial;
     // }
+  }
+
+  .o-article__intro {
+    padding-top: 30px;
+    margin-top: 0;
+    border-top: 0;
+  }
+
+  .o-article--journal_abstract {
+    margin-top: 30px;
+  }
+
+  .o-article__body {
+    padding-top: 0;
+    margin-top: 25px;
+  }
+
+  .o-article__primary-actions {
+    padding-top: 30px;
+    margin-top: 0;
+
+    display: none;
+
+    @include breakpoint('large+') {
+      display: block;
+    }
+
+    .m-article-actions--journal__logo {
+      a {
+        color: $color__black--90;
+      }
+
+      .icon--journal-logo {
+        height: 92px;
+        width: 120px;
+      }
+    }
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        .m-article-actions--journal__issues {
+          margin-top: #{map-get((
+            xsmall: 24,
+            small: 24,
+            medium: 24,
+            large: 24,
+            xlarge: 30
+          ), $name)}px;
+        }
+      }
+    }
+  }
+
+  .o-article__secondary-actions {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .m-article-header--journal-article {
+    padding-top: 0;
+    margin-bottom: 0 !important; // bad
+
+    .m-article-header__img,
+    .m-article-header__text {
+      width: 100vw;
+
+      margin-left: -#{map-get($outer-gutters, medium)};
+
+      @include breakpoint('large') {
+        // full width - one gutter - (left sidebar width)
+        width: 100vw - map-get($outer-gutters, large) - (colspan(13, large) + colspan(1, large));
+        margin-left: -#{colspan(1, large)};
+      }
+
+      @include breakpoint('xlarge') {
+        // (main column width - left sidebar width) + (right gutter width)
+        width: calc(#{map-get($main-col-widths, xlarge) - (colspan(13, xlarge) + colspan(1, xlarge))} + (100vw - #{map-get($main-col-widths, xlarge)}) / 2);
+        margin-left: -#{colspan(1, xlarge)};
+      }
+    }
+
+    .m-article-header__img {
+      min-height: 240px;
+      height: 60vh;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .m-article-header__text {
+      position: absolute;
+      bottom: 0;
+
+      padding-bottom: 30px;
+      padding-top: 30px;
+
+      background-color: rgba(255,255,255,0.75);
+
+      h1 {
+        @include untuck;
+        margin-top: 0;
+
+        @each $name, $point in ('xsmall', 'small', 'medium') {
+          @include breakpoint('#{$name}') {
+            padding-left: map-get($outer-gutters, $name);
+            padding-right: map-get($outer-gutters, $name);
+          }
+        }
+
+        @each $name, $point in ('large', 'xlarge') {
+          @include breakpoint('#{$name}') {
+            padding-left: colspan(1, $name);
+            padding-right: colspan(1, $name);
+            width: colspan(30, $name);
+          }
+        }
+      }
+    }
   }
 }

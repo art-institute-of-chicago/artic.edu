@@ -2,6 +2,7 @@
 .p-magazineissue-show,
 .p-magazineissue-latest,
 .p-issue-show {
+  @extend %sticky-sidebar;
 
   .o-article__body {
     border-top: none;
@@ -79,16 +80,6 @@
         text-decoration: underline;
       }
     }
-
-    .tag--magazine,
-    .tag--journal {
-      padding-right: 16px;
-      text-align: left;
-
-      @include breakpoint('large+') {
-        display: block;
-      }
-    }
   }
 
   .o-article__body::before {
@@ -105,25 +96,6 @@
         left: #{- colspan(1, '#{$name}')};
         top: #{- map-get($journal-header-margin-bottom, $name)};
         height: calc(100% + #{map-get($journal-header-margin-bottom, $name)});
-      }
-    }
-  }
-
-  @include breakpoint('large+') {
-    &.is-sidebar-fixed {
-      .o-sticky-sidebar__sticker {
-        position: fixed;
-        @each $name in ('large', 'xlarge') {
-          @include breakpoint('#{$name}') {
-            width: #{colspan(13, '#{$name}')};
-          }
-        }
-      }
-      .o-sticky-sidebar__placeholder::before {
-        content: '';
-      }
-      .o-sticky-sidebar__stopper {
-        clear: both;
       }
     }
   }
@@ -148,18 +120,6 @@
       .m-search-bar__clear {
         width: 42px;
         height: 42px;
-      }
-    }
-
-    .tag--journal {
-      height: 60px;
-      line-height: 23px;
-      padding-top: 7px;
-      padding-left: 76px;
-
-      img {
-        width: 60px;
-        height: 60px;
       }
     }
   }
