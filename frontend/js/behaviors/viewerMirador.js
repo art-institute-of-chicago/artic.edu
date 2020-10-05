@@ -7,8 +7,9 @@ import aicRemoveNavPlugin from '../libs/mirador/aicRemoveNavPlugin';
 import aicThumbnailCustomization from '../libs/mirador/aicThumbnailCustomizationPlugin';
 
 const viewerMirador = function(container) {
+  let viewerId = 'm-viewer-mirador-' + container.dataset.id;
   const config = {
-    id: 'm-viewer-mirador',
+    id: viewerId,
     selectedTheme: 'aicTheme',
     themes: {
       aicTheme:{
