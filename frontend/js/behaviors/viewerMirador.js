@@ -41,13 +41,6 @@ const viewerMirador = function(container) {
               display: 'none',
             },
           },
-          MuiPaper: {
-            root: {
-              insideLabel: {
-                background: '#cc0000',
-              },
-            },
-          },
         },
       },
     },
