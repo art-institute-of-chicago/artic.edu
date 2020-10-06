@@ -52,7 +52,7 @@
 
         <p>This checkbox is meant as a fail-safe. If for some reason, you see missing tiles when you zoom and pan around the deep-zoom viewer, check this option and re-publish. There's no need to use it under normal circumstances. Please note that it may take up to 10 minutes to generate tiles.</p>
     </a17-fieldset>
-    
+
     <a17-fieldset id="360file" title="360 File">
         @formField('files', [
             'name' => 'image_sequence_file',
@@ -66,7 +66,7 @@
         @formField('checkbox', [
             'name' => 'default_manifest_url',
             'label' => 'Use default manifest file.',
-            'note' => 'i.e.: http://aggregator-data.artic.edu/api/v1/artworks/28560/manifest.json',
+            'note' => 'i.e. ' . config('api.base_uri') . '/api/v1/artworks/' . $item->datahub_id . '/manifest.json',
             'default' => false,
         ])
         @formField('files', [
