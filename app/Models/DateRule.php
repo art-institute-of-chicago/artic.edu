@@ -6,6 +6,7 @@ namespace App\Models;
 class DateRule extends AbstractModel
 {
     protected $fillable = [
+        'title',
         'start_date',
         'end_date',
         'type',
