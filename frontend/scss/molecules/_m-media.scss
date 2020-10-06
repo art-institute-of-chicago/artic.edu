@@ -265,8 +265,7 @@
 }
 
 .m-media--mirador-embed {
-  height:50vh;
-  
+
   .loader {
     top: 50%;
     -ms-transform: translateY(-50%);
@@ -280,6 +279,7 @@
   .mirador-primary-window {
     padding-top: 10px;
   }
+
   .mosaic-window-body, .mirador-mosaic, .mosaic-root, .mosaic-tile, .mosaic-window {
     height: 100%
   }
@@ -311,8 +311,8 @@
   }
 }
 
-.m-media--m .m-media__img img,
-.m-media--l .m-media__img img,
+.m-media--m .m-media__img:not(.m-media--mirador-embed) img,
+.m-media--l .m-media__img:not(.m-media--mirador-embed) img,
 .m-media__img video,
 .m-media__img embed,
 .m-media:not(.m-media--soundcloud) .m-media__img iframe,
@@ -340,6 +340,19 @@
 .m-media__img.m-media__img--video img {
   object-fit: cover;
 }
+
+.m-media--l .m-media--mirador-embed {
+  height: 70vh;
+}
+
+.m-media--m .m-media--mirador-embed {
+  height: 60vh;
+}
+
+.m-media--s .m-media--mirador-embed {
+  height: 50vh;
+}
+
 
 .m-media__img .icon--play-multi {
   position: absolute;

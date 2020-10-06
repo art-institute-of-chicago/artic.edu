@@ -11,10 +11,11 @@
     }
     $caption_title = $block->input('caption_title');
     $caption = $block->input('caption');
+    $size = $block->input('size');
 @endphp
 
 @if ($final_manifest)
-    <div class="m-media m-media--s o-blocks__block">
+    <div class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} o-blocks__block">
         <div class="m-media__img m-media--mirador-embed" data-behavior="fitText">
             @component('components.molecules._m-viewer-mirador')
                 @slot('type', 'standalone')

@@ -11,6 +11,27 @@
     'note' => 'Upload a .json file'
 ])
 
+@formField('select', [
+    'name' => 'size',
+    'label' => 'Size',
+    'placeholder' => 'Select size',
+    'default' => 'm',
+    'options' => [
+        [
+            'value' => 's',
+            'label' => 'Small'
+        ],
+        [
+            'value' => 'm',
+            'label' => 'Medium'
+        ],
+        [
+            'value' => 'l',
+            'label' => 'Large'
+        ]
+    ]
+])
+
 @formField('wysiwyg', [
     'name' => 'caption_title',
     'label' => 'Caption title',
