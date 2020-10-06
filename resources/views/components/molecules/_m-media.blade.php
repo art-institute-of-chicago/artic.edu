@@ -168,10 +168,10 @@
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
         @elseif ($type == 'moduleMirador' and $poster)
-        @component('components.atoms._img')
-            @slot('image', $poster)
-            @slot('settings', $imageSettings ?? '')
-        @endcomponent
+            @component('components.atoms._img')
+                @slot('image', $poster)
+                @slot('settings', $imageSettings ?? '')
+            @endcomponent
         @else
             @if ($size === 'hero')
                 @component('components.atoms._img')

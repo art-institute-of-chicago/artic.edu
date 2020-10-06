@@ -3,9 +3,9 @@
 @section('content')
 
 @if ($item->assetLibrary)
-	<script type="application/json" id="assetLibrary">
-			{!! json_encode($item->assetLibrary) !!}
-	</script>
+    <script type="application/json" id="assetLibrary">
+        {!! json_encode($item->assetLibrary) !!}
+    </script>
 @endif
 
 <article class="o-article" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}" itemscope itemtype="http://schema.org/CreativeWork">
@@ -32,8 +32,8 @@
     @slot('maxZoomWindowSize', $item->max_zoom_window_size)
     @slot('prevNextObject', $prevNextObject ?? null)
     @slot('module3d', $model3d ?? null)
-		@slot('module360', $item->assetLibrary)
-		@slot('moduleMirador', $item->getMiradorManifest())
+    @slot('module360', $item->assetLibrary)
+    @slot('moduleMirador', $item->getMiradorManifest())
   @endcomponent
 
   <div class="o-article__primary-actions o-article__primary-actions--inline-header u-show@large+" aria-label="Additional information">
