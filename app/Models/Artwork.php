@@ -88,7 +88,7 @@ class Artwork extends AbstractModel
             if ($this->file('upload_manifest_file')) {
                 $manifestFile = $this->file('upload_manifest_file');
             } else {
-                $manifestFile = 'http://aggregator-data.artic.edu/api/v1/artworks/'.$this->datahub_id.'/manifest.json';
+                $manifestFile = config('api.base_uri').'/api/v1/artworks/'.$this->datahub_id.'/manifest.json';
             }
             return $manifestFile;
         }

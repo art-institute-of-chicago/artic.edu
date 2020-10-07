@@ -6,7 +6,7 @@
         if ($uploaded_manifest) {
             $final_manifest = $uploaded_manifest;
         } else {
-            $final_manifest = 'http://aggregator-data.artic.edu/api/v1/artworks/'.$datahub_id.'/manifest.json';
+            $final_manifest = config('api.base_uri').'/api/v1/artworks/'.$datahub_id.'/manifest.json';
         }
     }
     $caption_title = $block->input('caption_title');
