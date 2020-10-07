@@ -221,6 +221,16 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-image_slider'
         ],
+        'mirador_embed' => [
+            'title' => 'Mirador Embed',
+            'icon' => 'image',
+            'component' => 'a17-block-mirador_embed'
+        ],
+        'mirador_modal' => [
+            'title' => 'Mirador Modal',
+            'icon' => 'image',
+            'component' => 'a17-block-mirador_modal'
+        ],
     ],
     'repeaters' => [
         'admissions' => [
@@ -535,6 +545,7 @@ return [
         'attachment',
         'video',
         'image_sequence_file',
+        'upload_manifest_file',
     ],
     'browser_route_prefixes' => [
         'events' => 'exhibitions_events',
