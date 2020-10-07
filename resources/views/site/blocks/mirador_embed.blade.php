@@ -6,7 +6,7 @@
         if ($uploaded_manifest) {
             $manifest = $uploaded_manifest;
         } else {
-            $manifest = config('api.base_uri').'/api/v1/artworks/'.$datahub_id.'/manifest.json';
+            $manifest = config('api.public_uri').'/api/v1/artworks/'.$datahub_id.'/manifest.json';
         }
     }
     $caption_title = $block->input('caption_title');

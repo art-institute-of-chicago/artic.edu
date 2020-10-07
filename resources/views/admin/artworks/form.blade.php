@@ -66,7 +66,7 @@
         @formField('checkbox', [
             'name' => 'default_manifest_url',
             'label' => 'Use default manifest file.',
-            'note' => 'i.e. ' . config('api.base_uri') . '/api/v1/artworks/' . $item->datahub_id . '/manifest.json',
+            'note' => 'i.e. ' . config('api.public_uri') . '/api/v1/artworks/' . $item->datahub_id . '/manifest.json',
             'default' => false,
         ])
         @formField('files', [
