@@ -7,7 +7,7 @@
     $media = $item['media'];
     $fullscreen = (isset($item['fullscreen']) && $item['fullscreen']) && (!isset($media['restrict']) || !$media['restrict']);
     $poster = isset($item['poster']) ? $item['poster'] : false;
-    $final_manifest = isset($item['final_manifest']) ? $item['final_manifest'] : false;
+    $manifest = isset($item['manifest']) ? $item['manifest'] : false;
 
     $fitCaptionTitle = $type === 'artist';
     $type = $type === 'artist' ? 'image' : $type;
@@ -272,7 +272,7 @@
         <textarea style="display: none;">@component('components.molecules._m-viewer-mirador')
             @slot('type', 'modal')
             @slot('title', $media['title'] ? $media['title'].' - Modal Mirador' : 'Modal Mirador')
-            @slot('manifest', $final_manifest)
+            @slot('manifest', $manifest)
           @endcomponent</textarea>
         @endif
 
