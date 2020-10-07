@@ -79,7 +79,7 @@
             include base_path('frontend/icons/logo--outline--92.svg')
         @endphp
     </div>
-    @if (isset($item) && (get_class($item) == 'App\Models\Issue' || get_class($item) == 'App\Models\IssueArticle'))
+    @if (isset($item) && is_object($item) && (get_class($item) == 'App\Models\Issue' || get_class($item) == 'App\Models\IssueArticle'))
         <div class="journal-logo">
             {{-- Rather than using CSS to display SVGs, Prince XML requires the HTML to be inline --}}
             @php
