@@ -14,7 +14,7 @@ trait HasApiRelations
         return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
     }
 
-    public function apiModels($relation, $model)
+    public function apiModels($relation, $model, $ttl = null)
     {
         // Obtain the API class
         $modelClass = "\\App\\Models\\Api\\" . ucfirst($model);
@@ -26,7 +26,7 @@ trait HasApiRelations
             return collect();
         } else {
             // Load real the real models from the API
-            $results = $modelClass::query()->ids($ids)->get();
+            $results = $modelClass::query()->ttl($ttl)->ids($ids)->get();
 
             // Sort them by the original ids listing (coming from our CMS position attribute)
             $sorted = $results->sortBy(function ($model, $key) use ($ids) {

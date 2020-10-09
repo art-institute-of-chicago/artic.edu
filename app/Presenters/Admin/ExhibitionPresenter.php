@@ -142,8 +142,9 @@ class ExhibitionPresenter extends BasePresenter
     }
 
     protected function waitTime() {
-        $waitTime  = $this->entity->apiModels('waitTimes', 'WaitTime')->first();
-        $waitTimeMember  = $this->entity->apiModels('waitTimesMember', 'WaitTime')->first();
+        // WEB-1854: Only cache these API results for 60 seconds
+        $waitTime  = $this->entity->apiModels('waitTimes', 'WaitTime', 60)->first();
+        $waitTimeMember  = $this->entity->apiModels('waitTimesMember', 'WaitTime', 60)->first();
 
         if ($waitTime || $waitTimeMember) {
             return [
