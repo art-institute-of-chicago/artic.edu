@@ -87,7 +87,6 @@
     @endforeach
 @endcomponent
 
-{{-- Remove events from homepage during COVID-19 cancellations
 @component('components.atoms._hr')
 @endcomponent
 
@@ -129,7 +128,6 @@
         ),
     ))
 @endcomponent
---}}
 
 @if ($videos->count() > 0)
     @component('components.organisms._o-gallery----slider')
