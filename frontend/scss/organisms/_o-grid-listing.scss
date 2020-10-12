@@ -869,6 +869,10 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 
 
 // variation with just artwork thumbs in needs adjusting
+.o-grid-listing--basic-artworks {
+  overflow-x: hidden;
+}
+
 .o-grid-listing--gridlines-right.o-grid-listing--basic-artworks,
 .o-grid-listing--gridlines-cols.o-grid-listing--basic-artworks {
   margin-bottom: 0;

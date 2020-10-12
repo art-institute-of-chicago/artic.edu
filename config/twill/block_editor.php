@@ -216,6 +216,21 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-artists'
         ],
+        'image_slider' => [
+            'title' => 'Image Slider',
+            'icon' => 'image',
+            'component' => 'a17-block-image_slider'
+        ],
+        'mirador_embed' => [
+            'title' => 'Mirador Embed',
+            'icon' => 'image',
+            'component' => 'a17-block-mirador_embed'
+        ],
+        'mirador_modal' => [
+            'title' => 'Mirador Modal',
+            'icon' => 'image',
+            'component' => 'a17-block-mirador_modal'
+        ],
     ],
     'repeaters' => [
         'admissions' => [
@@ -508,12 +523,29 @@ return [
                 ],
             ],
         ],
+        'left_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => null,
+                ],
+            ],
+        ],
+        'right_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => null,
+                ],
+            ],
+        ],
 
     ],
     'files' => [
         'attachment',
         'video',
         'image_sequence_file',
+        'upload_manifest_file',
     ],
     'browser_route_prefixes' => [
         'events' => 'exhibitions_events',

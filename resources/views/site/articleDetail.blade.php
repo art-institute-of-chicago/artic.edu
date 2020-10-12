@@ -109,6 +109,9 @@
   </div>
   @endif
 
+@if ($item->showAuthors())
+    <p class="print-authors type f-tag">By {{ $item->showAuthors() ?? null }}</p>
+@endif
   {{-- For articles, this shows below body, not float-right --}}
   @if ($item->featuredRelated)
       <div class="o-article__related">

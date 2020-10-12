@@ -71,7 +71,7 @@ class RecentlyViewedService
 
     function getArtworks()
     {
-        $ids = $this->getArtworkIds();
+        $ids = $this->getArtworkIds()->take(12);
 
         if ($ids->isEmpty()) {
             return collect([]);

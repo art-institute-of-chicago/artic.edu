@@ -48,8 +48,8 @@ class BaseController extends AbstractController
      */
     protected function paginate($limit)
     {
+        $primaryKey = with(new $this->model)->getKeyName();
 
-        return ($this->model)::orderBy('updated_at', 'desc')->paginate($limit);
-
+        return ($this->model)::orderBy('updated_at', 'desc')->orderBy($primaryKey, 'asc')->paginate($limit);
     }
 }

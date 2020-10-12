@@ -19,6 +19,7 @@ $include-icons: false; // see icons.scss!
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ functions/mixins
 
 @import 'setup/mixins';
+@import 'state/s-sticky-sidebar'; // refactor?
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ typography */
 
@@ -132,6 +133,7 @@ $include-icons: false; // see icons.scss!
 @import 'molecules/m-mobile-block';
 @import 'molecules/m-viewer-3d';
 @import 'molecules/m-vjs-audio';
+@import 'molecules/m-image-slider';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 
@@ -164,6 +166,7 @@ $include-icons: false; // see icons.scss!
 @import 'layout/body';
 @import 'layout/a17';
 @import 'layout/content';
+@import 'layout/screen';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ pages */
 

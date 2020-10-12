@@ -22,11 +22,22 @@ class IssueArticlePresenter extends BasePresenter
     public function issueNumber()
     {
         if ($this->entity->issue) {
-            return $this->entity->issue->present()->issueNumber;
+            return $this->entity->issue->issue_number;
+        }
+    }
+
+    public function issueTitle()
+    {
+        if ($this->entity->issue) {
+            return $this->entity->issue->title_display ?? $this->entity->issue->title;
         }
     }
 
     public function listDescription() {
         return strip_tags($this->entity->list_description, '<i>');
+    }
+
+    public function pdfDownloadPath() {
+        return config('aic.pdf_s3_endpoint') . $this->entity->pdf_download_path;
     }
 }

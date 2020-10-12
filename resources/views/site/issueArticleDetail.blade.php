@@ -5,22 +5,15 @@
 <article class="o-article">
 
     <div class="o-article__primary-actions">
-
+        @component('components.molecules._m-article-actions----journal-article')
+            @slot('item', $item)
+        @endcomponent
     </div>
 
-    @component('components.molecules._m-article-header')
-        @slot('editorial', ($item->articleType === 'editorial'))
-        @slot('headerType', $item->present()->headerType)
-        @slot('variation', ($item->headerVariation ?? null))
+    @component('components.molecules._m-article-header----journal-article')
         @slot('title', $item->present()->title)
         @slot('title_display', $item->present()->title_display)
-        @slot('date', $item->date)
-        @slot('type', $item->present()->subtype)
-        @slot('intro', $item->present()->heading)
         @slot('img', $item->imageFront('hero'))
-        @slot('galleryImages', $item->galleryImages)
-        @slot('nextArticle', $item->nextArticle)
-        @slot('prevArticle', $item->prevArticle)
     @endcomponent
 
     <div class="o-article__secondary-actions">
@@ -50,6 +43,7 @@
         @if ($item->abstract)
             @component('components.blocks._text')
                 @slot('font', 'f-body-editorial-emphasis')
+                @slot('variation', 'o-article--journal_abstract')
                 @slot('tag', 'div')
                 {!! $item->present()->abstract !!}
             @endcomponent

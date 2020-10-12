@@ -15,6 +15,7 @@ const triggerMediaModal = function(container) {
           restricted: (container.parentNode.dataset.restricted == 'true') ? true : false,
           module3d: (container.parentNode.dataset.type == 'module3d') ? true : false,
           module360: (container.parentNode.dataset.type == 'module360') ? true : false,
+          moduleMirador: (container.parentNode.dataset.type == 'moduleMirador') ? true : false,
           embedCode: embedCode,
           subtype: container.getAttribute('data-subtype') || null,
         });
@@ -30,6 +31,13 @@ const triggerMediaModal = function(container) {
             'event': '360-open-modal',
             'eventCategory': 'in-page',
             'eventAction': container.dataset.title+' - Modal 360'
+          });
+        }
+        else if (container.parentNode.dataset.type == 'moduleMirador' && container.dataset.title) {
+          triggerCustomEvent(document, 'gtm:push', {
+            'event': 'mirador-open-modal',
+            'eventCategory': 'in-page',
+            'eventAction': container.dataset.title+' - Modal Mirador'
           });
         }
         else {

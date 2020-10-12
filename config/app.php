@@ -224,6 +224,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\InvalidationServiceProvider::class,
         App\Providers\DebugServiceProvider::class,
+        App\Providers\GeneratePdfServiceProvider::class,
 
         Aic\Hub\Foundation\ResourceServiceProvider::class,
         Intervention\Httpauth\HttpauthServiceProvider::class,

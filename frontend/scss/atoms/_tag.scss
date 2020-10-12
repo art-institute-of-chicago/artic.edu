@@ -268,3 +268,27 @@ a.tag--senary:active {
     border-color: $color__rules--secondary;
   }
 }
+
+// variations shared by journal issue, journal article, and magazine issue
+.tag--magazine,
+.tag--journal {
+  padding-right: 16px;
+  text-align: left;
+
+  @include breakpoint('large+') {
+    display: block;
+  }
+}
+
+// specificity to override tag--senary.tag--w-image
+.tag--journal.tag--w-image {
+  height: 60px;
+  line-height: 23px;
+  padding-top: 7px;
+  padding-left: 76px;
+
+  img {
+    width: 60px;
+    height: 60px;
+  }
+}

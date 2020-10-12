@@ -15,9 +15,6 @@
 @import 'setup/variables';
 @import 'setup/colors';
 @import 'setup/mixins';
-
-$serif-font--loaded: 'Georgia', #{$serif-font};
-$sans-serif-font--loaded: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', #{$sans-serif-font};
 @import 'setup/typography';
 
 @import 'atoms/arrow-link';
@@ -38,6 +35,30 @@ $sans-serif-font--loaded: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans',
 
 header {
   display: none;
+}
+
+.print-header {
+  display: flex;
+
+  .logo,
+  .journal-logo {
+    width: 80px;
+    height: 80px;
+    color: $color__black--54;
+    margin-right: .5in;
+    align-self: flex-end;
+    svg {
+      width: 100%;
+      height: 100%;
+      * {
+        color: $color__black--54;
+      }
+    }
+  }
+  .issue-number{
+    align-self: flex-end;
+    color: $color__black--54;
+  }
 }
 
 @page :first {
@@ -90,7 +111,7 @@ table {
 }
 
 body > *:not(#a17),
-#a17 > *:not(#content):not(.g-header),
+#a17 > *:not(#content):not(.g-header):not(.print-header):not(.print-authors),
 #content > *:not(.o-article),
 svg[class*=icon--play],
 .icon--return,
@@ -114,6 +135,7 @@ svg[class*=icon--play],
 .m-article-header__text .m-article-header__info-trigger,
 .m-no-results,
 .m-results-title,
+.m-notification,
 .g-header__nav-primary,
 .g-header__nav-secondary,
 .g-header__opening-hours,
@@ -422,4 +444,68 @@ img {
   display: inline;
   padding: 0;
   background: transparent;
+}
+
+/* Remove `linear-gradient` css that Prince doesn't support */
+.m-article-header--feature .m-article-header__img::before,
+.m-article-header--feature .m-article-header__text::after,
+.m-article-header--hero .m-article-header__img::after,
+.m-article-header--super-hero .m-article-header__img::after,
+.m-listing--hero .m-listing__img::after,
+.m-media--hero .m-media__img::after {
+  background-image: none;
+}
+
+/* Layout hero images in header */
+.m-article-header--feature .m-article-header__img {
+  width: 100%;
+  left: auto;
+  height: auto;
+  margin: .5in 0 0 0;
+
+  img {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+  }
+}
+
+/* Lay out title */
+.m-article-header {
+  position: relative;
+  padding: 0;
+  width: 66%;
+  min-height: auto;
+  margin-top: .25in;
+}
+
+.m-article-header--feature .m-article-header__text {
+  position: relative;
+  padding: 0;
+  min-height: auto;
+  margin-top: .25in;
+}
+
+/* Lay out intro text */
+.o-article__intro {
+  width: 66%;
+  p {
+    color: $color__black--54;
+  }
+}
+
+
+/* Move content elements all the way to the left */
+.o-article__inline-header,
+.o-article__intro,
+.o-blocks {
+  margin-left: 0;
+}
+
+.print-authors {
+  display: block;
+  margin: .25in 0;
+  margin-left: 0;
 }

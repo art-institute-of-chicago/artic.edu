@@ -44,10 +44,16 @@ module.exports = function(gulp, data, util, taskName) {
                   edge: 14
                 }
               }
-            }
+            },
+            {
+              test: /\.css$/i,
+              use: ['css-loader'],
+            },
           ],
         },
-        plugins: [],
+        plugins: [ new webpack.optimize.LimitChunkCountPlugin({
+          maxChunks: 1,
+        }) ],
       }, webpack, (err, stats) => {
         if (stats.compilation.errors.length === 0) {
           notifier.notify({

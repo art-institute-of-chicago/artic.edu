@@ -205,7 +205,8 @@ class ExhibitionPresenter extends BasePresenter
     }
 
     public function addInjectAttributes($variation = null) {
-        if (date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 20) {
+        if (date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 18
+            && Carbon::now()->between($this->entity->dateStart, $this->dateEnd)) {
             return 'class="o-injected-container" data-behavior="injectContent" data-injectContent-url="' . route('exhibitions.waitTime', ['id' => $this->entity->id, 'slug' => $this->entity->getSlug(), 'variation' => $variation]) . '"';
         }
         return null;

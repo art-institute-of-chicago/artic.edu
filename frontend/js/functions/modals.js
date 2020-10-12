@@ -25,6 +25,11 @@ const modals = function() {
     } else {
       $modal.classList.remove('g-modal--module360');
     }
+    if (e.data.moduleMirador) {
+      $modal.classList.add('g-modal--moduleMirador');
+    } else {
+      $modal.classList.remove('g-modal--moduleMirador');
+    }
     if (embedCode) {
       $modal.classList.add('g-modal--media');
       if (e.data.subtype) {

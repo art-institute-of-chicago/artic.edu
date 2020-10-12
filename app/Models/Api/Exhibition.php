@@ -95,7 +95,11 @@ class Exhibition extends BaseApiModel
     public function getDateEndAttribute()
     {
         if (!empty($this->aic_end_at)) {
-            return new Carbon($this->aic_end_at);
+            if ($this->public_end_date !== null) // strange, isset didn't work?
+            {
+                return $this->public_end_date;
+            }
+            return (new Carbon($this->aic_end_at))->endOfDay();
         }
 
     }

@@ -62,3 +62,5 @@ export { default as stickySidebar } from './stickySidebar';
 export { default as viewer360 } from './viewer360';
 export { default as fitText } from './fitText';
 export { default as magazineHeader } from './magazineHeader';
+export { default as imageSlider } from './imageSlider';
+export { default as viewerMirador } from './viewerMirador';

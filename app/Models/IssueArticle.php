@@ -19,6 +19,10 @@ class IssueArticle extends AbstractModel implements Sortable
     protected $presenter = 'App\Presenters\Admin\IssueArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\IssueArticlePresenter';
 
+    protected $dispatchesEvents = [
+        'saved' => \App\Events\UpdateIssueArticle::class,
+    ];
+
     protected $fillable = [
         'published',
         'title',
@@ -35,6 +39,7 @@ class IssueArticle extends AbstractModel implements Sortable
         'publish_start_date',
         'issue_id',
         'position',
+        'pdf_download_path',
     ];
 
     public $slugAttributes = [

@@ -22,6 +22,7 @@ class Artwork extends AbstractModel
         'datahub_id',
         'meta_title',
         'meta_description',
+        'default_manifest_url',
     ];
 
     public $mediasParams = [
@@ -35,7 +36,9 @@ class Artwork extends AbstractModel
         ],
     ];
 
-    public $filesParams = ['image_sequence_file'];
+    public $filesParams = ['image_sequence_file', 'upload_manifest_file'];
+
+    public $checkboxes = ['default_manifest_url'];
 
     public function getFullTitleAttribute()
     {
@@ -77,5 +80,18 @@ class Artwork extends AbstractModel
             return $asset;
         }
         return null;
+    }
+
+    public function getMiradorManifest()
+    {
+        if ($this->default_manifest_url OR $this->file('upload_manifest_file')) {
+            if ($this->file('upload_manifest_file')) {
+                $manifestFile = $this->file('upload_manifest_file');
+            } else {
+                $manifestFile = config('api.public_uri').'/api/v1/artworks/'.$this->datahub_id.'/manifest.json';
+            }
+            return $manifestFile;
+        }
+		return null;
     }
 }
