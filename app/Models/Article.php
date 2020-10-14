@@ -187,7 +187,7 @@ class Article extends AbstractModel implements Feedable
 
     public static function getAllFeedItems()
     {
-        return \App\Models\Article::query()->published()->orderBy('date', 'desc')->get();
+        return \App\Models\Article::query()->published()->notUnlisted()->orderBy('date', 'desc')->get();
     }
 
     public function toFeedItem()
