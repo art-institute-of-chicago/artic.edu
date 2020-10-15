@@ -24,6 +24,11 @@
     'label' => 'Always show the whole image instead of cropping to the container',
 ])
 
+@formField('checkbox', [
+    'name' => 'use_alt_background',
+    'label' => 'Use white instead of gray to pillarbox the image',
+])
+
 @formField('medias', [
     'name' => 'image',
     'label' => 'Image'

@@ -15,6 +15,7 @@
             'type' => 'image',
             'size' => $block->input('size'),
             'useContain' => $block->input('use_contain'),
+            'useAltBackground' => $block->input('use_alt_background'),
             'caption' => $subtitle,
             'captionTitle' => $title,
             'media' => [

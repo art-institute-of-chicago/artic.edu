@@ -205,6 +205,10 @@
   background-position: 50% 50%;
   overflow: hidden;
 
+  &.m-media__img--alt-background {
+    background-color: $color__white;
+  }
+
   .m-media--m:not(.m-media--contain) &::before,
   .m-media--l:not(.m-media--contain) &::before,
   &.m-media__img--video::before {
