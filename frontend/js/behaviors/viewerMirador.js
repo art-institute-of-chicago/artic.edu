@@ -10,6 +10,7 @@ const viewerMirador = function(container) {
   let viewerId = 'm-viewer-mirador-' + container.dataset.id;
   const config = {
     id: viewerId,
+    classPrefix: 'mirador-' + container.dataset.id,
     selectedTheme: 'aicTheme',
     themes: {
       aicTheme:{
@@ -21,7 +22,7 @@ const viewerMirador = function(container) {
           shades: {
             dark: '#333',
             main: '#333',
-            light: '#333',     
+            light: '#333',
           },
           background: {
             paper: '#757575',
@@ -98,13 +99,23 @@ const viewerMirador = function(container) {
   }
   this.init = function() {
     mirador.viewer(config, [
-      aicZoomButtonsPlugin, aicNavigationButtonsPlugin, aicRemoveNavPlugin, aicThumbnailCustomization
+      aicNavigationButtonsPlugin, aicRemoveNavPlugin, aicZoomButtonsPlugin, aicThumbnailCustomization
     ]);
 
     if(document.getElementsByClassName('mirador-viewer')) {
       container.classList.remove('loader');
-    }; 
-  };  
+    };
+
+    function removeComponent () {
+      //remove mirador component when modal is closed
+      let targetElement = document.querySelector('.g-modal--moduleMirador #'+ viewerId);
+
+      if (targetElement) {
+        ReactDOM.unmountComponentAtNode(targetElement);
+      }
+    }
+    document.addEventListener('modal:close', removeComponent);
+  };
 }
 
 export default viewerMirador;
