@@ -275,9 +275,9 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     text-align: center;
-    position: relative;
+    position: absolute;
     height: 100%;
-    width: auto;
+    width: 100%;
   }
 
   .mirador-primary-window {
