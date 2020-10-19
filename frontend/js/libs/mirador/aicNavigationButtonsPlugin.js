@@ -28,8 +28,8 @@ const NextIcon = (props) => (
   </SvgIcon>
 );
 
-const CustomButtonPrevious = withStyles({
-  root: {
+const styles = theme => ({
+  CustomButtonPrevious: {
     transform: 'scale(1.5) rotate(180deg)',
     left: '5%',
     position: 'absolute',
@@ -37,10 +37,7 @@ const CustomButtonPrevious = withStyles({
       backgroundColor: 'rgba(255, 255, 255, 0.0)',
     },
   },
-})(IconButton);
-
-const CustomButtonNext = withStyles({
-  root: {
+  CustomButtonNext: {
     transform: 'scale(1.5)',
     right: '5%',
     position: 'absolute',
@@ -48,22 +45,22 @@ const CustomButtonNext = withStyles({
       backgroundColor: 'rgba(255, 255, 255, 0.0)',
     },
   },
-})(IconButton);
+});
 
 class NavigationButtonsPlugin extends Component {
   render() {
     const {
-      hasNextCanvas, hasPreviousCanvas, setNextCanvas, setPreviousCanvas, t,
+      classes, hasNextCanvas, hasPreviousCanvas, setNextCanvas, setPreviousCanvas, t,
     } = this.props;
 
     return (
       <div style={{position: 'absolute', bottom: '50%', zIndex:500, width:'100%'}}>
-        <CustomButtonPrevious aria-label='previous canvas'  disabled={!hasPreviousCanvas} onClick={() => { hasPreviousCanvas && setPreviousCanvas(); }}>
+        <IconButton className={classes.CustomButtonPrevious} aria-label='previous canvas'  disabled={!hasPreviousCanvas} onClick={() => { hasPreviousCanvas && setPreviousCanvas(); }}>
           <PrevIcon />
-        </CustomButtonPrevious>
-        <CustomButtonNext aria-label='next canvas' disabled={!hasNextCanvas} onClick={() => { hasNextCanvas && setNextCanvas(); }}>
+        </IconButton>
+        <IconButton className={classes.CustomButtonNext} aria-label='next canvas' disabled={!hasNextCanvas} onClick={() => { hasNextCanvas && setNextCanvas(); }}>
           <NextIcon />
-        </CustomButtonNext>
+        </IconButton>
       </div>
     );
   }
@@ -88,7 +85,7 @@ const mapDispatchToProps = (dispatch, { windowId }) => ({
 });
 
 export default {
-  component: NavigationButtonsPlugin,
+  component: withStyles(styles)(NavigationButtonsPlugin),
   mapStateToProps: mapStateToProps,
   mapDispatchToProps: mapDispatchToProps,
   target: 'OpenSeadragonViewer',

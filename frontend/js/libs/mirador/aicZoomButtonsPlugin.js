@@ -27,8 +27,8 @@ const ZoomOutIcon = (props) => (
   </SvgIcon>
 );
 
-const CustomButton = withStyles({
-  root: {
+const styles = theme => ({
+  CustomZoomButton: {
     backgroundColor: 'rgba(0,0,0,.5)',
     border: 0,
     borderRadius: 0,
@@ -46,8 +46,8 @@ const CustomButton = withStyles({
     '&:not(:last-child)': {
       border: 0,
     }
-  },
-})(Button);
+  }
+})
 
 class ZoomButtonsPlugin extends Component {
   /**
@@ -85,18 +85,18 @@ class ZoomButtonsPlugin extends Component {
   }
 
   render() {
-    const { viewer, windowViewProperties } = this.props;
+    const { classes, viewer, windowViewProperties } = this.props;
     const zoomIn = ( windowViewProperties && viewer && windowViewProperties.zoom < viewer.viewport.getMaxZoom() );
     const zoomOut = ( windowViewProperties && viewer && windowViewProperties.zoom > viewer.viewport.getMinZoom() );
     return (
       <div style={{position: 'absolute', bottom: 58, right: 32, left: 'auto', zIndex: 500}}>
         <ButtonGroup size='large' disableElevation variant='contained' color='primary' >
-          <CustomButton aria-label='zoom in' onClick={this.handleZoomInClick} disabled={!zoomIn}>
+          <Button className={classes.CustomZoomButton} aria-label='zoom in' onClick={this.handleZoomInClick} disabled={!zoomIn}>
             <ZoomInIcon />
-          </CustomButton>
-          <CustomButton aria-label='zoom out' onClick={this.handleZoomOutClick} disabled={!zoomOut}>
+          </Button>
+          <Button className={classes.CustomZoomButton} aria-label='zoom out' onClick={this.handleZoomOutClick} disabled={!zoomOut}>
             <ZoomOutIcon />
-          </CustomButton>
+          </Button>
         </ButtonGroup>
       </div>
     );
@@ -115,7 +115,7 @@ const mapStateToProps = (state, { windowId }) => (
 );
 
 export default {
-  component: ZoomButtonsPlugin,
+  component: withStyles(styles)(ZoomButtonsPlugin),
   mapStateToProps: mapStateToProps,
   target: 'OpenSeadragonViewer',
   mode: 'add',

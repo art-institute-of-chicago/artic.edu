@@ -102,14 +102,15 @@ const viewerMirador = function(container) {
       aicNavigationButtonsPlugin, aicRemoveNavPlugin, aicZoomButtonsPlugin, aicThumbnailCustomization
     ]);
 
-    if(document.getElementsByClassName('mirador-viewer')) {
-      container.classList.remove('loader');
+    let osdContainer = document.getElementById(viewerId).getElementsByClassName('openseadragon-container')
+
+    if(osdContainer) {
+      document.getElementById(viewerId).classList.remove('loader');
     };
 
-    function removeComponent () {
+    function removeComponent() {
       //remove mirador component when modal is closed
       let targetElement = document.querySelector('.g-modal--moduleMirador #'+ viewerId);
-
       if (targetElement) {
         ReactDOM.unmountComponentAtNode(targetElement);
       }
