@@ -270,6 +270,18 @@
 
 .m-media--mirador-embed {
 
+  .mirador-primary-window {
+    padding-top: 10px;
+  }
+
+  .mosaic-window-body, .mirador-mosaic, .mosaic-root, .mosaic-tile, .mosaic-window {
+    height: 100%
+  }
+
+}
+
+.m-media--mirador-embed, .g-modal--moduleMirador {
+
   .loader {
     top: 50%;
     -ms-transform: translateY(-50%);
@@ -280,13 +292,6 @@
     width: 100%;
   }
 
-  .mirador-primary-window {
-    padding-top: 10px;
-  }
-
-  .mosaic-window-body, .mirador-mosaic, .mosaic-root, .mosaic-tile, .mosaic-window {
-    height: 100%
-  }
 }
 
 .m-media__img img,

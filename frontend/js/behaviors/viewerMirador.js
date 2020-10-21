@@ -92,7 +92,7 @@ const viewerMirador = function(container) {
       minZoomLevel: 0,
       gestureSettingsMouse: {
         scrollToZoom: true,
-        clickToZoom: false,
+        clickToZoom: true,
         dblClickToZoom: false,
       },
     },
@@ -101,12 +101,6 @@ const viewerMirador = function(container) {
     mirador.viewer(config, [
       aicNavigationButtonsPlugin, aicRemoveNavPlugin, aicZoomButtonsPlugin, aicThumbnailCustomization
     ]);
-
-    let osdContainer = document.getElementById(viewerId).getElementsByClassName('openseadragon-container')
-
-    if(osdContainer) {
-      document.getElementById(viewerId).classList.remove('loader');
-    };
 
     function removeComponent() {
       //remove mirador component when modal is closed

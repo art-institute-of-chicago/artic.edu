@@ -56,8 +56,31 @@ class ZoomButtonsPlugin extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      viewerAvailable: false,
+      viewerFullyLoaded: false,
+      viewerLoadHandlerAdded: false,
+    }
+
     this.handleZoomInClick = this.handleZoomInClick.bind(this);
     this.handleZoomOutClick = this.handleZoomOutClick.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { viewer } = this.props;
+    const { viewerAvailable, viewerFullyLoaded, viewerLoadHandlerAdded } = this.state;
+    if (viewer && !viewerAvailable) {
+      this.setState({viewerAvailable: true});
+    }
+    if (viewerAvailable && !viewerFullyLoaded && !viewerLoadHandlerAdded) {
+      const that = this;
+      viewer.addHandler('tile-drawn', function (event) {
+        if (event.tiledImage.getFullyLoaded() && !viewerFullyLoaded) {
+          that.setState({viewerFullyLoaded: true});
+        }
+      });
+      that.setState({viewerLoadHandlerAdded: true});
+    }
   }
 
   /**
@@ -86,18 +109,21 @@ class ZoomButtonsPlugin extends Component {
 
   render() {
     const { classes, viewer, windowViewProperties } = this.props;
+    const { viewerFullyLoaded } = this.state;
     const zoomIn = ( windowViewProperties && viewer && windowViewProperties.zoom < viewer.viewport.getMaxZoom() );
     const zoomOut = ( windowViewProperties && viewer && windowViewProperties.zoom > viewer.viewport.getMinZoom() );
     return (
-      <div style={{position: 'absolute', bottom: 58, right: 32, left: 'auto', zIndex: 500}}>
-        <ButtonGroup size='large' disableElevation variant='contained' color='primary' >
-          <Button className={classes.CustomZoomButton} aria-label='zoom in' onClick={this.handleZoomInClick} disabled={!zoomIn}>
-            <ZoomInIcon />
-          </Button>
-          <Button className={classes.CustomZoomButton} aria-label='zoom out' onClick={this.handleZoomOutClick} disabled={!zoomOut}>
-            <ZoomOutIcon />
-          </Button>
-        </ButtonGroup>
+      <div className={!viewerFullyLoaded && 'loader'}>
+        <div style={{position: 'absolute', bottom: 58, right: 32, left: 'auto', zIndex: 500}}>
+          <ButtonGroup size='large' disableElevation variant='contained' color='primary' >
+            <Button className={classes.CustomZoomButton} aria-label='zoom in' onClick={this.handleZoomInClick} disabled={!zoomIn}>
+              <ZoomInIcon />
+            </Button>
+            <Button className={classes.CustomZoomButton} aria-label='zoom out' onClick={this.handleZoomOutClick} disabled={!zoomOut}>
+              <ZoomOutIcon />
+            </Button>
+          </ButtonGroup>
+        </div>
       </div>
     );
   }
