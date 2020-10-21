@@ -67,7 +67,7 @@ if ($maxZoomWindowSize > 843) {
         </li>
         @endif
 
-        @if(isset($moduleMirador) && $moduleMirador)
+        @if(isset($moduleMirador) && $moduleMirador && isset($isZoomable) && $isZoomable)
         <li data-type="moduleMirador"
         @if(!isset($isPublicDomain) || !$isPublicDomain)
           data-restricted="true"
