@@ -211,6 +211,21 @@
             'options' => $eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
             'default' => \App\Models\Event::NULL_OPTION, // no effect?
         ])
+
+        @formField('checkbox', [
+            'name' => 'is_virtual_event',
+            'label' => 'Is Virtual Event',
+        ])
+
+        @formField('input', [
+            'name' => 'virtual_event_url',
+            'label' => 'Virtual event URL',
+        ])
+
+        @formField('input', [
+            'name' => 'virtual_event_passcode',
+            'label' => 'Virtual event passcode',
+        ])
     </a17-fieldset>
 
     <a17-fieldset title="Content" id="content" data-sticky-top="publisher">
