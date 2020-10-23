@@ -109,17 +109,17 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('closureservice', function ($app) {
             return new class() {
 
-                private $cachedClosure;
+                private $checkedForClosure = false;
 
-                public function __construct()
-                {
-                    if (!($_COOKIE['has_seen_notification'] ?? false)) {
-                        $this->cachedClosure = \App\Models\Closure::today()->first();
-                    }
-                }
+                private $cachedClosure;
 
                 public function getClosure()
                 {
+                    if (!$this->checkedForClosure) {
+                        $this->cachedClosure = \App\Models\Closure::today()->first();
+                        $this->checkedForClosure = true;
+                    }
+
                     return $this->cachedClosure;
                 }
             };
