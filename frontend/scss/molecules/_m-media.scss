@@ -270,9 +270,7 @@
 
 .m-media--mirador-embed {
 
-  .mirador-primary-window {
-    padding-top: 10px;
-  }
+  z-index: 7;
 
   .mosaic-window-body, .mirador-mosaic, .mosaic-root, .mosaic-tile, .mosaic-window {
     height: 100%
@@ -350,19 +348,13 @@
   object-fit: cover;
 }
 
-.m-media--l .m-media--mirador-embed {
-  height: 70vh;
+.m-media--mirador-embed {
+  height: 100%;
+  min-height: 600px;
+  @media screen and (max-width: 600px) {
+    min-height: 450px;
+  }
 }
-
-.m-media--m .m-media--mirador-embed {
-  height: 60vh;
-  z-index: 7;
-}
-
-.m-media--s .m-media--mirador-embed {
-  height: 50vh;
-}
-
 
 .m-media__img .icon--play-multi {
   position: absolute;
