@@ -23,6 +23,7 @@ class Artist extends AbstractModel
         'meta_title',
         'meta_description',
         'short_name_display',
+        'short_name_caption',
     ];
 
     public $slugAttributes = [

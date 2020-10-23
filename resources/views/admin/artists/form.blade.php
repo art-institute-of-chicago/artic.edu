@@ -54,6 +54,12 @@
         ])
 
         @formField('input', [
+            'name' => 'short_name_caption',
+            'label' => 'Short name qualifier',
+            'note' => 'Override default of "' .$item->getApiModelFilledCached()->short_name_qualifer . '"',
+        ])
+
+        @formField('input', [
             'name' => 'short_name_display',
             'label' => 'Short name',
             'note' => 'Override default of "' .$item->getApiModelFilledCached()->short_name . '"',

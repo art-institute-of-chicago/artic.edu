@@ -4,6 +4,7 @@ import fitty from 'fitty';
 const fitText = function(container) {
 
   const fittyClass ='f-fit-text';
+  const fittySmallClass ='f-fit-text-small';
 
   // called when all fonts loaded
   function _redrawFitty() {
@@ -24,6 +25,10 @@ const fitText = function(container) {
     fitty('.' + fittyClass, {
       minSize: 16,
       maxSize: 36
+    });
+    fitty('.' + fittySmallClass, {
+      minSize: 10,
+      maxSize: 26
     });
 
     document.addEventListener('fonts:loaded', _redrawFitty, false);

@@ -245,7 +245,8 @@
                     'type' => 'artist',
                     'size' => 'gallery',
                     'media' => $item->imageFront('artist_image') ?? $artist->imageFront('hero'),
-                    'captionTitle' => $artist->short_name_display,
+                    'captionTitle' => $artist->short_name_caption,
+                    'caption' => $artist->short_name_display,
                     'href' => route('artists.show', $artist),
                     'gtmAttributes' => 'data-gtm-event="'. $artist->title . '" data-gtm-event-category="artist-listing-' . ($key + 1) . '"',
                 ];

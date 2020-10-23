@@ -281,7 +281,7 @@
     @if ((!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption'])) and (isset($item['caption']) or isset($item['captionTitle'])))
     <figcaption>
         @if (isset($item['captionTitle']))
-            <div class="{{ $fitCaptionTitle ? 'f-fit-text' : '' }} {{ $size !== 'gallery' || isset($item['caption']) ? 'f-caption-title' : 'f-caption' }}"><div>
+            <div class="{{ $size !== 'gallery' || isset($item['caption']) ? 'f-caption-title' : 'f-caption' }}"><div class="{{ $fitCaptionTitle ? 'f-fit-text-small' : '' }}">
                 @if(isset($item['urlTitle']) && $item['urlTitle'])
                     <a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a>
                 @else
@@ -290,7 +290,7 @@
             </div></div> <br>
         @endif
         @if (isset($item['caption']))
-            <div class="f-caption">{!! $item['caption'] !!}</div>
+            <div class="{{ $fitCaptionTitle ? 'f-fit-text' : '' }} f-caption">{!! $item['caption'] !!}</div>
         @endif
     </figcaption>
     @endif

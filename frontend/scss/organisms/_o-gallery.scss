@@ -652,9 +652,23 @@
       padding: 0;
       margin: 0;
       z-index: 2;
-      .f-caption {
+      .f-caption-title {
+        display: block;
+      }
+      .f-caption, .f-caption-title div {
         color: white;
         text-shadow: 0 0 6px rgba($color__black, .5);
+        display: block;
+        margin-bottom: 35px;
+        @include breakpoint('small+') {
+          margin-bottom: 20px;
+        }
+        @include breakpoint('medium+') {
+          margin-bottom: 15px;
+        }
+        @include breakpoint('large+') {
+          margin-bottom: 5px;
+        }
         @include untuck;
         @include font-styles-untuck(generate-font-obj(
           (
