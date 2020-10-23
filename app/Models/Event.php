@@ -845,6 +845,24 @@ class Event extends AbstractModel
                 "value" => function () {return self::$eventEntrances[$this->entrance] ?? null;},
             ],
             [
+                "name" => "is_virtual_event",
+                "doc" => "Is virtual event",
+                "type" => "boolean",
+                "value" => function () {return $this->is_virtual_event;},
+            ],
+            [
+                "name" => "virtual_event_url",
+                "doc" => "Virtual event URL",
+                "type" => "string",
+                "value" => function () {return $this->virtual_event_url;},
+            ],
+            [
+                "name" => "virtual_event_passcode",
+                "doc" => "Virtual event passcode",
+                "type" => "string",
+                "value" => function () {return $this->virtual_event_passcode;},
+            ],
+            [
                 "name" => "affiliate_group_id",
                 "doc" => "Identifier of affiliate group (event program) associated with this event",
                 "type" => "boolean",
