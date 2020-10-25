@@ -356,6 +356,29 @@
   }
 }
 
+.miradorZoomButtons {
+  display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    right: 20px;
+    bottom: 32px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row no-wrap;
+    flex-flow: row no-wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  @media (min-width: 600px){
+    left: auto;
+    right: 32px;
+    bottom: 32px;
+  }
+}
+
 .m-media__img .icon--play-multi {
   position: absolute;
   top: 50%;

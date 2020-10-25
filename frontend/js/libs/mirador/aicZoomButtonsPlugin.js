@@ -114,7 +114,7 @@ class ZoomButtonsPlugin extends Component {
     const zoomOut = ( windowViewProperties && viewer && windowViewProperties.zoom > viewer.viewport.getMinZoom() );
     return (
       <div className={!viewerFullyLoaded && 'loader'}>
-        <div style={{position: 'absolute', bottom: 58, right: 32, left: 'auto', zIndex: 500}}>
+        <div className={'miradorZoomButtons'}>
           <ButtonGroup size='large' disableElevation variant='contained' color='primary' >
             <Button className={classes.CustomZoomButton} aria-label='zoom in' onClick={this.handleZoomInClick} disabled={!zoomIn}>
               <ZoomInIcon />
