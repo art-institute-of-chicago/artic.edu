@@ -61,7 +61,7 @@ const viewerMirador = function(container) {
       allowWindowSideBar: false,
       allowMaximize: false, // Configure if windows can be maximized or not
       sideBarPanel: 'info', // Configure which sidebar is selected by default. Options: info, attribution, canvas, annotations, search
-      defaultView: 'single',  // Configure which viewing mode (e.g. single, book, gallery) for windows to be opened in
+      defaultView: container.dataset.view,  // Configure which viewing mode (e.g. single, book, gallery) for windows to be opened in
       hideWindowTitle: true, // Configure if the window title is shown in the window title bar or not
       sideBarOpen: false, // Configure if the sidebar (and its content panel) is open by default
       panels: { // Configure which panels are visible in WindowSideBarButtons

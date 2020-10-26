@@ -32,6 +32,23 @@
     ]
 ])
 
+@formField('radios', [
+    'name' => 'default_view',
+    'label' => 'Default View',
+    'default' => 'single',
+    'inline' => true,
+    'options' => [
+        [
+            'value' => 'single',
+            'label' => 'Single'
+        ],
+        [
+            'value' => 'book',
+            'label' => 'Book'
+        ],
+    ]
+])
+
 @formField('wysiwyg', [
     'name' => 'caption_title',
     'label' => 'Caption title',

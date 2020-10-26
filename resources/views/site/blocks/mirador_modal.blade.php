@@ -10,6 +10,7 @@
             $manifest = config('api.public_uri').'/api/v1/artworks/'.$datahub_id.'/manifest.json';
         }
     }
+    $default_view = $block->input('default_view');
     $caption_title = $block->input('caption_title');
     $caption = $block->input('caption');
 @endphp
@@ -28,6 +29,7 @@
                 'title' => isset($pageTitle) ? $pageTitle : '',
             ],
             'manifest' => $manifest,
+            'default_view' => $default_view,
             'poster' => $image,
             'captionTitle' => getTitleWithFigureNumber($caption_title),
             'caption' => getSubtitleWithFigureNumber($caption, $caption_title),

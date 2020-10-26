@@ -9,6 +9,7 @@
     $fullscreen = (isset($item['fullscreen']) && $item['fullscreen']) && (!isset($media['restrict']) || !$media['restrict']);
     $poster = isset($item['poster']) ? $item['poster'] : false;
     $manifest = isset($item['manifest']) ? $item['manifest'] : false;
+    $default_view = isset($item['default_view']) ? $item['default_view'] : 'single';
 
     $fitCaptionTitle = $type === 'artist';
     $type = $type === 'artist' ? 'image' : $type;
@@ -274,6 +275,7 @@
             @slot('type', 'modal')
             @slot('title', $media['title'] ? $media['title'].' - Modal Mirador' : 'Modal Mirador')
             @slot('manifest', $manifest)
+            @slot('defaultView', $default_view)
           @endcomponent</textarea>
         @endif
 

@@ -9,6 +9,7 @@
             $manifest = config('api.public_uri').'/api/v1/artworks/'.$datahub_id.'/manifest.json';
         }
     }
+    $default_view = $block->input('default_view');
     $caption_title = $block->input('caption_title');
     $caption = $block->input('caption');
     $size = $block->input('size');
@@ -21,6 +22,7 @@
                 @slot('type', 'standalone')
                 @slot('title', isset($pageTitle) ? $pageTitle.' - Inline Mirador' : 'Inline Mirador')
                 @slot('manifest', $manifest);
+                @slot('defaultView', $default_view);
             @endcomponent
         </div>
         @if ($caption_title || $caption)
