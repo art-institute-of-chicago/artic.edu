@@ -283,7 +283,7 @@
     @if ((!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption'])) and (isset($item['caption']) or isset($item['captionTitle'])))
     <figcaption>
         @if (isset($item['captionTitle']))
-            <div class="{{ $size !== 'gallery' || isset($item['caption']) ? 'f-caption-title' : 'f-caption' }}"><div class="{{ $fitCaptionTitle ? 'f-fit-text-small' : '' }}">
+            <div class="{{ $size !== 'gallery' || isset($item['caption']) ? 'f-caption-title' : 'f-caption' }}"><div>
                 @if(isset($item['urlTitle']) && $item['urlTitle'])
                     <a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a>
                 @else

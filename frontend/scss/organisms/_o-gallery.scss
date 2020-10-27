@@ -659,15 +659,9 @@
         color: white;
         text-shadow: 0 0 6px rgba($color__black, .5);
         display: block;
-        margin-bottom: 35px;
-        @include breakpoint('small+') {
-          margin-bottom: 20px;
-        }
+        margin-bottom: 20px;
         @include breakpoint('medium+') {
           margin-bottom: 15px;
-        }
-        @include breakpoint('large+') {
-          margin-bottom: 5px;
         }
         @include untuck;
         @include font-styles-untuck(generate-font-obj(
@@ -676,10 +670,9 @@
             font-family-loaded: $serif-font--loaded,
             font-loaded-class: $serif-font-loaded-class,
             settings: (
-              'xsmall': (font-size: 16, line-height: 19, text-transform: 'uppercase', letter-spacing: 0.1em, push: 0),
-              'small+': (font-size: 27, line-height: 31, push: -2),
-              'medium+': (font-size: 30, line-height: 36, push: -1),
-              'large+': (font-size: 36, line-height: 42, push: -1)
+              'xsmall': (font-size: 17, line-height: 21, text-transform: 'uppercase', letter-spacing: 0.1em, push: 0),
+              'small+': (font-size: 17, line-height: 21, push: -2),
+              'medium+': (font-size: 20, line-height: 26, push: -1),
             )
           )
         ));
