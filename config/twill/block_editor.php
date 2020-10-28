@@ -14,6 +14,10 @@ return [
     'block_single_layout' => 'layouts.block',
     'block_preview_render_childs' => false,
     'block_presenter_path' => App\Presenters\Admin\BlockPresenter::class,
+    // Indicates if blocks templates should be inlined in HTML.
+    // When setting to false, make sure to build Twill with your all your custom blocks.
+    'inline_blocks_templates' => true,
+    'custom_vue_blocks_resource_path' => 'assets/js/blocks',
     'blocks' => [
         'paragraph' => [
             'title' => 'Paragraph',

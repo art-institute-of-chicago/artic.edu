@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "927972457745c29af747455e0a187cf2",
+    "content-hash": "dbd2763fd4fc17d8be48a3209021f3c7",
     "packages": [
         {
             "name": "aacotroneo/laravel-saml2",
@@ -167,40 +167,44 @@
         },
         {
             "name": "area17/twill",
-            "version": "1.2.2",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/area17/twill.git",
-                "reference": "97cb4785980d5826ac3dce1f1b986228bb3d8c9b"
+                "reference": "5eb8654d6647d3cc47724acbbf77013de32a1562"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/area17/twill/zipball/97cb4785980d5826ac3dce1f1b986228bb3d8c9b",
-                "reference": "97cb4785980d5826ac3dce1f1b986228bb3d8c9b",
+                "url": "https://api.github.com/repos/area17/twill/zipball/5eb8654d6647d3cc47724acbbf77013de32a1562",
+                "reference": "5eb8654d6647d3cc47724acbbf77013de32a1562",
                 "shasum": ""
             },
             "require": {
-                "barryvdh/laravel-debugbar": "^2.4|^3.1",
-                "cartalyst/tags": "^3.0.0|^4.0.0|^5.0.0|^6.0.0|^7.0.0|^8.0.0",
-                "dimsav/laravel-translatable": "^6.0.1|^7.0.0|^8.0.0|^9.0.0|^10.0.0",
+                "astrotomic/laravel-translatable": "^11.5",
+                "cartalyst/tags": "^6.0|^7.0|^8.0|^9.0|^10.0",
                 "doctrine/dbal": "^2.9",
                 "ext-json": "*",
                 "ext-pdo": "*",
                 "guzzlehttp/guzzle": "^6.2",
-                "imgix/imgix-php": "^3.0.0",
-                "laravel/framework": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "league/flysystem-aws-s3-v3": "^1.0.13",
+                "imgix/imgix-php": "^3.0",
+                "laravel/framework": "~5.6|~5.7|~5.8|^6.0|^7.0",
+                "laravel/socialite": "^4.2",
+                "laravel/ui": "^1.0|^2.0",
+                "league/flysystem-aws-s3-v3": "^1.0",
                 "league/glide-laravel": "^1.0",
-                "lsrur/inspector": "^1.0",
-                "myclabs/php-enum": "^1.5.0",
-                "php": "^7.0",
-                "pragmarx/google2fa-qrcode": "^1.0.3",
+                "matthewbdaly/laravel-azure-storage": "^1.3",
+                "myclabs/php-enum": "^1.5",
+                "php": "^7.1",
+                "pragmarx/google2fa-qrcode": "^1.0",
                 "spatie/laravel-activitylog": "^2.5|^3.2",
-                "spatie/laravel-analytics": "^3.6.0|^3.7.0",
-                "spatie/once": "^2.0.0"
+                "spatie/laravel-analytics": "^3.6",
+                "spatie/once": "^2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~5.0|~6.0|~7.0"
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "kalnoy/nestedset": "^5.0",
+                "orchestra/testbench": "~3.3|~3.4|~3.5|~3.6|~3.7|~3.8|^4.0|^5.0",
+                "phpunit/phpunit": "~5.0|~6.0|~7.0|~8.0"
             },
             "type": "library",
             "extra": {
@@ -212,7 +216,10 @@
             },
             "autoload": {
                 "psr-4": {
-                    "A17\\Twill\\": "src/"
+                    "A17\\Twill\\": "src/",
+                    "A17\\Twill\\Tests\\Unit\\": "tests/unit",
+                    "A17\\Twill\\Tests\\Integration\\": "tests/integration",
+                    "App\\": "vendor/orchestra/testbench-core/laravel/app"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -221,40 +228,9 @@
             ],
             "authors": [
                 {
-                    "name": "Quentin Renard",
-                    "email": "quentin@area17.com",
-                    "homepage": "https://area17.com/about/quentin-renard",
-                    "role": "Lead backend developer"
-                },
-                {
-                    "name": "Antoine Doury",
-                    "email": "antoine@area17.com",
-                    "homepage": "https://area17.com/about/antoine-doury",
-                    "role": "Lead frontend developer"
-                },
-                {
-                    "name": "Antonin Caudron",
-                    "email": "antonin@area17.com",
-                    "homepage": "https://area17.com/about/antonin-caudron",
-                    "role": "Frontend developer"
-                },
-                {
-                    "name": "Fernando Petrelli",
-                    "email": "fernando@area17.com",
-                    "homepage": "https://area17.com/about/fernando-petrelli",
-                    "role": "Backend developer"
-                },
-                {
-                    "name": "Gilbert Moufflet",
-                    "email": "gilbert@area17.com",
-                    "homepage": "https://area17.com/about/gilbert-moufflet",
-                    "role": "Backend developer"
-                },
-                {
-                    "name": "Mubashar Iqbal",
-                    "email": "me@mubs.me",
-                    "homepage": "http://mubs.me/",
-                    "role": "Backend developer"
+                    "name": "AREA 17",
+                    "email": "hello@twill.io",
+                    "homepage": "https://area17.com"
                 }
             ],
             "description": "Twill is an open source CMS toolkit for Laravel that helps developers rapidly create a custom admin console that is intuitive, powerful and flexible.",
@@ -265,7 +241,86 @@
                 "laravel",
                 "twill"
             ],
-            "time": "2019-08-21T15:29:39+00:00"
+            "time": "2020-06-30T14:36:25+00:00"
+        },
+        {
+            "name": "astrotomic/laravel-translatable",
+            "version": "v11.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Astrotomic/laravel-translatable.git",
+                "reference": "85a36a4c909fa1b5c800f50f91b96b433bdbfd2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Astrotomic/laravel-translatable/zipball/85a36a4c909fa1b5c800f50f91b96b433bdbfd2c",
+                "reference": "85a36a4c909fa1b5c800f50f91b96b433bdbfd2c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.8.* || ^6.0 || ^7.0 || ^8.0",
+                "illuminate/database": "5.8.* || ^6.0 || ^7.0 || ^8.0",
+                "illuminate/support": "5.8.* || ^6.0 || ^7.0 || ^8.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.8.* || ^4.0 || ^5.0 || ^6.0",
+                "phpunit/phpunit": "^8.0 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Astrotomic\\Translatable\\TranslatableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Astrotomic\\Translatable\\": "src/Translatable/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Witkowski",
+                    "email": "gummibeer@astrotomic.info",
+                    "homepage": "https://gummibeer.de",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Dimitrios Savvopoulos",
+                    "email": "ds@dimsav.com",
+                    "homepage": "http://dimsav.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel package for multilingual models",
+            "homepage": "https://astrotomic.info",
+            "keywords": [
+                "database",
+                "language",
+                "laravel",
+                "translation"
+            ],
+            "funding": [
+                {
+                    "url": "https://offset.earth/treeware",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Gummibeer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://issuehunt.io/r/astrotomic",
+                    "type": "issuehunt"
+                }
+            ],
+            "time": "2020-09-09T19:37:03+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
@@ -400,74 +455,6 @@
             "description": "BaconQrCode is a QR code generator for PHP.",
             "homepage": "https://github.com/Bacon/BaconQrCode",
             "time": "2020-07-30T16:40:58+00:00"
-        },
-        {
-            "name": "barryvdh/laravel-debugbar",
-            "version": "v3.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "57f2219f6d9efe41ed1bc880d86701c52f261bf5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/57f2219f6d9efe41ed1bc880d86701c52f261bf5",
-                "reference": "57f2219f6d9efe41ed1bc880d86701c52f261bf5",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/routing": "^5.5|^6|^7",
-                "illuminate/session": "^5.5|^6|^7",
-                "illuminate/support": "^5.5|^6|^7",
-                "maximebf/debugbar": "^1.15.1",
-                "php": ">=7.0",
-                "symfony/debug": "^3|^4|^5",
-                "symfony/finder": "^3|^4|^5"
-            },
-            "require-dev": {
-                "laravel/framework": "5.5.x"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.2-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Barryvdh\\Debugbar\\ServiceProvider"
-                    ],
-                    "aliases": {
-                        "Debugbar": "Barryvdh\\Debugbar\\Facade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Barryvdh\\Debugbar\\": "src/"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Barry vd. Heuvel",
-                    "email": "barryvdh@gmail.com"
-                }
-            ],
-            "description": "PHP Debugbar integration for Laravel",
-            "keywords": [
-                "debug",
-                "debugbar",
-                "laravel",
-                "profiler",
-                "webprofiler"
-            ],
-            "time": "2020-05-05T10:53:32+00:00"
         },
         {
             "name": "cartalyst/tags",
@@ -845,68 +832,6 @@
                 "ws-addressing"
             ],
             "time": "2018-05-01T19:30:27+00:00"
-        },
-        {
-            "name": "dimsav/laravel-translatable",
-            "version": "v10.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dimsav/laravel-translatable.git",
-                "reference": "0980ddd41bfa00f4ec2aef0de6d106f8e0471ae7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dimsav/laravel-translatable/zipball/0980ddd41bfa00f4ec2aef0de6d106f8e0471ae7",
-                "reference": "0980ddd41bfa00f4ec2aef0de6d106f8e0471ae7",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "5.6.*|5.7.*|5.8.*",
-                "php": ">=7.1.3"
-            },
-            "require-dev": {
-                "orchestra/testbench": "3.6.*|3.7.*|3.8.*"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Dimsav\\Translatable\\TranslatableServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Dimsav\\Translatable\\": "src/Translatable/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dimitrios Savvopoulos",
-                    "email": "ds@dimsav.com",
-                    "homepage": "http://dimsav.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Tom Witkowski",
-                    "email": "dev.gummibeer@gmail.com",
-                    "homepage": "https://gummibeer.de",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A Laravel package for multilingual models",
-            "keywords": [
-                "database",
-                "language",
-                "laravel",
-                "translation"
-            ],
-            "abandoned": "astrotomic/laravel-translatable",
-            "time": "2019-06-03T06:56:57+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2626,6 +2551,71 @@
             "time": "2019-02-27T13:47:36+00:00"
         },
         {
+            "name": "laravel/socialite",
+            "version": "v4.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/socialite.git",
+                "reference": "80951df0d93435b773aa00efe1fad6d5015fac75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/80951df0d93435b773aa00efe1fad6d5015fac75",
+                "reference": "80951df0d93435b773aa00efe1fad6d5015fac75",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "illuminate/http": "~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/support": "~5.7.0|~5.8.0|^6.0|^7.0",
+                "league/oauth1-client": "^1.0",
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "illuminate/contracts": "~5.7.0|~5.8.0|^6.0|^7.0",
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^3.7|^3.8|^4.0|^5.0",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Socialite\\SocialiteServiceProvider"
+                    ],
+                    "aliases": {
+                        "Socialite": "Laravel\\Socialite\\Facades\\Socialite"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Socialite\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel wrapper around OAuth 1 & OAuth 2 libraries.",
+            "homepage": "https://laravel.com",
+            "keywords": [
+                "laravel",
+                "oauth"
+            ],
+            "time": "2020-06-03T13:30:03+00:00"
+        },
+        {
             "name": "laravel/tinker",
             "version": "v1.0.9",
             "source": {
@@ -2687,6 +2677,60 @@
                 "psysh"
             ],
             "time": "2019-07-29T18:09:25+00:00"
+        },
+        {
+            "name": "laravel/ui",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "bb64fca681566ca94457d490a00f899516e75664"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/bb64fca681566ca94457d490a00f899516e75664",
+                "reference": "bb64fca681566ca94457d490a00f899516e75664",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.8|^6.0",
+                "illuminate/filesystem": "~5.8|^6.0",
+                "illuminate/support": "~5.8|^6.0",
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ui\\UiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Ui\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel UI utilities and presets.",
+            "keywords": [
+                "laravel",
+                "ui"
+            ],
+            "time": "2020-02-13T21:12:28+00:00"
         },
         {
             "name": "league/csv",
@@ -2893,6 +2937,47 @@
             ],
             "description": "Flysystem adapter for the AWS S3 SDK v3.x",
             "time": "2020-06-02T18:41:58+00:00"
+        },
+        {
+            "name": "league/flysystem-azure-blob-storage",
+            "version": "0.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem-azure-blob-storage.git",
+                "reference": "97215345f3c42679299ba556a4d16d4847ee7f6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-azure-blob-storage/zipball/97215345f3c42679299ba556a4d16d4847ee7f6d",
+                "reference": "97215345f3c42679299ba556a4d16d4847ee7f6d",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^1.5",
+                "league/flysystem": "^1.0",
+                "microsoft/azure-storage-blob": "^1.1",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\AzureBlobStorage\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frenky.net"
+                }
+            ],
+            "time": "2019-06-07T20:42:16+00:00"
         },
         {
             "name": "league/fractal",
@@ -3105,77 +3190,75 @@
             "time": "2020-03-05T12:38:10+00:00"
         },
         {
-            "name": "lsrur/inspector",
-            "version": "v1.0.6",
+            "name": "league/oauth1-client",
+            "version": "v1.8.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/lsrur/inspector.git",
-                "reference": "39510a8d24b53dbe071c71c32b7dd9ef004c2461"
+                "url": "https://github.com/thephpleague/oauth1-client.git",
+                "reference": "159c3d2bf27568f9af87d6c3f4bb616a251eb12b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lsrur/inspector/zipball/39510a8d24b53dbe071c71c32b7dd9ef004c2461",
-                "reference": "39510a8d24b53dbe071c71c32b7dd9ef004c2461",
+                "url": "https://api.github.com/repos/thephpleague/oauth1-client/zipball/159c3d2bf27568f9af87d6c3f4bb616a251eb12b",
+                "reference": "159c3d2bf27568f9af87d6c3f4bb616a251eb12b",
                 "shasum": ""
             },
             "require": {
-                "lsrur/toolbelt": "0.3.*"
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "ext-simplexml": "*",
+                "friendsofphp/php-cs-fixer": "^2.16.1",
+                "mockery/mockery": "^1.3",
+                "phpstan/phpstan": "^0.12.42",
+                "phpunit/phpunit": "^7.5"
+            },
+            "suggest": {
+                "ext-simplexml": "For decoding XML-based responses."
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev",
+                    "dev-develop": "2.0-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
-                    "Lsrur\\Inspector\\": "src/"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
+                    "League\\OAuth1\\Client\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "description": "Laravel Inspector, debugging and profiling tools for Web Artisans",
+            "authors": [
+                {
+                    "name": "Ben Corlett",
+                    "email": "bencorlett@me.com",
+                    "homepage": "http://www.webcomm.com.au",
+                    "role": "Developer"
+                }
+            ],
+            "description": "OAuth 1.0 Client Library",
             "keywords": [
-                "debug",
-                "exceptions",
-                "laravel",
-                "profiler"
+                "Authentication",
+                "SSO",
+                "authorization",
+                "bitbucket",
+                "identity",
+                "idp",
+                "oauth",
+                "oauth1",
+                "single sign on",
+                "trello",
+                "tumblr",
+                "twitter"
             ],
-            "time": "2017-07-31T22:39:19+00:00"
-        },
-        {
-            "name": "lsrur/toolbelt",
-            "version": "0.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lsrur/toolbelt.git",
-                "reference": "b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lsrur/toolbelt/zipball/b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d",
-                "reference": "b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/Toolbelt.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Set of PHP helper functions wrapped for Laravel.",
-            "keywords": [
-                "functions",
-                "helpers",
-                "laravel",
-                "php",
-                "tools"
-            ],
-            "time": "2016-08-11T22:11:45+00:00"
+            "time": "2020-09-28T09:39:08+00:00"
         },
         {
             "name": "madewithlove/illuminate-psr-cache-bridge",
@@ -3226,41 +3309,42 @@
             "time": "2019-07-01T06:39:22+00:00"
         },
         {
-            "name": "maximebf/debugbar",
-            "version": "v1.16.3",
+            "name": "matthewbdaly/laravel-azure-storage",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/maximebf/php-debugbar.git",
-                "reference": "1a1605b8e9bacb34cc0c6278206d699772e1d372"
+                "url": "https://github.com/matthewbdaly/laravel-azure-storage.git",
+                "reference": "c4507125e2c675f2f921fad3822a19b181653ce4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/1a1605b8e9bacb34cc0c6278206d699772e1d372",
-                "reference": "1a1605b8e9bacb34cc0c6278206d699772e1d372",
+                "url": "https://api.github.com/repos/matthewbdaly/laravel-azure-storage/zipball/c4507125e2c675f2f921fad3822a19b181653ce4",
+                "reference": "c4507125e2c675f2f921fad3822a19b181653ce4",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1",
-                "psr/log": "^1.0",
-                "symfony/var-dumper": "^2.6|^3|^4|^5"
+                "league/flysystem-azure-blob-storage": "^0.1.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5"
-            },
-            "suggest": {
-                "kriswallsmith/assetic": "The best way to manage assets",
-                "monolog/monolog": "Log using Monolog",
-                "predis/predis": "Redis storage"
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^6.0",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^9.3",
+                "psy/psysh": "^0.9.9",
+                "squizlabs/php_codesniffer": "^3.4",
+                "vimeo/psalm": "^3.16"
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.16-dev"
+                "laravel": {
+                    "providers": [
+                        "Matthewbdaly\\LaravelAzureStorage\\AzureStorageServiceProvider"
+                    ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "DebugBar\\": "src/DebugBar/"
+                    "Matthewbdaly\\LaravelAzureStorage\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3269,22 +3353,17 @@
             ],
             "authors": [
                 {
-                    "name": "Maxime Bouroumeau-Fuseau",
-                    "email": "maxime.bouroumeau@gmail.com",
-                    "homepage": "http://maximebf.com"
-                },
-                {
-                    "name": "Barry vd. Heuvel",
-                    "email": "barryvdh@gmail.com"
+                    "name": "Matthew Daly",
+                    "email": "matthewbdaly@gmail.com"
                 }
             ],
-            "description": "Debug bar in the browser for php application",
-            "homepage": "https://github.com/maximebf/php-debugbar",
+            "description": "Microsoft Azure Blob Storage integration for Laravel's Storage API",
             "keywords": [
-                "debug",
-                "debugbar"
+                "azure",
+                "laravel",
+                "storage"
             ],
-            "time": "2020-05-06T07:06:27+00:00"
+            "time": "2020-09-24T10:21:24+00:00"
         },
         {
             "name": "michelf/php-smartypants",
@@ -3335,6 +3414,94 @@
                 "typography"
             ],
             "time": "2016-12-13T01:01:17+00:00"
+        },
+        {
+            "name": "microsoft/azure-storage-blob",
+            "version": "1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Azure/azure-storage-blob-php.git",
+                "reference": "44f9268b3510a18450c591b1155a49399edb0c9b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Azure/azure-storage-blob-php/zipball/44f9268b3510a18450c591b1155a49399edb0c9b",
+                "reference": "44f9268b3510a18450c591b1155a49399edb0c9b",
+                "shasum": ""
+            },
+            "require": {
+                "microsoft/azure-storage-common": "~1.5",
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MicrosoftAzure\\Storage\\Blob\\": "src/Blob"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Azure Storage PHP Client Library",
+                    "email": "dmsh@microsoft.com"
+                }
+            ],
+            "description": "This project provides a set of PHP client libraries that make it easy to access Microsoft Azure Storage Blob APIs.",
+            "keywords": [
+                "azure",
+                "blob",
+                "php",
+                "sdk",
+                "storage"
+            ],
+            "time": "2020-08-28T09:40:50+00:00"
+        },
+        {
+            "name": "microsoft/azure-storage-common",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Azure/azure-storage-common-php.git",
+                "reference": "fe85677aa5188f8efe6916b4d6773a194e2c2ede"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Azure/azure-storage-common-php/zipball/fe85677aa5188f8efe6916b4d6773a194e2c2ede",
+                "reference": "fe85677aa5188f8efe6916b4d6773a194e2c2ede",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0",
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MicrosoftAzure\\Storage\\Common\\": "src/Common"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Azure Storage PHP Client Library",
+                    "email": "dmsh@microsoft.com"
+                }
+            ],
+            "description": "This project provides a set of common code shared by Azure Storage Blob, Table, Queue and File PHP client libraries.",
+            "keywords": [
+                "azure",
+                "common",
+                "php",
+                "sdk",
+                "storage"
+            ],
+            "time": "2020-08-28T09:02:11+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -8449,6 +8616,142 @@
     ],
     "packages-dev": [
         {
+            "name": "barryvdh/laravel-debugbar",
+            "version": "v3.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-debugbar.git",
+                "reference": "57f2219f6d9efe41ed1bc880d86701c52f261bf5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/57f2219f6d9efe41ed1bc880d86701c52f261bf5",
+                "reference": "57f2219f6d9efe41ed1bc880d86701c52f261bf5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/routing": "^5.5|^6|^7",
+                "illuminate/session": "^5.5|^6|^7",
+                "illuminate/support": "^5.5|^6|^7",
+                "maximebf/debugbar": "^1.15.1",
+                "php": ">=7.0",
+                "symfony/debug": "^3|^4|^5",
+                "symfony/finder": "^3|^4|^5"
+            },
+            "require-dev": {
+                "laravel/framework": "5.5.x"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\Debugbar\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Debugbar": "Barryvdh\\Debugbar\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\Debugbar\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "PHP Debugbar integration for Laravel",
+            "keywords": [
+                "debug",
+                "debugbar",
+                "laravel",
+                "profiler",
+                "webprofiler"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/barryvdh",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-05-05T10:53:32+00:00"
+        },
+        {
+            "name": "dimsav/laravel-translatable",
+            "version": "v10.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dimsav/laravel-translatable.git",
+                "reference": "0980ddd41bfa00f4ec2aef0de6d106f8e0471ae7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dimsav/laravel-translatable/zipball/0980ddd41bfa00f4ec2aef0de6d106f8e0471ae7",
+                "reference": "0980ddd41bfa00f4ec2aef0de6d106f8e0471ae7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.6.*|5.7.*|5.8.*",
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.6.*|3.7.*|3.8.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dimsav\\Translatable\\TranslatableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dimsav\\Translatable\\": "src/Translatable/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dimitrios Savvopoulos",
+                    "email": "ds@dimsav.com",
+                    "homepage": "http://dimsav.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Tom Witkowski",
+                    "email": "dev.gummibeer@gmail.com",
+                    "homepage": "https://gummibeer.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel package for multilingual models",
+            "keywords": [
+                "database",
+                "language",
+                "laravel",
+                "translation"
+            ],
+            "abandoned": "astrotomic/laravel-translatable",
+            "time": "2019-06-03T06:56:57+00:00"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.2.0",
             "source": {
@@ -8771,6 +9074,140 @@
             ],
             "description": "A virtual machine for web artisans.",
             "time": "2017-11-26T15:57:24+00:00"
+        },
+        {
+            "name": "lsrur/inspector",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lsrur/inspector.git",
+                "reference": "39510a8d24b53dbe071c71c32b7dd9ef004c2461"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lsrur/inspector/zipball/39510a8d24b53dbe071c71c32b7dd9ef004c2461",
+                "reference": "39510a8d24b53dbe071c71c32b7dd9ef004c2461",
+                "shasum": ""
+            },
+            "require": {
+                "lsrur/toolbelt": "0.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lsrur\\Inspector\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Inspector, debugging and profiling tools for Web Artisans",
+            "keywords": [
+                "debug",
+                "exceptions",
+                "laravel",
+                "profiler"
+            ],
+            "time": "2017-07-31T22:39:19+00:00"
+        },
+        {
+            "name": "lsrur/toolbelt",
+            "version": "0.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lsrur/toolbelt.git",
+                "reference": "b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lsrur/toolbelt/zipball/b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d",
+                "reference": "b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Toolbelt.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Set of PHP helper functions wrapped for Laravel.",
+            "keywords": [
+                "functions",
+                "helpers",
+                "laravel",
+                "php",
+                "tools"
+            ],
+            "time": "2016-08-11T22:11:45+00:00"
+        },
+        {
+            "name": "maximebf/debugbar",
+            "version": "v1.16.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maximebf/php-debugbar.git",
+                "reference": "1a1605b8e9bacb34cc0c6278206d699772e1d372"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/1a1605b8e9bacb34cc0c6278206d699772e1d372",
+                "reference": "1a1605b8e9bacb34cc0c6278206d699772e1d372",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "psr/log": "^1.0",
+                "symfony/var-dumper": "^2.6|^3|^4|^5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5"
+            },
+            "suggest": {
+                "kriswallsmith/assetic": "The best way to manage assets",
+                "monolog/monolog": "Log using Monolog",
+                "predis/predis": "Redis storage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.16-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DebugBar\\": "src/DebugBar/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Bouroumeau-Fuseau",
+                    "email": "maxime.bouroumeau@gmail.com",
+                    "homepage": "http://maximebf.com"
+                },
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Debug bar in the browser for php application",
+            "homepage": "https://github.com/maximebf/php-debugbar",
+            "keywords": [
+                "debug",
+                "debugbar"
+            ],
+            "time": "2020-05-06T07:06:27+00:00"
         },
         {
             "name": "mockery/mockery",

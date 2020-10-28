@@ -16,9 +16,9 @@ trait HandleExperienceModule
 
         $fieldName = $fieldName ?? $relation;
         $relationFields = $fields['repeaters'][$fieldName] ?? [];
-        
+
         $relationRepository = $this->getModelRepository($relation, $model);
-        
+
         // if no relation field submitted, soft deletes all associated rows
         if (!$relationFields) {
             $relationRepository->updateBasic(null, [
@@ -29,7 +29,7 @@ trait HandleExperienceModule
                 $morphKey . '_repeater_name' => $fieldName,
                 ]);
             }
-            
+
         // keep a list of updated and new rows to delete (soft delete?) old rows that were deleted from the frontend
         $currentIdList = [];
 
@@ -130,7 +130,7 @@ trait HandleExperienceModule
             }
 
             $itemFields = method_exists($relationItem, 'toRepeaterArray') ? $relationItem->toRepeaterArray() : array_except($relationItem->attributesToArray(), $translatedFields);
-            
+
             if ($model === 'ExperienceModal') {
                 $modal_name = $relation . '-' . $relationItem->id;
                 foreach($relationItem->experienceImage->toArray() as $experienceImage) {

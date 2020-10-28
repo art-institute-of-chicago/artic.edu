@@ -63,6 +63,7 @@ return [
      */
     'support_subdomain_admin_routing' => false,
     'admin_app_subdomain' => 'admin',
+    'active_subdomain' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -74,6 +75,14 @@ return [
      */
     'admin_route_patterns' => [
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Prevent the routing system to duplicate prefix and module on route names
+    |--------------------------------------------------------------------------
+    |
+     */
+    'allow_duplicates_on_route_names' => true,
 
     /*
     |--------------------------------------------------------------------------
