@@ -3,11 +3,13 @@
     $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
     $useContain = $item['useContain'] ?? false;
+    $useAltBackground = $item['useAltBackground'] ?? false;
     $hasRestriction = isset($item['restricted']) ? $item['restricted'] : false;
     $media = $item['media'];
     $fullscreen = (isset($item['fullscreen']) && $item['fullscreen']) && (!isset($media['restrict']) || !$media['restrict']);
     $poster = isset($item['poster']) ? $item['poster'] : false;
     $manifest = isset($item['manifest']) ? $item['manifest'] : false;
+    $default_view = isset($item['default_view']) ? $item['default_view'] : 'single';
 
     $fitCaptionTitle = $type === 'artist';
     $type = $type === 'artist' ? 'image' : $type;
@@ -129,7 +131,7 @@
 @endphp
 
 <{{ $tag ?? 'figure' }} {!! isset($_figureCount) ? 'id="fig-' . $_figureCount . '" ' : '' !!} data-type="{{ $type }}" data-title="{{ $item['captionTitle'] ?? $item['caption'] ?? $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ $useContain ? ' m-media--contain' : '' }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
-    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}"{!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
+    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}{{ $useAltBackground ? ' m-media__img--alt-background' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}"{!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
         @if ($useContain && ($size === 'm' || $size === 'l'))
             <div class="m-media__contain--spacer" style="padding-bottom: {{ min(62.5, intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100) }}%"></div>
         @endif
@@ -273,6 +275,7 @@
             @slot('type', 'modal')
             @slot('title', $media['title'] ? $media['title'].' - Modal Mirador' : 'Modal Mirador')
             @slot('manifest', $manifest)
+            @slot('defaultView', $default_view)
           @endcomponent</textarea>
         @endif
 
@@ -280,7 +283,7 @@
     @if ((!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption'])) and (isset($item['caption']) or isset($item['captionTitle'])))
     <figcaption>
         @if (isset($item['captionTitle']))
-            <div class="{{ $fitCaptionTitle ? 'f-fit-text' : '' }} {{ $size !== 'gallery' || isset($item['caption']) ? 'f-caption-title' : 'f-caption' }}"><div>
+            <div class="{{ $size !== 'gallery' || isset($item['caption']) ? 'f-caption-title' : 'f-caption' }}"><div>
                 @if(isset($item['urlTitle']) && $item['urlTitle'])
                     <a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a>
                 @else
@@ -289,7 +292,7 @@
             </div></div> <br>
         @endif
         @if (isset($item['caption']))
-            <div class="f-caption">{!! $item['caption'] !!}</div>
+            <div class="{{ $fitCaptionTitle ? 'f-fit-text' : '' }} f-caption">{!! $item['caption'] !!}</div>
         @endif
     </figcaption>
     @endif

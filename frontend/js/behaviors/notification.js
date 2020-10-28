@@ -1,8 +1,9 @@
-import { purgeProperties, forEach, ajaxRequest } from '@area17/a17-helpers';
+import { purgeProperties, forEach, ajaxRequest, cookieHandler, triggerCustomEvent } from '@area17/a17-helpers';
 
 const notification = function(container) {
 
   let closers = container.querySelectorAll('[data-notification-closer]');
+  let cookieName = 'has_seen_notification';
 
   function _afterAnimation() {
     this.parentNode.removeChild(this);
@@ -18,23 +19,28 @@ const notification = function(container) {
     let expiryPeriodInDaysForAll = Array.prototype.map.call(closers, function(template) {
       return template.dataset['expires'];
     });
-    let expiry = expiryPeriodInDaysForAll[0];
+    let expiryPeriodInDays = expiryPeriodInDaysForAll[0];
 
     // Now set a cookie so we don't show the notification again for the specified period of time
-    if (expiry > 0) {
-      ajaxRequest({
-        url: '/api/v1/cookie/notification/' + expiry,
-        type: 'GET',
-      });
+    if (expiryPeriodInDays > 0) {
+      cookieHandler.create(cookieName, true, expiryPeriodInDays);
     } else {
-      ajaxRequest({
-        url: '/api/v1/cookie/notification/-3600',
-        type: 'GET',
-      });
+      cookieHandler.create(cookieName, true, -3600);
     }
   }
 
   function _init() {
+    var cookie = cookieHandler.read(cookieName) || '';
+
+    // Cookie values are always stored as strings
+    if (cookie === 'true') {
+      container.parentNode.removeChild(container);
+      return;
+    } else {
+      container.classList.add('m-notification--header-loaded');
+      triggerCustomEvent(document, 'notification:confirmed', {});
+    }
+
     forEach(closers, function(index, closer) {
       closer.addEventListener('click', _handleClicks, false);
     });

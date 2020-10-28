@@ -205,6 +205,10 @@
   background-position: 50% 50%;
   overflow: hidden;
 
+  &.m-media__img--alt-background {
+    background-color: $color__white;
+  }
+
   .m-media--m:not(.m-media--contain) &::before,
   .m-media--l:not(.m-media--contain) &::before,
   &.m-media__img--video::before {
@@ -266,23 +270,26 @@
 
 .m-media--mirador-embed {
 
+  z-index: 7;
+
+  .mosaic-window-body, .mirador-mosaic, .mosaic-root, .mosaic-tile, .mosaic-window {
+    height: 100%
+  }
+
+}
+
+.m-media--mirador-embed, .g-modal--moduleMirador {
+
   .loader {
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     text-align: center;
-    position: relative;
+    position: absolute;
     height: 100%;
-    width: auto;
+    width: 100%;
   }
 
-  .mirador-primary-window {
-    padding-top: 10px;
-  }
-
-  .mosaic-window-body, .mirador-mosaic, .mosaic-root, .mosaic-tile, .mosaic-window {
-    height: 100%
-  }
 }
 
 .m-media__img img,
@@ -341,18 +348,36 @@
   object-fit: cover;
 }
 
-.m-media--l .m-media--mirador-embed {
-  height: 70vh;
+.m-media--mirador-embed {
+  height: 100%;
+  min-height: 600px;
+  @media screen and (max-width: 600px) {
+    min-height: 450px;
+  }
 }
 
-.m-media--m .m-media--mirador-embed {
-  height: 60vh;
+.miradorZoomButtons {
+  display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    right: 20px;
+    bottom: 32px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row no-wrap;
+    flex-flow: row no-wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  @media (min-width: 600px){
+    left: auto;
+    right: 32px;
+    bottom: 32px;
+  }
 }
-
-.m-media--s .m-media--mirador-embed {
-  height: 50vh;
-}
-
 
 .m-media__img .icon--play-multi {
   position: absolute;

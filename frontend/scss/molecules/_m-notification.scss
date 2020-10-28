@@ -58,6 +58,13 @@
 .m-notification--header {
   padding-right: 0px;
   background-color: transparentize($color__error, 0.03);
+
+  // Wait until cookie has been confirmed
+  display: none;
+}
+
+.m-notification--header-loaded {
+  display: block;
 }
 
 .m-notification--header__inner {

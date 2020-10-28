@@ -10,6 +10,7 @@ const viewerMirador = function(container) {
   let viewerId = 'm-viewer-mirador-' + container.dataset.id;
   const config = {
     id: viewerId,
+    classPrefix: 'mirador-' + container.dataset.id,
     selectedTheme: 'aicTheme',
     themes: {
       aicTheme:{
@@ -21,7 +22,7 @@ const viewerMirador = function(container) {
           shades: {
             dark: '#333',
             main: '#333',
-            light: '#333',     
+            light: '#333',
           },
           background: {
             paper: '#757575',
@@ -60,7 +61,7 @@ const viewerMirador = function(container) {
       allowWindowSideBar: false,
       allowMaximize: false, // Configure if windows can be maximized or not
       sideBarPanel: 'info', // Configure which sidebar is selected by default. Options: info, attribution, canvas, annotations, search
-      defaultView: 'single',  // Configure which viewing mode (e.g. single, book, gallery) for windows to be opened in
+      defaultView: container.dataset.view,  // Configure which viewing mode (e.g. single, book, gallery) for windows to be opened in
       hideWindowTitle: true, // Configure if the window title is shown in the window title bar or not
       sideBarOpen: false, // Configure if the sidebar (and its content panel) is open by default
       panels: { // Configure which panels are visible in WindowSideBarButtons
@@ -84,27 +85,31 @@ const viewerMirador = function(container) {
       visibilityRatio: 1,
       zoomPerScroll: 1.3,
       zoomPerClick: 1.3,
-      constrainDuringPan: true,
-      animationTime: 1.5,
+      animationTime: 1,
       maxZoomPixelRatio: 1,
       minZoomImageRatio: 1,
       minZoomLevel: 0,
       gestureSettingsMouse: {
         scrollToZoom: true,
-        clickToZoom: false,
+        clickToZoom: true,
         dblClickToZoom: false,
       },
     },
   }
   this.init = function() {
     mirador.viewer(config, [
-      aicZoomButtonsPlugin, aicNavigationButtonsPlugin, aicRemoveNavPlugin, aicThumbnailCustomization
+      aicNavigationButtonsPlugin, aicRemoveNavPlugin, aicZoomButtonsPlugin, aicThumbnailCustomization
     ]);
 
-    if(document.getElementsByClassName('mirador-viewer')) {
-      container.classList.remove('loader');
-    }; 
-  };  
+    function removeComponent() {
+      //remove mirador component when modal is closed
+      let targetElement = document.querySelector('.g-modal--moduleMirador #'+ viewerId);
+      if (targetElement) {
+        ReactDOM.unmountComponentAtNode(targetElement);
+      }
+    }
+    document.addEventListener('modal:close', removeComponent);
+  };
 }
 
 export default viewerMirador;

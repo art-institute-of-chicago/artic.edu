@@ -63,9 +63,26 @@ class Artist extends BaseApiModel
         return $this->short_name;
     }
 
+    public function getShortNameCaptionAttribute()
+    {
+        $augmentedArtist = $this->getAugmentedModel();
+
+        if ($augmentedArtist && $augmentedArtist->short_name_caption) {
+            return $augmentedArtist->short_name_caption;
+        }
+
+        return $this->short_name_qualifier;
+    }
+
     public function getShortNameAttribute()
     {
         $arr = explode(",", $this->sort_title, 2);
         return $arr[0];
+    }
+
+    public function getShortNameQualifierAttribute()
+    {
+        $arr = explode(",", $this->sort_title, 2);
+        return count($arr) > 1 ? trim($arr[1]) : '';
     }
 }

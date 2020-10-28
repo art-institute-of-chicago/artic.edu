@@ -294,6 +294,7 @@
   top:0;
   bottom:0;
   transform:none;
+  z-index: 1500;
 
   @media screen and (min-width: 1280px), screen and (min-height: 1024px) {
     left: 50%;

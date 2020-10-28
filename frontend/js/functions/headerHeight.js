@@ -19,6 +19,7 @@ const headerHeight = function() {
 
   }
 
+  document.addEventListener('notification:confirmed', _adjustHeaderOffet, false);
   document.addEventListener('ajaxPageLoad:complete', _adjustHeaderOffet, false);
   window.addEventListener('resized', _adjustHeaderOffet, false);
 

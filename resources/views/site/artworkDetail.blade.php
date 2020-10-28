@@ -34,6 +34,7 @@
     @slot('module3d', $model3d ?? null)
     @slot('module360', $item->assetLibrary)
     @slot('moduleMirador', $item->getMiradorManifest())
+    @slot('defaultView', $item->getMiradorView())
   @endcomponent
 
   <div class="o-article__primary-actions o-article__primary-actions--inline-header u-show@large+" aria-label="Additional information">

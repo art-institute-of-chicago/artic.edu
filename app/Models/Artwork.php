@@ -23,6 +23,7 @@ class Artwork extends AbstractModel
         'meta_title',
         'meta_description',
         'default_manifest_url',
+        'default_view',
     ];
 
     public $mediasParams = [
@@ -93,5 +94,10 @@ class Artwork extends AbstractModel
             return $manifestFile;
         }
 		return null;
+    }
+
+    public function getMiradorView()
+    {
+        return $this->default_view;
     }
 }

@@ -67,7 +67,7 @@ if ($maxZoomWindowSize > 843) {
         </li>
         @endif
 
-        @if(isset($moduleMirador) && $moduleMirador)
+        @if(isset($moduleMirador) && $moduleMirador && isset($isZoomable) && $isZoomable)
         <li data-type="moduleMirador"
         @if(!isset($isPublicDomain) || !$isPublicDomain)
           data-restricted="true"
@@ -88,6 +88,7 @@ if ($maxZoomWindowSize > 843) {
               @slot('cc', isset($isPublicDomain) ? $isPublicDomain : false)
               @slot('title', $title)
               @slot('manifest', $moduleMirador)
+              @slot('defaultView', $defaultView)
             @endcomponent</textarea>
         </li>
         @endif
