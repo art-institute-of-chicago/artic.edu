@@ -51,7 +51,10 @@ class GuzzleApiConsumer implements ApiConsumerInterface
      *
      */
     public function headers($params) {
-        $headers = ['Content-Type' => 'application/json'];
+        $headers = [
+            'Content-Type' => 'application/json',
+            'Accept-Encoding' => 'gzip',
+        ];
 
         if (config('api.token')) {
             $headers = array_merge($headers, [
