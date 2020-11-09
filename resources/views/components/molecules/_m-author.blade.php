@@ -21,11 +21,7 @@
     @component('components.blocks._text')
         @slot('font', 'f-secondary')
         @if (isset($name))
-            @if (isset($link))
-                <a href="{{ $link ?? '#' }}">{!! $name ?? '' !!}</a>
-            @else
-                {!! $name ?? '' !!}
-            @endif
+            {!! $name ?? '' !!}
         @endif
         @if (isset($name) and isset($date))
         <br>

@@ -31,11 +31,11 @@
     @endif
 
     <div class="o-article__body o-blocks o-blocks--with-sidebar">
-        @if ($item->showAuthors())
+        @if ($item->showAuthorsWithLinks())
             @component('components.blocks._text')
                 @slot('font', 'f-tag-2')
                 @slot('tag', 'div')
-                {!! $item->showAuthors() !!}
+                {!! $item->showAuthorsWithLinks() !!}
             @endcomponent
             <hr>
         @endif

@@ -26,13 +26,12 @@
         @endcomponent
     @endif
 
-    @if ($item->showAuthors())
+    @if ($item->showAuthorsWithLinks())
         @component('components.molecules._m-author')
             @slot('variation', 'm-author---keyline-top')
             @slot('editorial', ($item->articleType === 'editorial'))
             @slot('img', $item->imageFront('author', 'square'));
-            @slot('name', $item->showAuthors() ?? null);
-            @slot('link', null);
+            @slot('name', $item->showAuthorsWithLinks() ?? null);
             @slot('date', $item->date ?? null);
         @endcomponent
     @endif
@@ -109,9 +108,10 @@
   </div>
   @endif
 
-@if ($item->showAuthors())
-    <p class="print-authors type f-tag">By {{ $item->showAuthors() ?? null }}</p>
-@endif
+  @if ($item->showAuthorsWithLinks())
+      <p class="print-authors type f-tag">By {{ $item->showAuthorsWithLinks() ?? null }}</p>
+  @endif
+
   {{-- For articles, this shows below body, not float-right --}}
   @if ($item->featuredRelated)
       <div class="o-article__related">
