@@ -25,6 +25,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Admin Title Suffix
+    |--------------------------------------------------------------------------
+    |
+    | This value is added to the title tag of your Admin application.
+    |
+     */
+    'admin_app_title_suffix' => env('ADMIN_APP_TITLE_SUFFIX', 'Admin'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Admin subdomain routing support
     |--------------------------------------------------------------------------
     |
@@ -99,7 +109,7 @@ return [
     | Twill default tables naming configuration
     |--------------------------------------------------------------------------
     |
-    | TODO: In Twill 2.0, all tables will be prefixed by `twill_`.
+    | TODO: In Twill 3.0, all tables will be prefixed by `twill_`.
     |
      */
     'users_table' => 'users',
@@ -144,6 +154,48 @@ return [
     'auth_login_redirect_path' => '/',
     'templates_on_frontend_domain' => true,
     'google_maps_api_key' => env('GOOGLE_MAPS_API_KEY'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Twill FE Application configuration
+    |--------------------------------------------------------------------------
+    |
+     */
+    'js_namespace' => 'TWILL',
+    'dev_mode' => false,
+    'dev_mode_url' => env('TWILL_DEV_MODE_URL', 'http://localhost:8080'),
+    'public_directory' => env('TWILL_ASSETS_DIR', 'assets/admin'),
+    'manifest_file' => 'twill-manifest.json',
+    'vendor_path' => 'vendor/area17/twill',
+    'custom_components_resource_path' => 'assets/js/components',
+    'build_timeout' => 300,
+
+    'internal_icons' => [
+        'content-editor.svg',
+        'close_modal.svg',
+        'edit_large.svg',
+        'google-sign-in.svg',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Twill app locale
+    |--------------------------------------------------------------------------
+    |
+     */
+    'locale' => 'en',
+    'fallback_locale' => 'en',
+
+    'available_user_locales' => [
+        'en',
+        'fr',
+        'pl',
+        'de',
+        'nl',
+        'pt',
+        'zh-Hans',
+        'ru',
+    ],
 
     /*
     |--------------------------------------------------------------------------
