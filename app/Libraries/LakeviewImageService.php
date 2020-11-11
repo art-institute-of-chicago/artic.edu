@@ -157,11 +157,33 @@ class LakeviewImageService implements ImageServiceInterface
     {
         $json = Cache::remember('lakeview-image-' . $id . $this->cacheVersion, 24 * 60 * 60, function () use ($id) {
             try {
-                return json_decode(@file_get_contents($this->base_url . $this->version . '/' . $id . '/info.json'));
-            } catch (Exception $e) {
-                return [];
+                // WEB-1883: Use aggresive curl timeouts to prevent gateway timeout
+                $url = $this->base_url . $this->version . '/' . $id . '/info.json';
+
+                $ch = curl_init();
+
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                // WEB-874: If connection or response take longer than 3 seconds, give up
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+                curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+
+                $contents = curl_exec($ch);
+
+                if (curl_errno($ch)) {
+                   throw new \Exception(curl_error($ch));
+                }
+
+                curl_close($ch);
+
+                return json_decode($contents);
+            } catch (\Exception $e) {
+                return null;
             }
         });
-        return $json;
+
+        return $json ?? [];
     }
 }
