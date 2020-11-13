@@ -21,10 +21,8 @@ class ArtistController extends FrontController
     {
         $item = $this->repository->getById((Integer) $id);
 
-        // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('artists.show', ['id' => $item->id, 'slug' => $item->titleSlug ], false);
-        if ('/' .request()->path() != $canonicalPath) {
-            return redirect($canonicalPath, 301);
+        if ($cannonicalRedirect = $this->getCannonicalRedirect('artists.show', $item, $item->titleSlug)) {
+            return $cannonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

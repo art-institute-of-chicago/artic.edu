@@ -53,10 +53,8 @@ class AuthorController extends FrontController
             abort(404);
         }
 
-        // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('authors.show', ['id' => $item->id, 'slug' => $item->getSlug()], false);
-        if ('/' .request()->path() != $canonicalPath) {
-            return redirect($canonicalPath, 301);
+        if ($cannonicalRedirect = $this->getCannonicalRedirect('authors.show', $item)) {
+            return $cannonicalRedirect;
         }
 
         $this->seo->setTitle($item->title);

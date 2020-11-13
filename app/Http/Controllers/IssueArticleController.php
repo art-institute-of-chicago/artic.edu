@@ -19,10 +19,8 @@ class IssueArticleController extends FrontController
     {
         $item = $this->repository->published()->findOrFail($id);
 
-        // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('issue-articles.show', ['id' => $item->id, 'slug' => $item->getSlug()], false);
-        if ('/' .request()->path() != $canonicalPath) {
-            return redirect($canonicalPath, 301);
+        if ($cannonicalRedirect = $this->getCannonicalRedirect('issue-articles.show', $item)) {
+            return $cannonicalRedirect;
         }
 
         // $this->seo->setTitle($item->meta_title ?: $item->title);

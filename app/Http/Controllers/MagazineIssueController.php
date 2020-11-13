@@ -31,10 +31,8 @@ class MagazineIssueController extends FrontController
         }
 
         if (!$isRequestForLatest) {
-            // Redirect to the canonical page if it wasn't requested
-            $canonicalPath = route('magazine-issues.show', ['id' => $item->id, 'slug' => $item->getSlug()], false);
-            if ('/' .request()->path() != $canonicalPath) {
-                return redirect($canonicalPath, 301);
+            if ($cannonicalRedirect = $this->getCannonicalRedirect('magazine-issues.show', $item)) {
+                return $cannonicalRedirect;
             }
         }
 

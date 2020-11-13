@@ -21,10 +21,8 @@ class GalleryController extends FrontController
     {
         $item = $this->repository->getById((Integer) $id);
 
-        // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('galleries.show', ['id' => $item->id, 'slug' => $item->titleSlug ], false);
-        if ('/' .request()->path() != $canonicalPath) {
-            return redirect($canonicalPath, 301);
+        if ($cannonicalRedirect = $this->getCannonicalRedirect('galleries.show', $item, $item->titleSlug)) {
+            return $cannonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

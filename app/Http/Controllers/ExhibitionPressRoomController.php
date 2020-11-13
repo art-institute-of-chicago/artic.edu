@@ -59,11 +59,8 @@ class ExhibitionPressRoomController extends FrontController
     {
         $page = $this->repository->getById((Integer) $id);
 
-        // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('about.exhibitionPressRooms.show', ['id' => $page->id, 'slug' => $page->getSlug()]);
-
-        if (!Str::endsWith($canonicalPath, request()->path())) {
-            return redirect($canonicalPath, 301);
+        if ($cannonicalRedirect = $this->getCannonicalRedirect('about.exhibitionPressRooms.show', $page)) {
+            return $cannonicalRedirect;
         }
 
         $crumbs = [
@@ -82,7 +79,7 @@ class ExhibitionPressRoomController extends FrontController
             'breadcrumb' => $crumbs,
             'blocks' => null,
             'page' => $page,
-            'canonicalUrl' => $canonicalPath,
+            'canonicalUrl' => route('about.exhibitionPressRooms.show', ['id' => $page->id, 'slug' => $page->getSlug()]),
         ]);
 
     }

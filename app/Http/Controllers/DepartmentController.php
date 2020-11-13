@@ -21,10 +21,8 @@ class DepartmentController extends FrontController
     {
         $item = $this->repository->getById($id);
 
-        // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('departments.show', ['id' => $item->id, 'slug' => $item->titleSlug ], false);
-        if ('/' .request()->path() != $canonicalPath) {
-            return redirect($canonicalPath, 301);
+        if ($cannonicalRedirect = $this->getCannonicalRedirect('departments.show', $item, $item->titleSlug)) {
+            return $cannonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

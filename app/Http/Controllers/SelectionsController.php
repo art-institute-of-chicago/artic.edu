@@ -54,11 +54,8 @@ class SelectionsController extends FrontController
     {
         $item = $this->repository->getById((Integer) $id);
 
-        // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('selections.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
-
-        if (!Str::endsWith($canonicalPath, request()->path())) {
-            return redirect($canonicalPath, 301);
+        if ($cannonicalRedirect = $this->getCannonicalRedirect('selections.show', $item)) {
+            return $cannonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
@@ -86,7 +83,7 @@ class SelectionsController extends FrontController
             'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'alsoInThisIssue'       => $alsoInThisIssue ?? null,
-            'canonicalUrl' => $canonicalPath,
+            'canonicalUrl' => route('selections.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
         ]);
     }
 

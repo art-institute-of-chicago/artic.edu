@@ -163,11 +163,8 @@ class PressReleasesController extends BaseScopedController
     {
         $page = $this->repository->getById((Integer) $id);
 
-        // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('about.press.show', ['id' => $page->id, 'slug' => $page->getSlug()]);
-
-        if (!Str::endsWith($canonicalPath, request()->path())) {
-            return redirect($canonicalPath, 301);
+        if ($cannonicalRedirect = $this->getCannonicalRedirect('about.press.show', $page)) {
+            return $cannonicalRedirect;
         }
 
         $this->seo->setTitle($page->meta_title ?? $page->title);
@@ -191,7 +188,7 @@ class PressReleasesController extends BaseScopedController
             'blocks' => null,
             'nav' => [],
             'page' => $page,
-            'canonicalUrl' => $canonicalPath,
+            'canonicalUrl' => route('about.press.show', ['id' => $page->id, 'slug' => $page->getSlug()]),
         ]);
 
     }

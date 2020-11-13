@@ -77,10 +77,8 @@ class ExhibitionsController extends FrontController
             abort(404);
         }
 
-        // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('exhibitions.show', ['id' => $item->id, 'slug' => $item->titleSlug ], false);
-        if ('/' .request()->path() != $canonicalPath) {
-            return redirect($canonicalPath, 301);
+        if ($cannonicalRedirect = $this->getCannonicalRedirect('exhibitions.show', $item, $item->titleSlug)) {
+            return $cannonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
