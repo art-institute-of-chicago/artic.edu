@@ -21,8 +21,8 @@ class DepartmentController extends FrontController
     {
         $item = $this->repository->getById($id);
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('departments.show', $item, $item->titleSlug)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('departments.show', $item, $item->titleSlug)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

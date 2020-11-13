@@ -31,8 +31,8 @@ class MagazineIssueController extends FrontController
         }
 
         if (!$isRequestForLatest) {
-            if ($cannonicalRedirect = $this->getCannonicalRedirect('magazine-issues.show', $item)) {
-                return $cannonicalRedirect;
+            if ($canonicalRedirect = $this->getCanonicalRedirect('magazine-issues.show', $item)) {
+                return $canonicalRedirect;
             }
         }
 

@@ -31,8 +31,8 @@ class ArtworkController extends BaseScopedController
                 ->findOrFail((Integer) $id);
         }
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('artworks.show', $item, $item->titleSlug)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('artworks.show', $item, $item->titleSlug)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

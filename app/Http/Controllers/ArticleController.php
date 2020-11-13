@@ -112,8 +112,8 @@ class ArticleController extends FrontController
             abort(404);
         }
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('articles.show', $item)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('articles.show', $item)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

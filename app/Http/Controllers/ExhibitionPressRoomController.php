@@ -59,8 +59,8 @@ class ExhibitionPressRoomController extends FrontController
     {
         $page = $this->repository->getById((Integer) $id);
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('about.exhibitionPressRooms.show', $page)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('about.exhibitionPressRooms.show', $page)) {
+            return $canonicalRedirect;
         }
 
         $crumbs = [

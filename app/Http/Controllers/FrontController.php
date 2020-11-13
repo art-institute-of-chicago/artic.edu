@@ -38,7 +38,7 @@ class FrontController extends BaseController
         View::share('globalSuffix', 'The Art Institute of Chicago');
     }
 
-    protected function getCannonicalRedirect($route, $item, $params = null)
+    protected function getCanonicalRedirect($route, $item, $params = null)
     {
         $slug = is_string($params) ? $params : null;
 

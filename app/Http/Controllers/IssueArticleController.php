@@ -19,8 +19,8 @@ class IssueArticleController extends FrontController
     {
         $item = $this->repository->published()->findOrFail($id);
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('issue-articles.show', $item)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('issue-articles.show', $item)) {
+            return $canonicalRedirect;
         }
 
         // $this->seo->setTitle($item->meta_title ?: $item->title);

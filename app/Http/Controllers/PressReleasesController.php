@@ -163,8 +163,8 @@ class PressReleasesController extends BaseScopedController
     {
         $page = $this->repository->getById((Integer) $id);
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('about.press.show', $page)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('about.press.show', $page)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($page->meta_title ?? $page->title);

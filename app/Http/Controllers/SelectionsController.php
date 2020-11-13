@@ -54,8 +54,8 @@ class SelectionsController extends FrontController
     {
         $item = $this->repository->getById((Integer) $id);
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('selections.show', $item)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('selections.show', $item)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

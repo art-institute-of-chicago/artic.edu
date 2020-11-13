@@ -53,8 +53,8 @@ class AuthorController extends FrontController
             abort(404);
         }
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('authors.show', $item)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('authors.show', $item)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->title);

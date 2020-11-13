@@ -77,8 +77,8 @@ class ExhibitionsController extends FrontController
             abort(404);
         }
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('exhibitions.show', $item, $item->titleSlug)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('exhibitions.show', $item, $item->titleSlug)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

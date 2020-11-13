@@ -24,11 +24,11 @@ class IssueController extends FrontController
             abort(404);
         }
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('issues.show', $item, [
+        if ($canonicalRedirect = $this->getCanonicalRedirect('issues.show', $item, [
             'issueNumber' => $item->issue_number,
             'slug' => $item->getSlug(),
         ])) {
-            return $cannonicalRedirect;
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

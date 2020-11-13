@@ -30,8 +30,8 @@ class VideoController extends FrontController
             abort(404);
         }
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('videos.show', $item)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('videos.show', $item)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

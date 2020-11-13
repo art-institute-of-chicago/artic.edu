@@ -21,8 +21,8 @@ class GalleryController extends FrontController
     {
         $item = $this->repository->getById((Integer) $id);
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('galleries.show', $item, $item->titleSlug)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('galleries.show', $item, $item->titleSlug)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

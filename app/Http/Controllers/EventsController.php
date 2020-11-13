@@ -125,8 +125,8 @@ class EventsController extends FrontController
     {
         $item = $this->repository->published()->findOrFail((Integer) $id);
 
-        if ($cannonicalRedirect = $this->getCannonicalRedirect('events.show', $item)) {
-            return $cannonicalRedirect;
+        if ($canonicalRedirect = $this->getCanonicalRedirect('events.show', $item)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
