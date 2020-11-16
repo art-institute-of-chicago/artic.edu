@@ -71,36 +71,37 @@ class EducatorResourcesController extends BaseScopedController
 
     public function show($id)
     {
-        $page = $this->repository->find((Integer) $id);
-        if (!$page) {
-            $page = $this->repository->safeForSlug($id);
+        $item = $this->repository->find((Integer) $id);
 
-            if (!$page) {
+        if (!$item) {
+            $item = $this->repository->safeForSlug($id);
+
+            if (!$item) {
                 abort(404);
             }
         }
 
-        $this->seo->setTitle($page->meta_title ?: $page->title);
-        $this->seo->setDescription($page->meta_description ?? $page->short_description ?? $page->listing_description);
-        $this->seo->setImage($page->imageFront('listing'));
+        $this->seo->setTitle($item->meta_title ?: $item->title);
+        $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->listing_description);
+        $this->seo->setImage($item->imageFront('listing'));
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
             ['label' => 'Educator Resources', 'href' => route('collection.resources.educator-resources')],
-            ['label' => $page->title, 'href' => '']
+            ['label' => $item->title, 'href' => '']
         ];
 
         return view('site.genericPage.show', [
-            'borderlessHeader' => !(empty($page->imageFront('banner'))),
+            'borderlessHeader' => !(empty($item->imageFront('banner'))),
             'subNav' => null,
             'nav' => null,
-            'intro' => $page->short_description,
-            'headerImage' => $page->imageFront('banner'),
-            "title" => $page->title,
-            "title_display" => $page->title_display,
-            "breadcrumb" => $crumbs,
-            "blocks" => null,
-            'page' => $page,
+            'intro' => $item->short_description,
+            'headerImage' => $item->imageFront('banner'),
+            'title' => $item->title,
+            'title_display' => $item->title_display,
+            'breadcrumb' => $crumbs,
+            'blocks' => null,
+            'page' => $item,
         ]);
 
     }

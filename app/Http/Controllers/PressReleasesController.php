@@ -161,34 +161,34 @@ class PressReleasesController extends BaseScopedController
 
     public function show($id)
     {
-        $page = $this->repository->getById((Integer) $id);
+        $item = $this->repository->getById((Integer) $id);
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('about.press.show', $page)) {
+        if ($canonicalRedirect = $this->getCanonicalRedirect('about.press.show', $item)) {
             return $canonicalRedirect;
         }
 
-        $this->seo->setTitle($page->meta_title ?? $page->title);
-        $this->seo->setDescription($page->meta_description ?? $page->short_description ?? $page->listing_description);
-        $this->seo->setImage($page->imageFront('listing'));
+        $this->seo->setTitle($item->meta_title ?? $item->title);
+        $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->listing_description);
+        $this->seo->setImage($item->imageFront('listing'));
 
         $crumbs = [
             ['label' => 'Press', 'href' => route('genericPages.show', 'press')],
             ['label' => 'Press Releases', 'href' => route('about.press')],
-            ['label' => $page->title, 'href' => '']
+            ['label' => $item->title, 'href' => '']
         ];
 
         return view('site.genericPage.show', [
-            'borderlessHeader' => !(empty($page->imageFront('banner'))),
+            'borderlessHeader' => !(empty($item->imageFront('banner'))),
             'subNav' => null,
-            'intro' => $page->short_description,
-            'headerImage' => $page->imageFront('banner'),
-            'title' => $page->title,
-            'title_display' => $page->title_display,
+            'intro' => $item->short_description,
+            'headerImage' => $item->imageFront('banner'),
+            'title' => $item->title,
+            'title_display' => $item->title_display,
             'breadcrumb' => $crumbs,
             'blocks' => null,
             'nav' => [],
-            'page' => $page,
-            'canonicalUrl' => route('about.press.show', ['id' => $page->id, 'slug' => $page->getSlug()]),
+            'page' => $item,
+            'canonicalUrl' => route('about.press.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
         ]);
 
     }

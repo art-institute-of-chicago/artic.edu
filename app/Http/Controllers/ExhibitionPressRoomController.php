@@ -4,7 +4,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 use App\Repositories\ExhibitionPressRoomRepository;
 use App\Models\ExhibitionPressRoom;
@@ -57,29 +56,29 @@ class ExhibitionPressRoomController extends FrontController
 
     public function show($id)
     {
-        $page = $this->repository->getById((Integer) $id);
+        $item = $this->repository->getById((Integer) $id);
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('about.exhibitionPressRooms.show', $page)) {
+        if ($canonicalRedirect = $this->getCanonicalRedirect('about.exhibitionPressRooms.show', $item)) {
             return $canonicalRedirect;
         }
 
         $crumbs = [
             ['label' => 'Press', 'href' => route('genericPages.show', 'press')],
             ['label' => 'Exhibition Press Rooms', 'href' => route('about.exhibitionPressRooms')],
-            ['label' => $page->title, 'href' => '']
+            ['label' => $item->title, 'href' => '']
         ];
 
         return view('site.genericPage.show', [
-            'borderlessHeader' => !(empty($page->imageFront('banner'))),
+            'borderlessHeader' => !(empty($item->imageFront('banner'))),
             'subNav' => null,
             'nav' => [],
-            'intro' => $page->short_description,
-            'headerImage' => $page->imageFront('banner'),
-            'title' => $page->title,
+            'intro' => $item->short_description,
+            'headerImage' => $item->imageFront('banner'),
+            'title' => $item->title,
             'breadcrumb' => $crumbs,
             'blocks' => null,
-            'page' => $page,
-            'canonicalUrl' => route('about.exhibitionPressRooms.show', ['id' => $page->id, 'slug' => $page->getSlug()]),
+            'page' => $item,
+            'canonicalUrl' => route('about.exhibitionPressRooms.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
         ]);
 
     }
