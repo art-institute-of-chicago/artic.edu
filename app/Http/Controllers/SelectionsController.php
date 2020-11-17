@@ -78,8 +78,8 @@ class SelectionsController extends FrontController
         }
 
         return view('site.selectionDetail', [
-            'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
+            'contrastHeader' => $item->present()->contrastHeader,
             'exploreFurtherTags'    => $exploreFurther->tags(),
             'exploreFurther'        => $exploreFurther->collection(request()->all()),
             'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),

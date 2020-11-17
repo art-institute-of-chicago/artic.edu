@@ -141,8 +141,8 @@ class EventsController extends FrontController
         }
 
         return view('site.events.detail', [
-            'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
+            'contrastHeader' => $item->present()->contrastHeader,
             'canonicalUrl' => $canonicalPath,
         ]);
     }

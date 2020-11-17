@@ -141,8 +141,8 @@ class ArticleController extends FrontController
         }
 
         return view('site.articleDetail', [
-            'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
+            'contrastHeader' => $item->present()->contrastHeader,
             'featuredArticles'     => $featuredArticles ?? null,
             'alsoInThisIssue'     => $alsoInThisIssue ?? null,
             'canonicalUrl' => $canonicalPath,

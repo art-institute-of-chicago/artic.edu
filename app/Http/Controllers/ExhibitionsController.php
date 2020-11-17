@@ -91,8 +91,8 @@ class ExhibitionsController extends FrontController
         $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
 
         return view('site.exhibitionDetail', [
-            'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
+            'contrastHeader' => $item->present()->contrastHeader,
             'relatedEventsByDay' => $relatedEventsByDay,
             'canonicalUrl' => $canonicalPath,
         ]);

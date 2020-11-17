@@ -43,9 +43,9 @@ class MagazineIssueController extends FrontController
         $this->seo->setImage($item->imageFront('hero'));
 
         return view('site.magazineIssueDetail', [
+            'item' => $item,
             'contrastHeader' => false,
             'borderlessHeader' => false,
-            'item' => $item,
             'issues' => $issues,
             'welcomeNote' => $this->repository->getWelcomeNote($item),
             'canonicalUrl' => $canonicalPath,

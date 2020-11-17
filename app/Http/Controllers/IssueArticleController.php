@@ -30,9 +30,9 @@ class IssueArticleController extends FrontController
         // $this->seo->setImage($item->imageFront('hero'));
 
         return view('site.issueArticleDetail', [
+            'item' => $item,
             'contrastHeader' => false,
             'borderlessHeader' => false,
-            'item' => $item,
             'unstickyHeader' => true,
             'canonicalUrl' => $canonicalPath,
         ]);
