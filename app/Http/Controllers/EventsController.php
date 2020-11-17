@@ -125,7 +125,9 @@ class EventsController extends FrontController
     {
         $item = $this->repository->published()->findOrFail((Integer) $id);
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('events.show', $item)) {
+        $canonicalPath = route('events.show', $item);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -141,7 +143,7 @@ class EventsController extends FrontController
         return view('site.events.detail', [
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
-            'canonicalUrl' => route('events.show', $item),
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 

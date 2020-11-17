@@ -58,7 +58,9 @@ class ExhibitionPressRoomController extends FrontController
     {
         $item = $this->repository->getById((Integer) $id);
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('about.exhibitionPressRooms.show', $item)) {
+        $canonicalPath = route('about.exhibitionPressRooms.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -78,7 +80,7 @@ class ExhibitionPressRoomController extends FrontController
             'breadcrumb' => $crumbs,
             'blocks' => null,
             'page' => $item,
-            'canonicalUrl' => route('about.exhibitionPressRooms.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
+            'canonicalUrl' => $canonicalPath,
         ]);
 
     }

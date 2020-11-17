@@ -30,7 +30,9 @@ class VideoController extends FrontController
             abort(404);
         }
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('videos.show', $item)) {
+        $canonicalPath = route('videos.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -44,7 +46,7 @@ class VideoController extends FrontController
             'item' => $item,
             'relatedVideos' => $relatedVideos,
             'unstickyHeader' => true,
-            'canonicalUrl' => route('videos.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 }

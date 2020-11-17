@@ -24,10 +24,9 @@ class IssueController extends FrontController
             abort(404);
         }
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('issues.show', $item, [
-            'issueNumber' => $item->issue_number,
-            'slug' => $item->getSlug(),
-        ])) {
+        $canonicalPath = route('issues.show', ['issueNumber' => $item->issue_number, 'slug' => $item->getSlug()]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -40,7 +39,7 @@ class IssueController extends FrontController
             'borderlessHeader' => false,
             'item' => $item,
             'issues' => $issues,
-            'canonicalUrl' => route('issues.show', ['issueNumber' => $item->issue_number, 'slug' => $item->getSlug()]),
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 }

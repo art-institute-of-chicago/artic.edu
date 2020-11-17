@@ -77,7 +77,9 @@ class ExhibitionsController extends FrontController
             abort(404);
         }
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('exhibitions.show', $item, $item->titleSlug)) {
+        $canonicalPath = route('exhibitions.show', ['id' => $item->id, 'slug' => $item->titleSlug ]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -92,7 +94,7 @@ class ExhibitionsController extends FrontController
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
             'relatedEventsByDay' => $relatedEventsByDay,
-            'canonicalUrl' => route('exhibitions.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 

@@ -21,7 +21,9 @@ class DepartmentController extends FrontController
     {
         $item = $this->repository->getById($id);
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('departments.show', $item, $item->titleSlug)) {
+        $canonicalPath = route('departments.show', ['id' => $item->id, 'slug' => $item->titleSlug]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -40,8 +42,8 @@ class DepartmentController extends FrontController
             // 'exploreFurtherTags'    => $exploreFurther->tags(),
             // 'exploreFurther'        => $exploreFurther->collection(request()->all()),
             // 'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
-            'canonicalUrl' => route('departments.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
             'relatedItems' => $relatedItems->count() > 0 ? $relatedItems : null,
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 

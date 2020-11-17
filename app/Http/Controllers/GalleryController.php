@@ -21,7 +21,9 @@ class GalleryController extends FrontController
     {
         $item = $this->repository->getById((Integer) $id);
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('galleries.show', $item, $item->titleSlug)) {
+        $canonicalPath = route('galleries.show', ['id' => $item->id, 'slug' => $item->titleSlug ]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -38,7 +40,7 @@ class GalleryController extends FrontController
             // 'exploreFurtherTags'    => $exploreFurther->tags(),
             // 'exploreFurther'        => $exploreFurther->collection(request()->all()),
             // 'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
-            'canonicalUrl' => route('galleries.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 

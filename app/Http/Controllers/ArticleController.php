@@ -112,7 +112,9 @@ class ArticleController extends FrontController
             abort(404);
         }
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('articles.show', $item)) {
+        $canonicalPath = route('articles.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -143,7 +145,7 @@ class ArticleController extends FrontController
             'item' => $item,
             'featuredArticles'     => $featuredArticles ?? null,
             'alsoInThisIssue'     => $alsoInThisIssue ?? null,
-            'canonicalUrl' => route('articles.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 }

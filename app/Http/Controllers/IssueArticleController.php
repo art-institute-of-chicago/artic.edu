@@ -19,7 +19,9 @@ class IssueArticleController extends FrontController
     {
         $item = $this->repository->published()->findOrFail($id);
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('issue-articles.show', $item)) {
+        $canonicalPath = route('issue-articles.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -32,7 +34,7 @@ class IssueArticleController extends FrontController
             'borderlessHeader' => false,
             'item' => $item,
             'unstickyHeader' => true,
-            'canonicalUrl' => route('issue-articles.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 }

@@ -21,7 +21,9 @@ class ArtistController extends FrontController
     {
         $item = $this->repository->getById((Integer) $id);
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('artists.show', $item, $item->titleSlug)) {
+        $canonicalPath = route('artists.show', ['id' => $item->id, 'slug' => $item->titleSlug]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -41,8 +43,8 @@ class ArtistController extends FrontController
             'exploreFurtherTags'    => $exploreFurther->tags(),
             'exploreFurther'        => $exploreFurther->collection(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
-            'canonicalUrl' => route('artists.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
             'relatedItems' => $relatedItems->count() > 0 ? $relatedItems : null,
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 

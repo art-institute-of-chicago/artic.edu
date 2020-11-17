@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Helpers\Seo;
 use A17\Twill\Http\Controllers\Front\Controller as BaseController;
-use View;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\View;
 
 class FrontController extends BaseController
 {
@@ -38,18 +39,9 @@ class FrontController extends BaseController
         View::share('globalSuffix', 'The Art Institute of Chicago');
     }
 
-    protected function getCanonicalRedirect($route, $item, $params = null)
+    protected function getCanonicalRedirect($canonicalPath)
     {
-        $slug = is_string($params) ? $params : null;
-
-        $params = is_array($params) ? $params : [
-            'id' => $item->id,
-            'slug' => $slug ?? $item->getSlug(),
-        ];
-
-        $canonicalPath = route($route, $params, false);
-
-        if ('/' . request()->path() !== $canonicalPath) {
+        if (!Str::endsWith($canonicalPath, request()->path())) {
             return redirect($canonicalPath, 301);
         }
     }

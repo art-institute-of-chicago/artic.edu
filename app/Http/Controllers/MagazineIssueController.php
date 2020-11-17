@@ -30,8 +30,10 @@ class MagazineIssueController extends FrontController
             abort(404);
         }
 
+        $canonicalPath = route('magazine-issues.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+
         if (!$isRequestForLatest) {
-            if ($canonicalRedirect = $this->getCanonicalRedirect('magazine-issues.show', $item)) {
+            if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
                 return $canonicalRedirect;
             }
         }
@@ -46,7 +48,7 @@ class MagazineIssueController extends FrontController
             'item' => $item,
             'issues' => $issues,
             'welcomeNote' => $this->repository->getWelcomeNote($item),
-            'canonicalUrl' => route('magazine-issues.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 }

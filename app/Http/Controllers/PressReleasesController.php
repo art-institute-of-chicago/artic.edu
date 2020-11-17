@@ -163,7 +163,9 @@ class PressReleasesController extends BaseScopedController
     {
         $item = $this->repository->getById((Integer) $id);
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('about.press.show', $item)) {
+        $canonicalPath = route('about.press.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -188,7 +190,7 @@ class PressReleasesController extends BaseScopedController
             'blocks' => null,
             'nav' => [],
             'page' => $item,
-            'canonicalUrl' => route('about.press.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
+            'canonicalUrl' => $canonicalPath,
         ]);
 
     }

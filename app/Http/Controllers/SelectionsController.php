@@ -54,7 +54,9 @@ class SelectionsController extends FrontController
     {
         $item = $this->repository->getById((Integer) $id);
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('selections.show', $item)) {
+        $canonicalPath = route('selections.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -83,7 +85,7 @@ class SelectionsController extends FrontController
             'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'alsoInThisIssue'       => $alsoInThisIssue ?? null,
-            'canonicalUrl' => route('selections.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 

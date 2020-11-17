@@ -31,7 +31,9 @@ class ArtworkController extends BaseScopedController
                 ->findOrFail((Integer) $id);
         }
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('artworks.show', $item, $item->titleSlug)) {
+        $canonicalPath = route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -46,7 +48,7 @@ class ArtworkController extends BaseScopedController
             'contrastHeader'    => $item->present()->contrastHeader,
             'borderlessHeader'  => $item->present()->borderlessHeader,
             'primaryNavCurrent' => 'collection',
-            'canonicalUrl' => route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
+            'canonicalUrl' => $canonicalPath,
         ];
 
         // Build Explore further module

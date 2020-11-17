@@ -53,7 +53,9 @@ class AuthorController extends FrontController
             abort(404);
         }
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect('authors.show', $item)) {
+        $canonicalPath = route('authors.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
 
@@ -78,8 +80,8 @@ class AuthorController extends FrontController
 
         return view('site.authorDetail', [
             'item' => $item,
-            'canonicalUrl' => route('authors.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
             'breadcrumbs' => $breadcrumbs,
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 }
