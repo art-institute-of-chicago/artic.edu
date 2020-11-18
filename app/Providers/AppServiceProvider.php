@@ -174,6 +174,7 @@ class AppServiceProvider extends ServiceProvider
 
                     , 'collection' => route('collection')
                     , 'exhibitions' => route('exhibitions')
+                    , 'events' => route('events')
 
                     , 'about-us' => '/about-us'
                     , 'about-us-inside-the-museum' => '/about-us/inside-the-museum'

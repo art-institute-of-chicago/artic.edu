@@ -87,6 +87,17 @@
     @endforeach
 @endcomponent
 
+@component('components.molecules._m-title-bar')
+    @slot('links', array(
+        array(
+            'label' => 'See upcoming events',
+            'href' => $_pages['events'],
+            'gtmAttributes' => 'data-gtm-event="home-events" data-gtm-event-category="nav-link"'
+        ),
+    ))
+    Events
+@endcomponent
+
 @component('components.atoms._hr')
 @endcomponent
 
