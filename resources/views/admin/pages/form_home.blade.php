@@ -27,6 +27,20 @@
 @section('fieldsets')
     <a17-fieldset title="Plan your visit" id="plan-your-visit">
         @formField('input', [
+            'name' => 'home_visit_button_text',
+            'label' => 'Label for "Visit" button',
+            'note' => 'Defaults to "Visit"',
+        ])
+
+        @formField('input', [
+            'name' => 'home_visit_button_url',
+            'label' => 'Link for "Visit" button',
+            'note' => 'Defaults to "/visit"',
+        ])
+
+        <hr/>
+
+        @formField('input', [
             'name' => 'home_plan_your_visit_link_1_text',
             'label' => 'First "Plan your visit" link text',
         ])

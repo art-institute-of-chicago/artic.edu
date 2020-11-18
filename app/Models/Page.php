@@ -42,6 +42,8 @@ class Page extends AbstractModel
 
         // Homepage
         'home_intro',
+        'home_visit_button_text',
+        'home_visit_button_url',
         'home_plan_your_visit_link_1_text',
         'home_plan_your_visit_link_1_url',
         'home_plan_your_visit_link_2_text',
