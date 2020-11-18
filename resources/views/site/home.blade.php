@@ -44,48 +44,50 @@
     {!! SmartyPants::defaultTransform($intro) !!}
 @endcomponent
 
-@component('components.molecules._m-title-bar')
-    @slot('links', array(
-        array(
-            'label' => 'All current exhibitions',
-            'href' => $_pages['exhibitions'],
-            'gtmAttributes' => 'data-gtm-event="home-exhibitions-and-events" data-gtm-event-category="nav-link"'
-        ),
-    ))
-    Exhibitions
-@endcomponent
+@if ($exhibitions->count() > 0)
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(
+            array(
+                'label' => 'All current exhibitions',
+                'href' => $_pages['exhibitions'],
+                'gtmAttributes' => 'data-gtm-event="home-exhibitions-and-events" data-gtm-event-category="nav-link"'
+            ),
+        ))
+        Exhibitions
+    @endcomponent
 
-@component('components.atoms._hr')
-@endcomponent
+    @component('components.atoms._hr')
+    @endcomponent
 
-@component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-    @slot('cols_small','2')
-    @slot('cols_medium','2')
-    @slot('cols_large','2')
-    @slot('cols_xlarge','2')
-    @php ($count = 0)
-    @foreach ($exhibitions as $item)
-        @php ($count += 1)
-        @component('components.molecules._m-listing----exhibition')
-            @slot('titleFont', 'f-list-4')
-            @slot('item', $item)
-            @slot('imageSettings', array(
-                'fit' => 'crop',
-                'ratio' => '16:9',
-                'srcset' => array(200,400,600,1000,1500),
-                'sizes' => aic_gridListingImageSizes(array(
-                      'xsmall' => '1',
-                      'small' => '2',
-                      'medium' => '2',
-                      'large' => '2',
-                      'xlarge' => '2',
-                )),
-            ))
-            @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="exhibition-' . $count . '"')
-        @endcomponent
-    @endforeach
-@endcomponent
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_small','2')
+        @slot('cols_medium','2')
+        @slot('cols_large','2')
+        @slot('cols_xlarge','2')
+        @php ($count = 0)
+        @foreach ($exhibitions as $item)
+            @php ($count += 1)
+            @component('components.molecules._m-listing----exhibition')
+                @slot('titleFont', 'f-list-4')
+                @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600,1000,1500),
+                    'sizes' => aic_gridListingImageSizes(array(
+                          'xsmall' => '1',
+                          'small' => '2',
+                          'medium' => '2',
+                          'large' => '2',
+                          'xlarge' => '2',
+                    )),
+                ))
+                @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="exhibition-' . $count . '"')
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
 
 @component('components.molecules._m-title-bar')
     @slot('links', array(
