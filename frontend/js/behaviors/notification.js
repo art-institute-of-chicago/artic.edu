@@ -4,6 +4,7 @@ const notification = function(container) {
 
   let closers = container.querySelectorAll('[data-notification-closer]');
   let cookieName = 'has_seen_notification';
+  let cookieValue = container.getAttribute('data-notification-hash'); // null if absent
 
   function _afterAnimation() {
     this.parentNode.removeChild(this);
@@ -22,10 +23,12 @@ const notification = function(container) {
     let expiryPeriodInDays = expiryPeriodInDaysForAll[0];
 
     // Now set a cookie so we don't show the notification again for the specified period of time
-    if (expiryPeriodInDays > 0) {
-      cookieHandler.create(cookieName, true, expiryPeriodInDays);
-    } else {
-      cookieHandler.create(cookieName, true, -3600);
+    if (cookieValue) {
+      if (expiryPeriodInDays > 0) {
+        cookieHandler.create(cookieName, cookieValue, expiryPeriodInDays);
+      } else {
+        cookieHandler.create(cookieName, cookieValue, -3600);
+      }
     }
   }
 
@@ -33,7 +36,7 @@ const notification = function(container) {
     var cookie = cookieHandler.read(cookieName) || '';
 
     // Cookie values are always stored as strings
-    if (cookie === 'true') {
+    if (cookieValue && cookie === cookieValue) {
       container.parentNode.removeChild(container);
       return;
     } else {
