@@ -33,11 +33,13 @@ class IssueArticlePresenter extends BasePresenter
         }
     }
 
-    public function listDescription() {
+    public function listDescription()
+    {
         return strip_tags($this->entity->list_description, '<i>');
     }
 
-    public function pdfDownloadPath() {
+    public function pdfDownloadPath()
+    {
         return config('aic.pdf_s3_endpoint') . $this->entity->pdf_download_path;
     }
 }
