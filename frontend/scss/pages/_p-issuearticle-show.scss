@@ -170,8 +170,11 @@
   }
 
   .o-accordion--journal-articles {
+    margin-bottom: 25px;
+
     h3 {
-      padding-bottom: 0;
+      margin-top: 25px;
+      padding: 0;
     }
 
     .o-accordion__trigger {
@@ -182,5 +185,19 @@
     .o-accordion__trigger-icon {
       margin-top: -20px;
     }
+
+    .o-accordion__panel-content {
+      padding-bottom: 15px;
+      border-bottom: 2px solid $color__rules--primary;
+
+      &.o-blocks>:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .m-article-actions {
+    margin-top: 25px;
+    margin-bottom: 25px;
   }
 }

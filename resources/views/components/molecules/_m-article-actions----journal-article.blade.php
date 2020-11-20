@@ -8,10 +8,6 @@
         </a>
     </div>
 
-    @if (!empty($item->pdf_download_path))
-        <p><a href="{!! $item->present()->pdfDownloadPath() !!}">[Download]</a></p>
-    @endif
-
     @if (!empty($item->issue))
         @component('components.molecules._m-article-actions----journal__issues')
             @slot('issues', [$item->issue])
@@ -26,8 +22,28 @@
         @endcomponent
     @endif
 
-    <hr class="u-hide@large u-hide@xlarge">
-
+    <h2 class="sr-only" id="h-article-actions">Article Actions</h2>
+    <ul class="m-article-actions" aria-labelledby="h-article-actions">
+        <li class="m-article-actions__action">
+            @component('components.atoms._btn')
+                @slot('variation', 'btn--icon btn--senary')
+                @slot('font', '')
+                @slot('icon', 'icon--share--24')
+                @slot('behavior','sharePage')
+                @slot('ariaLabel','Share page')
+            @endcomponent
+        </li>
+        <li class="m-article-actions__action">
+            @component('components.atoms._btn')
+                @slot('variation', 'btn--icon')
+                @slot('font', '')
+                @slot('tag', 'a')
+                @slot('href', $item->present()->pdfDownloadPath())
+                @slot('icon', 'icon--download--24')
+                @slot('ariaLabel','Download PDF')
+            @endcomponent
+        </li>
+    </ul>
 </div>
 
 <div class="o-sticky-sidebar__placeholder"></div>
