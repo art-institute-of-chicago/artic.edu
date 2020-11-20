@@ -168,4 +168,19 @@
       }
     }
   }
+
+  .o-accordion--journal-articles {
+    h3 {
+      padding-bottom: 0;
+    }
+
+    .o-accordion__trigger {
+      padding-bottom: 20px;
+      padding-top: 10px;
+    }
+
+    .o-accordion__trigger-icon {
+      margin-top: -20px;
+    }
+  }
 }

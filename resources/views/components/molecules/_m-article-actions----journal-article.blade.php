@@ -18,6 +18,14 @@
         @endcomponent
     @endif
 
+    @if (!empty($item->present()->articlesForSidebar()))
+        @component('components.organisms._o-accordion')
+            @slot('variation', 'o-accordion--journal-articles')
+            @slot('titleFont', 'f-tag-2')
+            @slot('items', $item->present()->articlesForSidebar())
+        @endcomponent
+    @endif
+
     <hr class="u-hide@large u-hide@xlarge">
 
 </div>

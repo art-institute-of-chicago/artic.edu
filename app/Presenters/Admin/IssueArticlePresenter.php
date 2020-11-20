@@ -6,6 +6,7 @@ use App\Presenters\BasePresenter;
 
 class IssueArticlePresenter extends BasePresenter
 {
+    private $articlesForLanding;
 
     public function shortTitle()
     {
@@ -41,5 +42,36 @@ class IssueArticlePresenter extends BasePresenter
     public function pdfDownloadPath()
     {
         return config('aic.pdf_s3_endpoint') . $this->entity->pdf_download_path;
+    }
+
+    public function articlesForSidebar()
+    {
+        $currentArticle = $this->entity;
+
+        return $this->articlesForSidebar ?? $this->articlesForSidebar = [
+            [
+                'title' => 'View other articles',
+                'active' => false,
+                'blocks' => [
+                    [
+                        'type'  => 'link-list',
+                        'links' => $this->entity
+                            ->issue
+                            ->present()
+                            ->articlesForLanding()
+                            ->map(function($article) use ($currentArticle) {
+                                return [
+                                    'label' => $article->title,
+                                    'href' => route('issue-articles.show', [
+                                        'id' => $article->id,
+                                        'slug' => $article->getSlug(),
+                                    ]),
+                                    'is_active' => $article->id === $currentArticle->id,
+                                ];
+                            }),
+                    ]
+                ],
+            ],
+        ];
     }
 }

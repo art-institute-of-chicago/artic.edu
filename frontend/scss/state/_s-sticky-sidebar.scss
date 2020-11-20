@@ -12,7 +12,6 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
     &.is-sidebar-fixed,
     &.is-sidebar-bottom {
       .o-sticky-sidebar__sticker {
-        top: 0;
         height: 100vh;
         overflow-y: auto;
 
@@ -28,6 +27,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
     &.is-sidebar-fixed {
       .o-sticky-sidebar__sticker {
         position: fixed;
+        top: 0;
       }
       .o-sticky-sidebar__placeholder::before {
         content: '';
@@ -44,7 +44,6 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
 
       .o-sticky-sidebar__sticker {
         position: absolute;
-        top: initial;
         bottom: 0;
       }
     }
