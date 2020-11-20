@@ -9,20 +9,43 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
 
 %sticky-sidebar {
   @include breakpoint('large+') {
+    &.is-sidebar-fixed,
+    &.is-sidebar-bottom {
+      .o-sticky-sidebar__sticker {
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+
+        @each $name in ('large', 'xlarge') {
+          @include breakpoint('#{$name}') {
+            width: #{colspan(14, '#{$name}')};
+            padding-right: #{colspan(1, '#{$name}')};
+          }
+        }
+      }
+    }
+
     &.is-sidebar-fixed {
       .o-sticky-sidebar__sticker {
         position: fixed;
-        @each $name in ('large', 'xlarge') {
-          @include breakpoint('#{$name}') {
-            width: #{colspan(13, '#{$name}')};
-          }
-        }
       }
       .o-sticky-sidebar__placeholder::before {
         content: '';
       }
       .o-sticky-sidebar__stopper {
         clear: both;
+      }
+    }
+
+    &.is-sidebar-bottom {
+      .o-article__primary-actions {
+        position: initial;
+      }
+
+      .o-sticky-sidebar__sticker {
+        position: absolute;
+        top: initial;
+        bottom: 0;
       }
     }
   }

@@ -12,56 +12,70 @@ const stickySidebar = function(container){
     return offsetTop;
   }
 
-  let stopper = document.querySelector('.o-article');
+  const setState = targetState => {
+    let classList = document.documentElement.classList;
+
+    ['is-sidebar-top', 'is-sidebar-fixed', 'is-sidebar-bottom'].forEach(state => {
+      if (state !== targetState && classList.contains(state)) {
+        classList.remove(state);
+      }
+    });
+
+    if (!classList.contains(targetState)) {
+      classList.add(targetState);
+    }
+  }
+
+  let article = document.querySelector('.o-article');
+
   let stickyOffset = parseInt(container.getAttribute('data-sticky-offset'), 10);
+  container.setAttribute('style', 'padding-top:' + stickyOffset + 'px');
 
   let scrollTop;
 
   let windowHeight;
-  let containerHeight;
   let containerTop;
-  let stopperOffset;
+  let containerBottom;
+  let containerHeight;
 
   function update() {
-    if(scrollTop > containerTop - stickyOffset) {
-      sticky();
+    scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+    if (scrollTop < containerTop) {
+      top();
     } else {
-      unsticky();
+      containerHeight = container.offsetHeight;
+      containerBottom = getOffsetTop(article) + document.body.scrollTop + article.offsetHeight;
+
+      if (scrollTop + containerHeight > containerBottom) {
+        bottom();
+      } else {
+        sticky();
+      }
     }
+  }
+
+  function top() {
+    setState('is-sidebar-top');
   }
 
   function sticky() {
-    if(document.documentElement.classList.contains('is-sidebar-top')) {
-      document.documentElement.classList.remove('is-sidebar-top');
-    }
-    if(!document.documentElement.classList.contains('is-sidebar-fixed')) {
-      document.documentElement.classList.add('is-sidebar-fixed');
-    }
-    let offsetTop = (stickyOffset - Math.max(0, scrollTop + containerHeight + stickyOffset - stopperOffset));
-    container.setAttribute('style','top:' + offsetTop + 'px');
+    setState('is-sidebar-fixed');
   }
 
-  function unsticky() {
-    if(document.documentElement.classList.contains('is-sidebar-top')) {
-      document.documentElement.classList.remove('is-sidebar-top');
-    }
-    if(document.documentElement.classList.contains('is-sidebar-fixed')) {
-      document.documentElement.classList.remove('is-sidebar-fixed');
-    }
-    container.removeAttribute('style');
+  function bottom() {
+    setState('is-sidebar-bottom');
   }
 
   function handleScroll() {
-    scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    stopperOffset = getOffsetTop(stopper) + document.body.scrollTop + stopper.offsetHeight;
-    update();
+    window.requestAnimationFrame(update);
   }
 
   function handleResize() {
-    unsticky();
+    top();
     windowHeight = window.innerHeight || document.documentElement.clientHeight;
-    containerHeight = container.offsetHeight;
     containerTop = getOffsetTop(container) + document.body.scrollTop;
+
     handleScroll();
   }
 
