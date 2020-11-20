@@ -275,6 +275,11 @@ a.tag--senary:active {
   padding-right: 16px;
   text-align: left;
 
+  // for when the sidebar scrollbar appears
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   @include breakpoint('large+') {
     display: block;
   }
