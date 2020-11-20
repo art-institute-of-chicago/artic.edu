@@ -363,14 +363,18 @@
   }
 
   .o-gallery::before {
-    left: 0;
-
-    @include breakpoint('large') {
-      margin-left: colspan(1, large, 0, true);
+    @each $name, $point in ('xsmall', 'small', 'medium') {
+      @include breakpoint('#{$name}') {
+        left: colspan(3, $name, 0, true);
+        margin-left: 0;
+      }
     }
 
-    @include breakpoint('xlarge') {
-      margin-left: colspan(1, xlarge, 0, true);
+    @each $name, $point in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        left: 0;
+        margin-left: colspan(1, $name, 0, true);
+      }
     }
   }
 
