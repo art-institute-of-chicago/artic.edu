@@ -1,6 +1,42 @@
 .p-issuearticle-show {
   @extend %sticky-sidebar;
 
+  @each $name in ('xsmall', 'small', 'medium') {
+    @include breakpoint('#{$name}') {
+      .g-header {
+        border-bottom: 1px solid $color__rules--primary;
+      }
+
+      .g-header__inner {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .m-journal-mobile {
+    position: relative;
+    padding-top: 13px;
+    padding-bottom: 13px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 100vw;
+      margin-left: -50vw;
+      pointer-events: none;
+      background-color: $color__bg--primary;
+      border-bottom: 1px solid $color__rules--primary;
+    }
+
+    .f-list-1 {
+      @include untuck();
+    }
+  }
+
   .o-article__body::before {
     position: absolute;
     background-color: $color__rules--primary;

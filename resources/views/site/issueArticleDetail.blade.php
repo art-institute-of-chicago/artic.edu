@@ -3,6 +3,18 @@
 @section('content')
 
 <article class="o-article">
+    <div class="m-journal-mobile u-hide@large+">
+        @component('components.atoms._link')
+            @slot('font', '')
+            @slot('href', 'foo')
+
+            @component('components.blocks._text')
+                @slot('tag', 'span')
+                @slot('font', 'f-list-1')
+                Art Institue Review
+            @endcomponent
+        @endcomponent
+    </div>
 
     <div class="o-article__primary-actions">
         @component('components.molecules._m-article-actions----journal-article')
