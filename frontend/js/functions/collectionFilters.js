@@ -3,6 +3,8 @@ import { focusTrap, mediaQuery } from '../functions';
 
 const collectionFilters = function(container) {
 
+  let savedFocus;
+  let savedScroll;
   let active = document.documentElement.classList.contains('s-collection-filters-active');
   let locked = false;
 
@@ -15,6 +17,8 @@ const collectionFilters = function(container) {
     active = true;
 
     if (mediaQuery('small-')) {
+      savedScroll = window.scrollY;
+      savedFocus = document.activeElement;
       triggerCustomEvent(document, 'body:lock', {
         breakpoints: 'all'
       });
@@ -43,7 +47,10 @@ const collectionFilters = function(container) {
     //if (locked) {
       triggerCustomEvent(document, 'body:unlock');
       triggerCustomEvent(document, 'focus:untrap');
-      setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
+      setTimeout(function(){
+        setFocusOnTarget(savedFocus);
+        window.scroll(0, savedScroll);
+      }, 0)
       locked = false;
     //}
     document.documentElement.classList.remove('s-collection-filters-active');
