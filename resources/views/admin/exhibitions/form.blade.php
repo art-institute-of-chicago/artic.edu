@@ -117,7 +117,7 @@
             'timeline', 'link', 'artwork',
             'hr', 'split_block', 'tour_stop', 'button', 'mobile_app',
             '3d_model', '360_embed', '360_modal',
-            'gallery', 'artworks', 'gallery_new',
+            'gallery', 'artworks', 'gallery_new', 'mirador_embed', 'mirador_modal'
         ])
     ])
 @stop
