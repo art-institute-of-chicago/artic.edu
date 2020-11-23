@@ -83,6 +83,7 @@ class Page extends AbstractModel
         'resources_landing_intro',
 
         // Visit page
+        'visit_hide_hours',
         'visit_dining_link',
         'visit_transportation_link',
         'visit_parking_link',

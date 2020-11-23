@@ -52,6 +52,7 @@ class VisitController extends FrontController
         }
 
         $hours = array(
+            'hide_hours' => $page->visit_hide_hours,
             'media' => array(
                 'type' => 'image',
                 'size' => 's',

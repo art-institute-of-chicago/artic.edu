@@ -73,86 +73,87 @@
         @endcomponent
     @endif
 
-    @component('components.organisms._o-grid-listing')
-        @slot('cols_large','2')
-        @slot('cols_xlarge','2')
-        @slot('tag', 'div')
-
-        <div class="o-blocks u-hide@medium-">
-          @component('components.molecules._m-media')
-            @slot('item', $hours['media'])
-            @slot('imageSettings', array(
-                'fit' => 'crop',
-                'ratio' => '16:9',
-                'srcset' => array(300,600,800,1200,1600,3000,4500),
-                'sizes' => aic_imageSizes(array(
-                      'xsmall' => '58',
-                      'small' => '58',
-                      'medium' => '38',
-                      'large' => '28',
-                      'xlarge' => '28',
-                )),
-            ))
-          @endcomponent
-        </div>
-        <div class="o-blocks">
-          <div class="m-table m-table--minimal">
-            <table>
-              <thead>
-                <tr>
-                  <th> </th>
-                  <th aria-labelledby="h-member-hours"><span class="f-module-title-1" id="h-member-hours">Members <div class="u-hide@small+"></div>Only</span></th>
-                  <th aria-labelledby="h-public-hours"><span class="f-module-title-1" id="h-public-hours">Public</span></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>
-                    <span class="f-module-title-1">Monday</span>
-                  </th>
-                  <td>
-                    <span class="f-secondary">10&ndash;11 a.m.</span>
-                  </td>
-                  <td>
-                    <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    <span class="f-module-title-1">Tuesday&ndash;<div class="u-hide@small+"></div>Wednesday</span>
-                  </th>
-                  <td>
-                    <span class="f-secondary">Closed</span>
-                  </td>
-                  <td>
-                    <span class="f-secondary">Closed</span>
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    <span class="f-module-title-1">Thursday&ndash;<div class="u-hide@small+"></div>Sunday</span>
-                  </th>
-                  <td>
-                    <span class="f-secondary">10&ndash;11 a.m.</span>
-                  </td>
-                  <td>
-                    <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          @component('components.blocks._text')
-              @slot('font','f-body')
-              {!! SmartyPants::defaultTransform($hours['primary']) !!}
-          @endcomponent
-          @component('components.blocks._text')
-              @slot('tag','span')
-              @slot('font','f-secondary')
-              {!! SmartyPants::defaultTransform($hours['secondary']) !!}
-          @endcomponent
-        </div>
-    @endcomponent
+    @if (!$hours['hide_hours'])
+        @component('components.organisms._o-grid-listing')
+            @slot('cols_large','2')
+            @slot('cols_xlarge','2')
+            @slot('tag', 'div')
+            <div class="o-blocks u-hide@medium-">
+                @component('components.molecules._m-media')
+                    @slot('item', $hours['media'])
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(300,600,800,1200,1600,3000,4500),
+                        'sizes' => aic_imageSizes(array(
+                            'xsmall' => '58',
+                            'small' => '58',
+                            'medium' => '38',
+                            'large' => '28',
+                            'xlarge' => '28',
+                        )),
+                    ))
+                @endcomponent
+            </div>
+            <div class="o-blocks">
+                <div class="m-table m-table--minimal">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> </th>
+                                <th aria-labelledby="h-member-hours"><span class="f-module-title-1" id="h-member-hours">Members <div class="u-hide@small+"></div>Only</span></th>
+                                <th aria-labelledby="h-public-hours"><span class="f-module-title-1" id="h-public-hours">Public</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <span class="f-module-title-1">Monday</span>
+                                </th>
+                                <td>
+                                    <span class="f-secondary">10&ndash;11 a.m.</span>
+                                </td>
+                                <td>
+                                    <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="f-module-title-1">Tuesday&ndash;<div class="u-hide@small+"></div>Wednesday</span>
+                                </th>
+                                <td>
+                                    <span class="f-secondary">Closed</span>
+                                </td>
+                                <td>
+                                    <span class="f-secondary">Closed</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="f-module-title-1">Thursday&ndash;<div class="u-hide@small+"></div>Sunday</span>
+                                </th>
+                                <td>
+                                    <span class="f-secondary">10&ndash;11 a.m.</span>
+                                </td>
+                                <td>
+                                    <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @component('components.blocks._text')
+                    @slot('font','f-body')
+                    {!! SmartyPants::defaultTransform($hours['primary']) !!}
+                @endcomponent
+                @component('components.blocks._text')
+                    @slot('tag','span')
+                    @slot('font','f-secondary')
+                    {!! SmartyPants::defaultTransform($hours['secondary']) !!}
+                @endcomponent
+            </div>
+        @endcomponent
+    @endif
 
     @foreach($hours['sections'] as $section)
 

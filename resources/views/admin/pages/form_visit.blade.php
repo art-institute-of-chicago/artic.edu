@@ -20,6 +20,11 @@
 
 @section('fieldsets')
     <a17-fieldset title="Hours" id="hours">
+        @formField('checkbox', [
+            'name' => 'visit_hide_hours',
+            'label' => 'Hide hours table and image',
+        ])
+
         @formField('input', [
             'name' => 'visit_hour_intro',
             'label' => 'Intro text',
