@@ -69,14 +69,14 @@ const setScrollDirection = function() {
       }
 
       //triggerCustomEvent(document, 'scroll:active', { 'y': sT });
-      if (!dE.classList.contains('s-unsticky-header')) {
-        if (sT > 100 && !hideHeader){
+      if (sT > 100 && !hideHeader){
+        if (!dE.classList.contains('s-unsticky-header')) {
           dE.classList.add('s-header-hide');
           hideHeader = true;
-        } else if (sT <= 100 && hideHeader) {
-          dE.classList.remove('s-header-hide');
-          hideHeader = false;
         }
+      } else if (sT <= 100 && hideHeader) {
+        dE.classList.remove('s-header-hide');
+        hideHeader = false;
       }
 
       if (sT > 500 && !allowTopLink){
