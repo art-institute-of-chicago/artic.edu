@@ -24,6 +24,12 @@ const ajaxPageLoad = function() {
     ajaxing = false;
   }
   function stateChecks(doc) {
+    // check to see if we need to suppress the header
+    if (doc.documentElement.classList.contains('s-unsticky-header')) {
+      document.documentElement.classList.add('s-unsticky-header');
+    } else {
+      document.documentElement.classList.remove('s-unsticky-header');
+    }
     // check to see if we need the contrasted header
     if (doc.documentElement.classList.contains('s-contrast-header')) {
       document.documentElement.classList.add('s-contrast-header');
