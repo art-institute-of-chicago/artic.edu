@@ -25,6 +25,8 @@ export { default as showCollectionFilters } from './showCollectionFilters';
 export { default as showCollectionSearch } from './showCollectionSearch';
 export { default as hideCollectionFilters } from './hideCollectionFilters';
 export { default as hideCollectionSearch } from './hideCollectionSearch';
+export { default as showStickySidebar } from './showStickySidebar';
+export { default as hideStickySidebar } from './hideStickySidebar';
 export { default as navMobile } from './navMobile';
 export { default as openNavMobile } from './openNavMobile';
 export { default as closeNavMobile } from './closeNavMobile';

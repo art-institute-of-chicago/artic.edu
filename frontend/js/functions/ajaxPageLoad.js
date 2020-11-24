@@ -187,6 +187,7 @@ const ajaxPageLoad = function() {
     triggerCustomEvent(document, 'fullScreenImage:close');
     triggerCustomEvent(document, 'collectionSearch:close');
     triggerCustomEvent(document, 'infoButtonInfo:close');
+    triggerCustomEvent(document, 'stickySidebar:clean');
     triggerCustomEvent(document, 'modal:close');
     triggerCustomEvent(document, 'roadblock:close');
     triggerCustomEvent(document, 'globalSearch:close');

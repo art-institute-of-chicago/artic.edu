@@ -37,6 +37,22 @@
     }
   }
 
+  .m-search-triggers--journal {
+    justify-content: flex-start;
+
+    bottom: 40px;
+    left: 40px;
+
+    @include breakpoint('large+') {
+      display: none;
+    }
+
+    .icon--menu--24 {
+      top: -2px;
+      position: relative;
+    }
+  }
+
   .o-article__body::before {
     position: absolute;
     background-color: $color__rules--primary;

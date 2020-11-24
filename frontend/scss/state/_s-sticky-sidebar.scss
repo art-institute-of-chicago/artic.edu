@@ -8,6 +8,54 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
 ***/
 
 %sticky-sidebar {
+  &.is-sidebar-overlay {
+    @include breakpoint('medium-') {
+      .g-mask {
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        background-color: rgba($color__bg--tertiary, .25);
+
+        @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+          background-color: rgba($color__bg--tertiary, .5);
+          -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+        }
+      }
+
+      .o-article__primary-actions {
+        display: block;
+        z-index: 11;
+      }
+
+      .o-sticky-sidebar__sticker {
+        background-color: white;
+        position: fixed;
+        opacity: 1;
+        top: 0;
+        left: 0;
+
+        width: 300px;
+        height: 100vh;
+        overflow-y: auto;
+
+        @each $name in ('xsmall', 'small', 'medium') {
+          @include breakpoint('#{$name}') {
+            padding-left: map-get($outer-gutters, $name);
+            padding-right: #{colspan(2, '#{$name}')};
+          }
+        }
+      }
+
+      .o-sticky-sidebar__placeholder::before {
+        content: '';
+      }
+      .o-sticky-sidebar__stopper {
+        clear: both;
+      }
+    }
+  }
+
   @include breakpoint('large+') {
     &.is-sidebar-fixed,
     &.is-sidebar-bottom {
