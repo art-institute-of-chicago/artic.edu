@@ -16,7 +16,7 @@ const collectionFilters = function(container) {
 
     if (mediaQuery('small-')) {
       savedScroll = window.scrollY;
-      savedFocus = document.activeElement;
+      savedFocus = document.activeElement || document.querySelector('body');
       triggerCustomEvent(document, 'body:lock', {
         breakpoints: 'all'
       });
@@ -43,7 +43,9 @@ const collectionFilters = function(container) {
     triggerCustomEvent(document, 'focus:untrap');
     setTimeout(function(){
       setFocusOnTarget(savedFocus);
-      window.scroll(0, savedScroll);
+      setTimeout(function(){
+        window.scroll(0, savedScroll);
+      }, 0);
     }, 0)
     document.documentElement.classList.remove('s-collection-filters-active');
     active = false;
