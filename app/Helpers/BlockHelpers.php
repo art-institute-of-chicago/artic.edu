@@ -31,6 +31,10 @@ if (!function_exists('getTitleWithFigureNumber')) {
 
         if (isset($_figureCount) && isset($title)) {
             $dom = new DomDocument();
+
+            // https://stackoverflow.com/questions/14648442/domdocumentloadhtml-warning-htmlparseentityref-no-name-in-entity
+            $title = str_replace(' & ', ' &amp; ', $title);
+
             $dom->loadHTML('<?xml encoding="utf-8" ?>' . $title, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
             // Plain text automatically gets wrapped in p-tag during loadHTML
