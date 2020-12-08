@@ -99,6 +99,10 @@ Route::name('authors.show')->get('/authors/{id}/{slug?}', 'AuthorController@show
 Route::name('videos')->get('videos', function () {return abort(404);});
 Route::name('videos.show')->get('/videos/{id}/{slug?}', 'VideoController@show');
 
+// Virtual Tours routes
+Route::name('virtualTours')->get('virtual-tours', function () {return abort(404);});
+Route::name('virtualTours.show')->get('/virtual-tours/{id}/{slug?}', 'VirtualTourController@show');
+
 // Exhibition history routes
 // Must remain before exhibition routes
 Route::name('exhibitions.history')->get('exhibitions/history', 'ExhibitionHistoryController@index');

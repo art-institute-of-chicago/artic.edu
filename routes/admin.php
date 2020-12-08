@@ -19,6 +19,7 @@ Route::group(['prefix' => 'visit'], function () {
     Route::module('shopItems');
     Route::name('visit.fees')->get('fees', 'FeeController@index');
     Route::name('visit.fees.update')->post('fees', 'FeeController@update');
+    Route::module('virtualTours');
 });
 
 Route::group(['prefix' => 'exhibitions_events'], function () {

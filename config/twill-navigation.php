@@ -54,6 +54,10 @@ $nav = [
                 'title' => 'FAQ',
                 'module' => true,
             ],
+            'virtualTours' => [
+                'title' => 'Virtual Tours',
+                'module' => true,
+            ],
         ]
     ],
 
