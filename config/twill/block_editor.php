@@ -546,6 +546,7 @@ return [
         'video',
         'image_sequence_file',
         'upload_manifest_file',
+        'vtour_xml_file',
     ],
     'browser_route_prefixes' => [
         'events' => 'exhibitions_events',

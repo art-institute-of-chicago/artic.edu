@@ -21,7 +21,6 @@ class VirtualTour extends AbstractModel
         'published',
         'title',
         'position',
-        'video_url',
         'title',
         'date',
         'heading',
@@ -51,4 +50,14 @@ class VirtualTour extends AbstractModel
             ],
         ],
     ];
+
+    public $filesParams = ['vtour_xml_file'];
+
+    public function getVirtualTourXML()
+    {
+        if ($this->file('vtour_xml_file')) {
+            return $this->file('vtour_xml_file');
+        }
+		return null;
+    }
 }
