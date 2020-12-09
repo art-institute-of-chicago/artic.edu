@@ -66,3 +66,4 @@ export { default as fitText } from './fitText';
 export { default as magazineHeader } from './magazineHeader';
 export { default as imageSlider } from './imageSlider';
 export { default as viewerMirador } from './viewerMirador';
+export { default as viewerVirtualTour } from './viewerVirtualTour';

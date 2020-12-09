@@ -108,6 +108,9 @@
     if (!$fullscreen and $type == 'embed') {
       $mediaBehavior = 'triggerMediaInline';
     }
+    if (!$fullscreen and $type == 'virtualtour') {
+      $mediaBehavior = 'triggerMediaInline';
+    }
 
     if ($item['showUrl'] ?? false) {
         $imageSettings['infoUrl'] = $item['urlTitle'];
@@ -173,6 +176,10 @@
             @component('components.atoms._img')
                 @slot('image', $poster)
                 @slot('settings', $imageSettings ?? '')
+            @endcomponent
+        @elseif ($type == 'virtualtour')
+            @component('components.molecules._m-viewer-virtualtour')
+                @slot('vtourxml', $media['vtourxml'])
             @endcomponent
         @else
             @if ($size === 'hero')
