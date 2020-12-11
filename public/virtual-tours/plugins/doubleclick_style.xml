@@ -1,0 +1,48 @@
+<krpano>
+	
+	<!--
+		doubleclick_style.xml
+		krpano 1.20
+	
+		A helper style for single/double click detection for layer and hotspot elements.
+		
+		Example:
+		
+		<layer ...
+		       style="doubleclick"
+		       onsingleclick="trace('-single click-');"
+		       ondoubleclick="trace('-double click-');"
+		       />
+	-->
+	
+	<style name="doubleclick"
+	       downx="0"
+	       downy="0"
+	       clicks="0"
+	       onsingleclick=""
+	       ondoubleclick=""
+	       onclick="doubleclick_style_onclick();"
+	       />
+
+	<action name="doubleclick_style_onclick">
+	    inc(clicks);
+	    if(clicks == 2,
+	        set(clicks,0); 
+	        stopdelayedcall(doubleclickdetector);
+	        if((((mouse.x-downx)^2 + (mouse.y-downy)^2)^0.5) LT (device.touch ? 10 : 2),
+	            ondoubleclick();
+	          ,
+	            onsingleclick();
+	            onsingleclick();
+	        );
+	      ,
+	        copy(downx, mouse.x); 
+	        copy(downy, mouse.y);
+	        delayedcall(doubleclickdetector, 0.3, 
+	            set(clicks,0); 
+	            onsingleclick();
+	        );
+	    );
+	</action>
+	
+</krpano>
