@@ -2,6 +2,7 @@ const viewerVirtualTour = function(container) {
 
   let xmlFile = container.dataset.vtourxml;
   let targetDiv = container.dataset.id;
+  let vtourImages = container.dataset.vtourimages;
 
   this.init = function() {
     embedpano(
@@ -11,7 +12,7 @@ const viewerVirtualTour = function(container) {
         html5: 'only',
         mobilescale: 1.0,
         passQueryParameters: true,
-        initvars: {imagepath:'https://artic-panos.s3.amazonaws.com/'}
+        initvars: {imagepath: vtourImages}
       }
     );
   }

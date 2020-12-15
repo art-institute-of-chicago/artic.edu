@@ -10,5 +10,6 @@ return [
     'iiif_s3_endpoint' => env('IIIF_S3_ENDPOINT'),
     'pdf_s3_endpoint' => env('PDF_S3_ENDPOINT'),
     'sales_site_url' => env('SALES_SITE_URL', 'https://sales.artic.edu'),
+    'vtour_bucket' => env('AWS_VTOUR_BUCKET'),
 
 ];
