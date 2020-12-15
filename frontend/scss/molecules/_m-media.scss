@@ -209,8 +209,8 @@
     background-color: $color__white;
   }
 
-  .m-media--m:not(.m-media--contain) &::before,
-  .m-media--l:not(.m-media--contain) &::before,
+  .m-media--m :not(.m-media--contain) &::before,
+  .m-media--l :not(.m-media--contain):not(.m-media__img--virtualtour) &::before,
   &.m-media__img--video::before {
     content: '';
     display: block;
@@ -559,4 +559,8 @@ a.m-media__img:hover object {
 .f-fit-text {
   display: inline-block;
   white-space: nowrap;
+}
+
+.m-viewer-virtualtour {
+  height: 65vh;
 }

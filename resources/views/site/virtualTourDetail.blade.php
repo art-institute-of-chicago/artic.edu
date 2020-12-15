@@ -26,12 +26,10 @@
             @component('components.molecules._m-media')
                 @slot('variation', 'o-blocks__block')
                 @slot('item', [
-                    'type' => 'embed',
+                    'type' => 'virtualtour',
                     'size' => 'l',
                     'media' => [
-                        'url' => $item->video_url,
-                        'embed' => $item->embed,
-                        'medias' => $item->medias,
+                        'vtourxml' => $item->getVirtualTourXML(),
                     ],
                     'poster' => $item->imageFront('hero'),
                     'hideCaption' => true,

@@ -11,9 +11,10 @@
         'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
     ])
 
-    @formField('input', [
-        'name' => 'video_url',
-        'label' => 'Video URL'
+    @formField('files', [
+        'name' => 'vtour_xml_file',
+        'label' => 'Virtual tour XML file',
+        'note' => 'Upload a .xml file'
     ])
 
     @formField('medias', [
@@ -27,14 +28,14 @@
     @formField('date_picker', [
         'name' => 'date',
         'label' => 'Display date',
-        'note' => 'When was this video published?',
+        'note' => 'When was this virtual tour published?',
     ])
 
     @formField('wysiwyg', [
         'name' => 'list_description',
         'label' => 'List description',
         'maxlength' => 255,
-        'note' => 'Max 255 characters. Will be used in "Related Videos" and social media.',
+        'note' => 'Max 255 characters. Will be used in "Related Virtual Tours" and social media.',
         'toolbarOptions' => [
             'italic'
         ],
