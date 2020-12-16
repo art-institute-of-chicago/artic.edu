@@ -118,10 +118,14 @@ const stickySidebar = function(container){
     }
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
-    setTimeout(function(){
-      setFocusOnTarget(savedFocus);
-      setTimeout(function(){
-        window.scroll(0, savedScroll);
+    setTimeout(function() {
+      if (savedFocus) {
+        setFocusOnTarget(savedFocus);
+      }
+      setTimeout(function() {
+        if (savedScroll) {
+          window.scroll(0, savedScroll);
+        }
       }, 0);
     }, 0)
     document.documentElement.classList.remove(sidebarOverlayState);
