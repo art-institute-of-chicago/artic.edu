@@ -16,17 +16,6 @@
         </button>
     </div>
 
-    <ul class="m-search-triggers m-search-triggers--journal">
-        <li>
-            <button class="m-search-triggers__filter f-secondary" data-behavior="showStickySidebar" aria-label="Show journal navigation">
-                <svg class="icon--menu--24">
-                    <use xlink:href="#icon--menu--24" />
-                </svg>
-                Art Institute Review
-            </button>
-        </li>
-    </ul>
-
     <div class="o-article__primary-actions">
         @component('components.molecules._m-article-actions----journal-article')
             @slot('item', $item)

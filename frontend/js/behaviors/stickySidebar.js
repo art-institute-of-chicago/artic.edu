@@ -38,9 +38,6 @@ const stickySidebar = function(container){
   let containerBottom;
   let containerHeight;
 
-  let overlayTriggerContainer = document.querySelector('.m-search-triggers--journal');
-  let overlayTrigger = overlayTriggerContainer.querySelector('button');
-
   const sidebarOverlayState = 'is-sidebar-overlay';
   let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
 
@@ -61,14 +58,6 @@ const stickySidebar = function(container){
       } else {
         sticky();
       }
-    }
-
-    if (scrollTop > containerTop + 60) {
-      overlayTriggerContainer.classList.add('m-search-triggers--active');
-      overlayTrigger.removeAttribute('tabindex');
-    } else {
-      overlayTriggerContainer.classList.remove('m-search-triggers--active');
-      overlayTrigger.setAttribute('tabindex', -1);
     }
   }
 
@@ -108,7 +97,6 @@ const stickySidebar = function(container){
     if (mediaQuery('medium-')) {
       savedScroll = window.scrollY;
       savedFocus = document.activeElement || document.querySelector('body');
-      console.log(savedScroll, savedFocus);
       triggerCustomEvent(document, 'body:lock', {
         breakpoints: 'all'
       });
