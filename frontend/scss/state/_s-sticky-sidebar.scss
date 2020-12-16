@@ -8,6 +8,10 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
 ***/
 
 %sticky-sidebar {
+  .g-sidebar__close {
+    display: none;
+  }
+
   &.is-sidebar-overlay {
     @include breakpoint('medium-') {
       .g-mask {
@@ -43,6 +47,27 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
           @include breakpoint('#{$name}') {
             padding-left: map-get($outer-gutters, $name);
             padding-right: #{colspan(2, '#{$name}')};
+          }
+        }
+
+        .g-sidebar__close {
+          display: block;
+          position: absolute;
+          right: 0;
+          top: 0;
+          padding: 8px;
+          border: 0 none;
+          background: transparent;
+          color: $color__text--forms;
+          cursor: pointer;
+
+          &:hover {
+            color: $color__text;
+          }
+
+          .icon--close {
+            width: 24px;
+            height: 24px;
           }
         }
       }
