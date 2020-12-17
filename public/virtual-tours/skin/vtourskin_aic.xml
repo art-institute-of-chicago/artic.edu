@@ -45,12 +45,11 @@
 	               design_bgroundedge="1"
 	               design_bgshadow="0 4 10 0x000000 0.3"
 	               design_thumbborder_bgborder="3 0xFFFFFF 1.0"
-	               design_thumbborder_padding="2"
+	               design_thumbborder_padding="3"
 	               design_thumbborder_bgroundedge="0"
 	               design_text_css="color:#FFFFFF; font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;"
 	               design_text_shadow="1"
 	               />
-
 
 	<!-- save the url path of this xml file (the url value will be adjusted during xml parsing) -->
 	<vtourskinxmlpath url="./" />
@@ -93,7 +92,7 @@
 
 	<!-- overwrite some settings from the webvr.xml for the skin integration -->
 	<plugin name="webvr" keep="true" devices="html5.and.webgl"
-	        url="calc:skin_settings.webvr == true ? '%VIEWER%/plugins/webvr.js' : null"
+	        url="calc:skin_settings.webvr == true ? '/virtual-tours/plugins/webvr.js' : null"
 	        onavailable="skin_webvr_onavailable();"
 	        onentervr="skin_showloading(false); webvr_onentervr(); skin_webvr_setup(); skin_reloadscene_webvr();"
 	        onexitvr="webvr_onexitvr(); skin_webvr_setup(); skin_reloadscene_webvr();"
@@ -335,7 +334,7 @@
 						<layer name="skin_thumbs_scrollleft"  style="skin_base|skin_glow" crop="0|64|64|64"  align="lefttop"  edge="left"  x="5" y="50" scale="0.5" zorder="2" alpha="1.0" ondown="asyncloop(pressed, layer[skin_thumbs].scrollby(+2,0));" visible="false" />
 						<layer name="skin_thumbs_scrollright" style="skin_base|skin_glow" crop="64|64|64|64" align="righttop" edge="right" x="5" y="50" scale="0.5" zorder="2" alpha="1.0" ondown="asyncloop(pressed, layer[skin_thumbs].scrollby(-2,0));" visible="false" />
 						<layer name="skin_thumbs_scrollindicator" type="container" bgcolor="0xFFFFFF" bgalpha="0.25" align="lefttop" width="0" y="100" height="2" visible="false" enabled="false" />
-						<layer name="skin_thumbs" state="closed" url.flash="%VIEWER%/plugins/scrollarea.swf" url.html5="%VIEWER%/plugins/scrollarea.js" direction="h" align="top" width="100%" height="100" zorder="1" onloaded="skin_updatescroll();" onscroll="skin_updatethumbscroll();" />
+						<layer name="skin_thumbs" state="closed" url.flash="/virtual-tours/plugins/scrollarea.swf" url.html5="/virtual-tours/plugins/scrollarea.js" direction="h" align="top" width="100%" height="100" zorder="1" onloaded="skin_updatescroll();" onscroll="skin_updatethumbscroll();" />
 					</layer>
 					<layer name="skin_map_container" type="container" align="leftop" width="100%" height="100%" bgroundedge="get:skin_settings.design_bgroundedge" maskchildren="true">
 						<layer name="skin_map" state="closed" url="" visible="false" align="lefttop" width="100%" height="50%" x="0" y="0" zorder="1" lat="0" lng="0" zoom="10" bgalpha="0" maptype="satellite" onmapready="skin_addmapspots();">
@@ -381,7 +380,7 @@
 
 		<layer name="skin_loadingtext" type="text" align="center" x="5" y="-5" html="get:skin_settings.loadingtext" visible="false" bg="false" enabled="false" css="calc:skin_settings.design_text_css + ' text-align:center; font-style:italic; font-size:22px;'" textshadow="get:skin_settings.design_text_shadow" />
 		<!--<layer name="skin_buttonglow"  style="skin_base" crop="64|384|64|64" align="center" x="0" y="1" scale="1.0" alpha="0.0" visible="false" enabled="false" />-->
-		<layer name="skin_thumbborder" type="container" x="get:skin_settings.design_thumbborder_padding" y="get:skin_settings.design_thumbborder_padding" width="calc:skin_settings.thumbs_width - 2*skin_settings.design_thumbborder_padding" height="calc:skin_settings.thumbs_height - 2*skin_settings.design_thumbborder_padding" visible="false" enabled="false" align="lefttop" bgborder="get:skin_settings.design_thumbborder_bgborder" bgroundedge="get:skin_settings.design_thumbborder_bgroundedge" />
+		<layer name="skin_thumbborder" type="container" x="get:skin_settings.design_thumbborder_padding" y="get:skin_settings.design_thumbborder_padding" width="calc:skin_settings.thumbs_width" height="calc:skin_settings.thumbs_height" visible="false" enabled="false" align="lefttop" bgborder="get:skin_settings.design_thumbborder_bgborder" bgroundedge="get:skin_settings.design_thumbborder_bgroundedge" />
 	</layer>
 
 	<!-- previous/next scene buttons for the hidden skin mode -->
@@ -394,7 +393,7 @@
 
 
 	<!-- gyro plugin -->
-	<!--<plugin name="skin_gyro" keep="true" url="" html5_url="%VIEWER%/plugins/gyro2.js" softstart="1.0" desktopsupport="false" enabled="false" onavailable="skin_arrange_buttons();" devices="html5" />-->
+	<!--<plugin name="skin_gyro" keep="true" url="" html5_url="/virtual-tours/plugins/gyro2.js" softstart="1.0" desktopsupport="false" enabled="false" onavailable="skin_arrange_buttons();" devices="html5" />-->
 
 
 	<!-- skin events -->
@@ -453,14 +452,14 @@
 		if (!layer[skin_map].url,
 			if(device.flash,
 				copy(layer[skin_map].key, skin_settings.maps_bing_api_key);
-				set(layer[skin_map].url, '%VIEWER%/plugins/bingmaps.swf');
+				set(layer[skin_map].url, '/virtual-tours/plugins/bingmaps.swf');
 			  ,
 				if(skin_settings.maps_type == 'bing',
 					copy(layer[skin_map].key, skin_settings.maps_bing_api_key);
-					set(layer[skin_map].url, '%VIEWER%/plugins/bingmaps.js');
+					set(layer[skin_map].url, '/virtual-tours/plugins/bingmaps.js');
 				  ,
 				 	copy(layer[skin_map].key, skin_settings.maps_google_api_key);
-					set(layer[skin_map].url, '%VIEWER%/plugins/googlemaps.js');
+					set(layer[skin_map].url, '/virtual-tours/plugins/googlemaps.js');
 				);
 			);
 		);
@@ -1190,46 +1189,7 @@
 
 
 	<!-- context menu - https://krpano.com/docu/xml/#contextmenu -->
-	<contextmenu>
-		<item name="kr" caption="KRPANO"     />
-		<item name="fs" caption="FULLSCREEN" />
-		<item name="cc" caption="Change Controlmode" onclick="skin_changecontrolmode();"  separator="above" />
-		<item name="nv" caption="Normal View"        onclick="skin_view_normal();"        showif="view.vlookatrange == 180" separator="above"     />
-		<item name="fv" caption="Fisheye View"       onclick="skin_view_fisheye();"       showif="view.vlookatrange == 180" devices="flash|webgl" />
-		<item name="sv" caption="Stereographic View" onclick="skin_view_stereographic();" showif="view.vlookatrange == 180" devices="flash|webgl" />
-		<item name="av" caption="Architectural View" onclick="skin_view_architectural();" showif="view.vlookatrange == 180"                       />
-		<item name="pv" caption="Pannini View"       onclick="skin_view_pannini();"       showif="view.vlookatrange == 180" devices="flash|webgl" />
-		<item name="lp" caption="Little Planet View" onclick="skin_view_littleplanet();"  showif="view.vlookatrange == 180" devices="flash|webgl" />
-		<item name="sa" caption="Start Autotour"     onclick="autorotate.start();" separator="both" showif="autorotate.isrotating == false" visible="calc:skin_settings.autotour == true" />
-		<item name="ta" caption="Stop Autotour"      onclick="autorotate.stop();"  separator="both" showif="autorotate.isrotating == true"  visible="calc:skin_settings.autotour == true" />
-	</contextmenu>
-
-
-	<action name="skin_changecontrolmode">
-		if(device.html5,
-			switch(control.mode, moveto, drag, follow);
-			skin_changecontrolmode_updatecaption();
-		  ,
-			switch(control.mode, moveto, drag);
-		);
-	</action>
-
-	<action name="skin_changecontrolmode_updatecaption" autorun="onstart" devices="html5">
-		txtadd(contextmenu.item[cc].caption,
-			"Controlmode: ",
-			"[span style=[sq]", calc(control.mode == 'drag' ? "text-decoration:underline" :""), "[sq]]",
-			"Drag",
-			"[/span]",
-			" | ",
-			"[span style=[sq]", calc(control.mode == 'follow' ? "text-decoration:underline" :""), "[sq]]",
-			"Follow",
-			"[/span]",
-			" | ",
-			"[span style=[sq]", calc(control.mode == 'moveto' ? "text-decoration:underline" :""), "[sq]]",
-			"MoveTo",
-			"[/span]",
-			);
-	</action>
+	<contextmenu fullscreen="false" versioninfo="false" />
 
 	<action name="skin_view_look_straight">
 		if(view.vlookat LT -80 OR view.vlookat GT +80,
