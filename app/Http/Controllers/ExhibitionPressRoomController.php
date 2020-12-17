@@ -77,6 +77,7 @@ class ExhibitionPressRoomController extends FrontController
             'intro' => $item->short_description,
             'headerImage' => $item->imageFront('banner'),
             'title' => $item->title,
+            'title_display' => $item->title_display,
             'breadcrumb' => $crumbs,
             'blocks' => null,
             'page' => $item,
