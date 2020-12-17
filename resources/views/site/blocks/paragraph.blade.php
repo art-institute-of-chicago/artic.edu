@@ -47,7 +47,7 @@
             $node->parentNode->replaceChild($newNode, $node);
         }
 
-        $content = $dom->saveHTML($dom->documentElement);
+        $content = $dom->saveHTML($dom);
     }
 @endphp
 {!! $content !!}
