@@ -89,7 +89,7 @@
 
 
 	<!-- VR support - https://krpano.com/plugins/webvr/ -->
-	<include url="%VIEWER%/plugins/webvr.xml" devices="html5" />
+	<include url="/virtual-tours/plugins/webvr.xml" devices="html5" />
 
 	<!-- overwrite some settings from the webvr.xml for the skin integration -->
 	<plugin name="webvr" keep="true" devices="html5.and.webgl"
