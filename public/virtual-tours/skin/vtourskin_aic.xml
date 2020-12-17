@@ -259,6 +259,18 @@
 	       onloaded.addevent="skin_hotspotstyle_setup();"
 	       />
 
+	<style name="skin_floorspotstyle" url="vtourskin_hotspot_floor_aic.png" edge="top" distorted="false"
+	       tooltip=""
+	       linkedscene=""
+	       linkedscene_lookat=""
+	       onclick="skin_hotspotstyle_click();"
+	       depth="1000"
+	       scale="0.2"
+	       onover.addevent="tween(scale,0.25);"
+	       onout.addevent="tween(scale,0.2);"
+	       onloaded.addevent="skin_hotspotstyle_setup();"
+	       />
+
 	<action name="skin_hotspotstyle_setup" scope="local">
 		if(isvalue(caller.linkedscene) AND skin_settings.tooltips_hotspots,
 			copy(caller.tooltip, scene[get(caller.linkedscene)].title);
