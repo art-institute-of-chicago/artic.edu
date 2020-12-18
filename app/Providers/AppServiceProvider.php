@@ -177,10 +177,9 @@ class AppServiceProvider extends ServiceProvider
                     , 'events' => route('events')
 
                     , 'about-us' => '/about-us'
-                    , 'about-us-inside-the-museum' => '/about-us/inside-the-museum'
-                    , 'about-us-mission-history' => '/about-us/mission-and-history'
+                    , 'about-us-identity' => '/about-us/identity'
+                    , 'about-us-history' => '/about-us/history'
                     , 'about-us-leadership' => '/about-us/leadership'
-                    , 'about-us-financials' => '/about-us/financial-reporting'
                     , 'about-us-departments' => '/about-us/departments'
 
                     , 'support-us' => '/support-us'
