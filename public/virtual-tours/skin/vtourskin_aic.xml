@@ -258,13 +258,13 @@
 	       onloaded.addevent="skin_hotspotstyle_setup();"
 	       />
 
-	<style name="skin_floorspotstyle" url="vtourskin_hotspot_floor_aic.png" edge="top" distorted="false"
+	<style name="skin_floorspotstyle" url="vtourskin_hotspot_floor_aic.png" edge="top" distorted="true"
 	       tooltip=""
 	       linkedscene=""
 	       linkedscene_lookat=""
 	       onclick="skin_hotspotstyle_click();"
-	       depth="1000"
-	       scale="0.2"
+	       depth="2000"
+	       scale="0.3"
 	       onover.addevent="tween(scale,0.25);"
 	       onout.addevent="tween(scale,0.2);"
 	       onloaded.addevent="skin_hotspotstyle_setup();"
@@ -641,7 +641,7 @@
 		if(show_vrbutton OR plugin[webvr].mobilevr_fake_support == true, dec(cpos,24));
 		set(rpos,-75);
 
-		calc(show_dirbuttons, !device.mobile AND ((area.pixelwidth + 2*cpos) GT 520) );
+		calc(show_dirbuttons, true);
 
 		copy(layer[skin_btn_navi].visible, show_dirbuttons);
 
