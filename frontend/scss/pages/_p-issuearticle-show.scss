@@ -121,9 +121,6 @@
 
   .o-blocks > p {
     @include f-body-editorial;
-    // &:first-of-type {
-    //   @include f-dropcap-editorial;
-    // }
   }
 
   .o-article {

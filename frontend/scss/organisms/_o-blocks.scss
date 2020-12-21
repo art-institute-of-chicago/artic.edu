@@ -575,7 +575,7 @@
 /*
 /**/
 
-.o-blocks > p:not([class*='f-']) a:not(.btn),
+.o-blocks > p:not([class*='f-']) a:not(.btn):not(.reset),
 .o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
 .o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
 .o-blocks > .f-body a:not(.btn),
