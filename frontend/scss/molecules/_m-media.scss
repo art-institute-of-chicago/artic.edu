@@ -210,7 +210,7 @@
   }
 
   .m-media--m:not(.m-media--contain) &::before,
-  .m-media--l:not(.m-media--contain) &:not(.m-media__img--virtualtour) &::before,
+  .m-media--l:not(.m-media--contain) &:not(.m-media__img--virtualtour)::before,
   &.m-media__img--video::before {
     content: '';
     display: block;
