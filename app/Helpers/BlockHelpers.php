@@ -25,11 +25,19 @@ if (!function_exists('innerHTML')) {
     }
 }
 
-if (!function_exists('getTitleWithFigureNumber')) {
-    function getTitleWithFigureNumber($title) {
+if (!function_exists('getFigureNumber')) {
+    function getFigureNumber() {
         global $_figureCount;
 
-        if (isset($_figureCount) && isset($title)) {
+        if (isset($_figureCount)) {
+            return ++$_figureCount;
+        }
+    }
+}
+
+if (!function_exists('getTitleWithFigureNumber')) {
+    function getTitleWithFigureNumber($title, $figureNumber) {
+        if (isset($figureNumber) && isset($title)) {
             $dom = new DomDocument();
 
             // https://stackoverflow.com/questions/14648442/domdocumentloadhtml-warning-htmlparseentityref-no-name-in-entity
@@ -45,11 +53,9 @@ if (!function_exists('getTitleWithFigureNumber')) {
                 return $title;
             }
 
-            $_figureCount++;
-
             $figAnchor = $dom->createElement('a');
-            $figAnchor->setAttribute('href', '#fig-' . $_figureCount);
-            $figAnchor->appendChild($dom->createTextNode('Fig. ' . $_figureCount));
+            $figAnchor->setAttribute('href', '#fig-' . $figureNumber);
+            $figAnchor->appendChild($dom->createTextNode('Fig. ' . $figureNumber));
 
             $dom->documentElement->insertBefore($figAnchor, $firstChild);
             $dom->documentElement->insertBefore($dom->createTextNode(': '), $firstChild);
@@ -62,9 +68,9 @@ if (!function_exists('getTitleWithFigureNumber')) {
 }
 
 if (!function_exists('getSubtitleWithFigureNumber')) {
-    function getSubtitleWithFigureNumber($subtitle, $title) {
+    function getSubtitleWithFigureNumber($subtitle, $title, $figureNumber) {
         // If the title isn't set, treat the subtitle like one and add a figure number
-        return isset($title) ? $subtitle : getTitleWithFigureNumber($subtitle);
+        return isset($title) ? $subtitle : getTitleWithFigureNumber($subtitle, $figureNumber);
     }
 }
 

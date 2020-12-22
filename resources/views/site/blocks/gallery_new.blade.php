@@ -35,8 +35,9 @@
                     'size' => 'gallery',
                     'fullscreen' => true,
                     'media' => $item->imageAsArray('image', 'desktop'),
-                    'captionTitle' => getTitleWithFigureNumber($title),
-                    'caption' => getSubtitleWithFigureNumber($subtitle, $title),
+                    'figureNumber' => $figureNumber = getFigureNumber(),
+                    'captionTitle' => getTitleWithFigureNumber($title, $figureNumber),
+                    'caption' => getSubtitleWithFigureNumber($subtitle, $title, $figureNumber),
                     'videoUrl' => $item->input('videoUrl'),
                 ];
 
@@ -74,8 +75,9 @@
                   'fullscreen' => true,
                   'size' => 'gallery',
                   'media' => $image,
-                  'captionTitle' => getTitleWithFigureNumber($title),
-                  'caption' => getSubtitleWithFigureNumber($caption, $title),
+                  'figureNumber' => $figureNumber = getFigureNumber(),
+                  'captionTitle' => getTitleWithFigureNumber($title, $figureNumber),
+                  'caption' => getSubtitleWithFigureNumber($caption, $title, $figureNumber),
                   'url' => route('artworks.show', $artwork),
                   'urlTitle' => route('artworks.show', $artwork),
                   'showUrl' => true,

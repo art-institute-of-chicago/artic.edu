@@ -3,9 +3,6 @@
 
     $title = $block->present()->input('caption_title');
     $subtitle = $block->present()->input('caption');
-
-    $title = getTitleWithFigureNumber($title);
-    $subtitle = getSubtitleWithFigureNumber($subtitle, $title);
 @endphp
 
 @if (isset($image['src']))
@@ -16,8 +13,9 @@
             'size' => $block->input('size'),
             'useContain' => $block->input('use_contain'),
             'useAltBackground' => $block->input('use_alt_background'),
-            'caption' => $subtitle,
-            'captionTitle' => $title,
+            'figureNumber' => $figureNumber = getFigureNumber(),
+            'caption' => getTitleWithFigureNumber($title, $figureNumber),
+            'captionTitle' => getSubtitleWithFigureNumber($subtitle, $title, $figureNumber),
             'media' => [
                 "src" => $image['src'],
                 "srcset" => $image['src'],

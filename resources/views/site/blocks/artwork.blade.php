@@ -19,9 +19,6 @@
             }
         }
 
-        $title = $artwork->present()->listingTitle;
-        $title = getTitleWithFigureNumber($title);
-
         $caption = "";
         if (!empty($artwork->artist_title)) {
             $caption = $artwork->present()->artist_title;
@@ -38,7 +35,8 @@
         $artworkItem['type'] = 'image';
         $artworkItem['size'] = 's';
         $artworkItem['media'] = $image;
-        $artworkItem['captionTitle'] = $title;
+        $artworkItem['figureNumber'] = $figureNumber = getFigureNumber();
+        $artworkItem['captionTitle'] = getTitleWithFigureNumber($artwork->present()->listingTitle, $figureNumber);
         $artworkItem['caption'] = $caption.'<br>'.$galleryLocation.($captionAddendum ? '<br>'.$captionAddendum : '');
         $artworkItem['fullscreen'] = true;
         $artworkItem['urlTitle'] = route('artworks.show', $artwork);
