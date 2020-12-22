@@ -7,6 +7,10 @@
         'zoomInButtonId' => 'm-image-slider__btn--zoom-in--' . $hash,
         'zoomOutButtonId' => 'm-image-slider__btn--zoom-out--' . $hash,
     ];
+
+    $figureNumber = getFigureNumber();
+    $captionTitle = getTitleWithFigureNumber($captionTitle ?? null, $figureNumber);
+    $captionText = getSubtitleWithFigureNumber($captionText ?? null, $captionTitle, $figureNumber);
 @endphp
 <figure {!! isset($figureNumber) ? 'id="fig-' . $figureNumber . '" ' : '' !!} class="m-media m-media--contain m-media--{{ $size }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     <div class="m-media__img">
