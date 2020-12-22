@@ -18,7 +18,7 @@
         @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="journal f-search"')
     @endcomponent
 
-    @if (!empty($issues))
+    @if (isset($issues) && $issues->count() > 1)
         <hr>
 
         @component('components.molecules._m-article-actions----journal__issues')
