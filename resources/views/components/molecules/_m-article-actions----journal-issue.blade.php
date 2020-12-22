@@ -10,15 +10,15 @@
 
     <p class="m-article-actions--journal__blurb f-secondary">The Art Institute Review is dedicated to innovative object-centered scholarship and is published twice a year. <a href="/journal">Learn more.</a></p>
 
-    @component('components.molecules._m-search-bar')
-        @slot('placeholder','Search articles')
-        @slot('name', 'journal-search-mobile')
-        @slot('value', request('q'))
-        @slot('action', route('collection'))
-        @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="journal f-search"')
-    @endcomponent
-
     @if (isset($issues) && $issues->count() > 1)
+        @component('components.molecules._m-search-bar')
+            @slot('placeholder','Search articles')
+            @slot('name', 'journal-search-mobile')
+            @slot('value', request('q'))
+            @slot('action', route('collection'))
+            @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="journal f-search"')
+        @endcomponent
+
         <hr>
 
         @component('components.molecules._m-article-actions----journal__issues')
