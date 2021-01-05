@@ -25,9 +25,9 @@ class IssueArticleController extends FrontController
             return $canonicalRedirect;
         }
 
-        // $this->seo->setTitle($item->meta_title ?: $item->title);
-        // $this->seo->setDescription($item->meta_description ?: $item->heading); // Issues have no blocks
-        // $this->seo->setImage($item->imageFront('hero'));
+        $this->seo->setTitle($item->meta_title ?: $item->title);
+        $this->seo->setDescription($item->list_description ?: $item->description);
+        $this->seo->setImage($item->imageFront('hero'));
 
         return view('site.issueArticleDetail', [
             'item' => $item,
