@@ -65,32 +65,35 @@ class ArtworkPresenter extends BasePresenter
             ]);
         }
 
-        // TODO: Dedupe this logic w/ artworkDetail.blade.php
-        $view_link = $dept_link = $this->entity->department_id ? ('<a href="' . route('departments.show', [$this->entity->department_id . '/' . getUtf8Slug($this->entity->department_title)]) .'" data-gtm-event="' .$this->entity->department_title .'" data-gtm-event-category="collection-nav">' .$this->entity->department_title .'</a>') : '';
+        $items = [
+            [
+                'key' => 'Status',
+                'value' => $this->getOnViewDisplay(),
+            ],
+        ];
 
-        if ($this->entity->is_on_view && $this->entity->gallery_id)
-        {
-            $gallery_link = ('<a href="' .route('galleries.show', [$this->entity->gallery_id . '/' . getUtf8Slug($this->entity->gallery_title)]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>');
+        if (!$this->entity->is_deaccessioned) {
+            $department = [];
 
-            $view_link .= ', ' . $gallery_link;
-        }
+            if ($this->entity->department_id) {
+                $department[] = '<a href="' . route('departments.show', [$this->entity->department_id . '/' . getUtf8Slug($this->entity->department_title)]) . '" data-gtm-event="' . $this->entity->department_title .'" data-gtm-event-category="collection-nav">' . $this->entity->department_title .'</a>';
+            }
 
-        $view_key = $this->getOnViewDisplay();
+            if ($this->entity->is_on_view && $this->entity->gallery_id) {
+                $department[] = '<a href="' .route('galleries.show', [$this->entity->gallery_id . '/' . getUtf8Slug($this->entity->gallery_title)]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>';
+            }
 
-        if ($this->entity->is_deaccessioned) {
-            $view_link = $dept_link = '';
+            $items[] = [
+                'key' => 'Department',
+                'value' => implode(', ', $department),
+            ];
         }
 
         array_push($blocks, [
             "type"      => 'deflist',
             "variation" => 'u-hide@large+ sr-show@large+',
             "ariaOwns"  => "dl-artwork-details",
-            "items"     => [
-                [
-                    'key' => $view_key,
-                    'value' => $view_link,
-                ],
-            ]
+            "items"     => $items
         ]);
 
         array_push($blocks, $this->getArtworkDetailsBlock());
