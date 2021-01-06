@@ -44,7 +44,7 @@
         @slot('tag','h2')
         @slot('font', 'f-module-title-1')
         @slot('ariaHidden', "true")
-        {{ $item->is_deaccessioned ? 'Deaccessioned' : ($item->is_on_view ? 'On View' : 'Currently Off View') }}
+        {!! $item->present()->getOnViewDisplay() !!}
     @endcomponent
 
     @if (!$item->is_deaccessioned)

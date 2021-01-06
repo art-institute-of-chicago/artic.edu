@@ -75,10 +75,9 @@ class ArtworkPresenter extends BasePresenter
             $view_link .= ', ' . $gallery_link;
         }
 
-        $view_key = $this->entity->is_on_view ? 'On View' : 'Currently Off View';
+        $view_key = $this->getOnViewDisplay();
 
         if ($this->entity->is_deaccessioned) {
-            $view_key = 'Deaccessioned';
             $view_link = $dept_link = '';
         }
 
@@ -117,6 +116,23 @@ class ArtworkPresenter extends BasePresenter
         ]);
 
         return array_filter($blocks);
+    }
+
+    public function getOnViewDisplay()
+    {
+        if ($this->entity->is_deaccessioned) {
+            return 'Deaccessioned';
+        }
+
+        if ($this->entity->is_on_view) {
+            return 'On View';
+        }
+
+        if ($this->entity->on_loan_display) {
+            return $this->entity->on_loan_display;
+        }
+
+        return 'Currently Off View';
     }
 
     /**
