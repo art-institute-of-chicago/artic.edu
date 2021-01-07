@@ -35,6 +35,15 @@ class AbstractModel extends Model
         return $query;
     }
 
+    public function scopeVisible($query)
+    {
+        if (config('aic.is_preview_mode')) {
+            return $query;
+        }
+
+        return parent::scopeVisible(...func_get_args());
+    }
+
     public function getIsPublishedAttribute()
     {
         return static::published()->find($this->id) !== null;
