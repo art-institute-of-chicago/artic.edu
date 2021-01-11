@@ -231,6 +231,11 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-mirador_modal'
         ],
+        'vtour_embed' => [
+            'title' => 'Virtual Tour Embed',
+            'icon' => 'image',
+            'component' => 'a17-block-vtour_embed'
+        ],
     ],
     'repeaters' => [
         'admissions' => [
