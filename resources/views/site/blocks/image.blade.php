@@ -14,8 +14,8 @@
             'useContain' => $block->input('use_contain'),
             'useAltBackground' => $block->input('use_alt_background'),
             'figureNumber' => $figureNumber = getFigureNumber(),
-            'caption' => getTitleWithFigureNumber($title, $figureNumber),
-            'captionTitle' => getSubtitleWithFigureNumber($subtitle, $title, $figureNumber),
+            'captionTitle' => getTitleWithFigureNumber($title, $figureNumber),
+            'caption' => getSubtitleWithFigureNumber($subtitle, $title, $figureNumber),
             'media' => [
                 "src" => $image['src'],
                 "srcset" => $image['src'],
