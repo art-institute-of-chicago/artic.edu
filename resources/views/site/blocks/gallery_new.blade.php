@@ -70,16 +70,18 @@
                     $caption .= $item->input('captionAddendum');
                 }
 
+                $urlTitle = route('artworks.show', $artwork);
+
                 $items[] = [
                   'type' => 'image',
                   'fullscreen' => true,
                   'size' => 'gallery',
                   'media' => $image,
                   'figureNumber' => $figureNumber = getFigureNumber(),
-                  'captionTitle' => getTitleWithFigureNumber($title, $figureNumber),
+                  'captionTitle' => getTitleWithFigureNumber($title, $figureNumber, $urlTitle),
                   'caption' => getSubtitleWithFigureNumber($caption, $title, $figureNumber),
                   'url' => route('artworks.show', $artwork),
-                  'urlTitle' => route('artworks.show', $artwork),
+                  'urlTitle' => isset($figureNumber) ? null : $urlTitle,
                   'showUrl' => true,
                   'isArtwork' => true,
                   'isZoomable' => $artwork->is_zoomable,

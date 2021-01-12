@@ -36,7 +36,7 @@ if (!function_exists('getFigureNumber')) {
 }
 
 if (!function_exists('getTitleWithFigureNumber')) {
-    function getTitleWithFigureNumber($title, $figureNumber) {
+    function getTitleWithFigureNumber($title, $figureNumber, $urlTitle = null) {
         if (isset($figureNumber) && isset($title)) {
             $dom = new DomDocument();
 
@@ -51,6 +51,17 @@ if (!function_exists('getTitleWithFigureNumber')) {
             // Just a failsafe to prevent breaking the page
             if (!isset($firstChild)) {
                 return $title;
+            }
+
+            if (isset($urlTitle)) {
+                $urlAnchor = $dom->createElement('a');
+                $urlAnchor->setAttribute('href', $urlTitle);
+
+                $firstChildClone = $firstChild->cloneNode();
+                $urlAnchor->appendChild($firstChildClone);
+
+                $dom->documentElement->replaceChild($urlAnchor, $firstChild);
+                $firstChild = $urlAnchor;
             }
 
             $figAnchor = $dom->createElement('a');
