@@ -65,27 +65,25 @@ class ArtworkPresenter extends BasePresenter
             ]);
         }
 
+        $status = [
+            $this->getOnViewDisplay(),
+        ];
+
+        if ($this->entity->is_on_view && $this->entity->gallery_id) {
+            $status[] = '<a href="' .route('galleries.show', [$this->entity->gallery_id . '/' . getUtf8Slug($this->entity->gallery_title)]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>';
+        }
+
         $items = [
             [
                 'key' => 'Status',
-                'value' => $this->getOnViewDisplay(),
+                'value' => implode(', ', $status),
             ],
         ];
 
-        if (!$this->entity->is_deaccessioned) {
-            $department = [];
-
-            if ($this->entity->department_id) {
-                $department[] = '<a href="' . route('departments.show', [$this->entity->department_id . '/' . getUtf8Slug($this->entity->department_title)]) . '" data-gtm-event="' . $this->entity->department_title .'" data-gtm-event-category="collection-nav">' . $this->entity->department_title .'</a>';
-            }
-
-            if ($this->entity->is_on_view && $this->entity->gallery_id) {
-                $department[] = '<a href="' .route('galleries.show', [$this->entity->gallery_id . '/' . getUtf8Slug($this->entity->gallery_title)]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>';
-            }
-
+        if (!$this->entity->is_deaccessioned && $this->entity->department_id) {
             $items[] = [
                 'key' => 'Department',
-                'value' => implode(', ', $department),
+                'value' => '<a href="' . route('departments.show', [$this->entity->department_id . '/' . getUtf8Slug($this->entity->department_title)]) . '" data-gtm-event="' . $this->entity->department_title .'" data-gtm-event-category="collection-nav">' . $this->entity->department_title .'</a>',
             ];
         }
 
