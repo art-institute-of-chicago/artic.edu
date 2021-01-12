@@ -39,7 +39,8 @@ class ArtworkController extends BaseScopedController
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->fullArtist);
-        $this->seo->setImage($item->imageFront('hero'));
+        $this->seo->setImage($item->imageFront('hero'), 843);
+        $this->seo->usesImgix = false;
 
         // Start building data for output to view
         $viewData = [

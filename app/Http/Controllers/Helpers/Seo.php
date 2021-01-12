@@ -10,21 +10,23 @@ class Seo extends BaseSeo
 {
     public $noindex = false;
 
-    public function setImage($image)
+    public $usesImgix = true;
+
+    public function setImage($image, $maxWidth = 1200)
     {
         if (!empty($image)) {
             $settings = aic_imageSettings([
                 'image' => $image,
                 'settings' => [
-                    'srcset' => array(1200),
-                    'sizes' => '1200px',
+                    'srcset' => array($maxWidth),
+                    'sizes' => $maxWidth . 'px',
                 ],
             ]);
 
             if ($settings['srcset']) {
                 $this->image = Str::before($settings['srcset'], ' ');
-                $this->width = 1200;
-                $this->height = floor((1200 / $settings['width']) * $settings['height']);
+                $this->width = $maxWidth;
+                $this->height = floor(($maxWidth / $settings['width']) * $settings['height']);
             }
         }
     }
