@@ -19,10 +19,6 @@ class IssueArticle extends AbstractModel implements Sortable
     protected $presenter = 'App\Presenters\Admin\IssueArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\IssueArticlePresenter';
 
-    protected $dispatchesEvents = [
-        'saved' => \App\Events\UpdateIssueArticle::class,
-    ];
-
     protected $fillable = [
         'published',
         'title',
