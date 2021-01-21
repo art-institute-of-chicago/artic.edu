@@ -164,7 +164,7 @@ class ArtworkPresenter extends BasePresenter
     }
 
     protected function getIiifManifestUrl() {
-        return '<a href="' . config('api.base_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json">' . config('api.base_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json</a>';
+        return '<a href="' . config('api.public_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json">' . config('api.public_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json</a>';
     }
 
     protected function getArtworkDetailsBlock()
