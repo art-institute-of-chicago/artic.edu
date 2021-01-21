@@ -163,6 +163,10 @@ class ArtworkPresenter extends BasePresenter
         ];
     }
 
+    protected function getIiifManifestUrl() {
+        return '<a href="' . config('api.base_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json">' . config('api.base_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json</a>';
+    }
+
     protected function getArtworkDetailsBlock()
     {
         $details = [];
@@ -311,6 +315,7 @@ class ArtworkPresenter extends BasePresenter
             'Credit Line'      => array($this->entity->credit_line),
             'Reference Number' => array($this->entity->main_reference_number),
             'Copyright'        => array($this->entity->copyright_notice),
+            '<a href="/open-access/open-access-images">IIIF</a> Manifest'    => array($this->getIiifManifestUrl()),
         ]));
 
         return [
