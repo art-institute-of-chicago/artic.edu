@@ -306,10 +306,6 @@
     transform: translate(-50%, -50%);
   }
 
-  .mosaic-window-body, .mirador-mosaic, .mosaic-root, .mosaic-tile, .mosaic-window {
-    height: 100%
-  }
-
   .m-viewer-mirador {
     top: 50%;
     -ms-transform: translateY(-50%);
@@ -346,6 +342,10 @@
     &:active {
       background-color: black !important;
     }
+  }
+
+  .mosaic-tile {
+    margin: 0;
   }
 }
 

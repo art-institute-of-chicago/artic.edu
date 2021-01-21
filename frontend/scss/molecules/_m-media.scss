@@ -272,8 +272,8 @@
 
   z-index: 7;
 
-  .mosaic-window-body, .mirador-mosaic, .mosaic-root, .mosaic-tile, .mosaic-window {
-    height: 100%
+  .mosaic-tile {
+    margin: 0;
   }
 
 }
