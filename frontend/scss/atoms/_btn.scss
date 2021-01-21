@@ -454,3 +454,14 @@ Example usage:
   min-width: initial;
   width: initial;
 }
+
+.o-blocks .o-blocks__block dt a,
+.o-blocks .o-blocks__block dt a:active {
+  text-decoration: underline;
+  color: $color__black--90;
+}
+
+.o-blocks .o-blocks__block dt a:focus,
+.o-blocks .o-blocks__block dt a:hover {
+  color: $color__grey--110;
+}
