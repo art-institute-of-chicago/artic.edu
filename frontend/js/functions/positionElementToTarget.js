@@ -87,8 +87,9 @@ const positionElementToTarget = function(options) {
     }
     element.style.top = Math.round(top) + 'px';
   } else {
-    element.style.left = '';
+    element.style.left = '125px';
     element.style.top = '';
+    element.style.width = '300px';
   }
   element.style.opacity = 1;
 };

@@ -164,7 +164,7 @@ class ArtworkPresenter extends BasePresenter
     }
 
     protected function getIiifManifestUrl() {
-        return '<a href="' . config('api.public_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json">' . config('api.public_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json</a>';
+        return config('api.public_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json';
     }
 
     protected function getArtworkDetailsBlock()
@@ -315,8 +315,22 @@ class ArtworkPresenter extends BasePresenter
             'Credit Line'      => array($this->entity->credit_line),
             'Reference Number' => array($this->entity->main_reference_number),
             'Copyright'        => array($this->entity->copyright_notice),
-            '<a href="/open-access/open-access-images">IIIF</a> Manifest'    => array($this->getIiifManifestUrl()),
         ]));
+
+        if ($this->entity->is_public_domain) {
+            $details = array_merge($details, $this->formatDetailBlocks([
+                '<span id="h-iiif-manifest">IIIF Manifest</span>&nbsp;'
+                    . '<button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" data-breakpoints="none">'
+                    . '    <svg class="icon--info"><use xlink:href="#icon--info" /></svg>'
+                    . '</button>'
+                    . '<span class="info-button-info s-hidden" id="info-button-info-iiif-manifest" data-behavior="infoButtonInfo">'
+                    . '    <span class="f-caption">'
+                    . '        The International Image Interoperability Framework (IIIF) represents a set of open hardware and software standards that enable access to digital media from libraries, archives, museums and other cultural institutions around the world.<br/><br/>'
+                    . '        Learn more <a href="/open-access/open-access-images">here</a>.'
+                    . '    </span>'
+                    . '</span>' => array($this->getIiifManifestUrl()),
+            ]));
+        }
 
         return [
             "type"  => 'deflist',
