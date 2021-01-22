@@ -10,7 +10,6 @@ const viewerMirador = function(container) {
   let viewerId = 'm-viewer-mirador-' + container.dataset.id;
   const config = {
     id: viewerId,
-    classPrefix: 'mirador-' + container.dataset.id,
     selectedTheme: 'aicTheme',
     themes: {
       aicTheme:{
@@ -53,6 +52,9 @@ const viewerMirador = function(container) {
       defaultPosition: 'far-bottom', // Which position for the thumbnail navigation to be be displayed. Other possible values are "far-bottom" or "far-right"
       height: 130, // height of entire ThumbnailNavigation area when position is "far-bottom"
       width: 100, // width of one canvas (doubled for book view) in ThumbnailNavigation area when position is "far-right"
+    },
+    createGenerateClassNameOptions: { // Options passed directly to createGenerateClassName in Material-UI https://material-ui.com/styles/api/#creategenerateclassname-options-class-name-generator
+      productionPrefix: 'mirador-' + container.dataset.id,
     },
     window: {
       allowClose: false, // Configure if windows can be closed or not
