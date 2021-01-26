@@ -325,8 +325,8 @@ class ArtworkPresenter extends BasePresenter
                     . '</button>'
                     . '<span class="info-button-info s-hidden" id="info-button-info-iiif-manifest" data-behavior="infoButtonInfo">'
                     . '    <span class="f-caption">'
-                    . '        The International Image Interoperability Framework (IIIF) represents a set of open hardware and software standards that enable access to digital media from libraries, archives, museums and other cultural institutions around the world.<br/><br/>'
-                    . '        Learn more <a href="/open-access/open-access-images">here</a>.'
+                    . '        The International Image Interoperability Framework (IIIF) is a set of open standards that enable access to digital media from libraries, archives, museums, and other cultural institutions around the world.<br/><br/>'
+                    . '        <a href="/open-access/open-access-images">Learn more</a>.'
                     . '    </span>'
                     . '</span>' => array($this->getIiifManifestUrl()),
             ]));
