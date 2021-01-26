@@ -65,33 +65,33 @@ class ArtworkPresenter extends BasePresenter
             ]);
         }
 
-        // TODO: Dedupe this logic w/ artworkDetail.blade.php
-        $view_link = $dept_link = $this->entity->department_id ? ('<a href="' . route('departments.show', [$this->entity->department_id . '/' . getUtf8Slug($this->entity->department_title)]) .'" data-gtm-event="' .$this->entity->department_title .'" data-gtm-event-category="collection-nav">' .$this->entity->department_title .'</a>') : '';
+        $status = [
+            $this->getOnViewDisplay(),
+        ];
 
-        if ($this->entity->is_on_view && $this->entity->gallery_id)
-        {
-            $gallery_link = ('<a href="' .route('galleries.show', [$this->entity->gallery_id . '/' . getUtf8Slug($this->entity->gallery_title)]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>');
-
-            $view_link .= ', ' . $gallery_link;
+        if ($this->entity->is_on_view && $this->entity->gallery_id) {
+            $status[] = '<a href="' .route('galleries.show', [$this->entity->gallery_id . '/' . getUtf8Slug($this->entity->gallery_title)]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>';
         }
 
-        $view_key = $this->entity->is_on_view ? 'On View' : 'Currently Off View';
+        $items = [
+            [
+                'key' => 'Status',
+                'value' => implode(', ', $status),
+            ],
+        ];
 
-        if ($this->entity->is_deaccessioned) {
-            $view_key = 'Deaccessioned';
-            $view_link = $dept_link = '';
+        if (!$this->entity->is_deaccessioned && $this->entity->department_id) {
+            $items[] = [
+                'key' => 'Department',
+                'value' => '<a href="' . route('departments.show', [$this->entity->department_id . '/' . getUtf8Slug($this->entity->department_title)]) . '" data-gtm-event="' . $this->entity->department_title .'" data-gtm-event-category="collection-nav">' . $this->entity->department_title .'</a>',
+            ];
         }
 
         array_push($blocks, [
             "type"      => 'deflist',
             "variation" => 'u-hide@large+ sr-show@large+',
             "ariaOwns"  => "dl-artwork-details",
-            "items"     => [
-                [
-                    'key' => $view_key,
-                    'value' => $view_link,
-                ],
-            ]
+            "items"     => $items
         ]);
 
         array_push($blocks, $this->getArtworkDetailsBlock());
@@ -119,6 +119,23 @@ class ArtworkPresenter extends BasePresenter
         return array_filter($blocks);
     }
 
+    public function getOnViewDisplay()
+    {
+        if ($this->entity->is_deaccessioned) {
+            return 'Deaccessioned';
+        }
+
+        if ($this->entity->is_on_view) {
+            return 'On View';
+        }
+
+        if ($this->entity->on_loan_display) {
+            return $this->entity->on_loan_display;
+        }
+
+        return 'Currently Off View';
+    }
+
     /**
      * $item must contain artist_id, artist_title, role_id, role_title
      */
@@ -144,6 +161,10 @@ class ArtworkPresenter extends BasePresenter
             'gtmAttributes' => 'data-gtm-event="'. $pivot->artist_title . '"'
                 . ' data-gtm-event-category="collection-nav"',
         ];
+    }
+
+    protected function getIiifManifestUrl() {
+        return str_replace('-', '&#8209;', config('api.public_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json');
     }
 
     protected function getArtworkDetailsBlock()
@@ -295,6 +316,21 @@ class ArtworkPresenter extends BasePresenter
             'Reference Number' => array($this->entity->main_reference_number),
             'Copyright'        => array($this->entity->copyright_notice),
         ]));
+
+        if ($this->entity->is_public_domain) {
+            $details = array_merge($details, $this->formatDetailBlocks([
+                '<span id="h-iiif-manifest">IIIF Manifest</span>&nbsp;'
+                    . '<button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" data-breakpoints="none">'
+                    . '    <svg class="icon--info"><use xlink:href="#icon--info" /></svg>'
+                    . '</button>'
+                    . '<span class="info-button-info s-hidden" id="info-button-info-iiif-manifest" data-behavior="infoButtonInfo">'
+                    . '    <span class="f-caption">'
+                    . '        The International Image Interoperability Framework (IIIF) represents a set of open standards that enables rich access to digital media from libraries, archives, museums, and other cultural institutions around the world.<br/><br/>'
+                    . '        <a href="/open-access/open-access-images">Learn more</a>.'
+                    . '    </span>'
+                    . '</span>' => array($this->getIiifManifestUrl()),
+            ]));
+        }
 
         return [
             "type"  => 'deflist',

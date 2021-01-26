@@ -10,8 +10,9 @@
         $item->size = 'gallery';
         $item->fullscreen = true;
         $item->media = $item->imageAsArray('image', 'desktop');
-        $item->captionTitle = getTitleWithFigureNumber($title);
-        $item->caption = getSubtitleWithFigureNumber($subtitle, $title);
+        $item->figureNumber = $figureNumber = getFigureNumber();
+        $item->captionTitle = getTitleWithFigureNumber($title, $figureNumber);
+        $item->caption = getSubtitleWithFigureNumber($subtitle, $title, $figureNumber);
         $items[] = $item;
     }
 @endphp

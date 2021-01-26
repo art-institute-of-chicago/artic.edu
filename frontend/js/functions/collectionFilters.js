@@ -6,8 +6,6 @@ const collectionFilters = function(container) {
   let savedFocus;
   let savedScroll;
   let active = document.documentElement.classList.contains('s-collection-filters-active');
-  let locked = false;
-
 
   function _showFilters() {
     if (active) {
@@ -18,11 +16,10 @@ const collectionFilters = function(container) {
 
     if (mediaQuery('small-')) {
       savedScroll = window.scrollY;
-      savedFocus = document.activeElement;
+      savedFocus = document.activeElement || document.querySelector('body');
       triggerCustomEvent(document, 'body:lock', {
         breakpoints: 'all'
       });
-      locked = true;
       window.requestAnimationFrame(function(){
         document.documentElement.classList.add('s-collection-filters-active');
         let container = document.getElementById('collectionFilters');
@@ -32,11 +29,9 @@ const collectionFilters = function(container) {
             element: container
           });
         }
-        triggerCustomEvent(document, 'collectionFilters:visible');
       });
     } else {
       document.documentElement.classList.add('s-collection-filters-active');
-      triggerCustomEvent(document, 'collectionFilters:visible');
     }
   }
 
@@ -44,17 +39,15 @@ const collectionFilters = function(container) {
     if (!active) {
       return;
     }
-    //if (locked) {
-      triggerCustomEvent(document, 'body:unlock');
-      triggerCustomEvent(document, 'focus:untrap');
+    triggerCustomEvent(document, 'body:unlock');
+    triggerCustomEvent(document, 'focus:untrap');
+    setTimeout(function(){
+      setFocusOnTarget(savedFocus);
       setTimeout(function(){
-        setFocusOnTarget(savedFocus);
         window.scroll(0, savedScroll);
-      }, 0)
-      locked = false;
-    //}
+      }, 0);
+    }, 0)
     document.documentElement.classList.remove('s-collection-filters-active');
-    triggerCustomEvent(document, 'collectionFilters:hidden');
     active = false;
   }
 

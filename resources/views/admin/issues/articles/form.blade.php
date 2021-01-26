@@ -111,8 +111,9 @@
             'paragraph', 'image', 'video', 'media_embed', 'quote',
             'list', 'artwork', 'hr', 'citation', 'split_block',
             'membership_banner', 'digital_label', 'tour_stop', 'button', 'mobile_app',
-            '3d_model', '3d_tour', '3d_embed',
+            '3d_model', '3d_tour', '3d_embed', '360_embed', '360_modal',
             'gallery', 'artworks', 'gallery_new',
+            'image_slider', 'mirador_embed', 'mirador_modal',
         ])
     ])
 

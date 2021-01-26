@@ -32,8 +32,54 @@
       border-bottom: 1px solid $color__rules--primary;
     }
 
+    .icon--menu--24 {
+      top: -4px;
+      position: relative;
+      margin-right: 8px;
+      margin-left: -10px;
+    }
+
     .f-list-1 {
       @include untuck();
+    }
+
+    button {
+      cursor: pointer;
+      color: $color__link;
+
+      background: none;
+      border: none;
+
+      &:hover,
+      &:focus:hover {
+        color: $color__link--hover;
+      }
+
+      &:active:hover {
+        color: $color__link--active;
+      }
+    }
+  }
+
+  .m-search-triggers--journal {
+    justify-content: flex-start;
+
+    left: 40px;
+    bottom: -50px;
+
+    transition: bottom .25s $bezier--bounce;
+
+    &.m-search-triggers--active {
+      bottom: 40px;
+    }
+
+    @include breakpoint('large+') {
+      display: none;
+    }
+
+    .icon--menu--24 {
+      top: -2px;
+      position: relative;
     }
   }
 
@@ -75,9 +121,6 @@
 
   .o-blocks > p {
     @include f-body-editorial;
-    // &:first-of-type {
-    //   @include f-dropcap-editorial;
-    // }
   }
 
   .o-article {

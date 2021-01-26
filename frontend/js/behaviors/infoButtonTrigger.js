@@ -5,6 +5,7 @@ const infoButtonTrigger = function(container) {
 
   const infoButtonInfo = container.nextElementSibling || container.nextSibling;
   let infoOpen = false;
+  let breakpoints = container.getAttribute('data-breakpoints') || 'all';
 
   function _position() {
     positionElementToTarget({
@@ -16,11 +17,11 @@ const infoButtonTrigger = function(container) {
         left: -76,
       },
       breakpoints: {
-        xsmall: true,
-        small: true,
-        medium: true,
-        large: true,
-        xlarge: true,
+        xsmall: breakpoints.includes('xsmall') || breakpoints.includes('all'),
+        small: breakpoints.includes('small') || breakpoints.includes('all'),
+        medium: breakpoints.includes('medium') || breakpoints.includes('all'),
+        large: breakpoints.includes('large') || breakpoints.includes('all'),
+        xlarge: breakpoints.includes('xlarge') || breakpoints.includes('all'),
       }
     });
   }

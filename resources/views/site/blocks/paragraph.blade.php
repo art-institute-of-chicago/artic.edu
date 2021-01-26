@@ -32,6 +32,7 @@
 
             $refAnchor = $dom->createElement('a');
             $refAnchor->setAttribute('href', '#p-' . $_paragraphCount);
+            $refAnchor->setAttribute('class', 'reset');
 
             $refText = $dom->createTextNode($_paragraphCount);
             $refAnchor->appendChild($refText);
@@ -41,13 +42,13 @@
                 $textSpan->appendChild(clone $childNode);
             }
 
-            $newNode->appendChild($refSpan);
             $newNode->appendChild($textSpan);
+            $newNode->appendChild($refSpan);
 
             $node->parentNode->replaceChild($newNode, $node);
         }
 
-        $content = $dom->saveHTML($dom->documentElement);
+        $content = $dom->saveHTML($dom);
     }
 @endphp
 {!! $content !!}

@@ -575,15 +575,29 @@
 /*
 /**/
 
-.o-blocks > p:not([class*='f-']) a:not(.btn),
+.o-blocks > p:not([class*='f-']) a:not(.btn):not(.reset),
 .o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
 .o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
-.o-blocks > .f-body a:not(.btn),
-.o-blocks > figure > figcaption > .f-caption-title a {
+.o-blocks > .f-body a:not(.btn) {
   @include text-underline(1.02em, $color__rules--secondary);
   color: $color__link--accent;
   text-decoration: none;
 
+  &:hover,
+  &:focus:hover {
+    @include text-underline(1.02em, $color__link--accent);
+  }
+
+  &:active:hover {
+    @include text-underline(1.02em, $color__rules--secondary);
+  }
+}
+
+.o-blocks > figure > figcaption > .f-caption-title a,
+.o-blocks > figure > figcaption > .f-caption a,
+// Work-around for 360 blocks...
+.o-blocks > .m-media > figcaption > .f-caption-title a,
+.o-blocks > .m-media > figcaption > .f-caption a {
   &:hover,
   &:focus:hover {
     @include text-underline(1.02em, $color__link--accent);

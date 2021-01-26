@@ -4,16 +4,16 @@
 
 <article class="o-article">
     <div class="m-journal-mobile u-hide@large+">
-        @component('components.atoms._link')
-            @slot('font', '')
-            @slot('href', 'foo')
-
+        <button data-behavior="showStickySidebar" aria-label="Show journal navigation">
+            <svg class="icon--menu--24">
+                <use xlink:href="#icon--menu--24" />
+            </svg>
             @component('components.blocks._text')
                 @slot('tag', 'span')
                 @slot('font', 'f-list-1')
                 Art Institue Review
             @endcomponent
-        @endcomponent
+        </button>
     </div>
 
     <div class="o-article__primary-actions">
@@ -66,8 +66,8 @@
         global $_collectedReferences;
         $_collectedReferences = [];
 
-        // global $_paragraphCount;
-        // $_paragraphCount = 0;
+        global $_paragraphCount;
+        $_paragraphCount = 0;
 
         global $_figureCount;
         $_figureCount = 0;

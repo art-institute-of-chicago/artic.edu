@@ -25,12 +25,24 @@ if (!function_exists('innerHTML')) {
     }
 }
 
-if (!function_exists('getTitleWithFigureNumber')) {
-    function getTitleWithFigureNumber($title) {
+if (!function_exists('getFigureNumber')) {
+    function getFigureNumber() {
         global $_figureCount;
 
-        if (isset($_figureCount) && isset($title)) {
+        if (isset($_figureCount)) {
+            return ++$_figureCount;
+        }
+    }
+}
+
+if (!function_exists('getTitleWithFigureNumber')) {
+    function getTitleWithFigureNumber($title, $figureNumber, $urlTitle = null) {
+        if (isset($figureNumber) && isset($title)) {
             $dom = new DomDocument();
+
+            // https://stackoverflow.com/questions/14648442/domdocumentloadhtml-warning-htmlparseentityref-no-name-in-entity
+            $title = str_replace(' & ', ' &amp; ', $title);
+
             $dom->loadHTML('<?xml encoding="utf-8" ?>' . $title, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
             // Plain text automatically gets wrapped in p-tag during loadHTML
@@ -41,11 +53,20 @@ if (!function_exists('getTitleWithFigureNumber')) {
                 return $title;
             }
 
-            $_figureCount++;
+            if (isset($urlTitle)) {
+                $urlAnchor = $dom->createElement('a');
+                $urlAnchor->setAttribute('href', $urlTitle);
+
+                $firstChildClone = $firstChild->cloneNode();
+                $urlAnchor->appendChild($firstChildClone);
+
+                $dom->documentElement->replaceChild($urlAnchor, $firstChild);
+                $firstChild = $urlAnchor;
+            }
 
             $figAnchor = $dom->createElement('a');
-            $figAnchor->setAttribute('href', '#fig-' . $_figureCount);
-            $figAnchor->appendChild($dom->createTextNode('Fig. ' . $_figureCount));
+            $figAnchor->setAttribute('href', '#fig-' . $figureNumber);
+            $figAnchor->appendChild($dom->createTextNode('Fig. ' . $figureNumber));
 
             $dom->documentElement->insertBefore($figAnchor, $firstChild);
             $dom->documentElement->insertBefore($dom->createTextNode(': '), $firstChild);
@@ -58,9 +79,9 @@ if (!function_exists('getTitleWithFigureNumber')) {
 }
 
 if (!function_exists('getSubtitleWithFigureNumber')) {
-    function getSubtitleWithFigureNumber($subtitle, $title) {
+    function getSubtitleWithFigureNumber($subtitle, $title, $figureNumber) {
         // If the title isn't set, treat the subtitle like one and add a figure number
-        return isset($title) ? $subtitle : getTitleWithFigureNumber($subtitle);
+        return isset($title) ? $subtitle : getTitleWithFigureNumber($subtitle, $figureNumber);
     }
 }
 

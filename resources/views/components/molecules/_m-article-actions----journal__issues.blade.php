@@ -3,7 +3,10 @@
     @foreach($issues as $issue)
         <li>
             @component('components.atoms._tag')
-                @slot('href', $issue->title)
+                @slot('href', route('issues.show', [
+                    'issueNumber' => $issue->issue_number,
+                    'slug' => $issue->getSlug(),
+                ]))
                 @slot('variation', 'tag--journal tag--senary tag--w-image')
                 @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $issue->title ) . '" data-gtm-event-category="journal-sidebar-issue"')
                 @if (!empty($issue->imageFront('hero', 'default')))

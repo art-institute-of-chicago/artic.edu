@@ -31,8 +31,9 @@
             'manifest' => $manifest,
             'default_view' => $default_view,
             'poster' => $image,
-            'captionTitle' => getTitleWithFigureNumber($caption_title),
-            'caption' => getSubtitleWithFigureNumber($caption, $caption_title),
+            'figureNumber' => $figureNumber = getFigureNumber(),
+            'captionTitle' => getTitleWithFigureNumber($caption_title, $figureNumber),
+            'caption' => getSubtitleWithFigureNumber($caption, $caption_title, $figureNumber),
         ])
     @endcomponent
 @endif

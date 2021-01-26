@@ -76,10 +76,10 @@ class CollectionController extends BaseScopedController
             $this->seo->setImage($artwork->imageFront('hero'));
         }
         else {
-            // Otherwise, fall back to American Gothic as social image
-            $this->seo->image = 'https://' .rtrim(config('app.url'), '/') . '/iiif/2/d02e0079-8e82-733e-683c-cb83a387ee5e/full/1200,/0/default.jpg';
+            // Otherwise, fall back to La Grande Jatte as social image
+            $this->seo->image = 'https://' .rtrim(config('app.url'), '/') . '/iiif/2/4eddcf49-3efd-d993-fb1a-75d7e7d5b5a1/full/843,/0/default.jpg';
             $this->seo->width = 1200;
-            $this->seo->height = 1459;
+            $this->seo->height = 799;
         }
 
         $description = "Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.";

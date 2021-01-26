@@ -8,9 +8,11 @@
         'zoomOutButtonId' => 'm-image-slider__btn--zoom-out--' . $hash,
     ];
 
-    global $_figureCount;
+    $figureNumber = getFigureNumber();
+    $captionTitle = getTitleWithFigureNumber($captionTitle ?? null, $figureNumber);
+    $captionText = getSubtitleWithFigureNumber($captionText ?? null, $captionTitle, $figureNumber);
 @endphp
-<figure {!! isset($_figureCount) ? 'id="fig-' . $_figureCount . '" ' : '' !!} class="m-media m-media--contain m-media--{{ $size }}{{ (isset($variation)) ? ' '.$variation : '' }}">
+<figure {!! isset($figureNumber) ? 'id="fig-' . $figureNumber . '" ' : '' !!} class="m-media m-media--contain m-media--{{ $size }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     <div class="m-media__img">
         <div class="m-media__contain--spacer" style="padding-bottom: {{ min(2/3, intval($height ?? 10) / intval($width ?? 16)) * 100 }}%"></div>
         <div class="m-image-slider">

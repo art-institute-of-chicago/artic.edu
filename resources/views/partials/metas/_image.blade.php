@@ -1,10 +1,14 @@
 @php
     // Recommended lower limit to balance quality with speed
-    $w = 1200; // $seo->width ?? 1200;
-    $h = 800; //$seo->height ?? 800;
+    $w = min($seo->width ?? 1200, 1200);
+    $h = floor(($w / $seo->width ?? 1200) * $seo->height ?? 800);
 
     // Assumes this is an Imgix URL
-    $url = $seo->image . '?w=' . $w . '&h=' . $h . '&fit=crop';
+    if ($seo->usesImgix) {
+        $url = $seo->image . '?w=' . $w . '&h=' . $h . '&fit=crop';
+    } else {
+        $url = $seo->image;
+    }
 
     // TODO: Set the twitterImage separately?
     $twitterUrl = $seo->twitterImage ?? $url;

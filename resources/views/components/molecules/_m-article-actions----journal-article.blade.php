@@ -1,6 +1,10 @@
-<div class="o-sticky-sidebar__sticker"  data-behavior="stickySidebar" data-sticky-offset="30">{{-- See :nth-child(x) in _o-article.scss --}}
+<div class="o-sticky-sidebar__sticker"  data-behavior="stickySidebar" data-sticky-offset="30">
 
-    <div class="m-article-actions--journal__logo u-hide@xsmall u-hide@small u-hide@medium">
+    <button class="g-sidebar__close" data-behavior="hideStickySidebar">
+        <svg aria-hidden="true" class="icon--close" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5" d="M3 3l10 10M13 3L3 13"></path></svg>
+    </button>
+
+    <div class="m-article-actions--journal__logo">
         <a href="/journal">
             <svg class="icon--journal-logo">
                 <use xlink:href="#icon--journal-logo"></use>

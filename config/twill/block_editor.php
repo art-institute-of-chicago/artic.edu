@@ -231,6 +231,11 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-mirador_modal'
         ],
+        'vtour_embed' => [
+            'title' => 'Virtual Tour Embed',
+            'icon' => 'image',
+            'component' => 'a17-block-vtour_embed'
+        ],
     ],
     'repeaters' => [
         'admissions' => [
@@ -546,6 +551,7 @@ return [
         'video',
         'image_sequence_file',
         'upload_manifest_file',
+        'vtour_xml_file',
     ],
     'browser_route_prefixes' => [
         'events' => 'exhibitions_events',

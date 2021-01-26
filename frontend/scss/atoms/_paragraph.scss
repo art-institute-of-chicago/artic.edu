@@ -1,8 +1,43 @@
 .p--linked {
   display: flex;
+  position: relative;
+
+  // Adapted from .o-blocks > p:not([class*='f-'])
+  .o-blocks > &:not([class*='f-']) {
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        padding-right: colspan(2, $name);
+      }
+    }
+  }
 
   span.p--linked__ref {
-    margin-right: 10px;
+    display: none;
+
+    @include breakpoint('small+') {
+      display: block;
+    }
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    font-size: 14px;
+    line-height: 28px;
+    font-weight: 200;
+
+    a {
+      font-family: $sans-serif-font;
+      color: $color__black--30;
+
+      &:hover {
+        color: $color__black--50;
+      }
+
+      .s-sans-serif-loaded & {
+        font-family: $sans-serif-font--loaded;
+      }
+    }
   }
 
   span.p--linked__text {

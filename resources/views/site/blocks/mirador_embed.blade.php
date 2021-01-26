@@ -10,13 +10,15 @@
         }
     }
     $default_view = $block->input('default_view');
-    $caption_title = $block->input('caption_title');
-    $caption = $block->input('caption');
     $size = $block->input('size');
+
+    $figureNumber = getFigureNumber();
+    $captionTitle = getTitleWithFigureNumber($block->input('caption_title'), $figureNumber);
+    $captionText = getSubtitleWithFigureNumber($block->input('caption'), $captionTitle, $figureNumber);
 @endphp
 
 @if ($manifest)
-    <div class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} o-blocks__block">
+    <div {!! isset($figureNumber) ? 'id="fig-' . $figureNumber . '" ' : '' !!} class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} o-blocks__block">
         <div class="m-media__img m-media--mirador-embed" data-behavior="fitText">
             @component('components.molecules._m-viewer-mirador')
                 @slot('type', 'standalone')
@@ -25,13 +27,13 @@
                 @slot('defaultView', $default_view);
             @endcomponent
         </div>
-        @if ($caption_title || $caption)
+        @if ($captionTitle || $captionText)
             <figcaption>
-                @if (isset($caption_title))
-                    <div class="f-caption-title">{!! $caption_title !!}</div><br>
+                @if (isset($captionTitle))
+                    <div class="f-caption-title">{!! $captionTitle !!}</div><br>
                 @endif
-                @if (isset($caption))
-                    <div class="f-caption">{!! $caption !!}</div>
+                @if (isset($captionText))
+                    <div class="f-caption">{!! $captionText !!}</div>
                 @endif
             </figcaption>
         @endif

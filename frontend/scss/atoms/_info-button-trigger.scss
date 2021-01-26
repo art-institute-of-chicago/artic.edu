@@ -55,3 +55,10 @@ Triggers the display of `info-button-info`. The content of the `span` is fed int
   height: 16px;
 }
 
+dt .info-button-trigger {
+  vertical-align: text-top;
+  margin-top: 2px;
+}
+dt #h-iiif-manifest {
+  margin-right: 8px;
+}
