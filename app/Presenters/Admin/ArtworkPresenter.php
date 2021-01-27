@@ -10,6 +10,7 @@ use App\Presenters\BasePresenter;
 use App\Helpers\DatesHelpers;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use LakeviewImageService;
 
 class ArtworkPresenter extends BasePresenter
 {
@@ -476,9 +477,9 @@ class ArtworkPresenter extends BasePresenter
             'provider'              => $this->entity->department_title,
         ];
 
-        if ($this->entity->thumbnail) {
-            $itemprops['thumbnailUrl'] = $this->entity->thumbnail->url.'/full/,150/0/default.jpg';
-            $itemprops['image'] = $this->entity->thumbnail->url;
+        if ($this->entity->image_id) {
+            $itemprops['thumbnailUrl'] = LakeviewImageService::getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
+            $itemprops['image'] = LakeviewImageService::getBaseUrl() . '2/' . $this->entity->image_id;
         }
 
         return $itemprops;
