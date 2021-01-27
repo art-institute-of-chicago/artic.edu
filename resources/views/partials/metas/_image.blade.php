@@ -4,7 +4,7 @@
     $h = floor(($w / $seo->width ?? 1200) * $seo->height ?? 800);
 
     // Assumes this is an Imgix URL
-    if ($seo->usesImgix) {
+    if ($seo->usesImgix ?? true) {
         $url = $seo->image . '?w=' . $w . '&h=' . $h . '&fit=crop';
     } else {
         $url = $seo->image;
