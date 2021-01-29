@@ -154,7 +154,7 @@ if (!function_exists('truncateStr')) {
 
 if (!function_exists('convertReferenceLinks')) {
     function convertReferenceLinks($text, $_collectedReferences) {
-        $codes = \App\Libraries\ShortcodeService::parse_shortcodes($text);
+        $codes = \App\Libraries\ShortcodeService::parse_ref($text);
         foreach($codes as $index => $code) {
             if (isset($code['name']) && ($code['name'] == 'ref')) {
                 $_collectedReferences[] = ['id' => sizeof($_collectedReferences)+1, 'reference' => $code['content']];
