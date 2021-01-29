@@ -57,30 +57,34 @@ class ZoomButtonsPlugin extends Component {
     super(props);
 
     this.state = {
-      viewerAvailable: false,
       viewerFullyLoaded: false,
-      viewerLoadHandlerAdded: false,
     }
 
     this.handleZoomInClick = this.handleZoomInClick.bind(this);
     this.handleZoomOutClick = this.handleZoomOutClick.bind(this);
+    this.imageLoaded = this.imageLoaded.bind(this);
+    this.imageChange = this.imageChange.bind(this);
   }
 
   componentDidUpdate(prevProps) {
     const { viewer } = this.props;
-    const { viewerAvailable, viewerFullyLoaded, viewerLoadHandlerAdded } = this.state;
-    if (viewer && !viewerAvailable) {
-      this.setState({viewerAvailable: true});
+    const { viewerFullyLoaded } = this.state;
+    if (viewer && !viewerFullyLoaded) {
+      viewer.addOnceHandler('tile-drawn', this.imageLoaded);
+      viewer.addOnceHandler('close', this.imageChange);
     }
-    if (viewerAvailable && !viewerFullyLoaded && !viewerLoadHandlerAdded) {
-      const that = this;
-      viewer.addHandler('tile-drawn', function (event) {
-        if (event.tiledImage.getFullyLoaded() && !viewerFullyLoaded) {
-          that.setState({viewerFullyLoaded: true});
-        }
-      });
-      that.setState({viewerLoadHandlerAdded: true});
-    }
+  }
+
+  imageLoaded() {
+    const { viewer } = this.props;
+    this.setState({viewerFullyLoaded: true});
+    viewer.removeHandler('tile-drawn', this.imageLoaded);
+  }
+
+  imageChange() {
+    const { viewer } = this.props;
+    this.setState({viewerFullyLoaded: false});
+    viewer.removeHandler('close', this.imageChange);
   }
 
   /**
