@@ -518,6 +518,8 @@ class ApiQueryBuilder {
             $collection = collectApi([$results->body->data]);
         }
 
+        $collection = $this->getSortedCollection($collection);
+
         $collection->setMetadata([
             'pagination'   => $results->body->pagination ?? null,
             'aggregations' => $results->body->aggregations ?? null,
@@ -548,6 +550,8 @@ class ApiQueryBuilder {
         } else {
             $collection = collectApi([$results->body]);
         }
+
+        $collection = $this->getSortedCollection($collection);
 
         $collection->setMetadata([
             'pagination'   => $results->body->pagination ?? null,
@@ -613,6 +617,31 @@ class ApiQueryBuilder {
     protected function invalidOperator($operator)
     {
         return !in_array(strtolower($operator), $this->operators, true);
+    }
+
+    /**
+     * WEB-1626: If this was an `ids` query, reorder results to match `ids`.
+     */
+    private function getSortedCollection($collection)
+    {
+        if (empty($this->ids)) {
+            return $collection;
+        }
+
+        return $collection->sort(function($a, $b) use ($collection) {
+            if (!isset($a->id) || !isset($b->id)) {
+                return 0;
+            }
+
+            $ia = array_search($a->id, $this->ids);
+            $ib = array_search($b->id, $this->ids);
+
+            if ($ia === $ib) {
+                return 0;
+            }
+
+            return ($ia < $ib) ? -1 : 1;
+        });
     }
 
 }
