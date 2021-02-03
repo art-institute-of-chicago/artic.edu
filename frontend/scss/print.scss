@@ -1,3 +1,16 @@
+html.s-print {
+  left: 0;
+  right: 0;
+  margin-right: 0;
+  margin-left: 0;
+  width: auto;
+}
+
+html.s-print body {
+  line-height: 1;
+  width: auto;
+}
+
 .s-print #a17 {
   * {
     background: transparent;
@@ -34,7 +47,7 @@
     }
   }
 
-  header {
+  header.g-header {
     display: none;
   }
 
@@ -80,19 +93,6 @@
     display: block;
   }
 
-  html {
-    left: 0;
-    right: 0;
-    margin-left: 0;
-    margin-right: 0;
-    width: auto;
-  }
-
-  body {
-    line-height: 1;
-    width: auto;
-  }
-
   blockquote,
   q {
     quotes: none;
@@ -130,6 +130,7 @@
   .m-aside-newsletter,
   .tag,
   .m-listing .tag,
+  .m-journal-mobile,
   .icon--new-window,
   .o-gallery__share,
   .o-form,
@@ -313,8 +314,8 @@
   }
 
   .m-article-header__img {
-    width: 50%;
-    margin: 0 auto;
+    width: 66%;
+    margin: 0 auto 0 0;
   }
 
   .m-article-header__img img {
@@ -477,16 +478,18 @@
   .m-article-header {
     position: relative;
     padding: 0;
-    width: 66%;
+    width: 100%;
     min-height: auto;
     margin-top: .25in;
   }
 
-  .m-article-header--feature .m-article-header__text {
+  .m-article-header--feature .m-article-header__text,
+  .m-article-header--journal-article .m-article-header__text {
     position: relative;
     padding: 0;
     min-height: auto;
     margin-top: .25in;
+    width: 66%;
   }
 
   /* Lay out intro text */
