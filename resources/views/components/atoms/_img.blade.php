@@ -16,8 +16,7 @@
         $sizes = $settings['sizes'];
         $src = $settings['lqip'] ?? $settings['src'];
         if (app('printservice')->isPrintMode()) {
-            $lastSrcset = trim(last(explode(',', $srcset))) ?? '';
-            $src = substr($lastSrcset, 0, strrpos($lastSrcset, ' ')) ?? $src;
+            $src = $settings['src'];
         }
         $width = $settings['width'];
         $height = $settings['height'];
@@ -48,7 +47,7 @@
 <img
     alt="{{ $image['alt'] ?? '' }}{{ $alt ?? '' }}"
     class="{{ $image['class'] ?? '' }} {{ $class ?? '' }} {{ $restrict ? 'restrict' : '' }}"
-    @if (empty($srcset) and isset($src))
+    @if (empty($srcset) and isset($src) and !app('printservice')->isPrintMode())
         data-src="{{ $src ?? '' }}"
     @else
         src="{{ $src ?? '' }}"
