@@ -1,12 +1,12 @@
 @php
-    $citationTitle = strip_tags($seo->citationTitle);
-    $citationJournalTitle = strip_tags($seo->citationJournalTitle);
-    $citationPublisher = strip_tags($seo->citationPublisher);
-    $citationPublicationDate = strip_tags($seo->citationPublicationDate);
-    $citationOnlineDate = strip_tags($seo->citationOnlineDate);
-    $citationIssue = strip_tags($seo->citationIssue);
+    $citationTitle = strip_tags($seo->citationTitle ?? '');
+    $citationJournalTitle = strip_tags($seo->citationJournalTitle ?? '');
+    $citationPublisher = strip_tags($seo->citationPublisher ?? '');
+    $citationPublicationDate = strip_tags($seo->citationPublicationDate ?? '');
+    $citationOnlineDate = strip_tags($seo->citationOnlineDate ?? '');
+    $citationIssue = strip_tags($seo->citationIssue ?? '');
     $citationAuthor = [];
-    foreach ($seo->citationAuthor as $author) {
+    foreach ($seo->citationAuthor ?? [] as $author) {
         $citationAuthor[] = strip_tags($author);
     }
 @endphp
@@ -29,6 +29,6 @@
 @if ($citationIssue)
     <meta name="citation_issue"      content="{{ $citationIssue }}" />
 @endif
-@foreach ($seo->citationAuthor as $author)
+@foreach ($citationAuthor as $author)
     <meta name="citation_author"      content="{{ $author }}" />
 @endforeach
