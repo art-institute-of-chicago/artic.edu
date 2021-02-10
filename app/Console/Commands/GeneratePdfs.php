@@ -84,8 +84,11 @@ class GeneratePdfs extends Command
         $pdfPath = storage_path('app/' . $pdfFileName);
         $prince->convert_string_to_file($html, $pdfPath);
 
-        // Stream the file to S3; be sure to set `AWS_BUCKET` in `.env` and otherwise configure credentials
-        Storage::disk('pdf_s3')->putFileAs('/pdf/static', new File($pdfPath), $pdfFileName, 'public');
+        if (config('app.env') == 'production' || config('app.env') == 'staging')
+        {
+            // Stream the file to S3; be sure to set `AWS_BUCKET` in `.env` and otherwise configure credentials
+            Storage::disk('pdf_s3')->putFileAs('/pdf/static', new File($pdfPath), $pdfFileName, 'public');
+        }
 
         if ($model->pdf_download_path != '/pdf/static/' . $pdfFileName)
         {

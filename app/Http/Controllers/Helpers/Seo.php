@@ -12,6 +12,18 @@ class Seo extends BaseSeo
 
     public $usesImgix = true;
 
+    public $citationTitle;
+    public $citationJournalTitle;
+    public $citationPublisher;
+    public $citationAuthor = [];
+    // public $citationAuthorInstitution;
+    public $citationPublicationDate;
+    public $citationOnlineDate;
+    public $citationIssue;
+    // public $citationDoi;
+    // public $citationIssn;
+    // public $citationReference = [];
+
     public function setImage($image, $maxWidth = 1200)
     {
         if (!empty($image)) {

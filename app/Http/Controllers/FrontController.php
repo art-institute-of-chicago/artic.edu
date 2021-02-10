@@ -41,6 +41,10 @@ class FrontController extends BaseController
 
     protected function getCanonicalRedirect($canonicalPath)
     {
+        if (config('aic.is_preview_mode')) {
+            return;
+        }
+
         if (!Str::endsWith($canonicalPath, request()->path())) {
             return redirect($canonicalPath, 301);
         }

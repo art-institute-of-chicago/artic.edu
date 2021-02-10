@@ -6,7 +6,7 @@ use Artisan;
 
 class GeneratePdf extends BaseJob
 {
-    protected $event;
+    private $model;
 
     public function __construct($model)
     {

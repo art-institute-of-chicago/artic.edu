@@ -231,6 +231,9 @@ function aic_imageSettings($data) {
     $srcset = $settings['srcset'] ?? false;
     $sizes = $settings['sizes'] ?? false;
     $lazyload = $settings['lazyload'] ?? true;
+    if (app('printservice')->isPrintMode()) {
+        $lazyload = false;
+    }
 
     $sourceType = $image['sourceType'] ?? false;
     $originalSrc = $image['src'] ?? false;
@@ -513,14 +516,14 @@ function aic_imageSettings($data) {
     $stringHeight = $height;
 
     return array(
-        'srcset' => $stringSrcset,
-        'src' => $stringSrc,
-        'sizes' => $stringSizes,
+        'srcset' => $lazyload ? $stringSrcset : '',
+        'src' => $lazyload ? $stringSrc : $pinterestMedia,
+        'sizes' => $lazyload ? $stringSizes : '',
         'width' => $stringWidth,
         'height' => $stringHeight,
         'lazyload' => $lazyload,
         'pinterestMedia' => $pinterestMedia ?? null,
-        'lqip' => $lqip,
+        'lqip' => $lazyload ? $lqip : '',
         'iiifId' => $iiifId,
     );
 }

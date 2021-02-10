@@ -13,6 +13,7 @@
         @slot('captionText', $block->present()->input('caption_text'))
         @slot('leftImage', $leftImage)
         @slot('rightImage', $rightImage)
+        @slot('referenceImage', $referenceImage)
         @slot('width', $referenceImage['width'] ?? 16)
         @slot('height', $referenceImage['height'] ?? 10)
         @slot('isSliderZoomable', $block->input('is_slider_zoomable'))
