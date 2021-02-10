@@ -1,6 +1,7 @@
 @php
     $citationTitle = strip_tags($seo->citationTitle ?? '');
     $citationJournalTitle = strip_tags($seo->citationJournalTitle ?? '');
+    $citationJournalAbbrev = strip_tags($seo->citationJournalAbbrev ?? '');
     $citationPublisher = strip_tags($seo->citationPublisher ?? '');
     $citationPublicationDate = strip_tags($seo->citationPublicationDate ?? '');
     $citationOnlineDate = strip_tags($seo->citationOnlineDate ?? '');
@@ -16,6 +17,9 @@
 @endif
 @if ($citationJournalTitle)
     <meta name="citation_journal_title"      content="{{ $citationJournalTitle }}" />
+@endif
+@if ($citationJournalAbbrev)
+    <meta name="citation_journal_abbrev"      content="{{ $citationJournalAbbrev }}" />
 @endif
 @if ($citationPublisher)
     <meta name="citation_publisher"      content="{{ $citationPublisher }}" />

@@ -31,6 +31,7 @@ class IssueArticleController extends FrontController
 
         $this->seo->citationTitle = $item->meta_title ?: $item->title;
         $this->seo->citationJournalTitle = $item->present()->issueTitle();
+        $this->seo->citationJournalAbbrev = 'AIR';
         $this->seo->citationPublisher = 'The Art Institute of Chicago';
         foreach ($item->authors as $author) {
             $this->seo->citationAuthor[] = $author->title;

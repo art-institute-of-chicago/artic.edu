@@ -14,6 +14,7 @@ class Seo extends BaseSeo
 
     public $citationTitle;
     public $citationJournalTitle;
+    public $citationJournalAbbrev;
     public $citationPublisher;
     public $citationAuthor = [];
     // public $citationAuthorInstitution;
