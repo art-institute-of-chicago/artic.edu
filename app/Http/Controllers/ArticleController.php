@@ -126,6 +126,17 @@ class ArticleController extends FrontController
             $this->seo->noindex = true;
         }
 
+        $this->seo->citationTitle = $item->meta_title ?: $item->title;
+        $this->seo->citationPublisher = 'The Art Institute of Chicago';
+        foreach ($item->authors as $author) {
+            $this->seo->citationAuthor[] = $author->title;
+        }
+        if (empty($this->seo->citationAuthor)) {
+            $this->seo->citationAuthor[] = $item->author_display;
+        }
+        $this->seo->citationPublicationDate = $item->date->toDateString();
+        $this->seo->citationOnlineDate = $item->date->toDateString();
+
         if ($item->categories->first()) {
             $item->topics = $item->categories;
         }
