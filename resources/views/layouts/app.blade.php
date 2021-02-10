@@ -20,6 +20,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
       @section('meta_description') @include('partials.metas._description') @show
       @section('meta_url') @include('partials.metas._url') @show
       @section('meta_image') @include('partials.metas._image') @show
+      @section('meta_citation') @include('partials.metas._citation') @show
     @endif
 
   <link rel="search" type="application/opensearchdescription+xml" title="Art Institute of Chicago" href="/opensearch.xml">
