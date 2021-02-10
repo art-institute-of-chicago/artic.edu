@@ -22,7 +22,6 @@
                     @slot('settings', array(
                         'fit' => 'crop',
                         'ratio' => '1:1',
-                        )),
                     ))
                 @endcomponent
                 <div class="m-image-slider__handle">
