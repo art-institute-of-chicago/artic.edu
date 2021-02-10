@@ -35,6 +35,9 @@ class IssueArticleController extends FrontController
         foreach ($item->authors as $author) {
             $this->seo->citationAuthor[] = $author->title;
         }
+        if (empty($this->seo->citationAuthor)) {
+            $this->seo->citationAuthor[] = $item->author_display;
+        }
         $this->seo->citationPublicationDate = $item->date->toDateString();
         $this->seo->citationOnlineDate = $item->date->toDateString();
         $this->seo->citationIssue = $item->present()->issueNumber();
