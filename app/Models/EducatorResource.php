@@ -83,11 +83,6 @@ class EducatorResource extends AbstractModel
         return route('collection.resources.educator-resources.show', $this->id);
     }
 
-    public function getSlugAttribute()
-    {
-        return route('collection.resources.educator-resources.show', $this);
-    }
-
     public function getUrlAttribute() {
         return url(route('collection.resources.educator-resources.show', $this->id_slug));
     }
