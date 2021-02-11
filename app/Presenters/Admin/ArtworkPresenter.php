@@ -312,9 +312,9 @@ class ArtworkPresenter extends BasePresenter
         $details = array_merge($details, $this->formatDetailBlocks([
             'Medium'           => array($this->entity->medium_display,'material'),
             'Inscriptions'     => array($this->entity->inscriptions),
-            'Dimensions'       => array($this->entity->dimensions),
+            'Dimensions'       => array($this->entity->dimensions, 'size'),
             'Credit Line'      => array($this->entity->credit_line),
-            'Reference Number' => array($this->entity->main_reference_number),
+            'Reference Number' => array($this->entity->main_reference_number, 'identifier'),
             'Copyright'        => array($this->entity->copyright_notice),
         ]));
 

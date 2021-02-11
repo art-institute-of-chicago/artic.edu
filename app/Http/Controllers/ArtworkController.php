@@ -41,6 +41,14 @@ class ArtworkController extends BaseScopedController
         $this->seo->setDescription($item->meta_description ?: $item->fullArtist);
         $this->seo->setImage($item->imageFront('hero'), 843);
         $this->seo->usesImgix = false;
+        if ($item->mainArtist && $item->mainArtist->isNotEmpty()) {
+            $this->seo->citationAuthor[] = $item->mainArtist->first()->title;
+        }
+        if ($item->artists && $item->artists->isNotEmpty()) {
+            $item->artists->each(function ($artist) {
+                $this->seo->citationAuthor[] = $artist->title;
+            });
+        }
 
         // Start building data for output to view
         $viewData = [
