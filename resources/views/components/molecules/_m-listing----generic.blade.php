@@ -1,6 +1,19 @@
 <{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <a href="{!! $item->present()->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
+    @php
+        $listDescription = $item->present()->shortDesc
+            ?? $item->present()->listing_description
+            ?? $item->present()->list_description
+            ?? $item->present()->intro
+            ?? null;
+        $listDescriptionHasLinks = $listDescription && strpos($listDescription, '<a href');
+    @endphp
+    @if (!$listDescriptionHasLinks)
+        <a href="{!! $item->present()->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
+    @endif
         @if (!isset($hideImage) || (isset($hideImage) && !($hideImage)))
+            @if ($listDescriptionHasLinks)
+                <a href="{!! $item->present()->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
+            @endif
             @if ((isset($image) || $item->imageFront('default') || $item->imageFront('hero') || $item->imageFront('listing')))
                 <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
                     @component('components.atoms._img')
@@ -22,11 +35,17 @@
             @elseif (isset($hideImage) && !$hideImage)
                 <span class="default-img"></span>
             @endif
+            @if ($listDescriptionHasLinks)
+                </a>
+            @endif
         @endif
         <span class="m-listing__meta">
             @if ($item->subtype)
             <em class="type f-tag">{!! $item->present()->subtype !!}</em>
             <br>
+            @endif
+            @if ($listDescriptionHasLinks)
+                <a href="{!! $item->present()->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
             @endif
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
@@ -34,6 +53,9 @@
                 @slot('title', $item->present()->title)
                 @slot('title_display', $item->present()->title_display)
             @endcomponent
+            @if ($listDescriptionHasLinks)
+                </a>
+            @endif
 
             @if (isset($item['links']) and $item['links'])
                 <br>
@@ -59,13 +81,6 @@
                 @endforeach
                 {!! count($item['links']) > 1 ? '</ul>' : '</span>' !!}
             @else
-                @php
-                    $listDescription = $item->present()->shortDesc
-                     ?? $item->present()->listing_description
-                     ?? $item->present()->list_description
-                     ?? $item->present()->intro
-                     ?? null;
-                @endphp
                 @if (!empty($listDescription))
                 <br>
                 <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $listDescription !!}</span>
@@ -90,5 +105,7 @@
                 @endif
             @endif
         </span>
-    </a>
+    @if (!$listDescriptionHasLinks)
+        </a>
+    @endif
 </{{ $tag ?? 'li' }}>
