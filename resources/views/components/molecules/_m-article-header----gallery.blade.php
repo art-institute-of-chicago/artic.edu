@@ -29,7 +29,6 @@ if ($maxZoomWindowSize > 843) {
             @slot('image', $image)
             @slot('style', $style)
             @slot('settings', array(
-                'lazyload' => false,
                 'srcset' => $srcset,
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => '58',
@@ -226,9 +225,8 @@ if ($maxZoomWindowSize > 843) {
           @component('components.atoms._img')
               @slot('image', $image)
               @slot('settings', array(
-                'lazyload' => false,
-                'srcset' => array(300,600),
-                'sizes' => '300px',
+                'srcset' => array(400,600),
+                'sizes' => '400px',
               ))
           @endcomponent
         </li>
