@@ -59,4 +59,13 @@ class Author extends AbstractModel
     {
         return $this->morphedByMany('App\Models\IssueArticle', 'authorable');
     }
+
+    public function scopeOrdered($query)
+    {
+        if ($this->isFillable('title')) {
+            $query->orderByRaw("reverse(split_part(reverse(title), ' ', 1))")->get();
+        }
+
+        return $query;
+    }
 }
