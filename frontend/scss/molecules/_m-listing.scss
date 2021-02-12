@@ -262,10 +262,6 @@
   @include breakpoint('medium+') {
     min-height: 144px;
   }
-
-  a {
-    color: $color__link--accent;
-  }
 }
 
 .m-listing__meta--l,
