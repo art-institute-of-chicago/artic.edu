@@ -89,6 +89,14 @@
         'max' => 10
     ])
 
+    @formField('wysiwyg', [
+        'name' => 'cite_as',
+        'label' => 'Recommended citation',
+        'toolbarOptions' => [
+            'italic'
+        ],
+    ])
+
     @formField('input', [
         'name' => 'review_status',
         'label' => 'Review status',

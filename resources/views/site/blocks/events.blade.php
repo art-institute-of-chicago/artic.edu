@@ -3,9 +3,13 @@
     use App\Models\Event;
     use Carbon\Carbon;
 
-    //dd($block->position);
-    $dateStart = $block->input('date_start') ? Carbon::parse($block->input('date_start')) : Carbon::now();
+    $now = Carbon::now();
+    $dateStart = $block->input('date_start') ? Carbon::parse($block->input('date_start')) : $now;
     $dateEnd = $block->input('date_end') ? Carbon::parse($block->input('date_end')) : Carbon::tomorrow()->addMonths(6);
+
+    if ($dateStart->lt($now)) {
+        $dateStart = $now;
+    }
 
     $events = (new EventRepository(new Event))->getEventsFiltered(
         $dateStart,
