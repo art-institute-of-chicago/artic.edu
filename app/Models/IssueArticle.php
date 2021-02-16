@@ -36,6 +36,7 @@ class IssueArticle extends AbstractModel implements Sortable
         'issue_id',
         'position',
         'pdf_download_path',
+        'cite_as',
     ];
 
     public $slugAttributes = [
