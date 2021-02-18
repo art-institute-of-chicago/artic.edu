@@ -44,10 +44,17 @@
     ])
 --}}
 
+{{--
+    DEPRECATED: This field hasn't been filled out for any publications
+    that have been added since the website launched. It's not used for
+    sorting, or displayed on the frontend.
+--}}
+{{--
     @formField('input', [
         'name' => 'publication_year',
         'label' => 'Publication year',
     ])
+--}}
 
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
