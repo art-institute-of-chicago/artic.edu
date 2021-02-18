@@ -31,12 +31,18 @@
         ],
     ])
 
+{{--
+    DEPRECATED: This field is null for all existing publications.
+    Use listing_description instead.
+--}}
+{{--
     @formField('input', [
         'name' => 'short_description',
         'label' => 'Short description',
         'type' => 'textarea',
         'maxlength' => 255
     ])
+--}}
 
     @formField('input', [
         'name' => 'publication_year',

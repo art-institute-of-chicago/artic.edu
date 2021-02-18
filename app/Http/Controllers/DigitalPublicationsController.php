@@ -48,7 +48,7 @@ class DigitalPublicationsController extends BaseScopedController
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
-        $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->listing_description);
+        $this->seo->setDescription($item->meta_description ?? $item->listing_description);
         $this->seo->setImage($item->imageFront('listing'));
 
         $crumbs = [
@@ -59,15 +59,11 @@ class DigitalPublicationsController extends BaseScopedController
 
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($item->imageFront('banner'))),
-            'nav'    => null,
-            'intro'  => $item->short_description,
             'headerImage' => $item->imageFront('banner'),
             'title' => $item->title,
             'breadcrumb' => $crumbs,
             'page' => $item,
         ]);
-
-
     }
 
 }
