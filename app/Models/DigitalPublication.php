@@ -48,7 +48,7 @@ class DigitalPublication extends AbstractModel
         'publish_end_date',
     ];
 
-    public $sections = [];
+    public $searchSections = [];
 
     public $mediasParams = [
         'listing' => [
@@ -126,14 +126,19 @@ class DigitalPublication extends AbstractModel
         ));
     }
 
-    public function sections()
+    public function searchSections()
     {
-        return $this->sections;
+        return $this->searchSections;
     }
 
-    public function addSection($section)
+    public function addSearchSection($section)
     {
-        return $this->sections[] = $section;
+        return $this->searchSections[] = $section;
+    }
+
+    public function sections()
+    {
+        return $this->hasMany('App\Models\DigitalPublicationSection', 'digital_publication_id');
     }
 
     protected function transformMappingInternal()
