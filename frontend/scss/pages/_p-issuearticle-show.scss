@@ -1,4 +1,5 @@
-.p-issuearticle-show {
+.p-issuearticle-show,
+.p-digitalpublicationsection-show {
   @extend %sticky-sidebar;
 
   @each $name in ('xsmall', 'small', 'medium') {

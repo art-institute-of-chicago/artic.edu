@@ -84,6 +84,21 @@ class DigitalPublicationSection extends Model implements Sortable
         })->visible()->wherePublished(true);
     }
 
+    public function scopeAbouts($query)
+    {
+        return $query->where('type', 'about');
+    }
+
+    public function scopeTexts($query)
+    {
+        return $query->where('type', 'text');
+    }
+
+    public function scopeGalleries($query)
+    {
+        return $query->where('type', 'gallery');
+    }
+
     public function getPublishedAttribute()
     {
         return ($this->digitalPublication->isPublished ?? false) && $this->isPublished;

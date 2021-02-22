@@ -22,9 +22,23 @@ class DigitalPublicationSectionPresenter extends BasePresenter
     {
         $currentSection = $this->entity;
 
+        $addToSidebar = function($section) use ($currentSection) {
+            return [
+                'label' => $section->title,
+                'href' => route('collection.publications.digital-publications-sections.show', [
+                    'pubId' => $section->digitalPublication->id,
+                    'pubSlug' => $section->digitalPublication->getSlug(),
+                    'type' => $section->type,
+                    'id' => $section->id,
+                    'slug' => $section->getSlug(),
+                ]),
+                'is_active' => $section->id === $currentSection->id,
+            ];
+        };
+
         return $this->sectionsForSidebar ?? $this->sectionsForSidebar = [
             [
-                'title' => 'View other sections',
+                'title' => 'About',
                 'active' => false,
                 'blocks' => [
                     [
@@ -32,20 +46,36 @@ class DigitalPublicationSectionPresenter extends BasePresenter
                         'links' => $this->entity
                             ->digitalPublication
                             ->present()
-                            ->sectionsForLanding()
-                            ->map(function($section) use ($currentSection) {
-                                return [
-                                    'label' => $section->title,
-                                    'href' => route('collection.publications.digital-publications-sections.show', [
-                                        'pubId' => $section->digitalPublication->id,
-                                        'pubSlug' => $section->digitalPublication->getSlug(),
-                                        'type' => $section->type,
-                                        'id' => $section->id,
-                                        'slug' => $section->getSlug(),
-                                    ]),
-                                    'is_active' => $section->id === $currentSection->id,
-                                ];
-                            }),
+                            ->aboutsForLanding()
+                            ->map($addToSidebar),
+                    ]
+                ],
+            ],
+            [
+                'title' => 'Texts',
+                'active' => false,
+                'blocks' => [
+                    [
+                        'type'  => 'link-list',
+                        'links' => $this->entity
+                            ->digitalPublication
+                            ->present()
+                            ->textsForLanding()
+                            ->map($addToSidebar),
+                    ]
+                ],
+            ],
+            [
+                'title' => 'Galleries',
+                'active' => false,
+                'blocks' => [
+                    [
+                        'type'  => 'link-list',
+                        'links' => $this->entity
+                            ->digitalPublication
+                            ->present()
+                            ->galleriesForLanding()
+                            ->map($addToSidebar),
                     ]
                 ],
             ],
