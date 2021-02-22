@@ -10,7 +10,7 @@ use A17\Twill\Models\Behaviors\HasPosition;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class Mirador extends AbsractModel
+class Mirador extends AbstractModel
 {
     use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasPosition, HasFiles, HasBlocks, Transformable;
 

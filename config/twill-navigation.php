@@ -93,7 +93,7 @@ $nav = [
                 'title' => 'Magazine Issues',
                 'module' => true
             ],
-            'mirador' => [
+            'miradors' => [
                 'title' => 'Mirador',
                 'module' => true
             ]

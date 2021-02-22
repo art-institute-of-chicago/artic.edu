@@ -105,8 +105,8 @@ Route::name('virtualTours')->get('virtual-tours', function () {return abort(404)
 Route::name('virtualTours.show')->get('/virtual-tours/{id}/{slug?}', 'VirtualTourController@show');
 
 // Mirador kiosk routes
-Route::name('miradors')->get('mirador', function () {return abort(404);});
-Route::name('miradors.show')->get('/mirador/{id}/{slug?}', 'MiradorController@show');
+Route::name('mirador')->get('mirador', function () {return abort(404);});
+Route::name('mirador.show')->get('/mirador/{id}/{slug?}', 'MiradorController@show');
 
 // Exhibition history routes
 // Must remain before exhibition routes

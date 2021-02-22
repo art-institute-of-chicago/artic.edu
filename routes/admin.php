@@ -42,7 +42,7 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
 
     Route::module('magazineIssues');
 
-    Route::module('mirador');
+    Route::module('miradors');
 });
 
 Route::group(['prefix' => 'collection'], function () {
