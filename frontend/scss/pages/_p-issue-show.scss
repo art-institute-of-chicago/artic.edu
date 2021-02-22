@@ -1,7 +1,8 @@
 // This file contains styles for both journal issues and magazine issues
 .p-magazineissue-show,
 .p-magazineissue-latest,
-.p-issue-show {
+.p-issue-show,
+.p-digitalpublicationsection-show {
   @extend %sticky-sidebar;
 
   .o-article__body {

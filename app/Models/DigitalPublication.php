@@ -34,8 +34,8 @@ class DigitalPublication extends AbstractModel
         'title',
     ];
 
-    protected $presenter = 'App\Presenters\Admin\GenericPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
+    protected $presenter = 'App\Presenters\Admin\DigitalPublicationPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationPresenter';
 
     public $checkboxes = [
         'published',
