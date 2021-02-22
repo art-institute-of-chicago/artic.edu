@@ -104,6 +104,10 @@ Route::name('videos.show')->get('/videos/{id}/{slug?}', 'VideoController@show');
 Route::name('virtualTours')->get('virtual-tours', function () {return abort(404);});
 Route::name('virtualTours.show')->get('/virtual-tours/{id}/{slug?}', 'VirtualTourController@show');
 
+// Mirador kiosk routes
+Route::name('miradors')->get('mirador', function () {return abort(404);});
+Route::name('miradors.show')->get('/mirador/{id}/{slug?}', 'MiradorController@show');
+
 // Exhibition history routes
 // Must remain before exhibition routes
 Route::name('exhibitions.history')->get('exhibitions/history', 'ExhibitionHistoryController@index');

@@ -7,60 +7,47 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
-use A17\Twill\Models\Behaviors\Sortable;
-use A17\Twill\Models\Model;
+use App\Models\Behaviors\HasBlocks;
+use App\Models\Behaviors\HasMediasEloquent;
 
-class Mirador extends Model implements Sortable
+class Mirador extends AbsractModel
 {
-    use HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition;
+    use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasPosition, HasFiles, HasBlocks, Transformable;
+
+    protected $presenter = 'App\Presenters\Admin\MiradorPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\MiradorPresenter';
 
     protected $fillable = [
         'published',
         'title',
-        'description',
-        // 'position',
-        // 'public',
-        // 'featured',
-        // 'publish_start_date',
-        // 'publish_end_date',
+        'position',
+        'title',
+        'date',
+        'heading',
+        'title_display',
+        'list_description',
     ];
 
-    // uncomment and modify this as needed if you use the HasTranslation trait
-    // public $translatedAttributes = [
-    //     'title',
-    //     'description',
-    //     'active',
-    // ];
-    
-    // uncomment and modify this as needed if you use the HasSlug trait
-    // public $slugAttributes = [
-    //     'title',
-    // ];
+    protected $dates = [
+        'date',
+    ];
 
-    // add checkbox fields names here (published toggle is itself a checkbox)
+    public $slugAttributes = [
+        'title',
+    ];
+
     public $checkboxes = [
         'published'
     ];
 
-    // uncomment and modify this as needed if you use the HasMedias trait
-    // public $mediasParams = [
-    //     'cover' => [
-    //         'default' => [
-    //             [
-    //                 'name' => 'landscape',
-    //                 'ratio' => 16 / 9,
-    //             ],
-    //             [
-    //                 'name' => 'portrait',
-    //                 'ratio' => 3 / 4,
-    //             ],
-    //         ],
-    //         'mobile' => [
-    //             [
-    //                 'name' => 'mobile',
-    //                 'ratio' => 1,
-    //             ],
-    //         ],
-    //     ],
-    // ];
+    public $mediasParams = [
+        'hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
+    ];
 }
