@@ -5,48 +5,39 @@
 ])
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'title_display',
-        'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-    ])
-
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Hero Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 3000px'
-    ])
-
     @formField('date_picker', [
         'name' => 'date',
         'label' => 'Display date',
-        'note' => 'When was this video published?',
-    ])
-
-    @formField('wysiwyg', [
-        'name' => 'list_description',
-        'label' => 'List description',
-        'maxlength' => 255,
-        'note' => 'Max 255 characters. Will be used in "Related Videos" and social media.',
-        'toolbarOptions' => [
-            'italic'
-        ],
+        'note' => 'When was this mirador published?',
     ])
 
     @formField('input', [
-        'name' => 'heading',
-        'label' => 'Heading',
-        'rows' => 3,
-        'type' => 'textarea',
+        'type' => 'number',
+        'name' => 'object_id',
+        'label' => 'Object ID',
+        'note' => 'Enter object ID to obtain manifest dynamically.'
     ])
 
-    @formField('block_editor', [
-        'blocks' => getBlocksForEditor([
-            'paragraph', 'quote',
-            'list', 'artwork', 'artworks', 'hr', 'split_block',
-            'membership_banner', 'tour_stop', 'button', 'mobile_app'
-        ])
+    @formField('files', [
+        'name' => 'upload_manifest_file',
+        'label' => 'Alternative manifest file',
+        'note' => 'Upload a .json file'
+    ])
+
+    @formField('radios', [
+        'name' => 'default_view',
+        'label' => 'Default View',
+        'default' => 'single',
+        'inline' => true,
+        'options' => [
+            [
+                'value' => 'single',
+                'label' => 'Single'
+            ],
+            [
+                'value' => 'book',
+                'label' => 'Book'
+            ],
+        ]
     ])
 @stop

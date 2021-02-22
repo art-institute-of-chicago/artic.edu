@@ -14,10 +14,10 @@ class CreateMiradorsTables extends Migration
 
             $table->string('title');
             $table->dateTime('date')->nullable();
-            $table->text('heading')->nullable();
-            $table->integer('position')->unsigned()->nullable();
-            $table->text('title_display')->nullable()->after('title');
-            $table->text('list_description')->nullable()->after('heading');
+            $table->string('object_id')->nullable();
+            $table->string('upload_manifest_file')->nullable();
+            $table->string('default_view')->default('single');
+
         });
 
         // remove this if you're not going to use slugs, ie. using the HasSlug trait

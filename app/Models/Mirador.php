@@ -6,13 +6,12 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
-use A17\Twill\Models\Behaviors\HasPosition;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class Mirador extends AbstractModel
 {
-    use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasPosition, HasFiles, HasBlocks, Transformable;
+    use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasFiles, HasBlocks, Transformable;
 
     protected $presenter = 'App\Presenters\Admin\MiradorPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\MiradorPresenter';
@@ -20,12 +19,10 @@ class Mirador extends AbstractModel
     protected $fillable = [
         'published',
         'title',
-        'position',
-        'title',
         'date',
-        'heading',
-        'title_display',
-        'list_description',
+        'object_id',
+        'upload_manifest_file',
+        'default_view',
     ];
 
     protected $dates = [
@@ -40,14 +37,23 @@ class Mirador extends AbstractModel
         'published'
     ];
 
-    public $mediasParams = [
-        'hero' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 16 / 9,
-                ],
-            ],
-        ],
-    ];
+    public $filesParams = ['upload_manifest_file'];
+
+    public function getMiradorManifest()
+    {
+        if ($this->object_id OR $this->file('upload_manifest_file')) {
+            if ($this->file('upload_manifest_file')) {
+                $manifestFile = $this->file('upload_manifest_file');
+            } else {
+                $manifestFile = config('api.public_uri').'/api/v1/artworks/'.$this->object_id.'/manifest.json';
+            }
+            return $manifestFile;
+        }
+		return null;
+    }
+
+    public function getMiradorView()
+    {
+        return $this->default_view;
+    }
 }
