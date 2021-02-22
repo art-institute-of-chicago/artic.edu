@@ -41,7 +41,6 @@ class Article extends AbstractModel implements Feedable
         'subtype',
         'citation',
         'layout_type',
-        'is_boosted',
         'migrated_node_id',
         'migrated_at',
         'citations',
@@ -66,7 +65,10 @@ class Article extends AbstractModel implements Feedable
 
     public $nullable = [];
 
-    public $checkboxes = ['published', 'is_boosted', 'is_unlisted'];
+    public $checkboxes = [
+        'published',
+        'is_unlisted',
+    ];
 
     public $dates = [
         'date',
@@ -253,12 +255,6 @@ class Article extends AbstractModel implements Feedable
                 "doc" => "Copy",
                 "type" => "text",
                 "value" => function () {return $this->blocks;},
-            ],
-            [
-                "name" => 'is_boosted',
-                "doc" => "Is Boosted",
-                "type" => "boolean",
-                "value" => function () {return $this->is_boosted;},
             ],
             [
                 "name" => "slug",
