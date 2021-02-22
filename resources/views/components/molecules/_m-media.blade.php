@@ -102,6 +102,9 @@
     if ($type == 'moduleMirador') {
       $mediaBehavior = 'triggerMediaModal';
     }
+    if (!$fullscreen and $type == 'miradorKiosk') {
+      $mediaBehavior = 'triggerMediaInline';
+    }
     if ($fullscreen and $type == 'embed') {
       $mediaBehavior = 'triggerMediaModal';
     }
@@ -173,6 +176,12 @@
             @component('components.atoms._img')
                 @slot('image', $poster)
                 @slot('settings', $imageSettings ?? '')
+            @endcomponent
+        @elseif ($type == 'miradorKiosk')
+            @component('components.molecules._m-viewer-mirador')
+                @slot('type', 'miradorKiosk')
+                @slot('manifest', $media['miradorManifest'])
+                @slot('defaultView', $default_view)
             @endcomponent
         @elseif ($type == 'virtualtour')
             @component('components.molecules._m-viewer-virtualtour')

@@ -8,7 +8,7 @@
             @component('components.atoms._title')
                 @slot('tag','p')
                 @slot('font', 'f-tag-2')
-                Virtual tour
+                Mirador Kiosk
             @endcomponent
 
             @component('components.molecules._m-article-actions')
@@ -18,7 +18,6 @@
 
         @component('components.molecules._m-article-header')
             @slot('title', $item->present()->title)
-            @slot('title_display', $item->present()->title_display)
             @slot('formattedDate', $item->present()->date)
         @endcomponent
 
@@ -26,35 +25,17 @@
             @component('components.molecules._m-media')
                 @slot('variation', 'o-blocks__block')
                 @slot('item', [
-                    'type' => 'embed',
+                    'type' => 'miradorKiosk',
                     'size' => 'l',
                     'media' => [
-                        'url' => $item->video_url,
-                        'embed' => $item->embed,
-                        'medias' => $item->medias,
+                        'miradorManifest' => $item->getMiradorManifest(),
                     ],
-                    'poster' => $item->imageFront('hero'),
-                    'hideCaption' => true,
+                    'default_view' => $item->getMiradorView(),
                     'fullscreen' => false,
                 ])
             @endcomponent
         </div>
 
-        @if ($item->heading)
-            <div class="o-article__intro">
-              @component('components.blocks._text')
-                  @slot('font', 'f-deck')
-                  @slot('tag', 'div')
-                  {!! $item->present()->heading !!}
-              @endcomponent
-            </div>
-        @endif
-
-        <div class="o-article__body o-blocks">
-            {!! $item->renderBlocks(false, [], [
-                'pageTitle' => $item->title
-            ]) !!}
-        </div>
     </article>
 
 @endsection
