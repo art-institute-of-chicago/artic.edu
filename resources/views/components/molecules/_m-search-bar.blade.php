@@ -30,7 +30,7 @@
 
     @if (isset($limit) && $limit)
     <span class="checkbox f-secondary">
-        <input type="checkbox" value="{{ request()->url() }}" id="limit-search" name="limit-search"  data-behavior="limitSearch">
+        <input type="checkbox" value="{{ request()->url() }}" id="limit-search" data-behavior="limitSearch">
         <span class="f-secondary">
             @php
                 $limitTo = request()->segment(count(request()->segments()));
