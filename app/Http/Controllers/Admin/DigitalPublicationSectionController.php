@@ -12,6 +12,24 @@ class DigitalPublicationSectionController extends ModuleController
 
     protected $permalinkBase = 'digital-publications/';
 
+    protected $indexOptions = [
+        'permalink' => true,
+        'reorder' => true,
+    ];
+
+    protected $indexColumns = [
+        'title' => [
+            'title' => 'Title',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'title',
+        ],
+        'type' => [
+            'title' => 'Type',
+            'field' => 'type',
+            'sort' => true,
+        ],
+    ];
     protected function getParentModuleForeignKey()
     {
         return 'digital_publication_id';
