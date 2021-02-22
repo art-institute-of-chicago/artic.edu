@@ -34,20 +34,7 @@
         'label' => 'Type',
         'placeholder' => 'Select a type',
         'default' => 'text',
-        'options' => [
-            [
-                'value' => 'about',
-                'label' => 'About'
-            ],
-            [
-                'value' => 'text',
-                'label' => 'Text'
-            ],
-            [
-                'value' => 'gallery',
-                'label' => 'Gallery'
-            ]
-        ]
+        'options' => $typesList,
     ])
 
     @formField('wysiwyg', [

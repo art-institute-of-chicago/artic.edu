@@ -17,8 +17,8 @@ class DigitalPublicationSection extends Model implements Sortable
 {
     use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, HasAuthors;
 
-    protected $presenter = 'App\Presenters\Admin\IssueArticlePresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\IssueArticlePresenter';
+    protected $presenter = 'App\Presenters\Admin\DigitalPublicationSectionPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationSectionPresenter';
 
     protected $fillable = [
         'published',
@@ -65,6 +65,16 @@ class DigitalPublicationSection extends Model implements Sortable
                 ],
             ],
         ],
+    ];
+
+    const ABOUT = 'about';
+    const TEXT = 'text';
+    const GALLERY = 'gallery';
+
+    public static $types = [
+        self::ABOUT => 'About',
+        self::TEXT => 'Text',
+        self::GALLERY => 'Gallery',
     ];
 
     public function scopePublished($query)

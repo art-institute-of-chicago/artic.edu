@@ -27,6 +27,7 @@ class DigitalPublicationSectionController extends ModuleController
         'type' => [
             'title' => 'Type',
             'field' => 'type',
+            'present' => true,
             'sort' => true,
         ],
     ];
@@ -64,6 +65,7 @@ class DigitalPublicationSectionController extends ModuleController
         $baseUrl = '//' . config('app.url') . '/' .$this->permalinkBase . $digPub->getSlug() . '/' . $item->type  . '/';
 
         return [
+            'typesList' => $this->repository->getTypesList(),
             'baseUrl' => $baseUrl,
             'breadcrumb' => [
                 [

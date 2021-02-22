@@ -19,6 +19,10 @@ class DigitalPublicationSectionRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function getTypesList() {
+        return collect($this->model::$types);
+    }
+
     public function afterSave($object, $fields)
     {
         $this->updateBrowser($object, $fields, 'authors');
