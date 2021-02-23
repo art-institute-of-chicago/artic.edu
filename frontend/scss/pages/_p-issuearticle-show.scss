@@ -281,3 +281,15 @@
     margin-bottom: 25px;
   }
 }
+
+.p-digitalpublicationsection-show {
+  .m-article-header--journal-article {
+    .m-article-header__text {
+      background-color: rgba(0,0,0,0.75);
+
+      .f-headline-editorial {
+        color: #fff;
+      }
+    }
+  }
+}
