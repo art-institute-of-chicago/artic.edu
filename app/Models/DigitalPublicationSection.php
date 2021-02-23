@@ -15,7 +15,7 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasBlocks;
 
-class DigitalPublicationSection extends Model implements Sortable
+class DigitalPublicationSection extends AbstractModel
 {
     use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, HasAuthors;
 
@@ -71,12 +71,12 @@ class DigitalPublicationSection extends Model implements Sortable
 
     const ABOUT = 'about';
     const TEXT = 'text';
-    const GALLERY = 'gallery';
+    const WORK = 'work';
 
     public static $types = [
         self::ABOUT => 'About',
         self::TEXT => 'Texts',
-        self::GALLERY => 'Galleries',
+        self::WORK => 'Works',
     ];
 
     public function scopePublished($query)
