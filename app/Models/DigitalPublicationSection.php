@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
+
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
@@ -73,8 +75,8 @@ class DigitalPublicationSection extends Model implements Sortable
 
     public static $types = [
         self::ABOUT => 'About',
-        self::TEXT => 'Text',
-        self::GALLERY => 'Gallery',
+        self::TEXT => 'Texts',
+        self::GALLERY => 'Galleries',
     ];
 
     public function scopePublished($query)
@@ -84,19 +86,9 @@ class DigitalPublicationSection extends Model implements Sortable
         })->visible()->wherePublished(true);
     }
 
-    public function scopeAbouts($query)
+    public function scopeSections($query, $type = 'about')
     {
-        return $query->where('type', 'about');
-    }
-
-    public function scopeTexts($query)
-    {
-        return $query->where('type', 'text');
-    }
-
-    public function scopeGalleries($query)
-    {
-        return $query->where('type', 'gallery');
+        return $query->where('type', $type);
     }
 
     public function getPublishedAttribute()

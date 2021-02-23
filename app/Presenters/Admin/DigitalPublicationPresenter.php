@@ -18,26 +18,11 @@ class DigitalPublicationPresenter extends BasePresenter
         }
     }
 
-    public function aboutsForLanding()
+    public function sectionsForLanding($type = 'about')
     {
-        return $this->aboutsForLanding ?? $this->aboutsForLanding = $this->entity->sections()
-            ->abouts()
-            ->published()
-            ->get();
-    }
-
-    public function textsForLanding()
-    {
-        return $this->textsForLanding ?? $this->textsForLanding = $this->entity->sections()
-            ->texts()
-            ->published()
-            ->get();
-    }
-
-    public function galleriesForLanding()
-    {
-        return $this->galleriesForLanding ?? $this->galleriesForLanding = $this->entity->sections()
-            ->galleries()
+        return $this->{$type . 'sForLanding'} ?? $this->{$type . 'sForLanding'} = $this->entity
+            ->sections()
+            ->sections($type)
             ->published()
             ->get();
     }
