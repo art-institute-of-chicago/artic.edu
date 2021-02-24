@@ -292,4 +292,31 @@
       }
     }
   }
+
+  .o-blocks {
+    padding-top: 5px;
+
+    .author-links {
+      a {
+        color: $color__link--accent;
+      }
+
+      a:hover {
+        color: $color__link--accent-hover;
+      }
+
+      a:active {
+        color: $color__link--accent-active;
+      }
+    }
+
+    .quote {
+      padding-top: 40px;
+      padding-bottom: 50px;
+      border-bottom: 1px solid #e6e6e6;
+      .quote__icon {
+        display: none;
+      }
+    }
+  }
 }

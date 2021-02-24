@@ -36,10 +36,10 @@
         @if ($item->showAuthorsWithLinks())
             @component('components.blocks._text')
                 @slot('font', 'f-tag-2')
+                @slot('variation', 'author-links')
                 @slot('tag', 'div')
                 {!! $item->showAuthorsWithLinks() !!}
             @endcomponent
-            <hr>
         @endif
 
         @php
@@ -62,7 +62,7 @@
                 @slot('variation', 'o-accordion--section o-blocks__block')
                 @slot('items', array(
                     array(
-                        'title' => "References",
+                        'title' => "Notes",
                         'active' => true,
                         'blocks' => array(
                             array(
