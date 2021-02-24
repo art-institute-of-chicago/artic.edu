@@ -79,7 +79,17 @@
     </a17-fieldset>
 
     <a17-fieldset id="fields_for_dsc_stub" title="Publication Fields">
-        <p>These fields are shown for full-fledged publications.</p>
+        <p style="margin-bottom: -20px">These fields are shown for full-fledged publications.</p>
+
+        <hr>
+
+        @formField('wysiwyg', [
+            'name' => 'sponsor_display',
+            'label' => 'Sponsors',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
     </a17-fieldset>
 
     @include('admin.partials.related')
