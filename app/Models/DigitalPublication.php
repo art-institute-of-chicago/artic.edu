@@ -28,6 +28,7 @@ class DigitalPublication extends AbstractModel
         'publish_end_date',
         'meta_title',
         'meta_description',
+        'is_dsc_stub',
     ];
 
     public $slugAttributes = [
@@ -41,6 +42,7 @@ class DigitalPublication extends AbstractModel
         'published',
         'active',
         'public',
+        'is_dsc_stub',
     ];
 
     public $dates = [

@@ -2,17 +2,11 @@
 
 @section('contentFields')
     <br /><strong><a href="{{ url('/collection/articles_publications/digitalPublications/' . $item->id . '/sections') }}">{{ $item->sections->count() }} Sections</a></strong>
+
     @formField('input', [
         'name' => 'title_display',
         'label' => 'Title formatting (optional)',
         'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-    ])
-
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Banner image',
-        'name' => 'banner',
-        'note' => 'Minimum image width 2000px'
     ])
 
     @formField('medias', [
@@ -25,11 +19,17 @@
     @formField('wysiwyg', [
         'name' => 'listing_description',
         'label' => 'Listing description',
-        'maxlength'  => 255,
         'note' => 'Max 255 characters',
         'toolbarOptions' => [
             'italic'
         ],
+    ])
+
+    @formField('medias', [
+        'with_multiple' => false,
+        'label' => 'Banner image',
+        'name' => 'banner',
+        'note' => 'Minimum image width 2000px'
     ])
 
 {{--
@@ -57,16 +57,30 @@
     ])
 --}}
 
-    @formField('block_editor', [
-        'blocks' => getBlocksForEditor([
-            'paragraph', 'image', 'video', 'media_embed', 'list',
-            'accordion', 'membership_banner', 'timeline', 'link', 'newsletter_signup_inline',
-            'hr', 'split_block', '3d_model'
-        ])
+    <hr>
+
+    @formField('checkbox', [
+        'name' => 'is_dsc_stub',
+        'label' => 'This page is a stub that links out to publications.artic.edu',
     ])
 @stop
 
 @section('fieldsets')
+    <a17-fieldset id="fields_for_dsc_stub" title="DSC Stub Fields">
+        <p style="margin-bottom: -20px">This content is only shown when the page is a DSC stub.</p>
+
+        @formField('block_editor', [
+            'blocks' => getBlocksForEditor([
+                'paragraph', 'image', 'video', 'media_embed', 'list',
+                'accordion', 'membership_banner', 'timeline', 'link', 'newsletter_signup_inline',
+                'hr', 'split_block', '3d_model'
+            ])
+        ])
+    </a17-fieldset>
+
+    <a17-fieldset id="fields_for_dsc_stub" title="Publication Fields">
+        <p>These fields are shown for full-fledged publications.</p>
+    </a17-fieldset>
 
     @include('admin.partials.related')
 
