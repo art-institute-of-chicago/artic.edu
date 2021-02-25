@@ -53,21 +53,23 @@
         @endif
 
         @php
-        global $_collectedReferences;
-        $_collectedReferences = [];
+        if ($item->type == \App\Models\DigitalPublicationSection::TEXT) {
+            global $_collectedReferences;
+            $_collectedReferences = [];
 
-        global $_paragraphCount;
-        $_paragraphCount = 0;
+            global $_paragraphCount;
+            $_paragraphCount = 0;
 
-        global $_figureCount;
-        $_figureCount = 0;
+            global $_figureCount;
+            $_figureCount = 0;
+        }
         @endphp
 
         {!! $item->renderBlocks(false, [], [
             'pageTitle' => $item->meta_title ?: $item->title,
         ]) !!}
 
-        @if (sizeof($_collectedReferences))
+        @if (isset($_collectedReferences) && sizeof($_collectedReferences))
             <hr class="hr">
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--no-hr',
