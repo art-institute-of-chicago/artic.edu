@@ -334,4 +334,11 @@
   .o-article__body.o-article__body--no-top-border {
     border-top: 0;
   }
+
+  .o-blocks.f-body>p,
+  .o-blocks.f-body>ol,
+  .o-blocks.f-body>ul {
+    font-family: $sans-serif-font--loaded;
+    font-weight: 300;
+  }
 }
