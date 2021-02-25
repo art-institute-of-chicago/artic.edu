@@ -68,6 +68,14 @@
         ],
     ])
 
+@formField('wysiwyg', [
+    'name' => 'bibliography',
+    'label' => 'Bibliography',
+    'toolbarOptions' => [
+        'italic', 'link', 'list-ordered', 'list-unordered'
+    ],
+])
+
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed', 'quote',

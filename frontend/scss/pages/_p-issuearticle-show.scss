@@ -319,4 +319,9 @@
       }
     }
   }
+
+  .o-blocks>ol,
+  .o-blocks>ul {
+    @extend .list;
+  }
 }

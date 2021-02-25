@@ -58,36 +58,46 @@
         ]) !!}
 
         @if (sizeof($_collectedReferences))
-            @component('components.organisms._o-accordion')
-                @slot('variation', 'o-accordion--section o-blocks__block')
-                @slot('items', array(
-                    array(
-                        'title' => "Notes",
-                        'active' => true,
-                        'blocks' => array(
-                            array(
-                                "type" => 'references',
-                                "items" => $_collectedReferences
-                            ),
-                        ),
-                    ),
-                ))
-                @slot('loopIndex', 'references')
-            @endcomponent
-        @endif
-
-        @if ($item->cite_as)
             <hr class="hr">
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--no-hr',
+                'titleFont' => 'f-list-3'
             ])
-                Recommended Citation
+                Notes
             @endcomponent
-            @component('components.blocks._text')
-                @slot('font', 'f-secondary')
-                @slot('tag', 'div')
-                {!! $item->cite_as !!}
+            @component('components.blocks._blocks')
+                @slot('blocks',
+                    [
+                        [
+                            'type' => 'references',
+                            'items' => $_collectedReferences
+                        ]
+                    ])
             @endcomponent
+        @endif
+
+        @if ($item->bibliography)
+            <hr class="hr">
+            @component('components.molecules._m-title-bar', [
+                'variation' => 'm-title-bar--no-hr',
+                'titleFont' => 'f-list-3'
+            ])
+                Bibliography
+            @endcomponent
+            @php
+                // Add `f-secondary` class to <ul> and <ol> tags
+                $dom = new DomDocument();
+                $dom->loadHTML('<?xml encoding="utf-8" ?>' . $item->bibliography, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+                $xpath = new DOMXpath($dom);
+                $nodes = $xpath->query('//ol | //ul');
+
+                foreach($nodes as $node) {
+                    $node->setAttribute('class', 'f-secondary');
+                }
+                $bibliography = $dom->saveHTML($dom);
+            @endphp
+            {!! $bibliography !!}
         @endif
     </div>
 </article>
