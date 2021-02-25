@@ -3,15 +3,17 @@
 @section('content')
 
 <article class="o-article">
-    @if (isset($item->sponsor_display))
-        <hr>
-
-        <div class="o-blocks">
-            <h2>Sponsors</h2>
+    <div class="o-article__body o-blocks">
+        @if (isset($item->sponsor_display))
+            @component('components.molecules._m-title-bar', [
+                'variation' => 'm-title-bar--compact m-title-bar--light',
+            ])
+                Sponsors
+            @endcomponent
 
             {!! $item->sponsor_display !!}
-        </div>
-    @endif
+        @endif
+    </div>
 </article>
 
 @endsection

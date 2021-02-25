@@ -1,5 +1,3 @@
-
-
 .m-title-bar {
   display: flex;
   position: relative;
@@ -14,6 +12,18 @@
 
   @include breakpoint('large+') {
     margin-top: 72px;
+  }
+
+  &.m-title-bar--compact {
+    margin-top: 24px;
+
+    @include breakpoint('small+') {
+      margin-top: 30px;
+    }
+
+    @include breakpoint('large+') {
+      margin-top: 36px;
+    }
   }
 
   &.m-title-bar--no-hr,
@@ -66,6 +76,11 @@
   background-color: $color__rules--quaternary;
 }
 
+// Simulates a thinner <hr/>, which is lighter, but taller
+.m-title-bar--light::before {
+  background-color: $color__rules--primary;
+}
+
 .m-title-bar .title {
   flex: 0 0 auto;
   margin-top: 0;
@@ -78,6 +93,10 @@
 
 .m-title-bar .title.f-module-title-2 {
   @include tucked-margin-top($f-module-title-2, ('xsmall': 60, 'small+': 68, 'medium+': 80));
+}
+
+.m-title-bar.m-title-bar--compact .title.f-module-title-2 {
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 32, 'small+': 40, 'medium+': 40));
 }
 
 .m-title-bar .title.f-numeral-date {
