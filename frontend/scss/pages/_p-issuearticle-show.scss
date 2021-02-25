@@ -325,4 +325,13 @@
   .o-blocks>ul {
     @extend .list;
   }
+
+  .m-article-header--generic-no-breadcrumb .m-article-header__text {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .o-article__body.o-article__body--no-top-border {
+    border-top: 0;
+  }
 }

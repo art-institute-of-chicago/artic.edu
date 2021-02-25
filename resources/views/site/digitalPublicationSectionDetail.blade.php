@@ -22,24 +22,34 @@
         @endcomponent
     </div>
 
-    @component('components.molecules._m-article-header----journal-article')
-        @slot('title', $item->present()->title)
-        @slot('title_display', $item->present()->title_display)
-        @slot('img', $item->imageFront('hero'))
-    @endcomponent
+    @if ($item->type == \App\Models\DigitalPublicationSection::TEXT)
+        @component('components.molecules._m-article-header----journal-article')
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display)
+            @slot('img', $item->imageFront('hero'))
+        @endcomponent
+    @else
+        @component('components.molecules._m-article-header')
+            @slot('headerType', 'generic')
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display ?? null) {{-- TODO: Populate this? --}}
+        @endcomponent
+    @endif
 
     <div class="o-article__secondary-actions">
         {{-- Intentionally left blank for layout --}}
     </div>
 
-    <div class="o-article__body o-blocks o-blocks--with-sidebar">
-        @if ($item->showAuthorsWithLinks())
-            @component('components.blocks._text')
-                @slot('font', 'f-tag-2')
-                @slot('variation', 'author-links')
-                @slot('tag', 'div')
-                {!! $item->showAuthorsWithLinks() !!}
-            @endcomponent
+    <div class="o-article__body o-blocks o-blocks--with-sidebar {{ $item->type != \App\Models\DigitalPublicationSection::TEXT ? "o-article__body--no-top-border" : "" }}">
+        @if ($item->type == \App\Models\DigitalPublicationSection::TEXT)
+            @if ($item->showAuthorsWithLinks())
+                @component('components.blocks._text')
+                    @slot('font', 'f-tag-2')
+                    @slot('variation', 'author-links')
+                    @slot('tag', 'div')
+                    {!! $item->showAuthorsWithLinks() !!}
+                @endcomponent
+            @endif
         @endif
 
         @php
