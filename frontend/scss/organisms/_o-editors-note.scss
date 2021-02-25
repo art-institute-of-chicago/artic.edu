@@ -21,6 +21,7 @@
   }
 
   .o-editors-note__tag {
+    margin-left: 1px;
     margin-bottom: 9px;
 
     @include breakpoint('small+') {
