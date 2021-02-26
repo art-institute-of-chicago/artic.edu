@@ -11,6 +11,7 @@ use App\Helpers\DatesHelpers;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use LakeviewImageService;
+use DOMDocument;
 
 class ArtworkPresenter extends BasePresenter
 {
@@ -60,7 +61,7 @@ class ArtworkPresenter extends BasePresenter
               "type"    => 'itemprop',
               "content" => [[
                 "type"    => 'text',
-                "content" => $this->entity->descriptionFiltered,
+                "content" => $this->getFilteredDescription(),
               ]],
               'itemprop' => 'description',
             ]);
@@ -135,6 +136,38 @@ class ArtworkPresenter extends BasePresenter
         }
 
         return 'Currently Off View';
+    }
+
+    private function getFilteredDescription()
+    {
+        $html = strip_tags($this->entity->description, implode('', [
+            '<a>',
+            '<p>',
+            '<br>',
+            '<em>',
+            '<strong>',
+            '<table>',
+            '<thead>',
+            '<tbody>',
+            '<tr>',
+            '<td>',
+        ]));
+
+        $doc = new DOMDocument();
+        $doc->loadHTML('<?xml encoding="utf-8" ?>' . $html);
+
+        foreach ($doc->getElementsByTagName('table') as $table) {
+            $tempHtml = view('components.molecules._m-table', [
+                'tableHtml' => '<table>' . $doc->saveHTML($table) . '</table>',
+            ])->render();
+
+            $fragment = $doc->createDocumentFragment();
+            $fragment->appendXML($tempHtml);
+
+            $table->parentNode->replaceChild($fragment, $table);
+        }
+
+        return $doc->saveHTML($doc->documentElement);
     }
 
     /**

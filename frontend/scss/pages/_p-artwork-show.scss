@@ -1,0 +1,20 @@
+.p-artwork-show {
+  [itemprop="description"] table {
+    margin-top: 30px;
+
+    td,
+    th {
+      padding: 8px 12px 8px;
+      border-top: none;
+      border-bottom: none;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+}
