@@ -63,71 +63,78 @@ Intended for very simple m-tables..
   padding-bottom: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-}
 
-.m-table table {
-  width: 100%;
-  border-collapse: collapse;
-}
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
-.m-table caption {
+  caption {
     margin-bottom: 40px;
-}
+  }
 
-.m-table th,
-.m-table td {
-  padding: 15px 12px 23px;
-  border-top: 1px solid $color__rules--primary;
-  border-bottom: 1px solid $color__rules--primary;
-  font-weight: normal;
-  text-align: left;
-  white-space: nowrap;
+  th,
+  td {
+    padding: 15px 12px 23px;
+    border-top: 1px solid $color__rules--primary;
+    border-bottom: 1px solid $color__rules--primary;
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
 
-  @include breakpoint('xsmall') {
-    padding-right: 7px;
+    @include breakpoint('xsmall') {
+      padding-right: 7px;
+    }
+  }
+
+  &.m-table--minimal {
+    th,
+    td {
+      border-top: 0;
+    }
+
+    tr:last-child th,
+    tr:last-child td {
+      border-bottom: 0;
+    }
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: 0;
+  }
+
+  td[rowspan],
+  td[colspan] {
+    background: $color__bg--primary;
+    text-align: left;
+    vertical-align: middle;
+
+    @include breakpoint('small+') {
+      text-align: center;
+    }
+  }
+
+  .f-module-title-1 {
+    @include tucked-align-top($f-module-title-1);
+    display: inline-block;
+  }
+
+  .f-secondary {
+    @include tucked-align-top($f-secondary);
+    display: inline-block;
+    font-style: normal;
+  }
+
+  .f-tag {
+    @include tucked-align-top($f-tag);
+    display: inline-block;
+    color: $color__text--title;
   }
 }
 
-.m-table.m-table--minimal th,
-.m-table.m-table--minimal td {
-  border-top: 0;
-}
-
-.m-table th:first-child,
-.m-table td:first-child {
-  padding-left: 0;
-}
-
-.m-table.m-table--minimal tr:last-child th,
-.m-table.m-table--minimal tr:last-child td{
-  border-bottom: 0;
-}
 
 
-.m-table td[rowspan],
-.m-table td[colspan] {
-  background: $color__bg--primary;
-  text-align: left;
-  vertical-align: middle;
 
-  @include breakpoint('small+') {
-    text-align: center;
-  }
-}
 
-.m-table .f-module-title-1 {
-  @include tucked-align-top($f-module-title-1);
-  display: inline-block;
-}
 
-.m-table .f-secondary {
-  @include tucked-align-top($f-secondary);
-  display: inline-block;
-  font-style: normal;
-}
-
-.m-table .f-tag {
-  @include tucked-align-top($f-tag);
-  display: inline-block;
-  color: $color__text--title;
-}
