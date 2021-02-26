@@ -78,6 +78,9 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('printedPublications');
         Route::module('digitalPublications');
         Route::module('digitalPublications.sections');
+
+        // WEB-1963: Browser for nested modules must be implemented manually
+        Route::name('collection.articles_publications.digitalPublications.sections.subbrowser')->get('digitalPublicationsFoo/{digitalPublication}/sections/browser', 'DigitalPublicationSectionController@browser');
     });
 
     Route::module('galleries');

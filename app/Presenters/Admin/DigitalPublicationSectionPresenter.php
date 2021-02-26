@@ -21,6 +21,19 @@ class DigitalPublicationSectionPresenter extends BasePresenter
         return config('aic.pdf_s3_endpoint') . $this->entity->pdf_download_path;
     }
 
+    public function getSectionUrl($digitalPublication, $section = null)
+    {
+        $section = $section ?? $this->entity;
+
+        return route('collection.publications.digital-publications-sections.show', [
+            'pubId' => $digitalPublication->id,
+            'pubSlug' => $digitalPublication->slug,
+            'type' => $section->type,
+            'id' => $section->id,
+            'slug' => $section->slug,
+        ]);
+    }
+
     public function sectionsForSidebar()
     {
         $currentSection = $this->entity;

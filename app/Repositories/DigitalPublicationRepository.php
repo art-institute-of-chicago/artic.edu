@@ -34,4 +34,31 @@ class DigitalPublicationRepository extends ModuleRepository
             'page' => $item,
         ];
     }
+
+    public function afterSave($object, $fields)
+    {
+        $this->updateRelatedBrowser($object, $fields, 'welcome_note_section');
+
+        parent::afterSave($object, $fields);
+    }
+
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+
+        $fields['browsers']['welcome_note_section'] = $this->getFormFieldsForRelatedBrowser($object, 'welcome_note_section');
+
+        return $fields;
+    }
+
+    public function getWelcomeNote($item)
+    {
+        $welcomeNotes = $item->getRelated('welcome_note_section');
+
+        if (!config('aic.is_preview_mode')) {
+            $welcomeNotes = $welcomeNotes->where('published', true);
+        }
+
+        return $welcomeNotes->first();
+    }
 }

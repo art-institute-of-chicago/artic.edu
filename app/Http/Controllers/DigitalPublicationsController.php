@@ -59,6 +59,7 @@ class DigitalPublicationsController extends BaseScopedController
             'item' => $item,
             'contrastHeader' => false,
             'borderlessHeader' => false,
+            'welcomeNote' => $this->repository->getWelcomeNote($item),
         ]);
     }
 

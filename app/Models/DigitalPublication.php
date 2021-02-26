@@ -30,6 +30,7 @@ class DigitalPublication extends AbstractModel
         'meta_description',
         'is_dsc_stub',
         'sponsor_display',
+        'welcome_note_display',
     ];
 
     public $slugAttributes = [

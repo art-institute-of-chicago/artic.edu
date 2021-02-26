@@ -84,6 +84,25 @@
         <hr>
 
         @formField('wysiwyg', [
+            'name' => 'welcome_note_display',
+            'label' => 'Welcome note text',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        @formField('browser', [
+            'name' => 'welcome_note_section',
+            'label' => 'Welcome note section',
+            'endpoint' => route('admin.collection.articles_publications.digitalPublications.sections.subbrowser',[
+                'digitalPublication' => $item->id,
+            ]),
+            'max' => 1,
+        ])
+
+        <hr>
+
+        @formField('wysiwyg', [
             'name' => 'sponsor_display',
             'label' => 'Sponsors',
             'toolbarOptions' => [
