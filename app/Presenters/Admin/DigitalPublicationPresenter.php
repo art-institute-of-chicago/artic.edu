@@ -18,6 +18,11 @@ class DigitalPublicationPresenter extends BasePresenter
         }
     }
 
+    protected function isDscStub()
+    {
+        return $this->entity->is_dsc_stub ? 'Yes' : 'No';
+    }
+
     public function sectionsForLanding($type = 'about')
     {
         return $this->{$type . 'sForLanding'} ?? $this->{$type . 'sForLanding'} = $this->entity
