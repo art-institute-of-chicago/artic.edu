@@ -40,6 +40,16 @@
         {{-- Intentionally left blank for layout --}}
     </div>
 
+    @if ($item->heading)
+    <div class="o-article__intro">
+      @component('components.blocks._text')
+          @slot('font', 'f-body-editorial')
+          @slot('tag', 'div')
+          {!! $item->present()->heading !!}
+      @endcomponent
+    </div>
+    @endif
+
     <div class="o-article__body o-blocks o-blocks--with-sidebar {{ $item->type != \App\Models\DigitalPublicationSection::TEXT ? "o-article__body--no-top-border f-body" : "" }}">
         @if ($item->type == \App\Models\DigitalPublicationSection::TEXT)
             @if ($item->showAuthorsWithLinks())

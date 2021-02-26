@@ -282,6 +282,13 @@
   }
 }
 
+/***
+
+Digital Publications
+=====
+
+Styling related specifically to digital publications
+***/
 .p-digitalpublicationsection-show {
   .m-article-header--journal-article {
     .m-article-header__text {
@@ -340,5 +347,30 @@
   .o-blocks.f-body>ul {
     font-family: $sans-serif-font--loaded;
     font-weight: 300;
+  }
+
+  // Heading
+  .o-article__intro {
+    padding-top: 0;
+  }
+
+  // Gallery block in the light theme
+  .o-gallery.o-gallery----theme-2 {
+    background-color: $color__bg;
+    border-top: 1px solid $color__rules--secondary;
+
+    .hr {
+      border-top: 0;
+    }
+
+    .o-gallery__title.f-module-title-2 {
+      margin-top: 20px;
+    }
+
+    .o-gallery__caption .f-caption {
+      @extend %f-body;
+      font-family: $sans-serif-font--loaded;
+      font-weight: 300;
+    }
   }
 }

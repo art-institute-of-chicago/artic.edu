@@ -41,7 +41,15 @@
         'name' => 'list_description',
         'label' => 'List description',
         'maxlength' => 255,
-        'note' => 'Max 255 characters. Will be used on the issue landing, search, and social media.',
+        'note' => 'Max 255 characters. Will be used on the main landing, search, and social media.',
+        'toolbarOptions' => [
+            'italic'
+        ],
+    ])
+
+    @formField('wysiwyg', [
+        'name' => 'heading',
+        'label' => 'Heading',
         'toolbarOptions' => [
             'italic'
         ],

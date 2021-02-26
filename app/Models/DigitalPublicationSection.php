@@ -25,12 +25,12 @@ class DigitalPublicationSection extends AbstractModel
     protected $fillable = [
         'published',
         'title',
-        'description',
         'title_display',
         'short_title_display',
         'list_description',
         'date',
         'type',
+        'heading',
         'author_display',
         'publish_start_date',
         'digital_publication_id',
