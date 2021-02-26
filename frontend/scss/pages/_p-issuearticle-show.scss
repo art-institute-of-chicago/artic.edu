@@ -1,4 +1,5 @@
-.p-issuearticle-show {
+.p-issuearticle-show,
+.p-digitalpublicationsection-show {
   @extend %sticky-sidebar;
 
   @each $name in ('xsmall', 'small', 'medium') {
@@ -278,5 +279,66 @@
   .m-article-actions {
     margin-top: 25px;
     margin-bottom: 25px;
+  }
+}
+
+.p-digitalpublicationsection-show {
+  .m-article-header--journal-article {
+    .m-article-header__text {
+      background-color: rgba(0,0,0,0.75);
+
+      .f-headline-editorial {
+        color: #fff;
+      }
+    }
+  }
+
+  .o-blocks {
+    padding-top: 5px;
+
+    .author-links {
+      a {
+        color: $color__link--accent;
+      }
+
+      a:hover {
+        color: $color__link--accent-hover;
+        text-decoration: underline;
+      }
+
+      a:active {
+        color: $color__link--accent-active;
+      }
+    }
+
+    .quote {
+      padding-top: 40px;
+      padding-bottom: 50px;
+      border-bottom: 1px solid #e6e6e6;
+      .quote__icon {
+        display: none;
+      }
+    }
+  }
+
+  .o-blocks>ol,
+  .o-blocks>ul {
+    @extend .list;
+  }
+
+  .m-article-header--generic-no-breadcrumb .m-article-header__text {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .o-article__body.o-article__body--no-top-border {
+    border-top: 0;
+  }
+
+  .o-blocks.f-body>p,
+  .o-blocks.f-body>ol,
+  .o-blocks.f-body>ul {
+    font-family: $sans-serif-font--loaded;
+    font-weight: 300;
   }
 }

@@ -13,23 +13,43 @@
 
     position: absolute;
 
-    height: 44px;
-    width: 44px;
-
     /* center the element */
     left: 50%;
     top: 50%;
 
-    margin-left: -22px;
-    margin-top: -22px;
+    // Overflow of divider is hidden by .m-media__img
+    .m-image-slider__handle__divider {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background-color: white;
+      width: 3px;
+      height: 100vh;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
 
-    border-radius: 50%;
+    .m-image-slider__handle__circle {
+      position: absolute;
 
-    background: #8e847d !important;
-    cursor: move;
+      height: 45px;
+      width: 45px;
 
-    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    z-index: 2;
+      /* center the element */
+      left: 50%;
+      top: 50%;
+
+      margin-left: -23px;
+      margin-top: -23px;
+
+      border-radius: 50%;
+
+      background: #8e847d !important;
+      cursor: move;
+
+      box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      z-index: 3;
+    }
 
     &.draggable {
       background-color: #445b7c;

@@ -17,15 +17,20 @@
         <div class="m-media__contain--spacer" style="padding-bottom: {{ min(2/3, intval($height ?? 10) / intval($width ?? 16)) * 100 }}%"></div>
         <div class="m-image-slider">
             <div class="m-image-slider__viewer" data-behavior="imageSlider" data-images="{{ json_encode($imageData) }}">
-                @component('components.atoms._img')
-                    @slot('image', $referenceImage)
-                    @slot('settings', array(
-                        'fit' => 'crop',
-                        'ratio' => '1:1',
-                    ))
-                @endcomponent
+                @if (app('printservice')->isPrintMode())
+                    @component('components.atoms._img')
+                        @slot('image', $referenceImage)
+                        @slot('settings', array(
+                            'fit' => 'crop',
+                            'ratio' => '1:1',
+                        ))
+                    @endcomponent
+                @endif
                 <div class="m-image-slider__handle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#FFF" d="M13 21l-5-5 5-5m6 0l5 5-5 5"/></svg>
+                    <div class="m-image-slider__handle__divider"></div>
+                    <div class="m-image-slider__handle__circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#FFF" d="M13 21l-5-5 5-5m6 0l5 5-5 5"/></svg>
+                    </div>
                 </div>
             </div>
 

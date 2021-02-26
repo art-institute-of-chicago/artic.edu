@@ -57,11 +57,6 @@ class Artwork extends BaseApiModel
         return (bool) $this->fiscal_year_deaccession;
     }
 
-    public function getDescriptionFilteredAttribute()
-    {
-        return strip_tags($this->description, '<a><p><br><em><strong>');
-    }
-
     public function getFullTitleAttribute()
     {
         $artist = $this->mainArtist ? $this->mainArtist->first() : null;

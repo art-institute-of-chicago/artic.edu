@@ -5,6 +5,7 @@
 
         @component('components.blocks._text')
             @slot('font', 'f-tag')
+            @slot('variation', 'o-editors-note__tag')
             Editor’s Note
         @endcomponent
 

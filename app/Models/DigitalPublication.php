@@ -28,19 +28,23 @@ class DigitalPublication extends AbstractModel
         'publish_end_date',
         'meta_title',
         'meta_description',
+        'is_dsc_stub',
+        'sponsor_display',
+        'welcome_note_display',
     ];
 
     public $slugAttributes = [
         'title',
     ];
 
-    protected $presenter = 'App\Presenters\Admin\GenericPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
+    protected $presenter = 'App\Presenters\Admin\DigitalPublicationPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationPresenter';
 
     public $checkboxes = [
         'published',
         'active',
         'public',
+        'is_dsc_stub',
     ];
 
     public $dates = [
@@ -48,7 +52,7 @@ class DigitalPublication extends AbstractModel
         'publish_end_date',
     ];
 
-    public $sections = [];
+    public $searchSections = [];
 
     public $mediasParams = [
         'listing' => [
@@ -126,14 +130,19 @@ class DigitalPublication extends AbstractModel
         ));
     }
 
-    public function sections()
+    public function searchSections()
     {
-        return $this->sections;
+        return $this->searchSections;
     }
 
-    public function addSection($section)
+    public function addSearchSection($section)
     {
-        return $this->sections[] = $section;
+        return $this->searchSections[] = $section;
+    }
+
+    public function sections()
+    {
+        return $this->hasMany('App\Models\DigitalPublicationSection', 'digital_publication_id');
     }
 
     protected function transformMappingInternal()

@@ -37,6 +37,7 @@ Route::name('collection.publications.printed-publications.show')->get('/print-pu
 // Collection Publications Digital Publications
 Route::name('collection.publications.digital-publications')->get('/digital-publications', 'DigitalPublicationsController@index');
 Route::name('collection.publications.digital-publications.show')->get('/digital-publications/{id}', 'DigitalPublicationsController@show');
+Route::name('collection.publications.digital-publications-sections.show')->get('/digital-publications/{pubId}/{pubSlug}/{type}/{id}/{slug?}', 'DigitalPublicationSectionController@show');
 
 // Collection Research
 Route::name('collection.research_resources')->get('/collection/research_resources', 'ResearchController@index');

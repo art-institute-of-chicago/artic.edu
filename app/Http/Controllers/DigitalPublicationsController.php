@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Repositories\DigitalPublicationRepository;
 use App\Models\DigitalPublication;
+use App\Repositories\DigitalPublicationRepository;
 
 class DigitalPublicationsController extends BaseScopedController
 {
@@ -48,9 +48,23 @@ class DigitalPublicationsController extends BaseScopedController
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
-        $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->listing_description);
+        $this->seo->setDescription($item->meta_description ?? $item->listing_description);
         $this->seo->setImage($item->imageFront('listing'));
 
+        if ($item->is_dsc_stub) {
+            return $this->showDscStub($item);
+        }
+
+        return view('site.digitalPublicationDetail', [
+            'item' => $item,
+            'contrastHeader' => false,
+            'borderlessHeader' => false,
+            'welcomeNote' => $this->repository->getWelcomeNote($item),
+        ]);
+    }
+
+    private function showDscStub($item)
+    {
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
             ['label' => 'Digital Publications', 'href' => route('collection.publications.digital-publications')],
@@ -59,15 +73,10 @@ class DigitalPublicationsController extends BaseScopedController
 
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($item->imageFront('banner'))),
-            'nav'    => null,
-            'intro'  => $item->short_description,
             'headerImage' => $item->imageFront('banner'),
             'title' => $item->title,
             'breadcrumb' => $crumbs,
             'page' => $item,
         ]);
-
-
     }
-
 }

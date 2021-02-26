@@ -69,7 +69,7 @@ class IssueArticlePresenter extends BasePresenter
                                     'is_active' => $article->id === $currentArticle->id,
                                 ];
                             }),
-                    ]
+                    ],
                 ],
             ],
         ];

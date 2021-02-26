@@ -145,7 +145,6 @@ Route::get('/', function () {
  *        @SWG\Property(property="published", type="boolean", description="Published State of Article"),
  *        @SWG\Property(property="date", type="datetime", description="Date"),
  *        @SWG\Property(property="copy", type="json", description="Copy"),
- *        @SWG\Property(property="is_boosted", type="boolean", description="Is Boosted"),
  *        @SWG\Property(property="slug", type="string", description="Slug"),
  *        @SWG\Property(property="web_url", type="string", description="Web Url"),
  *        @SWG\Property(property="heading", type="string", description="Heading"),

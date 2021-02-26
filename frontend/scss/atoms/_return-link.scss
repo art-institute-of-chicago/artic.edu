@@ -31,6 +31,12 @@ Used in article references, demo'd inside a list:
   .o-blocks >.f-secondary & {
     background: none;
   }
+
+  svg {
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+  }
 }
 
 .return-link::before {
