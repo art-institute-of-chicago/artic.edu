@@ -153,6 +153,9 @@ class ArtworkPresenter extends BasePresenter
             '<td>',
         ]));
 
+        // https://stackoverflow.com/questions/1685277
+        $internalErrors = libxml_use_internal_errors(true);
+
         $doc = new DOMDocument();
         $doc->loadHTML('<?xml encoding="utf-8" ?>' . $html);
 
@@ -167,7 +170,11 @@ class ArtworkPresenter extends BasePresenter
             $table->parentNode->replaceChild($fragment, $table);
         }
 
-        return $doc->saveHTML($doc->documentElement);
+        $result = $doc->saveHTML($doc->documentElement);
+
+        libxml_use_internal_errors($internalErrors);
+
+        return $result;
     }
 
     /**
