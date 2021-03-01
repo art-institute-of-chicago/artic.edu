@@ -57,8 +57,9 @@ class DigitalPublicationsController extends BaseScopedController
 
         return view('site.digitalPublicationDetail', [
             'item' => $item,
-            'contrastHeader' => false,
+            'contrastHeader' => true,
             'borderlessHeader' => false,
+            'unstickyHeader' => true,
             'welcomeNote' => $this->repository->getWelcomeNote($item),
         ]);
     }

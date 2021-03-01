@@ -18,4 +18,8 @@ For those times when you just don't want the navigation to get in the way of the
       display: block;
     }
   }
+
+  &.s-contrast-header #a17 .g-header {
+    position: absolute;
+  }
 }
