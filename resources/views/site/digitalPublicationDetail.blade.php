@@ -37,7 +37,7 @@
                         @slot('variation', 'm-listing--journal')
                         @slot('href', $section->present()->getSectionUrl($item))
                         @slot('image', $section->imageFront('hero'))
-                        @slot('type', $section->present()->type)
+                        @slot('type', $section->present()->getSectionType())
                         @slot('title', $section->present()->title)
                         @slot('title_display', $section->present()->title_display)
                         @slot('list_description', $section->present()->list_description)

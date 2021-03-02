@@ -34,6 +34,24 @@ class DigitalPublicationSectionPresenter extends BasePresenter
         ]);
     }
 
+    public function getSectionType()
+    {
+        if (isset($this->entity->type_display)) {
+            return $this->entity->type_display;
+        }
+
+        switch ($this->entity->type) {
+            case DigitalPublicationSection::TEXT:
+                return 'Essay';
+                break;
+            case DigitalPublicationSection::WORK:
+                return 'Gallery';
+                break;
+        }
+
+        return $this->entity->type;
+    }
+
     public function sectionsForSidebar()
     {
         $currentSection = $this->entity;

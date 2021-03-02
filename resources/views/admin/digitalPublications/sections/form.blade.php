@@ -37,6 +37,12 @@
         'options' => $typesList,
     ])
 
+    @formField('input', [
+        'name' => 'type_display',
+        'label' => 'Type display override',
+        'note' => 'Used for section cards on the publication page',
+    ])
+
     @formField('wysiwyg', [
         'name' => 'list_description',
         'label' => 'List description',
