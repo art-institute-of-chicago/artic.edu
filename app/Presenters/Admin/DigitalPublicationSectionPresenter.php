@@ -49,7 +49,7 @@ class DigitalPublicationSectionPresenter extends BasePresenter
                             'links' => $this->entity
                                 ->digitalPublication
                                 ->present()
-                                ->sectionsForLanding($type)
+                                ->getSections($type)
                                 ->map(function($section) use ($currentSection) {
                                     return [
                                         'label' => $section->title,

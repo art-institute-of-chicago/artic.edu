@@ -1,3 +1,7 @@
+@php
+    use App\Models\DigitalPublicationSection;
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -18,6 +22,41 @@
                     @slot('articleLink', $welcomeNote->present()->getSectionUrl($item))
                 @endcomponent
             </div>
+        @endif
+
+        @if ($item->present()->hasSections(DigitalPublicationSection::TEXT))
+            @component('components.organisms._o-grid-listing')
+                @slot('variation', 'o-grid-listing--journal')
+                @slot('cols_xsmall','1')
+                @slot('cols_small','2')
+                @slot('cols_medium','2')
+                @slot('cols_large','2')
+                @slot('cols_xlarge','2')
+                @foreach ($item->present()->getSections(DigitalPublicationSection::TEXT) as $section)
+                    @component('components.molecules._m-listing----publication')
+                        @slot('variation', 'm-listing--journal')
+                        @slot('href', $section->present()->getSectionUrl($item))
+                        @slot('image', $section->imageFront('hero'))
+                        @slot('type', $section->present()->type)
+                        @slot('title', $section->present()->title)
+                        @slot('title_display', $section->present()->title_display)
+                        @slot('list_description', $section->present()->list_description)
+                        @slot('author_display', $section->showAuthors())
+                        @slot('imageSettings', array(
+                            'fit' => 'crop',
+                            'ratio' => '16:9',
+                            'srcset' => array(200,400,600),
+                            'sizes' => aic_imageSizes(array(
+                                  'xsmall' => '216px',
+                                  'small' => '216px',
+                                  'medium' => '18',
+                                  'large' => '13',
+                                  'xlarge' => '13',
+                            )),
+                        ))
+                    @endcomponent
+                @endforeach
+            @endcomponent
         @endif
 
         @if (isset($item->sponsor_display))

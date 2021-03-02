@@ -87,11 +87,6 @@ class DigitalPublicationSection extends AbstractModel
         })->visible()->wherePublished(true);
     }
 
-    public function scopeSections($query, $type = 'about')
-    {
-        return $query->where('type', $type);
-    }
-
     public function getPublishedAttribute()
     {
         return ($this->digitalPublication->isPublished ?? false) && $this->isPublished;
