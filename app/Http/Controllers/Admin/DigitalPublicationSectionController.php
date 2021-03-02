@@ -22,16 +22,15 @@ class DigitalPublicationSectionController extends ModuleController
         'title' => [
             'title' => 'Title',
             'edit_link' => true,
-            'sort' => true,
             'field' => 'title',
         ],
         'type' => [
             'title' => 'Type',
             'field' => 'type',
             'present' => true,
-            'sort' => true,
         ],
     ];
+
     protected function getParentModuleForeignKey()
     {
         return 'digital_publication_id';

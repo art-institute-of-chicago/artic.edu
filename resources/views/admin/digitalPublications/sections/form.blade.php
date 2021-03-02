@@ -50,6 +50,7 @@
     @formField('wysiwyg', [
         'name' => 'heading',
         'label' => 'Heading',
+        'note' => 'Only intended for Works sections.',
         'toolbarOptions' => [
             'italic'
         ],
