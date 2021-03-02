@@ -26,7 +26,6 @@ class DigitalPublicationSection extends AbstractModel
         'published',
         'title',
         'title_display',
-        'short_title_display',
         'list_description',
         'date',
         'type',

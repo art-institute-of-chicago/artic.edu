@@ -7,12 +7,6 @@
         'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
     ])
 
-    @formField('input', [
-        'name' => 'short_title_display',
-        'label' => 'Short title',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-    ])
-
     @formField('date_picker', [
         'name' => 'date',
         'label' => 'Display date',
