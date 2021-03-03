@@ -57,22 +57,6 @@ class ArticleRepository extends ModuleRepository
         return collect($this->model::$articleLayouts);
     }
 
-    public function getRelatedItems($item)
-    {
-        // Get items set specifically in the CMS
-        $relatedItems = $item->getRelatedWithApiModels("further_reading_items", [], [
-            'articles' => false,
-            'experiences' => false
-        ]);
-
-        // Append with auto-fills
-        $category_ids = $item->categories->pluck('id')->all();
-        $relatedItems = $relatedItems->concat(\App\Models\Article::byCategories($category_ids)->published()->notUnlisted()->orderBy('date', 'desc')->take(5)->get());
-
-        // Return the first four
-        return $relatedItems->slice(0, 4)->values();
-    }
-
     public function searchApi($string, $perPage = null)
     {
         $search  = Search::query()->search($string)->published()->resources(['articles']);
@@ -93,10 +77,40 @@ class ArticleRepository extends ModuleRepository
 
     public function getFurtherReadingItems($item)
     {
-        if ($item->is_in_magazine && $item->is_unlisted) {
-            return $this->getAlsoInThisIssue($item);
+        $relatedItems = $this->getCustomRelateditems($item);
+
+        if ($relatedItems->count() > 3) {
+            return $relatedItems;
         }
 
-        return $this->getRelatedItems($item);
+        if ($item->is_in_magazine && $item->is_unlisted) {
+            $relatedIds = $relatedItems->pluck('id')->all();
+            $autoRelated = $this->getAlsoInThisIssue($item) ?? collect([]);
+            $autoRelated = $autoRelated->filter(function($item) use ($relatedIds) {
+                return !in_array($item->id, $relatedIds);
+            });
+        } else {
+            $categoryIds = $item->categories->pluck('id')->all();
+            $autoRelated = Article::query()
+                ->byCategories($categoryIds)
+                ->published()
+                ->notUnlisted()
+                ->orderBy('date', 'desc')
+                ->take(5)
+                ->get();
+        }
+
+        $relatedItems = $relatedItems->concat($autoRelated);
+
+        return $relatedItems->slice(0, 4)->values();
+    }
+
+    protected function getCustomRelateditems($item)
+    {
+        return $item
+            ->getRelated('further_reading_items')
+            ->filter(function($item) {
+                return $item->is_published === true;
+            });
     }
 }
