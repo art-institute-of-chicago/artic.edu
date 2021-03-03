@@ -70,7 +70,7 @@ class SelectionRepository extends ModuleRepository
 
     public function getFurtherReadingTitle($item)
     {
-        if ($item->is_in_magazine && $item->is_unlisted) {
+        if ($this->isInMagazine($item) && $item->is_unlisted) {
             return 'Also in this Issue';
         }
 
