@@ -110,7 +110,7 @@ class InteractiveFeatureExperiencesController extends FrontController
         $articles = null;
         $alsoInThisIssue = null;
 
-        if ($experience->is_unlisted) {
+        if ($experience->is_in_magazine) {
             $alsoInThisIssue = $this->repository->getAlsoInThisIssue($experience) ?? null;
         }
         else {

@@ -144,7 +144,7 @@ class ArticleController extends FrontController
         $featuredArticles = null;
         $alsoInThisIssue = null;
 
-        if ($item->is_unlisted) {
+        if ($item->is_in_magazine) {
             $alsoInThisIssue = $this->repository->getAlsoInThisIssue($item) ?? null;
         }
         else {

@@ -83,6 +83,11 @@
         'label' => 'Don\'t show this article in listings',
     ])
 
+    @formField('checkbox', [
+        'name' => 'is_in_magazine',
+        'label' => 'Assume this article is featured in a magazine issue',
+    ])
+
     @formField('wysiwyg', [
         'name' => 'citations',
         'label' => 'Citation',
