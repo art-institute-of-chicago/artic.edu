@@ -327,16 +327,12 @@
     @endcomponent
 @endif
 
-@foreach (['featuredArticles', 'alsoInThisIssue'] as $relatedType)
-    @if (isset($$relatedType) && $$relatedType)
-        <section>
-            @component('site.shared._relatedItems')
-                @slot('title', $relatedType == 'featuredArticles' ? 'Further Reading' : 'Also in this Issue')
-                @slot('relatedItems', $$relatedType)
-            @endcomponent
-        </section>
-    @endif
-@endforeach
+<section>
+    @component('site.shared._relatedItems')
+        @slot('title', $furtherReadingTitle ?? null)
+        @slot('relatedItems', $furtherReadingItems ?? null)
+    @endcomponent
+</section>
 
 @if ($item->exploreFurther)
 <div id="exploreFurther">

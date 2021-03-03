@@ -82,8 +82,8 @@
 </article>
 
 @component('site.shared._relatedItems')
-    @slot('title', 'Also in this Issue')
-    @slot('relatedItems', $alsoInThisIssue ?? null)
+    @slot('title', $furtherReadingTitle ?? null)
+    @slot('relatedItems', $furtherReadingItems ?? null)
 @endcomponent
 
 @if ($exploreFurther || $exploreFurtherAllTags)

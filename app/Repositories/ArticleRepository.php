@@ -81,4 +81,22 @@ class ArticleRepository extends ModuleRepository
 
         return $results;
     }
+
+    public function getFurtherReadingTitle($item)
+    {
+        if ($item->is_in_magazine && $item->is_unlisted) {
+            return 'Also in this Issue';
+        }
+
+        return 'Further Reading';
+    }
+
+    public function getFurtherReadingItems($item)
+    {
+        if ($item->is_in_magazine && $item->is_unlisted) {
+            return $this->getAlsoInThisIssue($item);
+        }
+
+        return $this->getRelatedItems($item);
+    }
 }

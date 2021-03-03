@@ -141,21 +141,11 @@ class ArticleController extends FrontController
             $item->topics = $item->categories;
         }
 
-        $featuredArticles = null;
-        $alsoInThisIssue = null;
-
-        if ($item->is_in_magazine) {
-            $alsoInThisIssue = $this->repository->getAlsoInThisIssue($item) ?? null;
-        }
-        else {
-            $featuredArticles = $this->repository->getRelatedItems($item) ?? null;
-        }
-
         return view('site.articleDetail', [
             'item' => $item,
             'contrastHeader' => $item->present()->contrastHeader,
-            'featuredArticles'     => $featuredArticles ?? null,
-            'alsoInThisIssue'     => $alsoInThisIssue ?? null,
+            'furtherReadingTitle' => $this->repository->getFurtherReadingTitle($item) ?? null,
+            'furtherReadingItems' => $this->repository->getFurtherReadingItems($item) ?? null,
             'canonicalUrl' => $canonicalPath,
         ]);
     }

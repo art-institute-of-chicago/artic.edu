@@ -71,12 +71,6 @@ class SelectionsController extends FrontController
         $artworks = $item->artworks(0);
         $exploreFurther = new ExploreFurther($item, $artworks->getMetadata('aggregations'));
 
-        $alsoInThisIssue = null;
-
-        if ($item->is_in_magazine) {
-            $alsoInThisIssue = $this->repository->getAlsoInThisIssue($item) ?? null;
-        }
-
         return view('site.selectionDetail', [
             'item' => $item,
             'contrastHeader' => $item->present()->contrastHeader,
@@ -84,7 +78,8 @@ class SelectionsController extends FrontController
             'exploreFurther'        => $exploreFurther->collection(request()->all()),
             'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
-            'alsoInThisIssue'       => $alsoInThisIssue ?? null,
+            'furtherReadingTitle' => $this->repository->getFurtherReadingTitle($item) ?? null,
+            'furtherReadingItems' => $this->repository->getFurtherReadingItems($item) ?? null,
             'canonicalUrl' => $canonicalPath,
         ]);
     }

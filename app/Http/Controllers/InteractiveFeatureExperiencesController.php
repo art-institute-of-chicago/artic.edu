@@ -107,24 +107,11 @@ class InteractiveFeatureExperiencesController extends FrontController
 
         $view = 'site.experienceDetail';
 
-        $articles = null;
-        $alsoInThisIssue = null;
-
-        if ($experience->is_in_magazine) {
-            $alsoInThisIssue = $this->repository->getAlsoInThisIssue($experience) ?? null;
-        }
-        else {
-            $articles = Article::published()
-                ->orderBy('date', 'desc')
-                ->notUnlisted()
-                ->paginate(4);
-        }
-
         return view($view, [
             'contrastHeader' => true,
             'experience' => $experience,
-            'furtherReading' => $articles,
-            'alsoInThisIssue' => $alsoInThisIssue,
+            'furtherReadingTitle' => $this->repository->getFurtherReadingTitle($experience) ?? null,
+            'furtherReadingItems' => $this->repository->getFurtherReadingItems($experience) ?? null,
             'canonicalUrl' => route('interactiveFeatures.show',
                 [
                     'slug' => $experience->getSlug()
