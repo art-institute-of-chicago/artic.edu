@@ -35,6 +35,7 @@ class Experience extends AbstractModel implements Sortable
         'kiosk_only',
         'show_on_articles',
         'is_unlisted',
+        'is_in_magazine',
         'author_display'
     ];
 
@@ -45,6 +46,7 @@ class Experience extends AbstractModel implements Sortable
     public $checkboxes = [
         'published',
         'is_unlisted',
+        'is_in_magazine',
     ];
 
     public function getListDescriptionAttribute()

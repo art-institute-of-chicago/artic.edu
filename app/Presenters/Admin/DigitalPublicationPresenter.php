@@ -6,10 +6,7 @@ use App\Presenters\BasePresenter;
 
 class DigitalPublicationPresenter extends BasePresenter
 {
-
-    private $aboutsForLanding;
-    private $textsForLanding;
-    private $galleriesForLanding;
+    private $sections = [];
 
     public function date()
     {
@@ -18,17 +15,37 @@ class DigitalPublicationPresenter extends BasePresenter
         }
     }
 
+    public function hasSections($type = null)
+    {
+        return $this->getSections($type)->count() > 0;
+    }
+
+    public function getSections($type = null)
+    {
+        if (!isset($this->sections['all'])) {
+            $this->sections['all'] = $this->entity
+                ->sections()
+                ->published()
+                ->get();
+        }
+
+        if (!isset($type)) {
+            return $this->sections['all'];
+        }
+
+        if (!isset($this->sections[$type])) {
+            $this->sections[$type] = $this->sections['all']
+                ->filter(function($section) use ($type) {
+                    return $section->type === $type;
+                })
+                ->values();
+        }
+
+        return $this->sections[$type];
+    }
+
     protected function isDscStub()
     {
         return $this->entity->is_dsc_stub ? 'Yes' : 'No';
-    }
-
-    public function sectionsForLanding($type = 'about')
-    {
-        return $this->{$type . 'sForLanding'} ?? $this->{$type . 'sForLanding'} = $this->entity
-            ->sections()
-            ->sections($type)
-            ->published()
-            ->get();
     }
 }

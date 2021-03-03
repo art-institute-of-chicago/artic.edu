@@ -10,6 +10,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use App\Models\Experience;
+use App\Models\Article;
 use App\Repositories\Behaviors\HandleExperienceModule;
 use App\Repositories\Behaviors\HandleMagazine;
 use App\Repositories\Behaviors\HandleAuthors;
@@ -65,5 +66,27 @@ class ExperienceRepository extends ModuleRepository
         }
         // don't forget to call the parent order function
         return parent::order($query, $orders);
+    }
+
+
+    public function getFurtherReadingTitle($item)
+    {
+        if ($this->isInMagazine($item) && $item->is_unlisted) {
+            return 'Also in this Issue';
+        }
+
+        return 'Further Reading';
+    }
+
+    public function getFurtherReadingItems($item)
+    {
+        if ($item->is_in_magazine && $item->is_unlisted) {
+            return $this->getAlsoInThisIssue($item);
+        }
+
+        return Article::published()
+            ->orderBy('date', 'desc')
+            ->notUnlisted()
+            ->paginate(4);
     }
 }

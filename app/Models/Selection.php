@@ -38,6 +38,7 @@ class Selection extends AbstractModel
         'publish_end_date',
         'highlight_type',
         'is_unlisted',
+        'is_in_magazine',
         'author_display'
     ];
 
@@ -59,7 +60,8 @@ class Selection extends AbstractModel
     // those fields get auto set to false if not submited
     public $checkboxes = [
         'published',
-        'is_unlisted'
+        'is_unlisted',
+        'is_in_magazine',
     ];
 
     public $dates = [

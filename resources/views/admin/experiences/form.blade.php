@@ -66,4 +66,8 @@
         'label' => 'Don\'t show this experience in listings',
     ])
 
+    @formField('checkbox', [
+        'name' => 'is_in_magazine',
+        'label' => 'Assume this experience is featured in a magazine issue',
+    ])
 @stop

@@ -123,19 +123,19 @@
         @endif
 
         @if ($item->cite_as)
-        <hr class="hr">
-        @component('components.molecules._m-title-bar', [
-            'variation' => 'm-title-bar--no-hr',
-            'titleFont' => 'f-list-3'
-        ])
-            Recommended Citation
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-secondary')
-            @slot('tag', 'div')
-            {!! $item->cite_as !!}
-        @endcomponent
-    @endif
+            <hr class="hr">
+            @component('components.molecules._m-title-bar', [
+                'variation' => 'm-title-bar--no-hr',
+                'titleFont' => 'f-list-3'
+            ])
+                Recommended Citation
+            @endcomponent
+            @component('components.blocks._text')
+                @slot('font', 'f-secondary')
+                @slot('tag', 'div')
+                {!! $item->cite_as !!}
+            @endcomponent
+        @endif
     </div>
 </article>
 

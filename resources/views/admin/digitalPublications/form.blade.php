@@ -109,6 +109,14 @@
                 'italic'
             ],
         ])
+
+        @formField('wysiwyg', [
+            'name' => 'cite_as',
+            'label' => 'Recommended citation',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
     </a17-fieldset>
 
     @include('admin.partials.related')

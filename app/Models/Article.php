@@ -49,6 +49,7 @@ class Article extends AbstractModel implements Feedable
         'publish_start_date',
         'publish_end_date',
         'is_unlisted',
+        'is_in_magazine',
     ];
 
     public $slugAttributes = [
@@ -68,6 +69,7 @@ class Article extends AbstractModel implements Feedable
     public $checkboxes = [
         'published',
         'is_unlisted',
+        'is_in_magazine',
     ];
 
     public $dates = [

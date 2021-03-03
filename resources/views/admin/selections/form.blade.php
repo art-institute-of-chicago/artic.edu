@@ -48,6 +48,11 @@
         'label' => 'Don\'t show this highlight in listings',
     ])
 
+    @formField('checkbox', [
+        'name' => 'is_in_magazine',
+        'label' => 'Assume this highlight is featured in a magazine issue',
+    ])
+
     @include('admin.partials.authors')
 
     @formField('block_editor', [

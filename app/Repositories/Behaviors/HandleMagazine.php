@@ -7,12 +7,22 @@ use App\Models\MagazineIssue;
 
 trait HandleMagazine
 {
+    private $magazineItems = [];
+
+    public function getMagazineItem($item)
+    {
+        return $magazineItems[$item->id] ?? $magazineItems[$item->id] = MagazineItem::query()
+            ->where('magazinable_type', $this->morphType)
+            ->where('magazinable_id', $item->id)
+            ->first();
+    }
+
     /**
      * Be sure to add `protected $morphType = '___';` to your repository.
      */
     public function getAlsoInThisIssue($item)
     {
-        $magItem = MagazineItem::where('magazinable_type', $this->morphType)->where('magazinable_id', $item->id)->first();
+        $magItem = $this->getMagazineItem($item);
 
         if ($magItem) {
             $position = $magItem->position;
@@ -39,5 +49,18 @@ trait HandleMagazine
         });
 
         return $alsoIn->filter()->slice(0, 4)->values();
+    }
+
+    protected function isInMagazine($item)
+    {
+        if ($item->is_in_magazine) {
+            return true;
+        }
+
+        if ($this->getMagazineItem($item) ?? false) {
+            return true;
+        }
+
+        return false;
     }
 }

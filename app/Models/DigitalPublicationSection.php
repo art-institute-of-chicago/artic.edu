@@ -26,7 +26,6 @@ class DigitalPublicationSection extends AbstractModel
         'published',
         'title',
         'title_display',
-        'short_title_display',
         'list_description',
         'date',
         'type',
@@ -37,7 +36,8 @@ class DigitalPublicationSection extends AbstractModel
         'position',
         'pdf_download_path',
         'cite_as',
-        'bibliography'
+        'bibliography',
+        'type_display',
     ];
 
     public $slugAttributes = [
@@ -85,11 +85,6 @@ class DigitalPublicationSection extends AbstractModel
         return $query->whereHas('digitalPublication', function($q) {
             $q->visible()->wherePublished(true);
         })->visible()->wherePublished(true);
-    }
-
-    public function scopeSections($query, $type = 'about')
-    {
-        return $query->where('type', $type);
     }
 
     public function getPublishedAttribute()
