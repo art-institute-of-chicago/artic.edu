@@ -78,7 +78,7 @@ class DigitalPublicationPresenter extends BasePresenter
 
                 $this->sectionsForSidebar[] = [
                     'title' => DigitalPublicationSection::$types[$type],
-                    'active' => false,
+                    'active' => !isset($currentSection) || $currentSection->type === $type,
                     'blocks' => [
                         [
                             'type'  => 'link-list',
