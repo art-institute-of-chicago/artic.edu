@@ -15,7 +15,7 @@ class DigitalPublicationSectionController extends FrontController
         parent::__construct();
     }
 
-    public function show($pubId, $pubSlug, $type, $id, $slug = null)
+    public function show($pubId, $pubSlug, $id, $slug = null)
     {
         $item = $this->repository->published()->findOrFail($id);
 

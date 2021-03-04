@@ -31,7 +31,6 @@ class DigitalPublicationSectionPresenter extends BasePresenter
         return route('collection.publications.digital-publications-sections.show', [
             'pubId' => $digitalPublication->id,
             'pubSlug' => $digitalPublication->slug,
-            'type' => $section->type,
             'id' => $section->id,
             'slug' => $section->slug,
         ]);
