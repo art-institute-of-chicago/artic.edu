@@ -39,6 +39,14 @@ class Mirador extends AbstractModel
 
     public $filesParams = ['upload_manifest_file'];
 
+    const SINGLE_VIEW = 'single';
+    const BOOK_VIEW = 'book';
+
+    public static $viewTypes = [
+        self::SINGLE_VIEW => 'single',
+        self::BOOK_VIEW => 'book',
+    ];
+
     public function getMiradorManifest()
     {
         if ($this->object_id OR $this->file('upload_manifest_file')) {
@@ -49,11 +57,5 @@ class Mirador extends AbstractModel
             }
             return $manifestFile;
         }
-		return null;
-    }
-
-    public function getMiradorView()
-    {
-        return $this->default_view;
     }
 }
