@@ -2,10 +2,21 @@
 
 namespace App\Presenters\Admin;
 
+use App\Models\DigitalPublicationSection;
 use App\Presenters\BasePresenter;
 
 class DigitalPublicationPresenter extends BasePresenter
 {
+    /**
+     * Formatted specifically for `_o-accordion`.
+     */
+    private $sectionsForSidebar = [];
+
+    /**
+     * This is an associative array, keyed by section type.
+     * It will also have an `all` key, containing all sections.
+     * This is done to reduce the number of DB queries.
+     */
     private $sections = [];
 
     public function date()
@@ -47,5 +58,33 @@ class DigitalPublicationPresenter extends BasePresenter
     protected function isDscStub()
     {
         return $this->entity->is_dsc_stub ? 'Yes' : 'No';
+    }
+
+    public function sectionsForSidebar($currentSection = null)
+    {
+        if (!$this->sectionsForSidebar) {
+            foreach (array_keys(DigitalPublicationSection::$types) as $type) {
+                $this->sectionsForSidebar[] = [
+                    'title' => DigitalPublicationSection::$types[$type],
+                    'active' => false,
+                    'blocks' => [
+                        [
+                            'type'  => 'link-list',
+                            'links' => $this
+                                ->getSections($type)
+                                ->map(function($section) use ($currentSection) {
+                                    return [
+                                        'label' => $section->title,
+                                        'href' => $section->present()->getSectionUrl($this->entity),
+                                        'is_active' => isset($currentSection) && $section->id === $currentSection->id,
+                                    ];
+                                }),
+                        ],
+                    ],
+                ];
+            }
+        }
+
+        return $this->sectionsForSidebar;
     }
 }

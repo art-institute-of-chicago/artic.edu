@@ -14,6 +14,12 @@
         @slot('editorial', true)
     @endcomponent
 
+    <div class="o-article__primary-actions">
+        @component('components.molecules._m-article-actions----digital-publication')
+            @slot('digitalPublication', $item)
+        @endcomponent
+    </div>
+
     <div class="o-article__body o-blocks">
         @if ($item->welcome_note_display && $welcomeNote)
             <div class="o-issue__intro">

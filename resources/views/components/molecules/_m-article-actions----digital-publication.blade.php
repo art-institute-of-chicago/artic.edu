@@ -6,19 +6,23 @@
 
     <div class="m-article-actions--journal__logo">
         <a href="/journal">
-            {{ $item->digitalPublication->title_display ?? $item->digitalPublication->title }}
+            {{ $digitalPublication->title_display ?? $digitalPublication->title }}
         </a>
     </div>
 
-    @if (!empty($item->present()->sectionsForSidebar()))
+    @php
+        $sectionsForSidebar = $digitalPublication->present()->sectionsForSidebar($currentSection ?? null);
+    @endphp
+
+    @if (!empty($sectionsForSidebar))
         @component('components.organisms._o-accordion')
             @slot('variation', 'o-accordion--journal-articles')
             @slot('titleFont', 'f-tag-2')
-            @slot('items', $item->present()->sectionsForSidebar())
+            @slot('items', $sectionsForSidebar)
         @endcomponent
     @endif
 
-    <h2 class="sr-only" id="h-article-actions">Article Actions</h2>
+    <h2 class="sr-only" id="h-article-actions">Page Actions</h2>
     <ul class="m-article-actions" aria-labelledby="h-article-actions">
         <li class="m-article-actions__action">
             @component('components.atoms._btn')
@@ -29,16 +33,18 @@
                 @slot('ariaLabel','Share page')
             @endcomponent
         </li>
-        <li class="m-article-actions__action">
-            @component('components.atoms._btn')
-                @slot('variation', 'btn--icon')
-                @slot('font', '')
-                @slot('tag', 'a')
-                @slot('href', $item->present()->pdfDownloadPath())
-                @slot('icon', 'icon--download--24')
-                @slot('ariaLabel','Download PDF')
-            @endcomponent
-        </li>
+        @if (isset($pdfDownloadPath))
+            <li class="m-article-actions__action">
+                @component('components.atoms._btn')
+                    @slot('variation', 'btn--icon')
+                    @slot('font', '')
+                    @slot('tag', 'a')
+                    @slot('href', $pdfDownloadPath)
+                    @slot('icon', 'icon--download--24')
+                    @slot('ariaLabel','Download PDF')
+                @endcomponent
+            </li>
+        @endif
     </ul>
 </div>
 

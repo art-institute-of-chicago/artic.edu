@@ -7,12 +7,10 @@ use App\Presenters\BasePresenter;
 
 class DigitalPublicationSectionPresenter extends BasePresenter
 {
-    private $sectionsForSidebar = [];
-
     public function type()
     {
         if ($this->entity->type) {
-            return \App\Models\DigitalPublicationSection::$types[$this->entity->type];
+            return DigitalPublicationSection::$types[$this->entity->type];
         }
     }
 
@@ -50,43 +48,5 @@ class DigitalPublicationSectionPresenter extends BasePresenter
         }
 
         return $this->entity->type;
-    }
-
-    public function sectionsForSidebar()
-    {
-        $currentSection = $this->entity;
-
-        if (!$this->sectionsForSidebar) {
-            foreach (array_keys(DigitalPublicationSection::$types) as $type) {
-                $this->sectionsForSidebar[] = [
-                    'title' => DigitalPublicationSection::$types[$type],
-                    'active' => false,
-                    'blocks' => [
-                        [
-                            'type'  => 'link-list',
-                            'links' => $this->entity
-                                ->digitalPublication
-                                ->present()
-                                ->getSections($type)
-                                ->map(function($section) use ($currentSection) {
-                                    return [
-                                        'label' => $section->title,
-                                        'href' => route('collection.publications.digital-publications-sections.show', [
-                                            'pubId' => $section->digitalPublication->id,
-                                            'pubSlug' => $section->digitalPublication->getSlug(),
-                                            'type' => $section->type,
-                                            'id' => $section->id,
-                                            'slug' => $section->getSlug(),
-                                        ]),
-                                        'is_active' => $section->id === $currentSection->id,
-                                    ];
-                                }),
-                        ],
-                    ],
-                ];
-            }
-        }
-
-        return $this->sectionsForSidebar;
     }
 }

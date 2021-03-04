@@ -17,8 +17,10 @@
     </div>
 
     <div class="o-article__primary-actions">
-        @component('components.molecules._m-article-actions----digital-publication-section')
-            @slot('item', $item)
+        @component('components.molecules._m-article-actions----digital-publication')
+            @slot('digitalPublication', $item->digitalPublication)
+            @slot('currentSection', $item)
+            @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
         @endcomponent
     </div>
 
