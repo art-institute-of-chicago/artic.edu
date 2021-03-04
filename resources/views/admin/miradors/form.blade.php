@@ -1,3 +1,16 @@
+@php
+
+$views = [];
+
+foreach (\App\Models\Mirador::$viewTypes as $key => $viewType) {
+    array_push($views, [
+        'value'  => $key,
+        'label' => $viewType,
+    ]);
+}
+
+@endphp
+
 @extends('twill::layouts.form', [
     'additionalFieldsets' => [
         ['fieldset' => 'content', 'label' => 'Content'],
@@ -29,15 +42,7 @@
         'label' => 'Default View',
         'default' => 'single',
         'inline' => true,
-        'options' => [
-            [
-                'value' => 'single',
-                'label' => 'Single'
-            ],
-            [
-                'value' => 'book',
-                'label' => 'Book'
-            ],
-        ]
+        'options' => $views
     ])
+
 @stop
