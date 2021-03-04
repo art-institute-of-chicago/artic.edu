@@ -7,6 +7,11 @@ use App\Presenters\BasePresenter;
 
 class DigitalPublicationSectionPresenter extends BasePresenter
 {
+    public function getCanonicalUrl()
+    {
+        return $this->getSectionUrl($this->entity->digitalPublication);
+    }
+
     public function type()
     {
         if ($this->entity->type) {

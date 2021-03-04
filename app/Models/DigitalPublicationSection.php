@@ -109,10 +109,6 @@ class DigitalPublicationSection extends AbstractModel
 
     public function getUrlAttribute()
     {
-        return route('collection.publications.digital-publications-sections.show', [
-            'pubSlug' => $this->digitalPublication->getSlug(),
-            'type' => Str::plural($this->type),
-            'id' => $this->id,
-            'slug' => $this->getSlug()], false);
+        return $this->present()->getCanonicalUrl();
     }
 }

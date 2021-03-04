@@ -19,7 +19,7 @@ class DigitalPublicationSectionController extends FrontController
     {
         $item = $this->repository->published()->findOrFail($id);
 
-        $canonicalPath = route('collection.publications.digital-publications-sections.show', ['pubId' => $pubId, 'pubSlug' => $pubSlug, 'type' => $type, 'id' => $item->id, 'slug' => $item->getSlug()]);
+        $canonicalPath = $item->present()->getCanonicalUrl();
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
