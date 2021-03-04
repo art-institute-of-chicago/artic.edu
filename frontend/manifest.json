@@ -14,7 +14,13 @@
       "files": [
         "scss/html4css.scss"
       ]
+    },
+    "mirador-kiosk.css": {
+      "files": [
+        "scss/mirador-kiosk.scss"
+      ]
     }
+
   },
   "paths": {
     "source": "frontend/",
