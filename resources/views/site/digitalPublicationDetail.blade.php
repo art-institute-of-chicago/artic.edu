@@ -31,6 +31,12 @@
         @endif
 
         @if ($item->present()->hasSections(DigitalPublicationSection::TEXT))
+            @component('components.molecules._m-title-bar', [
+                'variation' => 'm-title-bar--compact m-title-bar--light',
+            ])
+                Texts
+            @endcomponent
+
             @component('components.organisms._o-grid-listing')
                 @slot('variation', 'o-grid-listing--journal')
                 @slot('cols_xsmall','1')
