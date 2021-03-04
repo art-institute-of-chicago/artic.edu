@@ -72,6 +72,10 @@ class DigitalPublicationPresenter extends BasePresenter
     {
         if (!$this->sectionsForSidebar) {
             foreach (array_keys(DigitalPublicationSection::$types) as $type) {
+                if (!$this->hasSections($type)) {
+                    continue;
+                }
+
                 $this->sectionsForSidebar[] = [
                     'title' => DigitalPublicationSection::$types[$type],
                     'active' => false,
