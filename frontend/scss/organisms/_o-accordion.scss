@@ -354,3 +354,30 @@ h3 {
 .o-accordion__panel-content.o-blocks > *:last-child {
   margin-bottom: 48px;
 }
+
+.o-accordion--publication-sidebar {
+  margin-bottom: 25px;
+
+  h3 {
+    margin-top: 25px;
+    padding: 0;
+  }
+
+  .o-accordion__trigger {
+    padding-bottom: 20px;
+    padding-top: 10px;
+  }
+
+  .o-accordion__trigger-icon {
+    margin-top: -20px;
+  }
+
+  .o-accordion__panel-content {
+    padding-bottom: 15px;
+    border-bottom: 2px solid $color__rules--primary;
+
+    &.o-blocks>:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -16,7 +16,7 @@
 
     @if (!empty($sectionsForSidebar))
         @component('components.organisms._o-accordion')
-            @slot('variation', 'o-accordion--journal-articles')
+            @slot('variation', 'o-accordion--publication-sidebar')
             @slot('titleFont', 'f-tag-2')
             @slot('items', $sectionsForSidebar)
         @endcomponent
