@@ -19,6 +19,14 @@ class DigitalPublicationPresenter extends BasePresenter
      */
     private $sections = [];
 
+    public function getCanonicalUrl()
+    {
+        return route('collection.publications.digital-publications.show', [
+            'id' => $this->entity->id,
+            'slug' => $this->entity->getSlug(),
+        ]);
+    }
+
     public function date()
     {
         if ($this->entity->date) {

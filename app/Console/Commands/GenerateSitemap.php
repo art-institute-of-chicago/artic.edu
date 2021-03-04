@@ -117,7 +117,7 @@ class GenerateSitemap extends Command
         $this->addNativeModel($sitemap, Event::class, 'events.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
         $this->addNativeModel($sitemap, Article::class, 'articles.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
         $this->addNativeModel($sitemap, PrintedPublication::class, 'collection.publications.printed-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->slug];});
-        $this->addNativeModel($sitemap, DigitalPublication::class, 'collection.publications.digital-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->slug];});
+        $this->addNativeModel($sitemap, DigitalPublication::class, 'collection.publications.digital-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->id, 'slug' => $entity->getSlug()];});
     }
 
     // get <a/>'s to filters, artworks, and category-terms from /collection

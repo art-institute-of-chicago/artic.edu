@@ -98,7 +98,7 @@ class DigitalPublication extends AbstractModel
 
     public function getUrlAttribute()
     {
-        return route('collection.publications.digital-publications.show', $this->slug);
+        return $this->present()->getCanonicalUrl();
     }
 
     public function getAdminEditUrlAttribute()

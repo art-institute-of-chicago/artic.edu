@@ -51,7 +51,7 @@ class DigitalPublicationsController extends BaseScopedController
             abort(404);
         }
 
-        $canonicalPath = route('collection.publications.digital-publications.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+        $canonicalPath = $item->present()->getCanonicalUrl();
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
