@@ -46,6 +46,11 @@
             </li>
         @endif
     </ul>
+
+    <div>
+        <hr>
+        <a href="{!! route('collection.publications.digital-publications') !!}" class="f-link">More Digital Publications<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
+    </div>
 </div>
 
 <div class="o-sticky-sidebar__placeholder"></div>
