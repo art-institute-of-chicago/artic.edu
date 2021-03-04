@@ -56,10 +56,20 @@ class PrintedPublicationsController extends BaseScopedController
 
     public function show($id)
     {
-        $item = $this->repository->safeForSlug($id);
+        $item = $this->repository->published()->find((integer) $id);
+
+        if (empty($item)) {
+            $item = $this->repository->safeForSlug($id);
+        }
 
         if (!$item) {
-            $item = $this->repository->find((Integer) $id) ?? abort(404);
+            abort(404);
+        }
+
+        $canonicalPath = $item->present()->getCanonicalUrl();
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
@@ -73,6 +83,7 @@ class PrintedPublicationsController extends BaseScopedController
         ];
 
         return view('site.genericPage.show', [
+            'canonicalUrl' => $canonicalPath,
             'borderlessHeader' => !(empty($item->imageFront('banner'))),
             'nav'    => null,
             'intro'  => $item->short_description,

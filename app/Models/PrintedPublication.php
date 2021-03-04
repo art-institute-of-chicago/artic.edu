@@ -38,8 +38,8 @@ class PrintedPublication extends AbstractModel
     public $checkboxes = ['published', 'active', 'public'];
     public $dates = ['publish_start_date', 'publish_end_date', 'migrated_at'];
 
-    protected $presenter = 'App\Presenters\Admin\GenericPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
+    protected $presenter = 'App\Presenters\Admin\PrintedPublicationPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\PrintedPublicationPresenter';
 
     public $mediasParams = [
         'listing' => [
@@ -110,7 +110,7 @@ class PrintedPublication extends AbstractModel
 
     public function getUrlAttribute()
     {
-        return route('collection.publications.printed-publications.show', $this->slug);
+        return $this->present()->getCanonicalUrl();
     }
 
     public function getAdminEditUrlAttribute()

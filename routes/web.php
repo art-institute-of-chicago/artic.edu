@@ -33,7 +33,7 @@ Route::name('collection.categorySearch')->get('/collection/categorySearch/{categ
 
 // Collection Publications Printed Publications
 Route::name('collection.publications.printed-publications')->get('/print-publications', 'PrintedPublicationsController@index');
-Route::name('collection.publications.printed-publications.show')->get('/print-publications/{id}', 'PrintedPublicationsController@show');
+Route::name('collection.publications.printed-publications.show')->get('/print-publications/{id}/{slug?}', 'PrintedPublicationsController@show');
 // Collection Publications Digital Publications
 Route::name('collection.publications.digital-publications')->get('/digital-publications', 'DigitalPublicationsController@index');
 Route::name('collection.publications.digital-publications.show')->get('/digital-publications/{id}/{slug?}', 'DigitalPublicationsController@show');
