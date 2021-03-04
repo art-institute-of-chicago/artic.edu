@@ -5,7 +5,7 @@
     </button>
 
     <div class="m-article-actions--journal__logo">
-        <a href="/journal">
+        <a href="{!! $digitalPublication->present()->getCanonicalUrl() !!}">
             {{ $digitalPublication->title_display ?? $digitalPublication->title }}
         </a>
     </div>
