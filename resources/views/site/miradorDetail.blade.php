@@ -7,7 +7,7 @@
     @component('components.molecules._m-viewer-mirador')
         @slot('type', 'mirador-kiosk')
         @slot('manifest', $item->getMiradorManifest())
-        @slot('defaultView', $item->getMiradorView())
+        @slot('defaultView', $item->default_view)
     @endcomponent
 
 @endsection
