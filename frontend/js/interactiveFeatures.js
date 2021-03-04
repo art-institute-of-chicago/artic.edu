@@ -1,10 +1,12 @@
 import { manageBehaviors } from '@area17/a17-helpers';
 import closerLook  from './behaviors/closerLook';
+import viewerMirador  from './behaviors/viewerMirador';
 import fontObservers  from './functions/fontObservers';
 
 document.addEventListener('DOMContentLoaded', function(){
   const Behaviors = {
-    closerLook
+    closerLook,
+    viewerMirador
   };
 
   manageBehaviors(Behaviors);
