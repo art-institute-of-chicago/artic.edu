@@ -21,7 +21,7 @@
         @endcomponent
         <br>
         @component('components.atoms._title')
-            @slot('font', 'f-list-3')
+            @slot('font', (isset($variation) && $variation == 'm-listing--work') ? 'f-headline' : 'f-list-3')
             @slot('title', $title)
             @slot('title_display', $title_display)
             @slot('itemprop', 'name')
@@ -29,12 +29,16 @@
         <br>
         @if ($list_description)
             @component('components.atoms._short-description')
-                @slot('font', 'f-body-editorial')
+                @slot('font', (isset($variation) && $variation == 'm-listing--work') ? 'f-body' : 'f-caption-title')
                 {!! $list_description !!}
             @endcomponent
         @endif
         <br>
-        @if ($author_display)
+        @if (isset($variation) && $variation == 'm-listing--work')
+            <span class="m-listing__meta-bottom">
+                <button class="btn btn--secondary f-buttons">View gallery</button>
+            </span>
+        @elseif ($author_display)
             <span class="m-listing__meta-bottom">
                 <span class="f-secondary">{{ $author_display }}</span>
             </span>

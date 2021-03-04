@@ -71,6 +71,37 @@
             @endcomponent
         @endif
 
+        @if ($item->present()->hasSections(DigitalPublicationSection::WORK))
+            @component('components.organisms._o-grid-listing')
+                @slot('variation', 'o-grid-listing--journal')
+
+                @foreach ($item->present()->getSections(DigitalPublicationSection::WORK) as $section)
+                    @component('components.molecules._m-listing----publication')
+                        @slot('variation', 'm-listing--work')
+                        @slot('href', $section->present()->getSectionUrl($item))
+                        @slot('image', $section->imageFront('hero'))
+                        @slot('type', $section->present()->getSectionType())
+                        @slot('title', $section->present()->title)
+                        @slot('title_display', $section->present()->title_display)
+                        @slot('list_description', $section->present()->list_description)
+                        @slot('author_display', $section->showAuthors())
+                        @slot('imageSettings', array(
+                            'fit' => 'crop',
+                            'ratio' => '16:9',
+                            'srcset' => array(200,400,600),
+                            'sizes' => aic_imageSizes(array(
+                                'xsmall' => '216px',
+                                'small' => '216px',
+                                'medium' => '18',
+                                'large' => '13',
+                                'xlarge' => '13',
+                            )),
+                        ))
+                    @endcomponent
+                @endforeach
+            @endcomponent
+        @endif
+
         @if (isset($item->sponsor_display))
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--compact m-title-bar--light',

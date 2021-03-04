@@ -2195,6 +2195,33 @@ $f-audio-subtitle: generate-font-obj(
   }
 }
 
+@include breakpoint('small+') {
+  // variant for Digital Publications
+  .m-listing--work {
+    flex-flow: row-reverse nowrap;
+    .m-listing__link {
+      flex-flow: row-reverse nowrap;
+      .m-listing__meta,
+      .m-listing__img {
+        flex: 1 1 50%;
+      }
+      .m-listing__img {
+        margin: 20px;
+      }
+      .m-listing__meta {
+        min-height: 344px; /* override media query */
+        padding-top: 25px; /* override media query */
+      }
+      .m-listing__meta .title {
+        margin-bottom: 24px;
+      }
+    }
+    .m-listing__link:only-child {
+      flex-grow: 2;
+    }
+  }
+}
+
 // variant for Member Magazine
 .m-listing--magazine {
   border-color: $color__rules--primary;
