@@ -84,6 +84,35 @@
         <hr>
 
         @formField('wysiwyg', [
+            'name' => 'header_title_display',
+            'label' => 'Title lockup for header',
+            'note' => 'Use Shift+Enter to add linebreak instead of starting a new paragraph',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'header_subtitle_display',
+            'label' => 'Subtitle lockup for header',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        <hr>
+
+        @formField('wysiwyg', [
+            'name' => 'sidebar_title_display',
+            'label' => 'Title lockup for sidebar',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        <hr>
+
+        @formField('wysiwyg', [
             'name' => 'welcome_note_display',
             'label' => 'Welcome note text',
             'toolbarOptions' => [
