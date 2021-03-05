@@ -1130,6 +1130,7 @@
     flex: 0 0 57%;
     left: auto;
     margin-left: auto;
+    height: 75vh;
   }
   .m-article-header__img::before {
     background-image: none;
@@ -1143,10 +1144,13 @@
   }
   .title {
     margin-top: 80px;
+    padding-right: 30%;
   }
   .subtitle {
     text-align: right;
     margin-bottom: 80px;
+    padding-left: 30%;
+    padding-right: 0;
   }
 }
 
