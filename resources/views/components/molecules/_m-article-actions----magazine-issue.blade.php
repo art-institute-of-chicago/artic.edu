@@ -1,7 +1,7 @@
 <div class="o-sticky-sidebar__sticker"  data-behavior="stickySidebar" data-sticky-offset="100">{{-- See :nth-child(x) in _o-article.scss --}}
 
     <div class="m-article-actions--publication__logo u-hide@xsmall u-hide@small u-hide@medium">
-        <a href="/magazine">
+        <a href="{!! route('magazine-issues.latest') !!}">
             <svg class="icon--magazine-logo">
                 <use xlink:href="#icon--magazine-logo"></use>
             </svg>
