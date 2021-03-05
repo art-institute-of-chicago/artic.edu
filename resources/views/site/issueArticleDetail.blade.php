@@ -7,7 +7,7 @@
         @slot('title', 'Art Institue Review')
     @endcomponent
 
-    <div class="o-article__primary-actions">
+    <div class="o-article__primary-actions o-article__primary-actions--journal-article">
         @component('components.molecules._m-article-actions----journal-article')
             @slot('item', $item)
         @endcomponent

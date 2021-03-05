@@ -10,7 +10,7 @@
         @slot('intro', $item->present()->hero_text ?? null)
     @endcomponent
 
-    <div class="o-article__primary-actions">
+    <div class="o-article__primary-actions o-article__primary-actions--magazine-issue">
         @component('components.molecules._m-article-actions----magazine-issue')
             @slot('issues', $issues)
         @endcomponent

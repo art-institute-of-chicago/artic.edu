@@ -20,7 +20,7 @@
         @slot('title', $item->title_display ?? $item->title)
     @endcomponent
 
-    <div class="o-article__primary-actions">
+    <div class="o-article__primary-actions o-article__primary-actions--digital-publication">
         @component('components.molecules._m-article-actions----digital-publication')
             @slot('digitalPublication', $item)
         @endcomponent
