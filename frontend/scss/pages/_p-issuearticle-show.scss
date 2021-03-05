@@ -301,8 +301,8 @@ Styling related specifically to digital publications
     }
   }
 
-  .o-blocks>ol,
-  .o-blocks>ul {
+  .o-article__body.o-blocks > ol,
+  .o-article__body.o-blocks > ul {
     @extend .list;
   }
 
