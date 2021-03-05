@@ -29,7 +29,6 @@ const stickySidebar = function(container){
   let article = document.querySelector('.o-article');
 
   let stickyOffset = parseInt(container.getAttribute('data-sticky-offset'), 10);
-  container.setAttribute('style', 'padding-top:' + stickyOffset + 'px');
 
   let scrollTop;
 
