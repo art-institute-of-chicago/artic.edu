@@ -3,18 +3,9 @@
 @section('content')
 
 <article class="o-article">
-    <div class="m-journal-mobile u-hide@large+">
-        <button data-behavior="showStickySidebar" aria-label="Show journal navigation">
-            <svg class="icon--menu--24">
-                <use xlink:href="#icon--menu--24" />
-            </svg>
-            @component('components.blocks._text')
-                @slot('tag', 'span')
-                @slot('font', 'f-list-1')
-                Art Institue Review
-            @endcomponent
-        </button>
-    </div>
+    @component('components.molecules._m-sidebar-toggle')
+        @slot('title', 'Art Institue Review')
+    @endcomponent
 
     <div class="o-article__primary-actions">
         @component('components.molecules._m-article-actions----journal-article')

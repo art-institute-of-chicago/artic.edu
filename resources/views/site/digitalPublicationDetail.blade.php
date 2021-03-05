@@ -14,6 +14,10 @@
         @slot('editorial', true)
     @endcomponent
 
+    @component('components.molecules._m-sidebar-toggle')
+        @slot('title', $item->title_display ?? $item->title)
+    @endcomponent
+
     <div class="o-article__primary-actions">
         @component('components.molecules._m-article-actions----digital-publication')
             @slot('digitalPublication', $item)
