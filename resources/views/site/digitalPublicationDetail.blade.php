@@ -14,6 +14,7 @@
         @slot('subtitle_display', $item->present()->headerSubtitle())
         @slot('img', $item->imageFront('listing'))
         @slot('editorial', true)
+        @slot('bgcolor', $item->bgcolor)
     @endcomponent
 
     @component('components.molecules._m-sidebar-toggle')

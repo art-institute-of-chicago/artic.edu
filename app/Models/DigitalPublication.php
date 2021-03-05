@@ -35,6 +35,7 @@ class DigitalPublication extends AbstractModel
         'header_title_display',
         'header_subtitle_display',
         'sidebar_title_display',
+        'bgcolor',
     ];
 
     public $slugAttributes = [

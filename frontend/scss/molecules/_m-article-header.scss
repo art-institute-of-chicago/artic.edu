@@ -1140,17 +1140,15 @@
     height: 100%;
   }
   .m-article-header__text::before {
-    background-color: $color__bg--digital-publication;
+    background-color: $color__bg--gallery;
     backdrop-filter: none;
   }
   .title {
     margin-top: 80px;
-    padding-right: 30%;
   }
   .subtitle {
     text-align: right;
     margin-bottom: 80px;
-    padding-left: 30%;
     padding-right: 0;
   }
 }

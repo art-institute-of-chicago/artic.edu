@@ -1,3 +1,10 @@
+@if ($bgcolor)
+<style>
+    .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__text::before {
+        background-color: {{ $bgcolor }};
+    }
+</style>
+@endif
 <{{ $tag ?? 'header' }} class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
     <div class="m-article-header__img" data-blur-img>
         @if ($img)
