@@ -62,28 +62,6 @@
     }
   }
 
-  .m-search-triggers--journal {
-    justify-content: flex-start;
-
-    left: 40px;
-    bottom: -50px;
-
-    transition: bottom .25s $bezier--bounce;
-
-    &.m-search-triggers--active {
-      bottom: 40px;
-    }
-
-    @include breakpoint('large+') {
-      display: none;
-    }
-
-    .icon--menu--24 {
-      top: -2px;
-      position: relative;
-    }
-  }
-
   .o-article__body::before {
     position: absolute;
     background-color: $color__rules--primary;
