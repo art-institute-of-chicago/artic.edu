@@ -374,7 +374,11 @@ h3 {
 
   .o-accordion__panel-content {
     padding-bottom: 15px;
-    border-bottom: 2px solid $color__rules--primary;
+    border-bottom: 1px solid $color__rules--primary;
+
+    .m-link-list__item:first-child::after {
+      content: none;
+    }
 
     &.o-blocks>:last-child {
       margin-bottom: 0;
