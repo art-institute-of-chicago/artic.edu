@@ -1120,22 +1120,23 @@
 .m-article-header--digital-publication {
   flex-flow: row-reverse nowrap;
   .m-article-header__text {
-    flex: 0 0 43%;
+    flex: 0 0 38%;
     position: relative;
     z-index: auto;
     padding-left: 0;
-    padding-right: 100px;
+    padding-right: 20px;
   }
   .m-article-header__img {
-    flex: 0 0 57%;
+    flex: 0 0 62%;
     left: auto;
     margin-left: auto;
     height: 75vh;
+    margin-right: -50vw;
+    right: 50%;
   }
   .m-article-header__img::before {
     background-image: none;
     margin-right: -50vw;
-    background-color: $color__bg--primary; /* temporary until we get the image laid out properly */
     height: 100%;
   }
   .m-article-header__text::before {
