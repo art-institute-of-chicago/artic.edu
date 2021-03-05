@@ -12,7 +12,7 @@
   }
 }
 
-.o-article .m-article-header:not(.m-article-header--gallery):not(.m-article-header--journal) {
+.o-article .m-article-header:not(.m-article-header--gallery):not(.m-article-header--journal):not(.m-article-header--digital-publication) {
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
     width: 100%;

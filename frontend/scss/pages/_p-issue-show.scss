@@ -45,9 +45,35 @@
     @each $name in ('large', 'xlarge') {
       @include breakpoint('#{$name}') {
         left: #{- colspan(1, '#{$name}')};
+      }
+    }
+  }
+}
+
+// Top margin is different for digital publications vs. everything else
+.p-magazineissue-show,
+.p-magazineissue-latest,
+.p-issue-show {
+  .o-article__body::before {
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
         top: #{- map-get($journal-header-margin-bottom, $name)};
         height: calc(100% + #{map-get($journal-header-margin-bottom, $name)});
       }
     }
+  }
+}
+
+.p-digitalpublications-show {
+  .m-article-actions--publication__logo {
+  }
+
+  .o-article__body {
+    margin-top: 40px;
+  }
+
+  .o-article__body::before {
+    top: -40px;
+    height: calc(100% + 40px);
   }
 }
