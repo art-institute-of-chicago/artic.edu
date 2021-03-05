@@ -67,7 +67,7 @@ class DigitalPublicationsController extends BaseScopedController
 
         return view('site.digitalPublicationDetail', [
             'item' => $item,
-            'contrastHeader' => true,
+            'contrastHeader' => false,
             'borderlessHeader' => false,
             'unstickyHeader' => true,
             'canonicalUrl' => $canonicalPath,

@@ -99,4 +99,14 @@ class DigitalPublicationPresenter extends BasePresenter
 
         return $this->sectionsForSidebar;
     }
+
+    public function headerTitle()
+    {
+        return $this->entity->header_title_display ?? $this->entity->title_display;
+    }
+
+    public function headerSubtitle()
+    {
+        return $this->entity->header_subtitle_display;
+    }
 }

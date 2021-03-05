@@ -1116,6 +1116,40 @@
   }
 }
 
+// Treatment for digital publication header, like the Malangatana catalog
+.m-article-header--digital-publication {
+  flex-flow: row-reverse nowrap;
+  .m-article-header__text {
+    flex: 0 0 43%;
+    position: relative;
+    z-index: auto;
+    padding-left: 0;
+    padding-right: 100px;
+  }
+  .m-article-header__img {
+    flex: 0 0 57%;
+    left: auto;
+    margin-left: auto;
+  }
+  .m-article-header__img::before {
+    background-image: none;
+    margin-right: -50vw;
+    background-color: $color__bg--primary; /* temporary until we get the image laid out properly */
+    height: 100%;
+  }
+  .m-article-header__text::before {
+    background-color: $color__bg--digital-publication;
+    backdrop-filter: none;
+  }
+  .title {
+    margin-top: 80px;
+  }
+  .subtitle {
+    text-align: right;
+    margin-bottom: 80px;
+  }
+}
+
 
 
 

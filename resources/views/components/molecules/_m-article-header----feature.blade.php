@@ -19,6 +19,14 @@
                 @slot('title', $title)
                 @slot('title_display', $title_display ?? null)
             @endcomponent
+            @component('components.atoms._title')
+                @slot('tag','h1')
+                @slot('variation', 'subtitle')
+                @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-headline')
+                @slot('itemprop','name')
+                @slot('title', strip_tags($subtitle_display) ?? null)
+                @slot('title_display', $subtitle_display ?? null)
+            @endcomponent
         @endif
 
         {{-- Preview dates --}}

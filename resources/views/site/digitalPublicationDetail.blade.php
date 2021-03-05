@@ -8,8 +8,10 @@
 
 <article class="o-article">
     @component('components.molecules._m-article-header----feature')
+        @slot('variation', 'm-article-header--digital-publication')
         @slot('title', $item->present()->title)
-        @slot('title_display', $item->present()->title_display)
+        @slot('title_display', $item->present()->headerTitle())
+        @slot('subtitle_display', $item->present()->headerSubtitle())
         @slot('img', $item->imageFront('listing'))
         @slot('editorial', true)
     @endcomponent
