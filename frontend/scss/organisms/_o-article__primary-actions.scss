@@ -227,8 +227,32 @@
   @extend %o-article__primary-actions--toggleable;
   padding-top: 0px;
 
-  .m-article-actions--publication__logo {
+  .o-sticky-sidebar__sticker {
+    padding-bottom: 60px;
+  }
 
+  .m-article-actions--publication__logo {
+    margin-bottom: 40px;
+
+    @include font-styles(generate-font-obj(
+      (
+        font-family: $serif-font,
+        font-family-loaded: $serif-font--loaded,
+        font-loaded-class: $serif-font-loaded-class,
+        settings: (
+          'xsmall': (font-size: 22, line-height: 23, push: 0),
+        )
+      )
+    ));
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .m-article-actions {
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }
 

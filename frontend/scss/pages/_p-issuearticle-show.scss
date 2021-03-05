@@ -143,9 +143,11 @@
     }
   }
 
+  // TODO: Verify if this should only apply to publications?
+  // Previously, journal issues had this at 25px each
   .m-article-actions {
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }
 
