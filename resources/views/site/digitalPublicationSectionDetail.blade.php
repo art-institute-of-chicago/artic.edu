@@ -11,7 +11,7 @@
             @component('components.blocks._text')
                 @slot('tag', 'span')
                 @slot('font', 'f-list-1')
-                [Publication name]
+                {!! $item->digitalPublication->title_display ?? $item->digitalPublication->title !!}
             @endcomponent
         </button>
     </div>
