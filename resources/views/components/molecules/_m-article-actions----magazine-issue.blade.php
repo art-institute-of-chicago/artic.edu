@@ -1,4 +1,4 @@
-<div class="o-sticky-sidebar__sticker"  data-behavior="stickySidebar" data-sticky-offset="100">{{-- See :nth-child(x) in _o-article.scss --}}
+<div class="o-sticky-sidebar__sticker" data-behavior="stickySidebar">
 
     <div class="m-article-actions--publication__logo u-hide@xsmall u-hide@small u-hide@medium">
         <a href="{!! route('magazine-issues.latest') !!}">

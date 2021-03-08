@@ -1,4 +1,4 @@
-<div class="o-sticky-sidebar__sticker"  data-behavior="stickySidebar" data-sticky-offset="30">
+<div class="o-sticky-sidebar__sticker" data-behavior="stickySidebar">
 
     <button class="g-sidebar__close" data-behavior="hideStickySidebar">
         <svg aria-hidden="true" class="icon--close" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5" d="M3 3l10 10M13 3L3 13"></path></svg>
