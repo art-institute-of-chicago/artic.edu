@@ -43,12 +43,9 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         height: 100vh;
         overflow-y: auto;
 
-        @each $name in ('xsmall', 'small', 'medium') {
-          @include breakpoint('#{$name}') {
-            padding-left: map-get($outer-gutters, $name);
-            padding-right: #{colspan(2, '#{$name}')};
-          }
-        }
+        // Gutters are always about the same as on xsmall
+        padding-left: 20px;
+        padding-right: 20px;
 
         .g-sidebar__close {
           display: block;
