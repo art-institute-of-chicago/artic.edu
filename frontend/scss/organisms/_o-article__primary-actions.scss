@@ -234,6 +234,7 @@
 
   .m-article-actions--publication__logo {
     margin-bottom: 40px;
+    white-space: nowrap;
 
     @include font-styles(generate-font-obj(
       (
