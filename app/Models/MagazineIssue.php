@@ -51,4 +51,9 @@ class MagazineIssue extends AbstractModel
     {
         return $this->hasMany(MagazineItem::class)->orderBy('position');
     }
+
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('publish_start_date', 'desc');
+    }
 }
