@@ -31,7 +31,7 @@
                 @slot('variation', 'subtitle')
                 @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-headline')
                 @slot('itemprop','name')
-                @slot('title', strip_tags($subtitle_display) ?? null)
+                @slot('title', isset($subtitle_display) ? strip_tags($subtitle_display) : null)
                 @slot('title_display', $subtitle_display ?? null)
             @endcomponent
         @endif
