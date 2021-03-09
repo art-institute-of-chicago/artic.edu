@@ -227,7 +227,7 @@ class Slide extends JsonResource
         $this->media = $this->endBackgroundExperienceImages;
         return [
             'button' => 'Start Over',
-            '__option_credits' => true,
+            '__option_credits' => !empty($this->end_credit_copy || $this->end_credit_subhead) || count($this->endExperienceImages[0]['medias']) > 0,
             'copy' => $this->end_copy,
             'modals' => [
                 [
@@ -235,11 +235,11 @@ class Slide extends JsonResource
                     '__mediaType' => 'image',
                     'subhead' => $this->end_credit_subhead,
                     'caption' => $this->end_credit_copy,
-                    '__option_caption' => true,
+                    '__option_caption' => !empty($this->end_credit_copy),
                     '__option_subhead' => !empty($this->end_credit_subhead),
                     '__option_copy' => !empty($this->end_credit_subhead),
-                    '__option_media' => count($this->endExperienceImages) > 0,
-                    'src' => SlideMediaResource::collection($this->endExperienceImages)->toArray(request())
+                    '__option_media' => count($this->endExperienceImages[0]['medias']) > 0,
+                    'src' => count($this->endExperienceImages[0]['medias']) > 0 ? SlideMediaResource::collection($this->endExperienceImages)->toArray(request()) : []
                 ],
             ],
             '__option_background_image' => count($this->endBackgroundExperienceImages) > 0,
