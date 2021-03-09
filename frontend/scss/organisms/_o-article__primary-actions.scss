@@ -2,6 +2,8 @@
   position: relative;
   margin-top: 28px;
   padding-top: 8px;
+
+  // WEB-461: Fix medium figure covering up primary actions
   z-index: 2;
 
   @include breakpoint('xsmall') {

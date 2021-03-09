@@ -5,6 +5,9 @@
   min-height: 140px;
   padding-top: 12px;
 
+  // WEB-1938: Prevent header from covering up sticky sidebar
+  z-index: 3;
+
   @include breakpoint('small+') {
     min-height: 144px;
   }
