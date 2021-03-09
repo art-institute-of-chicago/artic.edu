@@ -45,6 +45,16 @@
                 @endcomponent
             </li>
         @endif
+        <li class="m-article-actions__action">
+            @component('components.atoms._btn')
+                @slot('variation', 'btn--icon btn--septenary')
+                @slot('font', '')
+                @slot('tag', 'a')
+                @slot('href', '#h-recommended-citation')
+                @slot('icon', 'icon--citation--24')
+                @slot('ariaLabel','Show recommended citation')
+            @endcomponent
+        </li>
     </ul>
 
     <div>

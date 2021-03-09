@@ -43,6 +43,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--circle">
     <use xlink:href="#icon--circle"></use>
   </svg>
+  <svg class="icon--citation--24">
+    <use xlink:href="#icon--citation--24"></use>
+  </svg>
   <svg class="icon--clock">
     <use xlink:href="#icon--clock"></use>
   </svg>
@@ -310,6 +313,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--circle {
   width: 16px;
   height: 16px;
+}
+
+.icon--citation--24 {
+  width: 24px;
+  height: 24px;
 }
 
 .icon--clock {
