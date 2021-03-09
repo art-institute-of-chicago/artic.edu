@@ -66,17 +66,21 @@ const stickySidebar = function(container){
   let currentState;
 
   // null if absent, empty string if present
-  let isLogoAnimated = container.getAttribute('data-sticky-animated-logo' !== null);
+  let isLogoAnimated = container.getAttribute('data-sticky-animated-logo') !== null;
   let grabTop;
 
   function update() {
     scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
     if (scrollTop < containerTop) {
-      if (scrollTop < grabTop) {
+      if (!isLogoAnimated) {
         top();
       } else {
-        grab();
+        if (scrollTop < grabTop) {
+          top();
+        } else {
+          grab();
+        }
       }
     } else {
       containerHeight = container.offsetHeight;
