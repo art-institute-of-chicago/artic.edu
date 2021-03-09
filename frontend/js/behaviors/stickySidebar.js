@@ -37,6 +37,14 @@ const stickySidebar = function(container){
     if (targetState && !classList.contains(targetState)) {
       classList.add(targetState);
     }
+
+    currentState = targetState;
+  }
+
+  const resetScroll = () => {
+    if (['is-sidebar-fixed','is-sidebar-bottom'].includes(currentState)) {
+      container.scrollTo(0, 0);
+    }
   }
 
   let article = document.querySelector('.o-article');
@@ -54,6 +62,8 @@ const stickySidebar = function(container){
 
   let savedFocus;
   let savedScroll;
+
+  let currentState;
 
   // null if absent, empty string if present
   let isLogoAnimated = container.getAttribute('data-sticky-animated-logo' !== null);
@@ -81,10 +91,12 @@ const stickySidebar = function(container){
   }
 
   function top() {
+    resetScroll();
     setState('is-sidebar-top');
   }
 
   function grab() {
+    resetScroll();
     setState('is-sidebar-grabbed');
   }
 
