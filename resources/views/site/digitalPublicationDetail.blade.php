@@ -24,6 +24,7 @@
     <div class="o-article__primary-actions o-article__primary-actions--digital-publication">
         @component('components.molecules._m-article-actions----digital-publication')
             @slot('digitalPublication', $item)
+            @slot('isLogoAnimated', true)
         @endcomponent
     </div>
 

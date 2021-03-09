@@ -236,7 +236,7 @@
     margin-bottom: 40px;
     white-space: nowrap;
 
-    @include font-styles(generate-font-obj(
+    @include font-styles-untuck(generate-font-obj(
       (
         font-family: $serif-font,
         font-family-loaded: $serif-font--loaded,

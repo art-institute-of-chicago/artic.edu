@@ -65,16 +65,6 @@
 }
 
 .p-digitalpublications-show {
-  .m-article-actions--publication__logo {
-    transition: opacity 0.15s;
-    opacity: 0;
-  }
-
-  &.is-sidebar-fixed .m-article-actions--publication__logo,
-  &.is-sidebar-bottom .m-article-actions--publication__logo {
-    opacity: 1;
-  }
-
   .o-article__body {
     margin-top: 40px;
   }
