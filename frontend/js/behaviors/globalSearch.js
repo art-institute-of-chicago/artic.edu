@@ -136,7 +136,11 @@ const globalSearch = function(container) {
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
     document.documentElement.classList.remove(stateKlass);
-    setTimeout(function(){ setFocusOnTarget(document.getElementById('global-search-icon')); }, 0)
+    // WEB-1985: Because this gets triggered whenever `g-mask` gets closed,
+    // it gets triggered for a lot of different things. Attempting to restore
+    // focus to `global-search-icon` actually steals focus in most cases.
+    // We should update `focus:trap` and `focus:untrap` to save and restore focus.
+    // setTimeout(function(){ setFocusOnTarget(document.getElementById('global-search-icon')); }, 0)
     textInput.value = '';
   }
 
