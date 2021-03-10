@@ -5,6 +5,7 @@ const sharePage = function(container) {
 
   const shareMenu = document.getElementById('shareMenu');
   let shareOpen = false;
+  let bodyLocked = false;
   let icon;
   let iconClass;
 
@@ -54,7 +55,9 @@ const sharePage = function(container) {
   function _closeShareMenu() {
     if (shareOpen) {
       document.documentElement.classList.remove('s-shareMenu-active');
-      triggerCustomEvent(document, 'body:unlock');
+      if (!bodyLocked) {
+        triggerCustomEvent(document, 'body:unlock');
+      }
       shareMenu.removeAttribute('style');
       triggerCustomEvent(document, 'focus:untrap');
       setTimeout(function(){ setFocusOnTarget(container.parentNode); }, 0)
@@ -72,9 +75,12 @@ const sharePage = function(container) {
     }
     container.blur();
     if (!shareOpen) {
-      triggerCustomEvent(document, 'body:lock', {
-        breakpoints: 'xsmall small'
-      });
+      bodyLocked = document.documentElement.classList.contains('s-body-locked');
+      if (!bodyLocked) {
+        triggerCustomEvent(document, 'body:lock', {
+          breakpoints: 'xsmall small'
+        });
+      }
       window.requestAnimationFrame(function(){
         shareOpen = true;
         container.classList.add('s-active');
