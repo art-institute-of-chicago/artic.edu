@@ -1,5 +1,5 @@
 @php
-    $subtype = $block->input('layout') == 1 ? 'mosaic' : 'slider';
+    $subtype = $block->input('layout') == 1 ? 'mosaic' : ($block->input('layout') == 2 ? 'slider' : 'small-mosaic');
 
     // Preload all artworks ahead of time
     $ids = $block->childs
@@ -116,6 +116,18 @@
                     'medium' => '23',
                     'large' => '23',
                     'xlarge' => '18',
+              )),
+          ))
+      @endif
+      @if ($subtype === 'small-mosaic')
+          @slot('imageSettings', array(
+              'srcset' => array(200,400,600,1000,1500,3000,4500),
+              'sizes' => aic_imageSizes(array(
+                      'xsmall' => '38',
+                      'small' => '18',
+                      'medium' => '18',
+                      'large' => '18',
+                      'xlarge' => '11',
               )),
           ))
       @endif

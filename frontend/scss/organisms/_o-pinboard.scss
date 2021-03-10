@@ -164,6 +164,15 @@
     //left: colspan(29, xsmall);
   }
 
+  .o-pinboard--1-col\@xsmall > * {
+    width: colspan(grid-cols-to-colspan(1), 'xsmall');
+  }
+
+  .o-pinboard--1-col\@xsmall > *:nth-child(1),
+  .o-pinboard--1-col\@xsmall > *:nth-child(2) {
+    border-top-color: transparent;
+  }
+
   .o-pinboard--2-col\@xsmall > * {
     width: colspan(grid-cols-to-colspan(2), 'xsmall');
   }
@@ -333,3 +342,10 @@
   }
 }
 
+.o-gallery--small-mosaic {
+  @include breakpoint('large') {
+   .o-pinboard--3-col\@large > * {
+      width: colspan(grid-cols-to-colspan(4), 'large');
+    }
+  }
+}
