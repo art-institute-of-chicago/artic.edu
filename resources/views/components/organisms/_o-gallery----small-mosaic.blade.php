@@ -28,7 +28,6 @@
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
         @slot('maintainOrder','false')
-        {{-- @slot('optionLayout','o-pinboard--1-col@xsmall o-pinboard--2-col@small o-pinboard--2-col@medium o-pinboard--3-col@large o-pinboard--3-col@xlarge') --}}
         @component('site.shared._mediaitems')
             @slot('items', $items)
             @slot('imageSettings', $imageSettings)

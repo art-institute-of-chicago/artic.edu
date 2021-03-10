@@ -31,6 +31,10 @@
         [
             'value' => 2,
             'label' => 'Light'
+        ],
+        [
+            'value' => 3,
+            'label' => 'White'
         ]
     ]
 ])

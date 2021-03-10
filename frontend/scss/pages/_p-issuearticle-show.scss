@@ -227,4 +227,8 @@ Styling related specifically to digital publications
   .o-blocks>h2:not([class*=f-]) {
     margin-top: 20px;
   }
+
+  .o-blocks.o-blocks--with-sidebar .o-gallery::before {
+    left: 1px;
+  }
 }
