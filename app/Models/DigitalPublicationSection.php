@@ -15,7 +15,7 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasBlocks;
 
-class DigitalPublicationSection extends AbstractModel
+class DigitalPublicationSection extends AbstractModel implements Sortable
 {
     use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, HasAuthors;
 
