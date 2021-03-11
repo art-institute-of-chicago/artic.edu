@@ -51,9 +51,9 @@
                     @slot('variation', 'btn--icon btn--septenary')
                     @slot('font', '')
                     @slot('tag', 'a')
-                    @slot('href', '#h-recommended-citation')
+                    @slot('href', '#h-how-to-cite')
                     @slot('icon', 'icon--citation--24')
-                    @slot('ariaLabel','Show recommended citation')
+                    @slot('ariaLabel','Show how to cite')
                 @endcomponent
             </li>
         @endif
