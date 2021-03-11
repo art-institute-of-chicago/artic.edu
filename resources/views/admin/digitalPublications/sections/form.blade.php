@@ -72,8 +72,8 @@
     ])
 
 @formField('wysiwyg', [
-    'name' => 'bibliography',
-    'label' => 'Bibliography',
+    'name' => 'references',
+    'label' => 'References',
     'toolbarOptions' => [
         'italic', 'link', 'list-ordered', 'list-unordered'
     ],

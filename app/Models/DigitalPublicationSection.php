@@ -36,7 +36,7 @@ class DigitalPublicationSection extends AbstractModel
         'position',
         'pdf_download_path',
         'cite_as',
-        'bibliography',
+        'references',
         'type_display',
     ];
 

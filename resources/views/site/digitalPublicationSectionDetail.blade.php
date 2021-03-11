@@ -91,18 +91,18 @@
             @endcomponent
         @endif
 
-        @if ($item->bibliography)
+        @if ($item->references)
             <hr class="hr">
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--no-hr',
                 'titleFont' => 'f-list-3'
             ])
-                Bibliography
+                References
             @endcomponent
             @php
                 // Add `f-secondary` class to <ul> and <ol> tags
                 $dom = new DomDocument();
-                $dom->loadHTML('<?xml encoding="utf-8" ?>' . $item->bibliography, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                $dom->loadHTML('<?xml encoding="utf-8" ?>' . $item->references, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
                 $xpath = new DOMXpath($dom);
                 $nodes = $xpath->query('//ol | //ul');
@@ -110,9 +110,9 @@
                 foreach($nodes as $node) {
                     $node->setAttribute('class', 'f-secondary');
                 }
-                $bibliography = $dom->saveHTML($dom);
+                $references = $dom->saveHTML($dom);
             @endphp
-            {!! $bibliography !!}
+            {!! $references !!}
         @endif
 
         @if ($item->cite_as)
