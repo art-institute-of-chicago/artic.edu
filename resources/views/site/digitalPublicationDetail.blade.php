@@ -130,7 +130,7 @@
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--compact m-title-bar--light',
             ])
-                Recommended Citation
+                How to Cite
             @endcomponent
 
             {!! $item->cite_as !!}

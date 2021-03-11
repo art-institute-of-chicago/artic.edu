@@ -65,7 +65,7 @@
 
     @formField('wysiwyg', [
         'name' => 'cite_as',
-        'label' => 'Recommended citation',
+        'label' => 'How to Cite',
         'toolbarOptions' => [
             'italic'
         ],

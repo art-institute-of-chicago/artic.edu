@@ -121,7 +121,7 @@
                 'variation' => 'm-title-bar--no-hr',
                 'titleFont' => 'f-list-3'
             ])
-                Recommended Citation
+                How to Cite
             @endcomponent
             @component('components.blocks._text')
                 @slot('font', 'f-secondary')

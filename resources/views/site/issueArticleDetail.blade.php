@@ -92,7 +92,7 @@
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--no-hr',
             ])
-                Recommended Citation
+                How to Cite
             @endcomponent
             @component('components.blocks._text')
                 @slot('font', 'f-secondary')
