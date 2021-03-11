@@ -25,6 +25,7 @@
         @component('components.molecules._m-article-actions----digital-publication')
             @slot('digitalPublication', $item)
             @slot('isLogoAnimated', true)
+            @slot('citeAs', $item->cite_as)
         @endcomponent
     </div>
 

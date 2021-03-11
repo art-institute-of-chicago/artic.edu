@@ -12,6 +12,7 @@
             @slot('digitalPublication', $item->digitalPublication)
             @slot('currentSection', $item)
             @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
+            @slot('citeAs', $item->cite_as)
         @endcomponent
     </div>
 
