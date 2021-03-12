@@ -35,11 +35,21 @@ if (!function_exists('getFigureNumber')) {
     }
 }
 
+if (!function_exists('getFigureId')) {
+    function getFigureId($figureNumber) {
+        global $_figurePrefixForId;
+
+        $figurePrefix = $_figurePrefixForId ?? 'fig-';
+
+        return $figurePrefix . $figureNumber;
+    }
+}
+
 if (!function_exists('getFormattedFigureNumber')) {
     function getFormattedFigureNumber($figureNumber) {
-        global $_figurePrefix;
+        global $_figurePrefixForDisplay;
 
-        $figurePrefix = $_figurePrefix ?? 'Fig.';
+        $figurePrefix = $_figurePrefixForDisplay ?? 'Fig.';
 
         return $figurePrefix . ' ' . $figureNumber . ': ';
     }

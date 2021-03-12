@@ -9,7 +9,7 @@
 
 @if ($image_sequence_file)
 
-    <div {!! isset($figureNumber) ? 'id="fig-' . $figureNumber . '" ' : '' !!} class="m-media m-media--s o-blocks__block">
+    <div {!! isset($figureNumber) ? 'id="' . getFigureId($figureNumber) . '" ' : '' !!} class="m-media m-media--s o-blocks__block">
         <script type="application/json" id="assetLibrary-{!!$sequence_id!!}">
             {!! json_encode($block->assetLibrary) !!}
         </script>

@@ -72,8 +72,11 @@
             global $_figureCount;
             $_figureCount = 0;
 
-            global $_figurePrefix;
-            $_figurePrefix = 'Cat.';
+            global $_figurePrefixForId;
+            $_figurePrefixForId = 'cat-';
+
+            global $_figurePrefixForDisplay;
+            $_figurePrefixForDisplay = 'Cat.';
         }
         @endphp
 

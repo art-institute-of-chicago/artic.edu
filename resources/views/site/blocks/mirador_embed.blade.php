@@ -18,7 +18,7 @@
 @endphp
 
 @if ($manifest)
-    <div {!! isset($figureNumber) ? 'id="fig-' . $figureNumber . '" ' : '' !!} class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} o-blocks__block">
+    <div {!! isset($figureNumber) ? 'id="' . getFigureId($figureNumber) . '" ' : '' !!} class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} o-blocks__block">
         <div class="m-media__img m-media--mirador-embed" data-behavior="fitText">
             @component('components.molecules._m-viewer-mirador')
                 @slot('type', 'standalone')
