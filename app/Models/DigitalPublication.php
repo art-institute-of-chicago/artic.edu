@@ -205,7 +205,7 @@ class DigitalPublication extends AbstractModel
                 "name" => 'content',
                 "doc" => "Content",
                 "type" => "text",
-                "value" => function() { return $this->blocks; }
+                "value" => function() { return $this->present()->blocks; }
             ],
             [
                 "name" => 'related',
