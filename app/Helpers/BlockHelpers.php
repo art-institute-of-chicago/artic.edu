@@ -64,12 +64,8 @@ if (!function_exists('getTitleWithFigureNumber')) {
                 $firstChild = $urlAnchor;
             }
 
-            $figAnchor = $dom->createElement('a');
-            $figAnchor->setAttribute('href', '#fig-' . $figureNumber);
-            $figAnchor->appendChild($dom->createTextNode('Fig. ' . $figureNumber));
-
-            $dom->documentElement->insertBefore($figAnchor, $firstChild);
-            $dom->documentElement->insertBefore($dom->createTextNode(': '), $firstChild);
+            $textNode = $dom->createTextNode('Fig. ' . $figureNumber . ': ');
+            $dom->documentElement->insertBefore($textNode, $firstChild);
 
             $title = $dom->saveHTML($dom->documentElement);
         }
