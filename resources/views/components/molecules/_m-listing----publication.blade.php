@@ -29,7 +29,7 @@
         <br>
         @if ($list_description)
             @component('components.atoms._short-description')
-                @slot('font', (isset($variation) && $variation == 'm-listing--work') ? 'f-body' : 'f-caption-title')
+                @slot('font', 'f-body')
                 {!! $list_description !!}
             @endcomponent
         @endif
