@@ -18,7 +18,7 @@
     @endcomponent
 
     @component('components.molecules._m-sidebar-toggle')
-        @slot('title', $item->title_display ?? $item->title)
+        @slot('title', 'Table of Contents')
     @endcomponent
 
     <div class="o-article__primary-actions o-article__primary-actions--digital-publication">
