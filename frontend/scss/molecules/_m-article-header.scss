@@ -1121,43 +1121,109 @@
 
 // Treatment for digital publication header, like the Malangatana catalog
 .m-article-header--digital-publication {
-  flex-flow: row-reverse nowrap;
   .m-article-header__text {
-    flex: 0 0 38%;
     position: relative;
+    padding-bottom: 0;
+    min-height: initial;
     z-index: auto;
-    padding-left: 0;
-    padding-right: 20px;
+
+    white-space: nowrap;
+
+    .f-headline-editorial {
+      @include untuck();
+    }
   }
+
   .m-article-header__img {
-    flex: 0 0 62%;
-    left: auto;
-    margin-left: auto;
-    height: 75vh;
-    margin-right: -50vw;
-    right: 50%;
+    height: 250px;
   }
+
   .m-article-header__img::before {
     background-image: none;
     margin-right: -50vw;
     height: 100%;
   }
+
   .m-article-header__text::before {
     background-color: $color__bg--gallery;
     backdrop-filter: none;
   }
+
   .title {
-    margin-top: 80px;
+    margin-top: 20px;
   }
+
   .subtitle {
     text-align: right;
-    margin-bottom: 80px;
-    padding-right: 0;
+    color: $color__text--title-contrast;
+
+    margin-top: 75px;
+    margin-bottom: 24px;
+  }
+
+  @include breakpoint('small') {
+    .m-article-header__img {
+      height: 300px;
+    }
+
+    .title {
+      margin-top: 36px;
+    }
+
+    .subtitle {
+      margin-top: 100px;
+      margin-bottom: 36px;
+    }
+  }
+
+  @include breakpoint('medium') {
+    .m-article-header__text {
+      padding-right: 0;
+    }
+
+    .m-article-header__img {
+      height: 350px;
+    }
+
+    .title {
+      margin-top: 40px;
+    }
+
+    .subtitle {
+      margin-top: 100px;
+      margin-bottom: 44px;
+    }
+  }
+
+  @include breakpoint('large+') {
+    flex-flow: row-reverse nowrap;
+
+    .m-article-header__text {
+      flex: 0 0 38%;
+      padding-right: initial;
+      padding-left: initial;
+    }
+
+    .m-article-header__img {
+      left: auto;
+      margin-left: auto;
+
+      flex: 0 0 62%;
+      height: 75vh;
+      right: 50%;
+      margin-right: -50vw;
+    }
+
+    .title {
+      margin-top: 50px;
+    }
+
+    .subtitle {
+      margin-top: 100px;
+      margin-bottom: 60px;
+    }
   }
 }
-
-
-
 
 .m-article-header--generic {
   padding-top: 0;
