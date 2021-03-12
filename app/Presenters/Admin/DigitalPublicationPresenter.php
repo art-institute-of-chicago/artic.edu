@@ -45,6 +45,7 @@ class DigitalPublicationPresenter extends BasePresenter
             $this->sections['all'] = $this->entity
                 ->sections()
                 ->published()
+                ->ordered()
                 ->get();
         }
 
