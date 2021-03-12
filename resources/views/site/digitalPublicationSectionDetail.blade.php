@@ -67,6 +67,14 @@
             global $_figureCount;
             $_figureCount = 0;
         }
+
+        if ($item->type == \App\Models\DigitalPublicationSection::WORK) {
+            global $_figureCount;
+            $_figureCount = 0;
+
+            global $_figurePrefix;
+            $_figurePrefix = 'Cat.';
+        }
         @endphp
 
         {!! $item->renderBlocks(false, [], [

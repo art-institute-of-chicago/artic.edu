@@ -35,6 +35,16 @@ if (!function_exists('getFigureNumber')) {
     }
 }
 
+if (!function_exists('getFormattedFigureNumber')) {
+    function getFormattedFigureNumber($figureNumber) {
+        global $_figurePrefix;
+
+        $figurePrefix = $_figurePrefix ?? 'Fig.';
+
+        return $figurePrefix . ' ' . $figureNumber . ': ';
+    }
+}
+
 if (!function_exists('getTitleWithFigureNumber')) {
     function getTitleWithFigureNumber($title, $figureNumber, $urlTitle = null) {
         if (isset($figureNumber) && isset($title)) {
@@ -64,7 +74,7 @@ if (!function_exists('getTitleWithFigureNumber')) {
                 $firstChild = $urlAnchor;
             }
 
-            $textNode = $dom->createTextNode('Fig. ' . $figureNumber . ': ');
+            $textNode = $dom->createTextNode(getFormattedFigureNumber($figureNumber));
             $dom->documentElement->insertBefore($textNode, $firstChild);
 
             $title = $dom->saveHTML($dom->documentElement);
