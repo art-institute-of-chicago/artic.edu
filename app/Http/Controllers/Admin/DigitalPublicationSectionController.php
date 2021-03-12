@@ -62,7 +62,7 @@ class DigitalPublicationSectionController extends ModuleController
     {
         $item = $this->repository->getById(request('section') ?? request('id'));
         $digPub = app(DigitalPublicationRepository::class)->getById(request('digitalPublication'));
-        $baseUrl = '//' . config('app.url') . '/' .$this->permalinkBase . $digPub->id . '/' . $digPub->getSlug() . '/' . $item->type  . '/' . $item->id . '/';
+        $baseUrl = '//' . config('app.url') . '/' .$this->permalinkBase . $digPub->id . '/' . $digPub->getSlug() . '/' . $item->id . '/';
 
         return [
             'typesList' => $this->repository->getTypesList(),
