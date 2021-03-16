@@ -37,16 +37,18 @@
                 @slot('ariaLabel','Share page')
             @endcomponent
         </li>
-        <li class="m-article-actions__action">
-            @component('components.atoms._btn')
-                @slot('variation', 'btn--icon')
-                @slot('font', '')
-                @slot('tag', 'a')
-                @slot('href', $item->present()->pdfDownloadPath())
-                @slot('icon', 'icon--download--24')
-                @slot('ariaLabel','Download PDF')
-            @endcomponent
-        </li>
+        @if (!empty($item->present()->pdfDownloadPath()))
+            <li class="m-article-actions__action">
+                @component('components.atoms._btn')
+                    @slot('variation', 'btn--icon')
+                    @slot('font', '')
+                    @slot('tag', 'a')
+                    @slot('href', $item->present()->pdfDownloadPath())
+                    @slot('icon', 'icon--download--24')
+                    @slot('ariaLabel','Download PDF')
+                @endcomponent
+            </li>
+        @endif
     </ul>
 </div>
 
