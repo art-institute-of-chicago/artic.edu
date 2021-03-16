@@ -3,22 +3,16 @@
 @section('content')
 
 <article class="o-article">
-    <div class="m-journal-mobile u-hide@large+">
-        <button data-behavior="showStickySidebar" aria-label="Show publication navigation">
-            <svg class="icon--menu--24">
-                <use xlink:href="#icon--menu--24" />
-            </svg>
-            @component('components.blocks._text')
-                @slot('tag', 'span')
-                @slot('font', 'f-list-1')
-                [Publication name]
-            @endcomponent
-        </button>
-    </div>
+    @component('components.molecules._m-sidebar-toggle')
+        @slot('title', $item->digitalPublication->title_display ?? $item->digitalPublication->title)
+    @endcomponent
 
-    <div class="o-article__primary-actions">
-        @component('components.molecules._m-article-actions----digital-publication-section')
-            @slot('item', $item)
+    <div class="o-article__primary-actions o-article__primary-actions--digital-publication">
+        @component('components.molecules._m-article-actions----digital-publication')
+            @slot('digitalPublication', $item->digitalPublication)
+            @slot('currentSection', $item)
+            @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
+            @slot('citeAs', $item->cite_as)
         @endcomponent
     </div>
 
@@ -73,6 +67,17 @@
             global $_figureCount;
             $_figureCount = 0;
         }
+
+        if ($item->type == \App\Models\DigitalPublicationSection::WORK) {
+            global $_figureCount;
+            $_figureCount = 0;
+
+            global $_figurePrefixForId;
+            $_figurePrefixForId = 'cat-';
+
+            global $_figurePrefixForDisplay;
+            $_figurePrefixForDisplay = 'Cat.';
+        }
         @endphp
 
         {!! $item->renderBlocks(false, [], [
@@ -98,18 +103,18 @@
             @endcomponent
         @endif
 
-        @if ($item->bibliography)
+        @if ($item->references)
             <hr class="hr">
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--no-hr',
                 'titleFont' => 'f-list-3'
             ])
-                Bibliography
+                References
             @endcomponent
             @php
                 // Add `f-secondary` class to <ul> and <ol> tags
                 $dom = new DomDocument();
-                $dom->loadHTML('<?xml encoding="utf-8" ?>' . $item->bibliography, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                $dom->loadHTML('<?xml encoding="utf-8" ?>' . $item->references, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
                 $xpath = new DOMXpath($dom);
                 $nodes = $xpath->query('//ol | //ul');
@@ -117,9 +122,9 @@
                 foreach($nodes as $node) {
                     $node->setAttribute('class', 'f-secondary');
                 }
-                $bibliography = $dom->saveHTML($dom);
+                $references = $dom->saveHTML($dom);
             @endphp
-            {!! $bibliography !!}
+            {!! $references !!}
         @endif
 
         @if ($item->cite_as)
@@ -128,7 +133,7 @@
                 'variation' => 'm-title-bar--no-hr',
                 'titleFont' => 'f-list-3'
             ])
-                Recommended Citation
+                How to Cite
             @endcomponent
             @component('components.blocks._text')
                 @slot('font', 'f-secondary')

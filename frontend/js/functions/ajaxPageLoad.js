@@ -285,9 +285,8 @@ const ajaxPageLoad = function() {
     }, ajaxTimeOutTime);
   }
   function popstate(event) {
-    event.preventDefault();
-    //if (A17.currentPathname !== window.location.pathname && (!event.data.type || event.data.type === 'page')) {
-    if (!event.data.type || event.data.type === 'page') {
+    if (A17.currentPathname !== window.location.pathname && (!event.data.type || event.data.type === 'page')) {
+      event.preventDefault();
       loadDocument({
         href: event.data.url,
         type: event.data.type,

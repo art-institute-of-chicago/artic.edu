@@ -10,6 +10,10 @@
         [
             'value' => 2,
             'label' => 'Layout 2 (Carousel)'
+        ],
+        [
+            'value' => 3,
+            'label' => 'Layout 3 (Small mosaic)'
         ]
     ]
 ])
@@ -27,6 +31,10 @@
         [
             'value' => 2,
             'label' => 'Light'
+        ],
+        [
+            'value' => 3,
+            'label' => 'White'
         ]
     ]
 ])

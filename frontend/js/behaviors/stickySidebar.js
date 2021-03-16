@@ -12,10 +12,23 @@ const stickySidebar = function(container){
     return offsetTop;
   }
 
+  const outerHeight = element => {
+    var height = element.offsetHeight;
+    var style = getComputedStyle(element);
+
+    height += parseInt(style.marginTop) + parseInt(style.marginBottom);
+    return height;
+  }
+
   const setState = targetState => {
     let classList = document.documentElement.classList;
 
-    ['is-sidebar-top', 'is-sidebar-fixed', 'is-sidebar-bottom'].forEach(state => {
+    [
+      'is-sidebar-top',
+      'is-sidebar-grabbed',
+      'is-sidebar-fixed',
+      'is-sidebar-bottom',
+    ].forEach(state => {
       if (state !== targetState && classList.contains(state)) {
         classList.remove(state);
       }
@@ -24,12 +37,18 @@ const stickySidebar = function(container){
     if (targetState && !classList.contains(targetState)) {
       classList.add(targetState);
     }
+
+    currentState = targetState;
+  }
+
+  const resetScroll = () => {
+    if (['is-sidebar-fixed','is-sidebar-bottom'].includes(currentState)) {
+      container.scrollTo(0, 0);
+    }
   }
 
   let article = document.querySelector('.o-article');
-
-  let stickyOffset = parseInt(container.getAttribute('data-sticky-offset'), 10);
-  container.setAttribute('style', 'padding-top:' + stickyOffset + 'px');
+  let logo = document.querySelector('.m-article-actions--publication__logo');
 
   let scrollTop;
 
@@ -44,11 +63,25 @@ const stickySidebar = function(container){
   let savedFocus;
   let savedScroll;
 
+  let currentState;
+
+  // null if absent, empty string if present
+  let isLogoAnimated = container.getAttribute('data-sticky-animated-logo') !== null;
+  let grabTop;
+
   function update() {
     scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
     if (scrollTop < containerTop) {
-      top();
+      if (!isLogoAnimated) {
+        top();
+      } else {
+        if (scrollTop < grabTop) {
+          top();
+        } else {
+          grab();
+        }
+      }
     } else {
       containerHeight = container.offsetHeight;
       containerBottom = getOffsetTop(article) + document.body.scrollTop + article.offsetHeight;
@@ -62,7 +95,13 @@ const stickySidebar = function(container){
   }
 
   function top() {
+    resetScroll();
     setState('is-sidebar-top');
+  }
+
+  function grab() {
+    resetScroll();
+    setState('is-sidebar-grabbed');
   }
 
   function sticky() {
@@ -81,6 +120,10 @@ const stickySidebar = function(container){
     top();
     windowHeight = window.innerHeight || document.documentElement.clientHeight;
     containerTop = getOffsetTop(container) + document.body.scrollTop;
+
+    logo.setAttribute('style', 'display: block');
+    grabTop = containerTop - outerHeight(logo);
+    logo.removeAttribute('style');
 
     handleScroll();
   }

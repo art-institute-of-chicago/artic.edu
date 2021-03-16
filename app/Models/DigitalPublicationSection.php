@@ -15,7 +15,7 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasBlocks;
 
-class DigitalPublicationSection extends AbstractModel
+class DigitalPublicationSection extends AbstractModel implements Sortable
 {
     use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, HasAuthors;
 
@@ -36,7 +36,7 @@ class DigitalPublicationSection extends AbstractModel
         'position',
         'pdf_download_path',
         'cite_as',
-        'bibliography',
+        'references',
         'type_display',
     ];
 
@@ -109,10 +109,6 @@ class DigitalPublicationSection extends AbstractModel
 
     public function getUrlAttribute()
     {
-        return route('collection.publications.digital-publications-sections.show', [
-            'pubSlug' => $this->digitalPublication->getSlug(),
-            'type' => Str::plural($this->type),
-            'id' => $this->id,
-            'slug' => $this->getSlug()], false);
+        return $this->present()->getCanonicalUrl();
     }
 }

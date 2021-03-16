@@ -6,7 +6,7 @@
 @endphp
 
 @if ($vtourxml)
-    <div {!! isset($figureNumber) ? 'id="fig-' . $figureNumber . '" ' : '' !!} class="m-media m-media--l o-blocks__block">
+    <div {!! isset($figureNumber) ? 'id="' . getFigureId($figureNumber) . '" ' : '' !!} class="m-media m-media--l o-blocks__block">
         <div class="m-media--vtour-embed" data-behavior="fitText">
             @component('components.molecules._m-viewer-virtualtour')
                 @slot('type', 'standalone')

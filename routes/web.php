@@ -33,11 +33,11 @@ Route::name('collection.categorySearch')->get('/collection/categorySearch/{categ
 
 // Collection Publications Printed Publications
 Route::name('collection.publications.printed-publications')->get('/print-publications', 'PrintedPublicationsController@index');
-Route::name('collection.publications.printed-publications.show')->get('/print-publications/{id}', 'PrintedPublicationsController@show');
+Route::name('collection.publications.printed-publications.show')->get('/print-publications/{id}/{slug?}', 'PrintedPublicationsController@show');
 // Collection Publications Digital Publications
 Route::name('collection.publications.digital-publications')->get('/digital-publications', 'DigitalPublicationsController@index');
-Route::name('collection.publications.digital-publications.show')->get('/digital-publications/{id}', 'DigitalPublicationsController@show');
-Route::name('collection.publications.digital-publications-sections.show')->get('/digital-publications/{pubId}/{pubSlug}/{type}/{id}/{slug?}', 'DigitalPublicationSectionController@show');
+Route::name('collection.publications.digital-publications.show')->get('/digital-publications/{id}/{slug?}', 'DigitalPublicationsController@show');
+Route::name('collection.publications.digital-publications-sections.show')->get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', 'DigitalPublicationSectionController@show');
 
 // Collection Research
 Route::name('collection.research_resources')->get('/collection/research_resources', 'ResearchController@index');
@@ -103,6 +103,10 @@ Route::name('videos.show')->get('/videos/{id}/{slug?}', 'VideoController@show');
 // Virtual Tours routes
 Route::name('virtualTours')->get('virtual-tours', function () {return abort(404);});
 Route::name('virtualTours.show')->get('/virtual-tours/{id}/{slug?}', 'VirtualTourController@show');
+
+// Mirador kiosk routes
+Route::name('mirador')->get('mirador', function () {return abort(404);});
+Route::name('mirador.show')->get('/mirador/{id}/{slug?}', 'MiradorController@show');
 
 // Exhibition history routes
 // Must remain before exhibition routes

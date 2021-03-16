@@ -7,6 +7,7 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\IssueArticle;
+use App\Models\DigitalPublicationSection;
 use Prince\Prince;
 
 class GeneratePdfs extends Command
@@ -32,6 +33,7 @@ class GeneratePdfs extends Command
      */
     protected $models = [
         'issue-articles.show' => IssueArticle::class,
+        'collection.publications.digital-publications-sections.show' => DigitalPublicationSection::class,
     ];
 
     /**
@@ -58,7 +60,14 @@ class GeneratePdfs extends Command
         {
             return false;
         }
-        $path = route($route, ['id' => $model->id, 'slug' => $model->getSlug()]);
+
+        $path = null;
+        if (get_class($model) == DigitalPublicationSection::class) {
+            $path = route($route, ['pubId' => $model->digitalPublication->id, 'pubSlug' => $model->digitalPublication->getSlug(), 'id' => $model->id, 'slug' => $model->getSlug()]);
+        }
+        else {
+            $path = route($route, ['id' => $model->id, 'slug' => $model->getSlug()]);
+        }
 
         // Check that the prince command exists
         $commandCheck = 'command -v ' . config('aic.prince_command');

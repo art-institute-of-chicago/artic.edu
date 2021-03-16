@@ -1,0 +1,347 @@
+.o-article__primary-actions {
+  position: relative;
+  margin-top: 28px;
+  padding-top: 8px;
+
+  // WEB-461: Fix medium figure covering up primary actions
+  z-index: 2;
+
+  @include breakpoint('xsmall') {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 28px;
+  }
+
+  @include breakpoint('large+') {
+    float: left;
+    width: colspan(13, large);
+    margin-top: 0;
+    margin-right: colspan(2, large);
+
+    //&.o-article__primary-actions--inline-header {
+    .m-article-header--gallery ~ & {
+      margin-top: 40px;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(13, xlarge);
+    margin-right: colspan(2, xlarge);
+  }
+
+  .m-article-header--default ~ & {
+    @include breakpoint('medium') {
+      float: left;
+      width: colspan(38, medium);
+    }
+  }
+}
+
+.m-article-header ~ .o-article__primary-actions::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+}
+
+.o-article__primary-actions > *:not(:nth-child(1)):not([class*='f-']):not(.o-collapsing-nav) {
+  margin-top: 8px;
+
+  @include breakpoint('large+') {
+    margin-top: 52px;
+  }
+}
+
+.o-article__primary-actions > *.f-secondary:not(:nth-child(1)) {
+  @include tucked-margin-top($f-secondary, ('xsmall': 52));
+}
+
+.o-article__primary-actions > .m-article-actions:nth-child(1) {
+  @include breakpoint('large+') {
+    margin-top: 8px;
+  }
+}
+
+.m-article-header--feature ~ .o-article__primary-actions,
+.m-article-header--hero ~ .o-article__primary-actions,
+.m-article-header--super-hero ~ .o-article__primary-actions {
+  @include breakpoint('medium-') {
+    margin-top: 0;
+
+    &::before {
+      content: none;
+      display: none;
+    }
+  }
+}
+
+.o-article__primary-actions *.f-secondary:not(.m-author):not(.m-link-list) a {
+  @include text-underline(1.02em, $color__rules--secondary);
+
+  &:hover,
+  &:focus:hover {
+    @include text-underline(1.02em, $color__link--hover);
+  }
+
+  &:active:hover {
+    @include text-underline(1.02em, $color__link--active);
+  }
+}
+
+
+// Variant for generic pages
+.o-article--generic-page {
+  .o-article__primary-actions {
+    padding-top: 0;
+
+    @include breakpoint('medium-') {
+      @include background-fill;
+      margin-top: 0;
+      background-color: $color__bg--primary;
+
+      & ~ .o-article__secondary-actions {
+        margin-top: 8px;
+      }
+
+      & ~ .o-article__body {
+        margin-top: 20px;
+      }
+
+      &::before {
+        height: auto;
+        background-color: inherit;
+      }
+    }
+
+    @include breakpoint('medium') {
+      width: colspan(58, medium);
+
+      & ~ .o-article__secondary-actions {
+        margin-top: 28px;
+      }
+
+      & ~ .o-article__body {
+        margin-top: 28px;
+      }
+    }
+
+    .m-link-list {
+      margin-top: 0;
+    }
+  }
+}
+
+// Positioned left of .m-article-header--default with date
+.o-article__primary-actions--video {
+  display: flex;
+  justify-content: space-between;
+
+  @include breakpoint('large+') {
+    min-height: 180px;
+    flex-direction: column;
+  }
+
+  > :not(:nth-child(1)):not([class*='f-']):not(.o-collapsing-nav) {
+    margin-top: auto;
+  }
+
+  .m-article-actions {
+    margin-bottom: 0;
+  }
+}
+
+
+// Everything below are variants for publications
+%o-article__primary-actions--toggleable {
+  display: none;
+
+  @include breakpoint('large+') {
+    display: block;
+  }
+}
+
+// Styles shared by all publication sidebars:
+.o-article__primary-actions--digital-publication,
+.o-article__primary-actions--magazine-issue,
+.o-article__primary-actions--journal-article,
+.o-article__primary-actions--journal-issue {
+  padding-top: initial;
+  margin-top: 0;
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      .m-search-bar,
+      hr,
+      .m-article-actions--journal__issues {
+        margin-top: #{map-get((
+          xsmall: 24,
+          small: 24,
+          medium: 24,
+          large: 24,
+          xlarge: 30
+        ), $name)}px;
+      }
+    }
+  }
+
+  .m-article-actions--journal__issues a {
+    margin-bottom: 12px;
+  }
+
+  .m-article-actions--publication__logo {
+    a {
+      color: $color__black--90;
+    }
+  }
+
+  .m-article-actions--publication__text {
+    @include untuck();
+
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        margin-top: #{map-get((
+          large: 24,
+          xlarge: 30
+        ), $name)}px;
+      }
+    }
+
+    &.f-secondary {
+      color: $color__black--54;
+      padding-right: 2em;
+
+      a {
+        color: $color__black--54;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Styles specific to digital publications and their sections:
+.o-article__primary-actions--digital-publication {
+  @extend %o-article__primary-actions--toggleable;
+  padding-top: 0px;
+
+  .o-sticky-sidebar__sticker {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+
+  .m-article-actions--publication__logo {
+    margin-bottom: 40px;
+    white-space: nowrap;
+
+    @include font-styles-untuck(generate-font-obj(
+      (
+        font-family: $serif-font,
+        font-family-loaded: $serif-font--loaded,
+        font-loaded-class: $serif-font-loaded-class,
+        settings: (
+          'xsmall': (font-size: 22, line-height: 23, push: 0),
+        )
+      )
+    ));
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .m-article-actions {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 8px;
+    border-top: 1px solid $color__rules--primary;
+  }
+}
+
+// Styles specific to magazine issues:
+.o-article__primary-actions--magazine-issue {
+  .o-sticky-sidebar__sticker {
+    padding-top: 100px;
+  }
+
+  hr {
+    margin-bottom: 24px;
+
+    @include breakpoint('large+') {
+      margin-bottom: 0;
+    }
+  }
+
+  #h-nav-magazine-social {
+    font-weight: 400;
+    color: $color__black--90;
+  }
+}
+
+// Styles specific to journal issues:
+.o-article__primary-actions--journal-issue {
+  .o-sticky-sidebar__sticker {
+    padding-top: 30px;
+  }
+
+  .m-article-actions--publication__logo {
+    .icon--journal-logo {
+      height: 92px;
+      width: 120px;
+    }
+  }
+
+  .m-search-bar {
+    input[type=text] {
+      height: 42px;
+    }
+
+    .m-search-bar__submit,
+    .m-search-bar__clear {
+      width: 42px;
+      height: 42px;
+    }
+  }
+}
+
+
+// Styles specific to journal articles:
+.o-article__primary-actions--journal-article {
+  @extend %o-article__primary-actions--toggleable;
+
+  padding-top: 0;
+  margin-top: 0;
+
+  .o-sticky-sidebar__sticker {
+    padding-top: 30px;
+  }
+
+  .m-article-actions--publication__logo {
+    a {
+      color: $color__black--90;
+    }
+
+    .icon--journal-logo {
+      height: 92px;
+      width: 120px;
+    }
+  }
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      .m-article-actions--journal__issues {
+        margin-top: #{map-get((
+          xsmall: 24,
+          small: 24,
+          medium: 24,
+          large: 24,
+          xlarge: 30
+        ), $name)}px;
+      }
+    }
+  }
+}

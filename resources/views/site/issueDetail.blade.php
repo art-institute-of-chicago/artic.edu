@@ -12,7 +12,7 @@
         @slot('issueNumber', $item->issue_number ?? null)
     @endcomponent
 
-    <div class="o-article__primary-actions">
+    <div class="o-article__primary-actions o-article__primary-actions--journal-issue">
         @component('components.molecules._m-article-actions----journal-issue')
             @slot('issues', $issues)
         @endcomponent

@@ -75,9 +75,19 @@
 
       .icon--arrow {
         color: $color__text--accent;
-        width: 32px;
-        height: 32px;
+        width: 25px;
+        height: 25px;
         vertical-align: text-bottom;
+
+        @include breakpoint('small') {
+          width: 28px;
+          height: 28px;
+        }
+
+        @include breakpoint('medium+') {
+          width: 31px;
+          height: 31px;
+        }
       }
     }
   }

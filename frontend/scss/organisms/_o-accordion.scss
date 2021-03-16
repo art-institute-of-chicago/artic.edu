@@ -354,3 +354,33 @@ h3 {
 .o-accordion__panel-content.o-blocks > *:last-child {
   margin-bottom: 48px;
 }
+
+.o-accordion--publication-sidebar {
+  margin-bottom: 25px;
+
+  h3 {
+    padding: 0;
+  }
+
+  .o-accordion__trigger {
+    padding-bottom: 18px;
+    padding-top: 12px;
+  }
+
+  .o-accordion__trigger-icon {
+    margin-top: -17px;
+  }
+
+  .o-accordion__panel-content {
+    padding-bottom: 15px;
+    border-bottom: 1px solid $color__rules--primary;
+
+    .m-link-list__item:first-child::after {
+      content: none;
+    }
+
+    &.o-blocks>:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

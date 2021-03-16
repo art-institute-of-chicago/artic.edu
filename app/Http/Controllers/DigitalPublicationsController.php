@@ -41,10 +41,20 @@ class DigitalPublicationsController extends BaseScopedController
 
     public function show($id)
     {
-        $item = $this->repository->safeForSlug($id);
+        $item = $this->repository->published()->find((integer) $id);
+
+        if (empty($item)) {
+            $item = $this->repository->safeForSlug($id);
+        }
 
         if (!$item) {
-            $item = $this->repository->find((Integer) $id) ?? abort(404);
+            abort(404);
+        }
+
+        $canonicalPath = $item->present()->getCanonicalUrl();
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
+            return $canonicalRedirect;
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
@@ -57,9 +67,10 @@ class DigitalPublicationsController extends BaseScopedController
 
         return view('site.digitalPublicationDetail', [
             'item' => $item,
-            'contrastHeader' => true,
+            'contrastHeader' => false,
             'borderlessHeader' => false,
             'unstickyHeader' => true,
+            'canonicalUrl' => $canonicalPath,
             'welcomeNote' => $this->repository->getWelcomeNote($item),
         ]);
     }

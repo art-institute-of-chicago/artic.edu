@@ -592,7 +592,8 @@
 /**
  *  Themes for dark/light variations. Dark is default.
  */
-.o-gallery.o-gallery----theme-2 {
+.o-gallery.o-gallery----theme-2,
+.o-gallery.o-gallery----theme-3 {
   background-color: $color__bg--primary;
   color: $color__text;
 
@@ -623,6 +624,9 @@
   }
 }
 
+.o-gallery.o-gallery----theme-3 {
+  background: $color__bg;
+}
 /**
  *  For the artist carousel on the homepage.
  */

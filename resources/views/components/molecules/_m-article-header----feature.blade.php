@@ -1,3 +1,10 @@
+@if ($bgcolor ?? false)
+    <style>
+        .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__text::before {
+            background-color: {{ $bgcolor }};
+        }
+    </style>
+@endif
 <{{ $tag ?? 'header' }} class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
     <div class="m-article-header__img" data-blur-img>
         @if ($img)
@@ -19,6 +26,11 @@
                 @slot('title', $title)
                 @slot('title_display', $title_display ?? null)
             @endcomponent
+            @if (isset($subtitle_display))
+                <h2 class="subtitle f-headline-editorial">
+                    {!! $subtitle_display !!}
+                </h2>
+            @endif
         @endif
 
         {{-- Preview dates --}}

@@ -2,6 +2,10 @@
   display: flex;
   position: relative;
 
+  // WEB-1034: the pseudo-element trick doesn't work with flex
+  @include untuck();
+  margin-top: 16px;
+
   // Adapted from .o-blocks > p:not([class*='f-'])
   .o-blocks > &:not([class*='f-']) {
     @each $name, $point in $breakpoints {

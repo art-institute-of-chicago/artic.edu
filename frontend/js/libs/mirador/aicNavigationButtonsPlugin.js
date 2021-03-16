@@ -56,10 +56,10 @@ class NavigationButtonsPlugin extends Component {
     return (
       <div style={{position: 'absolute', bottom: '50%', zIndex:500, width:'100%'}}>
         <IconButton className={classes.CustomButtonPrevious} aria-label='previous canvas'  disabled={!hasPreviousCanvas} onClick={() => { hasPreviousCanvas && setPreviousCanvas(); }}>
-          <PrevIcon />
+          <PrevIcon className={'navButtons'} />
         </IconButton>
         <IconButton className={classes.CustomButtonNext} aria-label='next canvas' disabled={!hasNextCanvas} onClick={() => { hasNextCanvas && setNextCanvas(); }}>
-          <NextIcon />
+          <NextIcon className={'navButtons'} />
         </IconButton>
       </div>
     );

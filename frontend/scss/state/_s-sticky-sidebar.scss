@@ -43,12 +43,9 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         height: 100vh;
         overflow-y: auto;
 
-        @each $name in ('xsmall', 'small', 'medium') {
-          @include breakpoint('#{$name}') {
-            padding-left: map-get($outer-gutters, $name);
-            padding-right: #{colspan(2, '#{$name}')};
-          }
-        }
+        // Gutters are always about the same as on xsmall
+        padding-left: 20px;
+        padding-right: 20px;
 
         .g-sidebar__close {
           display: block;
@@ -82,11 +79,24 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
   }
 
   @include breakpoint('large+') {
+    .o-sticky-sidebar__sticker[data-sticky-animated-logo] {
+      .m-article-actions--publication__logo {
+        display: none;
+        transition: opacity 0.3s;
+        opacity: 0;
+      }
+    }
+
+    &.is-sidebar-grabbed,
     &.is-sidebar-fixed,
     &.is-sidebar-bottom {
       .o-sticky-sidebar__sticker {
-        height: 100vh;
-        overflow-y: auto;
+
+        &[data-sticky-animated-logo] {
+          .m-article-actions--publication__logo {
+            display: block;
+          }
+        }
 
         @each $name in ('large', 'xlarge') {
           @include breakpoint('#{$name}') {
@@ -97,6 +107,21 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
       }
     }
 
+    &.is-sidebar-fixed,
+    &.is-sidebar-bottom {
+      .o-sticky-sidebar__sticker {
+        &[data-sticky-animated-logo] {
+          .m-article-actions--publication__logo {
+            opacity: 1;
+          }
+        }
+
+        height: 100vh;
+        overflow-y: auto;
+      }
+    }
+
+    &.is-sidebar-grabbed,
     &.is-sidebar-fixed {
       .o-sticky-sidebar__sticker {
         position: fixed;

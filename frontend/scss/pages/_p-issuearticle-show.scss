@@ -14,76 +14,6 @@
     }
   }
 
-  .m-journal-mobile {
-    position: relative;
-    padding-top: 13px;
-    padding-bottom: 13px;
-
-    &::before {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 100vw;
-      margin-left: -50vw;
-      pointer-events: none;
-      background-color: $color__bg--primary;
-      border-bottom: 1px solid $color__rules--primary;
-    }
-
-    .icon--menu--24 {
-      top: -4px;
-      position: relative;
-      margin-right: 8px;
-      margin-left: -10px;
-    }
-
-    .f-list-1 {
-      @include untuck();
-    }
-
-    button {
-      cursor: pointer;
-      color: $color__link;
-
-      background: none;
-      border: none;
-
-      &:hover,
-      &:focus:hover {
-        color: $color__link--hover;
-      }
-
-      &:active:hover {
-        color: $color__link--active;
-      }
-    }
-  }
-
-  .m-search-triggers--journal {
-    justify-content: flex-start;
-
-    left: 40px;
-    bottom: -50px;
-
-    transition: bottom .25s $bezier--bounce;
-
-    &.m-search-triggers--active {
-      bottom: 40px;
-    }
-
-    @include breakpoint('large+') {
-      display: none;
-    }
-
-    .icon--menu--24 {
-      top: -2px;
-      position: relative;
-    }
-  }
-
   .o-article__body::before {
     position: absolute;
     background-color: $color__rules--primary;
@@ -121,7 +51,7 @@
   }
 
   .o-blocks > p {
-    @include f-body-editorial;
+    @include f-body;
   }
 
   .o-article {
@@ -141,42 +71,6 @@
   .o-article__body {
     padding-top: 0;
     margin-top: 25px;
-  }
-
-  .o-article__primary-actions {
-    padding-top: 0;
-    margin-top: 0;
-
-    display: none;
-
-    @include breakpoint('large+') {
-      display: block;
-    }
-
-    .m-article-actions--journal__logo {
-      a {
-        color: $color__black--90;
-      }
-
-      .icon--journal-logo {
-        height: 92px;
-        width: 120px;
-      }
-    }
-
-    @each $name, $point in $breakpoints {
-      @include breakpoint('#{$name}') {
-        .m-article-actions--journal__issues {
-          margin-top: #{map-get((
-            xsmall: 24,
-            small: 24,
-            medium: 24,
-            large: 24,
-            xlarge: 30
-          ), $name)}px;
-        }
-      }
-    }
   }
 
   .o-article__secondary-actions {
@@ -249,36 +143,11 @@
     }
   }
 
-  .o-accordion--journal-articles {
-    margin-bottom: 25px;
-
-    h3 {
-      margin-top: 25px;
-      padding: 0;
-    }
-
-    .o-accordion__trigger {
-      padding-bottom: 20px;
-      padding-top: 10px;
-    }
-
-    .o-accordion__trigger-icon {
-      margin-top: -20px;
-    }
-
-    .o-accordion__panel-content {
-      padding-bottom: 15px;
-      border-bottom: 2px solid $color__rules--primary;
-
-      &.o-blocks>:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-
+  // TODO: Verify if this should only apply to publications?
+  // Previously, journal issues had this at 25px each
   .m-article-actions {
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }
 
@@ -328,8 +197,8 @@ Styling related specifically to digital publications
     }
   }
 
-  .o-blocks>ol,
-  .o-blocks>ul {
+  .o-article__body.o-blocks > ol,
+  .o-article__body.o-blocks > ul {
     @extend .list;
   }
 
@@ -357,5 +226,9 @@ Styling related specifically to digital publications
   // Gallery block
   .o-blocks>h2:not([class*=f-]) {
     margin-top: 20px;
+  }
+
+  .o-blocks.o-blocks--with-sidebar .o-gallery::before {
+    left: 1px;
   }
 }

@@ -31,12 +31,6 @@
         'options' => $typesList,
     ])
 
-    @formField('input', [
-        'name' => 'type_display',
-        'label' => 'Type display override',
-        'note' => 'Used for section cards on the publication page',
-    ])
-
     @formField('wysiwyg', [
         'name' => 'list_description',
         'label' => 'List description',
@@ -71,15 +65,15 @@
 
     @formField('wysiwyg', [
         'name' => 'cite_as',
-        'label' => 'Recommended citation',
+        'label' => 'How to Cite',
         'toolbarOptions' => [
             'italic'
         ],
     ])
 
 @formField('wysiwyg', [
-    'name' => 'bibliography',
-    'label' => 'Bibliography',
+    'name' => 'references',
+    'label' => 'References',
     'toolbarOptions' => [
         'italic', 'link', 'list-ordered', 'list-unordered'
     ],

@@ -27,7 +27,8 @@ class DigitalPublicationController extends ModuleController
 
     protected function formData($request)
     {
-        $baseUrl = '//' . config('app.url') . "/digital-publications/";
+        $item = $this->repository->getById(request('digitalPublication') ?? request('id'));
+        $baseUrl = '//' . config('app.url') . '/digital-publications/' . $item->id . '/';
         return [
             'baseUrl' => $baseUrl,
         ];

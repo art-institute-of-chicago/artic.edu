@@ -28,7 +28,7 @@ module.exports = function(gulp, data, util, taskName) {
           filename: '[name].js',
           chunkFilename: '[name].bundle.js',
           path: path.resolve(__dirname, 'dist/scripts'),
-          publicPath: '/scripts/'
+          publicPath: '/dist/scripts/'
         },
         module: {
           rules: [

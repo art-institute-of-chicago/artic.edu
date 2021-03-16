@@ -107,7 +107,7 @@
 
 /*****/
 
-.o-blocks > p:not([class*='f-']),
+.o-blocks > p:not([class*='f-']):not([class*='p-']),
 .o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .f-body {
@@ -118,7 +118,7 @@
   }
 }
 
-.o-blocks > p:not([class*='f-']),
+.o-blocks > p:not([class*='f-']):not([class*='p-']),
 .o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) {
   @extend %f-body;
@@ -129,25 +129,25 @@
   @extend .list;
 }
 
-.o-blocks > .f-deck + p:not([class*='f-']),
+.o-blocks > .f-deck + p:not([class*='f-']):not([class*='p-']),
 .o-blocks > .f-deck + ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .f-deck + ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .f-deck + .f-body {
   @include tucked-margin-top($f-body, ('xsmall': 76));
 }
 
-.o-blocks > .o-blocks__block + p:not([class*='f-']),
+.o-blocks > .o-blocks__block + p:not([class*='f-']):not([class*='p-']),
 .o-blocks > .o-blocks__block + ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .o-blocks__block + ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .o-blocks__block + .f-body {
   @include tucked-margin-top($f-body, ('xsmall': 32, 'small+': 68));
 }
 
-.o-blocks > .o-blocks__block.o-row-listing + p:not([class*='f-']),
+.o-blocks > .o-blocks__block.o-row-listing + p:not([class*='f-']):not([class*='p-']),
 .o-blocks > .o-blocks__block.o-row-listing + ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .o-blocks__block.o-row-listing + ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .o-blocks__block.o-row-listing + .f-body,
-.o-blocks > .o-blocks__block.o-grid-listing + p:not([class*='f-']),
+.o-blocks > .o-blocks__block.o-grid-listing + p:not([class*='f-']):not([class*='p-']),
 .o-blocks > .o-blocks__block.o-grid-listing + ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .o-blocks__block.o-grid-listing + ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .o-blocks__block.o-grid-listing + .f-body {
@@ -156,7 +156,7 @@
 
 /*****/
 
-.o-article--editorial .o-blocks > p:not([class*='f-']),
+.o-article--editorial .o-blocks > p:not([class*='f-']):not([class*='p-']),
 .o-blocks > .f-body-editorial,
 .o-blocks > p:not([class*='f-']),
 .o-blocks > .f-body-editorial {
@@ -167,13 +167,13 @@
   }
 }
 
-.o-article--editorial .o-blocks > p:not([class*='f-']),
+.o-article--editorial .o-blocks > p:not([class*='f-']):not([class*='p-']),
 .o-article--editorial .o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-article--editorial .o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) {
   @extend %f-body-editorial;
 }
 
-.o-article--editorial .o-blocks > .o-blocks__block + p:not([class*='f-']),
+.o-article--editorial .o-blocks > .o-blocks__block + p:not([class*='f-']):not([class*='p-']),
 .o-article--editorial .o-blocks > .o-blocks__block + ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-article--editorial .o-blocks > .o-blocks__block + ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-article--editorial .o-blocks > .o-blocks__block + .f-body-editorial {

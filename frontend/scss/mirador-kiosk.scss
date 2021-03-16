@@ -1,0 +1,62 @@
+@import 'setup/colors';
+@import 'atoms/loader';
+
+.mirador-kiosk {
+
+  .mosaic-tile {
+    margin: 0;
+  }
+
+  .miradorZoomButtons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    right: 20px;
+    bottom: 32px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row no-wrap;
+    flex-flow: row no-wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    @media (min-width: 600px){
+      left: auto;
+      right: 42px;
+      bottom: 60px;
+      transform: scale(1.25);
+    }
+    .MuiSvgIcon-root {
+      transform: scale(1.25);
+    }
+  }
+
+  .loader {
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+
+  .mirador-thumb-navigation {
+    height: 110px !important;
+    width: 100%;
+  }
+
+  .navButtons {
+    transform: scale(2);
+  }
+
+  .mirador-thumbnail-nav-container .mirador-thumbnail-nav-canvas {
+    outline-offset: 1px;
+    height: 95px !important;;
+    width: auto;
+  }
+
+}

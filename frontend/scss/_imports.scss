@@ -134,6 +134,7 @@ $include-icons: false; // see icons.scss!
 @import 'molecules/m-viewer-3d';
 @import 'molecules/m-vjs-audio';
 @import 'molecules/m-image-slider';
+@import 'molecules/m-sidebar-toggle';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 
@@ -160,6 +161,7 @@ $include-icons: false; // see icons.scss!
 @import 'organisms/o-closer-look';
 @import 'organisms/o-editors-note';
 @import 'organisms/o-publication-footer';
+@import 'organisms/o-article__primary-actions';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */
 

@@ -3,20 +3,11 @@
 @section('content')
 
 <article class="o-article">
-    <div class="m-journal-mobile u-hide@large+">
-        <button data-behavior="showStickySidebar" aria-label="Show journal navigation">
-            <svg class="icon--menu--24">
-                <use xlink:href="#icon--menu--24" />
-            </svg>
-            @component('components.blocks._text')
-                @slot('tag', 'span')
-                @slot('font', 'f-list-1')
-                Art Institue Review
-            @endcomponent
-        </button>
-    </div>
+    @component('components.molecules._m-sidebar-toggle')
+        @slot('title', 'Art Institue Review')
+    @endcomponent
 
-    <div class="o-article__primary-actions">
+    <div class="o-article__primary-actions o-article__primary-actions--journal-article">
         @component('components.molecules._m-article-actions----journal-article')
             @slot('item', $item)
         @endcomponent
@@ -101,7 +92,7 @@
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--no-hr',
             ])
-                Recommended Citation
+                How to Cite
             @endcomponent
             @component('components.blocks._text')
                 @slot('font', 'f-secondary')

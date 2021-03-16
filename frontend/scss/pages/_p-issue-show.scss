@@ -1,6 +1,7 @@
 // This file contains styles for both journal issues and magazine issues
 .p-magazineissue-show,
 .p-magazineissue-latest,
+.p-digitalpublications-show,
 .p-issue-show {
   @extend %sticky-sidebar;
 
@@ -32,60 +33,6 @@
     margin-top: 0;
   }
 
-  .o-article__primary-actions {
-    padding-top: initial;
-    margin-top: 0;
-
-    @each $name, $point in $breakpoints {
-      @include breakpoint('#{$name}') {
-        .m-search-bar,
-        hr,
-        .m-article-actions--journal__issues {
-          margin-top: #{map-get((
-            xsmall: 24,
-            small: 24,
-            medium: 24,
-            large: 24,
-            xlarge: 30
-          ), $name)}px;
-        }
-      }
-    }
-
-    .m-article-actions--journal__issues a {
-      margin-bottom: 12px;
-    }
-
-    .m-article-actions--journal__blurb {
-      @include untuck();
-
-      @each $name in ('large', 'xlarge') {
-        @include breakpoint('#{$name}') {
-          margin-top: #{map-get((
-            large: 24,
-            xlarge: 30
-          ), $name)}px;
-        }
-      }
-    }
-
-    .m-article-actions--journal__logo {
-      a {
-        color: $color__black--90;
-      }
-    }
-
-    .m-article-actions--journal__blurb.f-secondary {
-      color: $color__black--54;
-      padding-right: 2em;
-
-      a {
-        color: $color__black--54;
-        text-decoration: underline;
-      }
-    }
-  }
-
   .o-article__body::before {
     position: absolute;
     background-color: $color__rules--primary;
@@ -98,6 +45,18 @@
     @each $name in ('large', 'xlarge') {
       @include breakpoint('#{$name}') {
         left: #{- colspan(1, '#{$name}')};
+      }
+    }
+  }
+}
+
+// Top margin is different for digital publications vs. everything else
+.p-magazineissue-show,
+.p-magazineissue-latest,
+.p-issue-show {
+  .o-article__body::before {
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
         top: #{- map-get($journal-header-margin-bottom, $name)};
         height: calc(100% + #{map-get($journal-header-margin-bottom, $name)});
       }
@@ -105,45 +64,13 @@
   }
 }
 
-// Styles specific to journal issues:
-.p-issue-show {
-  .o-article__primary-actions {
-    .m-article-actions--journal__logo {
-      .icon--journal-logo {
-        height: 92px;
-        width: 120px;
-      }
-    }
-
-    .m-search-bar {
-      input[type=text] {
-        height: 42px;
-      }
-
-      .m-search-bar__submit,
-      .m-search-bar__clear {
-        width: 42px;
-        height: 42px;
-      }
-    }
+.p-digitalpublications-show {
+  .o-article__body {
+    margin-top: 40px;
   }
-}
 
-// Styles specific to magazine issues:
-.p-magazineissue-show,
-.p-magazineissue-latest {
-    .o-article__primary-actions {
-    hr {
-      margin-bottom: 24px;
-
-      @include breakpoint('large+') {
-        margin-bottom: 0;
-      }
-    }
-
-    #h-nav-magazine-social {
-      font-weight: 400;
-      color: $color__black--90;
-    }
+  .o-article__body::before {
+    top: -40px;
+    height: calc(100% + 40px);
   }
 }

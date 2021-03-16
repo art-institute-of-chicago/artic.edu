@@ -15,11 +15,11 @@ class DigitalPublicationSectionController extends FrontController
         parent::__construct();
     }
 
-    public function show($pubId, $pubSlug, $type, $id, $slug = null)
+    public function show($pubId, $pubSlug, $id, $slug = null)
     {
         $item = $this->repository->published()->findOrFail($id);
 
-        $canonicalPath = route('collection.publications.digital-publications-sections.show', ['pubId' => $pubId, 'pubSlug' => $pubSlug, 'type' => $type, 'id' => $item->id, 'slug' => $item->getSlug()]);
+        $canonicalPath = $item->present()->getCanonicalUrl();
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;

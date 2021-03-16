@@ -1,6 +1,6 @@
-<div class="o-sticky-sidebar__sticker"  data-behavior="stickySidebar" data-sticky-offset="30">{{-- See :nth-child(x) in _o-article.scss --}}
+<div class="o-sticky-sidebar__sticker" data-behavior="stickySidebar">
 
-    <div class="m-article-actions--journal__logo u-hide@xsmall u-hide@small u-hide@medium">
+    <div class="m-article-actions--publication__logo u-hide@xsmall u-hide@small u-hide@medium">
         <a href="/journal">
             <svg class="icon--journal-logo">
                 <use xlink:href="#icon--journal-logo"></use>
@@ -8,7 +8,7 @@
         </a>
     </div>
 
-    <p class="m-article-actions--journal__blurb f-secondary">The Art Institute Review is dedicated to innovative object-centered scholarship and is published twice a year. <a href="/journal">Learn more.</a></p>
+    <p class="m-article-actions--publication__text f-secondary">The Art Institute Review is dedicated to innovative object-centered scholarship and is published twice a year. <a href="/journal">Learn more.</a></p>
 
     @if (isset($issues) && $issues->count() > 1)
         @component('components.molecules._m-search-bar')

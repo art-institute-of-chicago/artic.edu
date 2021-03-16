@@ -16,6 +16,12 @@
         'note' => 'Minimum image width 3000px'
     ])
 
+    @formField('input', [
+        'name' => 'bgcolor',
+        'label' => 'Hero background color',
+        'note' => 'Use a color hex code like #b50938'
+    ])
+
     @formField('wysiwyg', [
         'name' => 'listing_description',
         'label' => 'Listing description',
@@ -84,6 +90,35 @@
         <hr>
 
         @formField('wysiwyg', [
+            'name' => 'header_title_display',
+            'label' => 'Title lockup for header',
+            'note' => 'Use Shift+Enter to add linebreak instead of starting a new paragraph',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'header_subtitle_display',
+            'label' => 'Subtitle lockup for header',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        <hr>
+
+        @formField('wysiwyg', [
+            'name' => 'sidebar_title_display',
+            'label' => 'Title lockup for sidebar',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        <hr>
+
+        @formField('wysiwyg', [
             'name' => 'welcome_note_display',
             'label' => 'Welcome note text',
             'toolbarOptions' => [
@@ -112,7 +147,7 @@
 
         @formField('wysiwyg', [
             'name' => 'cite_as',
-            'label' => 'Recommended citation',
+            'label' => 'How to Cite',
             'toolbarOptions' => [
                 'italic'
             ],

@@ -32,6 +32,10 @@ class DigitalPublication extends AbstractModel
         'sponsor_display',
         'welcome_note_display',
         'cite_as',
+        'header_title_display',
+        'header_subtitle_display',
+        'sidebar_title_display',
+        'bgcolor',
     ];
 
     public $slugAttributes = [
@@ -98,7 +102,7 @@ class DigitalPublication extends AbstractModel
 
     public function getUrlAttribute()
     {
-        return route('collection.publications.digital-publications.show', $this->slug);
+        return $this->present()->getCanonicalUrl();
     }
 
     public function getAdminEditUrlAttribute()
@@ -201,7 +205,7 @@ class DigitalPublication extends AbstractModel
                 "name" => 'content',
                 "doc" => "Content",
                 "type" => "text",
-                "value" => function() { return $this->blocks; }
+                "value" => function() { return $this->present()->blocks; }
             ],
             [
                 "name" => 'related',

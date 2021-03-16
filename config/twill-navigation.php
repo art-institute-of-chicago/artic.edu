@@ -92,6 +92,10 @@ $nav = [
             'magazineIssues' => [
                 'title' => 'Magazine Issues',
                 'module' => true
+            ],
+            'miradors' => [
+                'title' => 'Mirador',
+                'module' => true
             ]
         ]
     ],
