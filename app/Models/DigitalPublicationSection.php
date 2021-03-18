@@ -82,9 +82,12 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
 
     public function scopePublished($query)
     {
-        return $query->whereHas('digitalPublication', function($q) {
-            $q->visible()->wherePublished(true);
-        })->visible()->wherePublished(true);
+        parent::scopePublished($query);
+
+        // ...and the parent publication has to be published as well
+        return $query->whereHas('digitalPublication', function($subquery) {
+            $subquery->published();
+        });
     }
 
     public function getPublishedAttribute()
