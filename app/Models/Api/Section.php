@@ -9,7 +9,7 @@ class Section extends BaseApiModel
     protected $endpoints = [
         'collection' => '/api/v1/sections',
         'resource'   => '/api/v1/sections/{id}',
-        'search'     => '/api/v1/products/search'
+        'search'     => '/api/v1/sections/search'
     ];
 
 }
