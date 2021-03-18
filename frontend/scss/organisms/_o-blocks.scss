@@ -481,7 +481,7 @@
     }
   }
 
-  .m-media--m .m-media__img {
+  .m-media--m .m-media__img, .m-media--m .m-media--vtour-embed {
     @include breakpoint('large+') {
       flex: 0 0 auto;
       width: colspan(43, large);

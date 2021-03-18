@@ -209,7 +209,7 @@
     background-color: $color__white;
   }
 
-  .m-media--m:not(.m-media--contain) &::before,
+  .m-media--m:not(.m-media--contain) &:not(.m-media__img--virtualtour)::before,
   .m-media--l:not(.m-media--contain) &:not(.m-media__img--virtualtour)::before,
   &.m-media__img--video::before {
     content: '';
@@ -561,6 +561,11 @@ a.m-media__img:hover object {
   white-space: nowrap;
 }
 
-.m-viewer-virtualtour {
+.m-media--m .m-viewer-virtualtour {
+  height: 50vh;
+}
+
+.m-media--l .m-viewer-virtualtour {
   height: 65vh;
 }
+

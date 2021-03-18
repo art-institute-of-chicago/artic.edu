@@ -75,7 +75,7 @@
             'link', 'newsletter_signup_inline', 'artwork',
             'hr', 'split_block', 'search_bar', 'tour_stop', 'button',
             'mobile_app', 'grid', 'table', '3d_model',
-            'gallery', 'artworks', 'gallery_new',
+            'gallery', 'artworks', 'gallery_new', 'vtour_embed',
         ])
     ])
 @stop

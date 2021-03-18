@@ -4,6 +4,23 @@
     'note' => 'Upload a .xml file'
 ])
 
+@formField('select', [
+    'name' => 'size',
+    'label' => 'Size',
+    'placeholder' => 'Select size',
+    'default' => 'l',
+    'options' => [
+        [
+            'value' => 'm',
+            'label' => 'Medium'
+        ],
+        [
+            'value' => 'l',
+            'label' => 'Large'
+        ]
+    ]
+])
+
 @formField('wysiwyg', [
     'name' => 'caption_title',
     'label' => 'Caption title',
