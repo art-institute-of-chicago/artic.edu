@@ -34,34 +34,8 @@ class ShopItem extends BaseApiModel
         }
     }
 
-    public function categories()
-    {
-        return $this->hasMany(\App\Models\Api\Category::class, 'category_ids');
-    }
-
     public function getSlugAttribute()
     {
         return $this->link;
-    }
-
-    public function getCurrencyAttribute()
-    {
-        // Added for future updates.
-        return '$';
-    }
-
-    public function scopeActive($query)
-    {
-        $params = [
-            "bool" => [
-                "must" => [
-                    "term" => [
-                        "is_active" => true
-                    ]
-                ]
-            ]
-        ];
-
-        return $query->rawSearch($params);
     }
 }

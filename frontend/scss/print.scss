@@ -439,9 +439,7 @@ html.s-print body {
     display: none;
   }
 
-  .m-listing .m-listing__meta .type,
-  .m-listing .m-listing__meta .price *,
-  .price * {
+  .m-listing .m-listing__meta .type {
     display: inline-block;
     margin-top: 0;
     margin-right: 10px;

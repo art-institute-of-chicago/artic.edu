@@ -14,9 +14,7 @@
     @slot('behavior','dragScroll')
     @foreach ($products as $item)
         @component('components.molecules._m-listing----product')
-            @slot('simple', true)
             @slot('item', $item)
-            @slot('imgVariation','m-listing__img--tall')
             @slot('imageSettings', array(
                 'fit' => 'fill',
                 'fill'=> 'blur',

@@ -1842,7 +1842,6 @@ class StaticsController extends FrontController {
         return $this->getImage();
       },
       "price" => $price,
-      "sale_price" => $priceSale,
       "currency" => "$",
       "type" => 'product',
       "listingType" => 'product',
