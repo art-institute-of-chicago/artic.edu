@@ -302,13 +302,11 @@ return [
             'title' => 'Gallery Item',
             'trigger' => 'Add gallery item',
             'component' => 'a17-block-gallery_new_item',
-            'max' => 10,
         ],
         'gallery_item' => [
             'title' => 'Gallery Item',
             'trigger' => 'Add Image',
             'component' => 'a17-block-gallery_item',
-            'max' => 10,
         ],
         'dateRules' => [
             'title' => 'Date Rule',
