@@ -16,6 +16,7 @@ module.exports = function(gulp, data, util, taskName) {
             distPath + '**/*.css',
             distPath + '**/*.js',
             distPath + '**/*.svg',
+            '!' + distPath + '**/*.bundle.js', // WEB-2014
           ],
           {
             base: distPath

@@ -26,7 +26,7 @@ module.exports = function(gulp, data, util, taskName) {
         },
         output: {
           filename: '[name].js',
-          chunkFilename: '[name].[contenthash].bundle.js',
+          chunkFilename: '[name].[contenthash].bundle.js', // WEB-2014
           path: path.resolve(__dirname, 'dist/scripts'),
           publicPath: '/dist/scripts/'
         },
