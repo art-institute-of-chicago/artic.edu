@@ -43,7 +43,7 @@
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--compact m-title-bar--light',
             ])
-                Texts
+                {{ DigitalPublicationSection::$types[DigitalPublicationSection::TEXT] }}
             @endcomponent
 
             @component('components.organisms._o-grid-listing')
@@ -84,7 +84,7 @@
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--compact m-title-bar--light',
             ])
-                Works
+                {{ DigitalPublicationSection::$types[DigitalPublicationSection::WORK] }}
             @endcomponent
 
             @component('components.organisms._o-grid-listing')
