@@ -37,9 +37,9 @@
     @include untuck();
   }
 
-  .s-sans-serif-loaded .o-blocks>p:not([class*=f-]),
-  .s-sans-serif-loaded .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
-  .s-sans-serif-loaded .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+  &.s-sans-serif-loaded .o-blocks>p:not([class*=f-]),
+  &.s-sans-serif-loaded .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  &.s-sans-serif-loaded .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
     font-family: inherit;
   }
 
