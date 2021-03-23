@@ -92,15 +92,17 @@
             ])
                 Notes
             @endcomponent
-            @component('components.blocks._blocks')
-                @slot('blocks',
-                    [
+            <div class="o-blocks o-blocks--bibliographic">
+                @component('components.blocks._blocks')
+                    @slot('blocks',
                         [
-                            'type' => 'references',
-                            'items' => $_collectedReferences
-                        ]
-                    ])
-            @endcomponent
+                            [
+                                'type' => 'references',
+                                'items' => $_collectedReferences
+                            ]
+                        ])
+                @endcomponent
+            </div>
         @endif
 
         @if ($item->references)
@@ -124,7 +126,9 @@
                 }
                 $references = $dom->saveHTML($dom);
             @endphp
-            {!! $references !!}
+            <div class="o-blocks o-blocks--bibliographic">
+                {!! $references !!}
+            </div>
         @endif
 
         @if ($item->cite_as)
