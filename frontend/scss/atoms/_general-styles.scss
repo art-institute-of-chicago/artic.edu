@@ -136,13 +136,15 @@ sup {
   }
 }
 
-  sub {
-    vertical-align: sub;
-  }
+sub {
+  vertical-align: sub;
+}
 
-  sup {
-    vertical-align: super;
-  }
+sup {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.8em;
+}
 
 pre,
 code {
