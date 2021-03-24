@@ -31,13 +31,6 @@
         ],
     ])
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Banner image',
-        'name' => 'banner',
-        'note' => 'Minimum image width 2000px'
-    ])
-
 {{--
     DEPRECATED: This field is null for all existing publications.
     Use listing_description instead.
@@ -74,6 +67,15 @@
 @section('fieldsets')
     <a17-fieldset id="fields_for_dsc_stub" title="DSC Stub Fields">
         <p style="margin-bottom: -20px">This content is only shown when the page is a DSC stub.</p>
+
+        <hr>
+
+        @formField('medias', [
+            'with_multiple' => false,
+            'label' => 'Banner image',
+            'name' => 'banner',
+            'note' => 'Minimum image width 3000px'
+        ])
 
         @formField('block_editor', [
             'blocks' => getBlocksForEditor([
