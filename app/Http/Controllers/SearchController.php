@@ -180,7 +180,7 @@ class SearchController extends BaseScopedController
                     $item->section = 'Print Publications';
                     break;
                 case 'Selection':
-                    $item->url = route('collection.selections.show', $item);
+                    $item->url = route('selections.show', $item);
                     $item->section = 'Highlights';
                     break;
                 }
