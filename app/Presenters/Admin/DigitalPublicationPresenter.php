@@ -88,7 +88,7 @@ class DigitalPublicationPresenter extends BasePresenter
                                 ->map(function($section) use ($currentSection) {
                                     return [
                                         'label' => $section->title_display ?? $section->title,
-                                        'sublabel' => $section->showAuthors(),
+                                        'sublabel' => $section->type === DigitalPublicationSection::TEXT ? $section->showAuthors() : null,
                                         'href' => $section->present()->getSectionUrl($this->entity),
                                         'is_active' => isset($currentSection) && $section->id === $currentSection->id,
                                     ];
