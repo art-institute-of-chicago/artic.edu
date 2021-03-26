@@ -19,6 +19,11 @@
   }
 }
 
+.m-link-list__sublabel {
+  @include f-secondary;
+  color: $color__text--type;
+}
+
 .m-link-list__sub-list {
   margin-top: 16px;
   padding-left: 20px;

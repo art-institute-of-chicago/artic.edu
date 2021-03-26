@@ -23,7 +23,7 @@
             </a>
         @else
             @if (isset($link['href']))
-        <a class="m-link-list__trigger {{ $font ?? 'f-secondary' }}{{ (isset($link['variation'])) ? ' '.$link['variation'] : '' }}" href="{{ $link['href'] }}"{!! isset($link['embed']) ? ' data-behavior="triggerMediaModal"' : '' !!}{!! isset($link['api_model']) ? ' data-subtype="' . $link['api_model'] . '"' : '' !!} data-gtm-event-category="side-nav" data-gtm-event="{{ lastUrlSegment($link['href']) }}">
+            <a class="m-link-list__trigger {{ $font ?? 'f-secondary' }}{{ (isset($link['variation'])) ? ' '.$link['variation'] : '' }}" href="{{ $link['href'] }}"{!! isset($link['embed']) ? ' data-behavior="triggerMediaModal"' : '' !!}{!! isset($link['api_model']) ? ' data-subtype="' . $link['api_model'] . '"' : '' !!} data-gtm-event-category="side-nav" data-gtm-event="{{ lastUrlSegment($link['href']) }}">
                 @if (isset($link['iconBefore']) and $link['iconBefore'])<svg aria-hidden="true" class="m-link-list__icon-before icon--{{ $link['iconBefore'] }}"><use xlink:href="#icon--{{ $link['iconBefore'] }}" /></svg>@endif
                 <span class="m-link-list__label"{!! (isset($link['itemprop'])) ? ' itemprop="'.$link['itemprop'].'"' : '' !!}>{!! SmartyPants::defaultTransform($link['label']) !!}</span>
                 @if (isset($link['iconAfter']) and $link['iconAfter'])<svg aria-hidden="true" class="m-link-list__icon-after icon--{{ $link['iconAfter'] }}"><use xlink:href="#icon--{{ $link['iconAfter'] }}" /></svg>@endif
@@ -35,6 +35,9 @@
                 <span class="m-link-list__label"{!! (isset($link['itemprop'])) ? ' itemprop="'.$link['itemprop'].'"' : '' !!}>{!! SmartyPants::defaultTransform($link['label']) !!}</span>
                 @if (isset($link['iconAfter']) and $link['iconAfter'])<svg aria-hidden="true" class="m-link-list__icon-after icon--{{ $link['iconAfter'] }}"><use xlink:href="#icon--{{ $link['iconAfter'] }}" /></svg>@endif
             </span>
+            @endif
+            @if (isset($link['sublabel']))
+                <div class="m-link-list__sublabel">{{ $link['sublabel'] }}</div>
             @endif
             @if (isset($link['links']))
                 <ul class="m-link-list__sub-list">

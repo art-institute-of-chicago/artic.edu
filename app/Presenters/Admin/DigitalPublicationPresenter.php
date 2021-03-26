@@ -87,10 +87,8 @@ class DigitalPublicationPresenter extends BasePresenter
                                 ->getSections($type)
                                 ->map(function($section) use ($currentSection) {
                                     return [
-                                        'label' => implode('<br>', [
-                                            $section->title_display ?? $section->title,
-                                            $section->showAuthors(),
-                                        ]),
+                                        'label' => $section->title_display ?? $section->title,
+                                        'sublabel' => $section->showAuthors(),
                                         'href' => $section->present()->getSectionUrl($this->entity),
                                         'is_active' => isset($currentSection) && $section->id === $currentSection->id,
                                     ];
