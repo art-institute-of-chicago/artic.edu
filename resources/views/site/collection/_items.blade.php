@@ -1,12 +1,12 @@
 @foreach ($artworks as $item)
-    @component('components.molecules._m-listing----'.$item->type)
+    @component('components.molecules._m-listing----artwork')
         @slot('variation', 'o-pinboard__item')
         @slot('item', $item)
-        @slot('titleFont',($item->type == 'artwork') ? 'f-list-7' : null)
-        @slot('subtitleFont',($item->type == 'artwork') ? 'f-tertiary' : null)
+        @slot('titleFont', 'f-list-7')
+        @slot('subtitleFont', 'f-tertiary')
         @slot('imageSettings', array(
-            'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
-            'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
+            'fit' => null,
+            'ratio' => null,
             'srcset' => array(200,400,600,800),
             'sizes' => aic_gridListingImageSizes(array(
                   'xsmall' => '2',
@@ -17,6 +17,5 @@
             )),
         ))
         @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="collection-nav"')
-
     @endcomponent
 @endforeach
