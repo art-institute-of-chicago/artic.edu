@@ -286,31 +286,18 @@
         )
         Artworks
     @endcomponent
-    @component('components.organisms._o-pinboard')
-        @slot('cols_small','2')
-        @slot('cols_medium','3')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','3')
-        @slot('maintainOrder','true')
-        @foreach ($artworks as $k => $item)
-            @component('components.molecules._m-listing----artwork')
-                @slot('variation', 'o-pinboard__item')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'fit' => null,
-                    'ratio' => null,
-                    'srcset' => array(200,400,600,1000),
-                    'sizes' => aic_gridListingImageSizes(array(
-                        'xsmall' => '1',
-                        'small' => '2',
-                        'medium' => '3',
-                        'large' => '3',
-                        'xlarge' => '3',
-                    )),
-                ))
-                @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="collection-listing-' . ($loop->index + 1) . '"')
-            @endcomponent
-        @endforeach
+    @component('components.organisms._o-pinboard----artwork')
+        @slot('artworks', $artworks)
+        @slot('sizes', [
+            'xsmall' => '1',
+            'small' => '2',
+            'medium' => '3',
+            'large' => '3',
+            'xlarge' => '3',
+        ])
+        @slot('gtmAttributesForItem', function($item, $loop) {
+            return 'data-gtm-event="' . $item->title . '" data-gtm-event-category="collection-listing-' . ($loop->index + 1) . '"';
+        })
     @endcomponent
 @endif
 
