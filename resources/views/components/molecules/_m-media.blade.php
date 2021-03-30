@@ -28,7 +28,7 @@
 
     $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
 
-    if ($item['isArtwork'] ?? false) {
+    if ($item['isArtwork'] ?? $item['useArtworkSrcset'] ?? false) {
         $defaultSrcset = aic_getSrcsetForImage($media, $item['isPublicDomain'] ?? false);
     }
 

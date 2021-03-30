@@ -131,6 +131,14 @@ class ExhibitionPresenter extends BasePresenter
         ];
     }
 
+    public function getHistoryImagesForMediaComponent()
+    {
+        return $this->entity->historyImages->each(function($image) {
+            $image->useArtworkSrcset = true;
+            $image->isPublicDomain = true;
+        })->toArray();
+    }
+
     protected function galleryLink() {
         $location = $this->entity->exhibition_location ?: $this->entity->gallery_title;
         if ($location) {

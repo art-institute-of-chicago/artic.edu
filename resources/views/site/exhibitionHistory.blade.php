@@ -100,7 +100,7 @@
                     @slot('variation', 'm-listing--row')
                     @slot('item', $item)
                     @slot('imageSettings', array(
-                        // WEB-1880: Fix this!
+                        // WEB-1880: This one will always be a CMS image, not a IIIF image
                         'srcset' => array(108,216,400,600),
                         'sizes' => aic_imageSizes(array(
                             'xsmall' => 58,

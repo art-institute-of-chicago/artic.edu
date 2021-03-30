@@ -112,7 +112,7 @@
                 @slot('tag', 'h4')
                 {{ Str::plural('Picture', $item->historyImages->count()) }}
             @endcomponent
-            @foreach ($item->historyImages->toArray() as $picture)
+            @foreach ($item->present()->getHistoryImagesForMediaComponent() as $picture)
                     @component('components.molecules._m-media')
                     @slot('variation', 'o-blocks__block')
                     @slot('item', $picture)
