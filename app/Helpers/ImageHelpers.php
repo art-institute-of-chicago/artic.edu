@@ -226,6 +226,16 @@ function aic_getSrcsetForImage($image, $isPublicDomain) {
         1686,
     ];
 
+    if (isset($image['width'])) {
+        $srcset = array_filter($srcset, function($width) use ($image) {
+            return $width <= $image['width'];
+        });
+
+        if ($image['width'] < 843) {
+            $srcset[] = $image['width'];
+        }
+    }
+
     if (!$isPublicDomain) {
         $srcset = array_filter($srcset, function($width) {
             return $width <= 843;
