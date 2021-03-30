@@ -1,5 +1,18 @@
 @php
-    $subtype = $block->input('layout') == 1 ? 'mosaic' : ($block->input('layout') == 2 ? 'slider' : 'small-mosaic');
+    switch ($block->input('layout')) {
+        case 1:
+            $subtype = 'mosaic';
+            break;
+        case 2:
+            $subtype = 'slider';
+            break;
+        case 3:
+            $subtype = 'small-mosaic';
+            break;
+        default:
+            $subtype = 'slider';
+            break;
+    }
 
     // Preload all artworks ahead of time
     $ids = $block->childs
