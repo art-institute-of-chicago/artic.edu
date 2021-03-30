@@ -7,7 +7,6 @@
 @if (isset($images) and $images and $images->first()['width'])
 
 @php
-$srcset = array_merge([200,400,843], (isset($isPublicDomain) && $isPublicDomain ? [1686] : []));
 $maxZoomWindowSize = (isset($maxZoomWindowSize) && $maxZoomWindowSize) ? $maxZoomWindowSize : 1280;
 $style = "";
 $maxZoomWindowSize = ($maxZoomWindowSize === -1) ? 1280 : $maxZoomWindowSize;
@@ -29,7 +28,7 @@ if ($maxZoomWindowSize > 843) {
             @slot('image', $image)
             @slot('style', $style)
             @slot('settings', array(
-                'srcset' => $srcset,
+                'srcset' => aic_getSrcsetForImage($images->first(), $isPublicDomain ?? false),
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => '58',
                       'small' => '58',
@@ -169,9 +168,11 @@ if ($maxZoomWindowSize > 843) {
       @foreach ($images as $image)
         <li>
           @php
+            // It's ok for the thumbnail and the full-sized image to share the same srcset
+            $galleryImageSrcset = aic_getSrcsetForImage($image, $isPublicDomain ?? false);
             $galleryImageThumbSettings = aic_imageSettings(array(
                 'settings' => array(
-                    'srcset' => $srcset,
+                    'srcset' => $galleryImageSrcset,
                     'sizes' => aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '58',
@@ -225,7 +226,7 @@ if ($maxZoomWindowSize > 843) {
           @component('components.atoms._img')
               @slot('image', $image)
               @slot('settings', array(
-                'srcset' => array(400,600),
+                'srcset' => $galleryImageSrcset,
                 'sizes' => '400px',
               ))
           @endcomponent

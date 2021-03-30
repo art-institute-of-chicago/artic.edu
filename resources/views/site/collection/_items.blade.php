@@ -7,7 +7,7 @@
         @slot('imageSettings', array(
             'fit' => null,
             'ratio' => null,
-            'srcset' => array(200,400,600,800),
+            'srcset' => aic_getSrcsetForImage($item->imageFront(), $item->is_public_domain ?? false),
             'sizes' => aic_gridListingImageSizes(array(
                   'xsmall' => '2',
                   'small' => '2',

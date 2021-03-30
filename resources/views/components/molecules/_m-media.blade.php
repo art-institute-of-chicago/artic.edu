@@ -29,7 +29,7 @@
     $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
 
     if ($item['isArtwork'] ?? false) {
-        $defaultSrcset = ($item['isPublicDomain'] ?? false) ? array(200,400,600,843,1686) : array(200,400,600,843);
+        $defaultSrcset = aic_getSrcsetForImage($media, $item['isPublicDomain'] ?? false);
     }
 
     if (empty($imageSettings) && $size === 's') {
