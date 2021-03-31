@@ -25,50 +25,16 @@
         <div class="o-article__secondary-actions">
             @component('components.molecules._m-article-actions')
             @endcomponent
-
-            @if (isset($featuredRelated) and $featuredRelated)
-                {{-- dupe ð¢ - shows medium+ --}}
-                @component('components.blocks._inline-aside')
-                    @slot('variation', 'u-show@medium+')
-                    @slot('type', $featuredRelated['type'])
-                    @slot('items', $featuredRelated['items'])
-                    @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
-                    @slot('imageSettings', array(
-                        'fit' => 'crop',
-                        'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
-                              'xsmall' => '0',
-                              'small' => '23',
-                              'medium' => '18',
-                              'large' => '13',
-                              'xlarge' => '13',
-                        )),
-                    ))
-                @endcomponent
-            @endif
+            @component('site.shared._featuredRelated')
+                @slot('featuredRelated', $item->featuredRelated ?? null)
+                @slot('variation', 'u-show@medium+')
+            @endcomponent
         </div>
 
-
-        @if (isset($featuredRelated) and $featuredRelated)
-        {{-- dupe ð¢ - hidden medium+ --}}
+        @if ($item->featuredRelated)
             <div class="o-article__related">
-                @component('components.blocks._inline-aside')
-                    @slot('type', $featuredRelated['type'])
-                    @slot('items', $featuredRelated['items'])
-                    @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
-                    @slot('imageSettings', array(
-                        'fit' => 'crop',
-                        'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
-                            'xsmall' => '58',
-                            'small' => '23',
-                            'medium' => '18',
-                            'large' => '0',
-                            'xlarge' => '0',
-                        )),
-                    ))
+                @component('site.shared._featuredRelated')
+                    @slot('featuredRelated', $item->featuredRelated ?? null)
                 @endcomponent
             </div>
         @endif
