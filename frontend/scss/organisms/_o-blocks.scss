@@ -520,16 +520,6 @@
     }
   }
 
-  .m-inline-aside {
-    @include breakpoint('small') {
-      float: right;
-      clear: both;
-      width: colspan(23, small);
-      margin-bottom: colspan(3, small);
-      margin-left: colspan(3, small);
-    }
-  }
-
   .deflist.o-blocks__block {
     margin-top: 32px;
 

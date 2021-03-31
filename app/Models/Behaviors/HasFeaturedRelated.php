@@ -63,6 +63,7 @@ trait HasFeaturedRelated
         }
 
         $this->selectedFeaturedRelateds = [];
+
         $relatedItems->each(function ($relatedItem) {
             switch (get_class($relatedItem)) {
                 case \App\Models\Article::class:
@@ -107,11 +108,10 @@ trait HasFeaturedRelated
             $this->selectedFeaturedRelateds[] = [
                 'label' => $label ?? 'Content',
                 'type' => $type,
-                'items' => [
-                    $relatedItem,
-                ],
+                'item' => $relatedItem,
             ];
         });
+
         return $this->selectedFeaturedRelateds;
     }
 
