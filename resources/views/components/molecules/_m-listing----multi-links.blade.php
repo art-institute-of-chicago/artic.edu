@@ -1,5 +1,3 @@
-
-
 @if (isset($item['titleLink']) and $item['titleLink'] and isset($item['image']) and !empty($item['image']))
     <{{ $tag ?? 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
         <h3 class="sr-only" id="h-{{ Str::slug($item['title']) }}">{{ $item['title'] }}</h3>
@@ -8,15 +6,14 @@
     <{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
         <h3 class="sr-only" id="h-{{ Str::slug($item['title']) }}">{{ $item['title'] }}</h3>
 @endif
-
-        @if ( isset($item['image']) and !empty($item['image']) )
-            <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-                @component('components.atoms._img')
-                    @slot('image', $item['image'])
-                    @slot('settings', $imageSettings ?? '')
-                @endcomponent
-            </span>
-        @endif
+    @if ( isset($item['image']) and !empty($item['image']) )
+        <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
+            @component('components.atoms._img')
+                @slot('image', $item['image'])
+                @slot('settings', $imageSettings ?? '')
+            @endcomponent
+        </span>
+    @endif
 
     @if (isset($item['titleLink']) and $item['titleLink'] and isset($item['image']) and !empty($item['image']))
         </a>
@@ -54,9 +51,9 @@
         @if (isset($item['links']) and $item['links'])
             <br>
             @if (count($item['links']) > 1)
-              <ul class="f-secondary" aria-labelledby="h-{{ Str::slug($item['title']) }}">
+                <ul class="f-secondary" aria-labelledby="h-{{ Str::slug($item['title']) }}">
             @else
-              <span class="f-secondary last-child">
+                <span class="f-secondary last-child">
             @endif
             @foreach ($item['links'] as $link)
                 {!! count($item['links']) > 1 ? '<li>' : '<span>' !!}
@@ -76,5 +73,4 @@
             {!! count($item['links']) > 1 ? '</ul>' : '</span>' !!}
         @endif
     </div>
-
 </{{ $tag ?? 'li' }}>

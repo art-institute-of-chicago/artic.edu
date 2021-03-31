@@ -30,49 +30,49 @@
             <span class="m-listing__img__overlay"></span>
         </span>
         <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
-          <span class="m-listing__types f-tag">
-            @if ($item->exclusive)
-                @component('components.atoms._type')
-                    @slot('variation', 'type--membership')
-                    @slot('font', '')
-                    Member Exclusive
-                @endcomponent
-            @else
-                @component('components.atoms._type')
-                    @slot('font', '')
-                    {!! $item->present()->exhibitionType !!}
-                @endcomponent
-            @endif
-
-            @if ($item->isClosed)
-                @component('components.atoms._type')
-                    @slot('variation', 'type--limited')
-                    @slot('font', '')
-                    Closed
-                @endcomponent
-            @else
-                @if ($item->isClosingSoon)
-                    @component('components.atoms._type')
-                        @slot('variation', 'type--limited')
-                        @slot('font', '')
-                        Closing Soon
-                    @endcomponent
-                @elseif ($item->isNowOpen)
-                    @component('components.atoms._type')
-                        @slot('variation', 'type--new')
-                        @slot('font', '')
-                        Now Open
-                    @endcomponent
-                @elseif ($item->exclusive)
+            <span class="m-listing__types f-tag">
+                @if ($item->exclusive)
                     @component('components.atoms._type')
                         @slot('variation', 'type--membership')
                         @slot('font', '')
                         Member Exclusive
                     @endcomponent
+                @else
+                    @component('components.atoms._type')
+                        @slot('font', '')
+                        {!! $item->present()->exhibitionType !!}
+                    @endcomponent
                 @endif
-            @endif
-          </span>
-          <br>
+
+                @if ($item->isClosed)
+                    @component('components.atoms._type')
+                        @slot('variation', 'type--limited')
+                        @slot('font', '')
+                        Closed
+                    @endcomponent
+                @else
+                    @if ($item->isClosingSoon)
+                        @component('components.atoms._type')
+                            @slot('variation', 'type--limited')
+                            @slot('font', '')
+                            Closing Soon
+                        @endcomponent
+                    @elseif ($item->isNowOpen)
+                        @component('components.atoms._type')
+                            @slot('variation', 'type--new')
+                            @slot('font', '')
+                            Now Open
+                        @endcomponent
+                    @elseif ($item->exclusive)
+                        @component('components.atoms._type')
+                            @slot('variation', 'type--membership')
+                            @slot('font', '')
+                            Member Exclusive
+                        @endcomponent
+                    @endif
+                @endif
+            </span>
+            <br>
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
                 @slot('title', $item->present()->title)

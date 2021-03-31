@@ -25,8 +25,8 @@
         @endif
         <span class="m-listing__meta">
             @if ($item->subtype)
-            <em class="type f-tag">{!! $item->present()->subtype !!}</em>
-            <br>
+                <em class="type f-tag">{!! $item->present()->subtype !!}</em>
+                <br>
             @endif
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
@@ -38,9 +38,9 @@
             @if (isset($item['links']) and $item['links'])
                 <br>
                 @if (count($item['links']) > 1)
-                   <ul class="f-secondary" aria-labelledby="h-{{ Str::slug($item['title']) }}">
+                    <ul class="f-secondary" aria-labelledby="h-{{ Str::slug($item['title']) }}">
                 @else
-                  <span class="f-secondary last-child">
+                    <span class="f-secondary last-child">
                 @endif
                 @foreach ($item['links'] as $link)
                     {!! count($item['links']) > 1 ? '<li>' : '<span>' !!}
@@ -61,17 +61,16 @@
             @else
                 @php
                     $listDescription = $item->present()->shortDesc
-                     ?? $item->present()->listing_description
-                     ?? $item->present()->list_description
-                     ?? $item->present()->intro
-                     ?? null;
+                        ?? $item->present()->listing_description
+                        ?? $item->present()->list_description
+                        ?? $item->present()->intro
+                        ?? null;
                 @endphp
                 @if (!empty($listDescription))
-                <br>
-                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $listDescription !!}</span>
+                    <br>
+                    <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $listDescription !!}</span>
                 @endif
             @endif
-
             {{-- TODO: Consider putting dates into .m-listing__meta-bottom? --}}
             @if (isset($date))
                 @if(!empty($date))
