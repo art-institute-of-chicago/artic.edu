@@ -20,26 +20,20 @@
             @endcomponent
         </div>
     @endif
-    <div class="o-gallery__media o-gallery__media--2-col@small  o-gallery__media--2-col@medium  o-gallery__media--2-col@large  o-gallery__media--2-col@xlarge" data-behavior="pinboard">
-        @if (isset($items) && !empty($items))
-            @foreach ($items as $item)
-                @php
-                    $currentImageSettings = $imageSettings;
-                    if (($item['isArtwork'] ?? false) && !($item['isPublicDomain'] ?? false))
-                    {
-                        $currentImageSettings['srcset'] = array_values(
-                            array_filter($currentImageSettings['srcset'], function($size) {
-                                return $size < 843;
-                            })
-                        );
-                    }
-                @endphp
-                @component('components.molecules._m-media')
-                    @slot('item', $item)
-                    @slot('imageSettings', $currentImageSettings ?? '')
-                @endcomponent
-            @endforeach
-        @endif
+    <div class="o-gallery__media o-gallery__media--2-col@small o-gallery__media--2-col@medium o-gallery__media--2-col@large o-gallery__media--2-col@xlarge" data-behavior="pinboard">
+        @component('site.shared._mediaitems')
+            @slot('items', $items)
+            @slot('imageSettings', $imageSettings ?? array(
+                'srcset' => array(200,400,600,1000,1500,3000),
+                'sizes' => aic_imageSizes(array(
+                    'xsmall' => '58',
+                    'small' => '28',
+                    'medium' => '28',
+                    'large' => '28',
+                    'xlarge' => '21',
+                )),
+            ))
+        @endcomponent
     </div>
     @if (!empty($allLink))
     <p class="o-gallery__all-link-btn">
