@@ -285,30 +285,6 @@
                         @slot('caption', $block['caption'] ?? null);
                         @slot('allLink', $block['allLink'] ?? null);
                         @slot('items', $block['items']);
-                            @if ($block["subtype"] === 'mosaic')
-                                @slot('imageSettings', array(
-                                    'srcset' => array(200,400,600,1000,1500,3000,4500),
-                                    'sizes' => aic_imageSizes(array(
-                                          'xsmall' => '58',
-                                          'small' => '28',
-                                          'medium' => '28',
-                                          'large' => '28',
-                                          'xlarge' => '21',
-                                    )),
-                                ))
-                            @endif
-                            @if ($block["subtype"] === 'slider')
-                                @slot('imageSettings', array(
-                                    'srcset' => array(200,400,600,1000,1500,3000,4500),
-                                    'sizes' => aic_imageSizes(array(
-                                          'xsmall' => '600px',
-                                          'small' => '600px',
-                                          'medium' => '600px',
-                                          'large' => '600px',
-                                          'xlarge' => '18',
-                                    )),
-                                ))
-                            @endif
                     @endcomponent
                 @endif
             @endif

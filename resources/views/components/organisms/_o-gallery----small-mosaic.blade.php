@@ -30,7 +30,16 @@
         @slot('maintainOrder','false')
         @component('site.shared._mediaitems')
             @slot('items', $items)
-            @slot('imageSettings', $imageSettings)
+            @slot('imageSettings', $imageSettings ?? array(
+                'srcset' => array(200,400,600,1000,1500,3000),
+                'sizes' => aic_imageSizes(array(
+                    'xsmall' => '38',
+                    'small' => '18',
+                    'medium' => '18',
+                    'large' => '18',
+                    'xlarge' => '11',
+                )),
+            ))
         @endcomponent
     @endcomponent
     @if (!empty($allLink))
