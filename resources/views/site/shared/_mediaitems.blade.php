@@ -14,7 +14,7 @@
             );
 
             if ($item['isArtwork'] ?? false) {
-                $currentImageSettings['srcset'] = aic_getSrcsetForImage($item['media'], $item->is_public_domain ?? false);
+                $currentImageSettings['srcset'] = aic_getSrcsetForImage($item['media'], $item['isPublicDomain'] ?? false);
             }
         @endphp
         @if ($item['href'] ?? false)
