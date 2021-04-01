@@ -34,9 +34,11 @@
                 <br>
             @endif
             <strong class="title {{ $titleFont ?? 'f-list-3' }}">{!! $item->present()->title_display ?? $item->present()->title !!}</strong>
-            @if ($item->timeStamp)
-                <br>
-                <span class="subtitle f-secondary">{{ $item->timeStamp }}</span>
+            @if (!isset($hideDescription) || (isset($hideDescription) && !($hideDescription)))
+                @if ($item->timeStamp)
+                    <br>
+                    <span class="subtitle f-secondary">{{ $item->timeStamp }}</span>
+                @endif
             @endif
         </span>
         @if ($fullscreen)

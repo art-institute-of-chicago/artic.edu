@@ -27,6 +27,7 @@
                 @slot('title', $item->present()->title)
                 @slot('title_display', $item->present()->title_display)
             @endcomponent
+            {{-- WEB-2018: No list description anywhere? --}}
         </span>
     </a>
 </{{ $tag ?? 'li' }}>

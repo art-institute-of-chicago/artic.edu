@@ -81,26 +81,29 @@
                 @slot('title_display', $item->present()->title_display)
             @endcomponent
             <br>
-            @if (!empty($variation) && strpos($variation, 'm-listing--hero') === false && strpos($variation, 'm-listing--feature') === false && $item->list_description)
-                @component('components.atoms._short-description')
-                    {!! truncateStr($item->present()->list_description) !!}
-                @endcomponent
-                <br>
-            @endif
-            @if (!empty($variation) && $variation === 'm-listing--hero')
-                @component('components.organisms._o-preview-dates')
-                    @slot('previewDateStart', $item->member_preview_start_date)
-                    @slot('previewDateEnd', $item->member_preview_end_date)
-                @endcomponent
-                <br>
-            @endif
-            @if (!$item->isOngoing)
-                @component('components.organisms._o-public-dates')
-                    @slot('date', $item->present()->date)
-                    @slot('dateStart', $item->present()->startAt)
-                    @slot('dateEnd', $item->present()->endAt)
-                    @slot('formattedDate', $item->present()->date_display_override)
-                @endcomponent
+            {{-- WEB-2018: When we want to hide descriptions, we want to hide everything but the title --}}
+            @if (!isset($hideDescription) || (isset($hideDescription) && !($hideDescription)))
+                @if (!empty($variation) && strpos($variation, 'm-listing--hero') === false && strpos($variation, 'm-listing--feature') === false && $item->list_description)
+                    @component('components.atoms._short-description')
+                        {!! truncateStr($item->present()->list_description) !!}
+                    @endcomponent
+                    <br>
+                @endif
+                @if (!empty($variation) && $variation === 'm-listing--hero')
+                    @component('components.organisms._o-preview-dates')
+                        @slot('previewDateStart', $item->member_preview_start_date)
+                        @slot('previewDateEnd', $item->member_preview_end_date)
+                    @endcomponent
+                    <br>
+                @endif
+                @if (!$item->isOngoing)
+                    @component('components.organisms._o-public-dates')
+                        @slot('date', $item->present()->date)
+                        @slot('dateStart', $item->present()->startAt)
+                        @slot('dateEnd', $item->present()->endAt)
+                        @slot('formattedDate', $item->present()->date_display_override)
+                    @endcomponent
+                @endif
             @endif
         </span>
     </a>

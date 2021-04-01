@@ -36,7 +36,9 @@
                 @slot('title_display', $item->present()->title_display)
             @endcomponent
             <br>
-            <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! isset($hideDescription) && $hideDescription ? '' : $item->present()->list_description !!}</div>
+            @if (!isset($hideDescription) || (isset($hideDescription) && !($hideDescription)))
+                <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description !!}</div>
+            @endif
         </div>
     </a>
 </{{ $tag ?? 'li' }}>

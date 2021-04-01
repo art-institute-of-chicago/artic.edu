@@ -28,6 +28,8 @@
                     @slot('item', $related['item'])
                     @slot('fullscreen', false)
                     @slot('titleFont', 'f-list-1')
+                    @slot('hideImage', $loop->index > 0)
+                    @slot('hideDescription', $loop->index > 0)
                     @slot('imageSettings', $imageSettings ?? null)
                     @slot('gtmAttributes', 'data-gtm-event="related-sidebar" data-gtm-event-category="collection-nav"')
                 @endcomponent
