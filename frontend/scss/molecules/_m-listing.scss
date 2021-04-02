@@ -32,6 +32,14 @@
   .f-module-title-1 + & {
     margin-top: 36px;
   }
+
+  .o-article__related .m-inline-aside & + &,
+  .o-article__secondary-actions .m-inline-aside & + & {
+    &:before {
+      content: '';
+      border-top: 1px solid $color__rules--primary;
+    }
+  }
 }
 
 .m-listing__link {
