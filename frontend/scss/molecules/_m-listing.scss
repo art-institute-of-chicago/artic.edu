@@ -33,6 +33,35 @@
     margin-top: 36px;
   }
 
+  .o-article__related .m-inline-aside &,
+  .o-article__secondary-actions .m-inline-aside & {
+    .f-list-3 {
+      @include font-styles(generate-font-obj(
+        (
+          font-family: $serif-font,
+          font-family-loaded: $serif-font--loaded,
+          font-loaded-class: $serif-font-loaded-class,
+          settings: (
+            'xsmall': (font-size: 24, line-height: 34, push: 0)
+          )
+        )
+      ));
+    }
+
+    .f-list-1 {
+      @include font-styles(generate-font-obj(
+        (
+          font-family: $serif-font,
+          font-family-loaded: $serif-font--loaded,
+          font-loaded-class: $serif-font-loaded-class,
+          settings: (
+            'xsmall': (font-size: 19, line-height: 28, push: 0)
+          )
+        )
+      ));
+    }
+  }
+
   .o-article__related .m-inline-aside & + &,
   .o-article__secondary-actions .m-inline-aside & + & {
     &:before {
