@@ -12,6 +12,13 @@
   }
 }
 
+.o-article--no-description {
+  @include breakpoint('small') {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+}
+
 .o-article .m-article-header:not(.m-article-header--gallery):not(.m-article-header--journal):not(.m-article-header--digital-publication) {
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
@@ -53,6 +60,10 @@
   padding-top: 23px;
   border-top: 1px solid $color__rules--primary;
 
+  .o-article__inline-header + & {
+    margin-top: 0;
+  }
+
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
     width: 100%;
@@ -76,6 +87,10 @@
 
     &.o-article__secondary-actions--inline-header {
       margin-top: 40px;
+
+      .o-article__inline-header + & {
+        margin-top: 0;
+      }
     }
   }
 
@@ -86,6 +101,10 @@
 
     &.o-article__secondary-actions--inline-header {
       margin-top: 40px;
+
+      .o-article__inline-header + & {
+        margin-top: 0;
+      }
     }
   }
 
@@ -118,25 +137,56 @@
     order: 1;
   }
 
-  @include breakpoint('small+') {
-    float: right;
-    clear: right;
-    width: colspan(23, small);
-    margin-top: 36px;
-    margin-bottom: colspan(3, small);
-    margin-left: colspan(3, small);
-
-    .o-article__inline-header ~ & {
-      margin-top: 8px;
-    }
-  }
-
   @include breakpoint('medium+') {
     display: none;
   }
+
+  &:not(.o-article__related--no-description) {
+      @include breakpoint('small') {
+        float: right;
+        clear: right;
+        width: colspan(23, small);
+        margin-top: 36px;
+        margin-bottom: colspan(3, small);
+        margin-left: colspan(3, small);
+
+        .o-article__inline-header ~ & {
+          margin-top: 8px;
+        }
+      }
+  }
+
+  &.o-article__related--no-description {
+    border-top: 1px solid $color__rules--primary;
+
+    @include breakpoint('small') {
+      flex: 0 0 auto;
+      width: 100%;
+      margin-top: 28px;
+      order: 1;
+    }
+  }
 }
 
+.o-article__body.o-article__body--no-description {
+  border-top: none;
 
+  &.o-blocks:not(.o-blocks--with-sidebar) > .deflist.o-blocks__block {
+    @each $name, $point in ('medium', 'large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &.o-blocks:not(.o-blocks--with-sidebar) > .deflist.o-blocks__block + .deflist.o-blocks__block {
+    @each $name, $point in ('xsmall', 'small', 'medium') {
+      @include breakpoint('#{$name}') {
+        margin-top: 20px;
+      }
+    }
+  }
+}
 
 .o-article__inline-header,
 .o-article__intro {
@@ -165,6 +215,14 @@
   @include breakpoint('xlarge') {
     width: colspan(28, xlarge);
     margin-left: colspan(15, xlarge);
+  }
+}
+
+.o-article__inline-header  {
+  @each $name, $point in ('medium') {
+    @include breakpoint('#{$name}') {
+      margin-right: colspan(20, $name);
+    }
   }
 }
 
