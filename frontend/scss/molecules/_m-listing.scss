@@ -327,10 +327,11 @@
 .m-listing__meta .f-list-3 {
   @include tucked-margin-top($f-list-3, ('xsmall': 32, 'large+': 44));
 }
-  .m-listing__meta .f-list-3:first-child,
-  .m-listing__meta .date + .f-list-3 {
-    @include tucked-margin-top($f-list-3, ('xsmall': 36, 'small+': 40));
-  }
+
+.m-listing__meta .f-list-3:first-child,
+.m-listing__meta .date + .f-list-3 {
+  @include tucked-margin-top($f-list-3, ('xsmall': 36, 'small+': 40));
+}
 
 .m-listing__meta .f-list-4 {
   @include tucked-margin-top($f-list-4, ('xsmall': 36, 'large+': 44));
