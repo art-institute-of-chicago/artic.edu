@@ -333,7 +333,7 @@
 }
 
 .m-listing__meta .f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 32, 'large+': 44));
+  @include tucked-margin-top($f-list-3, ('xsmall': 40, 'large+': 44));
 }
 
 .m-listing__meta .f-list-3:first-child,

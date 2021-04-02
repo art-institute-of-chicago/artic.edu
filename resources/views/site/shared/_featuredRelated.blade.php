@@ -27,7 +27,7 @@
                 @component('components.molecules._m-listing----' . strtolower($related['type']))
                     @slot('item', $related['item'])
                     @slot('fullscreen', false)
-                    @slot('titleFont', 'f-list-1')
+                    @slot('titleFont', $loop->index > 0 ? 'f-list-1' : 'f-list-3')
                     @slot('hideImage', $loop->index > 0)
                     @slot('hideDescription', $loop->index > 0)
                     @slot('imageSettings', $imageSettings ?? null)
