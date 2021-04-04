@@ -43,6 +43,12 @@ trait HasFeaturedRelated
                 return true;
             }
 
+            if (get_class($relatedItem) === \App\Models\Api\Event::class) {
+                if (!$relatedItem->isFuture) {
+                    return false;
+                }
+            }
+
             $isPublished = isset($relatedItem->published) && $relatedItem->published;
             $isVisible = (
                 !$relatedItem->isFillable('publish_start_date') ||
