@@ -63,13 +63,19 @@
                         {!! $item->present()->forced_date !!}
                     @endcomponent
                 @else
-                    @component('components.atoms._date')
-                        {!! $item->present()->nextOcurrenceDate !!}
-                    @endcomponent
-                    <br>
-                    @component('components.atoms._date')
-                        {!! $item->present()->nextOcurrenceTime !!}
-                    @endcomponent
+                    @if (isset($variation) && strrpos($variation, '--sidebar') > -1)
+                        @component('components.atoms._date')
+                            {!! $item->present()->nextOcurrenceDate !!} | {!! $item->present()->nextOcurrenceTime !!}
+                        @endcomponent
+                    @else
+                        @component('components.atoms._date')
+                            {!! $item->present()->nextOcurrenceDate !!}
+                        @endcomponent
+                        <br>
+                        @component('components.atoms._date')
+                            {!! $item->present()->nextOcurrenceTime !!}
+                        @endcomponent
+                    @endif
                 @endif
             </span>
         </span>
