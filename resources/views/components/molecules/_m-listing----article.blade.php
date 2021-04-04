@@ -37,7 +37,9 @@
             @endcomponent
             <br>
             @if (!isset($hideDescription) || (isset($hideDescription) && !($hideDescription)))
-                <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description !!}</div>
+                @if ($item->present()->list_description)
+                    <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description !!}</div>
+                @endif
             @endif
         </div>
     </a>
