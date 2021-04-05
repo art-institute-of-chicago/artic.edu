@@ -23,7 +23,7 @@
             {{ $item->isFeaturedRelatedRecentContent() ? 'Recent' : 'Related' }} Content
         @endcomponent
         @component('components.organisms._o-row-listing')
-            @foreach ($item->featuredRelated as $related)
+            @foreach ($item->getFeaturedRelated() as $related)
                 @component('components.molecules._m-listing----' . strtolower($related['type']))
                     @slot('item', $related['item'])
                     @slot('variation', 'm-listing--sidebar')

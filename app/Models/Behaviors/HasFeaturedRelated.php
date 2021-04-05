@@ -29,10 +29,10 @@ trait HasFeaturedRelated
 
     public function hasFeaturedRelated()
     {
-        return !empty($this->featuredRelated);
+        return !empty($this->getFeaturedRelated());
     }
 
-    public function getFeaturedRelatedAttribute()
+    public function getFeaturedRelated()
     {
         if ($this->selectedFeaturedRelateds) {
             return $this->selectedFeaturedRelateds;
