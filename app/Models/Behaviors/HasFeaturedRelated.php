@@ -72,10 +72,15 @@ trait HasFeaturedRelated
             'videos' => false,
         ]) ?? collect([]);
 
+        return $this->getFilteredRelatedItems($relatedItems);
+    }
+
+    protected function getFilteredRelatedItems($relatedItems)
+    {
+
         $now = Carbon::now();
 
-        // Filter out any unpublished items!
-        $relatedItems = $relatedItems->filter(function($relatedItem) use ($now) {
+        return $relatedItems->filter(function($relatedItem) use ($now) {
             // TODO: Verify that we don't need to check if the exhibition is in the future?
             if (get_class($relatedItem) === \App\Models\Api\Exhibition::class) {
                 return true;
@@ -100,8 +105,6 @@ trait HasFeaturedRelated
 
             return $isPublished && $isVisible;
         })->values();
-
-        return $relatedItems;
     }
 
     private function getDefaultRelatedItems()

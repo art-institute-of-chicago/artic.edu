@@ -4,8 +4,9 @@ namespace App\Models\Api;
 
 use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
-use App\Models\Api\Asset;
 use App\Helpers\DatesHelpers;
+use App\Models\Api\Asset;
+use App\Models\Vendor\Block;
 use App\Models\Behaviors\HasMediasApi;
 use App\Models\Behaviors\HasFeaturedRelated;
 
@@ -419,6 +420,30 @@ class Artwork extends BaseApiModel
             return $relatedItems;
         }
 
-        return $relatedItems;
+        $blocks = Block::query()
+            ->where(function($query) {
+                $query->where('type', 'gallery_new_item');
+                $query->whereJsonContains('content->browsers->artworks', $this->id);
+            })
+            ->orWhere(function($query) {
+                $query->where('type', 'artwork');
+                $query->whereJsonContains('content->browsers->artworks', $this->id);
+            })
+            ->orWhere(function($query) {
+                $query->where('type', 'artworks');
+                $query->whereJsonContains('content->browsers->artworks', $this->id);
+            })
+            ->get();
+
+        if ($blocks->count() > 0) {
+            $relatedItems = $blocks
+                ->pluck('blockable')
+                ->unique(function ($item) {
+                    return get_class($item) . $item->id;
+                })
+                ->values();
+        }
+
+        return $this->getFilteredRelatedItems($relatedItems);
     }
 }
