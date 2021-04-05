@@ -5,6 +5,10 @@ namespace App\Models\Api;
 use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Helpers\DatesHelpers;
+use App\Models\Article;
+use App\Models\Selection;
+use App\Models\Experience;
+use App\Models\Video;
 use App\Models\Api\Asset;
 use App\Models\Vendor\Block;
 use App\Models\Behaviors\HasMediasApi;
@@ -438,6 +442,14 @@ class Artwork extends BaseApiModel
         if ($blocks->count() > 0) {
             $relatedItems = $blocks
                 ->pluck('blockable')
+                ->filter(function ($item) {
+                    return in_array(get_class($item), [
+                        Article::class,
+                        Selection::class,
+                        Experience::class,
+                        Video::class,
+                    ]);
+                })
                 ->unique(function ($item) {
                     return get_class($item) . $item->id;
                 })
