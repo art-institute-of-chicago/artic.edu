@@ -118,6 +118,9 @@ trait HasFeaturedRelated
                 ->merge($selections)
                 ->merge($experiences)
                 ->merge($videos)
+                ->filter(function($item) {
+                    return $item->imageFront('hero') !== null;
+                })
                 ->sortBy('updated_at')
                 ->reverse()
                 ->slice(0,$poolSize)
