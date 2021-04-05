@@ -107,11 +107,17 @@ trait HasFeaturedRelated
         $recentItems = Cache::remember('default-related-pool', 60 * 60 * 24, function() {
             $poolSize = 20;
 
+            // Avoid accidentally seeding the pool with draft items during preview mode
+            $oldPreviewMode = config('aic.is_preview_mode');
+            config(['aic.is_preview_mode' => false]);
+
             // WEB-2018: Do we need to check published date, or is it ok to just keep checking updated_at?
             $articles = Article::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
             $selections = Selection::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
             $experiences = Experience::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
             $videos = Video::published()->visible()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+
+            config(['aic.is_preview_mode' => $oldPreviewMode]);
 
             $pool = collect([])
                 ->merge($articles)
