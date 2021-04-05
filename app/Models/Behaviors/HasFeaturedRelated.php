@@ -2,6 +2,15 @@
 
 namespace App\Models\Behaviors;
 
+use App\Models\Article;
+use App\Models\Selection;
+use App\Models\Event;
+use App\Models\Api\Exhibition;
+use App\Models\Experience;
+use App\Models\DigitalPublication;
+use App\Models\Video;
+
+use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 
 /**
@@ -17,6 +26,19 @@ trait HasFeaturedRelated
             return $this->selectedFeaturedRelateds;
         }
 
+        $relatedItems = $this->getCustomRelatedItems();
+
+        if ($relatedItems->count() < 1) {
+            $relatedItems = $this->getDefaultRelatedItems();
+        }
+
+        $this->selectedFeaturedRelateds = $this->getLabeledRelatedItems($relatedItems);
+
+        return $this->selectedFeaturedRelateds;
+    }
+
+    private function getCustomRelatedItems()
+    {
         $relatedItems = $this->getRelatedWithApiModels('sidebar_items', [
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
@@ -63,45 +85,78 @@ trait HasFeaturedRelated
             return $isPublished && $isVisible;
         })->values();
 
-        // Exit early if there's nothing to show
-        if ($relatedItems->count() < 1) {
-            return;
-        }
+        return $relatedItems;
+    }
 
-        $this->selectedFeaturedRelateds = [];
+    private function getDefaultRelatedItems()
+    {
+        // Update pool of most recent items once each day
+        $recentItems = Cache::remember('default-related-pool', 60 * 60 * 24, function() {
+            $poolSize = 20;
 
-        $relatedItems->each(function ($relatedItem) {
+            // WEB-2018: Do we need to check published date, or is it ok to just keep checking updated_at?
+            $articles = Article::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            $selections = Selection::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            $experiences = Experience::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            $videos = Video::published()->visible()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+
+            $pool = collect([])
+                ->merge($articles)
+                ->merge($selections)
+                ->merge($experiences)
+                ->merge($videos)
+                ->sortBy('updated_at')
+                ->reverse()
+                ->slice(0,$poolSize)
+                ->values();
+
+            return $pool;
+        });
+
+        return $recentItems
+            ->filter(function($item) {
+                return get_class($item) !== get_class($this) || $item->id !== $this->id;
+            })
+            ->random(3)
+            ->values();
+    }
+
+    private function getLabeledRelatedItems($relatedItems)
+    {
+        $labeledRelatedItems = [];
+
+        $relatedItems->each(function ($relatedItem) use (&$labeledRelatedItems) {
             switch (get_class($relatedItem)) {
-                case \App\Models\Article::class:
+                case Article::class:
                     // Tag is often "In the Lab", "Collection Spotlight", etc.
                     $label = 'Article';
                     $type = 'article';
                     break;
-                case \App\Models\Selection::class:
+                case Selection::class:
                     $label = null;
                     $type = 'selection';
                     break;
-                case \App\Models\Event::class:
+                case Event::class:
                     // Tag is replaced by "Tour", "Member Exclusive", etc.
                     $label = 'Event';
                     $type = 'event';
                     break;
-                case \App\Models\Api\Exhibition::class:
+                case Exhibition::class:
                     // Tag is often "Closed", "Ongoing", "Closing soon", etc.
                     $label = 'Exhibition';
                     $type = 'exhibition';
                     break;
-                case \App\Models\Experience::class:
+                case Experience::class:
                     // Tag is "Interactive Feature"
                     $label = null;
                     $type = 'experience';
                     break;
-                case \App\Models\DigitalPublication::class:
+                case DigitalPublication::class:
                     // No tag
                     $label = 'Digital Publication';
                     $type = 'generic';
                     break;
-                case \App\Models\Video::class:
+                case Video::class:
                     // Tag is "Video"
                     $label = 'Media';
                     $type = 'media';
@@ -111,14 +166,14 @@ trait HasFeaturedRelated
                     break;
             }
 
-            $this->selectedFeaturedRelateds[] = [
+            $labeledRelatedItems[] = [
                 'label' => $label ?? 'Content',
                 'type' => $type,
                 'item' => $relatedItem,
             ];
         });
 
-        return $this->selectedFeaturedRelateds;
+        return $labeledRelatedItems;
     }
 
 }
