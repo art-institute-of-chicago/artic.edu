@@ -20,7 +20,7 @@
         @component('components.blocks._text')
             @slot('font', 'f-module-title-1')
             @slot('tag', 'h4')
-            Related Content
+            {{ $item->isFeaturedRelatedRecentContent() ? 'Recent' : 'Related' }} Content
         @endcomponent
         @component('components.organisms._o-row-listing')
             @foreach ($item->featuredRelated as $related)

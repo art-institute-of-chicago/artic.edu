@@ -18,7 +18,14 @@ use Carbon\Carbon;
  */
 trait HasFeaturedRelated
 {
-    protected $selectedFeaturedRelateds;
+    private $selectedFeaturedRelateds;
+
+    private $isFeaturedRelatedRecentContent = false;
+
+    public function isFeaturedRelatedRecentContent()
+    {
+        return $this->isFeaturedRelatedRecentContent;
+    }
 
     public function hasFeaturedRelated()
     {
@@ -35,6 +42,7 @@ trait HasFeaturedRelated
 
         if ($relatedItems->count() < 1) {
             $relatedItems = $this->getDefaultRelatedItems();
+            $this->isFeaturedRelatedRecentContent = true;
         }
 
         $this->selectedFeaturedRelateds = $this->getLabeledRelatedItems($relatedItems);
