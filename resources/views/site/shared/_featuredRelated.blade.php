@@ -13,7 +13,7 @@
     );
 @endphp
 
-@if (isset($featuredRelated) && $featuredRelated)
+@if ($item->hasFeaturedRelated())
     <aside class="m-inline-aside{{ (isset($variation)) ? ' '.$variation : '' }}">
         @component('components.atoms._hr')
         @endcomponent
@@ -23,7 +23,7 @@
             Related Content
         @endcomponent
         @component('components.organisms._o-row-listing')
-            @foreach ($featuredRelated as $related)
+            @foreach ($item->featuredRelated as $related)
                 @component('components.molecules._m-listing----' . strtolower($related['type']))
                     @slot('item', $related['item'])
                     @slot('variation', 'm-listing--sidebar')

@@ -93,16 +93,16 @@
 
   <div class="o-article__secondary-actions o-article__secondary-actions--inline-header u-show@medium+">
     @component('site.shared._featuredRelated')
-        @slot('featuredRelated', $item->featuredRelated) {{-- Do not ?? --}}
+        @slot('item', $item)
         @slot('variation', 'u-show@medium+')
     @endcomponent
   </div>
 
   {{-- TODO: Integrate related elements? Could be loaded indirectly from related entities --}}
-  @if ($item->featuredRelated)
+  @if ($item->hasFeaturedRelated())
       <div class="o-article__related{{ (empty($item->description) or $item->description === '') ? ' o-article__related--no-description' : '' }}">
           @component('site.shared._featuredRelated')
-              @slot('featuredRelated', $item->featuredRelated) {{-- Do not ?? --}}
+              @slot('item', $item)
           @endcomponent
       </div>
   @endif

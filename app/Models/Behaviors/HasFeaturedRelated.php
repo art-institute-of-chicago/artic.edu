@@ -20,6 +20,11 @@ trait HasFeaturedRelated
 {
     protected $selectedFeaturedRelateds;
 
+    public function hasFeaturedRelated()
+    {
+        return !empty($this->featuredRelated);
+    }
+
     public function getFeaturedRelatedAttribute()
     {
         if ($this->selectedFeaturedRelateds) {

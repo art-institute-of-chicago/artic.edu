@@ -26,15 +26,15 @@
             @component('components.molecules._m-article-actions')
             @endcomponent
             @component('site.shared._featuredRelated')
-                @slot('featuredRelated', $item->featuredRelated ?? null)
+                @slot('item', $item)
                 @slot('variation', 'u-show@medium+')
             @endcomponent
         </div>
 
-        @if ($item->featuredRelated)
+        @if ($item->hasFeaturedRelated())
             <div class="o-article__related">
                 @component('site.shared._featuredRelated')
-                    @slot('featuredRelated', $item->featuredRelated ?? null)
+                    @slot('item', $item)
                 @endcomponent
             </div>
         @endif
