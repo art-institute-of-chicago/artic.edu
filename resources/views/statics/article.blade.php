@@ -75,7 +75,7 @@
     @endif
 
     @component('site.shared._featuredRelated')
-        @slot('featuredRelated', $article->featuredRelated ?? null)
+        @slot('item', $article)
         @slot('variation', 'u-show@medium+')
     @endcomponent
   </div>
@@ -112,10 +112,10 @@
   </div>
   @endif
 
-  @if ($article->featuredRelated)
+  @if ($article->hasFeaturedRelated())
       <div class="o-article__related">
         @component('site.shared._featuredRelated')
-            @slot('featuredRelated', $article->featuredRelated ?? null)
+            @slot('item', $article)
         @endcomponent
       </div>
   @endif

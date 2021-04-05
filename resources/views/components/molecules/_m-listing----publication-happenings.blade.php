@@ -24,7 +24,7 @@
         @endif
         <span class="m-listing__meta-bottom">
             @if (isset($btnText))
-            <a class="btn f-buttons btn--publication-happening" {!! isset($gtmAttributes) ? $gtmAttributes : '' !!} href="{!! $btnHref ?? '' !!}">{{ $btnText }}</a>
+                <a class="btn f-buttons btn--publication-happening" {!! isset($gtmAttributes) ? $gtmAttributes : '' !!} href="{!! $btnHref ?? '' !!}">{{ $btnText }}</a>
             @endif
         </span>
     </span>

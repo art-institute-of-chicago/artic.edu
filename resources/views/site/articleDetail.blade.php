@@ -70,7 +70,7 @@
     @endif
 
     @component('site.shared._featuredRelated')
-        @slot('featuredRelated', $item->featuredRelated ?? null)
+        @slot('item', $item)
         @slot('variation', 'u-show@medium+')
     @endcomponent
   </div>
@@ -113,10 +113,10 @@
   @endif
 
   {{-- For articles, this shows below body, not float-right --}}
-  @if ($item->featuredRelated)
+  @if ($item->hasFeaturedRelated())
       <div class="o-article__related">
         @component('site.shared._featuredRelated')
-            @slot('featuredRelated', $item->featuredRelated ?? null)
+            @slot('item', $item)
         @endcomponent
       </div>
   @endif

@@ -56,7 +56,6 @@ class GenericPageRepository extends ModuleRepository
             "title" => $item->title,
             "breadcrumb" => $item->present()->breadCrumb(),
             "blocks" => null,
-            'featuredRelated' => [],
             'page' => $item,
 
         ];

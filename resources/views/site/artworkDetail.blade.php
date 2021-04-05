@@ -8,7 +8,7 @@
     </script>
 @endif
 
-<article class="o-article" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}" itemscope itemtype="http://schema.org/CreativeWork">
+<article class="o-article{{ (empty($item->description) or $item->description === '') ? ' o-article--no-description' : '' }}" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}" itemscope itemtype="http://schema.org/CreativeWork">
 
   @component('site.shared._schemaItemProps')
     @slot('itemprops',$item->present()->buildSchemaItemProps() ?? null)
@@ -59,13 +59,6 @@
     @endif
   </div>
 
-  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header u-show@medium+">
-    @component('site.shared._featuredRelated')
-        @slot('featuredRelated', $item->featuredRelated) {{-- Do not ?? --}}
-        @slot('variation', 'u-show@medium+')
-    @endcomponent
-  </div>
-
   <div class="o-article__inline-header">
     @if ($item->title)
       @component('components.atoms._title')
@@ -98,11 +91,18 @@
     @endif
   </div>
 
+  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header u-show@medium+">
+    @component('site.shared._featuredRelated')
+        @slot('item', $item)
+        @slot('variation', 'u-show@medium+')
+    @endcomponent
+  </div>
+
   {{-- TODO: Integrate related elements? Could be loaded indirectly from related entities --}}
-  @if ($item->featuredRelated)
-      <div class="o-article__related">
+  @if ($item->hasFeaturedRelated())
+      <div class="o-article__related{{ (empty($item->description) or $item->description === '') ? ' o-article__related--no-description' : '' }}">
           @component('site.shared._featuredRelated')
-              @slot('featuredRelated', $item->featuredRelated) {{-- Do not ?? --}}
+              @slot('item', $item)
           @endcomponent
       </div>
   @endif

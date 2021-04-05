@@ -23,7 +23,6 @@
                 @component('components.molecules._m-listing----event-row')
                     @slot('item', $item)
                     @slot('titleFont', 'f-list-2')
-                    @slot('hideShortDesc', true)
                     @slot('variation', 'm-listing--row m-listing--secondary')
                     @slot('imageSettings', $imageSettingsOnGoing ?? null)
                     @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="nav-link"')

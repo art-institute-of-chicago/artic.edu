@@ -27,19 +27,18 @@
 
   @if (!$isWideBody)
       <div class="o-article__secondary-actions">
-        @component('components.molecules._m-article-actions')
-        @endcomponent
-
-        @component('site.shared._featuredRelated')
-            @slot('featuredRelated', $page->featuredRelated ?? null)
-            @slot('variation', 'u-show@medium+')
-        @endcomponent
+          @component('components.molecules._m-article-actions')
+          @endcomponent
+          @component('site.shared._featuredRelated')
+              @slot('item', $page)
+              @slot('variation', 'u-show@medium+')
+          @endcomponent
       </div>
 
-      @if ($page->featuredRelated)
+      @if ($page->hasFeaturedRelated())
           <div class="o-article__related">
               @component('site.shared._featuredRelated')
-                  @slot('featuredRelated', $page->featuredRelated ?? null)
+                  @slot('item', $page)
               @endcomponent
           </div>
       @endif
