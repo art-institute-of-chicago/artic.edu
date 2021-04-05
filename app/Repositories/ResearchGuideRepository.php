@@ -31,7 +31,6 @@ class ResearchGuideRepository extends ModuleRepository
             "title" => $item->title,
             "breadcrumb" => [],
             "blocks" => null,
-            'featuredRelated' => [],
             'nav' => [],
             'page' => $item,
         ];
