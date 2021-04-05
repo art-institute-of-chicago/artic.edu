@@ -50,7 +50,10 @@ trait HasFeaturedRelated
         return $this->selectedFeaturedRelateds;
     }
 
-    private function getCustomRelatedItems()
+    /**
+     * Public b/c API models needs to check if their augmented models have related content.
+     */
+    public function getCustomRelatedItems()
     {
         $relatedItems = $this->getRelatedWithApiModels('sidebar_items', [
             'exhibitions' => [

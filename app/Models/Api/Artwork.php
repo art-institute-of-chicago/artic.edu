@@ -7,6 +7,7 @@ use App\Libraries\Api\Models\BaseApiModel;
 use App\Models\Api\Asset;
 use App\Helpers\DatesHelpers;
 use App\Models\Behaviors\HasMediasApi;
+use App\Models\Behaviors\HasFeaturedRelated;
 
 class Artwork extends BaseApiModel
 {
@@ -15,6 +16,10 @@ class Artwork extends BaseApiModel
 
     use HasMediasApi {
         imageFront as traitImageFront;
+    }
+
+    use HasFeaturedRelated {
+        getCustomRelatedItems as traitGetCustomRelatedItems;
     }
 
     protected $endpoints = [
@@ -401,4 +406,19 @@ class Artwork extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function getCustomRelatedItems()
+    {
+        $relatedItems = collect([]);
+
+        // if this artwork is augmented and its augmented model has custom related items, return those
+        if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), 'getCustomRelatedItems')) {
+            $relatedItems = $this->getAugmentedModel()->getCustomRelatedItems();
+        }
+
+        if ($relatedItems->count() > 0) {
+            return $relatedItems;
+        }
+
+        return $relatedItems;
+    }
 }
