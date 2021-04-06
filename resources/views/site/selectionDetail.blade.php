@@ -33,7 +33,7 @@
   @if ($item->hasFeaturedRelated())
     <div class="o-article__related">
         @component('site.shared._featuredRelated')
-            @slot('item', $item->hasFeaturedRelated())
+            @slot('item', $item)
         @endcomponent
     </div>
   @endif
