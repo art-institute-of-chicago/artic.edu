@@ -107,39 +107,39 @@ trait HasFeaturedRelated
         })->values();
     }
 
+    private function getDefaultRelatedPool()
+    {
+        $poolSize = 20;
+
+        // Avoid accidentally seeding the pool with draft items during preview mode
+        $oldPreviewMode = config('aic.is_preview_mode');
+        config(['aic.is_preview_mode' => false]);
+
+        // WEB-2018: Do we need to check published date, or is it ok to just keep checking updated_at?
+        $articles = Article::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+        $selections = Selection::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+        $experiences = Experience::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+        $videos = Video::published()->visible()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+
+        config(['aic.is_preview_mode' => $oldPreviewMode]);
+
+        return collect([])
+            ->merge($articles)
+            ->merge($selections)
+            ->merge($experiences)
+            ->merge($videos)
+            ->filter(function($item) {
+                return $item->imageFront('hero') !== null;
+            })
+            ->sortBy('updated_at')
+            ->reverse()
+            ->slice(0, $poolSize)
+            ->values();
+    }
+
     private function getDefaultRelatedItems()
     {
-        // Update pool of most recent items once each day
-        $recentItems = Cache::remember('default-related-pool', 60 * 60 * 24, function() {
-            $poolSize = 20;
-
-            // Avoid accidentally seeding the pool with draft items during preview mode
-            $oldPreviewMode = config('aic.is_preview_mode');
-            config(['aic.is_preview_mode' => false]);
-
-            // WEB-2018: Do we need to check published date, or is it ok to just keep checking updated_at?
-            $articles = Article::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
-            $selections = Selection::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
-            $experiences = Experience::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
-            $videos = Video::published()->visible()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
-
-            config(['aic.is_preview_mode' => $oldPreviewMode]);
-
-            $pool = collect([])
-                ->merge($articles)
-                ->merge($selections)
-                ->merge($experiences)
-                ->merge($videos)
-                ->filter(function($item) {
-                    return $item->imageFront('hero') !== null;
-                })
-                ->sortBy('updated_at')
-                ->reverse()
-                ->slice(0,$poolSize)
-                ->values();
-
-            return $pool;
-        });
+        $recentItems = $this->getDefaultRelatedPool();
 
         return $recentItems
             ->filter(function($item) {
