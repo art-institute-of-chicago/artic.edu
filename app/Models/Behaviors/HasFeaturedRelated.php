@@ -18,13 +18,15 @@ use Carbon\Carbon;
  */
 trait HasFeaturedRelated
 {
+    private $targetItemCount = 6;
+
     private $selectedFeaturedRelateds;
 
-    private $isFeaturedRelatedRecentContent = false;
+    private $isFeaturedRelatedCurated = true;
 
-    public function isFeaturedRelatedRecentContent()
+    public function getFeaturedRelatedTitle()
     {
-        return $this->isFeaturedRelatedRecentContent;
+        return ($this->isFeaturedRelatedCurated ? 'Related' : 'Recent') . ' Content';
     }
 
     public function hasFeaturedRelated()
@@ -41,8 +43,12 @@ trait HasFeaturedRelated
         $relatedItems = $this->getCustomRelatedItems();
 
         if ($relatedItems->count() < 1) {
-            $relatedItems = $this->getDefaultRelatedItems();
-            $this->isFeaturedRelatedRecentContent = true;
+            $this->isFeaturedRelatedCurated = false;
+        }
+
+        if ($relatedItems->count() < $this->targetItemCount) {
+            $relatedItems = $relatedItems->merge($this->getDefaultRelatedItems());
+            $relatedItems = $relatedItems->slice(0, $this->targetItemCount);
         }
 
         $this->selectedFeaturedRelateds = $this->getLabeledRelatedItems($relatedItems);
@@ -145,7 +151,7 @@ trait HasFeaturedRelated
             ->filter(function($item) {
                 return get_class($item) !== get_class($this) || $item->id !== $this->id;
             })
-            ->random(3)
+            ->random($this->targetItemCount)
             ->values();
     }
 
