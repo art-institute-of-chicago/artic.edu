@@ -125,32 +125,35 @@ trait HasFeaturedRelated
 
     private function getDefaultRelatedPool()
     {
-        $poolSize = 20;
+        // WEB-2046: Storing this in memcached causes a segfault, try again after WEB-1531
+        return Cache::store('file')->remember('default-content-pool', 60 * 60, function() {
+            $poolSize = 20;
 
-        // Avoid accidentally seeding the pool with draft items during preview mode
-        $oldPreviewMode = config('aic.is_preview_mode');
-        config(['aic.is_preview_mode' => false]);
+            // Avoid accidentally seeding the pool with draft items during preview mode
+            $oldPreviewMode = config('aic.is_preview_mode');
+            config(['aic.is_preview_mode' => false]);
 
-        // WEB-2018: Do we need to check published date, or is it ok to just keep checking updated_at?
-        $articles = Article::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
-        $selections = Selection::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
-        $experiences = Experience::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
-        $videos = Video::published()->visible()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            // WEB-2018: Do we need to check published date, or is it ok to just keep checking updated_at?
+            $articles = Article::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            $selections = Selection::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            $experiences = Experience::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            $videos = Video::published()->visible()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
 
-        config(['aic.is_preview_mode' => $oldPreviewMode]);
+            config(['aic.is_preview_mode' => $oldPreviewMode]);
 
-        return collect([])
-            ->merge($articles)
-            ->merge($selections)
-            ->merge($experiences)
-            ->merge($videos)
-            ->filter(function($item) {
-                return $item->imageFront('hero') !== null;
-            })
-            ->sortBy('updated_at')
-            ->reverse()
-            ->slice(0, $poolSize)
-            ->values();
+            return collect([])
+                ->merge($articles)
+                ->merge($selections)
+                ->merge($experiences)
+                ->merge($videos)
+                ->filter(function($item) {
+                    return $item->imageFront('hero') !== null;
+                })
+                ->sortBy('updated_at')
+                ->reverse()
+                ->slice(0, $poolSize)
+                ->values();
+        });
     }
 
     private function getDefaultRelatedItems($customRelatedItems)
