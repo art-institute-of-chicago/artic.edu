@@ -91,7 +91,7 @@
     @endif
   </div>
 
-  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header u-show@medium+">
+  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ (!empty($item->description) or $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium+">
     @component('site.shared._featuredRelated')
         @slot('item', $item)
         @slot('variation', 'u-show@medium+')

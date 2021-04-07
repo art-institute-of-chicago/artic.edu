@@ -106,6 +106,12 @@
         margin-top: 0;
       }
     }
+
+    &.o-article__secondary-actions--with-description {
+      .o-article__inline-header + & {
+        margin-top: 12px;
+      }
+    }
   }
 
   @include breakpoint('xlarge') {
