@@ -2,12 +2,17 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
 use Illuminate\Support\Carbon;
 use App\Models\Api\Asset;
+use App\Models\Behaviors\HasFeaturedRelated;
+use App\Libraries\Api\Models\BaseApiModel;
 
 class Exhibition extends BaseApiModel
 {
+    use HasFeaturedRelated {
+        getCustomRelatedItems as traitGetCustomRelatedItems;
+    }
+
     protected $endpoints = [
         'collection' => '/api/v1/exhibitions',
         'resource' => '/api/v1/exhibitions/{id}',
@@ -377,5 +382,15 @@ class Exhibition extends BaseApiModel
     public function historyDocuments()
     {
         return $this->hasMany(\App\Models\Api\Asset::class, 'document_ids');
+    }
+
+    public function getCustomRelatedItems()
+    {
+        // if this exhibition is augmented and its augmented model has custom related items, return those
+        if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), 'getCustomRelatedItems')) {
+            return $this->getAugmentedModel()->getCustomRelatedItems();
+        }
+
+        return collect([]);
     }
 }
