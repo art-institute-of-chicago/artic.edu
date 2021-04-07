@@ -22,11 +22,9 @@ trait HasFeaturedRelated
 
     private $selectedFeaturedRelateds;
 
-    private $isFeaturedRelatedCurated = true;
-
     public function getFeaturedRelatedTitle()
     {
-        return ($this->isFeaturedRelatedCurated ? 'Related' : 'Recent') . ' Content';
+        return 'Discover More';
     }
 
     public function hasFeaturedRelated()
@@ -41,10 +39,6 @@ trait HasFeaturedRelated
         }
 
         $relatedItems = $this->getCustomRelatedItems();
-
-        if ($relatedItems->count() < 1) {
-            $this->isFeaturedRelatedCurated = false;
-        }
 
         if ($relatedItems->count() < $this->getTargetItemCount()) {
             $relatedItems = $relatedItems->merge($this->getDefaultRelatedItems($relatedItems));
