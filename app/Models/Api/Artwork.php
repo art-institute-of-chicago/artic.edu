@@ -454,8 +454,8 @@ class Artwork extends BaseApiModel
 
             $relatedItems = $relatedItems
                 ->merge($blockRelatedItems)
-                ->unique(function ($item) {
-                    return get_class($item) . $item->id;
+                ->unique(function ($relatedItem) {
+                    return $this->getRelatedItemHash($relatedItem);
                 })
                 ->values();
         }

@@ -47,7 +47,7 @@ trait HasFeaturedRelated
         }
 
         if ($relatedItems->count() < $this->getTargetItemCount()) {
-            $relatedItems = $relatedItems->merge($this->getDefaultRelatedItems());
+            $relatedItems = $relatedItems->merge($this->getDefaultRelatedItems($relatedItems));
             $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
         }
 
@@ -118,6 +118,11 @@ trait HasFeaturedRelated
         })->values();
     }
 
+    protected function getRelatedItemHash($relatedItem)
+    {
+        return get_class($relatedItem) . $relatedItem->id;
+    }
+
     private function getDefaultRelatedPool()
     {
         $poolSize = 20;
@@ -148,13 +153,19 @@ trait HasFeaturedRelated
             ->values();
     }
 
-    private function getDefaultRelatedItems()
+    private function getDefaultRelatedItems($customRelatedItems)
     {
-        $recentItems = $this->getDefaultRelatedPool();
+        $forbiddenItemHashes = (clone $customRelatedItems)
+            ->push($this)
+            ->map(function($relatedItem) {
+                return $this->getRelatedItemHash($relatedItem);
+            })
+            ->values()
+            ->all();
 
-        return $recentItems
-            ->filter(function($item) {
-                return get_class($item) !== get_class($this) || $item->id !== $this->id;
+        return $this->getDefaultRelatedPool()
+            ->filter(function($relatedItem) use ($forbiddenItemHashes) {
+                return !in_array($this->getRelatedItemHash($relatedItem), $forbiddenItemHashes);
             })
             ->random($this->targetItemCount)
             ->values();
