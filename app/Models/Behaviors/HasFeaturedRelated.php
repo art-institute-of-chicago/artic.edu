@@ -46,9 +46,9 @@ trait HasFeaturedRelated
             $this->isFeaturedRelatedCurated = false;
         }
 
-        if ($relatedItems->count() < $this->targetItemCount) {
+        if ($relatedItems->count() < $this->getTargetItemCount()) {
             $relatedItems = $relatedItems->merge($this->getDefaultRelatedItems());
-            $relatedItems = $relatedItems->slice(0, $this->targetItemCount);
+            $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
         }
 
         $this->selectedFeaturedRelateds = $this->getLabeledRelatedItems($relatedItems);
@@ -79,6 +79,11 @@ trait HasFeaturedRelated
         ]) ?? collect([]);
 
         return $this->getFilteredRelatedItems($relatedItems);
+    }
+
+    protected function getTargetItemCount()
+    {
+        return $this->targetItemCount;
     }
 
     protected function getFilteredRelatedItems($relatedItems)

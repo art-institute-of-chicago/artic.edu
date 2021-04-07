@@ -420,7 +420,7 @@ class Artwork extends BaseApiModel
             $relatedItems = $this->getAugmentedModel()->getCustomRelatedItems();
         }
 
-        if ($relatedItems->count() > 0) {
+        if ($relatedItems->count() >= $this->getTargetItemCount()) {
             return $relatedItems;
         }
 
@@ -440,7 +440,7 @@ class Artwork extends BaseApiModel
             ->get();
 
         if ($blocks->count() > 0) {
-            $relatedItems = $blocks
+            $blockRelatedItems = $blocks
                 ->pluck('blockable')
                 ->filter(function ($item) {
                     return in_array(get_class($item), [
@@ -450,11 +450,17 @@ class Artwork extends BaseApiModel
                         Video::class,
                     ]);
                 })
+                ->values();
+
+            $relatedItems = $relatedItems
+                ->merge($blockRelatedItems)
                 ->unique(function ($item) {
                     return get_class($item) . $item->id;
                 })
                 ->values();
         }
+
+        $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
 
         return $this->getFilteredRelatedItems($relatedItems);
     }
