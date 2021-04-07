@@ -13,7 +13,7 @@
     );
 @endphp
 
-@if ($item->hasFeaturedRelated())
+@if (method_exists($item, 'hasFeaturedRelated') && $item->hasFeaturedRelated())
     <aside class="m-inline-aside{{ (isset($variation)) ? ' '.$variation : '' }}">
         @component('components.atoms._hr')
         @endcomponent
