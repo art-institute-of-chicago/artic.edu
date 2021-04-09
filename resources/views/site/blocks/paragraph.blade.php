@@ -50,5 +50,27 @@
 
         $content = $dom->saveHTML($dom);
     }
+
+    $dom = new DomDocument();
+    $dom->loadHTML('<?xml encoding="utf-8" ?>' . $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+    // Give IDs to H2s and H3s
+    $xpath = new DOMXpath($dom);
+    $nodes = $xpath->query('//h2');
+    foreach($nodes as $node) {
+        $newNode = $dom->createElement('h2');
+        $newNode->setAttribute('id', Str::slug($node->nodeValue));
+        $newNode->nodeValue = $node->nodeValue;
+        $node->parentNode->replaceChild($newNode, $node);
+    }
+    $nodes = $xpath->query('//h3');
+    foreach($nodes as $node) {
+        $newNode = $dom->createElement('h3');
+        $newNode->setAttribute('id', Str::slug($node->nodeValue));
+        $newNode->nodeValue = $node->nodeValue;
+        $node->parentNode->replaceChild($newNode, $node);
+    }
+
+    $content = $dom->saveHTML($dom);
 @endphp
 {!! $content !!}
