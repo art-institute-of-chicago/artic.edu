@@ -1,6 +1,6 @@
 <div class="o-gallery o-gallery--small-mosaic o-gallery--mosaic{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
     @if (!empty($title))
-        <h3 class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
+        <h3 id="{{ getUtf8Slug($title) }}" class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
     @endif
     @if (!empty($allLink))
     <p class="o-gallery__all-link f-buttons">

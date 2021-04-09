@@ -1,7 +1,7 @@
 <div class="o-gallery o-gallery--slider{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
     <div class="clearfix"></div>
     @if (!empty($title))
-        <h3 class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
+        <h3 id="{{ getUtf8Slug($title) }}" class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
     @endif
     @if (!empty($allLink))
     <p class="o-gallery__all-link f-buttons">
