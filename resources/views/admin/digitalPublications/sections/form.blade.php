@@ -87,6 +87,7 @@
             '3d_model', '3d_tour', '3d_embed', '360_embed', '360_modal',
             'gallery_new',
             'image_slider', 'mirador_embed', 'mirador_modal',
+            'links-bar'
         ])
     ])
 
