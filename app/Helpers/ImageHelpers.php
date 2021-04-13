@@ -273,7 +273,7 @@ function aic_imageSettings($data) {
     $ratioW = null;
     $ratioH = null;
 
-    $LQIPDimension = 25;
+    $LQIPDimension = 750;
 
     if ($originalSrc && !$sourceType) {
         $sourceType = aic_determineImageSourceType($originalSrc);
@@ -465,7 +465,7 @@ function aic_imageSettings($data) {
         }
         $imgixSettings['auto'] = 'format';
         $imgixSettings['q'] = '1';
-        $imgixSettings['blur'] = '30';
+        $imgixSettings['blur'] = '1200';
         $imgixSettings['sat'] = '20';
         $imgixSettingsString = http_build_query($imgixSettings);
 
