@@ -38,9 +38,7 @@ class ExperienceImageRepository extends ModuleRepository
                     'copyright_notice' => 'copyright_notice',
                 ];
                 foreach($credits_map as $contentBundleKey => $artworkKey) {
-                    if (!$fields[$contentBundleKey]) {
-                        $fields[$contentBundleKey] = $artwork[$artworkKey];
-                    }
+                    $fields[$contentBundleKey] = $artwork[$artworkKey];
                 }
             }
         }
