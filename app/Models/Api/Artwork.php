@@ -462,8 +462,10 @@ class Artwork extends BaseApiModel
                 ->values();
         }
 
+        $relatedItems = $this->getFilteredRelatedItems($relatedItems);
+
         $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
 
-        return $this->getFilteredRelatedItems($relatedItems);
+        return $relatedItems;
     }
 }
