@@ -477,13 +477,13 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByMostSimilar($query, $id, $class = \App\Models\Api\Artwork::class)
+    public function scopeByMostSimilar($query, $id, $class = \App\Models\Api\Artwork::class, $boost = false)
     {
         if (empty($id)) {
             return $query;
         }
 
-        $query->boost(FALSE);
+        $query->boost($boost);
         $query->forceEndpoint('msearch');
 
         // Generalize to use this scope on artworks as well as artists

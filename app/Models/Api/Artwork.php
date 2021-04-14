@@ -483,7 +483,7 @@ class Artwork extends BaseApiModel
         return Search::query()
             ->resources(['artworks'])
             ->forceEndpoint('search')
-            ->byMostSimilar($this->id, get_class($this))
+            ->byMostSimilar($this->id, get_class($this), true)
             ->getPaginatedModel(13, self::SEARCH_FIELDS)
             ->filter(function($value, $key) {
                 return ($this->id != $value->id);
