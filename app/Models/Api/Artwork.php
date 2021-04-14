@@ -27,6 +27,8 @@ class Artwork extends BaseApiModel
         getCustomRelatedItems as traitGetCustomRelatedItems;
     }
 
+    protected $showDefaultRelatedItems = false;
+
     protected $endpoints = [
         'collection' => '/api/v1/artworks',
         'resource' => '/api/v1/artworks/{id}',
