@@ -50,7 +50,7 @@
 
     @formField('checkbox', [
         'name' => 'is_zoomable',
-        'label' => 'Zoomable'
+        'label' => 'Make this image modal zoomable',
     ])
 @endcomponent
 

@@ -54,7 +54,7 @@
                     'videoUrl' => $item->input('videoUrl'),
                 ];
 
-                if ($item->input('is_zoomable')) {
+                if ($block->input('is_gallery_zoomable') ?? false || $item->input('is_zoomable')) {
                     if (isset($mediaItem['media'])) {
                         $mediaItem['media']['iiifId'] = $item->getImgixTileSource('image', 'desktop');
                     }
