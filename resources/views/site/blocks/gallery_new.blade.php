@@ -43,7 +43,7 @@
                 $title = $item->present()->input('captionTitle');
                 $subtitle = $item->present()->input('captionText');
 
-                $items[] = [
+                $mediaItem = [
                     'type' => 'image',
                     'size' => 'gallery',
                     'fullscreen' => true,
@@ -53,6 +53,21 @@
                     'caption' => getSubtitleWithFigureNumber($subtitle, $title, $figureNumber),
                     'videoUrl' => $item->input('videoUrl'),
                 ];
+
+                if ($item->input('is_zoomable')) {
+                    if (isset($mediaItem['media'])) {
+                        $mediaItem['media']['iiifId'] = $item->getImgixTileSource('image', 'desktop');
+                    }
+
+                    // PUB-34: Unexpected, but these settings don't seem to matter at all
+                    // $mediaItem = array_merge($mediaItem, [
+                    //     'isZoomable' => true,
+                    //     'maxZoomWindowSize' => -1,
+                    //     'isArtwork' => true,
+                    // ]);
+                }
+
+                $items[] = $mediaItem;
 
                 break;
             case \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK:

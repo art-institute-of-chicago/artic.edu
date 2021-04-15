@@ -47,6 +47,11 @@
         'label' => 'YouTube URL',
         'note' => 'Provide to show video in modal instead of image',
     ])
+
+    @formField('checkbox', [
+        'name' => 'is_zoomable',
+        'label' => 'Zoomable'
+    ])
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [

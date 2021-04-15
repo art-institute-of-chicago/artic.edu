@@ -83,6 +83,22 @@ const imageZoomArea = function(container) {
 
   function _finishZoomOpen(id) {
 
+    // WEB-2073: Work-around for wrong domain; wrong size?
+    let tileSource = id.includes('osd=imgix') ? id : [
+      {
+        "@context": "http://iiif.io/api/image/2/context.json",
+        "@id": id,
+        "width": imgWidth,
+        "height": imgHeight,
+        "profile": [ "http://iiif.io/api/image/2/level2.json" ],
+        "protocol": "http://iiif.io/api/image",
+        "tiles": [{
+          "scaleFactors": [ 1, 2, 4, 8, 16 ],
+          "width": 256
+        }]
+      }
+    ];
+
     osd = OpenSeadragon({
       id: "openseadragon",
       prefixUrl: location.protocol + "//openseadragon.github.io/openseadragon/images/",
@@ -103,20 +119,7 @@ const imageZoomArea = function(container) {
       showFullPageControl: false,
       showRotationControl: false,
       showSequenceControl: false,
-      tileSources: [
-        {
-          "@context": "http://iiif.io/api/image/2/context.json",
-          "@id": id,
-          "width": imgWidth,
-          "height": imgHeight,
-          "profile": [ "http://iiif.io/api/image/2/level2.json" ],
-          "protocol": "http://iiif.io/api/image",
-          "tiles": [{
-            "scaleFactors": [ 1, 2, 4, 8, 16 ],
-            "width": 256
-          }]
-        }
-      ]
+      tileSources: tileSource,
     });
 
 
