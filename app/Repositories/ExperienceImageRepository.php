@@ -19,28 +19,38 @@ class ExperienceImageRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function updateFieldsFromApi($fields) {
+        $object_id = $fields['object_id'];
+        $apiResult = Artwork::query()->find($object_id);
+        if ($apiResult instanceof Artwork) {
+            $artwork = $apiResult->toArray();
+            $credits_map = [
+                'artist' => 'artist_title',
+                'credit_title' => 'title',
+                'credit_date' => 'date_start',
+                'medium' => 'medium_display',
+                'dimensions' => 'dimensions',
+                'credit_line' => 'credit_line',
+                'main_reference_number' => 'main_reference_number',
+                'copyright_notice' => 'copyright_notice',
+            ];
+            foreach($credits_map as $contentBundleKey => $artworkKey) {
+                $fields[$contentBundleKey] = $artwork[$artworkKey];
+            }
+        }
+        return $fields;
+    }
+
+    public function prepareFieldsBeforeCreate($fields) {
+        $fields = $this->updateFieldsFromApi($fields);
+        return parent::prepareFieldsBeforeCreate($fields);
+    }
+
     public function prepareFieldsBeforeSave($object, $fields)
     {
         $fields = parent::prepareFieldsBeforeSave($object, $fields);
         if (isset($fields['object_id']) && $fields['object_id'] != $object->object_id) {
-            $object_id = $fields['object_id'];
-            $apiResult = Artwork::query()->find($object_id);
-            if ($apiResult instanceof Artwork) {
-                $artwork = $apiResult->toArray();
-                $credits_map = [
-                    'artist' => 'artist_title',
-                    'credit_title' => 'title',
-                    'credit_date' => 'date_start',
-                    'medium' => 'medium_display',
-                    'dimensions' => 'dimensions',
-                    'credit_line' => 'credit_line',
-                    'main_reference_number' => 'main_reference_number',
-                    'copyright_notice' => 'copyright_notice',
-                ];
-                foreach($credits_map as $contentBundleKey => $artworkKey) {
-                    $fields[$contentBundleKey] = $artwork[$artworkKey];
-                }
-            }
+            $fields = $this->updateFieldsFromApi($fields);
         }
         return $fields;
     }
