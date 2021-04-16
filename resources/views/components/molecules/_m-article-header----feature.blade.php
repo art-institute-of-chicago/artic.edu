@@ -6,7 +6,7 @@
     </style>
 @endif
 <{{ $tag ?? 'header' }} class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
-    <div class="m-article-header__img" data-blur-img>
+    <div class="m-article-header__img"{{ (isset($variation) && $variation != 'm-article-header--digital-publication') ? ' data-blur-img' : '' }}>
         @if ($img)
             @component('components.atoms._img')
                 @slot('image', $img)
