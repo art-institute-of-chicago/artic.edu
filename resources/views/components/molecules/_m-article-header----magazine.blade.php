@@ -60,7 +60,7 @@
             </div>
         </script>
         @if (!empty($credit))
-            <button class="m-article-header__info-trigger m-article-header__info-trigger--inverse" id="image-credit-trigger" aria-selected="false" aria-controls="image-credit" aria-expanded="false" data-behavior="imageInfo">
+            <button class="m-info-trigger m-info-trigger--inverse" id="image-credit-trigger" aria-selected="false" aria-controls="image-credit" aria-expanded="false" data-behavior="imageInfo">
                 <svg class="icon--info" aria-label="Image credit"><use xlink:href="#icon--info" /></svg>
             </button>
             <div class="m-article-header__info" id="image-credit" aria-labelledby="image-info-trigger" aria-hidden="true" role="Tooltip">

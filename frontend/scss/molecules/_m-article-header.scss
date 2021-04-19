@@ -120,64 +120,6 @@
   }
 }
 
-.m-article-header__info-trigger {
-  display: block;
-  position: absolute;
-  right: 0;
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  border: 0 none;
-  border-radius: 50%;
-  background-color: rgba($color__black, .7);
-  color: $color__white;
-  line-height: 28px;
-  text-align: center;
-  cursor: pointer;
-  transition: opacity .15s;
-
-  // WEB-1579: Standardize the hero header info trigger buttons
-  &.m-article-header__info-trigger--inverse {
-    background-color: transparent;
-    border-radius: 0;
-
-    opacity: .7;
-
-    .icon--info {
-      width: 28px;
-      height: 28px;
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: transparent;
-      opacity: .9;
-    }
-  }
-}
-
-.m-article-header__info-trigger:hover,
-.m-article-header__info-trigger:focus,
-.m-article-header__info-trigger:active {
-  background-color: rgba($color__black, .9);
-  color: $color__white;
-}
-
-.m-article-header__info-trigger::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-.m-article-header__info-trigger svg {
-  position: relative;
-  top: -1px;
-}
-
 .m-article-header__info {
   position: absolute;
   left: 0;
@@ -446,7 +388,7 @@
   }
 
 
-.m-article-header--feature .m-article-header__info-trigger {
+.m-article-header--feature .m-info-trigger {
   bottom: 100%;
   margin-bottom: 24px;
 
@@ -545,7 +487,7 @@
   @include tucked-margin-top($f-display-3, ('xsmall': 60, 'small+': 100));
 }
 
-.m-article-header--hero .m-article-header__info-trigger {
+.m-article-header--hero .m-info-trigger {
   bottom: 24px;
 
   @include breakpoint('small+') {
@@ -726,7 +668,7 @@
   }
 }
 
-.m-article-header--super-hero .m-article-header__info-trigger {
+.m-article-header--super-hero .m-info-trigger {
   bottom: 24px;
 
   @include breakpoint('small+') {
@@ -933,7 +875,7 @@
     }
 
     // Mirror the padding for .m-article-header__text
-    .m-article-header__info-trigger {
+    .m-info-trigger {
       @each $name, $point in $breakpoints {
         @include breakpoint('#{$name}') {
           right: colspan(1, $name);
@@ -1099,7 +1041,7 @@
     }
 
     // Mirror the padding for .m-article-header__text
-    .m-article-header__info-trigger {
+    .m-info-trigger {
       @each $name, $point in $breakpoints {
         @include breakpoint('#{$name}') {
           bottom: #{map-get($journal-header-padding, $name) + 20px};

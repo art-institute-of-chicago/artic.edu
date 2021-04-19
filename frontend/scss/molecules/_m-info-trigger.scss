@@ -1,0 +1,58 @@
+// PUB-31: Used for gallery modals and for hero images
+.m-info-trigger {
+  display: block;
+  position: absolute;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0 none;
+  border-radius: 50%;
+  background-color: rgba($color__black, .7);
+  color: $color__white;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity .15s;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: rgba($color__black, .9);
+    color: $color__white;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  svg {
+    position: relative;
+    top: -1px;
+  }
+
+  // WEB-1579: Standardize the hero header info trigger buttons
+  &.m-info-trigger--inverse {
+    background-color: transparent;
+    border-radius: 0;
+
+    opacity: .7;
+
+    .icon--info {
+      width: 28px;
+      height: 28px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent;
+      opacity: .9;
+    }
+  }
+}
