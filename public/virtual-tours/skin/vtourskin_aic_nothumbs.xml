@@ -996,7 +996,7 @@
 	<!-- setting up layer depending on screen size -->
 	<events name="resize" keep="true" onresize="
 		if(stagewidth LT 500,
-			set(layer[one].width, stagewidth);
+			set(layer[one].width, calc(stagewidth));
 			set(layer[one].x, 0);
 			set(layer[one].parent, );
 		,
