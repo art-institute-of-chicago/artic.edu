@@ -1,5 +1,8 @@
 <div class="o-fullscreen-image" id="fullscreenImage" data-behavior="imageZoomArea">
     <a class="o-fullscreen-image__info-link">Learn more</a>
+    @component('components.molecules._m-info-trigger')
+        @slot('creditText', 'Lorem ipsum')
+    @endcomponent
     <img class="o-fullscreen-image__img" alt="" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">
     <div class="o-fullscreen-image__osd" id="openseadragon"></div>
     <h2 class="sr-only" id="h-img_action">Image actions</h2>
