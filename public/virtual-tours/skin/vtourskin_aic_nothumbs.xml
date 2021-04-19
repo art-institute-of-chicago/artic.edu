@@ -10,7 +10,7 @@
 	               littleplanetintro="false"
 	               followmousecontrol="false"
 	               title="true"
-	               thumbs="true"
+	               thumbs="false"
 	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|0|240|160"
 	               thumbs_opened="true"
 	               thumbs_text="false"
@@ -85,17 +85,12 @@
 	<!-- ensure stagescale 2x for mobile devices (regardless if mobilescale is 0.5 or 1.0) -->
 	<krpano stagescale="calc:stagescale * 2" if="stagescale LT 1.0" devices="mobile" />
 
-	<!-- setting layer width height depending on screen size -->
-	<events name="test" keep="true" onresize="
-	set(layer[one].width, calc(stagewidth / 3));
-	set(layer[one].height, calc(stageheight / 3));" />
-
 	<!-- skin styles -->
 
 	<!-- texbox / tooltip styles -->
 	<data name="textBoxStyles">
 		font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;
-		font-size:16px;
+		font-size:15px;
 		color:#ffffff;
 		line-height: 25px;
 		overflow: auto;
@@ -132,7 +127,7 @@
 	       onover.addevent="tween(scale,0.25);"
 	       onout.addevent="tween(scale,0.2);"
 	       onloaded.addevent="skin_hotspotstyle_setup();"
-	       />
+	/>
 
 	<action name="skin_hotspotstyle_setup" scope="local">
 		if(isvalue(caller.linkedscene) AND skin_settings.tooltips_hotspots,
@@ -986,6 +981,20 @@
 		);
 	</action>
 
+	<!-- setting up layer depending on screen size -->
+	<events name="resize" keep="true" onresize="
+		if(stagewidth LT 500,
+			set(layer[one].width, stagewidth);
+			set(layer[one].x, 0);
+			set(layer[one].parent, );
+		,
+			set(layer[one].width, 400);
+			set(layer[one].x, 40);
+		);
+	"
+	/>
+
+
 	<!-- textbox/tooltip layer alignment depending on where hotspot is in relation to edge of browser window -->
 	<action name="change_align" type="Javascript"><![CDATA[
 		var hotspotName = args[1];
@@ -1004,7 +1013,18 @@
 
 		l.align = getAlign(hotspotName, offset);
 
-	]]></action>
+	]]>
+	</action>
+
+	<!-- fade in/out layers on hotspot/layer click-->
+	<action name="tween_layer" scope="local" args="layername">
+		if (layer[get(layername)].alpha == 0,
+			tween(layer[get(layername)].alpha, 1.0, 0.3);
+		,
+			tween(layer[get(layername)].alpha, 0.0, 0.3);
+		);
+		switch(layer[get(layername)].visible);
+	</action>
 
 
 </krpano>
