@@ -104,17 +104,29 @@
 	<style name="skin_thumbtext_style" type="text" align="bottom" width="100%" y="5" enabled="false" bg="false" bgborder="false" css="calc:skin_settings.design_text_css + ' text-align:center; font-size:10px;'" textshadow="get:skin_settings.design_text_shadow" />
 
 	<!-- skin_hotspotstyle - style for the hotspots -->
-	<style type="image" name="skin_hotspotstyle"
+	<style type="image" name="text_hotspot"
 		url="vtourskin_aic_hotspot.png"
-		crop="0|0|52|54"
-		ondowncrop="0|68|52|54"
+		crop="0|0|52|56"
+		ondowncrop="0|67|52|56"
 		edge="center"
 		distorted="false"
 		renderer="css3d"
 	  scale=".5"
 		onover.addevent="tween(scale,0.55);"
 	  onout.addevent="tween(scale,0.5);"
-	  onloaded.addevent="skin_hotspotstyle_setup();"
+	/>
+
+	<!-- style for artwork hotspots -->
+	<style type="image" name="artwork_hotspot"
+		url="vtourskin_aic_artwork_hotspot.png"
+		crop="0|0|52|56"
+		ondowncrop="0|67|52|56"
+		edge="center"
+		distorted="false"
+		renderer="css3d"
+	  scale=".5"
+		onover.addevent="tween(scale,0.55);"
+	  onout.addevent="tween(scale,0.5);"
 	/>
 
 	<style name="skin_floorspotstyle" url="hotspot_floor_3.png" edge="top" distorted="true"
