@@ -206,7 +206,7 @@ const imageZoomArea = function(container) {
     $btnZoomIn = container.querySelector('[data-fullscreen-zoom-in]');
     $btnZoomOut = container.querySelector('[data-fullscreen-zoom-out]');
     $btnClose = container.querySelector('[data-fullscreen-close]');
-    $linkInfo = container.querySelector('.o-fullscreen-image__info');
+    $linkInfo = container.querySelector('.o-fullscreen-image__info-link');
 
     $btnClose.addEventListener('click', _close, false);
     document.addEventListener('fullScreenImage:open', _open, false);
