@@ -56,18 +56,10 @@
         @endif
 
         @if ((isset($credit) and !empty($credit)) or ($img and isset($img['credit']) and $img['credit'] !== ""))
-            @if (isset($creditUrl))
-                <a href="{{ $creditUrl ?? $img['creditUrl'] }}" class="m-info-trigger">
-                    <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>
-                </a>
-            @else
-                <button class="m-info-trigger" id="image-credit-trigger" aria-selected="false" aria-controls="image-credit" aria-expanded="false" data-behavior="imageInfo">
-                    <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>
-                </button>
-                <div class="m-info-trigger__info" id="image-credit" aria-labelledby="image-info-trigger" aria-hidden="true" role="Tooltip">
-                    <div class="f-caption">{!! $credit ?? $img['credit'] !!}</div>
-                </div>
-            @endif
+            @component('components.molecules._m-info-trigger')
+                @slot('creditUrl', $creditUrl ?? $img['creditUrl'] ?? null)
+                @slot('creditText', $credit ?? $img['credit'] ?? null)
+            @endcomponent
         @endif
     </div>
 </{{ $tag ?? 'header' }}>
