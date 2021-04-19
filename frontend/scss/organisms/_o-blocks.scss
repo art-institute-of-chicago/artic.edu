@@ -344,7 +344,8 @@
   .m-cta-banner,
   .m-mobile-block,
   .m-aside-newsletter--wide,
-  .o-grid-block {
+  .o-grid-block,
+  .m-links-bar--nav-bar {
     @include breakpoint('medium+') {
       width: colspan(58, medium);
       margin-right: colspan(20, medium, 0, true);
@@ -444,6 +445,15 @@
 
       &::before {
         width: colspan(13, xlarge);
+      }
+    }
+  }
+
+  .m-links-bar--nav-bar::before {
+    @each $name, $point in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        left: 0;
+        margin-left: colspan(1, $name, 0, true);
       }
     }
   }

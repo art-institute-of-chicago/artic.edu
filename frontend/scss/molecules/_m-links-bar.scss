@@ -807,15 +807,3 @@
     justify-content: center;
   }
 }
-
-.p-digitalpublicationsection-show {
-  .m-links-bar--nav-bar::before {
-    @include breakpoint('medium') {
-      width: 120vw;
-    }
-    @include breakpoint('large+') {
-      margin-left: 0;
-      left: -1.5625vw;
-    }
-  }
-}
