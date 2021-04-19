@@ -383,3 +383,55 @@
      }
    }
 }
+
+/**
+ *  Themes for dark/light variations. Light is default.
+ */
+.o-gallery--small-mosaic.o-gallery----theme-1 {
+  .o-pinboard::before,
+  .o-pinboard::after {
+    background-color: $color__rules--focus;
+  }
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      .o-pinboard[class*="col@#{$name}"] > * {
+        @if ($name == 'xsmall') {
+        }
+        @elseif ($name == 'small') {
+          border-top: 1px solid $color__rules--contrast;
+        } @else {
+          border-top: 1px solid $color__rules--contrast;
+        }
+      }
+    }
+  }
+  @include breakpoint('large') {
+    .o-pinboard--3-col\@large::before {
+      border-right: 1px solid $color__rules--contrast;
+      border-left: 1px solid $color__rules--contrast;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+     .o-pinboard--3-col\@xlarge::before {
+       border-right: 1px solid $color__rules--contrast;
+       border-left: 1px solid $color__rules--contrast;
+     }
+   }
+}
+
+.o-gallery--small-mosaic.o-gallery----theme-2 {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      .o-pinboard[class*="col@#{$name}"] > * {
+        @if ($name == 'xsmall') {
+        }
+        @elseif ($name == 'small') {
+          border-top: 1px solid $color__rules--secondary;
+        } @else {
+          border-top: 1px solid $color__rules--secondary;
+        }
+      }
+    }
+  }
+}
