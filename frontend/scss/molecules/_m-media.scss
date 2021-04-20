@@ -453,6 +453,12 @@ a.m-media__img:hover object {
   color: $color__text--secondary;
 }
 
+.m-media figcaption .f-caption-title em,
+.m-media figcaption .f-caption em {
+  font-size: inherit;
+  line-height: inherit;
+}
+
 .m-media figcaption > br {
   display: none;
 }
@@ -568,4 +574,3 @@ a.m-media__img:hover object {
 .m-media--l .m-viewer-virtualtour {
   height: 65vh;
 }
-
