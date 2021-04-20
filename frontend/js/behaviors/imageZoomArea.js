@@ -11,7 +11,7 @@ const imageZoomArea = function(container) {
   let eventData = null;
   let active = false;
 
-  let $btnZoomIn, $btnZoomOut, $btnClose, $img, $osd, $linkInfo;
+  let $btnZoomIn, $btnZoomOut, $btnClose, $img, $osd, $linkInfo, $creditInfoTrigger, $creditInfoText;
 
   let imgWidth = 0;
   let imgHeight = 0;
@@ -182,9 +182,19 @@ const imageZoomArea = function(container) {
         }
       }
 
+      if (eventData.credit) {
+        $creditInfoText.innerHTML = eventData.credit;
+        $creditInfoText.setAttribute('style', '');
+        $creditInfoTrigger.setAttribute('style', '');
+      } else {
+        $creditInfoText.innerHTML = '';
+        $creditInfoText.setAttribute('style', 'display: none');
+        $creditInfoTrigger.setAttribute('style', 'display: none');
+      }
+
       if (eventData.infoUrl) {
-        $linkInfo.setAttribute('href', eventData.infoUrl)
-        $linkInfo.setAttribute('style', '')
+        $linkInfo.setAttribute('href', eventData.infoUrl);
+        $linkInfo.setAttribute('style', '');
       } else {
         $linkInfo.setAttribute('href', 'javascript:;');
         $linkInfo.setAttribute('style', 'display: none');
@@ -207,6 +217,8 @@ const imageZoomArea = function(container) {
     $btnZoomOut = container.querySelector('[data-fullscreen-zoom-out]');
     $btnClose = container.querySelector('[data-fullscreen-close]');
     $linkInfo = container.querySelector('.o-fullscreen-image__info-link');
+    $creditInfoTrigger = container.querySelector('.m-info-trigger');
+    $creditInfoText = container.querySelector('.m-info-trigger__info');
 
     $btnClose.addEventListener('click', _close, false);
     document.addEventListener('fullScreenImage:open', _open, false);

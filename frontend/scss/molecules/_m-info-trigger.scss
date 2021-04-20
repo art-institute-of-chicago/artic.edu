@@ -100,6 +100,11 @@
     max-width: colspan(18, xlarge);
   }
 
+  .f-caption-title {
+    @include tucked-align-top($f-caption-title);
+    color: $color__white;
+  }
+
   .f-caption {
     @include tucked-align-top($f-caption);
     color: $color__white;
