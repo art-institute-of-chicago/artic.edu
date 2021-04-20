@@ -49,8 +49,9 @@
                     'fullscreen' => true,
                     'media' => $item->imageAsArray('image', 'desktop'),
                     'figureNumber' => $figureNumber = getFigureNumber(),
-                    'captionTitle' => getTitleWithFigureNumber($title, $figureNumber),
-                    'caption' => getSubtitleWithFigureNumber($subtitle, $title, $figureNumber),
+                    'captionTitle' => $captionTitle = getTitleWithFigureNumber($title, $figureNumber),
+                    'caption' => $caption = getSubtitleWithFigureNumber($subtitle, $title, $figureNumber),
+                    'credit' => htmlspecialchars('<div class="f-caption-title">' . $captionTitle . '</div><div class="f-caption">' . $caption . '</div>'),
                     'videoUrl' => $item->input('videoUrl'),
                 ];
 
@@ -106,8 +107,9 @@
                   'size' => 'gallery',
                   'media' => $image,
                   'figureNumber' => $figureNumber = getFigureNumber(),
-                  'captionTitle' => getTitleWithFigureNumber($title, $figureNumber, $urlTitle),
-                  'caption' => getSubtitleWithFigureNumber($caption, $title, $figureNumber),
+                  'captionTitle' => $captionTitle = getTitleWithFigureNumber($title, $figureNumber, $urlTitle),
+                  'caption' => $caption = getSubtitleWithFigureNumber($caption, $title, $figureNumber),
+                  'credit' => htmlspecialchars('<div class="f-caption-title">' . $captionTitle . '</div><div class="f-caption">' . $caption . '</div>'),
                   'url' => route('artworks.show', $artwork),
                   'urlTitle' => isset($figureNumber) ? null : $urlTitle,
                   'showUrl' => true,

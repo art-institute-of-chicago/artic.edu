@@ -28,7 +28,7 @@ const openImageFullScreen = function(container) {
       srcset: container.getAttribute('data-gallery-img-srcset') || container.parentNode.querySelector('img').getAttribute('srcset'),
       width: width,
       height: height,
-      credit: container.getAttribute('data-gallery-img-credit') || '',
+      credit: container.getAttribute('data-gallery-img-credit') || container.getAttribute('data-credit'),
       creditUrl: container.getAttribute('data-gallery-img-credit-url') || '',
       shareUrl: container.getAttribute('data-gallery-img-share-url') || '',
       shareTitle: container.getAttribute('data-gallery-img-share-title') || '',
