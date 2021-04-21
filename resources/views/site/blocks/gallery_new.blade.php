@@ -42,18 +42,15 @@
             case \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM:
                 $title = $item->present()->input('captionTitle');
                 $subtitle = $item->present()->input('captionText');
+                $captionFields = getCaptionFields($title, $subtitle);
 
-                $mediaItem = [
+                $mediaItem = array_merge($captionFields, [
                     'type' => 'image',
                     'size' => 'gallery',
                     'fullscreen' => true,
                     'media' => $item->imageAsArray('image', 'desktop'),
-                    'figureNumber' => $figureNumber = getFigureNumber(),
-                    'captionTitle' => $captionTitle = getTitleWithFigureNumber($title, $figureNumber),
-                    'caption' => $caption = getSubtitleWithFigureNumber($subtitle, $title, $figureNumber),
-                    'credit' => htmlspecialchars('<div class="f-caption-title">' . $captionTitle . '</div><div class="f-caption">' . $caption . '</div>'),
                     'videoUrl' => $item->input('videoUrl'),
-                ];
+                ]);
 
                 if (($block->input('is_gallery_zoomable') ?? false) || $item->input('is_zoomable')) {
                     if (isset($mediaItem['media'])) {
@@ -100,16 +97,13 @@
                 }
 
                 $urlTitle = route('artworks.show', $artwork);
+                $captionFields = getCaptionFields($title, $caption, $urlTitle);
 
-                $items[] = [
+                $items[] = array_merge($captionFields, [
                   'type' => 'image',
                   'fullscreen' => true,
                   'size' => 'gallery',
                   'media' => $image,
-                  'figureNumber' => $figureNumber = getFigureNumber(),
-                  'captionTitle' => $captionTitle = getTitleWithFigureNumber($title, $figureNumber, $urlTitle),
-                  'caption' => $caption = getSubtitleWithFigureNumber($caption, $title, $figureNumber),
-                  'credit' => htmlspecialchars('<div class="f-caption-title">' . $captionTitle . '</div><div class="f-caption">' . $caption . '</div>'),
                   'url' => route('artworks.show', $artwork),
                   'urlTitle' => isset($figureNumber) ? null : $urlTitle,
                   'showUrl' => true,
@@ -117,7 +111,7 @@
                   'isZoomable' => $artwork->is_zoomable,
                   'isPublicDomain' => $artwork->is_public_domain,
                   'maxZoomWindowSize' => $artwork->max_zoom_window_size,
-                ];
+                ]);
                 break;
         }
     }
