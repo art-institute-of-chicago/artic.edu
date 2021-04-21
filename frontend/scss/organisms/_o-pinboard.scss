@@ -406,6 +406,18 @@
  */
 .o-gallery--small-mosaic.o-gallery----theme-1,
 .o-gallery--small-mosaic.o-gallery----theme-2 {
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: $color__white;
+    z-index: 2;
+  }
+
   .o-pinboard {
     border-top: 0;
   }
@@ -422,6 +434,7 @@
         @if ($name == 'xsmall') {
         } @else {
           border-top: 1px solid $color__rules--contrast;
+          margin-top: -1px;
         }
       }
     }
@@ -449,6 +462,7 @@
         @if ($name == 'xsmall') {
         } @else {
           border-top: 1px solid $color__rules--primary;
+          margin-top: -1px;
         }
       }
     }
@@ -473,6 +487,7 @@
   .o-pinboard {
     border-top: 1px solid $color__rules--primary;
   }
+
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       .o-pinboard[class*="col@#{$name}"] > * {
