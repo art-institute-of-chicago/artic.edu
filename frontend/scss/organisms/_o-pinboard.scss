@@ -347,16 +347,19 @@
       margin-left: 10px;
     }
   }
+
   @include breakpoint('small') {
     .o-pinboard--2-col\@small > * {
       margin-left: 20px;
     }
   }
+
   @include breakpoint('medium') {
     .o-pinboard--2-col\@medium > * {
       margin-left: 30px;
     }
   }
+
   @include breakpoint('large') {
    .o-pinboard--3-col\@large > * {
       width: colspan(grid-cols-to-colspan(4), 'large');
@@ -423,6 +426,7 @@
       }
     }
   }
+
   @include breakpoint('large') {
     .o-pinboard--3-col\@large::before {
       border-right: 1px solid $color__rules--contrast;
@@ -449,12 +453,14 @@
       }
     }
   }
+
   @include breakpoint('large') {
     .o-pinboard--3-col\@large::before {
       border-right: 1px solid $color__rules--primary;
       border-left: 1px solid $color__rules--primary;
     }
   }
+
   @include breakpoint('xlarge') {
      .o-pinboard--3-col\@xlarge::before {
        border-right: 1px solid $color__rules--primary;
@@ -465,7 +471,7 @@
 
 .o-gallery--small-mosaic.o-gallery----theme-3 {
   .o-pinboard {
-    border-top: 1px solid $color__rules--tertiary;
+    border-top: 1px solid $color__rules--primary;
   }
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
@@ -473,6 +479,7 @@
         @if ($name == 'xsmall') {
         } @else {
           border-top: 1px solid $color__rules--primary;
+          margin-top: -1px;
         }
       }
     }
