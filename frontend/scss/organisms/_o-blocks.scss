@@ -580,7 +580,6 @@
 .o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
 .o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
 .o-blocks > .f-body a:not(.btn) {
-  @include text-underline(1.02em, $color__rules--secondary);
   color: $color__link--accent;
   text-decoration: none;
 
