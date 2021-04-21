@@ -2,7 +2,6 @@
   position: relative;
   padding-top: 0.02px;
   border-top: 1px solid $color__rules--primary;
-
 }
 
 .m-title-bar + .o-pinboard {
@@ -343,6 +342,21 @@
 }
 
 .o-gallery--small-mosaic {
+  @include breakpoint('xsmall') {
+    .o-pinboard--1-col\@xsmall > * {
+      margin-left: 10px;
+    }
+  }
+  @include breakpoint('small') {
+    .o-pinboard--2-col\@small > * {
+      margin-left: 20px;
+    }
+  }
+  @include breakpoint('medium') {
+    .o-pinboard--2-col\@medium > * {
+      margin-left: 30px;
+    }
+  }
   @include breakpoint('large') {
    .o-pinboard--3-col\@large > * {
       width: colspan(grid-cols-to-colspan(4), 'large');
@@ -387,6 +401,13 @@
 /**
  *  Themes for dark/light variations. Light is default.
  */
+.o-gallery--small-mosaic.o-gallery----theme-1,
+.o-gallery--small-mosaic.o-gallery----theme-2 {
+  .o-pinboard {
+    border-top: 0;
+  }
+}
+
 .o-gallery--small-mosaic.o-gallery----theme-1 {
   .o-pinboard::before,
   .o-pinboard::after {
@@ -396,9 +417,6 @@
     @include breakpoint('#{$name}') {
       .o-pinboard[class*="col@#{$name}"] > * {
         @if ($name == 'xsmall') {
-        }
-        @elseif ($name == 'small') {
-          border-top: 1px solid $color__rules--contrast;
         } @else {
           border-top: 1px solid $color__rules--contrast;
         }
@@ -425,11 +443,36 @@
     @include breakpoint('#{$name}') {
       .o-pinboard[class*="col@#{$name}"] > * {
         @if ($name == 'xsmall') {
-        }
-        @elseif ($name == 'small') {
-          border-top: 1px solid $color__rules--secondary;
         } @else {
-          border-top: 1px solid $color__rules--secondary;
+          border-top: 1px solid $color__rules--primary;
+        }
+      }
+    }
+  }
+  @include breakpoint('large') {
+    .o-pinboard--3-col\@large::before {
+      border-right: 1px solid $color__rules--primary;
+      border-left: 1px solid $color__rules--primary;
+    }
+  }
+  @include breakpoint('xlarge') {
+     .o-pinboard--3-col\@xlarge::before {
+       border-right: 1px solid $color__rules--primary;
+       border-left: 1px solid $color__rules--primary;
+     }
+   }
+}
+
+.o-gallery--small-mosaic.o-gallery----theme-3 {
+  .o-pinboard {
+    border-top: 1px solid $color__rules--tertiary;
+  }
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      .o-pinboard[class*="col@#{$name}"] > * {
+        @if ($name == 'xsmall') {
+        } @else {
+          border-top: 1px solid $color__rules--primary;
         }
       }
     }
