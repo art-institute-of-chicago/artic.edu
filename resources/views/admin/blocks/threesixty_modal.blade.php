@@ -1,3 +1,4 @@
+@twillBlockTitle('title')
 
 @formField('medias', [
             'name' => 'image',

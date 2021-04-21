@@ -1,5 +1,7 @@
 @extends('admin.blocks.experience_image')
 
+@twillBlockTitle('title')
+
 @section('caption')
     @formField('wysiwyg', [
         'name' => 'caption',

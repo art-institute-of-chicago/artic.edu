@@ -1,3 +1,4 @@
+@twillBlockTitle('title')
 
 @formField('files', [
     'name' => 'image_sequence_file',

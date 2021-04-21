@@ -1,3 +1,5 @@
+@twillBlockTitle('title')
+
 @formField('input', [
     'name' => 'reference',
     'label' => 'Reference'

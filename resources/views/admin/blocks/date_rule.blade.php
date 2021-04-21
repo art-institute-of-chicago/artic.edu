@@ -1,3 +1,5 @@
+@twillBlockTitle('title')
+
 @formField('select', [
     'name' => 'type',
     'label' => 'Type of rule',

@@ -1,3 +1,5 @@
+@twillBlockTitle('title')
+
     <div class="col">
         @formField('select', [
             'name' => 'icon_type',
