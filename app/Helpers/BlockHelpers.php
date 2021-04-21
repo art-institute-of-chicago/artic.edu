@@ -103,11 +103,18 @@ if (!function_exists('getSubtitleWithFigureNumber')) {
 
 if (!function_exists('getCaptionFields')) {
     function getCaptionFields($title, $subtitle, $urlTitle = null) {
-        return [
+        global $_allowAdvancedModalFeatures;
+
+        $fields = [
             'figureNumber' => $figureNumber = getFigureNumber(),
             'captionTitle' => $captionTitle = getTitleWithFigureNumber($title, $figureNumber, $urlTitle),
             'caption' => $caption = getSubtitleWithFigureNumber($subtitle, $title, $figureNumber),
-            'credit' => htmlspecialchars('<div class="f-caption-title">' . $captionTitle . '</div><div class="f-caption">' . $caption . '</div>'),
         ];
+
+        if ($_allowAdvancedModalFeatures ?? false) {
+            $fields['credit'] = htmlspecialchars('<div class="f-caption-title">' . $captionTitle . '</div><div class="f-caption">' . $caption . '</div>');
+        }
+
+        return $fields;
     }
 }

@@ -78,6 +78,10 @@
             global $_figurePrefixForDisplay;
             $_figurePrefixForDisplay = 'Cat.';
         }
+
+        global $_allowAdvancedModalFeatures;
+        $_allowAdvancedModalFeatures = true;
+
         @endphp
 
         {!! $item->renderBlocks(false, [], [
