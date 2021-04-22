@@ -71,6 +71,10 @@
   }
 }
 
+.m-listing--hidden {
+  display: none !important;
+}
+
 .m-listing__link {
   display: flex;
   flex: 0 1 auto;

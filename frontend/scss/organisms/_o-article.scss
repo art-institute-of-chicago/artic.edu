@@ -313,6 +313,10 @@
   margin-top: 28px;
   padding-top: 12px;
 
+  &.o-article--disable-float-clear::after {
+    clear: none;
+  }
+
   .o-article__inline-header ~ & {
     margin-top: 8px;
   }

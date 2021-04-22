@@ -14,7 +14,7 @@
 @endphp
 
 @if (method_exists($item, 'hasFeaturedRelated') && $item->hasFeaturedRelated())
-    <aside class="m-inline-aside{{ (isset($variation)) ? ' '.$variation : '' }}">
+    <aside class="m-inline-aside{{ (isset($variation)) ? ' '.$variation : '' }}" {!! (isset($behavior)) ? 'data-behavior="'.$behavior.'"' : '' !!}>
         @component('components.atoms._hr')
         @endcomponent
         @component('components.blocks._text')

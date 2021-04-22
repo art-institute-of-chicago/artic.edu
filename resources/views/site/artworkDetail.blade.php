@@ -95,6 +95,7 @@
     @component('site.shared._featuredRelated')
         @slot('item', $item)
         @slot('variation', 'u-show@medium+')
+        @slot('behavior', 'relatedSidebar')
     @endcomponent
   </div>
 
