@@ -22,9 +22,11 @@ trait HasFeaturedRelated
 
     private $selectedFeaturedRelateds;
 
+    private $sidebarContainsDefaultRelated = false;
+
     public function getFeaturedRelatedTitle()
     {
-        return 'Discover More';
+        return $this->sidebarContainsDefaultRelated ? 'Discover More' : 'Related';
     }
 
     public function hasFeaturedRelated()
@@ -40,9 +42,10 @@ trait HasFeaturedRelated
 
         $relatedItems = $this->getCustomRelatedItems();
 
-        if ($this->showDefaultRelatedItems ?? true && $relatedItems->count() < $this->getTargetItemCount()) {
-            $relatedItems = $relatedItems->merge($this->getDefaultRelatedItems($relatedItems));
+        if (($this->showDefaultRelatedItems ?? false) && $relatedItems->count() < 1) {
+            $relatedItems = $this->getDefaultRelatedItems($relatedItems);
             $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
+            $this->sidebarContainsDefaultRelated = true;
         }
 
         $this->selectedFeaturedRelateds = $this->getLabeledRelatedItems($relatedItems);

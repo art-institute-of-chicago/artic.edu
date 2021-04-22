@@ -27,6 +27,8 @@ class Artwork extends BaseApiModel
         getCustomRelatedItems as traitGetCustomRelatedItems;
     }
 
+    protected $showDefaultRelatedItems = true;
+
     protected $endpoints = [
         'collection' => '/api/v1/artworks',
         'resource' => '/api/v1/artworks/{id}',
@@ -424,20 +426,30 @@ class Artwork extends BaseApiModel
             return $relatedItems;
         }
 
-        $blocks = Block::query()
-            ->where(function($query) {
-                $query->where('type', 'gallery_new_item');
-                $query->whereJsonContains('content->browsers->artworks', $this->id);
-            })
-            ->orWhere(function($query) {
-                $query->where('type', 'artwork');
-                $query->whereJsonContains('content->browsers->artworks', $this->id);
-            })
-            ->orWhere(function($query) {
-                $query->where('type', 'artworks');
-                $query->whereJsonContains('content->browsers->artworks', $this->id);
-            })
-            ->get();
+        $query = Block::query()
+            ->whereIn('type', [
+                'gallery_new_item',
+                'artwork',
+                'artworks',
+            ]);
+
+        $relatedArtworkIds = collect([$this->id]);
+
+        if (config('aic.use_most_similar_for_artwork_sidebar')) {
+            $relatedArtworkIds = $relatedArtworkIds
+                ->merge($this->getMostSimilarIds());
+        }
+
+        $query->where(function($subquery) use ($relatedArtworkIds) {
+            foreach ($relatedArtworkIds as $id) {
+                $subquery->orWhereJsonContains('content->browsers->artworks', $id);
+            }
+        });
+
+        // Prioritize blocks that relate to this artwork directly
+        $query->orderByRaw("(\"content\"->'browsers'->'artworks')::jsonb @> ? desc", [$this->id]);
+
+        $blocks = $query->get();
 
         if ($blocks->count() > 0) {
             $blockRelatedItems = $blocks
@@ -460,8 +472,27 @@ class Artwork extends BaseApiModel
                 ->values();
         }
 
+        $relatedItems = $this->getFilteredRelatedItems($relatedItems);
+
         $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
 
-        return $this->getFilteredRelatedItems($relatedItems);
+        return $relatedItems;
+    }
+
+    /**
+     * WEB-2065: Deduplicate with actual Explore Further query?
+     */
+    private function getMostSimilarIds()
+    {
+        return Search::query()
+            ->resources(['artworks'])
+            ->forceEndpoint('search')
+            ->byMostSimilar($this->id, get_class($this), true)
+            ->getPaginatedModel(13, self::SEARCH_FIELDS)
+            ->filter(function($value, $key) {
+                return ($this->id != $value->id);
+            })
+            ->pluck('id')
+            ->all();
     }
 }

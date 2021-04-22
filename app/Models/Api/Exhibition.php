@@ -13,8 +13,6 @@ class Exhibition extends BaseApiModel
         getCustomRelatedItems as traitGetCustomRelatedItems;
     }
 
-    protected $showDefaultRelatedItems = false;
-
     protected $endpoints = [
         'collection' => '/api/v1/exhibitions',
         'resource' => '/api/v1/exhibitions/{id}',
