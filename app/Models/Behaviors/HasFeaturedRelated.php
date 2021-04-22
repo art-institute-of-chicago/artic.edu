@@ -40,7 +40,7 @@ trait HasFeaturedRelated
 
         $relatedItems = $this->getCustomRelatedItems();
 
-        if ($this->showDefaultRelatedItems ?? true && $relatedItems->count() < $this->getTargetItemCount()) {
+        if (($this->showDefaultRelatedItems ?? false) && $relatedItems->count() < $this->getTargetItemCount()) {
             $relatedItems = $relatedItems->merge($this->getDefaultRelatedItems($relatedItems));
             $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
         }
