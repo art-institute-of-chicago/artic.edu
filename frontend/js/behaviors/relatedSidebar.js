@@ -15,13 +15,13 @@ const relatedSidebar = function(container){
   let sidebarItems = sidebar.querySelectorAll('.m-listing');
 
   let articleResetClass = 'o-article--disable-float-clear';
-  let sidebarItemHiddenClass = 'm-listing--hidden';
+  let sidebarItemVisibleClass = 'm-listing--visible';
 
   function update() {
     article.classList.add(articleResetClass);
 
     sidebarItems.forEach(function(sidebarItem) {
-      sidebarItem.classList.remove(sidebarItemHiddenClass);
+      sidebarItem.classList.add(sidebarItemVisibleClass);
     });
 
     let articleHeight = outerHeight(article);
@@ -29,7 +29,7 @@ const relatedSidebar = function(container){
     let hiddenSidebarItemCount = 0;
 
     while (sidebarHeight > articleHeight && hiddenSidebarItemCount < sidebarItems.length) {
-      sidebarItems[sidebarItems.length - (hiddenSidebarItemCount + 1)].classList.add(sidebarItemHiddenClass);
+      sidebarItems[sidebarItems.length - (hiddenSidebarItemCount + 1)].classList.remove(sidebarItemVisibleClass);
       sidebarHeight = outerHeight(sidebar);
       hiddenSidebarItemCount++;
     }

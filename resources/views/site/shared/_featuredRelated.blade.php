@@ -11,6 +11,12 @@
             'xlarge' => '13',
         )),
     );
+
+    $listingVariation = 'm-listing--sidebar';
+
+    if (($behavior ?? '') === 'relatedSidebar') {
+        $listingVariation .= ' m-listing--dynamic';
+    }
 @endphp
 
 @if (method_exists($item, 'hasFeaturedRelated') && $item->hasFeaturedRelated())
@@ -26,7 +32,7 @@
             @foreach ($item->getFeaturedRelated() as $related)
                 @component('components.molecules._m-listing----' . strtolower($related['type']))
                     @slot('item', $related['item'])
-                    @slot('variation', 'm-listing--sidebar')
+                    @slot('variation',  $listingVariation)
                     @slot('fullscreen', false)
                     @slot('titleFont', $loop->index > 0 ? 'f-list-1' : 'f-list-3')
                     @slot('hideImage', $loop->index > 0)

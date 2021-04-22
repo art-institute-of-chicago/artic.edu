@@ -71,8 +71,8 @@
   }
 }
 
-.m-listing--hidden {
-  display: none !important;
+.m-listing--sidebar.m-listing--dynamic:not(.m-listing--visible) {
+  display: none;
 }
 
 .m-listing__link {
