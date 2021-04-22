@@ -20,7 +20,7 @@ trait LintsAttributes
         }
 
         if (is_string($value)) {
-            $value = $this->lintLineSeparator($value);
+            $value = $this->lintBadUnicode($value);
         }
 
         return $value;
@@ -32,8 +32,14 @@ trait LintsAttributes
      * @link https://art-institute-of-chicago.atlassian.net/browse/WEB-927
      * @link https://stackoverflow.com/questions/39603446
      */
-    private function lintLineSeparator($value)
+    private function lintBadUnicode($value)
     {
-        return str_replace("\u{2028}", '', $value);
+        // Line separator
+        $value = str_replace("\u{2028}", '', $value);
+
+        // Zero-width nbps
+        $value = str_replace("\u{FEFF}", '', $value);
+
+        return $value;
     }
 }
