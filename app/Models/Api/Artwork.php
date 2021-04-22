@@ -426,15 +426,19 @@ class Artwork extends BaseApiModel
             return $relatedItems;
         }
 
-        $relatedArtworkIds = $this->getMostSimilarIds();
-        array_unshift($relatedArtworkIds, $this->id);
-
         $query = Block::query()
             ->whereIn('type', [
                 'gallery_new_item',
                 'artwork',
                 'artworks',
             ]);
+
+        $relatedArtworkIds = collect([$this->id]);
+
+        if (config('aic.use_most_similar_for_artwork_sidebar')) {
+            $relatedArtworkIds = $relatedArtworkIds
+                ->merge($this->getMostSimilarIds());
+        }
 
         $query->where(function($subquery) use ($relatedArtworkIds) {
             foreach ($relatedArtworkIds as $id) {
