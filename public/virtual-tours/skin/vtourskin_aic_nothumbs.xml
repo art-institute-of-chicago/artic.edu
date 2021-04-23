@@ -93,7 +93,6 @@
 		font-size:15px;
 		color:#ffffff;
 		line-height: 25px;
-		overflow: auto;
 	</data>
 
 	<!-- skin_base - the base skin image -->
@@ -103,7 +102,7 @@
 	<!-- skin_thumbtext_style - style/textfield for the (optional, skin_settings.thumbs_text) thumbnails texts -->
 	<style name="skin_thumbtext_style" type="text" align="bottom" width="100%" y="5" enabled="false" bg="false" bgborder="false" css="calc:skin_settings.design_text_css + ' text-align:center; font-size:10px;'" textshadow="get:skin_settings.design_text_shadow" />
 
-	<!-- skin_hotspotstyle - style for the hotspots -->
+	<!-- style for the hotspots -->
 	<style type="image" name="text_hotspot"
 		url="vtourskin_aic_hotspot.png"
 		crop="0|0|52|56"
@@ -114,6 +113,29 @@
 	  scale=".5"
 		onover.addevent="tween(scale,0.55);"
 	  onout.addevent="tween(scale,0.5);"
+	/>
+
+	<!-- style for text boxes -->
+	<style type="text" name="textbox"
+		align="lefttop"
+		x="40"
+		y="0"
+		css="data:textBoxStyles"
+		autowidth="false"
+		autoheight="true"
+		vcenter="false"
+		padding="30"
+		wordwrap="true"
+		bg="true"
+		bgcolor="0x000000"
+		bgalpha=".75"
+		bgborder="0"
+		bgroundedge="0"
+		interactivecontent="true"
+		visible="false"
+		alpha="0.0"
+		onclick.addevent="tween_layer(calc(layer[get(name)].name));"
+		zorder="5"
 	/>
 
 	<!-- style for artwork hotspots -->
@@ -127,6 +149,76 @@
 	  scale=".5"
 		onover.addevent="tween(scale,0.55);"
 	  onout.addevent="tween(scale,0.5);"
+	/>
+
+	<!-- style for artwork modal -->
+	<style type="container" name="modal_style"
+		align="center" x="0" y="0"
+		width="100%"
+		height="100%"
+		bgcolor="0x333333"
+		bgalpha="1"
+		bgcapture="true"
+		visible="false"
+		alpha="0"
+		onclick="tween_layer(get(layer[get(name)].name));"
+		zorder="10"
+	/>
+
+	<!-- style for info button layer -->
+	<style type="container" name="info_button_style"
+		bgcolor="0x000000"
+		bgalpha=".7"
+		bgroundedge="50"
+		bgcapture="true"
+		align="topleft"
+		width="28"
+		height="28"
+		x="40"
+		y="40"
+		zorder="11"
+		onover.addevent="set(layer[info_button].bgalpha, .9);"
+	  onout.addevent="set(layer[info_button].bgalpha, .7);"
+		ondown.addevent="set(layer[info_button].bgalpha, .9);"
+	/>
+
+	<!-- style for close button layer -->
+	<style type="container" name="close_button_style"
+		bgcolor="0x000000"
+		bgalpha=".7"
+		bgroundedge="50"
+		bgcapture="true"
+		align="topright"
+		width="48"
+		height="48"
+		x="20"
+		y="20"
+		zorder="11"
+		onover.addevent="set(layer[close_button].bgalpha, .9);"
+	  onout.addevent="set(layer[close_button].bgalpha, .7);"
+		ondown.addevent="set(layer[close_button].bgalpha, .9);"
+	/>
+
+	<!-- style for info icon -->
+	<style type="image" name="info_icon_style"
+		url="vtourskin_aic_infoicon.png"
+		edge="center"
+		distorted="false"
+		renderer="css3d"
+	  scale=".4"
+		align="center"
+		zorder="12"
+	/>
+
+	<!-- style for close icon -->
+	<style type="image" name="close_icon_style"
+		url="vtourskin_aic_closeicon.png"
+		edge="center"
+		distorted="false"
+		renderer="css3d"
+	  scale=".4"
+		align="center"
+		zorder="12"
 	/>
 
 	<style name="skin_floorspotstyle" url="hotspot_floor_3.png" edge="top" distorted="true"
@@ -993,19 +1085,20 @@
 		);
 	</action>
 
-	<!-- setting up layer depending on screen size -->
+	<!-- setting up layer depending on screen size
 	<events name="resize" keep="true" onresize="
 		if(stagewidth LT 500,
-			set(layer[one].width, calc(stagewidth));
-			set(layer[one].x, 0);
-			set(layer[one].parent, );
+			set(layer[text_hose].parent, );
+			set(layer[text_hose].width, calc(stagewidth));
+			set(layer[text_hose].x, 0);
 		,
-			set(layer[one].width, 400);
-			set(layer[one].x, 40);
+			set(layer[text_hose].parent, hotspot[hotspot_hose]);
+			set(layer[text_hose].width, 400);
+			set(layer[text_hose].x, 40);
 		);
 	"
 	/>
-
+	-->
 
 	<!-- textbox/tooltip layer alignment depending on where hotspot is in relation to edge of browser window -->
 	<action name="change_align" type="Javascript"><![CDATA[
@@ -1036,6 +1129,40 @@
 			tween(layer[get(layername)].alpha, 0.0, 0.3);
 		);
 		switch(layer[get(layername)].visible);
+	</action>
+
+	<!-- grab image for display in artwork modal/layer -->
+	<action name="get_image" scope="local" args="hotspotname, imageid">
+		set(screenwidth, calc(roundval(stagewidth*.75)));
+		set(screenheight, calc(roundval(stageheight)));
+
+		if(screenwidth GT 3000, set(screenwidth, 3000));
+		if(screenheight GT 3000, set(screenheight, 3000));
+
+		txtadd(imageurl, 'https://www.artic.edu/iiif/2/', get(imageid), '/full/!', get(screenwidth), ',', get(screenheight), '/0/default.jpg');
+		txtadd(image_layername, 'image_', get(hotspotname));
+		txtadd(modal_layername, 'modal_', get(hotspotname));
+
+		set(layer[get(image_layername)].url, get(imageurl));
+		set(layer[get(modal_layername)].visible,true);
+		tween(layer[get(modal_layername)].alpha,1,.25);
+	</action>
+
+	<action name="setup_textbox" scope="local" args="layername, parentname, parenttype">
+		if(stagewidth LT 500,
+			set(layer[get(layername)].parent, );
+			set(layer[get(layername)].width, calc(stagewidth));
+			set(layer[get(layername)].x, 0);
+		,
+			if (get(parenttype) == 'h',
+				txtadd(layer[get(layername)].parent, 'hotspot[', get(parentname), ']');
+				,
+				txtadd(layer[get(layername)].parent, 'layer[', get(parentname), ']');
+			);
+			set(layer[get(layername)].width, 400);
+			set(layer[get(layername)].x, 40);
+		);
+		tween_layer(get(layername));
 	</action>
 
 
