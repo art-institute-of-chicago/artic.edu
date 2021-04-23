@@ -151,6 +151,18 @@
 	  onout.addevent="tween(scale,0.5);"
 	/>
 
+	<!-- style for floor hotspots -->
+	<style name="floor_hotspot"
+		url="vtourskin_aic_floor_hotspot.png"
+		edge="top"
+		distorted="true"
+		onclick="skin_hotspotstyle_click();"
+		depth="2000"
+		scale="1"
+		onover.addevent="tween(scale,1.15);"
+		onout.addevent="tween(scale,1);"
+	/>
+
 	<!-- style for artwork modal -->
 	<style type="container" name="modal_style"
 		align="center" x="0" y="0"
@@ -220,25 +232,6 @@
 		align="center"
 		zorder="12"
 	/>
-
-	<style name="skin_floorspotstyle" url="hotspot_floor_3.png" edge="top" distorted="true"
-	       tooltip=""
-	       linkedscene=""
-	       linkedscene_lookat=""
-	       onclick="skin_hotspotstyle_click();"
-	       depth="2000"
-	       scale="0.3"
-	       onover.addevent="tween(scale,0.25);"
-	       onout.addevent="tween(scale,0.2);"
-	       onloaded.addevent="skin_hotspotstyle_setup();"
-	/>
-
-	<action name="skin_hotspotstyle_setup" scope="local">
-		if(isvalue(caller.linkedscene) AND skin_settings.tooltips_hotspots,
-			copy(caller.tooltip, scene[get(caller.linkedscene)].title);
-			caller.loadstyle(skin_tooltips);
-		);
-	</action>
 
 	<action name="skin_hotspotstyle_click" scope="local">
 		if(isvalue(caller.linkedscene),
