@@ -454,6 +454,7 @@ class Artwork extends BaseApiModel
         if ($blocks->count() > 0) {
             $blockRelatedItems = $blocks
                 ->pluck('blockable')
+                ->filter()
                 ->filter(function ($item) {
                     return in_array(get_class($item), [
                         Article::class,
