@@ -218,6 +218,33 @@ Outputs a string for the LQIP src of an image
 
 ***/
 
+function aic_getSrcsetForImage($image, $isPublicDomain) {
+    $srcset = [
+        200,
+        400,
+        843,
+        1686,
+    ];
+
+    if (isset($image['width'])) {
+        $srcset = array_filter($srcset, function($width) use ($image) {
+            return $width <= $image['width'];
+        });
+
+        if ($image['width'] < 843) {
+            $srcset[] = $image['width'];
+        }
+    }
+
+    if (!$isPublicDomain) {
+        $srcset = array_filter($srcset, function($width) {
+            return $width <= 843;
+        });
+    }
+
+    return array_values($srcset);
+}
+
 function aic_imageSettings($data) {
     $stringSrcset = '';
     $stringSrc = '';
@@ -246,7 +273,7 @@ function aic_imageSettings($data) {
     $ratioW = null;
     $ratioH = null;
 
-    $LQIPDimension = 25;
+    $LQIPDimension = 750;
 
     if ($originalSrc && !$sourceType) {
         $sourceType = aic_determineImageSourceType($originalSrc);
@@ -438,7 +465,7 @@ function aic_imageSettings($data) {
         }
         $imgixSettings['auto'] = 'format';
         $imgixSettings['q'] = '1';
-        $imgixSettings['blur'] = '30';
+        $imgixSettings['blur'] = '1200';
         $imgixSettings['sat'] = '20';
         $imgixSettingsString = http_build_query($imgixSettings);
 

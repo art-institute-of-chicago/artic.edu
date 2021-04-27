@@ -65,6 +65,11 @@ return [
             'icon' => 'text',
             'component' => 'a17-block-link',
         ],
+        'links-bar' => [
+            'title' => 'Links bar',
+            'icon' => 'text',
+            'component' => 'a17-block-links-bar',
+        ],
         'accordion' => [
             'title' => 'Accordion',
             'icon' => 'text',

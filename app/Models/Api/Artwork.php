@@ -4,9 +4,15 @@ namespace App\Models\Api;
 
 use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
-use App\Models\Api\Asset;
 use App\Helpers\DatesHelpers;
+use App\Models\Article;
+use App\Models\Selection;
+use App\Models\Experience;
+use App\Models\Video;
+use App\Models\Api\Asset;
+use App\Models\Vendor\Block;
 use App\Models\Behaviors\HasMediasApi;
+use App\Models\Behaviors\HasFeaturedRelated;
 
 class Artwork extends BaseApiModel
 {
@@ -16,6 +22,12 @@ class Artwork extends BaseApiModel
     use HasMediasApi {
         imageFront as traitImageFront;
     }
+
+    use HasFeaturedRelated {
+        getCustomRelatedItems as traitGetCustomRelatedItems;
+    }
+
+    protected $showDefaultRelatedItems = true;
 
     protected $endpoints = [
         'collection' => '/api/v1/artworks',
@@ -401,4 +413,87 @@ class Artwork extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function getCustomRelatedItems()
+    {
+        $relatedItems = collect([]);
+
+        // if this artwork is augmented and its augmented model has custom related items, return those
+        if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), 'getCustomRelatedItems')) {
+            $relatedItems = $this->getAugmentedModel()->getCustomRelatedItems();
+        }
+
+        if ($relatedItems->count() >= $this->getTargetItemCount()) {
+            return $relatedItems;
+        }
+
+        $query = Block::query()
+            ->whereIn('type', [
+                'gallery_new_item',
+                'artwork',
+                'artworks',
+            ]);
+
+        $relatedArtworkIds = collect([$this->id]);
+
+        if (config('aic.use_most_similar_for_artwork_sidebar')) {
+            $relatedArtworkIds = $relatedArtworkIds
+                ->merge($this->getMostSimilarIds());
+        }
+
+        $query->where(function($subquery) use ($relatedArtworkIds) {
+            foreach ($relatedArtworkIds as $id) {
+                $subquery->orWhereJsonContains('content->browsers->artworks', $id);
+            }
+        });
+
+        // Prioritize blocks that relate to this artwork directly
+        $query->orderByRaw("(\"content\"->'browsers'->'artworks')::jsonb @> ? desc", [$this->id]);
+
+        $blocks = $query->get();
+
+        if ($blocks->count() > 0) {
+            $blockRelatedItems = $blocks
+                ->pluck('blockable')
+                ->filter()
+                ->filter(function ($item) {
+                    return in_array(get_class($item), [
+                        Article::class,
+                        Selection::class,
+                        Experience::class,
+                        Video::class,
+                    ]);
+                })
+                ->values();
+
+            $relatedItems = $relatedItems
+                ->merge($blockRelatedItems)
+                ->unique(function ($relatedItem) {
+                    return $this->getRelatedItemHash($relatedItem);
+                })
+                ->values();
+        }
+
+        $relatedItems = $this->getFilteredRelatedItems($relatedItems);
+
+        $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
+
+        return $relatedItems;
+    }
+
+    /**
+     * WEB-2065: Deduplicate with actual Explore Further query?
+     */
+    private function getMostSimilarIds()
+    {
+        return Search::query()
+            ->resources(['artworks'])
+            ->forceEndpoint('search')
+            ->byMostSimilar($this->id, get_class($this), true)
+            ->getPaginatedModel(13, self::SEARCH_FIELDS)
+            ->filter(function($value, $key) {
+                return ($this->id != $value->id);
+            })
+            ->pluck('id')
+            ->all();
+    }
 }

@@ -8,7 +8,7 @@
     </script>
 @endif
 
-<article class="o-article" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}" itemscope itemtype="http://schema.org/CreativeWork">
+<article class="o-article{{ (empty($item->description) or $item->description === '') ? ' o-article--no-description' : '' }}" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}" itemscope itemtype="http://schema.org/CreativeWork">
 
   @component('site.shared._schemaItemProps')
     @slot('itemprops',$item->present()->buildSchemaItemProps() ?? null)
@@ -59,13 +59,6 @@
     @endif
   </div>
 
-  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header u-show@medium+">
-    @component('site.shared._featuredRelated')
-        @slot('featuredRelated', $item->featuredRelated) {{-- Do not ?? --}}
-        @slot('variation', 'u-show@medium+')
-    @endcomponent
-  </div>
-
   <div class="o-article__inline-header">
     @if ($item->title)
       @component('components.atoms._title')
@@ -98,11 +91,19 @@
     @endif
   </div>
 
+  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium+">
+    @component('site.shared._featuredRelated')
+        @slot('item', $item)
+        @slot('variation', 'u-show@medium+')
+        @slot('behavior', 'relatedSidebar')
+    @endcomponent
+  </div>
+
   {{-- TODO: Integrate related elements? Could be loaded indirectly from related entities --}}
-  @if ($item->featuredRelated)
-      <div class="o-article__related">
+  @if ($item->hasFeaturedRelated())
+      <div class="o-article__related{{ (empty($item->description) or $item->description === '') ? ' o-article__related--no-description' : '' }}">
           @component('site.shared._featuredRelated')
-              @slot('featuredRelated', $item->featuredRelated) {{-- Do not ?? --}}
+              @slot('item', $item)
           @endcomponent
       </div>
   @endif
@@ -136,32 +137,8 @@
     @endcomponent
 
     @if ($exploreFurther && !$exploreFurther->isEmpty() && !$exploreFurtherAllTags)
-        @component('components.organisms._o-pinboard')
-            @slot('cols_small','2')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-            @slot('maintainOrder','false')
-            @slot('id','explore-further-pinboard')
-            @slot('title', 'Artworks related to tag')
-            @foreach ($exploreFurther as $item)
-                @component('components.molecules._m-listing----'.strtolower($item->type))
-                    @slot('variation', 'o-pinboard__item')
-                    @slot('item', $item)
-                    @slot('imageSettings', array(
-                        'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
-                        'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_gridListingImageSizes(array(
-                              'xsmall' => '1',
-                              'small' => '2',
-                              'medium' => '3',
-                              'large' => '4',
-                              'xlarge' => '4',
-                        )),
-                    ))
-                @endcomponent
-            @endforeach
+        @component('site.shared._exploreFurther')
+            @slot('artworks', $exploreFurther)
         @endcomponent
     @endif
 

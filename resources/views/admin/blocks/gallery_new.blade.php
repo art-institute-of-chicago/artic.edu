@@ -16,6 +16,11 @@
     'note' => 'Will be hidden if title is empty',
 ])
 
+@formField('checkbox', [
+    'name' => 'is_gallery_zoomable',
+    'label' => 'Make all image modals zoomable (override)',
+])
+
 @formField('repeater', [
     'type' => 'gallery_new_item',
 ])

@@ -1,8 +1,7 @@
 <li class="m-listing">
     @if (isset($url))
-    <a href="{!! $url !!}" class="m-listing__link">
+        <a href="{!! $url !!}" class="m-listing__link">
     @endif
-
     <span class="m-listing__img">
         @if (isset($image))
             @component('components.atoms._img')
@@ -18,7 +17,6 @@
             </span>
         @endif
     </span>
-
     <span class="m-listing__meta">
         @if (isset($tag))
             <em class="type f-tag">{!! $tag !!}</em>
@@ -35,8 +33,7 @@
             <span class="intro f-secondary">{!! $description !!}</span>
         @endif
     </span>
-
     @if (isset($url))
-    </a>
+        </a>
     @endif
 </li>

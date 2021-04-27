@@ -116,7 +116,7 @@
 }
 
 
-.o-gallery__media .m-media__img {
+.o-gallery .m-media__img {
   background: transparent;
 }
 
@@ -683,5 +683,17 @@
         font-feature-settings: 'lnum' on;
       }
     }
+  }
+}
+
+.o-gallery--small-mosaic .o-gallery__caption .f-caption {
+  margin-bottom: 32px;
+
+  @include breakpoint('small+') {
+    margin-bottom: 36px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-bottom: 40px;
   }
 }

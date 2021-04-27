@@ -79,4 +79,17 @@ abstract class BasePresenter
         return "No";
     }
 
+    function addCssClass($html, $class) {
+        $dom = new \DomDocument();
+        $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+        $xpath = new \DOMXpath($dom);
+        $nodes = $xpath->query('//ol | //ul | //p');
+
+        foreach($nodes as $node) {
+            $node->setAttribute('class', $class);
+        }
+        return str_replace('<?xml encoding="utf-8" ?>', '', $dom->saveHTML($dom));
+    }
+
 }

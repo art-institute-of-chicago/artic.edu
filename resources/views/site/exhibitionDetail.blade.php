@@ -60,7 +60,7 @@
     @endunless
 
     @component('site.shared._featuredRelated')
-        @slot('featuredRelated', $item->featuredRelated)
+        @slot('item', $item)
         @slot('variation', 'u-show@medium+')
     @endcomponent
   </div>
@@ -75,10 +75,10 @@
   </div>
   @endif
 
-  @if ($item->featuredRelated)
+  @if ($item->hasFeaturedRelated())
       <div class="o-article__related">
           @component('site.shared._featuredRelated')
-              @slot('featuredRelated', $item->featuredRelated ?? null)
+              @slot('item', $item)
           @endcomponent
       </div>
   @endif
@@ -112,7 +112,7 @@
                 @slot('tag', 'h4')
                 {{ Str::plural('Picture', $item->historyImages->count()) }}
             @endcomponent
-            @foreach ($item->historyImages->toArray() as $picture)
+            @foreach ($item->present()->getHistoryImagesForMediaComponent() as $picture)
                     @component('components.molecules._m-media')
                     @slot('variation', 'o-blocks__block')
                     @slot('item', $picture)

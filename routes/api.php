@@ -946,6 +946,52 @@ Route::group(['prefix' => 'v1'], function () {
 
     /**
      *
+     * - digital publication sections ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/digitalpublicationsections",
+     *      tags={"pages"},
+     *      operationId="getDigitalPublicationSections",
+     *      summary="List all digital publication sections",
+     *      @SWG\Response(response="200", description="List all digital publication sections")
+     *  )
+     *
+     */
+    Route::get('digitalpublicationsections', 'API\DigitalPublicationSectionsController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/digitalpublicationsections/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedDigitalPublicationSections",
+     *      summary="List all deleted digital publication sections",
+     *      @SWG\Response(response="200", description="List all deleted digital publication sections")
+     *  )
+     *
+     */
+    Route::get('digitalpublicationsections/deleted', 'API\DigitalPublicationSectionsController@deleted');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/digitalpublicationsections/{id}",
+     *      tags={"pages"},
+     *      operationId="getDigitalPublicationSection",
+     *      summary="Fetch digital publication section details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific digital publication section")
+     *  )
+     *
+     */
+    Route::get('digitalpublicationsections/{id}', 'API\DigitalPublicationSectionsController@show');
+
+    /**
+     *
      * - printed publications ------------------------------------------------------
      *
      * @SWG\Get(

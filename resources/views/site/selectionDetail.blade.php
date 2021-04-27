@@ -25,15 +25,15 @@
 
   <div class="o-article__secondary-actions">
     @component('site.shared._featuredRelated')
-        @slot('featuredRelated', $item->featuredRelated ?? null)
+        @slot('item', $item)
         @slot('variation', 'u-show@medium+')
     @endcomponent
   </div>
 
-  @if ($item->featuredRelated)
+  @if ($item->hasFeaturedRelated())
     <div class="o-article__related">
         @component('site.shared._featuredRelated')
-            @slot('featuredRelated', $item->featuredRelated ?? null)
+            @slot('item', $item)
         @endcomponent
     </div>
   @endif
@@ -97,30 +97,15 @@
     @endcomponent
 
     @if ($exploreFurther && !$exploreFurther->isEmpty() && !$exploreFurtherAllTags)
-        @component('components.organisms._o-pinboard')
-            @slot('cols_small','2')
-            @slot('cols_medium','3')
-            @slot('cols_large','3')
-            @slot('cols_xlarge','3')
-            @slot('maintainOrder','false')
-            @foreach ($exploreFurther as $item)
-                @component('components.molecules._m-listing----artwork')
-                    @slot('variation', 'o-pinboard__item')
-                    @slot('item', $item)
-                    @slot('imageSettings', array(
-                        'fit' => null,
-                        'ratio' => null,
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_gridListingImageSizes(array(
-                              'xsmall' => '1',
-                              'small' => '2',
-                              'medium' => '3',
-                              'large' => '3',
-                              'xlarge' => '3',
-                        )),
-                    ))
-                @endcomponent
-            @endforeach
+        @component('components.organisms._o-pinboard----artwork')
+            @slot('artworks', $exploreFurther)
+            @slot('sizes', [
+                'xsmall' => '1',
+                'small' => '2',
+                'medium' => '3',
+                'large' => '3',
+                'xlarge' => '3',
+            ])
         @endcomponent
     @endif
 

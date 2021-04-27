@@ -1,6 +1,6 @@
 <div class="o-gallery o-gallery--small-mosaic o-gallery--mosaic{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
     @if (!empty($title))
-        <h3 class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
+        <h3 id="{{ Str::slug(html_entity_decode($title)) }}" class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
     @endif
     @if (!empty($allLink))
     <p class="o-gallery__all-link f-buttons">
@@ -30,7 +30,16 @@
         @slot('maintainOrder','false')
         @component('site.shared._mediaitems')
             @slot('items', $items)
-            @slot('imageSettings', $imageSettings)
+            @slot('imageSettings', $imageSettings ?? array(
+                'srcset' => array(200,400,600,1000,1500,3000),
+                'sizes' => aic_imageSizes(array(
+                    'xsmall' => '38',
+                    'small' => '18',
+                    'medium' => '18',
+                    'large' => '18',
+                    'xlarge' => '11',
+                )),
+            ))
         @endcomponent
     @endcomponent
     @if (!empty($allLink))

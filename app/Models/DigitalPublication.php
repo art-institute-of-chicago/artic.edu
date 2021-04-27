@@ -110,6 +110,11 @@ class DigitalPublication extends AbstractModel
         return route('admin.collection.articles_publications.digitalPublications.edit', $this->id);
     }
 
+    public function getSubtypeAttribute()
+    {
+        return 'Digital Publication'; // for pinboard and listings
+    }
+
     public function scopeIds($query, $ids = [])
     {
         return $query->whereIn('id', $ids);

@@ -15,14 +15,14 @@
             </audio>
         </div>
         @if (isset($item->transcript))
-        <div class="m-listing--sound__transcript" aria-hidden="true">
-            <div>{!! $item->transcript !!}</div>
-        </div>
+            <div class="m-listing--sound__transcript" aria-hidden="true">
+                <div>{!! $item->transcript !!}</div>
+            </div>
         @endif
         @if (isset($item->subtitle))
-        <div class="m-listing--sound__subtitle">
-            {!! $item->subtitle !!}
-        </div>
+            <div class="m-listing--sound__subtitle">
+                {!! $item->subtitle !!}
+            </div>
         @endif
     </div>
 </li>

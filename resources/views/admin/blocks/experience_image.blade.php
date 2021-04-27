@@ -56,6 +56,7 @@
             'name' => 'object_id',
             'label' => 'Object ID',
             'maxlength' => 150,
+            'note' => 'To see fields update: 1. Enter object ID 2. Click Update button 3. Refresh browser'
         ])
     @endcomponent
 

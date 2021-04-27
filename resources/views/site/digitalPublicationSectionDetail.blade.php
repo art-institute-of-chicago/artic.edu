@@ -78,6 +78,10 @@
             global $_figurePrefixForDisplay;
             $_figurePrefixForDisplay = 'Cat.';
         }
+
+        global $_allowAdvancedModalFeatures;
+        $_allowAdvancedModalFeatures = true;
+
         @endphp
 
         {!! $item->renderBlocks(false, [], [
@@ -113,21 +117,8 @@
             ])
                 References
             @endcomponent
-            @php
-                // Add `f-secondary` class to <ul> and <ol> tags
-                $dom = new DomDocument();
-                $dom->loadHTML('<?xml encoding="utf-8" ?>' . $item->references, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-
-                $xpath = new DOMXpath($dom);
-                $nodes = $xpath->query('//ol | //ul');
-
-                foreach($nodes as $node) {
-                    $node->setAttribute('class', 'f-secondary');
-                }
-                $references = $dom->saveHTML($dom);
-            @endphp
             <div class="o-blocks o-blocks--bibliographic">
-                {!! $references !!}
+                {!! $item->present()->references !!}
             </div>
         @endif
 
@@ -139,11 +130,9 @@
             ])
                 How to Cite
             @endcomponent
-            @component('components.blocks._text')
-                @slot('font', 'f-secondary')
-                @slot('tag', 'div')
-                {!! $item->cite_as !!}
-            @endcomponent
+            <div class="o-blocks o-blocks--bibliographic">
+                {!! $item->present()->citeAs !!}
+            </div>
         @endif
     </div>
 </article>

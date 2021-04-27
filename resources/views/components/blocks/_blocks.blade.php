@@ -79,22 +79,6 @@
                 @endcomponent
             @endif
 
-            @if ($block['type'] === 'newsletter-sign-up')
-                @if (isset($block['subtype']) and $block['subtype'] === 'inline')
-                    @component('components.molecules._m-inline-aside')
-                        @slot('variation','o-blocks__block')
-                        @component('components.molecules._m-aside-newsletter')
-                            @slot('variation','m-aside-newsletter--inline')
-                            @slot('placeholder','Email Address')
-                        @endcomponent
-                    @endcomponent
-                @else
-                    @component('components.molecules._m-aside-newsletter')
-                        @slot('variation', (isset($block['subtype']) && $block['subtype'] ? 'm-aside-newsletter--'.$block['subtype'].' o-blocks__block' : 'o-blocks__block'))
-                    @endcomponent
-                @endif
-            @endif
-
             @if ($block['type'] === 'time-line')
                 @component('components.organisms._o-row-listing')
                     @slot('variation', 'o-blocks__block')
@@ -172,49 +156,6 @@
                 @endif
             @endif
 
-            @if ($block['type'] === 'aside')
-                @if (isset($block['subtype']) and $block['subtype'])
-                    @component('components.blocks._inline-aside')
-                        @slot('variation', 'o-blocks__block')
-                        @slot('type', $block['subtype'])
-                        @slot('items', $block['items'])
-                        @slot('itemsMolecule', '_m-listing----'.$block['subtype'].'-row')
-                        @slot('itemsVariation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
-                        @if ($block["subtype"] === 'media' or $block["subtype"] === 'event')
-                            @slot('titleFont','f-list-2')
-                        @endif
-                        @slot('hideShortDesc', true)
-                        @if ($block["subtype"] === 'product')
-                            @slot('imageSettings', array(
-                                'fit' => 'clamp',
-                                'ratio' => '3:4',
-                                'srcset' => array(200,400,600),
-                                'sizes' => aic_imageSizes(array(
-                                      'xsmall' => '28',
-                                      'small' => '12',
-                                      'medium' => '9',
-                                      'large' => '9',
-                                      'xlarge' => '9',
-                                )),
-                            ))
-                        @else
-                            @slot('imageSettings', array(
-                                'fit' => 'crop',
-                                'ratio' => '16:9',
-                                'srcset' => array(200,400,600),
-                                'sizes' => aic_imageSizes(array(
-                                      'xsmall' => '18',
-                                      'small' => '23',
-                                      'medium' => '13',
-                                      'large' => '8',
-                                      'xlarge' => '8',
-                                )),
-                            ))
-                        @endif
-                    @endcomponent
-                @endif
-            @endif
-
             @if ($block['type'] === 'inline-listing')
                 @if (isset($block['subtype']) and $block['subtype'])
                     @component('components.organisms._o-row-listing')
@@ -285,30 +226,6 @@
                         @slot('caption', $block['caption'] ?? null);
                         @slot('allLink', $block['allLink'] ?? null);
                         @slot('items', $block['items']);
-                            @if ($block["subtype"] === 'mosaic')
-                                @slot('imageSettings', array(
-                                    'srcset' => array(200,400,600,1000,1500,3000,4500),
-                                    'sizes' => aic_imageSizes(array(
-                                          'xsmall' => '58',
-                                          'small' => '28',
-                                          'medium' => '28',
-                                          'large' => '28',
-                                          'xlarge' => '21',
-                                    )),
-                                ))
-                            @endif
-                            @if ($block["subtype"] === 'slider')
-                                @slot('imageSettings', array(
-                                    'srcset' => array(200,400,600,1000,1500,3000,4500),
-                                    'sizes' => aic_imageSizes(array(
-                                          'xsmall' => '600px',
-                                          'small' => '600px',
-                                          'medium' => '600px',
-                                          'large' => '600px',
-                                          'xlarge' => '18',
-                                    )),
-                                ))
-                            @endif
                     @endcomponent
                 @endif
             @endif

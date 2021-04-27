@@ -32,6 +32,47 @@
   .f-module-title-1 + & {
     margin-top: 36px;
   }
+
+  .o-article__related .m-inline-aside &,
+  .o-article__secondary-actions .m-inline-aside & {
+    .f-list-3 {
+      @include font-styles(generate-font-obj(
+        (
+          font-family: $serif-font,
+          font-family-loaded: $serif-font--loaded,
+          font-loaded-class: $serif-font-loaded-class,
+          settings: (
+            'xsmall': (font-size: 24, line-height: 34, push: 0)
+          )
+        )
+      ));
+    }
+
+    .f-list-1 {
+      @include font-styles(generate-font-obj(
+        (
+          font-family: $serif-font,
+          font-family-loaded: $serif-font--loaded,
+          font-loaded-class: $serif-font-loaded-class,
+          settings: (
+            'xsmall': (font-size: 19, line-height: 28, push: 0)
+          )
+        )
+      ));
+    }
+  }
+
+  .o-article__related .m-inline-aside & + &,
+  .o-article__secondary-actions .m-inline-aside & + & {
+    &:before {
+      content: '';
+      border-top: 1px solid $color__rules--primary;
+    }
+  }
+}
+
+.m-listing--sidebar.m-listing--dynamic:not(.m-listing--visible) {
+  display: none;
 }
 
 .m-listing__link {
@@ -325,12 +366,13 @@
 }
 
 .m-listing__meta .f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 32, 'large+': 44));
+  @include tucked-margin-top($f-list-3, ('xsmall': 40, 'large+': 44));
 }
-  .m-listing__meta .f-list-3:first-child,
-  .m-listing__meta .date + .f-list-3 {
-    @include tucked-margin-top($f-list-3, ('xsmall': 36, 'small+': 40));
-  }
+
+.m-listing__meta .f-list-3:first-child,
+.m-listing__meta .date + .f-list-3 {
+  @include tucked-margin-top($f-list-3, ('xsmall': 36, 'small+': 40));
+}
 
 .m-listing__meta .f-list-4 {
   @include tucked-margin-top($f-list-4, ('xsmall': 36, 'large+': 44));
@@ -1931,7 +1973,7 @@ $f-audio-subtitle: generate-font-obj(
 
 // shared styles for .m-listing--journal and .m-listing--magazine
 .m-listing--publication {
-  border: thin solid $color__grey--100;
+  border: thin solid $color__rules--primary;
 
   .m-listing__img img {
     transition: transform .35s ease-in-out;
@@ -2198,7 +2240,6 @@ $f-audio-subtitle: generate-font-obj(
 
 // variant for Member Magazine
 .m-listing--magazine {
-  border-color: $color__rules--primary;
   .m-listing__meta > .f-tag {
     color: $color__plum;
   }

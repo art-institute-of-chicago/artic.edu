@@ -57,4 +57,14 @@ class DigitalPublicationSectionPresenter extends BasePresenter
 
         return $this->entity->type;
     }
+
+    public function references()
+    {
+        return $this->addCssClass($this->entity->references, 'f-secondary');
+    }
+
+    public function citeAs()
+    {
+        return $this->addCssClass($this->entity->cite_as, 'f-secondary');
+    }
 }

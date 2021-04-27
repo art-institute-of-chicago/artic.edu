@@ -55,6 +55,12 @@
     font-family: $serif-font--loaded;
   }
 
+  &.s-sans-serif-loaded .o-blocks--bibliographic>p,
+  &.s-sans-serif-loaded .o-blocks--bibliographic>ol:not([class*=o-]):not([class*=m-]),
+  &.s-sans-serif-loaded .o-blocks--bibliographic>ul:not([class*=o-]):not([class*=m-]) {
+    font-family: $sans-serif-font--loaded;
+  }
+
   .o-article {
     padding-bottom: 0;
   }
@@ -150,6 +156,10 @@
     margin-top: 50px;
     margin-bottom: 50px;
   }
+
+  .m-media--l, .m-media--m {
+    clear: right;
+  }
 }
 
 /***
@@ -231,5 +241,10 @@ Styling related specifically to digital publications
 
   .o-blocks.o-blocks--with-sidebar .o-gallery::before {
     left: 1px;
+  }
+
+  .o-blocks--bibliographic .f-secondary {
+    padding-top: 8px;
+    margin-bottom: -8px;
   }
 }

@@ -21,7 +21,7 @@
             @component('components.molecules._m-listing----artwork-minimal')
                 @slot('item', $item)
                 @slot('imageSettings', array(
-                    'srcset' => array(200,400,600,843),
+                    'srcset' => aic_getSrcsetForImage($item->imageFront(), $item->is_public_domain ?? false),
                     'sizes' => aic_imageSizes(array(
                           'xsmall' => '100px',
                           'small' => '100px',

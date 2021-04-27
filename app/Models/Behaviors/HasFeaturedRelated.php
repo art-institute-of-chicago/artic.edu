@@ -2,6 +2,15 @@
 
 namespace App\Models\Behaviors;
 
+use App\Models\Article;
+use App\Models\Selection;
+use App\Models\Event;
+use App\Models\Api\Exhibition;
+use App\Models\Experience;
+use App\Models\DigitalPublication;
+use App\Models\Video;
+
+use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 
 /**
@@ -9,14 +18,46 @@ use Carbon\Carbon;
  */
 trait HasFeaturedRelated
 {
-    protected $selectedFeaturedRelateds;
+    private $targetItemCount = 6;
 
-    public function getFeaturedRelatedAttribute()
+    private $selectedFeaturedRelateds;
+
+    private $sidebarContainsDefaultRelated = false;
+
+    public function getFeaturedRelatedTitle()
+    {
+        return $this->sidebarContainsDefaultRelated ? 'Discover More' : 'Related';
+    }
+
+    public function hasFeaturedRelated()
+    {
+        return !empty($this->getFeaturedRelated());
+    }
+
+    public function getFeaturedRelated()
     {
         if ($this->selectedFeaturedRelateds) {
             return $this->selectedFeaturedRelateds;
         }
 
+        $relatedItems = $this->getCustomRelatedItems();
+
+        if (($this->showDefaultRelatedItems ?? false) && $relatedItems->count() < 1) {
+            $relatedItems = $this->getDefaultRelatedItems($relatedItems);
+            $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
+            $this->sidebarContainsDefaultRelated = true;
+        }
+
+        $this->selectedFeaturedRelateds = $this->getLabeledRelatedItems($relatedItems);
+
+        return $this->selectedFeaturedRelateds;
+    }
+
+    /**
+     * Public b/c API models needs to check if their augmented models have related content.
+     */
+    public function getCustomRelatedItems()
+    {
         $relatedItems = $this->getRelatedWithApiModels('sidebar_items', [
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
@@ -34,13 +75,29 @@ trait HasFeaturedRelated
             'videos' => false,
         ]) ?? collect([]);
 
+        return $this->getFilteredRelatedItems($relatedItems);
+    }
+
+    protected function getTargetItemCount()
+    {
+        return $this->targetItemCount;
+    }
+
+    protected function getFilteredRelatedItems($relatedItems)
+    {
+
         $now = Carbon::now();
 
-        // Filter out any unpublished items!
-        $relatedItems = $relatedItems->filter(function($relatedItem) use ($now) {
+        return $relatedItems->filter(function($relatedItem) use ($now) {
             // TODO: Verify that we don't need to check if the exhibition is in the future?
             if (get_class($relatedItem) === \App\Models\Api\Exhibition::class) {
                 return true;
+            }
+
+            if (get_class($relatedItem) === \App\Models\Api\Event::class) {
+                if (!$relatedItem->isFuture) {
+                    return false;
+                }
             }
 
             $isPublished = isset($relatedItem->published) && $relatedItem->published;
@@ -56,45 +113,100 @@ trait HasFeaturedRelated
 
             return $isPublished && $isVisible;
         })->values();
+    }
 
-        // Exit early if there's nothing to show
-        if ($relatedItems->count() < 1) {
-            return;
-        }
+    protected function getRelatedItemHash($relatedItem)
+    {
+        return get_class($relatedItem) . $relatedItem->id;
+    }
 
-        $this->selectedFeaturedRelateds = [];
-        $relatedItems->each(function ($relatedItem) {
+    private function getDefaultRelatedPool()
+    {
+        // WEB-2046: Storing this in memcached causes a segfault, try again after WEB-1531
+        return Cache::store('file')->remember('default-content-pool', 60 * 60, function() {
+            $poolSize = 20;
+
+            // Avoid accidentally seeding the pool with draft items during preview mode
+            $oldPreviewMode = config('aic.is_preview_mode');
+            config(['aic.is_preview_mode' => false]);
+
+            // WEB-2018: Do we need to check published date, or is it ok to just keep checking updated_at?
+            $articles = Article::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            $selections = Selection::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            $experiences = Experience::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            $videos = Video::published()->visible()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+
+            config(['aic.is_preview_mode' => $oldPreviewMode]);
+
+            return collect([])
+                ->merge($articles)
+                ->merge($selections)
+                ->merge($experiences)
+                ->merge($videos)
+                ->filter(function($item) {
+                    return $item->imageFront('hero') !== null;
+                })
+                ->sortBy('updated_at')
+                ->reverse()
+                ->slice(0, $poolSize)
+                ->values();
+        });
+    }
+
+    private function getDefaultRelatedItems($customRelatedItems)
+    {
+        $forbiddenItemHashes = (clone $customRelatedItems)
+            ->push($this)
+            ->map(function($relatedItem) {
+                return $this->getRelatedItemHash($relatedItem);
+            })
+            ->values()
+            ->all();
+
+        return $this->getDefaultRelatedPool()
+            ->filter(function($relatedItem) use ($forbiddenItemHashes) {
+                return !in_array($this->getRelatedItemHash($relatedItem), $forbiddenItemHashes);
+            })
+            ->random($this->targetItemCount)
+            ->values();
+    }
+
+    private function getLabeledRelatedItems($relatedItems)
+    {
+        $labeledRelatedItems = [];
+
+        $relatedItems->each(function ($relatedItem) use (&$labeledRelatedItems) {
             switch (get_class($relatedItem)) {
-                case \App\Models\Article::class:
+                case Article::class:
                     // Tag is often "In the Lab", "Collection Spotlight", etc.
                     $label = 'Article';
                     $type = 'article';
                     break;
-                case \App\Models\Selection::class:
+                case Selection::class:
                     $label = null;
                     $type = 'selection';
                     break;
-                case \App\Models\Event::class:
+                case Event::class:
                     // Tag is replaced by "Tour", "Member Exclusive", etc.
                     $label = 'Event';
                     $type = 'event';
                     break;
-                case \App\Models\Api\Exhibition::class:
+                case Exhibition::class:
                     // Tag is often "Closed", "Ongoing", "Closing soon", etc.
                     $label = 'Exhibition';
                     $type = 'exhibition';
                     break;
-                case \App\Models\Experience::class:
+                case Experience::class:
                     // Tag is "Interactive Feature"
                     $label = null;
                     $type = 'experience';
                     break;
-                case \App\Models\DigitalPublication::class:
+                case DigitalPublication::class:
                     // No tag
                     $label = 'Digital Publication';
                     $type = 'generic';
                     break;
-                case \App\Models\Video::class:
+                case Video::class:
                     // Tag is "Video"
                     $label = 'Media';
                     $type = 'media';
@@ -104,15 +216,14 @@ trait HasFeaturedRelated
                     break;
             }
 
-            $this->selectedFeaturedRelateds[] = [
+            $labeledRelatedItems[] = [
                 'label' => $label ?? 'Content',
                 'type' => $type,
-                'items' => [
-                    $relatedItem,
-                ],
+                'item' => $relatedItem,
             ];
         });
-        return $this->selectedFeaturedRelateds;
+
+        return $labeledRelatedItems;
     }
 
 }

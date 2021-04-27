@@ -2,7 +2,6 @@
   position: relative;
   padding-top: 0.02px;
   border-top: 1px solid $color__rules--primary;
-
 }
 
 .m-title-bar + .o-pinboard {
@@ -343,6 +342,24 @@
 }
 
 .o-gallery--small-mosaic {
+  @include breakpoint('xsmall') {
+    .o-pinboard--1-col\@xsmall > * {
+      margin-left: 10px;
+    }
+  }
+
+  @include breakpoint('small') {
+    .o-pinboard--2-col\@small > * {
+      margin-left: 20px;
+    }
+  }
+
+  @include breakpoint('medium') {
+    .o-pinboard--2-col\@medium > * {
+      margin-left: 30px;
+    }
+  }
+
   @include breakpoint('large') {
    .o-pinboard--3-col\@large > * {
       width: colspan(grid-cols-to-colspan(4), 'large');
@@ -382,4 +399,104 @@
        display: none;
      }
    }
+}
+
+/**
+ *  Themes for dark/light variations. Light is default.
+ */
+.o-gallery--small-mosaic.o-gallery----theme-1,
+.o-gallery--small-mosaic.o-gallery----theme-2 {
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: $color__white;
+    z-index: 2;
+  }
+
+  .o-pinboard {
+    border-top: 0;
+  }
+}
+
+.o-gallery--small-mosaic.o-gallery----theme-1 {
+  .o-pinboard::before,
+  .o-pinboard::after {
+    background-color: $color__rules--focus;
+  }
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      .o-pinboard[class*="col@#{$name}"] > * {
+        @if ($name == 'xsmall') {
+        } @else {
+          border-top: 1px solid $color__rules--contrast;
+          margin-top: -1px;
+        }
+      }
+    }
+  }
+
+  @include breakpoint('large') {
+    .o-pinboard--3-col\@large::before {
+      border-right: 1px solid $color__rules--contrast;
+      border-left: 1px solid $color__rules--contrast;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+     .o-pinboard--3-col\@xlarge::before {
+       border-right: 1px solid $color__rules--contrast;
+       border-left: 1px solid $color__rules--contrast;
+     }
+   }
+}
+
+.o-gallery--small-mosaic.o-gallery----theme-2 {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      .o-pinboard[class*="col@#{$name}"] > * {
+        @if ($name == 'xsmall') {
+        } @else {
+          border-top: 1px solid $color__rules--primary;
+          margin-top: -1px;
+        }
+      }
+    }
+  }
+
+  @include breakpoint('large') {
+    .o-pinboard--3-col\@large::before {
+      border-right: 1px solid $color__rules--primary;
+      border-left: 1px solid $color__rules--primary;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+     .o-pinboard--3-col\@xlarge::before {
+       border-right: 1px solid $color__rules--primary;
+       border-left: 1px solid $color__rules--primary;
+     }
+   }
+}
+
+.o-gallery--small-mosaic.o-gallery----theme-3 {
+  .o-pinboard {
+    border-top: 1px solid $color__rules--primary;
+  }
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      .o-pinboard[class*="col@#{$name}"] > * {
+        @if ($name == 'xsmall') {
+        } @else {
+          border-top: 1px solid $color__rules--primary;
+          margin-top: -1px;
+        }
+      }
+    }
+  }
 }

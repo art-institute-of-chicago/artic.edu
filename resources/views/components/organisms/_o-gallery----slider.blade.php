@@ -1,7 +1,7 @@
 <div class="o-gallery o-gallery--slider{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
     <div class="clearfix"></div>
     @if (!empty($title))
-        <h3 class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
+        <h3 id="{{ Str::slug(html_entity_decode($title)) }}" class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
     @endif
     @if (!empty($allLink))
     <p class="o-gallery__all-link f-buttons">
@@ -28,34 +28,19 @@
     </div>
     <div class="o-gallery__media-wrapper">
         <div class="o-gallery__media" data-behavior="dragScroll">
-            @if (isset($items))
-                @foreach ($items as $item)
-                    @php
-                        $currentImageSettings = $imageSettings;
-                        if (($item['isArtwork'] ?? false) && !($item['isPublicDomain'] ?? false))
-                        {
-                            $currentImageSettings['srcset'] = array_values(
-                                array_filter($currentImageSettings['srcset'], function($size) {
-                                    return $size < 843;
-                                })
-                            );
-                        }
-                    @endphp
-                    @if ($item['href'] ?? false)
-                        <a href="{!! $item['href'] !!}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
-                        @php
-                            unset($item['gtmAttributes']);
-                        @endphp
-                    @endif
-                    @component('components.molecules._m-media')
-                        @slot('item', $item)
-                        @slot('imageSettings', $currentImageSettings ?? '')
-                    @endcomponent
-                    @if ($item['href'] ?? false)
-                        </a>
-                    @endif
-                @endforeach
-            @endif
+            @component('site.shared._mediaitems')
+                @slot('items', $items)
+                @slot('imageSettings', $imageSettings ?? array(
+                    'srcset' => array(200,400,600,1000,1500,3000),
+                    'sizes' => aic_imageSizes(array(
+                        'xsmall' => '50',
+                        'small' => '35',
+                        'medium' => '23',
+                        'large' => '23',
+                        'xlarge' => '18',
+                    )),
+                ))
+            @endcomponent
         </div>
     </div>
     @if (!empty($allLink))

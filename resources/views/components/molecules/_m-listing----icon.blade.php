@@ -1,7 +1,7 @@
 <{{ $tag ?? 'li' }} class="m-listing m-listing--icon{{ (isset($variation)) ? ' '.$variation : '' }}">
     <span class="m-listing__img m-listing__img--no-bg m-listing__img--icon">
         <svg aria-hidden="true">
-        <use xlink:href="#icon--{{ aic_getIconClass($item['iconType']) }}" />
+            <use xlink:href="#icon--{{ aic_getIconClass($item['iconType']) }}" />
         </svg>
     </span>
     <span class="m-listing__meta">

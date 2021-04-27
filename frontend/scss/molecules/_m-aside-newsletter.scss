@@ -230,27 +230,6 @@
   content: none;
 }
 
-
-// variation `.m-aside-newsletter--inline` inside `.m-inline-aside`
-
-.m-inline-aside .m-aside-newsletter--inline {
-  margin-top: 0;
-}
-
-.m-inline-aside .m-aside-newsletter--inline legend .title.f-list-3 {
-  @include breakpoint('small') {
-    @include tucked-margin-top($f-list-3, ('small': 36));
-  }
-}
-
-.m-inline-aside .m-aside-newsletter--inline button.m-aside-newsletter__btn--submit {
-  @include breakpoint('small') {
-    width: 100%;
-    margin-top: 16px;
-    margin-left: 0;
-  }
-}
-
 // variation `.m-aside-newsletter--wide`
 
 .m-aside-newsletter--wide {
