@@ -20,7 +20,7 @@ class ExperienceImageRepository extends ModuleRepository
     }
 
     public function updateFieldsFromApi($fields) {
-        $object_id = $fields['object_id'];
+        $object_id = $fields['object_id'] ?? null;
         $apiResult = Artwork::query()->find($object_id);
         if ($apiResult instanceof Artwork) {
             $artwork = $apiResult->toArray();
