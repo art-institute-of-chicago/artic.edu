@@ -79,6 +79,9 @@
             $_figurePrefixForDisplay = 'Cat.';
         }
 
+        global $_addHeadingIds;
+        $_addHeadingIds = true;
+
         global $_allowAdvancedModalFeatures;
         $_allowAdvancedModalFeatures = true;
 
