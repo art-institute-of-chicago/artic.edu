@@ -154,7 +154,7 @@ class ArtworkPresenter extends BasePresenter
         ]));
 
         // https://stackoverflow.com/questions/1685277
-        $internalErrors = libxml_use_internal_errors(true);
+        $oldInternalErrors = libxml_use_internal_errors(true);
 
         $doc = new DOMDocument();
         $doc->loadHTML('<?xml encoding="utf-8" ?>' . $html);
@@ -172,7 +172,8 @@ class ArtworkPresenter extends BasePresenter
 
         $result = $doc->saveHTML($doc->documentElement);
 
-        libxml_use_internal_errors($internalErrors);
+        libxml_clear_errors();
+        libxml_use_internal_errors($oldInternalErrors);
 
         return $result;
     }

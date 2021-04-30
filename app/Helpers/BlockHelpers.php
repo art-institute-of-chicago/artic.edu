@@ -58,6 +58,8 @@ if (!function_exists('getFormattedFigureNumber')) {
 if (!function_exists('getTitleWithFigureNumber')) {
     function getTitleWithFigureNumber($title, $figureNumber, $urlTitle = null) {
         if (isset($figureNumber) && isset($title)) {
+            $oldInternalErrors = libxml_use_internal_errors(true);
+
             $dom = new DomDocument();
 
             // https://stackoverflow.com/questions/14648442/domdocumentloadhtml-warning-htmlparseentityref-no-name-in-entity
@@ -88,6 +90,9 @@ if (!function_exists('getTitleWithFigureNumber')) {
             $dom->documentElement->insertBefore($textNode, $firstChild);
 
             $title = $dom->saveHTML($dom->documentElement);
+
+            libxml_clear_errors();
+            libxml_use_internal_errors($oldInternalErrors);
         }
 
         return $title;

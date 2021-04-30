@@ -79,7 +79,10 @@ abstract class BasePresenter
         return "No";
     }
 
-    function addCssClass($html, $class) {
+    function addCssClass($html, $class)
+    {
+        $oldInternalErrors = libxml_use_internal_errors(true);
+
         $dom = new \DomDocument();
         $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
@@ -89,7 +92,13 @@ abstract class BasePresenter
         foreach($nodes as $node) {
             $node->setAttribute('class', $class);
         }
-        return str_replace('<?xml encoding="utf-8" ?>', '', $dom->saveHTML($dom));
+
+        $result = str_replace('<?xml encoding="utf-8" ?>', '', $dom->saveHTML($dom));
+
+        libxml_clear_errors();
+        libxml_use_internal_errors($oldInternalErrors);
+
+        return $result;
     }
 
 }

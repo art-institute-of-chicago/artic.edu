@@ -8,6 +8,8 @@
     global $_paragraphCount;
 
     if (isset($_paragraphCount)) {
+        $oldInternalErrors = libxml_use_internal_errors(true);
+
         $dom = new DomDocument();
         $dom->loadHTML('<?xml encoding="utf-8" ?>' . $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
@@ -49,14 +51,16 @@
         }
 
         $content = $dom->saveHTML($dom);
+
+        libxml_clear_errors();
+        libxml_use_internal_errors($oldInternalErrors);
     }
 
-
-    // WEB-2011: loadHTML runs into trouble with invalid characters
-    // Let's limit scope to digital publication sections as hotfix
     global $_addHeadingIds;
 
     if ($_addHeadingIds ?? false) {
+        $oldInternalErrors = libxml_use_internal_errors(true);
+
         $dom = new DomDocument();
         $dom->loadHTML('<?xml encoding="utf-8" ?>' . $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
@@ -72,6 +76,9 @@
         }
 
         $content = $dom->saveHTML($dom);
+
+        libxml_clear_errors();
+        libxml_use_internal_errors($oldInternalErrors);
     }
 @endphp
 {!! $content !!}
