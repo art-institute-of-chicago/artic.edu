@@ -58,7 +58,7 @@
 
     global $_addHeadingIds;
 
-    if ($_addHeadingIds ?? false) {
+    if ($_addHeadingIds ?? true) {
         $oldInternalErrors = libxml_use_internal_errors(true);
 
         $dom = new DomDocument();
