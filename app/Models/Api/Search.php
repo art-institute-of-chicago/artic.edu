@@ -597,8 +597,9 @@ class Search extends BaseApiModel
         if (empty($min)) {
             return $query;
         }
+
         if (empty($max)) {
-            return Carbon::now()->year;
+            $max = Carbon::now()->year;
         }
 
         $params = [
