@@ -8,7 +8,7 @@ const dragScroll = function(container) {
   let allowClicks = true;
   let xVelocity = 0;
   let allow = false;
-  let scrollPositionCheck = 0;
+  let scrollPositionCheck = null;
   let imgChildEls = [];
   let prevBtnEl;
   let nextBtnEl;
@@ -42,6 +42,9 @@ const dragScroll = function(container) {
         nextBtnEl.classList.add('s-hidden');
       }
     }
+
+    scrollPositionCheck = null;
+    _scroll();
   }
 
   function _updateScroll(x, y) {
@@ -128,6 +131,7 @@ const dragScroll = function(container) {
       scrollPositionCheck = lastScrollLeft;
 
       if (lastScrollLeft > 0) {
+        // more accurately, it's actually `s-scroll-start[ed]`
         container.parentElement.classList.add('s-scroll-start');
         if (prevBtnEl) {
           prevBtnEl.disabled = false;
