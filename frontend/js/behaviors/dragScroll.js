@@ -19,12 +19,28 @@ const dragScroll = function(container) {
     allow = container.scrollWidth > container.clientWidth;
     if (allow) {
       container.classList.add('s-scrollable');
+
+      if (prevBtnEl) {
+        prevBtnEl.classList.remove('s-hidden');
+      }
+
+      if (nextBtnEl) {
+        nextBtnEl.classList.remove('s-hidden');
+      }
     } else {
       container.classList.remove('s-scrollable');
       container.classList.remove('s-dragging');
       container.classList.remove('s-mousedown');
       container.parentElement.classList.remove('s-scroll-start');
       container.parentElement.classList.remove('s-scroll-end');
+
+      if (prevBtnEl) {
+        prevBtnEl.classList.add('s-hidden');
+      }
+
+      if (nextBtnEl) {
+        nextBtnEl.classList.add('s-hidden');
+      }
     }
   }
 
