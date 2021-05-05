@@ -116,7 +116,7 @@
 	/>
 
 	<!-- style for text boxes -->
-	<style type="text" name="textbox"
+	<style type="text" name="textbox_style"
 		align="lefttop"
 		x="40"
 		y="0"
@@ -135,7 +135,7 @@
 		visible="false"
 		alpha="0.0"
 		onclick.addevent="tween_layer(calc(layer[get(name)].name));"
-		zorder="5"
+		zorder="13"
 	/>
 
 	<!-- style for artwork hotspots -->
@@ -177,8 +177,13 @@
 		zorder="10"
 	/>
 
+	<style type="image" name="artwork_image_style"
+		align="center"
+		zorder="11"
+	/>
+
 	<!-- style for info button layer -->
-	<style type="container" name="info_button_style"
+	<style type="container" name="infobutton_style"
 		bgcolor="0x000000"
 		bgalpha=".7"
 		bgroundedge="50"
@@ -195,7 +200,7 @@
 	/>
 
 	<!-- style for close button layer -->
-	<style type="container" name="close_button_style"
+	<style type="container" name="closebutton_style"
 		bgcolor="0x000000"
 		bgalpha=".7"
 		bgroundedge="50"
@@ -212,7 +217,7 @@
 	/>
 
 	<!-- style for info icon -->
-	<style type="image" name="info_icon_style"
+	<style type="image" name="infoicon_style"
 		url="vtourskin_aic_infoicon.png"
 		edge="center"
 		distorted="false"
@@ -223,7 +228,7 @@
 	/>
 
 	<!-- style for close icon -->
-	<style type="image" name="close_icon_style"
+	<style type="image" name="closeicon_style"
 		url="vtourskin_aic_closeicon.png"
 		edge="center"
 		distorted="false"
@@ -1078,26 +1083,11 @@
 		);
 	</action>
 
-	<!-- setting up layer depending on screen size
-	<events name="resize" keep="true" onresize="
-		if(stagewidth LT 500,
-			set(layer[text_hose].parent, );
-			set(layer[text_hose].width, calc(stagewidth));
-			set(layer[text_hose].x, 0);
-		,
-			set(layer[text_hose].parent, hotspot[hotspot_hose]);
-			set(layer[text_hose].width, 400);
-			set(layer[text_hose].x, 40);
-		);
-	"
-	/>
-	-->
-
 	<!-- textbox/tooltip layer alignment depending on where hotspot is in relation to edge of browser window -->
 	<action name="change_align" type="Javascript"><![CDATA[
 		var hotspotName = args[1];
-		var layerName = args[2];
-		var offset = parseFloat(args[3]);
+		var layerName = 'layer['+args[1]+']';
+		var offset = 400;
 		var l = krpano.get(layerName);
 		// save original align
 		if (!l.origalign) l.origalign = l.align;
@@ -1114,6 +1104,120 @@
 	]]>
 	</action>
 
+	<!-- set up textboxes -->
+	<action name="setup_textbox" scope="local" args="hotspotname, parenttype">
+		<!-- assign layername -->
+		if (get(parenttype) == 'l',
+			txtadd(layername, 'tombstone_', get(hotspotname));
+		,
+			txtadd(layername, get(hotspotname));
+		);
+		<!-- add text box with style -->
+		addlayer(get(layername));
+		assignstyle(layer[get(layername)],'textbox_style');
+		<!-- add text content -->
+		set(textcontent, get(layername));
+		txtadd(layer[get(layername)].html, 'data:', get(textcontent));
+		<!-- set up text box parent, width, placement -->
+		if(stagewidth LT 500,
+			set(layer[get(layername)].parent, );
+			set(layer[get(layername)].width, calc(stagewidth));
+			set(layer[get(layername)].x, 0);
+		,
+			if (get(parenttype) == 'h',
+				txtadd(layer[get(layername)].parent, 'hotspot[', get(layername), ']');
+				change_align(get(layername));
+				,
+				txtreplace(tombstone_parent, layername, 'tombstone_', 'infoicon_');
+				txtadd(layer[get(layername)].parent, 'layer[', get(tombstone_parent), ']');
+			);
+			set(layer[get(layername)].width, 400);
+			set(layer[get(layername)].x, 40);
+		);
+		<!-- show layer -->
+		tween_layer(get(layername));
+	</action>
+
+	<!-- retrieve artwork information via data hub api -->
+	<action name="grab_artwork" type="Javascript"><![CDATA[
+		//grab object id to build query
+		var objectid = args[1].replace('art_', '');
+		var artworkurl;
+		var artworkquery = 'http://api.artic.edu/api/v1/artworks/' + objectid + '?fields=is_public_domain,image_id';
+		//krpano image layer
+		var imagelayer = 'layer[image_' + args[1] + ']';
+		imagelayer = krpano.get(imagelayer);
+		//image size limits
+		var screenwidth = Math.floor(krpano.stagewidth * .75);
+		var screenheight = Math.floor(krpano.stageheight * .75);
+		//get info to build IIIF url
+		var request = new XMLHttpRequest();
+		request.open('GET', artworkquery, true);
+		request.setRequestHeader('Content-Type', 'application/json');
+		request.onload = function () {
+			var data = JSON.parse(this.response);
+			if (request.status >= 200 && request.status < 400) {
+				if (data.data.is_public_domain) {
+					artworkurl = 'https://www.artic.edu/iiif/2/' + data.data.image_id + '/full/!' + screenwidth + ',' + screenheight + '/0/default.jpg';
+				} else {
+					artworkurl = 'https://www.artic.edu/iiif/2/' + data.data.image_id + '/full/!' + 843 + ',' + screenheight + '/0/default.jpg';
+				}
+				imagelayer.url = artworkurl;
+			} else {
+					console.log('error');
+			}
+		}
+		request.send();
+	]]>
+	</action>
+
+	<!-- grab image for display in artwork modal/layer -->
+	<action name="open_image_modal" scope="local" args="hotspotname">
+		<!-- set up layer names for modal -->
+		txtadd(modal_layername, 'modal_', get(hotspotname));
+		txtadd(image_layername, 'image_', get(hotspotname));
+		txtadd(infobutton_layername, 'infobutton_', get(hotspotname));
+		txtadd(infoicon_layername, 'infoicon_', get(hotspotname));
+		txtadd(closebutton_layername, 'closebutton_', get(hotspotname));
+		txtadd(closeicon_layername, 'closeicon_', get(hotspotname));
+
+		<!-- add modal with style -->
+		addlayer(get(modal_layername));
+		assignstyle(layer[get(modal_layername)],'modal_style');
+
+		<!-- add image with style -->
+		addlayer(get(image_layername));
+		assignstyle(layer[get(image_layername)], 'artwork_image_style');
+		txtadd(layer[get(image_layername)].parent, 'layer[', get(modal_layername), ']');
+		grab_artwork(get(hotspotname));
+
+		<!-- add info button layers -->
+		addlayer(get(infobutton_layername));
+		assignstyle(layer[get(infobutton_layername)],'infobutton_style');
+		txtadd(layer[get(infobutton_layername)].parent, 'layer[', get(modal_layername), ']');
+
+		addlayer(get(infoicon_layername));
+		assignstyle(layer[get(infoicon_layername)],'infoicon_style');
+		txtadd(layer[get(infoicon_layername)].parent, 'layer[', get(infobutton_layername), ']');
+
+		txtadd(layer[get(infoicon_layername)].onclick, 'setup_textbox(', get(hotspotname), ', l)');
+
+		<!-- add close button layers -->
+		addlayer(get(closebutton_layername));
+		assignstyle(layer[get(closebutton_layername)],'closebutton_style');
+		txtadd(layer[get(closebutton_layername)].parent, 'layer[', get(modal_layername), ']');
+
+		addlayer(get(closeicon_layername));
+		assignstyle(layer[get(closeicon_layername)],'closeicon_style');
+		txtadd(layer[get(closeicon_layername)].parent, 'layer[', get(closebutton_layername), ']');
+
+		txtadd(layer[get(closeicon_layername)].onclick, 'tween_layer(', get(modal_layername), ')');
+
+		<!-- set modal visible -->
+		set(layer[get(modal_layername)].visible,true);
+		tween(layer[get(modal_layername)].alpha,1,.25);
+	</action>
+
 	<!-- fade in/out layers on hotspot/layer click-->
 	<action name="tween_layer" scope="local" args="layername">
 		if (layer[get(layername)].alpha == 0,
@@ -1122,40 +1226,6 @@
 			tween(layer[get(layername)].alpha, 0.0, 0.3);
 		);
 		switch(layer[get(layername)].visible);
-	</action>
-
-	<!-- grab image for display in artwork modal/layer -->
-	<action name="get_image" scope="local" args="hotspotname, imageid">
-		set(screenwidth, calc(roundval(stagewidth*.75)));
-		set(screenheight, calc(roundval(stageheight)));
-
-		if(screenwidth GT 3000, set(screenwidth, 3000));
-		if(screenheight GT 3000, set(screenheight, 3000));
-
-		txtadd(imageurl, 'https://www.artic.edu/iiif/2/', get(imageid), '/full/!', get(screenwidth), ',', get(screenheight), '/0/default.jpg');
-		txtadd(image_layername, 'image_', get(hotspotname));
-		txtadd(modal_layername, 'modal_', get(hotspotname));
-
-		set(layer[get(image_layername)].url, get(imageurl));
-		set(layer[get(modal_layername)].visible,true);
-		tween(layer[get(modal_layername)].alpha,1,.25);
-	</action>
-
-	<action name="setup_textbox" scope="local" args="layername, parentname, parenttype">
-		if(stagewidth LT 500,
-			set(layer[get(layername)].parent, );
-			set(layer[get(layername)].width, calc(stagewidth));
-			set(layer[get(layername)].x, 0);
-		,
-			if (get(parenttype) == 'h',
-				txtadd(layer[get(layername)].parent, 'hotspot[', get(parentname), ']');
-				,
-				txtadd(layer[get(layername)].parent, 'layer[', get(parentname), ']');
-			);
-			set(layer[get(layername)].width, 400);
-			set(layer[get(layername)].x, 40);
-		);
-		tween_layer(get(layername));
 	</action>
 
 
