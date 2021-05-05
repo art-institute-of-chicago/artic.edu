@@ -1143,7 +1143,7 @@
 		//grab object id to build query
 		var objectid = args[1].replace('art_', '');
 		var artworkurl;
-		var artworkquery = 'http://api.artic.edu/api/v1/artworks/' + objectid + '?fields=is_public_domain,image_id';
+		var artworkquery = 'https://api.artic.edu/api/v1/artworks/' + objectid + '?fields=is_public_domain,image_id';
 		//krpano image layer
 		var imagelayer = 'layer[image_' + args[1] + ']';
 		imagelayer = krpano.get(imagelayer);
