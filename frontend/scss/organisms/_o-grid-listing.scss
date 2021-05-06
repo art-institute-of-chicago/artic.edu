@@ -939,3 +939,32 @@ Draws boxes around each grid item
     }
   }
 }
+
+/***
+
+Variants: `.o-grid-listing--feature-2x`
+
+* `.o-grid-listing--feature-2x` spans two items across full width of page
+
+***/
+@include breakpoint('medium-') {
+  .o-grid-listing--feature-2x[class*="col@medium"] {
+    margin-left: 0;
+  }
+}
+
+.o-article__body.o-blocks .o-grid-listing--feature-2x > li {
+  @each $name, $point in ('small', 'medium', 'large', 'xlarge') {
+    @include breakpoint('#{$name}') {
+      width: colspan(grid-cols-to-colspan(2), $name);
+    }
+  }
+}
+
+.o-article__body.o-blocks .o-grid-listing--feature-2x > li:nth-child(1) {
+  margin-left: 0;
+}
+
+.o-article__body.o-blocks .o-grid-listing--feature-2x > li:nth-child(2) {
+  margin-right: 0;
+}
