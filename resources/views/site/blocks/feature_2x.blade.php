@@ -12,7 +12,7 @@
         @php ($count = 0)
         @foreach ($items as $item)
             @php ($count += 1)
-            @component('components.molecules._m-listing----exhibition')
+            @component('components.molecules._m-listing----experience')
                 @slot('titleFont', 'f-list-4')
                 @slot('item', $item)
                 @slot('imageSettings', array(
@@ -27,7 +27,6 @@
                           'xlarge' => '2',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="exhibition-' . $count . '"')
             @endcomponent
         @endforeach
     @endcomponent
