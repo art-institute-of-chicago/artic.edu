@@ -1112,30 +1112,47 @@
 		,
 			txtadd(layername, get(hotspotname));
 		);
-		<!-- add text box with style -->
-		addlayer(get(layername));
-		assignstyle(layer[get(layername)],'textbox_style');
-		<!-- add text content -->
-		set(textcontent, get(layername));
-		txtadd(layer[get(layername)].html, 'data:', get(textcontent));
-		<!-- set up text box parent, width, placement -->
-		if(stagewidth LT 500,
-			set(layer[get(layername)].parent, );
-			set(layer[get(layername)].width, calc(stagewidth));
-			set(layer[get(layername)].x, 0);
+
+		if (layer[get(layername)].visible == true,
+			<!-- no need to create a new text box if it's already there -->
 		,
-			if (get(parenttype) == 'h',
-				txtadd(layer[get(layername)].parent, 'hotspot[', get(layername), ']');
-				change_align(get(layername));
-				,
-				txtreplace(tombstone_parent, layername, 'tombstone_', 'infoicon_');
-				txtadd(layer[get(layername)].parent, 'layer[', get(tombstone_parent), ']');
+			<!-- remove all text boxes and create a new one -->
+			removeall_textboxes();
+			<!-- add text box with style -->
+			addlayer(get(layername));
+			assignstyle(layer[get(layername)],'textbox_style');
+			<!-- add text content -->
+			set(textcontent, get(layername));
+			txtadd(layer[get(layername)].html, 'data:', get(textcontent));
+			<!-- set up text box parent, width, placement -->
+			if(stagewidth LT 500,
+				set(layer[get(layername)].parent, );
+				set(layer[get(layername)].width, calc(stagewidth));
+				set(layer[get(layername)].x, 0);
+			,
+				if (get(parenttype) == 'h',
+					txtadd(layer[get(layername)].parent, 'hotspot[', get(layername), ']');
+					change_align(get(layername));
+					,
+					txtreplace(tombstone_parent, layername, 'tombstone_', 'infoicon_');
+					txtadd(layer[get(layername)].parent, 'layer[', get(tombstone_parent), ']');
+				);
+				set(layer[get(layername)].width, 400);
+				set(layer[get(layername)].x, 40);
 			);
-			set(layer[get(layername)].width, 400);
-			set(layer[get(layername)].x, 40);
 		);
 		<!-- show layer -->
 		tween_layer(get(layername));
+	</action>
+
+	<!-- remove textboxes -->
+	<action name="removeall_textboxes" scope="local">
+		for(set(i,0), i LT layer.count, inc(i),
+			if(layer[get(i)].type == text,
+				removelayer(get(layer[get(i)].name), true);
+				dec(i);
+			);
+		);
 	</action>
 
 	<!-- retrieve artwork information via data hub api -->
@@ -1173,6 +1190,7 @@
 
 	<!-- grab image for display in artwork modal/layer -->
 	<action name="open_image_modal" scope="local" args="hotspotname">
+		removeall_textboxes();
 		<!-- set up layer names for modal -->
 		txtadd(modal_layername, 'modal_', get(hotspotname));
 		txtadd(image_layername, 'image_', get(hotspotname));
