@@ -1,6 +1,10 @@
 @php
-    $ids = $block->browserIds('experiences');
-    $items = \App\Models\Experience::find($ids);
+     $ids = $block->browserIds('experiences');
+     $sorter = static function ($item) use ($ids) {
+         return array_search($item->id, $ids);
+     };
+
+    $items = \App\Models\Experience::whereIn('id', $ids)->get()->sortBy($sorter);
 @endphp
 @if ($items->count() > 0)
     @component('components.organisms._o-grid-listing')
