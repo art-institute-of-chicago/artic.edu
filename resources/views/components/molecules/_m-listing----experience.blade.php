@@ -33,6 +33,13 @@
                 @slot('font', $titleFont ?? 'f-list-1')
                 {{ $item->title }}
             @endcomponent
+            <br>
+            @if (isset($showDescription) && $item->listing_description)
+                @component('components.atoms._short-description')
+                    {!! truncateStr($item->present()->listing_description) !!}
+                @endcomponent
+                <br>
+            @endif
         </span>
     </a>
 </{{ $tag ?? 'li' }}>

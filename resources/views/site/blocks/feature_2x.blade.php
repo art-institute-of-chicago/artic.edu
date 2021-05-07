@@ -19,6 +19,7 @@
             @component('components.molecules._m-listing----experience')
                 @slot('titleFont', 'f-list-4')
                 @slot('item', $item)
+                @slot('showDescription', true)
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
