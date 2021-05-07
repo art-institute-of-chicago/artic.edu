@@ -74,13 +74,13 @@ class EducatorAdmissionController extends FormController
             'blocks' => array(
                 array(
                   'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow-x4',
+                  'variation' => '',
                   'id' => 'visit_date',
                   'placeholder' => 'mm/dd/yy',
                   'value' => old('visit_date'),
                   'error' => (!empty($errors) && $errors->first('visit_date')) ? $errors->first('visit_date') : null,
                   'optional' => null,
-                  'hint' => null,
+                  'hint' => 'Please review the museum’s current <a href="/visit">hours of operation</a>',
                   'disabled' => false,
                   'label' => 'Visit date *',
                 ),
@@ -187,6 +187,7 @@ class EducatorAdmissionController extends FormController
         array_push($blocks, array(
           'type' => 'text',
           'content' => '<p>Free admission to the Art Institute of Chicago is available to current Illinois educators, including pre-K–12 teachers, teaching artists working in schools, and homeschool parents. Educators can register here to receive a voucher for a complimentary ticket to the museum. This voucher must be presented at one of the museum’s admission counters with a valid educator ID.</p>'
+          .'<p>Museum hours are subject to change. Please review the museum\'s current <a href="/visit"> hours of operation</a> before reserving your free admission.</p>'
           .'<p>A complimentary ticket will not be granted without one of the following forms of acceptable identification:</p>'
           .'<p>Pre-K–12 teachers'
           .'<ul>'
