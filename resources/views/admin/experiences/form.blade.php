@@ -37,7 +37,7 @@
         'name' => 'listing_description',
         'label' => 'Listing Description',
         'type' => 'textarea',
-        'maxlength' => 300,
+        'maxlength' => 225,
         'note' => 'Used in listings and for social media',
         'toolbarOptions' => [
             'italic'
