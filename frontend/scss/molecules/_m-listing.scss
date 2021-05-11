@@ -2298,3 +2298,7 @@ $f-audio-subtitle: generate-font-obj(
     }
   }
 }
+
+.o-grid-listing--feature-4x .m-listing__meta {
+  min-height: 128px;
+}
