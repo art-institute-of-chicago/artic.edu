@@ -297,6 +297,8 @@
   }
 
   .o-gallery--slider__controls {
+    user-select: none;
+
     .arrow-link svg {
       transform: scale(2);
     }

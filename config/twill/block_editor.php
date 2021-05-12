@@ -35,6 +35,16 @@ return [
             'icon' => 'text',
             'component' => 'a17-block-split_block',
         ],
+        'feature_2x' => [
+            'title' => 'Feature 2x',
+            'icon' => 'image',
+            'component' => 'a17-block-feature_2x',
+        ],
+        'feature_4x' => [
+            'title' => 'Feature 4x',
+            'icon' => 'image',
+            'component' => 'a17-block-feature_4x',
+        ],
         'grid' => [
             'title' => 'Grid',
             'icon' => 'image',

@@ -90,6 +90,11 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
         });
     }
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     public function getPublishedAttribute()
     {
         return ($this->digitalPublication->isPublished ?? false) && $this->isPublished;

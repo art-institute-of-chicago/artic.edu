@@ -15,8 +15,15 @@ use App\Repositories\Api\BaseApiRepository;
 
 class ExhibitionRepository extends BaseApiRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleRepeaters, HandleApiBlocks, HandleFeaturedRelated {
-        HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleRepeaters, HandleApiBlocks {
+        HandleApiBlocks::getBlockBrowsers as getApiBlockBrowsers;
+    }
+    use HandleFeaturedRelated {
+        HandleApiBlocks::getBlockBrowsers as getFeatureRelatedBlockBrowsers;
+    }
+
+    public function getBlockBrowsers($block) {
+        return array_merge($this->getApiBlockBrowsers($block), $this->getFeatureRelatedBlockBrowsers($block));
     }
 
     public function __construct(Exhibition $model)

@@ -1936,6 +1936,11 @@ $f-audio-subtitle: generate-font-obj(
   padding: 8px 10px;
 }
 
+.o-grid-listing--feature-2x .m-listing__img .m-listing__img__overlay {
+  @include m-listing__img__overlay;
+  padding: 32px;
+}
+
 .o-pinboard__item.m-listing--interactive .m-listing__img .m-listing__img__overlay {
   padding: 32px;
 }
@@ -2292,4 +2297,8 @@ $f-audio-subtitle: generate-font-obj(
       margin-top: 0;
     }
   }
+}
+
+.o-grid-listing--feature-4x .m-listing__meta {
+  min-height: 128px;
 }

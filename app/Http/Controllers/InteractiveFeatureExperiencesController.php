@@ -117,6 +117,7 @@ class InteractiveFeatureExperiencesController extends FrontController
                     'slug' => $experience->getSlug()
                 ]
             ),
+            'unstickyHeader' => true,
         ]);
     }
 

@@ -26,7 +26,6 @@ class SlideRequest extends Request
             'object_title' => 'max:150',
             'compare_title' => 'max:500',
             'end_credit_subhead' => 'max:150',
-            'end_credit_copy' => 'max:150',
             'end_copy' => 'max:150',
             'end_headline' => 'max:150'
         ];

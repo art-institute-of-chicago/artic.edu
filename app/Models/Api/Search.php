@@ -26,6 +26,7 @@ class Search extends BaseApiModel
         'articles'    => 'App\Models\Article',
         'printed-catalogs'    => 'App\Models\PrintedPublication',
         'digital-catalogs'    => 'App\Models\DigitalPublication',
+        'digital-publication-sections' => 'App\Models\DigitalPublicationSection',
         'static-pages'        => 'App\Models\Page',
         'generic-pages'       => 'App\Models\GenericPage',
         'educator-resources'  => 'App\Models\EducatorResource',
@@ -596,8 +597,9 @@ class Search extends BaseApiModel
         if (empty($min)) {
             return $query;
         }
+
         if (empty($max)) {
-            return Carbon::now()->year;
+            $max = Carbon::now()->year;
         }
 
         $params = [

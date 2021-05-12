@@ -16,17 +16,20 @@
 
     <br />
 
-    <a17-fieldset title="Credit" id="end" :open="true">
+    <a17-fieldset title="Credits and Acknowledgements" id="end" :open="true">
         @formField('input', [
             'name' => 'end_credit_subhead',
             'label' => 'Subhead',
             'maxlength' => 150,
         ])
 
-        @formField('input', [
+        @formField('wysiwyg', [
             'name' => 'end_credit_copy',
             'label' => 'Copy',
-            'maxlength' => 150,
+            'toolbarOptions' => [
+                ['header' => 2],
+                'bold', 'italic',
+            ],
         ])
 
         @formField('repeater', ['type' => 'end_experience_image'])

@@ -939,3 +939,74 @@ Draws boxes around each grid item
     }
   }
 }
+
+/***
+
+Variants: `.o-grid-listing--feature-2x`
+
+* `.o-grid-listing--feature-2x` spans two items across full width of page
+
+***/
+@include breakpoint('medium-') {
+  .o-grid-listing--feature-2x[class*="col@medium"] {
+    margin-left: 0;
+  }
+}
+
+.o-article__body.o-blocks .o-grid-listing--feature-2x > li {
+  @each $name, $point in ('small', 'medium', 'large', 'xlarge') {
+    @include breakpoint('#{$name}') {
+      width: colspan(grid-cols-to-colspan(2), $name);
+    }
+  }
+}
+
+.o-article__body.o-blocks .o-grid-listing--feature-2x > li:nth-child(1) {
+  margin-left: 0;
+}
+
+.o-article__body.o-blocks .o-grid-listing--feature-2x > li:nth-child(2) {
+  margin-right: 0;
+}
+
+/***
+
+Variants: `.o-grid-listing--feature-4x`
+
+* `.o-grid-listing--feature-4x` spans four items across full width of page
+
+***/
+@include breakpoint('large') {
+  .o-grid-listing--feature-4x[class*="col@large"] {
+    margin-left: 0;
+  }
+}
+
+@each $name, $point in ('small', 'medium') {
+  @include breakpoint('#{$name}') {
+    .o-grid-listing--feature-4x[class*="col@#{$name}"] {
+      margin-left: 0;
+    }
+
+    .o-article__body.o-blocks .o-grid-listing--feature-4x.o-grid-listing--2-col\@#{$name} > * {
+      width: colspan(grid-cols-to-colspan(2), $name);
+    }
+
+    .o-article__body.o-blocks .o-grid-listing--feature-4x > li:nth-child(1),
+    .o-article__body.o-blocks .o-grid-listing--feature-4x > li:nth-child(3) {
+      margin-left: 0;
+    }
+  }
+}
+
+.o-article__body.o-blocks .o-grid-listing--feature-4x > li {
+  margin-top: 0;
+}
+
+.o-article__body.o-blocks .o-grid-listing--feature-4x > li:nth-child(1) {
+  margin-left: 0;
+}
+
+.o-article__body.o-blocks .o-grid-listing--feature-4x > li:nth-child(4) {
+  margin-right: 0;
+}
