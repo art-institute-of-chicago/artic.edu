@@ -227,7 +227,7 @@ class Slide extends JsonResource
         $this->media = $this->endBackgroundExperienceImages;
         return [
             'button' => 'Start Over',
-            '__option_credits' => !empty($this->end_credit_copy || $this->end_credit_subhead) ||
+            '__option_credits' => !empty($this->getString($this->end_credit_copy) || $this->end_credit_subhead) ||
             (count($this->endExperienceImages) > 0 ? count($this->endExperienceImages[0]['medias']) > 0 : false),
             'copy' => $this->end_copy,
             'modals' => [
@@ -235,7 +235,7 @@ class Slide extends JsonResource
                     'id' => 'end',
                     '__mediaType' => 'image',
                     'subhead' => $this->end_credit_subhead,
-                    'caption' => $this->end_credit_copy,
+                    'caption' => $this->getString($this->end_credit_copy),
                     '__option_caption' => !empty($this->end_credit_copy),
                     '__option_subhead' => !empty($this->end_credit_subhead),
                     '__option_copy' => !empty($this->end_credit_subhead),
@@ -359,5 +359,20 @@ class Slide extends JsonResource
                 'content' => isset($hotspot['description']) ? $hotspot['description'] : '',
             ];
         }, $hotspots);
+    }
+
+    private function getString($string)
+    {
+        if (empty($string) || !is_string($string)) {
+            return $string;
+        }
+
+        $rawString = trim(strip_tags($string));
+
+        if (empty($rawString)) {
+            return;
+        }
+
+        return $string;
     }
 }

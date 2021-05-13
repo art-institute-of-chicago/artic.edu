@@ -126,7 +126,6 @@ class Event extends AbstractModel
     const TEENS = 4;
     const RESEARCHERS_SCHOLARS = 5;
     const TEACHERS = 6;
-    const EVENING_ASSOCIATES = 7;
     const LUMINARY = 8;
 
     public static $eventAudiences = [
@@ -136,7 +135,6 @@ class Event extends AbstractModel
         self::TEENS => 'Teens',
         self::RESEARCHERS_SCHOLARS => 'Researchers/Scholars',
         self::TEACHERS => 'Teachers',
-        self::EVENING_ASSOCIATES => 'Evening Associates',
         self::LUMINARY => 'Luminary',
     ];
 
