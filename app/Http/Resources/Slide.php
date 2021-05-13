@@ -227,7 +227,7 @@ class Slide extends JsonResource
         $this->media = $this->endBackgroundExperienceImages;
         return [
             'button' => 'Start Over',
-            '__option_credits' => !empty($this->end_credit_copy || $this->end_credit_subhead) ||
+            '__option_credits' => !empty($this->getString($this->end_credit_copy) || $this->end_credit_subhead) ||
             (count($this->endExperienceImages) > 0 ? count($this->endExperienceImages[0]['medias']) > 0 : false),
             'copy' => $this->end_copy,
             'modals' => [
