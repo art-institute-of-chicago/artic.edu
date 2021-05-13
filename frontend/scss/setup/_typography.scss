@@ -429,6 +429,41 @@ $f-subheading-3: generate-font-obj(
 
 /***
 
+f-subheading-4
+
+```
+<p class="f-subheading-4">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-module-title-4: generate-font-obj(
+  (
+    font-family: $sans-serif-font,
+    font-family-loaded: $sans-serif-font--loaded,
+    font-loaded-class: $sans-serif-font-loaded-class,
+    settings: (
+      'xsmall': (font-size: 16, line-height: 24, font-weight: 500, letter-spacing: 0.01em, push: 1),
+      'small+': (font-size: 18, line-height: 28, font-weight: 500, push: 0),
+      'xlarge': (font-size: 19, line-height: 28, font-weight: 500, push: 1)
+    )
+  )
+);
+
+@mixin f-module-title-4() {
+  @include font-styles($f-module-title-4);
+  font-feature-settings: 'lnum' on;
+}
+
+%f-module-title-4,
+.f-module-title-4,
+%f-subheading-4,
+.f-subheading-4 {
+  @include f-module-title-4;
+}
+
+/***
+
 f-body
 
 ```
