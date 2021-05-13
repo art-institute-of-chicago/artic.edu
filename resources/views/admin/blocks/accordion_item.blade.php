@@ -10,6 +10,8 @@
     'label' => 'Description',
     'rows' => 4,
     'toolbarOptions' => [
+        ['header' => 2],
+        ['header' => 3],
         'bold', 'italic', 'underline', 'link', 'list-unordered',
     ],
 ])
