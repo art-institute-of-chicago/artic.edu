@@ -567,8 +567,15 @@ a.m-media__img:hover object {
   white-space: nowrap;
 }
 
-.m-media--m .m-viewer-virtualtour {
+.m-viewer-virtualtour {
   height: 50vh;
+  min-height: 600px;
+  @media screen and (max-width: 600px) {
+    min-height: 500px;
+  }
+  @media screen and (max-height: 400px) {
+    min-height: 350px;
+  }
 }
 
 .m-media--l .m-viewer-virtualtour {
