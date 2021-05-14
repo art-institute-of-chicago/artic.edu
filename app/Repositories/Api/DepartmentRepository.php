@@ -31,16 +31,16 @@ class DepartmentRepository extends BaseApiRepository
 
         // We always need to query API, if only to retrieve the total for UI.
         // However, we can get away with not retrieving any artworks!
-        $apiPerPage = 0;
+        $apiPerPage = 12;
 
         if ($item->should_append_artworks) {
             $this->maxArtworks = min($item->max_artworks, $this->maxArtworks);
-            $apiPerPage = max($this->maxArtworks - $customArtworks->count(), 0);
+            $apiPerPage = max($this->maxArtworks - $customArtworks->count(), 12);
         }
 
         $apiArtworks = $this->getApiRelatedArtworks($item, $customArtworks, $apiPerPage);
 
-        $relatedArtworks = $customArtworks->merge($apiArtworks->items());
+        $relatedArtworks = $customArtworks ? $customArtworks->merge($apiArtworks->items()) : $apiArtworks;
         $relatedArtworks = $relatedArtworks->slice(0, $this->maxArtworks)->values();
 
         return new LengthAwarePaginator($relatedArtworks, $apiArtworks->total(), $relatedArtworks->count());
