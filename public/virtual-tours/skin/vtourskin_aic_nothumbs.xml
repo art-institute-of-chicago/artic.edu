@@ -109,10 +109,11 @@
 		ondowncrop="0|67|52|56"
 		edge="center"
 		distorted="false"
+		zoom="true"
 		renderer="css3d"
-	  scale=".5"
-		onover.addevent="tween(scale,0.55);"
-	  onout.addevent="tween(scale,0.5);"
+	  scale=".4"
+		onover.addevent="tween(scale,0.5);"
+	  onout.addevent="tween(scale,0.4);"
 	/>
 
 	<!-- style for text boxes -->
@@ -145,10 +146,11 @@
 		ondowncrop="0|67|52|56"
 		edge="center"
 		distorted="false"
+		zoom="true"
 		renderer="css3d"
-	  scale=".5"
-		onover.addevent="tween(scale,0.55);"
-	  onout.addevent="tween(scale,0.5);"
+		scale=".4"
+		onover.addevent="tween(scale,0.5);"
+	  onout.addevent="tween(scale,0.4);"
 	/>
 
 	<!-- style for floor hotspots -->
