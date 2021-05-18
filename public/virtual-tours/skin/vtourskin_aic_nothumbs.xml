@@ -111,7 +111,7 @@
 		distorted="false"
 		zoom="true"
 		renderer="css3d"
-	  scale=".4"
+		onloaded.addevent="if(device.mobile, mul(scale,.75);, mul(scale,0.4))"
 		onover.addevent="tween(scale,0.5);"
 	  onout.addevent="tween(scale,0.4);"
 	/>
@@ -148,7 +148,7 @@
 		distorted="false"
 		zoom="true"
 		renderer="css3d"
-		scale=".4"
+		onloaded.addevent="if(device.mobile, mul(scale,.75);, mul(scale,0.4))"
 		onover.addevent="tween(scale,0.5);"
 	  onout.addevent="tween(scale,0.4);"
 	/>
