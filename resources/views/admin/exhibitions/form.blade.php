@@ -153,6 +153,16 @@
             'note' => 'Select a queue to display the wait time for',
             'max' => 1
         ])
+
+        @formField('wysiwyg', [
+            'name' => 'wait_time_override',
+            'label' => 'Wait time override',
+            'maxlength' => 255,
+            'note' => 'Override wait times with custom text',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="attributes" title="Attributes">
