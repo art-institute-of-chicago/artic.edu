@@ -87,14 +87,6 @@
 
 	<!-- skin styles -->
 
-	<!-- texbox / tooltip styles -->
-	<data name="textBoxStyles">
-		font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;
-		font-size:15px;
-		color:#ffffff;
-		line-height: 25px;
-	</data>
-
 	<!-- skin_base - the base skin image -->
 	<style name="skin_base" url="calc:vtourskinxmlpath.url + skin_settings.design_skin_images" />
 	<style name="skin_controls" url="calc:vtourskinxmlpath.url + skin_settings.design_skin_controls" />
@@ -138,6 +130,14 @@
 		onclick.addevent="tween_layer(calc(layer[get(name)].name));"
 		zorder="13"
 	/>
+
+	<!-- texbox / tooltip styles -->
+	<data name="textBoxStyles">
+		font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;
+		font-size:1.2em;
+		color:#ffffff;
+		line-height: 25px;
+	</data>
 
 	<!-- style for artwork hotspots -->
 	<style type="image" name="artwork_hotspot"
