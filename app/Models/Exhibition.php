@@ -57,6 +57,7 @@ class Exhibition extends AbstractModel
         'product_section_title',
         'product_section_title_link_label',
         'product_section_title_link_href',
+        'wait_time_override',
     ];
 
     protected $casts = [

@@ -32,6 +32,9 @@
   @include tucked-margin-top($f-module-title-2, ('xsmall': 76));
 }
 
+.o-blocks > h4:not([class*='f-']) {
+  @extend %f-module-title-4;
+}
 /*****/
 
 .o-blocks > .f-subheading-1 {
@@ -248,6 +251,10 @@
 .o-blocks > h3:not([class*='f-']),
 .o-blocks > *[class*='f-'] .f-link {
   //@include untuck;
+}
+
+.o-blocks > h4:not([class*='f-']) {
+  margin-top: 28px;
 }
 
 .o-blocks > p:not([class*='f-']),

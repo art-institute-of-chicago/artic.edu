@@ -72,6 +72,11 @@ return [
             'level' => 'error',
         ],
 
+        # WEB-2129: Optional channel to disable log files
+        'none' => [
+            'driver' => 'monolog',
+            'handler' => NullHandler::class,
+        ],
     ],
 
 ];

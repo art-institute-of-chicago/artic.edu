@@ -87,14 +87,6 @@
 
 	<!-- skin styles -->
 
-	<!-- texbox / tooltip styles -->
-	<data name="textBoxStyles">
-		font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;
-		font-size:15px;
-		color:#ffffff;
-		line-height: 25px;
-	</data>
-
 	<!-- skin_base - the base skin image -->
 	<style name="skin_base" url="calc:vtourskinxmlpath.url + skin_settings.design_skin_images" />
 	<style name="skin_controls" url="calc:vtourskinxmlpath.url + skin_settings.design_skin_controls" />
@@ -109,10 +101,11 @@
 		ondowncrop="0|67|52|56"
 		edge="center"
 		distorted="false"
+		zoom="true"
 		renderer="css3d"
-	  scale=".5"
-		onover.addevent="tween(scale,0.55);"
-	  onout.addevent="tween(scale,0.5);"
+		onloaded.addevent="if(device.mobile, mul(scale,.75);, mul(scale,0.4))"
+		onover.addevent="tween(scale,0.5);"
+	  onout.addevent="tween(scale,0.4);"
 	/>
 
 	<!-- style for text boxes -->
@@ -138,6 +131,14 @@
 		zorder="13"
 	/>
 
+	<!-- texbox / tooltip styles -->
+	<data name="textBoxStyles">
+		font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;
+		font-size:1.2em;
+		color:#ffffff;
+		line-height: 25px;
+	</data>
+
 	<!-- style for artwork hotspots -->
 	<style type="image" name="artwork_hotspot"
 		url="vtourskin_aic_artwork_hotspot.png"
@@ -145,10 +146,11 @@
 		ondowncrop="0|67|52|56"
 		edge="center"
 		distorted="false"
+		zoom="true"
 		renderer="css3d"
-	  scale=".5"
-		onover.addevent="tween(scale,0.55);"
-	  onout.addevent="tween(scale,0.5);"
+		onloaded.addevent="if(device.mobile, mul(scale,.75);, mul(scale,0.4))"
+		onover.addevent="tween(scale,0.5);"
+	  onout.addevent="tween(scale,0.4);"
 	/>
 
 	<!-- style for floor hotspots -->

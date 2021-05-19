@@ -299,7 +299,7 @@ class Artwork extends BaseApiModel
 
     public function getTitleSlugAttribute()
     {
-        return getUtf8Slug($this->title);
+        return getUtf8Slug(truncateStr($this->title, 500));
     }
 
     private function getImageCopyright(array $image)

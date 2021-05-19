@@ -118,7 +118,7 @@
             'hr', 'split_block', 'tour_stop', 'button', 'mobile_app',
             '3d_model', '360_embed', '360_modal',
             'gallery', 'artworks', 'gallery_new', 'mirador_embed', 'mirador_modal',
-            'feature_2x', 'feature_4x'
+            'feature_2x', 'feature_4x', 'vtour_embed',
         ])
     ])
 @stop
@@ -152,6 +152,16 @@
             'label' => 'Wait Time - Member',
             'note' => 'Select a queue to display the wait time for',
             'max' => 1
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'wait_time_override',
+            'label' => 'Wait time override',
+            'maxlength' => 255,
+            'note' => 'Override wait times with custom text',
+            'toolbarOptions' => [
+                'italic'
+            ],
         ])
     </a17-fieldset>
 

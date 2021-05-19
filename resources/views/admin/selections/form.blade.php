@@ -59,7 +59,7 @@
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed',
             'artwork', 'hr', 'tour_stop', 'button', '3d_model',
-            'gallery', 'artworks', 'gallery_new',
+            'gallery', 'artworks', 'gallery_new', 'vtour_embed',
         ])
     ])
 @stop

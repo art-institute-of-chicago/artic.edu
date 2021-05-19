@@ -167,6 +167,12 @@ class ExhibitionPresenter extends BasePresenter
         return [];
     }
 
+    public function wait_time_override() {
+        if (config('app.env') != 'production' || (date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 18)) {
+            return $this->entity->wait_time_override;
+        }
+    }
+
     protected function relatedEventsLink() {
         $count = $this->entity->eventsCount();
 
