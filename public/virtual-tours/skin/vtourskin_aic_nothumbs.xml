@@ -102,7 +102,6 @@
 		edge="center"
 		distorted="false"
 		zoom="true"
-		renderer="css3d"
 		onloaded.addevent="if(device.mobile, mul(scale,.75);, mul(scale,0.4))"
 		onover.addevent="tween(scale,0.5);"
 	  onout.addevent="tween(scale,0.4);"
@@ -136,7 +135,7 @@
 		font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;
 		font-size:1.2em;
 		color:#ffffff;
-		line-height: 25px;
+		line-height:25px;
 	</data>
 
 	<!-- style for artwork hotspots -->
@@ -147,7 +146,6 @@
 		edge="center"
 		distorted="false"
 		zoom="true"
-		renderer="css3d"
 		onloaded.addevent="if(device.mobile, mul(scale,.75);, mul(scale,0.4))"
 		onover.addevent="tween(scale,0.5);"
 	  onout.addevent="tween(scale,0.4);"
@@ -223,7 +221,6 @@
 		url="vtourskin_aic_infoicon.png"
 		edge="center"
 		distorted="false"
-		renderer="css3d"
 	  scale=".4"
 		align="center"
 		zorder="12"
@@ -234,7 +231,6 @@
 		url="vtourskin_aic_closeicon.png"
 		edge="center"
 		distorted="false"
-		renderer="css3d"
 	  scale=".4"
 		align="center"
 		zorder="12"
