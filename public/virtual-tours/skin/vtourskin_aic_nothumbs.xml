@@ -108,35 +108,22 @@
 	/>
 
 	<!-- style for text boxes -->
-	<style type="text" name="textbox_style"
+	<style type="container" name="textbox_style"
 		align="lefttop"
 		x="40"
 		y="0"
-		css="data:textBoxStyles"
-		autowidth="false"
-		autoheight="true"
-		vcenter="false"
-		padding="30"
-		wordwrap="true"
-		bg="true"
+		width="300"
+		height="200"
+		bgborder="0"
 		bgcolor="0x000000"
 		bgalpha=".75"
-		bgborder="0"
-		bgroundedge="0"
+		bgcapture="true"
+		handcursor="false"
+		alpha="0"
+		zorder="13"
 		interactivecontent="true"
 		visible="false"
-		alpha="0.0"
-		onclick.addevent="tween_layer(calc(layer[get(name)].name));"
-		zorder="13"
 	/>
-
-	<!-- texbox / tooltip styles -->
-	<data name="textBoxStyles">
-		font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;
-		font-size:1.2em;
-		color:#ffffff;
-		line-height:25px;
-	</data>
 
 	<!-- style for artwork hotspots -->
 	<style type="image" name="artwork_hotspot"
@@ -231,6 +218,7 @@
 		url="vtourskin_aic_closeicon.png"
 		edge="center"
 		distorted="false"
+
 	  scale=".4"
 		align="center"
 		zorder="12"
@@ -319,14 +307,14 @@
 			<layer name="skin_control_bar_buttons" type="container" align="leftbottom" width="100%" height="get:skin_settings.controlbar_height">
 				<layer name="skin_btn_navi" type="container" align="center" x="0">
 					<!-- left arrow -->
-					<layer name="skin_btn_left"  style="skin_controls" crop="0|94|54|54"  onovercrop="0|0|54|54" ondowncrop="0|0|54|54" align="center"      x="-35" y="0"  scale=".55"
+					<layer name="skin_btn_left"  style="skin_controls" crop="0|94|54|54"  onovercrop="0|0|54|54" ondowncrop="0|0|54|54" align="center" x="-35" y="0"  scale=".55"
 					onover="set(layer[skin_control_bar_bg].bgalpha, .6);"
 					ondown="set(hlookat_moveforce,-1); set(layer[skin_control_bar_bg].bgalpha, .7);"
 					onup="set(hlookat_moveforce,0);
 					if(device.handheld, set(layer[skin_control_bar_bg].bgalpha, .5), set(layer[skin_control_bar_bg].bgalpha, .6));"
 					/>
 					<!-- right arrow -->
-					<layer name="skin_btn_right" style="skin_controls" crop="66|94|54|54" onovercrop="66|0|54|54" ondowncrop="66|0|54|54" align="center"      x="35"  y="0"  scale="0.55"
+					<layer name="skin_btn_right" style="skin_controls" crop="66|94|54|54" onovercrop="66|0|54|54" ondowncrop="66|0|54|54" align="center" x="35"  y="0"  scale="0.55"
 					onover="set(layer[skin_control_bar_bg].bgalpha, .6);"
 					ondown="set(hlookat_moveforce,+1); set(layer[skin_control_bar_bg].bgalpha, .7);"
 					onup="set(hlookat_moveforce,0);
@@ -1120,12 +1108,15 @@
 			addlayer(get(layername));
 			assignstyle(layer[get(layername)],'textbox_style');
 			<!-- add text content -->
-			set(textcontent, get(layername));
-			txtadd(layer[get(layername)].html, 'data:', get(textcontent));
+			set(textlayer, get(layername));
+			set(textcontent, get(data[get(textlayer)].content));
+			txtadd(layer[get(layername)].onloaded, 'add_html_text("', get(textcontent),'")');
+
 			<!-- set up text box parent, width, placement -->
 			if(stagewidth LT 500,
 				set(layer[get(layername)].parent, );
 				set(layer[get(layername)].width, calc(stagewidth));
+				set(layer[get(layername)].height, calc(stagewidth*.80));
 				set(layer[get(layername)].x, 0);
 			,
 				if (get(parenttype) == 'h',
@@ -1143,10 +1134,44 @@
 		tween_layer(get(layername));
 	</action>
 
+	<!-- arguments: 1=htmlcode -->
+	<action name="add_html_text" type="Javascript"><![CDATA[
+
+		var div = document.createElement("div");
+
+		// basic styles to fit into the layer size and allow scrolling:
+		div.style.width = "100%";
+		div.style.height = "100%";
+		div.style.boxSizing = "border-box";
+		div.style.overflow = "auto";
+		div.style.fontFamily = "Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif";
+		div.style.fontSize = "1.2em";
+		div.style.color = "#ffffff";
+		div.style.lineHeight="25px";
+		div.style.padding="30px";
+
+		function stopPropagation(e){ e.stopPropagation(); }
+		function preventDefault(e){ e.preventDefault(); }
+
+		// enable browsed-based mouse-wheel and touch-scrolling support:
+		div.addEventListener("wheel", stopPropagation, true);
+		div.addEventListener("mousewheel", stopPropagation, true);
+		div.addEventListener("DOMMouseScroll", stopPropagation, true);
+		div.addEventListener("touchstart", function(event){ if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){ /* avoid the iOS 'overscrolling' for fullpage viewers */ var bs = document.body.parentNode.style; bs.position="fixed"; bs.top=0; bs.left=0; bs.right=0; bs.bottom=0; } krpano.control.preventTouchEvents = false; event.stopPropagation(); }, true);
+		div.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
+		div.addEventListener("gesturestart", preventDefault, true);
+
+		// add the html code:
+		div.innerHTML = args[1];
+
+		// add the div to the layer element:
+		caller.sprite.appendChild(div);
+	]]></action>
+
 	<!-- remove textboxes -->
 	<action name="removeall_textboxes" scope="local">
 		for(set(i,0), i LT layer.count, inc(i),
-			if(layer[get(i)].type == text,
+			if(layer[get(i)].style == textbox_style,
 				removelayer(get(layer[get(i)].name), true);
 				dec(i);
 			);
@@ -1216,6 +1241,7 @@
 		assignstyle(layer[get(infoicon_layername)],'infoicon_style');
 		txtadd(layer[get(infoicon_layername)].parent, 'layer[', get(infobutton_layername), ']');
 
+		<!-- set up text boxes -->
 		txtadd(layer[get(infoicon_layername)].onclick, 'setup_textbox(', get(hotspotname), ', l)');
 
 		<!-- add close button layers -->
