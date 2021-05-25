@@ -307,18 +307,20 @@
 			<layer name="skin_control_bar_buttons" type="container" align="leftbottom" width="100%" height="get:skin_settings.controlbar_height">
 				<layer name="skin_btn_navi" type="container" align="center" x="0">
 					<!-- left arrow -->
-					<layer name="skin_btn_left"  style="skin_controls" crop="0|94|54|54"  onovercrop="0|0|54|54" ondowncrop="0|0|54|54" align="center" x="-35" y="0"  scale=".55"
-					onover="set(layer[skin_control_bar_bg].bgalpha, .6);"
+					<layer name="skin_btn_left"  style="skin_controls" crop="0|0|54|54" align="center" x="-35" y="0"  scale=".55"
+					onover="set(layer[skin_control_bar_bg].bgalpha, .6); set(layer[skin_btn_right].crop, 66|94|54|54);"
 					ondown="set(hlookat_moveforce,-1); set(layer[skin_control_bar_bg].bgalpha, .7);"
 					onup="set(hlookat_moveforce,0);
 					if(device.handheld, set(layer[skin_control_bar_bg].bgalpha, .5), set(layer[skin_control_bar_bg].bgalpha, .6));"
+					onout="set(layer[skin_btn_right].crop, 66|0|54|54);"
 					/>
 					<!-- right arrow -->
-					<layer name="skin_btn_right" style="skin_controls" crop="66|94|54|54" onovercrop="66|0|54|54" ondowncrop="66|0|54|54" align="center" x="35"  y="0"  scale="0.55"
-					onover="set(layer[skin_control_bar_bg].bgalpha, .6);"
+					<layer name="skin_btn_right" style="skin_controls" crop="66|0|54|54" align="center" x="35"  y="0"  scale="0.55"
+					onover="set(layer[skin_control_bar_bg].bgalpha, .6); set(layer[skin_btn_left].crop, 0|94|54|54);"
 					ondown="set(hlookat_moveforce,+1); set(layer[skin_control_bar_bg].bgalpha, .7);"
 					onup="set(hlookat_moveforce,0);
 				 	if(device.handheld, set(layer[skin_control_bar_bg].bgalpha, .5), set(layer[skin_control_bar_bg].bgalpha, .6));"
+					onout="set(layer[skin_btn_left].crop, 0|0|54|54);"
 					/>
 				</layer>
 			</layer>
@@ -1116,7 +1118,6 @@
 			if(stagewidth LT 500,
 				set(layer[get(layername)].parent, );
 				set(layer[get(layername)].width, calc(stagewidth));
-				set(layer[get(layername)].height, calc(stagewidth*.80));
 				set(layer[get(layername)].x, 0);
 			,
 				if (get(parenttype) == 'h',
