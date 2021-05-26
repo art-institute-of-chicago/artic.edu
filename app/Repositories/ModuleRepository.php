@@ -5,8 +5,12 @@ namespace App\Repositories;
 use BadMethodCallException;
 use A17\Twill\Repositories\ModuleRepository as BaseModuleRepository;
 
-class ModuleRepository extends BaseModuleRepository
+use App\Repositories\Behaviors\HandleRelatedBrowsers;
+
+abstract class ModuleRepository extends BaseModuleRepository
 {
+    use HandleRelatedBrowsers;
+
     /**
      * Remove trailing newlines from WYSIWYG fields
      */
@@ -41,5 +45,4 @@ class ModuleRepository extends BaseModuleRepository
             abort(404);
         }
     }
-
 }

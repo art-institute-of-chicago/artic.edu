@@ -13,25 +13,15 @@ class VideoRepository extends ModuleRepository
 {
     use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
 
+    protected $relatedBrowsers = [
+        'related_videos' => [
+            'relation' => 'related_videos'
+        ],
+    ];
+
     public function __construct(Video $model)
     {
         $this->model = $model;
-    }
-
-    public function afterSave($object, $fields)
-    {
-        $this->updateRelatedBrowser($object, $fields, 'related_videos');
-
-        parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-
-        $fields['browsers']['related_videos'] = $this->getFormFieldsForRelatedBrowser($object, 'related_videos');
-
-        return $fields;
     }
 
     public function getShowData($item, $slug = null, $previewPage = null)

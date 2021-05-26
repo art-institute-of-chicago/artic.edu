@@ -16,6 +16,12 @@ class PressReleaseRepository extends ModuleRepository
     use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
     // HandleTranslations,
 
+    protected $browsers = [
+        'sponsors' => [
+            'routePrefix' => 'exhibitions_events',
+        ],
+    ];
+
     public function __construct(PressRelease $model)
     {
         $this->model = $model;
@@ -26,22 +32,6 @@ class PressReleaseRepository extends ModuleRepository
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
 
         return parent::hydrate($object, $fields);
-    }
-
-    public function afterSave($object, $fields)
-    {
-        $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
-
-        parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-
-        $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
-
-        return $fields;
     }
 
     // Show data, moved here to allow preview

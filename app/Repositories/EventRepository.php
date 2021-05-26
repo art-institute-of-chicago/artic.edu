@@ -22,6 +22,15 @@ class EventRepository extends ModuleRepository
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
+    protected $browsers = [
+        'sponsors' => [
+            'routePrefix' => 'exhibitions_events',
+        ],
+        'events' => [
+            'routePrefix' => 'exhibitions_events',
+        ]
+    ];
+
     public function __construct(Event $model)
     {
         $this->model = $model;
@@ -120,8 +129,6 @@ class EventRepository extends ModuleRepository
     {
 
         $this->updateBrowserApiRelated($object, $fields, ['ticketedEvent']);
-        $this->updateBrowser($object, $fields, 'sponsors');
-        $this->updateBrowser($object, $fields, 'events');
 
         $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
 
@@ -136,8 +143,6 @@ class EventRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($object);
 
-        $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
-        $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'exhibitions_events');
         $fields['browsers']['ticketedEvent'] = $this->getFormFieldsForBrowserApi($object, 'ticketedEvent', 'App\Models\Api\TicketedEvent', 'exhibitions_events', 'title', 'ticketedEvent');
 
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'dateRules', 'DateRule');
