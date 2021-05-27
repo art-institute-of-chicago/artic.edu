@@ -30,25 +30,14 @@ class HomeFeatureRepository extends ModuleRepository
         ],
     ];
 
+    protected $apiBrowsers = [
+        'exhibitions' => [
+            'routePrefix' => 'exhibitions_events'
+        ],
+    ];
+
     public function __construct(HomeFeature $model)
     {
         $this->model = $model;
     }
-
-    public function afterSave($object, $fields)
-    {
-        $this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
-
-        parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-
-        $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events');
-
-        return $fields;
-    }
-
 }

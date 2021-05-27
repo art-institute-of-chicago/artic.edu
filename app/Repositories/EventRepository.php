@@ -31,6 +31,10 @@ class EventRepository extends ModuleRepository
         ]
     ];
 
+    protected $apiBrowsers = [
+        'ticketedEvent',
+    ];
+
     public function __construct(Event $model)
     {
         $this->model = $model;
@@ -127,11 +131,6 @@ class EventRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-
-        $this->updateBrowserApiRelated($object, $fields, ['ticketedEvent']);
-
-        $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
-
         $this->updateRepeater($object, $fields, 'dateRules', 'DateRule');
 
         $object->programs()->sync($fields['programs'] ?? []);
@@ -142,8 +141,6 @@ class EventRepository extends ModuleRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-
-        $fields['browsers']['ticketedEvent'] = $this->getFormFieldsForBrowserApi($object, 'ticketedEvent', 'App\Models\Api\TicketedEvent', 'exhibitions_events', 'title', 'ticketedEvent');
 
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'dateRules', 'DateRule');
 

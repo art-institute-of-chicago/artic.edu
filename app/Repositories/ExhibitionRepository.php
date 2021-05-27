@@ -31,6 +31,17 @@ class ExhibitionRepository extends BaseApiRepository
         ]
     ];
 
+    protected $apiBrowsers = [
+        'exhibitions' => [
+            'routePrefix' => 'exhibitions_events'
+        ],
+        'shopItems',
+        'waitTimes',
+        'waitTimesMember' => [
+            'moduleName' => 'waitTimes'
+        ],
+    ];
+
     public function getBlockBrowsers($block) {
         return array_merge($this->getApiBlockBrowsers($block), $this->getFeatureRelatedBlockBrowsers($block));
     }
@@ -52,10 +63,6 @@ class ExhibitionRepository extends BaseApiRepository
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
 
-        $this->updateBrowserApiRelated($object, $fields, ['exhibitions', 'shopItems', 'waitTimes', 'waitTimesMember']);
-
-        $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
-
         $this->updateRepeater($object, $fields, 'offers', 'Offer');
 
         parent::afterSave($object, $fields);
@@ -64,11 +71,6 @@ class ExhibitionRepository extends BaseApiRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-
-        $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events');
-        $fields['browsers']['shopItems'] = $this->getFormFieldsForBrowserApi($object, 'shopItems', 'App\Models\Api\ShopItem', 'general');
-        $fields['browsers']['waitTimes'] = $this->getFormFieldsForBrowserApi($object, 'waitTimes', 'App\Models\Api\WaitTime', 'exhibitions_events');
-        $fields['browsers']['waitTimesMember'] = $this->getFormFieldsForBrowserApi($object, 'waitTimesMember', 'App\Models\Api\WaitTime', 'exhibitions_events');
 
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'offers', 'Offer');
 

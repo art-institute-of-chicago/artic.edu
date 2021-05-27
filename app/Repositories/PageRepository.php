@@ -76,6 +76,46 @@ class PageRepository extends ModuleRepository
         // sure it was ever implemented. ntrivedi, 05/26/21
         //'homeExperiences',
     ];
+
+    protected $apiBrowsers = [
+        // Homepage landing
+        'homeExhibitions' => [
+            'moduleName' => 'exhibitions',
+            'routePrefix' => 'exhibitions_events'
+        ],
+        'homeShopItems' => [
+            'moduleName' => 'shopItems',
+        ],
+        'homeArtworks' => [
+            'moduleName' => 'artworks',
+        ],
+
+        // Exhibition and events landing
+        'exhibitionsExhibitions' => [
+            'moduleName' => 'exhibitions',
+            'routePrefix' => 'exhibitions_events'
+        ],
+        'exhibitionsCurrent' => [
+            'moduleName' => 'exhibitions',
+            'routePrefix' => 'exhibitions_events'
+        ],
+        'exhibitionsUpcoming' => [
+            'moduleName' => 'exhibitions',
+            'routePrefix' => 'exhibitions_events'
+        ],
+        'exhibitionsUpcomingListing' => [
+            'moduleName' => 'exhibitions',
+            'routePrefix' => 'exhibitions_events'
+        ],
+
+        // Collection landing
+        'artCategoryTerms' => [
+            'moduleName' => 'categoryTerms',
+            'routePrefix' => 'collection',
+        ],
+
+    ];
+
     public function __construct(Page $model)
     {
         $this->model = $model;
@@ -106,9 +146,6 @@ class PageRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        // General
-        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'homeArtworks', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
-
         // Homepage
         $this->updateRepeater($object, $fields, 'homeArtists', 'HomeArtist');
 
@@ -135,16 +172,7 @@ class PageRepository extends ModuleRepository
         $fields = parent::getFormFields($object);
 
         // Homepage
-        $fields['browsers']['homeExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'homeExhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
-        $fields['browsers']['homeShopItems'] = $this->getFormFieldsForBrowserApi($object, 'homeShopItems', 'App\Models\Api\ShopItem', 'general');
-        $fields['browsers']['homeArtworks'] = $this->getFormFieldsForBrowserApi($object, 'homeArtworks', 'App\Models\Api\Artwork', 'collection', 'title', 'artworks');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'homeArtists', 'HomeArtist');
-
-        // Exhibition & Events
-        $fields['browsers']['exhibitionsUpcomingListing'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcomingListing', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
-        $fields['browsers']['exhibitionsExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsExhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
-        $fields['browsers']['exhibitionsCurrent'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsCurrent', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
-        $fields['browsers']['exhibitionsUpcoming'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcoming', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
+        //$fields = $this->getFormFieldsForRepeater($object, $fields, 'homeArtists', 'HomeArtist');
 
         // Visits
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'admissions', 'Admission');
@@ -156,7 +184,6 @@ class PageRepository extends ModuleRepository
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'whatToExpects', 'WhatToExpect');
 
         // Art & Ideas
-        $fields['browsers']['artCategoryTerms'] = $this->getFormFieldsForBrowserApi($object, 'artCategoryTerms', 'App\Models\Api\CategoryTerm', 'collection', 'title', 'categoryTerms');
         $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [
             'articles' => false,
             'experiences' => false
