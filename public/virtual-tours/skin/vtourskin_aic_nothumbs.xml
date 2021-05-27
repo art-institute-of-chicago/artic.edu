@@ -108,12 +108,13 @@
 	/>
 
 	<!-- style for text boxes -->
-	<style type="container" name="textbox_style"
+	<style type="text" name="textbox_style"
 		align="lefttop"
 		x="40"
 		y="0"
-		width="300"
-		height="200"
+		autowidth="false"
+		autoheight="true"
+		maxheight="200"
 		bgborder="0"
 		bgcolor="0x000000"
 		bgalpha=".75"
@@ -160,13 +161,16 @@
 		bgcapture="true"
 		visible="false"
 		alpha="0"
-		onclick="tween_layer(get(layer[get(name)].name));"
+		onclick="removeall_textboxes();"
 		zorder="10"
+		handcursor="false"
 	/>
 
 	<style type="image" name="artwork_image_style"
 		align="center"
 		zorder="11"
+		handcursor="false"
+		onclick="removeall_textboxes();"
 	/>
 
 	<!-- style for info button layer -->
@@ -280,7 +284,9 @@
 						<layer name="skin_thumbs_scrollleft"  style="skin_base" crop="0|64|64|64"  align="lefttop"  edge="left"  x="5" y="50" scale="0.5" zorder="2" alpha="1.0" ondown="asyncloop(pressed, layer[skin_thumbs].scrollby(+2,0));" visible="false" />
 						<layer name="skin_thumbs_scrollright" style="skin_base" crop="64|64|64|64" align="righttop" edge="right" x="5" y="50" scale="0.5" zorder="2" alpha="1.0" ondown="asyncloop(pressed, layer[skin_thumbs].scrollby(-2,0));" visible="false" />
 						<layer name="skin_thumbs_scrollindicator" type="container" bgcolor="0xFFFFFF" bgalpha="0.25" align="lefttop" width="0" y="100" height="2" visible="false" enabled="false" />
-						<layer name="skin_thumbs" state="closed" url.flash="%VIEWER%/plugins/scrollarea.swf" url.html5="%VIEWER%/plugins/scrollarea.js" direction="h" align="top" width="100%" height="100" zorder="1" onloaded="skin_updatescroll();" onscroll="skin_updatethumbscroll();" />
+						<!-- may need this later for scrolling thumbnails
+							<layer name="skin_thumbs" state="closed" url.flash="%VIEWER%/plugins/scrollarea.swf" url.html5="plugins/scrollarea.js" direction="h" align="top" width="100%" height="100" zorder="1" onloaded="skin_updatescroll();" onscroll="skin_updatethumbscroll();" />
+						-->
 					</layer>
 					<layer name="skin_map_container" type="container" align="leftop" width="100%" height="100%" bgroundedge="get:skin_settings.design_bgroundedge" maskchildren="true">
 						<layer name="skin_map" state="closed" url="" visible="false" align="lefttop" width="100%" height="50%" x="0" y="0" zorder="1" lat="0" lng="0" zoom="10" bgalpha="0" maptype="satellite" onmapready="skin_addmapspots();">
@@ -1123,9 +1129,12 @@
 				if (get(parenttype) == 'h',
 					txtadd(layer[get(layername)].parent, 'hotspot[', get(layername), ']');
 					change_align(get(layername));
+
 					,
 					txtreplace(tombstone_parent, layername, 'tombstone_', 'infoicon_');
 					txtadd(layer[get(layername)].parent, 'layer[', get(tombstone_parent), ']');
+					set(layer[get(layername)].maxheight, 900);
+
 				);
 				set(layer[get(layername)].width, 400);
 				set(layer[get(layername)].x, 40);
@@ -1150,6 +1159,7 @@
 		div.style.color = "#ffffff";
 		div.style.lineHeight="25px";
 		div.style.padding="30px";
+		div.style.backgroundColor = "rgba(0,0,0,0.75)";
 
 		function stopPropagation(e){ e.stopPropagation(); }
 		function preventDefault(e){ e.preventDefault(); }
@@ -1158,7 +1168,15 @@
 		div.addEventListener("wheel", stopPropagation, true);
 		div.addEventListener("mousewheel", stopPropagation, true);
 		div.addEventListener("DOMMouseScroll", stopPropagation, true);
-		div.addEventListener("touchstart", function(event){ if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){ /* avoid the iOS 'overscrolling' for fullpage viewers */ var bs = document.body.parentNode.style; bs.position="fixed"; bs.top=0; bs.left=0; bs.right=0; bs.bottom=0; } krpano.control.preventTouchEvents = false; event.stopPropagation(); }, true);
+		div.addEventListener("touchstart", function(event){
+			if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){
+				/* avoid the iOS 'overscrolling' for fullpage viewers */
+				var bs = document.body.parentNode.style;
+				bs.position="fixed";
+				bs.top=0; bs.left=0; bs.right=0; bs.bottom=0;
+			}
+			krpano.control.preventTouchEvents = false; event.stopPropagation();
+		}, true);
 		div.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
 		div.addEventListener("gesturestart", preventDefault, true);
 
@@ -1178,6 +1196,10 @@
 			);
 		);
 	</action>
+
+	<events
+		onmousedown="removeall_textboxes();"
+	/>
 
 	<!-- retrieve artwork information via data hub api -->
 	<action name="grab_artwork" type="Javascript"><![CDATA[
