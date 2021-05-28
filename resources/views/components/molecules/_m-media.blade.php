@@ -69,16 +69,10 @@
     }
 
     if ($type == 'embed') {
-        // make embeds lazy load
         if (!$poster) {
             $fullscreen = false;
         }
-        if (!$fullscreen and !$poster) {
-            $media['embed'] = preg_replace('/src/i', 'data-src', $media['embed']);
-        }
-        if (!$fullscreen and $poster) {
-            $media['embed'] = preg_replace('/src/i', 'data-embed-src', $media['embed']);
-        }
+
         $imageSettings['ratio'] = '16:9';
 
         // Allow soundcloud embed to expand in height - see _m-media.scss
