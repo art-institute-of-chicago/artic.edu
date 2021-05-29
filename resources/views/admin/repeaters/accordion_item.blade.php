@@ -1,3 +1,8 @@
+@twillRepeaterTitle('Accordion Item')
+@twillRepeaterTrigger('Add accordion item')
+@twillRepeaterComponent('a17-block-accordion_item')
+@twillRepeaterMax(20)
+
 @formField('input', [
     'name' => 'header',
     'label' => 'Header',

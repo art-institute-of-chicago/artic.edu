@@ -1,3 +1,7 @@
+@twillRepeaterTitle('Gallery Item')
+@twillRepeaterTrigger('Add Image')
+@twillRepeaterComponent('a17-block-gallery_item')
+
 @formField('medias', [
     'name' => 'image',
     'label' => 'Image',

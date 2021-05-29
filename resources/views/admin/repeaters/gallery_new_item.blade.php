@@ -1,3 +1,7 @@
+@twillRepeaterTitle('Gallery Item')
+@twillRepeaterTrigger('Add gallery item')
+@twillRepeaterComponent('a17-block-gallery_new_item')
+
 @formField('radios', [
     'name' => 'gallery_item_type',
     'label' => 'Gallery item type',

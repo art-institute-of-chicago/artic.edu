@@ -1,4 +1,7 @@
-@twillBlockTitle('title')
+@twillRepeaterTitle('What to Expect')
+@twillRepeaterTrigger('Add item')
+@twillRepeaterComponent('a17-block-what_to_expect')
+@twillRepeaterMax(9)
 
     <div class="col">
         @formField('select', [

@@ -1,4 +1,7 @@
-@twillBlockTitle('title')
+@twillRepeaterTitle('Date Rule')
+@twillRepeaterTrigger('Add Date Rule')
+@twillRepeaterComponent('a17-block-date_rule')
+@twillRepeaterMax(10)
 
 @formField('select', [
     'name' => 'type',

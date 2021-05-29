@@ -1,3 +1,8 @@
+@twillRepeaterTitle('Museum Address')
+@twillRepeaterTrigger('Add Museum Address')
+@twillRepeaterComponent('a17-block-locations')
+@twillRepeaterMax(10)
+
 @formField('input', [
     'name' => 'name',
     'label' => 'Entrance',

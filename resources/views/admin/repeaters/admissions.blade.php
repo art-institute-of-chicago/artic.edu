@@ -1,3 +1,8 @@
+@twillRepeaterTitle('Admission')
+@twillRepeaterTrigger('Add admission')
+@twillRepeaterComponent('a17-block-admissions')
+@twillRepeaterMax(10)
+
 @formField('input', [
     'name' => 'title',
     'label' => 'Title',

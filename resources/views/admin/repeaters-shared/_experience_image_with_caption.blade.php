@@ -1,6 +1,4 @@
-@extends('admin.blocks.experience_image')
-
-@twillBlockTitle('title')
+@extends('admin.repeaters.shared._experience_image')
 
 @section('caption')
     @formField('wysiwyg', [

@@ -1,3 +1,8 @@
+@twillRepeaterTitle('FAQ')
+@twillRepeaterTrigger('Add FAQ')
+@twillRepeaterComponent('a17-block-faqs')
+@twillRepeaterMax(5)
+
     <div class="col">
         @formField('input', [
             'name' => 'title',
