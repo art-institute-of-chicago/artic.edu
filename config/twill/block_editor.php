@@ -609,14 +609,4 @@ return [
         'upload_manifest_file',
         'vtour_xml_file',
     ],
-    'browser_route_prefixes' => [
-        'events' => 'exhibitions_events',
-        'exhibitions' => 'exhibitions_events',
-        'selections' => 'collection',
-        'artworks' => 'collection',
-        'authors' => 'collection',
-        'selections' => 'collection',
-        'articles' => 'collection.articles_publications',
-        'experiences' => 'collection.interactive_features',
-    ],
 ];

@@ -44,8 +44,12 @@ class PageRepository extends ModuleRepository
         //     'routePrefix' => 'collection.articles_publications',
         //     'moduleName' => 'categories',
         // ],
-        'articles',
-        'experiences',
+        'articles' => [
+            'routePrefix' => 'collection.articles_publications'
+        ],
+        'experiences' => [
+            'routePrefix' => 'collection.interactive_features'
+        ],
         'printedPublications' => [
             'routePrefix' => 'collection.articles_publications'
         ],
