@@ -11,6 +11,12 @@ class DepartmentRepository extends BaseApiRepository
 {
     use HandleMedias, HandleApiRelations;
 
+    protected $apiBrowsers = [
+        'customRelatedArtworks' => [
+            'moduleName' => 'artworks'
+        ]
+    ];
+
     public function __construct(Department $model)
     {
         $this->model = $model;
@@ -18,8 +24,6 @@ class DepartmentRepository extends BaseApiRepository
 
     public function afterSave($object, $fields)
     {
-        $this->updateBrowserApiRelated($object, $fields, ['customRelatedArtworks']);
-
         $this->updateMultiBrowserApiRelated($object, $fields, 'related_items', [
             'articles' => false,
             'digitalPublications' => false,
@@ -36,8 +40,6 @@ class DepartmentRepository extends BaseApiRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-
-        $fields['browsers']['customRelatedArtworks'] = $this->getFormFieldsForBrowserApi($object, 'customRelatedArtworks', 'App\Models\Api\Artwork', 'collection', 'title', 'artworks');
 
         $fields['browsers']['related_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'related_items', [
             'experiences' => [
