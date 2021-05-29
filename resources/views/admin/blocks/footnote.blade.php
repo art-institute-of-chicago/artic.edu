@@ -1,3 +1,7 @@
+@twillBlockTitle('Footnote')
+@twillBlockIcon('text')
+@twillBlockComponent('a17-block-footnote')
+
 @formField('input', [
     'type' => 'textarea',
     'name' => 'text',

@@ -1,3 +1,7 @@
+@twillBlockTitle('Events')
+@twillBlockIcon('text')
+@twillBlockComponent('a17-block-events')
+
 @php
 
 use App\Repositories\EventProgramRepository;
@@ -62,4 +66,3 @@ $programs = app(EventProgramRepository::class)->listAll('name');
     ])
 @endslot
 @endcomponent
-

@@ -1,3 +1,7 @@
+@twillBlockTitle('Banner')
+@twillBlockIcon('text')
+@twillBlockComponent('a17-block-membership_banner')
+
 @formField('medias', [
     'name' => 'membership_banner_image',
     'label' => 'Image',

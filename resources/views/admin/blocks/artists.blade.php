@@ -1,3 +1,7 @@
+@twillBlockTitle('Artists')
+@twillBlockIcon('image')
+@twillBlockComponent('a17-block-artists')
+
 @formField('browser', [
     'routePrefix' => 'collection',
     'max' => 1,

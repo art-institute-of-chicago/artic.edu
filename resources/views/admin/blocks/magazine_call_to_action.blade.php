@@ -1,3 +1,7 @@
+@twillBlockTitle('Magazine Call to Action')
+@twillBlockIcon('text')
+@twillBlockComponent('a17-block-magazine_call_to_action')
+
 @formField('radios', [
     'name' => 'theme',
     'label' => 'Theme',

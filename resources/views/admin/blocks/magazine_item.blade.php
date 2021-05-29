@@ -1,3 +1,7 @@
+@twillBlockTitle('Magazine Item')
+@twillBlockIcon('text')
+@twillBlockComponent('a17-block-magazine_item')
+
 @formField('radios', [
     'name' => 'feature_type',
     'label' => 'Feature type',

@@ -1,3 +1,7 @@
+@twillBlockTitle('Feature 4x')
+@twillBlockIcon('image')
+@twillBlockComponent('a17-block-feature_4x')
+
 @formField('browser', [
     'routePrefix' => 'collection',
     'moduleName' => 'selections',

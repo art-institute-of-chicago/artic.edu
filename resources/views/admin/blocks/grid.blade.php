@@ -1,3 +1,7 @@
+@twillBlockTitle('Grid')
+@twillBlockIcon('image')
+@twillBlockComponent('a17-block-grid')
+
 @formField('input', [
     'name' => 'grid_title',
     'label' => 'Title',

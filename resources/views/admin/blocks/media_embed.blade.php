@@ -1,3 +1,7 @@
+@twillBlockTitle('Media embed')
+@twillBlockIcon('text')
+@twillBlockComponent('a17-block-media_embed')
+
 @formField('input', [
     'name' => 'embed_code',
     'label' => 'Media embed code',

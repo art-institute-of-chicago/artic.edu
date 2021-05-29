@@ -1,3 +1,7 @@
+@twillBlockTitle('Button')
+@twillBlockIcon('text')
+@twillBlockComponent('a17-block-button')
+
 @formField('input', [
     'name' => 'title',
     'label' => 'Title',

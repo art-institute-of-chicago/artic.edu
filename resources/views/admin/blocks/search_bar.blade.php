@@ -1,3 +1,7 @@
+@twillBlockTitle('External search bar')
+@twillBlockIcon('text')
+@twillBlockComponent('a17-block-search_bar')
+
 @formField('input', [
     'name' => 'header',
     'label' => 'Header',

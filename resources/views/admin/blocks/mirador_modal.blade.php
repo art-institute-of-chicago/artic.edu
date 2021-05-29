@@ -1,3 +1,7 @@
+@twillBlockTitle('Mirador Modal')
+@twillBlockIcon('image')
+@twillBlockComponent('a17-block-mirador_modal')
+
 @formField('medias', [
     'name' => 'image',
     'label' => 'Mirador Image',
