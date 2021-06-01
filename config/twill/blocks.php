@@ -12,6 +12,8 @@ return [
      */
 
     'block_single_layout' => 'layouts.block',
+    'block_views_path' => 'site.blocks', // path where a view file per block type is stored
+    'block_views_mappings' => [], // custom mapping of block types and views
     'block_preview_render_childs' => false,
     'block_presenter_path' => App\Presenters\Admin\BlockPresenter::class, // allow to set a custom presenter to a block model
     // Indicates if blocks templates should be inlined in HTML.
@@ -122,6 +124,7 @@ return [
         ],
 
     ],
+    'repeaters' => [],
     'directories' => [
         'source' => [
             'blocks' => [
