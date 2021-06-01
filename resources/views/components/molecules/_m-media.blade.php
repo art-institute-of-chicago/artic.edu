@@ -3,6 +3,7 @@
     $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
     $useContain = $item['useContain'] ?? false;
+    $disablePlaceholder = $item['disablePlaceholder'] ?? false;
     $useAltBackground = $item['useAltBackground'] ?? false;
     $hasRestriction = isset($item['restricted']) ? $item['restricted'] : false;
     $media = $item['media'];
@@ -125,7 +126,7 @@
 @endphp
 
 <{{ $tag ?? 'figure' }} {!! isset($item['figureNumber']) ? 'id="' . getFigureId($item['figureNumber']) . '" ' : '' !!} data-type="{{ $type }}" data-title="{{ $item['captionTitle'] ?? $item['caption'] ?? $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ $useContain ? ' m-media--contain' : '' }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
-    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : (($type === 'virtualtour') ? ' m-media__img--virtualtour' : '' )}}{{ $useAltBackground ? ' m-media__img--alt-background' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}"{!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}{!! !empty($item['credit']) ? ' data-credit="' . $item['credit'] . '"' : '' !!}>
+    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : (($type === 'virtualtour') ? ' m-media__img--virtualtour' : '' )}}{{ $useAltBackground ? ' m-media__img--alt-background' : '' }}{{ $disablePlaceholder ? ' m-media__img--disable-placeholder' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}"{!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}{!! !empty($item['credit']) ? ' data-credit="' . $item['credit'] . '"' : '' !!}>
         @if ($useContain && ($size === 'm' || $size === 'l'))
             <div class="m-media__contain--spacer" style="padding-bottom: {{ min(62.5, intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100) }}%"></div>
         @endif
