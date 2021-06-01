@@ -64,7 +64,7 @@
 
 @push('vuexStore')
     @foreach($form_fields['repeaterFields']['modal_experience_image'] ?? [] as $field)
-        window.STORE.form.fields.push({!! json_encode($field) !!})
+        window['{{ config('twill.js_namespace') }}'].STORE.form.fields.push({!! json_encode($field) !!})
     @endforeach
 
     @foreach($form_fields['repeaterMedias']['modal_experience_image'] ?? [] as $name => $medias)
