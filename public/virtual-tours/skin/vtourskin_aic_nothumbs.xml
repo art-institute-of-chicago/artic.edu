@@ -1116,9 +1116,13 @@
 			addlayer(get(layername));
 			assignstyle(layer[get(layername)],'textbox_style');
 			<!-- add text content -->
-			set(textlayer, get(layername));
-			set(textcontent, get(data[get(textlayer)].content));
-			txtadd(layer[get(layername)].onloaded, 'add_html_text("', get(textcontent),'")');
+			set(textcontent, get(data[get(layername)].content));
+			if (contains(get(layername), 'tombstone'),
+				set(modaltext, true);
+			,
+				set(modaltext, false);
+			);
+			txtadd(layer[get(layername)].onloaded, 'add_html_text("', get(textcontent),'",',get(modaltext),')');
 
 			<!-- set up text box parent, width, placement -->
 			if(stagewidth LT 500,
@@ -1129,12 +1133,10 @@
 				if (get(parenttype) == 'h',
 					txtadd(layer[get(layername)].parent, 'hotspot[', get(layername), ']');
 					change_align(get(layername));
-
 					,
 					txtreplace(tombstone_parent, layername, 'tombstone_', 'infoicon_');
 					txtadd(layer[get(layername)].parent, 'layer[', get(tombstone_parent), ']');
-					set(layer[get(layername)].maxheight, 900);
-
+					set(layer[get(layername)].maxheight, calc(stagewidth*.80));
 				);
 				set(layer[get(layername)].width, 400);
 				set(layer[get(layername)].x, 40);
@@ -1161,25 +1163,30 @@
 		div.style.padding="30px";
 		div.style.backgroundColor = "rgba(0,0,0,0.75)";
 		div.style.touchAction = "auto";
+    div.style.pointerEvents = "none";
 
-		function stopPropagation(e){ e.stopPropagation(); }
-		function preventDefault(e){ e.preventDefault(); }
+		//only for modal text boxes
+		if (args[2] == 'true') {
+      div.style.pointerEvents = "auto";
+			function stopPropagation(e){ e.stopPropagation(); }
+			function preventDefault(e){ e.preventDefault(); }
 
-		// enable browsed-based mouse-wheel and touch-scrolling support:
-		div.addEventListener("wheel", stopPropagation, true);
-		div.addEventListener("mousewheel", stopPropagation, true);
-		div.addEventListener("DOMMouseScroll", stopPropagation, true);
-		div.addEventListener("touchstart", function(event){
-			if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){
-				/* avoid the iOS 'overscrolling' for fullpage viewers */
-				var bs = document.body.parentNode.style;
-				bs.position="fixed";
-				bs.top=0; bs.left=0; bs.right=0; bs.bottom=0;
-			}
-			krpano.control.preventTouchEvents = false; event.stopPropagation();
-		}, true);
-		div.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
-		div.addEventListener("gesturestart", preventDefault, true);
+			// enable browsed-based mouse-wheel and touch-scrolling support:
+			div.addEventListener("wheel", stopPropagation, true);
+			div.addEventListener("mousewheel", stopPropagation, true);
+			div.addEventListener("DOMMouseScroll", stopPropagation, true);
+			div.addEventListener("touchstart", function(event){
+				if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){
+					/* avoid the iOS 'overscrolling' for fullpage viewers */
+					var bs = document.body.parentNode.style;
+					bs.position="fixed";
+					bs.top=0; bs.left=0; bs.right=0; bs.bottom=0;
+				}
+				krpano.control.preventTouchEvents = false; event.stopPropagation();
+			}, true);
+			div.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
+			div.addEventListener("gesturestart", preventDefault, true);
+		}
 
 		// add the html code:
 		div.innerHTML = args[1];
