@@ -6,6 +6,7 @@ if (!function_exists('getBlocksForEditor')) {
      */
     function getBlocksForEditor($toUse = [])
     {
+        return generate_list_of_available_blocks(null, null);
         $allBlocks = array_keys(config('twill.block_editor.blocks'));
 
         // Hide 3D blocks from production until they're ready for production use
