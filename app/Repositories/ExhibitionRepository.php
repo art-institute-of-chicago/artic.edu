@@ -6,7 +6,6 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
-use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
@@ -15,7 +14,7 @@ use App\Repositories\Api\BaseApiRepository;
 
 class ExhibitionRepository extends BaseApiRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleRepeaters, HandleApiBlocks {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks {
         HandleApiBlocks::getBlockBrowsers as getApiBlockBrowsers;
     }
     use HandleFeaturedRelated {
@@ -42,6 +41,10 @@ class ExhibitionRepository extends BaseApiRepository
         ],
     ];
 
+    protected $repeaters = [
+        'offers'
+    ];
+
     public function getBlockBrowsers($block) {
         return array_merge($this->getApiBlockBrowsers($block), $this->getFeatureRelatedBlockBrowsers($block));
     }
@@ -62,19 +65,7 @@ class ExhibitionRepository extends BaseApiRepository
     public function afterSave($object, $fields)
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
-
-        $this->updateRepeater($object, $fields, 'offers', 'Offer');
-
         parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'offers', 'Offer');
-
-        return $fields;
     }
 
     public function getExhibitionTypesList() {

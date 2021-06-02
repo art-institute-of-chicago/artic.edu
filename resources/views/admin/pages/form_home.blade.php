@@ -186,7 +186,7 @@
     </a17-fieldset>
 
     <a17-fieldset title="Artists" id="artists">
-        @formField('repeater', [ 'type' => 'homeArtists' ])
+        @formField('repeater', [ 'type' => 'artists' ])
     </a17-fieldset>
 
     <a17-fieldset title="From the Collection" id="from-the-collection">

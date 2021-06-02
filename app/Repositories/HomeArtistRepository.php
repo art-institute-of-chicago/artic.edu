@@ -11,24 +11,14 @@ class HomeArtistRepository extends ModuleRepository
 {
     use HandleMedias, HandleApiRelations;
 
+    protected $apiBrowsers = [
+        'artists' => [
+            'routePrefix' => 'collection'
+        ],
+    ];
+
     public function __construct(HomeArtist $model)
     {
         $this->model = $model;
-    }
-
-    public function afterSave($object, $fields)
-    {
-        $this->updateBrowserApiRelated($object, $fields, ['artists']);
-
-        parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-
-        $fields['browsers']['artists'] = $this->getFormFieldsForBrowserApi($object, 'artists', 'App\Models\Api\Artist', 'collection', 'title', 'artists');
-
-        return $fields;
     }
 }

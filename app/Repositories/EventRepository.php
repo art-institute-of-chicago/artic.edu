@@ -6,7 +6,6 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
-use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 use App\Repositories\Behaviors\HandleRecurrence;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleApiRelations;
@@ -18,7 +17,7 @@ use Carbon\Carbon;
 
 class EventRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiBlocks, HandleApiRelations, HandleBlocks, HandleRepeaters, HandleRecurrence {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiBlocks, HandleApiRelations, HandleBlocks, HandleRecurrence {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
@@ -33,6 +32,12 @@ class EventRepository extends ModuleRepository
 
     protected $apiBrowsers = [
         'ticketedEvent',
+    ];
+
+    protected $repeaters = [
+        'date_rule' => [
+            'relation' => 'dateRules'
+        ],
     ];
 
     public function __construct(Event $model)
@@ -131,8 +136,6 @@ class EventRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        $this->updateRepeater($object, $fields, 'dateRules', 'DateRule');
-
         $object->programs()->sync($fields['programs'] ?? []);
 
         parent::afterSave($object, $fields);
@@ -141,8 +144,6 @@ class EventRepository extends ModuleRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'dateRules', 'DateRule');
 
         if (isset($fields['add_to_event_email_series']))
         {

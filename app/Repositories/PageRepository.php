@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
-use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
@@ -13,7 +12,7 @@ use App\Repositories\Behaviors\HandleApiRelations;
 
 class PageRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleFiles, HandleRepeaters, HandleApiRelations, HandleTranslations;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleFiles, HandleApiRelations, HandleTranslations;
 
     protected $browsers = [
         // Homepage landing
@@ -120,6 +119,31 @@ class PageRepository extends ModuleRepository
 
     ];
 
+    protected $repeaters = [
+        // Homepage landing
+        'artists' => [
+            'relation' => 'homeArtists',
+            'model' => 'HomeArtist'
+        ],
+
+        // Visit
+        // `admissions` doesn't appear to be in form_visit.blade.php, so I'm not
+        // sure it was ever implemented. ntrivedi, 6/3/21
+        // 'admissions',
+        'locations',
+        'featured_hours' => [
+            'relation' => 'featured_hours'
+        ],
+        // `dining_hours` doesn't appear to be in form_visit.blade.php, so I'm not
+        // sure it was ever implemented. ntrivedi, 6/3/21
+        // 'dining_hours' => [
+        //     'relation' => 'dining_hours'
+        // ],
+        'faqs',
+        'families',
+        'what_to_expects',
+    ];
+
     public function __construct(Page $model)
     {
         $this->model = $model;
@@ -150,18 +174,6 @@ class PageRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        // Homepage
-        $this->updateRepeater($object, $fields, 'homeArtists', 'HomeArtist');
-
-        // Visits
-        $this->updateRepeater($object, $fields, 'admissions', 'Admission');
-        $this->updateRepeater($object, $fields, 'locations', 'Location');
-        $this->updateRepeater($object, $fields, 'featured_hours', 'FeaturedHour');
-        $this->updateRepeater($object, $fields, 'dining_hours', 'DiningHour');
-        $this->updateRepeater($object, $fields, 'faqs', 'Faq');
-        $this->updateRepeater($object, $fields, 'families', 'Family');
-        $this->updateRepeater($object, $fields, 'whatToExpects', 'WhatToExpect');
-
         // Art & Ideas
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
@@ -174,18 +186,6 @@ class PageRepository extends ModuleRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-
-        // Homepage
-        //$fields = $this->getFormFieldsForRepeater($object, $fields, 'homeArtists', 'HomeArtist');
-
-        // Visits
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'admissions', 'Admission');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'locations', 'Location');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'featured_hours', 'FeaturedHour');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'dining_hours', 'DiningHour');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'faqs', 'Faq');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'families', 'Family');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'whatToExpects', 'WhatToExpect');
 
         // Art & Ideas
         $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [

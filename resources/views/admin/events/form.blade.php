@@ -78,7 +78,7 @@
         ])
 
         @formField('repeater', [
-            'type' => 'dateRules',
+            'type' => 'date_rule',
             'title' => 'Date rule',
         ])
     </a17-fieldset>
