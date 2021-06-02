@@ -26,13 +26,6 @@ class ExperienceModalRepository extends ModuleRepository
             $this->handle3DModel($object, $fields, 'aic_split_3d_model');
         }
         parent::afterSave($object, $fields);
-}
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-
-        return $fields;
     }
 
     public function prepareFieldsBeforeSave($object, $fields)

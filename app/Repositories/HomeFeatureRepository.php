@@ -4,13 +4,10 @@ namespace App\Repositories;
 
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
-use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use App\Models\HomeFeature;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
-
-use App\Repositories\Api\BaseApiRepository;
 
 class HomeFeatureRepository extends ModuleRepository
 {

@@ -16,8 +16,6 @@ use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Repositories\Behaviors\HandleMagazine;
 use App\Repositories\Behaviors\HandleAuthors;
 
-use App\Repositories\Api\BaseApiRepository;
-
 class SelectionRepository extends ModuleRepository
 {
 
