@@ -1163,11 +1163,11 @@
 		div.style.padding="30px";
 		div.style.backgroundColor = "rgba(0,0,0,0.75)";
 		div.style.touchAction = "auto";
-    div.style.pointerEvents = "none";
+		div.style.pointerEvents = "none";
 
 		//only for modal text boxes
 		if (args[2] == 'true') {
-      div.style.pointerEvents = "auto";
+			div.style.pointerEvents = "auto";
 			function stopPropagation(e){ e.stopPropagation(); }
 			function preventDefault(e){ e.preventDefault(); }
 
@@ -1228,7 +1228,7 @@
 		request.onload = function () {
 			var data = JSON.parse(this.response);
 			if (request.status >= 200 && request.status < 400) {
-				if (data.data.is_public_domain) {
+				if (data.data.is_public_domain || screenwidth < 843) {
 					artworkurl = 'https://www.artic.edu/iiif/2/' + data.data.image_id + '/full/!' + screenwidth + ',' + screenheight + '/0/default.jpg';
 				} else {
 					artworkurl = 'https://www.artic.edu/iiif/2/' + data.data.image_id + '/full/!' + 843 + ',' + screenheight + '/0/default.jpg';
