@@ -6,12 +6,11 @@ if (!function_exists('getBlocksForEditor')) {
      */
     function getBlocksForEditor($toUse = [])
     {
-        return generate_list_of_available_blocks(null, null);
-        $allBlocks = array_keys(config('twill.block_editor.blocks'));
+        $allBlocks = config('twill.block_editor.block-order');
 
         // Hide 3D blocks from production until they're ready for production use
         if ( app()->environment('production')) {
-            $allBlocks = array_except($allBlocks, ['3d_model', '3d_tour', '3d_embed']);
+            $allBlocks = Illuminate\Support\Arr::except($allBlocks, ['3d_model', '3d_tour', '3d_embed']);
         }
 
         return array_intersect($allBlocks, $toUse);
