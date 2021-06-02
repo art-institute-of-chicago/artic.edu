@@ -166,6 +166,12 @@
 		handcursor="false"
 	/>
 
+	<style type="container" name="loader_style"
+		align="center"
+		zorder="11"
+		handcursor="false"
+	/>
+
 	<style type="image" name="artwork_image_style"
 		align="center"
 		zorder="11"
@@ -1209,6 +1215,35 @@
 		onmousedown="removeall_textboxes();"
 	/>
 
+	<action name="image_loading" type="Javascript"><![CDATA[
+		//create loading div and styles
+		var div = document.createElement("div");
+		div.style.position = "absolute";
+		div.style.width = "24px";
+		div.style.height = "24px";
+		div.style.content = "";
+		div.style.left = "50%";
+		div.style.top = "50%";
+		div.style.margin = "-12px 0 0 -12px";
+		div.style.border = "2px solid #e6e6e6";
+		div.style.borderTopColor = "#767676";
+		div.style.borderRadius = "50%";
+		div.style.animation= "loader 1.25s linear infinite";
+
+		let keyframes = `@keyframes loader {
+  		100% {
+    		transform: rotate(360deg);
+  		}
+		}`;
+		var style = document.createElement("style");
+		style.innerHTML = keyframes;
+
+		//add loading div
+		caller.sprite.appendChild(div);
+		div.appendChild(style);
+	]]>
+	</action>
+
 	<!-- retrieve artwork information via data hub api -->
 	<action name="grab_artwork" type="Javascript"><![CDATA[
 		//grab object id to build query
@@ -1218,6 +1253,7 @@
 		//krpano image layer
 		var imagelayer = 'layer[image_' + args[1] + ']';
 		imagelayer = krpano.get(imagelayer);
+
 		//image size limits
 		var screenwidth = Math.floor(krpano.stagewidth * .75);
 		var screenheight = Math.floor(krpano.stageheight * .75);
@@ -1257,11 +1293,17 @@
 		addlayer(get(modal_layername));
 		assignstyle(layer[get(modal_layername)],'modal_style');
 
+		<!-- add loader layer -->
+		addlayer(loader);
+		assignstyle(layer[loader],'loader_style');
+		txtadd(layer[loader].onloaded, image_loading(););
+
 		<!-- add image with style -->
 		addlayer(get(image_layername));
 		assignstyle(layer[get(image_layername)], 'artwork_image_style');
 		txtadd(layer[get(image_layername)].parent, 'layer[', get(modal_layername), ']');
 		grab_artwork(get(hotspotname));
+		txtadd(layer[get(image_layername)].onloaded, removelayer(loader););
 
 		<!-- add info button layers -->
 		addlayer(get(infobutton_layername));
