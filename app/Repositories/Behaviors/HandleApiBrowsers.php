@@ -39,7 +39,6 @@ trait HandleApiBrowsers
     {
         foreach ($this->getApiBrowsers() as $browser) {
             $fields['browsers'][$browser['browserName']] = $this->getFormFieldsForBrowserApi($object, $browser['relation'], $browser['model'], $browser['routePrefix'], $browser['titleKey'], $browser['moduleName']);
-            //dd($browser['browserName'], $object, $browser['relation'], $browser['model'], $browser['routePrefix'], $browser['titleKey'], $browser['moduleName'], $fields['browsers'][$browser['browserName']]);
         }
 
         return $fields;
