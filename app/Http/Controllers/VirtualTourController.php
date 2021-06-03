@@ -20,7 +20,7 @@ class VirtualTourController extends FrontController
 
         // Temporary. Remove after redirects are in place!
         if (empty($item)) {
-            $item = $this->repository->safeForSlug($id);
+            $item = $this->repository->forSlug($id);
         }
 
         if (!$item) {

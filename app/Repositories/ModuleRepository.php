@@ -34,16 +34,4 @@ abstract class ModuleRepository extends BaseModuleRepository
 
         return parent::prepareFieldsBeforeSave($object, $fields);
     }
-
-    /**
-     * Temporary work-around for https://github.com/area17/twill/issues/723
-     */
-    public function safeForSlug($slug, $with = [], $withCount = [], $scopes = [])
-    {
-        try {
-            return $this->forSlug(...func_get_args());
-        } catch (BadMethodCallException $e) {
-            abort(404);
-        }
-    }
 }
