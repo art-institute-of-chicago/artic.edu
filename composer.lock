@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "397631eecf2be5a3da7c3f2d3fa33d54",
+    "content-hash": "e9b1527d723267d598cc737e153b9086",
     "packages": [
         {
             "name": "aacotroneo/laravel-saml2",
@@ -167,16 +167,16 @@
         },
         {
             "name": "area17/twill",
-            "version": "2.2.1",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/area17/twill.git",
-                "reference": "b5a0b52bdf2c7b6fde49e8946d9440fb94fbd166"
+                "reference": "72ef99729f2b44fc9613cbd110d002a3937e2d18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/area17/twill/zipball/b5a0b52bdf2c7b6fde49e8946d9440fb94fbd166",
-                "reference": "b5a0b52bdf2c7b6fde49e8946d9440fb94fbd166",
+                "url": "https://api.github.com/repos/area17/twill/zipball/72ef99729f2b44fc9613cbd110d002a3937e2d18",
+                "reference": "72ef99729f2b44fc9613cbd110d002a3937e2d18",
                 "shasum": ""
             },
             "require": {
@@ -242,7 +242,7 @@
                 "laravel",
                 "twill"
             ],
-            "time": "2021-05-17T22:55:35+00:00"
+            "time": "2021-06-03T01:33:26+00:00"
         },
         {
             "name": "astrotomic/laravel-translatable",
@@ -325,16 +325,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.183.9",
+            "version": "3.183.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3b3aafdceac4cb820e2ae65a8785e4d07db471a7"
+                "reference": "f42dcf893227842aca11e8ea19f7b2123cf3244b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3b3aafdceac4cb820e2ae65a8785e4d07db471a7",
-                "reference": "3b3aafdceac4cb820e2ae65a8785e4d07db471a7",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f42dcf893227842aca11e8ea19f7b2123cf3244b",
+                "reference": "f42dcf893227842aca11e8ea19f7b2123cf3244b",
                 "shasum": ""
             },
             "require": {
@@ -406,7 +406,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2021-05-28T18:28:19+00:00"
+            "time": "2021-06-02T18:14:10+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -1693,16 +1693,16 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v5.2.1",
+            "version": "v5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "f42c9110abe98dd6cfe9053c49bc86acc70b2d23"
+                "reference": "3c2d70f2e64e2922345e89f2ceae47d2463faae1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/f42c9110abe98dd6cfe9053c49bc86acc70b2d23",
-                "reference": "f42c9110abe98dd6cfe9053c49bc86acc70b2d23",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/3c2d70f2e64e2922345e89f2ceae47d2463faae1",
+                "reference": "3c2d70f2e64e2922345e89f2ceae47d2463faae1",
                 "shasum": ""
             },
             "require": {
@@ -1739,7 +1739,7 @@
                 "jwt",
                 "php"
             ],
-            "time": "2021-02-12T00:02:00+00:00"
+            "time": "2021-05-20T17:37:02+00:00"
         },
         {
             "name": "google/apiclient",
@@ -1808,16 +1808,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.176.0",
+            "version": "v0.179.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "316cbf9b02c575a140d8cbeca48a3ca0070fcd5a"
+                "reference": "c161f1e3529f2de7ef2dd8352c4e0999608f9440"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/316cbf9b02c575a140d8cbeca48a3ca0070fcd5a",
-                "reference": "316cbf9b02c575a140d8cbeca48a3ca0070fcd5a",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/c161f1e3529f2de7ef2dd8352c4e0999608f9440",
+                "reference": "c161f1e3529f2de7ef2dd8352c4e0999608f9440",
                 "shasum": ""
             },
             "require": {
@@ -1841,7 +1841,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2021-05-15T11:18:02+00:00"
+            "time": "2021-06-02T18:20:04+00:00"
         },
         {
             "name": "google/auth",
@@ -8408,16 +8408,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v4.4.24",
+            "version": "v4.4.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "424d29dfcc15575af05196de0100d7b52f650602"
+                "reference": "dfe132c5c6d89f90ce7f961742cc532e9ca16dd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/424d29dfcc15575af05196de0100d7b52f650602",
-                "reference": "424d29dfcc15575af05196de0100d7b52f650602",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/dfe132c5c6d89f90ce7f961742cc532e9ca16dd4",
+                "reference": "dfe132c5c6d89f90ce7f961742cc532e9ca16dd4",
                 "shasum": ""
             },
             "require": {
@@ -8489,7 +8489,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-16T09:52:47+00:00"
+            "time": "2021-05-26T17:39:37+00:00"
         },
         {
             "name": "symfony/translation-contracts",

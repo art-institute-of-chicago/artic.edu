@@ -2,7 +2,6 @@
 {{-- To add a note display to checkboxes. --}}
 @php
     $note = $note ?? false;
-    $inline = $inline ?? false;
     $default = $default ?? false;
     $inModal = $fieldsInModal ?? false;
     $disabled = $disabled ?? false;
