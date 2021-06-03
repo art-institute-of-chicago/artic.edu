@@ -228,7 +228,6 @@
 		url="vtourskin_aic_closeicon.png"
 		edge="center"
 		distorted="false"
-
 	  scale=".4"
 		align="center"
 		zorder="12"
@@ -1293,16 +1292,19 @@
 		addlayer(get(modal_layername));
 		assignstyle(layer[get(modal_layername)],'modal_style');
 
-		<!-- add loader layer -->
-		addlayer(loader);
-		assignstyle(layer[loader],'loader_style');
-		txtadd(layer[loader].onloaded, image_loading(););
+		<!-- add loader layer if image has not loaded -->
+		if (!layer[get(image_layername)].loaded,
+			addlayer(loader);
+			assignstyle(layer[loader],'loader_style');
+			txtadd(layer[loader].onloaded, image_loading(););
+		);
 
 		<!-- add image with style -->
 		addlayer(get(image_layername));
 		assignstyle(layer[get(image_layername)], 'artwork_image_style');
 		txtadd(layer[get(image_layername)].parent, 'layer[', get(modal_layername), ']');
 		grab_artwork(get(hotspotname));
+		<!-- remove loader when image loads -->
 		txtadd(layer[get(image_layername)].onloaded, removelayer(loader););
 
 		<!-- add info button layers -->
