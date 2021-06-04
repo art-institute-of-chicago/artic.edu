@@ -112,9 +112,40 @@
 		align="lefttop"
 		x="40"
 		y="0"
+		css="data:textBoxStyles"
 		autowidth="false"
 		autoheight="true"
-		maxheight="200"
+		vcenter="false"
+		padding="30"
+		wordwrap="true"
+		bg="true"
+		bgcolor="0x000000"
+		bgalpha=".75"
+		bgborder="0"
+		bgroundedge="0"
+		interactivecontent="true"
+		visible="false"
+		alpha="0.0"
+		onclick.addevent="tween_layer(calc(layer[get(name)].name));"
+		zorder="13"
+	/>
+
+	<!-- texbox / tooltip styles -->
+	<data name="textBoxStyles">
+		font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;
+		font-size:1.2em;
+		color:#ffffff;
+		line-height:25px;
+	</data>
+
+		<!-- style for text boxes -->
+	<style type="text" name="modal_textbox_style"
+		align="lefttop"
+		x="40"
+		y="0"
+		autowidth="false"
+		autoheight="true"
+		maxheight="calc(stageheight*.80)"
 		bgborder="0"
 		bgcolor="0x000000"
 		bgalpha=".75"
@@ -1117,17 +1148,17 @@
 		,
 			<!-- remove all text boxes and create a new one -->
 			removeall_textboxes();
-			<!-- add text box with style -->
+			<!-- add text box with regular or modal styles and content -->
 			addlayer(get(layername));
-			assignstyle(layer[get(layername)],'textbox_style');
-			<!-- add text content -->
-			set(textcontent, get(data[get(layername)].content));
-			if (contains(get(layername), 'tombstone'),
-				set(modaltext, true);
+			if (get(parenttype) == 'l',
+				assignstyle(layer[get(layername)],'modal_textbox_style');
+				set(textcontent, get(data[get(layername)].content));
+				txtadd(layer[get(layername)].onloaded, 'add_html_text("', get(textcontent),'")');
 			,
-				set(modaltext, false);
+				assignstyle(layer[get(layername)],'textbox_style');
+				set(textcontent, get(layername));
+				txtadd(layer[get(layername)].html, 'data:', get(textcontent));
 			);
-			txtadd(layer[get(layername)].onloaded, 'add_html_text("', get(textcontent),'",',get(modaltext),')');
 
 			<!-- set up text box parent, width, placement -->
 			if(stagewidth LT 500,
@@ -1141,7 +1172,6 @@
 					,
 					txtreplace(tombstone_parent, layername, 'tombstone_', 'infoicon_');
 					txtadd(layer[get(layername)].parent, 'layer[', get(tombstone_parent), ']');
-					set(layer[get(layername)].maxheight, calc(stagewidth*.80));
 				);
 				set(layer[get(layername)].width, 400);
 				set(layer[get(layername)].x, 40);
@@ -1168,30 +1198,26 @@
 		div.style.padding="30px";
 		div.style.backgroundColor = "rgba(0,0,0,0.75)";
 		div.style.touchAction = "auto";
-		div.style.pointerEvents = "none";
+		div.style.pointerEvents = "auto";
 
-		//only for modal text boxes
-		if (args[2] == 'true') {
-			div.style.pointerEvents = "auto";
-			function stopPropagation(e){ e.stopPropagation(); }
-			function preventDefault(e){ e.preventDefault(); }
+		function stopPropagation(e){ e.stopPropagation(); }
+		function preventDefault(e){ e.preventDefault(); }
 
-			// enable browsed-based mouse-wheel and touch-scrolling support:
-			div.addEventListener("wheel", stopPropagation, true);
-			div.addEventListener("mousewheel", stopPropagation, true);
-			div.addEventListener("DOMMouseScroll", stopPropagation, true);
-			div.addEventListener("touchstart", function(event){
-				if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){
-					/* avoid the iOS 'overscrolling' for fullpage viewers */
-					var bs = document.body.parentNode.style;
-					bs.position="fixed";
-					bs.top=0; bs.left=0; bs.right=0; bs.bottom=0;
-				}
-				krpano.control.preventTouchEvents = false; event.stopPropagation();
-			}, true);
-			div.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
-			div.addEventListener("gesturestart", preventDefault, true);
-		}
+		// enable browsed-based mouse-wheel and touch-scrolling support:
+		div.addEventListener("wheel", stopPropagation, true);
+		div.addEventListener("mousewheel", stopPropagation, true);
+		div.addEventListener("DOMMouseScroll", stopPropagation, true);
+		div.addEventListener("touchstart", function(event){
+			if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){
+				/* avoid the iOS 'overscrolling' for fullpage viewers */
+				var bs = document.body.parentNode.style;
+				bs.position="fixed";
+				bs.top=0; bs.left=0; bs.right=0; bs.bottom=0;
+			}
+			krpano.control.preventTouchEvents = false; event.stopPropagation();
+		}, true);
+		div.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
+		div.addEventListener("gesturestart", preventDefault, true);
 
 		// add the html code:
 		div.innerHTML = args[1];
@@ -1203,7 +1229,7 @@
 	<!-- remove textboxes -->
 	<action name="removeall_textboxes" scope="local">
 		for(set(i,0), i LT layer.count, inc(i),
-			if(layer[get(i)].style == textbox_style,
+			if(layer[get(i)].type == text,
 				removelayer(get(layer[get(i)].name), true);
 				dec(i);
 			);
