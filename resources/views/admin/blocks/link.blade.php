@@ -1,6 +1,5 @@
 @twillBlockTitle('Link')
 @twillBlockIcon('text')
-@twillBlockComponent('a17-block-link')
 
 @formField('input', [
     'name' => 'title',

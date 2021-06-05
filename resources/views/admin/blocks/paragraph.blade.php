@@ -1,6 +1,5 @@
 @twillBlockTitle('Paragraph')
 @twillBlockIcon('text')
-@twillBlockComponent('a17-block-paragraph')
 
 @formField('wysiwyg', [
     'name' => 'paragraph',

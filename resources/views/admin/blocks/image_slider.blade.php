@@ -1,6 +1,5 @@
 @twillBlockTitle('Image Slider')
 @twillBlockIcon('image')
-@twillBlockComponent('a17-block-image_slider')
 
 @formField('checkbox', [
     'name' => 'is_slider_zoomable',

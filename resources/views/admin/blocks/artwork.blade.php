@@ -1,6 +1,5 @@
 @twillBlockTitle('Artwork')
 @twillBlockIcon('image')
-@twillBlockComponent('a17-block-artwork')
 
 @formField('browser', [
     'routePrefix' => 'collection',

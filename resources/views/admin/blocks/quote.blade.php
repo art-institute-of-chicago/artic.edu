@@ -1,6 +1,5 @@
 @twillBlockTitle('Quote')
 @twillBlockIcon('text')
-@twillBlockComponent('a17-block-quote')
 
 @formField('input', [
     'name' => 'quote',

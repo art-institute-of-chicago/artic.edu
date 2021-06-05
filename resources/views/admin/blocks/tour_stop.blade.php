@@ -1,6 +1,5 @@
 @twillBlockTitle('Audio Tour Stop')
 @twillBlockIcon('image')
-@twillBlockComponent('a17-block-tour_stop')
 
 @formField('browser', [
     'routePrefix' => 'general',

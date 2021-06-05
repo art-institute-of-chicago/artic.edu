@@ -1,6 +1,5 @@
 @twillBlockTitle('Virtual Tour Embed')
 @twillBlockIcon('image')
-@twillBlockComponent('a17-block-vtour_embed')
 
 @formField('files', [
     'name' => 'vtour_xml_file',

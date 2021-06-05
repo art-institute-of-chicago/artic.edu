@@ -1,6 +1,5 @@
 @twillBlockTitle('Split block')
 @twillBlockIcon('text')
-@twillBlockComponent('a17-block-split_block')
 
 @formField('radios', [
     'name' => 'variation',

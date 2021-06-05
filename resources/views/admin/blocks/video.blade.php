@@ -1,6 +1,5 @@
 @twillBlockTitle('Video')
 @twillBlockIcon('image')
-@twillBlockComponent('a17-block-video')
 
 @formField('select', [
     'name' => 'size',

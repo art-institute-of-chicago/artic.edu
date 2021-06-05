@@ -1,6 +1,5 @@
 @twillBlockTitle('Exhibitions')
 @twillBlockIcon('text')
-@twillBlockComponent('a17-block-exhibitions')
 
 @formField('input', [
     'name' => 'title',

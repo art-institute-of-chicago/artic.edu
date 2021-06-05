@@ -1,6 +1,5 @@
 @twillBlockTitle('Gallery (new)')
 @twillBlockIcon('image')
-@twillBlockComponent('a17-block-gallery_new')
 
 {{-- WEB-1251: After removing the old `gallery` and `artworks` blocks, inline contents partial --}}
 @include('admin.partials.gallery-shared')

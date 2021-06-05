@@ -1,6 +1,5 @@
 @twillBlockTitle('Feature 2x')
 @twillBlockIcon('image')
-@twillBlockComponent('a17-block-feature_2x')
 
 @formField('browser', [
     'routePrefix' => 'collection.interactive_features',

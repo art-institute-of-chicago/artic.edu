@@ -1,6 +1,5 @@
 @twillBlockTitle('Events')
 @twillBlockIcon('text')
-@twillBlockComponent('a17-block-events')
 
 @php
 

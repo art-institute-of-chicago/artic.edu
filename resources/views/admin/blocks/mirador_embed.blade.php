@@ -1,6 +1,5 @@
 @twillBlockTitle('Mirador Embed')
 @twillBlockIcon('image')
-@twillBlockComponent('a17-block-mirador_embed')
 
 @formField('input', [
     'type' => 'number',
