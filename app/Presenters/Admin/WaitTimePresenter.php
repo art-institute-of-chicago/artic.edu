@@ -11,18 +11,8 @@ use Illuminate\Support\Str;
 
 class WaitTimePresenter extends BasePresenter
 {
-    public function display() {
-        return $this->entity->duration . ' ' . Str::plural($this->units, $this->entity->duration);
+    public function display()
+    {
+        return $this->entity->duration . ' ' . Str::plural($this->entity->units, $this->entity->duration);
     }
-
-    public function units() {
-        switch ($this->entity->units) {
-            case 'ms':   return 'millisecond';
-            case 'sec':  return 'second';
-            case 'min':  return 'minute';
-            case 'hrs':  return 'hour';
-            case 'days': return 'day';
-        }
-    }
-
 }

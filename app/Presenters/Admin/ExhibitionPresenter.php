@@ -160,9 +160,9 @@ class ExhibitionPresenter extends BasePresenter
         if ($waitTime || $waitTimeMember) {
             return [
                 'label' => 'Current wait times<br/>'
-                 . ($waitTime ? ('General Admission: ' . $waitTime->present()->display) : '')
+                 . ($waitTime ? ('General Admission: ' . $waitTime->present()->display()) : '')
                  . ($waitTime && $waitTimeMember ? '<br/>' : '')
-                 . ($waitTimeMember ? ('Members: ' . $waitTimeMember->present()->display) : ''),
+                 . ($waitTimeMember ? ('Members: ' . $waitTimeMember->present()->display()) : ''),
                 'iconBefore' => 'clock',
                 'variation' => 'm-link-list__trigger--wait-time',
             ];
