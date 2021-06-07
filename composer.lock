@@ -167,16 +167,16 @@
         },
         {
             "name": "area17/twill",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/area17/twill.git",
-                "reference": "72ef99729f2b44fc9613cbd110d002a3937e2d18"
+                "reference": "55e35743c51b4191c4e0a0147db86e1bad3105be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/area17/twill/zipball/72ef99729f2b44fc9613cbd110d002a3937e2d18",
-                "reference": "72ef99729f2b44fc9613cbd110d002a3937e2d18",
+                "url": "https://api.github.com/repos/area17/twill/zipball/55e35743c51b4191c4e0a0147db86e1bad3105be",
+                "reference": "55e35743c51b4191c4e0a0147db86e1bad3105be",
                 "shasum": ""
             },
             "require": {
@@ -242,7 +242,7 @@
                 "laravel",
                 "twill"
             ],
-            "time": "2021-06-03T01:33:26+00:00"
+            "time": "2021-06-04T23:12:49+00:00"
         },
         {
             "name": "astrotomic/laravel-translatable",
@@ -325,16 +325,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.183.11",
+            "version": "3.183.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "f42dcf893227842aca11e8ea19f7b2123cf3244b"
+                "reference": "0e0be404854482b7cae61ef9f707c7a876b43cdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f42dcf893227842aca11e8ea19f7b2123cf3244b",
-                "reference": "f42dcf893227842aca11e8ea19f7b2123cf3244b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0e0be404854482b7cae61ef9f707c7a876b43cdf",
+                "reference": "0e0be404854482b7cae61ef9f707c7a876b43cdf",
                 "shasum": ""
             },
             "require": {
@@ -406,7 +406,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2021-06-02T18:14:10+00:00"
+            "time": "2021-06-04T18:12:54+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -1808,16 +1808,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.179.0",
+            "version": "v0.180.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "c161f1e3529f2de7ef2dd8352c4e0999608f9440"
+                "reference": "69b977fd15de892432f7f29ea93d57845cf26974"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/c161f1e3529f2de7ef2dd8352c4e0999608f9440",
-                "reference": "c161f1e3529f2de7ef2dd8352c4e0999608f9440",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/69b977fd15de892432f7f29ea93d57845cf26974",
+                "reference": "69b977fd15de892432f7f29ea93d57845cf26974",
                 "shasum": ""
             },
             "require": {
@@ -1841,7 +1841,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2021-06-02T18:20:04+00:00"
+            "time": "2021-06-06T11:20:02+00:00"
         },
         {
             "name": "google/auth",
