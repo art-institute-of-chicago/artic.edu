@@ -114,17 +114,8 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
-    public function navigation()
+    public function itemprops()
     {
-        return array_filter([$this->galleryLink(), $this->relatedEventsLink(), $this->closingSoonLink()]);
-    }
-
-    public function navigationWithWaitTime()
-    {
-        return array_filter([$this->galleryLink(), $this->waitTime(), $this->relatedEventsLink(), $this->closingSoonLink()]);
-    }
-
-    public function itemprops() {
         return [
             'description' => $this->entity->short_description,
             'department'  => $this->entity->department_display,
@@ -139,7 +130,18 @@ class ExhibitionPresenter extends BasePresenter
         })->toArray();
     }
 
-    protected function galleryLink() {
+    public function navigation()
+    {
+        return array_filter([$this->galleryLink(), $this->relatedEventsLink(), $this->closingSoonLink()]);
+    }
+
+    public function navigationWithWaitTime()
+    {
+        return array_filter([$this->galleryLink(), $this->waitTime(), $this->relatedEventsLink(), $this->closingSoonLink()]);
+    }
+
+    protected function galleryLink()
+    {
         $location = $this->entity->exhibition_location ?: $this->entity->gallery_title;
         if ($location) {
             return [
@@ -149,7 +151,8 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
-    protected function waitTime() {
+    protected function waitTime()
+    {
         // WEB-1854: Only cache these API results for 60 seconds
         $waitTime  = $this->entity->apiModels('waitTimes', 'WaitTime', 60)->first();
         $waitTimeMember  = $this->entity->apiModels('waitTimesMember', 'WaitTime', 60)->first();
@@ -157,9 +160,9 @@ class ExhibitionPresenter extends BasePresenter
         if ($waitTime || $waitTimeMember) {
             return [
                 'label' => 'Current wait times<br/>'
-                 . ($waitTime ? ('General Admission: ' . $waitTime->present()->display) : '')
+                 . ($waitTime ? ('General Admission: ' . $waitTime->present()->display()) : '')
                  . ($waitTime && $waitTimeMember ? '<br/>' : '')
-                 . ($waitTimeMember ? ('Members: ' . $waitTimeMember->present()->display) : ''),
+                 . ($waitTimeMember ? ('Members: ' . $waitTimeMember->present()->display()) : ''),
                 'iconBefore' => 'clock',
                 'variation' => 'm-link-list__trigger--wait-time',
             ];
@@ -167,13 +170,15 @@ class ExhibitionPresenter extends BasePresenter
         return [];
     }
 
-    public function wait_time_override() {
+    public function wait_time_override()
+    {
         if (config('app.env') != 'production' || (date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 18)) {
             return $this->entity->wait_time_override;
         }
     }
 
-    protected function relatedEventsLink() {
+    protected function relatedEventsLink()
+    {
         $count = $this->entity->eventsCount();
 
         if ($count > 0) {
@@ -185,7 +190,8 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
-    protected function closingSoonLink() {
+    protected function closingSoonLink()
+    {
         if ($this->entity->isOngoing) {
            return [
                 'label' => 'Ongoing',
@@ -214,15 +220,25 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
-    protected function augmented() {
+    protected function augmented()
+    {
         return $this->entity->getAugmentedModel() ? 'Yes' : 'No';
     }
 
-    public function addInjectAttributes($variation = null) {
-        if (date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 18
-            && Carbon::now()->between($this->entity->dateStart, $this->dateEnd)) {
-            return 'class="o-injected-container" data-behavior="injectContent" data-injectContent-url="' . route('exhibitions.waitTime', ['id' => $this->entity->id, 'slug' => $this->entity->getSlug(), 'variation' => $variation]) . '"';
+    public function addInjectAttributes($variation = null)
+    {
+        if ((
+            date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 18
+        ) && (
+            Carbon::now()->between($this->entity->dateStart, $this->dateEnd)
+        )){
+            $injectUrl = route('exhibitions.waitTime', [
+                'id' => $this->entity->id,
+                'slug' => $this->entity->getSlug(),
+                'variation' => $variation,
+            ]);
+
+            return 'class="o-injected-container" data-behavior="injectContent" data-injectContent-url="' . $injectUrl . '"';
         }
-        return null;
     }
 }

@@ -101,9 +101,8 @@
 		ondowncrop="0|67|52|56"
 		edge="center"
 		distorted="false"
-		zoom="true"
-		renderer="css3d"
-		onloaded.addevent="if(device.mobile, mul(scale,.75);, mul(scale,0.4))"
+		zoom="false"
+		scale="0.4"
 		onover.addevent="tween(scale,0.5);"
 	  onout.addevent="tween(scale,0.4);"
 	/>
@@ -116,14 +115,10 @@
 		css="data:textBoxStyles"
 		autowidth="false"
 		autoheight="true"
-		vcenter="false"
 		padding="30"
 		wordwrap="true"
-		bg="true"
 		bgcolor="0x000000"
 		bgalpha=".75"
-		bgborder="0"
-		bgroundedge="0"
 		interactivecontent="true"
 		visible="false"
 		alpha="0.0"
@@ -136,8 +131,27 @@
 		font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;
 		font-size:1.2em;
 		color:#ffffff;
-		line-height: 25px;
+		line-height:25px;
 	</data>
+
+		<!-- style for text boxes -->
+	<style type="text" name="modal_textbox_style"
+		align="lefttop"
+		x="40"
+		y="0"
+		autowidth="false"
+		autoheight="true"
+		maxheight="calc(stageheight*.80)"
+		bgborder="0"
+		bgcolor="0x000000"
+		bgalpha=".75"
+		bgcapture="true"
+		handcursor="false"
+		alpha="0"
+		zorder="13"
+		interactivecontent="true"
+		visible="false"
+	/>
 
 	<!-- style for artwork hotspots -->
 	<style type="image" name="artwork_hotspot"
@@ -146,9 +160,8 @@
 		ondowncrop="0|67|52|56"
 		edge="center"
 		distorted="false"
-		zoom="true"
-		renderer="css3d"
-		onloaded.addevent="if(device.mobile, mul(scale,.75);, mul(scale,0.4))"
+		zoom="false"
+		scale="0.4"
 		onover.addevent="tween(scale,0.5);"
 	  onout.addevent="tween(scale,0.4);"
 	/>
@@ -175,13 +188,22 @@
 		bgcapture="true"
 		visible="false"
 		alpha="0"
-		onclick="tween_layer(get(layer[get(name)].name));"
+		onclick="removeall_textboxes();"
 		zorder="10"
+		handcursor="false"
+	/>
+
+	<style type="container" name="loader_style"
+		align="center"
+		zorder="11"
+		handcursor="false"
 	/>
 
 	<style type="image" name="artwork_image_style"
 		align="center"
 		zorder="11"
+		handcursor="false"
+		onclick="removeall_textboxes();"
 	/>
 
 	<!-- style for info button layer -->
@@ -223,7 +245,6 @@
 		url="vtourskin_aic_infoicon.png"
 		edge="center"
 		distorted="false"
-		renderer="css3d"
 	  scale=".4"
 		align="center"
 		zorder="12"
@@ -234,7 +255,6 @@
 		url="vtourskin_aic_closeicon.png"
 		edge="center"
 		distorted="false"
-		renderer="css3d"
 	  scale=".4"
 		align="center"
 		zorder="12"
@@ -296,7 +316,9 @@
 						<layer name="skin_thumbs_scrollleft"  style="skin_base" crop="0|64|64|64"  align="lefttop"  edge="left"  x="5" y="50" scale="0.5" zorder="2" alpha="1.0" ondown="asyncloop(pressed, layer[skin_thumbs].scrollby(+2,0));" visible="false" />
 						<layer name="skin_thumbs_scrollright" style="skin_base" crop="64|64|64|64" align="righttop" edge="right" x="5" y="50" scale="0.5" zorder="2" alpha="1.0" ondown="asyncloop(pressed, layer[skin_thumbs].scrollby(-2,0));" visible="false" />
 						<layer name="skin_thumbs_scrollindicator" type="container" bgcolor="0xFFFFFF" bgalpha="0.25" align="lefttop" width="0" y="100" height="2" visible="false" enabled="false" />
-						<layer name="skin_thumbs" state="closed" url.flash="%VIEWER%/plugins/scrollarea.swf" url.html5="%VIEWER%/plugins/scrollarea.js" direction="h" align="top" width="100%" height="100" zorder="1" onloaded="skin_updatescroll();" onscroll="skin_updatethumbscroll();" />
+						<!-- may need this later for scrolling thumbnails
+							<layer name="skin_thumbs" state="closed" url.flash="%VIEWER%/plugins/scrollarea.swf" url.html5="plugins/scrollarea.js" direction="h" align="top" width="100%" height="100" zorder="1" onloaded="skin_updatescroll();" onscroll="skin_updatethumbscroll();" />
+						-->
 					</layer>
 					<layer name="skin_map_container" type="container" align="leftop" width="100%" height="100%" bgroundedge="get:skin_settings.design_bgroundedge" maskchildren="true">
 						<layer name="skin_map" state="closed" url="" visible="false" align="lefttop" width="100%" height="50%" x="0" y="0" zorder="1" lat="0" lng="0" zoom="10" bgalpha="0" maptype="satellite" onmapready="skin_addmapspots();">
@@ -323,18 +345,20 @@
 			<layer name="skin_control_bar_buttons" type="container" align="leftbottom" width="100%" height="get:skin_settings.controlbar_height">
 				<layer name="skin_btn_navi" type="container" align="center" x="0">
 					<!-- left arrow -->
-					<layer name="skin_btn_left"  style="skin_controls" crop="0|94|54|54"  onovercrop="0|0|54|54" ondowncrop="0|0|54|54" align="center"      x="-35" y="0"  scale=".55"
-					onover="set(layer[skin_control_bar_bg].bgalpha, .6);"
-					ondown="set(hlookat_moveforce,-1); set(layer[skin_control_bar_bg].bgalpha, .7);"
+					<layer name="skin_btn_left"  style="skin_controls" crop="0|0|54|54" align="center" x="-35" y="0"  scale=".55"
+					onover="set(layer[skin_control_bar_bg].bgalpha, .6); set(layer[skin_btn_right].crop, 66|94|54|54);"
+					ondown="set(hlookat_moveforce,-1); set(layer[skin_control_bar_bg].bgalpha, .7); set(layer[skin_btn_right].crop, 66|94|54|54);"
 					onup="set(hlookat_moveforce,0);
-					if(device.handheld, set(layer[skin_control_bar_bg].bgalpha, .5), set(layer[skin_control_bar_bg].bgalpha, .6));"
+					if(device.handheld, set(layer[skin_control_bar_bg].bgalpha, .5), set(layer[skin_control_bar_bg].bgalpha, .6)); set(layer[skin_btn_right].crop, 66|0|54|54);"
+					onout="set(layer[skin_btn_right].crop, 66|0|54|54);"
 					/>
 					<!-- right arrow -->
-					<layer name="skin_btn_right" style="skin_controls" crop="66|94|54|54" onovercrop="66|0|54|54" ondowncrop="66|0|54|54" align="center"      x="35"  y="0"  scale="0.55"
-					onover="set(layer[skin_control_bar_bg].bgalpha, .6);"
-					ondown="set(hlookat_moveforce,+1); set(layer[skin_control_bar_bg].bgalpha, .7);"
+					<layer name="skin_btn_right" style="skin_controls" crop="66|0|54|54" align="center" x="35"  y="0"  scale="0.55"
+					onover="set(layer[skin_control_bar_bg].bgalpha, .6); set(layer[skin_btn_left].crop, 0|94|54|54);"
+					ondown="set(hlookat_moveforce,+1); set(layer[skin_control_bar_bg].bgalpha, .7); set(layer[skin_btn_left].crop, 0|94|54|54);"
 					onup="set(hlookat_moveforce,0);
-				 	if(device.handheld, set(layer[skin_control_bar_bg].bgalpha, .5), set(layer[skin_control_bar_bg].bgalpha, .6));"
+				 	if(device.handheld, set(layer[skin_control_bar_bg].bgalpha, .5), set(layer[skin_control_bar_bg].bgalpha, .6)); set(layer[skin_btn_left].crop, 0|0|54|54);"
+					onout="set(layer[skin_btn_left].crop, 0|0|54|54);"
 					/>
 				</layer>
 			</layer>
@@ -1120,12 +1144,18 @@
 		,
 			<!-- remove all text boxes and create a new one -->
 			removeall_textboxes();
-			<!-- add text box with style -->
+			<!-- add text box with regular or modal styles and content -->
 			addlayer(get(layername));
-			assignstyle(layer[get(layername)],'textbox_style');
-			<!-- add text content -->
-			set(textcontent, get(layername));
-			txtadd(layer[get(layername)].html, 'data:', get(textcontent));
+			if (get(parenttype) == 'l',
+				assignstyle(layer[get(layername)],'modal_textbox_style');
+				set(textcontent, get(data[get(layername)].content));
+				txtadd(layer[get(layername)].onloaded, 'add_html_text("', get(textcontent),'")');
+			,
+				assignstyle(layer[get(layername)],'textbox_style');
+				set(textcontent, get(layername));
+				txtadd(layer[get(layername)].html, 'data:', get(textcontent));
+			);
+
 			<!-- set up text box parent, width, placement -->
 			if(stagewidth LT 500,
 				set(layer[get(layername)].parent, );
@@ -1147,6 +1177,51 @@
 		tween_layer(get(layername));
 	</action>
 
+	<!-- arguments: 1=htmlcode -->
+	<action name="add_html_text" type="Javascript"><![CDATA[
+
+		var div = document.createElement("div");
+
+		// basic styles to fit into the layer size and allow scrolling:
+		div.style.width = "100%";
+		div.style.height = "100%";
+		div.style.boxSizing = "border-box";
+		div.style.overflow = "auto";
+		div.style.fontFamily = "Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif";
+		div.style.fontSize = "1.2em";
+		div.style.color = "#ffffff";
+		div.style.lineHeight="25px";
+		div.style.padding="30px";
+		div.style.backgroundColor = "rgba(0,0,0,0.75)";
+		div.style.touchAction = "auto";
+		div.style.pointerEvents = "auto";
+
+		function stopPropagation(e){ e.stopPropagation(); }
+		function preventDefault(e){ e.preventDefault(); }
+
+		// enable browsed-based mouse-wheel and touch-scrolling support:
+		div.addEventListener("wheel", stopPropagation, true);
+		div.addEventListener("mousewheel", stopPropagation, true);
+		div.addEventListener("DOMMouseScroll", stopPropagation, true);
+		div.addEventListener("touchstart", function(event){
+			if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){
+				/* avoid the iOS 'overscrolling' for fullpage viewers */
+				var bs = document.body.parentNode.style;
+				bs.position="fixed";
+				bs.top=0; bs.left=0; bs.right=0; bs.bottom=0;
+			}
+			krpano.control.preventTouchEvents = false; event.stopPropagation();
+		}, true);
+		div.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
+		div.addEventListener("gesturestart", preventDefault, true);
+
+		// add the html code:
+		div.innerHTML = args[1];
+
+		// add the div to the layer element:
+		caller.sprite.appendChild(div);
+	]]></action>
+
 	<!-- remove textboxes -->
 	<action name="removeall_textboxes" scope="local">
 		for(set(i,0), i LT layer.count, inc(i),
@@ -1155,6 +1230,39 @@
 				dec(i);
 			);
 		);
+	</action>
+
+	<events
+		onmousedown="removeall_textboxes();"
+	/>
+
+	<action name="image_loading" type="Javascript"><![CDATA[
+		//create loading div and styles
+		var div = document.createElement("div");
+		div.style.position = "absolute";
+		div.style.width = "24px";
+		div.style.height = "24px";
+		div.style.content = "";
+		div.style.left = "50%";
+		div.style.top = "50%";
+		div.style.margin = "-12px 0 0 -12px";
+		div.style.border = "2px solid #e6e6e6";
+		div.style.borderTopColor = "#767676";
+		div.style.borderRadius = "50%";
+		div.style.animation= "loader 1.25s linear infinite";
+
+		let keyframes = `@keyframes loader {
+  		100% {
+    		transform: rotate(360deg);
+  		}
+		}`;
+		var style = document.createElement("style");
+		style.innerHTML = keyframes;
+
+		//add loading div
+		caller.sprite.appendChild(div);
+		div.appendChild(style);
+	]]>
 	</action>
 
 	<!-- retrieve artwork information via data hub api -->
@@ -1166,6 +1274,7 @@
 		//krpano image layer
 		var imagelayer = 'layer[image_' + args[1] + ']';
 		imagelayer = krpano.get(imagelayer);
+
 		//image size limits
 		var screenwidth = Math.floor(krpano.stagewidth * .75);
 		var screenheight = Math.floor(krpano.stageheight * .75);
@@ -1176,7 +1285,7 @@
 		request.onload = function () {
 			var data = JSON.parse(this.response);
 			if (request.status >= 200 && request.status < 400) {
-				if (data.data.is_public_domain) {
+				if (data.data.is_public_domain || screenwidth < 843) {
 					artworkurl = 'https://www.artic.edu/iiif/2/' + data.data.image_id + '/full/!' + screenwidth + ',' + screenheight + '/0/default.jpg';
 				} else {
 					artworkurl = 'https://www.artic.edu/iiif/2/' + data.data.image_id + '/full/!' + 843 + ',' + screenheight + '/0/default.jpg';
@@ -1205,11 +1314,20 @@
 		addlayer(get(modal_layername));
 		assignstyle(layer[get(modal_layername)],'modal_style');
 
+		<!-- add loader layer if image has not loaded -->
+		if (!layer[get(image_layername)].loaded,
+			addlayer(loader);
+			assignstyle(layer[loader],'loader_style');
+			txtadd(layer[loader].onloaded, image_loading(););
+		);
+
 		<!-- add image with style -->
 		addlayer(get(image_layername));
 		assignstyle(layer[get(image_layername)], 'artwork_image_style');
 		txtadd(layer[get(image_layername)].parent, 'layer[', get(modal_layername), ']');
 		grab_artwork(get(hotspotname));
+		<!-- remove loader when image loads -->
+		txtadd(layer[get(image_layername)].onloaded, removelayer(loader););
 
 		<!-- add info button layers -->
 		addlayer(get(infobutton_layername));
@@ -1220,6 +1338,7 @@
 		assignstyle(layer[get(infoicon_layername)],'infoicon_style');
 		txtadd(layer[get(infoicon_layername)].parent, 'layer[', get(infobutton_layername), ']');
 
+		<!-- set up text boxes -->
 		txtadd(layer[get(infoicon_layername)].onclick, 'setup_textbox(', get(hotspotname), ', l)');
 
 		<!-- add close button layers -->

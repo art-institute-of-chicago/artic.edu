@@ -1,6 +1,7 @@
 @php
     $embed_code = $block->input('embed_code');
-    $embed_height =$block->input('embed_height');
+    $embed_height = $block->input('embed_height');
+    $disablePlaceholder = $block->input('disable_placeholder');
 @endphp
 
 @if ($embed_code)
@@ -10,6 +11,7 @@
         @slot('item', [
             'type' => 'embed',
             'size' => 's',
+            'disablePlaceholder' => $disablePlaceholder,
             'media' => [
                 "embed" => $embed_code,
                 "src" => (isset($image['src'])) ? $image['src'] : '',
