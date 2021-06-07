@@ -102,7 +102,7 @@
 		edge="center"
 		distorted="false"
 		zoom="false"
-		onloaded.addevent="if(device.mobile, mul(scale,.75);, mul(scale,0.4))"
+		scale="0.4"
 		onover.addevent="tween(scale,0.5);"
 	  onout.addevent="tween(scale,0.4);"
 	/>
@@ -161,7 +161,7 @@
 		edge="center"
 		distorted="false"
 		zoom="false"
-		onloaded.addevent="if(device.mobile, mul(scale,.75);, mul(scale,0.4))"
+		scale="0.4"
 		onover.addevent="tween(scale,0.5);"
 	  onout.addevent="tween(scale,0.4);"
 	/>
