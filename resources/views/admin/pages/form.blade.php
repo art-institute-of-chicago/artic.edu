@@ -9,7 +9,7 @@
 @include('admin.pages.form_' . Str::snake($pageType))
 
 @push('vuexStore')
-  window.STORE.publication.submitOptions = {
+  window[process.env.VUE_APP_NAME].STORE.publication.submitOptions = {
     update: [
       {
         name: 'update',

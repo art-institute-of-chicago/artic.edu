@@ -29,7 +29,7 @@
 @stop
 @push('extra_js')
     <script>
-        const attributesField = window.STORE.form.fields.find(field => field.name == 'split_attributes');
+        const attributesField = window['{{ config('twill.js_namespace') }}'].STORE.form.fields.find(field => field.name == 'split_attributes');
         if (attributesField) {
             attributesField.value.forEach(function (option) {
                 const e = document.getElementById(option);
@@ -68,14 +68,14 @@
     @endforeach
 
     @foreach($form_fields['repeaterMedias']['modal_experience_image'] ?? [] as $name => $medias)
-        window.STORE.medias.selected["{{ $name }}"] = {!! json_encode($medias) !!}
+        window['{{ config('twill.js_namespace') }}'].STORE.medias.selected["{{ $name }}"] = {!! json_encode($medias) !!}
     @endforeach
 
     @foreach($form_fields['repeaterFiles']['modal_experience_image'] ?? [] as $name => $files)
-        window.STORE.medias.selected["{{ $name }}"] = {!! json_encode($files) !!}
+        window['{{ config('twill.js_namespace') }}'].STORE.medias.selected["{{ $name }}"] = {!! json_encode($files) !!}
     @endforeach
 
     @foreach($form_fields['repeaterBrowsers']['modal_experience_image'] ?? [] as $name => $fields)
-        window.STORE.browser.selected["{{ $name }}"] = {!! json_encode($fields) !!}
+        window['{{ config('twill.js_namespace') }}'].STORE.browser.selected["{{ $name }}"] = {!! json_encode($fields) !!}
     @endforeach
 @endpush

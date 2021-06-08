@@ -27,11 +27,15 @@
                 el => el.className === 'singleselector__radio'
             )
         }
-        const currentModuleType = window.STORE.form.fields.find(field => field.name == 'module_type').value;
-        
+
+        const currentModuleType = window['{{ config('twill.js_namespace') }}'].STORE.form.fields.find(
+            field => field.name == 'module_type'
+        ).value;
+
         if (currentModuleType !== 'fullwidthmedia' && find3dOption()) {
             find3dOption().parentNode.style.display = "none";
         }
+
         window.vm.$store.watch(
             function (state) {
                 return state.form.fields;
