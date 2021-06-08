@@ -9,7 +9,7 @@
 @include('admin.pages.form_' . Str::snake($pageType))
 
 @push('vuexStore')
-  window[process.env.VUE_APP_NAME].STORE.publication.submitOptions = {
+  window['{{ config('twill.js_namespace') }}'].STORE.publication.submitOptions = {
     update: [
       {
         name: 'update',
