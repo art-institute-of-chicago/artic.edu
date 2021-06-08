@@ -132,11 +132,6 @@ class ExhibitionPresenter extends BasePresenter
 
     public function navigation()
     {
-        return array_filter([$this->galleryLink(), $this->relatedEventsLink(), $this->closingSoonLink()]);
-    }
-
-    public function navigationWithWaitTime()
-    {
         return array_filter([$this->galleryLink(), $this->waitTime(), $this->relatedEventsLink(), $this->closingSoonLink()]);
     }
 
@@ -157,24 +152,34 @@ class ExhibitionPresenter extends BasePresenter
         $waitTime  = $this->entity->apiModels('waitTimes', 'WaitTime', 60)->first();
         $waitTimeMember  = $this->entity->apiModels('waitTimesMember', 'WaitTime', 60)->first();
 
-        if ($waitTime || $waitTimeMember) {
-            return [
-                'label' => 'Current wait times<br/>'
+        $label = '';
+        if ($waitTime && $waitTimeMember) {
+            $label = 'Current wait times<br/>'
                  . ($waitTime ? ('General Admission: ' . $waitTime->present()->display()) : '')
                  . ($waitTime && $waitTimeMember ? '<br/>' : '')
-                 . ($waitTimeMember ? ('Members: ' . $waitTimeMember->present()->display()) : ''),
+                 . ($waitTimeMember ? ('Members: ' . $waitTimeMember->present()->display()) : '');
+        }
+        elseif ($waitTime || $waitTimeMember) {
+            $label = 'Current wait time: '
+                 . ($waitTime ? $waitTime->present()->display() : '')
+                 . ($waitTimeMember ? $waitTimeMember->present()->display() : '');
+        }
+
+        if ($this->entity->wait_time_override) {
+            if ($label) {
+                $label .= '<br/>';
+            }
+            $label .= $this->entity->wait_time_override;
+        }
+
+        if ($label) {
+            return [
+                'label' => $label,
                 'iconBefore' => 'clock',
                 'variation' => 'm-link-list__trigger--wait-time',
             ];
         }
         return [];
-    }
-
-    public function wait_time_override()
-    {
-        if (config('app.env') != 'production' || (date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 18)) {
-            return $this->entity->wait_time_override;
-        }
     }
 
     protected function relatedEventsLink()
@@ -227,11 +232,11 @@ class ExhibitionPresenter extends BasePresenter
 
     public function addInjectAttributes($variation = null)
     {
-        if ((
-            date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 18
-        ) && (
-            Carbon::now()->between($this->entity->dateStart, $this->dateEnd)
-        )){
+        // if ((
+        //     date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 18
+        // ) && (
+        //     Carbon::now()->between($this->entity->dateStart, $this->dateEnd)
+        // )){
             $injectUrl = route('exhibitions.waitTime', [
                 'id' => $this->entity->id,
                 'slug' => $this->entity->getSlug(),
@@ -239,6 +244,6 @@ class ExhibitionPresenter extends BasePresenter
             ]);
 
             return 'class="o-injected-container" data-behavior="injectContent" data-injectContent-url="' . $injectUrl . '"';
-        }
+        // }
     }
 }
