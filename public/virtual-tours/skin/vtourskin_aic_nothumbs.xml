@@ -1188,7 +1188,7 @@
 		div.style.boxSizing = "border-box";
 		div.style.overflow = "auto";
 		div.style.fontFamily = "Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif";
-		div.style.fontSize = "1.2em";
+		div.style.fontSize = "1.45em";
 		div.style.color = "#ffffff";
 		div.style.lineHeight="25px";
 		div.style.padding="30px";
