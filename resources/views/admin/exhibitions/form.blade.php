@@ -156,9 +156,9 @@
 
         @formField('wysiwyg', [
             'name' => 'wait_time_override',
-            'label' => 'Wait time override',
+            'label' => 'Wait time copy',
             'maxlength' => 255,
-            'note' => 'Override wait times with custom text',
+            'note' => 'Content will append the display of automated wait time data',
             'toolbarOptions' => [
                 'italic'
             ],
