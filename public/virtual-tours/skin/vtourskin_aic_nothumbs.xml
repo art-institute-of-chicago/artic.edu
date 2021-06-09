@@ -109,9 +109,6 @@
 
 	<!-- style for text boxes -->
 	<style type="text" name="textbox_style"
-		align="lefttop"
-		x="40"
-		y="0"
 		css="data:textBoxStyles"
 		autowidth="false"
 		autoheight="true"
@@ -1109,27 +1106,6 @@
 		);
 	</action>
 
-	<!-- textbox/tooltip layer alignment depending on where hotspot is in relation to edge of browser window -->
-	<action name="change_align" type="Javascript"><![CDATA[
-		var hotspotName = args[1];
-		var layerName = 'layer['+args[1]+']';
-		var offset = 400;
-		var l = krpano.get(layerName);
-		// save original align
-		if (!l.origalign) l.origalign = l.align;
-
-		function getAlign (hs, offset) {
-			var edges = krpano.spheretoscreen(krpano.hotspot.getItem(hs).ath, 0);
-			return edges.x < offset ?
-					'lefttop' :
-					edges.x > (krpano.stagewidth - offset) ? 'righttop' : l.origalign;
-		};
-
-		l.align = getAlign(hotspotName, offset);
-
-	]]>
-	</action>
-
 	<!-- set up textboxes -->
 	<action name="setup_textbox" scope="local" args="hotspotname, parenttype">
 		<!-- assign layername -->
@@ -1163,14 +1139,20 @@
 				set(layer[get(layername)].x, 0);
 			,
 				if (get(parenttype) == 'h',
-					txtadd(layer[get(layername)].parent, 'hotspot[', get(layername), ']');
-					change_align(get(layername));
+					<!-- get hotspot position to determine text box position-->
+					spheretoscreen(hotspot[get(hotspotname)].ath,hotspot[get(hotspotname)].atv, textx,texty);
+					set(offset, calc(stagewidth - 400));
+					set(layer[get(layername)].y, calc(texty-10));
+					if(textx GT offset,
+						set(layer[get(layername)].x, calc(textx-420));
 					,
+						set(layer[get(layername)].x, calc(textx+20));
+					);
+				,
 					txtreplace(tombstone_parent, layername, 'tombstone_', 'infoicon_');
 					txtadd(layer[get(layername)].parent, 'layer[', get(tombstone_parent), ']');
 				);
 				set(layer[get(layername)].width, 400);
-				set(layer[get(layername)].x, 40);
 			);
 		);
 		<!-- show layer -->
