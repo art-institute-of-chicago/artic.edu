@@ -150,25 +150,18 @@ class ExhibitionPresenter extends BasePresenter
     {
         // WEB-1854: Only cache these API results for 60 seconds
         $waitTime  = $this->entity->apiModels('waitTimes', 'WaitTime', 60)->first();
-        $waitTimeMember  = $this->entity->apiModels('waitTimesMember', 'WaitTime', 60)->first();
 
         $label = '';
-        if ($waitTime && $waitTimeMember) {
-            $label = 'Current wait times<br/>'
-                 . ($waitTime ? ('General Admission: ' . $waitTime->present()->display()) : '')
-                 . ($waitTime && $waitTimeMember ? '<br/>' : '')
-                 . ($waitTimeMember ? ('Members: ' . $waitTimeMember->present()->display()) : '');
-        }
-        elseif ($waitTime || $waitTimeMember) {
-            $label = 'Current wait time: '
-                 . ($waitTime ? $waitTime->present()->display() : '')
-                 . ($waitTimeMember ? $waitTimeMember->present()->display() : '');
+
+        if ($waitTime) {
+            $label = 'Current wait time: ' . $waitTime->present()->display();
         }
 
         if ($this->entity->wait_time_override) {
             if ($label) {
                 $label .= '<br/>';
             }
+
             $label .= $this->entity->wait_time_override;
         }
 
@@ -179,6 +172,7 @@ class ExhibitionPresenter extends BasePresenter
                 'variation' => 'm-link-list__trigger--wait-time',
             ];
         }
+
         return [];
     }
 

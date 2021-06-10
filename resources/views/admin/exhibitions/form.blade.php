@@ -140,16 +140,7 @@
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'waitTimes',
             'name' => 'waitTimes',
-            'label' => 'Wait Time - GA',
-            'note' => 'Select a queue to display the wait time for',
-            'max' => 1
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'moduleName' => 'waitTimes',
-            'name' => 'waitTimesMember',
-            'label' => 'Wait Time - Member',
+            'label' => 'Wait Time',
             'note' => 'Select a queue to display the wait time for',
             'max' => 1
         ])
@@ -158,7 +149,7 @@
             'name' => 'wait_time_override',
             'label' => 'Wait time copy',
             'maxlength' => 255,
-            'note' => 'Content will append the display of automated wait time data',
+            'note' => 'Content will display below wait time data',
             'toolbarOptions' => [
                 'italic'
             ],
