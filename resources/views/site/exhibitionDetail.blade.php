@@ -30,22 +30,22 @@
         @slot('articleType', 'exhibition')
     @endcomponent
 
-    @if ($item->present()->navigation)
+    @if ($item->present()->navigation())
         <div {!! $item->present()->addInjectAttributes('u-show@large+') !!}>
             {{-- dupe 😢 - shows xlarge+ --}}
             @component('components.molecules._m-link-list')
                 @slot('variation', 'u-show@large+')
-                @slot('links', $item->present()->navigation)
+                @slot('links', $item->present()->navigation())
             @endcomponent
         </div>
     @endif
   </div>
 
   {{-- dupe 😢 - hides xlarge+ --}}
-  @if ($item->present()->navigation)
+  @if ($item->present()->navigation())
         <div class="o-article__meta" {!! $item->present()->addInjectAttributes('u-show@large+') !!}>
             @component('components.molecules._m-link-list')
-                @slot('links', $item->present()->navigation);
+                @slot('links', $item->present()->navigation());
             @endcomponent
         </div>
   @endif

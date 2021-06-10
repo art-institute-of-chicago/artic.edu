@@ -25,20 +25,20 @@
         @slot('icsLink', route('events.ics', $item->id) ?? null)
     @endcomponent
 
-    @if ($item->present()->navigation)
+    @if ($item->present()->navigation())
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.molecules._m-link-list')
             @slot('variation', 'u-show@large+')
-            @slot('links', $item->present()->navigation);
+            @slot('links', $item->present()->navigation());
         @endcomponent
     @endif
   </div>
 
   {{-- dupe 😢 - hides xlarge+ --}}
-  @if ($item->present()->navigation)
+  @if ($item->present()->navigation())
     <div class="o-article__meta">
         @component('components.molecules._m-link-list')
-            @slot('links', $item->present()->navigation);
+            @slot('links', $item->present()->navigation());
         @endcomponent
     </div>
   @endif
