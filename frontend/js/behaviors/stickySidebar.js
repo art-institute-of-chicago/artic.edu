@@ -137,6 +137,9 @@ const stickySidebar = function(container){
 
     overlayActive = true;
 
+    // allows us to catch hashchange for citation button
+    history.replaceState(null, null, ' ');
+
     if (mediaQuery('medium-')) {
       savedScroll = window.scrollY;
       savedFocus = document.activeElement || document.querySelector('body');
@@ -205,6 +208,8 @@ const stickySidebar = function(container){
     document.addEventListener('stickySidebar:clean', _cleanSidebar, false);
     document.addEventListener('mediaQueryUpdated',_mediaQueryUpdated, false);
 
+    window.addEventListener('hashchange', _hideSidebar, false);
+
     handleResize();
     handleScroll();
   }
@@ -218,6 +223,8 @@ const stickySidebar = function(container){
     document.removeEventListener('stickySidebar:toggle', _toggleSidebar);
     document.removeEventListener('stickySidebar:clean', _cleanSidebar);
     document.removeEventListener('mediaQueryUpdated',_mediaQueryUpdated);
+
+    window.removeEventListener('hashchange', _hideSidebar);
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
