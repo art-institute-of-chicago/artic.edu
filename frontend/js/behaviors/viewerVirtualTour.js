@@ -12,7 +12,8 @@ const viewerVirtualTour = function(container) {
         html5: 'only',
         mobilescale: 1.0,
         passQueryParameters: true,
-        initvars: {imagepath: vtourImages}
+        initvars: {imagepath: vtourImages},
+        capturetouch: false
       }
     );
   }
