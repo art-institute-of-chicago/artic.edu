@@ -150,6 +150,16 @@
 		visible="false"
 	/>
 
+	<!-- hotspot dropshadow style -->
+	<style type="container" name="hotspot_shadow"
+		width="100%"
+		height="100%"
+		bgcolor="0x000000"
+		bgalpha="0"
+		bgroundedge="50"
+		bgshadow="2 2 5 0x000000 0.25"
+	/>
+
 	<!-- style for artwork hotspots -->
 	<style type="image" name="artwork_hotspot"
 		url="vtourskin_aic_artwork_hotspot.png"
@@ -1214,8 +1224,21 @@
 		);
 	</action>
 
+	<!-- add drop shadow layer for each hotspot -->
+	<action name="add_hotspot_shadow">
+		for(set(i,0), i LT hotspot.count, inc(i),
+			trace(get(hotspot[get(i)].name));
+			txtadd(shadow_layername, get(hotspot[get(i)].name), '_shadow');
+			trace(get(shadow_layername));
+			addlayer(get(shadow_layername));
+			txtadd(layer[get(shadow_layername)].parent, 'hotspot[', get(hotspot[get(i)].name), ']');
+			assignstyle(layer[get(shadow_layername)],'hotspot_shadow');
+		);
+	</action>
+
 	<events
 		onmousedown="removeall_textboxes();"
+		onxmlcomplete="add_hotspot_shadow();"
 	/>
 
 	<action name="image_loading" type="Javascript"><![CDATA[
