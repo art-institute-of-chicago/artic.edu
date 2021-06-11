@@ -17,6 +17,11 @@
 ])
 
 @formField('checkbox', [
+    'name' => 'disable_gallery_modals',
+    'label' => 'Disable modals for this gallery',
+])
+
+@formField('checkbox', [
     'name' => 'is_gallery_zoomable',
     'label' => 'Make all image modals zoomable (override)',
 ])
