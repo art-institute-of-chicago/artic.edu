@@ -1227,9 +1227,7 @@
 	<!-- add drop shadow layer for each hotspot -->
 	<action name="add_hotspot_shadow">
 		for(set(i,0), i LT hotspot.count, inc(i),
-			trace(get(hotspot[get(i)].name));
 			txtadd(shadow_layername, get(hotspot[get(i)].name), '_shadow');
-			trace(get(shadow_layername));
 			addlayer(get(shadow_layername));
 			txtadd(layer[get(shadow_layername)].parent, 'hotspot[', get(hotspot[get(i)].name), ']');
 			assignstyle(layer[get(shadow_layername)],'hotspot_shadow');
