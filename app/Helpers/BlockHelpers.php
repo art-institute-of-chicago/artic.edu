@@ -117,7 +117,10 @@ if (!function_exists('getCaptionFields')) {
         ];
 
         if ($_allowAdvancedModalFeatures ?? false) {
-            $fields['credit'] = htmlspecialchars('<div class="f-caption-title">' . $captionTitle . '</div><div class="f-caption">' . $caption . '</div>');
+            $wrappedCaptionTitle = $captionTitle ? '<div class="f-caption-title">' . $captionTitle . '</div>' : '';
+            $wrappedCaption = $caption ? '<div class="f-caption">' . $caption . '</div>' : '';
+
+            $fields['credit'] = htmlspecialchars($wrappedCaptionTitle . $wrappedCaption);
         }
 
         return $fields;
