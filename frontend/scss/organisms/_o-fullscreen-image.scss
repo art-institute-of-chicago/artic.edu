@@ -91,19 +91,16 @@
 
 .o-fullscreen-image .m-info-trigger {
   top: 20px;
-  left: 16px;
+  left: 20px;
   z-index: 2;
 }
 
 .o-fullscreen-image .m-info-trigger__info {
-  top: 52px;
-  right: 90px;
+  top: 58px;
+  right: 88px;
+  left: 20px;
   width: auto;
   z-index: 2;
-
-  @include breakpoint('small+') {
-    left: 16px;
-  }
 }
 
 .o-fullscreen-image__img-toolbar {
