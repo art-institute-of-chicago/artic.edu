@@ -6,6 +6,27 @@
     <img class="o-fullscreen-image__img" alt="" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">
     <div class="o-fullscreen-image__osd" id="openseadragon"></div>
     <div class="o-fullscreen-image__img-toolbar">
+        <h2 class="sr-only" id="h-gallery_action">Gallery actions</h2>
+        <ul class="o-fullscreen-image__gallery-actions" aria-labelledby="h-gallery_action">
+            <li>
+                @component('components.atoms._btn')
+                    @slot('variation', 'btn--octonary btn--icon btn--icon-circle-48 ')
+                    @slot('font', '')
+                    @slot('icon', 'icon--arrow--24')
+                    @slot('dataAttributes', 'data-fullscreen-prev')
+                    @slot('ariaLabel', 'Previous')
+                @endcomponent
+            </li>
+            <li>
+                @component('components.atoms._btn')
+                    @slot('variation', 'btn--octonary btn--icon btn--icon-circle-48 ')
+                    @slot('font', '')
+                    @slot('icon', 'icon--arrow--24')
+                    @slot('dataAttributes', 'data-fullscreen-next')
+                    @slot('ariaLabel', 'Next')
+                @endcomponent
+            </li>
+        </ul>
         <h2 class="sr-only" id="h-img_action">Image actions</h2>
         <ul class="o-fullscreen-image__img-actions" aria-labelledby="h-img_action">
             <li>

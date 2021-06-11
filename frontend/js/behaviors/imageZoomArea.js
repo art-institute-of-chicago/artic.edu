@@ -11,7 +11,7 @@ const imageZoomArea = function(container) {
   let eventData = null;
   let active = false;
 
-  let $btnZoomIn, $btnZoomOut, $btnClose, $img, $osd, $linkInfo, $creditInfoTrigger, $creditInfoText;
+  let $btnPrev, $btnNext, $btnZoomIn, $btnZoomOut, $btnClose, $img, $osd, $linkInfo, $creditInfoTrigger, $creditInfoText;
 
   let imgWidth = 0;
   let imgHeight = 0;
@@ -213,6 +213,8 @@ const imageZoomArea = function(container) {
   function _init() {
     $img = container.querySelector('.o-fullscreen-image__img');
     $osd = container.querySelector('.o-fullscreen-image__osd');
+    $btnPrev = container.querySelector('[data-fullscreen-prev]');
+    $btnNext = container.querySelector('[data-fullscreen-next]');
     $btnZoomIn = container.querySelector('[data-fullscreen-zoom-in]');
     $btnZoomOut = container.querySelector('[data-fullscreen-zoom-out]');
     $btnClose = container.querySelector('[data-fullscreen-close]');

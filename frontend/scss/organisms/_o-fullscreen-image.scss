@@ -114,7 +114,7 @@
   right: 20px;
   bottom: 20px;
   flex-flow: row no-wrap;
-  justify-content: center;
+  justify-content: space-between;
 
   @include breakpoint('small+') {
     left: auto;
@@ -125,6 +125,20 @@
   .s-dragging ~ & {
     opacity: .5;
     pointer-actions: none;
+  }
+
+  .o-fullscreen-image__gallery-actions {
+    display: flex;
+    flex-flow: row no-wrap;
+    justify-content: center;
+
+    [data-fullscreen-prev] {
+      transform: scaleX(-1);
+    }
+
+    [data-fullscreen-next] {
+      margin-left: 10px;
+    }
   }
 
   .o-fullscreen-image__img-actions {
