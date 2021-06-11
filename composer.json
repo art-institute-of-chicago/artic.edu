@@ -65,6 +65,7 @@
             "App\\": "app/"
         },
         "files": [
+            "app/Helpers/FrontendHelpers.php",
             "app/Helpers/BlockHelpers.php",
             "app/Helpers/ImageHelpers.php",
             "app/Helpers/ColorHelpers.php",
