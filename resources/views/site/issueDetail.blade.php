@@ -15,6 +15,7 @@
     <div class="o-article__primary-actions o-article__primary-actions--journal-issue">
         @component('components.molecules._m-article-actions----journal-issue')
             @slot('issues', $issues)
+            @slot('citeAs', $item->cite_as ?? null)
         @endcomponent
     </div>
 
@@ -38,16 +39,16 @@
                 @slot('cols_medium','2')
                 @slot('cols_large','2')
                 @slot('cols_xlarge','2')
-                @foreach ($item->present()->articlesForLanding as $item)
+                @foreach ($item->present()->articlesForLanding as $article)
                     @component('components.molecules._m-listing----publication')
                         @slot('variation', 'm-listing--journal')
-                        @slot('href', route('issue-articles.show', $item))
-                        @slot('image', $item->imageFront('hero'))
-                        @slot('type', $item->present()->type)
-                        @slot('title', $item->present()->title)
-                        @slot('title_display', $item->present()->title_display)
-                        @slot('list_description', $item->present()->list_description)
-                        @slot('author_display', $item->showAuthors())
+                        @slot('href', route('issue-articles.show', $article))
+                        @slot('image', $article->imageFront('hero'))
+                        @slot('type', $article->present()->type)
+                        @slot('title', $article->present()->title)
+                        @slot('title_display', $article->present()->title_display)
+                        @slot('list_description', $article->present()->list_description)
+                        @slot('author_display', $article->showAuthors())
                         @slot('imageSettings', array(
                             'fit' => 'crop',
                             'ratio' => '16:9',
@@ -63,6 +64,17 @@
                     @endcomponent
                 @endforeach
             @endcomponent
+        @endif
+
+
+        @if ($item->cite_as)
+            @component('components.molecules._m-title-bar', [
+                'variation' => 'm-title-bar--compact m-title-bar--light',
+            ])
+                How to Cite
+            @endcomponent
+
+            {!! $item->cite_as !!}
         @endif
 
     </div>
