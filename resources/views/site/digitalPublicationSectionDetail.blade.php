@@ -44,7 +44,7 @@
     </div>
     @endif
 
-    <div class="o-article__body o-blocks o-blocks--with-sidebar {{ $item->type != \App\Models\DigitalPublicationSection::TEXT ? "o-article__body--no-top-border f-body" : "" }}">
+    <div class="o-article__body o-blocks o-blocks--with-sidebar {{ $item->type != \App\Models\DigitalPublicationSection::TEXT ? "o-article__body--no-top-border" : "" }}">
         @if ($item->type == \App\Models\DigitalPublicationSection::TEXT)
             @if ($item->showAuthorsWithLinks())
                 @component('components.blocks._text')
