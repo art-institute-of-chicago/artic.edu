@@ -5,7 +5,10 @@
     'rows' => 4
 ])
 
-@formField('input', [
+@formField('wysiwyg', [
     'name' => 'attribution',
     'label' => 'Attribution',
+    'toolbarOptions' => [
+        'italic'
+    ],
 ])
