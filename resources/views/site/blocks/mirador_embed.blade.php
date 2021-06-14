@@ -12,13 +12,12 @@
     $default_view = $block->input('default_view');
     $size = $block->input('size');
 
-    $figureNumber = getFigureNumber();
-    $captionTitle = getTitleWithFigureNumber($block->input('caption_title'), $figureNumber);
-    $captionText = getSubtitleWithFigureNumber($block->input('caption'), $captionTitle, $figureNumber);
+    $captionTitle = $block->input('caption_title');
+    $captionText = $block->input('caption');
 @endphp
 
 @if ($manifest)
-    <div {!! isset($figureNumber) ? 'id="' . getFigureId($figureNumber) . '" ' : '' !!} class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} o-blocks__block">
+    <div class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} o-blocks__block">
         <div class="m-media__img m-media--mirador-embed" data-behavior="fitText">
             @component('components.molecules._m-viewer-mirador')
                 @slot('type', 'standalone')

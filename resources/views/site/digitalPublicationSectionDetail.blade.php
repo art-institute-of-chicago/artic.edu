@@ -63,20 +63,6 @@
 
             global $_paragraphCount;
             $_paragraphCount = 0;
-
-            global $_figureCount;
-            $_figureCount = 0;
-        }
-
-        if ($item->type == \App\Models\DigitalPublicationSection::WORK) {
-            global $_figureCount;
-            $_figureCount = 0;
-
-            global $_figurePrefixForId;
-            $_figurePrefixForId = 'cat-';
-
-            global $_figurePrefixForDisplay;
-            $_figurePrefixForDisplay = 'Cat.';
         }
 
         global $_allowAdvancedModalFeatures;

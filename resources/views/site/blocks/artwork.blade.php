@@ -37,8 +37,7 @@
         $artworkItem['type'] = 'image';
         $artworkItem['size'] = 's';
         $artworkItem['media'] = $image;
-        $artworkItem['figureNumber'] = $figureNumber = getFigureNumber();
-        $artworkItem['captionTitle'] = getTitleWithFigureNumber($artwork->present()->listingTitle, $figureNumber, $urlTitle);
+        $artworkItem['captionTitle'] = $artwork->present()->listingTitle;
         $artworkItem['caption'] = $caption.'<br>'.$galleryLocation.($captionAddendum ? '<br>'.$captionAddendum : '');
         $artworkItem['fullscreen'] = true;
         $artworkItem['urlTitle'] = isset($figureNumber) ? null : $urlTitle;

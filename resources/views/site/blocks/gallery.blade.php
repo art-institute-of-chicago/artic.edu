@@ -3,16 +3,12 @@
 
     $items = [];
     foreach ($block->childs as $item) {
-        $title = $item->present()->input('captionTitle');
-        $subtitle = $item->present()->input('caption');
-
         $item->type = 'image';
         $item->size = 'gallery';
         $item->fullscreen = true;
         $item->media = $item->imageAsArray('image', 'desktop');
-        $item->figureNumber = $figureNumber = getFigureNumber();
-        $item->captionTitle = getTitleWithFigureNumber($title, $figureNumber);
-        $item->caption = getSubtitleWithFigureNumber($subtitle, $title, $figureNumber);
+        $item->captionTitle = $item->present()->input('captionTitle');
+        $item->caption = $item->present()->input('caption');
         $items[] = $item;
     }
 @endphp
