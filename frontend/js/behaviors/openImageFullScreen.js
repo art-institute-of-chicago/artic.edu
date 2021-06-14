@@ -23,6 +23,27 @@ const openImageFullScreen = function(container) {
       }
     }
 
+    // PUB-30: Support gallery navigation
+    let prevItem = null;
+    let nextItem = null;
+    let enableNavigation = false;
+
+    if (container.getAttribute('data-modal-advanced') === 'true') {
+      let gallery = container.closest('.o-gallery');
+
+      if (gallery) {
+        let galleryItems = gallery.querySelectorAll('[data-behavior*="openImageFullScreen"]');
+        let currentIndex = Array.prototype.indexOf.call(galleryItems, container);
+
+        prevItem = galleryItems[currentIndex - 1] || null;
+        nextItem = galleryItems[currentIndex + 1] || null;
+
+        if (prevItem || nextItem) {
+          enableNavigation = true;
+        }
+      }
+    }
+
     let data = {
       src: container.getAttribute('data-gallery-img-src') || container.parentNode.querySelector('img').src,
       srcset: container.getAttribute('data-gallery-img-srcset') || container.parentNode.querySelector('img').getAttribute('srcset'),
@@ -37,6 +58,9 @@ const openImageFullScreen = function(container) {
       iiifId: container.getAttribute('data-gallery-img-iiifId') || container.parentNode.querySelector('img').getAttribute('data-iiifId'),
       infoUrl: container.parentNode.querySelector('img').getAttribute('data-infourl') || '',
       restrict: container.getAttribute('data-restrict') || '',
+      enableNavigation: enableNavigation,
+      prevItem: prevItem,
+      nextItem: nextItem,
     };
 
     triggerCustomEvent(document, 'fullScreenImage:open', {

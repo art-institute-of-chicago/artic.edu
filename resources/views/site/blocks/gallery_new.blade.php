@@ -47,7 +47,7 @@
                 $mediaItem = array_merge($captionFields, [
                     'type' => 'image',
                     'size' => 'gallery',
-                    'fullscreen' => true,
+                    'fullscreen' => $block->input('disable_gallery_modals') ? false : true,
                     'media' => $item->imageAsArray('image', 'desktop'),
                     'videoUrl' => $item->input('videoUrl'),
                 ]);
@@ -101,7 +101,7 @@
 
                 $items[] = array_merge($captionFields, [
                   'type' => 'image',
-                  'fullscreen' => true,
+                  'fullscreen' => $block->input('disable_gallery_modals') ? false : true,
                   'size' => 'gallery',
                   'media' => $image,
                   'url' => route('artworks.show', $artwork),

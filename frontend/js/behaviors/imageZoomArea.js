@@ -11,7 +11,10 @@ const imageZoomArea = function(container) {
   let eventData = null;
   let active = false;
 
-  let $btnZoomIn, $btnZoomOut, $btnClose, $img, $osd, $linkInfo, $creditInfoTrigger, $creditInfoText;
+  let $btnPrev, $btnNext, $btnZoomIn, $btnZoomOut, $btnClose, $img, $osd, $linkInfo, $creditInfoTrigger, $creditInfoText;
+
+  let prevItem = null;
+  let nextItem = null;
 
   let imgWidth = 0;
   let imgHeight = 0;
@@ -24,6 +27,16 @@ const imageZoomArea = function(container) {
   function _zoomOut(event) {
     event.preventDefault();
     $btnZoomOut.blur();
+  }
+
+  function _prev(event) {
+    _close();
+    prevItem.click();
+  }
+
+  function _next(event) {
+    _close();
+    nextItem.click();
   }
 
   function _close(event) {
@@ -192,12 +205,36 @@ const imageZoomArea = function(container) {
         $creditInfoTrigger.setAttribute('style', 'display: none');
       }
 
-      if (eventData.infoUrl) {
+      if (eventData.infoUrl && !eventData.enableNavigation) {
         $linkInfo.setAttribute('href', eventData.infoUrl);
         $linkInfo.setAttribute('style', '');
       } else {
         $linkInfo.setAttribute('href', 'javascript:;');
         $linkInfo.setAttribute('style', 'display: none');
+      }
+
+      if (eventData.enableNavigation) {
+        $btnPrev.setAttribute('style', '');
+        $btnNext.setAttribute('style', '');
+      } else {
+        $btnPrev.setAttribute('style', 'display: none');
+        $btnNext.setAttribute('style', 'display: none');
+      }
+
+      if (eventData.prevItem) {
+        prevItem = eventData.prevItem;
+        $btnPrev.disabled = false;
+      } else {
+        prevItem = null;
+        $btnPrev.disabled = true;
+      }
+
+      if (eventData.nextItem) {
+        nextItem = eventData.nextItem;
+        $btnNext.disabled = false;
+      } else {
+        nextItem = null;
+        $btnNext.disabled = true;
       }
 
       active = true;
@@ -213,6 +250,8 @@ const imageZoomArea = function(container) {
   function _init() {
     $img = container.querySelector('.o-fullscreen-image__img');
     $osd = container.querySelector('.o-fullscreen-image__osd');
+    $btnPrev = container.querySelector('[data-fullscreen-prev]');
+    $btnNext = container.querySelector('[data-fullscreen-next]');
     $btnZoomIn = container.querySelector('[data-fullscreen-zoom-in]');
     $btnZoomOut = container.querySelector('[data-fullscreen-zoom-out]');
     $btnClose = container.querySelector('[data-fullscreen-close]');
@@ -220,6 +259,8 @@ const imageZoomArea = function(container) {
     $creditInfoTrigger = container.querySelector('.m-info-trigger');
     $creditInfoText = container.querySelector('.m-info-trigger__info');
 
+    $btnPrev.addEventListener('click', _prev, false);
+    $btnNext.addEventListener('click', _next, false);
     $btnClose.addEventListener('click', _close, false);
     document.addEventListener('fullScreenImage:open', _open, false);
     document.addEventListener('fullScreenImage:close', _close, false);
@@ -228,6 +269,8 @@ const imageZoomArea = function(container) {
 
   this.destroy = function() {
     // remove specific event handlers
+    $btnPrev.removeEventListener('click', _prev);
+    $btnNext.removeEventListener('click', _next);
     $btnClose.removeEventListener('click', _close);
     document.removeEventListener('fullScreenImage:open', _open);
     document.removeEventListener('fullScreenImage:close', _close);
