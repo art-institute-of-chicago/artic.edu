@@ -113,10 +113,12 @@
   flex-flow: row no-wrap;
   justify-content: space-between;
 
-  @include breakpoint('small+') {
-    left: auto;
-    right: 32px;
-    bottom: 32px;
+  .o-fullscreen-image:not(.o-fullscreen-image--advanced) & {
+    @include breakpoint('small+') {
+      left: auto;
+      right: 32px;
+      bottom: 32px;
+    }
   }
 
   .s-dragging ~ & {

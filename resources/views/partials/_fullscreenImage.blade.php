@@ -1,4 +1,7 @@
-<div class="o-fullscreen-image" id="fullscreenImage" data-behavior="imageZoomArea">
+@php
+    global $_allowAdvancedModalFeatures;
+@endphp
+<div class="o-fullscreen-image {{ ($_allowAdvancedModalFeatures ?? false) ? 'o-fullscreen-image--advanced' : '' }}" id="fullscreenImage" data-behavior="imageZoomArea">
     <a class="o-fullscreen-image__info-link">Learn more</a>
     @component('components.molecules._m-info-trigger')
         @slot('creditText', 'Lorem ipsum')
