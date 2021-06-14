@@ -78,4 +78,18 @@ class IssueArticlePresenter extends BasePresenter
             ],
         ];
     }
+
+    public function references()
+    {
+        //
+    }
+
+    public function citeAs()
+    {
+        if (empty($this->entity->cite_as)) {
+            return;
+        }
+
+        return $this->addCssClass($this->entity->cite_as, 'f-secondary');
+    }
 }

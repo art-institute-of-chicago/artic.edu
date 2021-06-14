@@ -68,38 +68,11 @@
             'pageTitle' => $item->meta_title ?: $item->title,
         ]) !!}
 
-        @if (sizeof($_collectedReferences))
-            @component('components.organisms._o-accordion')
-                @slot('variation', 'o-accordion--section o-blocks__block')
-                @slot('items', array(
-                    array(
-                        'title' => "References",
-                        'active' => true,
-                        'blocks' => array(
-                            array(
-                                "type" => 'references',
-                                "items" => $_collectedReferences
-                            ),
-                        ),
-                    ),
-                ))
-                @slot('loopIndex', 'references')
-            @endcomponent
-        @endif
-
-        @if ($item->cite_as)
-            <hr class="hr">
-            @component('components.molecules._m-title-bar', [
-                'variation' => 'm-title-bar--no-hr',
-            ])
-                How to Cite
-            @endcomponent
-            @component('components.blocks._text')
-                @slot('font', 'f-secondary')
-                @slot('tag', 'div')
-                {!! $item->cite_as !!}
-            @endcomponent
-        @endif
+        @component('partials._bibliography')
+            @slot('notes', $_collectedReferences ?? null)
+            @slot('references', $item->present()->references())
+            @slot('citeAs', $item->present()->citeAs())
+        @endcomponent
     </div>
 </article>
 
