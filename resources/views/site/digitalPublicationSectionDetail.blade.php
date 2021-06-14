@@ -88,52 +88,11 @@
             'pageTitle' => $item->meta_title ?: $item->title,
         ]) !!}
 
-        @if (isset($_collectedReferences) && sizeof($_collectedReferences))
-            <hr class="hr">
-            @component('components.molecules._m-title-bar', [
-                'variation' => 'm-title-bar--no-hr',
-                'titleFont' => 'f-list-3'
-            ])
-                Notes
-            @endcomponent
-            <div class="o-blocks o-blocks--bibliographic">
-                @component('components.blocks._blocks')
-                    @slot('blocks',
-                        [
-                            [
-                                'type' => 'references',
-                                'items' => $_collectedReferences
-                            ]
-                        ])
-                @endcomponent
-            </div>
-        @endif
-
-        @if ($item->references)
-            <hr class="hr">
-            @component('components.molecules._m-title-bar', [
-                'variation' => 'm-title-bar--no-hr',
-                'titleFont' => 'f-list-3'
-            ])
-                References
-            @endcomponent
-            <div class="o-blocks o-blocks--bibliographic">
-                {!! $item->present()->references !!}
-            </div>
-        @endif
-
-        @if ($item->cite_as)
-            <hr class="hr">
-            @component('components.molecules._m-title-bar', [
-                'variation' => 'm-title-bar--no-hr',
-                'titleFont' => 'f-list-3'
-            ])
-                How to Cite
-            @endcomponent
-            <div class="o-blocks o-blocks--bibliographic">
-                {!! $item->present()->citeAs !!}
-            </div>
-        @endif
+        @component('partials._bibliography')
+            @slot('notes', $_collectedReferences ?? null)
+            @slot('references', $item->present()->references())
+            @slot('citeAs', $item->present()->citeAs())
+        @endcomponent
     </div>
 </article>
 
