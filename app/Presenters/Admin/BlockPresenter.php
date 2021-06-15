@@ -16,8 +16,14 @@ class BlockPresenter extends BasePresenter
 
     public function input($name)
     {
-        if ($name == 'description') {
+        // WEB-1783: Adding anchor navigation to FAQ
+        if ($name === 'description') {
             $content = $this->entity->input($name);
+
+            if (empty($content)) {
+                return;
+            }
+
             // Give IDs to H2s, H3s, and H4s
             $oldInternalErrors = libxml_use_internal_errors(true);
 
@@ -39,11 +45,18 @@ class BlockPresenter extends BasePresenter
             }
 
             $content = $dom->saveHTML($dom);
+            $prefix = '<?xml encoding="utf-8" ?>';
+
+            if (Str::startsWith($content, $prefix)) {
+                $content = Str::substr($content, Str::length($prefix));
+            }
 
             libxml_clear_errors();
             libxml_use_internal_errors($oldInternalErrors);
+
             return SmartyPants::defaultTransform($content);
         }
+
         return SmartyPants::defaultTransform($this->entity->input($name));
     }
 
