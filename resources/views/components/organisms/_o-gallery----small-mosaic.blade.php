@@ -16,6 +16,7 @@
             @endcomponent
             @component('components.blocks._text')
                 @slot('font','f-caption')
+                @slot('tag', 'div')
                 {!! $caption !!}
             @endcomponent
         </div>
