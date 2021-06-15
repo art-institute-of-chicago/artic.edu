@@ -46,7 +46,7 @@ const openImageFullScreen = function(container) {
 
     let data = {
       src: container.getAttribute('data-gallery-img-src') || container.parentNode.querySelector('img').src,
-      srcset: container.getAttribute('data-gallery-img-srcset') || container.parentNode.querySelector('img').getAttribute('srcset'),
+      srcset: container.getAttribute('data-gallery-img-srcset') || container.parentNode.querySelector('img').getAttribute('srcset') || container.parentNode.querySelector('img').getAttribute('data-srcset'),
       width: width,
       height: height,
       credit: container.getAttribute('data-gallery-img-credit') || container.getAttribute('data-credit'),
