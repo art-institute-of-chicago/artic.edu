@@ -18,6 +18,7 @@
     position: absolute;
     background-color: $color__rules--primary;
     width: 1px;
+    z-index: 1;
 
     @include breakpoint('large+') {
       content: '';
