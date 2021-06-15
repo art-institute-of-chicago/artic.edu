@@ -19,6 +19,8 @@ const imageZoomArea = function(container) {
   let imgWidth = 0;
   let imgHeight = 0;
 
+  let fakeEvent = false;
+
   function _zoomIn(event) {
     event.preventDefault();
     $btnZoomIn.blur();
@@ -30,24 +32,32 @@ const imageZoomArea = function(container) {
   }
 
   function _prev(event) {
+    fakeEvent = true;
     _close();
     prevItem.click();
+    fakeEvent = false;
   }
 
   function _next(event) {
+    fakeEvent = true;
     _close();
     nextItem.click();
+    fakeEvent = false;
   }
 
   function _close(event) {
     if (!active) {
       return;
     }
-    triggerCustomEvent(document, 'body:unlock');
-    triggerCustomEvent(document, 'focus:untrap');
-    document.documentElement.classList.remove('s-fullscreenImage-active');
-    setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
-    container.classList.remove('s-zoomable');
+
+    if (!fakeEvent) {
+      triggerCustomEvent(document, 'body:unlock');
+      triggerCustomEvent(document, 'focus:untrap');
+      document.documentElement.classList.remove('s-fullscreenImage-active');
+      setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
+      container.classList.remove('s-zoomable');
+    }
+
     $img.removeAttribute('width');
     $img.removeAttribute('height');
     $img.removeAttribute('srcset');
@@ -56,13 +66,16 @@ const imageZoomArea = function(container) {
     $img.classList.remove('restrict');
     $img.removeEventListener('contextmenu', preventDefault);
     $img.removeEventListener('mousedown', preventDefault);
+
     if (osd) {
       osd.removeAllHandlers();
       osd.destroy();
       osd = null;
       $osd.innerHTML = '';
     }
+
     eventData = null;
+
     active = false;
   }
 
@@ -165,16 +178,21 @@ const imageZoomArea = function(container) {
 
     eventData = event.data.img;
 
-    triggerCustomEvent(document, 'body:lock', {
-      breakpoints: 'all'
-    });
+    if (!fakeEvent) {
+      triggerCustomEvent(document, 'body:lock', {
+        breakpoints: 'all'
+      });
+    }
 
     window.requestAnimationFrame(function(){
-      document.documentElement.classList.add('s-fullscreenImage-active');
-      setTimeout(function(){ setFocusOnTarget(container); }, 0)
-      triggerCustomEvent(document, 'focus:trap', {
-        element: container
-      });
+
+      if (!fakeEvent) {
+        document.documentElement.classList.add('s-fullscreenImage-active');
+        setTimeout(function(){ setFocusOnTarget(container); }, 0)
+        triggerCustomEvent(document, 'focus:trap', {
+          element: container
+        });
+      }
 
       if (event.data.img.iiifId && event.data.img.width && event.data.img.height) {
         container.classList.add('s-zoomable');
@@ -265,6 +283,8 @@ const imageZoomArea = function(container) {
     document.addEventListener('fullScreenImage:open', _open, false);
     document.addEventListener('fullScreenImage:close', _close, false);
     window.addEventListener('keyup', _escape, false);
+
+    fakeEvent = false;
   }
 
   this.destroy = function() {
@@ -278,6 +298,8 @@ const imageZoomArea = function(container) {
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
+
+    fakeEvent = false;
   };
 
   this.init = function() {
