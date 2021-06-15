@@ -17,10 +17,16 @@
 }
 
 .o-gallery__title {
+  @include untuck();
+
   @include breakpoint('xlarge') {
     flex: 0 0 auto;
     width: 100%;
   }
+}
+
+.o-gallery__title + ul.o-pinboard {
+  margin-top: 24px;
 }
 
 .o-gallery__caption {
@@ -126,7 +132,8 @@
 }
 
 .o-gallery__caption .f-caption {
-  @include tucked-margin-top($f-caption, ('xsmall': 24));
+  @include untuck();
+  margin-top: 24px;
 }
 
 
