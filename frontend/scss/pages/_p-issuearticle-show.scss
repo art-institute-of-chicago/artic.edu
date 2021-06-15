@@ -32,8 +32,11 @@
     }
   }
 
-  .o-blocks > p {
+  .o-blocks:not(.o-blocks--bibliographic) > p {
     @include f-body;
+  }
+
+  .o-blocks > p {
     @include untuck();
   }
 
@@ -160,6 +163,24 @@
   .m-media--l, .m-media--m {
     clear: right;
   }
+
+  .m-title-bar > .f-list-3 {
+    @include untuck();
+
+    padding: 28px 0;
+  }
+
+  .o-blocks--bibliographic .f-secondary {
+    @include untuck();
+
+    &:not(:first-child) {
+      margin-top: 8px;
+    }
+
+    li+li {
+      margin-top: 8px;
+    }
+  }
 }
 
 /***
@@ -222,9 +243,9 @@ Styling related specifically to digital publications
     border-top: 0;
   }
 
-  .o-blocks.f-body>p,
-  .o-blocks.f-body>ol,
-  .o-blocks.f-body>ul {
+  .o-blocks.f-body > p,
+  .o-blocks.f-body > ol,
+  .o-blocks.f-body > ul {
     font-family: $sans-serif-font--loaded;
     font-weight: 300;
   }
@@ -235,16 +256,11 @@ Styling related specifically to digital publications
   }
 
   // Gallery block
-  .o-blocks>h2:not([class*=f-]) {
+  .o-blocks > h2:not([class*=f-]) {
     margin-top: 20px;
   }
 
   .o-blocks.o-blocks--with-sidebar .o-gallery::before {
     left: 1px;
-  }
-
-  .o-blocks--bibliographic .f-secondary {
-    padding-top: 8px;
-    margin-bottom: -8px;
   }
 }
