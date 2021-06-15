@@ -372,13 +372,6 @@
   }
 
   .o-gallery::before {
-    @each $name, $point in ('xsmall', 'small', 'medium') {
-      @include breakpoint('#{$name}') {
-        left: colspan(3, $name, 0, true);
-        margin-left: 0;
-      }
-    }
-
     @each $name, $point in ('large', 'xlarge') {
       @include breakpoint('#{$name}') {
         left: 0;
