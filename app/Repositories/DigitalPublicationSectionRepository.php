@@ -31,8 +31,8 @@ class DigitalPublicationSectionRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         $this->updateBrowser($object, $fields, 'authors');
-        GeneratePdf::dispatch($object);
         parent::afterSave($object, $fields);
+        GeneratePdf::dispatch($object);
     }
 
     public function getFormFields($object)
