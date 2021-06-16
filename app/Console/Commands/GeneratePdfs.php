@@ -91,7 +91,7 @@ class GeneratePdfs extends Command
         $prince->setBaseURL(config('aic.protocol') . '://' . config('app.url'));
         $prince->setMedia('print');
 
-        if (config('app.debug')) {
+        if (config('app.debug') || config('aic.pdf_debug')) {
             $prince->setVerbose(true);
             $prince->setLog(storage_path('logs/prince-' .date('Y-m-d') .'.log'));
         }
