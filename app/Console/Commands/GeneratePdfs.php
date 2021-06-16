@@ -44,24 +44,34 @@ class GeneratePdfs extends Command
     public function handle()
     {
         foreach ($this->models as $route => $modelClass) {
-            foreach ($modelClass::published()->get() as $model) {
+            $models = $modelClass::published()->get();
+
+            foreach ($models as $model) {
                 $this->generatePdf($model, $route);
+            }
+
+            $urls = $models->pluck('pdf_download_path')->all();
+
+            if (!empty($urls)) {
+                $this->call('cache:invalidate-cloudfront', [
+                    'urls' => $urls,
+                ]);
             }
         }
     }
 
     protected function generatePdf($model, $route = null)
     {
-        if (empty($route))
-        {
+        if (empty($route)) {
             $route = array_search(get_class($model), $this->models);
         }
-        if (empty($route))
-        {
+
+        if (empty($route)) {
             return false;
         }
 
         $path = null;
+
         if (get_class($model) == DigitalPublicationSection::class) {
             $path = route($route, ['pubId' => $model->digitalPublication->id, 'pubSlug' => $model->digitalPublication->getSlug(), 'id' => $model->id, 'slug' => $model->getSlug()]);
         }
@@ -93,14 +103,12 @@ class GeneratePdfs extends Command
         $pdfPath = storage_path('app/' . $pdfFileName);
         $prince->convert_string_to_file($html, $pdfPath);
 
-        if (config('app.env') == 'production' || config('app.env') == 'staging')
-        {
+        if (config('app.env') == 'production' || config('app.env') == 'staging') {
             // Stream the file to S3; be sure to set `AWS_BUCKET` in `.env` and otherwise configure credentials
             Storage::disk('pdf_s3')->putFileAs('/pdf/static', new File($pdfPath), $pdfFileName, 'public');
         }
 
-        if ($model->pdf_download_path != '/pdf/static/' . $pdfFileName)
-        {
+        if ($model->pdf_download_path != '/pdf/static/' . $pdfFileName) {
             $model->pdf_download_path = '/pdf/static/' . $pdfFileName;
             $model->save();
         }
