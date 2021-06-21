@@ -211,7 +211,7 @@
 
   .m-media--m:not(.m-media--contain) &:not(.m-media__img--virtualtour)::before,
   .m-media--l:not(.m-media--contain) &:not(.m-media__img--virtualtour)::before,
-  &.m-media__img--video::before {
+  &.m-media__img--video:not(.m-media__img--disable-placeholder)::before {
     content: '';
     display: block;
     height: 0;

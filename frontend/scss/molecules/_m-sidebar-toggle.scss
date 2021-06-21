@@ -17,23 +17,17 @@
     border-bottom: 1px solid $color__rules--primary;
   }
 
-  .icon--menu--24 {
-    top: -4px;
-    position: relative;
-    margin-right: 8px;
-    margin-left: -10px;
-  }
-
-  .f-list-1 {
-    @include untuck();
-  }
-
   button {
     cursor: pointer;
     color: $color__link;
 
     background: none;
     border: none;
+
+    text-align: left;
+    padding: 0;
+
+    display: flex;
 
     &:hover,
     &:focus:hover {
@@ -42,6 +36,17 @@
 
     &:active:hover {
       color: $color__link--active;
+    }
+
+    .icon--menu--24 {
+      flex-shrink: 0;
+      position: relative;
+      margin-right: 8px;
+      left: -4px;
+    }
+
+    .f-list-1 {
+      @include untuck();
     }
   }
 }

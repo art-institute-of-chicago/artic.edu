@@ -58,4 +58,14 @@
         'name' => 'license_text',
         'label' => 'License text',
     ])
+
+    <hr>
+
+    @formField('wysiwyg', [
+        'name' => 'cite_as',
+        'label' => 'How to Cite',
+        'toolbarOptions' => [
+            'italic'
+        ],
+    ])
 @stop

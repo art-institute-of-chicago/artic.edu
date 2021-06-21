@@ -25,99 +25,20 @@ if (!function_exists('innerHTML')) {
     }
 }
 
-if (!function_exists('getFigureNumber')) {
-    function getFigureNumber() {
-        global $_figureCount;
-
-        if (isset($_figureCount)) {
-            return ++$_figureCount;
-        }
-    }
-}
-
-if (!function_exists('getFigureId')) {
-    function getFigureId($figureNumber) {
-        global $_figurePrefixForId;
-
-        $figurePrefix = $_figurePrefixForId ?? 'fig-';
-
-        return $figurePrefix . $figureNumber;
-    }
-}
-
-if (!function_exists('getFormattedFigureNumber')) {
-    function getFormattedFigureNumber($figureNumber) {
-        global $_figurePrefixForDisplay;
-
-        $figurePrefix = $_figurePrefixForDisplay ?? 'Fig.';
-
-        return $figurePrefix . ' ' . $figureNumber . ': ';
-    }
-}
-
-if (!function_exists('getTitleWithFigureNumber')) {
-    function getTitleWithFigureNumber($title, $figureNumber, $urlTitle = null) {
-        if (isset($figureNumber) && isset($title)) {
-            $oldInternalErrors = libxml_use_internal_errors(true);
-
-            $dom = new DomDocument();
-
-            // https://stackoverflow.com/questions/14648442/domdocumentloadhtml-warning-htmlparseentityref-no-name-in-entity
-            $title = str_replace(' & ', ' &amp; ', $title);
-
-            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $title, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-
-            // Plain text automatically gets wrapped in p-tag during loadHTML
-            $firstChild = $dom->documentElement->firstChild ?? null;
-
-            // Just a failsafe to prevent breaking the page
-            if (!isset($firstChild)) {
-                return $title;
-            }
-
-            if (isset($urlTitle)) {
-                $urlAnchor = $dom->createElement('a');
-                $urlAnchor->setAttribute('href', $urlTitle);
-
-                $firstChildClone = $firstChild->cloneNode();
-                $urlAnchor->appendChild($firstChildClone);
-
-                $dom->documentElement->replaceChild($urlAnchor, $firstChild);
-                $firstChild = $urlAnchor;
-            }
-
-            $textNode = $dom->createTextNode(getFormattedFigureNumber($figureNumber));
-            $dom->documentElement->insertBefore($textNode, $firstChild);
-
-            $title = $dom->saveHTML($dom->documentElement);
-
-            libxml_clear_errors();
-            libxml_use_internal_errors($oldInternalErrors);
-        }
-
-        return $title;
-    }
-}
-
-if (!function_exists('getSubtitleWithFigureNumber')) {
-    function getSubtitleWithFigureNumber($subtitle, $title, $figureNumber) {
-        // If the title isn't set, treat the subtitle like one and add a figure number
-        return isset($title) ? $subtitle : getTitleWithFigureNumber($subtitle, $figureNumber);
-    }
-}
-
 if (!function_exists('getCaptionFields')) {
     function getCaptionFields($title, $subtitle, $urlTitle = null) {
         global $_allowAdvancedModalFeatures;
 
         $fields = [
-            'figureNumber' => $figureNumber = getFigureNumber(),
-            'captionTitle' => $captionTitle = getTitleWithFigureNumber($title, $figureNumber, $urlTitle),
-            'caption' => $caption = getSubtitleWithFigureNumber($subtitle, $title, $figureNumber),
+            'captionTitle' => $title,
+            'caption' => $subtitle,
         ];
 
         if ($_allowAdvancedModalFeatures ?? false) {
-            $fields['credit'] = htmlspecialchars('<div class="f-caption-title">' . $captionTitle . '</div><div class="f-caption">' . $caption . '</div>');
+            $wrappedCaptionTitle = $title ? '<div class="f-caption-title">' . $title . '</div>' : '';
+            $wrappedCaption = $subtitle ? '<div class="f-caption">' . $subtitle . '</div>' : '';
+
+            $fields['credit'] = htmlspecialchars($wrappedCaptionTitle . $wrappedCaption);
         }
 
         return $fields;

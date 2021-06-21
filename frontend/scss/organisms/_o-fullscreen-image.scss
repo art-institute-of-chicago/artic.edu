@@ -91,22 +91,19 @@
 
 .o-fullscreen-image .m-info-trigger {
   top: 20px;
-  left: 16px;
+  left: 20px;
   z-index: 2;
 }
 
 .o-fullscreen-image .m-info-trigger__info {
-  top: 52px;
-  right: 90px;
+  top: 58px;
+  right: 88px;
+  left: 20px;
   width: auto;
   z-index: 2;
-
-  @include breakpoint('small+') {
-    left: 16px;
-  }
 }
 
-.o-fullscreen-image__img-actions {
+.o-fullscreen-image__img-toolbar {
   display: flex;
   position: absolute;
   z-index: 2;
@@ -114,45 +111,68 @@
   right: 20px;
   bottom: 20px;
   flex-flow: row no-wrap;
-  justify-content: center;
+  justify-content: space-between;
 
-  @include breakpoint('small+') {
-    left: auto;
-    right: 32px;
-    bottom: 32px;
+  .o-fullscreen-image:not(.o-fullscreen-image--advanced) & {
+    @include breakpoint('small+') {
+      left: auto;
+      right: 32px;
+      bottom: 32px;
+    }
   }
 
   .s-dragging ~ & {
     opacity: .5;
     pointer-actions: none;
   }
+
+  .o-fullscreen-image__gallery-actions {
+    display: flex;
+    flex-flow: row no-wrap;
+    justify-content: center;
+
+    [data-fullscreen-prev] {
+      transform: scaleX(-1);
+    }
+
+    [data-fullscreen-next] {
+      margin-left: 10px;
+    }
+  }
+
+  .o-fullscreen-image__img-actions {
+    display: flex;
+    flex-flow: row no-wrap;
+    justify-content: center;
+
+    .o-fullscreen-image:not(.s-zoomable) & > li {
+      display: none;
+    }
+
+    > li {
+      flex: 0 0 auto;
+
+      &:not(:first-child) {
+        margin-left: 1px;
+      }
+
+      .btn {
+        border-radius: 0;
+      }
+
+      &:first-child .btn {
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+      }
+
+      &:last-child .btn {
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
+    }
+  }
 }
 
-.o-fullscreen-image__img-actions > li {
-  flex: 0 0 auto;
-}
-
-.o-fullscreen-image:not(.s-zoomable) .o-fullscreen-image__img-actions > li {
-  display: none;
-}
-
-.o-fullscreen-image__img-actions > li:not(:first-child) {
-  margin-left: 1px;
-}
-
-.o-fullscreen-image__img-actions > li .btn {
-  border-radius: 0;
-}
-
-.o-fullscreen-image__img-actions > li:first-child .btn {
-  border-top-left-radius: $border-radius;
-  border-bottom-left-radius: $border-radius;
-}
-
-.o-fullscreen-image__img-actions > li:last-child .btn {
-  border-top-right-radius: $border-radius;
-  border-bottom-right-radius: $border-radius;
-}
 
 .o-fullscreen-image__close {
   position: absolute;

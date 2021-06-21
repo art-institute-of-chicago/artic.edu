@@ -49,6 +49,18 @@
                 @endcomponent
             </li>
         @endif
+        @if ($item->cite_as)
+            <li class="m-article-actions__action">
+                @component('components.atoms._btn')
+                    @slot('variation', 'btn--icon btn--septenary')
+                    @slot('font', '')
+                    @slot('tag', 'a')
+                    @slot('href', '#h-how-to-cite')
+                    @slot('icon', 'icon--citation--24')
+                    @slot('ariaLabel','Show how to cite')
+                @endcomponent
+            </li>
+        @endif
     </ul>
 </div>
 

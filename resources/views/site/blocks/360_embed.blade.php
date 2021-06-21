@@ -2,14 +2,13 @@
     $image_sequence_file = $block->assetLibrary;
     $sequence_id = $image_sequence_file['id'];
     $alt_text = $block->input('alt_text');
-    $figureNumber = getFigureNumber();
-    $caption_title = getTitleWithFigureNumber($block->input('caption_title'), $figureNumber);
-    $caption = getSubtitleWithFigureNumber($block->input('caption'), $caption_title, $figureNumber);
+    $caption_title = $block->input('caption_title');
+    $caption = $block->input('caption');
 @endphp
 
 @if ($image_sequence_file)
 
-    <div {!! isset($figureNumber) ? 'id="' . getFigureId($figureNumber) . '" ' : '' !!} class="m-media m-media--s o-blocks__block">
+    <div class="m-media m-media--s o-blocks__block">
         <script type="application/json" id="assetLibrary-{!!$sequence_id!!}">
             {!! json_encode($block->assetLibrary) !!}
         </script>

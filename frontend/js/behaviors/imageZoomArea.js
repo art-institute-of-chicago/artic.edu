@@ -11,10 +11,15 @@ const imageZoomArea = function(container) {
   let eventData = null;
   let active = false;
 
-  let $btnZoomIn, $btnZoomOut, $btnClose, $img, $osd, $linkInfo, $creditInfoTrigger, $creditInfoText;
+  let $btnPrev, $btnNext, $btnZoomIn, $btnZoomOut, $btnClose, $img, $osd, $linkInfo, $creditInfoTrigger, $creditInfoText;
+
+  let prevItem = null;
+  let nextItem = null;
 
   let imgWidth = 0;
   let imgHeight = 0;
+
+  let fakeEvent = false;
 
   function _zoomIn(event) {
     event.preventDefault();
@@ -26,15 +31,33 @@ const imageZoomArea = function(container) {
     $btnZoomOut.blur();
   }
 
+  function _prev(event) {
+    fakeEvent = true;
+    _close();
+    prevItem.click();
+    fakeEvent = false;
+  }
+
+  function _next(event) {
+    fakeEvent = true;
+    _close();
+    nextItem.click();
+    fakeEvent = false;
+  }
+
   function _close(event) {
     if (!active) {
       return;
     }
-    triggerCustomEvent(document, 'body:unlock');
-    triggerCustomEvent(document, 'focus:untrap');
-    document.documentElement.classList.remove('s-fullscreenImage-active');
-    setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
-    container.classList.remove('s-zoomable');
+
+    if (!fakeEvent) {
+      triggerCustomEvent(document, 'body:unlock');
+      triggerCustomEvent(document, 'focus:untrap');
+      document.documentElement.classList.remove('s-fullscreenImage-active');
+      setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
+      container.classList.remove('s-zoomable');
+    }
+
     $img.removeAttribute('width');
     $img.removeAttribute('height');
     $img.removeAttribute('srcset');
@@ -43,13 +66,16 @@ const imageZoomArea = function(container) {
     $img.classList.remove('restrict');
     $img.removeEventListener('contextmenu', preventDefault);
     $img.removeEventListener('mousedown', preventDefault);
+
     if (osd) {
       osd.removeAllHandlers();
       osd.destroy();
       osd = null;
       $osd.innerHTML = '';
     }
+
     eventData = null;
+
     active = false;
   }
 
@@ -152,16 +178,21 @@ const imageZoomArea = function(container) {
 
     eventData = event.data.img;
 
-    triggerCustomEvent(document, 'body:lock', {
-      breakpoints: 'all'
-    });
+    if (!fakeEvent) {
+      triggerCustomEvent(document, 'body:lock', {
+        breakpoints: 'all'
+      });
+    }
 
     window.requestAnimationFrame(function(){
-      document.documentElement.classList.add('s-fullscreenImage-active');
-      setTimeout(function(){ setFocusOnTarget(container); }, 0)
-      triggerCustomEvent(document, 'focus:trap', {
-        element: container
-      });
+
+      if (!fakeEvent) {
+        document.documentElement.classList.add('s-fullscreenImage-active');
+        setTimeout(function(){ setFocusOnTarget(container); }, 0)
+        triggerCustomEvent(document, 'focus:trap', {
+          element: container
+        });
+      }
 
       if (event.data.img.iiifId && event.data.img.width && event.data.img.height) {
         container.classList.add('s-zoomable');
@@ -192,12 +223,36 @@ const imageZoomArea = function(container) {
         $creditInfoTrigger.setAttribute('style', 'display: none');
       }
 
-      if (eventData.infoUrl) {
+      if (eventData.infoUrl && !eventData.enableNavigation) {
         $linkInfo.setAttribute('href', eventData.infoUrl);
         $linkInfo.setAttribute('style', '');
       } else {
         $linkInfo.setAttribute('href', 'javascript:;');
         $linkInfo.setAttribute('style', 'display: none');
+      }
+
+      if (eventData.enableNavigation) {
+        $btnPrev.setAttribute('style', '');
+        $btnNext.setAttribute('style', '');
+      } else {
+        $btnPrev.setAttribute('style', 'display: none');
+        $btnNext.setAttribute('style', 'display: none');
+      }
+
+      if (eventData.prevItem) {
+        prevItem = eventData.prevItem;
+        $btnPrev.disabled = false;
+      } else {
+        prevItem = null;
+        $btnPrev.disabled = true;
+      }
+
+      if (eventData.nextItem) {
+        nextItem = eventData.nextItem;
+        $btnNext.disabled = false;
+      } else {
+        nextItem = null;
+        $btnNext.disabled = true;
       }
 
       active = true;
@@ -213,6 +268,8 @@ const imageZoomArea = function(container) {
   function _init() {
     $img = container.querySelector('.o-fullscreen-image__img');
     $osd = container.querySelector('.o-fullscreen-image__osd');
+    $btnPrev = container.querySelector('[data-fullscreen-prev]');
+    $btnNext = container.querySelector('[data-fullscreen-next]');
     $btnZoomIn = container.querySelector('[data-fullscreen-zoom-in]');
     $btnZoomOut = container.querySelector('[data-fullscreen-zoom-out]');
     $btnClose = container.querySelector('[data-fullscreen-close]');
@@ -220,14 +277,20 @@ const imageZoomArea = function(container) {
     $creditInfoTrigger = container.querySelector('.m-info-trigger');
     $creditInfoText = container.querySelector('.m-info-trigger__info');
 
+    $btnPrev.addEventListener('click', _prev, false);
+    $btnNext.addEventListener('click', _next, false);
     $btnClose.addEventListener('click', _close, false);
     document.addEventListener('fullScreenImage:open', _open, false);
     document.addEventListener('fullScreenImage:close', _close, false);
     window.addEventListener('keyup', _escape, false);
+
+    fakeEvent = false;
   }
 
   this.destroy = function() {
     // remove specific event handlers
+    $btnPrev.removeEventListener('click', _prev);
+    $btnNext.removeEventListener('click', _next);
     $btnClose.removeEventListener('click', _close);
     document.removeEventListener('fullScreenImage:open', _open);
     document.removeEventListener('fullScreenImage:close', _close);
@@ -235,6 +298,8 @@ const imageZoomArea = function(container) {
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
+
+    fakeEvent = false;
   };
 
   this.init = function() {

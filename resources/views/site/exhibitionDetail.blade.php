@@ -30,43 +30,23 @@
         @slot('articleType', 'exhibition')
     @endcomponent
 
-    @if ($item->present()->navigation)
-        <div @if (!$item->present()->wait_time_override){!! $item->present()->addInjectAttributes('u-show@large+') !!}@endif>
+    @if ($item->present()->navigation())
+        <div {!! $item->present()->addInjectAttributes('u-show@large+') !!}>
             {{-- dupe 😢 - shows xlarge+ --}}
             @component('components.molecules._m-link-list')
                 @slot('variation', 'u-show@large+')
-                @slot('links', $item->present()->navigation)
+                @slot('links', $item->present()->navigation())
             @endcomponent
-
-            @if ($item->present()->wait_time_override)
-                @component('components.molecules._m-link-list')
-                    @slot('variation', 'u-show@large+')
-                    @slot('links', [[
-                        'label' => $item->present()->wait_time_override,
-                        'iconBefore' => 'clock',
-                        'variation' => 'm-link-list__trigger--wait-time',
-                    ]])
-                @endcomponent
-            @endif
         </div>
     @endif
   </div>
 
   {{-- dupe 😢 - hides xlarge+ --}}
-  @if ($item->present()->navigation)
-        <div class="o-article__meta" @if (!$item->present()->wait_time_override){!! $item->present()->addInjectAttributes('u-show@large+') !!}@endif>
+  @if ($item->present()->navigation())
+        <div class="o-article__meta" {!! $item->present()->addInjectAttributes('u-show@large+') !!}>
             @component('components.molecules._m-link-list')
-                @slot('links', $item->present()->navigation);
+                @slot('links', $item->present()->navigation());
             @endcomponent
-            @if ($item->present()->wait_time_override)
-                @component('components.molecules._m-link-list')
-                    @slot('links', [[
-                        'label' => $item->present()->wait_time_override,
-                        'iconBefore' => 'clock',
-                        'variation' => 'm-link-list__trigger--wait-time',
-                    ]])
-                @endcomponent
-            @endif
         </div>
   @endif
 

@@ -28,9 +28,8 @@
         $item['fullscreen'] = true;
         $item['size'] = 'gallery';
         $item['media'] = $image;
-        $item['figureNumber'] = $figureNumber = getFigureNumber();
-        $item['captionTitle'] = getTitleWithFigureNumber($title, $figureNumber, $urlTitle);
-        $item['caption'] = getSubtitleWithFigureNumber($caption, $title, $figureNumber);
+        $item['captionTitle'] = $title;
+        $item['caption'] = $caption;
         $item['url'] = route('artworks.show', $artwork);
         $item['urlTitle'] = isset($figureNumber) ? null : $urlTitle;
         $item['showUrl'] = true;

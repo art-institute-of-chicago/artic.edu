@@ -9,3 +9,8 @@
     'label' => 'Height override',
     'note' => 'Optional. Use CSS units, e.g. "400px"',
 ])
+
+@formField('checkbox', [
+    'name' => 'disable_placeholder',
+    'label' => 'Disable placeholder element',
+])

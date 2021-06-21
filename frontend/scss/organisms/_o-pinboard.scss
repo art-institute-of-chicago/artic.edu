@@ -417,17 +417,18 @@
     background-color: $color__white;
     z-index: 2;
   }
-
-  .o-pinboard {
-    border-top: 0;
-  }
 }
 
 .o-gallery--small-mosaic.o-gallery----theme-1 {
+  .o-pinboard {
+    border-top-color: $color__rules--contrast;
+  }
+
   .o-pinboard::before,
   .o-pinboard::after {
     background-color: $color__rules--focus;
   }
+
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       .o-pinboard[class*="col@#{$name}"] > * {
@@ -481,6 +482,12 @@
        border-left: 1px solid $color__rules--primary;
      }
    }
+}
+
+.o-gallery--small-mosaic.o-gallery----theme-2 {
+  .o-pinboard {
+    border-top: 0;
+  }
 }
 
 .o-gallery--small-mosaic.o-gallery----theme-3 {

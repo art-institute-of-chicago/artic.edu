@@ -42,6 +42,7 @@ class GenericPagesController extends FrontController
             'intro' => $page->short_description, // TODO: Add different field here to prevent SEO pollution?
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
+            'title_display' => $page->title_display,
             "breadcrumb" => $crumbs,
             "blocks" => null,
             'page' => $page,

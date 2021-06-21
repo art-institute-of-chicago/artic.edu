@@ -26,6 +26,31 @@
         @endcomponent
     @endif
 
+    <h2 class="sr-only" id="h-article-actions">Page Actions</h2>
+    <ul class="m-article-actions" aria-labelledby="h-article-actions">
+        <li class="m-article-actions__action">
+            @component('components.atoms._btn')
+                @slot('variation', 'btn--icon btn--senary')
+                @slot('font', '')
+                @slot('icon', 'icon--share--24')
+                @slot('behavior','sharePage')
+                @slot('ariaLabel','Share page')
+            @endcomponent
+        </li>
+        @if (!empty($citeAs))
+            <li class="m-article-actions__action">
+                @component('components.atoms._btn')
+                    @slot('variation', 'btn--icon btn--septenary')
+                    @slot('font', '')
+                    @slot('tag', 'a')
+                    @slot('href', '#h-how-to-cite')
+                    @slot('icon', 'icon--citation--24')
+                    @slot('ariaLabel','Show how to cite')
+                @endcomponent
+            </li>
+        @endif
+    </ul>
+
     <hr class="u-hide@large u-hide@xlarge">
 
 </div>

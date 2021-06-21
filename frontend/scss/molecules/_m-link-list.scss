@@ -40,7 +40,7 @@
   padding-bottom: 0.02px;
 
   .o-blocks__block & {
-    margin-top: 20px;
+    margin-top: 17px;
   }
 
   .m-link-list--download & {
@@ -206,7 +206,9 @@ a.m-link-list__trigger.f-secondary {
 .m-link-list__trigger--wait-time {
   display: flex;
   padding-bottom: .02px;
+
   svg {
+    flex-shrink: 0;
     margin-top: 8px;
     margin-right: 8px;
   }

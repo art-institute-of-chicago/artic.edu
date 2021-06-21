@@ -36,9 +36,15 @@ class GeneratePdfsOne extends GeneratePdfs
             $modelClass = $this->argument('model');
             $id = $this->argument('id');
             $model = $modelClass::published()->find($id);
-            if ($model)
-            {
+
+            if ($model) {
                 $this->generatePdf($model);
+
+                $this->call('cache:invalidate-cloudfront', [
+                    'urls' => [
+                        $model->pdf_download_path,
+                    ],
+                ]);
             }
         }
     }

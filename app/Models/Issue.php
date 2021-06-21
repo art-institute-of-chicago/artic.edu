@@ -30,6 +30,7 @@ class Issue extends AbstractModel implements Sortable
         // https://github.com/area17/twill/issues/227
         'published',
         'position',
+        'cite_as',
     ];
 
     public $slugAttributes = [
