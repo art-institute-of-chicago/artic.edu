@@ -201,6 +201,10 @@ $nav = [
             'authors' => [
                 'title' => 'Authors',
                 'module' => true,
+            ],
+            'issues' => [
+                'title' => 'Issues',
+                'module' => true,
             ]
         ]
     ],
@@ -279,12 +283,5 @@ $nav = [
     ],
 
 ];
-
-if (config('app.env') !== 'production') {
-    $nav['collection']['primary_navigation']['issues'] = [
-        'title' => 'Issues',
-        'module' => true,
-    ];
-}
 
 return $nav;
