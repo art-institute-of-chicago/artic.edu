@@ -43,7 +43,7 @@
 
   {{-- dupe 😢 - hides xlarge+ --}}
   @if ($item->present()->navigation())
-        <div class="o-article__meta" {!! $item->present()->addInjectAttributes('u-show@large+') !!}>
+        <div class="o-article__meta" {!! $item->present()->addInjectAttributes() !!}>
             @component('components.molecules._m-link-list')
                 @slot('links', $item->present()->navigation());
             @endcomponent
