@@ -35,7 +35,7 @@
             {{-- dupe 😢 - shows xlarge+ --}}
             @component('components.molecules._m-link-list')
                 @slot('variation', 'u-show@large+')
-                @slot('links', $item->present()->navigation())
+                @slot('links', []) {{-- Leave an empty space where injected content will be displayed --}}
             @endcomponent
         </div>
     @endif
@@ -45,7 +45,7 @@
   @if ($item->present()->navigation())
         <div class="o-article__meta" {!! $item->present()->addInjectAttributes() !!}>
             @component('components.molecules._m-link-list')
-                @slot('links', $item->present()->navigation());
+                @slot('links', []); {{-- Leave an empty space where injected content will be displayed --}}
             @endcomponent
         </div>
   @endif
