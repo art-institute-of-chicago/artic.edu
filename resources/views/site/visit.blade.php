@@ -130,7 +130,18 @@
                             </tr>
                             <tr>
                                 <th>
-                                    <span class="f-module-title-1">Thursday&ndash;<div class="u-hide@small+"></div>Sunday</span>
+                                    <span class="f-module-title-1">Thursday&ndash;<div class="u-hide@small+"></div>Friday</span>
+                                </th>
+                                <td>
+                                    <span class="f-secondary">10&ndash;11 a.m.</span>
+                                </td>
+                                <td>
+                                    <span class="f-secondary">11 a.m.&ndash;9 p.m.</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="f-module-title-1">Saturday&ndash;<div class="u-hide@small+"></div>Sunday</span>
                                 </th>
                                 <td>
                                     <span class="f-secondary">10&ndash;11 a.m.</span>
