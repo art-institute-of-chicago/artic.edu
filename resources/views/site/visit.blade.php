@@ -130,7 +130,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    <span class="f-module-title-1">Thursday&ndash;<div class="u-hide@small+"></div>Friday</span>
+                                    <span class="f-module-title-1">Thursday&ndash;<div class="u-hide@small+"></div>Friday*</span>
                                 </th>
                                 <td>
                                     <span class="f-secondary">10&ndash;11 a.m.</span>
