@@ -32,26 +32,6 @@
           array('label' => __('Directions'), 'href' => '#directions'),
           array('label' => __('Ways to Explore'), 'href' => '#explore'),
         ))
-         @slot('secondaryHtml')
-          <li class="m-links-bar__item  m-links-bar__item--primary">
-              @component('components.atoms._dropdown')
-                @slot('prompt', 'Select language')
-                @slot('ariaTitle', 'Select language')
-                @slot('variation','dropdown--filter f-link')
-                @slot('font', null)
-                @slot('options', array(
-                  array('active' => request('lang') === 'en', 'href' => currentUrlWithQuery([]), 'label' => 'English'),
-                  array('active' => request('lang') === 'es', 'href' => currentUrlWithQuery(['lang' => 'es']), 'lang' => 'es', 'label' => 'Español'),
-                  array('active' => request('lang') === 'fr', 'href' => currentUrlWithQuery(['lang' => 'fr']), 'lang' => 'fr', 'label' => 'Français'),
-                  array('active' => request('lang') === 'de', 'href' => currentUrlWithQuery(['lang' => 'de']), 'lang' => 'de', 'label' => 'Deutsch'),
-                  array('active' => request('lang') === 'zh', 'href' => currentUrlWithQuery(['lang' => 'zh']), 'lang' => 'zh', 'label' => '中文'),
-                  array('active' => request('lang') === 'ja', 'href' => currentUrlWithQuery(['lang' => 'ja']), 'lang' => 'ja', 'label' => '日本語'),
-                  array('active' => request('lang') === 'pt', 'href' => currentUrlWithQuery(['lang' => 'pt']), 'lang' => 'pt', 'label' => 'Português'),
-                ))
-              @endcomponent
-          </li>
-      @endslot
-
     @endcomponent
 
     @component('components.molecules._m-header-block')
