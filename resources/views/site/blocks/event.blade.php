@@ -10,6 +10,7 @@
         @slot('item', $event)
         @slot('variation', 'm-listing--inline')
         @slot('titleFont','f-list-2')
+        @slot('showDateWithTime', true)
         @slot('imageSettings', array(
             'fit' => 'crop',
             'ratio' => '16:9',

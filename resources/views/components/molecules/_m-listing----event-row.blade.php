@@ -58,7 +58,11 @@
             <br>
             <span class="m-listing__meta-bottom">
                 @component('components.atoms._date')
-                    {!! $item->present()->nextOcurrenceTime !!}
+                    @if (isset($showDateWithTime) && $showDateWithTime)
+                        {!! $item->present()->formattedNextOcurrence !!}
+                    @else
+                        {!! $item->present()->nextOcurrenceTime !!}
+                    @endif
                 @endcomponent
 
                 @switch ($item->present()->ticketStatus)
