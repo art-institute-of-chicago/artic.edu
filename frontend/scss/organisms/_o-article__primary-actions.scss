@@ -68,6 +68,14 @@
   }
 }
 
+.o-article__primary-actions .o-injected-container:not(:nth-child(1)):not([class*=f-]):not(.o-collapsing-nav) {
+  margin-top: 20px;
+
+  .m-link-list {
+    margin-top: 0px;
+  }
+}
+
 .m-article-header--feature ~ .o-article__primary-actions,
 .m-article-header--hero ~ .o-article__primary-actions,
 .m-article-header--super-hero ~ .o-article__primary-actions {

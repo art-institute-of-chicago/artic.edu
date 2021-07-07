@@ -30,9 +30,15 @@
         @slot('articleType', 'exhibition')
     @endcomponent
 
+    {{-- dupe 😢 - shows xlarge+ --}}
     @if ($item->present()->navigation())
+        <div>
+            @component('components.molecules._m-link-list')
+                @slot('variation', 'u-show@large+')
+                @slot('links', $item->present()->navigation())
+            @endcomponent
+        </div>
         <div {!! $item->present()->addInjectAttributes('u-show@large+') !!}>
-            {{-- dupe 😢 - shows xlarge+ --}}
             @component('components.molecules._m-link-list')
                 @slot('variation', 'u-show@large+')
                 @slot('links', []) {{-- Leave an empty space where injected content will be displayed --}}
@@ -43,6 +49,11 @@
 
   {{-- dupe 😢 - hides xlarge+ --}}
   @if ($item->present()->navigation())
+        <div class="o-article__meta">
+            @component('components.molecules._m-link-list')
+                @slot('links', $item->present()->navigation());
+            @endcomponent
+        </div>
         <div class="o-article__meta" {!! $item->present()->addInjectAttributes() !!}>
             @component('components.molecules._m-link-list')
                 @slot('links', []); {{-- Leave an empty space where injected content will be displayed --}}
