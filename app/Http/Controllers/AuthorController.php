@@ -23,7 +23,7 @@ class AuthorController extends FrontController
         $title = 'Authors';
 
         $subNav = [
-            ['label' => $title, 'href' => route('selections.index'), 'active' => true]
+            ['label' => $title, 'href' => route('authors.index'), 'active' => true]
         ];
 
         $nav = [
