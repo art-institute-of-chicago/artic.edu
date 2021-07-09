@@ -4,14 +4,7 @@ namespace App\Models\Behaviors;
 
 trait LintsAttributes
 {
-    public function setAttribute($key, $value)
-    {
-        $value = $this->lintValue($value);
-
-        return parent::setAttribute($key, $value);
-    }
-
-    private function lintValue($value)
+    public function lintValue($value)
     {
         if (is_object($value)) {
             foreach ($value as $key => $subvalue) {
@@ -20,7 +13,7 @@ trait LintsAttributes
         }
 
         if (is_string($value)) {
-            $value = $this->lintLineSeparator($value);
+            $value = $this->lintBadUnicode($value);
         }
 
         return $value;
@@ -32,8 +25,17 @@ trait LintsAttributes
      * @link https://art-institute-of-chicago.atlassian.net/browse/WEB-927
      * @link https://stackoverflow.com/questions/39603446
      */
-    private function lintLineSeparator($value)
+    private function lintBadUnicode($value)
     {
-        return str_replace("\u{2028}", '', $value);
+        // Line separator
+        $value = str_replace(json_decode('"\u2028"'), '', $value);
+
+        // Zero-width nbps
+        $value = str_replace(json_decode('"\uFEFF"'), '', $value);
+
+        // Zero-width space
+        $value = str_replace(json_decode('"\u200B"'), '', $value);
+
+        return $value;
     }
 }

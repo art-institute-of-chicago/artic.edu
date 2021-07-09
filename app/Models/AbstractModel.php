@@ -14,6 +14,11 @@ class AbstractModel extends Model
 {
     use LintsAttributes;
 
+    public function setAttribute($key, $value)
+    {
+        return parent::setAttribute($key, $this->lintValue($value));
+    }
+
     /**
      * Don't just check the `published` column! Also check
      * `publish_start_date` and `publish_end_date`. See
