@@ -369,7 +369,7 @@ class Page extends AbstractModel
 
     public function experiences()
     {
-        return $this->belongsToMany('App\Models\Experience')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\Experience')->withPivot('position')->orderBy('experience_page.position');
     }
 
     public function printedPublications()
