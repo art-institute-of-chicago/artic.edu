@@ -26,6 +26,8 @@ html.s-print body {
     background: none;
   }
 
+  $disable-font-loading: true;
+
   @import 'setup/variables';
   @import 'setup/colors';
   @import 'setup/mixins';
