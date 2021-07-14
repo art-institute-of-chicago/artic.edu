@@ -1,7 +1,7 @@
 @twillRepeaterTitle('List Item')
 @twillRepeaterTrigger('Add item')
 @twillRepeaterComponent('a17-block-list_item')
-@twillRepeaterMax(10)
+@twillRepeaterMax('10')
 
 @formField('medias', [
     'name' => 'image',

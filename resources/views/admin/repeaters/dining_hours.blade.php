@@ -1,7 +1,7 @@
 @twillRepeaterTitle('Dining')
 @twillRepeaterTrigger('Add dining hours')
 @twillRepeaterComponent('a17-block-dining_hours')
-@twillRepeaterMax(3)
+@twillRepeaterMax('3')
 
     <div class="col">
         @formField('input', [

@@ -1,7 +1,7 @@
 @twillRepeaterTitle('Museum Hours')
 @twillRepeaterTrigger('Add hours')
 @twillRepeaterComponent('a17-block-featured_hours')
-@twillRepeaterMax(3)
+@twillRepeaterMax('3')
 
     <div class="col">
         @formField('input', [

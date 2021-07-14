@@ -1,7 +1,7 @@
 @twillRepeaterTitle('Timeline Item')
 @twillRepeaterTrigger('Add Timeline')
 @twillRepeaterComponent('a17-block-timeline_item')
-@twillRepeaterMax(10)
+@twillRepeaterMax('10')
 
 @formField('input', [
     'name' => 'time',

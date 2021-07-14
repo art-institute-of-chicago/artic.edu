@@ -1,7 +1,7 @@
 @twillRepeaterTitle('Explore on your own')
 @twillRepeaterTrigger('Add item')
 @twillRepeaterComponent('a17-block-families')
-@twillRepeaterMax(3)
+@twillRepeaterMax('3')
 
     <div class="col">
         @formField('medias', [

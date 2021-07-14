@@ -1,7 +1,7 @@
 @twillRepeaterTitle('Offers')
 @twillRepeaterTrigger('Add offer')
 @twillRepeaterComponent('a17-block-offers')
-@twillRepeaterMax(10)
+@twillRepeaterMax('10')
 
 @formField('medias', [
     'name' => 'hero',

@@ -1,7 +1,7 @@
 @twillRepeaterTitle('Grid Item')
 @twillRepeaterTrigger('Add Grid Item')
 @twillRepeaterComponent('a17-block-grid_item')
-@twillRepeaterMax(48)
+@twillRepeaterMax('48')
 
 @formField('medias', [
     'name' => 'image',
