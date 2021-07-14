@@ -64,7 +64,7 @@
             </a17-sticky-nav>
         </div>
         {{-- WEB-1296: Add ability to share draft pages via links --}}
-        @if (!$item->is_published && method_exists($item, 'getPreviewUrl'))
+        @if (isset($item) && !$item->is_published && method_exists($item, 'getPreviewUrl'))
             @php
                 $sharePreviewUrl = $item->getPreviewUrl($baseUrl);
             @endphp
