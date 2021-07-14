@@ -90,6 +90,7 @@ class PageRepository extends ModuleRepository
             'moduleName' => 'shopItems',
         ],
         'homeArtworks' => [
+            'routePrefix' => 'collection',
             'moduleName' => 'artworks',
         ],
 
