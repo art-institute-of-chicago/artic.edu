@@ -4,9 +4,9 @@ namespace App\Repositories;
 
 use BadMethodCallException;
 use A17\Twill\Repositories\ModuleRepository as BaseModuleRepository;
+use A17\Twill\Repositories\Behaviors\HandleRelatedBrowsers;
 
 use App\Repositories\Behaviors\HandleApiBrowsers;
-use App\Repositories\Behaviors\HandleRelatedBrowsers;
 
 abstract class ModuleRepository extends BaseModuleRepository
 {

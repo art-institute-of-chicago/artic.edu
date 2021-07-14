@@ -26,7 +26,7 @@
         "php": "^7.1",
         "aacotroneo/laravel-saml2": "dev-remove_mcrypt",
         "aic/data-hub-foundation": "dev-master",
-        "area17/twill": "2.3.*",
+        "area17/twill": "2.4.*",
         "darkaonline/l5-swagger": "5.8.*",
         "digitaladditive/exacttarget-laravel": "^2.2",
         "eluceo/ical": "0.14.*",
