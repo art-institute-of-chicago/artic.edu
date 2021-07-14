@@ -9,9 +9,10 @@ return [
     'prince_command' => env('PRINCE_COMMAND', '/usr/bin/prince'),
     'protocol' => env('APP_PROTOCOL', 'https'),
     'iiif_s3_endpoint' => env('IIIF_S3_ENDPOINT'),
-    'pdf_s3_endpoint' => env('PDF_S3_ENDPOINT'),
-    'pdf_debug' => env('PDF_DEBUG', false),
     'sales_site_url' => env('SALES_SITE_URL', 'https://sales.artic.edu'),
     'vtour_bucket' => env('AWS_VTOUR_BUCKET'),
 
+    'pdf_s3_enabled' => env('PDF_S3_ENABLED', false),
+    'pdf_s3_endpoint' => env('PDF_S3_ENDPOINT'),
+    'pdf_debug' => env('PDF_DEBUG', false),
 ];
