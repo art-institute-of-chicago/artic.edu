@@ -36,9 +36,6 @@ class ExhibitionRepository extends BaseApiRepository
         ],
         'shopItems',
         'waitTimes',
-        'waitTimesMember' => [
-            'moduleName' => 'waitTimes'
-        ],
     ];
 
     protected $repeaters = [
