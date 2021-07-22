@@ -23,7 +23,6 @@ class ArtistRepository extends BaseApiRepository
             'digitalPublications' => false,
             'printedPublications' => false,
             'educatorResources' => false,
-            'digitalLabels' => false,
             'videos' => false,
             'exhibitions' => true,
             'experiences' => false,
@@ -41,6 +40,11 @@ class ArtistRepository extends BaseApiRepository
         $fields = parent::getFormFields($object);
 
         $fields['browsers']['related_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'related_items', [
+            'experiences' => [
+                'apiModel' => 'App\Models\Experience',
+                'routePrefix' => 'collection.interactive_features',
+                'moduleName' => 'experiences',
+            ],
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
                 'routePrefix' => 'exhibitions_events',
@@ -51,7 +55,6 @@ class ArtistRepository extends BaseApiRepository
             'digitalPublications' => false,
             'printedPublications' => false,
             'educatorResources' => false,
-            'digitalLabels' => false,
             'videos' => false,
             'exhibitions' => true,
             'experiences' => false,

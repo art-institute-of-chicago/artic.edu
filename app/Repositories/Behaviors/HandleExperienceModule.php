@@ -3,7 +3,7 @@
 namespace App\Repositories\Behaviors;
 
 use Carbon\Carbon;
-
+use A17\Twill\Services\Blocks\BlockCollection;
 trait HandleExperienceModule
 {
     public function updateExperienceModule($object, $fields, $relation, $model = null, $fieldName = null)
@@ -80,13 +80,17 @@ trait HandleExperienceModule
         $repeatersMedias = [];
         $repeatersFiles = [];
         $relationRepository = $this->getModelRepository($relation, $model);
-        $repeatersConfig = config('twill.block_editor.repeaters');
+        $repeatersConfig = app(BlockCollection::class)->getRepeaters();
 
         foreach ($object->$relation as $relationItem) {
+            $rep = $repeatersConfig->first(function (\A17\Twill\Services\Blocks\Block $block) use ($fieldName) {
+                return $block->name == $fieldName;
+            });
+
             $repeaters[] = [
                 'id' => $relation . '-' . $relationItem->id,
-                'type' => $repeatersConfig[$fieldName]['component'],
-                'title' => $repeatersConfig[$fieldName]['title'],
+                'type' => $rep->component,
+                'title' => $rep->title,
             ];
 
             $relatedItemFormFields = $relationRepository->getFormFields($relationItem);
@@ -148,11 +152,15 @@ trait HandleExperienceModule
                     }
                 }
 
-                $fields['repeaters']['blocks-' . $modal_name . '_modal_experience_image'] = $relationItem->experienceImage->map(function($experienceImage) use ($repeatersConfig) {
+                $rep = $repeatersConfig->first(function (\A17\Twill\Services\Blocks\Block $block) use ($fieldName) {
+                    return $block->name == 'modal_experience_image';
+                });
+
+                $fields['repeaters']['blocks-' . $modal_name . '_modal_experience_image'] = $relationItem->experienceImage->map(function($experienceImage) use ($rep) {
                     return [
                         'id' => 'experienceImage-' . $experienceImage->id,
-                        'type' => $repeatersConfig['modal_experience_image']['component'],
-                        'title' => $repeatersConfig['modal_experience_image']['title'],
+                        'type' => $rep->component,
+                        'title' => $rep->title,
                     ];
                 });
             }

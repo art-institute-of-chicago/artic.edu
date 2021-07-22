@@ -47,15 +47,20 @@ class ArtistRepository extends BaseApiRepository
                 'routePrefix' => 'exhibitions_events',
                 'moduleName' => 'exhibitions',
             ],
+            'experiences' => [
+                'apiModel' => 'App\Models\Experience',
+                'routePrefix' => 'collection.interactive_features',
+                'moduleName' => 'experiences',
+            ],
         ], [
             // See $typeUsesApi in HasApiRelations class
             'exhibitions' => true,
             'articles' => false,
-            'digitalLabels' => false,
             'digitalPublications' => false,
             'printedPublications' => false,
             'educatorResources' => false,
             'videos' => false,
+            'experiences' => false,
         ]) ?? collect([]);
 
         $now = Carbon::now();
@@ -94,7 +99,7 @@ class ArtistRepository extends BaseApiRepository
                 case \App\Models\EducatorResource::class:
                     $relatedItem->subtype = 'Educator Resource';
                     break;
-                case \App\Models\DigitalLabel::class:
+                case \App\Models\Experience::class:
                     $relatedItem->subtype = 'Interactive Feature';
                     break;
                 case \App\Models\Video::class:
