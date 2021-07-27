@@ -90,7 +90,7 @@ class IssueArticleController extends ModuleController
                 ],
                 [
                     'label' => 'Articles',
-                    'url' => moduleRoute('issues.articles', 'collection', 'index', $request->route('issue')),
+                    'url' => moduleRoute('issues.articles', 'collection', 'index', [$request->route('issue')]),
                 ],
                 [
                     'label' => $issue->title,
