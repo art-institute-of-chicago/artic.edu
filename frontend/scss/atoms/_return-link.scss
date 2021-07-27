@@ -17,15 +17,15 @@ Used in article references, demo'd inside a list:
 
 .return-link {
   position: relative;
-  color: $color__link--accent;
+  color: $color__blue;
 
   &:hover,
   &:focus:hover {
-    color: $color__link--accent-hover;
+    color: $color__blue--hover;
   }
 
   &:active:hover {
-    color: $color__link--accent-active;
+    color: $color__blue--active;
   }
 
   .o-blocks >.f-secondary & {

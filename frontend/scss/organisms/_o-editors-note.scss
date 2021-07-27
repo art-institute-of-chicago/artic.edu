@@ -20,6 +20,16 @@
     color: $color__black--61;
   }
 
+  a .icon--arrow {
+    color: $color__blue;
+  }
+
+  a:hover .icon--arrow,
+  a:focus:hover .icon--arrow,
+  a:active:hover .icon--arrow {
+    color: $color__blue--hover;
+  }
+
   .o-editors-note__tag {
     margin-left: 1px;
     margin-bottom: 9px;
@@ -74,7 +84,6 @@
       }
 
       .icon--arrow {
-        color: $color__text--accent;
         width: 25px;
         height: 25px;
         vertical-align: text-bottom;

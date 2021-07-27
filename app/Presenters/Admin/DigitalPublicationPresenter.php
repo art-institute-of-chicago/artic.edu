@@ -90,7 +90,7 @@ class DigitalPublicationPresenter extends BasePresenter
                                         'label' => $section->title_display ?? $section->title,
                                         'sublabel' => $section->type === DigitalPublicationSection::TEXT ? $section->showAuthors() : null,
                                         'href' => $section->present()->getSectionUrl($this->entity),
-                                        'is_active' => isset($currentSection) && $section->id === $currentSection->id,
+                                        'active' => isset($currentSection) && $section->id === $currentSection->id,
                                     ];
                                 }),
                         ],

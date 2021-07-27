@@ -682,6 +682,15 @@
 .o-blocks > .f-body-editorial sup a {
   text-decoration: none !important;
   background: none !important;
+
+  // PUB-132: Revisit if this needs to be limited to publications
+  color: $color__blue !important;
+
+  &:hover,
+  &:focus:hover,
+  &:active:hover {
+    color: $color__blue--hover !important;
+  }
 }
 
 .o-blocks.o-blocks--bibliographic a {

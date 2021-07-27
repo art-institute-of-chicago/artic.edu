@@ -365,6 +365,14 @@ h3 {
   .o-accordion__trigger {
     padding-bottom: 18px;
     padding-top: 12px;
+
+    &:not(.s-inactive) {
+      color: $color__black--90;
+
+      &:hover {
+        color: $color__grey--110;
+      }
+    }
   }
 
   .o-accordion__trigger-icon {
@@ -382,6 +390,33 @@ h3 {
 
     &.o-blocks>:last-child {
       margin-bottom: 0;
+    }
+
+    .m-link-list__sublabel {
+      color: $color__grey--120;
+    }
+
+    a.m-link-list__trigger.f-secondary {
+      color: $color__black--90;
+
+      &:hover,
+      &:focus:hover,
+      &:active:hover {
+        color: $color__grey--110;
+      }
+    }
+
+    .m-link-list__item.s-active > a.m-link-list__trigger.f-secondary {
+      color: $color__blue;
+
+      &:hover,
+      &:focus:hover {
+        color: $color__blue--hover;
+      }
+
+      &:active:hover {
+        color: $color__blue--active;
+      }
     }
   }
 }
