@@ -5,7 +5,6 @@ namespace App\Repositories\Api;
 use Carbon\Carbon;
 use App\Models\Api\Artist;
 use App\Models\Api\Search;
-use App\Repositories\Api\BaseApiRepository;
 
 class ArtistRepository extends BaseApiRepository
 {

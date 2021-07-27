@@ -14,8 +14,6 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use Kalnoy\Nestedset\NodeTrait;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class GenericPage extends AbstractModel implements Sortable
 {

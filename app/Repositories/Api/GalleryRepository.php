@@ -3,7 +3,6 @@
 namespace App\Repositories\Api;
 
 use App\Models\Api\Gallery;
-use App\Repositories\Api\BaseApiRepository;
 
 class GalleryRepository extends BaseApiRepository
 {

@@ -3,8 +3,6 @@
 namespace App\Repositories\Behaviors;
 
 use App\Models\Model3d;
-use A17\Twill\Models\Media;
-use Illuminate\Support\Arr;
 
 trait Handle3DModel
 {

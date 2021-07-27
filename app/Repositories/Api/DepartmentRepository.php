@@ -5,7 +5,6 @@ namespace App\Repositories\Api;
 use App\Models\Api\Search;
 use App\Models\Api\Department;
 use App\Http\Controllers\DepartmentController;
-use App\Repositories\Api\BaseApiRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Carbon\Carbon;
 

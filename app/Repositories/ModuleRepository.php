@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use BadMethodCallException;
 use A17\Twill\Repositories\ModuleRepository as BaseModuleRepository;
 use A17\Twill\Repositories\Behaviors\HandleRelatedBrowsers;
 

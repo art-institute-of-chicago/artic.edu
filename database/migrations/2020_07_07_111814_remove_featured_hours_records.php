@@ -1,10 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-use App\Models\Page;
 use App\Models\FeaturedHour;
 
 class RemoveFeaturedHoursRecords extends Migration

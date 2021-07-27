@@ -3,7 +3,6 @@
 namespace App\Models\Api;
 
 use Illuminate\Support\Carbon;
-use App\Models\Api\Asset;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Libraries\Api\Models\BaseApiModel;
 

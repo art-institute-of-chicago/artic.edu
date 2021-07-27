@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\VideoRepository;
-use App\Models\Page;
-use App\Models\Video;
-use Carbon\Carbon;
 
 class VideoController extends FrontController
 {

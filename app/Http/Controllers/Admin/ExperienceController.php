@@ -6,8 +6,6 @@ use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\Experience;
 use App\Models\InteractiveFeature;
 use App\Models\Article;
-use App\Repositories\InteractiveFeatureRepository;
-use App\Repositories\ExperienceRepository;
 
 class ExperienceController extends ModuleController
 {

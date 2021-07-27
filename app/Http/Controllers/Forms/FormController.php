@@ -6,7 +6,6 @@ use Carbon\Carbon;
 
 use App\Http\Controllers\FrontController;
 
-use A17\Twill\Http\Requests\Admin\Request;
 
 abstract class FormController extends FrontController
 {

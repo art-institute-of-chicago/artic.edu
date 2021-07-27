@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\CatalogCategoryRepository;
-use App\Repositories\PrintedPublicationRepository;
 
 class PrintedPublicationController extends ModuleController
 {

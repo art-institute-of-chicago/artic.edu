@@ -3,7 +3,6 @@
 namespace App\Repositories\Api;
 
 use App\Models\Api\Asset;
-use App\Repositories\Api\BaseApiRepository;
 
 class AssetRepository extends BaseApiRepository
 {

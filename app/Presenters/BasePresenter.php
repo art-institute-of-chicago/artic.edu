@@ -2,7 +2,6 @@
 
 namespace App\Presenters;
 
-use Carbon\Carbon;
 
 use App\Libraries\SmartyPants;
 

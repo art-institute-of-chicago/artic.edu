@@ -9,8 +9,6 @@ use App\Libraries\EmbedConverterService;
 use App\Libraries\LakeviewImageService;
 use App\Observers\FileObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\ServiceProvider;
 use View;
 

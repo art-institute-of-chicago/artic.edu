@@ -2,7 +2,6 @@
 
 namespace App\Presenters\Admin;
 
-use Carbon\Carbon;
 use App\Presenters\BasePresenter;
 
 class ArtistPresenter extends BasePresenter

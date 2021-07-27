@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Arr;
 
 class DebugServiceProvider extends ServiceProvider
 {

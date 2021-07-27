@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Forms;
 
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 use App\Http\Requests\Form\EmailSubscriptionsRequest;
@@ -12,9 +11,7 @@ use App\Libraries\ExactTargetService;
 use App\Models\ExactTargetList;
 use App\Models\Form\EmailSubscriptions;
 
-use App\Mail\FormEmailSubscriptions;
 
-use App\Presenters\StaticObjectPresenter;
 
 class EmailSubscriptionsController extends FormController
 {

@@ -2,7 +2,6 @@
 
 namespace App\Http\Transformers;
 
-use App\Models\Collections\Exhibition;
 
 class ExhibitionTransformer extends ApiTransformer
 {

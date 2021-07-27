@@ -4,7 +4,6 @@ namespace App\Libraries\Api\Builders\Connection;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Arr;
-use App\Libraries\Api\Builders\Grammar\AicGrammar;
 
 class AicConnection implements ApiConnectionInterface
 {

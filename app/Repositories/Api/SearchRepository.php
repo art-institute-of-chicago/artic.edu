@@ -3,7 +3,6 @@
 namespace App\Repositories\Api;
 
 use App\Models\Api\Search;
-use App\Repositories\Api\BaseApiRepository;
 
 class SearchRepository extends BaseApiRepository
 {

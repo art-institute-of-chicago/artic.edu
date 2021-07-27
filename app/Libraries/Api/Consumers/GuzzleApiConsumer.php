@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Libraries\Api\Consumers;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
 class GuzzleApiConsumer implements ApiConsumerInterface

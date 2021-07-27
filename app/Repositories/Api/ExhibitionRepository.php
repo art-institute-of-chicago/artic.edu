@@ -3,7 +3,6 @@
 namespace App\Repositories\Api;
 
 use App\Models\Api\Exhibition;
-use App\Repositories\Api\BaseApiRepository;
 use App\Repositories\EventRepository;
 
 use App\Models\Api\Search;

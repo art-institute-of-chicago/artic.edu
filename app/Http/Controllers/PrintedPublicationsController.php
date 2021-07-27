@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Repositories\PrintedPublicationRepository;
-use App\Models\PrintedPublication;
 use App\Models\CatalogCategory;
 
 class PrintedPublicationsController extends BaseScopedController

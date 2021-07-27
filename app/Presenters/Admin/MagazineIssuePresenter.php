@@ -2,7 +2,6 @@
 
 namespace App\Presenters\Admin;
 
-use App\Presenters\Admin\GenericPresenter;
 
 class MagazineIssuePresenter extends GenericPresenter
 {

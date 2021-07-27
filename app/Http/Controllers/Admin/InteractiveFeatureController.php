@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\InteractiveFeature;
-use App\Repositories\SiteTagRepository;
 
 class InteractiveFeatureController extends ModuleController
 {

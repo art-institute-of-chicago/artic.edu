@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Presenters\StaticObjectPresenter;
 use Faker\Generator as Faker;
 use Carbon\Carbon;
-use LakeviewImageService;
 
 class StaticsController extends FrontController {
   protected $faker;

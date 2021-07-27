@@ -3,9 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use App\Models\Page;
 
 class PageTest extends TestCase
 {

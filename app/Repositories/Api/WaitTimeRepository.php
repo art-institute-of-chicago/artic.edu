@@ -3,7 +3,6 @@
 namespace App\Repositories\Api;
 
 use App\Models\Api\WaitTime;
-use App\Repositories\Api\BaseApiRepository;
 
 class WaitTimeRepository extends BaseApiRepository
 {

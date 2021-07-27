@@ -3,7 +3,6 @@
 namespace App\Models\Behaviors;
 
 use Illuminate\Support\Facades\App;
-use LakeviewImageService;
 
 use A17\Twill\Models\Behaviors\HasMedias as BaseHasMedias;
 

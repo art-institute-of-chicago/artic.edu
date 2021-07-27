@@ -2,7 +2,6 @@
 
 namespace App\Libraries;
 
-use Cache;
 
 class EmbedConverterService
 {

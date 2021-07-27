@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\SeamlessImage;
 use A17\Twill\Models\File;
-use DB;
-use Illuminate\Http\Request;
 
 class SeamlessImagesController extends Controller
 {

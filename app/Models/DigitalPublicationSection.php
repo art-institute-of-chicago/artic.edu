@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
 
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
-use A17\Twill\Models\Model;
 
 use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasMedias;

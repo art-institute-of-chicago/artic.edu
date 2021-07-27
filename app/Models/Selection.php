@@ -16,7 +16,6 @@ use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasUnlisted;
 
-use Illuminate\Support\Str;
 
 class Selection extends AbstractModel
 {
