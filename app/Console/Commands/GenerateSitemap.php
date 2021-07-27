@@ -220,18 +220,21 @@ class GenerateSitemap extends Command
     // Ensures everything is prefixed w/ SITEMAP_BASE_URL
     private function add(&$sitemap, $url)
     {
-        $slashUrl = $url->url ?? $url;
-        $slashUrl = Str::startsWith($slashUrl, '/') ? $slashUrl : '/' . $slashUrl;
+        $tmpUrl = $url->url ?? $url;
 
-        $fullUrl = $this->prefix . $slashUrl;
-
-        if(!Str::startsWith($slashUrl, $this->prefix))
-        {
-            if (is_string($url)) {
-                $url = $fullUrl;
-            } elseif ($url instanceof Url) {
-                $url->setUrl($fullUrl);
+        foreach ([$this->prefix, $this->crawlPrefix] as $prefix) {
+            if (substr($tmpUrl, 0, strlen($prefix)) == $prefix) {
+                $tmpUrl = substr($tmpUrl, strlen($prefix));
             }
+        }
+
+        $tmpUrl = Str::startsWith($tmpUrl, '/') ? $tmpUrl : '/' . $tmpUrl;
+        $tmpUrl = $this->prefix . $tmpUrl;
+
+        if (is_string($url)) {
+            $url = $tmpUrl;
+        } elseif ($url instanceof Url) {
+            $url->setUrl($tmpUrl);
         }
 
         $sitemap->add($url);
