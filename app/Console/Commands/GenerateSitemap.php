@@ -29,12 +29,18 @@ class GenerateSitemap extends Command
 
     private $prefix;
 
+    private $crawlPrefix;
+
     private $path;
 
     public function handle()
     {
         $this->prefix = config('sitemap.base_url') ?? ('https://' . config('app.url'));
         $this->prefix = rtrim($this->prefix, '/');
+
+        $this->crawlPrefix = config('sitemap.crawl_url') ?? $this->prefix;
+        $this->crawlPrefix = rtrim($this->crawlPrefix, '/');
+
         $this->path = storage_path('app/sitemap.xml');
 
         $this->warn('Generating new sitemap! Domain is ' . $this->prefix);
@@ -123,7 +129,7 @@ class GenerateSitemap extends Command
     // get <a/>'s to filters, artworks, and category-terms from /collection
     private function addCollection(&$sitemap)
     {
-        $file = $this->prefix . route('collection', [], false);
+        $file = $this->crawlPrefix . route('collection', [], false);
 
         if( !$html = @file_get_contents( $file ) )
         {
