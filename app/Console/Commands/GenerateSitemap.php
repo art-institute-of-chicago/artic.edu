@@ -35,7 +35,7 @@ class GenerateSitemap extends Command
     {
         $this->prefix = config('sitemap.base_url') ?? ('https://' . config('app.url'));
         $this->prefix = rtrim($this->prefix, '/');
-        $this->path = public_path('sitemap.xml');
+        $this->path = storage_path('app/sitemap.xml');
 
         $this->warn('Generating new sitemap! Domain is ' . $this->prefix);
         $sitemap = Sitemap::create();
