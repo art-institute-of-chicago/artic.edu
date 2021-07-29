@@ -32,10 +32,10 @@ $typespecs = array("f-display-1", "f-headline", "f-headline-editorial", "f-deck"
   @foreach ($typespecs as &$typespec)
   <li>
     <p class="{{ $typespec }}">{{ $typespec }}</p>
-    <p class="{{ $typespec }}">The quick brown fox, <br>jumps over the lazy dog <!--H<sub>2</sub>O<sup>2</sup>--></p>
-    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog <!--H<sub>2</sub>O<sup>2</sup>--></p>
-    <p class="{{ $typespec }}">The quick brown fox, <br>jumps over the lazy dog <!--H<sub>2</sub>O<sup>2</sup>--></p>
-    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog <!--H<sub>2</sub>O<sup>2</sup>--></p>
+    <p class="{{ $typespec }}">The quick brown fox, <br>jumps over the lazy dog</p>
+    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog</p>
+    <p class="{{ $typespec }}">The quick brown fox, <br>jumps over the lazy dog</p>
+    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog</p>
   </li>
   @endforeach
 </ul>
