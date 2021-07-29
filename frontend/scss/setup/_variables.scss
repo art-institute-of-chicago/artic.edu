@@ -135,6 +135,11 @@ $sans-serif-font--loaded: 'Ideal Sans A', 'Ideal Sans B', #{$sans-serif-font};
 $serif-font-loaded-class: 's-serif-loaded';
 $sans-serif-font-loaded-class: 's-sans-serif-loaded';
 
+@if variable-exists('disable-font-loading') and $disable-font-loading {
+    $serif-font: $serif-font--loaded;
+    $sans-serif-font: $sans-serif-font--loaded;
+}
+
 @keyframes reveal {
   0% {
     opacity: 0;

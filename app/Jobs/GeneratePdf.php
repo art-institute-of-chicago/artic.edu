@@ -15,9 +15,6 @@ class GeneratePdf extends BaseJob
 
     public function handle()
     {
-        if (config('app.env') == 'production' || config('app.env') == 'staging')
-        {
-            Artisan::call('pdfs:generate-one', ['model' => get_class($this->model), 'id' => $this->model->id]);
-        }
+        Artisan::call('pdfs:generate-one', ['model' => get_class($this->model), 'id' => $this->model->id]);
     }
 }

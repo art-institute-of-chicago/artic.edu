@@ -25,9 +25,9 @@ class DepartmentRepository extends BaseApiRepository
             'digitalPublications' => false,
             'printedPublications' => false,
             'educatorResources' => false,
-            'digitalLabels' => false,
             'videos' => false,
             'exhibitions' => true,
+            'experiences' => false,
         ]);
 
         parent::afterSave($object, $fields);
@@ -40,10 +40,10 @@ class DepartmentRepository extends BaseApiRepository
         $fields['browsers']['customRelatedArtworks'] = $this->getFormFieldsForBrowserApi($object, 'customRelatedArtworks', 'App\Models\Api\Artwork', 'collection', 'title', 'artworks');
 
         $fields['browsers']['related_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'related_items', [
-            'digitalLabels' => [
-                'apiModel' => 'App\Models\Api\DigitalLabel',
-                'routePrefix' => 'collection',
-                'moduleName' => 'digitalLabels',
+            'experiences' => [
+                'apiModel' => 'App\Models\Experience',
+                'routePrefix' => 'collection.interactive_features',
+                'moduleName' => 'experiences',
             ],
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
@@ -55,9 +55,9 @@ class DepartmentRepository extends BaseApiRepository
             'digitalPublications' => false,
             'printedPublications' => false,
             'educatorResources' => false,
-            'digitalLabels' => false,
             'videos' => false,
             'exhibitions' => true,
+            'experiences' => false,
         ]);
 
         return $fields;

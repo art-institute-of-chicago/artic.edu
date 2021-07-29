@@ -65,7 +65,7 @@ class GroupReservationsController extends FormController
                   'optional' => false,
                   'hint' => null,
                   'disabled' => false,
-                  'label' => 'Contact name',
+                  'label' => 'Contact name *',
                 ),
             ),
         );
@@ -84,7 +84,7 @@ class GroupReservationsController extends FormController
                   'optional' => false,
                   'hint' => null,
                   'disabled' => false,
-                  'label' => 'Email',
+                  'label' => 'Email *',
                 ),
             ),
         );

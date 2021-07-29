@@ -29,13 +29,19 @@ class GenerateSitemap extends Command
 
     private $prefix;
 
+    private $crawlPrefix;
+
     private $path;
 
     public function handle()
     {
         $this->prefix = config('sitemap.base_url') ?? ('https://' . config('app.url'));
         $this->prefix = rtrim($this->prefix, '/');
-        $this->path = public_path('sitemap.xml');
+
+        $this->crawlPrefix = config('sitemap.crawl_url') ?? $this->prefix;
+        $this->crawlPrefix = rtrim($this->crawlPrefix, '/');
+
+        $this->path = storage_path('app/sitemap.xml');
 
         $this->warn('Generating new sitemap! Domain is ' . $this->prefix);
         $sitemap = Sitemap::create();
@@ -123,7 +129,7 @@ class GenerateSitemap extends Command
     // get <a/>'s to filters, artworks, and category-terms from /collection
     private function addCollection(&$sitemap)
     {
-        $file = $this->prefix . route('collection', [], false);
+        $file = $this->crawlPrefix . route('collection', [], false);
 
         if( !$html = @file_get_contents( $file ) )
         {
@@ -214,18 +220,21 @@ class GenerateSitemap extends Command
     // Ensures everything is prefixed w/ SITEMAP_BASE_URL
     private function add(&$sitemap, $url)
     {
-        $slashUrl = $url->url ?? $url;
-        $slashUrl = Str::startsWith($slashUrl, '/') ? $slashUrl : '/' . $slashUrl;
+        $tmpUrl = $url->url ?? $url;
 
-        $fullUrl = $this->prefix . $slashUrl;
-
-        if(!Str::startsWith($slashUrl, $this->prefix))
-        {
-            if (is_string($url)) {
-                $url = $fullUrl;
-            } elseif ($url instanceof Url) {
-                $url->setUrl($fullUrl);
+        foreach ([$this->prefix, $this->crawlPrefix] as $prefix) {
+            if (substr($tmpUrl, 0, strlen($prefix)) == $prefix) {
+                $tmpUrl = substr($tmpUrl, strlen($prefix));
             }
+        }
+
+        $tmpUrl = Str::startsWith($tmpUrl, '/') ? $tmpUrl : '/' . $tmpUrl;
+        $tmpUrl = $this->prefix . $tmpUrl;
+
+        if (is_string($url)) {
+            $url = $tmpUrl;
+        } elseif ($url instanceof Url) {
+            $url->setUrl($tmpUrl);
         }
 
         $sitemap->add($url);

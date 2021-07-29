@@ -15,6 +15,11 @@ class Block extends BaseModel
     const GALLERY_ITEM_TYPE_CUSTOM = 'custom';
     const GALLERY_ITEM_TYPE_ARTWORK = 'artwork';
 
+    public function setAttribute($key, $value)
+    {
+        return parent::setAttribute($key, $this->lintValue($value));
+    }
+
     public function getAssetLibraryAttribute()
     {
         // Include image sequence

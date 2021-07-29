@@ -70,7 +70,7 @@ class IssueArticlePresenter extends BasePresenter
                                         'id' => $article->id,
                                         'slug' => $article->getSlug(),
                                     ]),
-                                    'is_active' => $article->id === $currentArticle->id,
+                                    'active' => $article->id === $currentArticle->id,
                                 ];
                             }),
                     ],

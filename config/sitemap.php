@@ -57,6 +57,11 @@ return [
     /*
      * Set this envar if you want to generate the sitemap in a differet env.
      */
-    'base_url' => env('SITEMAP_BASE_URL', null)
+    'base_url' => env('SITEMAP_BASE_URL', null),
+
+    /*
+     * WEB-2218: What base URL to curl for sitemap?
+     */
+    'crawl_url' => env('SITEMAP_CRAWL_URL', null),
 
 ];

@@ -73,22 +73,33 @@ class GeneratePdfs extends Command
         $path = null;
 
         if (get_class($model) == DigitalPublicationSection::class) {
-            $path = route($route, ['pubId' => $model->digitalPublication->id, 'pubSlug' => $model->digitalPublication->getSlug(), 'id' => $model->id, 'slug' => $model->getSlug()]);
-        }
-        else {
-            $path = route($route, ['id' => $model->id, 'slug' => $model->getSlug()]);
+            $path = route($route, [
+                'pubId' => $model->digitalPublication->id,
+                'pubSlug' => $model->digitalPublication->getSlug(),
+                'id' => $model->id,
+                'slug' => $model->getSlug(),
+            ], false);
+        } else {
+            $path = route($route, [
+                'id' => $model->id,
+                'slug' => $model->getSlug(),
+            ], false);
         }
 
         // Check that the prince command exists
         $commandCheck = 'command -v ' . config('aic.prince_command');
+
         if (!`$commandCheck`) {
             $this->error('Could not found prince command line command.');
             exit(1);
         }
 
+        $baseUrl = config('aic.protocol') . '://' . config('app.url');
+        $fullUrl = $baseUrl . $path;
+
         // Now, produce the PDF
         $prince = new Prince(config('aic.prince_command'));
-        $prince->setBaseURL(config('aic.protocol') . '://' . config('app.url'));
+        $prince->setBaseURL($baseUrl);
         $prince->setMedia('print');
 
         if (config('app.debug') || config('aic.pdf_debug')) {
@@ -97,13 +108,13 @@ class GeneratePdfs extends Command
         }
 
         set_time_limit(0);
-        $html = file_get_contents($path . "?print=true");
+        $html = file_get_contents($fullUrl . "?print=true");
 
         $pdfFileName = 'download-' . $route . '-' . $model->id . '.pdf';
         $pdfPath = storage_path('app/' . $pdfFileName);
         $prince->convert_string_to_file($html, $pdfPath);
 
-        if (config('app.env') == 'production' || config('app.env') == 'staging') {
+        if (config('aic.pdf_s3_enabled')) {
             // Stream the file to S3; be sure to set `AWS_BUCKET` in `.env` and otherwise configure credentials
             Storage::disk('pdf_s3')->putFileAs('/pdf/static', new File($pdfPath), $pdfFileName, 'public');
         }

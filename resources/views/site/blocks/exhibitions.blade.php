@@ -14,7 +14,7 @@
         $gtmEvent = lastUrlSegment($href);
 
         return [
-            'title' => $exhibition->title_display ?? $exhibition->title,
+            'title' => $exhibition->title_display ?: $exhibition->title,
             'dateDisplay' => $exhibition->present()->formattedDate(),
             'href' => $href,
             'gtmAttributes' => 'data-gtm-event="' . ($exhibition->title_display ?? $exhibition->title ?? $gtmEvent) . '" data-gtm-event-category="mag-content-' . $block->position . '"',

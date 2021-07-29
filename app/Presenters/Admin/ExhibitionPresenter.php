@@ -132,7 +132,12 @@ class ExhibitionPresenter extends BasePresenter
 
     public function navigation()
     {
-        return array_filter([$this->galleryLink(), $this->waitTime(), $this->relatedEventsLink(), $this->closingSoonLink()]);
+        return array_filter([$this->galleryLink(), $this->relatedEventsLink(), $this->closingSoonLink()]);
+    }
+
+    public function navigationWaitTime()
+    {
+        return array_filter([$this->waitTime()]);
     }
 
     protected function galleryLink()
