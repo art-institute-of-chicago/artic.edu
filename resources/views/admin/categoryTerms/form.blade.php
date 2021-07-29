@@ -12,14 +12,6 @@
         'disabled' => true
     ])
 
-{{--
-    @formField('input', [
-        'name' => 'local_title',
-        'label' => 'Augmented Title',
-        'maxlength' => 255
-    ])
- --}}
-
     @formField('input', [
         'name' => 'subtype',
         'label' => 'Sub Type',

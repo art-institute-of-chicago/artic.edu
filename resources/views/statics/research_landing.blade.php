@@ -37,13 +37,6 @@
             ))
         @endcomponent
 
-{{--         @component('components.organisms._o-grid-listing')
-            @slot('cols_medium','2')
-            @slot('cols_large','2')
-            @slot('cols_xlarge','2')
-            @slot('tag', 'div')
-        @endcomponent
- --}}
         @component('components.atoms._hr')
         @endcomponent
 

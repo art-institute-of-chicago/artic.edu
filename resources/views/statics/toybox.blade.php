@@ -806,16 +806,6 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
   @endcomponent
 </div>
 <p class="f-body">If the dropdown is in a m-links bar, add variation <code>dropdown--filter</code></p>
-{{--
-<div style="margin-top: 20px;">
-  @component('components.atoms._dropdown')
-    @slot('prompt', 'Dropdown filter hoverable')
-    @slot('variation', 'dropdown--filter')
-    @slot('ariaTitle', 'Sort by')
-    @slot('hoverable', true)
-    @slot('options', array(array('href' => '#', 'label' => 'Newest'), array('href' => '#', 'label' => 'Oldest')))
-  @endcomponent
-</div> --}}
 
 @component('components.atoms._hr')
 @endcomponent

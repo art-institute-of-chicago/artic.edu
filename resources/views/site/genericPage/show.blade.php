@@ -74,45 +74,6 @@
             @endslot
         @endcomponent
     @endif
-    {{-- @if (isset($listingItems) and $listingItems)
-        @if (sizeof($listingItems) > 0)
-            @if (isset($listingCountText) and $listingCountText)
-                @component('components.molecules._m-listing-header')
-                    @slot('count', $listingCountText)
-                @endcomponent
-            @endif
-            @component('components.atoms._hr')
-            @endcomponent
-            @component('components.organisms._o-row-listing')
-                @foreach ($listingItems as $item)
-                    @component('components.molecules._m-listing----generic-row')
-                        @slot('variation', 'm-listing--generic m-listing--row')
-                        @slot('item', $item)
-                        @slot('imageSettings', array(
-                            'fit' => 'crop',
-                            'ratio' => '16:9',
-                            'srcset' => array(150,300,600),
-                            'sizes' => aic_imageSizes(array(
-                                  'xsmall' => 58,
-                                  'small' => 13,
-                                  'medium' => 13,
-                                  'large' => 10,
-                                  'xlarge' => 10,
-                            )),
-                        ))
-                    @endcomponent
-                @endforeach
-            @endcomponent
-            @component('components.molecules._m-paginator')
-            @endcomponent
-        @else
-            @component('components.molecules._m-no-results')
-            @endcomponent
-        @endif
-    @else
-        @component('components.molecules._m-no-results')
-        @endcomponent
-    @endif --}}
 
     {{-- TODO: This is currently only for Press Releases. Refactor into new template? --}}
     @component('site.shared._sponsors')

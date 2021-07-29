@@ -18,9 +18,7 @@
   <h1 class="sr-only">{{ $item->title }}</h1>
 
   @component('components.molecules._m-article-header')
-    {{-- @slot('editorial', false) --}}
     @slot('headerType', $item->present()->headerType)
-    {{-- @slot('variation', ($item->headerVariation ?? null)) --}}
     @slot('title', $item->present()->title)
     @slot('date',  $item->present()->date)
     @slot('type',  $item->present()->type)
