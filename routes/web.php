@@ -18,7 +18,6 @@ if (!app()->environment('production')) {
 
 // Collection routes
 Route::name('collection')->get('/collection', 'CollectionController@index');
-Route::name('collection.more')->get('/collection/more', 'CollectionController@index');
 /*Route::name('collection.autocomplete')->get('/collection/autocomplete', 'CollectionController@autocomplete');
 Route::name('collection.autocomplete')->get('/collection/autocomplete', function(){
 return redirect('//api.artic.edu/api/v1/autocomplete?q='.request('q'));
