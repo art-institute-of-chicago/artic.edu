@@ -7,7 +7,7 @@
     @component('components.molecules._m-article-header')
         @slot('headerType', 'generic')
         @slot('title', $title)
-        @slot('title_display', $title_display ?? null) {{-- TODO: Populate this? --}}
+        @slot('title_display', $title_display ?? null) {{-- WEB-2244: Populate this? --}}
         @slot('img', $headerImage ?? null)
         @slot('breadcrumb', $breadcrumb ?? null)
     @endcomponent

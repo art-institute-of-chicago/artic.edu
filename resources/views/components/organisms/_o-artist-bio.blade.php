@@ -1,7 +1,7 @@
 <section class="o-artist-bio{{isset($variation) ? ' o-'.$variation.'-bio' : ''}}">
     <div class="o-artist-bio__inner">
         @if ($item->imageFront('hero'))
-            {{-- TODO: This causes two `figure` blocks to be nested in each other --}}
+            {{-- WEB-2241: This causes two `figure` blocks to be nested in each other --}}
             <figure class="o-artist-bio__image">
                 {{-- Mimicking an image block here. --}}
                 @component('components.molecules._m-media')
@@ -43,7 +43,7 @@
                         <dd><time datetime="{{ $item->death_date }}" itemprop="deathDate">{{ $item->death_date }}</time></dd>
                     @endif
 
-                    {{-- TODO: Dedupe w/ `place_pivots` in ArtworkPresenter? --}}
+                    {{-- WEB-2242: Dedupe w/ `place_pivots` in ArtworkPresenter? --}}
                     @if ($item->place_pivots != null && count($item->place_pivots) > 0 && (!app()->environment('production')))
                         @php
                             $places = collect($item->place_pivots)->map(function($pivot) {

@@ -71,7 +71,7 @@
                         <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $listDescription !!}</span>
                     @endif
                 @endif
-                {{-- TODO: Consider putting dates into .m-listing__meta-bottom? --}}
+                {{-- WEB-2238: Consider putting dates into .m-listing__meta-bottom? --}}
                 @if (isset($date))
                     @if(!empty($date))
                         <br>
@@ -80,7 +80,7 @@
                         @endcomponent
                     @endif
                 @else
-                    {{-- TODO: We should probably remove this everywhere... why would we want to display unformatted dates? --}}
+                    {{-- WEB-2239: We should probably remove this everywhere... why would we want to display unformatted dates? --}}
                     @if ($item->date && (!isset($hideDate)))
                         <br>
                         @component('components.atoms._date')

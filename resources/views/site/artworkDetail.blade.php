@@ -97,7 +97,7 @@
     @endcomponent
   </div>
 
-  {{-- TODO: Integrate related elements? Could be loaded indirectly from related entities --}}
+  {{-- WEB-2243: Integrate related elements? Could be loaded indirectly from related entities --}}
   @if ($item->hasFeaturedRelated())
       <div class="o-article__related{{ (empty($item->description) or $item->description === '') ? ' o-article__related--no-description' : '' }}">
           @component('site.shared._featuredRelated')
