@@ -9,7 +9,7 @@
 ])
 
 @section('contentFields')
-    {{-- Nothing to see here yet. This section will always be shown --}}
+    {{-- This section will always be shown --}}
     <p>Artwork content is defined in CITI.</p>
 @stop
 

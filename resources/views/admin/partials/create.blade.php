@@ -1,6 +1,7 @@
-{{-- Adapted from vendor/a17/laravel-cms-toolkit/views/partials/create.blade.php --}}
-{{-- Replaces it so that we can provide a hint re: italicizing embedded titles --}}
-{{-- See `partialView` directive definition in TwillServiceProvider --}}
+{{-- Adapted from vendor/a17/laravel-cms-toolkit/views/partials/create.blade.php
+  -- Replaces it so that we can provide a hint re: italicizing embedded titles
+  -- See `partialView` directive definition in TwillServiceProvider
+  --}}
 @formField('input', [
     'name' => $titleFormKey ?? 'title',
     'label' => $titleFormKey === 'title' ? twillTrans('twill::lang.modal.title-field') : ucfirst($titleFormKey),

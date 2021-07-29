@@ -75,7 +75,6 @@
         @endcomponent
     @endif
 
-    {{-- TODO: This is currently only for Press Releases. Refactor into new template? --}}
     @component('site.shared._sponsors')
         @slot('sponsors', $page->sponsors)
     @endcomponent

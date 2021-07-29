@@ -205,8 +205,6 @@
     @endif
 @endif
 
-
-{{-- TODO: Dedupe this w/ `site.collection.index`..? --}}
 @if (isset($artworks) && $artworks->total() > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
@@ -706,7 +704,7 @@
 @endif
 
 
-{{-- This includes both Research Guides and Educator Resources. See WEB-448. --}}
+{{-- WEB-448: This includes both Research Guides and Educator Resources. --}}
 @if (isset($researchGuides) && $researchGuides->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
