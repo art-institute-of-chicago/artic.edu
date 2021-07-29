@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'base_uri' => env('API_BASE_URI', 'http://aggregator-data-test.artic.edu'),
+    'base_uri' => env('API_BASE_URI', 'https://api.artic.edu'),
 
     /*
     |--------------------------------------------------------------------------
