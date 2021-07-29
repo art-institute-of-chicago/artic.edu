@@ -281,7 +281,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Httpauth' => Intervention\Httpauth\Facades\Httpauth::class,
 
-        'LakeviewImageService' => App\Facades\LakeviewImageServiceFacade::class,
+        'DamsImageService' => App\Facades\DamsImageServiceFacade::class,
         'EmbedConverter' => App\Facades\EmbedConverterFacade::class,
         'SmartyPants' => App\Libraries\SmartyPants::class,
     ],

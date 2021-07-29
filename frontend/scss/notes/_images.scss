@@ -95,7 +95,7 @@ Which would be:
 ))
 ```
 
-`aic_imageSettings` then takes these settings and generates a series of URLS for your image. It handles `imgix`, `lakeview` and `placehold.area17.com`.
+`aic_imageSettings` then takes these settings and generates a series of URLS for your image. It handles `imgix`, `dams` and `placehold.area17.com`.
 
 It also generates a LQIP image for the initial `src` of the image to be replaced as required by the `srcset` and the lazy loader.
 

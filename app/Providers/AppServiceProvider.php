@@ -6,7 +6,7 @@ use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
 use App\Libraries\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\EmbedConverterService;
-use App\Libraries\LakeviewImageService;
+use App\Libraries\DamsImageService;
 use App\Observers\FileObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->registerMorphMap();
         $this->registerApiClient();
-        $this->registerLakeviewImageService();
+        $this->registerDamsImageService();
         $this->registerEmbedConverterService();
         $this->registerClosureService();
         $this->registerPrintService();
@@ -96,10 +96,10 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    public function registerLakeviewImageService()
+    public function registerDamsImageService()
     {
-        $this->app->singleton('lakeviewimageservice', function ($app) {
-            return new LakeviewImageService();
+        $this->app->singleton('damsimageservice', function ($app) {
+            return new DamsImageService();
         });
     }
 

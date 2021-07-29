@@ -9,7 +9,7 @@ namespace App\Presenters\Admin;
 use App\Presenters\BasePresenter;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use LakeviewImageService;
+use DamsImageService;
 use DOMDocument;
 
 class ArtworkPresenter extends BasePresenter
@@ -518,8 +518,8 @@ class ArtworkPresenter extends BasePresenter
         ];
 
         if ($this->entity->image_id) {
-            $itemprops['thumbnailUrl'] = LakeviewImageService::getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
-            $itemprops['image'] = LakeviewImageService::getBaseUrl() . '2/' . $this->entity->image_id;
+            $itemprops['thumbnailUrl'] = DamsImageService::getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
+            $itemprops['image'] = DamsImageService::getBaseUrl() . '2/' . $this->entity->image_id;
         }
 
         return $itemprops;

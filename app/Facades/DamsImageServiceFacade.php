@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * @see \Illuminate\Cache\CacheManager
  * @see \Illuminate\Cache\Repository
  */
-class LakeviewImageServiceFacade extends Facade
+class DamsImageServiceFacade extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -17,24 +17,24 @@ class LakeviewImageServiceFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'lakeviewimageservice';
+        return 'damsimageservice';
     }
 
     public static function getUrl($id, array $params = [])
     {
-        $service = \App::make('lakeviewimageservice');
+        $service = \App::make('damsimageservice');
         return $service->getUrl($id, $params);
     }
 
     public static function getBaseUrl()
     {
-        $service = \App::make('lakeviewimageservice');
+        $service = \App::make('damsimageservice');
         return $service->getBaseUrl();
     }
 
     public static function getVersion()
     {
-        $service = \App::make('lakeviewimageservice');
+        $service = \App::make('damsimageservice');
         return $service->getVersion();
     }
 }

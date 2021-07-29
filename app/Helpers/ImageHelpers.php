@@ -122,8 +122,8 @@ function aic_imageSizesCSSsettings() {
 function aic_determineImageSourceType($src = '') {
     $sourceType = 'imgix';
 
-    if (strrpos($src, 'lakeimagesweb.artic.edu') > 0 or strrpos($src, '/iiif/') > 0) {
-        $sourceType = 'lakeview';
+    if (strrpos($src, '/iiif/') > 0) {
+        $sourceType = 'dams';
     }
 
     if (strrpos($src, 'artinstituteshop.org') > 0) {
@@ -183,7 +183,7 @@ function aic_makePosterSrc($src = false) {
             $posterSrc = $base.$imgixSettingsString;
         }
 
-        if ($sourceType === 'lakeview') {
+        if ($sourceType === 'dams') {
             $fullVal = strpos($originalSrc, '!3000,3000') ? '!3000,3000' : 'full';
             $base = explode('/full/' . $fullVal . '/0/default.jpg', $originalSrc)[0];
             $resizeVal = 'full';
@@ -472,7 +472,7 @@ function aic_imageSettings($data) {
         $stringSrc = $base.$imgixSettingsString;
     }
 
-    if ($sourceType === 'lakeview') {
+    if ($sourceType === 'dams') {
 
         // iiif doesn't have many image processing features..
         // http://iiif.io/api/image/2.1/#region

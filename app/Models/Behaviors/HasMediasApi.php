@@ -3,7 +3,7 @@
 namespace App\Models\Behaviors;
 
 use Illuminate\Support\Facades\App;
-use LakeviewImageService;
+use DamsImageService;
 
 trait HasMediasApi
 {
@@ -31,13 +31,13 @@ trait HasMediasApi
 
         if (isset($this->mediasParams[$role])) {
             if ($crop && !empty($this->{$this->getImageField($role, $crop)})) {
-                $image = LakeviewImageService::getImage($this, $this->getImageField($role, $crop));
+                $image = DamsImageService::getImage($this, $this->getImageField($role, $crop));
                 $image['width'] = $this->getWidth($role, $crop, $image);
                 $image['height'] = $this->getHeight($role, $crop, $image);
                 return $image;
             } else {
                 if (!empty($this->{$this->getImageField($role, 'default')})) {
-                    $image = LakeviewImageService::getImage($this, $this->getImageField($role, 'default'));
+                    $image = DamsImageService::getImage($this, $this->getImageField($role, 'default'));
                     return $image;
                 }
             }
@@ -51,7 +51,7 @@ trait HasMediasApi
 
     public function defaultCmsImage($params = [])
     {
-        $image = LakeviewImageService::getImage($this, 'image_id', 100, 100);
+        $image = DamsImageService::getImage($this, 'image_id', 100, 100);
 
         if ($image) {
             return $image['src'];

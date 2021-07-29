@@ -254,7 +254,7 @@
         ])
         @formField('input', [
             'name' => 'lake_guid',
-            'label' => 'Lake GUID',
+            'label' => 'DAMS GUID',
             'disabled' => true
         ])
         @formField('input', [
