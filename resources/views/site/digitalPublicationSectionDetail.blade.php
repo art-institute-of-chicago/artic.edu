@@ -26,7 +26,7 @@
         @component('components.molecules._m-article-header')
             @slot('headerType', 'generic')
             @slot('title', $item->present()->title)
-            @slot('title_display', $item->present()->title_display ?? null) {{-- TODO: Populate this? --}}
+            @slot('title_display', $item->present()->title_display ?? null) {{-- WEB-2244: Populate this? --}}
         @endcomponent
     @endif
 
