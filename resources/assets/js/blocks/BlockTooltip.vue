@@ -222,12 +222,6 @@
         background-color: black;
     }
 
-    // .previewer:before {
-    //     content: "";
-    //     display: block;
-    //     margin-top: 100%;
-    // }
-
     .previewer-image-container {
         position: relative;
         overflow: hidden;

@@ -56,13 +56,6 @@
                     if (isset($mediaItem['media'])) {
                         $mediaItem['media']['iiifId'] = $item->getImgixTileSource('image', 'desktop');
                     }
-
-                    // PUB-34: Unexpected, but these settings don't seem to matter at all
-                    // $mediaItem = array_merge($mediaItem, [
-                    //     'isZoomable' => true,
-                    //     'maxZoomWindowSize' => -1,
-                    //     'isArtwork' => true,
-                    // ]);
                 }
 
                 $items[] = $mediaItem;
