@@ -4,9 +4,6 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-use Carbon\Carbon;
-use App\Models\PrintedPublication;
-
 class AddPublicationDateToPrintedCatalogs extends Migration
 {
     /**
@@ -25,16 +22,6 @@ class AddPublicationDateToPrintedCatalogs extends Migration
                 $table->renameColumn('printed_catalog_id', 'printed_publication_id');
             });
         }
-
-        // TODO: Avoid referencing models in migrations!
-        // foreach (PrintedPublication::all() as $catalog) {
-        //     $catalog->publication_date = empty($catalog->publication_year) ? null : (new Carbon())
-        //         ->year($catalog->publication_year)
-        //         ->month(1)
-        //         ->day(1)
-        //         ->startOfDay();
-        //     $catalog->save();
-        // }
     }
 
     /**

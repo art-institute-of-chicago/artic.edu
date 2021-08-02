@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Hour;
-// use Carbon\Carbon;
 
 class HoursTableSeeder extends Seeder
 {
