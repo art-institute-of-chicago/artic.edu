@@ -10,7 +10,7 @@ class CreateSelectionsTables extends Migration
         Schema::create('selections', function (Blueprint $table) {
             createDefaultTableFields($table);
 
-            // use a json field to store block editor fields
+            // Use a json field to store block editor fields
             $table->json('content')->nullable();
 
             $table->string('title');

@@ -9,7 +9,7 @@ class CreateLightboxesTable extends Migration
     {
         Schema::create('lightboxes', function (Blueprint $table) {
             createDefaultTableFields($table);
-            $table->text('title')->nullable(); // admin title
+            $table->text('title')->nullable(); // Admin title
             $table->text('header')->nullable();
             $table->text('body')->nullable();
             $table->timestamp('lightbox_start_date')->nullable();

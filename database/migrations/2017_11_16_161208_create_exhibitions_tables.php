@@ -14,7 +14,7 @@ class CreateExhibitionsTables extends Migration
             $table->string('short_copy')->nullable();
             $table->string('header_copy')->nullable();
 
-            // use a json field to store block editor fields
+            // Use a json field to store block editor fields
             $table->json('content')->nullable();
 
             $table->dateTime('start_date')->nullable();
