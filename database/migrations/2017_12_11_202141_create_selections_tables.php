@@ -17,7 +17,6 @@ class CreateSelectionsTables extends Migration
             $table->text('short_copy');
         });
 
-        // remove this if you're not going to use slugs
         Schema::create('selection_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'selection');
         });

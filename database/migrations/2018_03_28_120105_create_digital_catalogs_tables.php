@@ -9,17 +9,14 @@ class CreateDigitalCatalogsTables extends Migration
     {
         Schema::create('digital_catalogs', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true, true);
-            // add some fields
             $table->string('title', 200)->nullable();
             $table->text('short_description')->nullable();
         });
 
-        // remove this if you're not going to use slugs
         Schema::create('digital_catalog_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'digital_catalog');
         });
 
-        // remove this if you're not going to use revisions
         Schema::create('digital_catalog_revisions', function (Blueprint $table) {
             createDefaultRevisionsTableFields($table, 'digital_catalog');
         });

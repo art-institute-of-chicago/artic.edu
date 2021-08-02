@@ -16,7 +16,6 @@ class CreateArticlesTables extends Migration
             $table->text('copy')->nullable();
         });
 
-        // remove this if you're not going to use slugs
         Schema::create('article_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'article');
         });

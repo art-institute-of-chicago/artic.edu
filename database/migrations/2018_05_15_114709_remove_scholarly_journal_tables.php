@@ -18,17 +18,14 @@ class RemoveScholarlyJournalTables extends Migration
     {
         Schema::create('scholarly_journals', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true, true);
-            // add some fields
             $table->string('title', 200)->nullable();
             $table->text('short_description')->nullable();
         });
 
-        // remove this if you're not going to use slugs
         Schema::create('scholarly_journal_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'scholarly_journal');
         });
 
-        // remove this if you're not going to use revisions
         Schema::create('scholarly_journal_revisions', function (Blueprint $table) {
             createDefaultRevisionsTableFields($table, 'scholarly_journal');
         });

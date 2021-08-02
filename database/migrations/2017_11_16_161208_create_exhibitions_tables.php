@@ -10,7 +10,6 @@ class CreateExhibitionsTables extends Migration
         Schema::create('exhibitions', function (Blueprint $table) {
             createDefaultTableFields($table);
 
-            // "default" detail fields
             $table->string('title');
             $table->string('short_copy')->nullable();
             $table->string('header_copy')->nullable();
@@ -22,7 +21,6 @@ class CreateExhibitionsTables extends Migration
             $table->dateTime('end_date')->nullable();
         });
 
-        // remove this if you're not going to use slugs
         Schema::create('exhibition_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'exhibition');
         });
