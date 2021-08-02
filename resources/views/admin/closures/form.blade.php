@@ -36,7 +36,7 @@
 @stop
 
 @push('vuexStore')
-    window.STORE.form.fields.push({
+    window['{{ config('twill.js_namespace') }}'].STORE.form.fields.push({
         name: 'cmsFormTitle',
         value: '{{ $item->presentAdmin()->presentType }} closure'
     })

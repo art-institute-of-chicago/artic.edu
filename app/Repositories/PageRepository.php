@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
-use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
@@ -13,7 +12,138 @@ use App\Repositories\Behaviors\HandleApiRelations;
 
 class PageRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleFiles, HandleRepeaters, HandleApiRelations, HandleTranslations;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleFiles, HandleApiRelations, HandleTranslations;
+
+    protected $browsers = [
+        // Homepage landing
+        'homeEvents' => [
+            'routePrefix' => 'exhibitions_events',
+            'moduleName' => 'events',
+        ],
+        'mainHomeFeatures' => [
+            'routePrefix' => 'homepage',
+            'moduleName' => 'homeFeatures',
+        ],
+        'secondaryHomeFeatures' => [
+            'routePrefix' => 'homepage',
+            'moduleName' => 'homeFeatures',
+        ],
+
+        // Visit
+        // `visitTourPages` doesn't appear to be in form_visit.blade.php, so I'm not
+        // sure this is used anymore. ntrivedi, 05/26/21
+        // 'visitTourPages' => [
+        //     'moduleName' => 'pages',
+        // ],
+
+        // Writing landing
+        // `articlesCategories` doesn't appear to be in form_articles_and_publications.blade.php, so I'm not
+        // sure this is used anymore. ntrivedi, 05/26/21
+        // 'articlesCategories' =>  [
+        //     'routePrefix' => 'collection.articles_publications',
+        //     'moduleName' => 'categories',
+        // ],
+        'articles' => [
+            'routePrefix' => 'collection.articles_publications'
+        ],
+        'experiences' => [
+            'routePrefix' => 'collection.interactive_features'
+        ],
+        'printedPublications' => [
+            'routePrefix' => 'collection.articles_publications'
+        ],
+        'digitalPublications' => [
+            'routePrefix' => 'collection.articles_publications'
+        ],
+
+        // Research landing
+        'researchResourcesFeaturePages' => [
+            'routePrefix' => 'generic',
+            'moduleName' => 'genericPages',
+        ],
+        'researchResourcesStudyRooms' => [
+            'routePrefix' => 'generic',
+            'moduleName' => 'genericPages',
+        ],
+        'researchResourcesStudyRoomMore' => [
+            'routePrefix' => 'generic',
+            'moduleName' => 'genericPages',
+        ],
+    ];
+
+    protected $relatedBrowsers = [
+        // Homepage landing
+        'homeVideos',
+        'homeHighlights',
+        // `homeExperiences` doesn't appear to be in form_home.blade.php, so I'm not
+        // sure it was ever implemented. ntrivedi, 05/26/21
+        //'homeExperiences',
+    ];
+
+    protected $apiBrowsers = [
+        // Homepage landing
+        'homeExhibitions' => [
+            'moduleName' => 'exhibitions',
+            'routePrefix' => 'exhibitions_events'
+        ],
+        'homeShopItems' => [
+            'moduleName' => 'shopItems',
+        ],
+        'homeArtworks' => [
+            'routePrefix' => 'collection',
+            'moduleName' => 'artworks',
+        ],
+
+        // Exhibition and events landing
+        'exhibitionsExhibitions' => [
+            'moduleName' => 'exhibitions',
+            'routePrefix' => 'exhibitions_events'
+        ],
+        'exhibitionsCurrent' => [
+            'moduleName' => 'exhibitions',
+            'routePrefix' => 'exhibitions_events'
+        ],
+        'exhibitionsUpcoming' => [
+            'moduleName' => 'exhibitions',
+            'routePrefix' => 'exhibitions_events'
+        ],
+        'exhibitionsUpcomingListing' => [
+            'moduleName' => 'exhibitions',
+            'routePrefix' => 'exhibitions_events'
+        ],
+
+        // Collection landing
+        'artCategoryTerms' => [
+            'moduleName' => 'categoryTerms',
+            'routePrefix' => 'collection',
+        ],
+
+    ];
+
+    protected $repeaters = [
+        // Homepage landing
+        'artists' => [
+            'relation' => 'homeArtists',
+            'model' => 'HomeArtist'
+        ],
+
+        // Visit
+        // `admissions` doesn't appear to be in form_visit.blade.php, so I'm not
+        // sure it was ever implemented. ntrivedi, 6/3/21
+        // 'admissions',
+        'locations',
+        'featured_hours' => [
+            'relation' => 'featured_hours'
+        ],
+        // `dining_hours` doesn't appear to be in form_visit.blade.php, so I'm not
+        // sure it was ever implemented. ntrivedi, 6/3/21
+        // 'dining_hours' => [
+        //     'relation' => 'dining_hours'
+        // ],
+        'faqs',
+        'families',
+        'what_to_expects',
+    ];
 
     public function __construct(Page $model)
     {
@@ -45,47 +175,11 @@ class PageRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        // General
-        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'homeArtworks', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
-
-        // Homepage
-        $this->updateBrowser($object, $fields, 'homeEvents');
-        $this->updateBrowser($object, $fields, 'homeFeatures');
-        $this->updateBrowser($object, $fields, 'mainHomeFeatures');
-        $this->updateBrowser($object, $fields, 'secondaryHomeFeatures');
-        $this->updateRelatedBrowser($object, $fields, 'homeVideos');
-        $this->updateRelatedBrowser($object, $fields, 'homeHighlights');
-        $this->updateRelatedBrowser($object, $fields, 'homeExperiences');
-        $this->updateRepeater($object, $fields, 'homeArtists', 'HomeArtist');
-
-        // Visits
-        $this->updateRepeater($object, $fields, 'admissions', 'Admission');
-        $this->updateRepeater($object, $fields, 'locations', 'Location');
-        $this->updateRepeater($object, $fields, 'featured_hours', 'FeaturedHour');
-        $this->updateRepeater($object, $fields, 'dining_hours', 'DiningHour');
-        $this->updateRepeater($object, $fields, 'faqs', 'Faq');
-        $this->updateRepeater($object, $fields, 'families', 'Family');
-        $this->updateRepeater($object, $fields, 'whatToExpects', 'WhatToExpect');
-        $this->updateBrowser($object, $fields, 'visitTourPages');
-
-        // Article Categories
-        $this->updateBrowser($object, $fields, 'articlesCategories');
-
         // Art & Ideas
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
             'experiences' => false
         ]);
-
-        // Research
-        $this->updateBrowser($object, $fields, 'researchResourcesFeaturePages');
-        $this->updateBrowser($object, $fields, 'researchResourcesStudyRooms');
-        $this->updateBrowser($object, $fields, 'researchResourcesStudyRoomMore');
-
-        $this->updateBrowser($object, $fields, 'articles');
-        $this->updateBrowser($object, $fields, 'experiences');
-        $this->updateBrowser($object, $fields, 'printedPublications');
-        $this->updateBrowser($object, $fields, 'digitalPublications');
 
         parent::afterSave($object, $fields);
     }
@@ -94,54 +188,11 @@ class PageRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($object);
 
-        // Homepage
-        $fields['browsers']['homeExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'homeExhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
-        $fields['browsers']['homeEvents'] = $this->getFormFieldsForBrowser($object, 'homeEvents', 'exhibitions_events', 'title', 'events');
-        $fields['browsers']['homeShopItems'] = $this->getFormFieldsForBrowserApi($object, 'homeShopItems', 'App\Models\Api\ShopItem', 'general');
-        $fields['browsers']['homeFeatures'] = $this->getFormFieldsForBrowser($object, 'homeFeatures', 'homepage', 'title', 'homeFeatures');
-        $fields['browsers']['mainHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'mainHomeFeatures', 'homepage', 'title', 'homeFeatures');
-        $fields['browsers']['secondaryHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'secondaryHomeFeatures', 'homepage', 'title', 'homeFeatures');
-        $fields['browsers']['homeVideos'] = $this->getFormFieldsForRelatedBrowser($object, 'homeVideos');
-        $fields['browsers']['homeHighlights'] = $this->getFormFieldsForRelatedBrowser($object, 'homeHighlights');
-        $fields['browsers']['homeExperiences'] = $this->getFormFieldsForRelatedBrowser($object, 'homeExperiences');
-        $fields['browsers']['homeArtworks'] = $this->getFormFieldsForBrowserApi($object, 'homeArtworks', 'App\Models\Api\Artwork', 'collection', 'title', 'artworks');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'homeArtists', 'HomeArtist');
-
-        // Exhibition & Events
-        $fields['browsers']['exhibitionsUpcomingListing'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcomingListing', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
-        $fields['browsers']['exhibitionsExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsExhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
-        $fields['browsers']['exhibitionsCurrent'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsCurrent', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
-        $fields['browsers']['exhibitionsUpcoming'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcoming', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
-
-        // Visits
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'admissions', 'Admission');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'locations', 'Location');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'featured_hours', 'FeaturedHour');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'dining_hours', 'DiningHour');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'faqs', 'Faq');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'families', 'Family');
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'whatToExpects', 'WhatToExpect');
-        $fields['browsers']['visitTourPages'] = $this->getFormFieldsForBrowser($object, 'visitTourPages', 'generic', 'title', 'genericPages');
-
-        // Article Categories
-        $fields['browsers']['articlesCategories'] = $this->getFormFieldsForBrowser($object, 'articlesCategories', 'collection.articles_publications', 'name', 'categories');
-
         // Art & Ideas
-        $fields['browsers']['artCategoryTerms'] = $this->getFormFieldsForBrowserApi($object, 'artCategoryTerms', 'App\Models\Api\CategoryTerm', 'collection', 'title', 'categoryTerms');
         $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [
             'articles' => false,
             'experiences' => false
         ]);
-
-        // Research
-        $fields['browsers']['researchResourcesFeaturePages'] = $this->getFormFieldsForBrowser($object, 'researchResourcesFeaturePages', 'generic', 'title', 'genericPages');
-        $fields['browsers']['researchResourcesStudyRooms'] = $this->getFormFieldsForBrowser($object, 'researchResourcesStudyRooms', 'generic', 'title', 'genericPages');
-        $fields['browsers']['researchResourcesStudyRoomMore'] = $this->getFormFieldsForBrowser($object, 'researchResourcesStudyRoomMore', 'generic', 'title', 'genericPages');
-
-        $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications', 'title', 'articles');
-        $fields['browsers']['experiences'] = $this->getFormFieldsForBrowser($object, 'experiences', 'collection', 'title', 'experiences');
-        $fields['browsers']['printedPublications'] = $this->getFormFieldsForBrowser($object, 'printedPublications', 'collection.articles_publications', 'title', 'printedPublications');
-        $fields['browsers']['digitalPublications'] = $this->getFormFieldsForBrowser($object, 'digitalPublications', 'collection.articles_publications', 'title', 'digitalPublications');
 
         return $fields;
     }

@@ -53,7 +53,7 @@ class RouteServiceProvider extends ServiceProvider
         $host = request()->getHttpHost();
         $domain = in_array($host, $allowedDomains) ? $host : config('app.url');
 
-        Route::middleware('web', 'noDebugBar')
+        Route::middleware('web')
             ->namespace($this->namespace)
             ->domain($domain)
             ->group(base_path('routes/web.php'));
@@ -86,7 +86,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $domain = config('app.kiosk_domain');
 
-        Route::middleware('web', 'noDebugBar')
+        Route::middleware('web')
                 ->namespace($this->namespace)
                 ->domain($domain)
                 ->group(base_path('routes/kiosk.php'));

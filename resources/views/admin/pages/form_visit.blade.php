@@ -106,7 +106,7 @@
             'field_name' => 'visit_what_to_expect_more_link',
             'label' => 'More link'
         ])
-        @formField('repeater', ['type' => 'whatToExpects'])
+        @formField('repeater', ['type' => 'what_to_expects'])
     </a17-fieldset>
 
     <a17-fieldset title="Capacity" id="capacity">

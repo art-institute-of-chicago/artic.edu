@@ -1,3 +1,6 @@
+@twillBlockTitle('Magazine Item')
+@twillBlockIcon('text')
+
 @formField('radios', [
     'name' => 'feature_type',
     'label' => 'Feature type',

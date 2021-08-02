@@ -71,7 +71,7 @@ class ExperienceSlideController extends ModuleController
                 ],
                 [
                     'label' => 'Slides',
-                    'url' => moduleRoute('experiences.slides', 'collection.interactive_features', 'index', $experience->id),
+                    'url' => moduleRoute('experiences.slides', 'collection.interactive_features', 'index', [$experience->id]),
                 ],
                 [
                     'label' => $slide->title,

@@ -1,3 +1,6 @@
+@twillBlockTitle('External search bar')
+@twillBlockIcon('text')
+
 @formField('input', [
     'name' => 'header',
     'label' => 'Header',

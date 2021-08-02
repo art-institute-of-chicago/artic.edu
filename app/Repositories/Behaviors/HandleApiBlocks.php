@@ -62,6 +62,7 @@ trait HandleApiBlocks
                 return [
                     'id' => $relatedElement->id,
                     'name' => $relatedElement->titleInBrowser ?? $relatedElement->title,
+                    'endpointType' => $relatedElement->getMorphClass(),
                 ] + $data;
             })->toArray();
 

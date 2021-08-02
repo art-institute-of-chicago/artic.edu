@@ -74,7 +74,7 @@ class EducatorResourcesController extends BaseScopedController
         $item = $this->repository->find((Integer) $id);
 
         if (!$item) {
-            $item = $this->repository->safeForSlug($id);
+            $item = $this->repository->forSlug($id);
 
             if (!$item) {
                 abort(404);

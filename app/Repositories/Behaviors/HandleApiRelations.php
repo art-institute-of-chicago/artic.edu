@@ -15,36 +15,30 @@ trait HandleApiRelations
      *
      */
 
-    public function updateBrowserApiRelated($object, $fields, $relationships, $positionAttribute = 'position')
+    public function updateBrowserApiRelated($object, $fields, $relationship, $positionAttribute = 'position')
     {
-        // Remove all associations
-        $object->apiElements()->detach();
+        $relatedElementsWithPosition = [];
 
-        foreach($relationships as $relationship)
-        {
-            $relatedElementsWithPosition = [];
+        $fieldsHasElements = isset($fields['browsers'][$relationship]) && !empty($fields['browsers'][$relationship]);
+        $relatedElements = $fieldsHasElements ? $fields['browsers'][$relationship] : [];
 
-            $fieldsHasElements = isset($fields['browsers'][$relationship]) && !empty($fields['browsers'][$relationship]);
-            $relatedElements = $fieldsHasElements ? $fields['browsers'][$relationship] : [];
+        // If we don't have an element to save the datahub_id, let's create one
+        $relatedElements = array_map(function($element) {
+            return ApiRelation::firstOrCreate(['datahub_id' => $element['id']]);
+        }, $relatedElements);
 
-            // If we don't have an element to save the datahub_id, let's create one
-            $relatedElements = array_map(function($element) {
-                return ApiRelation::firstOrCreate(['datahub_id' => $element['id']]);
-            }, $relatedElements);
+        $position = 1;
 
-            $position = 1;
-
-            foreach ($relatedElements as $relatedElement) {
-                $relatedElementsWithPosition[$relatedElement['id']] = [
-                    // Add the relationship to the pivot, this way we can use this browser several times per model
-                    'relation' => $relationship,
-                    $positionAttribute => $position++
-                ];
-            }
-
-            $result = $object->$relationship()->attach($relatedElementsWithPosition);
+        foreach ($relatedElements as $relatedElement) {
+            $relatedElementsWithPosition[$relatedElement['id']] = [
+                // Add the relationship to the pivot, this way we can use this browser several times per model
+                'relation' => $relationship,
+                $positionAttribute => $position++
+            ];
         }
 
+        $object->$relationship()->detach($object->$relationship->pluck('id'));
+        $object->$relationship()->attach($relatedElementsWithPosition);
     }
 
     public function updateMultiBrowserApiRelated($object, $fields, $relationship, $typeUsesApi)

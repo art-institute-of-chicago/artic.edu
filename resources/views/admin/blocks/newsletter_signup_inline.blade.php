@@ -1,3 +1,6 @@
+@twillBlockTitle('Newsletter signup inline')
+@twillBlockIcon('text')
+
 @formField('input', [
     'name' => 'copy',
     'label' => 'Custom copy',

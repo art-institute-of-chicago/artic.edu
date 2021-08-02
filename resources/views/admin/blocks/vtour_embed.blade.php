@@ -1,3 +1,6 @@
+@twillBlockTitle('Virtual Tour Embed')
+@twillBlockIcon('image')
+
 @formField('files', [
     'name' => 'vtour_xml_file',
     'label' => 'Virtual tour XML file',
@@ -38,4 +41,3 @@
     'italic', 'link',
     ],
 ])
-

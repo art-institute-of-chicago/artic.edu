@@ -91,7 +91,7 @@ class InteractiveFeatureExperiencesController extends FrontController
             );
         }
 
-        $experience = $this->repository->safeForSlug($slug);
+        $experience = $this->repository->forSlug($slug);
 
         if (!$experience || $experience->kiosk_only === true) {
             abort(404);
@@ -123,7 +123,7 @@ class InteractiveFeatureExperiencesController extends FrontController
 
     protected function showKiosk($slug)
     {
-        $experience = $this->repository->safeForSlug($slug);
+        $experience = $this->repository->forSlug($slug);
         if (!$experience) {
             abort(404);
         }

@@ -1,3 +1,6 @@
+@twillBlockTitle('Magazine Call to Action')
+@twillBlockIcon('text')
+
 @formField('radios', [
     'name' => 'theme',
     'label' => 'Theme',

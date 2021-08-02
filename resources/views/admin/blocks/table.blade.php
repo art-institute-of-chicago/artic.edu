@@ -1,3 +1,7 @@
+@twillBlockTitle('Table')
+@twillBlockIcon('text')
+{{-- TODO: Look into `rules` per \A17\Twill\ValidationServiceProvider --}}
+
 <p>Use Markdown to create the table below. See <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables">tutorial</a>.</p>
 
 <hr>

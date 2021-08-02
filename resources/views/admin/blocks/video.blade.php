@@ -1,3 +1,6 @@
+@twillBlockTitle('Video')
+@twillBlockIcon('image')
+
 @formField('select', [
     'name' => 'size',
     'label' => 'Size',

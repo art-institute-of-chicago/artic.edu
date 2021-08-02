@@ -1,3 +1,6 @@
+@twillBlockTitle('Mirador Embed')
+@twillBlockIcon('image')
+
 @formField('input', [
     'type' => 'number',
     'name' => 'objectId',

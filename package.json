@@ -41,6 +41,7 @@
     "lodash": "^4.17.15",
     "minimist": "^1.2.0",
     "mirador": "^3.0.0",
+    "npm": "^6.9.0",
     "prettier": "^1.7.4",
     "react": "^16.9.0",
     "react-app-polyfill": "^0.2.0",
@@ -63,15 +64,7 @@
     "scripts": "node ./frontend/a17-script/bin/a17_script.js scripts",
     "build": "node ./frontend/a17-script/bin/a17_script.js build",
     "toolkit": "node ./frontend/a17-script/bin/a17_script.js toolkit",
-    "production": "node ./frontend/a17-script/bin/a17_script.js prod",
-    "twill-build": "rm -f public/hot && npm run twill-copy-blocks && cd vendor/area17/twill && npm ci && npm run prod && cp -R public/* ${INIT_CWD}/public",
-    "twill-build-fast": "rm -f public/hot && npm run twill-copy-blocks && cd vendor/area17/twill && npm run prod && cp -R public/* ${INIT_CWD}/public",
-    "twill-copy-blocks": "npm run twill-clean-blocks && mkdir -p resources/assets/js/blocks/ && cp -R resources/assets/js/blocks/ vendor/area17/twill/frontend/js/components/blocks/customs/",
-    "twill-clean-blocks": "rm -rf vendor/area17/twill/frontend/js/components/blocks/customs",
-    "twill-dev": "mkdir -p vendor/area17/twill/public && npm run twill-copy-blocks && concurrently \"cd vendor/area17/twill && npm ci && npm run hot\" \"npm run twill-watch\" && npm run twill-clean-blocks",
-    "twill-watch": "concurrently \"watch 'npm run twill-hot' vendor/area17/twill/public --wait=2 --interval=0.1\" \"npm run twill-watch-blocks\"",
-    "twill-hot": "cd vendor/area17/twill && cp -R public/* ${INIT_CWD}/public",
-    "twill-watch-blocks": "watch 'npm run twill-copy-blocks' resources/assets/js/blocks --wait=2 --interval=0.1"
+    "production": "node ./frontend/a17-script/bin/a17_script.js prod"
   },
   "engines": {
     "node": ">= 8.10.0",

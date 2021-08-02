@@ -13,6 +13,12 @@ class DigitalPublicationRepository extends ModuleRepository
 {
     use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
 
+    protected $relatedBrowsers = [
+        'welcome_note_section' => [
+            'relation' => 'welcome_note_section'
+        ]
+    ];
+
     public function __construct(DigitalPublication $model)
     {
         $this->model = $model;
@@ -32,22 +38,6 @@ class DigitalPublicationRepository extends ModuleRepository
             'nav' => [],
             'page' => $item,
         ];
-    }
-
-    public function afterSave($object, $fields)
-    {
-        $this->updateRelatedBrowser($object, $fields, 'welcome_note_section');
-
-        parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-
-        $fields['browsers']['welcome_note_section'] = $this->getFormFieldsForRelatedBrowser($object, 'welcome_note_section');
-
-        return $fields;
     }
 
     public function getWelcomeNote($item)

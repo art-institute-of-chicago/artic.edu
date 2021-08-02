@@ -1,3 +1,6 @@
+@twillBlockTitle('Feature 2x')
+@twillBlockIcon('image')
+
 @formField('browser', [
     'routePrefix' => 'collection.interactive_features',
     'moduleName' => 'experiences',
