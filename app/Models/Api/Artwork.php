@@ -420,7 +420,7 @@ class Artwork extends BaseApiModel
     {
         $relatedItems = collect([]);
 
-        // if this artwork is augmented and its augmented model has custom related items, return those
+        // If this artwork is augmented and its augmented model has custom related items, return those
         if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), 'getCustomRelatedItems')) {
             $relatedItems = $this->getAugmentedModel()->getCustomRelatedItems();
         }

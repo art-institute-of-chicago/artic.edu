@@ -91,7 +91,7 @@ class Exhibition extends BaseApiModel
     public function getDateStartAttribute()
     {
         if (!empty($this->aic_start_at)) {
-            if ($this->public_start_date !== null) // strange, isset didn't work?
+            if ($this->public_start_date !== null) // Strange, isset didn't work?
             {
                 return $this->public_start_date;
             }
@@ -103,7 +103,7 @@ class Exhibition extends BaseApiModel
     public function getDateEndAttribute()
     {
         if (!empty($this->aic_end_at)) {
-            if ($this->public_end_date !== null) // strange, isset didn't work?
+            if ($this->public_end_date !== null) // Strange, isset didn't work?
             {
                 return $this->public_end_date;
             }

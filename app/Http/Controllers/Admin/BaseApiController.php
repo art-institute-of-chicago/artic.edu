@@ -29,9 +29,9 @@ class BaseApiController extends ModuleController
         'search' => 'search',
     ];
 
-    // Remove Twill table filters.
     public function getIndexTableMainFilters($items, $scopes = [])
     {
+        // Remove Twill table filters.
         return [];
     }
 

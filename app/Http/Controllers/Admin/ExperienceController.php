@@ -34,7 +34,7 @@ class ExperienceController extends ModuleController
             'title' => 'Title',
             'field' => 'title',
         ],
-        'interactiveFeatureTitle' => [ // relation column
+        'interactiveFeatureTitle' => [ // Relation column
             'title' => 'Grouping',
             'relationship' => 'interactiveFeature',
             'field' => 'title'

@@ -74,7 +74,7 @@ class SlideRepository extends ModuleRepository
         if (isset($fields['module_type']) && in_array($fields['module_type'], ['attract', 'end'])) {
             return $slide;
         }
-        // the position of newly create slide should always between attract and end
+        // The position of newly create slide should always between attract and end
         $end_slide = $this->where([['module_type', 'end'], ['experience_id', $slide->experience_id]])->firstOrFail();
         $slide->position = $end_slide->position;
         $slide->save();

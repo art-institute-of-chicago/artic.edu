@@ -497,7 +497,7 @@ class Search extends BaseApiModel
             $dateQuery = $this->dateQuery($item->birth_date, $item->death_date);
             array_push($shoulds, $dateQuery);
 
-            // all tags start with 50
+            // All tags start with 50
         }
 
         // Filter out empty array queries
@@ -604,7 +604,6 @@ class Search extends BaseApiModel
 
     protected function transformYear($year) {
         // Year could come with BCE, CE, or 'Present'
-
         if (Str::contains($year, 'BCE')) {
             $year = - (integer) $year;
         } else {

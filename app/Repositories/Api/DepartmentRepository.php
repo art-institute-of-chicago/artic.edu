@@ -113,7 +113,7 @@ class DepartmentRepository extends BaseApiRepository
                 'moduleName' => 'experiences',
             ],
         ], [
-            // See $typeUsesApi in HasApiRelations class
+            // See HasApiRelations::$typeUsesApi
             'exhibitions' => true,
             'articles' => false,
             'digitalPublications' => false,

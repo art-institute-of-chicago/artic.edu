@@ -82,7 +82,7 @@ class AppServiceProvider extends ServiceProvider
             return new GuzzleApiConsumer([
                 'base_uri' => config('api.base_uri'),
                 'exceptions' => false,
-                'decode_content' => true, // explicit default
+                'decode_content' => true, // Explicit default
             ]);
         });
     }

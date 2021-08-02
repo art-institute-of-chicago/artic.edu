@@ -9,9 +9,9 @@ class PageRequest extends Request
     public function rules()
     {
         return $this->rulesForTranslatedFields([
-            // regular rules
+            // Regular rules
         ], [
-            // translated fields
+            // Translated fields
         ]);
     }
 }

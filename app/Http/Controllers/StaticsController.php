@@ -284,18 +284,18 @@ class StaticsController extends FrontController {
   }
 
   public function exhibition() {
-    // make some left rail links
+    // Make some left rail links
     $locationLink = array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location');
     $relatedEventsLink = array('label' => '12 related events', 'href' => '#related_events', 'iconBefore' => 'calendar');
     $closingSoon = array('label' => 'Closing Soon', 'variation' => 'closing-soon');
-    // make left rail nav array
+    // Make left rail nav array
     $nav = array();
     array_push($nav, $locationLink);
     array_push($nav, $relatedEventsLink);
     array_push($nav, $closingSoon);
-    // get an exhibition
+    // Get an exhibition
     $article = $this->getExhibition();
-    // update and add some items (I ran into memory issues doing this in the main getExhibition func..)
+    // Update and add some items (I ran into memory issues doing this in the main getExhibition func..)
     $article->push('articleType', 'exhibition');
     $article->push('closingSoon', true);
     $article->push('headerType', 'super-hero');
@@ -310,7 +310,7 @@ class StaticsController extends FrontController {
       'items' => $this->getMedias(1),
     ));
     $article->push('nav', $nav);
-    // now push to a view
+    // Now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'relatedEventsByDay' => $this->makeEventsByDates(1),
@@ -322,7 +322,7 @@ class StaticsController extends FrontController {
     $article = $this->getEventPageContents();
     $article->push('relatedEvents', $this->getEvents(4));
     $article->push('relatedOffers', $this->getOffers(3));
-    // now push to a view
+    // Now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
@@ -338,7 +338,7 @@ class StaticsController extends FrontController {
     $article->push('ticketLink', null);
     $article->push('ticketPrices', null);
     $article->push('nav', null);
-    // now push to a view
+    // Now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
@@ -367,7 +367,7 @@ class StaticsController extends FrontController {
     $article->push('dateEnd', null);
     $article->push('type', null);
     $article->push('sponsors', null);
-    // now push to a view
+    // Now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
@@ -389,7 +389,7 @@ class StaticsController extends FrontController {
     $article->push('sponsors', null);
     $article->push('intro', null);
     $article->push('title', "Lorem");
-    // now push to a view
+    // Now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
@@ -398,7 +398,7 @@ class StaticsController extends FrontController {
 
   public function event_feature() {
     $article = $this->getEventPageContents('feature');
-    // now push to a view
+    // Now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
@@ -408,7 +408,7 @@ class StaticsController extends FrontController {
 
   public function event_hero() {
     $article = $this->getEventPageContents('hero');
-    // now push to a view
+    // Now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
@@ -418,7 +418,7 @@ class StaticsController extends FrontController {
 
   public function event_superhero() {
     $article = $this->getEventPageContents('super-hero');
-    // now push to a view
+    // Now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
@@ -438,7 +438,7 @@ class StaticsController extends FrontController {
         "content" => $this->faker->paragraph(6, false)
     ));
     $blocks = array_merge($blocks, $this->generateBlocks(3));
-    // get an event
+    // Get an event
     $article = $this->getArticle();
     $article->push('articleType', 'editorial');
     $article->push('headerType', 'feature');
@@ -479,7 +479,7 @@ class StaticsController extends FrontController {
       ),
     ));
     $article->push('citation', $this->faker->paragraph(5));
-    // now push to a view
+    // Now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
@@ -493,7 +493,7 @@ class StaticsController extends FrontController {
         "content" => '<p><span class="f-dropcap-editorial">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula libero vel quam fringilla dignissim. Praesent finibus sem sed arcu tempor, non tincidunt magna luctus. Maecenas lacinia interdum lacinia. Pellentesque ac felis vehicula, fermentum mauris sed, ornare ex. Mauris cursus, nulla eget fermentum molestie, metus velit sodales turpis, nec tempus felis orci id erat. Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p>'
     ));
     $blocks = array_merge($blocks, $this->generateBlocks(3));
-    // get an event
+    // Get an event
     $article = $this->getArticle();
     $article->push('articleType', 'editorial');
     $article->push('blocks', $blocks);
@@ -502,7 +502,7 @@ class StaticsController extends FrontController {
       'img' => $this->getImage(),
       'name' => $this->faker->firstName.' '.$this->faker->lastName,
     ));
-    // now push to a view
+    // Now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
@@ -511,11 +511,11 @@ class StaticsController extends FrontController {
 
   public function artwork() {
     $exploreFurtherTab = (isset($_GET['exploreFurtherTab'])) ? intval($_GET['exploreFurtherTab']) : 1;
-    // get an artwork
+    // Get an artwork
     $article = $this->getArtwork();
-    // generate some blocks
+    // Generate some blocks
     $blocks = $this->generateArtworkBlocks();
-    // update and add some items (I ran into memory issues doing this in the main getartwork func..)
+    // Update and add some items (I ran into memory issues doing this in the main getartwork func..)
     $article->push('nextArticle', $this->getArtwork());
     $article->push('prevArticle', $this->getArtwork());
     $article->push('articleType', 'artwork');
@@ -572,7 +572,7 @@ class StaticsController extends FrontController {
       'type' => 'article',
       'items' => $this->getArticles(1),
     ));
-    // now push to a view
+    // Now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'borderlessHeader' => true,
@@ -647,7 +647,7 @@ class StaticsController extends FrontController {
         )
       );
     }
-    // now push to a view
+    // Now push to a view
     return view('statics/collection', [
       'primaryNavCurrent' => 'collection',
       'title' => 'The Collection',
@@ -718,7 +718,7 @@ class StaticsController extends FrontController {
         )
       );
     }
-    // now push to a view
+    // Now push to a view
     return view('statics/collection', [
       'primaryNavCurrent' => 'collection',
       'title' => 'The Collection',
@@ -743,7 +743,7 @@ class StaticsController extends FrontController {
 
   public function visit() {
     $items = $this->getVisitItems();
-    // now push to a view
+    // Now push to a view
     return view('statics/visit', $items);
   }
 
@@ -755,12 +755,12 @@ class StaticsController extends FrontController {
         'media' => $this->getVideo(),
         'hideCaption' => true,
     );
-    // now push to a view
+    // Now push to a view
     return view('statics/visit', $items);
   }
 
   public function exhibition_history() {
-    // now push to a view
+    // Now push to a view
     return view('statics/exhibition_history', [
       'primaryNavCurrent' => 'exhibitions_and_events',
       'title' => 'Plan Your Visit',
@@ -792,7 +792,7 @@ class StaticsController extends FrontController {
   }
 
   public function exhibition_history_no_results() {
-    // now push to a view
+    // Now push to a view
     return view('statics/exhibition_history', [
       'primaryNavCurrent' => 'exhibitions_and_events',
       'title' => 'Plan Your Visit',
@@ -846,7 +846,7 @@ class StaticsController extends FrontController {
   public function artist_tag() {
     $article = $this->getArtistTag(true);
 
-    // now push to a view
+    // Now push to a view
     return view('statics/artist_tag', [
       "article" => $article,
     ]);
@@ -855,7 +855,7 @@ class StaticsController extends FrontController {
   public function artist_tag_no_intro() {
     $article = $this->getArtistTag();
 
-    // now push to a view
+    // Now push to a view
     return view('statics/artist_tag', [
       "article" => $article,
     ]);
@@ -876,7 +876,7 @@ class StaticsController extends FrontController {
             ),
         ),
     );
-    // now push to a view
+    // Now push to a view
     return view('statics/generic', [
       'title' => 'Press Releases',
       'subNav' => $navs['subNav'],
@@ -904,7 +904,7 @@ class StaticsController extends FrontController {
             ),
         ),
     );
-    // now push to a view
+    // Now push to a view
     return view('statics/generic', [
       'title' => 'Press Releases',
       'subNav' => $navs['subNav'],
@@ -945,7 +945,7 @@ class StaticsController extends FrontController {
         "titleFont" => 'f-list-4',
         "content" => $accordion,
     ));
-    // now push to a view
+    // Now push to a view
     return view('statics/generic', [
       'title' => 'FAQ',
       'subNav' => $navs['subNav'],
@@ -957,7 +957,7 @@ class StaticsController extends FrontController {
   }
 
   public function articles() {
-    // now push to a view
+    // Now push to a view
     return view('statics/articles', [
       'title' => 'Articles',
       'heroArticle' => $this->getArticle(),
@@ -968,7 +968,7 @@ class StaticsController extends FrontController {
 
   public function generic_form() {
     $navs = $this->generateGenericNav('landing');
-    // now push to a view
+    // Now push to a view
     return view('statics/generic', [
         'subNav' => $navs['subNav'],
         'nav' => $navs['nav'],
@@ -1033,7 +1033,7 @@ class StaticsController extends FrontController {
         "content" => $this->generateParagraph(2)
     ));
 
-    // now push to a view
+    // Now push to a view
     return view('statics/generic', [
         'nav' => $nav,
         'title' => "Contact Us",
@@ -1068,7 +1068,7 @@ class StaticsController extends FrontController {
           ],
           'printedPublications' => [
               'intro' => $this->faker->paragraph(),
-              'items' => $this->getCatalogs(4), // image dims should be max of 160x160 on printed publications
+              'items' => $this->getCatalogs(4), // Image dims should be max of 160x160 on printed publications
           ],
           'journalHero' => $this->getArticle(),
           'journals' => $this->getArticles(4),
@@ -1220,7 +1220,7 @@ class StaticsController extends FrontController {
         'item' => $this->getArtist($this->faker->boolean()),
     ));
 
-    // now push to a view
+    // Now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
         'searchTerm' => 'Picasso',
@@ -1273,7 +1273,7 @@ class StaticsController extends FrontController {
 
   public function search_results_no_results() {
 
-    // now push to a view
+    // Now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
         'searchTerm' => 'Darth Vader',
@@ -1282,7 +1282,7 @@ class StaticsController extends FrontController {
 
   public function search_results_artists() {
 
-    // now push to a view
+    // Now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
         'searchTerm' => 'Picasso',
@@ -1301,7 +1301,7 @@ class StaticsController extends FrontController {
 
     $boolean = $this->faker->boolean() ? true : false;
 
-    // now push to a view
+    // Now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
         'searchTerm' => 'Picasso',
@@ -1318,7 +1318,7 @@ class StaticsController extends FrontController {
 
   public function search_results_artworks() {
 
-    // now push to a view
+    // Now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
         'searchTerm' => 'Picasso',
@@ -1374,7 +1374,7 @@ class StaticsController extends FrontController {
     }
     $eventsAndExhibitions = $this->faker->shuffle($eventsAndExhibitions);
 
-    // now push to a view
+    // Now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
         'searchTerm' => 'Picasso',
@@ -1403,7 +1403,7 @@ class StaticsController extends FrontController {
     }
     $articlesAndPublications = $this->faker->shuffle($articlesAndPublications);
 
-    // now push to a view
+    // Now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
         'searchTerm' => 'Picasso',
@@ -1422,7 +1422,7 @@ class StaticsController extends FrontController {
 
     $boolean = $this->faker->boolean() ? true : false;
 
-    // now push to a view
+    // Now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
         'searchTerm' => 'Picasso',
@@ -1531,7 +1531,7 @@ class StaticsController extends FrontController {
       $images = array();
       if ($type === 'artworks') {
         for ($i = 0; $i < $num; $i++) {
-          // need to convert the artwork item to media
+          // Need to convert the artwork item to media
           $artwork = $this->getArtwork();
           $artworkItem = array();
           $artworkItem['type'] = 'image';
@@ -2082,7 +2082,7 @@ class StaticsController extends FrontController {
   }
 
   private function getSelection() {
-    // make some images
+    // Make some images
     $selectionImages = array();
     for ($i = 0; $i < 3; $i++) {
       $thisImage = $this->getImage();
@@ -3088,7 +3088,7 @@ class StaticsController extends FrontController {
     $formFields1 = array();
     $formFields2 = array();
 
-    // build form fields
+    // Build form fields
     array_push($formFields1, array(
         'variation' => null,
         'blocks' => array(
@@ -4102,7 +4102,7 @@ class StaticsController extends FrontController {
         "type" => 'newsletter-sign-up',
     ));
 
-    // get an event
+    // Get an event
     $article = $this->getEvent();
     $article->push('articleType', 'event');
     $article->push('headerType', $headerType ?? null);

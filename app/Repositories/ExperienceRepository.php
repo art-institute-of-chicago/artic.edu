@@ -62,7 +62,7 @@ class ExperienceRepository extends ModuleRepository
             unset($orders['interactiveFeatureTitle']);
             $query = $query->orderByInteractiveFeature($sort_method);
         }
-        // don't forget to call the parent order function
+        // Don't forget to call the parent order function
         return parent::order($query, $orders);
     }
 

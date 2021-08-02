@@ -50,7 +50,6 @@ class CollectionService
     /**
      * Execute the query built in the chain. Save aggregations
      * to build filters.
-     *
      */
     public function results($page = null)
     {
@@ -75,7 +74,6 @@ class CollectionService
     /**
      * Generate filters for the sidebar. See Filters namespace classes.
      * There the array is generated with options to be used at the FE.
-     *
      */
     public function generateFilters()
     {
@@ -104,7 +102,6 @@ class CollectionService
 
     /**
      * Extract only active filters to build quick buttons
-     *
      */
     public function activeFilters()
     {
@@ -167,7 +164,6 @@ class CollectionService
     /**
      * Go through all aggregations and process the buckets with the proper
      * filter class.
-     *
      */
     protected function buildListFilters($aggregations)
     {
@@ -190,7 +186,6 @@ class CollectionService
     /**
      * Sort filters receive all possible sorting values and create
      * the proper dropdown options.
-     *
      */
     protected function buildSortFilters()
     {
@@ -218,7 +213,6 @@ class CollectionService
 
     /**
      * Scope to save per page
-     *
      */
     public function perPage($perPage)
     {
@@ -229,7 +223,6 @@ class CollectionService
     /**
      * Bypass missed methods directly to the chain.
      * Chain is usually a Query Builder type (eloquent or AIC API query builder)
-     *
      */
     public function __call($method, $parameters)
     {
@@ -241,5 +234,4 @@ class CollectionService
 
         return $this;
     }
-
 }

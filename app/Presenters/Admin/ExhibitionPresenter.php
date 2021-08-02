@@ -74,8 +74,8 @@ class ExhibitionPresenter extends BasePresenter
     {
         return view('components.organisms._o-public-dates' , [
             'formattedDate' => $this->date_display_override,
-            'dateStart' => $this->dateStart, // see getter
-            'dateEnd' => $this->dateEnd, // see getter
+            'dateStart' => $this->dateStart, // See getter
+            'dateEnd' => $this->dateEnd, // See getter
             'date' => $this->date,
         ]);
     }
@@ -90,7 +90,7 @@ class ExhibitionPresenter extends BasePresenter
             'dateStart' => $this->startAt,
             'dateEnd' => $this->endAt,
             'date' => $this->date,
-            'font' => '', // defaults to f-secondary
+            'font' => '', // Defaults to f-secondary
         ]);
     }
 

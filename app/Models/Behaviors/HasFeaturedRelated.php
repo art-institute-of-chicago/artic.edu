@@ -65,7 +65,7 @@ trait HasFeaturedRelated
                 'moduleName' => 'exhibitions',
             ],
         ], [
-            // See $typeUsesApi in HasApiRelations class
+            // See HasApiRelations::$typeUsesApi
             'articles' => false,
             'selections' => false,
             'events' => false,

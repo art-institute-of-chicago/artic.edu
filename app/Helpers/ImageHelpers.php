@@ -3,8 +3,11 @@
 use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
 
-// `uuid` represents the full S3 path, but we only want the UUID
-// For some reason, `null` gets prefixed to the `uuid`..?
+/**
+ * Get the UUID of a media library asset
+ * `uuid` represents the full S3 path, but we only want the UUID
+ * WEB-2248: For some reason, `null` gets prefixed to the `uuid`..?
+ */
 function get_clean_media_uuid($media)
 {
     $uuid = $media->uuid;
@@ -18,14 +21,10 @@ function get_clean_media_uuid($media)
     return $uuid;
 }
 
-/***
-
-aic_convertFromImageProxy
-
-Converts an image proxy url to AIC image object format
-
-***/
-
+/**
+ * aic_convertFromImageProxy
+ * Converts an image proxy url to AIC image object format
+ */
 function aic_convertFromImageProxy($imageUrl, $options = [])
 {
     $src = $imageUrl;
@@ -50,14 +49,10 @@ function aic_convertFromImageProxy($imageUrl, $options = [])
     return $image;
 }
 
-/***
-
-aic_convertFromImage
-
-Converts an image service image object to AIC image object format
-
-***/
-
+/**
+ * aic_convertFromImage
+ * Converts an image service image object to AIC image object format
+ */
 function aic_convertFromImage($imageObject, $cropParams = [])
 {
     $sourceType = 'imgix';
@@ -88,14 +83,10 @@ function aic_convertFromImage($imageObject, $cropParams = [])
     return $image;
 }
 
-/***
-
-aic_imageSizesCSSsettings
-
-Returns an array of CSS settings for the site - see _variable.scss
-
-***/
-
+/**
+ * aic_imageSizesCSSsettings
+ * Returns an array of CSS settings for the site - see _variable.scss
+ */
 function aic_imageSizesCSSsettings() {
     $breakpoints = array(
         'xlarge' => '(min-width: 1640px)',
@@ -104,10 +95,10 @@ function aic_imageSizesCSSsettings() {
         'small' => '(min-width: 600px)',
         'xsmall' => '',
     );
-    $totalCSScolumns = 58; // all breakpoints
-    $xlargeMaxSize = 1500; // just xlarge, its not fluid
-    $innerGutterCSSColumns = 2; // all breakpoints
-    $outerGutterCSScolumns = 3; // all breakpoints
+    $totalCSScolumns = 58; // All breakpoints
+    $xlargeMaxSize = 1500; // Just xlarge, it's not fluid
+    $innerGutterCSSColumns = 2; // All breakpoints
+    $outerGutterCSScolumns = 3; // All breakpoints
 
     return array(
         'breakpoints' => $breakpoints,
@@ -141,14 +132,10 @@ function aic_determineImageSourceType($src = '') {
     return $sourceType;
 }
 
-/***
-
-aic_makePosterUrl
-
-Returns an array of CSS settings for the site - see _variable.scss
-
-***/
-
+/**
+ * aic_makePosterUrl
+ * Returns an array of CSS settings for the site - see _variable.scss
+ */
 function aic_makePosterSrc($src = false) {
     $sourceType = 'imgix';
     $posterSrc = '';
@@ -196,28 +183,23 @@ function aic_makePosterSrc($src = false) {
 
 
 
-/***
-
-aic_imageSettings
-
-Outputs a string for the sizes attribute of an image
-Outputs a string for the srcset attribute of an image
-Outputs a string for the LQIP src of an image
-
-```
-    $settings = aic_imageSettings(array(
-        'settings' => $settings,
-        'image' => $image,
-    ));
-
-    $srcset = $imageSettings['srcset'];
-    $sizes = $imageSettings['sizes'];
-    $src = $imageSettings['src'];
-```
-
-
-***/
-
+/**
+ * aic_imageSettings
+ * Outputs a string for the sizes attribute of an image
+ * Outputs a string for the srcset attribute of an image
+ * Outputs a string for the LQIP src of an image
+ *
+ * ```
+ * $settings = aic_imageSettings(array(
+ *     'settings' => $settings,
+ *     'image' => $image,
+ * ));
+ *
+ * $srcset = $imageSettings['srcset'];
+ * $sizes = $imageSettings['sizes'];
+ * $src = $imageSettings['src'];
+ * ```
+ */
 function aic_getSrcsetForImage($image, $isPublicDomain) {
     $srcset = [
         200,
@@ -279,7 +261,7 @@ function aic_imageSettings($data) {
         $sourceType = aic_determineImageSourceType($originalSrc);
     }
 
-    // trying to fill image dimensions in if dimensions haven't been set but we do have a srcset and a ratio specified
+    // Trying to fill image dimensions in if dimensions haven't been set but we do have a srcset and a ratio specified
     if (!$width && !$height && $srcset) {
         $width = array_values($srcset)[0];
         if ($ratio) {
@@ -295,7 +277,7 @@ function aic_imageSettings($data) {
         }
     }
 
-    // return if not enough datas, fail safe
+    // Return if not enough datas, fail safe
     if (!$srcset || !$sourceType || !$originalSrc || !$width || !$height) {
 
         if ($sourceType === 'artinstituteshop') {
@@ -320,28 +302,28 @@ function aic_imageSettings($data) {
         }
     }
 
-    // assign the sizes
+    // Assign the sizes
     $stringSizes = $settings['sizes'] ?? '';
 
-    // now, based on the source type, generate URLs as needed
+    // Now, based on the source type, generate URLs as needed
     if ($sourceType === 'placeholder') {
-        // work out ratio cropping
+        // Work out ratio cropping
         if (!empty($settings['ratio'])) {
             if ($settings['ratio'] === "1:1") {
-                // square
+                // Square
                 if ($height > $width) {
                     $width = $height;
                 } else {
                     $height = $width;
                 }
             } else if (sizeof(explode(":",$settings['ratio'])) === 2) {
-                // some other ratio
+                // Some other ratio
                 $ratioW = explode(":",$settings['ratio'])[0];
                 $ratioH = explode(":",$settings['ratio'])[1];
                 $height = round($width * ($ratioH/$ratioW));
             }
         }
-        // for place holders its a bit dumb because its not passing through a service
+        // For place holders its a bit dumb because its not passing through a service
         foreach ($srcset as $size):
             $stringSrcset .= "//placehold.dev.area17.com/image/".$size."x".round(($height/$width) * $size)." ".$size."w, ";
         endforeach;
@@ -359,22 +341,22 @@ function aic_imageSettings($data) {
             $imgixSettings['rect'] = $originalSrcParams['rect'];
         }
 
-        // work out ratio cropping
+        // Work out ratio cropping
         if (!empty($settings['ratio']) && $width && $height && $height !== 'auto') {
             if ($settings['ratio'] === "1:1") {
-                // square
+                // Square
                 if ($height > $width) {
                     $width = $height;
                 } else {
                     $height = $width;
                 }
             } else if (sizeof(explode(":",$settings['ratio'])) === 2) {
-                // some other ratio
+                // Some other ratio
                 $ratioW = explode(":",$settings['ratio'])[0];
                 $ratioH = explode(":",$settings['ratio'])[1];
                 $height = round($width * ($ratioH/$ratioW));
             }
-            // because we're limiting with a dimension, we need to crop
+            // Because we're limiting with a dimension, we need to crop
             if(empty($settings['fit'])) {
                 $settings['fit'] = 'crop';
             }
@@ -426,7 +408,7 @@ function aic_imageSettings($data) {
             $imgixSettings['monochrome'] = '808080';
         }
 
-        // Special settings for GIFs [WEB-955]
+        // WEB-955: Special settings for GIFs
         if (Str::endsWith(explode('?', $originalSrc)[0], 'gif')) {
             $imgixSettings['auto'] = 'format,compress';
             $imgixSettings['fm'] = 'gif';
@@ -437,7 +419,7 @@ function aic_imageSettings($data) {
         $imgixSettings['w'] = $width;
         $imgixSettings['h'] = $height;
 
-        // generate variants
+        // Generate variants
         foreach ($srcset as $i => $size):
             if ($stringSrcset) {
                 $stringSrcset .= ", ";
@@ -450,7 +432,7 @@ function aic_imageSettings($data) {
             $stringSrcset .= $base.$imgixSettingsString." ".$size."w";
         endforeach;
 
-        // get data-pin-media for pinterest
+        // Get data-pin-media for pinterest
         $imgixSettings['w'] = 600;
         if ($height && $height !== 'auto') {
             $imgixSettings['h'] = round(($height/$width) * 600);
@@ -458,7 +440,7 @@ function aic_imageSettings($data) {
         $imgixSettingsString = http_build_query($imgixSettings);
         $pinterestMedia = $base.$imgixSettingsString;
 
-        // build lqip
+        // Build LQIP
         $imgixSettings['w'] = $LQIPDimension;
         if ($height && $height !== 'auto') {
             $imgixSettings['h'] = round(($height/$width) * $LQIPDimension);
@@ -474,7 +456,7 @@ function aic_imageSettings($data) {
 
     if ($sourceType === 'dams') {
 
-        // iiif doesn't have many image processing features..
+        // IIIF doesn't have many image processing features..
         // http://iiif.io/api/image/2.1/#region
         // /{region}/{size}/{rotation}/{quality}.{format}
 
@@ -486,10 +468,10 @@ function aic_imageSettings($data) {
             $iiifId = $base;
         }
 
-        // check to see if a ratio is defined
+        // Check to see if a ratio is defined
         if (!empty($settings['ratio'])) {
             if ($settings['ratio'] === "1:1") {
-                // iiif does have a square region pre-defined
+                // IIIF does have a square region pre-defined
                 $resizeVal = 'square';
                 if ($height > $width) {
                     $width = $height;
@@ -497,25 +479,25 @@ function aic_imageSettings($data) {
                     $height = $width;
                 }
             } else if (sizeof(explode(":",$settings['ratio'])) === 2) {
-                // some other ratio
+                // Some other ratio
                 $ratioW = explode(":",$settings['ratio'])[0];
                 $ratioH = explode(":",$settings['ratio'])[1];
                 $height = round($width * ($ratioH/$ratioW));
-                // need to manually calc area to grab..
-                // first check the image is taller than the ratio height we need
+                // Need to manually calc area to grab..
+                // First check the image is taller than the ratio height we need
                 $ratioHeight = round($width * ($ratioH/$ratioW));
                 if ($height === $ratioHeight) {
-                    // the source image *is* 16:9
+                    // The source image *is* 16:9
                     $resizeVal = 'full';
                 } else if ($height > $ratioHeight) {
-                    // the source image is 16:something-taller-than-9
+                    // The source image is 16:something-taller-than-9
                     $cropWidth = $width;
                     $cropHeight = round($cropWidth * ($ratioH/$ratioW));
                     $topPosition = round(($height - $cropHeight) / 2);
                     $resizeVal = "0,".$topPosition.",".$cropWidth.",".$cropHeight;
                     $height = $cropHeight;
                 } else {
-                    // the source image is 16:something-less-than-9
+                    // The source image is 16:something-less-than-9
                     $cropHeight = $height;
                     $cropWidth = round($cropHeight * ($ratioW/$ratioH));
                     $leftPosition = round(($width - $cropWidth) / 2);
@@ -525,7 +507,7 @@ function aic_imageSettings($data) {
             }
         }
 
-        // generate variants
+        // Generate variants
         foreach ($srcset as $i => $size):
             if (!empty($stringSrcset)) {
                 $stringSrcset .= ", ";
@@ -533,7 +515,7 @@ function aic_imageSettings($data) {
             $stringSrcset .= $base."/".$resizeVal."/".$size.",/0/default.jpg ".$size."w";
         endforeach;
 
-        // get data-pin-media for pinterest
+        // Get data-pin-media for pinterest
         $pinterestMedia = $base."/".$resizeVal."/600,/0/default.jpg";
 
         $stringSrc = $base."/".$resizeVal."/".$LQIPDimension.",/0/default.jpg";
@@ -556,56 +538,50 @@ function aic_imageSettings($data) {
 }
 
 
-/***
-
-aic_imageSizes
-
-Outputs a string for the sizes attribute of an image
-
-```
-    @slot('imageSizes', aic_imageSizes(
-      array(
-          'xsmall' => '58',
-          'small' => '28',
-          'medium' => '18',
-          'large' => '13',
-          'xlarge' => '13',
-      )
-    ))
-```
-
-You can specify set values in units also:
-
-```
-    @slot('imageSizes', aic_imageSizes(
-      array(
-          'xsmall' => '216px',
-          'small' => '216px',
-          'medium' => '30vw',
-          'large' => '18',
-          'xlarge' => '18',
-      )
-    ))
-```
-
-Unitless numbers are CSS columns where 1 CSS column is 1/58th the full column width.
-
-Numbers with units get used as is.
-
-
-* Breakpoints are fluid except xlarge
-* For all breakpoints, except xlarge, 1 CSS column is 100vw/64 (64 is 58 + 3 + 3)
-* At xlarge, 1 CSS column is 1500px/58
-
-See _grid.scss, @function colspan {}
-
-***/
-
+/**
+ * aic_imageSizes
+ * Outputs a string for the sizes attribute of an image
+ *
+ * ```
+ * @slot('imageSizes', aic_imageSizes(
+ *     array(
+ *         'xsmall' => '58',
+ *         'small' => '28',
+ *         'medium' => '18',
+ *         'large' => '13',
+ *         'xlarge' => '13',
+ *     )
+ * ))
+ * ```
+ *
+ * You can specify set values in units also:
+ *
+ * ```
+ * @slot('imageSizes', aic_imageSizes(
+ *     array(
+ *         'xsmall' => '216px',
+ *         'small' => '216px',
+ *         'medium' => '30vw',
+ *         'large' => '18',
+ *         'xlarge' => '18',
+ *     )
+ * ))
+ * ```
+ *
+ * Unitless numbers are CSS columns where 1 CSS column is 1/58th the full column width.
+ * Numbers with units get used as is.
+ *
+ * Breakpoints are fluid except xlarge
+ * For all breakpoints, except xlarge, 1 CSS column is 100vw/64 (64 is 58 + 3 + 3)
+ * At xlarge, 1 CSS column is 1500px/58
+ *
+ * @see _grid.scss, @function colspan {}
+ */
 function aic_imageSizes($data) {
     $sizes = '';
-    // grab settings
+    // Grab settings
     $settings = aic_imageSizesCSSsettings();
-    // make friendly
+    // Make friendly
     $breakpoints = $settings['breakpoints'];
     $xlargeMaxSize = $settings['xlargeMaxSize'];
     $totalCSScolumns = $settings['totalCSScolumns'];
@@ -633,44 +609,39 @@ function aic_imageSizes($data) {
     return $sizes;
 }
 
-/***
-
-aic_gridListingImageSizes
-
-Outputs a string for the sizes attribute of an image, in a grid listing.
-
-The numbers are how many columns in the grid listing. So in this example, at `small` the items are in a 2 column grid:
-_________
-| x | x |
-| x | x |
-| x | x |
----------
-
-And at `medium` they're in a 3 column grid:
-_____________
-| x | x | x |
-| x | x | x |
--------------
-
-```
-    @slot('imageSizes', aic_gridListingImageSizes(
-      array(
-          'xsmall' => '1',
-          'small' => '2',
-          'medium' => '3',
-          'large' => '4',
-          'xlarge' => '4',
-      )
-    ))
-```
-
-***/
-
+/**
+ * aic_gridListingImageSizes
+ * Outputs a string for the sizes attribute of an image, in a grid listing.
+ * The numbers are how many columns in the grid listing. So in this example, at `small` the items are in a 2 column grid:
+ * _________
+ * | x | x |
+ * | x | x |
+ * | x | x |
+ * ---------
+ *
+ * And at `medium` they're in a 3 column grid:
+ * _____________
+ * | x | x | x |
+ * | x | x | x |
+ * -------------
+ *
+ * ```
+ * @slot('imageSizes', aic_gridListingImageSizes(
+ *     array(
+ *         'xsmall' => '1',
+ *         'small' => '2',
+ *         'medium' => '3',
+ *         'large' => '4',
+ *         'xlarge' => '4',
+ *     )
+ * ))
+ * ```
+ */
 function aic_gridListingImageSizes($data) {
     $newData = array();
-    // grab settings
+    // Grab settings
     $settings = aic_imageSizesCSSsettings();
-    // make friendly
+    // Make friendly
     $breakpoints = $settings['breakpoints'];
     $totalCSScolumns = $settings['totalCSScolumns'];
     $innerGutterCSSColumns = $settings['innerGutterCSSColumns'];
