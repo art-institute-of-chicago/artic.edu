@@ -288,7 +288,7 @@ const imageZoomArea = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     $btnPrev.removeEventListener('click', _prev);
     $btnNext.removeEventListener('click', _next);
     $btnClose.removeEventListener('click', _close);
@@ -296,7 +296,7 @@ const imageZoomArea = function(container) {
     document.removeEventListener('fullScreenImage:close', _close);
     window.removeEventListener('keyup', _escape);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
 
     fakeEvent = false;

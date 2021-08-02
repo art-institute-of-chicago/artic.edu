@@ -17,9 +17,7 @@ but project doesn't use bower */
 // } catch (e) {
 // fs.mkdir('./bower_components');
 // }
-
-// See https://github.com/austinpray/asset-builder
-
+// @see https://github.com/austinpray/asset-builder
 let manifestPath = !utils.hasFile('./frontend/manifest.json') ? path.join(relativePath,'../config/manifest.json') : './frontend/manifest.json';
 
 data.manifest = require('asset-builder')(manifestPath, { bower:false });
@@ -49,9 +47,9 @@ var config = require('load-gulp-config');
 var pack = config.util.readJSON('package.json');
 
 config(gulp, {
-// path to task's files, defaults to gulp dir.
+// Path to task's files, defaults to gulp dir.
 configPath: config.util.path.join(relativePath, './gulp_tasks', '*.{js,json,yml,yaml}'),
 
-// data passed into config task.
+// Data passed into config task.
 data:Object.assign(data, pack)
 });

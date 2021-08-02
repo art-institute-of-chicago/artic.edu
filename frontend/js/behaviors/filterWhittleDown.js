@@ -59,11 +59,11 @@ const filterWhittleDown = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     $input.removeEventListener('input', _whittleDown);
     container.removeEventListener('submit', _whittleDown);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

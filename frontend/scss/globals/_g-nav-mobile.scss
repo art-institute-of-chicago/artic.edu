@@ -24,7 +24,7 @@
 
 .g-nav-mobile__container {
   @extend %container;
-  padding-bottom: 60px; // stop the nav from hitting the bottom of the window on scroll
+  padding-bottom: 60px; // Stop the nav from hitting the bottom of the window on scroll
 }
 
 .g-nav-mobile__close {
@@ -205,7 +205,7 @@
 }
 
 .g-footer-nav__expander-trigger.nav-is-open {
-  margin-top: -1px; // to cover the bottom border on the previous list item
+  margin-top: -1px; // To cover the bottom border on the previous list item
   border-top: 1px solid $color__rules--secondary;
   border-bottom: 1px solid $color__rules--primary;
   color: $color__text--accent;

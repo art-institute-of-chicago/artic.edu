@@ -220,7 +220,7 @@ const headerGallery = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     nodes.thumbs.removeEventListener('click', _thumbClick);
     nodes.download.removeEventListener('click', _downloadClick);
     nodes.fullscreen.removeEventListener('click', _fullscreen);
@@ -230,10 +230,10 @@ const headerGallery = function(container) {
     //   nodes.previous.removeEventListener('click', _previousClick);
     // }
     document.removeEventListener('resized', _resized);
-    //
+
     nodes = {};
     data = {};
-    // remove properties of this behavior
+    // Remove properties of this behavior
     purgeProperties(this);
   };
 

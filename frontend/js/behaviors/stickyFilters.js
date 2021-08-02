@@ -106,7 +106,7 @@ const stickyFilters = function(container){
   this.destroy = function() {
     _destroy();
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

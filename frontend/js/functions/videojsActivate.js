@@ -8,7 +8,7 @@ const videojsActivate = function() {
     videojs.registerPlugin('eventTracking', eventTracking);
   }
 
-  // https://stackoverflow.com/questions/39121463/videojs-5-plugin-add-button
+  // @see https://stackoverflow.com/questions/39121463/videojs-5-plugin-add-button
   function _registerDownloadButton() {
     var vjsButtonComponent = videojs.getComponent('Button');
 
@@ -56,7 +56,7 @@ const videojsActivate = function() {
         let target = listingElement.querySelector('.m-listing--sound__transcript');
 
         if (target.getAttribute('aria-hidden') === 'true') {
-          // open
+          // Open
           target.style.height = 0;
           target.style.overflow = 'hidden';
           target.setAttribute('aria-hidden', 'false');
@@ -64,7 +64,7 @@ const videojsActivate = function() {
           _getHeightAndSet(target);
           buttonElement.classList.add('vjs-transcript-button--opened');
         } else {
-          // close
+          // Close
           _getHeightAndSet(target);
           target.setAttribute('aria-hidden', 'true');
           let thrash = target.offsetHeight;

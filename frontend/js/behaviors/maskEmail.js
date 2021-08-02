@@ -3,7 +3,7 @@ import { purgeProperties } from '@area17/a17-helpers';
 const maskEmail = function(container) {
 
   this.destroy = function() {
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

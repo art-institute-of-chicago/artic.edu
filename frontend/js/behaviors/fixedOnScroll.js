@@ -74,7 +74,7 @@ const fixedOnScroll = function(container) {
     window.removeEventListener('resized', handleResize);
     window.removeEventListener('scroll', handleScroll);
     document.removeEventListener('module3d:loaded', handleResize);
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

@@ -1,16 +1,16 @@
 const mediaQuery = function(mq) {
 
-  // all breakpoints
+  // All breakpoints
   if (mq === 'all') {
     return true;
   }
 
-  // specific breakpoint
+  // Specific breakpoint
   if (mq === A17.currentMediaQuery) {
     return true;
   }
 
-  // breakpoint and up
+  // Breakpoint and up
   if (mq === 'small+' && A17.currentMediaQuery.indexOf('xsmall') < 0) {
     return true;
   }
@@ -23,7 +23,7 @@ const mediaQuery = function(mq) {
     return true;
   }
 
-  // breakpoint and down
+  // Breakpoint and down
 
   if (mq === 'small-' && A17.currentMediaQuery.indexOf('small') >= 0) {
     return true;

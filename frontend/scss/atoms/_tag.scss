@@ -269,13 +269,13 @@ a.tag--senary:active {
   }
 }
 
-// variations shared by journal issue, journal article, and magazine issue
+// Variations shared by journal issue, journal article, and magazine issue
 .tag--magazine,
 .tag--journal {
   padding-right: 16px;
   text-align: left;
 
-  // for when the sidebar scrollbar appears
+  // For when the sidebar scrollbar appears
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -285,7 +285,7 @@ a.tag--senary:active {
   }
 }
 
-// specificity to override tag--senary.tag--w-image
+// Specificity to override tag--senary.tag--w-image
 .tag--journal.tag--w-image {
   height: 60px;
   line-height: 23px;

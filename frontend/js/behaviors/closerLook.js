@@ -83,7 +83,7 @@ const closerLook = function(container) {
     window.removeEventListener('resized', handleResize);
     window.removeEventListener('scroll', handleScroll);
     document.removeEventListener('focusin', handleFocus);
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

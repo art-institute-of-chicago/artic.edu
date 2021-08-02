@@ -12,7 +12,7 @@ const ajaxFormSubmit = function(container) {
     });
   }
 
-  // handle form submit
+  // Handle form submit
   function _handleSubmit(event){
     event.preventDefault();
     let terms = _fixedEncodeURIComponent(textInput.value);
@@ -23,7 +23,7 @@ const ajaxFormSubmit = function(container) {
         type: 'page',
         ajaxScrollTarget: ajaxScrollTarget
       });
-      // if the form has some google tag manager props, tell GTM
+      // If the form has some google tag manager props, tell GTM
       let googleTagManagerObject = googleTagManagerDataFromLink(container);
       if (googleTagManagerObject) {
         triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
@@ -38,7 +38,7 @@ const ajaxFormSubmit = function(container) {
 
   this.destroy = function() {
     form.removeEventListener('submit', _handleSubmit);
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

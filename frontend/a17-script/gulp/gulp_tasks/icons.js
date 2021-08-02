@@ -1,7 +1,7 @@
 // ### Icons
 // `gulp icons` - Creates SVG sprite and updates styles/setup/_icons.scss
 // with icon classes and dimensions based on filename
-// https://github.com/jkphl/svg-sprite/blob/master/docs/configuration.md
+// @see https://github.com/jkphl/svg-sprite/blob/master/docs/configuration.md
 
 var svgSprite    = require('gulp-svg-sprite');
 

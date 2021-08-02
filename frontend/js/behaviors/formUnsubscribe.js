@@ -7,11 +7,11 @@ const formUnsubscribe = function(container) {
     event.stopPropagation();
     forEach(document.querySelectorAll('input[type=checkbox][name^="subscriptions[]"]:not([id="subscriptions-OptEnews"])'), function(index, el) {
       if (el.getAttribute('disabled') === 'true') {
-        // enable
+        // Enable
         el.removeAttribute('disabled');
         container.querySelector('input[type=checkbox][name="unsubscribe"]').checked = false;
       } else {
-        // disable
+        // Disable
         el.setAttribute('disabled', 'true');
         el.removeAttribute('checked');
         el.checked = false;
@@ -29,10 +29,10 @@ const formUnsubscribe = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     container.removeEventListener('click', _handleClicks);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

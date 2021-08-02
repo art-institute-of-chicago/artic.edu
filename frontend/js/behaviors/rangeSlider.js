@@ -2,7 +2,7 @@ import { purgeProperties, queryStringHandler, forEach, getUrlParameterByName, tr
 import noUiSlider from '../libs/nouislider';
 
 const rangeSlider = function(container){
-  // objects
+  // Objects
   const $slideTrack = container.querySelector('[data-range-slider]');
   const $min = container.querySelector('[data-range-thumb-min]');
   const $max = container.querySelector('[data-range-thumb-max]');
@@ -33,7 +33,7 @@ const rangeSlider = function(container){
   }
 
   function _prepData(){
-    // grab init positions from URL
+    // Grab init positions from URL
     let initStart = getUrlParameterByName(param+'-start', window.location.search);
     let initEnd = getUrlParameterByName(param+'-end', window.location.search);
 
@@ -56,7 +56,7 @@ const rangeSlider = function(container){
   function _triggerPageLoad(minIndex, maxIndex) {
     var windowLocationHref = queryStringHandler.updateParameter(window.location.href, param+'-start', rangeValues[minIndex].replace(/\s(CE|BCE)/ig,'$1'));
     windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, param+'-end', rangeValues[maxIndex].replace(/\s(CE|BCE)/ig,'$1'));
-    // trigger ajax call
+    // Trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
       url: windowLocationHref,
       ajaxScrollTarget: 'collection'
@@ -158,20 +158,20 @@ const rangeSlider = function(container){
 
     var text = Math.abs(customValue) + (isBC ? ' '+bcText : ' '+adText);
 
-    // find nearest number in array of values
-    // loop all values
+    // Find nearest number in array of values
+    // Loop all values
     rangeValues.forEach( function(val, index) {
       var parsedVal = parseInt(val);
 
       if( isBC ){
-        // if isBC == true then check if value contains 'BCE'
+        // If isBC == true then check if value contains 'BCE'
         if( val.indexOf(bcText) != -1 ){
-          // convert BCE numbers to negative
+          // Convert BCE numbers to negative
           var negVal = parsedVal * -1;
 
-          // check if value is less than current index value
+          // Check if value is less than current index value
           if( customValue <= negVal && spliced == false){
-            // insert value into array at location of nearest number
+            // Insert value into array at location of nearest number
 
             if( rangeValues.indexOf(text) == -1 ){
               rangeValues.splice(index, 0, Math.abs(customValue) + bcText );
@@ -184,11 +184,11 @@ const rangeSlider = function(container){
           lastIndex = index;
         }
       }else{
-        // else check if it contains 'AD'
+        // Else check if it contains 'AD'
         if( val.indexOf(adText) != -1 ){
-          // check if value is greater than current index value
+          // Check if value is greater than current index value
           if( customValue <= parsedVal && spliced == false){
-            // insert value into array at location of nearest number
+            // Insert value into array at location of nearest number
             if( rangeValues.indexOf(text) == -1 ){
               rangeValues.splice(index, 0, text );
             }
@@ -201,7 +201,7 @@ const rangeSlider = function(container){
       }
     });
 
-    // if not then insert into array at current index
+    // If not then insert into array at current index
     if( !spliced && lastIndex ){
       rangeValues.splice(lastIndex + 1, 0, Math.abs(customValue) + (isBC ? bcText : adText) );
       customValIndex = lastIndex + 1;
@@ -219,10 +219,10 @@ const rangeSlider = function(container){
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     $customBtn.removeEventListener('click', _handleClick);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

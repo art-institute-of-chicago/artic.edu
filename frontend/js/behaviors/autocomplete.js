@@ -230,13 +230,13 @@ const autocomplete = function(container) {
   // handle submit
   function _handleSubmit(event) {
     event.preventDefault();
-    // if the form has some google tag manager props, tell GTM
+    // If the form has some google tag manager props, tell GTM
     let googleTagManagerObject = googleTagManagerDataFromLink(container);
     if (googleTagManagerObject) {
       googleTagManagerObject['event'] = _fixedEncodeURIComponent(textInput.value);
       triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
     }
-    // trigger ajax call
+    // Trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
       url: queryStringHandler.updateParameter(container.action, 'q', _fixedEncodeURIComponent(textInput.value)),
     });
@@ -246,10 +246,10 @@ const autocomplete = function(container) {
   function _handleInput() {
     searchTerm = textInput.value;
     if(searchTerm.length >= 3){
-      // do ajax
+      // Do ajax
       _doAjax();
     }else if(searchTerm.length == 0){
-      // hide autocomplete
+      // Hide autocomplete
       _hideAutocomplete();
     }
   }
@@ -367,7 +367,7 @@ const autocomplete = function(container) {
     document.removeEventListener('click', _clicks);
     document.removeEventListener('touchstart', _touchstart);
     window.removeEventListener('keyup', _escape);
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

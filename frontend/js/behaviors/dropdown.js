@@ -168,7 +168,7 @@ const dropdown = function(container) {
     document.removeEventListener('mediaQueryUpdated', _mediaQueryUpdated);
     _destroy();
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

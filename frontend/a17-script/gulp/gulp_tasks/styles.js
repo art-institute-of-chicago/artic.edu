@@ -51,7 +51,7 @@ module.exports = function(gulp, data, util, taskName) {
   gulp.task(taskName, function() {
     var merged = mergeStream();
 
-    // go through each dependency and add pipe to stream.
+    // Go through each dependency and add pipe to stream.
     data.manifest.forEachDependency('css', function (dep) {
       // console.log($.if);
       merged.add(gulp.src(dep.globs, {base: 'styles'})

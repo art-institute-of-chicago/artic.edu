@@ -114,8 +114,8 @@ const colorPickerFilter = function(container) {
       );
 
       handleElement.querySelectorAll('circle').forEach(function(circleElement) {
-        // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset#Usage_notes
-        // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-width#Usage_notes
+        // @see https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset#Usage_notes
+        // @see https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-width#Usage_notes
         circleElement.setAttribute('stroke-dasharray', `${percentInterval} ${100 - percentInterval}`);
         circleElement.setAttribute('stroke-dashoffset', 25 + percentInterval/2);
         circleElement.setAttribute('stroke-width', 31.91);
@@ -178,7 +178,7 @@ const colorPickerFilter = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     submitButton.removeEventListener('click', _handleSubmit);
 
     hueWheelElement.removeEventListener('mousedown', enableHueDragFunction);
@@ -192,7 +192,7 @@ const colorPickerFilter = function(container) {
 
     document.removeEventListener('ajaxPageLoad:complete', _init);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 
@@ -387,7 +387,7 @@ const colorPickerFilter = function(container) {
     var max = Math.max(r, g, b), min = Math.min(r, g, b);
     var h, s, l = (max + min) / 2;
     if(max == min){
-      h = s = 0; // achromatic
+      h = s = 0; // Achromatic
     }else{
       var d = max - min;
       s = l > 0.5 ? d / (2 - max - min) : d / (max + min);

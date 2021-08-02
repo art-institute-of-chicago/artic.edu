@@ -244,7 +244,7 @@ const roadblock = function(container) {
           $form.setAttribute('disabled', 'disabled');
           $form.querySelector('input[name=email]').value = '';
           _updateState('success', data.message || data.email);
-          // tell GTM
+          // Tell GTM
           triggerCustomEvent(document, 'gtm:push', {
             'event': 'sign-up',
             'eventCategory': 'subscribe',

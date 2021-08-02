@@ -8,7 +8,7 @@
 .o-color-picker {
   $color-background: white;
 
-  display: none; // for performance
+  display: none; // For performance
 
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -36,7 +36,7 @@
     touch-action: none;
   }
 
-  // https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
+  // @see https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
   @mixin overflow-hidden() {
     overflow: hidden;
     -webkit-mask-image: -webkit-radial-gradient(white, black);

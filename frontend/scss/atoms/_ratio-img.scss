@@ -44,7 +44,7 @@ Can optionally use `object-fit` to cover or contain the area:
   content: '';
   display: block;
   height: 0;
-  padding-bottom: 100%; // defaults to a square
+  padding-bottom: 100%; // Defaults to a square
 }
 
 .ratio-img--1\:1::before {

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   manageBehaviors(Behaviors);
 
-  // watch for fonts loading
+  // Watch for fonts loading
   fontObservers({
     name: 'serif',
     variants: [

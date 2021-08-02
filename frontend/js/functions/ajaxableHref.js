@@ -1,18 +1,18 @@
 const ajaxableHref = function(href, event) {
-  // fail if no href
+  // Fail if no href
   if (!href || href === '#') {
     return false;
   }
 
-  // fail if external or not same protocol
+  // Fail if external or not same protocol
   var el = document.createElement('a');
   el.href = href;
   if (window.location.protocol !== el.protocol || window.location.hostname !== el.hostname) {
-    // off site link
+    // Off site link
     return false;
   }
 
-  // sometimes the target is an element within the anchor
+  // Sometimes the target is an element within the anchor
   var target = event.target;
   if (target.tagName !== 'A') {
     if (target === document) {
@@ -26,27 +26,27 @@ const ajaxableHref = function(href, event) {
   }
 
   if (target.host === window.location.host && target.pathname === window.location.pathname && target.hash) {
-    // probably a same page anchor link
+    // Probably a same page anchor link
     return false;
   }
 
   if (target.pathname.startsWith('/assets/')) {
-    // link targets a DAMS asset
+    // Link targets a DAMS asset
     return false;
   }
 
   if (target.pathname.startsWith('/pdf/static/')) {
-    // link targets a PDF download
+    // Link targets a PDF download
     return false;
   }
 
   if (target.pathname.includes('/interactive-features/')) {
-    // link targets an interactive feature
+    // Link targets an interactive feature
     return false;
   }
 
   if (window.location.pathname.includes('/interactive-features/')) {
-    // user is in an interactive feature
+    // User is in an interactive feature
     return false;
   }
 
@@ -60,7 +60,7 @@ const ajaxableHref = function(href, event) {
   */
 
   el = null;
-  // passed?
+  // Passed?
   return true;
 };
 
