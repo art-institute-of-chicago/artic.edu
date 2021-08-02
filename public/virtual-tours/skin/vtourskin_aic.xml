@@ -204,7 +204,7 @@
 		var hs2 = krpano.get("hotspot[skin_webvr_next_scene]");
 		if(!hs1.hovering && !hs2.hovering)
 		{
-			var f = 0.01;	// following speed factor
+			var f = 0.01;	// Following speed factor
 			var h = krpano.view.hlookat;
 			var v = krpano.view.vlookat;
 			var hsh = hs1.ath;
