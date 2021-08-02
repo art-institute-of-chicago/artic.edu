@@ -30,7 +30,7 @@ class DepartmentRepository extends BaseApiRepository
         $apiPerPage = $this->maxArtworks;
 
         if ($item->hasAugmentedModel()) {
-            // TODO: Can we can get away with a single `mquery` here?
+            // WEB-2270: Can we can get away with a single `mquery` here?
             $customArtworks = $this->getCustomRelatedArtworks($item);
 
             // We always need to query API, if only to retrieve the total for UI

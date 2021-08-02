@@ -89,7 +89,7 @@ trait HasFeaturedRelated
         $now = Carbon::now();
 
         return $relatedItems->filter(function($relatedItem) use ($now) {
-            // TODO: Verify that we don't need to check if the exhibition is in the future?
+            // WEB-2265: Verify that we don't need to check if the exhibition is in the future?
             if (get_class($relatedItem) === \App\Models\Api\Exhibition::class) {
                 return true;
             }

@@ -79,7 +79,7 @@ class VisitController extends FrontController
         );
 
         // Get prices grid for admissions
-        // This should be moved away from the controller.
+        // WEB-2256: This should be moved away from the controller.
         $fees = Fee::all();
         $prices = [];
         $titles = [];

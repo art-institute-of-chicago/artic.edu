@@ -11,7 +11,7 @@ use App\Models\Behaviors\HasRecurrentDates;
 use App\Models\Behaviors\HasApiRelations;
 use Carbon\Carbon;
 
-// TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
+// WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 

@@ -73,7 +73,7 @@ class Asset extends BaseApiModel
             return $content;
         }
 
-        // TODO: Consider removing `/iiif` suffix from `config/dams.php` values?
+        // WEB-2263: Consider removing `/iiif` suffix from `config/dams.php` values?
         $assets_url = str_replace('/iiif', '/assets', config('dams.base_url'));
         $assets_cdn_url = str_replace('/iiif', '/assets', config('dams.base_url_cdn'));
 

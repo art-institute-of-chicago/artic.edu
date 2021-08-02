@@ -48,7 +48,7 @@ class ExhibitionRepository extends BaseApiRepository
     {
         $search  = Search::query()->search($string)->resources(['exhibitions']);
 
-        // TODO: `upcoming` and `past` might be dead code. Remove..?
+        // WEB-2264: `upcoming` and `past` might be dead code. Remove?
         if ($time == 'upcoming') {
             $search->exhibitionUpcoming();
         } elseif ($time == 'past') {

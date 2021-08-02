@@ -49,7 +49,7 @@ class EventOccurrenceTransformer extends ApiTransformer
         return null;
     }
 
-    // TODO: Transition to using Datum for outbound transformers!!!
+    // WEB-2258: Transition to using Datum for outbound transformers!!!
     private function getString($value)
     {
         if (!isset($value)) {

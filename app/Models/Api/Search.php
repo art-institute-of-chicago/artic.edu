@@ -703,7 +703,7 @@ class Search extends BaseApiModel
         return $query->rawQuery($params);
     }
 
-    // TODO: Dead code? Remove..?
+    // WEB-2264: Dead code? Remove..?
     public function scopeExhibitionUpcoming($query)
     {
         $params = [
@@ -723,7 +723,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    // TODO: Dead code? Remove..?
+    // WEB-2264: Dead code? Remove..?
     public function scopeExhibitionHistory($query)
     {
         $params = [

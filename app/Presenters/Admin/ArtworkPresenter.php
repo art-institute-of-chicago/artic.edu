@@ -214,7 +214,7 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->artist_pivots != null && count($this->entity->artist_pivots) > 0) {
             $artistPivots = collect($this->entity->artist_pivots)->filter(function($item) {
-                // TODO: Ensure that all relationships point to existing items [WEB-118, WEB-1026]
+                // WEB-118, WEB-1026: Ensure that all relationships point to existing items
                 return isset($item->artist_id) && isset($item->artist_title);
             });
 
@@ -310,7 +310,7 @@ class ArtworkPresenter extends BasePresenter
             }
         }
 
-        // TODO: Abstract this into a proper method, somewhere appropriate
+        // WEB-2267: Abstract this into a proper method, somewhere appropriate
         $generateDateRangeHref = function( $date_start, $date_end ) {
             return route('collection', [
                 'date-start' => abs($date_start) . ( $date_start < 0 ? 'BCE' : '' ),

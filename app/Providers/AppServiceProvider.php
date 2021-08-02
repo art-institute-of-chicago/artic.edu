@@ -153,9 +153,9 @@ class AppServiceProvider extends ServiceProvider
         config(['aic.version' => trim(file_get_contents(__DIR__ . '/../../VERSION'))]);
     }
 
-    // TODO: Consider moving some of this to a config?
     private function composeTemplatesViews()
     {
+        // WEB-2269: Consider moving some of this to a config?
         view()->composer('*', function ($view) {
 
             $view->with([

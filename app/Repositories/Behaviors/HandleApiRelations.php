@@ -41,9 +41,8 @@ trait HandleApiRelations
 
     public function updateMultiBrowserApiRelated($object, $fields, $relationship, $typeUsesApi)
     {
+        // WEB-2272: check if we dont leave some stale data in database by not deleting apiElements
         // Remove all associations
-        // TODO: check if we dont leave some stale data in database by not deleting apiElements
-
         // $object->apiElements()->detach();
 
         $relatedElementsWithPosition = [];
