@@ -95,7 +95,7 @@
                 const matches = payload.value.match(/[a-z0-9]{10,}$/g);
                 const id = matches ? matches[0] : '';
                 if (oldModelId !== id) {
-                  // reset model data fields
+                  // Reset model data fields
                     this.updateFormField(this.fieldName('model_id'), id);
                     this.updateFormField(this.fieldName('camera_position'), '');
                     this.updateFormField(this.fieldName('camera_target'), '');

@@ -209,7 +209,7 @@
             'name' => 'entrance',
             'label' => 'Entrance',
             'options' => $eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // no effect?
+            'default' => \App\Models\Event::NULL_OPTION, // No effect?
         ])
 
         @formField('checkbox', [
@@ -307,7 +307,7 @@
             'name' => 'event_type',
             'label' => 'Event type (preferred)',
             'options' => $eventTypesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // no effect?
+            'default' => \App\Models\Event::NULL_OPTION, // No effect?
         ])
 
         @formField('multi_select', [
@@ -321,7 +321,7 @@
             'name' => 'audience',
             'label' => 'Event audience (preferred)',
             'options' => $eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // no effect?
+            'default' => \App\Models\Event::NULL_OPTION, // No effect?
         ])
 
         @formField('multi_select', [
@@ -394,7 +394,7 @@
                     // TODO: Use new null option!
                     strval(\App\Models\Event::NULL_OPTION_EVENT_HOST), '[None]'
                 ),
-                'default' => \App\Models\Event::NULL_OPTION_EVENT_HOST, // no effect?
+                'default' => \App\Models\Event::NULL_OPTION_EVENT_HOST, // No effect?
                 'note' => 'This field is mandatory and will be used to determine audience list for email send',
                 'required' => true,
             ])

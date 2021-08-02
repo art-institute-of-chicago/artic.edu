@@ -7,11 +7,11 @@
         <div class="previewer">
             <div class="previewer-image-container" v-show="imageUrl" :style="{ backgroundImage: 'url(' + imageUrl + this.rectParam + ')' }">
                 <div class="hidden-box" v-on:click.self="addHotspot" @mousemove.prevent="dragging"></div>
-                <div class="hotspot" 
-                    v-bind:class="{ hotspot_active: currentHotspot == hotspot }" 
-                    v-for="(hotspot, index) in hotspots" 
-                    :key="index" 
-                    v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }" 
+                <div class="hotspot"
+                    v-bind:class="{ hotspot_active: currentHotspot == hotspot }"
+                    v-for="(hotspot, index) in hotspots"
+                    :key="index"
+                    v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }"
                     v-on:click="showHotspotInfo(index)"
                     @mousedown.stop.self="dragStart($event, index)"
                     ></div>
@@ -64,7 +64,7 @@
                 x: 0,
                 y: 0
             }
-        } 
+        }
     },
     computed: {
         currentHotspot: {
@@ -248,7 +248,7 @@
         background-color: orange;
         border: 2px solid gray;
         border-radius: 50% 50%;
-        box-sizing: border-box; 
+        box-sizing: border-box;
         transform: translate(-50%, -50%);
     }
 
