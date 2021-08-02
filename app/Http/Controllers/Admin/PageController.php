@@ -38,7 +38,6 @@ class PageController extends ModuleController
             ['fieldset' => 'from-the-collection', 'label' => 'From the Collection'],
             ['fieldset' => 'from-the-shop', 'label' => 'From the Shop'],
             ['fieldset' => 'exhibitions-and-events', 'label' => 'Exhibitions and Events'],
-            // ['fieldset' => 'interactive-features', 'label' => 'Interactive Features'],
         ];
         $fields = $this->form($page->id);
         $fields['additionalFieldsets'] = $additionalFieldsets;

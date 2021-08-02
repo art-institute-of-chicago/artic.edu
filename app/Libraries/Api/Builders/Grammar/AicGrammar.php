@@ -76,9 +76,6 @@ class AicGrammar
     protected function compileWheres($query)
     {
         return [];
-
-        // TODO: Define how to filter by field values (not in api for now without search)
-        // return ['wheres' => ''];
     }
 
     /**

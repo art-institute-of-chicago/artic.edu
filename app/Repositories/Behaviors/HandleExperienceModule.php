@@ -34,7 +34,6 @@ trait HandleExperienceModule
         $currentIdList = [];
 
         foreach ($relationFields as $index => $relationField) {
-            // $relationField['position'] = $index + 1;
             if (isset($relationField['id']) && starts_with($relationField['id'], $relation)) {
                 // row already exists, let's update
                 $id = str_replace($relation . '-', '', $relationField['id']);

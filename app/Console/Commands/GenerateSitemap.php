@@ -61,9 +61,6 @@ class GenerateSitemap extends Command
         $this->info('Crawling links on collection landing...');
         $this->addCollection($sitemap);
 
-        // $this->info('Importing collections data...');
-        // $this->addRemoteModels($sitemap);
-
         $sitemap->writeToFile($this->path);
         $this->warn('Sitemap saved! See ' . $this->path);
     }
@@ -173,10 +170,6 @@ class GenerateSitemap extends Command
 
     private function addRemoteModels(&$sitemap)
     {
-        // 'artworks.show'
-        // 'galleries.show'
-        // 'artists.show'
-        // 'departments.show'
     }
 
     // Anything paginated and CMS-native of format `/resources/{id}/{slug}`

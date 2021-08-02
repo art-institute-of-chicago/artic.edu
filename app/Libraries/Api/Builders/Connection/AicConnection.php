@@ -23,7 +23,6 @@ class AicConnection implements ApiConnectionInterface
      */
     public function __construct()
     {
-        // Todo: to be changed when we allow to configure things
         $this->client = \App::make('ApiClient');
         $this->useDefaultQueryGrammar();
     }

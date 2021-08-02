@@ -8,8 +8,6 @@ class EventOccurrenceTransformer extends ApiTransformer
 
     public function transform($item)
     {
-        // return $item->toArray();
-
         return [
             'id' => $item->id,
             'title' => $item->title,

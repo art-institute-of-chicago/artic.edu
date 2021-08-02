@@ -86,15 +86,6 @@ class Event extends AbstractModel
     protected $casts = [
         'alt_types' => 'array',
         'alt_audiences' => 'array',
-        // TODO: Confirm that this is safe to do?
-        // 'is_private' => 'boolean',
-        // 'is_sales_button_hidden' => 'boolean',
-        // 'is_ticketed' => 'boolean',
-        // 'is_free' => 'boolean',
-        // 'is_rsvp' => 'boolean',
-        // 'is_member_exclusive' => 'boolean',
-        // 'is_registration_required' => 'boolean',
-        // 'is_sold_out' => 'boolean',
     ];
 
     // Dropdown does not accept null keys; use big numbers

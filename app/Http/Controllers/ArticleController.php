@@ -32,8 +32,6 @@ class ArticleController extends FrontController
 
         $heroArticle = $featuredItems->first();
 
-        // $articles = new \Illuminate\Pagination\LengthAwarePaginator(collect(), 0, self::ARTICLES_PER_PAGE);
-
         if (request('category') !== 'interactive-features') {
             $articles = Article::published()
                 ->notUnlisted()

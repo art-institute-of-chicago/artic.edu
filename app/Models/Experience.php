@@ -58,10 +58,6 @@ class Experience extends AbstractModel implements Sortable
 
     public function getAssetLibraryAttribute()
     {
-        // $slides = $this->slides()->published()->orderBy('position')->get()->filter(function ($slide) {
-        //     $seamless_file = $slide->fileObject('sequence_file');
-        //     return $seamless_file && SeamlessImage::where('zip_file_id', $seamless_file->id)->get()->count() > 0;
-        // });
         $slides = $this->slides()->published()->orderBy('position')->get()->filter(function ($slide) {
             if ($slide->asset_type !== 'seamless') {
                 return false;

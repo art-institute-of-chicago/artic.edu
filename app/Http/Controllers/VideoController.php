@@ -18,11 +18,6 @@ class VideoController extends FrontController
     {
         $item = $this->repository->published()->find((integer) $id);
 
-        // Temporary. Remove after redirects are in place!
-        if (empty($item)) {
-            $item = $this->repository->forSlug($id);
-        }
-
         if (!$item) {
             abort(404);
         }

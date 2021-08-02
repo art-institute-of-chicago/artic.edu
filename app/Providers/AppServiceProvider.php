@@ -53,7 +53,6 @@ class AppServiceProvider extends ServiceProvider
     public function registerMorphMap()
     {
         Relation::morphMap([
-            // 'artworks' => 'App\Models\Artwork', // TODO: Fixme in db!
             'events' => 'App\Models\Event',
             'articles' => 'App\Models\Article',
             'selections' => 'App\Models\Selection',
@@ -61,9 +60,6 @@ class AppServiceProvider extends ServiceProvider
             'homeFeatures' => 'App\Models\HomeFeature',
 
             'experiences' => 'App\Models\Experience',
-
-            // TODO: Figure out what to do about this rebase left-over?
-            // 'digitalLabels' => 'App\Models\DigitalLabel',
 
             'digitalPublications' => 'App\Models\DigitalPublication',
             'printedPublications' => 'App\Models\PrintedPublication',

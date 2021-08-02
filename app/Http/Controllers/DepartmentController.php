@@ -34,14 +34,9 @@ class DepartmentController extends FrontController
         $artworks = $this->repository->getRelatedArtworks($item);
         $relatedItems = $this->repository->getRelatedItems($item);
 
-        // $exploreFurther = new ExploreDepartments($item, $artworks->getMetadata('aggregations'));
-
         return view('site.tagDetail', [
             'item'     => $item,
             'artworks' => $artworks,
-            // 'exploreFurtherTags'    => $exploreFurther->tags(),
-            // 'exploreFurther'        => $exploreFurther->collection(request()->all()),
-            // 'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'relatedItems' => $relatedItems->count() > 0 ? $relatedItems : null,
             'canonicalUrl' => $canonicalPath,
         ]);

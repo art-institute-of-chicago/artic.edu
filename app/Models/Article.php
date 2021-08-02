@@ -212,7 +212,6 @@ class Article extends AbstractModel implements Feedable
         return FeedItem::create([
            'id' => $this->id,
            'title' => $this->title,
-           'date' => $this->present()->date, // Unused?
            'summary' => $this->heading ?? $this->list_description ?? 'Article',
            'author' => 'AIC',
            'updated' => $this->date ?? $this->updated_at, // WEB-1278: Display date

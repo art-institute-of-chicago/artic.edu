@@ -56,7 +56,6 @@ trait HasApiCalls
      */
     public function newQuery()
     {
-        // return $this->newQueryWithoutScopes();
         return $this->registerDefaultScopes($this->newQueryWithoutScopes());
     }
 
@@ -124,7 +123,6 @@ trait HasApiCalls
 
     public function getConnection()
     {
-        // TODO: Manage this to be changed dynamically
         return new AicConnection();
     }
 
@@ -147,4 +145,3 @@ trait HasApiCalls
     }
 
 }
-

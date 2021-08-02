@@ -12,18 +12,4 @@ class AssetRepository extends BaseApiRepository
     {
         $this->model = $model;
     }
-
-    // public function multimediaForArtwork($id) {
-    //     return $this->model->query()
-    //         ->multimediaForArtwork($id)
-    //         ->getSearch(self::ALL);
-    // }
-
-    // public function classroomResources($id) {
-    //     return $this->model->query()
-    //         ->classroomResources($id)
-    //         ->resources(['sections'])
-    //         ->getSearch(self::ALL);
-    // }
-
 }

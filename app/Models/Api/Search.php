@@ -55,7 +55,6 @@ class Search extends BaseApiModel
         ];
 
         // To search within a facet build a string with the form: ".*[{FirstUC}{FirstLC}]{Rest}.*"
-        // This is defined by AIC.
         if ($queryFilter && !empty($queryFilter)) {
             $firstLetter = substr($queryFilter, 0, 1);
             $rest = substr($queryFilter, 1);
@@ -447,27 +446,6 @@ class Search extends BaseApiModel
             ]
         ];
 
-        // An alternative to `sort` that doesn't override relevancy:
-        // $query = $query->rawQuery([
-        //     'functions' => [
-        //         'artworks' => [
-        //             [
-        //                 'filter' => [
-        //                     'exists' => [
-        //                         'field' => 'color.percentage',
-        //                     ],
-        //                 ],
-        //                 'field_value_factor' => [
-        //                     'field' => 'color.percentage',
-        //                     'modifier' => 'log1p',
-        //                     'factor' => 1.5,
-        //                     'missing' => 0,
-        //                 ],
-        //             ],
-        //         ],
-        //     ],
-        // ]);
-
         // The `sort` option was preferred by users during testing:
         $query = $query->rawQuery([
             'sort' => [
@@ -504,12 +482,6 @@ class Search extends BaseApiModel
             $date_end = incrementAfter($item->date_start);
             $dateQuery = $this->dateQuery($date_start, $date_end, 1);
             array_push($shoulds, $dateQuery);
-
-            // if ($item->color ?? false) {
-            //     $colorQuery = $this->colorQuery($item->color);
-            //     $colorQuery['bool']['boost'] = 1;
-            //     array_push( $shoulds, $colorQuery );
-            // }
         }
         elseif ($class == \App\Models\Api\Artist::class) {
             $shoulds = [

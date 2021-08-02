@@ -362,7 +362,6 @@ class StaticsController extends FrontController {
     $article->push('ticketLink', null);
     $article->push('ticketPrices', null);
     $article->push('nav', null);
-    //article->push('intro', null);
     $article->push('date', null);
     $article->push('dateStart', null);
     $article->push('dateEnd', null);
@@ -383,7 +382,6 @@ class StaticsController extends FrontController {
     $article->push('ticketLink', null);
     $article->push('ticketPrices', null);
     $article->push('nav', null);
-    //article->push('intro', null);
     $article->push('date', null);
     $article->push('dateStart', null);
     $article->push('dateEnd', null);
@@ -499,7 +497,6 @@ class StaticsController extends FrontController {
     $article = $this->getArticle();
     $article->push('articleType', 'editorial');
     $article->push('blocks', $blocks);
-    //$article->push('intro', null);
     $article->push('type', null);
     $article->push('author',array(
       'img' => $this->getImage(),
@@ -556,7 +553,6 @@ class StaticsController extends FrontController {
       ),
     ));
     $article->push('galleryImages', collect($this->getImages($this->faker->numberBetween(1,10))));
-    //$article->push('galleryImages', $this->getImages(1));
     $article->push('recentlyViewedArtworks', $this->getArtworks($this->faker->numberBetween(6,20)));
     $article->push('interestedThemes', array(
       array(
@@ -623,21 +619,6 @@ class StaticsController extends FrontController {
         'relatedVideos' => $newRelatedVideos,
         'recentlyViewedArtworks' => $this->getArtworks($this->faker->numberBetween(6,20)),
     ];
-
-    // $article = $this->getExhibition();
-    // $article->push('articleType', 'video');
-    // $article->push('headerImage', $this->getImage());
-    // $article->push('intro', $this->faker->paragraph(6, false));
-    // $article->push('blocks', $this->generateBlocks('all'));
-    // $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
-    // $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
-    // $article->push('relatedExhibitions', $this->getExhibitions(4));
-    // $article->push('relatedEvents', $this->getEvents(4));
-    // $article->push('relatedArticles', $this->getArticles(4));
-    // $article->push('featuredRelated', array(
-    //    'type' => 'event',
-    //    'items' => $this->getEvents(1),
-    // ));
 
     return view('statics/video', [
       'article' => $article,
@@ -1238,32 +1219,6 @@ class StaticsController extends FrontController {
         'type' => 'artist',
         'item' => $this->getArtist($this->faker->boolean()),
     ));
-    /*
-    array_push($featuredResults, array(
-        'type' => 'event',
-        'item' => $this->getEvent(),
-    ));
-    array_push($featuredResults, array(
-        'type' => 'exhibition',
-        'item' => $this->getExhibition(),
-    ));
-    array_push($featuredResults, array(
-        'type' => 'page',
-        'item' => $this->getPage(),
-    ));
-    array_push($featuredResults, array(
-        'type' => 'artwork',
-        'item' => $this->getArtwork(),
-    ));
-    array_push($featuredResults, array(
-        'type' => 'article',
-        'item' => $this->getArticle(),
-    ));
-    array_push($featuredResults, array(
-        'type' => 'selection',
-        'item' => $this->getSelection(),
-    ));
-    */
 
     // now push to a view
     return view('statics/search_results', [
@@ -1524,20 +1479,6 @@ class StaticsController extends FrontController {
         "alt" => "My image alt tag"
     );
 
-    /*
-    $image = array(
-        "sourceType" => 'imgix',
-        "src" => 'https://aic-cms-dev.imgix.net/fd860e9e-0875-4eef-89ba-4abf5beb3afb/screenshot2017-12-08at11.51.39am.png?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=%2C%2C%2C',
-        "width" => 1184,
-        "height" => 592,
-    );
-    $image = array(
-        "sourceType" => 'imgix',
-        "src" => 'https://wyss-prod.imgix.net/app/uploads/2017/11/29103410/Falkor-IMG_7110.jpg?',
-        "width" => 4000,
-        "height" => 3000,
-    );
-    /**/
     return $image;
   }
 
@@ -1807,9 +1748,6 @@ class StaticsController extends FrontController {
     for ($i = 0; $i < $days; $i++) {
       $thisDay = \Carbon\Carbon::parse($startDate)->format('Y-m-d');
       $dates[$thisDay] = $this->getEvents($this->faker->numberBetween(3,6));
-
-      // TODO: Integrate ongoingEvents when we reach that view
-      // 'ongoingEvents' => $this->getEvents($this->faker->numberBetween(1,3)),
     }
     return $dates;
   }

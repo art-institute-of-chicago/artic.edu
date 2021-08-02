@@ -87,7 +87,6 @@ class Asset extends BaseApiModel
         switch ($this->api_model)
         {
             case 'videos':
-                // TODO: look into `triggerMediaModal` behavior
                 return '//' . config('app.url') . '/videos/' . $this->id;
             case 'sections':
             case 'sites':

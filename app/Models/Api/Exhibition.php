@@ -353,16 +353,6 @@ class Exhibition extends BaseApiModel
         return $query->orderByDate('asc')->rawSearch($params);
     }
 
-    // Solve this using casts. Because it returns an object it can't be used on the CMS
-    // A value option could be added when showing
-    // public function getStartAtAttribute($value) {
-    //     return $this->asDateTime($value)->format("Y-m-d h:m:s T");
-    // }
-
-    // public function getEndAtAttribute($value) {
-    //     return $this->asDateTime($value)->format("Y-m-d h:m:s T");
-    // }
-
     public function artworks()
     {
         return $this->hasMany(\App\Models\Api\Artwork::class, 'artwork_ids');

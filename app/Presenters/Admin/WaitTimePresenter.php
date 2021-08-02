@@ -1,9 +1,4 @@
 <?php
-
-// This has been moved from the model and should be completely refactored
-//
-// Blocks building are specially overcomplicated.
-
 namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;

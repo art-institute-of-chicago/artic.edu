@@ -12,7 +12,6 @@ class PageRequest extends Request
             // regular rules
         ], [
             // translated fields
-            // 'title' => 'required'
         ]);
     }
 }
