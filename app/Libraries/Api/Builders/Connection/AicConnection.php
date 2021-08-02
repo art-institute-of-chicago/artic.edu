@@ -12,7 +12,9 @@ class AicConnection implements ApiConnectionInterface
     protected $defaultGrammar = 'App\Libraries\Api\Builders\Grammar\AicGrammar';
     protected $cacheKeyName   = 'Aic-cache-key';
 
-    // Define a custom TTL for the queries using this connection instance.
+    /**
+     * Define a custom TTL for the queries using this connection instance.
+     */
     protected $ttl;
 
     /**

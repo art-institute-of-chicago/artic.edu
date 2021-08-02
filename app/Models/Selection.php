@@ -53,10 +53,14 @@ class Selection extends AbstractModel
         self::AUDIO_TOUR => 'Audio tour',
     ];
 
-    // those fields get auto set to null if not submited
+    /**
+     * Those fields get auto set to null if not submited
+     */
     public $nullable = [];
 
-    // those fields get auto set to false if not submited
+    /**
+     * Those fields get auto set to false if not submited
+     */
     public $checkboxes = [
         'published',
         'is_unlisted',
@@ -90,7 +94,9 @@ class Selection extends AbstractModel
         return $this->short_copy;
     }
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'id_slug';

@@ -16,9 +16,13 @@ class Question extends AbstractModel implements Sortable
         'position',
     ];
 
-    // those fields get auto set to null if not submited
+    /**
+     * Those fields get auto set to null if not submited
+     */
     public $nullable = [];
 
-    // those fields get auto set to false if not submited
+    /**
+     * Those fields get auto set to false if not submitted
+     */
     public $checkboxes = ['published'];
 }

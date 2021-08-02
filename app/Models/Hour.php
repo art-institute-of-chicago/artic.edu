@@ -31,10 +31,14 @@ class Hour extends AbstractModel
         'valid_through',
     ];
 
-    // those fields get auto set to null if not submited
+    /**
+     * Those fields get auto set to null if not submitted
+     */
     public $nullable = [];
 
-    // those fields get auto set to false if not submited
+    /**
+     * Those fields get auto set to false if not submitted
+     */
     public $checkboxes = ['published'];
 
     public function scopeToday($query, $type = 0)

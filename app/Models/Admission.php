@@ -16,10 +16,14 @@ class Admission extends AbstractModel
         'page_id',
     ];
 
-    // those fields get auto set to null if not submited
+    /**
+     * Those fields get auto set to null if not submitted
+     */
     public $nullable = [];
 
-    // those fields get auto set to false if not submited
+    /**
+     * Those fields get auto set to false if not submitted
+     */
     public $checkboxes = ['published'];
 
     public $dates = ['date'];

@@ -8,21 +8,22 @@ use DamsImageService;
 trait HasMediasApi
 {
 
-    // You have to define roles and crop on the API model.
-    //
-    // 'field': Optional, API field with the image ID (if not defined, default to image_id)
-    // 'width', 'height': Optional, cropping options
-    //
-    // public $mediasParams
-    //     'hero' => [
-    //         'default' => [
-    //             'field'  => 'image_id',   // Optional
-    //             'width'  => 45,           // Optional
-    //             'height' => 45            // Optional
-    //         ],
-    //     ],
-    // ];
-
+    /**
+     * You have to define roles and crop on the API model.
+     *
+     * 'field': Optional, API field with the image ID (if not defined, default to image_id)
+     * 'width', 'height': Optional, cropping options
+     *
+     * public $mediasParams
+     *     'hero' => [
+     *         'default' => [
+     *             'field'  => 'image_id',   // Optional
+     *             'width'  => 45,           // Optional
+     *             'height' => 45            // Optional
+     *         ],
+     *     ],
+     * ];
+     */
     public function imageFront($role = 'hero', $crop = null)
     {
         if (empty($this->mediasParams)) {

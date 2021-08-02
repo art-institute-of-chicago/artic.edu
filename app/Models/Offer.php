@@ -22,7 +22,9 @@ class Offer extends AbstractModel implements Sortable
         'exhibition_id',
     ];
 
-    // fill this in if you use the HasMedias traits
+    /**
+     * Required by the HasMedias traits
+     */
     public $mediasParams = [
         'hero' => [
             'default' => [
@@ -34,9 +36,13 @@ class Offer extends AbstractModel implements Sortable
         ],
     ];
 
-    // those fields get auto set to null if not submited
+    /**
+     * Those fields get auto set to null if not submitted
+     */
     public $nullable = [];
 
-    // those fields get auto set to false if not submited
+    /**
+     * Those fields get auto set to false if not submitted
+     */
     public $checkboxes = ['published'];
 }

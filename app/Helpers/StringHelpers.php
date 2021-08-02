@@ -1,8 +1,10 @@
 <?php
 
-// Copied from HasSlug trait
-
 if (!function_exists('getUtf8Slug')) {
+    /**
+     * Get Unicode slug
+     * @see HasSlug::getUtf8Slug()
+     */
     function getUtf8Slug($str, $options = [])
     {
         // Make sure string is in UTF-8 and strip invalid UTF-8 characters

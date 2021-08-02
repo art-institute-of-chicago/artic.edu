@@ -8,7 +8,10 @@ use App\Libraries\SmartyPants;
 abstract class BasePresenter
 {
 
-    protected $entity; // This is to store the original model instance
+    /**
+     * This is to store the original model instance
+     */
+    protected $entity;
 
     public function __construct(&$entity)
     {

@@ -30,7 +30,9 @@ class HomeFeature extends AbstractModel
         'deleted' => \App\Events\UpdateHomeFeature::class,
     ];
 
-    // fill this in if you use the HasMedias traits
+    /**
+     * Required by the HasMedias traits
+     */
     public $mediasParams = [
         'hero' => [
             'default' => [
@@ -41,7 +43,11 @@ class HomeFeature extends AbstractModel
             ],
         ],
     ];
-    public $filesParams = ['video']; // a list of file roles
+
+    /**
+     * A list of file roles
+     */
+    public $filesParams = ['video'];
 
     public $checkboxes = ['published'];
 

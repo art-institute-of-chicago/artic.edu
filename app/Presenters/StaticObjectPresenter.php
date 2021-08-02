@@ -5,7 +5,10 @@ use Illuminate\Contracts\Routing\UrlRoutable;
 
 class StaticObjectPresenter implements UrlRoutable
 {
-    protected $entity; // This is to store the original array instance
+    /**
+     * This is to store the original array instance
+     */
+    protected $entity;
 
     public function __construct($entity)
     {
@@ -19,7 +22,9 @@ class StaticObjectPresenter implements UrlRoutable
         }
     }
 
-    // Call the function if that exists, or return the property on the original model
+    /**
+     * Call the function if that exists, or return the property on the original model
+     */
     public function __get($property)
     {
         if (method_exists($this, $property)) {
@@ -34,7 +39,9 @@ class StaticObjectPresenter implements UrlRoutable
         $this->entity[$index] = $value;
     }
 
-    // Implement UrlRoutable functions
+    /**
+     * Implement UrlRoutable functions
+     */
 
     public function getRouteKey() {
         return $this->entity['id'];

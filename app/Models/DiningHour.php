@@ -28,7 +28,9 @@ class DiningHour extends AbstractModel
         return $this->belongsTo('App\Models\Page');
     }
 
-    // fill this in if you use the HasMedias traits
+    /**
+     * Required by the HasMedias trait
+     */
     public $mediasParams = [
         'dining_cover' => [
             'default' => [

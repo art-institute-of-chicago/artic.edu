@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-// Class used to keep track of our newsletter options
-
+/**
+ * Class used to keep track of our newsletter options
+ */
 class ExactTargetList
 {
     public static function getList()

@@ -15,8 +15,10 @@ class Search extends BaseApiModel
         'msearch' => '/api/v1/msearch',
     ];
 
-    // This defines how to map a returned type to one of our API models
-    // IF IT'S NOT HERE IT WILL BE REMOVED FROM THE RESULTS
+    /**
+     * This defines how to map a returned type to one of our API models
+     * IF IT'S NOT HERE IT WILL BE REMOVED FROM THE RESULTS
+     */
     public $typeMap = [
         'artworks'    => 'App\Models\Api\Artwork',
         'exhibitions' => 'App\Models\Api\Exhibition',
@@ -34,10 +36,12 @@ class Search extends BaseApiModel
         'selections'          => 'App\Models\Selection',
     ];
 
-    // Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).
-    // On that builder, we will overload the search function to allow
-    // searching for multiple types and segregate them when returning a call
-    // Or simply return all API models shuffled in the correct order (see code)
+    /**
+     * Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).
+     * On that builder, we will overload the search function to allow
+     * searching for multiple types and segregate them when returning a call
+     * Or simply return all API models shuffled in the correct order (see code)
+     */
     public function newApiModelBuilder($query)
     {
         return new ApiModelBuilderSearch($query);

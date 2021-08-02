@@ -42,7 +42,9 @@ class GenericPageRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    // Show data, moved here to allow preview
+    /**
+     * Show data, moved here to allow preview
+     */
     public function getShowData($item, $slug = null, $previewPage = null)
     {
         $navigation = $item->present()->navigation();

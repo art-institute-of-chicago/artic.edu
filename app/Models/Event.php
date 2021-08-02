@@ -88,7 +88,9 @@ class Event extends AbstractModel
         'alt_audiences' => 'array',
     ];
 
-    // Dropdown does not accept null keys; use big numbers
+    /**
+     * Dropdown does not accept null keys; use big numbers
+     */
     const NULL_OPTION = 42;
     const NULL_OPTION_AFFILIATE_GROUP = 1024;
     const NULL_OPTION_EVENT_HOST = 1024;
@@ -161,10 +163,14 @@ class Event extends AbstractModel
         'title',
     ];
 
-    // those fields get auto set to null if not submited
+    /**
+     * Those fields get auto set to null if not submitted
+     */
     public $nullable = [];
 
-    // those fields get auto set to false if not submited
+    /**
+     * Those fields get auto set to false if not submitted
+     */
     public $checkboxes = [
         'published',
         'is_private',
@@ -219,7 +225,9 @@ class Event extends AbstractModel
             );
     }
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'id_slug';
@@ -315,15 +323,20 @@ class Event extends AbstractModel
         return $value;
     }
 
-    // This emulates an Eloquent collection from a JSON column
-    // TODO: Move this somewhere more appropriate - presenter?
+    /**
+     * This emulates an Eloquent collection from a JSON column
+     *
+     * @see WEB-2261: Move this somewhere more appropriate - presenter?
+     */
     private function getMultiSelectFromJsonColumn($value)
     {
         return collect(json_decode($value))->map(function($item) { return ['id' => $item]; })->all();
     }
 
-    // Without this, we get `null` values in array
-    // TODO: Move this somewhere more appropriate - presenter?
+    /**
+     * Without this, we get `null` values in array
+     * @see WEB-2261: Move this somewhere more appropriate - presenter?
+     */
     private function getJsonColumnFromMultiSelect($value)
     {
         return collect($value)->filter()->values();
@@ -404,8 +417,11 @@ class Event extends AbstractModel
         return $query;
     }
 
-    // NOTE: This works only while there are less than 10 possible type values
-    // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
+    /**
+     * NOTE: This works only while there are less than 10 possible type values
+     *
+     * @see WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
+     */
     public function scopeByType($query, $types)
     {
         collect($types)->map(function($type) {
@@ -420,8 +436,10 @@ class Event extends AbstractModel
         return $query;
     }
 
-    // NOTE: This works only while there are less than 10 possible audience values
-    // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
+    /**
+     * NOTE: This works only while there are less than 10 possible audience values
+     * @see WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
+     */
     public function scopeByAudience($query, $audiences)
     {
         collect($audiences)->map(function($audience) {
@@ -451,8 +469,11 @@ class Event extends AbstractModel
         });
     }
 
-    // Helper function to make `LIKE` on JSON column work correctly with both MySQL and PostgreSQL
-    // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
+    /**
+     * Helper function to make `LIKE` on JSON column work correctly with both MySQL and PostgreSQL
+     *
+     * @see WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
+     */
     private function getWhereJsonContainsRaw($field, $value)
     {
         if (DB::connection()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql') {

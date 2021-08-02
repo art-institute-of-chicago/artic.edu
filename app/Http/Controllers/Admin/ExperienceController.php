@@ -45,9 +45,11 @@ class ExperienceController extends ModuleController
         ],
     ];
 
-    // Intend to override the lines:
-    // thumbnail
-    // $value .= moduleRoute("experiences.slides", $this->routePrefix, 'index', [$item->id]);
+    /**
+     * Intend to override the lines:
+     * thumbnail
+     * $value .= moduleRoute("experiences.slides", $this->routePrefix, 'index', [$item->id]);
+     */
     protected function getItemColumnData($item, $column)
     {
         if (isset($column['thumb']) && $column['thumb']) {

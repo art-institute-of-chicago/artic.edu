@@ -19,10 +19,14 @@ class BaseScopedController extends FrontController
 {
     protected $entity;
 
-    // Collection resultset memoization
+    /**
+     * Collection resultset memoization
+     */
     protected $collection;
 
-    // Default elements per page
+    /**
+     * Default elements per page
+     */
     const PER_PAGE = 20;
 
     /**

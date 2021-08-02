@@ -17,8 +17,11 @@ if (!function_exists('getBlocksForEditor')) {
     }
 }
 
-// https://stackoverflow.com/questions/2087103/how-to-get-innerhtml-of-domnode
 if (!function_exists('innerHTML')) {
+    /**
+     * Get inner HTML of a DOM node
+     * @see https://stackoverflow.com/questions/2087103/how-to-get-innerhtml-of-domnode
+     */
     function innerHTML($node) {
         return implode(array_map([$node->ownerDocument,'saveHTML'],
                                  iterator_to_array($node->childNodes)));

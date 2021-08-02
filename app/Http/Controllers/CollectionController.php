@@ -116,9 +116,11 @@ class CollectionController extends BaseScopedController
         ]);
     }
 
-    // Endpoint to search within filters.
-    // To perform this we hit the same collection endpoint (with no results)
-    // and then build filters from the returned aggregations
+    /**
+     * Endpoint to search within filters.
+     * To perform this we hit the same collection endpoint (with no results)
+     * and then build filters from the returned aggregations.
+     */
     public function categorySearch($category)
     {
         // Search through the facets including current parameters. Get only aggregations.

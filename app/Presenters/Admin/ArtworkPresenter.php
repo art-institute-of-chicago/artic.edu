@@ -1,9 +1,4 @@
 <?php
-
-// This has been moved from the model and should be completely refactored
-//
-// Blocks building are specially overcomplicated.
-
 namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
@@ -12,6 +7,11 @@ use Illuminate\Support\Str;
 use DamsImageService;
 use DOMDocument;
 
+/**
+ * This has been moved from the model and should be completely refactored
+ *
+ * Blocks building are specially overcomplicated.
+ */
 class ArtworkPresenter extends BasePresenter
 {
     protected function augmented()

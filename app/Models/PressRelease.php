@@ -63,7 +63,10 @@ class PressRelease extends AbstractModel
         ],
     ];
 
-    public $filesParams = ['attachment']; // a list of file roles
+    /**
+     * A list of file roles
+     */
+    public $filesParams = ['attachment'];
 
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
@@ -78,7 +81,9 @@ class PressRelease extends AbstractModel
         return $query->whereIn('id', $ids);
     }
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'id_slug';
@@ -195,7 +200,9 @@ class PressRelease extends AbstractModel
         ];
     }
 
-    // For global search! Puts date above title.
+    /**
+     * For global search! Puts date above title.
+     */
     public function getSubtypeAttribute()
     {
         if ($this->publish_start_date)

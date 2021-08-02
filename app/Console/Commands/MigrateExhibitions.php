@@ -36,7 +36,10 @@ class MigrateExhibitions extends Command
         }
     }
 
-    // Adapted from BaseApiController::augment
+    /**
+     * Handle item to migrate
+     * @see BaseApiController::augment
+     */
     private function handleItem($id)
     {
         $item = $this->getRepository()->where('datahub_id', '=', $id)->first();
@@ -74,7 +77,10 @@ class MigrateExhibitions extends Command
         usleep(4000000);
     }
 
-    // Adapted from BaseApiController::augment
+    /**
+     * Get API repository
+     * @see BaseApiController::augment
+     */
     private function getApiRepository()
     {
         return $apiRepository ?? $apiRepository = (new ApiRepository(new ApiExhibition()));

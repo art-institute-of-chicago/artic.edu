@@ -65,7 +65,9 @@ class GenericPage extends AbstractModel implements Sortable
         parent::__construct(...func_get_args());
     }
 
-    // fill this in if you use the HasMedias traits
+    /**
+     * Required by the HasMedias trait
+     */
     public $mediasParams = [
         'listing' => [
             'default' => [

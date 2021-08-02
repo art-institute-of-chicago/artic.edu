@@ -67,7 +67,9 @@ class EducatorResource extends AbstractModel
         return $this->belongsToMany('App\Models\ResourceCategory');
     }
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'id_slug';

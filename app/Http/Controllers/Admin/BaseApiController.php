@@ -18,7 +18,9 @@ use Illuminate\Http\Request;
 
 class BaseApiController extends ModuleController
 {
-    // Option to setup links and the possibility of augmenting a model
+    /**
+     * Option to setup links and the possibility of augmenting a model
+     */
     protected $hasAugmentedModel = false;
 
     protected $localElements = [];
@@ -104,7 +106,9 @@ class BaseApiController extends ModuleController
         return $items;
     }
 
-    // Disable sorting by default for API listings. This has to be implemented individually on each controller
+    /**
+     * Disable sorting by default for API listings. This has to be implemented individually on each controller
+     */
     protected function orderScope()
     {
         return [];

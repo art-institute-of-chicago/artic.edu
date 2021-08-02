@@ -15,9 +15,11 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
-    // Passed to _m-article-header--* in exhibitionDetail.blade.php
-    // Dead code? Template calls ->format on the string returned here
-    // Used in App\Http\Controllers\Admin\ExhibitionController
+    /**
+     * Passed to _m-article-header--* in exhibitionDetail.blade.php
+     * Dead code? Template calls ->format on the string returned here
+     * @see Used in App\Http\Controllers\Admin\ExhibitionController
+     */
     public function date()
     {
         $date = "";
@@ -65,7 +67,9 @@ class ExhibitionPresenter extends BasePresenter
         return $this->entity->isOngoing ? 'Ongoing' : 'Exhibition';
     }
 
-    // Used in _m-listing----exhibition-history-row
+    /**
+     * Used in _m-listing----exhibition-history-row
+     */
     public function formattedDateCanonical()
     {
         return view('components.organisms._o-public-dates' , [
@@ -76,7 +80,9 @@ class ExhibitionPresenter extends BasePresenter
         ]);
     }
 
-    // Used in member magazine
+    /**
+     * Used in member magazine
+     */
     public function formattedDate()
     {
         return view('components.organisms._o-public-dates' , [

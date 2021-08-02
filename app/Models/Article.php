@@ -138,7 +138,9 @@ class Article extends AbstractModel implements Feedable
         return $this->title;
     }
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'id_slug';

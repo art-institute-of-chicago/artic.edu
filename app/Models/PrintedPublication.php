@@ -91,7 +91,9 @@ class PrintedPublication extends AbstractModel
         return $query->orderBy(\DB::raw("COALESCE(publication_date, '1970-01-01')"), 'desc');
     }
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'id_slug';

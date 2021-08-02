@@ -36,7 +36,9 @@ class AppServiceProvider extends ServiceProvider
         \Illuminate\Pagination\AbstractPaginator::defaultSimpleView("site.pagination.simple-aic");
     }
 
-    // Taken from Front/Controller. Figure out how to make this affect Twill's ModuleController
+    /**
+     * Taken from Front/Controller. Figure out how to make this affect Twill's ModuleController
+     */
     private function hotfixSeoForAdminPreview()
     {
         $seo = new Seo;

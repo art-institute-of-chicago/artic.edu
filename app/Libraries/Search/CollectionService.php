@@ -15,10 +15,14 @@ class CollectionService
 
     protected $results;
 
-    // Options for Sort Filter. Sort by these fields
+    /**
+     * Options for Sort Filter. Sort by these fields
+     */
     protected $sortingOptions = ['relevance', 'title', 'artist_title', 'date_start'];
 
-    // Options for BooleanFilter class. [ parameter => label, ... ]
+    /**
+     * Options for BooleanFilter class. [ parameter => label, ... ]
+     */
     protected $booleanOptions = [
         'is_public_domain' => 'Public domain',
         'is_recent_acquisition' => 'Recent acquisition',
@@ -27,10 +31,14 @@ class CollectionService
         'is_on_view' => 'On view',
     ];
 
-    // Default perPage option
+    /**
+     * Default perPage option
+     */
     protected $perPage = 20;
 
-    // Pagination index used as a flag to get prev/next elements
+    /**
+     * Pagination index used as a flag to get prev/next elements
+     */
     protected $page = null;
 
     public function __construct()
@@ -142,10 +150,12 @@ class CollectionService
         return $activeFilters;
     }
 
+    /**
+     * These filters won't show up on the Filters Menu, but they can be present
+     * as selected ones coming from Quick Filters or Gallery tag.
+     */
     protected function getActiveHiddenFilters()
     {
-        // These filters won't show up on the Filters Menu, but they can be present
-        // as selected ones coming from Quick Filters or Gallery tag.
         $themes     = (new Filters\Themes())->generate();
         $techniques = (new Filters\Techniques())->generate();
         $galleries  = (new Filters\Galleries())->generate();

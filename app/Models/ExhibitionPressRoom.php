@@ -60,7 +60,9 @@ class ExhibitionPressRoom extends AbstractModel
         ],
     ];
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'id_slug';

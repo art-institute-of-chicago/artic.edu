@@ -22,7 +22,9 @@ class Asset extends BaseApiModel
         'generalSearch' => '/api/v1/search'
     ];
 
-    // Elements created to ease integration with blade views when converting to an array
+    /**
+     * Elements created to ease integration with blade views when converting to an array
+     */
     protected $appends = ['iconAfter', 'label', 'href', 'embed', 'media', 'downloadable', 'extension'];
 
     public $mediasParams = [

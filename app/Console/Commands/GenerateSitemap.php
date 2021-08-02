@@ -65,7 +65,10 @@ class GenerateSitemap extends Command
         $this->warn('Sitemap saved! See ' . $this->path);
     }
 
-    // See `routes/web.php` and the `pages` table for the full list
+    /**
+     * Add routes for all non-module pages
+     * @see `routes/web.php` and the `pages` table for the full list
+     */
     private function addHardcodedPages(&$sitemap)
     {
         $this->addRoute($sitemap, 'home', 1.0);
@@ -86,7 +89,10 @@ class GenerateSitemap extends Command
         $this->addRoute($sitemap, 'collection.resources.educator-resources');
     }
 
-    // Adapted from App\Http\Controllers\Admin\GenericPageController
+    /**
+     * Add all generic pages
+     * @see App\Http\Controllers\Admin\GenericPageController
+     */
     private function addGenericPages(&$sitemap)
     {
         $repository = new GenericPageRepository(new GenericPage());
@@ -123,7 +129,9 @@ class GenerateSitemap extends Command
         $this->addNativeModel($sitemap, DigitalPublication::class, 'collection.publications.digital-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->id, 'slug' => $entity->getSlug()];});
     }
 
-    // get <a/>'s to filters, artworks, and category-terms from /collection
+    /**
+     * Get links to filters, artworks, and category-terms from /collection
+     */
     private function addCollection(&$sitemap)
     {
         $file = $this->crawlPrefix . route('collection', [], false);
@@ -150,7 +158,7 @@ class GenerateSitemap extends Command
                 !Str::endsWith($url, 'collection')
             );
         })->unique()->values()->map(function (string $url) use (&$sitemap) {
-            // TODO: Collect last updated times for these pages..?
+            // WEB-2246: Collect last updated times for these pages?
             $this->addUrl($sitemap, $url, 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
         });
     }
@@ -172,7 +180,10 @@ class GenerateSitemap extends Command
     {
     }
 
-    // Anything paginated and CMS-native of format `/resources/{id}/{slug}`
+    /**
+     * Add a URL by module
+     * Anything paginated and CMS-native of format `/resources/{id}/{slug}`
+     */
     private function addNativeModel(&$sitemap, $class, string $route, float $priority = 0.8, $changeFrequency = Url::CHANGE_FREQUENCY_DAILY, $paramCallback = null, $additionalFields = [])
     {
         // `id` is always needed for retrieving slugs
@@ -189,13 +200,19 @@ class GenerateSitemap extends Command
         }
     }
 
-    // Used by addHardcodedPages
+    /**
+     * Add a URL by route
+     * Used by addHardcodedPages
+     */
     private function addRoute(&$sitemap, string $route, float $priority = 0.8, $changeFrequency = Url::CHANGE_FREQUENCY_DAILY)
     {
         $this->addUrl($sitemap, route($route, [] , false), $priority, $changeFrequency);
     }
 
-    // Set everything in one call
+    /**
+     * Add a URL to the sitemap
+     * Set everything in one call
+     */
     private function addUrl(&$sitemap, string $url, float $priority = 0.8, $changeFrequency = Url::CHANGE_FREQUENCY_DAILY, $lastModified = null)
     {
         $url = URL::create(trim($url, '/'));
@@ -210,7 +227,10 @@ class GenerateSitemap extends Command
         $this->add($sitemap, $url);
     }
 
-    // Ensures everything is prefixed w/ SITEMAP_BASE_URL
+    /**
+     * Add to the sitemap
+     * Ensures everything is prefixed w/ SITEMAP_BASE_URL
+     */
     private function add(&$sitemap, $url)
     {
         $tmpUrl = $url->url ?? $url;

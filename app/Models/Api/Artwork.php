@@ -47,7 +47,9 @@ class Artwork extends BaseApiModel
         'include' => ['artist_pivots']
     ];
 
-    // Fields used when performing a search so we avoid a double call retrieving the complete entities
+    /**
+     * Fields used when performing a search so we avoid a double call retrieving the complete entities
+     */
     const SEARCH_FIELDS = ['id', 'title', 'date_display', 'thumbnail', 'image_id', 'api_model', 'artist_pivots', 'artist_title', 'artist_display', 'main_reference_number'];
 
     public $mediasParams = [
@@ -78,7 +80,9 @@ class Artwork extends BaseApiModel
         return ($artist->title ?? '') . ($artist && $artist->title && $this->date_display ? ', ' : '') . ($this->date_display ?? '');
     }
 
-    // Search codebase for `listingSubtitle`, not `listing_subtitle`
+    /**
+     * Search codebase for `listingSubtitle`, not `listing_subtitle`
+     */
     public function getListingSubtitleAttribute()
     {
         if ($this->artist_pivots != null && count($this->artist_pivots) > 0) {
@@ -278,7 +282,9 @@ class Artwork extends BaseApiModel
         return $this->hasMany(\App\Models\Api\Category::class, 'category_ids');
     }
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'id_slug';

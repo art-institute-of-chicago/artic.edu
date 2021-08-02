@@ -13,7 +13,9 @@ class Image extends BaseApiModel
         'search'     => '/api/v1/images/search'
     ];
 
-    // Build image array with this entity's data. No need to hit Dams endpoint
+    /**
+     * Build image array with this entity's data. No need to hit Dams endpoint
+     */
     public function imageFront($role = null, $crop = null)
     {
         $dams = new DamsImageService;

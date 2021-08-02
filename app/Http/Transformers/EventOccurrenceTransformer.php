@@ -27,7 +27,11 @@ class EventOccurrenceTransformer extends ApiTransformer
         ];
     }
 
-    // This is actually broken in the /events API too!
+    /**
+     * This is actually broken in the /events API too!
+     *
+     * @see App\Http\Transformers\EventTransformer.php
+     */
     private function getEndAt($item)
     {
         if (!isset($item->date)) {
