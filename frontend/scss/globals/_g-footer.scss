@@ -37,7 +37,6 @@
 
 .g-footer__logo {
   display: inline-block;
-  // margin-top: 8px;
   color: $color__white;
 }
 
@@ -104,13 +103,6 @@
     padding-top: 26px;
   }
 
-  // @each $name, $point in $breakpoints {
-  //   @include breakpoint('#{$name}') {
-  //     width: colspan(grid-cols-to-colspan(2, 28), $name);
-  //     margin-left: colspan(2, $name);
-  //   }
-  // }
-
   @include breakpoint('xsmall') {
     width: colspan(grid-cols-to-colspan(1, 58), 'xsmall');
     margin-left: colspan(2, 'xsmall');
@@ -154,11 +146,6 @@
 
 .g-footer__grid > li h3 {
   margin-top: -8px;
-}
-
-.g-footer__grid > li:first-child,
-.g-footer__grid > li:nth-child(2n+1) {
-  // margin-left: 0;
 }
 
 .g-footer__grid > li::after {
@@ -216,11 +203,6 @@
 .g-footer .o-grid-listing > *::before,
 .g-footer .o-grid-listing > *::after {
   background-color: $color__rules--contrast;
-}
-
-.g-footer .o-grid-listing > *:first-child::after {
-  // display: none;
-  // content: none;
 }
 
 .g-footer .o-grid-listing > * > *:first-child {

@@ -114,16 +114,11 @@ const videojsActivate = function() {
       var player = videojs( audio, {
         children: [
           'MediaLoader',
-          // 'PosterImage',
-          // 'TextTrackDisplay',
-          // 'LoadingSpinner',
-          // 'BigPlayButton',
           {
             name: 'controlBar',
             children: children,
           },
           'ErrorDisplay',
-          // 'TextTrackSettings',
           'ResizeManager'
         ],
         plugins: {

@@ -417,7 +417,6 @@ $f-subheading-3: generate-font-obj(
 @mixin f-subheading-3() {
   @include font-styles($f-subheading-3);
   font-feature-settings: 'lnum' on;
-  // color: $color__text--title;
 }
 
 %f-subheading-3,

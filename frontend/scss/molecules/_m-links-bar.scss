@@ -107,16 +107,6 @@
   pointer-events: none;
 }
 
-// .m-links-bar::after {
-//   content: '';
-//   position: absolute;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   height: 1px;
-//   background-color: $color__rules--primary;
-//   pointer-events: none;
-// }
 .m-intro-block + .m-links-bar:not(.m-links-bar--tabs)::before,
 .m-no-results .m-links-bar::before,
 .m-results-title .m-links-bar::before {

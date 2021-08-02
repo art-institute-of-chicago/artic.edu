@@ -14,7 +14,6 @@ module.exports = function(gulp, data, util, taskName) {
 
   // Creates plugin sequence for a dependency using lazy pipe
   function createDepLazyPipe(dep) {
-      // console.log(data);
     return lazypipe()
       .pipe($.if,data.enabled.maps, $.sourcemaps.init())
       .pipe($.if,'*.scss', $.sass({
@@ -53,7 +52,6 @@ module.exports = function(gulp, data, util, taskName) {
 
     // Go through each dependency and add pipe to stream.
     data.manifest.forEachDependency('css', function (dep) {
-      // console.log($.if);
       merged.add(gulp.src(dep.globs, {base: 'styles'})
                      .pipe($.if(!data.enabled.failStyleTask, $.plumber({
                               errorHandler: function(err){

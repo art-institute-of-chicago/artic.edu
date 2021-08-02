@@ -50,15 +50,6 @@ const ajaxableHref = function(href, event) {
     return false;
   }
 
-  /*
-  if (el.origin === window.location.origin) {
-    if (!el.search) {
-      // probably the same page
-      return false;
-    }
-  }
-  */
-
   el = null;
   // Passed?
   return true;

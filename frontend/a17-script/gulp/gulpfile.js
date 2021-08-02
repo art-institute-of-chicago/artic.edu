@@ -8,15 +8,6 @@ const relativePath = __dirname.replace(process.cwd(), '.');
 const path = require('path');
 const utils = require('../utils');
 
-/* To test locally for bower_components folder. Reguired by manifest.js,
-but project doesn't use bower */
-// var fs = require('fs');
-
-// try {
-// fs.accessSync('./bower_components', fs.F_OK);
-// } catch (e) {
-// fs.mkdir('./bower_components');
-// }
 // @see https://github.com/austinpray/asset-builder
 let manifestPath = !utils.hasFile('./frontend/manifest.json') ? path.join(relativePath,'../config/manifest.json') : './frontend/manifest.json';
 

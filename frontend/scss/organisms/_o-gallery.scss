@@ -266,7 +266,6 @@
   .m-media--artwork .m-media__img img {
     width: 100%;
     max-width: 843px;
-    //max-height: 843px; // rules above stop this from happening
   }
 
   .o-gallery__all-link-btn {
@@ -331,13 +330,6 @@
     @include breakpoint('medium+') {
       top: 46px;
     }
-
-    // This causes the title to collide with the arrows:
-    // @include breakpoint('xlarge') {
-    //   // Width of caption plus margin-left of .o-gallery__media-wrapper
-    //   left: calc( #{colspan(13, xlarge)} + #{colspan(2, xlarge)});
-    //   right: initial;
-    // }
 
     .btn {
       color: $color__text--title-contrast;
@@ -518,7 +510,6 @@
 
     @include breakpoint('xlarge') {
       width: 100%;
-      // min-width: unset; // Breaks f-fit-text!
       max-width: unset;
       max-height: #{colspan(18, xlarge) * 4/3};
     }

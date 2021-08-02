@@ -76,7 +76,6 @@
 }
 
 .g-nav-mobile__nav-wrapper {
-  // @include keyline-full(top, $color__rules--primary);
   margin-right: - map-get($outer-gutters, 'xsmall');
   margin-left: - map-get($outer-gutters, 'xsmall');
   padding-right: map-get($outer-gutters, 'xsmall');
@@ -94,7 +93,6 @@
 }
 
 .g-nav-mobile__nav li {
-  // @include keyline-full(bottom, $color__rules--tertiary);
   margin-right: - map-get($outer-gutters, 'xsmall');
   margin-left: - map-get($outer-gutters, 'xsmall');
   padding-right: map-get($outer-gutters, 'xsmall');
@@ -104,7 +102,6 @@
 }
 
 .g-nav-mobile__nav > li:last-child {
-  // @include keyline-full(bottom, $color__rules--primary);
   border-bottom-color: $color__rules--primary;
 }
 

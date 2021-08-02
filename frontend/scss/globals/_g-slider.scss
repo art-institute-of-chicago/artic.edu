@@ -190,7 +190,6 @@ $btn-close-size: 20px;
   .g-slider__content {
 
     @include breakpoint('small+') {
-      // align-items: flex-end;
       flex-wrap: wrap;
     }
 

@@ -255,7 +255,6 @@ const autocomplete = function(container) {
   }
 
   function _isAccessionNumber(val) {
-    // return /^[0-9]+\.?[0-9a-b\-]*/.test(val);
     return /^\d/.test(val);
   }
 

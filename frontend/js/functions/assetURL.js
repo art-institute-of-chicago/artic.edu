@@ -30,9 +30,6 @@ const queryParams = params => Object.keys(params).map(function(key) {
   }
 
   export default (src, params = {}, keepParams = true) => {
-    // return `https://staging-digital-labels.imgix.net/${src}?${queryParams(params)}`;
-    // return `http://closer-looks.imgix.net/${src}?${queryParams(params)}`;
-    // return src;
     const currentParams = getParams(src);
 
     if( currentParams && keepParams ){
