@@ -2,8 +2,6 @@ import { cookieHandler, triggerCustomEvent } from '@area17/a17-helpers';
 import FontFaceOnload from '../libs/fontfaceonload';
 
 const fontObservers = function(fonts) {
-  // Doc: https://code.area17.com/mike/a17-js-helpers/wikis/A17-Helpers-fontObservers
-
   if ((typeof fonts).toLowerCase() !== 'object') {
     return false;
   }
