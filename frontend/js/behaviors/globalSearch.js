@@ -63,7 +63,9 @@ const globalSearch = function(container) {
     });
   }
 
-  // handle ajax search
+  /**
+   * Handle ajax search
+   */
   function _doAjax() {
     clearTimeout(ajaxTimer);
 
@@ -110,7 +112,9 @@ const globalSearch = function(container) {
     }, 250);
   }
 
-  // open search
+  /**
+   * Open search
+   */
   function _openSearch() {
     triggerCustomEvent(document, 'body:lock', {
       breakpoints: 'all'
@@ -128,7 +132,9 @@ const globalSearch = function(container) {
     active = true;
   }
 
-  // close search
+  /**
+   * Close search
+   */
   function _closeSearch() {
     active = false;
     clearTimeout(ajaxTimer);
@@ -144,21 +150,27 @@ const globalSearch = function(container) {
     textInput.value = '';
   }
 
-  // handle escape key
+  /**
+   * Handle escape key
+   */
   function _escape(event) {
     if (active && event.keyCode === 27) {
       triggerCustomEvent(document, 'globalSearch:close');
     }
   }
 
-  // doesn't show search on xsmall
+  /**
+   * Doesn't show search on xsmall
+   */
   function _resized() {
     if (active && A17.currentMediaQuery !== 'xsmall') {
       triggerCustomEvent(document, 'globalSearch:close');
     }
   }
 
-  // handle form submit
+  /**
+   * Handle form submit
+   */
   function _handleSubmit(event){
     event.preventDefault();
     let terms = _fixedEncodeURIComponent(textInput.value);
@@ -176,7 +188,9 @@ const globalSearch = function(container) {
     }
   }
 
-  // handle search input
+  /**
+   * Handle search input
+   */
   function _handleInput() {
     if (active) {
       searchTerm = textInput.value;

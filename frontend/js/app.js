@@ -1,12 +1,9 @@
 import { manageBehaviors, resized, getCurrentMediaQuery, forEach, lazyLoad } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
 import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, videojsActivate, headerHeight, roadblock } from './functions';
-/*
-
-  A17
-
-  Doc: // Doc: https://code.area17.com/a17/fe-boilerplate/wikis/js-app
-
+/**
+ * A17
+ * @see Doc: https://code.area17.com/a17/fe-boilerplate/wikis/js-app
 */
 var A17 = window.A17 || {};
 
