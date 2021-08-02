@@ -69,6 +69,10 @@ if (!function_exists('getUtf8Slug')) {
             'Є' => 'Ye', 'І' => 'I', 'Ї' => 'Yi', 'Ґ' => 'G',
             'є' => 'ye', 'і' => 'i', 'ї' => 'yi', 'ґ' => 'g',
 
+            // Kazakh
+            'Ә' => 'A', 'Ғ' => 'G', 'Қ' => 'Q', 'Ң' => 'N', 'Ө' => 'O', 'Ұ' => 'U',
+            'ә' => 'a', 'ғ' => 'g', 'қ' => 'q', 'ң' => 'n', 'ө' => 'o', 'ұ' => 'u',
+
             // Czech
             'Č' => 'C', 'Ď' => 'D', 'Ě' => 'E', 'Ň' => 'N', 'Ř' => 'R', 'Š' => 'S', 'Ť' => 'T', 'Ů' => 'U',
             'Ž' => 'Z',
@@ -86,6 +90,10 @@ if (!function_exists('getUtf8Slug')) {
             'Š' => 'S', 'Ū' => 'u', 'Ž' => 'Z',
             'ā' => 'a', 'č' => 'c', 'ē' => 'e', 'ģ' => 'g', 'ī' => 'i', 'ķ' => 'k', 'ļ' => 'l', 'ņ' => 'n',
             'š' => 's', 'ū' => 'u', 'ž' => 'z',
+
+            // Romanian
+            'Ă' => 'A', 'Â' => 'A', 'Î' => 'I', 'Ș' => 'S', 'Ț' => 'T',
+            'ă' => 'a', 'â' => 'a', 'î' => 'i', 'ș' => 's', 'ț' => 't',
         );
 
         // Make custom replacements
@@ -112,7 +120,6 @@ if (!function_exists('getUtf8Slug')) {
     }
 }
 
-// TODO: Figure out a way to do this to HTML instead of plaintext..?
 if (!function_exists('truncateStr')) {
     function truncateStr($string, $length = 150) {
         $limit = abs((int)$length);
