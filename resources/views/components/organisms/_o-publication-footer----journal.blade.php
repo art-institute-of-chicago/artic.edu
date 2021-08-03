@@ -5,6 +5,6 @@
       </svg>
     </div>
     <div class="o-publication-footer__text">
-        <p class="f-body-editorial">The Art Institute Review is dedicated to innovative object-centered scholarship and is published twice a year. Learn more.</p>
+        <p class="f-body-editorial">The <i>Art Institute Review</i> is dedicated to innovative object-centered scholarship and is published twice a year. Learn more.</p>
     </div>
 </div>
