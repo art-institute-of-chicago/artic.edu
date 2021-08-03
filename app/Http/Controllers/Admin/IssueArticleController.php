@@ -12,6 +12,10 @@ class IssueArticleController extends ModuleController
 
     protected $permalinkBase = 'journal/articles/';
 
+    protected $indexOptions = [
+        'reorder' => true,
+    ];
+
     protected function getParentModuleForeignKey()
     {
         return 'issue_id';

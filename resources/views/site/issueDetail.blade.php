@@ -31,7 +31,7 @@
             </div>
         @endif
 
-        @if ($item->present()->articlesForLanding)
+        @if ($item->present()->articlesForLanding())
             @component('components.organisms._o-grid-listing')
                 @slot('variation', 'o-grid-listing--journal')
                 @slot('cols_xsmall','1')
@@ -39,7 +39,7 @@
                 @slot('cols_medium','2')
                 @slot('cols_large','2')
                 @slot('cols_xlarge','2')
-                @foreach ($item->present()->articlesForLanding as $article)
+                @foreach ($item->present()->articlesForLanding() as $article)
                     @component('components.molecules._m-listing----publication')
                         @slot('variation', 'm-listing--journal')
                         @slot('href', route('issue-articles.show', $article))
