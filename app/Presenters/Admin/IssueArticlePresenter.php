@@ -66,6 +66,7 @@ class IssueArticlePresenter extends BasePresenter
                             ->map(function($article) use ($currentArticle) {
                                 return [
                                     'label' => $article->title_display ?? $article->title,
+                                    'sublabel' => $article->showAuthors(),
                                     'href' => $article->url,
                                     'active' => $article->id === $currentArticle->id,
                                 ];
