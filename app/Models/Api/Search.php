@@ -655,15 +655,14 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    /*
-        SortBy works differently depending on the field.
-        That's why we differentiate parameters and create special cases.
-
-        Relevance: Do not add anything, default sorting is by relevance
-        Date Display: The correct parameter is date_display (with no .keyword added)
-        Default: Parameter name with .keywork added.
-
-    */
+    /**
+     * SortBy works differently depending on the field.
+     * That's why we differentiate parameters and create special cases.
+     *
+     * Relevance: Do not add anything, default sorting is by relevance
+     * Date Display: The correct parameter is date_display (with no .keyword added)
+     * Default: Parameter name with .keywork added.
+     */
     public function scopeSortBy($query, $field)
     {
         switch ($field) {

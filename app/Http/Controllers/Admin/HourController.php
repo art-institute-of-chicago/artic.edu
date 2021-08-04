@@ -43,12 +43,12 @@ class HourController extends ModuleController
         ],
     ];
 
-    /*
+    /**
      * Relations to eager load for the index view
      */
     protected $indexWith = [];
 
-    /*
+    /**
      * Relations to eager load for the form view
      */
     protected $formWith = [];
