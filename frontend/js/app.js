@@ -4,7 +4,7 @@ import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMas
 /**
  * A17
  * @see Doc: https://code.area17.com/a17/fe-boilerplate/wikis/js-app
-*/
+ */
 var A17 = window.A17 || {};
 
 // HTML4 browser?
