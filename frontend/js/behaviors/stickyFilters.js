@@ -74,9 +74,6 @@ const stickyFilters = function(container){
     window.removeEventListener('mediaQueryUpdated', _calcLockPositions);
     document.removeEventListener('fonts:loaded', _calcLockPositions);
     document.removeEventListener('page:updated', _pageUpdated);
-    /*
-    min$('img').off('load',_calcLockPositions);
-    */
   }
 
   function _setup() {
@@ -85,15 +82,6 @@ const stickyFilters = function(container){
     window.addEventListener('mediaQueryUpdated', _calcLockPositions, false);
     document.addEventListener('fonts:loaded', _calcLockPositions, false);
     document.addEventListener('page:updated', _pageUpdated, false);
-    /*
-    min$('img').on('load',_calcLockPositions).each(function(){
-      try {
-        if (this.complete) {
-          this.load();
-        }
-      } catch(err) {}
-    });
-    */
     _calcLockPositions();
     cancelAnimationFrame(rAF);
     rAF = window.requestAnimationFrame(_decidePos);
