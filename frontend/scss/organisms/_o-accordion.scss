@@ -406,16 +406,22 @@ h3 {
       }
     }
 
-    .m-link-list__item.s-active > a.m-link-list__trigger.f-secondary {
-      color: $color__blue;
-
-      &:hover,
-      &:focus:hover {
-        color: $color__blue--hover;
+    .m-link-list__item.s-active {
+      &::after {
+        background-color: $color__rules--primary;
       }
 
-      &:active:hover {
-        color: $color__blue--active;
+      > a.m-link-list__trigger.f-secondary {
+        color: $color__blue;
+
+        &:hover,
+        &:focus:hover {
+          color: $color__blue--hover;
+        }
+
+        &:active:hover {
+          color: $color__blue--active;
+        }
       }
     }
   }
