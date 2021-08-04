@@ -8,14 +8,6 @@ Route::name('target')->get('/target', 'HomeController@target');
 
 Route::name('home')->get('/', 'HomeController@index');
 
-// Statics routes
-if (!app()->environment('production')) {
-    Route::get('/autocomplete/{slug?}', 'StaticsController@autocomplete');
-    Route::get('/collections/search/{slug?}', 'StaticsController@collectionsAutocomplete');
-    Route::get('/exhibitions_load_more', 'StaticsController@exhibitions_load_more');
-    Route::get('/statics/{slug?}', 'StaticsController@index');
-}
-
 // Collection routes
 Route::name('collection')->get('/collection', 'CollectionController@index');
 /*Route::name('collection.autocomplete')->get('/collection/autocomplete', 'CollectionController@autocomplete');
