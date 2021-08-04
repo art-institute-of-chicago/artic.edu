@@ -19,7 +19,7 @@ class IssueArticleController extends FrontController
     {
         $item = $this->repository->published()->findOrFail($id);
 
-        $canonicalPath = route('issue-articles.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+        $canonicalPath = $item->url;
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;

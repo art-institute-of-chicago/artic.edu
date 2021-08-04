@@ -40,7 +40,7 @@
                 @foreach ($item->present()->articlesForLanding() as $article)
                     @component('components.molecules._m-listing----publication')
                         @slot('variation', 'm-listing--journal')
-                        @slot('href', route('issue-articles.show', $article))
+                        @slot('href', $article->url)
                         @slot('image', $article->imageFront('hero'))
                         @slot('type', $article->present()->getArticleType())
                         @slot('title', $article->present()->title)
