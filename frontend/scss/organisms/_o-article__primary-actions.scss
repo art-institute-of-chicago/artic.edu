@@ -186,6 +186,7 @@
     @include breakpoint('#{$name}') {
       .m-search-bar,
       hr,
+      .hr--no-archive ~ .m-article-actions, // PUB-128
       .m-article-actions--journal__issues {
         margin-top: #{map-get((
           xsmall: 24,

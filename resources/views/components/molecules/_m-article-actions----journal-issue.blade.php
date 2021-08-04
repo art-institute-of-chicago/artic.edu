@@ -24,6 +24,8 @@
         @component('components.molecules._m-article-actions----journal__issues')
             @slot('issues', $issues)
         @endcomponent
+    @else
+        <hr class="hr--no-archive">
     @endif
 
     <h2 class="sr-only" id="h-article-actions">Page Actions</h2>
