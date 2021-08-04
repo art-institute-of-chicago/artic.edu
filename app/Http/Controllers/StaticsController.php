@@ -2541,36 +2541,6 @@ class StaticsController extends FrontController {
         "type" => 'text',
         "content" => '<p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h2>Quisque id massa tristique</h2><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h3>Quisque id massa tristique</h3><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h2>Quisque id massa tristique</h2><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus.</p><ul><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ul><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><ol><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ol>'
     ));
-    /*
-    array_push($blocks, array(
-        "type" => 'unorderedList',
-        "items" => array(
-          $this->faker->sentence(6),
-          $this->faker->sentence(6),
-          $this->faker->sentence(6),
-        )
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->generateParagraph(12, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'orderedList',
-        "items" => array(
-          $this->faker->sentence(6),
-          $this->faker->sentence(6),
-          $this->faker->sentence(6),
-        )
-    ));
-    array_push($blocks, array(
-        "type" => 'intro',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->generateParagraph(12, false)
-    ));
-    */
     array_push($blocks, array(
       "type" => 'deflist',
       "items" => array(
