@@ -1197,7 +1197,7 @@
 		div.addEventListener("DOMMouseScroll", stopPropagation, true);
 		div.addEventListener("touchstart", function(event){
 			if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){
-				/* avoid the iOS 'overscrolling' for fullpage viewers */
+				/* Avoid the iOS 'overscrolling' for fullpage viewers */
 				var bs = document.body.parentNode.style;
 				bs.position="fixed";
 				bs.top=0; bs.left=0; bs.right=0; bs.bottom=0;
