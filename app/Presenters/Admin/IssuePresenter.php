@@ -19,7 +19,6 @@ class IssuePresenter extends BasePresenter
     public function articlesForLanding()
     {
         return $this->articlesForLanding ?? $this->articlesForLanding = $this->entity->articles()
-            ->where('type', '!=' ,'editors-note')
             ->ordered()
             ->published()
             ->get();

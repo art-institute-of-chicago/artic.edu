@@ -42,7 +42,7 @@
                         @slot('variation', 'm-listing--journal')
                         @slot('href', route('issue-articles.show', $article))
                         @slot('image', $article->imageFront('hero'))
-                        @slot('type', $article->present()->type)
+                        @slot('type', $article->present()->getArticleType())
                         @slot('title', $article->present()->title)
                         @slot('title_display', $article->present()->title_display)
                         @slot('list_description', $article->present()->list_description)

@@ -29,21 +29,10 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('select', [
-        'name' => 'type',
-        'label' => 'Type',
-        'placeholder' => 'Select a type',
-        'default' => 'article',
-        'options' => [
-            [
-                'value' => 'article',
-                'label' => 'Article'
-            ],
-            [
-                'value' => 'in-conversation',
-                'label' => 'In Conversation'
-            ]
-        ]
+    @formField('input', [
+        'name' => 'type_display',
+        'label' => 'Article label',
+        'note' => 'Used for article cards on the issue page. Defaults to "Article" if empty.',
     ])
 
     @formField('wysiwyg', [

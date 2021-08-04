@@ -79,6 +79,15 @@ class IssueArticlePresenter extends BasePresenter
         ];
     }
 
+    public function getArticleType()
+    {
+        if (isset($this->entity->type_display)) {
+            return $this->entity->type_display;
+        }
+
+        return 'Article';
+    }
+
     public function references()
     {
         //
