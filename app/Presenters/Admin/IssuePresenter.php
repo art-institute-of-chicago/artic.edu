@@ -7,8 +7,6 @@ use App\Presenters\BasePresenter;
 class IssuePresenter extends BasePresenter
 {
 
-    private $editorsNote;
-
     private $articlesForLanding;
 
     public function date()
@@ -25,14 +23,6 @@ class IssuePresenter extends BasePresenter
             ->ordered()
             ->published()
             ->get();
-    }
-
-    public function editorsNote()
-    {
-        return $this->editorsNote ?? $this->editorsNote = $this->entity->articles()
-            ->where('type', 'editors-note')
-            ->published()
-            ->first();
     }
 
 }

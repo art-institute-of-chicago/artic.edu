@@ -36,10 +36,6 @@
         'default' => 'article',
         'options' => [
             [
-                'value' => 'editors-note',
-                'label' => 'Editor\'s Note'
-            ],
-            [
                 'value' => 'article',
                 'label' => 'Article'
             ],

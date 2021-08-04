@@ -9,10 +9,11 @@ use A17\Twill\Models\Behaviors\Sortable;
 
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasRelated;
 
 class Issue extends AbstractModel implements Sortable
 {
-    use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasPosition;
+    use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasPosition, HasRelated;
 
     protected $presenter = 'App\Presenters\Admin\IssuePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\IssuePresenter';
@@ -31,6 +32,7 @@ class Issue extends AbstractModel implements Sortable
         'published',
         'position',
         'cite_as',
+        'welcome_note_display',
     ];
 
     public $slugAttributes = [

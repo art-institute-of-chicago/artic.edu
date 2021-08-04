@@ -20,13 +20,11 @@
     </div>
 
     <div class="o-article__body o-blocks">
-        @if ($item->present()->editorsNote)
+        @if ($item->welcome_note_display && $welcomeNote)
             <div class="o-issue__intro">
-                @component('components.organisms._o-editors-note----journal')
-                    @slot('title', $item->present()->editorsNote->present()->shortTitle())
-                    @slot('description', $item->present()->editorsNote->present()->listDescription())
-                    @slot('issueNumber', $item->issue_number ?? null)
-                    @slot('articleLink', $item->present()->editorsNote->url)
+                @component('components.organisms._o-editors-note----publication')
+                    @slot('description', $item->welcome_note_display)
+                    @slot('articleLink', $welcomeNote->url)
                 @endcomponent
             </div>
         @endif

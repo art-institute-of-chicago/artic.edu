@@ -39,6 +39,7 @@ class IssueController extends FrontController
             'contrastHeader' => false,
             'borderlessHeader' => false,
             'issues' => $issues,
+            'welcomeNote' => $this->repository->getWelcomeNote($item),
             'canonicalUrl' => $canonicalPath,
         ]);
     }

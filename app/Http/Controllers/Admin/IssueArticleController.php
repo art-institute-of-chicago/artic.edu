@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\IssueRepository;
+use App\Http\Controllers\Admin\Behaviors\IsNestedModule;
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 
 class IssueArticleController extends ModuleController
 {
+    use IsNestedModule;
+
     protected $moduleName = 'issues.articles';
     protected $modelName = 'IssueArticle';
 
