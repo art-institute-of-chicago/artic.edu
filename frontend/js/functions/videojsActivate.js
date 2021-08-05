@@ -81,6 +81,12 @@ const videojsActivate = function() {
 
     for (var i=0, max=audios.length; i < max; i++) {
 
+      if (audios[i].hasAttribute('data-has-started')) {
+        continue;
+      }
+
+      audios[i].setAttribute('data-has-started', true);
+
       var children = [
         "PlayToggle",
         "CurrentTimeDisplay",
