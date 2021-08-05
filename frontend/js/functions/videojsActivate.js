@@ -88,40 +88,40 @@ const videojsActivate = function() {
       audios[i].setAttribute('data-has-started', true);
 
       var children = [
-        "PlayToggle",
-        "CurrentTimeDisplay",
-        "TimeDivider",
-        "DurationDisplay",
-        "ProgressControl",
-        "MuteToggle",
-        "VolumeControl",
+        'PlayToggle',
+        'CurrentTimeDisplay',
+        'TimeDivider',
+        'DurationDisplay',
+        'ProgressControl',
+        'MuteToggle',
+        'VolumeControl',
       ];
 
       if (audios[i].hasAttribute('data-has-transcript')) {
-        children.push("TranscriptButton")
+        children.push('TranscriptButton')
       }
 
       if (audios[i].hasAttribute('data-is-downloadable')) {
-        children.push("DownloadButton")
+        children.push('DownloadButton')
       }
 
-      children.push("LiveDisplay")
+      children.push('LiveDisplay')
 
-      videojs( audios[i], {
-        "children": [
-          "MediaLoader",
-          // "PosterImage",
-          // "TextTrackDisplay",
-          // "LoadingSpinner",
-          // "BigPlayButton",
+      var player = videojs( audios[i], {
+        children: [
+          'MediaLoader',
+          // 'PosterImage',
+          // 'TextTrackDisplay',
+          // 'LoadingSpinner',
+          // 'BigPlayButton',
           {
-            "name": "controlBar",
-            "children": children,
+            name: 'controlBar',
+            children: children,
           },
-          "ErrorDisplay",
-          // "TextTrackSettings",
-          "ResizeManager"
-        ]
+          'ErrorDisplay',
+          // 'TextTrackSettings',
+          'ResizeManager'
+        ],
       });
     }
   }
