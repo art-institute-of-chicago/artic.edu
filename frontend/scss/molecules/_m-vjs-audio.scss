@@ -4,6 +4,10 @@
 
   margin-top: 20px;
 
+  &.m-vjs-audio--collapse {
+    margin-top: 0;
+  }
+
   color: $color-audio-dark;
 
   &.vjs-fluid {

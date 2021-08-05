@@ -166,6 +166,7 @@ return [
     'files' => [
         'attachment',
         'video',
+        'audio_file',
         'image_sequence_file',
         'upload_manifest_file',
         'vtour_xml_file',
@@ -198,6 +199,7 @@ return [
         'list',
         'timeline',
         'video',
+        'audio_player',
         'tour_stop',
         'media_embed',
         'quote',

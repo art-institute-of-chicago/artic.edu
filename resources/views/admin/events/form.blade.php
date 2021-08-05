@@ -273,7 +273,7 @@
             'blocks' => getBlocksForEditor([
                 'paragraph', 'image', 'video', 'media_embed', 'quote',
                 'list', 'newsletter_signup_inline', 'timeline', 'link',
-                'artwork', 'hr', 'split_block', 'tour_stop', 'button',
+                'artwork', 'hr', 'split_block', 'audio_player', 'tour_stop', 'button',
                 'mobile_app', '3d_model',
                 'gallery', 'artworks', 'gallery_new',
             ])
