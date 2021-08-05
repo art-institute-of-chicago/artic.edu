@@ -1,12 +1,13 @@
 import { triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
+import videojs from 'video.js';
 
 const videojsActivate = function() {
 
   // https://stackoverflow.com/questions/39121463/videojs-5-plugin-add-button
   function _registerDownloadButton() {
-    var vjsButtonComponent = window.videojs.getComponent('Button');
+    var vjsButtonComponent = videojs.getComponent('Button');
 
-    window.videojs.registerComponent('DownloadButton', videojs.extend(vjsButtonComponent, {
+    videojs.registerComponent('DownloadButton', videojs.extend(vjsButtonComponent, {
       constructor: function () {
         vjsButtonComponent.apply(this, arguments);
         this.controlText('Download audio');
@@ -37,9 +38,9 @@ const videojsActivate = function() {
   }
 
   function _registerTranscriptButton() {
-    var vjsButtonComponent = window.videojs.getComponent('Button');
+    var vjsButtonComponent = videojs.getComponent('Button');
 
-    window.videojs.registerComponent('TranscriptButton', videojs.extend(vjsButtonComponent, {
+    videojs.registerComponent('TranscriptButton', videojs.extend(vjsButtonComponent, {
       constructor: function () {
         vjsButtonComponent.apply(this, arguments);
         this.controlText('Toggle transcript');
@@ -100,7 +101,7 @@ const videojsActivate = function() {
 
       children.push("LiveDisplay")
 
-      window.videojs( audios[i], {
+      videojs( audios[i], {
         "children": [
           "MediaLoader",
           // "PosterImage",
