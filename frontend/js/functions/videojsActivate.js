@@ -79,13 +79,12 @@ const videojsActivate = function() {
   function _activateAudioPlayers() {
     var audios = document.getElementsByClassName('video-js')
 
-    for (var i=0, max=audios.length; i < max; i++) {
-
-      if (audios[i].hasAttribute('data-has-started')) {
-        continue;
+    Array.from(audios).forEach(function(audio) {
+      if (audio.hasAttribute('data-has-started')) {
+        return;
       }
 
-      audios[i].setAttribute('data-has-started', true);
+      audio.setAttribute('data-has-started', true);
 
       var children = [
         'PlayToggle',
@@ -97,17 +96,17 @@ const videojsActivate = function() {
         'VolumeControl',
       ];
 
-      if (audios[i].hasAttribute('data-has-transcript')) {
+      if (audio.hasAttribute('data-has-transcript')) {
         children.push('TranscriptButton')
       }
 
-      if (audios[i].hasAttribute('data-is-downloadable')) {
+      if (audio.hasAttribute('data-is-downloadable')) {
         children.push('DownloadButton')
       }
 
       children.push('LiveDisplay')
 
-      var player = videojs( audios[i], {
+      var player = videojs( audio, {
         children: [
           'MediaLoader',
           // 'PosterImage',
@@ -123,7 +122,7 @@ const videojsActivate = function() {
           'ResizeManager'
         ],
       });
-    }
+    });
   }
 
   document.addEventListener('page:updated', _activateAudioPlayers, false);
