@@ -91,6 +91,7 @@
   .vjs-progress-control {
     padding-left: 0.75em;
     padding-right: 0.5em;
+    height: 100%;
   }
 
   .vjs-progress-control .vjs-time-tooltip:empty {
@@ -154,6 +155,10 @@
 
   .vjs-volume-bar {
     background: $color__black--40;
+  }
+
+  .vjs-volume-tooltip {
+    display: none;
   }
 
   &,
