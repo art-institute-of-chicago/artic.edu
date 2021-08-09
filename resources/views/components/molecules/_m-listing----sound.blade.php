@@ -10,6 +10,8 @@
             <audio
                 class="video-js vjs-fluid m-vjs-audio {{ empty($item->title) ? 'm-vjs-audio--collapse' : '' }}"
                 {!! isset($item->transcript) ? 'data-has-transcript' : null !!}
+                data-gtm-prefix="{!! $item->gtmPrefix ?? 'audio' !!}"
+                data-gtm-title="{!! !empty($item->title) ? strip_tags($item->title) : basename($item->href) !!}"
                 controls
             >
                 <source src="{{ $item->href }}" type="audio/mpeg">

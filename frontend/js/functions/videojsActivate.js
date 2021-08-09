@@ -1,5 +1,6 @@
 import { triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
 import videojs from 'video.js';
+import eventTracking from 'videojs-event-tracking';
 
 const videojsActivate = function() {
 
@@ -121,7 +122,38 @@ const videojsActivate = function() {
           // 'TextTrackSettings',
           'ResizeManager'
         ],
+        plugins: {
+          eventTracking: true,
+        }
       });
+
+      // e.g. audio-play vs. audio-tour-play
+      var prefix = 'audio';
+
+      if (audio.hasAttribute('data-gtm-prefix')) {
+        prefix = audio.getAttribute('data-gtm-prefix')
+      }
+
+      var title = 'Untitled';
+
+      if (audio.hasAttribute('data-gtm-title')) {
+        title = audio.getAttribute('data-gtm-title')
+      }
+
+      function _log(suffix) {
+        console.log({
+          'event': prefix + '-' + suffix,
+          'eventCategory': 'audio-engagement',
+          'action': title,
+        });
+      }
+
+      player.on('tracking:firstplay', (e, data) => _log('play'));
+      player.on('tracking:pause', (e, data) => _log('pause'));
+      player.on('tracking:first-quarter', (e, data) => _log('25'));
+      player.on('tracking:second-quarter', (e, data) => _log('50'));
+      player.on('tracking:third-quarter', (e, data) => _log('75'));
+      player.on('tracking:fourth-quarter', (e, data) => _log('100'));
     });
   }
 
