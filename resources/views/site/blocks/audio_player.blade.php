@@ -9,7 +9,7 @@
         @slot('item', (object) [
             'title' => $block->input('title_display'),
             'href' => FileService::getUrl($audioFile->uuid),
-            'transcript' => $block->input('title_display'),
+            'transcript' => $block->input('transcript'),
             'subtitle' => null,
         ])
     @endcomponent
