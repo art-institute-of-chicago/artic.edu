@@ -141,7 +141,7 @@ const videojsActivate = function() {
       }
 
       function _log(suffix) {
-        console.log({
+        triggerCustomEvent(document, 'gtm:push', {
           'event': prefix + '-' + suffix,
           'eventCategory': 'audio-engagement',
           'action': title,
