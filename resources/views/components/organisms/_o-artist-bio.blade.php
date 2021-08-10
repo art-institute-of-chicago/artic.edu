@@ -28,7 +28,7 @@
                         <dd itemprop="additionalName">{!! $item->present()->also_known_as !!}</dd>
                     @endif
 
-                    @if ($item->gender_title && (!app()->environment('production')))
+                    @if ($item->gender_title && config('aic.show_artist_gender'))
                         <dt>Gender</dt>
                         <dd itemprop="gender">{!! $item->gender_title !!}</dd>
                     @endif
@@ -44,7 +44,7 @@
                     @endif
 
                     {{-- WEB-2242: Dedupe w/ `place_pivots` in ArtworkPresenter? --}}
-                    @if ($item->place_pivots != null && count($item->place_pivots) > 0 && (!app()->environment('production')))
+                    @if ($item->place_pivots != null && count($item->place_pivots) > 0 && config('aic.show_artist_places'))
                         @php
                             $places = collect($item->place_pivots)->map(function($pivot) {
                                 $title = $pivot->place_title;

@@ -57,7 +57,7 @@ class ArtworkService extends BaseService
 
         // Build Color Tags
         // Still a work in progress, so don't show in production
-        if (!app()->environment('production')) {
+        if (config('aic.show_artwork_color_tag')) {
             if ($this->resource->color) {
                 $tags['color'] = collect([$this->resource->color->h .'-' .$this->resource->color->s .'-' .$this->resource->color->l => 'Color']);
             }

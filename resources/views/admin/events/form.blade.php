@@ -370,7 +370,7 @@
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
     </a17-fieldset>
 
-    @if (!app()->environment('production'))
+    @if (config('aic.show_event_series_emails'))
 
     <a17-fieldset id="event_series" title="Event series emails">
         <p>Please review the <a href="https://docs.google.com/document/d/19SN1uMkJy2ldk83uBnEL0GHSZFDOB5j2exz-X1oSb4Y/edit">documentation for email series</a> before proceeding.</p>
