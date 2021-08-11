@@ -3,6 +3,10 @@ import videojs from 'video.js';
 import eventTracking from 'videojs-event-tracking';
 
 const videojsActivate = function() {
+  // WEB-2216: Not sure why, but this code doesn't work in our fork
+  if (typeof videojs.getPlugin('eventTracking') === 'undefined') {
+    videojs.registerPlugin('eventTracking', eventTracking);
+  }
 
   // https://stackoverflow.com/questions/39121463/videojs-5-plugin-add-button
   function _registerDownloadButton() {
