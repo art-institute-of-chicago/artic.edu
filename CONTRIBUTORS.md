@@ -21,6 +21,14 @@ Role: Product Owner
 GitHub: [jbandrews](https://github.com/jbandrews)
 Twitter: [@joshandrews](https://twitter.com/joshandrews)
 
+### Kirsten Southwell
+Role: Creative Director, Visual Design
+Twitter: [@kmsouthwell](https://twitter.com/kmsouthwell)
+
+### Michael Neault
+Role: AVP & Executive Creative Director, Experience Design
+Twitter: [@michael_neault](https://twitter.com/michael_neault)
+
 ### Tina Shah
 Role: Senior Web Developer
 GitHub: [surreal8](https://github.com/surreal8)
