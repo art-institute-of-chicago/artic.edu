@@ -40,10 +40,6 @@ class ArticleController extends FrontController
                 ->orderBy('date', 'desc')
                 ->paginate(self::ARTICLES_PER_PAGE);
         } else {
-            if (config('aic.hide_interactive_features')) {
-                abort(404);
-            }
-
             // Retrieve experiences entires
             $articles = Experience::webPublished()->articlePublished()->paginate(self::ARTICLES_PER_PAGE);
         }
@@ -81,7 +77,7 @@ class ArticleController extends FrontController
             );
         }
 
-        if (!config('aic.hide_interactive_features') && Experience::webPublished()->articlePublished()->count() > 0) {
+        if (Experience::webPublished()->articlePublished()->count() > 0) {
             array_push($categories,
                 [
                     'label' => 'Interactive Features',

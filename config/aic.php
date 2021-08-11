@@ -14,7 +14,6 @@ return [
     // Feature flags
     'is_preview_mode' => env('ALWAYS_PREVIEW_MODE', false),
     'show_design_grids' => env('SHOW_DESIGN_GRIDS', false),
-    'hide_interactive_features' => env('HIDE_INTERACTIVE_FEATURES', true),
     'use_most_similar_for_artwork_sidebar' => env('USE_MOST_SIMILAR_FOR_ARTWORK_SIDEBAR', false),
     'cache_revassets' => env('CACHE_REVASSETS', false),
     'show_artwork_color_tag' => env('SHOW_ARTWORK_COLOR_TAG', false),
