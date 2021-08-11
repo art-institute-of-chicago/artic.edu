@@ -4,7 +4,7 @@ namespace App\Models\Behaviors;
 
 trait LintsAttributes
 {
-    public function lintValue($value)
+    protected function lintValue($value)
     {
         if (is_object($value)) {
             foreach ($value as $key => $subvalue) {
