@@ -3,26 +3,27 @@
 namespace App\Models\Behaviors;
 
 use Illuminate\Support\Facades\App;
-use LakeviewImageService;
+use DamsImageService;
 
 trait HasMediasApi
 {
 
-    // You have to define roles and crop on the API model.
-    //
-    // 'field': Optional, API field with the image ID (if not defined, default to image_id)
-    // 'width', 'height': Optional, cropping options
-    //
-    // public $mediasParams
-    //     'hero' => [
-    //         'default' => [
-    //             'field'  => 'image_id',   // Optional
-    //             'width'  => 45,           // Optional
-    //             'height' => 45            // Optional
-    //         ],
-    //     ],
-    // ];
-
+    /**
+     * You have to define roles and crop on the API model.
+     *
+     * 'field': Optional, API field with the image ID (if not defined, default to image_id)
+     * 'width', 'height': Optional, cropping options
+     *
+     * public $mediasParams
+     *     'hero' => [
+     *         'default' => [
+     *             'field'  => 'image_id',   // Optional
+     *             'width'  => 45,           // Optional
+     *             'height' => 45            // Optional
+     *         ],
+     *     ],
+     * ];
+     */
     public function imageFront($role = 'hero', $crop = null)
     {
         if (empty($this->mediasParams)) {
@@ -31,13 +32,13 @@ trait HasMediasApi
 
         if (isset($this->mediasParams[$role])) {
             if ($crop && !empty($this->{$this->getImageField($role, $crop)})) {
-                $image = LakeviewImageService::getImage($this, $this->getImageField($role, $crop));
+                $image = DamsImageService::getImage($this, $this->getImageField($role, $crop));
                 $image['width'] = $this->getWidth($role, $crop, $image);
                 $image['height'] = $this->getHeight($role, $crop, $image);
                 return $image;
             } else {
                 if (!empty($this->{$this->getImageField($role, 'default')})) {
-                    $image = LakeviewImageService::getImage($this, $this->getImageField($role, 'default'));
+                    $image = DamsImageService::getImage($this, $this->getImageField($role, 'default'));
                     return $image;
                 }
             }
@@ -51,7 +52,7 @@ trait HasMediasApi
 
     public function defaultCmsImage($params = [])
     {
-        $image = LakeviewImageService::getImage($this, 'image_id', 100, 100);
+        $image = DamsImageService::getImage($this, 'image_id', 100, 100);
 
         if ($image) {
             return $image['src'];

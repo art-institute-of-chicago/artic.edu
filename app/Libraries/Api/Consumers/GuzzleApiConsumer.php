@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Libraries\Api\Consumers;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
 class GuzzleApiConsumer implements ApiConsumerInterface
@@ -26,7 +25,6 @@ class GuzzleApiConsumer implements ApiConsumerInterface
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new \Exception($contents);
         } elseif (isset($body->error) && $body->status !== 404) {
-            // throw new \Exception(json_encode($body, JSON_PRETTY_PRINT));
             throw new \Exception($contents);
         }
 

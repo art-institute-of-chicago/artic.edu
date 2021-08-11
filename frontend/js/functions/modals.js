@@ -105,7 +105,7 @@ const modals = function() {
   }
 
   function _resized() {
-    // safari isn't repositioning on resize for some reason
+    // Safari isn't repositioning on resize for some reason
     if (active) {
       console.log('resized');
       $modal.style.display = 'none';

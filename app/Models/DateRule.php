@@ -43,7 +43,9 @@ class DateRule extends AbstractModel
 
     public $dates = ['start_date', 'end_date'];
 
-    // those fields get auto set to null if not submited
+    /**
+     * Those fields get auto set to null if not submited
+     */
     public $nullable = [];
 
     public $checkboxes = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];

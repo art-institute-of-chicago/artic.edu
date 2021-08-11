@@ -10,7 +10,6 @@ use App\Models\Form\EducatorAdmission;
 
 use App\Mail\FormEducatorAdmission;
 
-use App\Presenters\StaticObjectPresenter;
 
 class EducatorAdmissionController extends FormController
 {

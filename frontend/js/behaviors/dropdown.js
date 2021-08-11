@@ -49,13 +49,13 @@ const dropdown = function(container) {
     }
     if (event) {
       /*
-        FireFox has a bug going back to 2009 that affects the cursor showing in an input
-        if event.stopPropagation() has been called on that input on focus:
-        https://bugzilla.mozilla.org/show_bug.cgi?id=509684
-        So, I'm seeing of the event is a focus event, if so seeing what the active
-        element is. If its an input, then blurring the input to then re-focus it after
-        the event.stopPropagation().
-      */
+       * FireFox has a bug going back to 2009 that affects the cursor showing in an input
+       * if event.stopPropagation() has been called on that input on focus:
+       * https://bugzilla.mozilla.org/show_bug.cgi?id=509684
+       * So, I'm seeing of the event is a focus event, if so seeing what the active
+       * element is. If its an input, then blurring the input to then re-focus it after
+       * the event.stopPropagation().
+       */
       let activeElement = null;
       if (event.type === 'focus' && document.activeElement.tagName === 'INPUT') {
         activeElement = document.activeElement;
@@ -168,7 +168,7 @@ const dropdown = function(container) {
     document.removeEventListener('mediaQueryUpdated', _mediaQueryUpdated);
     _destroy();
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

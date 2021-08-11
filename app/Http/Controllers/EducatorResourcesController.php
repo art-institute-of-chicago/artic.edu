@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Repositories\EducatorResourceRepository;
-use App\Models\EducatorResource;
 use App\Models\ResourceCategory;
 
 class EducatorResourcesController extends BaseScopedController

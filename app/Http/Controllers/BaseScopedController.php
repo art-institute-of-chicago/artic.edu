@@ -12,17 +12,19 @@ use Illuminate\Http\Request;
  * The controller apply the scopes to the base chain checking that the attribute is present at the
  * url, and sends the attribute value as a parameter to the scope call.
  * This way we create an easy way of chaining scopes dynamically.
- *
  */
-
 class BaseScopedController extends FrontController
 {
     protected $entity;
 
-    // Collection resultset memoization
+    /**
+     * Collection resultset memoization
+     */
     protected $collection;
 
-    // Default elements per page
+    /**
+     * Default elements per page
+     */
     const PER_PAGE = 20;
 
     /**
@@ -35,7 +37,6 @@ class BaseScopedController extends FrontController
      * Scopes should better be defined on each controller but given we use this
      * on 3 places (general search, collections and artwork prev/next functionality)
      * better to place them here to have a single control point
-     *
      */
     protected $scopes = [
         'q'            => 'search',
@@ -65,7 +66,6 @@ class BaseScopedController extends FrontController
     /**
      * Returns the processed collection.
      * Function added to allow redefinition and add custom scopes at the end
-     *
      */
     protected function collection()
     {
@@ -84,7 +84,6 @@ class BaseScopedController extends FrontController
      *
      * Example:
      * $entity = \App\Models\Post::class;
-     *
      */
     protected function beginOfAssociationChain()
     {
@@ -96,7 +95,6 @@ class BaseScopedController extends FrontController
 
     /**
      * Returns the chain with all scopes applied to it
-     *
      */
     protected function endOfAssociationChain()
     {
@@ -112,7 +110,6 @@ class BaseScopedController extends FrontController
      *
      * For example, on AIC is a custom Collection class that accepts scopes
      * with an underline API query builder.
-     *
      */
     protected function applyScopes($query)
     {
@@ -130,7 +127,6 @@ class BaseScopedController extends FrontController
     /**
      *
      * Returns a boolean indicating if any scope is present
-     *
      */
     protected function hasAnyScope()
     {
@@ -146,5 +142,4 @@ class BaseScopedController extends FrontController
 
         return;
     }
-
 }

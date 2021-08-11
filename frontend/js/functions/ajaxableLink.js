@@ -8,28 +8,28 @@ const ajaxableLink = function(link, event) {
   var el = link;
   var href = el.href;
 
-  // is this click from a link
+  // Is this click from a link
   if (link.tagName !== 'A') {
     return false;
   }
 
-  // check if the href is ajaxable
+  // Check if the href is ajaxable
   if (!ajaxableHref(href, event)) {
     return false;
   }
-  // don't fire if its got a no ajax attribute or a download attribute
+  // Don't fire if its got a no ajax attribute or a download attribute
   if (el.hasAttribute('data-no-ajax') || el.hasAttribute('download')) {
     return false;
   }
-  // don't fire for external links
+  // Don't fire for external links
   if (el.target && el.target !== '_blank') {
     return false;
   }
-  // don't fire if probably trying to open in a new window
+  // Don't fire if probably trying to open in a new window
   if (event.which > 1 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
     return false;
   }
-  // passed?
+  // Passed?
   return { href: href, el: el };
 };
 

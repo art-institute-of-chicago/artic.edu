@@ -21,7 +21,6 @@ class CreateFamiliesTables extends Migration
             $table->foreign("page_id")->references('id')->on('pages')->onDelete('CASCADE');
         });
 
-        // remove this if you're not going to use revisions
         Schema::create('family_revisions', function (Blueprint $table) {
             createDefaultRevisionsTableFields($table, 'family');
         });

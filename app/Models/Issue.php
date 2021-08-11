@@ -72,7 +72,9 @@ class Issue extends AbstractModel implements Sortable
         return $this->hasMany('App\Models\IssueArticle', 'issue_id');
     }
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'issue_slug';

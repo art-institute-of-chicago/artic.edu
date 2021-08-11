@@ -65,7 +65,7 @@ const stickySidebar = function(container){
 
   let currentState;
 
-  // null if absent, empty string if present
+  // Null if absent, empty string if present
   let isLogoAnimated = container.getAttribute('data-sticky-animated-logo') !== null;
   let grabTop;
 
@@ -137,7 +137,7 @@ const stickySidebar = function(container){
 
     overlayActive = true;
 
-    // allows us to catch hashchange for citation button
+    // Allows us to catch hashchange for citation button
     history.replaceState(null, null, ' ');
 
     if (mediaQuery('medium-')) {
@@ -226,7 +226,7 @@ const stickySidebar = function(container){
 
     window.removeEventListener('hashchange', _hideSidebar);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

@@ -33,7 +33,7 @@ trait HandleApiBlocks
                             $data['thumbnail'] = $relatedElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
                         }
 
-                        // TODO: Refactor me!
+                        // WEB-2271: Refactor me!
                         if (((
                             !isset($data['thumbnail'])
                         ) || (

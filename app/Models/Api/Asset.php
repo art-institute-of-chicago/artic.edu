@@ -12,7 +12,7 @@ class Asset extends BaseApiModel
     // We are modifying imageFront to use it when we have a youtube video
     // So let's change the name
     use HasMediasApi {
-        imageFront as public imageLake;
+        imageFront as public imageDams;
     }
 
     protected $endpoints = [
@@ -22,7 +22,9 @@ class Asset extends BaseApiModel
         'generalSearch' => '/api/v1/search'
     ];
 
-    // Elements created to ease integration with blade views when converting to an array
+    /**
+     * Elements created to ease integration with blade views when converting to an array
+     */
     protected $appends = ['iconAfter', 'label', 'href', 'embed', 'media', 'downloadable', 'extension'];
 
     public $mediasParams = [
@@ -35,7 +37,7 @@ class Asset extends BaseApiModel
 
     public function getMediaAttribute()
     {
-        return $this->imageLake('main', 'default');
+        return $this->imageDams('main', 'default');
     }
 
     public function getExtensionAttribute()
@@ -67,13 +69,13 @@ class Asset extends BaseApiModel
 
     public function getContentAttribute($content)
     {
-        if (!config('lakeview.cdn_enabled')) {
+        if (!config('dams.cdn_enabled')) {
             return $content;
         }
 
-        // TODO: Consider removing `/iiif` suffix from `config/lakeview.php` values?
-        $assets_url = str_replace('/iiif', '/assets', config('lakeview.base_url'));
-        $assets_cdn_url = str_replace('/iiif', '/assets', config('lakeview.base_url_cdn'));
+        // WEB-2263: Consider removing `/iiif` suffix from `config/dams.php` values?
+        $assets_url = str_replace('/iiif', '/assets', config('dams.base_url'));
+        $assets_cdn_url = str_replace('/iiif', '/assets', config('dams.base_url_cdn'));
 
         if (Str::startsWith($content, $assets_url)) {
             return str_replace($assets_url, $assets_cdn_url, $content);
@@ -87,7 +89,6 @@ class Asset extends BaseApiModel
         switch ($this->api_model)
         {
             case 'videos':
-                // TODO: look into `triggerMediaModal` behavior
                 return '//' . config('app.url') . '/videos/' . $this->id;
             case 'sections':
             case 'sites':

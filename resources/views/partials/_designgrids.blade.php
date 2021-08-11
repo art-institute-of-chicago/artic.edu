@@ -37,7 +37,7 @@
 
 <script>
   var imgBaseline = function() {
-    // get baseline - assumes 5px baseline
+    // Get baseline - assumes 5px baseline
     var el;
     var active;
 

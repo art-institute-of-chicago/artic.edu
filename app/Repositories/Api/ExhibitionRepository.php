@@ -3,7 +3,6 @@
 namespace App\Repositories\Api;
 
 use App\Models\Api\Exhibition;
-use App\Repositories\Api\BaseApiRepository;
 use App\Repositories\EventRepository;
 
 use App\Models\Api\Search;
@@ -17,7 +16,9 @@ class ExhibitionRepository extends BaseApiRepository
         $this->model = $model;
     }
 
-    // Upcoming exhibitions
+    /**
+     * Upcoming exhibitions
+     */
     public function upcoming()
     {
         return $this->model->query()->upcoming()->getSearch();
@@ -28,7 +29,9 @@ class ExhibitionRepository extends BaseApiRepository
         return $this->model->query()->history($year)->search($q)->getPaginatedModel($perPage, \App\Models\Api\Exhibition::SEARCH_FIELDS);;
     }
 
-    // Show data, moved here to allow preview
+    /**
+     * Show data, moved here to allow preview
+     */
     public function getShowData($item, $slug = null, $previewPage = null)
     {
         $collection = app(EventRepository::class)->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE);
@@ -45,7 +48,7 @@ class ExhibitionRepository extends BaseApiRepository
     {
         $search  = Search::query()->search($string)->resources(['exhibitions']);
 
-        // TODO: `upcoming` and `past` might be dead code. Remove..?
+        // WEB-2264: `upcoming` and `past` might be dead code. Remove?
         if ($time == 'upcoming') {
             $search->exhibitionUpcoming();
         } elseif ($time == 'past') {

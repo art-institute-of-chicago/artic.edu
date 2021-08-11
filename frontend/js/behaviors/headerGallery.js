@@ -134,26 +134,6 @@ const headerGallery = function(container) {
     }
   }
 
-  // function _nextClick(event) {
-  //   event.preventDefault();
-  //   activeIndex = (activeIndex < nodes.thumbButtons.length - 1) ? activeIndex + 1 : 0;
-  //   _update();
-  //   triggerCustomEvent(document, 'gtm:push', {
-  //     'event': 'artwork-alternate-image',
-  //     'eventCategory': 'in-page',
-  //   );
-  // }
-
-  // function _previousClick(event) {
-  //   event.preventDefault();
-  //   activeIndex = (activeIndex === 0) ? nodes.thumbButtons.length - 1 : activeIndex - 1;
-  //   _update();
-  //   triggerCustomEvent(document, 'gtm:push', {
-  //     'event': 'artwork-alternate-image',
-  //     'eventCategory': 'in-page',
-  //   );
-  // }
-
   function _downloadClick(event) {
     let a = document.createElement('a');
     document.body.appendChild(a);
@@ -205,35 +185,21 @@ const headerGallery = function(container) {
         node.addEventListener('click', _fullscreen, false);
       });
     }
-    //
-    // if (nodes.next && nodes.previous){
-    //   forEach(nodes.next, function(index, node) {
-    //     node.addEventListener('click', _nextClick, false);
-    //   });
-    //   forEach(nodes.previous, function(index, node) {
-    //     node.addEventListener('click', _previousClick, false);
-    //   });
-    // }
-    //
     document.addEventListener('resized', _resized, false);
     _update(true);
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     nodes.thumbs.removeEventListener('click', _thumbClick);
     nodes.download.removeEventListener('click', _downloadClick);
     nodes.fullscreen.removeEventListener('click', _fullscreen);
-    //
-    // if (nodes.next && nodes.previous){
-    //   nodes.next.removeEventListener('click', _nextClick);
-    //   nodes.previous.removeEventListener('click', _previousClick);
-    // }
+
     document.removeEventListener('resized', _resized);
-    //
+
     nodes = {};
     data = {};
-    // remove properties of this behavior
+    // Remove properties of this behavior
     purgeProperties(this);
   };
 

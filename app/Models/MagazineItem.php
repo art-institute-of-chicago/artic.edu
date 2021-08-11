@@ -15,7 +15,9 @@ class MagazineItem extends Model
         'url',
     ];
 
-    // Aside from custom, these should also be defined in config('twill.block_editor.browser_route_prefixes')
+    /**
+     * Aside from custom, these should also be defined in config('twill.block_editor.browser_route_prefixes')
+     */
     const ITEM_TYPE_CUSTOM = 'custom';
     const ITEM_TYPE_ARTICLE = 'articles';
     const ITEM_TYPE_SELECTION = 'selections';

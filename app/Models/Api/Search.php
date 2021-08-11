@@ -15,8 +15,10 @@ class Search extends BaseApiModel
         'msearch' => '/api/v1/msearch',
     ];
 
-    // This defines how to map a returned type to one of our API models
-    // IF IT'S NOT HERE IT WILL BE REMOVED FROM THE RESULTS
+    /**
+     * This defines how to map a returned type to one of our API models
+     * IF IT'S NOT HERE IT WILL BE REMOVED FROM THE RESULTS
+     */
     public $typeMap = [
         'artworks'    => 'App\Models\Api\Artwork',
         'exhibitions' => 'App\Models\Api\Exhibition',
@@ -34,10 +36,12 @@ class Search extends BaseApiModel
         'selections'          => 'App\Models\Selection',
     ];
 
-    // Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).
-    // On that builder, we will overload the search function to allow
-    // searching for multiple types and segregate them when returning a call
-    // Or simply return all API models shuffled in the correct order (see code)
+    /**
+     * Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).
+     * On that builder, we will overload the search function to allow
+     * searching for multiple types and segregate them when returning a call
+     * Or simply return all API models shuffled in the correct order (see code)
+     */
     public function newApiModelBuilder($query)
     {
         return new ApiModelBuilderSearch($query);
@@ -55,7 +59,6 @@ class Search extends BaseApiModel
         ];
 
         // To search within a facet build a string with the form: ".*[{FirstUC}{FirstLC}]{Rest}.*"
-        // This is defined by AIC.
         if ($queryFilter && !empty($queryFilter)) {
             $firstLetter = substr($queryFilter, 0, 1);
             $rest = substr($queryFilter, 1);
@@ -447,27 +450,6 @@ class Search extends BaseApiModel
             ]
         ];
 
-        // An alternative to `sort` that doesn't override relevancy:
-        // $query = $query->rawQuery([
-        //     'functions' => [
-        //         'artworks' => [
-        //             [
-        //                 'filter' => [
-        //                     'exists' => [
-        //                         'field' => 'color.percentage',
-        //                     ],
-        //                 ],
-        //                 'field_value_factor' => [
-        //                     'field' => 'color.percentage',
-        //                     'modifier' => 'log1p',
-        //                     'factor' => 1.5,
-        //                     'missing' => 0,
-        //                 ],
-        //             ],
-        //         ],
-        //     ],
-        // ]);
-
         // The `sort` option was preferred by users during testing:
         $query = $query->rawQuery([
             'sort' => [
@@ -504,12 +486,6 @@ class Search extends BaseApiModel
             $date_end = incrementAfter($item->date_start);
             $dateQuery = $this->dateQuery($date_start, $date_end, 1);
             array_push($shoulds, $dateQuery);
-
-            // if ($item->color ?? false) {
-            //     $colorQuery = $this->colorQuery($item->color);
-            //     $colorQuery['bool']['boost'] = 1;
-            //     array_push( $shoulds, $colorQuery );
-            // }
         }
         elseif ($class == \App\Models\Api\Artist::class) {
             $shoulds = [
@@ -521,7 +497,7 @@ class Search extends BaseApiModel
             $dateQuery = $this->dateQuery($item->birth_date, $item->death_date);
             array_push($shoulds, $dateQuery);
 
-            // all tags start with 50
+            // All tags start with 50
         }
 
         // Filter out empty array queries
@@ -628,7 +604,6 @@ class Search extends BaseApiModel
 
     protected function transformYear($year) {
         // Year could come with BCE, CE, or 'Present'
-
         if (Str::contains($year, 'BCE')) {
             $year = - (integer) $year;
         } else {
@@ -680,15 +655,14 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    /*
-        SortBy works differently depending on the field.
-        That's why we differentiate parameters and create special cases.
-
-        Relevance: Do not add anything, default sorting is by relevance
-        Date Display: The correct parameter is date_display (with no .keyword added)
-        Default: Parameter name with .keywork added.
-
-    */
+    /**
+     * SortBy works differently depending on the field.
+     * That's why we differentiate parameters and create special cases.
+     *
+     * Relevance: Do not add anything, default sorting is by relevance
+     * Date Display: The correct parameter is date_display (with no .keyword added)
+     * Default: Parameter name with .keywork added.
+     */
     public function scopeSortBy($query, $field)
     {
         switch ($field) {
@@ -728,7 +702,7 @@ class Search extends BaseApiModel
         return $query->rawQuery($params);
     }
 
-    // TODO: Dead code? Remove..?
+    // WEB-2264: Dead code? Remove..?
     public function scopeExhibitionUpcoming($query)
     {
         $params = [
@@ -748,7 +722,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    // TODO: Dead code? Remove..?
+    // WEB-2264: Dead code? Remove..?
     public function scopeExhibitionHistory($query)
     {
         $params = [

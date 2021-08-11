@@ -3,13 +3,11 @@
 namespace App\Observers;
 
 use A17\Twill\Models\File;
-use App\Models\SeamlessImage;
 use DB;
 use Exception;
 use Illuminate\Http\File as HttpFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
-use Log;
 use ZipArchive;
 
 class FileObserver

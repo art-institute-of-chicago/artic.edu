@@ -12,7 +12,6 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasUnlisted;
-use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
@@ -139,7 +138,9 @@ class Article extends AbstractModel implements Feedable
         return $this->title;
     }
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'id_slug';
@@ -213,7 +214,6 @@ class Article extends AbstractModel implements Feedable
         return FeedItem::create([
            'id' => $this->id,
            'title' => $this->title,
-           'date' => $this->present()->date, // Unused?
            'summary' => $this->heading ?? $this->list_description ?? 'Article',
            'author' => 'AIC',
            'updated' => $this->date ?? $this->updated_at, // WEB-1278: Display date

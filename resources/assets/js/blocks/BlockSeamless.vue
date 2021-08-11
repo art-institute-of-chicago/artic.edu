@@ -336,8 +336,6 @@
         display: inline-block;
         width: 100%;
         padding-top: 75%;
-        // width: 1366px;
-        // height: 1024px;
         background-color: gainsboro;
         overflow: hidden;
         border: 1px solid gainsboro;

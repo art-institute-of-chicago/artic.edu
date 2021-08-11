@@ -1,18 +1,17 @@
 <?php
-
-// This has been moved from the model and should be completely refactored
-//
-// Blocks building are specially overcomplicated.
-
 namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
-use App\Helpers\DatesHelpers;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use LakeviewImageService;
+use DamsImageService;
 use DOMDocument;
 
+/**
+ * This has been moved from the model and should be completely refactored
+ *
+ * Blocks building are specially overcomplicated.
+ */
 class ArtworkPresenter extends BasePresenter
 {
     protected function augmented()
@@ -215,7 +214,7 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->artist_pivots != null && count($this->entity->artist_pivots) > 0) {
             $artistPivots = collect($this->entity->artist_pivots)->filter(function($item) {
-                // TODO: Ensure that all relationships point to existing items [WEB-118, WEB-1026]
+                // WEB-118, WEB-1026: Ensure that all relationships point to existing items
                 return isset($item->artist_id) && isset($item->artist_title);
             });
 
@@ -311,7 +310,7 @@ class ArtworkPresenter extends BasePresenter
             }
         }
 
-        // TODO: Abstract this into a proper method, somewhere appropriate
+        // WEB-2267: Abstract this into a proper method, somewhere appropriate
         $generateDateRangeHref = function( $date_start, $date_end ) {
             return route('collection', [
                 'date-start' => abs($date_start) . ( $date_start < 0 ? 'BCE' : '' ),
@@ -519,8 +518,8 @@ class ArtworkPresenter extends BasePresenter
         ];
 
         if ($this->entity->image_id) {
-            $itemprops['thumbnailUrl'] = LakeviewImageService::getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
-            $itemprops['image'] = LakeviewImageService::getBaseUrl() . '2/' . $this->entity->image_id;
+            $itemprops['thumbnailUrl'] = DamsImageService::getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
+            $itemprops['image'] = DamsImageService::getBaseUrl() . '2/' . $this->entity->image_id;
         }
 
         return $itemprops;

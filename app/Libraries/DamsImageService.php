@@ -6,7 +6,7 @@ use A17\Twill\Services\MediaLibrary\ImageServiceDefaults;
 use A17\Twill\Services\MediaLibrary\ImageServiceInterface;
 use Cache;
 
-class LakeviewImageService implements ImageServiceInterface
+class DamsImageService implements ImageServiceInterface
 {
     use ImageServiceDefaults;
 
@@ -17,8 +17,8 @@ class LakeviewImageService implements ImageServiceInterface
 
     public function __construct()
     {
-        $this->base_url = config('lakeview.cdn_enabled') ? config('lakeview.base_url_cdn') : config('lakeview.base_url');
-        $this->version = config('lakeview.version');
+        $this->base_url = config('dams.cdn_enabled') ? config('dams.base_url_cdn') : config('dams.base_url');
+        $this->version = config('dams.version');
     }
 
     public function getBaseUrl()
@@ -44,7 +44,7 @@ class LakeviewImageService implements ImageServiceInterface
         $srcset = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height]) . " 300w";
 
         $image = array(
-            "type" => 'lakeview',
+            "type" => 'dams',
             "src" => $src,
             "srcset" => $srcset,
             "width" => $preLoadedInfo['width'],
@@ -155,7 +155,7 @@ class LakeviewImageService implements ImageServiceInterface
 
     protected function fetchImageInfo($id)
     {
-        $json = Cache::remember('lakeview-image-' . $id . $this->cacheVersion, 24 * 60 * 60, function () use ($id) {
+        $json = Cache::remember('dams-image-' . $id . $this->cacheVersion, 24 * 60 * 60, function () use ($id) {
             try {
                 // WEB-1883: Use aggresive curl timeouts to prevent gateway timeout
                 $url = $this->base_url . $this->version . '/' . $id . '/info.json';

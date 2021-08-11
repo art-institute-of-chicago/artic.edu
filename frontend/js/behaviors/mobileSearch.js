@@ -11,7 +11,7 @@ const mobileSearch = function(container) {
     });
   }
 
-  // handle form submit
+  // Handle form submit
   function _handleSubmit(event){
     event.preventDefault();
     let terms = _fixedEncodeURIComponent(textInput.value);
@@ -30,7 +30,7 @@ const mobileSearch = function(container) {
 
   this.destroy = function() {
     form.removeEventListener('submit', _handleSubmit);
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

@@ -2,8 +2,6 @@
 
 namespace App\Libraries\Api\Builders\Grammar;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use App\Libraries\Api\Builders\ApiQueryBuilder;
 
 class AicGrammar
@@ -78,9 +76,6 @@ class AicGrammar
     protected function compileWheres($query)
     {
         return [];
-
-        // TODO: Define how to filter by field values (not in api for now without search)
-        // return ['wheres' => ''];
     }
 
     /**
@@ -154,7 +149,7 @@ class AicGrammar
     {
         return [
             'limit' => $limit,
-            'size'  => $limit   // Elasticsearch search parameter for limiting
+            'size'  => $limit // Elasticsearch search parameter for limiting
         ];
     }
 

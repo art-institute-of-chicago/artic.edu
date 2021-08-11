@@ -32,4 +32,4 @@ yarn-error.log
 /public/mix-manifest.json
 /public/sitemap.xml
 studio.json
-
+.php_cs.cache

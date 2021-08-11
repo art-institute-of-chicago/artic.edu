@@ -8,19 +8,19 @@ class LocationController extends ModuleController
 {
     protected $moduleName = 'locations';
 
-    /*
+    /**
      * Relations to eager load for the index view
      */
     protected $indexWith = [];
 
-    /*
+    /**
      * Relations to eager load for the form view
      */
     protected $formWith = [];
 
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
+    /**
+     * Filters mapping ('filterName' => 'filterColumn')
+     * In the indexData function, name your lists with the filter name + List (filterNameList)
      */
     protected $filters = [];
 

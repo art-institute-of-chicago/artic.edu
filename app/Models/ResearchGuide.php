@@ -65,7 +65,9 @@ class ResearchGuide extends AbstractModel
         return $query->whereIn('id', $ids);
     }
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'id_slug';

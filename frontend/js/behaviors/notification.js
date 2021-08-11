@@ -4,7 +4,7 @@ const notification = function(container) {
 
   let closers = container.querySelectorAll('[data-notification-closer]');
   let cookieName = 'has_seen_notification';
-  let cookieValue = container.getAttribute('data-notification-hash'); // null if absent
+  let cookieValue = container.getAttribute('data-notification-hash'); // Null if absent
 
   function _afterAnimation() {
     this.parentNode.removeChild(this);
@@ -50,12 +50,12 @@ const notification = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     forEach(closers, function(index, closer) {
       closer.removeEventListener('click', _handleClicks);
     });
     closers = undefined;
-    // remove properties of this behavior
+    // Remove properties of this behavior
     purgeProperties(this);
   };
 

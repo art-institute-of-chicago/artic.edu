@@ -57,7 +57,7 @@ class ArtworkService extends BaseService
 
         // Build Color Tags
         // Still a work in progress, so don't show in production
-        if (!app()->environment('production')) {
+        if (config('aic.show_artwork_color_tag')) {
             if ($this->resource->color) {
                 $tags['color'] = collect([$this->resource->color->h .'-' .$this->resource->color->s .'-' .$this->resource->color->l => 'Color']);
             }
@@ -71,12 +71,13 @@ class ArtworkService extends BaseService
         return $tags;
     }
 
+    /**
+     * All tags for artworks are built using the following data:
+     * artist_title, department_title, classification_titles,
+     * style_titles, subject_titles and material_titles
+     */
     public function allTags($parameters = [])
     {
-        // All tags for artworks are built using the following data:
-        // artist_title, department_title, classification_titles,
-        // style_titles, subject_titles and material_titles
-
         $parameters = collect($parameters);
 
         // In rare cases, 'All Tags' will be the only tab present

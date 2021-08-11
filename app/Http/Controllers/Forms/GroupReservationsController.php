@@ -10,7 +10,6 @@ use App\Models\Form\GroupReservation;
 
 use App\Mail\FormGroupReservation;
 
-use App\Presenters\StaticObjectPresenter;
 
 class GroupReservationsController extends FormController
 {

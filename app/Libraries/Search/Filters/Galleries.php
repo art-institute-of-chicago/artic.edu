@@ -7,8 +7,10 @@ class Galleries
     protected $parameter  = 'gallery_ids';
     protected $entity     = \App\Models\Api\Gallery::class;
 
-    // Basic functionality to get currently active hidden filters to build
-    // buttons to remove them when searching.
+    /**
+     * Basic functionality to get currently active hidden filters to build
+     * buttons to remove them when searching.
+     */
     public function generate()
     {
         $list  = [];

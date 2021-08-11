@@ -137,15 +137,4 @@ class InteractiveFeatureExperiencesController extends FrontController
             'experience' => $experience
         ]);
     }
-
-    protected function test()
-    {
-        $articles = Article::published()
-            ->orderBy('date', 'desc')
-            ->paginate(4);
-        return view('site.experienceDetailTest', [
-            'contrastHeader' => true,
-            'furtherReading' => $articles,
-        ]);
-    }
 }

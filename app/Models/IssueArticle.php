@@ -98,7 +98,9 @@ class IssueArticle extends AbstractModel implements Sortable
         return $this->belongsTo('App\Models\Issue');
     }
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     */
     public function getRouteKeyName()
     {
         return 'issue_slug';

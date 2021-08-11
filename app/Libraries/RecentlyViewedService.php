@@ -2,7 +2,6 @@
 
 namespace App\Libraries;
 
-use Cache;
 use App\Models\Api\Search;
 use Illuminate\Support\Facades\Cookie;
 

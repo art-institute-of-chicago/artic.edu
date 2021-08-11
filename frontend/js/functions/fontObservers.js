@@ -2,51 +2,49 @@ import { cookieHandler, triggerCustomEvent } from '@area17/a17-helpers';
 import FontFaceOnload from '../libs/fontfaceonload';
 
 const fontObservers = function(fonts) {
-  // Doc: https://code.area17.com/mike/a17-js-helpers/wikis/A17-Helpers-fontObservers
-
   if ((typeof fonts).toLowerCase() !== 'object') {
     return false;
   }
 
-  // a counter
+  // A counter
   var counter = 0;
 
   var total = fonts.variants.length;
 
-  // cookie name
+  // Cookie name
   var cookieName = 'A17_fonts_cookie_'+fonts.name;
 
-  // check we have cookie of fonts already loaded or not
+  // Check we have cookie of fonts already loaded or not
   var cookie = cookieHandler.read(cookieName) || '';
 
-  // when a fonts is determined to be loaded
+  // When a fonts is determined to be loaded
   function loaded() {
-    // increment counter
+    // Increment counter
     counter++;
 
-    // if we reached the total
+    // If we reached the total
     if (counter >= total) {
-      // write cookie
+      // Write cookie
       cookieHandler.create(cookieName, total, 1);
 
       var klass = 's-'+fonts.name+'-loaded';
       var dE = document.documentElement;
       if (!dE.classList.contains(klass)) {
-        // add class
+        // Add class
         dE.classList.add(klass);
-        // trigger event
+        // Trigger event
         triggerCustomEvent(document, 'content:populated');
       }
     }
 
   }
 
-  // if cookie, show fonts (not first page load)
+  // If cookie, show fonts (not first page load)
   if (cookie && cookie === total.toString()) {
     counter = cookie;
     loaded();
   } else {
-    // go check on those fonts, using fontfaceonload https://github.com/zachleat/fontfaceonload
+    // Go check on those fonts, using fontfaceonload https://github.com/zachleat/fontfaceonload
     for (var i = 0; i < total; i++) {
       FontFaceOnload(fonts.variants[i].name, {
         success: loaded,

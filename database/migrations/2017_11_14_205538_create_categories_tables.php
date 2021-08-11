@@ -20,7 +20,6 @@ class CreateCategoriesTables extends Migration
             $table->string('name');
         });
 
-        // remove this if you're not going to use slugs
         Schema::create('category_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'category');
         });

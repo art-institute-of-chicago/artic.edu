@@ -10,7 +10,6 @@ use App\Models\Form\RyersonClassVisit;
 
 use App\Mail\FormRyersonClassVisit;
 
-use App\Presenters\StaticObjectPresenter;
 
 class RyersonClassVisitController extends FormController
 {

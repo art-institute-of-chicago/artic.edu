@@ -14,7 +14,7 @@
 }
 */
 
-// cap heights of the fonts - measure height of a capital H at 100px and then divide by 100
+// Cap heights of the fonts - measure height of a capital H at 100px and then divide by 100
 $cap-heights: (
   serif: 0.66,
   sans-serif: 0.568,
@@ -417,7 +417,6 @@ $f-subheading-3: generate-font-obj(
 @mixin f-subheading-3() {
   @include font-styles($f-subheading-3);
   font-feature-settings: 'lnum' on;
-  // color: $color__text--title;
 }
 
 %f-subheading-3,

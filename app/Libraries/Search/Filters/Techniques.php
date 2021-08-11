@@ -7,8 +7,10 @@ class Techniques
     protected $parameter  = 'technique_ids';
     protected $entity     = \App\Models\Api\CategoryTerm::class;
 
-    // Basic functionality to get currently active hidden filters to build
-    // buttons to remove them when searching.
+    /**
+     * Basic functionality to get currently active hidden filters to build
+     * buttons to remove them when searching.
+     */
     public function generate()
     {
         $list  = [];

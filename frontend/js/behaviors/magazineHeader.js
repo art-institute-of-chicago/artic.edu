@@ -167,7 +167,7 @@ const magazineHeader = function(container){
 
     playPauseBtn.removeEventListener('click', _clickButton);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

@@ -194,33 +194,12 @@ class ApiQueryBuilder {
             throw new \Exception("where function should be called with 1 level of nesting. No arrays.");
         }
 
-        // Here we will make some assumptions about the operator. If only 2 values are
-        // passed to the method, we will assume that the operator is an equals sign
-        // and keep going. Otherwise, we'll require the operator to be passed in.
-        // list($value, $operator) = $this->prepareValueAndOperator(
-        //     $value, $operator, func_num_args() == 2
-        // );
-
         // If the given operator is not found in the list of valid operators we will
         // assume that the developer is just short-cutting the '=' operators and
         // we will set the operators to '=' and set the values appropriately.
         if ($this->invalidOperator($operator)) {
             list($value, $operator) = [$operator, '='];
         }
-
-        // If the value is "null", we will just assume the developer wants to add a
-        // where null clause to the query. So, we will allow a short-cut here to
-        // that method for convenience so the developer doesn't have to check.
-        // if (is_null($value)) {
-        //     return $this->whereNull($column, $boolean, $operator !== '=');
-        // }
-
-        // If the column is making a JSON reference we'll check to see if the value
-        // is a boolean. If it is, we'll add the raw boolean string as an actual
-        // value to the query to ensure this is properly handled by the query.
-        // if (Str::contains($column, '->') && is_bool($value)) {
-        //     $value = new Expression($value ? 'true' : 'false');
-        // }
 
         // Now that we are working with just a simple query we can put the elements
         // in our array and add the query binding to our array of bindings that
@@ -230,10 +209,6 @@ class ApiQueryBuilder {
         $this->wheres[] = compact(
             'type', 'column', 'operator', 'value', 'boolean'
         );
-
-        // if (! $value instanceof Expression) {
-        //     $this->addBinding($value, 'where');
-        // }
 
         return $this;
     }
@@ -331,10 +306,6 @@ class ApiQueryBuilder {
             $currentPage,
             $options
         );
-
-        // return Container::getInstance()->makeWith(LengthAwarePaginator::class, compact(
-        //     'items', 'total', 'perPage', 'currentPage', 'options'
-        // ));
     }
 
     /**

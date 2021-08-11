@@ -219,7 +219,6 @@ return [
         App\Providers\VendorServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\InvalidationServiceProvider::class,
@@ -281,7 +280,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Httpauth' => Intervention\Httpauth\Facades\Httpauth::class,
 
-        'LakeviewImageService' => App\Facades\LakeviewImageServiceFacade::class,
+        'DamsImageService' => App\Facades\DamsImageServiceFacade::class,
         'EmbedConverter' => App\Facades\EmbedConverterFacade::class,
         'SmartyPants' => App\Libraries\SmartyPants::class,
     ],

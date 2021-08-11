@@ -3,10 +3,8 @@
 namespace App\Libraries;
 
 use App\Models\ExactTargetList;
-use digitaladditive\ExactTargetLaravel\ExactTargetLaravelApi;
 use FuelSdk\ET_Client;
 use FuelSdk\ET_DataExtension_Row;
-use FuelSdk\ET_DataExtension;
 use FuelSdk\ET_Subscriber;
 
 class ExactTargetService

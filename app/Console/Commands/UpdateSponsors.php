@@ -75,7 +75,7 @@ class UpdateSponsors extends Command
 
     private function getSponsorContent( $content )
     {
-        // Remove br tags
+        // Remove <br> tags
         $content = preg_replace( '/<br *\/*>/', '', $content );
 
         // Split by \n\n, trim, and wrap in <p>

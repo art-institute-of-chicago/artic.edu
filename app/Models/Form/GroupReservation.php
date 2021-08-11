@@ -2,7 +2,6 @@
 
 namespace App\Models\Form;
 
-use Carbon\Carbon;
 
 class GroupReservation extends FormModel
 {

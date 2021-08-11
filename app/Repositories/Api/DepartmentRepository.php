@@ -5,7 +5,6 @@ namespace App\Repositories\Api;
 use App\Models\Api\Search;
 use App\Models\Api\Department;
 use App\Http\Controllers\DepartmentController;
-use App\Repositories\Api\BaseApiRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Carbon\Carbon;
 
@@ -31,7 +30,7 @@ class DepartmentRepository extends BaseApiRepository
         $apiPerPage = $this->maxArtworks;
 
         if ($item->hasAugmentedModel()) {
-            // TODO: Can we can get away with a single `mquery` here?
+            // WEB-2270: Can we can get away with a single `mquery` here?
             $customArtworks = $this->getCustomRelatedArtworks($item);
 
             // We always need to query API, if only to retrieve the total for UI
@@ -114,7 +113,7 @@ class DepartmentRepository extends BaseApiRepository
                 'moduleName' => 'experiences',
             ],
         ], [
-            // See $typeUsesApi in HasApiRelations class
+            // See HasApiRelations::$typeUsesApi
             'exhibitions' => true,
             'articles' => false,
             'digitalPublications' => false,

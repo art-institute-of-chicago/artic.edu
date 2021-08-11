@@ -84,7 +84,9 @@ class DigitalPublication extends AbstractModel
         ],
     ];
 
-    // Generates the id-slug type of URL
+    /**
+     * Generates the id-slug type of URL
+     * */
     public function getRouteKeyName()
     {
         return 'id_slug';
@@ -110,9 +112,12 @@ class DigitalPublication extends AbstractModel
         return route('admin.collection.articles_publications.digitalPublications.edit', $this->id);
     }
 
+    /**
+     * For pinboard and listings
+     */
     public function getSubtypeAttribute()
     {
-        return 'Digital Publication'; // for pinboard and listings
+        return 'Digital Publication';
     }
 
     public function scopeIds($query, $ids = [])

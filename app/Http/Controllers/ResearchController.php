@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 use App\Models\Page;
 
@@ -20,7 +19,7 @@ class ResearchController extends FrontController
 
         $featuredPages = $page->researchResourcesFeaturePages;
 
-        // TODO: Building links should be moved away from the controller to a presenter.
+        // WEB-2255: Building links should be moved away from the controller to a presenter.
         $features = [];
         foreach($featuredPages as $item) {
             $links = [];

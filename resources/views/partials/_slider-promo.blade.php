@@ -1,14 +1,8 @@
-{{--
-    Meant to be used inside <script type="text/template" class="g-slider--promo--template" data-geotarget="{{ $roadblock['geotarget'] }}"  data-expires="{{ $roadblock['expiry_period'] ?? 86400 }}"/>
-    Adjust $roadblock['geotarget'] from $roadblock to whatever you need.
-    Copy all attributes from the top-level div here into the actual promo modal container.
---}}
+{{-- Meant to be used inside <script type="text/template" class="g-slider--promo--template" data-geotarget="{{ $roadblock['geotarget'] }}"  data-expires="{{ $roadblock['expiry_period'] ?? 86400 }}"/>
+  -- Adjust $roadblock['geotarget'] from $roadblock to whatever you need.
+  __ Copy all attributes from the top-level div here into the actual promo modal container.
+  --}}
 <div class="g-slider--promo__variation--{{ $modal['variation_class'] }}">
-    {{--
-        <div class="g-slider__msg f-buttons">
-            <div class="g-slider__msg__content"></div>
-        </div>
-    --}}
     <div class="g-slider__content">
         <div class="g-slider__main">
             <h3 class="g-slider__title f-module-title-2">{{ $modal['title'] }}</h3>

@@ -1174,7 +1174,7 @@
 
 		var div = document.createElement("div");
 
-		// basic styles to fit into the layer size and allow scrolling:
+		// Basic styles to fit into the layer size and allow scrolling:
 		div.style.width = "100%";
 		div.style.height = "100%";
 		div.style.boxSizing = "border-box";
@@ -1191,13 +1191,13 @@
 		function stopPropagation(e){ e.stopPropagation(); }
 		function preventDefault(e){ e.preventDefault(); }
 
-		// enable browsed-based mouse-wheel and touch-scrolling support:
+		// Enable browsed-based mouse-wheel and touch-scrolling support:
 		div.addEventListener("wheel", stopPropagation, true);
 		div.addEventListener("mousewheel", stopPropagation, true);
 		div.addEventListener("DOMMouseScroll", stopPropagation, true);
 		div.addEventListener("touchstart", function(event){
 			if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){
-				/* avoid the iOS 'overscrolling' for fullpage viewers */
+				/* Avoid the iOS 'overscrolling' for fullpage viewers */
 				var bs = document.body.parentNode.style;
 				bs.position="fixed";
 				bs.top=0; bs.left=0; bs.right=0; bs.bottom=0;
@@ -1207,10 +1207,10 @@
 		div.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
 		div.addEventListener("gesturestart", preventDefault, true);
 
-		// add the html code:
+		// Add the html code:
 		div.innerHTML = args[1];
 
-		// add the div to the layer element:
+		// Add the div to the layer element:
 		caller.sprite.appendChild(div);
 	]]></action>
 

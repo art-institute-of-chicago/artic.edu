@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Repositories\SelectionRepository;
-use App\Models\Selection;
 use App\Libraries\ExploreFurther\SelectionService as ExploreFurther;
 
-use Illuminate\Support\Str;
 
 class SelectionsController extends FrontController
 {

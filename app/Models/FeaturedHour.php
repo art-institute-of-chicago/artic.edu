@@ -20,7 +20,9 @@ class FeaturedHour extends AbstractModel
         'copy',
     ];
 
-    // those fields get auto set to false if not submited
+    /**
+     * Those fields get auto set to false if not submitted
+     */
     public $checkboxes = ['published'];
 
     public function page()

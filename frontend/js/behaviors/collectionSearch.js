@@ -51,12 +51,12 @@ const collectionSearch = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     document.removeEventListener('collectionSearch:open', _showSearch);
     document.removeEventListener('collectionSearch:close', _hideSearch);
     document.removeEventListener('mediaQueryUpdated',_mediaQueryUpdated);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

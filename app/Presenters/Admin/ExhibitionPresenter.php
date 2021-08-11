@@ -15,9 +15,11 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
-    // Passed to _m-article-header--* in exhibitionDetail.blade.php
-    // Dead code? Template calls ->format on the string returned here
-    // Used in App\Http\Controllers\Admin\ExhibitionController
+    /**
+     * Passed to _m-article-header--* in exhibitionDetail.blade.php
+     * Dead code? Template calls ->format on the string returned here
+     * @see Used in App\Http\Controllers\Admin\ExhibitionController
+     */
     public function date()
     {
         $date = "";
@@ -65,18 +67,22 @@ class ExhibitionPresenter extends BasePresenter
         return $this->entity->isOngoing ? 'Ongoing' : 'Exhibition';
     }
 
-    // Used in _m-listing----exhibition-history-row
+    /**
+     * Used in _m-listing----exhibition-history-row
+     */
     public function formattedDateCanonical()
     {
         return view('components.organisms._o-public-dates' , [
             'formattedDate' => $this->date_display_override,
-            'dateStart' => $this->dateStart, // see getter
-            'dateEnd' => $this->dateEnd, // see getter
+            'dateStart' => $this->dateStart, // See getter
+            'dateEnd' => $this->dateEnd, // See getter
             'date' => $this->date,
         ]);
     }
 
-    // Used in member magazine
+    /**
+     * Used in member magazine
+     */
     public function formattedDate()
     {
         return view('components.organisms._o-public-dates' , [
@@ -84,7 +90,7 @@ class ExhibitionPresenter extends BasePresenter
             'dateStart' => $this->startAt,
             'dateEnd' => $this->endAt,
             'date' => $this->date,
-            'font' => '', // defaults to f-secondary
+            'font' => '', // Defaults to f-secondary
         ]);
     }
 

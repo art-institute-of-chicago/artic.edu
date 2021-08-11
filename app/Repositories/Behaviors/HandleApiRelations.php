@@ -12,9 +12,7 @@ trait HandleApiRelations
      * The same as the normal ordered update with the difference that this one adds a relation to the pivot
      * and it creates new models per each new relation as we don't have both ends of the polymorphic relation
      * This is done this way so we can reuse the same functions and table for all API browsers.
-     *
      */
-
     public function updateBrowserApiRelated($object, $fields, $relationship, $positionAttribute = 'position')
     {
         $relatedElementsWithPosition = [];
@@ -43,9 +41,8 @@ trait HandleApiRelations
 
     public function updateMultiBrowserApiRelated($object, $fields, $relationship, $typeUsesApi)
     {
+        // WEB-2272: check if we dont leave some stale data in database by not deleting apiElements
         // Remove all associations
-        // TODO: check if we dont leave some stale data in database by not deleting apiElements
-
         // $object->apiElements()->detach();
 
         $relatedElementsWithPosition = [];

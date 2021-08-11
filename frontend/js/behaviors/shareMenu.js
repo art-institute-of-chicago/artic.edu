@@ -47,9 +47,9 @@ const shareMenu = function(container) {
     event.stopPropagation();
     let el = event.target;
     let networkClicked = event.target.getAttribute('data-shareMenu');
-    // blur link
+    // Blur link
     event.target.blur();
-    // do as asked
+    // Do as asked
     if (networkClicked === 'copy') {
       _copyLink();
     } else {
@@ -59,7 +59,7 @@ const shareMenu = function(container) {
         }
       });
     }
-    // if the link has some google tag manager props, tell GTM
+    // If the link has some google tag manager props, tell GTM
     let googleTagManagerObject = googleTagManagerDataFromLink(el);
     if (googleTagManagerObject) {
       triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
@@ -141,11 +141,11 @@ const shareMenu = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('shareMenu:opened', _populateLinks);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

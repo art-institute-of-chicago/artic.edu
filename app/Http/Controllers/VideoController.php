@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\VideoRepository;
-use App\Models\Page;
-use App\Models\Video;
-use Carbon\Carbon;
 
 class VideoController extends FrontController
 {
@@ -20,11 +17,6 @@ class VideoController extends FrontController
     public function show($id, $slug = null)
     {
         $item = $this->repository->published()->find((integer) $id);
-
-        // Temporary. Remove after redirects are in place!
-        if (empty($item)) {
-            $item = $this->repository->forSlug($id);
-        }
 
         if (!$item) {
             abort(404);

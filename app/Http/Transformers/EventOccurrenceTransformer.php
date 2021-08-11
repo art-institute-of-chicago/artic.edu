@@ -2,15 +2,12 @@
 
 namespace App\Http\Transformers;
 
-use App\Models\Collections\Exhibition;
 
 class EventOccurrenceTransformer extends ApiTransformer
 {
 
     public function transform($item)
     {
-        // return $item->toArray();
-
         return [
             'id' => $item->id,
             'title' => $item->title,
@@ -30,7 +27,11 @@ class EventOccurrenceTransformer extends ApiTransformer
         ];
     }
 
-    // This is actually broken in the /events API too!
+    /**
+     * This is actually broken in the /events API too!
+     *
+     * @see App\Http\Transformers\EventTransformer.php
+     */
     private function getEndAt($item)
     {
         if (!isset($item->date)) {
@@ -48,7 +49,7 @@ class EventOccurrenceTransformer extends ApiTransformer
         return null;
     }
 
-    // TODO: Transition to using Datum for outbound transformers!!!
+    // WEB-2258: Transition to using Datum for outbound transformers!!!
     private function getString($value)
     {
         if (!isset($value)) {

@@ -14,8 +14,6 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use Kalnoy\Nestedset\NodeTrait;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class GenericPage extends AbstractModel implements Sortable
 {
@@ -67,7 +65,9 @@ class GenericPage extends AbstractModel implements Sortable
         parent::__construct(...func_get_args());
     }
 
-    // fill this in if you use the HasMedias traits
+    /**
+     * Required by the HasMedias trait
+     */
     public $mediasParams = [
         'listing' => [
             'default' => [

@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use App\Repositories\PressReleaseRepository;
-use App\Models\PressRelease;
 
 class PressReleasesController extends BaseScopedController
 {

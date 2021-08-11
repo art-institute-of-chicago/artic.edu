@@ -32,8 +32,11 @@ if (!function_exists('secureRoute')) {
     }
 }
 
-// derived from moduleRoute
 if (!function_exists('moduleRouteExists')) {
+    /**
+     * Whether a module route exists
+     * @see moduleRoute
+     */
     function moduleRouteExists($moduleName, $prefix, $action)
     {
         $routeName = 'admin.' . ($prefix ? $prefix . '.' : '') . camel_case($moduleName) . '.' . $action;
@@ -55,4 +58,3 @@ if (!function_exists('lastUrlSegment')) {
         return $ret;
     }
 }
-

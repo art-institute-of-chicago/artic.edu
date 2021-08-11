@@ -1,5 +1,6 @@
-{{-- This file copied from vendor/area17/twill/views/partials/form/_checkbox.blade.php --}}
-{{-- To add a note display to checkboxes. --}}
+{{-- This file copied from vendor/area17/twill/views/partials/form/_checkbox.blade.php
+  -- To add a note display to checkboxes.
+  --}}
 @php
     $note = $note ?? false;
     $default = $default ?? false;

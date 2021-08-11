@@ -17,7 +17,7 @@ const linksBar = function(container) {
     let childWidthsTotal = 0;
     let tooWide = false;
     let marginLeft = 20;
-    // reset the lists
+    // Reset the lists
     container.classList.remove('s-overflowing');
     primaryLinksOverflow.classList.add('s-hidden');
     primaryLinks.classList.add('s-measuring');
@@ -29,8 +29,8 @@ const linksBar = function(container) {
     forEach(primaryLinksOverflowDropdownList.children, function(index, li) {
       li.classList.add('s-hidden');
     });
-    // now find out the widths of the children and if we push too wide
-    // this happens while the overflow list is hidden
+    // Now find out the widths of the children and if we push too wide
+    // This happens while the overflow list is hidden
     maxWidth = primaryLinks.offsetWidth - marginLeft;
     forEach(primaryLinks.children, function(index, li) {
       if (li === primaryLinksOverflow) {
@@ -43,8 +43,8 @@ const linksBar = function(container) {
         tooWide = true;
       }
     });
-    // if we're pushing too wide, we need to show the overflow list and populate it
-    // now we adjust to account for the width of the overflow list
+    // If we're pushing too wide, we need to show the overflow list and populate it
+    // Now we adjust to account for the width of the overflow list
     if (tooWide) {
       primaryLinksOverflow.classList.remove('s-hidden');
       if (isTabs) {
@@ -78,10 +78,10 @@ const linksBar = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     document.removeEventListener('touchend', _measureAndHideShow);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

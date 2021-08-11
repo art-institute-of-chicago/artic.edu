@@ -19,7 +19,7 @@
                 }
             }
         }
-        // galery or gallery-new
+        // `gallery` or `gallery-new`
         else {
             if ($title = html_entity_decode($b->content['title'] ?? null)) {
                 $links[] = ['label' => $title, 'href' => '#' . Str::slug($title)];

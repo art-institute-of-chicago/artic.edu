@@ -19,12 +19,6 @@ class InteractiveFeatureRequest extends Request
         $rules = [
         ];
 
-        // if (!empty($this->input('end_date'))) {
-        //     $rules['start_date'] = 'required|before:end_date';
-        // } else {
-        //     $rules['start_date'] = 'required';
-        // }
-
         return $rules;
     }
 

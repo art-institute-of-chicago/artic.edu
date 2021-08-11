@@ -192,8 +192,7 @@ class EventRepository extends ModuleRepository
         }
     }
 
-    // TODO: Consider defaulting $page to 1?
-    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $program = null, $perPage = 5, $page = null, $private = false, $callback = null)
+    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $program = null, $perPage = 5, $page = 1, $private = false, $callback = null)
     {
         $query = $this->model->newQuery();
 
@@ -271,7 +270,9 @@ class EventRepository extends ModuleRepository
         return $query->count();
     }
 
-    // Show data, moved here to allow preview
+    /**
+     * Show data, moved here to allow preview
+     */
     public function getShowData($item, $slug = null, $previewPage = null)
     {
         return [

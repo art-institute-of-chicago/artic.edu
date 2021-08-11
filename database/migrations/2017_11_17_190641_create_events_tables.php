@@ -10,7 +10,7 @@ class CreateEventsTables extends Migration
         Schema::create('events', function (Blueprint $table) {
             createDefaultTableFields($table);
 
-            // use a json field to store block editor fields
+            // Use a json field to store block editor fields
             $table->json('content')->nullable();
 
             $table->string('title');

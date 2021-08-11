@@ -56,7 +56,7 @@ class EventController extends ModuleController
     {
         $sortKey = request('sortKey');
 
-        // Mitigate Twill bug w/r/t `_page_offset` local storage
+        // Mitigate Twill bug with regards to `_page_offset` local storage
         if (!isset($sortKey))
         {
             request()->merge([

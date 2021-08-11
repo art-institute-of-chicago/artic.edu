@@ -3,7 +3,7 @@
 // changes across devices. Specify the hostname of your dev server at
 // `manifest.config.devUrl`. When a modification is made to an asset, run the
 // build step for that asset and inject the changes into the page.
-// See: http://www.browsersync.io
+// @see: http://www.browsersync.io
 
 module.exports = function(gulp, data, util, taskName){
   'use strict';

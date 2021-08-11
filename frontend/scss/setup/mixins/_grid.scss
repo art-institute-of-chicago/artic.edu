@@ -24,25 +24,25 @@
 
     @if ($this-bp-main-col-width == 'fluid') {
       @if (unit($this-bp-outer-gutter) == 'vw') {
-        // outer gutters in vw
-        //
-        // whats the inner column?
+        // Outer gutters in vw
+
+        // Whats the inner column?
         $this-calc: 100vw - $this-bp-outer-gutter - $this-bp-outer-gutter;
-        // get 1/58th of that
+        // Get 1/58th of that
         $this-calc: $this-calc / 58;
         @if ($number-of-columns >= 1) {
-          // multiple CSS columns?
+          // Multiple CSS columns?
           $this-calc: $this-calc * $number-of-columns;
         }
         @if ($bump == 0) {
-          // if no bump, we can return just a vw number
+          // If no bump, we can return just a vw number
           @if($inverse) {
             @return $this-calc * -1;
           } @else {
             @return $this-calc;
           }
         } @else {
-          // if there is a bump, we need to return a calc
+          // If there is a bump, we need to return a calc
           $this-calc: '(#{$this-calc} + #{$bump})';
           @if($inverse) {
             $this-calc: '(#{$this-calc}) * -1';
@@ -50,25 +50,25 @@
           @return calc(#{$this-calc});
         }
       } @else {
-        // outer gutters in px, means we always need to return a calc
+        // Outer gutters in px, means we always need to return a calc
         // so lets build it
-        // firstly, lets double the outer gutter
+        // Firstly, lets double the outer gutter
         $this-calc: $this-bp-outer-gutter + $this-bp-outer-gutter;
-        // and then remove it from 100vw and divide by our 58 CSS cols
+        // And then remove it from 100vw and divide by our 58 CSS cols
         $this-calc: '(100vw - #{$this-calc}) / 58';
-        // if we need to span multiple CSS cols
+        // If we need to span multiple CSS cols
         @if ($number-of-columns >= 1) {
           $this-calc: '(#{$this-calc}) * #{$number-of-columns}';
         }
-        // is there a bump to add?
+        // Is there a bump to add?
         @if($bump != 0) {
           $this-calc: '(#{$this-calc}) + #{$bump}';
         }
-        // do we need to inverse it?
+        // Do we need to inverse it?
         @if($inverse) {
           $this-calc: '(#{$this-calc}) * -1';
         }
-        // return the calc
+        // Return the calc
         @return calc(#{$this-calc});
       }
 

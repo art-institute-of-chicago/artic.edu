@@ -30,19 +30,6 @@ class PageRepository extends ModuleRepository
         ],
 
         // Visit
-        // `visitTourPages` doesn't appear to be in form_visit.blade.php, so I'm not
-        // sure this is used anymore. ntrivedi, 05/26/21
-        // 'visitTourPages' => [
-        //     'moduleName' => 'pages',
-        // ],
-
-        // Writing landing
-        // `articlesCategories` doesn't appear to be in form_articles_and_publications.blade.php, so I'm not
-        // sure this is used anymore. ntrivedi, 05/26/21
-        // 'articlesCategories' =>  [
-        //     'routePrefix' => 'collection.articles_publications',
-        //     'moduleName' => 'categories',
-        // ],
         'articles' => [
             'routePrefix' => 'collection.articles_publications'
         ],
@@ -75,9 +62,6 @@ class PageRepository extends ModuleRepository
         // Homepage landing
         'homeVideos',
         'homeHighlights',
-        // `homeExperiences` doesn't appear to be in form_home.blade.php, so I'm not
-        // sure it was ever implemented. ntrivedi, 05/26/21
-        //'homeExperiences',
     ];
 
     protected $apiBrowsers = [
@@ -128,18 +112,10 @@ class PageRepository extends ModuleRepository
         ],
 
         // Visit
-        // `admissions` doesn't appear to be in form_visit.blade.php, so I'm not
-        // sure it was ever implemented. ntrivedi, 6/3/21
-        // 'admissions',
         'locations',
         'featured_hours' => [
             'relation' => 'featured_hours'
         ],
-        // `dining_hours` doesn't appear to be in form_visit.blade.php, so I'm not
-        // sure it was ever implemented. ntrivedi, 6/3/21
-        // 'dining_hours' => [
-        //     'relation' => 'dining_hours'
-        // ],
         'faqs',
         'families',
         'what_to_expects',

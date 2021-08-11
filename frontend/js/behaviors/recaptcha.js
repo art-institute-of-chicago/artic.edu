@@ -15,7 +15,7 @@ const recaptcha = function(container){
   this.destroy = function() {
     document.removeEventListener('ajaxPageLoad:complete', _captchaOnload);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

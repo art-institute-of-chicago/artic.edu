@@ -21,8 +21,6 @@ class ShopItem extends BaseApiModel
     public $mediasParams = [
         'hero' => [
             'default' => [
-                // 'width'  => 200,
-                // 'height'  => 100,
             ]
         ],
     ];

@@ -75,17 +75,6 @@ class RenameCatalogsToPublications extends Migration
         $this->dropAllIndexes("{$oldTableName}_slugs");
         $this->dropAllIndexes("{$oldTableName}_revisions");
 
-        // Schema::table("{$oldTableName}_slugs", function (Blueprint $table) use ($oldTableName) {
-        //     $table->dropIndex(["locale"]);
-        //     $table->dropForeign("fk_{$oldTableName}_slugs_{$oldTableName}_id");
-        // });
-
-        // Schema::table("{$oldTableName}_revisions", function (Blueprint $table) use ($oldTableName) {
-        //     $table->dropIndex(["{$oldTableName}_id"]);
-        //     $table->dropForeign(["{$oldTableName}_id"]);
-        //     $table->dropForeign(["user_id"]);
-        // });
-
         Schema::rename(str_plural($oldTableName), str_plural($newTableName));
 
         Schema::rename("{$oldTableName}_slugs", "{$newTableName}_slugs");
@@ -186,6 +175,4 @@ class RenameCatalogsToPublications extends Migration
         });
 
     }
-
-
 }

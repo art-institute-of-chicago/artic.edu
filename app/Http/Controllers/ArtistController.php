@@ -34,7 +34,6 @@ class ArtistController extends FrontController
         $exploreFurther = new ExploreArtists($item, $artworks->getMetadata('aggregations'));
         $this->seo->setImage($item->imageFront('hero') ?? ($artworks && $artworks->isNotEmpty() ? $artworks->first()->imageFront('hero') : null));
 
-        // TODO: Do these methods belong in the API ArtistRepository, or in the CMS one?
         $relatedItems = $this->repository->getRelatedItems($item);
 
         return view('site.tagDetail', [

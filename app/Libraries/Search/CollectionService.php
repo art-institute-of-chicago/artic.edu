@@ -15,10 +15,14 @@ class CollectionService
 
     protected $results;
 
-    // Options for Sort Filter. Sort by these fields
+    /**
+     * Options for Sort Filter. Sort by these fields
+     */
     protected $sortingOptions = ['relevance', 'title', 'artist_title', 'date_start'];
 
-    // Options for BooleanFilter class. [ parameter => label, ... ]
+    /**
+     * Options for BooleanFilter class. [ parameter => label, ... ]
+     */
     protected $booleanOptions = [
         'is_public_domain' => 'Public domain',
         'is_recent_acquisition' => 'Recent acquisition',
@@ -27,10 +31,14 @@ class CollectionService
         'is_on_view' => 'On view',
     ];
 
-    // Default perPage option
+    /**
+     * Default perPage option
+     */
     protected $perPage = 20;
 
-    // Pagination index used as a flag to get prev/next elements
+    /**
+     * Pagination index used as a flag to get prev/next elements
+     */
     protected $page = null;
 
     public function __construct()
@@ -42,7 +50,6 @@ class CollectionService
     /**
      * Execute the query built in the chain. Save aggregations
      * to build filters.
-     *
      */
     public function results($page = null)
     {
@@ -67,7 +74,6 @@ class CollectionService
     /**
      * Generate filters for the sidebar. See Filters namespace classes.
      * There the array is generated with options to be used at the FE.
-     *
      */
     public function generateFilters()
     {
@@ -96,7 +102,6 @@ class CollectionService
 
     /**
      * Extract only active filters to build quick buttons
-     *
      */
     public function activeFilters()
     {
@@ -142,10 +147,12 @@ class CollectionService
         return $activeFilters;
     }
 
+    /**
+     * These filters won't show up on the Filters Menu, but they can be present
+     * as selected ones coming from Quick Filters or Gallery tag.
+     */
     protected function getActiveHiddenFilters()
     {
-        // These filters won't show up on the Filters Menu, but they can be present
-        // as selected ones coming from Quick Filters or Gallery tag.
         $themes     = (new Filters\Themes())->generate();
         $techniques = (new Filters\Techniques())->generate();
         $galleries  = (new Filters\Galleries())->generate();
@@ -157,7 +164,6 @@ class CollectionService
     /**
      * Go through all aggregations and process the buckets with the proper
      * filter class.
-     *
      */
     protected function buildListFilters($aggregations)
     {
@@ -180,7 +186,6 @@ class CollectionService
     /**
      * Sort filters receive all possible sorting values and create
      * the proper dropdown options.
-     *
      */
     protected function buildSortFilters()
     {
@@ -208,7 +213,6 @@ class CollectionService
 
     /**
      * Scope to save per page
-     *
      */
     public function perPage($perPage)
     {
@@ -219,7 +223,6 @@ class CollectionService
     /**
      * Bypass missed methods directly to the chain.
      * Chain is usually a Query Builder type (eloquent or AIC API query builder)
-     *
      */
     public function __call($method, $parameters)
     {
@@ -231,5 +234,4 @@ class CollectionService
 
         return $this;
     }
-
 }

@@ -15,12 +15,10 @@ class CreateExhibitionPressRoomsTables extends Migration
             $table->text('listing_description')->nullable();
         });
 
-        // remove this if you're not going to use slugs
         Schema::create('exhibition_press_room_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'exhibition_press_room');
         });
 
-        // remove this if you're not going to use revisions
         Schema::create('exhibition_press_room_revisions', function (Blueprint $table) {
             createDefaultRevisionsTableFields($table, 'exhibition_press_room');
         });

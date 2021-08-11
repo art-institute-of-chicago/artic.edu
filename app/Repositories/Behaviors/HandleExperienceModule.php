@@ -19,7 +19,7 @@ trait HandleExperienceModule
 
         $relationRepository = $this->getModelRepository($relation, $model);
 
-        // if no relation field submitted, soft deletes all associated rows
+        // If no relation field submitted, soft deletes all associated rows
         if (!$relationFields) {
             $relationRepository->updateBasic(null, [
                 'deleted_at' => Carbon::now(),
@@ -30,13 +30,12 @@ trait HandleExperienceModule
                 ]);
             }
 
-        // keep a list of updated and new rows to delete (soft delete?) old rows that were deleted from the frontend
+        // Keep a list of updated and new rows to delete (soft delete?) old rows that were deleted from the frontend
         $currentIdList = [];
 
         foreach ($relationFields as $index => $relationField) {
-            // $relationField['position'] = $index + 1;
             if (isset($relationField['id']) && starts_with($relationField['id'], $relation)) {
-                // row already exists, let's update
+                // Row already exists, let's update
                 $id = str_replace($relation . '-', '', $relationField['id']);
                 if ($fieldName === 'modal_experience_image') {
                     $medias = $relationField['medias'];
@@ -46,7 +45,7 @@ trait HandleExperienceModule
                 $relationRepository->update($id, $relationField);
                 $currentIdList[] = $id;
             } else {
-                // new row, let's attach to our object and create
+                // New row, let's attach to our object and create
                 unset($relationField['id']);
                 if ($fieldName === 'modal_experience_image') {
                     $medias = $relationField['medias'];

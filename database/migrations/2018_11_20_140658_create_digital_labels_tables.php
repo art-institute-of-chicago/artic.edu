@@ -15,13 +15,10 @@ class CreateDigitalLabelsTables extends Migration
     {
         Schema::create('digital_labels', function (Blueprint $table) {
             createDefaultTableFields($table);
-
-            // "default" detail fields
             $table->string('datahub_id');
             $table->string('title');
         });
 
-        // remove this if you're not going to use slugs
         Schema::create('digital_label_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'digital_label');
         });

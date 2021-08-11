@@ -4,7 +4,6 @@ namespace App\Repositories\Api;
 
 use App\Models\Api\TicketedEvent;
 use App\Models\Api\Search;
-use App\Repositories\Api\BaseApiRepository;
 
 class TicketedEventRepository extends BaseApiRepository
 {

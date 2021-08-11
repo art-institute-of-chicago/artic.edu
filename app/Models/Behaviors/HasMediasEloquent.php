@@ -4,9 +4,10 @@ namespace App\Models\Behaviors;
 
 trait HasMediasEloquent
 {
-    // Implement image helpers to avoid overwriting the Twill ones.
-    // If it has an image, run it through aic_convertFromImage
-
+    /**
+     * Implement image helpers to avoid overwriting the Twill ones.
+     * If it has an image, run it through aic_convertFromImage
+     */
     public function imageFront(...$parameters)
     {
         $imageObject = $this->imageObject(...$parameters);
