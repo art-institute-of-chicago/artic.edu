@@ -13,4 +13,6 @@ return [
         'proxyusername' => '',
         'proxypassword' => '',
     ],
+    'customer_key' => env('EXACT_TARGET_CUSTOMER_KEY'),
+    'name' => env('EXACT_TARGET_NAME'),
 ];

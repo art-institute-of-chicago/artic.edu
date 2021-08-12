@@ -58,8 +58,8 @@ class ExactTargetService
             }
         }
 
-        $deRow->CustomerKey = "All Subscribers Master";
-        $deRow->Name = "Museum Business Unit";
+        $deRow->CustomerKey = config('exact-target.customer_key');
+        $deRow->Name = config('exact-target.name');
 
         $response = $deRow->post();
 
@@ -116,8 +116,8 @@ class ExactTargetService
             "Email" => $this->email,
         ];
 
-        $deRow->CustomerKey = "All Subscribers Master";
-        $deRow->Name = "Museum Business Unit";
+        $deRow->CustomerKey = config('exact-target.customer_key');
+        $deRow->Name = config('exact-target.name');
 
         $response = $deRow->delete();
 
