@@ -21,6 +21,7 @@ class Artwork extends BaseApiModel
     }
 
     use HasFeaturedRelated {
+        getFeaturedRelatedGtmAttributes as traitGetFeaturedRelatedGtmAttributes;
         getCustomRelatedItems as traitGetCustomRelatedItems;
     }
 
@@ -414,6 +415,17 @@ class Artwork extends BaseApiModel
         ];
 
         return $query->rawSearch($params);
+    }
+
+    public function getFeaturedRelatedGtmAttributes()
+    {
+        $event = 'artwork-sidebar-related';
+
+        if ($this->sidebarContainsDefaultRelated) {
+            $event = 'artwork-sidebar-discover';
+        }
+
+        return 'data-gtm-event="' . $event . '" data-gtm-event-category="collection-nav"';
     }
 
     public function getCustomRelatedItems()

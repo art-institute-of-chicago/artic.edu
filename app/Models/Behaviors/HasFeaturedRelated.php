@@ -18,15 +18,20 @@ use Carbon\Carbon;
  */
 trait HasFeaturedRelated
 {
+    protected $sidebarContainsDefaultRelated = false;
+
     private $targetItemCount = 6;
 
     private $selectedFeaturedRelateds;
 
-    private $sidebarContainsDefaultRelated = false;
-
     public function getFeaturedRelatedTitle()
     {
         return $this->sidebarContainsDefaultRelated ? 'Discover More' : 'Related';
+    }
+
+    public function getFeaturedRelatedGtmAttributes()
+    {
+        return 'data-gtm-event="related-sidebar" data-gtm-event-category="collection-nav"';
     }
 
     public function hasFeaturedRelated()
