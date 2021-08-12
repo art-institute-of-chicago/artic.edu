@@ -30,7 +30,7 @@ class ExactTargetService
      */
     function subscribe($alsoRemove = true)
     {
-        $client = new ET_Client(false, true, config('exact-target'));
+        $client = new ET_Client(false, true, config('exact-target.client'));
 
         // Add the user to a data extension
         $deRow  = new ET_DataExtension_Row();
@@ -106,7 +106,7 @@ class ExactTargetService
 
     function unsubscribe()
     {
-        $client = new ET_Client(false, true, config('exact-target'));
+        $client = new ET_Client(false, true, config('exact-target.client'));
 
         // Delete the user from the data extension
         $deRow  = new ET_DataExtension_Row();
@@ -143,7 +143,7 @@ class ExactTargetService
 
     function get()
     {
-        $client = new ET_Client(false, config('app.debug'), config('exact-target'));
+        $client = new ET_Client(false, config('app.debug'), config('exact-target.client'));
 
         $deRow  = new ET_DataExtension_Row();
         $deRow->authStub = $client;
