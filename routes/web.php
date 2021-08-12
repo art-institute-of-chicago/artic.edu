@@ -140,13 +140,6 @@ Route::name('about.exhibitionPressRooms.show')->middleware(['httpauth'])->get('/
 
 Route::name('about.press.show')->get('/press/press-releases/{id}/{slug?}', 'PressReleasesController@show');
 
-// Sample Form
-if (!app()->environment('production')) {
-    Route::name('forms.contact')->get('/forms/contact', 'Forms\ContactsController@index');
-    Route::name('forms.contact.store')->post('/forms/contact', 'Forms\ContactsController@store');
-    Route::name('forms.contact.thanks')->get('/forms/contact/thanks', 'Forms\ContactsController@thanks');
-}
-
 // Group reservation form
 Route::name('forms.group-reservation')->get('/visit/visiting-with-a-group/reservation-form', 'Forms\GroupReservationsController@index');
 Route::name('forms.group-reservation.store')->post('/visit/visiting-with-a-group/reservation-form', 'Forms\GroupReservationsController@store');
