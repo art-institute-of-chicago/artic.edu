@@ -127,17 +127,3 @@ Please refer to /docs/apiModels.md
 #### Images
 
 Please refer to /docs/images.md
-
-#### API Documentation setup
-
-API is documented via Swagger. Annotations in the source code are parsed and used to generate the Swagger documentation.
-
-**Regenerating the Swagger documentation**
-
-```shell
-# @ /home/web/www/{domain}/current/
-$ ./vendor/bin/swagger -o storage/api-docs/api-docs.json -e vendor,node_modules
-```
-
-Swagger is accessible at:
-https://{domain}/api/documentation
