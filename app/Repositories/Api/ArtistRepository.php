@@ -52,7 +52,7 @@ class ArtistRepository extends BaseApiRepository
                 'moduleName' => 'experiences',
             ],
         ], [
-            // See $typeUsesApi in HasApiRelations class
+            // @see $typeUsesApi in HasApiRelations class
             'exhibitions' => true,
             'articles' => false,
             'digitalPublications' => false,

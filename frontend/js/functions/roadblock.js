@@ -65,7 +65,7 @@ const roadblock = function(container) {
 
     isWaitingOnGeotarget = false;
 
-    // See HomeController::getLightboxGeotarget()
+    // @see HomeController::getLightboxGeotarget()
     if (geotargets.includes('all')) {
       _swapRoadblock('all');
     } else {
