@@ -562,7 +562,7 @@
 
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $interactiveFeatures->total(). ' '. str_plural('interactive feature', $interactiveFeatures->total()), 'href' => route('search.interactive-features', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $interactiveFeatures->total(). ' '. Str::plural('interactive feature', $interactiveFeatures->total()), 'href' => route('search.interactive-features', ['q' => request('q')]))))
         @endunless
         Interactive Features
     @endcomponent

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,7 +40,7 @@ if (!function_exists('moduleRouteExists')) {
      */
     function moduleRouteExists($moduleName, $prefix, $action)
     {
-        $routeName = 'admin.' . ($prefix ? $prefix . '.' : '') . camel_case($moduleName) . '.' . $action;
+        $routeName = 'admin.' . ($prefix ? $prefix . '.' : '') . Str::camel($moduleName) . '.' . $action;
         return Route::has($routeName);
     }
 }

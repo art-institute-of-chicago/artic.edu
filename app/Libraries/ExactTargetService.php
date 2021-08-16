@@ -2,6 +2,7 @@
 
 namespace App\Libraries;
 
+use Illuminate\Support\Str;
 use App\Models\ExactTargetList;
 use FuelSdk\ET_Client;
 use FuelSdk\ET_DataExtension_Row;
@@ -83,8 +84,8 @@ class ExactTargetService
             $error = $response->results[0]->ErrorMessage ?? '';
             $status = $response->results[0]->StatusMessage ?? '';
 
-            if (starts_with($error, 'Violation of PRIMARY KEY constraint')
-                || starts_with($status, 'The subscriber is already on the list')) {
+            if (Str::startsWith($error, 'Violation of PRIMARY KEY constraint')
+                || Str::startsWith($status, 'The subscriber is already on the list')) {
                 // Email has been previously subscribed, so proceed
             }
             else {
