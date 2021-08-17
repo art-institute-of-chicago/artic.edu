@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94c0ccc2553a314c11e29012a7357a9a",
+    "content-hash": "f07b6dca45d6c3d33e75b0b4e98317ac",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -6045,24 +6045,26 @@
         },
         {
             "name": "spatie/laravel-feed",
-            "version": "dev-feature/support-for-flipboard",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nikhiltri/laravel-feed.git",
-                "reference": "8e646bc8e2ebb6abf5f4a99a4f7b7921720c6b59"
+                "url": "https://github.com/spatie/laravel-feed.git",
+                "reference": "287991a339b98274df56098fa4249afa3ac26211"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikhiltri/laravel-feed/zipball/8e646bc8e2ebb6abf5f4a99a4f7b7921720c6b59",
-                "reference": "8e646bc8e2ebb6abf5f4a99a4f7b7921720c6b59",
+                "url": "https://api.github.com/repos/spatie/laravel-feed/zipball/287991a339b98274df56098fa4249afa3ac26211",
+                "reference": "287991a339b98274df56098fa4249afa3ac26211",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "~5.8.0",
+                "illuminate/contracts": "~5.8.0|^6.0|^7.0",
+                "illuminate/http": "~5.8.0|^6.0|^7.0",
+                "illuminate/support": "~5.8.0|^6.0|^7.0",
                 "php": "^7.2"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.8.0",
+                "orchestra/testbench": "~3.8.0|^4.0|^5.0",
                 "phpunit/phpunit": "^8.0",
                 "spatie/phpunit-snapshot-assertions": "^2.0"
             },
@@ -6079,16 +6081,7 @@
                     "Spatie\\Feed\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Spatie\\Feed\\Test\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -6120,10 +6113,13 @@
                 "rss",
                 "spatie"
             ],
-            "support": {
-                "source": "https://github.com/nikhiltri/laravel-feed/tree/feature/support-for-flipboard"
-            },
-            "time": "2019-04-22T21:52:08+00:00"
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2020-06-11T22:56:36+00:00"
         },
         {
             "name": "spatie/laravel-sitemap",
@@ -11459,7 +11455,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "aic/data-hub-foundation": 20,
-        "spatie/laravel-feed": 20,
         "yeslogic/prince-php-wrapper": 20
     },
     "prefer-stable": false,
