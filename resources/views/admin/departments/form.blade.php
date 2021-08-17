@@ -19,6 +19,9 @@
     @formField('wysiwyg', [
         'name' => 'intro',
         'label' => 'Intro',
+        'toolbarOptions' => [
+            'strike'
+        ],
     ])
 
     @formField('input', [
