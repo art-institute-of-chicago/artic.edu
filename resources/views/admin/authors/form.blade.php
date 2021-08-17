@@ -8,7 +8,7 @@
         'type' => 'textarea',
         'rows' => 6,
         'toolbarOptions' => [
-            'bold', 'italic', 'link'
+            'bold', 'italic', 'link', 'strike'
         ],
     ])
 
