@@ -279,7 +279,7 @@ class Page extends AbstractModel
     }
 
     /**
-     * DEPRECATED
+     * WEB-2254: Finish deprecating homeFeatures relationship
      */
     public function homeFeatures()
     {
