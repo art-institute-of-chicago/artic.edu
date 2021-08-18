@@ -7,7 +7,7 @@ keys:
     - ~/.ssh/id_rsa
 folders:
     -
-        map: /Users/fernando/trabajo/proyectos/aic
+        map: /Users/yourusername/project/aic
         to: /home/vagrant/aic
 sites:
     - map: www.test
@@ -16,5 +16,5 @@ sites:
       to: "/home/vagrant/aic/public"
 databases:
     - homestead
-name: aic
-hostname: aic
+name: homestead
+hostname: homestead
