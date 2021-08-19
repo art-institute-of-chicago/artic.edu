@@ -27,7 +27,7 @@ For local development, we run our website in a [Homestead](https://laravel.com/d
 * Rename `Homestead.sample.yaml` to `Homestead.yaml`
 * Update `folders.map` in `Homestead.yaml` with your local path to the website repository
 * Change the IP at the top if you have another vagrant machine running at the same IP
-* Install composer dependencies `composer install`. This step should typically be done inside the VM, but in order to get the VM running you need to install the dependencies from outwside the VM.
+* Install composer dependencies `composer install`. This step should typically be done inside the VM, but in order to get the VM running, you need to install the dependencies from outside the VM.
 * Provision your vagrant machine with `homestead up`
 * In case the system didn't update your `/etc/hosts` file automatically:
   * Add the IP and domain defined at `Homestead.yaml` to your `/etc/hosts` file.
@@ -51,14 +51,14 @@ Once Homestead is set up, then install the website code itself:
 There are NPM packages required by the frontend of the website. To install them initially run:
 
 ```
-$ npm install
-$ npm run build
+npm install
+npm run build
 ```
 
 For continuous work, run the following which runs as a `watch` command on locally changed JS and SCSS files:
 
 ```
-$ npm run dev
+npm run dev
 ```
 
 ### CMS
@@ -74,7 +74,7 @@ php artisan twill:build
 Run this command to generate a style guide that will be served from http://{your_dev_domain}/styleguide
 
 ```
-$ npm run toolkit
+npm run toolkit
 ```
 
 ### Upgrading Twill
@@ -93,10 +93,48 @@ Once ready, run:
 php artisan twill:update
 php artisan twill:build
 ```
-### API models
+### More documentation
 
-For a description of how we've developed Eloquent-style model classes that are backed by our API, please refer to [docs/apiModels.md](docs/apiModels.md)
+We've developed detailed descriptions of a few key aspects of our website codebase:
 
-### Images
+* [API models](docs/apiModels.md): How we've developed Eloquent-style model classes that are backed by our API
+* [Images](docs/images.md): How to use images in the various types of models in our codebase
 
-For an overview of how to use images in the various types of models in our codebsae, please refer to [docs/images.md](docs/images.md)
+## Contributing
+
+We encourage your contributions. Please fork this repository and make your changes in a separate branch. To better understand how we organize our code, please review our [version control guidelines](https://docs.google.com/document/d/1B-27HBUc6LDYHwvxp3ILUcPTo67VFIGwo5Hiq4J9Jjw).
+
+```bash
+# Clone the repo to your computer
+git clone git@github.com:your-github-account/website.git
+
+# Enter the folder that was created by the clone
+cd website
+
+# Install
+
+# Start a feature branch
+git checkout -b feature/good-short-description
+
+# ... make some changes, commit your code
+
+# Push your branch to GitHub
+git push origin feature/good-short-description
+```
+
+Then on github.com, create a Pull Request to merge your changes into our
+`develop` branch.
+
+This project is released with a Contributor Code of Conduct. By participating in
+this project you agree to abide by its [terms](CODE_OF_CONDUCT.md).
+
+We welcome bug reports and questions under GitHub's [Issues](issues). For other concerns, you can reach our engineering team at [engineering@artic.edu](mailto:engineering@artic.edu)
+
+## Acknowledgments
+
+Thank you to everyone who has ever contributed to our website project! We appreciated all contributions, big and small. Learn more about who has worked on this project in our [contributors](CONTRIBUTORS.MD) doc.
+
+## Licensing
+
+This project is licensed under the [GNU Affero General Public License
+Version 3](LICENSE).

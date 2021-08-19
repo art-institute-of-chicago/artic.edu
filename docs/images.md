@@ -1,11 +1,10 @@
-# Art Institute of Chicago
+# Images
 
-Images at the FE
+Images on the frontend are provided by Twill's [Media Library](https://twill.io/docs/#media-library-3) as well as the Art Institute of Chicago's collections digital asset management system. Eloquent models as well as our API models can provide images to the frontend.
 
 ## API models
 
-Please include the behavior `HasMediasApi` at the models you want to load images.
-We created a method with the same prototype as Twill so we can show images from the CMS or API models indistinctly.
+Use the [`HasMediasApi`](../app/Models/Behaviors/HasMediasApi) trait in the API models you want to load images. This behavior adds a method with the same prototype as Twill so we can show images from the CMS or API models indistinctly.
 
 
 ```php
@@ -17,11 +16,10 @@ class Artwork extends BaseApiModel
 }
 ```
 
-After that you should define your roles and crops, with a little difference from Twill:
+After that you should define your roles and crops:
 
 
 ```php
-
 public $mediasParams = [
     'hero' => [
         'default' => [
@@ -40,17 +38,15 @@ public $mediasParams = [
 
 ```
 
-
 Possible parameters (all optional):
 
-`field`: API field containing the image ID (We have only seen `image_id` here coming from the API, but added the option nontheless)
+`field`: API field containing the image ID. Typically this will be `image_id`.
 `width`: Width for this image
 `height`: Height for this image
 
-
 ## Eloquent/Twill Models
 
-Please add the `HasMediasEloquent` trait.
+Use the [`HasMediasEloquent`](../app/Models/Behaviors/HasMediaEloquent) trait in the Twill models you want to load images.
 
 
 ```php
@@ -62,13 +58,9 @@ class Event extends Model
 }
 ```
 
-This will just add an extra function to access the image and apply the `aic_convertFromImage` image.
+This will just add an extra function to access the image and apply the `aic_convertFromImage` function.
 
 
 ## How to use it
 
-
-The function is `imageFront($role, $crop)`
-
-This way you can call the same function on any model (API, Eloquent).
-This will ensure the statics will keep working, and also, that having the same method prototype, we could augment API models and perform a call disregarding if it's an API or Twill model.
+The `imageFront($role, $crop)` function is used in both these traits to retrieve images. You can call the same function on either type of model—API or Eloquent. Having the same method prototype ensures that you can augment API models and perform a call to retrieve images without regard to whether it's an API or Twill model.
