@@ -222,6 +222,11 @@ class Experience extends AbstractModel implements Sortable
         return route('interactiveFeatures.show', $this->slug);
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.collection.interactive_features.experiences.edit', $this->id);
+    }
+
     public $mediasParams = [
         'thumbnail' => [
             'default' => [
