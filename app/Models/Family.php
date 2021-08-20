@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasTranslation;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class Family extends AbstractModel
 {
-    use HasMedias, HasMediasEloquent, HasTranslation;
+    use HasMedias, HasMediasEloquent;
 
     protected $fillable = [
         'published',
@@ -16,9 +15,6 @@ class Family extends AbstractModel
         'external_link',
         'associated_generic_page_link',
         'page_id',
-    ];
-
-    public $translatedAttributes = [
         'title',
         'text',
         'link_label',

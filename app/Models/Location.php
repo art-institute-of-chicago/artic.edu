@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasTranslation;
-
 class Location extends AbstractModel
 {
-    use Transformable, HasTranslation;
+    use Transformable;
 
     protected $fillable = [
         'published',
@@ -17,9 +15,6 @@ class Location extends AbstractModel
         'zip',
         'position',
         'page_id',
-    ];
-
-    public $translatedAttributes = [
         'name',
     ];
 

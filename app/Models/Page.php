@@ -5,7 +5,6 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Behaviors\HasTranslation;
 use App\Models\Admission as Admission;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMedias;
@@ -14,7 +13,7 @@ use App\Models\Behaviors\HasRelated;
 
 class Page extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable, HasTranslation, HasRelated;
+    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable, HasRelated;
 
     protected $presenter = 'App\Presenters\Admin\PagePresenter';
 
@@ -96,10 +95,6 @@ class Page extends AbstractModel
         'visit_what_to_expect_more_link',
         'visit_capacity_btn_url_1',
         'visit_capacity_btn_url_2',
-    ];
-
-    public $translatedAttributes = [
-        // Visit
         'visit_intro',
         'visit_hour_header',
         'visit_hour_subheader',
