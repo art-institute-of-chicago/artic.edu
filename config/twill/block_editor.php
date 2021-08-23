@@ -190,8 +190,6 @@ return [
         'feature_4x',
         'grid',
         'gallery_new',
-        'gallery',
-        'artworks',
         'child_pages',
         'link',
         'links-bar',

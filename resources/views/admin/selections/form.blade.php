@@ -59,7 +59,7 @@
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed',
             'artwork', 'hr', 'audio_player', 'tour_stop', 'button', '3d_model',
-            'gallery', 'artworks', 'gallery_new', 'vtour_embed',
+            'gallery_new', 'vtour_embed',
             'event', 'feature_2x', 'feature_4x', 'list', 'split_block',
             'grid'
         ])

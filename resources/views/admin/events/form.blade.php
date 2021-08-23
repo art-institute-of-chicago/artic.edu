@@ -275,7 +275,7 @@
                 'list', 'newsletter_signup_inline', 'timeline', 'link',
                 'artwork', 'hr', 'split_block', 'audio_player', 'tour_stop', 'button',
                 'mobile_app', '3d_model',
-                'gallery', 'artworks', 'gallery_new',
+                'gallery_new',
             ])
         ])
     </a17-fieldset>
