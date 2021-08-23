@@ -12,19 +12,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/art-institute-of-chicago/data-hub-foundation.git",
-                "reference": "ef2e5f5642bc587f0d71aecf834ba43c1d6e8a4a"
+                "reference": "6294692c191573e6a1b0e1855aac645412965e69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/art-institute-of-chicago/data-hub-foundation/zipball/ef2e5f5642bc587f0d71aecf834ba43c1d6e8a4a",
-                "reference": "ef2e5f5642bc587f0d71aecf834ba43c1d6e8a4a",
+                "url": "https://api.github.com/repos/art-institute-of-chicago/data-hub-foundation/zipball/6294692c191573e6a1b0e1855aac645412965e69",
+                "reference": "6294692c191573e6a1b0e1855aac645412965e69",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.6",
-                "laravel/framework": "5.8.*",
+                "laravel/framework": "*",
                 "league/fractal": "^0.16.0",
-                "php": ">=7.1.3"
+                "php": ">=7.2.5"
             },
             "type": "library",
             "autoload": {
@@ -50,7 +50,7 @@
                 "source": "https://github.com/art-institute-of-chicago/data-hub-foundation/tree/master",
                 "issues": "https://github.com/art-institute-of-chicago/data-hub-foundation/issues"
             },
-            "time": "2019-07-10T18:35:10+00:00"
+            "time": "2021-08-05T21:42:48+00:00"
         },
         {
             "name": "anahkiasen/underscore-php",
@@ -743,16 +743,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "ac77408b22cc6c4d0b4947d20a3889be3043566e"
+                "reference": "331b4d5dbaeab3827976273e9356b3b453c300ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/ac77408b22cc6c4d0b4947d20a3889be3043566e",
-                "reference": "ac77408b22cc6c4d0b4947d20a3889be3043566e",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/331b4d5dbaeab3827976273e9356b3b453c300ce",
+                "reference": "331b4d5dbaeab3827976273e9356b3b453c300ce",
                 "shasum": ""
             },
             "require": {
@@ -834,7 +834,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-14T11:22:57+00:00"
+            "time": "2021-07-17T14:49:29+00:00"
         },
         {
             "name": "doctrine/dbal",
