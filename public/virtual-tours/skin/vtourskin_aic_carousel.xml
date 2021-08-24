@@ -12,7 +12,7 @@
 	               title="true"
 	               thumbs="true"
 	               thumbs_width="131" thumbs_height="74" thumbs_padding="19" thumbs_crop="0|0|240|160" thumbs_top_padding="33"
-	               thumbs_opened="true"
+	               thumbs_opened="false"
 	               thumbs_text="false"
 	               thumbs_dragging="true"
 	               thumbs_onhoverscrolling="false"
@@ -1095,7 +1095,7 @@
 	<!-- remove textboxes -->
 	<action name="removeall_textboxes" scope="local">
 		for(set(i,0), i LT layer.count, inc(i),
-			if(layer[get(i)].type == text,
+			if(layer[get(i)].type == text AND layer[get(i)].name != skin_title,
 				removelayer(get(layer[get(i)].name), true);
 				dec(i);
 			);
