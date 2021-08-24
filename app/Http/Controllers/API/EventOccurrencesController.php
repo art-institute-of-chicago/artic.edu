@@ -43,9 +43,4 @@ class EventOccurrencesController extends BaseController
         });
 
     }
-
-    public function validateId($id)
-    {
-        return true;
-    }
 }
