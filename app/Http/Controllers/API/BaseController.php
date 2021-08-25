@@ -38,18 +38,4 @@ class BaseController extends AbstractController
         return ($this->model)::onlyTrashed()->paginate($limit);
 
     }
-
-    /**
-     * Call to get a model list. Override this method when logic to get
-     * models is more complex than a simple `$model::paginate($limit)` call.
-     *
-     * @param int $limit
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
-    protected function paginate($limit)
-    {
-        $primaryKey = with(new $this->model)->getKeyName();
-
-        return ($this->model)::orderBy('updated_at', 'desc')->orderBy($primaryKey, 'asc')->paginate($limit);
-    }
 }

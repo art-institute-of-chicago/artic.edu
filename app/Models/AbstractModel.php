@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Behaviors\LintsAttributes;
+use Aic\Hub\Foundation\Concerns\HasByLastModScope;
 use A17\Twill\Models\Model;
 
 /**
@@ -13,6 +14,7 @@ use A17\Twill\Models\Model;
 class AbstractModel extends Model
 {
     use LintsAttributes;
+    use HasByLastModScope;
 
     public function setAttribute($key, $value)
     {
