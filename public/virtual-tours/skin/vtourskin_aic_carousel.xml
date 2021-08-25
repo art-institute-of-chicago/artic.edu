@@ -33,7 +33,7 @@
 	               layout_maxwidth="100%"
 	               controlbar_width="120"
 	               controlbar_height="48"
-	               controlbar_offset="27"
+	               controlbar_offset="26"
 	               controlbar_offset_closed="-40"
 	               controlbar_overlap.no-fractionalscaling="0"
 	               controlbar_overlap.fractionalscaling="0"
@@ -44,7 +44,7 @@
 	               design_bgborder="0"
 	               design_bgroundedge="25"
 	               design_bgshadow="0"
-	               design_thumbborder_bgborder="1 0xFFFFFF 1.0"
+	               design_thumbborder_bgborder="2 0xFFFFFF 1.0"
 	               design_thumbborder_padding="0"
 	               design_thumbborder_bgroundedge="0"
 	               design_text_css="color:#FFFFFF; font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;"
@@ -306,7 +306,7 @@
 
 	<!-- skin layout -->
 	<layer name="skin_layer" keep="true" type="container" align="top" width="get:skin_settings.layout_width" maxwidth="get:skin_settings.layout_maxwidth" height="100%" maskchildren="true" visible="false" bgcapture="false" zorder="1">
-		<layer name="skin_scroll_window" type="container" align="bottom" width="100%" height="100%" x="0" y="95" maskchildren="true" onloaded="skin_calc_opened_closed();" zorder="1">
+		<layer name="skin_scroll_window" type="container" align="bottom" width="100%" height="100%" x="0" y="100" maskchildren="true" onloaded="skin_calc_opened_closed();" zorder="1">
 			<layer name="skin_scroll_layer" type="container" align="bottom" width="100%" height="100%" x="0" y="200" y_offset="get:skin_settings.controlbar_overlap" accuracy="1" bgalpha="get:skin_settings.design_bgalpha" bgcolor="get:skin_settings.design_bgcolor" bgborder="get:skin_settings.design_bgborder"  bgshadow="get:skin_settings.design_bgshadow">
 				<layer name="skin_scroll_container" type="container" align="lefttop" width="100%" height="100%" x="0" y="0" maskchildren="true">
           <layer name="skin_title" type="text" align="lefttop" edge="leftbottom" width="" height="" x="19" y="35" zorder="4" bg="false" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:15px;'" />
@@ -374,6 +374,7 @@
 
 		<layer name="skin_loadingtext" type="text" align="center" x="5" y="-5" html="get:skin_settings.loadingtext" visible="false" bg="false" enabled="false" css="calc:skin_settings.design_text_css + ' text-align:center; font-style:italic; font-size:22px;'" textshadow="get:skin_settings.design_text_shadow" />
 		<layer name="skin_thumbborder" type="container" x="get:skin_settings.design_thumbborder_padding" y="get:skin_settings.design_thumbborder_padding" width="calc:skin_settings.thumbs_width" height="calc:skin_settings.thumbs_height" visible="false" enabled="false" align="lefttop" bgborder="get:skin_settings.design_thumbborder_bgborder" bgroundedge="get:skin_settings.design_thumbborder_bgroundedge" />
+    <layer name="skin_thumbborder_over" type="container" x="get:skin_settings.design_thumbborder_padding" y="get:skin_settings.design_thumbborder_padding" width="calc:skin_settings.thumbs_width" height="calc:skin_settings.thumbs_height" visible="false" enabled="false" align="lefttop" bgborder="get:skin_settings.design_thumbborder_bgborder" bgroundedge="get:skin_settings.design_thumbborder_bgroundedge" />
 	</layer>
 
 	<!-- skin events -->
@@ -494,7 +495,9 @@
 					x=calc(thumbpadding + i*thumbxoffset),
 					y=get(thumbpadding),
 					linkedscene=get(currentscene.name),
-					onclick='copy(layer[skin_thumbborder].parent, name); skin_loadscene(get(linkedscene),get(skin_settings.loadscene_blend));'
+					onclick='copy(layer[skin_thumbborder].parent, name); skin_loadscene(get(linkedscene),get(skin_settings.loadscene_blend));',
+          onhover='copy(layer[skin_thumbborder_over].parent, name); set(layer[skin_thumbborder_over].visible, true);',
+          onout='copy(layer[skin_thumbborder_over].parent, name); set(layer[skin_thumbborder_over].visible, false);'
 				);
 
 				set(currentscene,
