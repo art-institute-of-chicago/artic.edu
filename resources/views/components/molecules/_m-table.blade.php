@@ -41,7 +41,10 @@
             </thead>
             <tbody>
                 @foreach ($crawler->filter('table:first-child > tbody > tr') as $rowElement)
-                    <tr>
+                    @php
+                        $rowClass = $rowElement->getAttribute('class');
+                    @endphp
+                    <tr {!! !empty($rowClass) ? 'class="' . $rowClass . '"' : '' !!}>
                         @php
                             $rowCrawler = new Crawler(innerHTML($rowElement));
                         @endphp
