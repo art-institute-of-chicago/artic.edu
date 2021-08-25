@@ -17,6 +17,9 @@
                     @endcomponent
                 </caption>
             @endif
+            @foreach ($crawler->filter('table:first-child > colgroup') as $colgroupElement)
+                {!! $colgroupElement->ownerDocument->saveHTML($colgroupElement) !!}
+            @endforeach
             <thead>
                 <tr>
                     @foreach ($crawler->filter('table:first-child > thead > tr > th') as $cellElement)
