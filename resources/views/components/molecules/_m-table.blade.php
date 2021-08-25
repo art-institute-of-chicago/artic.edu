@@ -42,12 +42,12 @@
                         @php
                             $rowCrawler = new Crawler(innerHTML($rowElement));
                         @endphp
-                        @foreach ($rowCrawler->filter('td') as $i => $cellElement)
+                        @foreach ($rowCrawler->filter('td,th') as $i => $cellElement)
                             @php
                                 $cellStyle = $cellElement->getAttribute('style');
-                                $isCellHeader = $i === 0 && ($hasSideHeader ?? false);
+                                $isCellHeader = $cellElement->nodeName === 'th' || ($i === 0 && ($hasSideHeader ?? false));
                             @endphp
-                            <{!! $isCellHeader ? 'th' : 'td' !!} style="{!! !empty($cellStyle) ? $cellStyle : '' !!}">
+                            <{!! $isCellHeader ? 'th' : 'td' !!} {!! !empty($cellStyle) ? 'style="' . $cellStyle . '"' : '' !!}>
                                 @component('components.blocks._text')
                                     @slot('font', $isCellHeader ? 'f-module-title-1' : 'f-secondary')
                                     @slot('tag', 'span')
