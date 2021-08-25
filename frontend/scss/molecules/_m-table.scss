@@ -84,8 +84,7 @@ Intended for very simple m-tables..
     margin-bottom: 40px;
   }
 
-  th,
-  td {
+  th, td {
     padding: 15px 12px 23px;
     border-top: 1px solid $color__rules--primary;
     border-bottom: 1px solid $color__rules--primary;
@@ -95,6 +94,18 @@ Intended for very simple m-tables..
 
     @include breakpoint('xsmall') {
       padding-right: 7px;
+    }
+  }
+
+  tr.tr--border-before {
+    th, td {
+      border-top-width: 3px;
+    }
+  }
+
+  tr.tr--border-after {
+    th, td {
+      border-bottom-width: 3px;
     }
   }
 
