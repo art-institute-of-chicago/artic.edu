@@ -62,6 +62,19 @@ Intended for very simple m-tables..
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 
+  // mirror default .m-title-bar margins
+  &.m-table--no-title {
+    margin-top: 48px;
+
+    @include breakpoint('small+') {
+      margin-top: 60px;
+    }
+
+    @include breakpoint('large+') {
+      margin-top: 72px;
+    }
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;

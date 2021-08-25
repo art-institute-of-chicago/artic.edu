@@ -7,7 +7,7 @@
 @endphp
 
 @if ($table)
-    <div class="m-table">
+    <div class="m-table {{ empty($title) ? 'm-table--no-title' : '' }}">
         <table>
             @if (!empty($title))
                 <caption>
