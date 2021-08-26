@@ -2,7 +2,7 @@
     "name": "aic/website",
     "description": "Art Institute of Chicago website – artic.edu",
     "keywords": ["website", "museum", "musetech", "art institute of chicago"],
-    "license": "AGPL-3.0-only",
+    "license": "AGPL-3.0-or-later",
     "type": "project",
     "repositories": [
         {
