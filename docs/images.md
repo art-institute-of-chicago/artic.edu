@@ -1,6 +1,8 @@
 # Images
 
-Images on the frontend are provided by Twill's [Media Library](https://twill.io/docs/#media-library-3) as well as the Art Institute of Chicago's collections digital asset management system. Eloquent models as well as our API models can provide images to the frontend.
+Images on the frontend are provided by Twill's [Media Library](https://twill.io/docs/#media-library-3) as well as the Art Institute of Chicago's collections digital asset management system (DAMS) via the API. Eloquent models as well as our API models can provide images to the frontend.
+
+
 
 ## API models
 
@@ -44,6 +46,8 @@ Possible parameters (all optional):
 `width`: Width for this image
 `height`: Height for this image
 
+
+
 ## Eloquent/Twill Models
 
 Use the [`HasMediasEloquent`](../app/Models/Behaviors/HasMediaEloquent) trait in the Twill models you want to load images.
@@ -59,6 +63,7 @@ class Event extends Model
 ```
 
 This will just add an extra function to access the image and apply the `aic_convertFromImage` function.
+
 
 
 ## How to use it
