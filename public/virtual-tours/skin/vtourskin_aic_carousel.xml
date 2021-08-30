@@ -457,6 +457,7 @@
 
 			calc(thumbxoffset, thumbwidth + thumbpadding);
 			calc(thumbxcenter, thumbxoffset * 0.5);
+      def(global.thumbbarwidth, number);
 			calc(thumbbarwidth, thumbxoffset * thumbcount + thumbpadding);
 			calc(thumbbarheight, thumbpaddingtop + thumbpadding + thumbheight + thumbpadding);
 
@@ -559,6 +560,12 @@
 		set(layer[skin_scroll_layer].y, get(mh));
 		if(display.safearea_inset, calc(layer[skin_btn_show].y, skin_settings.controlbar_height - skin_settings.controlbar_offset_closed - (display.safearea_inset.b LT 0 ? display.safearea_inset.b : 0)); );
 		skin_arrange_buttons();
+    <!-- carousel width -->
+    if(stagewidth LT get(thumbbarwidth),
+    set(layer[skin_scroll_layer].width, calc(stagewidth-40));
+    ,
+    set(layer[skin_scroll_layer].width, get(thumbbarwidth));
+    );
 	</action>
 
 
