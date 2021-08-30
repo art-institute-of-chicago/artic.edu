@@ -45,7 +45,7 @@
 	               design_bgroundedge="25"
 	               design_bgshadow="0"
 	               design_thumbborder_bgborder="2 0xFFFFFF 1.0"
-	               design_thumbborder_padding="0"
+	               design_thumbborder_padding="2"
 	               design_thumbborder_bgroundedge="0"
 	               design_text_css="color:#FFFFFF; font-family:Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif;"
 	               design_text_shadow="1"
