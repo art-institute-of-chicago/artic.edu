@@ -10,7 +10,7 @@
 	               littleplanetintro="false"
 	               followmousecontrol="false"
 	               title="true"
-	               thumbs="true"
+	               thumbs="false"
 	               thumbs_width="131" thumbs_height="74" thumbs_padding="19" thumbs_crop="0|0|240|160" thumbs_top_padding="33"
 	               thumbs_opened="false"
 	               thumbs_text="false"
