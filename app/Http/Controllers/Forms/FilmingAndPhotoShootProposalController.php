@@ -10,7 +10,6 @@ use App\Models\Form\FilmingProposal;
 
 use App\Mail\FormFilmingProposal;
 
-use App\Presenters\StaticObjectPresenter;
 
 class FilmingAndPhotoShootProposalController extends FormController
 {

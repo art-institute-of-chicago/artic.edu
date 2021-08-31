@@ -57,7 +57,7 @@ class ArtworkController extends BaseApiController
         ],
     ];
 
-    /*
+    /**
      * Relations to eager load for the form view
      */
     protected $formWith = [];

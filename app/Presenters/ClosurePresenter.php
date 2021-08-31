@@ -2,9 +2,7 @@
 
 namespace App\Presenters;
 
-use App\Presenters\BasePresenter;
 use App\Models\Closure;
-use Carbon\Carbon;
 
 class ClosurePresenter extends BasePresenter
 {

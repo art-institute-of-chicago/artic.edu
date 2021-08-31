@@ -9,7 +9,7 @@
 ])
 
 @section('contentFields')
-    {{-- Nothing to see here yet. This section will always be shown --}}
+    {{-- This section will always be shown --}}
     <p>Artwork content is defined in CITI.</p>
 @stop
 
@@ -96,7 +96,7 @@
 @push('vuexStore')
     @php($model3d = $item->model3d)
     @foreach (['model_url', 'model_caption', 'model_id', 'camera_position', 'camera_target', 'annotation_list'] as $name)
-        window.STORE.form.fields.push({
+        window['{{ config('twill.js_namespace') }}'].STORE.form.fields.push({
             name: "{{ 'aic_3d_model[' . $name . ']' }}",
             value: {!! json_encode($model3d ? $model3d->$name : '') !!}
         })

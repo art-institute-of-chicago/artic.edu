@@ -73,7 +73,7 @@
             'paragraph', 'image', 'video', 'media_embed', 'list',
             'child_pages', 'accordion', 'membership_banner', 'timeline',
             'link', 'newsletter_signup_inline', 'artwork',
-            'hr', 'split_block', 'search_bar', 'tour_stop', 'button',
+            'hr', 'split_block', 'search_bar', 'audio_player', 'tour_stop', 'button',
             'mobile_app', 'grid', 'table', '3d_model',
             'gallery', 'artworks', 'gallery_new', 'vtour_embed',
         ])
@@ -86,7 +86,7 @@
         @slot('moduleName', 'genericPages')
     @endcomponent
 
-    {{-- TODO: Use 'admin.partials.meta' as a component --}}
+    {{-- WEB-2236: Use 'admin.partials.meta' as a component --}}
     <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
         @formField('input', [
             'name' => 'meta_title',

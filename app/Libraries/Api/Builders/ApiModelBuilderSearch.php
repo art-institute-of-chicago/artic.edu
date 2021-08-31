@@ -3,10 +3,7 @@
 namespace App\Libraries\Api\Builders;
 
 use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Arr;
-use App\Libraries\Api\Builders\ApiModelBuilder;
 
 class ApiModelBuilderSearch extends ApiModelBuilder
 {

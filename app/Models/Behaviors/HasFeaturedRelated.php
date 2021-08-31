@@ -18,15 +18,20 @@ use Carbon\Carbon;
  */
 trait HasFeaturedRelated
 {
+    protected $sidebarContainsDefaultRelated = false;
+
     private $targetItemCount = 6;
 
     private $selectedFeaturedRelateds;
 
-    private $sidebarContainsDefaultRelated = false;
-
     public function getFeaturedRelatedTitle()
     {
         return $this->sidebarContainsDefaultRelated ? 'Discover More' : 'Related';
+    }
+
+    public function getFeaturedRelatedGtmAttributes()
+    {
+        return 'data-gtm-event="related-sidebar" data-gtm-event-category="collection-nav"';
     }
 
     public function hasFeaturedRelated()
@@ -65,7 +70,7 @@ trait HasFeaturedRelated
                 'moduleName' => 'exhibitions',
             ],
         ], [
-            // See $typeUsesApi in HasApiRelations class
+            // See HasApiRelations::$typeUsesApi
             'articles' => false,
             'selections' => false,
             'events' => false,
@@ -89,7 +94,7 @@ trait HasFeaturedRelated
         $now = Carbon::now();
 
         return $relatedItems->filter(function($relatedItem) use ($now) {
-            // TODO: Verify that we don't need to check if the exhibition is in the future?
+            // WEB-2265: Verify that we don't need to check if the exhibition is in the future?
             if (get_class($relatedItem) === \App\Models\Api\Exhibition::class) {
                 return true;
             }

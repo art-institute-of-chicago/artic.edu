@@ -10,9 +10,9 @@ const googleTagManagerDataFromLink = function(link) {
     if (link.dataset.hasOwnProperty(key) && key.indexOf('gtm') > -1) {
       let gtmKey = key.replace(/^gtm/,'');
       let gtmValue = link.dataset[key];
-      // sort the casing out
+      // Sort the casing out
       gtmKey = gtmKey.charAt(0).toLowerCase() + gtmKey.slice(1);
-      // check if its a special value that requires JS assistance
+      // Check if its a special value that requires JS assistance
       if (gtmValue === '::document.title::') {
         gtmValue = document.title.replace(/ \| The Art Institute of Chicago/ig, '');
       }

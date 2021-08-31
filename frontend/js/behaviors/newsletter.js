@@ -66,7 +66,7 @@ const newsletter = function(container) {
           container.setAttribute('disabled', 'disabled');
           container.querySelector('input[name=email]').value = '';
           _updateState('success', data.message || data.email);
-          // tell GTM
+          // Tell GTM
           triggerCustomEvent(document, 'gtm:push', {
             'event': 'sign-up',
             'eventCategory': 'subscribe',
@@ -108,7 +108,7 @@ const newsletter = function(container) {
     let target = container.querySelector('.m-aside-newsletter__list-wrapper');
 
     if (target.getAttribute('aria-hidden') === 'true') {
-      // open
+      // Open
       target.style.height = 0;
       target.style.overflow = 'hidden';
       target.setAttribute('aria-hidden', 'false');
@@ -116,7 +116,7 @@ const newsletter = function(container) {
       _getHeightAndSet(target);
       buttonElement.classList.add('m-aside-newsletter__btn--list--opened');
     } else {
-      // close
+      // Close
       _getHeightAndSet(target);
       target.setAttribute('aria-hidden', 'true');
       let thrash = target.offsetHeight;
@@ -139,10 +139,10 @@ const newsletter = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     container.removeEventListener('submit', _handleSubmit);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

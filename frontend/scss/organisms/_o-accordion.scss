@@ -53,7 +53,7 @@ h3 {
   }
 }
 
-// for collection filters
+// For collection filters
 .o-accordion__trigger.f-tag-2 {
   padding-bottom: 22px - 1px;
   border-bottom: 1px solid $color__rules--primary;
@@ -406,16 +406,22 @@ h3 {
       }
     }
 
-    .m-link-list__item.s-active > a.m-link-list__trigger.f-secondary {
-      color: $color__blue;
-
-      &:hover,
-      &:focus:hover {
-        color: $color__blue--hover;
+    .m-link-list__item.s-active {
+      &::after {
+        background-color: $color__rules--primary;
       }
 
-      &:active:hover {
-        color: $color__blue--active;
+      > a.m-link-list__trigger.f-secondary {
+        color: $color__blue;
+
+        &:hover,
+        &:focus:hover {
+          color: $color__blue--hover;
+        }
+
+        &:active:hover {
+          color: $color__blue--active;
+        }
       }
     }
   }

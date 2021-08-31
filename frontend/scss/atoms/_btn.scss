@@ -358,19 +358,8 @@ Example usage:
 
 .btn--disabled,
 .btn[disabled] {
-  // background-color: $color__bg--primary;
-  // color: $color__black--30;
   opacity: .5;
   pointer-events: none;
-
-  // &:hover,
-  // &:focus:hover {
-  //   background-color: $color__bg--primary;
-  // }
-
-  // &:active:hover {
-  //   background-color: $color__bg--primary;
-  // }
 }
 
 .btn.s-loading,

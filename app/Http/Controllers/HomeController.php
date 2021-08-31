@@ -28,7 +28,7 @@ class HomeController extends FrontController
 
         $mainFeatures = $mainHomeFeatures->concat($secondaryHomeFeatures);
 
-        // TODO: Finish deprecating `homeFeatures` relationship
+        // WEB-2254: Finish deprecating `homeFeatures` relationship
         if ($mainFeatures->count() < 1) {
             $mainFeatures = $page->homeFeatures()->published()->limit(3)->get();
         }
@@ -158,9 +158,9 @@ class HomeController extends FrontController
                 return 'not-local';
                 break;
             case Lightbox::GEOTARGET_ALL:
-                // passthrough
+                // Passthrough
             default:
-                // also catches null
+                // Also catches null
                 return 'all';
                 break;
         }

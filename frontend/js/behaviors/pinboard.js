@@ -13,13 +13,13 @@ const pinboard = function(container){
   let optionLayout = container.getAttribute('data-pinboard-option-layout');
   const re = /([0-9])-col@(\w*)/gi;
 
-  // prime and option layouts *is* an F1 tyre reference 🏎
+  // Prime and option layouts *is* an F1 tyre reference 🏎
 
   function _getColCounts(classes) {
-    // do a looped exec regex search on the class name to find matches
-    // look for a number before -col@
-    // and look for a breakpoint name after the -col@
-    // then add to a local js obj
+    // Do a looped exec regex search on the class name to find matches
+    // Look for a number before -col@
+    // And look for a breakpoint name after the -col@
+    // Then add to a local js obj
     let classListColInfo;
     while ((classListColInfo = re.exec(classes)) !== null) {
       colCounts[classListColInfo[2]] = classListColInfo[1];
@@ -27,12 +27,12 @@ const pinboard = function(container){
   }
 
   function _minOfArray(array) {
-    // return smallest number in array
+    // Return smallest number in array
     return Math.min.apply(Math, array);
   }
 
   function _maxOfArray(array) {
-    // return largest number in array
+    // Return largest number in array
     return Math.max.apply(Math, array);
   }
 
@@ -60,7 +60,7 @@ const pinboard = function(container){
     }
     let firstChild = container.firstElementChild;
     let colWidth = firstChild.offsetWidth;
-    // margin is the total width, minus how many columns of content, divided by how many gutters (which is columns minus 1)
+    // Margin is the total width, minus how many columns of content, divided by how many gutters (which is columns minus 1)
     let marginLeft = (container.offsetWidth - (colWidth * colCount)) / (colCount - 1);
     firstChild.classList.add('s-repositioning');
     let marginTop = _getMarginTop(firstChild);
@@ -69,25 +69,25 @@ const pinboard = function(container){
     colCurrent = 0;
     forEach(blocks, function(index, block) {
       if (block.classList.contains('s-positioned') === false || resetPreviousPositions) {
-        // reset the blocks height
+        // Reset the blocks height
         block.style.height = 'auto';
-        // work out which col to drop into and how far left this is
+        // Work out which col to drop into and how far left this is
         let smallestCol;
         let smallestColIndex;
         let leftPos;
         if (maintainOrder) {
-          // always maintain DOM order
+          // Always maintain DOM order
           smallestCol = cols[colCurrent];
           smallestColIndex = colCurrent;
           leftPos = smallestColIndex * (colWidth + marginLeft);
           colCurrent = (colCurrent < cols.length - 1) ? colCurrent + 1 : 0;
         } else {
-          // best position like pinterest/masonry
+          // Best position like pinterest/masonry
           smallestCol = _minOfArray(cols);
           smallestColIndex = cols.indexOf(smallestCol);
           leftPos = smallestColIndex * (colWidth + marginLeft);
         }
-        // calc and lock any image heights, make height is 4:3 ratio
+        // Calc and lock any image heights, make height is 4:3 ratio
         let img = block.querySelector('img');
         if (img && block.classList.contains('m-listing--variable-height')) {
           let blockWidth = block.offsetWidth;
@@ -99,21 +99,21 @@ const pinboard = function(container){
             img.parentNode.style.height = imageNativeHeightAtThisWidth + 'px';
           }
         }
-        // now get blocks new height
+        // Now get blocks new height
         let newHeight = block.offsetHeight;
-        // position
+        // Position
         block.style.left = Math.round(leftPos) + 'px';
         block.style.top = Math.round(smallestCol) + 'px';
         block.style.height = Math.round(newHeight) + 'px';
-        // stop being repositioned
+        // Stop being repositioned
         setTimeout(function(){
           block.classList.add('s-positioned');
         }, 250);
-        // update col
+        // Update col
         cols[smallestColIndex] = smallestCol + newHeight + marginTop;
-        // update container height
+        // Update container height
         container.style.height = _maxOfArray(cols) + 'px';
-        // tell the page
+        // Tell the page
         triggerCustomEvent(document, 'page:updated');
       }
     });
@@ -123,11 +123,11 @@ const pinboard = function(container){
     colCount = colCounts[A17.currentMediaQuery];
     if (colCount) {
       cols = [];
-      // create an array position for each column
+      // Create an array position for each column
       for (var i = 0; i < colCount; i++) {
         cols.push(0);
       }
-      // go go go
+      // Go go go!
       active = true;
       _positionBlocks(true);
     } else {
@@ -177,14 +177,14 @@ const pinboard = function(container){
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     container.removeEventListener('pinboard:contentAdded', _contentAdded);
     document.removeEventListener('resized', _resized);
     document.removeEventListener('ajaxPageLoad:complete', _resized);
     document.removeEventListener('collectionFilters:open', _showFilters);
     document.removeEventListener('collectionFilters:close', _hideFilters);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

@@ -66,7 +66,7 @@
     display: block;
     position: relative;
     width: 90vw;
-    max-width: 160vh; // stops a 16:9 thing growing taller than 90% of total vh
+    max-width: 160vh; // Stops a 16:9 thing growing taller than 90% of total vh
     height: 0;
     margin: 0 auto;
     padding-bottom: percentage(9 / 16); // 16:9

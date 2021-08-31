@@ -2,7 +2,6 @@
 
 namespace App\Models\Form;
 
-use Carbon\Carbon;
 
 class FilmingProposal extends FormModel
 {

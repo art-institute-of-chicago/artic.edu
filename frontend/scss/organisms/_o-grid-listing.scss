@@ -62,7 +62,7 @@ Basic flexed set up
   }
 }
 
-// if this is in cols, adjust spacings
+// If this is in cols, adjust spacings
 @each $name, $point in $breakpoints {
   @include breakpoint('#{$name}') {
     .o-grid-listing[class*="col@#{$name}"] {
@@ -258,7 +258,7 @@ X cols at XXXXX breakpoint
 
 ***/
 
-// adjust width of things, second row onwards wants margin-tops
+// Adjust width of things, second row onwards wants margin-tops
 
 @include breakpoint('xsmall') {
   .o-grid-listing--2-col\@xsmall > * {
@@ -489,11 +489,11 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
 
 ***/
 
-// draw some keylines to the right of the items
+// Draw some keylines to the right of the items
 .o-grid-listing--gridlines-right,
 .o-grid-listing--gridlines-cols {
-  margin-bottom: -4px; // why? because design thats why..
-  padding-bottom: 4px; // why? because design thats why..
+  margin-bottom: -4px; // Why? because design thats why..
+  padding-bottom: 4px; // Why? because design thats why..
 }
 
 .o-grid-listing--gridlines-right > *::after,
@@ -502,7 +502,7 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
   display: none;
   position: absolute;
   top: 0;
-  bottom: -4px; // why? because design thats why..
+  bottom: -4px; // Why? because design thats why..
   width: 1px;
   background-color: $color__rules--tertiary;
   pointer-events: none;
@@ -518,7 +518,7 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
   }
 }
 
-// if following a hr and no grid lines, tweak position
+// If following a hr and no grid lines, tweak position
 hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-grid-listing--gridlines-rows) > *::after,
 .hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-grid-listing--gridlines-rows) > *::after {
   @each $name, $point in $breakpoints {
@@ -529,7 +529,7 @@ hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-
   }
 }
 
-// the last item of each row doesn't want a keyline
+// The last item of each row doesn't want a keyline
 // cols gridlines need to stretch to reach each other
 // so from the 2nd row onwards, needs a negative top spacing
 @include breakpoint('xsmall') {
@@ -659,7 +659,7 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 
 ***/
 
-// draw a keyline at the top of each element
+// Draw a keyline at the top of each element
 .o-grid-listing--gridlines-top > *::before,
 .o-grid-listing--gridlines-rows > *::before {
   content: '';
@@ -698,7 +698,7 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
   }
 }
 
-// start drawing a keyline at the top of the first item in each row
+// Start drawing a keyline at the top of the first item in each row
 // this keyline will be full width
 @include breakpoint('xsmall') {
   .o-grid-listing--gridlines-rows:not([class*=col\@xsmall]) > *::before,
@@ -782,7 +782,7 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
   }
 }
 
-// adjust the bottom position of the vertical gridlines when cols lines are used with top or rows
+// Adjust the bottom position of the vertical gridlines when cols lines are used with top or rows
 // starts off easy
 .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows > *::after {
   @each $name, $point in $breakpoints {
@@ -793,7 +793,7 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
   }
 }
 
-// then you have to select the last row of everything and fix
+// Then you have to select the last row of everything and fix
 @include breakpoint('xsmall') {
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall > *:nth-child(2n+1):nth-last-child(-n+2)::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall > *:nth-child(2n+1):nth-last-child(-n+2) ~ *::after,
@@ -868,7 +868,7 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 }
 
 
-// variation with just artwork thumbs in needs adjusting
+// Variation with just artwork thumbs in needs adjusting
 .o-grid-listing--basic-artworks {
   overflow-x: hidden;
 }

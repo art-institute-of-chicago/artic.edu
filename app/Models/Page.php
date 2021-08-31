@@ -25,7 +25,7 @@ class Page extends AbstractModel
     public static $types = [
         0 => 'Home',
         1 => 'Exhibitions and Events',
-        2 => 'Art and Ideas', // now The Collection?
+        2 => 'Art and Ideas', // WEB-2262: now The Collection
         3 => 'Visit',
         4 => 'Articles',
         5 => 'Exhibition History',
@@ -220,7 +220,11 @@ class Page extends AbstractModel
             ],
         ],
     ];
-    public $filesParams = ['video']; // a list of file roles
+
+    /**
+     * A list of file roles
+     */
+    public $filesParams = ['video'];
 
     public static $iconTypes = [
         0 => 'Face Coverings',

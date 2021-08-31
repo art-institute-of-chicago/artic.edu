@@ -72,12 +72,6 @@
       {!! $item->renderBlocks(false) !!}
     </div>
 
-      {{--  @component('components.blocks._blocks')
-        @slot('editorial', false)
-        @slot('blocks', $item->blocks ?? null)
-        @slot('dropCapFirstPara', false)
-        @endcomponent  --}}
-
     @if ($item->pictures)
         @component('components.atoms._hr')
         @endcomponent

@@ -17,9 +17,6 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        // 'App\Events\Event' => [
-        //     'App\Listeners\EventListener',
-        // ],
     ];
 
     /**
@@ -33,10 +30,9 @@ class EventServiceProvider extends ServiceProvider
 
         Event::listen('Aacotroneo\Saml2\Events\Saml2LoginEvent', function ($event) {
             $messageId = $event->getSaml2Auth()->getLastMessageId();
-            // your own code preventing reuse of a $messageId to stop replay attacks
+            // Your own code preventing reuse of a $messageId to stop replay attacks
             $user = $event->getSaml2User();
             $userData = [
-                // 'id' => $user->getUserId(),
                 'email' => Arr::first($user->getAttribute('email')),
                 'name' => Arr::first($user->getAttribute('email')),
                 'role' => 'VIEW_ONLY',

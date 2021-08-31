@@ -102,14 +102,14 @@ const infoButtonTrigger = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     document.removeEventListener('infoButtonInfo:close', _closeInfoButtonInfo);
     document.removeEventListener('click', _clicksOutside);
     window.removeEventListener('resized', _reposition);
     window.removeEventListener('keyup', _escape);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

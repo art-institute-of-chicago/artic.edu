@@ -6,7 +6,7 @@ const fitText = function(container) {
   const fittyClass ='f-fit-text';
   const fittySmallClass ='f-fit-text-small';
 
-  // called when all fonts loaded
+  // Called when all fonts loaded
   function _redrawFitty() {
     fitty.fitAll();
   }
@@ -17,7 +17,7 @@ const fitText = function(container) {
       el.removeEventListener('load', _redrawFitty);
     });
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     purgeProperties(this);
   };
 

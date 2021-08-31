@@ -38,6 +38,10 @@
     @formField('wysiwyg', [
         'name' => 'intro',
         'label' => 'Intro',
+        'toolbarOptions' => [
+            'strike'
+        ],
+
     ])
 @stop
 
@@ -91,7 +95,7 @@
                 ],
                 [
                     'label' => 'Interactive Features',
-                    'value' => '/collection/experiences/browser'
+                    'value' => '/collection/interactive_features/experiences/browser'
                 ],
                 [
                     'label' => 'Videos',

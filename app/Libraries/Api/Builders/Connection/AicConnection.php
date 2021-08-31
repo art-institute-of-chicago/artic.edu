@@ -4,7 +4,6 @@ namespace App\Libraries\Api\Builders\Connection;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Arr;
-use App\Libraries\Api\Builders\Grammar\AicGrammar;
 
 class AicConnection implements ApiConnectionInterface
 {
@@ -13,7 +12,9 @@ class AicConnection implements ApiConnectionInterface
     protected $defaultGrammar = 'App\Libraries\Api\Builders\Grammar\AicGrammar';
     protected $cacheKeyName   = 'Aic-cache-key';
 
-    // Define a custom TTL for the queries using this connection instance.
+    /**
+     * Define a custom TTL for the queries using this connection instance.
+     */
     protected $ttl;
 
     /**
@@ -24,7 +25,6 @@ class AicConnection implements ApiConnectionInterface
      */
     public function __construct()
     {
-        // Todo: to be changed when we allow to configure things
         $this->client = \App::make('ApiClient');
         $this->useDefaultQueryGrammar();
     }
@@ -122,7 +122,7 @@ class AicConnection implements ApiConnectionInterface
             $ttl = $this->ttl ?? config('api.cache_ttl');
 
             $response = \Cache::remember($cacheKey, $ttl, function () use ($verb, $endpoint, $options) {
-                // TODO: Somewhere here – figure out if the request failed?
+                // WEB-2259: Somewhere here – figure out if the request failed?
                 return $this->client->request($verb, $endpoint, $options);
             });
 

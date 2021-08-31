@@ -23,7 +23,7 @@
             <title><![CDATA[{{ $item->title }}]]></title>
             <link>{{ url($item->link) }}</link>
             <guid>{{ url($item->link) }}</guid>
-            {{-- TODO: Does `author` ever return anything? --}}
+            {{-- WEB-2245: Does `author` ever return anything? --}}
             <dc:creator>{{ $item->author }}</dc:creator>
             <description>
                 <![CDATA[{!! $item->summary !!}]]>

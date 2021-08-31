@@ -6,11 +6,8 @@ use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Behaviors\HasTranslation;
 use A17\Twill\Models\Behaviors\Sortable;
-use App\Http\Resources\SlideAsset as SlideAssetResource;
 use App\Http\Resources\Slide as SlideResource;
-use App\Models\SeamlessImage;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 

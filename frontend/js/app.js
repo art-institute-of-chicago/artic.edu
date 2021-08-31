@@ -1,26 +1,22 @@
 import { manageBehaviors, resized, getCurrentMediaQuery, forEach, lazyLoad } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
 import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, videojsActivate, headerHeight, roadblock } from './functions';
-/*
-
-  A17
-
-  Doc: // Doc: https://code.area17.com/a17/fe-boilerplate/wikis/js-app
-
-*/
-
+/**
+ * A17
+ * @see Doc: https://code.area17.com/a17/fe-boilerplate/wikis/js-app
+ */
 var A17 = window.A17 || {};
 
 // HTML4 browser?
 if (!A17.browserSpec || A17.browserSpec === 'html4') {
-  // lets kill further JS execution of A17 js here
+  // Let's kill further JS execution of A17 js here
   throw new Error('HTML4');
 }
 
 A17.currentMediaQuery = getCurrentMediaQuery();
 A17.currentPathname = window.location.pathname;
 A17.dateRangeValues = [
-    '8000 BCE','7000 BCE','6000 BCE','5000 BCE','4000 BCE','3000 BCE','2000 BCE','1000 BCE','1 CE','500 CE','1000 CE','1200','1400','1600','1700','1800','1900','1910','1920','1930','1940','1950','1960','1970','1980','1990','2000','2010','Present']; // for collection filters
+    '8000 BCE','7000 BCE','6000 BCE','5000 BCE','4000 BCE','3000 BCE','2000 BCE','1000 BCE','1 CE','500 CE','1000 CE','1200','1400','1600','1700','1800','1900','1910','1920','1930','1940','1950','1960','1970','1980','1990','2000','2010','2020','Present']; // For collection filters
 A17.onYouTubeIframeAPIReady = false;
 try {
   A17.env = /s-env-([a-z]*)/ig.exec(document.documentElement.className)[1];
@@ -30,7 +26,7 @@ try {
 A17.ajaxLinksActive = true;
 A17.ajaxLinksFailSafe = (A17.env === 'production') ? true : false;
 
-// expose A17 so it's visible to kiosk
+// Expose A17 so it's visible to kiosk
 window.A17 = A17;
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -47,40 +43,40 @@ document.addEventListener('DOMContentLoaded', function(){
     });
     return;
   }
-  // activates all video-js audio players
+  // Activates all video-js audio players
   videojsActivate();
-  // rebind "Skip to Content" target
+  // Rebind "Skip to Content" target
   accessibleContent();
-  // listen for google tag manager dataLayer pushes
+  // Listen for google tag manager dataLayer pushes
   googleTagManager();
-  // go go go
+  // Go go go!
   manageBehaviors(Behaviors);
-  // listen for body lock requests
+  // Listen for body lock requests
   lockBody();
-  // listen for focus trap requests
+  // Listen for focus trap requests
   focusTrap();
-  // workout focus type
+  // Workout focus type
   focusDisplayHandler();
-  // scroll anchor links
+  // Scroll anchor links
   anchorLinksScroll();
-  // listen for modal open/close requests
+  // Listen for modal open/close requests
   modals();
-  // listen for modal open/close requests
+  // Listen for modal open/close requests
   roadblock();
-  // listen for calls to show/hide collection filters
+  // Listen for calls to show/hide collection filters
   collectionFilters();
-  // listen for ajax page load type events
+  // Listen for ajax page load type events
   ajaxPageLoad();
   ajaxPageLoadMaskToggle();
   historyProxy();
   loadProgressBar();
-  // on resize, check
+  // On resize, check
   resized();
-  // handle sticky header and articleBodyInViewport
+  // Handle sticky header and articleBodyInViewport
   setScrollDirection();
-  // adjust header for closure notifications if needed
+  // Adjust header for closure notifications if needed
   headerHeight();
-  // watch for fonts loading
+  // Watch for fonts loading
   fontObservers({
     name: 'serif',
     variants: [
@@ -114,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function(){
       },
     ]
   });
-  // lazy load images
+  // Lazy load images
   lazyLoad({
     rootMargin: '200px 0px',
     threshold: 0.01,
@@ -126,7 +122,7 @@ window.onYouTubeIframeAPIReady = function() {
   A17.onYouTubeIframeAPIReady = true;
 }
 
-// make console.log safe
+// Make console.log safe
 if (typeof console === 'undefined') {
   window.console = {
     log: function () {
@@ -142,7 +138,7 @@ document.addEventListener('ajaxPageLoad:complete', function _setScrollRestoratio
   }
 }, false);
 
-// polyfil .closest
+// Polyfil .closest
 if (window.Element && !Element.prototype.closest) {
   Element.prototype.closest =
   function(s) {

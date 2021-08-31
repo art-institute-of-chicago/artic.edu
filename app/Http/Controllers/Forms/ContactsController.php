@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Forms;
 use App\Http\Requests\Form\ContactRequest;
 use App\Models\Form\Contact;
 
-use App\Presenters\StaticObjectPresenter;
 
 /**
  * This is a sample form. Ignore for fixes.

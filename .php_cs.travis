@@ -1,0 +1,6 @@
+<?php
+
+return PhpCsFixer\Config::create()->setRules([
+    '@PSR1' => true,
+    'no_unused_imports' => true,
+]);

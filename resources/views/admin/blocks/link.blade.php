@@ -1,3 +1,6 @@
+@twillBlockTitle('Link')
+@twillBlockIcon('text')
+
 @formField('input', [
     'name' => 'title',
     'label' => 'Title',

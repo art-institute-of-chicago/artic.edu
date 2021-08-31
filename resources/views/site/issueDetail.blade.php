@@ -20,18 +20,16 @@
     </div>
 
     <div class="o-article__body o-blocks">
-        @if ($item->present()->editorsNote)
+        @if ($item->welcome_note_display && $welcomeNote)
             <div class="o-issue__intro">
-                @component('components.organisms._o-editors-note----journal')
-                    @slot('title', $item->present()->editorsNote->present()->shortTitle())
-                    @slot('description', $item->present()->editorsNote->present()->listDescription())
-                    @slot('issueNumber', $item->issue_number ?? null)
-                    @slot('articleLink', $item->present()->editorsNote->url)
+                @component('components.organisms._o-editors-note----publication')
+                    @slot('description', $item->welcome_note_display)
+                    @slot('articleLink', $welcomeNote->url)
                 @endcomponent
             </div>
         @endif
 
-        @if ($item->present()->articlesForLanding)
+        @if ($item->present()->articlesForLanding())
             @component('components.organisms._o-grid-listing')
                 @slot('variation', 'o-grid-listing--journal')
                 @slot('cols_xsmall','1')
@@ -39,12 +37,12 @@
                 @slot('cols_medium','2')
                 @slot('cols_large','2')
                 @slot('cols_xlarge','2')
-                @foreach ($item->present()->articlesForLanding as $article)
+                @foreach ($item->present()->articlesForLanding() as $article)
                     @component('components.molecules._m-listing----publication')
                         @slot('variation', 'm-listing--journal')
-                        @slot('href', route('issue-articles.show', $article))
+                        @slot('href', $article->url)
                         @slot('image', $article->imageFront('hero'))
-                        @slot('type', $article->present()->type)
+                        @slot('type', $article->present()->getArticleType())
                         @slot('title', $article->present()->title)
                         @slot('title_display', $article->present()->title_display)
                         @slot('list_description', $article->present()->list_description)

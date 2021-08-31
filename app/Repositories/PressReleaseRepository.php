@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
-// use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
@@ -14,7 +13,12 @@ use App\Models\Api\Search;
 class PressReleaseRepository extends ModuleRepository
 {
     use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
-    // HandleTranslations,
+
+    protected $browsers = [
+        'sponsors' => [
+            'routePrefix' => 'exhibitions_events',
+        ],
+    ];
 
     public function __construct(PressRelease $model)
     {
@@ -28,23 +32,9 @@ class PressReleaseRepository extends ModuleRepository
         return parent::hydrate($object, $fields);
     }
 
-    public function afterSave($object, $fields)
-    {
-        $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
-
-        parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-
-        $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
-
-        return $fields;
-    }
-
-    // Show data, moved here to allow preview
+    /**
+     * Show data, moved here to allow preview
+     */
     public function getShowData($item, $slug = null, $previewPage = null)
     {
         return [

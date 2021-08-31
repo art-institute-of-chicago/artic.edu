@@ -57,7 +57,7 @@ const setScrollDirection = function() {
           if (sT >= scrollChecks[scrollCheck].pos && !scrollChecks[scrollCheck].hit) {
             scrollChecks[scrollCheck].hit = true;
 
-            // don't trigger this event on the interactive features
+            // Don't trigger this event on the interactive features
             if( window.location.href.indexOf('/interactive-features') === -1 ){
               triggerCustomEvent(document, 'gtm:push', {
                 'event': (dE.classList.contains('p-artworks-show') ? 'artwork-' : '' ) + scrollCheck + '%',

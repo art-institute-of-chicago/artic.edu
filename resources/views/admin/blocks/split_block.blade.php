@@ -1,3 +1,6 @@
+@twillBlockTitle('Split block')
+@twillBlockIcon('text')
+
 @formField('radios', [
     'name' => 'variation',
     'label' => 'Variation',
@@ -27,4 +30,4 @@
     'note' => 'Makes image clickable',
 ])
 
-@include('admin.blocks.paragraph')
+{!! app(\A17\Twill\Services\Blocks\BlockCollection::class)->findByName('paragraph')->render() !!}

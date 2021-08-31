@@ -311,7 +311,7 @@
   $settings: false;
   @if $settings {
     @each $name, $point in $breakpoints-with-directions {
-      // first see if font settings has a line height for this breakpoint
+      // First see if font settings has a line height for this breakpoint
       @if map-has-key($settings, $name) {
         $settings-at-breakpoint: map-get($settings, $name);
         $line-height: map-get($settings-at-breakpoint, line-height);
@@ -427,7 +427,7 @@
 }
 
 .m-article-header--hero .m-article-header__text .title {
-  width: 100%; // ie11 text wrap fix
+  width: 100%; // IE11 text wrap fix
   text-align: center;
   color: $color__text--title-contrast;
 }
@@ -640,7 +640,7 @@
 
 
 
-// shared styles for .m-article-header--journal .m-article-header--magazine
+// Shared styles for .m-article-header--journal .m-article-header--magazine
 .m-article-header--publication {
   padding-top: 0;
 
@@ -661,7 +661,6 @@
   .f-subheading-3,
   .f-deck,
   a {
-    // text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
     color: $color__text--title-contrast;
   }
 
@@ -914,11 +913,11 @@
     }
 
     $magazine-intro-width-basis: (
-      // derived from .o-grid-listing--2-col\@foobar
+      // Derived from .o-grid-listing--2-col\@foobar
       xsmall: colspan(grid-cols-to-colspan(2, 58, 6), 'xsmall'),
       small: colspan(grid-cols-to-colspan(2), 'small'),
       medium: colspan(grid-cols-to-colspan(2), 'medium'),
-      // derived from .o-grid-listing--2-col\@foobar
+      // Derived from .o-grid-listing--2-col\@foobar
       large: colspan(20.5, 'large'),
       xlarge: colspan(20.5, 'xlarge'),
     );
@@ -959,7 +958,7 @@
       }
 
       .m-article-header__play-pause {
-        display: inline-block; // show on mobile
+        display: inline-block; // Show on mobile
 
         @include breakpoint('small+') {
           margin-left: 12px;

@@ -4,7 +4,9 @@ namespace App\Libraries\Search\Filters;
 
 class BooleanFilter
 {
-    // Define parameter and label to be processed
+    /**
+     * Define parameter and label to be processed
+     */
     protected $options = [];
 
     public function __construct($possibleOptions)

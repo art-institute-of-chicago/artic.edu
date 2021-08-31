@@ -6,11 +6,9 @@ use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
 use App\Libraries\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\EmbedConverterService;
-use App\Libraries\LakeviewImageService;
+use App\Libraries\DamsImageService;
 use App\Observers\FileObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\ServiceProvider;
 use View;
 
@@ -27,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->registerMorphMap();
         $this->registerApiClient();
-        $this->registerLakeviewImageService();
+        $this->registerDamsImageService();
         $this->registerEmbedConverterService();
         $this->registerClosureService();
         $this->registerPrintService();
@@ -38,7 +36,9 @@ class AppServiceProvider extends ServiceProvider
         \Illuminate\Pagination\AbstractPaginator::defaultSimpleView("site.pagination.simple-aic");
     }
 
-    // Taken from Front/Controller. Figure out how to make this affect Twill's ModuleController
+    /**
+     * Taken from Front/Controller. Figure out how to make this affect Twill's ModuleController
+     */
     private function hotfixSeoForAdminPreview()
     {
         $seo = new Seo;
@@ -55,7 +55,6 @@ class AppServiceProvider extends ServiceProvider
     public function registerMorphMap()
     {
         Relation::morphMap([
-            // 'artworks' => 'App\Models\Artwork', // TODO: Fixme in db!
             'events' => 'App\Models\Event',
             'articles' => 'App\Models\Article',
             'selections' => 'App\Models\Selection',
@@ -63,9 +62,6 @@ class AppServiceProvider extends ServiceProvider
             'homeFeatures' => 'App\Models\HomeFeature',
 
             'experiences' => 'App\Models\Experience',
-
-            // TODO: Figure out what to do about this rebase left-over?
-            // 'digitalLabels' => 'App\Models\DigitalLabel',
 
             'digitalPublications' => 'App\Models\DigitalPublication',
             'printedPublications' => 'App\Models\PrintedPublication',
@@ -86,7 +82,7 @@ class AppServiceProvider extends ServiceProvider
             return new GuzzleApiConsumer([
                 'base_uri' => config('api.base_uri'),
                 'exceptions' => false,
-                'decode_content' => true, // explicit default
+                'decode_content' => true, // Explicit default
             ]);
         });
     }
@@ -98,10 +94,10 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    public function registerLakeviewImageService()
+    public function registerDamsImageService()
     {
-        $this->app->singleton('lakeviewimageservice', function ($app) {
-            return new LakeviewImageService();
+        $this->app->singleton('damsimageservice', function ($app) {
+            return new DamsImageService();
         });
     }
 
@@ -157,9 +153,9 @@ class AppServiceProvider extends ServiceProvider
         config(['aic.version' => trim(file_get_contents(__DIR__ . '/../../VERSION'))]);
     }
 
-    // TODO: Consider moving some of this to a config?
     private function composeTemplatesViews()
     {
+        // WEB-2269: Consider moving some of this to a config?
         view()->composer('*', function ($view) {
 
             $view->with([

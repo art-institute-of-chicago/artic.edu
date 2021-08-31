@@ -1,7 +1,7 @@
 <section class="o-artist-bio{{isset($variation) ? ' o-'.$variation.'-bio' : ''}}">
     <div class="o-artist-bio__inner">
         @if ($item->imageFront('hero'))
-            {{-- TODO: This causes two `figure` blocks to be nested in each other --}}
+            {{-- WEB-2241: This causes two `figure` blocks to be nested in each other --}}
             <figure class="o-artist-bio__image">
                 {{-- Mimicking an image block here. --}}
                 @component('components.molecules._m-media')
@@ -28,7 +28,7 @@
                         <dd itemprop="additionalName">{!! $item->present()->also_known_as !!}</dd>
                     @endif
 
-                    @if ($item->gender_title && (!app()->environment('production')))
+                    @if ($item->gender_title && config('aic.show_artist_gender'))
                         <dt>Gender</dt>
                         <dd itemprop="gender">{!! $item->gender_title !!}</dd>
                     @endif
@@ -43,8 +43,8 @@
                         <dd><time datetime="{{ $item->death_date }}" itemprop="deathDate">{{ $item->death_date }}</time></dd>
                     @endif
 
-                    {{-- TODO: Dedupe w/ `place_pivots` in ArtworkPresenter? --}}
-                    @if ($item->place_pivots != null && count($item->place_pivots) > 0 && (!app()->environment('production')))
+                    {{-- WEB-2242: Dedupe w/ `place_pivots` in ArtworkPresenter? --}}
+                    @if ($item->place_pivots != null && count($item->place_pivots) > 0 && config('aic.show_artist_places'))
                         @php
                             $places = collect($item->place_pivots)->map(function($pivot) {
                                 $title = $pivot->place_title;

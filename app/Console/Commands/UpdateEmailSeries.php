@@ -144,10 +144,6 @@ class UpdateEmailSeries extends Command
             exit(1);
         }
 
-        // EmailSeries::withTrashed()->each(function($series) {
-        //     $series->forceDelete();
-        // });
-
         Schema::disableForeignKeyConstraints();
         DB::table('event_email_series')->truncate();
         DB::table('email_series')->truncate();

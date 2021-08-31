@@ -3,7 +3,7 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
-use LakeviewImageService;
+use DamsImageService;
 
 class Image extends BaseApiModel
 {
@@ -13,20 +13,22 @@ class Image extends BaseApiModel
         'search'     => '/api/v1/images/search'
     ];
 
-    // Build image array with this entity's data. No need to hit Lake endpoint
+    /**
+     * Build image array with this entity's data. No need to hit Dams endpoint
+     */
     public function imageFront($role = null, $crop = null)
     {
-        $lake = new LakeviewImageService;
+        $dams = new DamsImageService;
         $credit = $this->credit_line;
         $creditUrl = null;
         $shareTitle = empty($this->artwork_titles) ? null : $this->artwork_titles[0];
         $downloadName = null;
 
-        $src = $lake->getUrl($this->id);
+        $src = $dams->getUrl($this->id);
         $srcset = $src ." 300w";
 
         $image = array(
-            "type" => 'lakeview',
+            "type" => 'dams',
             "src" => $src,
             "srcset" => $srcset,
             "width" => $this->width,
@@ -37,7 +39,7 @@ class Image extends BaseApiModel
             "downloadName" => $shareTitle,
             "credit" => $credit,
             "creditUrl" => $creditUrl,
-            "iiifId" => $lake->getBaseUrl().$lake->getVersion().'/'.$this->id,
+            "iiifId" => $dams->getBaseUrl().$dams->getVersion().'/'.$this->id,
             "alt"    => $this->alt_text
         );
 

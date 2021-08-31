@@ -3,11 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Http\File;
-use Illuminate\Support\Facades\Storage;
 
-use App\Models\IssueArticle;
-use Prince\Prince;
 
 class GeneratePdfsOne extends GeneratePdfs
 {

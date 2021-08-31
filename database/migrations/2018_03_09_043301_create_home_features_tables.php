@@ -12,22 +12,6 @@ class CreateHomeFeaturesTables extends Migration
             $table->string('title')->nullable();
         });
 
-        // Schema::create('artwork_home_feature', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->timestamps();
-
-        //     createDefaultRelationshipTableFields($table, 'artwork', 'home_feature');
-        //     $table->integer('position')->unsigned()->index();
-        // });
-
-        // Schema::create('exhibition_home_feature', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->timestamps();
-
-        //     createDefaultRelationshipTableFields($table, 'exhibition', 'home_feature');
-        //     $table->integer('position')->unsigned()->index();
-        // });
-
         Schema::create('article_home_feature', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
@@ -47,9 +31,7 @@ class CreateHomeFeaturesTables extends Migration
 
     public function down()
     {
-        // Schema::dropIfExists('exhibition_home_feature');
         Schema::dropIfExists('event_home_feature');
-        // Schema::dropIfExists('artwork_home_feature');
         Schema::dropIfExists('article_home_feature');
         Schema::dropIfExists('home_features');
     }

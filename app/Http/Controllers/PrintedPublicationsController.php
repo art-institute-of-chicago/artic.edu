@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Repositories\PrintedPublicationRepository;
-use App\Models\PrintedPublication;
 use App\Models\CatalogCategory;
 
 class PrintedPublicationsController extends BaseScopedController
@@ -59,7 +58,7 @@ class PrintedPublicationsController extends BaseScopedController
         $item = $this->repository->published()->find((integer) $id);
 
         if (empty($item)) {
-            $item = $this->repository->safeForSlug($id);
+            $item = $this->repository->forSlug($id);
         }
 
         if (!$item) {

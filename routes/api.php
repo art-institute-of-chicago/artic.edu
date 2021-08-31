@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
  */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 Route::get('/', function () {
     return redirect('/api/v1');
 });
@@ -423,8 +419,6 @@ Route::group(['prefix' => 'v1'], function () {
      */
     Route::get('hours/{id}', 'API\HoursController@show');
 
-    // Route::get('holidays', 'API\HolidaysController@index');
-
     /**
      *
      * - hours ------------------------------------------------------
@@ -470,9 +464,6 @@ Route::group(['prefix' => 'v1'], function () {
      *
      */
     Route::get('closures/{id}', 'API\ClosuresController@show');
-
-    // Route::get('modules', 'API\ModulesController@index');
-    // Route::get('modules/{id}', 'API\ModulesController@show');
 
     /**
      *

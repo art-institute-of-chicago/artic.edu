@@ -47,6 +47,25 @@
 
     <hr>
 
+    @formField('wysiwyg', [
+        'name' => 'welcome_note_display',
+        'label' => 'Welcome note text',
+        'toolbarOptions' => [
+            'italic'
+        ],
+    ])
+
+    @formField('browser', [
+        'name' => 'welcome_note_article',
+        'label' => 'Welcome note article',
+        'endpoint' => route('admin.collection.issues.articles.subbrowser',[
+            'issue' => $item->id,
+        ]),
+        'max' => 1,
+    ])
+
+    <hr>
+
     @formField('medias', [
         'with_multiple' => false,
         'no_crop' => false,

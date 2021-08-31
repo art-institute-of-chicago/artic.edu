@@ -6,12 +6,9 @@ use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Behaviors\HasTranslation;
 use A17\Twill\Models\Behaviors\Sortable;
 use App\Http\Resources\SlideAsset as SlideAssetResource;
 use App\Http\Resources\Slide as SlideResource;
-use App\Models\SeamlessImage;
-use App\Models\ExperienceModal;
 use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
@@ -61,10 +58,6 @@ class Experience extends AbstractModel implements Sortable
 
     public function getAssetLibraryAttribute()
     {
-        // $slides = $this->slides()->published()->orderBy('position')->get()->filter(function ($slide) {
-        //     $seamless_file = $slide->fileObject('sequence_file');
-        //     return $seamless_file && SeamlessImage::where('zip_file_id', $seamless_file->id)->get()->count() > 0;
-        // });
         $slides = $this->slides()->published()->orderBy('position')->get()->filter(function ($slide) {
             if ($slide->asset_type !== 'seamless') {
                 return false;
@@ -227,6 +220,11 @@ class Experience extends AbstractModel implements Sortable
     public function getUrl()
     {
         return route('interactiveFeatures.show', $this->slug);
+    }
+
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.collection.interactive_features.experiences.edit', $this->id);
     }
 
     public $mediasParams = [

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Api\TicketedEventRepository;
 
 class TicketedEventTypeController extends FrontController
 {

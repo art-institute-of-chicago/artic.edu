@@ -8,20 +8,11 @@ Route::name('target')->get('/target', 'HomeController@target');
 
 Route::name('home')->get('/', 'HomeController@index');
 
-// Statics routes
-if (!app()->environment('production')) {
-    Route::get('/autocomplete/{slug?}', 'StaticsController@autocomplete');
-    Route::get('/collections/search/{slug?}', 'StaticsController@collectionsAutocomplete');
-    Route::get('/exhibitions_load_more', 'StaticsController@exhibitions_load_more');
-    Route::get('/statics/{slug?}', 'StaticsController@index');
-}
-
 // Collection routes
 Route::name('collection')->get('/collection', 'CollectionController@index');
-Route::name('collection.more')->get('/collection/more', 'CollectionController@index');
 /*Route::name('collection.autocomplete')->get('/collection/autocomplete', 'CollectionController@autocomplete');
 Route::name('collection.autocomplete')->get('/collection/autocomplete', function(){
-return redirect('//aggregator-data-test.artic.edu/api/v1/autocomplete?q='.request('q'));
+return redirect('//api.artic.edu/api/v1/autocomplete?q='.request('q'));
 });
  */
 Route::group([
@@ -195,7 +186,6 @@ Route::get('e-news', function () {
 
 // Digital labels
 Route::name('interactiveFeatures')->get('/interactive-features', 'InteractiveFeatureExperiencesController@index');
-Route::name('interactiveFeatures.test')->get('/interactive-features/test', 'InteractiveFeatureExperiencesController@test');
 Route::name('interactiveFeatures.show')->get('/interactive-features/{slug}', 'InteractiveFeatureExperiencesController@show');
 Route::name('interactiveFeatures.showKiosk')->get('/interactive-features/kiosk/{slug}', 'InteractiveFeatureExperiencesController@show');
 

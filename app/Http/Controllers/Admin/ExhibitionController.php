@@ -71,11 +71,15 @@ class ExhibitionController extends BaseApiController
 
     }
 
+    /**
+     * Use the default order scope from Twill.
+     * Added this as an exception on exhibitions because it's the only API listing that
+     * sorting has been implemented.
+     *
+     * @see App\Models\Api\Exhibition::scopeOrderBy
+     */
     protected function orderScope()
     {
-        // Use the default order scope from Twill.
-        // Added this as an exception on exhibitions because it's the only API listing that
-        // sorting has been implemented. See `scopeOrderBy` on Models\Api\Exhibition
         return ModuleController::orderScope();
     }
 

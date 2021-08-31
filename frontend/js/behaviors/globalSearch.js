@@ -24,7 +24,7 @@ const globalSearch = function(container) {
     container.classList.remove(loaderKlass);
   }
 
-  // show autocomplete
+  // Show autocomplete
   function _showAutocomplete(content,stamp) {
     if (stamp === timestamp) {
       let parser = new DOMParser();
@@ -49,7 +49,7 @@ const globalSearch = function(container) {
     }
   }
 
-  // hide autocomplete
+  // Hide autocomplete
   function _hideAutocomplete() {
     if (document.documentElement.classList.contains(autocompleteKlass)) {
       document.documentElement.classList.remove(autocompleteKlass);
@@ -63,7 +63,9 @@ const globalSearch = function(container) {
     });
   }
 
-  // handle ajax search
+  /**
+   * Handle ajax search
+   */
   function _doAjax() {
     clearTimeout(ajaxTimer);
 
@@ -110,7 +112,9 @@ const globalSearch = function(container) {
     }, 250);
   }
 
-  // open search
+  /**
+   * Open search
+   */
   function _openSearch() {
     triggerCustomEvent(document, 'body:lock', {
       breakpoints: 'all'
@@ -128,7 +132,9 @@ const globalSearch = function(container) {
     active = true;
   }
 
-  // close search
+  /**
+   * Close search
+   */
   function _closeSearch() {
     active = false;
     clearTimeout(ajaxTimer);
@@ -144,26 +150,32 @@ const globalSearch = function(container) {
     textInput.value = '';
   }
 
-  // handle escape key
+  /**
+   * Handle escape key
+   */
   function _escape(event) {
     if (active && event.keyCode === 27) {
       triggerCustomEvent(document, 'globalSearch:close');
     }
   }
 
-  // doesn't show search on xsmall
+  /**
+   * Doesn't show search on xsmall
+   */
   function _resized() {
     if (active && A17.currentMediaQuery !== 'xsmall') {
       triggerCustomEvent(document, 'globalSearch:close');
     }
   }
 
-  // handle form submit
+  /**
+   * Handle form submit
+   */
   function _handleSubmit(event){
     event.preventDefault();
     let terms = _fixedEncodeURIComponent(textInput.value);
     if (active && terms.length > 0) {
-      // if the form has some google tag manager props, tell GTM
+      // If the form has some google tag manager props, tell GTM
       let googleTagManagerObject = googleTagManagerDataFromLink(container);
       if (googleTagManagerObject) {
         googleTagManagerObject['event'] = _fixedEncodeURIComponent(textInput.value);
@@ -176,15 +188,17 @@ const globalSearch = function(container) {
     }
   }
 
-  // handle search input
+  /**
+   * Handle search input
+   */
   function _handleInput() {
     if (active) {
       searchTerm = textInput.value;
       if(searchTerm.length >= 3){
-        // do ajax
+        // Do ajax
         _doAjax();
       }else if(searchTerm.length === 0){
-        // hide autocomplete
+        // Hide autocomplete
         _hideAutocomplete();
       }
     }
@@ -210,7 +224,7 @@ const globalSearch = function(container) {
     document.removeEventListener('globalSearch:close', _closeSearch);
     window.removeEventListener('keyup', _escape);
     window.removeEventListener('resized', _resized);
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

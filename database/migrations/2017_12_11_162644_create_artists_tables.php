@@ -14,7 +14,6 @@ class CreateArtistsTables extends Migration
             $table->string('datahub_id');
         });
 
-        // remove this if you're not going to use slugs
         Schema::create('artist_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'artist');
         });

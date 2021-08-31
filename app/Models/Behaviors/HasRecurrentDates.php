@@ -10,7 +10,7 @@ namespace App\Models\Behaviors;
 
 trait HasRecurrentDates
 {
-    // TODO: Move this to a polymorphic approach
+    // WEB-2266: Move this to a polymorphic approach
     public function dateRules()
     {
         return $this->hasMany(\App\Models\DateRule::class);
@@ -79,7 +79,7 @@ trait HasRecurrentDates
             $options['BYDAY'] = $ruleObject->getDays();
         }
 
-        // // Options for Monthly repeated events
+        // Options for Monthly repeated events
         if ($ruleObject->getRecurringType() == 'MONTHLY') {
             $options['FREQ'] = \RRule\RRule::MONTHLY;
 

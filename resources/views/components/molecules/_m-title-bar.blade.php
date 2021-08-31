@@ -1,9 +1,8 @@
-{{--
-  -- There are a few things happening here that may be worth refactoring at some point:
+{{-- There are a few things happening here that may be worth refactoring at some point:
   --   1. If there are more than one $links, they will be output in a <ul>. If there is
   --      only one it will be put in a <span>. This is to reduce the redundant list
   --      that a screenreader would add functionality to.
-  --   2. Add an aria-labelledby to the list of links that points to the heading. We do
+  --   2. Adds an aria-labelledby to the list of links that points to the heading. We do
   --      our best to come up with an ID that will be unique to the DOM so other templates
   --      do not have to pass in as much information. But it adds a repeated inline
   --      conditional which is not very DRY.

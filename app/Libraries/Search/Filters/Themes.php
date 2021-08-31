@@ -7,8 +7,10 @@ class Themes
     protected $parameter  = 'theme_ids';
     protected $entity     = \App\Models\Api\Category::class;
 
-    // Basic functionality to get currently active hidden filters to build
-    // buttons to remove them when searching.
+    /**
+     * Basic functionality to get currently active hidden filters to build
+     * buttons to remove them when searching.
+     */
     public function generate()
     {
         $list  = [];

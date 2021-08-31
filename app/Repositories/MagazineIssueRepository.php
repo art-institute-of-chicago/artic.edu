@@ -16,6 +16,12 @@ class MagazineIssueRepository extends ModuleRepository
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
+    protected $relatedBrowsers = [
+        'welcome_note' => [
+            'relation' => 'welcome_note'
+        ]
+    ];
+
     public function __construct(MagazineIssue $model)
     {
         $this->model = $model;
@@ -28,21 +34,8 @@ class MagazineIssueRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        $this->updateRelatedBrowser($object, $fields, 'welcome_note');
-
         $this->syncMagazineItems($object, $fields);
-
         parent::afterSave($object, $fields);
-    }
-
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-
-        $fields['browsers']['welcome_note'] = $this->getFormFieldsForRelatedBrowser($object, 'welcome_note');
-
-        return $fields;
     }
 
     public function getWelcomeNote($item)
@@ -91,4 +84,3 @@ class MagazineIssueRepository extends ModuleRepository
     }
 
 }
-

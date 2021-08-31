@@ -10,7 +10,6 @@ class CreateQuestionsTables extends Migration
         Schema::create('questions', function (Blueprint $table) {
             createDefaultTableFields($table);
 
-            // use this with the HasPosition trait
             $table->integer('position')->unsigned()->nullable();
 
             $table->text('question');

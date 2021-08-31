@@ -9,7 +9,7 @@ const textCount = function(container) {
     let str = input.value;
     let length = str.length;
 
-    // browsers count the line breaks as 2 characters, so the count is wrong
+    // Browsers count the line breaks as 2 characters, so the count is wrong
     let newLines = str.match(/(\r\n|\n|\r)/g);
     if (newLines !== null) {
       length += newLines.length;
@@ -24,10 +24,10 @@ const textCount = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     input.removeEventListener('input', _updateOutput);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     purgeProperties(this);
   };
 

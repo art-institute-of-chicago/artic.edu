@@ -1,3 +1,6 @@
+@twillBlockTitle('Paragraph')
+@twillBlockIcon('text')
+
 @formField('wysiwyg', [
     'name' => 'paragraph',
     'label' => 'Paragraph',

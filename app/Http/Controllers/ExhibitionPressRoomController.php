@@ -1,6 +1,4 @@
 <?php
-// Copy/paste from other generic listings...
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;

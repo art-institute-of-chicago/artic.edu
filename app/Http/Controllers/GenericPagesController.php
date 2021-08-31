@@ -39,7 +39,7 @@ class GenericPagesController extends FrontController
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'nav' => $navigation,
-            'intro' => $page->short_description, // TODO: Add different field here to prevent SEO pollution?
+            'intro' => $page->short_description, // WEB-2253: Add different field here to prevent SEO pollution?
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
             'title_display' => $page->title_display,
@@ -52,7 +52,7 @@ class GenericPagesController extends FrontController
     protected function getPage($slug)
     {
         $idSlug = collect(explode("/", $slug))->last();
-        $page = $this->genericPageRepository->safeForSlug($idSlug);
+        $page = $this->genericPageRepository->forSlug($idSlug);
         if (empty($page)) {
             $page = $this->genericPageRepository->getById((integer) $idSlug);
             if (!$page) {

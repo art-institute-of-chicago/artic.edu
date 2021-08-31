@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\IssueRepository;
+use App\Http\Controllers\Admin\Behaviors\IsNestedModule;
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 
 class IssueArticleController extends ModuleController
 {
+    use IsNestedModule;
+
     protected $moduleName = 'issues.articles';
     protected $modelName = 'IssueArticle';
 
     protected $permalinkBase = 'journal/articles/';
+
+    protected $indexOptions = [
+        'reorder' => true,
+    ];
 
     protected function getParentModuleForeignKey()
     {
@@ -90,7 +97,7 @@ class IssueArticleController extends ModuleController
                 ],
                 [
                     'label' => 'Articles',
-                    'url' => moduleRoute('issues.articles', 'collection', 'index', $request->route('issue')),
+                    'url' => moduleRoute('issues.articles', 'collection', 'index', [$request->route('issue')]),
                 ],
                 [
                     'label' => $issue->title,

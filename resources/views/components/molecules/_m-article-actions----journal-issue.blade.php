@@ -8,7 +8,7 @@
         </a>
     </div>
 
-    <p class="m-article-actions--publication__text f-secondary">The Art Institute Review is dedicated to innovative object-centered scholarship and is published twice a year. <a href="/journal">Learn more.</a></p>
+    <p class="m-article-actions--publication__text f-secondary">The <i>Art Institute Review</i> is dedicated to innovative object-centered scholarship and is published twice a year. <a href="/journal">Learn more.</a></p>
 
     @if (isset($issues) && $issues->count() > 1)
         @component('components.molecules._m-search-bar')
@@ -24,6 +24,8 @@
         @component('components.molecules._m-article-actions----journal__issues')
             @slot('issues', $issues)
         @endcomponent
+    @else
+        <hr class="hr--no-archive">
     @endif
 
     <h2 class="sr-only" id="h-article-actions">Page Actions</h2>

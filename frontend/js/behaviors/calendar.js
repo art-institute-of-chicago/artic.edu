@@ -26,7 +26,7 @@ const calendar = function(container) {
   datesSelected.start = {};
   datesSelected.end = {};
 
-  // give the months some names
+  // Give the months some names
   months[0] = 'Jan';
   months[1] = 'Feb';
   months[2] = 'Mar';
@@ -40,10 +40,10 @@ const calendar = function(container) {
   months[10] = 'Nov';
   months[11] = 'Dec';
 
-  // how many days in each month
+  // How many days in each month
 
   monthLengths[0] = 31;
-  monthLengths[1] = 28; // will be updated in generate calendar func for leap years
+  monthLengths[1] = 28; // Will be updated in generate calendar func for leap years
   monthLengths[2] = 31;
   monthLengths[3] = 30;
   monthLengths[4] = 31;
@@ -60,12 +60,12 @@ const calendar = function(container) {
   }
 
   function _normaliseYearMonth(){
-    // if months over 11 (December), we must be wanting January a year later
+    // If months over 11 (December), we must be wanting January a year later
     if (currentMonth > 11) {
       currentMonth = 0;
       currentYear++;
     }
-    // if months under 0 (January), we must be wanting December last year
+    // If months under 0 (January), we must be wanting December last year
     if (currentMonth < 0) {
       currentMonth = 11;
       currentYear--;
@@ -75,30 +75,30 @@ const calendar = function(container) {
   function _generateCalendar(el, year, month) {
     // JS this date
     var theDate = new Date(year, month);
-    // is leap year?
+    // Is leap year?
     var isLeapYear = (new Date(year, 1, 29).getMonth() === 1);
-    // update length of February as required
+    // Update length of February as required
     monthLengths[1] = (isLeapYear) ? 29 : 28;
-    // what day within the week is the first day of the month?
+    // What day within the week is the first day of the month?
     var firstDayOfMonth = new Date(year, month).getDay();
-    // we want to loop a multiple of 7 days and add spaces around the actual starting day
+    // We want to loop a multiple of 7 days and add spaces around the actual starting day
     var loopMonthLengths = monthLengths[month] + firstDayOfMonth;
-    // make that loop length a multiple of 7
+    // Make that loop length a multiple of 7
     while(loopMonthLengths % 7 > 0) {
       loopMonthLengths++;
     }
-    // generate HTML
-    // open new tr
+    // Generate HTML
+    // Open new tr
     daysHtml = '<tr>';
-    // now loop
+    // Now loop
     for (let i = 1; i <= loopMonthLengths; i++) {
       var thisDay = '';
       var tdClassName = '';
-      // the gaps for if a month doesn't start on monday and to make the total TDs a multiple of 7
+      // The gaps for if a month doesn't start on monday and to make the total TDs a multiple of 7
       if (i <= firstDayOfMonth || i > (monthLengths[month] + firstDayOfMonth)) {
         thisDay = '&nbsp;';
       } else {
-        // normalize date
+        // Normalize date
         var currentDate = (i - firstDayOfMonth);
         var currentDateObj = new Date(year, month, currentDate);
         var istoday = (currentDateObj.getTime() === today.getTime())
@@ -107,7 +107,7 @@ const calendar = function(container) {
         var isStartDate = (datesSelected.start.dateObj && currentDateObj.getTime() === datesSelected.start.dateObj.getTime());
         var isEndDate = (datesSelected.end.dateObj && currentDateObj.getTime() === datesSelected.end.dateObj.getTime());
         var isBetweenStartAndEnd = (datesSelected.start.dateObj && datesSelected.end.dateObj && !(currentDateObj.getTime() <= datesSelected.start.dateObj.getTime() || currentDateObj.getTime() >= datesSelected.end.dateObj.getTime()));
-        // now add some classes if we need
+        // Now add some classes if we need
         if (istoday) {
           tdClassName = 'm-calendar__today';
         }
@@ -120,7 +120,7 @@ const calendar = function(container) {
         if(isBetweenStartAndEnd) {
           tdClassName += ' s-range';
         }
-        // if today or after, add a link
+        // If today or after, add a link
         if (istoday || !beforeMinDate) {
           var titleAttr =  months[month] + ' ' + currentDate + ', ' + year;
           var urlMonth = (month + 1);
@@ -134,19 +134,19 @@ const calendar = function(container) {
         }
       }
 
-      // update HTML string, adding new table rows when needed
+      // Update HTML string, adding new table rows when needed
       daysHtml = daysHtml + '<td class="' + tdClassName + '">' + thisDay + '</td>\n' + ((i !== 0 && i !== loopMonthLengths && i % 7 === 0) ? '</tr>\n<tr>\n' : '');
     }
-    // close that last tr
+    // Close that last tr
     daysHtml += '</tr>';
-    // insert the html
+    // Insert the html
     el.querySelector('[data-calendar-title]').textContent = months[month] + ' ' + year;
     el.querySelector('tbody').innerHTML = daysHtml;
   }
 
   function _generateCalendars(year, month) {
     if (monthDivs.length !== monthsVisible) {
-      // clone $template, update and insert
+      // Clone $template, update and insert
       for (let i = 0; i < monthsVisible; i++) {
         let $thisCopy = $template.cloneNode(true);
         $thisCopy.removeAttribute('data-calendar-month-template');
@@ -304,14 +304,14 @@ const calendar = function(container) {
     //
     let clicked = event.target;
     clicked.blur();
-    // pick action
+    // Pick action
     if (clicked.getAttribute('data-calendar-next') !== null) {
       currentMonth++;
       _normaliseYearMonth();
       _generateCalendars(currentYear, currentMonth);
     }
     if (clicked.getAttribute('data-calendar-prev') !== null) {
-      // sequentially lower month, normalise each time to trap for going back a year
+      // Sequentially lower month, normalise each time to trap for going back a year
       for (let i = 1; i < (monthsVisible * 2); i++) {
         currentMonth = currentMonth - 1;
         _normaliseYearMonth();
@@ -349,7 +349,7 @@ const calendar = function(container) {
   }
 
   function _openerSent(event) {
-    // resets
+    // Resets
     today = new Date();
     today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     minDate = today;
@@ -388,19 +388,19 @@ const calendar = function(container) {
   }
 
   function _init() {
-    // listen for clicks
+    // Listen for clicks
     container.addEventListener('click', _handleClicks, false);
     container.addEventListener('mouseover', _mouseOver, false);
     container.addEventListener('calendar:opener', _openerSent, false);
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('mouseover', _mouseOver);
     container.removeEventListener('calendar:opener', _openerSent);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     purgeProperties(this);
   };
 

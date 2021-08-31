@@ -52,7 +52,7 @@
         'blocks' => getBlocksForEditor([
             'paragraph', 'quote',
             'list', 'artwork', 'artworks', 'hr', 'split_block',
-            'membership_banner', 'tour_stop', 'button', 'mobile_app'
+            'membership_banner', 'audio_player', 'tour_stop', 'button', 'mobile_app'
         ])
     ])
 @stop

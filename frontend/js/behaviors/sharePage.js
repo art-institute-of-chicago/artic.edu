@@ -144,7 +144,7 @@ const sharePage = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     document.removeEventListener('shareMenu:close', _closeShareMenu);
     document.removeEventListener('click', _clicksOutside);
@@ -152,7 +152,7 @@ const sharePage = function(container) {
     document.removeEventListener('mediaQueryUpdated',_mediaQueryUpdated);
     window.removeEventListener('keyup', _escape);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

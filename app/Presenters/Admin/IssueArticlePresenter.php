@@ -65,11 +65,9 @@ class IssueArticlePresenter extends BasePresenter
                             ->articlesForLanding()
                             ->map(function($article) use ($currentArticle) {
                                 return [
-                                    'label' => $article->title,
-                                    'href' => route('issue-articles.show', [
-                                        'id' => $article->id,
-                                        'slug' => $article->getSlug(),
-                                    ]),
+                                    'label' => $article->title_display ?? $article->title,
+                                    'sublabel' => $article->showAuthors(),
+                                    'href' => $article->url,
                                     'active' => $article->id === $currentArticle->id,
                                 ];
                             }),
@@ -77,6 +75,15 @@ class IssueArticlePresenter extends BasePresenter
                 ],
             ],
         ];
+    }
+
+    public function getArticleType()
+    {
+        if (isset($this->entity->type_display)) {
+            return $this->entity->type_display;
+        }
+
+        return 'Article';
     }
 
     public function references()

@@ -66,7 +66,7 @@ const positionElementToTarget = function(options) {
     _alignToBottom();
   }
 
-  // check for out of bounds
+  // Check for out of bounds
   if (sT > top) {
     _alignToBottom();
   }

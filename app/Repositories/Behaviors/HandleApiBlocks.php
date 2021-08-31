@@ -33,7 +33,7 @@ trait HandleApiBlocks
                             $data['thumbnail'] = $relatedElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
                         }
 
-                        // TODO: Refactor me!
+                        // WEB-2271: Refactor me!
                         if (((
                             !isset($data['thumbnail'])
                         ) || (
@@ -62,6 +62,7 @@ trait HandleApiBlocks
                 return [
                     'id' => $relatedElement->id,
                     'name' => $relatedElement->titleInBrowser ?? $relatedElement->title,
+                    'endpointType' => $relatedElement->getMorphClass(),
                 ] + $data;
             })->toArray();
 

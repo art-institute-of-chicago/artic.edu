@@ -32,12 +32,16 @@ const autocomplete = function(container) {
     });
   }
 
+  /**
+   * Very light weight, designed to handle what this autocomplete needs rather than a general utf8 string converter
+   */
   function _utf8String(str) {
-    // very light weight, designed to handle what this autocomplete needs rather than a general utf8 string converter
     return _fixedEncodeURIComponent(str.replace(/<(?:.|\n)*?>/gm, '').replace(/"|'/gm, '')).replace(/%20/gm, '-').toLowerCase();
   }
 
-  // show autocomplete
+  /**
+   * Show autocomplete
+   */
   function _showAutocomplete(responseData) {
     let multiData = JSON.parse(responseData);
     let accessionData = multiData[0];
@@ -146,13 +150,17 @@ const autocomplete = function(container) {
     active = true;
   }
 
-  // hide autocomplete
+  /**
+   * Hide autocomplete
+   */
   function _closeAutocomplete() {
     _hideAutocomplete();
     textInput.focus();
   }
 
-  // hide autocomplete
+  /**
+   * Hide autocomplete
+   */
   function _hideAutocomplete() {
     container.classList.remove(autocompleteActiveKlass);
     if (dropdownList) {
@@ -162,7 +170,9 @@ const autocomplete = function(container) {
     active = false;
   }
 
-  // handle ajax search
+  /**
+   * Handle ajax search
+   */
   function _doAjax() {
     clearTimeout(ajaxTimer);
 
@@ -227,40 +237,45 @@ const autocomplete = function(container) {
     }, 250);
   }
 
-  // handle submit
+  /**
+   * Handle submit
+   */
   function _handleSubmit(event) {
     event.preventDefault();
-    // if the form has some google tag manager props, tell GTM
+    // If the form has some google tag manager props, tell GTM
     let googleTagManagerObject = googleTagManagerDataFromLink(container);
     if (googleTagManagerObject) {
       googleTagManagerObject['event'] = _fixedEncodeURIComponent(textInput.value);
       triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
     }
-    // trigger ajax call
+    // Trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
       url: queryStringHandler.updateParameter(container.action, 'q', _fixedEncodeURIComponent(textInput.value)),
     });
   }
 
-  // handle search input
+  /**
+   * Handle search input
+   */
   function _handleInput() {
     searchTerm = textInput.value;
     if(searchTerm.length >= 3){
-      // do ajax
+      // Do ajax
       _doAjax();
     }else if(searchTerm.length == 0){
-      // hide autocomplete
+      // Hide autocomplete
       _hideAutocomplete();
     }
   }
 
   function _isAccessionNumber(val) {
-    // return /^[0-9]+\.?[0-9a-b\-]*/.test(val);
     return /^\d/.test(val);
   }
 
-  // queryStringhandler cannot handle top-level arrays
-  // adapted from http://locutus.io/php/url/http_build_query/
+  /**
+   * QueryStringhandler cannot handle top-level arrays
+   * @see adapted from http://locutus.io/php/url/http_build_query/
+   */
   function _arrayQueryStringHandler(formdata) {
     var value
     var key
@@ -304,7 +319,9 @@ const autocomplete = function(container) {
     return tmp.join(argSeparator)
   }
 
-  // extracted from queryStringhandler
+  /**
+   * Extracted from queryStringhandler
+   */
   function _encodeURIComponent(value) {
     return encodeURIComponent(value)
       .replace(/[!'()]/g, '')
@@ -367,7 +384,7 @@ const autocomplete = function(container) {
     document.removeEventListener('click', _clicks);
     document.removeEventListener('touchstart', _touchstart);
     window.removeEventListener('keyup', _escape);
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

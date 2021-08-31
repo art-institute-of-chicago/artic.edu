@@ -8,10 +8,7 @@ class CreateVirtualToursTables extends Migration
     public function up()
     {
         Schema::create('virtual_tours', function (Blueprint $table) {
-
-            // this will create an id, a "published" column, and soft delete and timestamps columns
             createDefaultTableFields($table);
-
             $table->string('video_url')->nullable();
             $table->string('title');
             $table->dateTime('date')->nullable();
@@ -21,13 +18,10 @@ class CreateVirtualToursTables extends Migration
             $table->text('list_description')->nullable()->after('heading');
         });
 
-
-        // remove this if you're not going to use slugs, ie. using the HasSlug trait
         Schema::create('virtual_tour_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'virtual_tour');
         });
 
-        // remove this if you're not going to use revisions, ie. using the HasRevisions trait
         Schema::create('virtual_tour_revisions', function (Blueprint $table) {
             createDefaultRevisionsTableFields($table, 'virtual_tour');
         });

@@ -5,10 +5,8 @@ namespace App\Repositories;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
-use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
-use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use App\Models\Experience;
 use App\Models\Article;
 use App\Repositories\Behaviors\HandleExperienceModule;
@@ -17,7 +15,7 @@ use App\Repositories\Behaviors\HandleAuthors;
 
 class ExperienceRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleRepeaters, HandleExperienceModule, HandleMagazine, HandleAuthors;
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleExperienceModule, HandleMagazine, HandleAuthors;
 
     protected $morphType = 'experiences';
 
@@ -64,7 +62,7 @@ class ExperienceRepository extends ModuleRepository
             unset($orders['interactiveFeatureTitle']);
             $query = $query->orderByInteractiveFeature($sort_method);
         }
-        // don't forget to call the parent order function
+        // Don't forget to call the parent order function
         return parent::order($query, $orders);
     }
 

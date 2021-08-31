@@ -1,12 +1,18 @@
 import { triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
+import videojs from 'video.js';
+import eventTracking from 'videojs-event-tracking';
 
 const videojsActivate = function() {
+  // WEB-2216: Not sure why, but this code doesn't work in our fork
+  if (typeof videojs.getPlugin('eventTracking') === 'undefined') {
+    videojs.registerPlugin('eventTracking', eventTracking);
+  }
 
-  // https://stackoverflow.com/questions/39121463/videojs-5-plugin-add-button
+  // @see https://stackoverflow.com/questions/39121463/videojs-5-plugin-add-button
   function _registerDownloadButton() {
-    var vjsButtonComponent = window.videojs.getComponent('Button');
+    var vjsButtonComponent = videojs.getComponent('Button');
 
-    window.videojs.registerComponent('DownloadButton', videojs.extend(vjsButtonComponent, {
+    videojs.registerComponent('DownloadButton', videojs.extend(vjsButtonComponent, {
       constructor: function () {
         vjsButtonComponent.apply(this, arguments);
         this.controlText('Download audio');
@@ -37,9 +43,9 @@ const videojsActivate = function() {
   }
 
   function _registerTranscriptButton() {
-    var vjsButtonComponent = window.videojs.getComponent('Button');
+    var vjsButtonComponent = videojs.getComponent('Button');
 
-    window.videojs.registerComponent('TranscriptButton', videojs.extend(vjsButtonComponent, {
+    videojs.registerComponent('TranscriptButton', videojs.extend(vjsButtonComponent, {
       constructor: function () {
         vjsButtonComponent.apply(this, arguments);
         this.controlText('Toggle transcript');
@@ -50,7 +56,7 @@ const videojsActivate = function() {
         let target = listingElement.querySelector('.m-listing--sound__transcript');
 
         if (target.getAttribute('aria-hidden') === 'true') {
-          // open
+          // Open
           target.style.height = 0;
           target.style.overflow = 'hidden';
           target.setAttribute('aria-hidden', 'false');
@@ -58,7 +64,7 @@ const videojsActivate = function() {
           _getHeightAndSet(target);
           buttonElement.classList.add('vjs-transcript-button--opened');
         } else {
-          // close
+          // Close
           _getHeightAndSet(target);
           target.setAttribute('aria-hidden', 'true');
           let thrash = target.offsetHeight;
@@ -78,45 +84,76 @@ const videojsActivate = function() {
   function _activateAudioPlayers() {
     var audios = document.getElementsByClassName('video-js')
 
-    for (var i=0, max=audios.length; i < max; i++) {
+    Array.from(audios).forEach(function(audio) {
+      if (audio.hasAttribute('data-has-started')) {
+        return;
+      }
+
+      audio.setAttribute('data-has-started', true);
 
       var children = [
-        "PlayToggle",
-        "CurrentTimeDisplay",
-        "TimeDivider",
-        "DurationDisplay",
-        "ProgressControl",
-        "MuteToggle",
-        "VolumeControl",
+        'PlayToggle',
+        'CurrentTimeDisplay',
+        'TimeDivider',
+        'DurationDisplay',
+        'ProgressControl',
+        'MuteToggle',
+        'VolumeControl',
       ];
 
-      if (audios[i].hasAttribute('data-has-transcript')) {
-        children.push("TranscriptButton")
+      if (audio.hasAttribute('data-has-transcript')) {
+        children.push('TranscriptButton')
       }
 
-      if (audios[i].hasAttribute('data-is-downloadable')) {
-        children.push("DownloadButton")
+      if (audio.hasAttribute('data-is-downloadable')) {
+        children.push('DownloadButton')
       }
 
-      children.push("LiveDisplay")
+      children.push('LiveDisplay')
 
-      window.videojs( audios[i], {
-        "children": [
-          "MediaLoader",
-          // "PosterImage",
-          // "TextTrackDisplay",
-          // "LoadingSpinner",
-          // "BigPlayButton",
+      var player = videojs( audio, {
+        children: [
+          'MediaLoader',
           {
-            "name": "controlBar",
-            "children": children,
+            name: 'controlBar',
+            children: children,
           },
-          "ErrorDisplay",
-          // "TextTrackSettings",
-          "ResizeManager"
-        ]
+          'ErrorDisplay',
+          'ResizeManager'
+        ],
+        plugins: {
+          eventTracking: true,
+        }
       });
-    }
+
+      // e.g. audio-play vs. audio-tour-play
+      var prefix = 'audio';
+
+      if (audio.hasAttribute('data-gtm-prefix')) {
+        prefix = audio.getAttribute('data-gtm-prefix')
+      }
+
+      var title = 'Untitled';
+
+      if (audio.hasAttribute('data-gtm-title')) {
+        title = audio.getAttribute('data-gtm-title')
+      }
+
+      function _log(suffix) {
+        triggerCustomEvent(document, 'gtm:push', {
+          'event': prefix + '-' + suffix,
+          'eventCategory': 'audio-engagement',
+          'action': title,
+        });
+      }
+
+      player.on('tracking:firstplay', (e, data) => _log('play'));
+      player.on('tracking:pause', (e, data) => _log('pause'));
+      player.on('tracking:first-quarter', (e, data) => _log('25'));
+      player.on('tracking:second-quarter', (e, data) => _log('50'));
+      player.on('tracking:third-quarter', (e, data) => _log('75'));
+      player.on('tracking:fourth-quarter', (e, data) => _log('100'));
+    });
   }
 
   document.addEventListener('page:updated', _activateAudioPlayers, false);

@@ -3,7 +3,6 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
-use App\Models\Api\Search;
 
 class Department extends BaseApiModel
 {

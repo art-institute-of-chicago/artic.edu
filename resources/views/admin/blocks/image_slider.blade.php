@@ -1,3 +1,6 @@
+@twillBlockTitle('Image Slider')
+@twillBlockIcon('image')
+
 @formField('checkbox', [
     'name' => 'is_slider_zoomable',
     'label' => 'Enable zoom',

@@ -38,7 +38,7 @@
                     @slot('hideImage', $loop->index > 0)
                     @slot('hideDescription', $loop->index > 0)
                     @slot('imageSettings', $imageSettings ?? null)
-                    @slot('gtmAttributes', 'data-gtm-event="related-sidebar" data-gtm-event-category="collection-nav"')
+                    @slot('gtmAttributes', $item->getFeaturedRelatedGtmAttributes())
                 @endcomponent
             @endforeach
         @endcomponent

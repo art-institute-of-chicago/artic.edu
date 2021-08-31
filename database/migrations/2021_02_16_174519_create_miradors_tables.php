@@ -8,10 +8,7 @@ class CreateMiradorsTables extends Migration
     public function up()
     {
         Schema::create('miradors', function (Blueprint $table) {
-
-            // this will create an id, a "published" column, and soft delete and timestamps columns
             createDefaultTableFields($table);
-
             $table->string('title');
             $table->dateTime('date')->nullable();
             $table->string('object_id')->nullable();
@@ -20,12 +17,10 @@ class CreateMiradorsTables extends Migration
 
         });
 
-        // remove this if you're not going to use slugs, ie. using the HasSlug trait
         Schema::create('mirador_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'mirador');
         });
 
-        // remove this if you're not going to use revisions, ie. using the HasRevisions trait
         Schema::create('mirador_revisions', function (Blueprint $table) {
             createDefaultRevisionsTableFields($table, 'mirador');
         });

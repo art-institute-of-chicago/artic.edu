@@ -10,13 +10,13 @@ module.exports = function(gulp, data, util, taskName){
   var srcPath = data.manifest.paths.source + data.manifest.paths.styles;
   var destPath = data.manifest.paths.toolkit;
 
-  // sassdown options
+  // Sassdown options
   var options = {
-      title: 'UI Toolkit',                            // Title of the toolkit
+      title: 'UI Toolkit',                               // Title of the toolkit
       assets: [
-          data.manifest.paths.dist + 'styles/app.css',     // application CSS
-          data.manifest.paths.dist + 'scripts/head.js',  // application JS
-          data.manifest.paths.dist + 'scripts/app.js',   // application JS
+          data.manifest.paths.dist + 'styles/app.css',   // Application CSS
+          data.manifest.paths.dist + 'scripts/head.js',  // Application JS
+          data.manifest.paths.dist + 'scripts/app.js',   // Application JS
       ],
       assetsRoot: 'styleguide',
       singlePage: true,                               // Single page styleguide
@@ -29,9 +29,9 @@ module.exports = function(gulp, data, util, taskName){
   // Task declaration
   gulp.task(taskName, ['styles', 'scripts'], function() {
 
-    // clean destination before generating
+    // Clean destination before generating
     del(destPath + '**/*').then(function(paths) {
-      //generate styleguide
+      // Generate styleguide
       sassdown(srcPath, destPath, options);
     });
   });

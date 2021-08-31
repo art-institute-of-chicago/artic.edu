@@ -1,0 +1,18 @@
+/**
+ * IMG-37: Extend this to reduce blur on browser-side downscale
+ *
+ * Safari recognizes both, but the only one that actually makes
+ * it do something is `-webkit-optimize-contrast`. However, we
+ * probably don't want to use it here, because Safari's algo is
+ * nearest neighbor. Possibly with an additional unsharp mask.
+ * It looks *really* bad. By overriding it with `optimizequality`,
+ * we make it do nothing.
+ */
+%u-crisp-image {
+  image-rendering: -webkit-optimize-contrast; // Chrome
+  image-rendering: optimizequality; // Firefox
+}
+
+img {
+  @extend %u-crisp-image;
+}

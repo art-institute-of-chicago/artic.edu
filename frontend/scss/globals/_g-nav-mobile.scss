@@ -24,7 +24,7 @@
 
 .g-nav-mobile__container {
   @extend %container;
-  padding-bottom: 60px; // stop the nav from hitting the bottom of the window on scroll
+  padding-bottom: 60px; // Stop the nav from hitting the bottom of the window on scroll
 }
 
 .g-nav-mobile__close {
@@ -76,7 +76,6 @@
 }
 
 .g-nav-mobile__nav-wrapper {
-  // @include keyline-full(top, $color__rules--primary);
   margin-right: - map-get($outer-gutters, 'xsmall');
   margin-left: - map-get($outer-gutters, 'xsmall');
   padding-right: map-get($outer-gutters, 'xsmall');
@@ -94,7 +93,6 @@
 }
 
 .g-nav-mobile__nav li {
-  // @include keyline-full(bottom, $color__rules--tertiary);
   margin-right: - map-get($outer-gutters, 'xsmall');
   margin-left: - map-get($outer-gutters, 'xsmall');
   padding-right: map-get($outer-gutters, 'xsmall');
@@ -104,7 +102,6 @@
 }
 
 .g-nav-mobile__nav > li:last-child {
-  // @include keyline-full(bottom, $color__rules--primary);
   border-bottom-color: $color__rules--primary;
 }
 
@@ -205,7 +202,7 @@
 }
 
 .g-footer-nav__expander-trigger.nav-is-open {
-  margin-top: -1px; // to cover the bottom border on the previous list item
+  margin-top: -1px; // To cover the bottom border on the previous list item
   border-top: 1px solid $color__rules--secondary;
   border-bottom: 1px solid $color__rules--primary;
   color: $color__text--accent;

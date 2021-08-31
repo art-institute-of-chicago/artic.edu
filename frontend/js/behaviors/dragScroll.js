@@ -57,11 +57,11 @@ const dragScroll = function(container) {
 
   function _momentum() {
     if (allow && !dragging) {
-      // if there is some velocity, shrink it, linear (no easing)
+      // If there is some velocity, shrink it, linear (no easing)
       if (Math.abs(xVelocity) > 0) {
         xVelocity = (xVelocity > 0) ? xVelocity - 1 : xVelocity + 1;
       }
-      // if some momentum remains, update scroll and try again
+      // If some momentum remains, update scroll and try again
       if (Math.abs(xVelocity) > 0) {
         _updateScroll(xVelocity);
         window.requestAnimationFrame(_momentum);
@@ -80,20 +80,20 @@ const dragScroll = function(container) {
     if (allow) {
       event.preventDefault();
       container.classList.add('s-mousedown');
-      // reset everything
+      // Reset everything
       xVelocity = 0;
       lastScrollLeft = container.scrollLeft;
       lastClientX = event.clientX;
-      // allow mouse move tracking
+      // Allow mouse move tracking
       dragging = true;
     }
   }
 
   function _mouseUp(event) {
     if (allow) {
-      // stop mouse move tracking
+      // Stop mouse move tracking
       dragging = false;
-      // if we have some velocity, do momentum
+      // If we have some velocity, do momentum
       if (Math.abs(xVelocity) > 0) {
         window.requestAnimationFrame(_momentum);
       }
@@ -107,19 +107,19 @@ const dragScroll = function(container) {
 
   function _mouseMove(event) {
     if (allow && dragging) {
-      // get the distance moved
+      // Get the distance moved
       xVelocity = -lastClientX + event.clientX;
-      // update
+      // Update
       _updateScroll(xVelocity);
-      // set so we can compare
+      // Set so we can compare
       lastClientX = event.clientX;
-      // if it looks like the user is trying to scroll, block link clicks
+      // If it looks like the user is trying to scroll, block link clicks
       if (Math.abs(xVelocity) > 3) {
         allowClicks = false;
       } else {
         allowClicks = true;
       }
-      //
+
       container.classList.add('s-dragging');
     }
   }
@@ -131,7 +131,7 @@ const dragScroll = function(container) {
       scrollPositionCheck = lastScrollLeft;
 
       if (lastScrollLeft > 0) {
-        // more accurately, it's actually `s-scroll-start[ed]`
+        // More accurately, it's actually `s-scroll-start[ed]`
         container.parentElement.classList.add('s-scroll-start');
         if (prevBtnEl) {
           prevBtnEl.disabled = false;
@@ -181,7 +181,7 @@ const dragScroll = function(container) {
     window.addEventListener('mousemove', _mouseMove, false);
     window.addEventListener('resized', _wideEnoughToScroll, false);
 
-    // See `lazyLoad` in @area17/a17-helpers
+    // @see `lazyLoad` in @area17/a17-helpers
     imgChildEls = container.querySelectorAll('img');
 
     for (let i = 0; i < imgChildEls.length; i++) {
@@ -212,7 +212,7 @@ const dragScroll = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     container.removeEventListener('click', _clicks);
     container.removeEventListener('mousedown', _mouseDown);
     container.removeEventListener('scroll', _scroll);
@@ -227,7 +227,7 @@ const dragScroll = function(container) {
     prevBtnEl.removeEventListener('click', _scrollPrev);
     nextBtnEl.removeEventListener('click', _scrollNext);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

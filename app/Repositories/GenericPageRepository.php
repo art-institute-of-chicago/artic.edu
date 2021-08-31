@@ -7,14 +7,12 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
-use App\Repositories\Api\BaseApiRepository;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Jobs\ReorderPages;
 use App\Models\GenericPage;
 use App\Models\Api\Search;
-use DB;
 use Illuminate\Support\Arr;
 
 class GenericPageRepository extends ModuleRepository
@@ -44,7 +42,9 @@ class GenericPageRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    // Show data, moved here to allow preview
+    /**
+     * Show data, moved here to allow preview
+     */
     public function getShowData($item, $slug = null, $previewPage = null)
     {
         $navigation = $item->present()->navigation();

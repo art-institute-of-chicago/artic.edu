@@ -69,7 +69,7 @@ const selectDate = function(container) {
         element: calendar
       });
       calendarOpen = true;
-      // if the opener has some google tag manager props, tell GTM
+      // If the opener has some google tag manager props, tell GTM
       let googleTagManagerObject = googleTagManagerDataFromLink(container);
       if (googleTagManagerObject) {
         triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
@@ -110,7 +110,7 @@ const selectDate = function(container) {
           var windowLocationHref = queryStringHandler.updateParameter(window.location.href, 'start', event.data.dates.start.iso);
           windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, 'end', event.data.dates.end.iso);
           windowLocationHref = windowLocationHref.replace(/time=weekend&/ig,'');
-          // trigger ajax call
+          // Trigger ajax call
           triggerCustomEvent(document, 'ajax:getPage', {
             url: windowLocationHref,
           });
@@ -150,7 +150,7 @@ const selectDate = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     opener.removeEventListener('click', _openCalendar);
     container.removeEventListener('calendar:dateSelected', _dateSelected);
     container.removeEventListener('calendar:datesSelected', _datesSelected);
@@ -159,7 +159,7 @@ const selectDate = function(container) {
     window.removeEventListener('keyup', _escape);
     window.removeEventListener('resized', _resized);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     purgeProperties(this);
   };
 

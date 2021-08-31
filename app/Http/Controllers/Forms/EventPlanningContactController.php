@@ -10,7 +10,6 @@ use App\Models\Form\EventPlanningContact;
 
 use App\Mail\FormEventPlanningContact;
 
-use App\Presenters\StaticObjectPresenter;
 
 class EventPlanningContactController extends FormController
 {

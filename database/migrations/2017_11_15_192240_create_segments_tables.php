@@ -20,7 +20,6 @@ class CreateSegmentsTables extends Migration
             $table->string('name');
         });
 
-        // remove this if you're not going to use slugs
         Schema::create('segment_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'segment');
         });

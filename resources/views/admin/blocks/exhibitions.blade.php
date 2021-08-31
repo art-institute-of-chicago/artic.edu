@@ -1,3 +1,6 @@
+@twillBlockTitle('Exhibitions')
+@twillBlockIcon('text')
+
 @formField('input', [
     'name' => 'title',
     'label' => 'Title',

@@ -67,7 +67,7 @@
                 'value' => \App\Models\Lightbox::VARIATION_EMAIL,
                 'label' => 'Email capture to landing page(button + email input)'
             ],
-        ], app()->environment('production') ? [] : [
+        ], !config('aic.show_button_and_date_select_lightbox_variation') ? [] : [
             [
                'value' => \App\Models\Lightbox::VARIATION_TICKETING,
                'label' => 'Ticketing (button + date select) (WIP)'

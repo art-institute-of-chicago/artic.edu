@@ -3,7 +3,7 @@
 namespace App\Libraries\Api\Models\Behaviors;
 
 use App\Libraries\Api\Builders\Relations\HasMany;
-
+use Illuminate\Database\Eloquent\Relations\Relation;
 trait HasRelationships
 {
     /**
@@ -111,4 +111,14 @@ trait HasRelationships
         return array_key_exists($key, $this->relations);
     }
 
+    public function getMorphClass()
+    {
+        $morphMap = Relation::morphMap();
+
+        if (! empty($morphMap) && in_array(static::class, $morphMap)) {
+            return array_search(static::class, $morphMap, true);
+        }
+
+        return static::class;
+    }
 }

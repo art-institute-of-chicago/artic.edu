@@ -10,7 +10,6 @@ class CreateFeeAgesTables extends Migration
         Schema::create('fee_ages', function (Blueprint $table) {
             createDefaultTableFields($table, true, false);
 
-            // use this with the HasPosition trait
             $table->integer('position')->unsigned()->nullable();
             $table->string('title');
         });

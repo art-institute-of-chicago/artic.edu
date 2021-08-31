@@ -10,7 +10,6 @@ class CreateFeeCategoriesTables extends Migration
         Schema::create('fee_categories', function (Blueprint $table) {
             createDefaultTableFields($table, true, false);
 
-            // use this with the HasPosition trait
             $table->integer('position')->unsigned()->nullable();
             $table->string('title');
         });

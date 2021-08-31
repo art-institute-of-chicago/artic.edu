@@ -1,9 +1,10 @@
-{{-- Adapted from vendor/a17/laravel-cms-toolkit/views/partials/create.blade.php --}}
-{{-- Replaces it so that we can provide a hint re: italicizing embedded titles --}}
-{{-- See `partialView` directive definition in TwillServiceProvider --}}
+{{-- Adapted from vendor/a17/laravel-cms-toolkit/views/partials/create.blade.php
+  -- Replaces it so that we can provide a hint re: italicizing embedded titles
+  -- See `partialView` directive definition in TwillServiceProvider
+  --}}
 @formField('input', [
     'name' => $titleFormKey ?? 'title',
-    'label' => ucfirst($titleFormKey ?? 'title'),
+    'label' => $titleFormKey === 'title' ? twillTrans('twill::lang.modal.title-field') : ucfirst($titleFormKey),
     'translated' => $translateTitle ?? false,
     'required' => true,
     'onChange' => 'formatPermalink',
@@ -13,9 +14,9 @@
 @if ($permalink ?? true)
     @formField('input', [
         'name' => 'slug',
-        'label' => 'Permalink',
+        'label' => twillTrans('twill::lang.modal.permalink-field'),
         'translated' => true,
         'ref' => 'permalink',
-        'prefix' => $permalinkPrefix ?? '',
+        'prefix' => $permalinkPrefix ?? ''
     ])
 @endif

@@ -53,6 +53,7 @@ class BaseFilteredList
             }
 
             $extraParams = $newInput->isEmpty() ? [] : [$this->parameter => join(';', $newInput->toArray())];
+
             // Build the checkbox route using previously calculated inputs
             $route = route('collection', request()->except(['page', $this->parameter, 'categoryQuery']) + $extraParams);
 
@@ -63,10 +64,6 @@ class BaseFilteredList
                 'enabled' => $enabled
             ];
         })->sortByDesc('count');
-
-        // TODO: Is this necessary to keep? Issues with size > 10 [WEB-968]
-        // I figure the `enabled` items will always have the highest count.
-        // })->sortByDesc('enabled'); // Move selected ones to the top
 
         return $list;
     }

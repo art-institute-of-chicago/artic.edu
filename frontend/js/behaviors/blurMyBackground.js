@@ -13,25 +13,26 @@ const blurMyBackground = function(container) {
     el = document.createElement('div');
     el.style.cssText = '-webkit-filter: blur(2px); filter: blur(2px);';
     let filterTest1 = (el.style.length != 0);
-    // checking for false positives of IE
+    // Checking for false positives of IE
     let filterTest2 = (document.documentMode === undefined || document.documentMode > 9);
     let filterTest = (filterTest1 && filterTest2);
     el = null;
-    //
+
     el = document.createElement('div');
     el.style.cssText = '-webkit-clip-path: inset(1px 2px 3px 4px); clip-path: inset(1px 2px 3px 4px);';
     let clippingTest = (el.style.length != 0);
     el = null;
-    //
+
     el = document.createElement('div');
     el.style.cssText = '-webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);';
     let backdropFilterTest = (el.style.length != 0);
 
-    // we don't the function to run if backdrop filter is support
+    // We don't the function to run if backdrop filter is support
     if(backdropFilterTest || !filterTest || clippingTest) {
       active = false;
     }
-    // if backdrop filter isn't supported, lets home filter and clip path are
+
+    // If backdrop filter isn't supported, lets home filter and clip path are
     if(!active && !backdropFilterTest && filterTest && clippingTest) {
       active = true;
     }
@@ -74,10 +75,10 @@ const blurMyBackground = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     window.removeEventListener('resized', _clipDupe);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

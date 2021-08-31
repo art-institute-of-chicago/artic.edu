@@ -143,7 +143,7 @@ Creates a load spinner.
   }
   @if $settings {
     @each $name, $point in $breakpoints-with-directions {
-      // first see if font settings has a line height for this breakpoint
+      // First see if font settings has a line height for this breakpoint
       @if map-has-key($settings, $name) {
         $settings-at-breakpoint: map-get($settings, $name);
         @if map-has-key($settings-at-breakpoint, line-height) {
@@ -153,11 +153,11 @@ Creates a load spinner.
           $new-push: map-get($settings-at-breakpoint, push);
         }
       }
-      // now see if a margin was specified for this breakpoint
+      // Now see if a margin was specified for this breakpoint
       @if map-has-key($distances, $name) {
         $new-margin: map-get($distances, $name);
       }
-      // now set the margin top
+      // Now set the margin top
       @if ($new-margin != $margin or $new-line-height != $line-height or $new-push != $push) {
         $line-height: $new-line-height;
         $margin: $new-margin;
@@ -183,18 +183,18 @@ Creates a load spinner.
   }
   @if $settings {
     @each $name, $point in $breakpoints-with-directions {
-      // first see if font settings has a line height for this breakpoint
+      // First see if font settings has a line height for this breakpoint
       @if map-has-key($settings, $name) {
         $settings-at-breakpoint: map-get($settings, $name);
         @if map-has-key($settings-at-breakpoint, pull) {
           $new-pull: map-get($settings-at-breakpoint, pull);
         }
       }
-      // now set the margin top
+      // Now set the margin top
       @if ($new-pull != $pull) {
         $pull: $new-pull;
         $base-height-into-pull: floor($pull / $base-height); // round or floor? erm
-        // round will be closer but has the risk of drawing too much negative margin
+        // Round will be closer but has the risk of drawing too much negative margin
         $margin-top: 0 - ($base-height-into-pull * $base-height);
         @if ($name == 'xsmall' or $single-bp == $name) {
           margin-top: #{$margin-top}px;

@@ -1,6 +1,6 @@
 // ### Write to rev manifest
 // If there are any revved files then write them to the rev manifest.
-// See https://github.com/sindresorhus/gulp-rev
+// @see https://github.com/sindresorhus/gulp-rev
 
 module.exports = function(gulp, data, util, taskName) {
   'use strict';

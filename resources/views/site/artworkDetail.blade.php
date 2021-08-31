@@ -18,9 +18,7 @@
   <h1 class="sr-only">{{ $item->title }}</h1>
 
   @component('components.molecules._m-article-header')
-    {{-- @slot('editorial', false) --}}
     @slot('headerType', $item->present()->headerType)
-    {{-- @slot('variation', ($item->headerVariation ?? null)) --}}
     @slot('title', $item->present()->title)
     @slot('date',  $item->present()->date)
     @slot('type',  $item->present()->type)
@@ -99,7 +97,7 @@
     @endcomponent
   </div>
 
-  {{-- TODO: Integrate related elements? Could be loaded indirectly from related entities --}}
+  {{-- WEB-2243: Integrate related elements? Could be loaded indirectly from related entities --}}
   @if ($item->hasFeaturedRelated())
       <div class="o-article__related{{ (empty($item->description) or $item->description === '') ? ' o-article__related--no-description' : '' }}">
           @component('site.shared._featuredRelated')

@@ -36,7 +36,7 @@ const addHistory = function(container) {
   }
 
   this.destroy = function() {
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

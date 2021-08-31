@@ -9,7 +9,6 @@ class CreateOffersTables extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             createDefaultTableFields($table);
-            // add some fields
             $table->string('title', 200)->nullable();
             $table->text('description')->nullable();
             $table->string('price', 200)->nullable();

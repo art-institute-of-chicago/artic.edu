@@ -74,7 +74,7 @@ const accordion = function(container) {
       if (validTarget) {
         trigger.blur();
         if (trigger.getAttribute('aria-expanded') === 'true') {
-          // close
+          // Close
           _getHeightAndSet(target);
           trigger.setAttribute('aria-expanded', 'false');
           target.setAttribute('aria-hidden', 'true');
@@ -82,14 +82,14 @@ const accordion = function(container) {
           target.style.height = 0;
           target.style.overflow = 'hidden';
         } else {
-          // open
+          // Open
           target.style.height = 0;
           target.style.overflow = 'hidden';
           trigger.setAttribute('aria-expanded', 'true');
           target.setAttribute('aria-hidden', 'false');
           setTimeout(function(){ setTimeout(function(){ setFocusOnTarget(target); }, 0) }, 0)
           _getHeightAndSet(target);
-          // if the form has some google tag manager props, tell GTM
+          // If the form has some google tag manager props, tell GTM
           let googleTagManagerObject = googleTagManagerDataFromLink(trigger);
           if (googleTagManagerObject) {
             triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
@@ -145,12 +145,12 @@ const accordion = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyPress);
     window.removeEventListener('keyup', _handleFocus);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

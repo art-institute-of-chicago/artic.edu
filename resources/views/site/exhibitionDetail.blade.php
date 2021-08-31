@@ -10,7 +10,6 @@
   @component('components.molecules._m-article-header')
     @slot('editorial', false)
     @slot('headerType', $item->present()->headerType)
-    {{-- @slot('variation', ($item->headerVariation ?? null)) --}}
     @slot('title', $item->present()->title)
     @slot('title_display', $item->present()->title_display)
     @slot('type', $item->present()->exhibitionType)
@@ -131,21 +130,6 @@
             @endforeach
         @endif
     @endif
-
-    {{-- History Detail - Other exhibition resources --}}
-    {{--     @if ($item->otherResources)
-        @component('components.atoms._hr')
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-subheading-1')
-            @slot('tag', 'h4')
-            Other Resource{{ sizeof($item->otherResources) > 1 ? 's' : '' }}
-        @endcomponent
-        @component('components.molecules._m-link-list')
-            @slot('variation', 'm-link-list--download')
-            @slot('links', $item->otherResources);
-        @endcomponent
-    @endif --}}
 
     @component('site.shared._sponsors')
         @slot('sponsors', $item->sponsors)

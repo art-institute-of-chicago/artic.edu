@@ -20,7 +20,6 @@ class CreateSiteTagsTables extends Migration
             $table->string('name');
         });
 
-        // remove this if you're not going to use slugs
         Schema::create('site_tag_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'site_tag');
         });

@@ -181,7 +181,7 @@ const imageSlider = function(container) {
   }
 
   this.destroy = function() {
-    // remove properties of this behavior
+    // Remove properties of this behavior
     purgeProperties(this);
   };
 

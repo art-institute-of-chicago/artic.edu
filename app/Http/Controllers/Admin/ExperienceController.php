@@ -6,8 +6,6 @@ use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\Experience;
 use App\Models\InteractiveFeature;
 use App\Models\Article;
-use App\Repositories\InteractiveFeatureRepository;
-use App\Repositories\ExperienceRepository;
 
 class ExperienceController extends ModuleController
 {
@@ -36,7 +34,7 @@ class ExperienceController extends ModuleController
             'title' => 'Title',
             'field' => 'title',
         ],
-        'interactiveFeatureTitle' => [ // relation column
+        'interactiveFeatureTitle' => [ // Relation column
             'title' => 'Grouping',
             'relationship' => 'interactiveFeature',
             'field' => 'title'
@@ -47,9 +45,11 @@ class ExperienceController extends ModuleController
         ],
     ];
 
-    // Intend to override the lines:
-    // thumbnail
-    // $value .= moduleRoute("experiences.slides", $this->routePrefix, 'index', [$item->id]);
+    /**
+     * Intend to override the lines:
+     * thumbnail
+     * $value .= moduleRoute("experiences.slides", $this->routePrefix, 'index', [$item->id]);
+     */
     protected function getItemColumnData($item, $column)
     {
         if (isset($column['thumb']) && $column['thumb']) {

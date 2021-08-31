@@ -3,8 +3,9 @@
         @foreach ($tags as $category => $items)
             @foreach ($items as $id => $name)
 
-                {{-- Print the link as active only if it's the first link on the first category --}}
-                {{-- and there's no filter selected. Otherwise check the actual parameters --}}
+                {{-- Print the link as active only if it's the first link on the first category
+                  -- and there's no filter selected. Otherwise check the actual parameters
+                  --}}
 
                 @php
                     $active = collect(request()->input())->filter(function($value, $key) {

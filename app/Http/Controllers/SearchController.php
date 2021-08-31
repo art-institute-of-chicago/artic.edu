@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Api\Artwork;
-use App\Models\Api\Artist;
 use App\Models\Api\Search as GeneralSearch;
-use App\Models\Api\Exhibition;
 
 use App\Repositories\Api\ArtworkRepository;
 use App\Repositories\Api\ArtistRepository;
@@ -20,13 +18,11 @@ use App\Repositories\ResearchGuideRepository;
 use App\Repositories\InteractiveFeatureRepository;
 use App\Repositories\SelectionRepository;
 
-use App\Http\Controllers\StaticsController;
 
 use App\Libraries\Search\CollectionService;
 
 use Illuminate\Support\Str;
 
-use LakeviewImageService;
 
 class SearchController extends BaseScopedController
 {

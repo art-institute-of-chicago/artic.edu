@@ -18,7 +18,9 @@ class BaseService
     const MAX_TAGS = 3;
     const PER_PAGE_EXPLORE_FURTHER = 13;
 
-    // Array with valid filters for the Explore Further section.
+    /**
+     * Array with valid filters for the Explore Further section.
+     */
     const VALID_FILTERS = [
         'ef-classification_ids',
         'ef-artist_ids',
@@ -38,10 +40,12 @@ class BaseService
         $this->aggregations = $aggregations;
     }
 
+    /**
+     * Overload this function if you need a different data source
+     * than the aggregations passed at the constructor
+     */
     public function aggregations()
     {
-        // Overload this function if you need a different data source
-        // Than the aggregations passed at the constructor
         return $this->aggregations;
     }
 

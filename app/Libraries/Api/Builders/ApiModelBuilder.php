@@ -93,9 +93,6 @@ class ApiModelBuilder
     public function setModel($model)
     {
         $this->model = $model;
-
-        // $this->query->from($model->getTable());
-
         return $this;
     }
 
@@ -107,12 +104,7 @@ class ApiModelBuilder
      */
     public function with($relations)
     {
-        // TODO: Create a way to map a model to a string of relations.
-        // This way we could just include Tag, and know that it's endpoint
-        // to be added will be tags, or something different.
-
         $this->eagerLoad = array_merge($this->eagerLoad, $relations);
-
         return $this;
     }
 
@@ -234,11 +226,7 @@ class ApiModelBuilder
      */
     public function ids(array $ids)
     {
-        // Remove slugs from ID-SLUG type of id's
-        // $ids = array_map(function($id) { return (integer) $id; }, $ids);
-
         $this->query->ids($ids);
-
         return $this;
     }
 
@@ -300,9 +288,6 @@ class ApiModelBuilder
     public function findSingle($id, $columns = [])
     {
         $builder = clone $this;
-
-        // Remove slugs from ID-SLUG type of id's
-        // $id = (integer) $id;
 
         // Eager load relationships
         if ($result = $builder->getSingle($id, $columns)) {

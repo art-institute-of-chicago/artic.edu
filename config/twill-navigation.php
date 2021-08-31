@@ -208,20 +208,6 @@ $nav = [
             ]
         ]
     ],
-
-    // 'featured' => [
-    //     'title' => 'Features',
-    //     'route' => 'admin.featured.art_and_ideas',
-
-    //     'primary_navigation' => [
-    //         'art_and_ideas' => [
-    //             'title' => 'Art and Ideas',
-    //             'route' => 'admin.featured.art_and_ideas',
-    //         ],
-    //     ],
-    // ],
-
-
     'generic' => [
         'title' => 'Pages',
         'route' => 'admin.generic.genericPages.index',

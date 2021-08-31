@@ -46,7 +46,7 @@ const mediaPlayPauseVideo = function(container) {
       video.removeEventListener('pause', _paused);
     }
     video = null;
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

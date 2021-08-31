@@ -2,11 +2,15 @@
 
 namespace App\Repositories;
 
-use BadMethodCallException;
 use A17\Twill\Repositories\ModuleRepository as BaseModuleRepository;
+use A17\Twill\Repositories\Behaviors\HandleRelatedBrowsers;
 
-class ModuleRepository extends BaseModuleRepository
+use App\Repositories\Behaviors\HandleApiBrowsers;
+
+abstract class ModuleRepository extends BaseModuleRepository
 {
+    use HandleRelatedBrowsers, HandleApiBrowsers;
+
     /**
      * Remove trailing newlines from WYSIWYG fields
      */
@@ -29,17 +33,4 @@ class ModuleRepository extends BaseModuleRepository
 
         return parent::prepareFieldsBeforeSave($object, $fields);
     }
-
-    /**
-     * Temporary work-around for https://github.com/area17/twill/issues/723
-     */
-    public function safeForSlug($slug, $with = [], $withCount = [], $scopes = [])
-    {
-        try {
-            return $this->forSlug(...func_get_args());
-        } catch (BadMethodCallException $e) {
-            abort(404);
-        }
-    }
-
 }

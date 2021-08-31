@@ -13,7 +13,6 @@ class AddRevisionToSelections extends Migration
      */
     public function up()
     {
-        // remove this if you're not going to use revisions
         Schema::create('selection_revisions', function (Blueprint $table) {
             createDefaultRevisionsTableFields($table, 'selection');
         });

@@ -50,8 +50,8 @@ const viewerMirador = function(container) {
     }],
     thumbnailNavigation: {
       defaultPosition: 'far-bottom', // Which position for the thumbnail navigation to be be displayed. Other possible values are "far-bottom" or "far-right"
-      height: 130, // height of entire ThumbnailNavigation area when position is "far-bottom"
-      width: 100, // width of one canvas (doubled for book view) in ThumbnailNavigation area when position is "far-right"
+      height: 130, // Height of entire ThumbnailNavigation area when position is "far-bottom"
+      width: 100, // Width of one canvas (doubled for book view) in ThumbnailNavigation area when position is "far-right"
     },
     createGenerateClassNameOptions: { // Options passed directly to createGenerateClassName in Material-UI https://material-ui.com/styles/api/#creategenerateclassname-options-class-name-generator
       productionPrefix: 'mirador-' + container.dataset.id,

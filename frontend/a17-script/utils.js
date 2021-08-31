@@ -25,7 +25,7 @@ let hasFile = function () {
   return fs.existsSync(fromRoot.apply(undefined, arguments));
 };
 
-//copy from kcd-scripts 
+//copy from kcd-scripts
 let resolveBin = function (modName) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
       _ref$executable = _ref.executable,
@@ -34,13 +34,13 @@ let resolveBin = function (modName) {
       cwd = _ref$cwd === undefined ? process.cwd() : _ref$cwd;
 
 	var pathFromWhich = void 0;
-	
+
   try {
     pathFromWhich = fs.realpathSync(which.sync(executable));
   } catch (_error) {
-    // ignore _error
+    // Ignore _error
 	}
-	
+
   try {
 		var modPkgPath = require.resolve(`${modName}/package.json`);
     var modPkgDir = path.dirname(modPkgPath);

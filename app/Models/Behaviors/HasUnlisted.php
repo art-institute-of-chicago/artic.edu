@@ -2,8 +2,6 @@
 
 namespace App\Models\Behaviors;
 
-use App\Models\Vendor\Block;
-use A17\Twill\Models\Behaviors\HasBlocks as BaseHasBlocks;
 
 trait HasUnlisted
 {

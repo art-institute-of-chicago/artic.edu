@@ -20,7 +20,7 @@ const viewer3D = function(container) {
   let cc0 = JSON.parse(wrapper.dataset.cc);
   let isGuided = JSON.parse(wrapper.dataset.guided);
   let uid = wrapper.dataset.uid;
-  let moduleType = wrapper.dataset.type; 
+  let moduleType = wrapper.dataset.type;
   let moduleTitle = wrapper.dataset.title;
   let annotationList = JSON.parse(wrapper.dataset.annotations);
   let hasTransparency = (moduleType == 'modal' || moduleType == 'standalone') ? false : true;
@@ -277,7 +277,7 @@ const viewer3D = function(container) {
 
     if(moduleType == 'article') {
 
-      var windowDiv = wrapper.parentNode.querySelectorAll('.m-media--3d-tour__sep'); 
+      var windowDiv = wrapper.parentNode.querySelectorAll('.m-media--3d-tour__sep');
       windowDiv.forEach(function(div, i) {
         var scrollWindow = new ScrollWindow(div, function(progress) {
           if(cameraPosition && progress > 0 && progress < 100) {
@@ -360,7 +360,7 @@ const viewer3D = function(container) {
   };
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     if(apiVar) apiVar.removeEventListener('click', onClickFct);
     if(btnCloseAnnotation) btnCloseAnnotation.removeEventListener('click', _closeAnnotation.bind(this, 2));
     if(btnExplore) btnExplore.removeEventListener('click', _onClickExplore.bind(this, 2));
@@ -373,7 +373,7 @@ const viewer3D = function(container) {
     }
     document.removeEventListener('keyup', _onKeyUp);
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
 

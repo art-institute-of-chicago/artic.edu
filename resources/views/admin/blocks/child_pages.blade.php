@@ -1,3 +1,6 @@
+@twillBlockTitle('Child pages link block')
+@twillBlockIcon('image')
+
 <div class="input">
     <label class="input__label">
         <br />

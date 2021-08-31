@@ -78,7 +78,7 @@
         ])
 
         @formField('repeater', [
-            'type' => 'dateRules',
+            'type' => 'date_rule',
             'title' => 'Date rule',
         ])
     </a17-fieldset>
@@ -209,7 +209,7 @@
             'name' => 'entrance',
             'label' => 'Entrance',
             'options' => $eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // no effect?
+            'default' => \App\Models\Event::NULL_OPTION, // No effect?
         ])
 
         @formField('checkbox', [
@@ -273,7 +273,7 @@
             'blocks' => getBlocksForEditor([
                 'paragraph', 'image', 'video', 'media_embed', 'quote',
                 'list', 'newsletter_signup_inline', 'timeline', 'link',
-                'artwork', 'hr', 'split_block', 'tour_stop', 'button',
+                'artwork', 'hr', 'split_block', 'audio_player', 'tour_stop', 'button',
                 'mobile_app', '3d_model',
                 'gallery', 'artworks', 'gallery_new',
             ])
@@ -307,7 +307,7 @@
             'name' => 'event_type',
             'label' => 'Event type (preferred)',
             'options' => $eventTypesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // no effect?
+            'default' => \App\Models\Event::NULL_OPTION, // No effect?
         ])
 
         @formField('multi_select', [
@@ -321,7 +321,7 @@
             'name' => 'audience',
             'label' => 'Event audience (preferred)',
             'options' => $eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // no effect?
+            'default' => \App\Models\Event::NULL_OPTION, // No effect?
         ])
 
         @formField('multi_select', [
@@ -347,7 +347,7 @@
         ])
     </a17-fieldset>
 
-    {{-- TODO: Use 'admin.partials.meta' as a component --}}
+    {{--  WEB-2236: Use 'admin.partials.meta' as a component --}}
     <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
         @formField('input', [
             'name' => 'meta_title',
@@ -370,7 +370,7 @@
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
     </a17-fieldset>
 
-    @if (!app()->environment('production'))
+    @if (config('aic.show_event_series_emails'))
 
     <a17-fieldset id="event_series" title="Event series emails">
         <p>Please review the <a href="https://docs.google.com/document/d/19SN1uMkJy2ldk83uBnEL0GHSZFDOB5j2exz-X1oSb4Y/edit">documentation for email series</a> before proceeding.</p>
@@ -394,7 +394,7 @@
                     // TODO: Use new null option!
                     strval(\App\Models\Event::NULL_OPTION_EVENT_HOST), '[None]'
                 ),
-                'default' => \App\Models\Event::NULL_OPTION_EVENT_HOST, // no effect?
+                'default' => \App\Models\Event::NULL_OPTION_EVENT_HOST, // No effect?
                 'note' => 'This field is mandatory and will be used to determine audience list for email send',
                 'required' => true,
             ])

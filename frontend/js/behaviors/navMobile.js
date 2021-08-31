@@ -89,7 +89,7 @@ const navMobile = function(container) {
   }
 
   this.destroy = function() {
-    // remove specific event handlers
+    // Remove specific event handlers
     document.removeEventListener('navMobile:open', _openNav);
     document.removeEventListener('navMobile:close', _closeNav);
     document.removeEventListener('mediaQueryUpdated',_mediaQueryUpdated);
@@ -102,7 +102,7 @@ const navMobile = function(container) {
       backTrigger.removeEventListener('click', _goBack);
     });
 
-    // remove properties of this behavior
+    // Remove properties of this behavior
     purgeProperties(this);
   };
 

@@ -6,7 +6,6 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
-use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 use App\Repositories\Behaviors\HandleRecurrence;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleApiRelations;
@@ -18,9 +17,28 @@ use Carbon\Carbon;
 
 class EventRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiBlocks, HandleApiRelations, HandleBlocks, HandleRepeaters, HandleRecurrence {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiBlocks, HandleApiRelations, HandleBlocks, HandleRecurrence {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
+
+    protected $browsers = [
+        'sponsors' => [
+            'routePrefix' => 'exhibitions_events',
+        ],
+        'events' => [
+            'routePrefix' => 'exhibitions_events',
+        ]
+    ];
+
+    protected $apiBrowsers = [
+        'ticketedEvent',
+    ];
+
+    protected $repeaters = [
+        'date_rule' => [
+            'relation' => 'dateRules'
+        ],
+    ];
 
     public function __construct(Event $model)
     {
@@ -118,15 +136,6 @@ class EventRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-
-        $this->updateBrowserApiRelated($object, $fields, ['ticketedEvent']);
-        $this->updateBrowser($object, $fields, 'sponsors');
-        $this->updateBrowser($object, $fields, 'events');
-
-        $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
-
-        $this->updateRepeater($object, $fields, 'dateRules', 'DateRule');
-
         $object->programs()->sync($fields['programs'] ?? []);
 
         parent::afterSave($object, $fields);
@@ -135,12 +144,6 @@ class EventRepository extends ModuleRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-
-        $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
-        $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'exhibitions_events');
-        $fields['browsers']['ticketedEvent'] = $this->getFormFieldsForBrowserApi($object, 'ticketedEvent', 'App\Models\Api\TicketedEvent', 'exhibitions_events', 'title', 'ticketedEvent');
-
-        $fields = $this->getFormFieldsForRepeater($object, $fields, 'dateRules', 'DateRule');
 
         if (isset($fields['add_to_event_email_series']))
         {
@@ -189,8 +192,7 @@ class EventRepository extends ModuleRepository
         }
     }
 
-    // TODO: Consider defaulting $page to 1?
-    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $program = null, $perPage = 5, $page = null, $private = false, $callback = null)
+    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $program = null, $perPage = 5, $page = 1, $private = false, $callback = null)
     {
         $query = $this->model->newQuery();
 
@@ -268,7 +270,9 @@ class EventRepository extends ModuleRepository
         return $query->count();
     }
 
-    // Show data, moved here to allow preview
+    /**
+     * Show data, moved here to allow preview
+     */
     public function getShowData($item, $slug = null, $previewPage = null)
     {
         return [

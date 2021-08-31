@@ -1,3 +1,6 @@
+@twillBlockTitle('Quote')
+@twillBlockIcon('text')
+
 @formField('input', [
     'name' => 'quote',
     'type' => 'textarea',

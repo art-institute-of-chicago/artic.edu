@@ -9,7 +9,6 @@ class CreateFaqTables extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             createDefaultTableFields($table);
-            // add some fields
             $table->string('title')->nullable();
             $table->string('link')->nullable();
             $table->integer('position')->unsigned()->nullable();

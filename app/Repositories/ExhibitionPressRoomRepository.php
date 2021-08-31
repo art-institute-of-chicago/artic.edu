@@ -18,7 +18,9 @@ class ExhibitionPressRoomRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    // Show data, moved here to allow preview
+    /**
+     * Show data, moved here to allow preview
+     */
     public function getShowData($item, $slug = null, $previewPage = null)
     {
         return [

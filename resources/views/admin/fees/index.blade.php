@@ -41,7 +41,7 @@
 @stop
 
 @push('vuexStore')
-window.STORE.publication.submitOptions = {
+window['{{ config('twill.js_namespace') }}'].STORE.publication.submitOptions = {
     update: [
       {
         name: 'update',

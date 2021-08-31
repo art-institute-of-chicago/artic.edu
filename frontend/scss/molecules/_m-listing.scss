@@ -484,7 +484,7 @@
 
     @include breakpoint('xsmall') {
       padding-bottom: 4px;
-      margin-bottom: -4px; // to not crop letters with descenders
+      margin-bottom: -4px; // To not crop letters with descenders
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -568,7 +568,7 @@
 }
 
 
-// variant `m-listing--feature`
+// Variant `m-listing--feature`
 .m-listing--feature .m-listing__img::before {
   padding-bottom: percentage(9 / 16); // 16:9
 }
@@ -662,7 +662,7 @@
 }
 
 
-// variant `m-listing--hero`
+// Variant `m-listing--hero`
 
 .m-listing--hero {
   position: relative;
@@ -1014,7 +1014,7 @@
 }
 
 
-// variant 'm-listing--keyline-top'
+// Variant 'm-listing--keyline-top'
 
 .m-listing--keyline-top {
   position: relative;
@@ -1032,7 +1032,7 @@
 }
 
 
-// variant `m-listing--row`
+// Variant `m-listing--row`
 
 .m-listing--row {
   @include breakpoint('small+') {
@@ -1236,8 +1236,8 @@
   }
 }
 
-// variant 'm-listing--row@small'
-// variant 'm-listing--row@medium'
+// Variant 'm-listing--row@small'
+// Variant 'm-listing--row@medium'
 @include breakpoint('small') {
   .m-listing--row\@small {
     flex-flow: row nowrap;
@@ -1362,7 +1362,7 @@
   }
 }
 
-// variant `m-listing--inline` and 'm-listing--inline-feature'
+// Variant `m-listing--inline` and 'm-listing--inline-feature'
 .m-listing--inline {
   flex-flow: row-reverse nowrap;
   max-width: 100%;
@@ -1601,7 +1601,7 @@ $f-audio-subtitle: generate-font-obj(
   @include tucked-margin-top($f-tertiary, ('xsmall': 36));
 }
 
-// variant 'm-listing--inline-feature'
+// Variant 'm-listing--inline-feature'
 
 .m-listing--inline-feature + .m-listing--inline-feature {
 
@@ -1735,7 +1735,7 @@ $f-audio-subtitle: generate-font-obj(
 }
 
 
-// variant `m-listing--inline` inside `.m-inline-aside`
+// Variant `m-listing--inline` inside `.m-inline-aside`
 
 .m-inline-aside .f-module-title-1 + .o-row-listing .m-listing--inline:first-child {
   padding-top: 0;
@@ -1788,9 +1788,9 @@ $f-audio-subtitle: generate-font-obj(
 
 
 
-// variant `m-listing` inside `.o-pinboard`
+// Variant `m-listing` inside `.o-pinboard`
 .o-pinboard__item.m-listing--variable-height .m-listing__img {
-  max-height: 500px; // formally 4/3 ratio max: percentage(4 / 3)
+  max-height: 500px; // Formally 4/3 ratio max: percentage(4 / 3)
   overflow: hidden;
 }
 
@@ -1816,7 +1816,7 @@ $f-audio-subtitle: generate-font-obj(
 }
 
 
-// variant `m-listing` thats also a `.o-feature-plus-4__feature`
+// Variant `m-listing` thats also a `.o-feature-plus-4__feature`
 
 .o-feature-plus-4__feature .m-listing__meta {
   text-align: center;
@@ -1834,7 +1834,7 @@ $f-audio-subtitle: generate-font-obj(
   @include tucked-margin-top($f-body-editorial, ('xsmall': 44, 'small+': 52, 'medium+': 56));
 }
 
-// variant `m-listing` that expects the image to be on the left, not the right, and optionally absent
+// Variant `m-listing` that expects the image to be on the left, not the right, and optionally absent
 .m-listing--rtl {
   flex-flow: column nowrap;
 }
@@ -1859,7 +1859,7 @@ $f-audio-subtitle: generate-font-obj(
   margin-right: 0;
 }
 
-// remove tucked-margin-top
+// Remove tucked-margin-top
 .m-listing--inline.m-listing--rtl .m-listing__meta .f-secondary {
   margin-top: 0;
 
@@ -1902,7 +1902,7 @@ $f-audio-subtitle: generate-font-obj(
 }
 
 
-// adding gradients to homepage features and selections
+// Adding gradients to homepage features and selections
 @mixin m-listing__img__overlay {
   display: block;
 
@@ -1951,7 +1951,7 @@ $f-audio-subtitle: generate-font-obj(
   }
 }
 
-// variant `m-listing--closer-look .o-blocks__block` for block_editor
+// Variant `m-listing--closer-look .o-blocks__block` for block_editor
 .m-listing--closer-look.o-blocks__block:after {
   content: '';
   display: block;
@@ -1976,7 +1976,7 @@ $f-audio-subtitle: generate-font-obj(
   margin-top: 15px;
 }
 
-// shared styles for .m-listing--journal and .m-listing--magazine
+// Shared styles for .m-listing--journal and .m-listing--magazine
 .m-listing--publication {
   border: thin solid $color__rules--primary;
 
@@ -2209,7 +2209,7 @@ $f-audio-subtitle: generate-font-obj(
   }
 }
 
-// variant for Art Institute Review
+// Variant for Art Institute Review
 .m-listing--journal {
   .m-listing__meta > .f-tag {
     color: $color__blue;
@@ -2217,7 +2217,7 @@ $f-audio-subtitle: generate-font-obj(
 }
 
 @include breakpoint('small+') {
-  // variant for Digital Publications
+  // Variant for Digital Publications
   .m-listing--work {
     flex-flow: row-reverse nowrap;
     .m-listing__link {
@@ -2243,14 +2243,14 @@ $f-audio-subtitle: generate-font-obj(
   }
 }
 
-// variant for Member Magazine
+// Variant for Member Magazine
 .m-listing--magazine {
   .m-listing__meta > .f-tag {
     color: $color__plum;
   }
 }
 
-// variant for author pages
+// Variant for author pages
 .m-listing--author {
   border-color: $color__rules--primary;
   .m-listing__link:hover,
@@ -2261,7 +2261,7 @@ $f-audio-subtitle: generate-font-obj(
   }
 }
 
-// variant for visit page
+// Variant for visit page
 .m-listing--icon {
   display: flex;
   flex-direction: row;

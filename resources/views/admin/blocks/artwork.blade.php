@@ -1,3 +1,6 @@
+@twillBlockTitle('Artwork')
+@twillBlockIcon('image')
+
 @formField('browser', [
     'routePrefix' => 'collection',
     'name' => 'artworks',

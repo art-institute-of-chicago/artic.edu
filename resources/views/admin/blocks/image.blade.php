@@ -1,3 +1,6 @@
+@twillBlockTitle('Image')
+@twillBlockIcon('image')
+
 @formField('select', [
     'name' => 'size',
     'label' => 'Size',

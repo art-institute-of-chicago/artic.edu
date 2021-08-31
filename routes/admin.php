@@ -58,9 +58,13 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('experiences.slides');
     });
 
+    Route::module('authors');
+
     Route::module('issues');
     Route::module('issues.articles');
-    Route::module('authors');
+
+    // PUB-127: Browser for nested modules must be implemented manually
+    Route::name('collection.issues.articles.subbrowser')->get('issuesFoo/{issue}/articles/browser', 'IssueArticleController@browser');
 
     Route::module('categoryTerms');
     Route::name('collection.categoryTerms.augment')->get('categoryTerms/augment/{datahub_id}', 'CategoryTermController@augment');

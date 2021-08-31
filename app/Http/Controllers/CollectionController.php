@@ -90,18 +90,6 @@ class CollectionController extends BaseScopedController
         $this->seo->setDescription($description);
         $this->seo->nofollow = $this->setNofollowMeta();
 
-        // If it's a call to Load More, just show the items and do not generate a full page
-        if (\Route::current()->getName() == 'collection.more') {
-            $view['html'] = view('site.collection._items', [
-                'artworks' => $collection
-            ])->render();
-
-            if ($collection->hasMorePages())
-                $view['page'] = request('page');
-
-            return $view;
-        }
-
         $featuredItems = $page->getRelatedWithApiModels(
             'featured_items', [], [
                 'articles' => false,
@@ -128,9 +116,11 @@ class CollectionController extends BaseScopedController
         ]);
     }
 
-    // Endpoint to search within filters.
-    // To perform this we hit the same collection endpoint (with no results)
-    // and then build filters from the returned aggregations
+    /**
+     * Endpoint to search within filters.
+     * To perform this we hit the same collection endpoint (with no results)
+     * and then build filters from the returned aggregations.
+     */
     public function categorySearch($category)
     {
         // Search through the facets including current parameters. Get only aggregations.

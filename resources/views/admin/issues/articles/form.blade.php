@@ -29,25 +29,10 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('select', [
-        'name' => 'type',
-        'label' => 'Type',
-        'placeholder' => 'Select a type',
-        'default' => 'article',
-        'options' => [
-            [
-                'value' => 'editors-note',
-                'label' => 'Editor\'s Note'
-            ],
-            [
-                'value' => 'article',
-                'label' => 'Article'
-            ],
-            [
-                'value' => 'in-conversation',
-                'label' => 'In Conversation'
-            ]
-        ]
+    @formField('input', [
+        'name' => 'type_display',
+        'label' => 'Article label',
+        'note' => 'Used for article cards on the issue page. Defaults to "Article" if empty.',
     ])
 
     @formField('wysiwyg', [
@@ -118,7 +103,7 @@
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed', 'quote',
             'list', 'artwork', 'hr', 'citation', 'split_block',
-            'membership_banner', 'digital_label', 'tour_stop', 'button', 'mobile_app',
+            'membership_banner', 'digital_label', 'audio_player', 'tour_stop', 'button', 'mobile_app',
             '3d_model', '3d_tour', '3d_embed', '360_embed', '360_modal',
             'gallery', 'artworks', 'gallery_new',
             'image_slider', 'mirador_embed', 'mirador_modal',

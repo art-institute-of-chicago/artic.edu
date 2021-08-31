@@ -8,9 +8,7 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasMedias;
-use App\Models\SeamlessImage;
 
-use Illuminate\Support\Str;
 
 class Artwork extends AbstractModel
 {

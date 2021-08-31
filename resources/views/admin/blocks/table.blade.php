@@ -1,3 +1,6 @@
+@twillBlockTitle('Table')
+@twillBlockIcon('text')
+
 <p>Use Markdown to create the table below. See <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables">tutorial</a>.</p>
 
 <hr>
