@@ -7,7 +7,7 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 
-use App\Models\Selection;
+use App\Models\Highlight;
 use App\Models\Api\Search;
 
 use App\Repositories\Behaviors\HandleApiRelations;
@@ -16,16 +16,16 @@ use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Repositories\Behaviors\HandleMagazine;
 use App\Repositories\Behaviors\HandleAuthors;
 
-class SelectionRepository extends ModuleRepository
+class HighlightRepository extends ModuleRepository
 {
 
     use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations, HandleMagazine, HandleFeaturedRelated, HandleAuthors {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
-    protected $morphType = 'selections';
+    protected $morphType = 'highlights';
 
-    public function __construct(Selection $model)
+    public function __construct(Highlight $model)
     {
         $this->model = $model;
     }
@@ -61,7 +61,7 @@ class SelectionRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null)
     {
-        $search  = Search::query()->search($string)->published()->resources(['selections']);
+        $search  = Search::query()->search($string)->published()->resources(['highlights']);
 
         $results = $search->getSearch($perPage);
 

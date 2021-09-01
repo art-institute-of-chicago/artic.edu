@@ -174,10 +174,10 @@ return [
     'browser_route_prefixes' => [
         'events' => 'exhibitions_events',
         'exhibitions' => 'exhibitions_events',
-        'selections' => 'collection',
+        'highlights' => 'collection',
         'artworks' => 'collection',
         'authors' => 'collection',
-        'selections' => 'collection',
+        'highlights' => 'collection',
         'articles' => 'collection.articles_publications',
         'experiences' => 'collection.interactive_features',
     ],

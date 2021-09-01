@@ -172,7 +172,7 @@ $nav = [
                 'title' => 'Artworks',
                 'module' => true,
             ],
-            'selections' => [
+            'highlights' => [
                 'title' => 'Highlights',
                 'module' => true,
             ],

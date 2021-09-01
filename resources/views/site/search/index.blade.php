@@ -275,7 +275,7 @@
           @slot('cols_xlarge','4')
           @foreach ($highlights as $item)
               @component('components.molecules._m-listing----article')
-                  @slot('module', 'selections')
+                  @slot('module', 'highlights')
                   @slot('imgVariation','')
                   @slot('item', $item)
                   @slot('imageSettings', array(
@@ -307,7 +307,7 @@
 
             @foreach ($highlights as $item)
                 @component('components.molecules._m-listing----article')
-                    @slot('module', 'selections')
+                    @slot('module', 'highlights')
                     @slot('imgVariation','')
                     @slot('item', $item)
                     @slot('imageSettings', array(

@@ -15,7 +15,7 @@
 
     @php
         $selectedFeature = 'articles';
-        foreach (['articles', 'events', 'exhibitions', 'selections'] as $featureType) {
+        foreach (['articles', 'events', 'exhibitions', 'highlights'] as $featureType) {
             if (isset($form_fields['browsers'][$featureType]) && !empty($form_fields['browsers'][$featureType])) {
                 $selectedFeature = $featureType;
             }
@@ -44,7 +44,7 @@
                 'label' => 'Exhibitions'
             ],
             [
-                'value' => 'selections',
+                'value' => 'highlights',
                 'label' => 'Collection Highlights'
             ],
             [
@@ -97,12 +97,12 @@
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => '_featureType',
         'renderForBlocks' => false,
-        'fieldValues' => 'selections'
+        'fieldValues' => 'highlights'
     ])
         @formField('browser', [
             'routePrefix' => 'collection',
-            'moduleName' => 'selections',
-            'name' => 'selections',
+            'moduleName' => 'highlights',
+            'name' => 'highlights',
             'label' => 'Collection Highlights'
         ])
     @endcomponent

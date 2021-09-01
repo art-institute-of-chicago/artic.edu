@@ -196,7 +196,7 @@
 @if (isset($highlights) && $highlights->count() > 0)
     @component('components.molecules._m-title-bar')
         @slot('links',
-            array(array('label' => 'See all highlights', 'href' => route('selections.index'), 'gtmAttributes' => 'data-gtm-event="home-highlights" data-gtm-event-category="nav-link"'))
+            array(array('label' => 'See all highlights', 'href' => route('highlights.index'), 'gtmAttributes' => 'data-gtm-event="home-highlights" data-gtm-event-category="nav-link"'))
         )
         Highlights
     @endcomponent

@@ -28,7 +28,7 @@ class InvalidationServiceProvider extends ServiceProvider
         'App\Events\UpdateHomeFeature' => [
             'App\Listeners\InvalidationListener',
         ],
-        'App\Events\UpdateSelection' => [
+        'App\Events\UpdateHighlight' => [
             'App\Listeners\InvalidationListener',
         ],
     ];

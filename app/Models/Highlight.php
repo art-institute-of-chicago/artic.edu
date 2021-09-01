@@ -17,12 +17,12 @@ use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasUnlisted;
 
 
-class Selection extends AbstractModel
+class Highlight extends AbstractModel
 {
     use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated, HasUnlisted, HasAuthors;
 
-    protected $presenterAdmin = 'App\Presenters\Admin\SelectionPresenter';
-    protected $presenter = 'App\Presenters\Admin\SelectionPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\HighlightPresenter';
+    protected $presenter = 'App\Presenters\Admin\HighlightPresenter';
 
     protected $fillable = [
         'published',
@@ -109,7 +109,7 @@ class Selection extends AbstractModel
 
     public function getTypeAttribute()
     {
-        return 'selection';
+        return 'highlight';
     }
 
     public function getSubtypeAttribute()
@@ -134,7 +134,7 @@ class Selection extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.collection.selections.edit', $this->id);
+        return route('admin.collection.highlights.edit', $this->id);
     }
 
     public function siteTags()
@@ -251,7 +251,7 @@ class Selection extends AbstractModel
                 "name" => "web_url",
                 "doc" => "web_url",
                 "type" => "string",
-                "value" => function () {return url(route('selections.show', $this));},
+                "value" => function () {return url(route('highlights.show', $this));},
             ],
         ];
     }

@@ -1,5 +1,5 @@
-<{{ $tag ?? 'li' }} class="m-listing m-listing--selection{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <a href="{!! route('selections.show', $item) !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
+<{{ $tag ?? 'li' }} class="m-listing m-listing--highlight{{ (isset($variation)) ? ' '.$variation : '' }}">
+    <a href="{!! route('highlights.show', $item) !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @if (!isset($hideImage) || (isset($hideImage) && !($hideImage)))
             <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : ' m-listing__img--square' }}">
                 @if ($item->imageFront('hero') ?? $item->images[0] ?? false)

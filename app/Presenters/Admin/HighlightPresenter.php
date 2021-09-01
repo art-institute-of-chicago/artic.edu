@@ -4,7 +4,7 @@ namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
 
-class SelectionPresenter extends BasePresenter
+class HighlightPresenter extends BasePresenter
 {
     public function artworksCount()
     {
@@ -27,6 +27,6 @@ class SelectionPresenter extends BasePresenter
 
     public function url()
     {
-        return route('selections.show', $this->entity);
+        return route('highlights.show', $this->entity);
     }
 }

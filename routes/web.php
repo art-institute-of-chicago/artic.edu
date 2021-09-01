@@ -127,9 +127,9 @@ Route::name('artists.show')->get('/artists/{id}/{slug?}', 'ArtistController@show
 // Department / tag page
 Route::name('departments.show')->get('/departments/{id}/{slug?}', 'DepartmentController@show');
 
-// Selections
-Route::name('selections.show')->get('/highlights/{id}/{slug?}', 'SelectionsController@show');
-Route::name('selections.index')->get('/highlights', 'SelectionsController@index');
+// Highlights
+Route::name('highlights.show')->get('/highlights/{id}/{slug?}', 'HighlightsController@show');
+Route::name('highlights.index')->get('/highlights', 'HighlightsController@index');
 
 // About
 Route::name('about.press')->get('/press/press-releases', 'PressReleasesController@index');

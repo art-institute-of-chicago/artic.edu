@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\SiteTagRepository;
 
-class SelectionController extends ModuleController
+class HighlightController extends ModuleController
 {
-    protected $moduleName = 'selections';
+    protected $moduleName = 'highlights';
     protected $previewView = 'site.articleDetail';
 
     protected $indexOptions = [
@@ -61,7 +61,7 @@ class SelectionController extends ModuleController
 
     protected function formData($request)
     {
-        $baseUrl = '//' . config('app.url') . '/highlights/' . request('selection') . '/';
+        $baseUrl = '//' . config('app.url') . '/highlights/' . request('highlight') . '/';
 
         return [
             'baseUrl' => $baseUrl,

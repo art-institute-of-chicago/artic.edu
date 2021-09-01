@@ -82,10 +82,10 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('articles/{id}', 'API\ArticlesController@show');
 
     /**
-     * Selections ------------------------------------------------------
+     * Highlights ------------------------------------------------------
      */
-    Route::get('selections', 'API\SelectionsController@index');
-    Route::get('selections/{id}', 'API\SelectionsController@show');
+    Route::get('highlights', 'API\HighlightsController@index');
+    Route::get('highlights/{id}', 'API\HighlightsController@show');
 
     /**
      * Artists ------------------------------------------------------

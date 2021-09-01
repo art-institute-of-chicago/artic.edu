@@ -37,7 +37,7 @@ class ReportAltText extends Command
             \App\Models\PressRelease::class,
             \App\Models\PrintedPublication::class,
             \App\Models\ResearchGuide::class,
-            \App\Models\Selection::class,
+            \App\Models\Highlight::class,
             \App\Models\Video::class,
             \A17\Twill\Models\Block::class,
         ])->map(function($model) {
@@ -145,7 +145,7 @@ class ReportAltText extends Command
         if (\App\Models\PressRelease::class == get_class($item)) {
             $prefix = 'press/press-releases';
         }
-        if (\App\Models\Selection::class == get_class($item)) {
+        if (\App\Models\Highlight::class == get_class($item)) {
             $prefix = 'highlights';
         }
 

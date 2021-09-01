@@ -2,7 +2,7 @@
 
 namespace App\Libraries\ExploreFurther;
 
-class SelectionService extends BaseService
+class HighlightService extends BaseService
 {
 
     public function tags()

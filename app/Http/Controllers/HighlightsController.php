@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Repositories\SelectionRepository;
-use App\Libraries\ExploreFurther\SelectionService as ExploreFurther;
+use App\Repositories\HighlightRepository;
+use App\Libraries\ExploreFurther\HighlightService as ExploreFurther;
 
 
-class SelectionsController extends FrontController
+class HighlightsController extends FrontController
 {
     protected $repository;
 
-    public function __construct(SelectionRepository $repository)
+    public function __construct(HighlightRepository $repository)
     {
         $this->repository = $repository;
 
@@ -25,7 +25,7 @@ class SelectionsController extends FrontController
         $title = 'Highlights';
 
         $subNav = [
-            ['label' => $title, 'href' => route('selections.index'), 'active' => true]
+            ['label' => $title, 'href' => route('highlights.index'), 'active' => true]
         ];
 
         $nav = [
@@ -52,7 +52,7 @@ class SelectionsController extends FrontController
     {
         $item = $this->repository->getById((Integer) $id);
 
-        $canonicalPath = route('selections.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+        $canonicalPath = route('highlights.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
@@ -69,7 +69,7 @@ class SelectionsController extends FrontController
         $artworks = $item->artworks(0);
         $exploreFurther = new ExploreFurther($item, $artworks->getMetadata('aggregations'));
 
-        return view('site.selectionDetail', [
+        return view('site.highlightDetail', [
             'item' => $item,
             'contrastHeader' => $item->present()->contrastHeader,
             'exploreFurtherTags'    => $exploreFurther->tags(),

@@ -69,7 +69,7 @@
 @section('fieldsets')
     @component('admin.partials.featured-related', ['form_fields' => $form_fields])
         @slot('routePrefix', 'collection')
-        @slot('moduleName', 'selections')
+        @slot('moduleName', 'highlights')
     @endcomponent
 
     @include('admin.partials.meta')

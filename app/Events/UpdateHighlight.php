@@ -6,7 +6,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 
-class UpdateSelection
+class UpdateHighlight
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -18,12 +18,12 @@ class UpdateSelection
      *
      * @return void
      */
-    public function __construct(\App\Models\Selection $item)
+    public function __construct(\App\Models\Highlight $item)
     {
         $this->item = $item;
         if ($item->is_published) {
             $this->urls = [
-                route('selections.show', $item, false),
+                route('highlights.show', $item, false),
                 '/'
             ];
         }
