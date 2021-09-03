@@ -20,7 +20,7 @@
         'name' => 'intro',
         'label' => 'Intro',
         'toolbarOptions' => [
-            'strike'
+            'italic', 'link', 'strike'
         ],
     ])
 
