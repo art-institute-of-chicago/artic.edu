@@ -6,6 +6,7 @@ use App\Http\Resources\SlideMedia as SlideMediaResource;
 use App\Http\Resources\SlideModal as SlideModalResource;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Helpers\UrlHelpers;
 
 class Slide extends JsonResource
 {
@@ -90,7 +91,7 @@ class Slide extends JsonResource
             '__option_autoplay' => $this->split_video_play_settings && in_array(['id' => 'autoplay'], $this->split_video_play_settings),
             '__option_loop' => $this->split_video_play_settings && in_array(['id' => 'loop'], $this->split_video_play_settings),
             '__option_controls' => $this->split_video_play_settings && in_array(['id' => 'control'], $this->split_video_play_settings),
-            'src' => $this->asset_type === 'standard' && $this->split_standard_media_type === 'type_video' ? parseVideoUrl($this->split_video_url) : '',
+            'src' => $this->asset_type === 'standard' && $this->split_standard_media_type === 'type_video' ? UrlHelpers::parseVideoUrl($this->split_video_url) : '',
             'primaryimglink' => $primaryExperienceImage ? [
                 'type' => 'imagelink',
                 'src' => (new SlideMediaResource($primaryExperienceImage))->toArray(request()),
@@ -136,7 +137,7 @@ class Slide extends JsonResource
         $this->modal = $this->experienceModal;
 
         if ($this->asset_type === 'standard' && $this->fullwidthmedia_standard_media_type === 'type_video') {
-            $src = [parseVideoUrl($this->video_url)];
+            $src = [UrlHelpers::parseVideoUrl($this->video_url)];
         }
         elseif ($this->asset_type === 'standard' && $this->fullwidthmedia_standard_media_type === 'type_image') {
             $src = $this->media->map(function ($image) {

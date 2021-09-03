@@ -5,6 +5,7 @@ namespace App\Models\Api;
 use Illuminate\Support\Carbon;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Libraries\Api\Models\BaseApiModel;
+use App\Helpers\StringHelpers;
 
 class Exhibition extends BaseApiModel
 {
@@ -77,7 +78,7 @@ class Exhibition extends BaseApiModel
 
     public function getTitleSlugAttribute()
     {
-        return getUtf8Slug($this->title);
+        return StringHelpers::getUtf8Slug($this->title);
     }
 
     public function getAicDateStartAttribute()
@@ -206,7 +207,7 @@ class Exhibition extends BaseApiModel
         }
 
         if (!empty($this->description)) {
-            return truncateStr($this->description);
+            return StringHelpers::truncateStr($this->description);
         }
 
         return null;

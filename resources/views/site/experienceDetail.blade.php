@@ -19,5 +19,5 @@
 @endsection
 
 @section('extra_scripts')
-    <script src="{{revAsset('scripts/interactiveFeatures.js')}}"></script>
+    <script src="{{FrontendHelpers::revAsset('scripts/interactiveFeatures.js')}}"></script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Forms;
 
 use Carbon\Carbon;
 
+use App\Helpers\DatesHelpers;
 use App\Http\Controllers\FrontController;
 
 
@@ -70,7 +71,7 @@ abstract class FormController extends FrontController
 
     protected function getTimeArray($startAt = 0, $endAt = 24)
     {
-        $hours = hoursSelectOptions($shortlist = true, $startAt, $endAt);
+        $hours = DatesHelpers::hoursSelectOptions($shortlist = true, $startAt, $endAt);
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];

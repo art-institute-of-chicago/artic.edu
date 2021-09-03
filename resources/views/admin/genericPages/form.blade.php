@@ -69,7 +69,7 @@
     ])
 
     @formField('block_editor', [
-        'blocks' => getBlocksForEditor([
+        'blocks' => BlockHelpers::getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed', 'list',
             'child_pages', 'accordion', 'membership_banner', 'timeline',
             'link', 'newsletter_signup_inline', 'artwork',

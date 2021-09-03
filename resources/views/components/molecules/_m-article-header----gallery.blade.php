@@ -27,8 +27,8 @@ if ($maxZoomWindowSize > 843) {
             @slot('image', $image)
             @slot('style', $style)
             @slot('settings', array(
-                'srcset' => aic_getSrcsetForImage($images->first(), $isPublicDomain ?? false),
-                'sizes' => aic_imageSizes(array(
+                'srcset' => ImageHelpers::aic_getSrcsetForImage($images->first(), $isPublicDomain ?? false),
+                'sizes' => ImageHelpers::aic_imageSizes(array(
                       'xsmall' => '58',
                       'small' => '58',
                       'medium' => '843px',
@@ -168,11 +168,11 @@ if ($maxZoomWindowSize > 843) {
         <li>
           @php
             // It's ok for the thumbnail and the full-sized image to share the same srcset
-            $galleryImageSrcset = aic_getSrcsetForImage($image, $isPublicDomain ?? false);
-            $galleryImageThumbSettings = aic_imageSettings(array(
+            $galleryImageSrcset = ImageHelpers::aic_getSrcsetForImage($image, $isPublicDomain ?? false);
+            $galleryImageThumbSettings = ImageHelpers::aic_imageSettings(array(
                 'settings' => array(
                     'srcset' => $galleryImageSrcset,
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '58',
                           'medium' => '843px',

@@ -7,7 +7,7 @@
 
         $infoUrl = $settings['infoUrl'] ?? null;
 
-        $settings = aic_imageSettings(array(
+        $settings = ImageHelpers::aic_imageSettings(array(
             'settings' => $settings,
             'image' => $image,
         ));

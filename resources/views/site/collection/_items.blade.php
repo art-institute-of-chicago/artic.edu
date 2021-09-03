@@ -7,8 +7,8 @@
         @slot('imageSettings', array(
             'fit' => null,
             'ratio' => null,
-            'srcset' => aic_getSrcsetForImage($item->imageFront(), $item->is_public_domain ?? false),
-            'sizes' => aic_gridListingImageSizes(array(
+            'srcset' => ImageHelpers::aic_getSrcsetForImage($item->imageFront(), $item->is_public_domain ?? false),
+            'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                   'xsmall' => '2',
                   'small' => '2',
                   'medium' => '3',

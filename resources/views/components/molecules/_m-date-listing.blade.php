@@ -1,8 +1,8 @@
 <{{ $tag ?? 'li' }} class="m-date-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     @component('components.atoms._day')
-      @slot('date', printDate($date))
-      @slot('month', printMonth($date))
-      @slot('day', printDay($date))
+      @slot('date', DatesHelpers::printDate($date))
+      @slot('month', DatesHelpers::printMonth($date))
+      @slot('day', DatesHelpers::printDay($date))
     @endcomponent
     <div class="m-date-listing__listings">
       <ul class="m-date-listing__items">

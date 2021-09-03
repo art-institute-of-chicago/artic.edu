@@ -8,6 +8,7 @@ use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use App\Helpers\StringHelpers;
 
 class Artist extends AbstractModel
 {
@@ -56,7 +57,7 @@ class Artist extends AbstractModel
 
     public function getSlugAttribute()
     {
-        return ['en' => getUtf8Slug($this->title)];
+        return ['en' => StringHelpers::getUtf8Slug($this->title)];
     }
 
     protected function transformMappingInternal()

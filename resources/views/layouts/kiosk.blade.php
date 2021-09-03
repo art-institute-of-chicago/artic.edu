@@ -12,11 +12,11 @@
   @endif
 
   <!-- Main Favicon -->
-  <link rel="shortcut icon" type="image/png" href="{{revAsset('images/favicon-16.png')}}">
+  <link rel="shortcut icon" type="image/png" href="{{FrontendHelpers::revAsset('images/favicon-16.png')}}">
   <!-- Apple Touch Icons (ipad/iphone standard+retina) -->
-  <link rel="apple-touch-icon-precomposed" href="{{revAsset('images/favicon-152.png')}}"> <!-- General use iOS/Android icon, auto-downscaled by devices. -->
-  <link rel="apple-touch-icon-precomposed" type="image/png" href="{{revAsset('images/favicon-120.png')}}" sizes="120x120"> <!-- iPhone retina touch icon -->
-  <link rel="apple-touch-icon-precomposed" type="image/png" href="{{revAsset('images/favicon-76.png')}}" sizes="76x76"> <!-- iPad home screen icons -->
+  <link rel="apple-touch-icon-precomposed" href="{{FrontendHelpers::revAsset('images/favicon-152.png')}}"> <!-- General use iOS/Android icon, auto-downscaled by devices. -->
+  <link rel="apple-touch-icon-precomposed" type="image/png" href="{{FrontendHelpers::revAsset('images/favicon-120.png')}}" sizes="120x120"> <!-- iPhone retina touch icon -->
+  <link rel="apple-touch-icon-precomposed" type="image/png" href="{{FrontendHelpers::revAsset('images/favicon-76.png')}}" sizes="76x76"> <!-- iPad home screen icons -->
 
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -24,7 +24,7 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <meta name="svg-sprite-src" content="{{ revAsset('icons/icons.svg') }}">
+  <meta name="svg-sprite-src" content="{{ FrontendHelpers::revAsset('icons/icons.svg') }}">
 
   @include('partials._head-js')
 
@@ -40,9 +40,9 @@
   }
 
   @import url("//hello.myfonts.net/count/3545d5");
-  @font-face {font-family: 'Sabon';src: url({{revAsset('fonts/3545D5_0_0.eot')}});src: url({{revAsset('fonts/3545D5_0_0.eot?#iefix')}}) format('embedded-opentype'),url({{revAsset('fonts/3545D5_0_0.woff2')}}) format('woff2'),url({{revAsset('fonts/3545D5_0_0.woff')}}) format('woff'),url({{revAsset('fonts/3545D5_0_0.ttf')}}) format('truetype');font-weight:normal;font-weight:400;font-style:normal;}
-  @font-face {font-family: 'Sabon';src: url({{revAsset('fonts/3545D5_1_0.eot')}});src: url({{revAsset('fonts/3545D5_1_0.eot?#iefix')}}) format('embedded-opentype'),url({{revAsset('fonts/3545D5_1_0.woff2')}}) format('woff2'),url({{revAsset('fonts/3545D5_1_0.woff')}}) format('woff'),url({{revAsset('fonts/3545D5_1_0.ttf')}}) format('truetype');font-weight:normal;font-weight:400;font-style:italic;}
-  @font-face {font-family: 'Sabon';src: url({{revAsset('fonts/3545D5_2_0.eot')}});src: url({{revAsset('fonts/3545D5_2_0.eot?#iefix')}}) format('embedded-opentype'),url({{revAsset('fonts/3545D5_2_0.woff2')}}) format('woff2'),url({{revAsset('fonts/3545D5_2_0.woff')}}) format('woff'),url({{revAsset('fonts/3545D5_2_0.ttf')}}) format('truetype');font-weight:normal;font-weight:500;font-style:normal;}
+  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.eot')}});src: url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.eot?#iefix')}}) format('embedded-opentype'),url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff2')}}) format('woff2'),url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff')}}) format('woff'),url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.ttf')}}) format('truetype');font-weight:normal;font-weight:400;font-style:normal;}
+  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.eot')}});src: url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.eot?#iefix')}}) format('embedded-opentype'),url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}) format('woff2'),url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff')}}) format('woff'),url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.ttf')}}) format('truetype');font-weight:normal;font-weight:400;font-style:italic;}
+  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.eot')}});src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.eot?#iefix')}}) format('embedded-opentype'),url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}) format('woff2'),url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff')}}) format('woff'),url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.ttf')}}) format('truetype');font-weight:normal;font-weight:500;font-style:normal;}
   </style>
 
   @if (config('services.google_tag_manager.enabled'))
@@ -71,6 +71,6 @@
   </main>
 </div>
 
-<script src="{{revAsset('scripts/interactiveFeatures.js')}}"></script>
+<script src="{{FrontendHelpers::revAsset('scripts/interactiveFeatures.js')}}"></script>
 </body>
 </html>

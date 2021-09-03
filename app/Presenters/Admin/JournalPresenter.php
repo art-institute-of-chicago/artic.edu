@@ -2,6 +2,7 @@
 
 namespace App\Presenters\Admin;
 
+use App\Helpers\NavHelpers;
 
 class JournalPresenter extends GenericPresenter
 {
@@ -10,7 +11,7 @@ class JournalPresenter extends GenericPresenter
 
     private function getNav()
     {
-        return $navCache ?? $navCache = get_nav_for_publications($this->entity->title);
+        return $navCache ?? $navCache = NavHelpers::get_nav_for_publications($this->entity->title);
     }
 
     public function breadCrumb()

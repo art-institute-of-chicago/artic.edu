@@ -3,8 +3,8 @@
     if (!isset($_collectedReferences)) {
         $_collectedReferences = [];
     }
-    list($quote, $_collectedReferences) = convertReferenceLinks($block->present()->input('quote'), $_collectedReferences);
-    list($attribution, $_collectedReferences) = convertReferenceLinks($block->present()->input('attribution'), $_collectedReferences);
+    list($quote, $_collectedReferences) = StringHelpers::convertReferenceLinks($block->present()->input('quote'), $_collectedReferences);
+    list($attribution, $_collectedReferences) = StringHelpers::convertReferenceLinks($block->present()->input('attribution'), $_collectedReferences);
 @endphp
 @component('components.atoms._quote')
     @slot('variation', (isset($editorial) and $editorial) ? 'quote--editorial o-blocks__block' : 'o-blocks__block')

@@ -4,6 +4,7 @@ namespace App\Libraries\Api\Builders;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
+use App\Helpers\CollectionHelpers;
 
 class ApiModelBuilderSearch extends ApiModelBuilder
 {
@@ -94,7 +95,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $segregatedResults = $this->extractModels($results);
 
         // Mix them all up together
-        $flatResults = collectApi(array_filter(Arr::flatten($segregatedResults)));
+        $flatResults = CollectionHelpers::collectApi(array_filter(Arr::flatten($segregatedResults)));
 
         // Sort results in their original order
         $sorted = $flatResults->sortBy(function($model, $key) use ($original) {
@@ -148,7 +149,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $segregatedResults = $this->makeModels($results);
 
         // Mix them all up together
-        $flatResults = collectApi(array_filter(Arr::flatten($segregatedResults)));
+        $flatResults = CollectionHelpers::collectApi(array_filter(Arr::flatten($segregatedResults)));
 
         // Sort results in their original order
         $sorted = $flatResults->sortBy(function($model, $key) use ($original) {

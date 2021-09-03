@@ -13,6 +13,7 @@ use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasUnlisted;
+use App\Helpers\ImageHelpers;
 
 class Experience extends AbstractModel implements Sortable
 {
@@ -117,7 +118,7 @@ class Experience extends AbstractModel implements Sortable
                 'crop_h' => $imageObject->pivot->crop_h
             ];
 
-            return aic_convertFromImage($imageObject, $cropParams);
+            return ImageHelpers::aic_convertFromImage($imageObject, $cropParams);
         }
     }
 

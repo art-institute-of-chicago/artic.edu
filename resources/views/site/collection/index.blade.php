@@ -28,7 +28,7 @@
     @slot('name', 'collection-search')
     @slot('value', request('q'))
     @slot('behaviors','autocomplete')
-    @slot('dataAttributes','data-autocomplete-url="'. secureRoute('collection.autocomplete') .'"')
+    @slot('dataAttributes','data-autocomplete-url="'. UrlHelpers::secureRoute('collection.autocomplete') .'"')
     @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-search"')
     @slot('action', route('collection'))
 @endcomponent
@@ -58,7 +58,7 @@
                     @else
                         @slot('variation', 'tag--senary')
                     @endif
-                    @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $category->title ) . '" data-gtm-event-category="collection-quick-search"')
+                    @slot('gtmAttributes', 'data-gtm-event="' . StringHelpers::getUtf8Slug( $category->title ) . '" data-gtm-event-category="collection-quick-search"')
                     {!! $category->present()->title !!}
                 @endcomponent
             </li>
@@ -126,7 +126,7 @@
         @slot('value', request('q'))
         @slot('action', route('collection'))
         @slot('behaviors','autocomplete')
-        @slot('dataAttributes','data-autocomplete-url="'. secureRoute('collection.autocomplete') .'"')
+        @slot('dataAttributes','data-autocomplete-url="'. UrlHelpers::secureRoute('collection.autocomplete') .'"')
         @slot('gtmAttributes', 'data-gtm-old-label="search" data-gtm-event-category="collection-search"')
     @endcomponent
     <div class="o-collection-search__scroll-area">
@@ -134,7 +134,7 @@
         <ul class="o-collection-search__quick-search-links" aria-labelledby="h-quick-search-mobile">
             @foreach ($page->apiModels('artCategoryTerms', 'CategoryTerm') as $category)
                 <li>
-                    <a href="{!! $category->present()->collectionUrl !!}" class="tag tag--quinary f-tag" data-gtm-old-label="quick-search-click" data-gtm-event="{{ getUtf8Slug($category->title) }}" data-gtm-event-category="collection-search">
+                    <a href="{!! $category->present()->collectionUrl !!}" class="tag tag--quinary f-tag" data-gtm-old-label="quick-search-click" data-gtm-event="{{ StringHelpers::getUtf8Slug($category->title) }}" data-gtm-event-category="collection-search">
                         {!! $category->present()->title !!}
                     </a>
                 </li>
@@ -170,7 +170,7 @@
                 'fit' => 'crop',
                 'ratio' => '16:9',
                 'srcset' => array(200,400,600,1000),
-                'sizes' => aic_imageSizes(array(
+                'sizes' => ImageHelpers::aic_imageSizes(array(
                       'xsmall' => '58',
                       'small' => '58',
                       'medium' => '38',
@@ -191,7 +191,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => '58',
                               'small' => '28',
                               'medium' => '18',
@@ -214,7 +214,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => '58',
                               'small' => '28',
                               'medium' => '18',

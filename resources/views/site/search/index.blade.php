@@ -50,7 +50,7 @@
                     'fit' => 'crop',
                     'ratio' => '1:1',
                     'srcset' => array(150,300,500),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '90vw',
                           'small' => '11vw',
                           'medium' => '11vw',
@@ -71,7 +71,7 @@
                             'fit' => 'crop',
                             'ratio' => '1:1',
                             'srcset' => array(150,300,500),
-                            'sizes' => aic_imageSizes(array(
+                            'sizes' => ImageHelpers::aic_imageSizes(array(
                                   'xsmall' => '90vw',
                                   'small' => '11vw',
                                   'medium' => '11vw',
@@ -109,7 +109,7 @@
                     'fit' => 'crop',
                     'ratio' => '1:1',
                     'srcset' => array(100,200),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '10',
                           'small' => '8',
                           'medium' => '5',
@@ -154,7 +154,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(200,400,600),
-                        'sizes' => aic_gridListingImageSizes(array(
+                        'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                             'xsmall' => '1',
                             'small' => '2',
                             'medium' => '3',
@@ -185,7 +185,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => '216px',
                               'small' => '216px',
                               'medium' => '18',
@@ -282,7 +282,7 @@
                       'fit' => 'crop',
                       'ratio' => '16:9',
                       'srcset' => array(200,400,600),
-                      'sizes' => aic_gridListingImageSizes(array(
+                      'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                             'xsmall' => '1',
                             'small' => '2',
                             'medium' => '3',
@@ -314,7 +314,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => '216px',
                               'small' => '216px',
                               'medium' => '18',
@@ -394,7 +394,7 @@
                             'fit' => 'crop',
                             'ratio' => '16:9',
                             'srcset' => array(200,400,600),
-                            'sizes' => aic_gridListingImageSizes(array(
+                            'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                                   'xsmall' => '1',
                                   'small' => '2',
                                   'medium' => '3',
@@ -407,7 +407,7 @@
                             'fit' => 'crop',
                             'ratio' => '16:9',
                             'srcset' => array(200,400,600),
-                            'sizes' => aic_imageSizes(array(
+                            'sizes' => ImageHelpers::aic_imageSizes(array(
                                   'xsmall' => '216px',
                                   'small' => '216px',
                                   'medium' => '18',
@@ -507,7 +507,7 @@
                       'fit' => 'crop',
                       'ratio' => '16:9',
                       'srcset' => array(200,400,600),
-                      'sizes' => aic_gridListingImageSizes(array(
+                      'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                             'xsmall' => '1',
                             'small' => '2',
                             'medium' => '3',
@@ -538,7 +538,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => '216px',
                               'small' => '216px',
                               'medium' => '18',
@@ -583,7 +583,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                             'xsmall' => '216px',
                             'small' => '216px',
                             'medium' => '18',
@@ -611,7 +611,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                                 'xsmall' => '216px',
                                 'small' => '216px',
                                 'medium' => '18',
@@ -651,7 +651,7 @@
                       'fit' => 'crop',
                       'ratio' => '16:9',
                       'srcset' => array(200,400,600),
-                      'sizes' => aic_gridListingImageSizes(array(
+                      'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                             'xsmall' => '1',
                             'small' => '2',
                             'medium' => '3',
@@ -683,7 +683,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => '216px',
                               'small' => '216px',
                               'medium' => '18',

@@ -4,6 +4,7 @@ namespace App\Repositories\Behaviors;
 
 use ImageService;
 use App\Models\ApiRelation;
+use App\Helpers\UrlHelpers;
 use A17\Twill\Models\RelatedItem;
 
 trait HandleApiRelations
@@ -111,7 +112,7 @@ trait HandleApiRelations
                 }
             } else {
                 // WEB-1187: This is reached after page refresh, if the model hasn't been augmented
-                if (moduleRouteExists($moduleName ?? $relation, $routePrefix ?? '', 'augment')) {
+                if (UrlHelpers::moduleRouteExists($moduleName ?? $relation, $routePrefix ?? '', 'augment')) {
                     $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'augment', $apiElement->id);
                 }
 

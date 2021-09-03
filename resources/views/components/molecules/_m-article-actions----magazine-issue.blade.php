@@ -38,7 +38,7 @@
                             'slug' => $issue->getSlug(),
                         ]))
                         @slot('variation', 'tag--magazine tag--senary tag--w-image')
-                        @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $issue->title ) . '" data-gtm-event-category="magazine-sidebar-issue"')
+                        @slot('gtmAttributes', 'data-gtm-event="' . StringHelpers::getUtf8Slug( $issue->title ) . '" data-gtm-event-category="magazine-sidebar-issue"')
                         @if (!empty($issue->imageFront('hero', 'default')))
                             @component('components.atoms._img')
                                 @slot('image', $issue->imageFront('hero', 'default'))

@@ -4,6 +4,7 @@ namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Models\Behaviors\HasMediasApi;
+use App\Helpers\ImageHelpers;
 
 class ShopItem extends BaseApiModel
 {
@@ -28,7 +29,7 @@ class ShopItem extends BaseApiModel
     public function imageFront($role = 'hero', $crop = 'default')
     {
         if (!empty($this->image_url)) {
-            return aic_convertFromImageProxy($this->image_url, $this->mediasParams[$role][$crop]);
+            return ImageHelpers::aic_convertFromImageProxy($this->image_url, $this->mediasParams[$role][$crop]);
         }
     }
 

@@ -54,19 +54,7 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        },
-        "files": [
-            "app/Helpers/FrontendHelpers.php",
-            "app/Helpers/BlockHelpers.php",
-            "app/Helpers/ImageHelpers.php",
-            "app/Helpers/ColorHelpers.php",
-            "app/Helpers/DatesHelpers.php",
-            "app/Helpers/NavHelpers.php",
-            "app/Helpers/QueryHelpers.php",
-            "app/Helpers/StringHelpers.php",
-            "app/Helpers/UrlHelpers.php",
-            "app/Libraries/Api/Helpers/CollectionHelper.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {

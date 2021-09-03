@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\DigitalPublication;
 use App\Repositories\DigitalPublicationRepository;
+use App\Helpers\NavHelpers;
 
 class DigitalPublicationsController extends BaseScopedController
 {
@@ -27,7 +28,7 @@ class DigitalPublicationsController extends BaseScopedController
 
         $this->seo->setTitle($title);
 
-        $navElements = get_nav_for_publications($title);
+        $navElements = NavHelpers::get_nav_for_publications($title);
 
         $view_data = [
             'wideBody' => true,

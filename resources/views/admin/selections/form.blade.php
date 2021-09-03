@@ -56,7 +56,7 @@
     @include('admin.partials.authors')
 
     @formField('block_editor', [
-        'blocks' => getBlocksForEditor([
+        'blocks' => BlockHelpers::getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed',
             'artwork', 'hr', 'audio_player', 'tour_stop', 'button', '3d_model',
             'gallery_new', 'vtour_embed',

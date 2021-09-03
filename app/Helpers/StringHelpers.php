@@ -1,12 +1,14 @@
 <?php
 
-if (!function_exists('getUtf8Slug')) {
+namespace App\Helpers;
+
+class StringHelpers {
+
     /**
      * Get Unicode slug
      * @see HasSlug::getUtf8Slug()
      */
-    function getUtf8Slug($str, $options = [])
-    {
+    public static function getUtf8Slug($str, $options = []) {
         // Make sure string is in UTF-8 and strip invalid UTF-8 characters
         $str = mb_convert_encoding((string) $str, 'UTF-8', mb_list_encodings());
 
@@ -118,10 +120,8 @@ if (!function_exists('getUtf8Slug')) {
 
         return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
     }
-}
 
-if (!function_exists('truncateStr')) {
-    function truncateStr($string, $length = 150) {
+    public static function truncateStr($string, $length = 150) {
         $limit = abs((int)$length);
 
         if ($limit > strlen($string)) {
@@ -159,10 +159,8 @@ if (!function_exists('truncateStr')) {
 
         return $string;
    }
-}
 
-if (!function_exists('convertReferenceLinks')) {
-    function convertReferenceLinks($text, $_collectedReferences) {
+   public static function convertReferenceLinks($text, $_collectedReferences) {
         $codes = \App\Libraries\ShortcodeService::parse_ref($text);
         foreach($codes as $index => $code) {
             if (isset($code['name']) && ($code['name'] == 'ref')) {
@@ -175,10 +173,8 @@ if (!function_exists('convertReferenceLinks')) {
 
         return [$text, $_collectedReferences];
     }
-}
 
-if (!function_exists('properTitleCase')) {
-    function properTitleCase($string) {
+    public static function properTitleCase($string) {
         // Exceptions in lowercase will be converted to lowercase
         // Exceptions in uppercase will be converted to uppercase
         // Exceptions in mixedcase will be have to match exact and be left untouched
@@ -211,9 +207,7 @@ if (!function_exists('properTitleCase')) {
         $string = implode(' ', $newwords);
         return $string;
     }
-}
 
-if (!function_exists('rightTrim')) {
     /**
      * Remove a specific sequence of characters from the end of a string.
      * This is used in lieu of rtrim, which trims any combination of characters
@@ -221,7 +215,7 @@ if (!function_exists('rightTrim')) {
      *
      * @see https://stackoverflow.com/a/32739088/1313842
      */
-    function rightTrim($string, $needle) {
+    public static function rightTrim($string, $needle) {
         if (is_string($string)) {
             while ((
                 strlen($string) >= strlen($needle)
@@ -233,9 +227,6 @@ if (!function_exists('rightTrim')) {
         }
         return $string;
     }
-}
-
-if (!function_exists('summation')) {
 
     /**
      * Helper method that converts `['item', 'hey', 'wow']` to `item, hey, and wow`.
@@ -243,7 +234,7 @@ if (!function_exists('summation')) {
      *
      * @return string
      */
-    function summation(array $array = []) {
+    public static function summation(array $array = []) {
         switch (count($array)) {
             case 0;
                 return null;

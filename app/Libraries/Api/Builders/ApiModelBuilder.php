@@ -5,6 +5,7 @@ namespace App\Libraries\Api\Builders;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Helpers\CollectionHelpers;
 
 class ApiModelBuilder
 {
@@ -357,7 +358,7 @@ class ApiModelBuilder
         $models  = $this->model->hydrate($results->all());
 
         // Preserve metadata after hydrating the collection
-        return collectApi($models)->setMetadata($results->getMetadata());
+        return CollectionHelpers::collectApi($models)->setMetadata($results->getMetadata());
     }
 
     /**
@@ -382,14 +383,14 @@ class ApiModelBuilder
 
         // Load the actual models using the IDS returned by search
         if (empty($ids)) {
-            $models = collectApi();
+            $models = CollectionHelpers::collectApi();
         } else {
             $models = $this->model->newQuery()->ttl($this->ttl)->ids($ids)->get();
         }
 
         // Sort them by the original ids listing
         $sorted = $models->sortBy(function($model, $key) use ($ids) {
-            return collectApi($ids)->search(function($id, $key) use ($model) {
+            return CollectionHelpers::collectApi($ids)->search(function($id, $key) use ($model) {
                 return $id == $model->id;
             });
         })->values();

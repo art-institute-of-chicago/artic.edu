@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Repositories\PrintedPublicationRepository;
 use App\Models\CatalogCategory;
+use App\Helpers\NavHelpers;
 
 class PrintedPublicationsController extends BaseScopedController
 {
@@ -40,7 +41,7 @@ class PrintedPublicationsController extends BaseScopedController
 
         $this->seo->setTitle($title);
 
-        $navElements = get_nav_for_publications($title);
+        $navElements = NavHelpers::get_nav_for_publications($title);
 
         $view_data = [
             'wideBody' => true,

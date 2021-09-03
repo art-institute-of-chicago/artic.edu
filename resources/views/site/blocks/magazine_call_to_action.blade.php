@@ -4,7 +4,7 @@
     $link_text = $block->input('link_text');
     $href = $block->input('link_url');
     $theme = $block->input('theme');
-    $gtmEvent = lastUrlSegment($href);
+    $gtmEvent = UrlHelpers::lastUrlSegment($href);
     if (!$gtmEvent) {
         $gtmEvent = strip_tags($title_display);
     }
@@ -18,4 +18,3 @@
     @slot('link_text', $link_text ?? null)
     @slot('gtmAttributes', 'data-gtm-event="' . $gtmEvent . '" data-gtm-event-category="mag-content-' . $block->position . '"')
 @endcomponent
-

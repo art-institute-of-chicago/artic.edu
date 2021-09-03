@@ -16,7 +16,7 @@
                     'srcset' => array(300,600,1000,1500,3000),
                     'sizes' => '100vw',
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
+                @slot('gtmAttributes', 'data-gtm-event="'.StringHelpers::getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
             @endcomponent
         @elseif ($item->url)
             @component('components.molecules._m-listing----custom')
@@ -28,7 +28,7 @@
                     'srcset' => array(300,600,1000,1500,3000),
                     'sizes' => '100vw',
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="'.(lastUrlSegment($item->url) ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
+                @slot('gtmAttributes', 'data-gtm-event="'.(UrlHelpers::lastUrlSegment($item->url) ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
             @endcomponent
         @endif
     @endforeach
@@ -37,9 +37,9 @@
 @component('components.molecules._m-intro-block')
     @slot('links', array(
         array('label' => $visit_button_text, 'href' => $visit_button_url, 'variation' => 'btn', 'font' => 'f-buttons', 'gtmAttributes' => 'data-gtm-event="Visit" data-gtm-event-category="nav-cta-button"'),
-        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_1_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_1_url, 'gtmAttributes' => 'data-gtm-event="' . lastUrlSegment($plan_your_visit_link_1_url). '" data-gtm-event-category="nav-link"'),
-        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_2_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_2_url, 'gtmAttributes' => 'data-gtm-event="' . lastUrlSegment($plan_your_visit_link_2_url). '" data-gtm-event-category="nav-link"'),
-        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_3_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_3_url, 'gtmAttributes' => 'data-gtm-event="' . lastUrlSegment($plan_your_visit_link_3_url). '" data-gtm-event-category="nav-link"'),
+        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_1_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_1_url, 'gtmAttributes' => 'data-gtm-event="' . UrlHelpers::lastUrlSegment($plan_your_visit_link_1_url). '" data-gtm-event-category="nav-link"'),
+        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_2_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_2_url, 'gtmAttributes' => 'data-gtm-event="' . UrlHelpers::lastUrlSegment($plan_your_visit_link_2_url). '" data-gtm-event-category="nav-link"'),
+        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_3_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_3_url, 'gtmAttributes' => 'data-gtm-event="' . UrlHelpers::lastUrlSegment($plan_your_visit_link_3_url). '" data-gtm-event-category="nav-link"'),
     ))
     {!! SmartyPants::defaultTransform($intro) !!}
 @endcomponent
@@ -75,7 +75,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600,1000,1500),
-                    'sizes' => aic_gridListingImageSizes(array(
+                    'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                           'xsmall' => '1',
                           'small' => '2',
                           'medium' => '2',
@@ -116,7 +116,7 @@
                 'fit' => 'crop',
                 'ratio' => '16:9',
                 'srcset' => array(200,400,600),
-                'sizes' => aic_gridListingImageSizes(array(
+                'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                       'xsmall' => '1',
                       'small' => '1',
                       'medium' => '4',
@@ -150,7 +150,7 @@
         @slot('allLink', null);
         @slot('imageSettings', array(
             'srcset' => array(200,400,600,1000,1500,3000),
-            'sizes' => aic_imageSizes(array(
+            'sizes' => ImageHelpers::aic_imageSizes(array(
                   'xsmall' => '50',
                   'small' => '35',
                   'medium' => '23',
@@ -216,7 +216,7 @@
                     'fit' => 'crop',
                     'ratio' => '1:1',
                     'srcset' => array(200,400,600,1000),
-                    'sizes' => aic_gridListingImageSizes(array(
+                    'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                         'xsmall' => '1',
                         'small' => '2',
                         'medium' => '3',
@@ -240,7 +240,7 @@
             'fit' => 'crop',
             'ratio' => '3:4',
             'srcset' => array(200,400,600,1000,1500,3000),
-            'sizes' => aic_imageSizes(array(
+            'sizes' => ImageHelpers::aic_imageSizes(array(
                   'xsmall' => '42',
                   'small' => '23',
                   'medium' => '12',
