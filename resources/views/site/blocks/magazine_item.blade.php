@@ -24,8 +24,8 @@
                 $type = $item->present()->type;
             }
 
-            if ($featureType === MagazineItem::ITEM_TYPE_SELECTION) {
-                $variation[] = 'm-listing--selection';
+            if ($featureType === MagazineItem::ITEM_TYPE_HIGHLIGHT) {
+                $variation[] = 'm-listing--highlight';
             }
 
             $isBlockReady = true;

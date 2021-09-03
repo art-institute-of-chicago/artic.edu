@@ -179,7 +179,7 @@
         @formField('browser', [
             'routePrefix' => 'collection',
             'max' => 10,
-            'moduleName' => 'selections',
+            'moduleName' => 'highlights',
             'name' => 'homeHighlights',
             'label' => 'Highlights'
         ])

@@ -127,9 +127,9 @@ Route::name('artists.show')->get('/artists/{id}/{slug?}', 'ArtistController@show
 // Department / tag page
 Route::name('departments.show')->get('/departments/{id}/{slug?}', 'DepartmentController@show');
 
-// Selections
-Route::name('selections.show')->get('/highlights/{id}/{slug?}', 'SelectionsController@show');
-Route::name('selections.index')->get('/highlights', 'SelectionsController@index');
+// Highlights
+Route::name('highlights.show')->get('/highlights/{id}/{slug?}', 'HighlightsController@show');
+Route::name('highlights.index')->get('/highlights', 'HighlightsController@index');
 
 // About
 Route::name('about.press')->get('/press/press-releases', 'PressReleasesController@index');
@@ -139,13 +139,6 @@ Route::name('about.exhibitionPressRooms')->middleware(['httpauth'])->get('/press
 Route::name('about.exhibitionPressRooms.show')->middleware(['httpauth'])->get('/press/exhibition-press-room/{id}/{slug?}', 'ExhibitionPressRoomController@show');
 
 Route::name('about.press.show')->get('/press/press-releases/{id}/{slug?}', 'PressReleasesController@show');
-
-// Sample Form
-if (!app()->environment('production')) {
-    Route::name('forms.contact')->get('/forms/contact', 'Forms\ContactsController@index');
-    Route::name('forms.contact.store')->post('/forms/contact', 'Forms\ContactsController@store');
-    Route::name('forms.contact.thanks')->get('/forms/contact/thanks', 'Forms\ContactsController@thanks');
-}
 
 // Group reservation form
 Route::name('forms.group-reservation')->get('/visit/visiting-with-a-group/reservation-form', 'Forms\GroupReservationsController@index');

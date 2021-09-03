@@ -12,7 +12,7 @@
             'label' => 'Article'
         ],
         [
-            'value' => \App\Models\MagazineItem::ITEM_TYPE_SELECTION,
+            'value' => \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT,
             'label' => 'Highlights'
         ],
         [
@@ -41,13 +41,13 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'feature_type',
-    'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_SELECTION,
+    'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT,
     'renderForBlocks' => true
 ])
     @formField('browser', [
         'routePrefix' => 'collection',
-        'moduleName' => 'selections',
-        'name' => \App\Models\MagazineItem::ITEM_TYPE_SELECTION,
+        'moduleName' => 'highlights',
+        'name' => \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT,
         'label' => 'Highlight'
     ])
 @endcomponent

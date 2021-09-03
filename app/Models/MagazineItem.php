@@ -20,7 +20,7 @@ class MagazineItem extends Model
      */
     const ITEM_TYPE_CUSTOM = 'custom';
     const ITEM_TYPE_ARTICLE = 'articles';
-    const ITEM_TYPE_SELECTION = 'selections';
+    const ITEM_TYPE_HIGHLIGHT = 'highlights';
     const ITEM_TYPE_EXPERIENCE = 'experiences';
 
     public static function getClassFromType($itemType)
@@ -30,8 +30,8 @@ class MagazineItem extends Model
                 return null;
             case self::ITEM_TYPE_ARTICLE:
                 return Article::class;
-            case self::ITEM_TYPE_SELECTION:
-                return Selection::class;
+            case self::ITEM_TYPE_HIGHLIGHT:
+                return Highlight::class;
             case self::ITEM_TYPE_EXPERIENCE:
                 return Experience::class;
         }

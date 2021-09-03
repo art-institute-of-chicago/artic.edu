@@ -57,7 +57,7 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'events' => 'App\Models\Event',
             'articles' => 'App\Models\Article',
-            'selections' => 'App\Models\Selection',
+            'highlights' => 'App\Models\Highlight',
             'artists' => 'App\Models\Artist',
             'homeFeatures' => 'App\Models\HomeFeature',
 

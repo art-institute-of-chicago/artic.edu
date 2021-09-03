@@ -1902,7 +1902,7 @@ $f-audio-subtitle: generate-font-obj(
 }
 
 
-// Adding gradients to homepage features and selections
+// Adding gradients to homepage features and highlights
 @mixin m-listing__img__overlay {
   display: block;
 
@@ -1926,7 +1926,7 @@ $f-audio-subtitle: generate-font-obj(
   display: none;
 }
 
-.m-listing--selection .m-listing__img .m-listing__img__overlay {
+.m-listing--highlight .m-listing__img .m-listing__img__overlay {
   @include m-listing__img__overlay;
   padding: 32px;
 }

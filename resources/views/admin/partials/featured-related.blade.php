@@ -12,7 +12,7 @@
             ],
             [
                 'label' => 'Highlight',
-                'value' => moduleRoute('selections', 'collection', 'browser'),
+                'value' => moduleRoute('highlights', 'collection', 'browser'),
             ],
             [
                 'label' => 'Event',

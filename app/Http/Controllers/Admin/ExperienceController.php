@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\Experience;
 use App\Models\InteractiveFeature;
@@ -77,8 +79,8 @@ class ExperienceController extends ModuleController
             $value = '<a href="';
             $value .= moduleRoute("experiences.slides", $this->routePrefix, 'index', [$item->id]);
             $value .= '">' . $nestedCount . " " . (strtolower($nestedCount > 1
-                ? str_plural($column['title'])
-                : str_singular($column['title']))) . '</a>';
+                ? Str::plural($column['title'])
+                : Str::singular($column['title']))) . '</a>';
         } else {
             $field = $column['field'];
             $value = $item->$field;
@@ -86,7 +88,7 @@ class ExperienceController extends ModuleController
 
         if (isset($column['relationship'])) {
             $field = $column['relationship'] . ucfirst($column['field']);
-            $value = array_get($item, "{$column['relationship']}.{$column['field']}");
+            $value = Arr::get($item, "{$column['relationship']}.{$column['field']}");
         } elseif (isset($column['present']) && $column['present']) {
             $value = $item->presentAdmin()->{$column['field']};
         }

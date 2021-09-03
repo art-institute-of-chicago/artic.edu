@@ -256,7 +256,7 @@ class Exhibition extends AbstractModel
 
     public function getIsFeaturedAttribute() {
 
-        // See ExhibitionsController::index and relations on Page model
+        // @see ExhibitionsController::index and relations on Page model
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
         $featuredIds = $page->apiElements()->whereIn('relation', [

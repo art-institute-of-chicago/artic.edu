@@ -22,7 +22,7 @@ class HomeFeatureRepository extends ModuleRepository
         'events' => [
             'routePrefix' => 'exhibitions_events',
         ],
-        'selections' => [
+        'highlights' => [
             'routePrefix' => 'collection',
         ],
     ];

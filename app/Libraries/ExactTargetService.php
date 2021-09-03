@@ -2,6 +2,7 @@
 
 namespace App\Libraries;
 
+use Illuminate\Support\Str;
 use App\Models\ExactTargetList;
 use FuelSdk\ET_Client;
 use FuelSdk\ET_DataExtension_Row;
@@ -30,7 +31,7 @@ class ExactTargetService
      */
     function subscribe($alsoRemove = true)
     {
-        $client = new ET_Client(false, true, config('exact-target'));
+        $client = new ET_Client(false, true, config('exact-target.client'));
 
         // Add the user to a data extension
         $deRow  = new ET_DataExtension_Row();
@@ -58,8 +59,8 @@ class ExactTargetService
             }
         }
 
-        $deRow->CustomerKey = "All Subscribers Master";
-        $deRow->Name = "Museum Business Unit";
+        $deRow->CustomerKey = config('exact-target.customer_key');
+        $deRow->Name = config('exact-target.name');
 
         $response = $deRow->post();
 
@@ -83,8 +84,8 @@ class ExactTargetService
             $error = $response->results[0]->ErrorMessage ?? '';
             $status = $response->results[0]->StatusMessage ?? '';
 
-            if (starts_with($error, 'Violation of PRIMARY KEY constraint')
-                || starts_with($status, 'The subscriber is already on the list')) {
+            if (Str::startsWith($error, 'Violation of PRIMARY KEY constraint')
+                || Str::startsWith($status, 'The subscriber is already on the list')) {
                 // Email has been previously subscribed, so proceed
             }
             else {
@@ -106,7 +107,7 @@ class ExactTargetService
 
     function unsubscribe()
     {
-        $client = new ET_Client(false, true, config('exact-target'));
+        $client = new ET_Client(false, true, config('exact-target.client'));
 
         // Delete the user from the data extension
         $deRow  = new ET_DataExtension_Row();
@@ -116,8 +117,8 @@ class ExactTargetService
             "Email" => $this->email,
         ];
 
-        $deRow->CustomerKey = "All Subscribers Master";
-        $deRow->Name = "Museum Business Unit";
+        $deRow->CustomerKey = config('exact-target.customer_key');
+        $deRow->Name = config('exact-target.name');
 
         $response = $deRow->delete();
 
@@ -143,7 +144,7 @@ class ExactTargetService
 
     function get()
     {
-        $client = new ET_Client(false, config('app.debug'), config('exact-target'));
+        $client = new ET_Client(false, config('app.debug'), config('exact-target.client'));
 
         $deRow  = new ET_DataExtension_Row();
         $deRow->authStub = $client;

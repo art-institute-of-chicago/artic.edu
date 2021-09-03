@@ -104,7 +104,7 @@ const viewerMirador = function(container) {
     ]);
 
     function removeComponent() {
-      //remove mirador component when modal is closed
+      // Remove mirador component when modal is closed
       let targetElement = document.querySelector('.g-modal--moduleMirador #'+ viewerId);
       if (targetElement) {
         ReactDOM.unmountComponentAtNode(targetElement);

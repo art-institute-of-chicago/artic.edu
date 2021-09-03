@@ -4,7 +4,7 @@ namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Models\Article;
-use App\Models\Selection;
+use App\Models\Highlight;
 use App\Models\Experience;
 use App\Models\Video;
 use App\Models\Vendor\Block;
@@ -473,7 +473,7 @@ class Artwork extends BaseApiModel
                 ->filter(function ($item) {
                     return in_array(get_class($item), [
                         Article::class,
-                        Selection::class,
+                        Highlight::class,
                         Experience::class,
                         Video::class,
                     ]);

@@ -76,7 +76,8 @@
 
         $imageSettings['ratio'] = '16:9';
 
-        // Allow soundcloud embed to expand in height - see _m-media.scss
+        // Allow soundcloud embed to expand in height
+        // @see _m-media.scss
         if (strrpos($media['embed'],'api.soundcloud.com'))
         {
             $variation = ($variation ?? '').' m-media--soundcloud';

@@ -104,7 +104,7 @@
             'list', 'artwork', 'hr', 'citation', 'split_block',
             'membership_banner', 'digital_label', 'audio_player', 'tour_stop', 'button', 'mobile_app',
             '3d_model', '3d_tour', '3d_embed', '360_embed', '360_modal',
-            'gallery', 'artworks', 'gallery_new',
+            'gallery_new',
             'image_slider', 'mirador_embed', 'mirador_modal', 'vtour_embed',
             'feature_2x', 'feature_4x'
         ])

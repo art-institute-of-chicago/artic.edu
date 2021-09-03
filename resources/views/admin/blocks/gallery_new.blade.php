@@ -1,4 +1,4 @@
-@twillBlockTitle('Gallery (new)')
+@twillBlockTitle('Gallery')
 @twillBlockIcon('image')
 
 {{-- WEB-1251: Inline contents partial for shared gallery block --}}

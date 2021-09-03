@@ -252,7 +252,7 @@ return [
                             'scopes' => ['published' => true],
                         ],
                         [
-                            'module' => 'selections',
+                            'module' => 'highlights',
                             'name' => 'Highlights',
                             'scopes' => ['published' => true],
                         ],

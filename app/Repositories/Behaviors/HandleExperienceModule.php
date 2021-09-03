@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Behaviors;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use A17\Twill\Services\Blocks\BlockCollection;
 trait HandleExperienceModule
@@ -34,7 +36,7 @@ trait HandleExperienceModule
         $currentIdList = [];
 
         foreach ($relationFields as $index => $relationField) {
-            if (isset($relationField['id']) && starts_with($relationField['id'], $relation)) {
+            if (isset($relationField['id']) && Str::startsWith($relationField['id'], $relation)) {
                 // Row already exists, let's update
                 $id = str_replace($relation . '-', '', $relationField['id']);
                 if ($fieldName === 'modal_experience_image') {
@@ -132,7 +134,7 @@ trait HandleExperienceModule
                 }
             }
 
-            $itemFields = method_exists($relationItem, 'toRepeaterArray') ? $relationItem->toRepeaterArray() : array_except($relationItem->attributesToArray(), $translatedFields);
+            $itemFields = method_exists($relationItem, 'toRepeaterArray') ? $relationItem->toRepeaterArray() : Arr::except($relationItem->attributesToArray(), $translatedFields);
 
             if ($model === 'ExperienceModal') {
                 $modal_name = $relation . '-' . $relationItem->id;

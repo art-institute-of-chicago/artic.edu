@@ -39,28 +39,6 @@
 
     foreach ($block->childs as $item) {
         switch ($item->input('gallery_item_type')) {
-            case \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM:
-                $title = $item->present()->input('captionTitle');
-                $subtitle = $item->present()->input('captionText');
-                $captionFields = getCaptionFields($title, $subtitle);
-
-                $mediaItem = array_merge($captionFields, [
-                    'type' => 'image',
-                    'size' => 'gallery',
-                    'fullscreen' => $block->input('disable_gallery_modals') ? false : true,
-                    'media' => $item->imageAsArray('image', 'desktop'),
-                    'videoUrl' => $item->input('videoUrl'),
-                ]);
-
-                if (($block->input('is_gallery_zoomable') ?? false) || $item->input('is_zoomable')) {
-                    if (isset($mediaItem['media'])) {
-                        $mediaItem['media']['iiifId'] = $item->getImgixTileSource('image', 'desktop');
-                    }
-                }
-
-                $items[] = $mediaItem;
-
-                break;
             case \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK:
                 $ids = $item->browserIds('artworks');
 
@@ -105,6 +83,28 @@
                   'isPublicDomain' => $artwork->is_public_domain,
                   'maxZoomWindowSize' => $artwork->max_zoom_window_size,
                 ]);
+                break;
+            default:
+                $title = $item->present()->input('captionTitle');
+                $subtitle = $item->present()->input('captionText');
+                $captionFields = getCaptionFields($title, $subtitle);
+
+                $mediaItem = array_merge($captionFields, [
+                    'type' => 'image',
+                    'size' => 'gallery',
+                    'fullscreen' => $block->input('disable_gallery_modals') ? false : true,
+                    'media' => $item->imageAsArray('image', 'desktop'),
+                    'videoUrl' => $item->input('videoUrl'),
+                ]);
+
+                if (($block->input('is_gallery_zoomable') ?? false) || $item->input('is_zoomable')) {
+                    if (isset($mediaItem['media'])) {
+                        $mediaItem['media']['iiifId'] = $item->getImgixTileSource('image', 'desktop');
+                    }
+                }
+
+                $items[] = $mediaItem;
+
                 break;
         }
     }

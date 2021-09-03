@@ -3,7 +3,7 @@
 namespace App\Models\Behaviors;
 
 use App\Models\Article;
-use App\Models\Selection;
+use App\Models\Highlight;
 use App\Models\Event;
 use App\Models\Api\Exhibition;
 use App\Models\Experience;
@@ -70,9 +70,9 @@ trait HasFeaturedRelated
                 'moduleName' => 'exhibitions',
             ],
         ], [
-            // See HasApiRelations::$typeUsesApi
+            // @see HasApiRelations::$typeUsesApi
             'articles' => false,
-            'selections' => false,
+            'highlights' => false,
             'events' => false,
             'exhibitions' => true, // API!
             'experiences' => false,
@@ -137,7 +137,7 @@ trait HasFeaturedRelated
 
             // WEB-2018: Do we need to check published date, or is it ok to just keep checking updated_at?
             $articles = Article::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
-            $selections = Selection::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            $highlights = Highlight::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
             $experiences = Experience::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
             $videos = Video::published()->visible()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
 
@@ -145,7 +145,7 @@ trait HasFeaturedRelated
 
             return collect([])
                 ->merge($articles)
-                ->merge($selections)
+                ->merge($highlights)
                 ->merge($experiences)
                 ->merge($videos)
                 ->filter(function($item) {
@@ -187,9 +187,9 @@ trait HasFeaturedRelated
                     $label = 'Article';
                     $type = 'article';
                     break;
-                case Selection::class:
+                case Highlight::class:
                     $label = null;
-                    $type = 'selection';
+                    $type = 'highlight';
                     break;
                 case Event::class:
                     // Tag is replaced by "Tour", "Member Exclusive", etc.

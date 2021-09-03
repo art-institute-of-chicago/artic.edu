@@ -17,7 +17,7 @@ class SearchRepository extends BaseApiRepository
     {
         // Build the search query
         $search = $this->model->search($string)
-            ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs', 'generic-pages', 'educator-resources', 'press-releases', 'selections'])
+            ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs', 'generic-pages', 'educator-resources', 'press-releases', 'highlights'])
             ->aggregationType();
 
         // Perform the query

@@ -16,7 +16,7 @@ use App\Repositories\GenericPageRepository;
 use App\Repositories\PressReleaseRepository;
 use App\Repositories\ResearchGuideRepository;
 use App\Repositories\InteractiveFeatureRepository;
-use App\Repositories\SelectionRepository;
+use App\Repositories\HighlightRepository;
 
 
 use App\Libraries\Search\CollectionService;
@@ -53,7 +53,7 @@ class SearchController extends BaseScopedController
     protected $exhibitionsRepository;
     protected $articlesRepository;
     protected $interactiveFeatureRepository;
-    protected $selectionRepository;
+    protected $highlightRepository;
 
     public function __construct(
         ArtworkRepository $artworks,
@@ -67,7 +67,7 @@ class SearchController extends BaseScopedController
         ResearchGuideRepository $researchGuide,
         PressReleaseRepository $press,
         InteractiveFeatureRepository $interactiveFeature,
-        SelectionRepository $selection
+        HighlightRepository $highlight
     ) {
         $this->artworksRepository = $artworks;
         $this->artistsRepository = $artists;
@@ -80,7 +80,7 @@ class SearchController extends BaseScopedController
         $this->researchGuideRepository = $researchGuide;
         $this->pressRepository = $press;
         $this->interactiveFeatureRespository = $interactiveFeature;
-        $this->selectionRepository = $selection;
+        $this->highlightRepository = $highlight;
 
         parent::__construct();
     }
@@ -115,7 +115,7 @@ class SearchController extends BaseScopedController
         $guides                     = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
         $press                      = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
         $interactiveFeatures        = $this->interactiveFeatureRespository->search(request('q'))->paginate(self::ALL_PER_PAGE_INTERACTIVEFEATURES);
-        $selections                 = $this->selectionRepository->searchApi(request('q'), self::ALL_PER_PAGE_HIGHLIGHTS);
+        $highlights                 = $this->highlightRepository->searchApi(request('q'), self::ALL_PER_PAGE_HIGHLIGHTS);
 
         return view('site.search.index', [
             'featuredResults' => $general->where('is_boosted', true),
@@ -126,7 +126,7 @@ class SearchController extends BaseScopedController
             'pages'    => $pages,
             'exhibitions'  => $exhibitions,
             'interactiveFeatures'  => $interactiveFeatures,
-            'highlights'  => $selections,
+            'highlights'  => $highlights,
             'publications' => $publications,
             'pressReleases'  => $press,
             'researchGuides' => $guides,
@@ -138,7 +138,7 @@ class SearchController extends BaseScopedController
     public function autocomplete()
     {
         $collection = GeneralSearch::search(request('q'))
-            ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs', 'selections'])
+            ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs', 'highlights'])
             ->getSearch(self::AUTOCOMPLETE_PER_PAGE);
 
         foreach($collection as &$item) {
@@ -175,8 +175,8 @@ class SearchController extends BaseScopedController
                     $item->url = route('collection.publications.printed-publications.show', $item);
                     $item->section = 'Print Publications';
                     break;
-                case 'Selection':
-                    $item->url = route('selections.show', $item);
+                case 'Highlight':
+                    $item->url = route('highlights.show', $item);
                     $item->section = 'Highlights';
                     break;
                 }
@@ -270,9 +270,9 @@ class SearchController extends BaseScopedController
         $this->seo->setTitle('Search');
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $highlights = $this->selectionRepository->searchApi(request('q'), self::HIGHLIGHTS_PER_PAGE);
+        $highlights = $this->highlightRepository->searchApi(request('q'), self::HIGHLIGHTS_PER_PAGE);
 
-        $links = $this->buildSearchLinks($general, 'selections');
+        $links = $this->buildSearchLinks($general, 'highlights');
 
         return view('site.search.index', [
             'highlights' => $highlights,
@@ -409,8 +409,8 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'artworks')) {
             array_push($links, $this->buildLabel('Artwork', extractAggregation($aggregations, 'artworks'), route('search.artworks', ['q' => request('q')]), $active == 'artworks'));
         }
-        if (extractAggregation($aggregations, 'selections')) {
-            array_push($links, $this->buildLabel('Highlights', extractAggregation($aggregations, 'selections'), route('search.highlights', ['q' => request('q')]), $active == 'highlights'));
+        if (extractAggregation($aggregations, 'highlights')) {
+            array_push($links, $this->buildLabel('Highlights', extractAggregation($aggregations, 'highlights'), route('search.highlights', ['q' => request('q')]), $active == 'highlights'));
         }
         if (extractAggregation($aggregations, 'exhibitions')) {
             array_push($links, $this->buildLabel('Exhibitions', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', ['q' => request('q')]), $active == 'exhibitions'));

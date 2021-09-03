@@ -18,8 +18,7 @@ if (!function_exists('revAsset')) {
      */
     function revAsset($file)
     {
-        //if (!app()->environment('local', 'development')) {
-        if (config('aic.cache_revassets')) {
+        if (config('aic.use_compiled_revassets')) {
             try {
                 $manifest = json_decode(file_get_contents(config('twill.frontend.rev_manifest_path')), true);
 

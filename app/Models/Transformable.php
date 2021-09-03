@@ -91,9 +91,4 @@ trait Transformable
         return [];
 
     }
-
-    public function getSwaggerEntityFields() {
-        return $this->transformMappingInternal();
-    }
-
 }
