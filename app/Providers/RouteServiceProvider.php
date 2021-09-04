@@ -84,12 +84,15 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapKioskRoutes()
     {
 
-        $domain = config('app.kiosk_domain');
+        $domains = config('app.kiosk_domain');
+        $domains = is_array($domains) ? $domains : [$domains];
 
-        Route::middleware('web')
-                ->namespace($this->namespace)
-                ->domain($domain)
-                ->group(base_path('routes/kiosk.php'));
+        foreach ($domains as $domain) {
+            Route::middleware('web')
+                    ->namespace($this->namespace)
+                    ->domain($domain)
+                    ->group(base_path('routes/kiosk.php'));
+        }
     }
 
 }

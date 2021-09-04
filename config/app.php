@@ -60,7 +60,7 @@ return [
     | The domain used for rending the "Kiosk" kayout of Interactive Features
     |
      */
-    'kiosk_domain' => env('KIOSK_DOMAIN', 'kiosk.artic.edu'),
+    'kiosk_domain' => array_map('trim', explode(',', env('KIOSK_DOMAIN', 'kiosk.artic.edu'))),
 
     /*
     |--------------------------------------------------------------------------
