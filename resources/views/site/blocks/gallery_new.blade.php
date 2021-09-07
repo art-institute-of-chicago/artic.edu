@@ -68,7 +68,7 @@
                 }
 
                 $urlTitle = route('artworks.show', $artwork);
-                $captionFields = getCaptionFields($title, $caption, $urlTitle);
+                $captionFields = BlockHelpers::getCaptionFields($title, $caption, $urlTitle);
 
                 $items[] = array_merge($captionFields, [
                   'type' => 'image',
@@ -87,7 +87,7 @@
             default:
                 $title = $item->present()->input('captionTitle');
                 $subtitle = $item->present()->input('captionText');
-                $captionFields = getCaptionFields($title, $subtitle);
+                $captionFields = BlockHelpers::getCaptionFields($title, $subtitle);
 
                 $mediaItem = array_merge($captionFields, [
                     'type' => 'image',
