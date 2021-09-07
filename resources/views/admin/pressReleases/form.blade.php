@@ -38,7 +38,7 @@
         'maxlength' => 255
     ])
     @formField('block_editor', [
-        'blocks' => getBlocksForEditor([
+        'blocks' => BlockHelpers::getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed', 'list',
             'accordion', 'membership_banner', 'timeline', 'link', 'newsletter_signup_inline',
             'split_block', 'hr', '3d_model'

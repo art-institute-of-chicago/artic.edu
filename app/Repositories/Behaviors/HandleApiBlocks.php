@@ -4,6 +4,7 @@ namespace App\Repositories\Behaviors;
 
 use ImageService;
 use Illuminate\Support\Str;
+use App\Helpers\UrlHelpers;
 
 trait HandleApiBlocks
 {
@@ -45,7 +46,7 @@ trait HandleApiBlocks
                         }
                     } else {
                         // WEB-1187: This is reached after page refresh, if the model hasn't been augmented
-                        if (moduleRouteExists($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'augment')) {
+                        if (UrlHelpers::moduleRouteExists($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'augment')) {
                             $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'augment', $relatedElement->id);
                         }
 

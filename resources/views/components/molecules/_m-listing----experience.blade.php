@@ -36,7 +36,7 @@
             <br>
             @if (isset($showDescription) && $item->listing_description)
                 @component('components.atoms._short-description')
-                    {!! truncateStr($item->present()->listing_description) !!}
+                    {!! StringHelpers::truncateStr($item->present()->listing_description) !!}
                 @endcomponent
                 <br>
             @endif

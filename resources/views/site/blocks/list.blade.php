@@ -21,7 +21,7 @@
                 'fit' => 'crop',
                 'ratio' => '16:9',
                 'srcset' => array(200,400,600),
-                'sizes' => aic_imageSizes(array(
+                'sizes' => ImageHelpers::aic_imageSizes(array(
                       'xsmall' => '58',
                       'small' => '13',
                       'medium' => '13',

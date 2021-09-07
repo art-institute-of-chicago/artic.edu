@@ -30,7 +30,7 @@
                             @component('components.blocks._text')
                                 @slot('font', 'f-module-title-1')
                                 @slot('tag', 'span')
-                                {!! innerHTML($cellElement) !!}
+                                {!! BlockHelpers::innerHTML($cellElement) !!}
                             @endcomponent
                         </th>
                         @php
@@ -46,7 +46,7 @@
                     @endphp
                     <tr {!! !empty($rowClass) ? 'class="' . $rowClass . '"' : '' !!}>
                         @php
-                            $rowCrawler = new Crawler(innerHTML($rowElement));
+                            $rowCrawler = new Crawler(BlockHelpers::innerHTML($rowElement));
                         @endphp
                         @foreach ($rowCrawler->filter('td,th') as $i => $cellElement)
                             @php
@@ -57,7 +57,7 @@
                                 @component('components.blocks._text')
                                     @slot('font', $isCellHeader ? 'f-module-title-1' : 'f-secondary')
                                     @slot('tag', 'span')
-                                    {!! innerHTML($cellElement) !!}
+                                    {!! BlockHelpers::innerHTML($cellElement) !!}
                                 @endcomponent
                             </{!! $isCellHeader ? 'th' : 'td' !!}>
                             @php

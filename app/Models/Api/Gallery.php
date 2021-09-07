@@ -3,6 +3,7 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
+use App\Helpers\StringHelpers;
 
 class Gallery extends BaseApiModel
 {
@@ -25,7 +26,7 @@ class Gallery extends BaseApiModel
 
     public function getTitleSlugAttribute()
     {
-        return getUtf8Slug($this->title);
+        return StringHelpers::getUtf8Slug($this->title);
     }
 
     public function artworks($perPage = 20)

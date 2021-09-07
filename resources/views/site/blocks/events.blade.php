@@ -29,7 +29,7 @@
 
     $items = $events->map(function($event) use ($block) {
         $href = route('events.show', $event);
-        $gtmEvent = lastUrlSegment($href);
+        $gtmEvent = UrlHelpers::lastUrlSegment($href);
 
         return [
             'title' => $event->title_display ?? $event->title,

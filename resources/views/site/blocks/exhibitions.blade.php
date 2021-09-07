@@ -11,7 +11,7 @@
 
     $items = $orderedExhibitions->map(function($exhibition) use ($block) {
         $href = route('exhibitions.show', ['id' => $exhibition->id, 'slug' => $exhibition->titleSlug ]);
-        $gtmEvent = lastUrlSegment($href);
+        $gtmEvent = UrlHelpers::lastUrlSegment($href);
 
         return [
             'title' => $exhibition->title_display ?: $exhibition->title,

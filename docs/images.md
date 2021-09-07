@@ -62,7 +62,7 @@ class Event extends Model
 }
 ```
 
-This will just add an extra function to access the image and apply the `aic_convertFromImage` function.
+This will just add an extra function to access the image and apply the `ImageHelpers::aic_convertFromImage` function.
 
 
 

@@ -2,6 +2,8 @@
 
 namespace App\Models\Behaviors;
 
+use App\Helpers\StringHelpers;
+
 trait HasAuthors
 {
     public function authors()
@@ -17,7 +19,7 @@ trait HasAuthors
         if ($this->authors->isNotEmpty()) {
             $names = $this->authors->pluck('title')->all();
 
-            return summation($names);
+            return StringHelpers::summation($names);
         }
 
         if ($this->author_display) {
@@ -42,7 +44,7 @@ trait HasAuthors
                 ]) . '">' . $author->title . '</a>';
             })->all();
 
-            return summation($links);
+            return StringHelpers::summation($links);
         }
 
         if ($this->author_display) {

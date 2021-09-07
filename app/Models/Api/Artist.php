@@ -3,6 +3,7 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
+use App\Helpers\StringHelpers;
 
 class Artist extends BaseApiModel
 {
@@ -42,7 +43,7 @@ class Artist extends BaseApiModel
 
     public function getTitleSlugAttribute()
     {
-        return getUtf8Slug($this->title);
+        return StringHelpers::getUtf8Slug($this->title);
     }
 
     public function getAlsoKnownAsAttribute()

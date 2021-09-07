@@ -111,7 +111,7 @@
     ])
 
     @formField('block_editor', [
-        'blocks' => getBlocksForEditor([
+        'blocks' => BlockHelpers::getBlocksForEditor([
             'event', 'paragraph', 'image', 'video',
             'media_embed', 'quote', 'list', 'accordion', 'newsletter_signup_inline',
             'timeline', 'link', 'artwork',

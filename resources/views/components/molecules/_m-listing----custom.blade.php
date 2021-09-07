@@ -46,7 +46,7 @@
             <br>
             @component('components.atoms._short-description')
                 @slot('variation', 'show')
-                {!! truncateStr($item->present()->call_to_action) !!}
+                {!! StringHelpers::truncateStr($item->present()->call_to_action) !!}
             @endcomponent
             <br>
         </span>

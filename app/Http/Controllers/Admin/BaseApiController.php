@@ -14,6 +14,7 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
+use App\Helpers\UrlHelpers;
 use Illuminate\Http\Request;
 
 class BaseApiController extends ModuleController
@@ -71,7 +72,7 @@ class BaseApiController extends ModuleController
 
         // WEB-1187: Fix the edit link
         $results = array_map(function($result) {
-            if (moduleRouteExists($this->moduleName, $this->routePrefix, 'augment')) {
+            if (UrlHelpers::moduleRouteExists($this->moduleName, $this->routePrefix, 'augment')) {
                 $result['edit'] = moduleRoute($this->moduleName, $this->routePrefix, 'augment', $result['id']);
             }
             return $result;

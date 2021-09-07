@@ -20,7 +20,7 @@
                 'fill'=> 'blur',
                 'ratio' => '3:4',
                 'srcset' => array(200,400,600),
-                'sizes' => aic_imageSizes(array(
+                'sizes' => ImageHelpers::aic_imageSizes(array(
                       'xsmall' => '216px',
                       'small' => '216px',
                       'medium' => '18',
@@ -28,7 +28,7 @@
                       'xlarge' => '13',
                 )),
             ))
-            @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($item['title'] ?? 'unknown title').'" data-gtm-event-category="shop-listing'.($loop->index + 1).'"')
+            @slot('gtmAttributes', 'data-gtm-event="'.StringHelpers::getUtf8Slug($item['title'] ?? 'unknown title').'" data-gtm-event-category="shop-listing'.($loop->index + 1).'"')
         @endcomponent
     @endforeach
 @endcomponent

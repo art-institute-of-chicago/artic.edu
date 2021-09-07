@@ -2,6 +2,8 @@
 namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
+use App\Helpers\StringHelpers;
+use App\Helpers\DatesHelpers;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use DamsImageService;
@@ -71,7 +73,7 @@ class ArtworkPresenter extends BasePresenter
         ];
 
         if ($this->entity->is_on_view && $this->entity->gallery_id) {
-            $status[] = '<a href="' .route('galleries.show', [$this->entity->gallery_id . '/' . getUtf8Slug($this->entity->gallery_title)]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>';
+            $status[] = '<a href="' .route('galleries.show', [$this->entity->gallery_id . '/' . StringHelpers::getUtf8Slug($this->entity->gallery_title)]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>';
         }
 
         $items = [
@@ -84,7 +86,7 @@ class ArtworkPresenter extends BasePresenter
         if (!$this->entity->is_deaccessioned && $this->entity->department_id) {
             $items[] = [
                 'key' => 'Department',
-                'value' => '<a href="' . route('departments.show', [$this->entity->department_id . '/' . getUtf8Slug($this->entity->department_title)]) . '" data-gtm-event="' . $this->entity->department_title .'" data-gtm-event-category="collection-nav">' . $this->entity->department_title .'</a>',
+                'value' => '<a href="' . route('departments.show', [$this->entity->department_id . '/' . StringHelpers::getUtf8Slug($this->entity->department_title)]) . '" data-gtm-event="' . $this->entity->department_title .'" data-gtm-event-category="collection-nav">' . $this->entity->department_title .'</a>',
             ];
         }
 
@@ -193,7 +195,7 @@ class ArtworkPresenter extends BasePresenter
         if ($this->entity->is_deaccessioned) {
             $href = null;
         } else {
-            $href = route('artists.show', $pivot->artist_id . '/' . getUtf8Slug($pivot->artist_title));
+            $href = route('artists.show', $pivot->artist_id . '/' . StringHelpers::getUtf8Slug($pivot->artist_title));
         }
 
         return [
@@ -324,7 +326,7 @@ class ArtworkPresenter extends BasePresenter
                 $date_start = Carbon::parse($item->date_earliest)->year;
                 $date_end = Carbon::parse($item->date_latest)->year;
 
-                $joined = join('-', array_unique([convertArtworkDates($date_start), convertArtworkDates($date_end)]));
+                $joined = join('-', array_unique([DatesHelpers::convertArtworkDates($date_start), DatesHelpers::convertArtworkDates($date_end)]));
 
                 return [
                     'label' => join(' ', [ $item->qualifier_title, $joined ] ),
@@ -398,7 +400,7 @@ class ArtworkPresenter extends BasePresenter
     {
         $block = [
             'title'  => $title,
-            'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.getUtf8Slug($title).'"',
+            'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.StringHelpers::getUtf8Slug($title).'"',
             'blocks' => []
         ];
 
@@ -477,7 +479,7 @@ class ArtworkPresenter extends BasePresenter
             if (!empty($this->entity->$key)) {
                 $block = array(
                     'title' => $value,
-                    'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.getUtf8Slug($value).'"',
+                    'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.StringHelpers::getUtf8Slug($value).'"',
                     'blocks' => []
                 );
                 $explodedKeys = explode("\n", $this->entity->$key);

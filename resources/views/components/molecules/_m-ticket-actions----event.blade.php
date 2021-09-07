@@ -9,7 +9,7 @@
                 @if (isset($disabled))
                     @slot('disabled', true)
                 @endif
-                @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $buttonText ?? 'Buy tickets') .'" data-gtm-action="' . ($eventName ?? '') . '" data-gtm-event-category="nav-cta-button"')
+                @slot('gtmAttributes', 'data-gtm-event="' . StringHelpers::getUtf8Slug( $buttonText ?? 'Buy tickets') .'" data-gtm-action="' . ($eventName ?? '') . '" data-gtm-event-category="nav-cta-button"')
                 {{ $buttonText ?? 'Buy tickets' }}
             @endcomponent
         </li>

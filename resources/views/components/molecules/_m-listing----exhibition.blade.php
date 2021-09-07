@@ -96,7 +96,7 @@
             {{-- WEB-2018: For related content, we want to hide the description, but show dates --}}
             @if ($showDescription)
                 @component('components.atoms._short-description')
-                    {!! truncateStr($item->present()->list_description) !!}
+                    {!! StringHelpers::truncateStr($item->present()->list_description) !!}
                 @endcomponent
                 <br>
             @endif

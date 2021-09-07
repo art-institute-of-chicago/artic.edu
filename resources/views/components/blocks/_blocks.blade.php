@@ -87,7 +87,7 @@
                             @slot('fullscreen', true)
                             @slot('imageSettings', array(
                                 'srcset' => array(300,600,800,1200,1600),
-                                'sizes' => aic_imageSizes(array(
+                                'sizes' => ImageHelpers::aic_imageSizes(array(
                                       'xsmall' => '58',
                                       'small' => '58',
                                       'medium' => '38',
@@ -127,7 +127,7 @@
                                         'fit' => 'clamp',
                                         'ratio' => '3:4',
                                         'srcset' => array(200,400,600),
-                                        'sizes' => aic_imageSizes(array(
+                                        'sizes' => ImageHelpers::aic_imageSizes(array(
                                               'xsmall' => '28',
                                               'small' => '12',
                                               'medium' => '9',
@@ -140,7 +140,7 @@
                                         'fit' => 'crop',
                                         'ratio' => '16:9',
                                         'srcset' => array(200,400,600),
-                                        'sizes' => aic_imageSizes(array(
+                                        'sizes' => ImageHelpers::aic_imageSizes(array(
                                               'xsmall' => '58',
                                               'small' => '13',
                                               'medium' => '13',
@@ -167,7 +167,7 @@
                                     'fit' => 'crop',
                                     'ratio' => '16:9',
                                     'srcset' => array(200,400,600,1000,1500),
-                                    'sizes' => aic_imageSizes(array(
+                                    'sizes' => ImageHelpers::aic_imageSizes(array(
                                           'xsmall' => '58',
                                           'small' => '58',
                                           'medium' => '38',
@@ -196,7 +196,7 @@
                                     'fit' => 'crop',
                                     'ratio' => '16:9',
                                     'srcset' => array(200,400,600),
-                                    'sizes' => aic_imageSizes(array(
+                                    'sizes' => ImageHelpers::aic_imageSizes(array(
                                           'xsmall' => '28',
                                           'small' => '28',
                                           'medium' => '18',

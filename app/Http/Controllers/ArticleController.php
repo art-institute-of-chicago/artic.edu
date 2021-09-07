@@ -6,6 +6,7 @@ use App\Repositories\ArticleRepository;
 use App\Models\Page;
 use App\Models\Article;
 use App\Models\Experience;
+use App\Helpers\StringHelpers;
 
 class ArticleController extends FrontController
 {
@@ -113,7 +114,7 @@ class ArticleController extends FrontController
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
-        $this->seo->setDescription($item->meta_description ?: $item->heading ?: truncateStr(strip_tags($item->present()->copy()), 297));
+        $this->seo->setDescription($item->meta_description ?: $item->heading ?: StringHelpers::truncateStr(strip_tags($item->present()->copy()), 297));
         $this->seo->setImage($item->imageFront('hero'));
         if ($item->is_unlisted) {
             $this->seo->nofollow = true;

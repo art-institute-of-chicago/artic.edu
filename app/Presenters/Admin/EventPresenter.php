@@ -5,6 +5,7 @@ namespace App\Presenters\Admin;
 use Carbon\Carbon;
 
 use App\Presenters\BasePresenter;
+use App\Helpers\ImageHelpers;
 
 use Illuminate\Support\Str;
 
@@ -197,7 +198,7 @@ class EventPresenter extends BasePresenter
     }
 
     public function imageUrl() {
-        $settings = aic_imageSettings([
+        $settings = ImageHelpers::aic_imageSettings([
             'image' => $this->entity->imageFront('hero'),
             'settings' => [
                 'srcset' => array(1200),

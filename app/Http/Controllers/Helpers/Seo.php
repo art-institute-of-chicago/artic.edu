@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Helpers;
 
 use A17\Twill\Http\Controllers\Front\Helpers\Seo as BaseSeo;
-
 use Illuminate\Support\Str;
+
+use App\Helpers\ImageHelpers;
 
 class Seo extends BaseSeo
 {
@@ -24,7 +25,7 @@ class Seo extends BaseSeo
     public function setImage($image, $maxWidth = 1200)
     {
         if (!empty($image)) {
-            $settings = aic_imageSettings([
+            $settings = ImageHelpers::aic_imageSettings([
                 'image' => $image,
                 'settings' => [
                     'srcset' => array($maxWidth),

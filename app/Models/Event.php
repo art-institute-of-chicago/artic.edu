@@ -9,6 +9,7 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRecurrentDates;
 use App\Models\Behaviors\HasApiRelations;
+use App\Helpers\QueryHelpers;
 use Carbon\Carbon;
 
 // WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
@@ -477,10 +478,10 @@ class Event extends AbstractModel
     private function getWhereJsonContainsRaw($field, $value)
     {
         if (DB::connection()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql') {
-            return $field . "::text LIKE '%" . escape_like($value) . "%'";
+            return $field . "::text LIKE '%" . QueryHelpers::escape_like($value) . "%'";
         }
 
-        return $field . " LIKE '%" . escape_like($value) . "%'";
+        return $field . " LIKE '%" . QueryHelpers::escape_like($value) . "%'";
     }
 
     public function setEventTypeAttribute($value)

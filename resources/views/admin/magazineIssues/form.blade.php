@@ -83,7 +83,7 @@
         <p>For non-custom magazine items (Articles, Highlights, etc.), if there is no "List description" specified here, we will attempt to fallback to the "List description" field specified on that item's edit page.</p>
 
         @formField('block_editor', [
-            'blocks' => getBlocksForEditor([
+            'blocks' => BlockHelpers::getBlocksForEditor([
                 'magazine_item',
                 'events',
                 'exhibitions',

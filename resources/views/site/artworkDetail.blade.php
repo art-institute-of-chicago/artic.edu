@@ -48,10 +48,10 @@
     @if (!$item->is_deaccessioned)
         <ul class="list list--inline f-secondary">
             @if ($item->department_id)
-                <li><a href="{!! route('departments.show', [$item->department_id . '/' . getUtf8Slug($item->department_title)]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-category="collection-nav">{!! $item->present()->department_title !!}</a></li>
+                <li><a href="{!! route('departments.show', [$item->department_id . '/' . StringHelpers::getUtf8Slug($item->department_title)]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-category="collection-nav">{!! $item->present()->department_title !!}</a></li>
             @endif
             @if ($item->is_on_view && $item->gallery_id)
-                <li><a href="{!! route('galleries.show', [$item->gallery_id . '/' . getUtf8Slug($item->gallery_title)]) !!}" data-gtm-event="{{ $item->gallery_title }}" data-gtm-event-category="collection-nav">{!! $item->present()->gallery_title !!}</a></li>
+                <li><a href="{!! route('galleries.show', [$item->gallery_id . '/' . StringHelpers::getUtf8Slug($item->gallery_title)]) !!}" data-gtm-event="{{ $item->gallery_title }}" data-gtm-event-category="collection-nav">{!! $item->present()->gallery_title !!}</a></li>
             @endif
         </ul>
     @endif
