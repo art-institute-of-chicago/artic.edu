@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
-
+use App\Libraries\DamsImageService;
 class ImageHelpers {
 
     /**
@@ -58,7 +58,8 @@ class ImageHelpers {
     public static function aic_convertFromImage($imageObject, $cropParams = []) {
         $sourceType = 'imgix';
 
-        $src = ImageService::getUrlWithCrop($imageObject->uuid, $cropParams);
+        $dams = new DamsImageService;
+        $src = $dams->getUrlWithCrop($imageObject->uuid, $cropParams);
 
         $credit = '';
         $creditUrl = '';

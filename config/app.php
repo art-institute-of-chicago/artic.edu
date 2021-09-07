@@ -288,6 +288,7 @@ return [
         'DatesHelpers' => App\Helpers\DatesHelpers::class,
         'ImageHelpers' => App\Helpers\ImageHelpers::class,
         'NavHelpers' => App\Helpers\NavHelpers::class,
+        'UrlHelpers' => App\Helpers\UrlHelpers::class,
         'QueryHelpers' => App\Helpers\QueryHelpers::class,
         'StringHelpers' => App\Helpers\StringHelpers::class,
     ],
