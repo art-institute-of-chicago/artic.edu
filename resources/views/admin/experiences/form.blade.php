@@ -1,7 +1,13 @@
 @php
+    $kiosk_domain = config('app.kiosk_domain');
+
+    if (is_array($kiosk_domain)) {
+        $kiosk_domain = $kiosk_domain[0] ?? config('app.url');
+    }
+
     $kiosk_url = implode('', [
         request()->getScheme() . '://',
-        config('app.kiosk_domain'),
+        $kiosk_domain,
         '/interactive-features',
         '/' . $item->slug
     ]);
