@@ -24,10 +24,13 @@ Portions of the website rely heavily on our [API](https://api.artic.edu). Check 
 * NPM 6.13.0
 * PostgreSQL 11.*
 * Homestead 12.*
+* krpano 1.12.* (for virtual tour blocks)
 
 
 
 ## Installing
+
+### Homestead
 
 For local development, we run our website in a [Homestead](https://laravel.com/docs/master/homestead) environment which provides all the software required to run the website.
 
@@ -52,7 +55,8 @@ Once Homestead is set up, then install the website code itself:
 * Access the frontend at http://{your_dev_domain}.
 * Access the CMS at http://admin.{your_dev_domain}.
 
-
+### krpano
+In order to use the virtual tour blocks, you will need to put the `tour.js` file in place from the krpano library. To do so, [download krpano](https://krpano.com/download/). Follow the instructions to install the package, and look for `viewer/krpano.js` among the files. Copy `krpano.js` to the `public/virtual-tours` directory in this project and rename it to `tour.js`.
 
 ## Developing
 
