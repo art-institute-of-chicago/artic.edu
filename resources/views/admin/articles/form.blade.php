@@ -149,7 +149,7 @@
 
         @php
             $category_ids = $item->categories->pluck('id')->all();
-            $relatedArticles = \App\Models\Article::byCategories($category_ids)->published()->orderBy('date', 'desc')->take(5)->get();
+            $relatedArticles = \App\Models\Article::byCategories($category_ids)->published()->notUnlisted()->orderBy('date', 'desc')->take(5)->get();
         @endphp
         <ol style="margin: 1em 0; padding-left: 40px">
             @foreach($relatedArticles as $article)
