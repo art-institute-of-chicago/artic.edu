@@ -67,4 +67,12 @@ class ArticleController extends ModuleController
             'baseUrl' => $baseUrl,
         ];
     }
+
+    public function getBrowserData($prependScope = []) {
+        if ($this->request->has('is_unlisted')) {
+            $prependScope['is_unlisted'] = $this->request->get('is_unlisted');
+        }
+        return parent::getBrowserData($prependScope);
+    }
+
 }
