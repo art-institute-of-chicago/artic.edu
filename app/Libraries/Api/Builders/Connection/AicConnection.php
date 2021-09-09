@@ -2,7 +2,7 @@
 
 namespace App\Libraries\Api\Builders\Connection;
 
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Arr;
 
 class AicConnection implements ApiConnectionInterface
@@ -113,7 +113,7 @@ class AicConnection implements ApiConnectionInterface
             $cacheKey = $this->buildCacheKey($verb, $endpoint, $options, config('api.cache_version'));
 
             // Manual cachebusting
-            $decacheHash = Input::get('nocache');
+            $decacheHash = Request::input('nocache');
             if ($decacheHash && config('api.cache_buster') && $decacheHash === config('api.cache_buster')) {
                 \Cache::forget($cacheKey);
             }

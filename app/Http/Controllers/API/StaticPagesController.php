@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Aic\Hub\Foundation\AbstractModel;
@@ -14,7 +14,7 @@ class StaticPagesController extends BaseController
 
     protected function paginate($limit)
     {
-        $offset = ((Input::get('page') ?? 1) - 1) * $limit;
+        $offset = ((Request::input('page') ?? 1) - 1) * $limit;
         $pages = $this->getPageCollection();
         return (new LengthAwarePaginator(
             $pages->slice($offset, $limit)->values(),
