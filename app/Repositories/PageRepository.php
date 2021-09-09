@@ -195,6 +195,5 @@ class PageRepository extends ModuleRepository
         } else {
             return parent::getFormFieldsForBrowser($object, $relation, $routePrefix, $titleKey, $moduleName);
         }
-
     }
 }

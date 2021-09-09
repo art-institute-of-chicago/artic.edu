@@ -4,6 +4,7 @@ namespace App\Libraries\Api\Models\Behaviors;
 
 use App\Libraries\Api\Builders\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
+
 trait HasRelationships
 {
     /**
@@ -51,7 +52,6 @@ trait HasRelationships
                 $limit
             );
         }
-
     }
 
     /**

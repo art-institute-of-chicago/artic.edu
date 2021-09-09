@@ -32,7 +32,7 @@ class AddAuthorDisplayToArticlesTable extends Migration
     public function down()
     {
         Schema::table('articles', function (Blueprint $table) {
-           $table->text('author')->nullable();
+            $table->text('author')->nullable();
         });
 
         DB::table('articles')->update(['author' => DB::raw('author_display')]);
@@ -40,5 +40,5 @@ class AddAuthorDisplayToArticlesTable extends Migration
         Schema::table('articles', function (Blueprint $table) {
             $table->dropColumn('author_display');
         });
-}
+    }
 }

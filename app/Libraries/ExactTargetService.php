@@ -13,7 +13,7 @@ class ExactTargetService
     protected $email;
     protected $list;
 
-    function __construct($email, $list = null)
+    public function __construct($email, $list = null)
     {
         $this->email = $email;
         $this->list  = $list;
@@ -29,7 +29,7 @@ class ExactTargetService
      * they can't see what they're already signed up to, it doesn't make sense to remove
      * them from unchecked lists.
      */
-    function subscribe($alsoRemove = true)
+    public function subscribe($alsoRemove = true)
     {
         $client = new ET_Client(false, true, config('exact-target.client'));
 
@@ -41,20 +41,17 @@ class ExactTargetService
             "Email" => $this->email,
         ];
 
-        if ($this->list)
-        {
+        if ($this->list) {
             if (is_array($this->list)) {
                 $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
                 foreach ($allLists as $list) {
                     if (in_array($list, $this->list)) {
                         $deRow->props[$list] = 'True';
-                    }
-                    elseif ($alsoRemove) {
+                    } elseif ($alsoRemove) {
                         $deRow->props[$list] = 'False';
                     }
                 }
-            }
-            else {
+            } else {
                 $deRow->props[$this->list] = 'True';
             }
         }
@@ -87,8 +84,7 @@ class ExactTargetService
             if (Str::startsWith($error, 'Violation of PRIMARY KEY constraint')
                 || Str::startsWith($status, 'The subscriber is already on the list')) {
                 // Email has been previously subscribed, so proceed
-            }
-            else {
+            } else {
                 return $response;
             }
         }
@@ -105,7 +101,7 @@ class ExactTargetService
         return true;
     }
 
-    function unsubscribe()
+    public function unsubscribe()
     {
         $client = new ET_Client(false, true, config('exact-target.client'));
 
@@ -142,7 +138,7 @@ class ExactTargetService
         return true;
     }
 
-    function get()
+    public function get()
     {
         $client = new ET_Client(false, config('app.debug'), config('exact-target.client'));
 

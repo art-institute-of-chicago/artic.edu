@@ -2,13 +2,15 @@
 
 namespace App\Helpers;
 
-class StringHelpers {
+class StringHelpers
+{
 
     /**
      * Get Unicode slug
      * @see HasSlug::getUtf8Slug()
      */
-    public static function getUtf8Slug($str, $options = []) {
+    public static function getUtf8Slug($str, $options = [])
+    {
         // Make sure string is in UTF-8 and strip invalid UTF-8 characters
         $str = mb_convert_encoding((string) $str, 'UTF-8', mb_list_encodings());
 
@@ -121,7 +123,8 @@ class StringHelpers {
         return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
     }
 
-    public static function truncateStr($string, $length = 150) {
+    public static function truncateStr($string, $length = 150)
+    {
         $limit = abs((int)$length);
 
         if ($limit > strlen($string)) {
@@ -158,11 +161,12 @@ class StringHelpers {
         }
 
         return $string;
-   }
+    }
 
-   public static function convertReferenceLinks($text, $_collectedReferences) {
+    public static function convertReferenceLinks($text, $_collectedReferences)
+    {
         $codes = \App\Libraries\ShortcodeService::parse_ref($text);
-        foreach($codes as $index => $code) {
+        foreach ($codes as $index => $code) {
             if (isset($code['name']) && ($code['name'] == 'ref')) {
                 $_collectedReferences[] = ['id' => sizeof($_collectedReferences)+1, 'reference' => $code['content']];
                 $pos = sizeof($_collectedReferences);
@@ -174,7 +178,8 @@ class StringHelpers {
         return [$text, $_collectedReferences];
     }
 
-    public static function properTitleCase($string) {
+    public static function properTitleCase($string)
+    {
         // Exceptions in lowercase will be converted to lowercase
         // Exceptions in uppercase will be converted to uppercase
         // Exceptions in mixedcase will be have to match exact and be left untouched
@@ -188,17 +193,13 @@ class StringHelpers {
         foreach ($words as $index => $word) {
             if ($index == 0) {
                 $word = ucwords(strtolower($word), $delimiters);
-            }
-            elseif (in_array(strtoupper($word), $exceptions)) {
+            } elseif (in_array(strtoupper($word), $exceptions)) {
                 $word = strtoupper($word);
-            }
-            elseif (in_array(strtolower($word), $exceptions)) {
+            } elseif (in_array(strtolower($word), $exceptions)) {
                 $word = strtolower($word);
-            }
-            elseif (in_array($word, $exceptions)) {
+            } elseif (in_array($word, $exceptions)) {
                 $word = $word;
-            }
-            else {
+            } else {
                 $word = ucwords(strtolower($word), $delimiters);
             }
             array_push($newwords, $word);
@@ -215,7 +216,8 @@ class StringHelpers {
      *
      * @see https://stackoverflow.com/a/32739088/1313842
      */
-    public static function rightTrim($string, $needle) {
+    public static function rightTrim($string, $needle)
+    {
         if (is_string($string)) {
             while ((
                 strlen($string) >= strlen($needle)
@@ -234,17 +236,18 @@ class StringHelpers {
      *
      * @return string
      */
-    public static function summation(array $array = []) {
+    public static function summation(array $array = [])
+    {
         switch (count($array)) {
-            case 0;
+            case 0:
                 return null;
-            case 1;
+            case 1:
                 return array_pop($array);
                 break;
-            case 2;
+            case 2:
                 return implode(' and ', $array);
                 break;
-            default;
+            default:
                 $last = array_pop($array);
                 return implode(', ', $array) . ', and ' . $last;
         }

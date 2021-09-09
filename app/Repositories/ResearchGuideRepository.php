@@ -21,7 +21,6 @@ class ResearchGuideRepository extends ModuleRepository
 
     public function getShowData($item, $slug = null, $previewPage = null)
     {
-
         return [
             'borderlessHeader' => !(empty($item->imageFront('banner'))),
             'subNav' => null,
@@ -44,5 +43,4 @@ class ResearchGuideRepository extends ModuleRepository
 
         return $results;
     }
-
 }

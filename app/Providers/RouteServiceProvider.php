@@ -90,7 +90,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapKioskRoutes()
     {
-
         $domains = config('app.kiosk_domain');
         $domains = is_array($domains) ? $domains : [$domains];
 
@@ -101,5 +100,4 @@ class RouteServiceProvider extends ServiceProvider
                     ->group(base_path('routes/kiosk.php'));
         }
     }
-
 }

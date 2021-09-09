@@ -13,7 +13,6 @@ use \DOMXpath;
 
 class BlockPresenter extends BasePresenter
 {
-
     public function input($name)
     {
         // WEB-1783: Adding anchor navigation to FAQ
@@ -32,15 +31,15 @@ class BlockPresenter extends BasePresenter
 
             $xpath = new DOMXpath($dom);
 
-            foreach($xpath->query('//h2') as $node) {
+            foreach ($xpath->query('//h2') as $node) {
                 $node->setAttribute('id', Str::slug($node->nodeValue));
             }
 
-            foreach($xpath->query('//h3') as $node) {
+            foreach ($xpath->query('//h3') as $node) {
                 $node->setAttribute('id', Str::slug($node->nodeValue));
             }
 
-            foreach($xpath->query('//h4') as $node) {
+            foreach ($xpath->query('//h4') as $node) {
                 $node->setAttribute('id', Str::slug($node->nodeValue));
             }
 
@@ -59,5 +58,4 @@ class BlockPresenter extends BasePresenter
 
         return SmartyPants::defaultTransform($this->entity->input($name));
     }
-
 }

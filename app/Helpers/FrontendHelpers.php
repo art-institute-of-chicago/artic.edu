@@ -13,13 +13,15 @@ namespace App\Helpers;
  *
  * @link https://stackoverflow.com/questions/9555658/why-is-file-get-contents-faster-than-memcache-get
  */
-class FrontendHelpers {
+class FrontendHelpers
+{
 
     /**
      * @param string $file
      * @return string
      */
-    public static function revAsset($file) {
+    public static function revAsset($file)
+    {
         if (config('aic.use_compiled_revassets')) {
             try {
                 $manifest = json_decode(file_get_contents(config('twill.frontend.rev_manifest_path')), true);

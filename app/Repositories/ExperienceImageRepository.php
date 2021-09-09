@@ -18,7 +18,8 @@ class ExperienceImageRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function updateFieldsFromApi($fields) {
+    public function updateFieldsFromApi($fields)
+    {
         $credits_map = [
             'artist' => 'artist_title',
             'credit_title' => 'title',
@@ -35,12 +36,11 @@ class ExperienceImageRepository extends ModuleRepository
 
         if ($object_id && $apiResult instanceof Artwork) {
             $artwork = $apiResult->toArray();
-            foreach($credits_map as $contentBundleKey => $artworkKey) {
+            foreach ($credits_map as $contentBundleKey => $artworkKey) {
                 $fields[$contentBundleKey] = $artwork[$artworkKey];
             }
-        }
-        else {
-            foreach($credits_map as $contentBundleKey => $artworkKey) {
+        } else {
+            foreach ($credits_map as $contentBundleKey => $artworkKey) {
                 $fields[$contentBundleKey] = "";
             }
         }

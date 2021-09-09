@@ -14,5 +14,4 @@ class HighlightRevision extends Revision
     {
         return $this->belongsTo('App\Models\Highlight');
     }
-
 }

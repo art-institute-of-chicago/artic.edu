@@ -33,5 +33,4 @@ class AdmissionController extends ModuleController
     {
         return [];
     }
-
 }

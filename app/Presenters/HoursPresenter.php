@@ -6,7 +6,6 @@ use App\Models\Hour;
 
 class HoursPresenter extends BasePresenter
 {
-
     public function validFrom()
     {
         if ($this->entity->valid_from) {
@@ -21,8 +20,8 @@ class HoursPresenter extends BasePresenter
         }
     }
 
-    public function type() {
+    public function type()
+    {
         return Hour::$types[$this->entity->type];
     }
-
 }

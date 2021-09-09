@@ -32,57 +32,74 @@ class Location extends AbstractModel
                 "name" => 'name',
                 "doc" => "Name of this location",
                 "type" => "string",
-                "value" => function () {return $this->name;},
+                "value" => function () {
+                    return $this->name;
+                },
             ],
             [
                 "name" => 'street',
                 "doc" => "Street of this location",
                 "type" => "string",
-                "value" => function () {return $this->street;},
+                "value" => function () {
+                    return $this->street;
+                },
             ],
             [
                 "name" => 'address',
                 "doc" => "Address of this location",
                 "type" => "string",
-                "value" => function () {return $this->address;},
+                "value" => function () {
+                    return $this->address;
+                },
             ],
             [
                 "name" => 'address',
                 "doc" => "Address of this location",
                 "type" => "string",
-                "value" => function () {return $this->address;},
+                "value" => function () {
+                    return $this->address;
+                },
             ],
             [
                 "name" => 'city',
                 "doc" => "City of this location",
                 "type" => "string",
-                "value" => function () {return $this->city;},
+                "value" => function () {
+                    return $this->city;
+                },
             ],
             [
                 "name" => 'state',
                 "doc" => "State of this location",
                 "type" => "string",
-                "value" => function () {return $this->state;},
+                "value" => function () {
+                    return $this->state;
+                },
             ],
             [
                 "name" => 'zip',
                 "doc" => "Zip of this location",
                 "type" => "string",
-                "value" => function () {return $this->zip;},
+                "value" => function () {
+                    return $this->zip;
+                },
             ],
             [
                 "name" => 'published',
                 "doc" => "Published status this location",
                 "type" => "boolean",
-                "value" => function () {return $this->published;},
+                "value" => function () {
+                    return $this->published;
+                },
             ],
             [
                 "name" => "web_url",
                 "doc" => "web_url",
                 "type" => "string",
-                "value" => function () {return '/#todo';},
+                "value" => function () {
+                    return '/#todo';
+                },
             ],
         ];
     }
-
 }

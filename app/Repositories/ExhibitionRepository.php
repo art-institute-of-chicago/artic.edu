@@ -42,7 +42,8 @@ class ExhibitionRepository extends BaseApiRepository
         'offers'
     ];
 
-    public function getBlockBrowsers($block) {
+    public function getBlockBrowsers($block)
+    {
         return array_merge($this->getApiBlockBrowsers($block), $this->getFeatureRelatedBlockBrowsers($block));
     }
 
@@ -65,11 +66,13 @@ class ExhibitionRepository extends BaseApiRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getExhibitionTypesList() {
+    public function getExhibitionTypesList()
+    {
         return collect($this->model::$exhibitionTypes);
     }
 
-    public function getExhibitionStatusesList() {
+    public function getExhibitionStatusesList()
+    {
         return collect($this->model::$exhibitionStatuses);
     }
 }

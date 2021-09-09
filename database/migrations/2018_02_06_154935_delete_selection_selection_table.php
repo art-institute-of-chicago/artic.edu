@@ -26,5 +26,4 @@ class DeleteSelectionSelectionTable extends Migration
             $table->integer('position')->unsigned()->index();
         });
     }
-
 }

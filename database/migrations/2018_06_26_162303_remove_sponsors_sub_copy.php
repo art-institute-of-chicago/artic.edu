@@ -8,7 +8,6 @@ class RemoveSponsorsSubCopy extends Migration
 {
     public function up()
     {
-
         Schema::table('exhibitions', function (Blueprint $table) {
             $table->dropColumn('sponsors_sub_copy');
         });
@@ -16,12 +15,10 @@ class RemoveSponsorsSubCopy extends Migration
         Schema::table('events', function (Blueprint $table) {
             $table->dropColumn('sponsors_sub_copy');
         });
-
     }
 
     public function down()
     {
-
         Schema::table('exhibitions', function (Blueprint $table) {
             $table->text('sponsors_sub_copy')->nullable();
         });
@@ -29,6 +26,5 @@ class RemoveSponsorsSubCopy extends Migration
         Schema::table('events', function (Blueprint $table) {
             $table->text('sponsors_sub_copy')->nullable();
         });
-
     }
 }

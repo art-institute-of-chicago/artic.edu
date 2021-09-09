@@ -29,5 +29,4 @@ class Subjects extends BaseFilteredList
     {
         return ucfirst($key);
     }
-
 }

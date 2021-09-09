@@ -20,11 +20,11 @@ class ExhibitionHistoryService
 
     public function decades()
     {
-        if (!empty($this->decades))
+        if (!empty($this->decades)) {
             return $this->decades;
+        }
 
         foreach (range(1880, date('Y'), 10) as $decade) {
-
             if ($decade < 1890) {
                 $decade = 1883;
                 $decadeEnd = 1889;
@@ -53,7 +53,7 @@ class ExhibitionHistoryService
 
     public function years()
     {
-        $active = collect($this->decades())->where('active',true)->first();
+        $active = collect($this->decades())->where('active', true)->first();
 
         foreach (range($active['start'], $active['end']) as $year) {
             if ($year <= date('Y')) {
@@ -73,5 +73,4 @@ class ExhibitionHistoryService
     {
         return $this->decadePrompt;
     }
-
 }

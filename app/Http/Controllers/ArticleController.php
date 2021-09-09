@@ -68,7 +68,8 @@ class ArticleController extends FrontController
         ];
 
         foreach ($page->articlesCategories as $category) {
-            array_push($categories,
+            array_push(
+                $categories,
                 [
                     'label'  => $category->name,
                     'href'   => route('articles', ['category' => $category->id]),
@@ -79,7 +80,8 @@ class ArticleController extends FrontController
         }
 
         if (Experience::webPublished()->articlePublished()->count() > 0) {
-            array_push($categories,
+            array_push(
+                $categories,
                 [
                     'label' => 'Interactive Features',
                     'href' => route('articles', ['category' => 'interactive-features']),

@@ -16,16 +16,11 @@ class TicketedEventController extends FrontController
 
     public function index()
     {
-
         return $this->repository->listAll();
-
     }
 
     public function show($id)
     {
-
         return $this->repository->getById((Integer) $id);
-
     }
-
 }

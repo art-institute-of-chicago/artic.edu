@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Repositories\HighlightRepository;
 use App\Libraries\ExploreFurther\HighlightService as ExploreFurther;
 
-
 class HighlightsController extends FrontController
 {
     protected $repository;
@@ -81,5 +80,4 @@ class HighlightsController extends FrontController
             'canonicalUrl' => $canonicalPath,
         ]);
     }
-
 }

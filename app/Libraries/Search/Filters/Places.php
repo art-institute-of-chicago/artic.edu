@@ -29,5 +29,4 @@ class Places extends BaseFilteredList
     {
         return ucfirst($id);
     }
-
 }

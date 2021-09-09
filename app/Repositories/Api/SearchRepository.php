@@ -25,5 +25,4 @@ class SearchRepository extends BaseApiRepository
 
         return $results;
     }
-
 }

@@ -10,12 +10,10 @@ use App\Models\Form\GroupReservation;
 
 use App\Mail\FormGroupReservation;
 
-
 class GroupReservationsController extends FormController
 {
     public function index()
     {
-
         $this->title = 'Adult and University Group Reservation Form';
         $this->seo->setTitle($this->title);
 
@@ -378,7 +376,7 @@ class GroupReservationsController extends FormController
                 )
             ),
         ];
-        foreach($this->getNeedsArray(old('needs')) as $d) {
+        foreach ($this->getNeedsArray(old('needs')) as $d) {
             array_push($needsFields['blocks'], $d);
         }
         $visitInformationFields[] = $needsFields;
@@ -486,7 +484,6 @@ class GroupReservationsController extends FormController
      */
     public function store(GroupReservationRequest $request)
     {
-
         $validated = $request->validated();
 
         $groupReservation = new GroupReservation;
@@ -516,7 +513,6 @@ class GroupReservationsController extends FormController
             ->send(new FormGroupReservation($groupReservation));
 
         return redirect(route('forms.group-reservation.thanks'));
-
     }
 
     private function getTopicsArray()
@@ -537,7 +533,7 @@ class GroupReservationsController extends FormController
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];
-        foreach($topics as $value => $label) {
+        foreach ($topics as $value => $label) {
             $item = [
                 'value' => $label
             ,   'label' => $label
@@ -559,7 +555,7 @@ class GroupReservationsController extends FormController
         );
 
         $list = [];
-        foreach($needs as $value => $label) {
+        foreach ($needs as $value => $label) {
             $item = [
               'type' => 'checkbox',
               'variation' => '',

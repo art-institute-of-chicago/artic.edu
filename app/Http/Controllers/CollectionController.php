@@ -65,8 +65,7 @@ class CollectionController extends BaseScopedController
 
         if ($activeFilters->count()) {
             $this->seo->setTitle(implode(', ', $activeFilters->pluck('label')->all()));
-        }
-        else {
+        } else {
             $this->seo->setTitle('Discover Art & Artists');
         }
 
@@ -74,8 +73,7 @@ class CollectionController extends BaseScopedController
             // Use first image of results as the social image
             $artwork = $collection->first();
             $this->seo->setImage($artwork->imageFront('hero'));
-        }
-        else {
+        } else {
             // Otherwise, fall back to La Grande Jatte as social image
             $this->seo->image = 'https://' .rtrim(config('app.url'), '/') . '/iiif/2/4eddcf49-3efd-d993-fb1a-75d7e7d5b5a1/full/843,/0/default.jpg';
             $this->seo->width = 1200;
@@ -91,10 +89,13 @@ class CollectionController extends BaseScopedController
         $this->seo->nofollow = $this->setNofollowMeta();
 
         $featuredItems = $page->getRelatedWithApiModels(
-            'featured_items', [], [
+            'featured_items',
+            [],
+            [
                 'articles' => false,
                 'experiences' => false
-        ]);
+        ]
+        );
 
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();
         $filters       = $this->collection()->generateFilters();
@@ -172,5 +173,4 @@ class CollectionController extends BaseScopedController
             }
         }
     }
-
 }

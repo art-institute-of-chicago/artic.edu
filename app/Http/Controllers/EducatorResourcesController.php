@@ -9,7 +9,6 @@ use App\Models\ResourceCategory;
 
 class EducatorResourcesController extends BaseScopedController
 {
-
     protected $repository;
 
     protected $entity = \App\Models\EducatorResource::class;
@@ -102,12 +101,10 @@ class EducatorResourcesController extends BaseScopedController
             'blocks' => null,
             'page' => $item,
         ]);
-
     }
 
     protected function getFilters()
     {
-
         $categoryLinks[] = [
             'label'  => 'All',
             'href'   => route('collection.resources.educator-resources'),
@@ -128,7 +125,5 @@ class EducatorResourcesController extends BaseScopedController
                 'links'  => collect($categoryLinks)
             ]
         ];
-
     }
-
 }

@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class DeleteShopItemsRelatedTables extends Migration
 {
-
     public function up()
     {
         Schema::dropIfExists('shop_itemized');
@@ -32,5 +31,4 @@ class DeleteShopItemsRelatedTables extends Migration
             $table->integer('position')->unsigned();
         });
     }
-
 }

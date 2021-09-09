@@ -123,5 +123,4 @@ class ExhibitionsController extends FrontController
 
         return $view;
     }
-
 }

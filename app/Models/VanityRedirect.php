@@ -18,5 +18,4 @@ class VanityRedirect extends Model
     public $checkboxes = [
         'published'
     ];
-
 }

@@ -13,5 +13,4 @@ class CatalogCategoryRepository extends ModuleRepository
     {
         $this->model = $model;
     }
-
 }

@@ -6,18 +6,21 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
-class UrlHelpers {
-
-    public static function currentUrlWithQuery($options = []) {
+class UrlHelpers
+{
+    public static function currentUrlWithQuery($options = [])
+    {
         return request()->url() . '?' . http_build_query($options);
     }
 
-    public static function parseVideoUrl($url) {
+    public static function parseVideoUrl($url)
+    {
         preg_match('/\d+/', $url, $matches);
         return isset($matches[0]) ? $matches[0] : 0;
     }
 
-    public static function secureRoute($routeName) {
+    public static function secureRoute($routeName)
+    {
         $url = url();
         $defaultScheme = Request::getScheme();
         $url->forceScheme('https');
@@ -31,12 +34,14 @@ class UrlHelpers {
      * Whether a module route exists
      * @see moduleRoute
      */
-    public static function moduleRouteExists($moduleName, $prefix, $action) {
+    public static function moduleRouteExists($moduleName, $prefix, $action)
+    {
         $routeName = 'admin.' . ($prefix ? $prefix . '.' : '') . Str::camel($moduleName) . '.' . $action;
         return Route::has($routeName);
     }
 
-    public static function lastUrlSegment($href) {
+    public static function lastUrlSegment($href)
+    {
         $url = parse_url($href, PHP_URL_PATH);
         $ret = substr($url, strrpos($url, '/')+1);
 

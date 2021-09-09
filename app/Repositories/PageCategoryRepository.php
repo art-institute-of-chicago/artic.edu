@@ -13,5 +13,4 @@ class PageCategoryRepository extends ModuleRepository
     {
         $this->model = $model;
     }
-
 }

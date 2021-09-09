@@ -35,8 +35,7 @@ class DigitalPublicationSectionController extends FrontController
             foreach ($item->authors as $author) {
                 $this->seo->citationAuthor[] = $author->title;
             }
-        }
-        else {
+        } else {
             $this->seo->citationAuthor[] = $item->author_display;
         }
         if ($item->date) {

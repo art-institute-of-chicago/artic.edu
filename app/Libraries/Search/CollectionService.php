@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Libraries\Search;
+
 use App\Libraries\Search\Filters\Sort as SortFilters;
 use App\Libraries\Search\Filters\DateRange;
 use App\Libraries\Search\Filters\BooleanFilter;
@@ -109,7 +110,7 @@ class CollectionService
 
         // Walk through filters and extract the active ones
         foreach ($this->generateFilters() as $category) {
-            switch($category['type']) {
+            switch ($category['type']) {
                 case 'list':
                 case 'dropdown':
                     foreach ($category['list'] as $item) {
@@ -170,8 +171,7 @@ class CollectionService
         $filters = collect([]);
 
         if ($aggregations) {
-            foreach($aggregations as $name => $data)
-            {
+            foreach ($aggregations as $name => $data) {
                 $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst($name);
                 if (class_exists($filterClass)) {
                     $filter = new $filterClass($data->buckets, $name);

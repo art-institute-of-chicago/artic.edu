@@ -2,7 +2,6 @@
 
 namespace App\Presenters;
 
-
 use App\Libraries\SmartyPants;
 
 abstract class BasePresenter
@@ -92,7 +91,7 @@ abstract class BasePresenter
         $xpath = new \DOMXpath($dom);
         $nodes = $xpath->query('//ol | //ul | //p');
 
-        foreach($nodes as $node) {
+        foreach ($nodes as $node) {
             $node->setAttribute('class', $class);
         }
 
@@ -103,5 +102,4 @@ abstract class BasePresenter
 
         return $result;
     }
-
 }

@@ -282,7 +282,8 @@ class ApiModelBuilder
         }
 
         throw (new ModelNotFoundException)->setModel(
-            get_class($this->model), $id
+            get_class($this->model),
+            $id
         );
     }
 
@@ -389,8 +390,8 @@ class ApiModelBuilder
         }
 
         // Sort them by the original ids listing
-        $sorted = $models->sortBy(function($model, $key) use ($ids) {
-            return CollectionHelpers::collectApi($ids)->search(function($id, $key) use ($model) {
+        $sorted = $models->sortBy(function ($model, $key) use ($ids) {
+            return CollectionHelpers::collectApi($ids)->search(function ($id, $key) use ($model) {
                 return $id == $model->id;
             });
         })->values();
@@ -423,7 +424,7 @@ class ApiModelBuilder
         $total = $paginationData ? $paginationData->total : $results->count();
 
         // Transform each Search model to the correct instance using typeMap
-        $hydratedModels = $results->transform(function($item, $key) {
+        $hydratedModels = $results->transform(function ($item, $key) {
             return $this->model::hydrate([$item->toArray()])[0];
         });
 
@@ -473,8 +474,9 @@ class ApiModelBuilder
             // this will generate N + 1 calls in total
             // improve later using real eager loading to
             // reduce the number of calls to 1 + relationships_number
-            if ($relation)
+            if ($relation) {
                 $model->setRelation($name, $relation->getEager());
+            }
         }
 
         return $models;
@@ -670,6 +672,4 @@ class ApiModelBuilder
     {
         return $this->query->$key;
     }
-
-
 }

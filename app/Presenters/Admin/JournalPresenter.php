@@ -6,7 +6,6 @@ use App\Helpers\NavHelpers;
 
 class JournalPresenter extends GenericPresenter
 {
-
     private $navCache;
 
     private function getNav()
@@ -24,5 +23,4 @@ class JournalPresenter extends GenericPresenter
     {
         return $this->getNav()['nav'] ?? [];
     }
-
 }

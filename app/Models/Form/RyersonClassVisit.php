@@ -2,7 +2,6 @@
 
 namespace App\Models\Form;
 
-
 class RyersonClassVisit extends FormModel
 {
     protected $dates = array(

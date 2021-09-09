@@ -38,5 +38,4 @@ class Gallery extends BaseApiModel
             ->aggregationClassifications(3)
             ->getSearch($perPage);
     }
-
 }

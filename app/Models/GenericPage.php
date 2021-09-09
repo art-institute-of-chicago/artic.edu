@@ -100,13 +100,13 @@ class GenericPage extends AbstractModel implements Sortable
 
     public function getDateAttribute()
     {
-        if ($this->publish_start_date)
+        if ($this->publish_start_date) {
             return $this->publish_start_date->format('M j, Y');
+        }
     }
 
     public function getUrlAttribute()
     {
-
         if (!empty($this->redirect_url)) {
             return $this->redirect_url;
         }
@@ -189,61 +189,81 @@ class GenericPage extends AbstractModel implements Sortable
                 "name" => 'title',
                 "doc" => "Title",
                 "type" => "string",
-                "value" => function() { return $this->title; }
+                "value" => function () {
+                    return $this->title;
+                }
             ],
             [
                 "name" => 'web_url',
                 "doc" => "Web URL",
                 "type" => "string",
-                "value" => function() { return url($this->url); }
+                "value" => function () {
+                    return url($this->url);
+                }
             ],
             [
                 "name" => 'slug',
                 "doc" => "Slug",
                 "type" => "string",
-                "value" => function() { return $this->slug; }
+                "value" => function () {
+                    return $this->slug;
+                }
             ],
             [
                 "name" => 'listing_description',
                 "doc" => "Listing Description",
                 "type" => "string",
-                "value" => function() { return $this->listing_description; }
+                "value" => function () {
+                    return $this->listing_description;
+                }
             ],
             [
                 "name" => 'short_description',
                 "doc" => "Short Description",
                 "type" => "string",
-                "value" => function() { return $this->short_description; }
+                "value" => function () {
+                    return $this->short_description;
+                }
             ],
             [
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function() { return $this->published; }
+                "value" => function () {
+                    return $this->published;
+                }
             ],
             [
                 "name" => 'publish_start_date',
                 "doc" => "Publish Start Date",
                 "type" => "datetime",
-                "value" => function() { return $this->publish_start_date; }
+                "value" => function () {
+                    return $this->publish_start_date;
+                }
             ],
             [
                 "name" => 'publish_end_date',
                 "doc" => "Publish End Date",
                 "type" => "datetime",
-                "value" => function() { return $this->publish_end_date; }
+                "value" => function () {
+                    return $this->publish_end_date;
+                }
             ],
             [
                 "name" => "search_tags",
                 "doc" => "search_tags",
                 "type" => "string",
-                "value" => function () {return $this->search_tags;},
+                "value" => function () {
+                    return $this->search_tags;
+                },
             ],
             [
                 "name" => 'content',
                 "doc" => "Content",
                 "type" => "text",
-                "value" => function() { return $this->blocks; }
+                "value" => function () {
+                    return $this->blocks;
+                }
             ],
         ];
     }

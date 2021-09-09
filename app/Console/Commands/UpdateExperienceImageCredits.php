@@ -8,7 +8,6 @@ use App\Models\ExperienceImage;
 
 class UpdateExperienceImageCredits extends Command
 {
-
     protected $signature = 'update:experience-image-credits';
 
     protected $description = 'Update experience image inline credits with Data Hub data';
@@ -19,7 +18,7 @@ class UpdateExperienceImageCredits extends Command
 
         $bar = $this->output->createProgressBar(count($images));
         $bar->start();
-        foreach( $images as $image ) {
+        foreach ($images as $image) {
             $object_id = $image->object_id;
             $apiResult = Artwork::query()->find($object_id);
             if ($apiResult instanceof Artwork) {
@@ -34,7 +33,7 @@ class UpdateExperienceImageCredits extends Command
                     'main_reference_number' => 'main_reference_number',
                     'copyright_notice' => 'copyright_notice',
                 ];
-                foreach($credits_map as $contentBundleKey => $artworkKey) {
+                foreach ($credits_map as $contentBundleKey => $artworkKey) {
                     $image->$contentBundleKey = $artwork[$artworkKey];
                 }
                 $image->save();
@@ -44,5 +43,4 @@ class UpdateExperienceImageCredits extends Command
         $bar->finish();
         $this->line('');
     }
-
 }

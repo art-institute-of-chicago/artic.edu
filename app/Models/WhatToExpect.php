@@ -25,5 +25,4 @@ class WhatToExpect extends Model implements Sortable
     public $checkboxes = [
         'published'
     ];
-
 }

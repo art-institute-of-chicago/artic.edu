@@ -14,5 +14,4 @@ class PrintedPublicationRevision extends Revision
     {
         return $this->belongsTo('App\Models\PrintedPublication');
     }
-
 }

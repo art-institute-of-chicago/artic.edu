@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 
 class ReportAltText extends Command
 {
-
     protected $signature = 'report:alt-text';
 
     protected $description = 'Output all alt text info about images in use';
@@ -40,7 +39,7 @@ class ReportAltText extends Command
             \App\Models\Highlight::class,
             \App\Models\Video::class,
             \A17\Twill\Models\Block::class,
-        ])->map(function($model) {
+        ])->map(function ($model) {
             $table = with(new $model)->getTable();
             $query = $model::whereHas('medias');
             if (\Schema::hasColumn($table, 'published')) {
@@ -50,10 +49,10 @@ class ReportAltText extends Command
                 $query->whereNull('deleted_at');
             }
             return $query->with('medias');
-        })->map(function($query) use (&$medias) {
-            return $query->chunk(100, function($items) use (&$medias) {
+        })->map(function ($query) use (&$medias) {
+            return $query->chunk(100, function ($items) use (&$medias) {
                 foreach ($items as $item) {
-                    $medias[] = $item->medias->map(function($media) use ($item) {
+                    $medias[] = $item->medias->map(function ($media) use ($item) {
                         return [
                             (string) $media->id => [
                                 'alt_text' => $media->alt_text,
@@ -71,7 +70,9 @@ class ReportAltText extends Command
         $medias = array_merge(...$medias);
 
         // Collapse the array while preserving numeric keys
-        $medias = array_reduce($medias, function ($carry, $item) { return $carry + $item; }, []);
+        $medias = array_reduce($medias, function ($carry, $item) {
+            return $carry + $item;
+        }, []);
 
         // At this point, everything should be deduped, since it's keyed by id
         $out = [];
@@ -105,7 +106,7 @@ class ReportAltText extends Command
         fputcsv($fh, array_keys(current($data)));
 
         // Write out the data
-        foreach ( $data as $row ) {
+        foreach ($data as $row) {
             fputcsv($fh, $row);
         }
 
@@ -125,7 +126,8 @@ class ReportAltText extends Command
      * perhaps this context unusual, where we don't actually know the type
      * of object we're determining a URL for. More to think on.
      */
-    function url($item) {
+    public function url($item)
+    {
         $prefix = $this->pathPrefix($item);
         $slug = $item->idSlug;
 
@@ -213,7 +215,8 @@ class ReportAltText extends Command
         return 'https://www.artic.edu/' .$prefix .'/'. $slug;
     }
 
-    function pathPrefix($item) {
+    public function pathPrefix($item)
+    {
         return Str::plural(strtolower(class_basename(get_class($item))));
     }
 }

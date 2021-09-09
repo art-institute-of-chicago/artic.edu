@@ -13,5 +13,4 @@ class SponsorRepository extends ModuleRepository
     {
         $this->model = $model;
     }
-
 }

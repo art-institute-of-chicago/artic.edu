@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 class Fee extends AbstractModel
 {
     protected $fillable = [

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 class DateRule extends AbstractModel
 {
     protected $fillable = [
@@ -97,7 +96,6 @@ class DateRule extends AbstractModel
             if ($this->$element) {
                 return strtoupper(substr($element, 0, 2));
             }
-
         }, ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']));
     }
 }

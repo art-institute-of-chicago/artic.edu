@@ -82,7 +82,7 @@ class DepartmentRepository extends BaseApiRepository
         if (isset($excludedArtworks)) {
             $query['bool']['must_not'] = [
                 'terms' => [
-                    'id' => $excludedArtworks->map(function($excludedArtwork) {
+                    'id' => $excludedArtworks->map(function ($excludedArtwork) {
                         return $excludedArtwork->id;
                     })->filter()->values()->all()
                 ],
@@ -125,7 +125,7 @@ class DepartmentRepository extends BaseApiRepository
 
         $now = Carbon::now();
 
-        $relatedItems = $relatedItems->filter(function($relatedItem) use ($now) {
+        $relatedItems = $relatedItems->filter(function ($relatedItem) use ($now) {
             // We check if the exhibitions are published in `getApiRelatedItems`
             if (get_class($relatedItem) === \App\Models\Api\Exhibition::class) {
                 return true;

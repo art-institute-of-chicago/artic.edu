@@ -49,5 +49,4 @@ abstract class BaseApiRepository extends ModuleRepository
 
         return $results;
     }
-
 }

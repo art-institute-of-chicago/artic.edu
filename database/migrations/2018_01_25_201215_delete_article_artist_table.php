@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class DeleteArticleArtistTable extends Migration
 {
-
     public function up()
     {
         Schema::dropIfExists('article_artist');

@@ -10,7 +10,6 @@ use App\Helpers\NavHelpers;
 
 class PrintedPublicationsController extends BaseScopedController
 {
-
     protected $repository;
 
     protected $entity = \App\Models\PrintedPublication::class;
@@ -92,12 +91,10 @@ class PrintedPublicationsController extends BaseScopedController
             'breadcrumb' => $crumbs,
             'page' => $item,
         ]);
-
     }
 
     protected function getFilters()
     {
-
         $categoryLinks[] = [
             'label'  => 'All',
             'href'   => route('collection.publications.printed-publications'),
@@ -118,7 +115,5 @@ class PrintedPublicationsController extends BaseScopedController
                 'links'  => collect($categoryLinks)
             ]
         ];
-
     }
-
 }

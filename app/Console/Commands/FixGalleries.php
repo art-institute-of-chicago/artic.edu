@@ -8,14 +8,13 @@ use Illuminate\Console\Command;
 
 class FixGalleries extends Command
 {
-
     protected $signature = 'fix:galleries';
 
     protected $description = 'Fixes name of artworks block in database';
 
     public function handle()
     {
-        $blocks = Block::where('child_key','gallery_new_item')
+        $blocks = Block::where('child_key', 'gallery_new_item')
             ->where('content->gallery_item_type', 'artwork')
             ->get();
 
@@ -29,5 +28,4 @@ class FixGalleries extends Command
             }
         }
     }
-
 }

@@ -45,7 +45,8 @@ class DropTranslationTables extends Migration
 
         // Copy content from the translatable field to the table
         $cols = DB::selectOne('select * from page_translations where page_id = ? and locale = ?', [6, 'en']);
-        DB::update('update pages set '
+        DB::update(
+            'update pages set '
                 . 'visit_intro = ?, '
                 . 'visit_hour_header = ?, '
                 . 'visit_hour_subheader = ?, '
@@ -105,7 +106,8 @@ class DropTranslationTables extends Migration
 
         $rows = DB::select('select * from dining_hour_translations where locale = ?', ['en']);
         foreach ($rows as $cols) {
-            DB::update('update dining_hours set '
+            DB::update(
+                'update dining_hours set '
                 . 'name = ?, '
                 . 'hours = ? '
                 . 'where id = ?',
@@ -125,7 +127,8 @@ class DropTranslationTables extends Migration
 
         $rows = DB::select('select * from family_translations where locale = ?', ['en']);
         foreach ($rows as $cols) {
-            DB::update('update families set '
+            DB::update(
+                'update families set '
                 . 'title = ?, '
                 . 'text = ?, '
                 . 'link_label = ? '
@@ -145,7 +148,8 @@ class DropTranslationTables extends Migration
 
         $rows = DB::select('select * from faq_translations where locale = ?', ['en']);
         foreach ($rows as $cols) {
-            DB::update('update faqs set '
+            DB::update(
+                'update faqs set '
                 . 'title = ? '
                 . 'where id = ?',
                 [$cols->title,
@@ -162,7 +166,8 @@ class DropTranslationTables extends Migration
 
         $rows = DB::select('select * from featured_hour_translations where locale = ?', ['en']);
         foreach ($rows as $cols) {
-            DB::update('update featured_hours set '
+            DB::update(
+                'update featured_hours set '
                 . 'title = ?, '
                 . 'copy = ? '
                 . 'where id = ?',
@@ -180,7 +185,8 @@ class DropTranslationTables extends Migration
 
         $rows = DB::select('select * from fee_age_translations where locale = ?', ['en']);
         foreach ($rows as $cols) {
-            DB::update('update fee_ages set '
+            DB::update(
+                'update fee_ages set '
                 . 'title = ? '
                 . 'where id = ?',
                 [$cols->title,
@@ -197,7 +203,8 @@ class DropTranslationTables extends Migration
 
         $rows = DB::select('select * from fee_category_translations where locale = ?', ['en']);
         foreach ($rows as $cols) {
-            DB::update('update fee_categories set '
+            DB::update(
+                'update fee_categories set '
                 . 'title = ?, '
                 . 'tooltip = ? '
                 . 'where id = ?',
@@ -215,7 +222,8 @@ class DropTranslationTables extends Migration
 
         $rows = DB::select('select * from location_translations where locale = ?', ['en']);
         foreach ($rows as $cols) {
-            DB::update('update locations set '
+            DB::update(
+                'update locations set '
                 . 'name = ? '
                 . 'where id = ?',
                 [$cols->name,
@@ -231,7 +239,8 @@ class DropTranslationTables extends Migration
 
         $rows = DB::select('select * from what_to_expect_translations where locale = ?', ['en']);
         foreach ($rows as $cols) {
-            DB::update('update what_to_expects set '
+            DB::update(
+                'update what_to_expects set '
                 . 'text = ? '
                 . 'where id = ?',
                 [$cols->text,

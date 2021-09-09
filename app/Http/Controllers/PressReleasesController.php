@@ -8,7 +8,6 @@ use App\Repositories\PressReleaseRepository;
 
 class PressReleasesController extends BaseScopedController
 {
-
     protected $repository;
 
     protected $entity = \App\Models\PressRelease::class;
@@ -48,7 +47,7 @@ class PressReleasesController extends BaseScopedController
 
         $viewData = [
             'wideBody' => true,
-            'filters' => $this->getFilters(range(date('Y'), 2012), range(1,12)),
+            'filters' => $this->getFilters(range(date('Y'), 2012), range(1, 12)),
             'listingCountText' => 'Showing '.$items->total().' press releases',
             'listingItems' => $items,
         ] + $navElements;
@@ -78,7 +77,7 @@ class PressReleasesController extends BaseScopedController
     }
 
 
-    protected function getFilters(Array $yearRange = null, Array $monthRange = null, $baseRoute = 'about.press')
+    protected function getFilters(array $yearRange = null, array $monthRange = null, $baseRoute = 'about.press')
     {
         $filters = [];
 
@@ -189,7 +188,5 @@ class PressReleasesController extends BaseScopedController
             'page' => $item,
             'canonicalUrl' => $canonicalPath,
         ]);
-
     }
-
 }

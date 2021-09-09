@@ -36,5 +36,4 @@ class Galleries
         $label = $this->entity::query()->find($id);
         return $label->title;
     }
-
 }

@@ -68,11 +68,11 @@ class ArticleController extends ModuleController
         ];
     }
 
-    public function getBrowserData($prependScope = []) {
+    public function getBrowserData($prependScope = [])
+    {
         if ($this->request->has('is_unlisted')) {
             $prependScope['is_unlisted'] = $this->request->get('is_unlisted');
         }
         return parent::getBrowserData($prependScope);
     }
-
 }

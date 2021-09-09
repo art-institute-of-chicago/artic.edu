@@ -18,7 +18,6 @@ use App\Helpers\DatesHelpers;
 
 class ArtworkService extends BaseService
 {
-
     public function tags()
     {
         $tags = [];
@@ -85,7 +84,7 @@ class ArtworkService extends BaseService
         // If so, render it regardless of the `ef-` param status
         $isAllTagsAnOrphan = (key($this->tags()) === 'all');
 
-        if ($parameters->has('ef-all_ids') || $isAllTagsAnOrphan ) {
+        if ($parameters->has('ef-all_ids') || $isAllTagsAnOrphan) {
             return $this->getAllTags();
         }
 
@@ -128,9 +127,8 @@ class ArtworkService extends BaseService
             }
         }
 
-        return Arr::where($tags, function($key, $value) {
+        return Arr::where($tags, function ($key, $value) {
             return !empty($value);
         });
     }
-
 }

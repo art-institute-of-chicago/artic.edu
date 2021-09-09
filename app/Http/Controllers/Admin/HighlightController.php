@@ -74,5 +74,4 @@ class HighlightController extends ModuleController
     {
         return $this->repository->getShowData($item);
     }
-
 }

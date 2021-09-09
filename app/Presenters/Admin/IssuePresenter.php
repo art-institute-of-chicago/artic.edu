@@ -6,7 +6,6 @@ use App\Presenters\BasePresenter;
 
 class IssuePresenter extends BasePresenter
 {
-
     private $articlesForLanding;
 
     public function date()
@@ -23,5 +22,4 @@ class IssuePresenter extends BasePresenter
             ->published()
             ->get();
     }
-
 }

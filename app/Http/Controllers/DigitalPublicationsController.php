@@ -10,7 +10,6 @@ use App\Helpers\NavHelpers;
 
 class DigitalPublicationsController extends BaseScopedController
 {
-
     protected $repository;
 
     public function __construct(DigitalPublicationRepository $repository)

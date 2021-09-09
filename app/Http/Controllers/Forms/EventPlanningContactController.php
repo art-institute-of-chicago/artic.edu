@@ -10,12 +10,10 @@ use App\Models\Form\EventPlanningContact;
 
 use App\Mail\FormEventPlanningContact;
 
-
 class EventPlanningContactController extends FormController
 {
     public function index()
     {
-
         $this->title = 'Event Planning Contact';
         $this->seo->setTitle($this->title);
 
@@ -226,7 +224,7 @@ class EventPlanningContactController extends FormController
                 )
             ),
         ];
-        foreach($this->getPreferredContactArray(old('preferred_contact')) as $t) {
+        foreach ($this->getPreferredContactArray(old('preferred_contact')) as $t) {
             array_push($preferredContactFields['blocks'], $t);
         }
         $inquiryFields[] = $preferredContactFields;
@@ -245,7 +243,7 @@ class EventPlanningContactController extends FormController
             ),
         ];
         $items = $this->getHowDidYouHearArray(old('how_did_you_hear'));
-        foreach($items as $key => $d) {
+        foreach ($items as $key => $d) {
             array_push($howDidYouHearFields['blocks'], $d);
         }
         $inquiryFields[] = $howDidYouHearFields;
@@ -282,7 +280,7 @@ class EventPlanningContactController extends FormController
                 )
             ),
         ];
-        foreach($this->getYesNoArray(old('are_you_currently_planning'), 'are_you_currently_planning') as $t) {
+        foreach ($this->getYesNoArray(old('are_you_currently_planning'), 'are_you_currently_planning') as $t) {
             array_push($areYouPlanningFields['blocks'], $t);
         }
         $inquiryFields[] = $areYouPlanningFields;
@@ -300,7 +298,7 @@ class EventPlanningContactController extends FormController
                 )
             ),
         ];
-        foreach($this->getTypeOfEventArray(old('type_of_event')) as $d) {
+        foreach ($this->getTypeOfEventArray(old('type_of_event')) as $d) {
             array_push($typeOfEventFields['blocks'], $d);
         }
         $inquiryFields[] = $typeOfEventFields;
@@ -493,7 +491,6 @@ class EventPlanningContactController extends FormController
      */
     public function store(EventPlanningContactRequest $request)
     {
-
         $validated = $request->validated();
 
         $eventPlanningContact = new EventPlanningContact;
@@ -524,7 +521,6 @@ class EventPlanningContactController extends FormController
             ->send(new FormEventPlanningContact($eventPlanningContact));
 
         return redirect(route('forms.event-planning-contact.thanks'));
-
     }
 
     private function getPreferredContactArray($selected)
@@ -532,7 +528,7 @@ class EventPlanningContactController extends FormController
         $options = array('Email', 'Phone');
 
         $list = [];
-        foreach($options as $value) {
+        foreach ($options as $value) {
             $item = [
               'type' => 'radio',
               'variation' => '',
@@ -563,7 +559,7 @@ class EventPlanningContactController extends FormController
                  'Party Slate', 'Choose Chicago'];
 
         $list = [];
-        foreach($hows as $value) {
+        foreach ($hows as $value) {
             $item = [
               'type' => 'checkbox',
               'variation' => '',
@@ -595,7 +591,7 @@ class EventPlanningContactController extends FormController
         $types = ['Reception', 'Seated dinner', 'Wedding', 'Meeting', 'Performance Program', 'Nonprofit fundraiser'];
 
         $list = [];
-        foreach($types as $value) {
+        foreach ($types as $value) {
             $item = [
               'type' => 'checkbox',
               'variation' => '',
@@ -621,5 +617,4 @@ class EventPlanningContactController extends FormController
 
         return $list;
     }
-
 }

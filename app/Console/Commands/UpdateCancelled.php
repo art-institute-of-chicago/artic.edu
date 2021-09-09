@@ -8,7 +8,6 @@ use Illuminate\Console\Command;
 
 class UpdateCancelled extends Command
 {
-
     protected $signature = 'update:cancelled';
 
     protected $description = 'Prepend cancelled to titles of cancelled events';
@@ -27,7 +26,4 @@ class UpdateCancelled extends Command
             }
         };
     }
-
 }
-
-

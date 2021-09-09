@@ -39,5 +39,4 @@ class GalleryController extends FrontController
             'canonicalUrl' => $canonicalPath,
         ]);
     }
-
 }

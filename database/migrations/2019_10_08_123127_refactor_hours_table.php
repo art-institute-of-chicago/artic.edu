@@ -38,7 +38,6 @@ class RefactorHoursTable extends Migration
         $hour->url = "/visit";
         $hour->published = true;
         $hour->save();
-
     }
 
     /**
@@ -48,7 +47,7 @@ class RefactorHoursTable extends Migration
      */
     public function down()
     {
-       Schema::table('hours', function (Blueprint $table) {
+        Schema::table('hours', function (Blueprint $table) {
             $table->dropColumn('valid_from');
             $table->dropColumn('valid_through');
             $table->dropColumn('title');

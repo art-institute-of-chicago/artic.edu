@@ -40,6 +40,5 @@ class RenameEmailSeriesSustainingFellowsColumns extends Migration
             $table->renameColumn('send_luminary_test', 'send_sustaining_fellow_test');
             $table->renameColumn('override_luminary', 'override_sustaining_fellow');
         });
-
     }
 }

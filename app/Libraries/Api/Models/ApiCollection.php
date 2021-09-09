@@ -10,8 +10,8 @@
 
 namespace App\Libraries\Api\Models;
 
-class ApiCollection extends \Illuminate\Support\Collection {
-
+class ApiCollection extends \Illuminate\Support\Collection
+{
     protected $metadata;
 
     public function getMetadata($name = null)
@@ -39,5 +39,4 @@ class ApiCollection extends \Illuminate\Support\Collection {
 
         return $this;
     }
-
 }

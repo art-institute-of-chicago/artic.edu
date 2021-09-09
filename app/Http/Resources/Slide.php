@@ -138,13 +138,11 @@ class Slide extends JsonResource
 
         if ($this->asset_type === 'standard' && $this->fullwidthmedia_standard_media_type === 'type_video') {
             $src = [UrlHelpers::parseVideoUrl($this->video_url)];
-        }
-        elseif ($this->asset_type === 'standard' && $this->fullwidthmedia_standard_media_type === 'type_image') {
+        } elseif ($this->asset_type === 'standard' && $this->fullwidthmedia_standard_media_type === 'type_image') {
             $src = $this->media->map(function ($image) {
                 return $image->image('experience_image');
             })->toArray();
-        }
-        elseif ($this->asset_type === '3dModel') {
+        } elseif ($this->asset_type === '3dModel') {
             $model3d = $this->model3d()->first();
             if ($model3d) {
                 return [
@@ -159,8 +157,7 @@ class Slide extends JsonResource
 
                 ];
             }
-        }
-        else {
+        } else {
             $src = '';
         }
 
@@ -253,11 +250,9 @@ class Slide extends JsonResource
         if ($this->asset_type === 'standard') {
             if ($this->module_type === 'split') {
                 $mediaType = $this->split_standard_media_type === 'type_image' ? 'image' : 'video';
-            }
-            elseif ($this->module_type === 'fullwidthmedia') {
+            } elseif ($this->module_type === 'fullwidthmedia') {
                 $mediaType = $this->fullwidthmedia_standard_media_type === 'type_image' ? 'image' : 'video';
-            }
-            else {
+            } else {
                 $mediaType = 'image';
             }
         } else {

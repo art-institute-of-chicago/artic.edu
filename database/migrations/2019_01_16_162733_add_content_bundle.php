@@ -26,7 +26,7 @@ class AddContentBundle extends Migration
      */
     public function down()
     {
-        Schema::table('digital_labels', function(Blueprint $table) {
+        Schema::table('digital_labels', function (Blueprint $table) {
             $table->dropColumn('asset_library');
             $table->dropColumn('content_bundle');
         });

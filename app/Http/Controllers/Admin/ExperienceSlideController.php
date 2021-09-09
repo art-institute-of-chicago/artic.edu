@@ -110,5 +110,4 @@ class ExperienceSlideController extends ModuleController
 
         return $this->respondWithError($this->modelTitle . ' was not moved to trash. Something wrong happened!');
     }
-
 }

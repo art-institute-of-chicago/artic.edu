@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-
 use App\Models\Behaviors\HasApiModel;
 
 class TicketedEventType extends AbstractModel
 {
-
     use HasApiModel;
 
     protected $apiModel = 'App\Models\Api\TicketedEventType';
@@ -16,5 +14,4 @@ class TicketedEventType extends AbstractModel
         'datahub_id',
         'title',
     ];
-
 }

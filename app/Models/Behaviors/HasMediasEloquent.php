@@ -29,7 +29,7 @@ trait HasMediasEloquent
             return;
         }
 
-        return $imageObjects->map(function($imageObject) {
+        return $imageObjects->map(function ($imageObject) {
             return $this->convertImageFront($imageObject);
         });
     }

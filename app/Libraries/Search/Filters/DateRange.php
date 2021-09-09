@@ -27,5 +27,4 @@ class DateRange
     {
         return join('–', [preg_replace('/(CE|BCE)/i', ' $1', request()->get('date-start')), preg_replace('/(CE|BCE)/i', ' $1', request()->get('date-end'))]);
     }
-
 }

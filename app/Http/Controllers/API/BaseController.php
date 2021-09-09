@@ -16,13 +16,9 @@ class BaseController extends AbstractController
      */
     public function deleted(Request $request)
     {
-
-        return $this->collect( $request, function( $limit ) {
-
-            return $this->paginateTrashed( $limit );
-
+        return $this->collect($request, function ($limit) {
+            return $this->paginateTrashed($limit);
         });
-
     }
 
     /**
@@ -34,8 +30,6 @@ class BaseController extends AbstractController
      */
     protected function paginateTrashed($limit)
     {
-
         return ($this->model)::onlyTrashed()->paginate($limit);
-
     }
 }

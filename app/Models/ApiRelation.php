@@ -7,5 +7,4 @@ class ApiRelation extends AbstractModel
     protected $fillable = [
         'datahub_id',
     ];
-
 }

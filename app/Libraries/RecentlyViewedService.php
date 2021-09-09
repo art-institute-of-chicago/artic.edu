@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Cookie;
 
 class RecentlyViewedService
 {
-
     const THEMES_PER_CATEGORY = 3;
 
     /**
@@ -22,7 +21,7 @@ class RecentlyViewedService
      * @param  App\Models\Api\Artwork $item
      * @return null
      */
-    function addArtwork($item)
+    public function addArtwork($item)
     {
         $recentlyViewed = $this->getArtworkIds();
 
@@ -45,7 +44,7 @@ class RecentlyViewedService
      *
      * @return null
      */
-    function clear()
+    public function clear()
     {
         Cookie::queue('recently_viewed_artwork', '', 1);
     }
@@ -55,7 +54,7 @@ class RecentlyViewedService
      *
      * @return null
      */
-    function getArtworkIds()
+    public function getArtworkIds()
     {
         $cookie = Cookie::get('recently_viewed_artwork');
 
@@ -68,7 +67,7 @@ class RecentlyViewedService
         return collect($ids);
     }
 
-    function getArtworks()
+    public function getArtworks()
     {
         $ids = $this->getArtworkIds()->take(12);
 
@@ -90,7 +89,7 @@ class RecentlyViewedService
      *
      * @return null
      */
-    function getThemes()
+    public function getThemes()
     {
         $themes = [];
         $ids    = $this->getArtworkIds()->toArray();
@@ -142,7 +141,5 @@ class RecentlyViewedService
         }
 
         return $themes;
-
     }
-
 }

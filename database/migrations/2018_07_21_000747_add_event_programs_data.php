@@ -6,7 +6,6 @@ use App\Models\EventProgram;
 
 class AddEventProgramsData extends Migration
 {
-
     private $programs = [
         "Artist’s Studio",
         "Family Festivals",
@@ -51,14 +50,11 @@ class AddEventProgramsData extends Migration
      */
     public function up()
     {
-
-        foreach ($this->programs as $item)
-        {
+        foreach ($this->programs as $item) {
             $program = EventProgram::firstOrNew(['name' => $item]);
 
             $program->save();
         }
-
     }
 
     /**
@@ -68,16 +64,12 @@ class AddEventProgramsData extends Migration
      */
     public function down()
     {
-
-        foreach ($this->programs as $item)
-        {
+        foreach ($this->programs as $item) {
             $program = EventProgram::where('name', $item)->first();
 
-            if ($program)
-            {
+            if ($program) {
                 $program->delete();
             }
         }
-
     }
 }

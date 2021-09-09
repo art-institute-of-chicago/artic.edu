@@ -14,5 +14,4 @@ class PressReleaseRevision extends Revision
     {
         return $this->belongsTo('App\Models\PressRelease');
     }
-
 }

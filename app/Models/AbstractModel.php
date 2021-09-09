@@ -56,7 +56,8 @@ class AbstractModel extends Model
         return static::published()->find($this->id) !== null;
     }
 
-    public function getPreviewUrl($baseUrl) {
+    public function getPreviewUrl($baseUrl)
+    {
         // $baseUrl is missing protocol, starts with //, and ends with /
         // config('app.url') should have no https://
         return '//' . config('app.url') . '/p/' . encrypt($baseUrl . $this->slug);

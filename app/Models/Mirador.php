@@ -49,7 +49,7 @@ class Mirador extends AbstractModel
 
     public function getMiradorManifest()
     {
-        if ($this->object_id OR $this->file('upload_manifest_file')) {
+        if ($this->object_id or $this->file('upload_manifest_file')) {
             if ($this->file('upload_manifest_file')) {
                 $manifestFile = $this->file('upload_manifest_file');
             } else {

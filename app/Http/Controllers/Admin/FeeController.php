@@ -43,6 +43,5 @@ class FeeController extends ModuleController
         $this->fireEvent();
 
         return redirect()->route('admin.visit.fees.update');
-
     }
 }

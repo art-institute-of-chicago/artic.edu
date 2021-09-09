@@ -168,73 +168,97 @@ class Exhibition extends AbstractModel
                 "name" => 'is_featured',
                 'doc' => 'Is this exhibition in the primary or secondary feature listings on the landing page?',
                 'type' => 'boolean',
-                'value' => function () {return $this->is_featured;},
+                'value' => function () {
+                    return $this->is_featured;
+                },
             ],
             [
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function () {return $this->published;},
+                "value" => function () {
+                    return $this->published;
+                },
             ],
             [
                 "name" => 'title',
                 'doc' => 'The title of  this exhibition',
                 'type' => 'string',
-                'value' => function () {return $this->title;},
+                'value' => function () {
+                    return $this->title;
+                },
             ],
             [
                 "name" => 'header_copy',
                 "doc" => "Header Copy",
                 "type" => "string",
-                "value" => function () {return $this->header_copy;},
+                "value" => function () {
+                    return $this->header_copy;
+                },
             ],
             [
                 "name" => "list_description",
                 "doc" => "list_description",
                 "type" => "string",
-                "value" => function () {return $this->list_description;},
+                "value" => function () {
+                    return $this->list_description;
+                },
             ],
             [
                 "name" => 'content',
                 "doc" => "Content",
                 "type" => "string",
-                "value" => function () {return $this->content;},
+                "value" => function () {
+                    return $this->content;
+                },
             ],
             [
                 "name" => 'image_url',
                 "doc" => "Image URL",
                 "type" => "string",
-                "value" => function () {return Str::startsWith($this->image('hero'), 'http') ? $this->image('hero') : null;},
+                "value" => function () {
+                    return Str::startsWith($this->image('hero'), 'http') ? $this->image('hero') : null;
+                },
             ],
             [
                 "name" => 'web_url',
                 "doc" => "Web URL",
                 "type" => "string",
-                "value" => function () {return route('exhibitions.show', ['id' => $this->datahub_id, 'slug' => $this->getSlug() ]); },
+                "value" => function () {
+                    return route('exhibitions.show', ['id' => $this->datahub_id, 'slug' => $this->getSlug() ]);
+                },
             ],
             [
                 "name" => 'datahub_id',
                 "doc" => "Souce ID",
                 "type" => "string",
-                "value" => function () {return (int) $this->datahub_id;},
+                "value" => function () {
+                    return (int) $this->datahub_id;
+                },
             ],
             [
                 "name" => 'exhibition_message',
                 "doc" => "Message",
                 "type" => "string",
-                "value" => function () {return $this->exhibition_message;},
+                "value" => function () {
+                    return $this->exhibition_message;
+                },
             ],
             [
                 "name" => "public_start_at",
                 "doc" => "Public opening at",
                 "type" => "string",
-                "value" => function () {return $this->public_start_date ? $this->public_start_date->toIso8601String() : null;},
+                "value" => function () {
+                    return $this->public_start_date ? $this->public_start_date->toIso8601String() : null;
+                },
             ],
             [
                 "name" => "public_end_at",
                 "doc" => "Public closing at",
                 "type" => "string",
-                "value" => function () {return $this->public_end_date ? $this->public_end_date->toIso8601String() : null;},
+                "value" => function () {
+                    return $this->public_end_date ? $this->public_end_date->toIso8601String() : null;
+                },
             ],
             [
                 "name" => "date_display",
@@ -249,12 +273,15 @@ class Exhibition extends AbstractModel
                 "name" => 'related',
                 "doc" => "Related Content",
                 "type" => "array",
-                "value" => function () { return $this->transformRelated(); },
+                "value" => function () {
+                    return $this->transformRelated();
+                },
             ],
         ];
     }
 
-    public function getIsFeaturedAttribute() {
+    public function getIsFeaturedAttribute()
+    {
 
         // @see ExhibitionsController::index and relations on Page model
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
@@ -267,7 +294,5 @@ class Exhibition extends AbstractModel
         ])->get(['datahub_id'])->pluck('datahub_id')->all();
 
         return in_array($this->datahub_id, $featuredIds);
-
     }
-
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 
 /**
@@ -69,8 +70,9 @@ class BaseScopedController extends FrontController
      */
     protected function collection()
     {
-        if (!$this->collection)
+        if (!$this->collection) {
             $this->collection = $this->endOfAssociationChain();
+        }
 
         return $this->collection;
     }

@@ -38,5 +38,4 @@ class ArticlePresenter extends BasePresenter
     {
         return route('articles.show', $this->entity);
     }
-
 }

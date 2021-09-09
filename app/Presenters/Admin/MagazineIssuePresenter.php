@@ -2,10 +2,8 @@
 
 namespace App\Presenters\Admin;
 
-
 class MagazineIssuePresenter extends GenericPresenter
 {
-
     protected $linkIndex = 1;
 
     public function hero_text()
@@ -26,5 +24,4 @@ class MagazineIssuePresenter extends GenericPresenter
 
         return '<a ' . $matches[1] . ' data-gtm-event="' . $gtmEvent . '" data-gtm-event-category="header-text-link-' . $this->linkIndex++ . '">' . $matches[2] .'</a>';
     }
-
 }

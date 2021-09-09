@@ -14,7 +14,7 @@ class CreateEventsTables extends Migration
             $table->json('content')->nullable();
 
             $table->string('title');
-            $table->double('price',8,2)->nullable();
+            $table->double('price', 8, 2)->nullable();
             $table->string('datahub_id')->nullable();
             $table->string('admission')->nullable();
             $table->boolean('recurring');

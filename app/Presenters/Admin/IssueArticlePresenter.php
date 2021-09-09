@@ -63,7 +63,7 @@ class IssueArticlePresenter extends BasePresenter
                             ->issue
                             ->present()
                             ->articlesForLanding()
-                            ->map(function($article) use ($currentArticle) {
+                            ->map(function ($article) use ($currentArticle) {
                                 return [
                                     'label' => $article->title_display ?? $article->title,
                                     'sublabel' => $article->showAuthors(),

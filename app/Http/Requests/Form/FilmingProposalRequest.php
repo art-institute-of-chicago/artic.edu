@@ -27,5 +27,4 @@ class FilmingProposalRequest extends FormRequest
             $this->validateCaptcha($validator);
         });
     }
-
 }

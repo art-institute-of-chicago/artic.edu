@@ -15,7 +15,7 @@ class EventRequest extends Request
      */
     public function __construct()
     {
-        Validator::extend('emails', function($attribute, $value, $parameters) {
+        Validator::extend('emails', function ($attribute, $value, $parameters) {
             $values = array_map('trim', array_filter(explode(',', rtrim($this->test_emails, ','))));
 
             if (count($values) < 1) {
@@ -25,7 +25,7 @@ class EventRequest extends Request
             foreach ($values as $email) {
                 $validator = Validator::make([
                     'email' => $email
-                ],[
+                ], [
                     'email' => 'required|email',
                 ]);
 

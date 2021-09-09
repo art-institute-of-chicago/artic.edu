@@ -64,5 +64,4 @@ class DepartmentRepository extends BaseApiRepository
 
         return $fields;
     }
-
 }

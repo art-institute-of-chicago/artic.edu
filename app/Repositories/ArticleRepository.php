@@ -55,7 +55,8 @@ class ArticleRepository extends ModuleRepository
         return $fields;
     }
 
-    public function getArticleLayoutsList() {
+    public function getArticleLayoutsList()
+    {
         return collect($this->model::$articleLayouts);
     }
 
@@ -88,7 +89,7 @@ class ArticleRepository extends ModuleRepository
         if ($item->is_in_magazine && $item->is_unlisted) {
             $relatedIds = $relatedItems->pluck('id')->all();
             $autoRelated = $this->getAlsoInThisIssue($item) ?? collect([]);
-            $autoRelated = $autoRelated->filter(function($item) use ($relatedIds) {
+            $autoRelated = $autoRelated->filter(function ($item) use ($relatedIds) {
                 return !in_array($item->id, $relatedIds);
             });
         } else {
@@ -111,7 +112,7 @@ class ArticleRepository extends ModuleRepository
     {
         return $item
             ->getRelated('further_reading_items')
-            ->filter(function($item) {
+            ->filter(function ($item) {
                 return $item->is_published === true;
             });
     }

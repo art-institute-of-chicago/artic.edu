@@ -7,5 +7,4 @@ class TicketedEventController extends BaseApiController
     protected $moduleName = 'ticketedEvents';
 
     protected $titleColumnKey = 'cmsTitle';
-
 }

@@ -20,7 +20,7 @@ class StaticPagesController extends BaseController
             $pages->slice($offset, $limit)->values(),
             $pages->count(),
             $limit,
-            intdiv($offset,$limit) + 1
+            intdiv($offset, $limit) + 1
         ))->setPath(request()->url());
     }
 
@@ -35,9 +35,10 @@ class StaticPagesController extends BaseController
 
         collect(
             $this->getPages()
-        )->map(function($item) {
-            return new class($item) extends AbstractModel {}; // For transform()
-        })->each(function($item) use ($collection) {
+        )->map(function ($item) {
+            return new class($item) extends AbstractModel {
+            }; // For transform()
+        })->each(function ($item) use ($collection) {
             $collection->push($item);
         });
 

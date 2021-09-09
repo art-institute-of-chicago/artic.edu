@@ -25,7 +25,7 @@ class AddSubtitleColumn extends Migration
      */
     public function down()
     {
-        Schema::table('digital_labels', function(Blueprint $table) {
+        Schema::table('digital_labels', function (Blueprint $table) {
             $table->dropColumn('sub_title');
         });
     }

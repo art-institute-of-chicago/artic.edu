@@ -20,7 +20,6 @@ class CreateHomeFeatureSelectionTable extends Migration
             createDefaultRelationshipTableFields($table, 'selection', 'home_feature');
             $table->integer('position')->unsigned()->index();
         });
-
     }
 
     /**

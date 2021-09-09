@@ -6,7 +6,8 @@ use App\Presenters\BasePresenter;
 
 class ArtistPresenter extends BasePresenter
 {
-    public function itemprops() {
+    public function itemprops()
+    {
         return [
             'sameAs' => $this->entity->ulan_uri,
             'birthPlace' => $this->entity->birth_place,

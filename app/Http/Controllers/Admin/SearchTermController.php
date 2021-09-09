@@ -30,5 +30,4 @@ class SearchTermController extends ModuleController
     ];
 
     protected $defaultOrders = ['position' => 'asc'];
-
 }

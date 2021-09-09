@@ -69,7 +69,7 @@ class Lightbox extends AbstractModel
 
     public function getVariationClassAttribute()
     {
-        switch($this->variation) {
+        switch ($this->variation) {
             case self::VARIATION_TICKETING:
                 return 'ticketing';
                 break;

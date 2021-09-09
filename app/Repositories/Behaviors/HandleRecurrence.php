@@ -12,7 +12,7 @@ trait HandleRecurrence
         $object->eventMetas()->delete();
 
         // Create dates in all ocurrences
-        foreach($rules as $occurrence) {
+        foreach ($rules as $occurrence) {
             $date = clone ($occurrence);
 
             // Force rewind the date to the beginning of the day

@@ -40,5 +40,4 @@ class PrintedPublicationRepository extends ModuleRepository
 
         ];
     }
-
 }

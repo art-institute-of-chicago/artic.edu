@@ -24,7 +24,8 @@ class DigitalPublicationSectionRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getTypesList() {
+    public function getTypesList()
+    {
         return collect($this->model::$types);
     }
 

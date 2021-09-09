@@ -11,16 +11,12 @@ use App\Libraries\ExactTargetService;
 use App\Models\ExactTargetList;
 use App\Models\Form\EmailSubscriptions;
 
-
-
 class EmailSubscriptionsController extends FormController
 {
-
     protected $old = null;
 
     public function index(\Illuminate\Http\Request $request)
     {
-
         $withErrors = [];
 
         if (request('e')) {
@@ -35,21 +31,17 @@ class EmailSubscriptionsController extends FormController
                 foreach ($response->results[0]->Properties->Property as $index => $keyval) {
                     if ($keyval->Name == 'Email') {
                         $old->email = $keyval->Value;
-                    }
-                    elseif ($keyval->Name == 'FirstName') {
+                    } elseif ($keyval->Name == 'FirstName') {
                         $old->first_name = $keyval->Value;
-                    }
-                    elseif ($keyval->Name == 'LastName') {
+                    } elseif ($keyval->Name == 'LastName') {
                         $old->last_name = $keyval->Value;
-                    }
-                    elseif ($keyval->Value == 'True') {
+                    } elseif ($keyval->Value == 'True') {
                         $subscriptions[] = $keyval->Name;
                     }
                 }
                 $old->subscriptions = $subscriptions;
                 $this->old = $old;
-            }
-            else {
+            } else {
                 $withErrors['message'] = "Your e-mail address is not currently subscribed. Please fill out and submit the form below to begin receiving messages from the Art Institute of Chicago.";
             }
         }
@@ -82,7 +74,7 @@ class EmailSubscriptionsController extends FormController
                 )
             ),
         ];
-        foreach($this->getSubscriptionsArray($this->old('subscriptions')) as $d) {
+        foreach ($this->getSubscriptionsArray($this->old('subscriptions')) as $d) {
             array_push($subFields['blocks'], $d);
         }
         $subscriptionsFields[] = $subFields;
@@ -267,15 +259,13 @@ class EmailSubscriptionsController extends FormController
                     return redirect(route('forms.email-subscriptions'))->withErrors(['email' => 'This email address does not exist in our email list. Please check the address and try again.']);
                 }
             }
-        }
-        else {
+        } else {
             $response = $exactTarget->subscribe();
         }
 
         if ($response === true) {
             return redirect(route('forms.email-subscriptions.thanks'));
-        }
-        else {
+        } else {
             abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
         }
     }
@@ -286,7 +276,7 @@ class EmailSubscriptionsController extends FormController
         $subs = ExactTargetList::getList();
 
         $list = [];
-        foreach($subs as $value => $label) {
+        foreach ($subs as $value => $label) {
             $item = [
               'type' => 'checkbox',
               'variation' => '',
@@ -318,7 +308,8 @@ class EmailSubscriptionsController extends FormController
         return $list;
     }
 
-    private function old($field) {
+    private function old($field)
+    {
         return $this->old->$field ?? old($field);
     }
 }

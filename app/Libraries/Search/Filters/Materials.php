@@ -29,5 +29,4 @@ class Materials extends BaseFilteredList
     {
         return ucfirst($key);
     }
-
 }

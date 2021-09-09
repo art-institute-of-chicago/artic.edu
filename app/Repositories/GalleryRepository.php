@@ -14,5 +14,4 @@ class GalleryRepository extends BaseApiRepository
     {
         $this->model = $model;
     }
-
 }

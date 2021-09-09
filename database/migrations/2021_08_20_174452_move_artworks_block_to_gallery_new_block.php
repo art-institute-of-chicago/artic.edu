@@ -38,7 +38,8 @@ class MoveArtworksBlockToGalleryNewBlock extends Migration
             }
 
             // Update block top gallery_new
-            DB::update('update blocks set '
+            DB::update(
+                'update blocks set '
                 . 'content = ?, '
                 . 'type = ? '
                 . 'where id = ?',

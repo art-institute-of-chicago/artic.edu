@@ -44,7 +44,6 @@ class ArtworkPresenter extends BasePresenter
                 return $image['src'];
             }
         }
-
     }
 
     /**
@@ -206,7 +205,8 @@ class ArtworkPresenter extends BasePresenter
         ];
     }
 
-    protected function getIiifManifestUrl() {
+    protected function getIiifManifestUrl()
+    {
         return str_replace('-', '&#8209;', config('api.public_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json');
     }
 
@@ -215,7 +215,7 @@ class ArtworkPresenter extends BasePresenter
         $details = [];
 
         if ($this->entity->artist_pivots != null && count($this->entity->artist_pivots) > 0) {
-            $artistPivots = collect($this->entity->artist_pivots)->filter(function($item) {
+            $artistPivots = collect($this->entity->artist_pivots)->filter(function ($item) {
                 // WEB-118, WEB-1026: Ensure that all relationships point to existing items
                 return isset($item->artist_id) && isset($item->artist_title);
             });
@@ -228,7 +228,7 @@ class ArtworkPresenter extends BasePresenter
 
             if ($preferredArtist) {
                 // Remove this item from the pivot list so it doesn't get duplicated
-                $artistPivots = $artistPivots->filter(function($item) use ($preferredArtist) {
+                $artistPivots = $artistPivots->filter(function ($item) use ($preferredArtist) {
                     return $item != $preferredArtist;
                 });
 
@@ -242,15 +242,15 @@ class ArtworkPresenter extends BasePresenter
                 }
             }
 
-            $artistPivots->filter(function($item) {
+            $artistPivots->filter(function ($item) {
                 return $item->role_id === 555;
-            })->each(function($item) use (&$cultureLinks) {
+            })->each(function ($item) use (&$cultureLinks) {
                 $cultureLinks[] = $this->getArtistLink($item);
             });
 
-            $artistPivots->filter(function($item) {
+            $artistPivots->filter(function ($item) {
                 return $item->role_id !== 555;
-            })->each(function($item) use (&$artistLinks) {
+            })->each(function ($item) use (&$artistLinks) {
                 $artistLinks[] = $this->getArtistLink($item);
             });
 
@@ -292,7 +292,7 @@ class ArtworkPresenter extends BasePresenter
         ]));
 
         if ($this->entity->place_pivots != null && count($this->entity->place_pivots) > 0) {
-            $places = collect($this->entity->place_pivots)->map(function($item) {
+            $places = collect($this->entity->place_pivots)->map(function ($item) {
                 $title = $item->place_title;
                 return  $item->qualifier_title ? $title . " ({$item->qualifier_title})" : $title;
             });
@@ -313,24 +313,23 @@ class ArtworkPresenter extends BasePresenter
         }
 
         // WEB-2267: Abstract this into a proper method, somewhere appropriate
-        $generateDateRangeHref = function( $date_start, $date_end ) {
+        $generateDateRangeHref = function ($date_start, $date_end) {
             return route('collection', [
-                'date-start' => abs($date_start) . ( $date_start < 0 ? 'BCE' : '' ),
-                'date-end' => abs($date_end) . ( $date_end < 0 ? 'BCE' : '' ),
+                'date-start' => abs($date_start) . ($date_start < 0 ? 'BCE' : ''),
+                'date-end' => abs($date_end) . ($date_end < 0 ? 'BCE' : ''),
             ]);
         };
 
         if ($this->entity->dates != null && count($this->entity->dates) > 0) {
-            $dates = collect($this->entity->dates)->map(function($item) use ($generateDateRangeHref) {
-
+            $dates = collect($this->entity->dates)->map(function ($item) use ($generateDateRangeHref) {
                 $date_start = Carbon::parse($item->date_earliest)->year;
                 $date_end = Carbon::parse($item->date_latest)->year;
 
                 $joined = join('-', array_unique([DatesHelpers::convertArtworkDates($date_start), DatesHelpers::convertArtworkDates($date_end)]));
 
                 return [
-                    'label' => join(' ', [ $item->qualifier_title, $joined ] ),
-                    'href' => $generateDateRangeHref( $date_start, $date_end ),
+                    'label' => join(' ', [ $item->qualifier_title, $joined ]),
+                    'href' => $generateDateRangeHref($date_start, $date_end),
                 ];
             });
             $details[] = [
@@ -345,7 +344,7 @@ class ArtworkPresenter extends BasePresenter
                     'itemprop' => 'dateCreated',
                     'links' => [[
                         'label' => join(' ', [($this->entity->date_qualifier_title ?? ''), $this->entity->date_block]), // @see getDateBlockAttribute
-                        'href' => $generateDateRangeHref( $this->entity->date_start, $this->entity->date_end ),
+                        'href' => $generateDateRangeHref($this->entity->date_start, $this->entity->date_end),
                     ]],
                 ];
             }
@@ -409,7 +408,7 @@ class ArtworkPresenter extends BasePresenter
             'links' => [],
         ];
 
-        foreach($resultsByType as $type => $medias) {
+        foreach ($resultsByType as $type => $medias) {
             $localBlock['links'] = array_merge($localBlock['links'], $medias->toArray());
         }
 
@@ -429,9 +428,8 @@ class ArtworkPresenter extends BasePresenter
             'provenance_text'     => 'Provenance'
         ]);
 
-        if ($this->entity->catalogues)
-        {
-            $rows = $this->entity->catalogues->map(function($item) {
+        if ($this->entity->catalogues) {
+            $rows = $this->entity->catalogues->map(function ($item) {
                 $content = "{$item->catalogue_title} {$item->number} {$item->state_edition}";
                 return [
                     "type" => 'text',
@@ -453,8 +451,7 @@ class ArtworkPresenter extends BasePresenter
             $content[] = $this->buildMultimediaBlocks($resultsByType, 'Multimedia');
         }
 
-        if ($this->entity->educationalResources && $this->entity->educationalResources->isNotEmpty())
-        {
+        if ($this->entity->educationalResources && $this->entity->educationalResources->isNotEmpty()) {
             $resultsByType = $this->entity->educationalResources->groupBy('api_model')->sort();
             $content[] = $this->buildMultimediaBlocks($resultsByType, 'Educational Resources');
         }
@@ -485,14 +482,14 @@ class ArtworkPresenter extends BasePresenter
                 $explodedKeys = explode("\n", $this->entity->$key);
                 $blockHtml = '';
                 if (count($explodedKeys) < 2) {
-                    foreach($explodedKeys as $txt) {
+                    foreach ($explodedKeys as $txt) {
                         if (!empty($txt)) {
                             $blockHtml .= '<p>'.$txt.'</p>';
                         }
                     }
                 } else {
                     $blockHtml .= '<ul>';
-                    foreach($explodedKeys as $txt) {
+                    foreach ($explodedKeys as $txt) {
                         if (!empty($txt)) {
                             $blockHtml .= '<li>'.$txt.'</li>';
                         }
@@ -510,7 +507,8 @@ class ArtworkPresenter extends BasePresenter
         return $blocks;
     }
 
-    public function buildSchemaItemProps() {
+    public function buildSchemaItemProps()
+    {
         $itemprops = [
             'accessMode'            => 'visual',
             'alternativeHeadline'   => (!empty($this->entity->alt_titles)) ? implode(', ', $this->entity->alt_titles) : null,

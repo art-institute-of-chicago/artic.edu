@@ -41,5 +41,4 @@ class DepartmentController extends FrontController
             'canonicalUrl' => $canonicalPath,
         ]);
     }
-
 }

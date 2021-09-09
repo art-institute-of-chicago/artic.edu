@@ -17,8 +17,8 @@ trait HasRelated
     public function transformRelated()
     {
         return $this->relatedItems->map(function ($item) {
-                return $this->transformRelatedItem($item, 'related');
-            })
+            return $this->transformRelatedItem($item, 'related');
+        })
             ->union($this->relatedTos->map(function ($item) {
                 return $this->transformRelatedItem($item, 'subject');
             }))

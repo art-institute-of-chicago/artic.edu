@@ -33,7 +33,7 @@ trait HasAuthors
     public function showAuthorsWithLinks()
     {
         if ($this->authors->isNotEmpty()) {
-            $links = $this->authors->map(function($author) {
+            $links = $this->authors->map(function ($author) {
                 if (!$author->published) {
                     return $author->title;
                 }

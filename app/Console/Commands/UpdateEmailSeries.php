@@ -10,7 +10,6 @@ use Illuminate\Console\Command;
 
 class UpdateEmailSeries extends Command
 {
-
     protected $signature = 'update:email-series';
 
     protected $description = 'Prime email series data';
@@ -149,12 +148,10 @@ class UpdateEmailSeries extends Command
         DB::table('email_series')->truncate();
         Schema::enableForeignKeyConstraints();
 
-        foreach ($this->emailSeries as $key => $values)
-        {
+        foreach ($this->emailSeries as $key => $values) {
             $series = EmailSeries::firstOrNew(['title' => $key]);
             $series->fill($values);
             $series->save();
         }
     }
-
 }

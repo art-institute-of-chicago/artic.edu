@@ -13,7 +13,6 @@ use Aic\Hub\Foundation\AbstractCommand as BaseCommand;
 
 class EventImport extends BaseCommand
 {
-
     protected $signature = 'event:import';
 
     protected $description = 'Import associations between CMS and ticketed events';
@@ -47,7 +46,7 @@ class EventImport extends BaseCommand
             $event->buy_button_text = $record['buy_button_text'];
             $event->buy_button_caption = $record['buy_button_caption'];
 
-            Event::withoutEvents(function() use ($event) {
+            Event::withoutEvents(function () use ($event) {
                 $event->save();
             });
 
@@ -75,7 +74,7 @@ class EventImport extends BaseCommand
 
             $event->is_ticketed = $record['is_ticketed'] === '1';
 
-            Event::withoutEvents(function() use ($event) {
+            Event::withoutEvents(function () use ($event) {
                 $event->save();
             });
 

@@ -4,17 +4,20 @@ namespace App\Helpers;
 
 use \Carbon\Carbon;
 
-class DatesHelpers {
-
-    public static function printDay($date) {
+class DatesHelpers
+{
+    public static function printDay($date)
+    {
         return \Carbon\Carbon::parse($date)->format('D');
     }
 
-    public static function printDate($date) {
+    public static function printDate($date)
+    {
         return \Carbon\Carbon::parse($date)->format('d');
     }
 
-    public static function printMonth($date) {
+    public static function printMonth($date)
+    {
         return \Carbon\Carbon::parse($date)->format('M');
     }
 
@@ -22,7 +25,8 @@ class DatesHelpers {
      * Format a year date.
      * Formatting cues taken from the dateRangeValues in frontend/js/app.js
      */
-    public static function printYear($date) {
+    public static function printYear($date)
+    {
         if (!is_int($date)) {
             return null;
         }
@@ -38,14 +42,15 @@ class DatesHelpers {
         return $date;
     }
 
-    public static function hoursSelectOptions($shortlist = false, $startAt = 0, $endAt = 24) {
+    public static function hoursSelectOptions($shortlist = false, $startAt = 0, $endAt = 24)
+    {
         $hours = [];
 
-        for($i = $startAt; $i < $endAt; $i++) {
+        for ($i = $startAt; $i < $endAt; $i++) {
             $hour = ($i % 12 ?? 12);
             $ampm = ($i >= 12 ? 'pm' : 'am');
             $mins = $shortlist ? ['00', '30'] : ['00', '15', '30', '45'];
-            foreach($mins as $time) {
+            foreach ($mins as $time) {
                 // Save hours on DatetimeInterval format to be added later
                 $hours["PT{$i}H{$time}M"] = ($hour == 0 ? "12" : "{$hour}") .":{$time}{$ampm}";
             }
@@ -54,15 +59,16 @@ class DatesHelpers {
         return collect($hours);
     }
 
-    public static function convertArtworkDates($date) {
+    public static function convertArtworkDates($date)
+    {
         if (!$date) {
             return null;
         }
         $formatdate = "";
 
-        if($date < 0) {
+        if ($date < 0) {
             $formatdate = abs($date) . " BCE";
-        } else if($date < 1000) {
+        } elseif ($date < 1000) {
             $formatdate = $date . " CE";
         } else {
             $formatdate = $date;
@@ -71,7 +77,8 @@ class DatesHelpers {
         return $formatdate;
     }
 
-    public static function yearIncrements() {
+    public static function yearIncrements()
+    {
         return [
             -8000, -7000, -6000, -5000, -4000, -3000, -2000, -1000,
             1, 500, 1000, 1200, 1400, 1600, 1700, 1800,
@@ -79,23 +86,21 @@ class DatesHelpers {
             2000, 2010, 2020];
     }
 
-    public static function incrementBefore($date) {
+    public static function incrementBefore($date)
+    {
         $prev = 0;
-        foreach (static::yearIncrements() as $year)
-        {
-            if ($year > $date)
-            {
+        foreach (static::yearIncrements() as $year) {
+            if ($year > $date) {
                 return $prev;
             }
             $prev = $year;
         }
     }
 
-    public static function incrementAfter($date) {
-        foreach (static::yearIncrements() as $year)
-        {
-            if ($year > $date)
-            {
+    public static function incrementAfter($date)
+    {
+        foreach (static::yearIncrements() as $year) {
+            if ($year > $date) {
                 return $year;
             }
         }

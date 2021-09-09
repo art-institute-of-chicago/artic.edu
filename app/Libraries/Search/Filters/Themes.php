@@ -36,5 +36,4 @@ class Themes
         $label = $this->entity::query()->find($id);
         return $label->title;
     }
-
 }

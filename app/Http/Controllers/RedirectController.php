@@ -7,7 +7,6 @@ use Illuminate\Routing\Controller as BaseController;
 
 class RedirectController extends BaseController
 {
-
     public function today()
     {
         $today = Carbon::today()->format('m/d/Y');
@@ -17,5 +16,4 @@ class RedirectController extends BaseController
             ->header('Cache-Control', 'public')
             ->header('Expires', Carbon::tomorrow()->toRfc7231String());
     }
-
 }

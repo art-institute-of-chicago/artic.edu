@@ -7,7 +7,6 @@ use Illuminate\Console\Command;
 
 class InvalidateCloudfront extends Command
 {
-
     protected $signature = 'cache:invalidate-cloudfront {urls?*}';
 
     protected $description = 'Invalidate cloudfront distribution.';
@@ -22,5 +21,4 @@ class InvalidateCloudfront extends Command
             $this->info('Cloudfront invalidation request sent!');
         }
     }
-
 }

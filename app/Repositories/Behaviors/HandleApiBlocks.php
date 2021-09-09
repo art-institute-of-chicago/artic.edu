@@ -8,7 +8,6 @@ use App\Helpers\UrlHelpers;
 
 trait HandleApiBlocks
 {
-
     protected function getBlockBrowsers($block)
     {
         return collect($block['content']['browsers'])->mapWithKeys(function ($ids, $relation) use ($block) {
@@ -88,5 +87,4 @@ trait HandleApiBlocks
             return app(config('twill.namespace') . "\\Repositories\\" . ucfirst($model) . "Repository");
         }
     }
-
 }

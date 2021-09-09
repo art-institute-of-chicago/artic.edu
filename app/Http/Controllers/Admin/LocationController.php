@@ -33,5 +33,4 @@ class LocationController extends ModuleController
     {
         return [];
     }
-
 }

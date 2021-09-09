@@ -23,7 +23,7 @@ class MoveRedirectsFromGenericPagesToVanityRedirectModule extends Migration
         foreach ($existingRedirects as $genericPage) {
             $redirect = VanityRedirect::firstOrNew(['path' => Str::after($genericPage->getUrl(), '/')]);
             $redirect->destination = Str::startsWith($genericPage->redirect_url, '/') ? Str::after($genericPage->redirect_url, '/') : $genericPage->redirect_url;
-            $redirect->published = TRUE;
+            $redirect->published = true;
             $redirect->save();
         }
 

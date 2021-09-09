@@ -11,7 +11,6 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class ExhibitionPressRoom extends AbstractModel
 {
-
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent;
 
     protected $fillable = [

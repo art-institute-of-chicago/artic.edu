@@ -16,7 +16,6 @@ use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasUnlisted;
 
-
 class Highlight extends AbstractModel
 {
     use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated, HasUnlisted, HasAuthors;
@@ -127,7 +126,7 @@ class Highlight extends AbstractModel
         return $this->short_copy;
     }
 
-     public function getTrackingTitleAttribute()
+    public function getTrackingTitleAttribute()
     {
         return $this->title;
     }
@@ -209,51 +208,66 @@ class Highlight extends AbstractModel
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function () {return $this->published;},
+                "value" => function () {
+                    return $this->published;
+                },
             ],
             [
                 "name" => 'publish_start_date',
                 "doc" => "Publish Start Date",
                 "type" => "datetime",
-                "value" => function() { return $this->publish_start_date; }
+                "value" => function () {
+                    return $this->publish_start_date;
+                }
             ],
             [
                 "name" => 'publish_end_date',
                 "doc" => "Publish End Date",
                 "type" => "datetime",
-                "value" => function() { return $this->publish_end_date; }
+                "value" => function () {
+                    return $this->publish_end_date;
+                }
             ],
             [
                 "name" => 'updated_at',
                 "doc" => "Updated",
                 "type" => "date",
-                "value" => function () {return $this->updated_at;},
+                "value" => function () {
+                    return $this->updated_at;
+                },
             ],
             [
                 "name" => 'content',
                 "doc" => "Content",
                 "type" => "text",
-                "value" => function () {return $this->blocks;},
+                "value" => function () {
+                    return $this->blocks;
+                },
             ],
             [
                 "name" => 'short_copy',
                 "doc" => "Short Copy",
                 "type" => "text",
-                "value" => function () {return $this->short_copy;},
+                "value" => function () {
+                    return $this->short_copy;
+                },
             ],
             [
                 "name" => "slug",
                 "doc" => "slug",
                 "type" => "string",
-                "value" => function () {return $this->slug;},
+                "value" => function () {
+                    return $this->slug;
+                },
             ],
             [
                 "name" => "web_url",
                 "doc" => "web_url",
                 "type" => "string",
-                "value" => function () {return url(route('highlights.show', $this));},
+                "value" => function () {
+                    return url(route('highlights.show', $this));
+                },
             ],
         ];
     }
-
 }

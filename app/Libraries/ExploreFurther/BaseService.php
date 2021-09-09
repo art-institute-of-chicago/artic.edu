@@ -100,12 +100,11 @@ class BaseService
             if ($this->resource->birth_date && $this->resource->birth_date) {
                 $tags['date'] = collect([$this->resource->birth_date .'|' .$this->resource->death_date => DatesHelpers::printYear($this->resource->birth_date) ."–" .DatesHelpers::printYear($this->resource->death_date)]);
             }
-        }
-        else {
+        } else {
             // Build Classification Tags
             $classification = collect([]);
             if ($this->resource->id) {
-                foreach($this->aggregations()->classifications->buckets as $index => $item) {
+                foreach ($this->aggregations()->classifications->buckets as $index => $item) {
                     if ($index == self::MAX_TAGS) {
                         break;
                     }
@@ -129,15 +128,14 @@ class BaseService
             ->resources(['artworks'])
             ->forceEndpoint('search');
 
-        $active = $parameters->filter(function($value, $key) {
+        $active = $parameters->filter(function ($value, $key) {
             return Str::contains($key, 'ef-');
         })->isNotEmpty();
 
         if ($active) {
             if ($parameters->get('ef-most-similar_ids')) {
                 $query->byMostSimilar($this->resource->id, get_class($this->resource));
-            }
-            else {
+            } else {
                 $years = explode('|', $parameters->get('ef-date_ids'));
 
                 $beforeYear = Str::contains($parameters->get('ef-date_ids'), '|') ? $years[0] : DatesHelpers::incrementBefore($parameters->get('ef-date_ids'));
@@ -193,7 +191,7 @@ class BaseService
         // Remove our own element from the collection, but only if there's more than one result
         if ($results->count() > 1) {
             $item = $this->resource;
-            $results = $results->filter(function($value, $key) use ($item) {
+            $results = $results->filter(function ($value, $key) use ($item) {
                 return ($item->id != $value->id);
             });
         }
@@ -210,7 +208,7 @@ class BaseService
                 if (in_array($key, self::VALID_FILTERS)) {
                     switch ($key) {
                         case 'ef-date_ids':
-                            return route('collection', ['date-start' => str_replace(' ','', DatesHelpers::printYear(DatesHelpers::incrementBefore($value))),
+                            return route('collection', ['date-start' => str_replace(' ', '', DatesHelpers::printYear(DatesHelpers::incrementBefore($value))),
                                                         'date-end' => str_replace(' ', '', DatesHelpers::printYear(DatesHelpers::incrementAfter($value)))]);
                             break;
                         case 'ef-color_ids':
@@ -254,5 +252,4 @@ class BaseService
             }
         }
     }
-
 }

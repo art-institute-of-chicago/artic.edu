@@ -16,7 +16,7 @@ class SlideModal extends JsonResource
      */
     public function toArray($request)
     {
-        switch($this->modal_type) {
+        switch ($this->modal_type) {
             case 'image':
                 return [
                     '__mediaType' => 'image',

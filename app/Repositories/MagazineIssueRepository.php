@@ -82,5 +82,4 @@ class MagazineIssueRepository extends ModuleRepository
                 $magazineItem->save();
             });
     }
-
 }

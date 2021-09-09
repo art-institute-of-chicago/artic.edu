@@ -83,7 +83,7 @@ class IssueArticle extends AbstractModel implements Sortable
         parent::scopePublished($query);
 
         // ...and the parent issue has to be published as well
-        return $query->whereHas('issue', function($subquery) {
+        return $query->whereHas('issue', function ($subquery) {
             $subquery->published();
         });
     }

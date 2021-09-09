@@ -13,19 +13,13 @@ class FormModel extends Model
         $ret = "Field | Value\n";
         $ret .= "--- | ---\n";
 
-        foreach ($this->getAttributes() as $key => $value)
-        {
-            if (in_array($key, $this->dates))
-            {
+        foreach ($this->getAttributes() as $key => $value) {
+            if (in_array($key, $this->dates)) {
                 $ret .= $key ." | " .($value ? Carbon::parse($value)->toFormattedDateString() : '') ."\n";
-            }
-            else {
-                if (is_array($value))
-                {
-                    $ret .= $key ." | " .implode(',',$value) ."\n";
-                }
-                else
-                {
+            } else {
+                if (is_array($value)) {
+                    $ret .= $key ." | " .implode(',', $value) ."\n";
+                } else {
                     $ret .= $key ." | " .$value ."\n";
                 }
             }

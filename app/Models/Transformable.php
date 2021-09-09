@@ -13,9 +13,7 @@ trait Transformable
      */
     public function transform($withTitles = false)
     {
-
         return $this->transformFields($withTitles);
-
     }
 
 
@@ -26,25 +24,19 @@ trait Transformable
      */
     public function transformFields($withTitles = false)
     {
-
         $fields = $this->transformMapping();
 
-        if ($withTitles)
-        {
-            $fields = array_merge( $fields, $this->transformTitles() );
+        if ($withTitles) {
+            $fields = array_merge($fields, $this->transformTitles());
         }
 
         $out = [];
 
-        foreach ($fields as $field)
-        {
-
-            $out[ $field["name"] ] = call_user_func( $field["value"] );
-
+        foreach ($fields as $field) {
+            $out[ $field["name"] ] = call_user_func($field["value"]);
         }
 
         return $out;
-
     }
 
 
@@ -55,9 +47,7 @@ trait Transformable
      */
     protected function transformTitles()
     {
-
         return [];
-
     }
 
 
@@ -77,9 +67,7 @@ trait Transformable
      */
     protected function transformMapping()
     {
-
         return $this->transformMappingInternal();
-
     }
 
     /**
@@ -87,8 +75,6 @@ trait Transformable
      */
     protected function transformMappingInternal()
     {
-
         return [];
-
     }
 }

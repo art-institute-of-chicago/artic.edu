@@ -15,7 +15,7 @@ class EventTest extends TestCase
     public function it_loads_events_by_program()
     {
         $eventProgram = factory(EventProgram::class)->create();
-        $events = factory(Event::class, 2)->create()->each(function($event) use ($eventProgram) {
+        $events = factory(Event::class, 2)->create()->each(function ($event) use ($eventProgram) {
             $event->programs()->attach($eventProgram->id);
             $event->eventMetas()->save(factory(EventMeta::class)->make(['event_id' => $event->id]));
             $event->save();
@@ -26,8 +26,7 @@ class EventTest extends TestCase
         $response->assertStatus(200);
 
         // See two events
-        foreach ($events as $event)
-        {
+        foreach ($events as $event) {
             $response->assertSee($event->title);
         }
 

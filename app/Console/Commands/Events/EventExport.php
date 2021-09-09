@@ -11,7 +11,6 @@ use Aic\Hub\Foundation\AbstractCommand as BaseCommand;
 
 class EventExport extends BaseCommand
 {
-
     protected $signature = 'event:export';
 
     protected $description = 'Export associations between CMS and ticketed events';
@@ -64,5 +63,4 @@ class EventExport extends BaseCommand
     {
         return Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix() . $this->filename;
     }
-
 }

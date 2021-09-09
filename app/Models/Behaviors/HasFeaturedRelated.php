@@ -90,10 +90,9 @@ trait HasFeaturedRelated
 
     protected function getFilteredRelatedItems($relatedItems)
     {
-
         $now = Carbon::now();
 
-        return $relatedItems->filter(function($relatedItem) use ($now) {
+        return $relatedItems->filter(function ($relatedItem) use ($now) {
             // WEB-2265: Verify that we don't need to check if the exhibition is in the future?
             if (get_class($relatedItem) === \App\Models\Api\Exhibition::class) {
                 return true;
@@ -128,7 +127,7 @@ trait HasFeaturedRelated
     private function getDefaultRelatedPool()
     {
         // WEB-2046: Storing this in memcached causes a segfault, try again after WEB-1531
-        return Cache::store('file')->remember('default-content-pool', 60 * 60, function() {
+        return Cache::store('file')->remember('default-content-pool', 60 * 60, function () {
             $poolSize = 20;
 
             // Avoid accidentally seeding the pool with draft items during preview mode
@@ -148,7 +147,7 @@ trait HasFeaturedRelated
                 ->merge($highlights)
                 ->merge($experiences)
                 ->merge($videos)
-                ->filter(function($item) {
+                ->filter(function ($item) {
                     return $item->imageFront('hero') !== null;
                 })
                 ->sortBy('updated_at')
@@ -162,14 +161,14 @@ trait HasFeaturedRelated
     {
         $forbiddenItemHashes = (clone $customRelatedItems)
             ->push($this)
-            ->map(function($relatedItem) {
+            ->map(function ($relatedItem) {
                 return $this->getRelatedItemHash($relatedItem);
             })
             ->values()
             ->all();
 
         return $this->getDefaultRelatedPool()
-            ->filter(function($relatedItem) use ($forbiddenItemHashes) {
+            ->filter(function ($relatedItem) use ($forbiddenItemHashes) {
                 return !in_array($this->getRelatedItemHash($relatedItem), $forbiddenItemHashes);
             })
             ->random($this->targetItemCount)
@@ -230,5 +229,4 @@ trait HasFeaturedRelated
 
         return $labeledRelatedItems;
     }
-
 }

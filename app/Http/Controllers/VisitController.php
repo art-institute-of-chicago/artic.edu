@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 
 class VisitController extends FrontController
 {
-
     public function index()
     {
         app()->setLocale(request('lang') ?? 'en');
@@ -197,5 +196,4 @@ class VisitController extends FrontController
             'itemprops' => $itemprops,
         ]);
     }
-
 }

@@ -167,13 +167,13 @@ class RenameCatalogsToPublications extends Migration
                 ->references('id')
                 ->on(Str::plural($newSecondTableName))
                 ->onDelete('cascade');
-            $table->index([
+            $table->index(
+                [
                     "{$newSecondTableName}_id",
                     "{$newFirstTableName}_id"
                 ],
                 "idx_{$newFirstTableName}_{$newSecondTableName}_" . Str::random(5) // But why?
             );
         });
-
     }
 }

@@ -25,7 +25,6 @@ class RenameTableDigitalLabelsToInteractiveFeatures extends Migration
         Schema::table('experiences', function (Blueprint $table) {
             $table->renameColumn('digital_label_id', 'interactive_feature_id');
         });
-
     }
 
     /**

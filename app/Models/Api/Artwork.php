@@ -123,7 +123,6 @@ class Artwork extends BaseApiModel
         if (!empty($this->catalogue_pivots)) {
             return collect($this->catalogue_pivots);
         }
-
     }
 
     public function getDateBlockAttribute()
@@ -458,7 +457,7 @@ class Artwork extends BaseApiModel
                 ->merge($this->getMostSimilarIds());
         }
 
-        $query->where(function($subquery) use ($relatedArtworkIds) {
+        $query->where(function ($subquery) use ($relatedArtworkIds) {
             foreach ($relatedArtworkIds as $id) {
                 $subquery->orWhereJsonContains('content->browsers->artworks', $id);
             }
@@ -508,7 +507,7 @@ class Artwork extends BaseApiModel
             ->forceEndpoint('search')
             ->byMostSimilar($this->id, get_class($this), true)
             ->getPaginatedModel(13, self::SEARCH_FIELDS)
-            ->filter(function($value, $key) {
+            ->filter(function ($value, $key) {
                 return ($this->id != $value->id);
             })
             ->pluck('id')

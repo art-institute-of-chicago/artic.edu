@@ -34,5 +34,4 @@ class CategoryTerm extends BaseApiModel
     {
         return collect($this->subtypeToParameter)->get($this->subtype);
     }
-
 }

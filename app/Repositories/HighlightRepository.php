@@ -18,7 +18,6 @@ use App\Repositories\Behaviors\HandleAuthors;
 
 class HighlightRepository extends ModuleRepository
 {
-
     use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations, HandleMagazine, HandleFeaturedRelated, HandleAuthors {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
@@ -30,7 +29,8 @@ class HighlightRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getHighlightTypeList() {
+    public function getHighlightTypeList()
+    {
         return collect($this->model::$highlightTypes);
     }
 

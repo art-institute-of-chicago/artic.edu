@@ -127,5 +127,4 @@ class HomeFeature extends AbstractModel
             return $video;
         }
     }
-
 }

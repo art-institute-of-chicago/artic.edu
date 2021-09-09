@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class DeleteSegmentsTable extends Migration
 {
-
     public function up()
     {
         Schema::dropIfExists('segment_slugs');
@@ -33,5 +32,4 @@ class DeleteSegmentsTable extends Migration
             createDefaultSlugsTableFields($table, 'segment');
         });
     }
-
 }

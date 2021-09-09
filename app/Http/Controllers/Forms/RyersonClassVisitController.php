@@ -10,12 +10,10 @@ use App\Models\Form\RyersonClassVisit;
 
 use App\Mail\FormRyersonClassVisit;
 
-
 class RyersonClassVisitController extends FormController
 {
     public function index()
     {
-
         $this->title = 'Schedule a Class Visit';
         $this->seo->setTitle($this->title);
 
@@ -108,7 +106,7 @@ class RyersonClassVisitController extends FormController
                 )
             ),
         ];
-        foreach($this->getAffiliationArray(old('affiliation')) as $t) {
+        foreach ($this->getAffiliationArray(old('affiliation')) as $t) {
             array_push($affiliationFields['blocks'], $t);
         }
         $institutionInformationFields[] = $affiliationFields;
@@ -207,7 +205,7 @@ class RyersonClassVisitController extends FormController
                 )
             ),
         ];
-        foreach($this->getDaysOfWeekArray(old('days_class_meets'), 'days_class_meets') as $d) {
+        foreach ($this->getDaysOfWeekArray(old('days_class_meets'), 'days_class_meets') as $d) {
             array_push($daysClassMeetsFields['blocks'], $d);
         }
         $courseInformationFields[] = $daysClassMeetsFields;
@@ -225,7 +223,7 @@ class RyersonClassVisitController extends FormController
                 )
             ),
         ];
-        foreach($this->getNoOfSessionsArray(old('no_of_sessions')) as $d) {
+        foreach ($this->getNoOfSessionsArray(old('no_of_sessions')) as $d) {
             array_push($noOfSessionsFields['blocks'], $d);
         }
         $courseInformationFields[] = $noOfSessionsFields;
@@ -376,7 +374,7 @@ class RyersonClassVisitController extends FormController
                 )
             ),
         ];
-        foreach($this->getTypeOfVisitArray(old('type_of_visit')) as $t) {
+        foreach ($this->getTypeOfVisitArray(old('type_of_visit')) as $t) {
             array_push($typeOfVisitFields['blocks'], $t);
         }
         $visitInformationFields[] = $typeOfVisitFields;
@@ -394,7 +392,7 @@ class RyersonClassVisitController extends FormController
                 )
             ),
         ];
-        foreach($this->getSessionObjectiveArray(old('session_objective')) as $d) {
+        foreach ($this->getSessionObjectiveArray(old('session_objective')) as $d) {
             array_push($sessionObjectiveFields['blocks'], $d);
         }
         $visitInformationFields[] = $sessionObjectiveFields;
@@ -446,8 +444,7 @@ class RyersonClassVisitController extends FormController
             ),
         );
 
-        for ($i = 1; $i <= 3; $i++)
-        {
+        for ($i = 1; $i <= 3; $i++) {
             $visitInformationFields[] = array(
                 'variation' => null,
                 'blocks' => array(
@@ -492,7 +489,7 @@ class RyersonClassVisitController extends FormController
                 )
             ),
         ];
-        foreach($this->getYesNoArray(old('research_shelf_required'), 'research_shelf_required') as $t) {
+        foreach ($this->getYesNoArray(old('research_shelf_required'), 'research_shelf_required') as $t) {
             array_push($researchShelfFields['blocks'], $t);
         }
         $visitInformationFields[] = $researchShelfFields;
@@ -588,7 +585,6 @@ class RyersonClassVisitController extends FormController
      */
     public function store(RyersonClassVisitRequest $request)
     {
-
         $validated = $request->validated();
 
         $ryersonClassVisit = new RyersonClassVisit;
@@ -626,7 +622,6 @@ class RyersonClassVisitController extends FormController
             ->send(new FormRyersonClassVisit($ryersonClassVisit));
 
         return redirect(route('forms.ryerson-class-visit.thanks'));
-
     }
 
     private function getAffiliationArray($selected)
@@ -634,7 +629,7 @@ class RyersonClassVisitController extends FormController
         $options = array('SAIC Undergraduate', 'SAIC Graduate', 'Non-SAIC');
 
         $list = [];
-        foreach($options as $value) {
+        foreach ($options as $value) {
             $item = [
               'type' => 'radio',
               'variation' => '',
@@ -666,7 +661,7 @@ class RyersonClassVisitController extends FormController
         );
 
         $list = [];
-        foreach($options as $value) {
+        foreach ($options as $value) {
             $item = [
               'type' => 'radio',
               'variation' => '',
@@ -696,7 +691,7 @@ class RyersonClassVisitController extends FormController
         $options = array('Library Orientation', 'Course-Related Research Session', 'Library Tour');
 
         $list = [];
-        foreach($options as $value) {
+        foreach ($options as $value) {
             $item = [
               'type' => 'radio',
               'variation' => '',
@@ -731,7 +726,7 @@ class RyersonClassVisitController extends FormController
         );
 
         $list = [];
-        foreach($options as $value => $label) {
+        foreach ($options as $value => $label) {
             $item = [
               'type' => 'checkbox',
               'variation' => '',

@@ -105,5 +105,4 @@ class IssueArticleController extends ModuleController
             ],
         ];
     }
-
 }

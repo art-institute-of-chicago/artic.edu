@@ -14,5 +14,4 @@ class DigitalPublicationRevision extends Revision
     {
         return $this->belongsTo('App\Models\DigitalPublication');
     }
-
 }

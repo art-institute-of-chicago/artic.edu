@@ -86,31 +86,26 @@ class Exhibition extends BaseApiModel
         if (!empty($this->aic_start_at)) {
             return new Carbon($this->aic_start_at);
         }
-
     }
 
     public function getDateStartAttribute()
     {
         if (!empty($this->aic_start_at)) {
-            if ($this->public_start_date !== null) // Strange, isset didn't work?
-            {
+            if ($this->public_start_date !== null) { // Strange, isset didn't work?
                 return $this->public_start_date;
             }
             return (new Carbon($this->aic_start_at))->startOfDay();
         }
-
     }
 
     public function getDateEndAttribute()
     {
         if (!empty($this->aic_end_at)) {
-            if ($this->public_end_date !== null) // Strange, isset didn't work?
-            {
+            if ($this->public_end_date !== null) { // Strange, isset didn't work?
                 return $this->public_end_date;
             }
             return (new Carbon($this->aic_end_at))->endOfDay();
         }
-
     }
 
     public function getIsClosingSoonAttribute()
@@ -125,7 +120,6 @@ class Exhibition extends BaseApiModel
                 return Carbon::now()->between($this->dateEnd->endOfDay()->subWeeks(2), $this->dateEnd->endOfDay());
             }
         }
-
     }
 
     public function getIsNowOpenAttribute()
@@ -141,7 +135,6 @@ class Exhibition extends BaseApiModel
         if (!empty($this->dateStart) && !empty($this->dateEnd)) {
             return Carbon::now()->between($this->dateStart, $this->dateStart->addWeeks(2));
         }
-
     }
 
     /**
@@ -168,7 +161,6 @@ class Exhibition extends BaseApiModel
 
     public function getSeoDescriptionAttribute()
     {
-
         if (!empty($this->meta_description)) {
             return $this->meta_description;
         }

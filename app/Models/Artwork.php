@@ -10,7 +10,6 @@ use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasMedias;
 use App\Helpers\StringHelpers;
 
-
 class Artwork extends AbstractModel
 {
     use HasApiModel, HasRelated, HasApiRelations, HasFeaturedRelated, HasMedias, HasFiles;
@@ -84,7 +83,7 @@ class Artwork extends AbstractModel
 
     public function getMiradorManifest()
     {
-        if ($this->default_manifest_url OR $this->file('upload_manifest_file')) {
+        if ($this->default_manifest_url or $this->file('upload_manifest_file')) {
             if ($this->file('upload_manifest_file')) {
                 $manifestFile = $this->file('upload_manifest_file');
             } else {
@@ -92,7 +91,7 @@ class Artwork extends AbstractModel
             }
             return $manifestFile;
         }
-		return null;
+        return null;
     }
 
     public function getMiradorView()

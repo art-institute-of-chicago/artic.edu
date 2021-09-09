@@ -38,5 +38,4 @@ class HourTest extends TestCase
 
         $hour->delete();
     }
-
 }

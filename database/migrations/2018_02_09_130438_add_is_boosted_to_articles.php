@@ -14,7 +14,7 @@ class AddIsBoostedToArticles extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-             $table->boolean('is_boosted')->default(false);
+            $table->boolean('is_boosted')->default(false);
         });
     }
 

@@ -6,14 +6,16 @@ use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
 use ImageService;
 
-class ImageHelpers {
+class ImageHelpers
+{
 
     /**
      * Get the UUID of a media library asset
      * `uuid` represents the full S3 path, but we only want the UUID
      * WEB-2248: For some reason, `null` gets prefixed to the `uuid`..?
      */
-    public static function get_clean_media_uuid($media) {
+    public static function get_clean_media_uuid($media)
+    {
         $uuid = $media->uuid;
         $uuid = preg_replace('/^null/', '', $uuid);
         $uuid = explode('/', $uuid)[0];
@@ -29,7 +31,8 @@ class ImageHelpers {
      * aic_convertFromImageProxy
      * Converts an image proxy url to AIC image object format
      */
-    public static function aic_convertFromImageProxy($imageUrl, $options = []) {
+    public static function aic_convertFromImageProxy($imageUrl, $options = [])
+    {
         $src = $imageUrl;
 
         $image = array(
@@ -56,7 +59,8 @@ class ImageHelpers {
      * aic_convertFromImage
      * Converts an image service image object to AIC image object format
      */
-    public static function aic_convertFromImage($imageObject, $cropParams = []) {
+    public static function aic_convertFromImage($imageObject, $cropParams = [])
+    {
         $sourceType = 'imgix';
 
         $src = ImageService::getUrlWithCrop($imageObject->uuid, $cropParams);
@@ -89,7 +93,8 @@ class ImageHelpers {
      * aic_imageSizesCSSsettings
      * Returns an array of CSS settings for the site - see _variable.scss
      */
-    public static function aic_imageSizesCSSsettings() {
+    public static function aic_imageSizesCSSsettings()
+    {
         $breakpoints = array(
             'xlarge' => '(min-width: 1640px)',
             'large' => '(min-width: 1200px)',
@@ -111,7 +116,8 @@ class ImageHelpers {
         );
     }
 
-    public static function aic_determineImageSourceType($src = '') {
+    public static function aic_determineImageSourceType($src = '')
+    {
         $sourceType = 'imgix';
 
         if (strrpos($src, '/iiif/') > 0) {
@@ -137,7 +143,8 @@ class ImageHelpers {
      * aic_makePosterUrl
      * Returns an array of CSS settings for the site - see _variable.scss
      */
-    public static function aic_makePosterSrc($src = false) {
+    public static function aic_makePosterSrc($src = false)
+    {
         $sourceType = 'imgix';
         $posterSrc = '';
 
@@ -182,7 +189,8 @@ class ImageHelpers {
         return $posterSrc;
     }
 
-    public static function aic_getSrcsetForImage($image, $isPublicDomain) {
+    public static function aic_getSrcsetForImage($image, $isPublicDomain)
+    {
         $srcset = [
             200,
             400,
@@ -191,7 +199,7 @@ class ImageHelpers {
         ];
 
         if (isset($image['width'])) {
-            $srcset = array_filter($srcset, function($width) use ($image) {
+            $srcset = array_filter($srcset, function ($width) use ($image) {
                 return $width <= $image['width'];
             });
 
@@ -201,7 +209,7 @@ class ImageHelpers {
         }
 
         if (!$isPublicDomain) {
-            $srcset = array_filter($srcset, function($width) {
+            $srcset = array_filter($srcset, function ($width) {
                 return $width <= 843;
             });
         }
@@ -226,7 +234,8 @@ class ImageHelpers {
      * $src = $imageSettings['src'];
      * ```
      */
-    public static function aic_imageSettings($data) {
+    public static function aic_imageSettings($data)
+    {
         $stringSrcset = '';
         $stringSrc = '';
         $stringSizes = '';
@@ -266,19 +275,18 @@ class ImageHelpers {
             if ($ratio) {
                 if ($ratio === "1:1") {
                     $height = $width;
-                } else if (sizeof(explode(":",$ratio)) === 2) {
-                    $ratioW = explode(":",$settings['ratio'])[0];
-                    $ratioH = explode(":",$settings['ratio'])[1];
+                } elseif (sizeof(explode(":", $ratio)) === 2) {
+                    $ratioW = explode(":", $settings['ratio'])[0];
+                    $ratioH = explode(":", $settings['ratio'])[1];
                     $height = round($width * ($ratioH/$ratioW));
                 }
-            } else if ($sourceType === 'imgix') {
+            } elseif ($sourceType === 'imgix') {
                 $height = 'auto';
             }
         }
 
         // Return if not enough datas, fail safe
         if (!$srcset || !$sourceType || !$originalSrc || !$width || !$height) {
-
             if ($sourceType === 'artinstituteshop') {
                 return array(
                     'src' => $originalSrc,
@@ -315,10 +323,10 @@ class ImageHelpers {
                     } else {
                         $height = $width;
                     }
-                } else if (sizeof(explode(":",$settings['ratio'])) === 2) {
+                } elseif (sizeof(explode(":", $settings['ratio'])) === 2) {
                     // Some other ratio
-                    $ratioW = explode(":",$settings['ratio'])[0];
-                    $ratioH = explode(":",$settings['ratio'])[1];
+                    $ratioW = explode(":", $settings['ratio'])[0];
+                    $ratioH = explode(":", $settings['ratio'])[1];
                     $height = round($width * ($ratioH/$ratioW));
                 }
             }
@@ -349,17 +357,17 @@ class ImageHelpers {
                     } else {
                         $height = $width;
                     }
-                } else if (sizeof(explode(":",$settings['ratio'])) === 2) {
+                } elseif (sizeof(explode(":", $settings['ratio'])) === 2) {
                     // Some other ratio
-                    $ratioW = explode(":",$settings['ratio'])[0];
-                    $ratioH = explode(":",$settings['ratio'])[1];
+                    $ratioW = explode(":", $settings['ratio'])[0];
+                    $ratioH = explode(":", $settings['ratio'])[1];
                     $height = round($width * ($ratioH/$ratioW));
                 }
                 // Because we're limiting with a dimension, we need to crop
-                if(empty($settings['fit'])) {
+                if (empty($settings['fit'])) {
                     $settings['fit'] = 'crop';
                 }
-                if(empty($settings['crop'])) {
+                if (empty($settings['crop'])) {
                     $settings['crop'] = 'faces,edges,entropy';
                 }
             }
@@ -382,22 +390,22 @@ class ImageHelpers {
                 $imgixSettings['q'] = $settings['q'];
             }
 
-            if(empty($settings['fit'])) {
+            if (empty($settings['fit'])) {
                 $imgixSettings['fit'] = 'crop';
             } else {
                 $imgixSettings['fit'] = $settings['fit'];
             }
 
-            if(!empty($settings['fill'])) {
+            if (!empty($settings['fill'])) {
                 $imgixSettings['fill'] = $settings['fill'];
             }
 
-            if(empty($settings['bg'])) {
+            if (empty($settings['bg'])) {
             } else {
                 $imgixSettings['bg'] = $settings['bg'];
             }
 
-            if(empty($settings['crop'])) {
+            if (empty($settings['crop'])) {
                 $imgixSettings['crop'] = 'faces,edges,entropy';
             } else {
                 $imgixSettings['crop'] = $settings['crop'];
@@ -423,12 +431,12 @@ class ImageHelpers {
                 if ($stringSrcset) {
                     $stringSrcset .= ", ";
                 }
-                $imgixSettings['w'] = $size;
-                if ($height && $height !== 'auto') {
-                    $imgixSettings['h'] = round(($height/$width) * $size);
-                }
-                $imgixSettingsString = http_build_query($imgixSettings);
-                $stringSrcset .= $base.$imgixSettingsString." ".$size."w";
+            $imgixSettings['w'] = $size;
+            if ($height && $height !== 'auto') {
+                $imgixSettings['h'] = round(($height/$width) * $size);
+            }
+            $imgixSettingsString = http_build_query($imgixSettings);
+            $stringSrcset .= $base.$imgixSettingsString." ".$size."w";
             endforeach;
 
             // Get data-pin-media for pinterest
@@ -477,10 +485,10 @@ class ImageHelpers {
                     } else {
                         $height = $width;
                     }
-                } else if (sizeof(explode(":",$settings['ratio'])) === 2) {
+                } elseif (sizeof(explode(":", $settings['ratio'])) === 2) {
                     // Some other ratio
-                    $ratioW = explode(":",$settings['ratio'])[0];
-                    $ratioH = explode(":",$settings['ratio'])[1];
+                    $ratioW = explode(":", $settings['ratio'])[0];
+                    $ratioH = explode(":", $settings['ratio'])[1];
                     $height = round($width * ($ratioH/$ratioW));
                     // Need to manually calc area to grab..
                     // First check the image is taller than the ratio height we need
@@ -488,7 +496,7 @@ class ImageHelpers {
                     if ($height === $ratioHeight) {
                         // The source image *is* 16:9
                         $resizeVal = 'full';
-                    } else if ($height > $ratioHeight) {
+                    } elseif ($height > $ratioHeight) {
                         // The source image is 16:something-taller-than-9
                         $cropWidth = $width;
                         $cropHeight = round($cropWidth * ($ratioH/$ratioW));
@@ -511,7 +519,7 @@ class ImageHelpers {
                 if (!empty($stringSrcset)) {
                     $stringSrcset .= ", ";
                 }
-                $stringSrcset .= $base."/".$resizeVal."/".$size.",/0/default.jpg ".$size."w";
+            $stringSrcset .= $base."/".$resizeVal."/".$size.",/0/default.jpg ".$size."w";
             endforeach;
 
             // Get data-pin-media for pinterest
@@ -576,7 +584,8 @@ class ImageHelpers {
      *
      * @see _grid.scss, @function colspan {}
      */
-    public static function aic_imageSizes($data) {
+    public static function aic_imageSizes($data)
+    {
         $sizes = '';
         // Grab settings
         $settings = static::aic_imageSizesCSSsettings();
@@ -590,7 +599,7 @@ class ImageHelpers {
             if (array_key_exists($name, $data)) {
                 if (strrpos($data[$name], 'px') > 0 || strrpos($data[$name], 'vw') > 0) {
                     $thisSize = $data[$name];
-                } else if ($name === 'xlarge') {
+                } elseif ($name === 'xlarge') {
                     $thisSize = round($data[$name] * ($xlargeMaxSize/$totalCSScolumns)).'px';
                 } else {
                     $thisSize = round(($data[$name] * (100/($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2).'vw';
@@ -602,7 +611,7 @@ class ImageHelpers {
                     $thisSize = round(($totalCSScolumns * (100/($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2).'vw';
                 }
             }
-            $sizes .= ($name === 'xlarge' ? '' : ', '). $point .' '. $thisSize;
+        $sizes .= ($name === 'xlarge' ? '' : ', '). $point .' '. $thisSize;
         endforeach;
 
         return $sizes;
@@ -636,7 +645,8 @@ class ImageHelpers {
      * ))
      * ```
      */
-    public static function aic_gridListingImageSizes($data) {
+    public static function aic_gridListingImageSizes($data)
+    {
         $newData = array();
         // Grab settings
         $settings = static::aic_imageSizesCSSsettings();
@@ -658,7 +668,8 @@ class ImageHelpers {
         return $sizes;
     }
 
-    public static function aic_getIconClass($key = 0) {
+    public static function aic_getIconClass($key = 0)
+    {
         $icons = \App\Models\Page::getIconTypes();
         return Str::kebab($icons[$key]);
     }

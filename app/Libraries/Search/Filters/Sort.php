@@ -67,5 +67,4 @@ class Sort
                 return str_replace('_', ' ', Str::title($parameter));
         }
     }
-
 }

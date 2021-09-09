@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Libraries\Api\Consumers;
+
 use GuzzleHttp\Client;
 
 class GuzzleApiConsumer implements ApiConsumerInterface
 {
-
     private $client;
 
-    function __construct($options = []) {
+    public function __construct($options = [])
+    {
         $this->client = new \GuzzleHttp\Client($options);
     }
 
@@ -40,7 +41,8 @@ class GuzzleApiConsumer implements ApiConsumerInterface
      * This method should be defined for each consumer to ease configuration.
      *
      */
-    public function adaptParameters($params) {
+    public function adaptParameters($params)
+    {
         return ['body' => json_encode($params)];
     }
 
@@ -48,7 +50,8 @@ class GuzzleApiConsumer implements ApiConsumerInterface
      * Add a default header and merge with headers coming from the parameters
      *
      */
-    public function headers($params) {
+    public function headers($params)
+    {
         $headers = [
             'Content-Type' => 'application/json',
             'Accept-Encoding' => 'gzip',
@@ -60,8 +63,9 @@ class GuzzleApiConsumer implements ApiConsumerInterface
             ]);
         }
 
-        if (isset($params['headers']))
+        if (isset($params['headers'])) {
             $headers = array_merge($default, $params['headers']);
+        }
 
         return ['headers' => $headers];
     }
@@ -84,5 +88,4 @@ class GuzzleApiConsumer implements ApiConsumerInterface
         // If it doesn't exists locally push the call to the API client.
         return $this->client->$name(...$args);
     }
-
 }

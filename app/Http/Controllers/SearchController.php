@@ -25,7 +25,6 @@ use App\Helpers\QueryHelpers;
 
 use Illuminate\Support\Str;
 
-
 class SearchController extends BaseScopedController
 {
     const ALL_PER_PAGE = 5;
@@ -143,7 +142,7 @@ class SearchController extends BaseScopedController
             ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs', 'highlights'])
             ->getSearch(self::AUTOCOMPLETE_PER_PAGE);
 
-        foreach($collection as &$item) {
+        foreach ($collection as &$item) {
             switch ((new \ReflectionClass($item))->getShortName()) {
                 case 'Artwork':
                     $item->url = route('artworks.show', $item);
@@ -437,12 +436,12 @@ class SearchController extends BaseScopedController
         return $links;
     }
 
-    protected function buildLabel($name, $total, $href, $active) {
+    protected function buildLabel($name, $total, $href, $active)
+    {
         return [
             'label' => ($name == 'All' ? 'All' : Str::plural($name, $total)),
             'href' => $href,
             'active' => $active
         ];
     }
-
 }

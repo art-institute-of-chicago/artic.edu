@@ -13,14 +13,16 @@ class RenameExtraSelectionMorphMapValues extends Migration
      */
     public function up()
     {
-        DB::update('update related set '
+        DB::update(
+            'update related set '
             . 'subject_type = ? '
             . 'where subject_type = ?',
             ['highlights',
             'selections']
         );
 
-        DB::update('update related set '
+        DB::update(
+            'update related set '
             . 'related_type = ? '
             . 'where related_type = ?',
             ['highlights',
@@ -35,14 +37,16 @@ class RenameExtraSelectionMorphMapValues extends Migration
      */
     public function down()
     {
-        DB::update('update related set '
+        DB::update(
+            'update related set '
             . 'subject_type = ? '
             . 'where subject_type = ?',
             ['selections',
             'highlights']
         );
 
-        DB::update('update related set '
+        DB::update(
+            'update related set '
             . 'related_type = ? '
             . 'where related_type = ?',
             ['selections',

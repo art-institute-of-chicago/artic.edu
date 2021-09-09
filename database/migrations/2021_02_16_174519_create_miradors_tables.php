@@ -14,7 +14,6 @@ class CreateMiradorsTables extends Migration
             $table->string('object_id')->nullable();
             $table->string('upload_manifest_file')->nullable();
             $table->string('default_view')->default('single');
-
         });
 
         Schema::create('mirador_slugs', function (Blueprint $table) {

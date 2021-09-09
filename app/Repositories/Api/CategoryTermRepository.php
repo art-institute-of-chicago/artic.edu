@@ -10,5 +10,4 @@ class CategoryTermRepository extends BaseApiRepository
     {
         $this->model = $model;
     }
-
 }

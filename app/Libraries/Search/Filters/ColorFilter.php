@@ -34,5 +34,4 @@ class ColorFilter
         $color[2] = $color[2] / 100;
         return 'Color: #' . ColorHelpers::hslToHex($color);
     }
-
 }

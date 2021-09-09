@@ -26,7 +26,7 @@ class RenamePrintedPublicationsIntroOnPages extends Migration
     public function down()
     {
         Schema::table('pages', function (Blueprint $table) {
-            $table->renameColumn('printed_publications_intro','printed_catalogs_intro');
+            $table->renameColumn('printed_publications_intro', 'printed_catalogs_intro');
         });
     }
 }

@@ -15,5 +15,4 @@ class TicketedEventType extends BaseApiModel
     {
         return "{$this->title} (#{$this->id})";
     }
-
 }

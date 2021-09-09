@@ -21,5 +21,4 @@ class InteractiveFeatureRequest extends Request
 
         return $rules;
     }
-
 }

@@ -14,5 +14,4 @@ class ResearchGuideRevision extends Revision
     {
         return $this->belongsTo('App\Models\ResearchGuide');
     }
-
 }

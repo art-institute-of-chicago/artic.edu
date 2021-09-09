@@ -7,7 +7,6 @@ use Illuminate\Support\Arr;
 
 class AicConnection implements ApiConnectionInterface
 {
-
     protected $client;
     protected $defaultGrammar = 'App\Libraries\Api\Builders\Grammar\AicGrammar';
     protected $cacheKeyName   = 'Aic-cache-key';
@@ -76,7 +75,8 @@ class AicConnection implements ApiConnectionInterface
      * @param  array  $params
      * @return object
      */
-    public function execute($endpoint = null, $params = []) {
+    public function execute($endpoint = null, $params = [])
+    {
         $headers = $this->client->headers($params);
         $options = $headers;
 

@@ -59,5 +59,4 @@ class PressReleaseRepository extends ModuleRepository
 
         return $results;
     }
-
 }

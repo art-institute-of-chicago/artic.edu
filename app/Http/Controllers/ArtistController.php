@@ -46,5 +46,4 @@ class ArtistController extends FrontController
             'canonicalUrl' => $canonicalPath,
         ]);
     }
-
 }

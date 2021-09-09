@@ -32,7 +32,6 @@ class CreateFaqTranslationsTable extends Migration
         Schema::table('faqs', function (Blueprint $table) {
             $table->dropColumn('title');
         });
-
     }
 
     /**

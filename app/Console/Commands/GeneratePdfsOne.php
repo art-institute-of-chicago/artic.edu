@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-
 class GeneratePdfsOne extends GeneratePdfs
 {
     /**

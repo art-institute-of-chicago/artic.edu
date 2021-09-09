@@ -54,5 +54,4 @@ class Department extends AbstractModel
     {
         return ['en' => StringHelpers::getUtf8Slug($this->title)];
     }
-
 }

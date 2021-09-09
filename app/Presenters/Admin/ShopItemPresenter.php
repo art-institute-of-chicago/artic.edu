@@ -6,5 +6,4 @@ use App\Presenters\BasePresenter;
 
 class ShopItemPresenter extends BasePresenter
 {
-
 }

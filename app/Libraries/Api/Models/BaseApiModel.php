@@ -519,7 +519,8 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
             }
 
             $attributes[$key] = $this->mutateAttributeForArray(
-                $key, $attributes[$key]
+                $key,
+                $attributes[$key]
             );
         }
 
@@ -533,7 +534,8 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
             }
 
             $attributes[$key] = $this->castAttribute(
-                $key, $attributes[$key]
+                $key,
+                $attributes[$key]
             );
         }
 
@@ -820,7 +822,8 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
         if ($value instanceof DateTimeInterface) {
             return new Carbon(
-                $value->format('Y-m-d H:i:s.u'), $value->getTimezone()
+                $value->format('Y-m-d H:i:s.u'),
+                $value->getTimezone()
             );
         }
 
@@ -875,7 +878,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
         $attributes = Arr::except($this->attributes, $except);
 
-        return with($instance = new static )->fill($attributes);
+        return with($instance = new static)->fill($attributes);
     }
 
     /**
@@ -1131,5 +1134,4 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     {
         return $this->toJson();
     }
-
 }

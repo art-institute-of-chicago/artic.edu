@@ -33,5 +33,4 @@ class TagController extends ModuleController
     {
         return [];
     }
-
 }

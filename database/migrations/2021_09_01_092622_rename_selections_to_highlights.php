@@ -33,21 +33,24 @@ class RenameSelectionsToHighlights extends Migration
         });
 
         // Rename morph map values
-        DB::update('update api_relatables set '
+        DB::update(
+            'update api_relatables set '
             . 'api_relatable_type = ? '
             . 'where api_relatable_type = ?',
             ['highlights',
             'selections']
         );
 
-        DB::update('update mediables set '
+        DB::update(
+            'update mediables set '
             . 'mediable_type = ? '
             . 'where mediable_type = ?',
             ['highlights',
             'selections']
         );
 
-        DB::update('update blocks set '
+        DB::update(
+            'update blocks set '
             . 'blockable_type = ? '
             . 'where blockable_type = ?',
             ['highlights',
@@ -82,21 +85,24 @@ class RenameSelectionsToHighlights extends Migration
         });
 
         // Rename morph map values
-        DB::update('update api_relatables set '
+        DB::update(
+            'update api_relatables set '
             . 'api_relatable_type = ? '
             . 'where api_relatable_type = ?',
             ['selections',
             'highlights']
         );
 
-        DB::update('update mediables set '
+        DB::update(
+            'update mediables set '
             . 'mediable_type = ? '
             . 'where mediable_type = ?',
             ['selections',
             'highlights']
         );
 
-        DB::update('update blocks set '
+        DB::update(
+            'update blocks set '
             . 'blockable_type = ? '
             . 'where blockable_type = ?',
             ['selections',

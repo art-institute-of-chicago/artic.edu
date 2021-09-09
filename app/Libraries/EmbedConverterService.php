@@ -2,7 +2,6 @@
 
 namespace App\Libraries;
 
-
 class EmbedConverterService
 {
     public function __construct()
@@ -76,11 +75,10 @@ class EmbedConverterService
      */
     private function getVimeoEmbedCode($url)
     {
-
         if (preg_match('~^http[s]://(?:www\.)?vimeo\.com/(?:clip:)?(\d+)~', $url, $match)) {
             $videoId = $match[1];
         } else {
-            $videoId = substr($url,10,strlen($url));
+            $videoId = substr($url, 10, strlen($url));
         }
 
         return '<iframe src="https://player.vimeo.com/video/'.$videoId.'?title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';

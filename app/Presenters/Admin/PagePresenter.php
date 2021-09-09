@@ -6,7 +6,6 @@ use App\Presenters\BasePresenter;
 
 class PagePresenter extends BasePresenter
 {
-
     public function introBlocks()
     {
         return [
@@ -26,5 +25,4 @@ class PagePresenter extends BasePresenter
             'hideCaption' => true
         ];
     }
-
 }

@@ -29,5 +29,4 @@ class CategoryTerm extends AbstractModel
             ],
         ],
     ];
-
 }

@@ -13,11 +13,9 @@ class AddIsAdmissionRequiredToEvents extends Migration
      */
     public function up()
     {
-
         Schema::table('events', function (Blueprint $table) {
             $table->boolean('is_admission_required')->default(false)->after('is_member_exclusive');
         });
-
     }
 
     /**
@@ -27,10 +25,8 @@ class AddIsAdmissionRequiredToEvents extends Migration
      */
     public function down()
     {
-
         Schema::table('events', function (Blueprint $table) {
             $table->dropColumn('is_admission_required');
         });
-
     }
 }
