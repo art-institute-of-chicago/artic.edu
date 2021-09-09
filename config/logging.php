@@ -75,9 +75,13 @@ return [
         ],
 
         # WEB-2129: Optional channel to disable log files
-        'none' => [
+        'null' => [
             'driver' => 'monolog',
             'handler' => \Monolog\Handler\NullHandler::class,
+        ],
+
+        'emergency' => [
+            'path' => storage_path('logs/laravel.log'),
         ],
     ],
 
