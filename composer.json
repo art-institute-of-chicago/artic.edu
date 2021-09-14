@@ -18,7 +18,6 @@
         "php": "^7.1",
         "aic/data-hub-foundation": "dev-laravel-6-support",
         "area17/twill": "2.4.*",
-        "cweagans/composer-patches": "^1.7",
         "eluceo/ical": "0.14.*",
         "fideloper/proxy": "~4.2",
         "guzzlehttp/guzzle": "6.3.0",
@@ -28,6 +27,7 @@
         "laravel/tinker": "^2.5",
         "league/csv": "^9.5",
         "michelf/php-smartypants": "^1.8",
+        "netresearch/composer-patches-plugin": "^1.3",
         "ramsey/uuid": "^3.7",
         "rlanvin/php-rrule": "2.*",
         "salesforce-mc/fuel-sdk-php": "^1.4",
@@ -60,7 +60,12 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
             "area17/twill": {
-                "WEB-2103: Get repository model of API models": "patches/WEB-2301---get-repository-of-API-models.diff"
+                "2.*": [
+                    {
+                        "title": "WEB-2103: Get repository model of API models",
+                        "url": "patches/WEB-2301---get-repository-of-API-models.diff"
+                    }
+                ]
             }
         }
     },
