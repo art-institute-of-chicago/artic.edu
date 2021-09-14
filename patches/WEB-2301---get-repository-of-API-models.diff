@@ -1,0 +1,13 @@
+diff --git a/src/Repositories/ModuleRepository.php b/src/Repositories/ModuleRepository.php
+index c31f2c54..cf86cf80 100644
+--- a/src/Repositories/ModuleRepository.php
++++ b/src/Repositories/ModuleRepository.php
+@@ -850,6 +850,8 @@ abstract class ModuleRepository
+         if (!$modelOrRepository) {
+             if (class_exists($relation) && (new $relation) instanceof Model) {
+                 $modelOrRepository = Str::afterLast($relation, '\\');
++            } elseif (class_exists($relation) && (new $relation) instanceof \App\Libraries\Api\Models\BaseApiModel) {
++                $modelOrRepository = 'Api\\' .Str::afterLast($relation, '\\');
+             } else {
+                 $morphedModel = Relation::getMorphedModel($relation);
+                 if (class_exists($morphedModel) && (new $morphedModel) instanceof Model) {
