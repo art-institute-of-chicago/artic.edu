@@ -27,7 +27,7 @@
         "laravel/tinker": "^2.5",
         "league/csv": "^9.5",
         "michelf/php-smartypants": "^1.8",
-        "netresearch/composer-patches-plugin": "^1.3",
+        "netresearch/composer-patches-plugin": "1.2.2",
         "ramsey/uuid": "^3.7",
         "rlanvin/php-rrule": "2.*",
         "salesforce-mc/fuel-sdk-php": "^1.4",
