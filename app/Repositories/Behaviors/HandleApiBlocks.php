@@ -27,7 +27,7 @@ trait HandleApiBlocks
                 // If it's an API model and has an augmented model setup the correct edit link
                 if (method_exists($relatedElement, 'hasAugmentedModel')) {
                     if ($relatedElement->hasAugmentedModel() && $relatedElement->getAugmentedModel()) {
-                        $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'edit', $relatedElement->getAugmentedModel()->id);
+                        $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'edit', [$relatedElement->getAugmentedModel()->id]);
 
                         if (classHasTrait($relatedElement->getAugmentedModel(), \App\Models\Behaviors\HasMedias::class)) {
                             $data['thumbnail'] = $relatedElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
@@ -46,7 +46,7 @@ trait HandleApiBlocks
                     } else {
                         // WEB-1187: This is reached after page refresh, if the model hasn't been augmented
                         if (UrlHelpers::moduleRouteExists($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'augment')) {
-                            $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'augment', $relatedElement->id);
+                            $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'augment', [$relatedElement->id]);
                         }
 
                         if (classHasTrait($relatedElement, \App\Models\Behaviors\HasMediasApi::class)) {
@@ -55,7 +55,7 @@ trait HandleApiBlocks
                     }
                 } else {
                     // Load a normal edit
-                    $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'edit', $relatedElement->id);
+                    $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'edit', [$relatedElement->id]);
                     $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
                 }
 

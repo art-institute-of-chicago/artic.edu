@@ -73,7 +73,7 @@ class BaseApiController extends ModuleController
         // WEB-1187: Fix the edit link
         $results = array_map(function ($result) {
             if (UrlHelpers::moduleRouteExists($this->moduleName, $this->routePrefix, 'augment')) {
-                $result['edit'] = moduleRoute($this->moduleName, $this->routePrefix, 'augment', $result['id']);
+                $result['edit'] = moduleRoute($this->moduleName, $this->routePrefix, 'augment', [$result['id']]);
             }
             return $result;
         }, $results);
@@ -118,9 +118,9 @@ class BaseApiController extends ModuleController
     {
         if ($this->hasAugmentedModel) {
             if ($localItem = collect($this->localElements)->where('datahub_id', $item->id)->first()) {
-                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'edit', $localItem->id);
+                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'edit', [$localItem->id]);
             } else {
-                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'augment', $item->id);
+                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'augment', [$item->id]);
             }
         } else {
             $editRoute = null;

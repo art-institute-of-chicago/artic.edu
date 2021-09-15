@@ -105,7 +105,7 @@ trait HandleApiRelations
 
             // If it contains an augmented model create an edit link
             if ($apiElement->hasAugmentedModel() && $apiElement->getAugmentedModel()) {
-                $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'edit', $apiElement->getAugmentedModel()->id);
+                $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'edit', [$apiElement->getAugmentedModel()->id]);
 
                 if (classHasTrait($apiElement->getAugmentedModel(), \App\Models\Behaviors\HasMedias::class)) {
                     $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
@@ -113,7 +113,7 @@ trait HandleApiRelations
             } else {
                 // WEB-1187: This is reached after page refresh, if the model hasn't been augmented
                 if (UrlHelpers::moduleRouteExists($moduleName ?? $relation, $routePrefix ?? '', 'augment')) {
-                    $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'augment', $apiElement->id);
+                    $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'augment', [$apiElement->id]);
                 }
 
                 $data['thumbnail'] = ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100]);
@@ -147,7 +147,7 @@ trait HandleApiRelations
 
                         // If it contains an augmented model create an edit link
                         if ($apiElement->hasAugmentedModel() && $apiElement->getAugmentedModel()) {
-                            $data['edit'] = moduleRoute($apiModelDefinition['moduleName'], $apiModelDefinition['routePrefix'] ?? '', 'edit', $apiElement->getAugmentedModel()->id);
+                            $data['edit'] = moduleRoute($apiModelDefinition['moduleName'], $apiModelDefinition['routePrefix'] ?? '', 'edit', [$apiElement->getAugmentedModel()->id]);
 
                             if (classHasTrait($apiElement->getAugmentedModel(), \App\Models\Behaviors\HasMedias::class)) {
                                 $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);

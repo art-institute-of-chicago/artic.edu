@@ -68,7 +68,7 @@ class IssueArticleController extends ModuleController
                 ],
                 [
                     'label' => $issue->title,
-                    'url' => moduleRoute('issues', 'collection', 'edit', $issue->id),
+                    'url' => moduleRoute('issues', 'collection', 'edit', [$issue->id]),
                 ],
                 [
                     'label' => 'Articles',
@@ -93,7 +93,7 @@ class IssueArticleController extends ModuleController
                 ],
                 [
                     'label' => $issue->title,
-                    'url' => moduleRoute('issues', 'collection', 'edit', $issue->id),
+                    'url' => moduleRoute('issues', 'collection', 'edit', [$issue->id]),
                 ],
                 [
                     'label' => 'Articles',
