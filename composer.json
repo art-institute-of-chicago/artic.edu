@@ -12,13 +12,33 @@
         {
             "type": "vcs",
             "url": "https://github.com/art-institute-of-chicago/prince-php-wrapper.git"
+        },
+        {
+            "type": "package",
+            "package": {
+                "type": "metapackage",
+                "name": "vendor/package-patches",
+                "version": "1.0.0",
+                "require": {
+                    "netresearch/composer-patches-plugin": "1.2.2"
+                },
+                "extra": {
+                    "patches": {
+                        "area17/twill": [
+                            {
+                                "title": "WEB-2103: Get repository model of API models",
+                                "url": "patches/WEB-2301---get-repository-of-API-models.diff"
+                            }
+                        ]
+                    }
+                }
+            }
         }
     ],
     "require": {
         "php": "^7.1",
         "aic/data-hub-foundation": "dev-laravel-6-support",
         "area17/twill": "2.4.*",
-        "cweagans/composer-patches": "^1.7",
         "eluceo/ical": "0.14.*",
         "fideloper/proxy": "~4.2",
         "guzzlehttp/guzzle": "6.3.0",
@@ -35,6 +55,7 @@
         "spatie/calendar-links": "^1.0",
         "spatie/laravel-feed": "^2.4.1",
         "spatie/laravel-sitemap": "^5.4",
+        "vendor/package-patches": "^1.0",
         "yeslogic/prince-php-wrapper": "dev-master"
     },
     "require-dev": {
@@ -56,12 +77,6 @@
     "extra": {
         "laravel": {
             "dont-discover": []
-        },
-        "composer-exit-on-patch-failure": true,
-        "patches": {
-            "area17/twill": {
-                "WEB-2103: Get repository model of API models": "./patches/WEB-2301---get-repository-of-API-models.diff"
-            }
         }
     },
     "autoload": {
