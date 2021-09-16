@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5346f3d8cfbadf4dbd1ff08a8f736441",
+    "content-hash": "d5e91db9a8401438baae51eaaf27c1ec",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -583,6 +583,50 @@
                 }
             ],
             "time": "2021-08-17T13:49:14+00:00"
+        },
+        {
+            "name": "cweagans/composer-patches",
+            "version": "1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cweagans/composer-patches.git",
+                "reference": "9888dcc74993c030b75f3dd548bb5e20cdbd740c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/9888dcc74993c030b75f3dd548bb5e20cdbd740c",
+                "reference": "9888dcc74993c030b75f3dd548bb5e20cdbd740c",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0 || ^2.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "composer/composer": "~1.0 || ~2.0",
+                "phpunit/phpunit": "~4.6"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "cweagans\\Composer\\Patches"
+            },
+            "autoload": {
+                "psr-4": {
+                    "cweagans\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cameron Eagans",
+                    "email": "me@cweagans.net"
+                }
+            ],
+            "description": "Provides a way to patch Composer packages.",
+            "time": "2021-06-08T15:12:46+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -3656,56 +3700,6 @@
                 }
             ],
             "time": "2021-06-28T22:38:45+00:00"
-        },
-        {
-            "name": "netresearch/composer-patches-plugin",
-            "version": "1.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/netresearch/composer-patches-plugin.git",
-                "reference": "bd6a12994e5e4300199fa4369d837d0b764b1e08"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/netresearch/composer-patches-plugin/zipball/bd6a12994e5e4300199fa4369d837d0b764b1e08",
-                "reference": "bd6a12994e5e4300199fa4369d837d0b764b1e08",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0"
-            },
-            "require-dev": {
-                "composer/composer": "1.*"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Netresearch\\Composer\\Patches\\Plugin",
-                "branch-alias": {
-                    "dev-master": "1.2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Opitz",
-                    "email": "christian.opitz@netresearch.de"
-                }
-            ],
-            "description": "Composer patches plugin",
-            "keywords": [
-                "composer",
-                "patches",
-                "plugin"
-            ],
-            "time": "2019-04-02T07:23:51+00:00"
         },
         {
             "name": "nicmart/tree",
@@ -11890,7 +11884,6 @@
                     "type": "github"
                 }
             ],
-            "abandoned": true,
             "time": "2020-11-30T07:30:19+00:00"
         },
         {
