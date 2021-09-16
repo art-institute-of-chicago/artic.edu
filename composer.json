@@ -60,7 +60,7 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
             "area17/twill": {
-                "WEB-2103: Get repository model of API models": "patches/WEB-2301---get-repository-of-API-models.diff"
+                "WEB-2103: Get repository model of API models": "./patches/WEB-2301---get-repository-of-API-models.diff"
             }
         }
     },
