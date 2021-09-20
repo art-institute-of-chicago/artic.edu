@@ -48,14 +48,19 @@ class ExperienceImageRepository extends ModuleRepository
         return $fields;
     }
 
-    public function prepareFieldsBeforeCreate($fields) {
-        $fields = $this->updateFieldsFromApi($fields);
+    public function prepareFieldsBeforeCreate($fields)
+    {
+        if ($fields['credits_input'] == 'datahub') {
+            $fields = $this->updateFieldsFromApi($fields);
+        }
         return parent::prepareFieldsBeforeCreate($fields);
     }
 
     public function prepareFieldsBeforeSave($object, $fields)
     {
-        $fields = $this->updateFieldsFromApi($fields);
+        if ($fields['credits_input'] == 'datahub') {
+            $fields = $this->updateFieldsFromApi($fields);
+        }
         return parent::prepareFieldsBeforeSave($object, $fields);
     }
 }
