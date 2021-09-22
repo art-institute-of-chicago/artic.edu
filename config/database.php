@@ -39,7 +39,7 @@ return [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
-            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+            'foreign_key_constraints' => (bool) env('DB_FOREIGN_KEYS', true),
         ],
 
         'mysql' => [

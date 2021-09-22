@@ -31,7 +31,7 @@ return [
     ],
 
     'cloudfront' => [
-        'enabled' => env('CLOUDFRONT_ENABLED', false),
+        'enabled' => (bool) env('CLOUDFRONT_ENABLED', false),
         'key' => env('AWS_KEY'),
         'secret' => env('AWS_SECRET'),
         'distribution' => env('CLOUDFRONT_DISTRIBUTION'),
@@ -40,7 +40,7 @@ return [
     ],
 
     'google_tag_manager' => [
-        'enabled' => env('GTM_ENABLED', false),
+        'enabled' => (bool) env('GTM_ENABLED', false),
         'id' => env('GTM_ID', '')
     ],
 
