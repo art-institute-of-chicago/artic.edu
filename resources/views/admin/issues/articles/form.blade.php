@@ -111,3 +111,9 @@
     ])
 
 @stop
+
+@section('fieldsets')
+
+    @include('admin.partials.meta')
+
+@stop

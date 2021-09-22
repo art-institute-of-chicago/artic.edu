@@ -33,6 +33,8 @@ class Issue extends AbstractModel implements Sortable
         'position',
         'cite_as',
         'welcome_note_display',
+        'meta_title',
+        'meta_description',
     ];
 
     public $slugAttributes = [
