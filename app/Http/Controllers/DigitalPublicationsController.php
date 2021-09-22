@@ -25,8 +25,6 @@ class DigitalPublicationsController extends BaseScopedController
 
         $title = 'Digital Publications';
 
-        $this->seo->setTitle($title);
-
         $navElements = NavHelpers::get_nav_for_publications($title);
 
         $view_data = [

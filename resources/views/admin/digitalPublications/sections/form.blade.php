@@ -71,13 +71,13 @@
         ],
     ])
 
-@formField('wysiwyg', [
-    'name' => 'references',
-    'label' => 'References',
-    'toolbarOptions' => [
-        'italic', 'link', 'list-ordered', 'list-unordered'
-    ],
-])
+    @formField('wysiwyg', [
+        'name' => 'references',
+        'label' => 'References',
+        'toolbarOptions' => [
+            'italic', 'link', 'list-ordered', 'list-unordered'
+        ],
+    ])
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
@@ -90,5 +90,10 @@
             'links-bar'
         ])
     ])
+@stop
+
+@section('fieldsets')
+
+    @include('admin.partials.meta')
 
 @stop

@@ -35,6 +35,8 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
         'cite_as',
         'references',
         'type_display',
+        'meta_title',
+        'meta_description',
     ];
 
     public $slugAttributes = [
