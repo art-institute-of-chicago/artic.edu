@@ -33,11 +33,11 @@ return [
     |
     | Force API calls to use a specific verb.
     |
-    | Possible options: 'GET', 'POST'
+    | Possible options: 'GET' or 'POST'; anything else will have no effect
     |
     */
 
-    'force_verb' => (bool) env('API_FORCE_VERB', false),
+    'force_verb' => env('API_FORCE_VERB', false),
 
     /*
     |--------------------------------------------------------------------------
