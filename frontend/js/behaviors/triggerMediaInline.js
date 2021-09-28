@@ -6,14 +6,15 @@ const triggerMediaInline = function(container) {
   let src;
   let embedType;
   let embedSrcType;
+  let platform = container.dataset.platform;
 
   function _handleClicks(event) {
     event.preventDefault();
     event.stopPropagation();
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
-    src = queryStringHandler.updateParameter(src, 'autoplay', '1');
-    src = queryStringHandler.updateParameter(src, 'auto_play', '1');
+    src = queryStringHandler.updateParameter(src, 'autoplay', (platform == 'vimeo' ? 'true' : '1'));
+    src = queryStringHandler.updateParameter(src, 'auto_play', (platform == 'vimeo' ? 'true' : '1'));
     iframe.src = src;
     container.classList.add('s-inline-media-activated');
   }
@@ -49,7 +50,7 @@ const triggerMediaInline = function(container) {
     }
 
     if (src.indexOf('youtube.com') > -1) {
-      src = queryStringHandler.updateParameter(src, 'enablejsapi', '1');
+      src = queryStringHandler.updateParameter(src, 'enablejsapi', (platform == 'vimeo' ? 'true' : '1'));
       src = queryStringHandler.updateParameter(src, 'origin', window.location.origin);
 
       if (embedSrcType === 'data-src') {

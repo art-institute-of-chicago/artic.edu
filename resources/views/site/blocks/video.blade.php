@@ -5,6 +5,10 @@
     $size = $block->input('size', 'm');
     $captionTitle = $block->present()->input('caption_title');
     $caption = $block->present()->input('caption');
+    $platform = 'youtube';
+    if (strpos($source_url, 'vimeo.com/') !== false) {
+        $platform = 'vimeo';
+    }
 @endphp
 
 @if ($source_url)
@@ -18,6 +22,7 @@
             'poster' => $image,
             'captionTitle' => $captionTitle,
             'caption' => $caption,
+            'platform' => $platform,
         ])
     @endcomponent
 @endif
