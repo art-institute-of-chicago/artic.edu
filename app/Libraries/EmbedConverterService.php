@@ -81,6 +81,6 @@ class EmbedConverterService
             $videoId = substr($url, 10, strlen($url));
         }
 
-        return '<iframe src="https://player.vimeo.com/video/'.$videoId.'?title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        return '<iframe src="https://player.vimeo.com/video/'.$videoId.'?title=0&byline=0&portrait=0" frameborder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
     }
 }
