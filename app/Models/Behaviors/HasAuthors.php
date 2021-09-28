@@ -41,14 +41,14 @@ trait HasAuthors
                 return '<a href="' . route('authors.show', [
                     'id' => $author->id,
                     'slug' => $author->getSlug(),
-                ]) . '">' . $author->title . '</a>';
+                ]) . '" rel="author">' . $author->title . '</a>';
             })->all();
 
             return StringHelpers::summation($links);
         }
 
         if ($this->author_display) {
-            return $this->author_display;
+            return '<span itemprop="author">' . $this->author_display . '</span>';
         }
     }
 }

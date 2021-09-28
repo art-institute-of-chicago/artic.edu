@@ -2,7 +2,10 @@
 
 @section('content')
 
-<article class="o-article{{ ($item->articleType === 'editorial') ? ' o-article--editorial' : '' }}">
+<article class="o-article{{ ($item->articleType === 'editorial') ? ' o-article--editorial' : '' }}" itemscope itemtype="http://schema.org/BlogPosting">
+  @component('site.shared._schemaItemProps')
+    @slot('itemprops',$item->present()->itemprops ?? null)
+  @endcomponent
 
   @component('components.molecules._m-article-header')
     @slot('editorial', ($item->articleType === 'editorial'))
@@ -122,7 +125,7 @@
       </div>
   @endif
 
-  <div class="o-article__body o-blocks">
+  <div class="o-article__body o-blocks" itemprop="articleBody">
 
     @php
         global $_collectedReferences;
