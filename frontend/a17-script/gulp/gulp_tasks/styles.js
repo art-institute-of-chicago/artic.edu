@@ -19,7 +19,7 @@ module.exports = function(gulp, data, util, taskName) {
     return lazypipe()
       .pipe($.if,data.enabled.maps, $.sourcemaps.init())
       .pipe($.if,'*.scss', $.sass({
-                outputStyle: 'nested', // libsass doesn't support expanded yet
+                outputStyle: 'expanded',
                 precision: 10,
                 includePaths: ['.'],
                 errLogToConsole: !data.enabled.failStyleTask
