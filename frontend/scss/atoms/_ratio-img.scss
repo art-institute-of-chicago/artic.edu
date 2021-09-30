@@ -30,6 +30,8 @@ Can optionally use `object-fit` to cover or contain the area:
 
 ***/
 
+@use "sass:math";
+
 .ratio-img {
   display: block;
   position: relative;
@@ -52,23 +54,23 @@ Can optionally use `object-fit` to cover or contain the area:
 }
 
 .ratio-img--3\:2::before {
-  padding-bottom: percentage(2 / 3);
+  padding-bottom: percentage(math.div(2, 3));
 }
 
 .ratio-img--4\:3::before {
-  padding-bottom: percentage(4 / 3);
+  padding-bottom: percentage(math.div(4, 3));
 }
 
 .ratio-img--16\:10::before {
-  padding-bottom: percentage(10 / 16);
+  padding-bottom: percentage(math.div(10, 16));
 }
 
 .ratio-img--16\:9::before {
-  padding-bottom: percentage(9 / 16);
+  padding-bottom: percentage(math.div(9, 16));
 }
 
 .ratio-img--21\:9::before {
-  padding-bottom: percentage(9 / 21);
+  padding-bottom: percentage(math.div(9, 21));
 }
 
 .ratio-img img,

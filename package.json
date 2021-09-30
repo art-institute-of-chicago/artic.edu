@@ -48,6 +48,7 @@
     "react-dom": "^16.9.0",
     "read-pkg-up": "^3.0.0",
     "readline-sync": "^1.4.10",
+    "sass": "^1.42.1",
     "video.js": "^7.14.3",
     "videojs-event-tracking": "^1.0.2",
     "webpack": "^4.39.3",

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .m-media {
 
   &--3d-tour {
@@ -215,7 +217,7 @@
     content: '';
     display: block;
     height: 0;
-    padding-bottom: percentage(10 / 16);
+    padding-bottom: percentage(math.div(10, 16));
   }
 
   .m-media--m.m-media--contain .m-media__contain--spacer,
@@ -231,7 +233,7 @@
   }
 
   &.m-media__img--video::before {
-    padding-bottom: percentage(9 / 16);
+    padding-bottom: percentage(math.div(9, 16));
   }
 
   .m-media--soundcloud & {

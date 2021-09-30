@@ -1,4 +1,6 @@
 // @mixin float-clear
+@use "sass:math";
+
 @mixin float-clear() {
   &::after {
     content: '.';
@@ -107,7 +109,7 @@ Creates a load spinner.
 }
 
 @function strip-units($number) {
-  @return $number / ($number * 0 + 1);
+  @return math.div($number, $number * 0 + 1);
 }
 
 @function str-replace($string, $search, $replace: '') {
@@ -193,7 +195,7 @@ Creates a load spinner.
       // Now set the margin top
       @if ($new-pull != $pull) {
         $pull: $new-pull;
-        $base-height-into-pull: floor($pull / $base-height); // round or floor? erm
+        $base-height-into-pull: floor(math.div($pull, $base-height)); // round or floor? erm
         // Round will be closer but has the risk of drawing too much negative margin
         $margin-top: 0 - ($base-height-into-pull * $base-height);
         @if ($name == 'xsmall' or $single-bp == $name) {

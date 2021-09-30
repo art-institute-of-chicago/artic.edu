@@ -12,12 +12,14 @@ module.exports = function(gulp, data, util, taskName) {
 
   console.log(require.resolve('lazypipe'));
 
+  $.sass.compiler = require('sass');
+
   // Creates plugin sequence for a dependency using lazy pipe
   function createDepLazyPipe(dep) {
     return lazypipe()
       .pipe($.if,data.enabled.maps, $.sourcemaps.init())
       .pipe($.if,'*.scss', $.sass({
-                outputStyle: 'nested', // libsass doesn't support expanded yet
+                outputStyle: 'expanded',
                 precision: 10,
                 includePaths: ['.'],
                 errLogToConsole: !data.enabled.failStyleTask
