@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .g-modal {
   display: none;
   position: fixed;
@@ -69,7 +71,7 @@
     max-width: 160vh; // Stops a 16:9 thing growing taller than 90% of total vh
     height: 0;
     margin: 0 auto;
-    padding-bottom: percentage(9 / 16); // 16:9
+    padding-bottom: percentage(math.div(9, 16)); // 16:9
   }
 
   iframe {
