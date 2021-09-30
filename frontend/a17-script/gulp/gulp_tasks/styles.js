@@ -12,6 +12,8 @@ module.exports = function(gulp, data, util, taskName) {
 
   console.log(require.resolve('lazypipe'));
 
+  $.sass.compiler = require('sass');
+
   // Creates plugin sequence for a dependency using lazy pipe
   function createDepLazyPipe(dep) {
     return lazypipe()
