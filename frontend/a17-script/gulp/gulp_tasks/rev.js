@@ -9,7 +9,7 @@ module.exports = function(gulp, data, util, taskName) {
       distPath     = data.manifest.paths.dist;
 
   // Task declaration
-  gulp.task(taskName, ['styles', 'scripts', 'icons'], function() {
+  gulp.task(taskName, gulp.series(gulp.parallel('styles', 'scripts', 'icons'), function() {
     if (data.enabled.rev) {
       return gulp.src(
           [
@@ -30,5 +30,5 @@ module.exports = function(gulp, data, util, taskName) {
         }))
         .pipe(gulp.dest(distPath));
     }
-  });
+  }));
 };
