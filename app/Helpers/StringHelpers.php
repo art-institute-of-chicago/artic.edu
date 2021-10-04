@@ -185,7 +185,20 @@ class StringHelpers
                 $_collectedReferences[] = ['id' => sizeof($_collectedReferences)+1, 'reference' => $code['content']];
                 $pos = sizeof($_collectedReferences);
                 $ref = '<sup id="ref_cite-'.$pos.'"><a href="#ref_note-'.$pos.'">['.$pos.']</a></sup>';
-                $text = str_replace($code['shortcode'], $ref, $text);
+
+                $refPos = strpos($text, $code['shortcode']);
+                $beforeRef = substr($text, 0, $refPos);
+                $afterRef = substr($text, $refPos + strlen($code['shortcode']));
+
+                [$beforeRefStart, $beforeRefEnd] = self::getLastWord($beforeRef);
+
+                $text = ''
+                    . $beforeRefStart
+                    . '<span class="u-nowrap">'
+                    . $beforeRefEnd
+                    . $ref
+                    . '</span>'
+                    . $afterRef;
             }
         }
 
