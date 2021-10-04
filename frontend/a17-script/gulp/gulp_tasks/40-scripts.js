@@ -10,7 +10,7 @@ module.exports = function(gulp, data, util, taskName) {
   var scriptsPath = './' + data.manifest.paths.source + data.manifest.paths.scripts;
   var $ = data.plugins;
 
-  gulp.task(taskName, function() {
+  gulp.task('scripts', function() {
     return (
       gulp
       .src(scriptsPath + '_.js')

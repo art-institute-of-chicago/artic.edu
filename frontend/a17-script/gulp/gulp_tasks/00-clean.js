@@ -5,5 +5,5 @@ var del = require('del');
 module.exports = function(gulp, data, util, taskName){
   'use strict';
 
-  gulp.task(taskName, del.bind(null, [data.manifest.paths.dist]));
+  gulp.task('clean', del.bind(null, [data.manifest.paths.dist]));
 };

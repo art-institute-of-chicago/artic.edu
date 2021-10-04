@@ -6,7 +6,7 @@ module.exports = function(gulp, data, util, taskName){
 
   var $ = data.plugins;
 
-  gulp.task(taskName, function() {
+  gulp.task('images', function() {
     return gulp.src(data.manifest.globs.images)
       .pipe($.imagemin({
         progressive: true,

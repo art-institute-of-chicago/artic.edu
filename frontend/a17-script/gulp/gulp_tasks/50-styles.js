@@ -47,7 +47,7 @@ module.exports = function(gulp, data, util, taskName) {
 
 
   // Task declaration
-  gulp.task(taskName, function() {
+  gulp.task('styles', function() {
     var merged = mergeStream();
 
     // Go through each dependency and add pipe to stream.

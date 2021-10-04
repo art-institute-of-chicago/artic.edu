@@ -5,7 +5,7 @@
 module.exports = function(gulp, data, util, taskName){
   'use strict';
 
-  gulp.task(taskName, gulp.series('clean', function () {
+  gulp.task('triggerBuild', gulp.series('clean', function () {
     gulp.start('buildComponents');
   }));
 };
