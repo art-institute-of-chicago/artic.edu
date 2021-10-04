@@ -26,6 +26,7 @@ const data = {
 const relativePath = __dirname.replace(process.cwd(), '.');
 const path = require('path');
 const utils = require('../utils');
+const fs = require('fs');
 
 // @see https://github.com/austinpray/asset-builder
 let manifestPath = !utils.hasFile('./frontend/manifest.json') ? path.join(relativePath,'../config/manifest.json') : './frontend/manifest.json';
@@ -54,7 +55,7 @@ var config = require('load-gulp-config');
 
 // Specifics of npm's package.json handling.
 // @see https://docs.npmjs.com/files/package.json
-var pack = config.util.readJSON('package.json');
+var pack = JSON.parse(fs.readFileSync('package.json', { encoding:'utf8' }));
 
 config(gulp, {
 // Path to task's files, defaults to gulp dir.
