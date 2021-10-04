@@ -16,7 +16,7 @@ const data = {
     rename: require('gulp-rename'),
     rev: require('gulp-rev'),
     revDeleteOriginal: require('gulp-rev-delete-original'),
-    sass: require('gulp-sass'),
+    sass: require('gulp-sass')(require('sass')),
     sourcemaps: require('gulp-sourcemaps'),
     svgSprite: require('gulp-svg-sprite'),
     uglify: require('gulp-uglify'),
