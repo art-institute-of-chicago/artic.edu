@@ -1,8 +1,27 @@
 // ## Globals
-const gulp           = require('gulp'),
-argv           = require('minimist')(process.argv.slice(2)),
-plugins        = require('gulp-load-plugins')(),
-data           = { plugins: plugins };
+const gulp = require('gulp');
+const argv = require('minimist')(process.argv.slice(2));
+const data = {
+  plugins: {
+    autoprefixer: require('gulp-autoprefixer'),
+    changed: require('gulp-changed'),
+    cleanCss: require('gulp-clean-css'),
+    concat: require('gulp-concat'),
+    flatten: require('gulp-flatten'),
+    hub: require('gulp-hub'),
+    if: require('gulp-if'),
+    imagemin: require('gulp-imagemin'),
+    notify: require('gulp-notify'),
+    plumber: require('gulp-plumber'),
+    rename: require('gulp-rename'),
+    rev: require('gulp-rev'),
+    revDeleteOriginal: require('gulp-rev-delete-original'),
+    sass: require('gulp-sass')(require('sass')),
+    sourcemaps: require('gulp-sourcemaps'),
+    svgSprite: require('gulp-svg-sprite'),
+    uglify: require('gulp-uglify'),
+  }
+};
 
 const relativePath = __dirname.replace(process.cwd(), '.');
 const path = require('path');
