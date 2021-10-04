@@ -233,10 +233,9 @@
                 <ol class="list f-secondary">
                 @foreach ($block['items'] as $item)
                     @php
-                        $reference = rtrim($item['reference'] ?? '');
-                        preg_match('/(.*)\b(.+)$$/', $reference, $referenceParts);
+                        [$refStart, $refEnd] = \App\Helpers\StringHelpers::getLastWord($item['reference'] ?? '');
                     @endphp
-                    <li id="ref_note-{{ $item['id'] }}">{!! $referenceParts[1] ?? $reference !!}<span class="u-nowrap">{{ $referenceParts[2] ?? '' }} <a class="return-link" href="#ref_cite-{{ $item['id'] }}"><svg class="icon--arrow" aria-label="back to reference"><use xlink:href="#icon--arrow"></use></svg></a></span></li>
+                    <li id="ref_note-{{ $item['id'] }}">{!! $refStart !!}<span class="u-nowrap">{{ $refEnd }} <a class="return-link" href="#ref_cite-{{ $item['id'] }}"><svg class="icon--arrow" aria-label="back to reference"><use xlink:href="#icon--arrow"></use></svg></a></span></li>
                 @endforeach
                 </ol>
             @endif

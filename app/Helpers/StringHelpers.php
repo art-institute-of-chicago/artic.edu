@@ -163,6 +163,20 @@ class StringHelpers
         return $string;
     }
 
+    /**
+     * PUB-137: Split the last "word" from a text. Used to keep reference
+     * numbers and backref arrows from being orphaned onto the next line.
+     *
+     * Will *not* work with HTML! Plain text only.
+     */
+    public static function getLastWord($originalText)
+    {
+        $originalText = rtrim($originalText);
+        preg_match('/(.*)\b(.+)$$/', $originalText, $textParts);
+
+        return [$textParts[1] ?? $originalText, $textParts[2] ?? ''];
+    }
+
     public static function convertReferenceLinks($text, $_collectedReferences)
     {
         $codes = \App\Libraries\ShortcodeService::parse_ref($text);
