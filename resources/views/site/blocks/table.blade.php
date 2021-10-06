@@ -14,6 +14,7 @@
 @endphp
 
 @component('components.molecules._m-table')
+    @slot('size', $block->input('size'))
     @slot('title', $block->input('table_title'))
     @slot('tableHtml', $tableHtml)
     @slot('hasSideHeader', $block->input('has_side_header'))

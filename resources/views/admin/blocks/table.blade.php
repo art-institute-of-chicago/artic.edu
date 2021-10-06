@@ -5,6 +5,23 @@
 
 <hr>
 
+@formField('select', [
+    'name' => 'size',
+    'label' => 'Size',
+    'placeholder' => 'Select size',
+    'default' => 's',
+    'options' => [
+        [
+            'value' => 's',
+            'label' => 'Small'
+        ],
+        [
+            'value' => 'l',
+            'label' => 'Large'
+        ]
+    ]
+])
+
 @formField('input', [
     'name' => 'table_title',
     'label' => 'Title',
