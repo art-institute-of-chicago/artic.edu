@@ -51,9 +51,10 @@
                         @foreach ($rowCrawler->filter('td,th') as $i => $cellElement)
                             @php
                                 $cellStyle = $cellElement->getAttribute('style');
+                                $cellRowspan = $cellElement->getAttribute('rowspan');
                                 $isCellHeader = $cellElement->nodeName === 'th' || ($i === 0 && ($hasSideHeader ?? false));
                             @endphp
-                            <{!! $isCellHeader ? 'th' : 'td' !!} {!! !empty($cellStyle) ? 'style="' . $cellStyle . '"' : '' !!}>
+                            <{!! $isCellHeader ? 'th' : 'td' !!} {!! !empty($cellStyle) ? 'style="' . $cellStyle . '"' : '' !!} {!! !empty($cellRowspan) ? 'rowspan="' . $cellRowspan . '"' : '' !!}>
                                 @component('components.blocks._text')
                                     @slot('font', $isCellHeader ? 'f-module-title-1' : 'f-secondary')
                                     @slot('tag', 'span')
