@@ -40,6 +40,7 @@
         "aic/data-hub-foundation": "dev-laravel-6-support",
         "area17/twill": "2.4.*",
         "eluceo/ical": "0.14.*",
+        "erusev/parsedown": "^1.7",
         "fideloper/proxy": "~4.2",
         "guzzlehttp/guzzle": "6.3.0",
         "intervention/httpauth": "^2.1",
