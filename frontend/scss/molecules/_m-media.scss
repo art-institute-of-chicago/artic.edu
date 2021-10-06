@@ -211,8 +211,8 @@
     background-color: $color__white;
   }
 
-  .m-media--m:not(.m-media--contain) &:not(.m-media__img--virtualtour)::before,
-  .m-media--l:not(.m-media--contain) &:not(.m-media__img--virtualtour)::before,
+  .m-media--m:not(.m-media--contain) &:not(.m-media__img--virtualtour):not(.m-media--360-embed)::before,
+  .m-media--l:not(.m-media--contain) &:not(.m-media__img--virtualtour):not(.m-media--360-embed)::before,
   &.m-media__img--video:not(.m-media__img--disable-placeholder)::before {
     content: '';
     display: block;
@@ -320,8 +320,8 @@
   }
 }
 
-.m-media--m .m-media__img:not(.m-media--mirador-embed) img,
-.m-media--l .m-media__img:not(.m-media--mirador-embed) img,
+.m-media--m .m-media__img:not(.m-media--mirador-embed):not(.m-media--360-embed) img,
+.m-media--l .m-media__img:not(.m-media--mirador-embed):not(.m-media--360-embed) img,
 .m-media__img video,
 .m-media__img embed,
 .m-media:not(.m-media--soundcloud) .m-media__img iframe,
