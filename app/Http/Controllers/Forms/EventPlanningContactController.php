@@ -448,12 +448,6 @@ class EventPlanningContactController extends FormController
         ));
 
         array_push($blocks, array(
-          'type' => 'text',
-          'content' => '<p>Bon Appétit at the Art Institute<br/>'
-          .'For further information, please call (312) 443-3530 or use the inquiry form below.</p>'
-        ));
-
-        array_push($blocks, array(
             'type' => 'form',
             'variation' => null,
             'action' => '/venue-rental/contact-us',
