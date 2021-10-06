@@ -15,6 +15,13 @@ class GeneratePdf extends BaseJob
 
     public function handle()
     {
-        Artisan::call('pdfs:generate-one', ['model' => get_class($this->model), 'id' => $this->model->id]);
+        if (!config('aic.pdf_on_save')) {
+            return;
+        }
+
+        Artisan::call('pdfs:generate-one', [
+            'model' => get_class($this->model),
+            'id' => $this->model->id,
+        ]);
     }
 }
