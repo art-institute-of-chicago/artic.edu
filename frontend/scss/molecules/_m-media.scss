@@ -268,6 +268,7 @@
 .m-viewer-360-image {
   opacity: 0;
   transition: opacity .35s;
+  max-height: calc(95vh - 70px);
 }
 
 .m-media--mirador-embed {

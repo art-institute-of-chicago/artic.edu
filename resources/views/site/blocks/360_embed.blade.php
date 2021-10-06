@@ -9,7 +9,7 @@
 
 @if ($image_sequence_file)
 
-    <div class="m-media m-media--{{ $size ?? 's' }} o-blocks__block">
+    <div class="m-media m-media--{{ $size ?? 's' }} m-media--contain o-blocks__block">
         <script type="application/json" id="assetLibrary-{!!$sequence_id!!}">
             {!! json_encode($block->assetLibrary) !!}
         </script>
