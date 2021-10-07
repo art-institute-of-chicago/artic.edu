@@ -43,5 +43,4 @@ class DepartmentController extends BaseApiController
             'baseUrl' => $baseUrl,
         ];
     }
-
 }

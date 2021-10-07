@@ -29,7 +29,7 @@ trait HandleMagazine
             $magIssue = $magItem->magazineIssue;
         } else {
             $position = 0;
-            $magIssue = MagazineIssue::whereHas('relatedItems', function($query) use ($item) {
+            $magIssue = MagazineIssue::whereHas('relatedItems', function ($query) use ($item) {
                 $query->where('browser_name', 'welcome_note');
                 $query->where('related_id', $item->id);
             })->first();

@@ -52,20 +52,20 @@
                 @formField('select', [
                     'name' => 'start_time',
                     'label' => 'Start Time',
-                    'options' => hoursSelectOptions()
+                    'options' => DatesHelpers::hoursSelectOptions()
                 ])
 
                 @formField('select', [
                     'name' => 'door_time',
                     'label' => 'Door Time',
-                    'options' => hoursSelectOptions()
+                    'options' => DatesHelpers::hoursSelectOptions()
                 ])
             @endslot
             @slot('right')
                 @formField('select', [
                     'name' => 'end_time',
                     'label' => 'End Time',
-                    'options' => hoursSelectOptions()
+                    'options' => DatesHelpers::hoursSelectOptions()
                 ])
             @endslot
         @endcomponent
@@ -270,12 +270,12 @@
         ])
 
         @formField('block_editor', [
-            'blocks' => getBlocksForEditor([
+            'blocks' => BlockHelpers::getBlocksForEditor([
                 'paragraph', 'image', 'video', 'media_embed', 'quote',
                 'list', 'newsletter_signup_inline', 'timeline', 'link',
                 'artwork', 'hr', 'split_block', 'audio_player', 'tour_stop', 'button',
                 'mobile_app', '3d_model',
-                'gallery', 'artworks', 'gallery_new',
+                'gallery_new',
             ])
         ])
     </a17-fieldset>

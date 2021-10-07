@@ -16,7 +16,6 @@ class CreateTicketedEventsTables extends Migration
             $table->integer('available')->nullable();
             $table->integer('total_capacity')->nullable();
         });
-
     }
 
     public function down()

@@ -7,7 +7,7 @@
 @endphp
 
 @if ($table)
-    <div class="m-table">
+    <div class="m-table {{ empty($title) ? 'm-table--no-title' : '' }}">
         <table>
             @if (!empty($title))
                 <caption>
@@ -17,6 +17,9 @@
                     @endcomponent
                 </caption>
             @endif
+            @foreach ($crawler->filter('table:first-child > colgroup') as $colgroupElement)
+                {!! $colgroupElement->ownerDocument->saveHTML($colgroupElement) !!}
+            @endforeach
             <thead>
                 <tr>
                     @foreach ($crawler->filter('table:first-child > thead > tr > th') as $cellElement)
@@ -27,7 +30,7 @@
                             @component('components.blocks._text')
                                 @slot('font', 'f-module-title-1')
                                 @slot('tag', 'span')
-                                {!! innerHTML($cellElement) !!}
+                                {!! BlockHelpers::innerHTML($cellElement) !!}
                             @endcomponent
                         </th>
                         @php
@@ -38,20 +41,23 @@
             </thead>
             <tbody>
                 @foreach ($crawler->filter('table:first-child > tbody > tr') as $rowElement)
-                    <tr>
+                    @php
+                        $rowClass = $rowElement->getAttribute('class');
+                    @endphp
+                    <tr {!! !empty($rowClass) ? 'class="' . $rowClass . '"' : '' !!}>
                         @php
-                            $rowCrawler = new Crawler(innerHTML($rowElement));
+                            $rowCrawler = new Crawler(BlockHelpers::innerHTML($rowElement));
                         @endphp
-                        @foreach ($rowCrawler->filter('td') as $i => $cellElement)
+                        @foreach ($rowCrawler->filter('td,th') as $i => $cellElement)
                             @php
                                 $cellStyle = $cellElement->getAttribute('style');
-                                $isCellHeader = $i === 0 && ($hasSideHeader ?? false);
+                                $isCellHeader = $cellElement->nodeName === 'th' || ($i === 0 && ($hasSideHeader ?? false));
                             @endphp
-                            <{!! $isCellHeader ? 'th' : 'td' !!} style="{!! !empty($cellStyle) ? $cellStyle : '' !!}">
+                            <{!! $isCellHeader ? 'th' : 'td' !!} {!! !empty($cellStyle) ? 'style="' . $cellStyle . '"' : '' !!}>
                                 @component('components.blocks._text')
                                     @slot('font', $isCellHeader ? 'f-module-title-1' : 'f-secondary')
                                     @slot('tag', 'span')
-                                    {!! innerHTML($cellElement) !!}
+                                    {!! BlockHelpers::innerHTML($cellElement) !!}
                                 @endcomponent
                             </{!! $isCellHeader ? 'th' : 'td' !!}>
                             @php

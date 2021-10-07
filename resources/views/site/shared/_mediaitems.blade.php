@@ -4,7 +4,7 @@
             // Default to `mosaic` sizes, defensively
             $currentImageSettings = $imageSettings ?? array(
                 'srcset' => array(200,400,600,1000,1500,3000),
-                'sizes' => aic_imageSizes(array(
+                'sizes' => ImageHelpers::aic_imageSizes(array(
                     'xsmall' => '58',
                     'small' => '28',
                     'medium' => '28',
@@ -14,7 +14,7 @@
             );
 
             if ($item['isArtwork'] ?? false) {
-                $currentImageSettings['srcset'] = aic_getSrcsetForImage($item['media'], $item['isPublicDomain'] ?? false);
+                $currentImageSettings['srcset'] = ImageHelpers::aic_getSrcsetForImage($item['media'], $item['isPublicDomain'] ?? false);
             }
         @endphp
         @if ($item['href'] ?? false)

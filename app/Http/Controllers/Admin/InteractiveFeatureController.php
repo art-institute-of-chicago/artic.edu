@@ -52,5 +52,4 @@ class InteractiveFeatureController extends ModuleController
         }
         return parent::getIndexItems($scopes, $forcePagination);
     }
-
 }

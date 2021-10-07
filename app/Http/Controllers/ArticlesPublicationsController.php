@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Page;
 
 class ArticlesPublicationsController extends FrontController
@@ -54,7 +53,5 @@ class ArticlesPublicationsController extends FrontController
                 'items' => $page->printedPublications
             ]
         ]);
-
     }
-
 }

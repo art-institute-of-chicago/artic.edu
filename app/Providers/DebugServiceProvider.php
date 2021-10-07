@@ -9,9 +9,7 @@ class DebugServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('debug', function ($app) {
-
             return new class() {
-
                 private $output = [];
 
                 public function log($class, $field, $mutator = false)
@@ -31,7 +29,6 @@ class DebugServiceProvider extends ServiceProvider
                 {
                     return $this->output;
                 }
-
             };
         });
     }

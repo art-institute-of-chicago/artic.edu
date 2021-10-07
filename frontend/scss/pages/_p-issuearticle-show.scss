@@ -51,6 +51,15 @@
   .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
   .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
     font-family: $serif-font;
+
+    // PUB-140: Emulate %f-deck for bold?
+    strong, b {
+      font-weight: 600;
+
+      em, i {
+        font-weight: 600;
+      }
+    }
   }
 
   &.s-serif-loaded .o-blocks>p:not([class*=f-]),

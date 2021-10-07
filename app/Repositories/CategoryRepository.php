@@ -13,5 +13,4 @@ class CategoryRepository extends ModuleRepository
     {
         $this->model = $model;
     }
-
 }

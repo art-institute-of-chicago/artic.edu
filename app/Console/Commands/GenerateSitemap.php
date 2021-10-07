@@ -22,7 +22,6 @@ use Illuminate\Support\Str;
 
 class GenerateSitemap extends Command
 {
-
     protected $signature = 'sitemap:generate';
 
     protected $description = 'Command to generate a sitemap file';
@@ -100,8 +99,7 @@ class GenerateSitemap extends Command
         // Depth is included automatically alongside id
         $pages = $repository->withDepth()->defaultOrder()->published();
 
-        foreach ($pages->cursor() as $page)
-        {
+        foreach ($pages->cursor() as $page) {
             if ($page->depth > 2) {
                 continue;
             }
@@ -125,8 +123,12 @@ class GenerateSitemap extends Command
     {
         $this->addNativeModel($sitemap, Event::class, 'events.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
         $this->addNativeModel($sitemap, Article::class, 'articles.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
-        $this->addNativeModel($sitemap, PrintedPublication::class, 'collection.publications.printed-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->id, 'slug' => $entity->getSlug()];});
-        $this->addNativeModel($sitemap, DigitalPublication::class, 'collection.publications.digital-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->id, 'slug' => $entity->getSlug()];});
+        $this->addNativeModel($sitemap, PrintedPublication::class, 'collection.publications.printed-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function ($entity) {
+            return ['id' => $entity->id, 'slug' => $entity->getSlug()];
+        });
+        $this->addNativeModel($sitemap, DigitalPublication::class, 'collection.publications.digital-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function ($entity) {
+            return ['id' => $entity->id, 'slug' => $entity->getSlug()];
+        });
     }
 
     /**
@@ -136,9 +138,8 @@ class GenerateSitemap extends Command
     {
         $file = $this->crawlPrefix . route('collection', [], false);
 
-        if( !$html = @file_get_contents( $file ) )
-        {
-            throw new \Exception('Fetch failed: ' . $file );
+        if (!$html = @file_get_contents($file)) {
+            throw new \Exception('Fetch failed: ' . $file);
         }
 
         $domCrawler = new DomCrawler($html, $file);
@@ -168,12 +169,12 @@ class GenerateSitemap extends Command
      */
     private function addExhibitions(&$sitemap)
     {
-        $this->addNativeModel($sitemap, Exhibition::class, 'exhibitions.show', 0.9, Url::CHANGE_FREQUENCY_WEEKLY, function($entity) {
-                return [
+        $this->addNativeModel($sitemap, Exhibition::class, 'exhibitions.show', 0.9, Url::CHANGE_FREQUENCY_WEEKLY, function ($entity) {
+            return [
                     'id' => $entity->datahub_id,
                     'slug' => $entity->slug,
                 ];
-            }, ['datahub_id']);
+        }, ['datahub_id']);
     }
 
     private function addRemoteModels(&$sitemap)
@@ -189,8 +190,7 @@ class GenerateSitemap extends Command
         // `id` is always needed for retrieving slugs
         $fields = array_values(array_unique(array_merge($additionalFields, ['id', 'updated_at'])));
 
-        foreach ($class::select($fields)->cursor() as $entity)
-        {
+        foreach ($class::select($fields)->cursor() as $entity) {
             $params = $paramCallback ? $paramCallback($entity) : [
                 'id' => $entity->id,
                 'slug' => $entity->slug
@@ -206,7 +206,7 @@ class GenerateSitemap extends Command
      */
     private function addRoute(&$sitemap, string $route, float $priority = 0.8, $changeFrequency = Url::CHANGE_FREQUENCY_DAILY)
     {
-        $this->addUrl($sitemap, route($route, [] , false), $priority, $changeFrequency);
+        $this->addUrl($sitemap, route($route, [], false), $priority, $changeFrequency);
     }
 
     /**
@@ -219,8 +219,7 @@ class GenerateSitemap extends Command
         $url->setPriority($priority);
         $url->setChangeFrequency($changeFrequency);
 
-        if ($lastModified)
-        {
+        if ($lastModified) {
             $url->setLastModificationDate($lastModified);
         }
 
@@ -252,5 +251,4 @@ class GenerateSitemap extends Command
 
         $sitemap->add($url);
     }
-
 }

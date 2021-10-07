@@ -21,6 +21,4 @@ class DeleteArticleExhibitionTable extends Migration
             $table->integer('position')->unsigned()->index();
         });
     }
-
-
 }

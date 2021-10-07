@@ -12,7 +12,6 @@ use Illuminate\Console\Command;
 
 class MigrateExhibitions extends Command
 {
-
     protected $signature = 'migrate:exhibitions';
 
     protected $description = 'Copy `short_description` to new website';
@@ -30,8 +29,7 @@ class MigrateExhibitions extends Command
             ],
         ])->limit(500)->get(['id'])->pluck('id');
 
-        foreach ($ids as $id)
-        {
+        foreach ($ids as $id) {
             $this->handleItem($id);
         }
     }
@@ -44,16 +42,14 @@ class MigrateExhibitions extends Command
     {
         $item = $this->getRepository()->where('datahub_id', '=', $id)->first();
 
-        if (!isset($item) || isset($item->list_description))
-        {
+        if (!isset($item) || isset($item->list_description)) {
             return;
         }
 
         // Load data from the API
         $apiItem = $this->getApiRepository('Exhibition')->getById($id);
 
-        if (!method_exists($apiItem, 'toArray'))
-        {
+        if (!method_exists($apiItem, 'toArray')) {
             $this->error('Errored: ' . $id);
             return;
         }
@@ -64,8 +60,7 @@ class MigrateExhibitions extends Command
         // Find if we have an existing model before creating an augmented one
         $item = $this->getRepository()->firstOrCreate(['datahub_id' => $id], $data);
 
-        if (empty($item->list_description))
-        {
+        if (empty($item->list_description)) {
             $item->list_description = trim($item->getApiModelFilled()->short_description);
             $item->published = 1;
             $item->save();
@@ -90,5 +85,4 @@ class MigrateExhibitions extends Command
     {
         return $augmentedRepository ?? $augmentedRepository = (new AugmentedRepository(new Exhibition()));
     }
-
 }

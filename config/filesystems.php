@@ -61,6 +61,8 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY', env('S3_SECRET')),
             'region' => env('AWS_DEFAULT_REGION', env('S3_REGION', 'us-east-1')),
             'bucket' => env('AWS_BUCKET', env('S3_BUCKET')),
+            'url' => env('AWS_URL', env('S3_URL')),
+            'endpoint' => env('AWS_ENDPOINT', env('S3_ENDPOINT')),
         ],
 
         'iiif_s3' => [
@@ -69,6 +71,8 @@ return [
             'secret' => env('IIIF_S3_SECRET', env('S3_SECRET')),
             'region' => env('IIIF_S3_REGION'),
             'bucket' => env('IIIF_S3_BUCKET'),
+            'url' => env('IIIF_S3_URL'),
+            'endpoint' => env('IIIF_S3_ENDPOINT'),
         ],
 
         'pdf_s3' => [
@@ -77,6 +81,8 @@ return [
             'secret' => env('PDF_S3_SECRET', env('S3_SECRET')),
             'region' => env('PDF_S3_REGION'),
             'bucket' => env('PDF_S3_BUCKET'),
+            'url' => env('PDF_S3_URL'),
+            'endpoint' => env('PDF_S3_ENDPOINT'),
         ],
 
     ],

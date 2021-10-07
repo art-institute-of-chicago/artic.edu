@@ -21,7 +21,6 @@ class CreatePagesTable extends Migration
             # Page type
             $table->integer('type')->unsigned();
             $table->unique('type');
-
         });
 
         Schema::create('page_slugs', function (Blueprint $table) {

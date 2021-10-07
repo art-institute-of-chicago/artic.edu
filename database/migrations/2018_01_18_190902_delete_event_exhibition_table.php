@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class DeleteEventExhibitionTable extends Migration
 {
-   public function up()
+    public function up()
     {
         Schema::dropIfExists('event_exhibition');
     }

@@ -30,13 +30,13 @@
     $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
 
     if ($item['isArtwork'] ?? $item['useArtworkSrcset'] ?? false) {
-        $defaultSrcset = aic_getSrcsetForImage($media, $item['isPublicDomain'] ?? false);
+        $defaultSrcset = ImageHelpers::aic_getSrcsetForImage($media, $item['isPublicDomain'] ?? false);
     }
 
     if (empty($imageSettings) && $size === 's') {
         $imageSettings = array(
             'srcset' => $defaultSrcset,
-            'sizes' => aic_imageSizes(array(
+            'sizes' => ImageHelpers::aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
                   'medium' => '38',
@@ -48,7 +48,7 @@
     if (empty($imageSettings) && $size === 'm') {
         $imageSettings = array(
             'srcset' => $defaultSrcset,
-            'sizes' => aic_imageSizes(array(
+            'sizes' => ImageHelpers::aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
                   'medium' => '58',
@@ -60,7 +60,7 @@
     if (empty($imageSettings) && $size === 'l') {
         $imageSettings = array(
             'srcset' => $defaultSrcset,
-            'sizes' => aic_imageSizes(array(
+            'sizes' => ImageHelpers::aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
                   'medium' => '58',
@@ -76,7 +76,8 @@
 
         $imageSettings['ratio'] = '16:9';
 
-        // Allow soundcloud embed to expand in height - see _m-media.scss
+        // Allow soundcloud embed to expand in height
+        // @see _m-media.scss
         if (strrpos($media['embed'],'api.soundcloud.com'))
         {
             $variation = ($variation ?? '').' m-media--soundcloud';
@@ -128,7 +129,7 @@
 @endphp
 
 <{{ $tag ?? 'figure' }} data-type="{{ $type }}" data-title="{{ $item['captionTitle'] ?? $item['caption'] ?? $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ $useContain ? ' m-media--contain' : '' }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
-    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : (($type === 'virtualtour') ? ' m-media__img--virtualtour' : '' )}}{{ $useAltBackground ? ' m-media__img--alt-background' : '' }}{{ $disablePlaceholder ? ' m-media__img--disable-placeholder' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}"{!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! ($_allowAdvancedModalFeatures ?? false) ? ' data-modal-advanced="true"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}{!! !empty($item['credit']) ? ' data-credit="' . $item['credit'] . '"' : '' !!}>
+    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : (($type === 'virtualtour') ? ' m-media__img--virtualtour' : '' )}}{{ $useAltBackground ? ' m-media__img--alt-background' : '' }}{{ $disablePlaceholder ? ' m-media__img--disable-placeholder' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}" data-platform="{!! isset($item['platform']) ? $item['platform'] : '' !!}" {!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! ($_allowAdvancedModalFeatures ?? false) ? ' data-modal-advanced="true"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}{!! !empty($item['credit']) ? ' data-credit="' . $item['credit'] . '"' : '' !!}>
         @if ($useContain && ($size === 'm' || $size === 'l'))
             <div class="m-media__contain--spacer" style="padding-bottom: {{ min(62.5, intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100) }}%"></div>
         @endif

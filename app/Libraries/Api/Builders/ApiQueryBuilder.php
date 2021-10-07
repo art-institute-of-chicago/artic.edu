@@ -8,8 +8,10 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Container\Container;
 use App\Libraries\Api\Builders\Grammar\MsearchGrammar;
 use App\Libraries\Api\Builders\Grammar\SearchGrammar;
+use App\Helpers\CollectionHelpers;
 
-class ApiQueryBuilder {
+class ApiQueryBuilder
+{
 
     /**
      * All of the available clause operators.
@@ -46,7 +48,7 @@ class ApiQueryBuilder {
      *
      * @var boolean
      */
-    public $boost = TRUE;
+    public $boost = true;
 
 
     /**
@@ -207,7 +209,11 @@ class ApiQueryBuilder {
         $type = 'Basic';
 
         $this->wheres[] = compact(
-            'type', 'column', 'operator', 'value', 'boolean'
+            'type',
+            'column',
+            'operator',
+            'value',
+            'boolean'
         );
 
         return $this;
@@ -379,7 +385,7 @@ class ApiQueryBuilder {
      * @param  boolean  $value
      * @return $this
      */
-    public function boost($value = TRUE)
+    public function boost($value = true)
     {
         $this->boost = $value;
 
@@ -480,13 +486,12 @@ class ApiQueryBuilder {
 
         if (is_array($results->body)) {
             // If it's an msearch result return first element
-            $collection = collectApi($results->body[0]->data);
-        }
-        elseif (is_array($results->body->data)) {
+            $collection = CollectionHelpers::collectApi($results->body[0]->data);
+        } elseif (is_array($results->body->data)) {
             // If it's a single element return as a collection with 1 element
-            $collection = collectApi($results->body->data);
+            $collection = CollectionHelpers::collectApi($results->body->data);
         } else {
-            $collection = collectApi([$results->body->data]);
+            $collection = CollectionHelpers::collectApi([$results->body->data]);
         }
 
         $collection = $this->getSortedCollection($collection);
@@ -517,9 +522,9 @@ class ApiQueryBuilder {
         $results = $this->runGet($endpoint);
 
         if (is_array($results->body)) {
-            $collection = collectApi($results->body);
+            $collection = CollectionHelpers::collectApi($results->body);
         } else {
-            $collection = collectApi([$results->body]);
+            $collection = CollectionHelpers::collectApi([$results->body]);
         }
 
         $collection = $this->getSortedCollection($collection);
@@ -533,7 +538,8 @@ class ApiQueryBuilder {
         return $collection;
     }
 
-    public function getPaginationData() {
+    public function getPaginationData()
+    {
         return $this->paginationData;
     }
 
@@ -547,8 +553,7 @@ class ApiQueryBuilder {
         $grammar = null;
         if (Str::endsWith($endpoint, '/msearch')) {
             $grammar = new MsearchGrammar;
-        }
-        elseif (Str::endsWith($endpoint, '/search')) {
+        } elseif (Str::endsWith($endpoint, '/search')) {
             $grammar = new SearchGrammar;
         }
         return $this->connection->ttl($this->ttl)->get($endpoint, $this->resolveParameters($grammar));
@@ -599,7 +604,7 @@ class ApiQueryBuilder {
             return $collection;
         }
 
-        return $collection->sort(function($a, $b) use ($collection) {
+        return $collection->sort(function ($a, $b) use ($collection) {
             if (!isset($a->id) || !isset($b->id)) {
                 return 0;
             }
@@ -614,5 +619,4 @@ class ApiQueryBuilder {
             return ($ia < $ib) ? -1 : 1;
         });
     }
-
 }

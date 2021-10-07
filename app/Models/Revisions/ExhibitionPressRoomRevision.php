@@ -14,5 +14,4 @@ class ExhibitionPressRoomRevision extends Revision
     {
         return $this->belongsTo('App\Models\ExhibitionPressRoom');
     }
-
 }

@@ -28,5 +28,4 @@ class InteractiveFeatureRepository extends ModuleRepository
     {
         return Experience::where('title', 'ILIKE', "%{$search}%")->published();
     }
-
 }

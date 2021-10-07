@@ -18,5 +18,4 @@ class TicketedEvent extends BaseApiModel
     {
         return "{$this->title} (" . ($this->start_at ? Carbon::parse($this->start_at)->toFormattedDateString() .', ' : '') ."#{$this->id})";
     }
-
 }

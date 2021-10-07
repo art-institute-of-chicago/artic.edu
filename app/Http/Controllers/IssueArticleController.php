@@ -26,7 +26,7 @@ class IssueArticleController extends FrontController
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
-        $this->seo->setDescription($item->list_description ?: $item->description);
+        $this->seo->setDescription($item->meta_description ?: ($item->list_description ?: $item->description));
         $this->seo->setImage($item->imageFront('hero'));
 
         $this->seo->citationTitle = $item->meta_title ?: $item->title;

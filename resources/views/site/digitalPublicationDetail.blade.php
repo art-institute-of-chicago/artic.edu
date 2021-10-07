@@ -13,6 +13,7 @@
         @slot('title_display', $item->present()->headerTitle())
         @slot('subtitle_display', $item->present()->headerSubtitle())
         @slot('img', $item->imageFront('listing'))
+        @slot('imgMobile', $item->imageFront('listing', 'mobile'))
         @slot('editorial', true)
         @slot('bgcolor', $item->bgcolor)
     @endcomponent
@@ -67,7 +68,7 @@
                             'fit' => 'crop',
                             'ratio' => '16:9',
                             'srcset' => array(200,400,600),
-                            'sizes' => aic_imageSizes(array(
+                            'sizes' => ImageHelpers::aic_imageSizes(array(
                                   'xsmall' => '216px',
                                   'small' => '216px',
                                   'medium' => '18',
@@ -104,7 +105,7 @@
                             'fit' => 'crop',
                             'ratio' => '16:9',
                             'srcset' => array(200,400,600),
-                            'sizes' => aic_imageSizes(array(
+                            'sizes' => ImageHelpers::aic_imageSizes(array(
                                 'xsmall' => '216px',
                                 'small' => '216px',
                                 'medium' => '18',

@@ -22,8 +22,8 @@
                 @slot('imageSettings', array(
                     'fit' => null,
                     'ratio' => null,
-                    'srcset' => aic_getSrcsetForImage($item->imageFront(), $item->is_public_domain ?? false),
-                    'sizes' => aic_gridListingImageSizes($sizes),
+                    'srcset' => ImageHelpers::aic_getSrcsetForImage($item->imageFront(), $item->is_public_domain ?? false),
+                    'sizes' => ImageHelpers::aic_gridListingImageSizes($sizes),
                 ))
                 @if (isset($gtmAttributesForItem))
                     @slot('gtmAttributes', $gtmAttributesForItem($item, $loop))

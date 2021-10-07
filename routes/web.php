@@ -88,15 +88,21 @@ Route::name('authors.index')->get('/authors', 'AuthorController@index');
 Route::name('authors.show')->get('/authors/{id}/{slug?}', 'AuthorController@show');
 
 // Videos routes
-Route::name('videos')->get('videos', function () {return abort(404);});
+Route::name('videos')->get('videos', function () {
+    return abort(404);
+});
 Route::name('videos.show')->get('/videos/{id}/{slug?}', 'VideoController@show');
 
 // Virtual Tours routes
-Route::name('virtualTours')->get('virtual-tours', function () {return abort(404);});
+Route::name('virtualTours')->get('virtual-tours', function () {
+    return abort(404);
+});
 Route::name('virtualTours.show')->get('/virtual-tours/{id}/{slug?}', 'VirtualTourController@show');
 
 // Mirador kiosk routes
-Route::name('mirador')->get('mirador', function () {return abort(404);});
+Route::name('mirador')->get('mirador', function () {
+    return abort(404);
+});
 Route::name('mirador.show')->get('/mirador/{id}/{slug?}', 'MiradorController@show');
 
 // Exhibition history routes
@@ -127,9 +133,9 @@ Route::name('artists.show')->get('/artists/{id}/{slug?}', 'ArtistController@show
 // Department / tag page
 Route::name('departments.show')->get('/departments/{id}/{slug?}', 'DepartmentController@show');
 
-// Selections
-Route::name('selections.show')->get('/highlights/{id}/{slug?}', 'SelectionsController@show');
-Route::name('selections.index')->get('/highlights', 'SelectionsController@index');
+// Highlights
+Route::name('highlights.show')->get('/highlights/{id}/{slug?}', 'HighlightsController@show');
+Route::name('highlights.index')->get('/highlights', 'HighlightsController@index');
 
 // About
 Route::name('about.press')->get('/press/press-releases', 'PressReleasesController@index');
@@ -139,13 +145,6 @@ Route::name('about.exhibitionPressRooms')->middleware(['httpauth'])->get('/press
 Route::name('about.exhibitionPressRooms.show')->middleware(['httpauth'])->get('/press/exhibition-press-room/{id}/{slug?}', 'ExhibitionPressRoomController@show');
 
 Route::name('about.press.show')->get('/press/press-releases/{id}/{slug?}', 'PressReleasesController@show');
-
-// Sample Form
-if (!app()->environment('production')) {
-    Route::name('forms.contact')->get('/forms/contact', 'Forms\ContactsController@index');
-    Route::name('forms.contact.store')->post('/forms/contact', 'Forms\ContactsController@store');
-    Route::name('forms.contact.thanks')->get('/forms/contact/thanks', 'Forms\ContactsController@thanks');
-}
 
 // Group reservation form
 Route::name('forms.group-reservation')->get('/visit/visiting-with-a-group/reservation-form', 'Forms\GroupReservationsController@index');

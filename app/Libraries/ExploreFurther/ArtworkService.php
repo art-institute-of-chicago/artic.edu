@@ -4,6 +4,7 @@ namespace App\Libraries\ExploreFurther;
 
 use App\Models\Api\Search;
 use Illuminate\Support\Arr;
+use App\Helpers\DatesHelpers;
 
 /**
  *
@@ -17,7 +18,6 @@ use Illuminate\Support\Arr;
 
 class ArtworkService extends BaseService
 {
-
     public function tags()
     {
         $tags = [];
@@ -50,9 +50,9 @@ class ArtworkService extends BaseService
 
         // Build Date Tags
         if ($this->resource->date_start && $this->resource->date_end) {
-            $before = incrementBefore($this->resource->date_start);
-            $after = incrementAfter($this->resource->date_start);
-            $tags['date'] = collect([$this->resource->date_start => printYear($before) ."–" .printYear($after)]);
+            $before = DatesHelpers::incrementBefore($this->resource->date_start);
+            $after = DatesHelpers::incrementAfter($this->resource->date_start);
+            $tags['date'] = collect([$this->resource->date_start => DatesHelpers::printYear($before) ."–" .DatesHelpers::printYear($after)]);
         }
 
         // Build Color Tags
@@ -84,7 +84,7 @@ class ArtworkService extends BaseService
         // If so, render it regardless of the `ef-` param status
         $isAllTagsAnOrphan = (key($this->tags()) === 'all');
 
-        if ($parameters->has('ef-all_ids') || $isAllTagsAnOrphan ) {
+        if ($parameters->has('ef-all_ids') || $isAllTagsAnOrphan) {
             return $this->getAllTags();
         }
 
@@ -127,9 +127,8 @@ class ArtworkService extends BaseService
             }
         }
 
-        return Arr::where($tags, function($key, $value) {
+        return Arr::where($tags, function ($key, $value) {
             return !empty($value);
         });
     }
-
 }

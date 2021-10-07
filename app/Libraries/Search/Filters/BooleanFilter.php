@@ -29,7 +29,7 @@ class BooleanFilter
 
     protected function generateOptionsList()
     {
-        return collect($this->options)->map(function($label, $item) {
+        return collect($this->options)->map(function ($label, $item) {
             $base = [
                 'enabled' => false,
                 'label'   => $label,
@@ -47,5 +47,4 @@ class BooleanFilter
             return $base;
         })->values();
     }
-
 }

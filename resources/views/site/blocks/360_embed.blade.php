@@ -4,11 +4,12 @@
     $alt_text = $block->input('alt_text');
     $caption_title = $block->input('caption_title');
     $caption = $block->input('caption');
+    $size = $block->input('size');
 @endphp
 
 @if ($image_sequence_file)
 
-    <div class="m-media m-media--s o-blocks__block">
+    <div class="m-media m-media--{{ $size ?? 's' }} m-media--contain o-blocks__block">
         <script type="application/json" id="assetLibrary-{!!$sequence_id!!}">
             {!! json_encode($block->assetLibrary) !!}
         </script>

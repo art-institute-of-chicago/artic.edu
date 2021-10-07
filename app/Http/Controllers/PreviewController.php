@@ -9,7 +9,6 @@ use Illuminate\Routing\Controller as BaseController;
 
 class PreviewController extends BaseController
 {
-
     public function show($hash)
     {
         // Structured like //host.example/path?query=foobar
@@ -33,5 +32,4 @@ class PreviewController extends BaseController
         // Now, calling request() returns the new request!
         return Route::dispatch($request)->getContent();
     }
-
 }

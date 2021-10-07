@@ -11,5 +11,4 @@ class EmailSeriesController extends ModuleController
     protected $indexOptions = [
         'reorder' => true,
     ];
-
 }

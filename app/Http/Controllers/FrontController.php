@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\View;
 
 class FrontController extends BaseController
 {
-
     public function __construct()
     {
-
         parent::__construct();
 
         $this->seo = new Seo;

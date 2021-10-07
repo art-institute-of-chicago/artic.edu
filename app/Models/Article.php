@@ -86,6 +86,12 @@ class Article extends AbstractModel implements Feedable
                     'ratio' => 16 / 9,
                 ],
             ],
+            'mobile' => [
+                [
+                    'name' => 'mobile',
+                    'ratio' => 9 / 16,
+                ],
+            ],
             'special' => [
                 [
                     'name' => 'default',
@@ -192,7 +198,7 @@ class Article extends AbstractModel implements Feedable
 
     public static function getAllFeedItems()
     {
-        return \App\Models\Article::query()->published()->notUnlisted()->orderBy('date', 'desc')->get();
+        return \App\Models\Article::query()->published()->notUnlisted()->orderBy('date', 'desc')->limit(300)->get();
     }
 
     public function toFeedItem()
@@ -201,9 +207,9 @@ class Article extends AbstractModel implements Feedable
 
         $ch = curl_init($heroImage['src']);
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_HEADER, TRUE);
-        curl_setopt($ch, CURLOPT_NOBODY, TRUE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_NOBODY, true);
 
         $data = curl_exec($ch);
         $length = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
@@ -232,67 +238,89 @@ class Article extends AbstractModel implements Feedable
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function () {return $this->published;},
+                "value" => function () {
+                    return $this->published;
+                },
             ],
             [
                 "name" => 'publish_start_date',
                 "doc" => "Publish Start Date",
                 "type" => "datetime",
-                "value" => function() { return $this->publish_start_date; }
+                "value" => function () {
+                    return $this->publish_start_date;
+                }
             ],
             [
                 "name" => 'publish_end_date',
                 "doc" => "Publish End Date",
                 "type" => "datetime",
-                "value" => function() { return $this->publish_end_date; }
+                "value" => function () {
+                    return $this->publish_end_date;
+                }
             ],
             [
                 "name" => 'date',
                 "doc" => "Date",
                 "type" => "date",
-                "value" => function () {return $this->date;},
+                "value" => function () {
+                    return $this->date;
+                },
             ],
             [
                 "name" => 'copy',
                 "doc" => "Copy",
                 "type" => "text",
-                "value" => function () {return $this->blocks;},
+                "value" => function () {
+                    return $this->blocks;
+                },
             ],
             [
                 "name" => "slug",
                 "doc" => "slug",
                 "type" => "string",
-                "value" => function () {return $this->slug;},
+                "value" => function () {
+                    return $this->slug;
+                },
             ],
             [
                 "name" => "web_url",
                 "doc" => "web_url",
                 "type" => "string",
-                "value" => function () {return url(route('articles.show', $this));},
+                "value" => function () {
+                    return url(route('articles.show', $this));
+                },
             ],
             [
                 "name" => "subtype",
                 "doc" => "Subtype",
                 "type" => "string",
-                "value" => function () {return $this->subtype;},
+                "value" => function () {
+                    return $this->subtype;
+                },
             ],
             [
                 "name" => "heading",
                 "doc" => "heading",
                 "type" => "string",
-                "value" => function () {return $this->heading;},
+                "value" => function () {
+                    return $this->heading;
+                },
             ],
             [
                 "name" => "list_description",
                 "doc" => "list_description",
                 "type" => "string",
-                "value" => function () {return $this->list_description;},
+                "value" => function () {
+                    return $this->list_description;
+                },
             ],
             [
                 "name" => 'related',
                 "doc" => "Related Content",
                 "type" => "array",
-                "value" => function () { return $this->transformRelated(); },
+                "value" => function () {
+                    return $this->transformRelated();
+                },
             ],
         ];
     }

@@ -18,7 +18,7 @@ class Departments extends BaseFilteredList
 
         $sortedDepartments = $list->pluck('label')->sort()->diff($this->hiddenDepartments)->values();
 
-        $sortedList = $sortedDepartments->map(function($title) use ($list) {
+        $sortedList = $sortedDepartments->map(function ($title) use ($list) {
             return $list->firstWhere('label', $title);
         })->filter();
 
@@ -41,5 +41,4 @@ class Departments extends BaseFilteredList
     {
         return ucfirst($key);
     }
-
 }

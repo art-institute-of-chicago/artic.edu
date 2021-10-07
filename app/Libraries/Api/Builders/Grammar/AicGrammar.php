@@ -119,10 +119,11 @@ class AicGrammar
 
     protected function compileSearchText($query, $text)
     {
-        if ($text)
+        if ($text) {
             return ['q' => $text];
-        else
+        } else {
             return [];
+        }
     }
 
     protected function compileSearchParameters($query, array $elasticParameters)
@@ -170,5 +171,4 @@ class AicGrammar
     {
         return ['page' => $page];
     }
-
 }

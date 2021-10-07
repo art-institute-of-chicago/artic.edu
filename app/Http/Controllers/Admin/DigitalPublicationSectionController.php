@@ -51,7 +51,7 @@ class DigitalPublicationSectionController extends ModuleController
                 ],
                 [
                     'label' => $digPub->title,
-                    'url' => moduleRoute('digitalPublications', 'collection.articles_publications', 'edit', $digPub->id),
+                    'url' => moduleRoute('digitalPublications', 'collection.articles_publications', 'edit', [$digPub->id]),
                 ],
                 [
                     'label' => 'Sections',
@@ -76,11 +76,11 @@ class DigitalPublicationSectionController extends ModuleController
                 ],
                 [
                     'label' => $digPub->title,
-                    'url' => moduleRoute('digitalPublications', 'collection.articles_publications', 'edit', $digPub->id),
+                    'url' => moduleRoute('digitalPublications', 'collection.articles_publications', 'edit', [$digPub->id]),
                 ],
                 [
                     'label' => 'Sections',
-                    'url' => moduleRoute('digitalPublications.sections', 'collection.articles_publications', 'index', $request->route('digitalPublication')),
+                    'url' => moduleRoute('digitalPublications.sections', 'collection.articles_publications', 'index', [$request->route('digitalPublication')]),
                 ],
                 [
                     'label' => $digPub->title,

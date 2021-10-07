@@ -54,5 +54,4 @@ class ExhibitionHistoryController extends FrontController
     {
         $resource = Exhibition::with('artworks')->find((Integer) $idSlug);
     }
-
 }

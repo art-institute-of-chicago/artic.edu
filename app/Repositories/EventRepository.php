@@ -59,18 +59,15 @@ class EventRepository extends ModuleRepository
      */
     public function prepareFieldsBeforeSave($object, $fields)
     {
-        if (isset($fields['rsvp_link']))
-        {
+        if (isset($fields['rsvp_link'])) {
             $isTicketedEvent = preg_match('/https*:\/\/sales\.artic\.edu\/Events\/Event\/([0-9]+)\?date=([0-9]+\/[0-9]+\/[0-9]+)/', $fields['rsvp_link'], $matches);
 
-            if ($isTicketedEvent)
-            {
+            if ($isTicketedEvent) {
                 $ticketedEventId = $matches[1];
                 $ticketedEvent = TicketedEvent::query()->find($ticketedEventId);
 
                 // Roughshod way of checking if the ticketed event exists
-                if (!isset($ticketedEvent->error))
-                {
+                if (!isset($ticketedEvent->error)) {
                     $fields['browsers']['ticketedEvent'] = [
                         [
                             'id' => $ticketedEvent->id,
@@ -86,8 +83,7 @@ class EventRepository extends ModuleRepository
 
         $relatedEmailSeries = [];
 
-        if ($fields['add_to_event_email_series'] ?? false)
-        {
+        if ($fields['add_to_event_email_series'] ?? false) {
             foreach (EmailSeries::all() as $series) {
                 if (!($fields['email_series_' . $series->id] ?? false)) {
                     continue;
@@ -145,8 +141,7 @@ class EventRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($object);
 
-        if (isset($fields['add_to_event_email_series']))
-        {
+        if (isset($fields['add_to_event_email_series'])) {
             foreach ($object->emailSeries as $series) {
                 $currentSeriesName = 'email_series_' . $series->id;
                 $fields[$currentSeriesName] = true;
@@ -167,27 +162,31 @@ class EventRepository extends ModuleRepository
         return $fields;
     }
 
-    public function getEventTypesList() {
+    public function getEventTypesList()
+    {
         return collect($this->model::$eventTypes);
     }
 
-    public function getEventAudiencesList() {
+    public function getEventAudiencesList()
+    {
         return collect($this->model::$eventAudiences);
     }
 
-    public function getEventLayoutsList() {
+    public function getEventLayoutsList()
+    {
         return collect($this->model::$eventLayouts);
     }
 
-    public function getEventEntrancesList() {
+    public function getEventEntrancesList()
+    {
         return collect($this->model::$eventEntrances);
     }
 
     public function groupByDate($collection)
     {
         if ($collection) {
-            return $collection->groupBy(function($item) {
-              return $item->date->format('Y-m-d');
+            return $collection->groupBy(function ($item) {
+                return $item->date->format('Y-m-d');
             });
         }
     }
@@ -206,11 +205,9 @@ class EventRepository extends ModuleRepository
 
         if ($start) {
             $query->betweenDates($start, $end);
-        }
-        elseif ($program) {
+        } elseif ($program) {
             $query->year();
-        }
-        else {
+        } else {
             switch ($time) {
                 case 'weekend':
                     $query->weekend();
@@ -244,9 +241,14 @@ class EventRepository extends ModuleRepository
         return $query->paginate($perPage, ['events.*', 'event_metas.date', 'event_metas.date_end'], 'page', $page);
     }
 
-    public function getRelatedEvents($object, $perPage = 3, $page = null) {
-        if (!$object->events()) { return null; }
-        if ($object->events()->count() == 0) { return null; }
+    public function getRelatedEvents($object, $perPage = 3, $page = null)
+    {
+        if (!$object->events()) {
+            return null;
+        }
+        if ($object->events()->count() == 0) {
+            return null;
+        }
 
         // Using the relationship directly, doesn't generate the correct Query.
         $ids = $object->events()->notPrivate()->get()->pluck('id');
@@ -261,7 +263,8 @@ class EventRepository extends ModuleRepository
         return $query->paginate($perPage, ['events.*', 'event_metas.date', 'event_metas.date_end'], 'page', $page);
     }
 
-    public function getRelatedEventsCount($object) {
+    public function getRelatedEventsCount($object)
+    {
         $query = $object->events()->rightJoin('event_metas', function ($join) {
             $join->on('events.id', '=', 'event_metas.event_id');
         });
@@ -289,5 +292,4 @@ class EventRepository extends ModuleRepository
 
         return $results;
     }
-
 }

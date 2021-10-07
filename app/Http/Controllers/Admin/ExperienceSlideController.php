@@ -51,13 +51,13 @@ class ExperienceSlideController extends ModuleController
         $slides = $this->repository->get([], ['experience_id' => $experience->id], ['position' => 'asc']);
         $currentSlideIndex = $slides->search($slide);
         return [
-            'parentPreviousUrl' => $currentSlideIndex !== false && $currentSlideIndex > 0 ? $this->getModuleRoute($slides[$currentSlideIndex - 1], 'edit') : '',
-            'parentNextUrl' => $currentSlideIndex !== false && $currentSlideIndex < $slides->count() - 1 ? $this->getModuleRoute($slides[$currentSlideIndex + 1], 'edit') : '',
+            'parentPreviousUrl' => $currentSlideIndex !== false && $currentSlideIndex > 0 ? moduleRoute($this->moduleName, $this->routePrefix, 'edit', ['slide' => $slides[$currentSlideIndex - 1]]) : '',
+            'parentNextUrl' => $currentSlideIndex !== false && $currentSlideIndex < $slides->count() - 1 ? moduleRoute($this->moduleName, $this->routePrefix, 'edit', ['slide' => $slides[$currentSlideIndex + 1]]) : '',
             'parents' => $slides->map(function ($slide) {
                 return [
                     'id' => $slide->id,
                     'name' => $slide->title,
-                    'edit' => $this->getModuleRoute($slide->id, 'edit')
+                    'edit' => moduleRoute($this->moduleName, $this->routePrefix, 'edit', ['slide' => $slide->id])
                 ];
             }),
             'breadcrumb' => [
@@ -110,5 +110,4 @@ class ExperienceSlideController extends ModuleController
 
         return $this->respondWithError($this->modelTitle . ' was not moved to trash. Something wrong happened!');
     }
-
 }

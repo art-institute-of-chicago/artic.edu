@@ -26,7 +26,7 @@ class DigitalPublicationSectionController extends FrontController
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
-        $this->seo->setDescription($item->list_description);
+        $this->seo->setDescription($item->meta_description ?: $item->list_description);
         $this->seo->setImage($item->imageFront('hero'));
 
         $this->seo->citationTitle = $item->meta_title ?: $item->title;
@@ -35,8 +35,7 @@ class DigitalPublicationSectionController extends FrontController
             foreach ($item->authors as $author) {
                 $this->seo->citationAuthor[] = $author->title;
             }
-        }
-        else {
+        } else {
             $this->seo->citationAuthor[] = $item->author_display;
         }
         if ($item->date) {

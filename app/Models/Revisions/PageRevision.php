@@ -14,5 +14,4 @@ class PageRevision extends Revision
     {
         return $this->belongsTo('App\Models\Page');
     }
-
 }

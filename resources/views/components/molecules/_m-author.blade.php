@@ -7,7 +7,7 @@
                     'fit' => 'crop',
                     'ratio' => '1:1',
                     'srcset' => array(40,88,176),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                       'xsmall' => '40px',
                       'small' => '40px',
                       'medium' => '40px',
@@ -27,7 +27,7 @@
         <br>
         @endif
         @if (isset($date))
-            {{ $date->format('F j, Y') ?? '' }}
+            <time datetime="{{ $date->format("Y-m-d") }}" itemprop="datePublished">{{ $date->format('F j, Y') ?? '' }}</time>
         @endif
     @endcomponent
 </div>

@@ -82,6 +82,4 @@ class SlideRepository extends ModuleRepository
         $end_slide->save();
         return $slide;
     }
-
-
 }

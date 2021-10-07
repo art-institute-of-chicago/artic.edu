@@ -75,7 +75,6 @@ class AddBasicPages extends Migration
                 'title' => 'Collection',
                 'type' => 6,
             ]);
-
         }
     }
 

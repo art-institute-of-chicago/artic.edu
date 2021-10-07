@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\VideoRepository;
+use App\Helpers\StringHelpers;
 
 class VideoController extends FrontController
 {
@@ -29,7 +30,7 @@ class VideoController extends FrontController
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
-        $this->seo->setDescription($item->meta_description ?: $item->list_description ?: $item->heading ?: truncateStr(strip_tags($item->present()->copy()), 297));
+        $this->seo->setDescription($item->meta_description ?: $item->list_description ?: $item->heading ?: StringHelpers::truncateStr(strip_tags($item->present()->copy()), 297));
         $this->seo->setImage($item->imageFront('hero'));
 
         $relatedVideos = $this->repository->getRelatedVideos($item);

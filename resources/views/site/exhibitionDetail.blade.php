@@ -15,6 +15,7 @@
     @slot('type', $item->present()->exhibitionType)
     @slot('intro', $item->present()->header_copy)
     @slot('img', $item->imageAsArray('hero', $item->cms_exhibition_type == \App\Models\Exhibition::SPECIAL ? 'special' : 'default'))
+    @slot('imgMobile', $item->imageAsArray('hero', $item->cms_exhibition_type == \App\Models\Exhibition::SPECIAL ? 'special' : 'mobile'))
     @slot('credit', $item->present()->hero_caption)
     @slot('previewDateStart', $item->member_preview_start_date)
     @slot('previewDateEnd', $item->member_preview_end_date)
@@ -215,7 +216,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '216px',
                           'small' => '216px',
                           'medium' => '18',
@@ -258,7 +259,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '13',
                           'medium' => '13',
@@ -270,7 +271,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '7',
                           'medium' => '7',
@@ -307,7 +308,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '216px',
                           'small' => '216px',
                           'medium' => '18',

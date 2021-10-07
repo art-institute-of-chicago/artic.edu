@@ -67,69 +67,90 @@ class EmailSeries extends AbstractModel implements Sortable
                 "name" => 'title',
                 'doc' => 'Name of this email series',
                 'type' => 'string',
-                'value' => function () {return $this->title;},
+                'value' => function () {
+                    return $this->title;
+                },
             ],
             [
                 "name" => 'timing_message',
                 'doc' => 'Notice regarding how often this email series is sent',
                 'type' => 'string',
-                'value' => function () {return $this->timing_message;},
+                'value' => function () {
+                    return $this->timing_message;
+                },
             ],
             [
                 "name" => 'alert_message',
                 'doc' => 'Custom notice to display above the copy selection options',
                 'type' => 'string',
-                'value' => function () {return $this->alert_message;},
+                'value' => function () {
+                    return $this->alert_message;
+                },
             ],
             [
                 "name" => 'show_affiliate',
                 'doc' => 'Whether to show the "Include affiliate-specific copy" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_affiliate;},
+                'value' => function () {
+                    return $this->show_affiliate;
+                },
             ],
             [
                 "name" => 'show_member',
                 'doc' => 'Whether to show the "Include member-specific copy" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_member;},
+                'value' => function () {
+                    return $this->show_member;
+                },
             ],
             [
                 "name" => 'show_luminary',
                 'doc' => 'Whether to show the "Include luminary-specific copy" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_luminary;},
+                'value' => function () {
+                    return $this->show_luminary;
+                },
             ],
             [
                 "name" => 'show_nonmember',
                 'doc' => 'Whether to show the "Include nonmember-specific copy" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_nonmember;},
+                'value' => function () {
+                    return $this->show_nonmember;
+                },
             ],
             [
                 "name" => 'show_affiliate_test',
                 'doc' => 'Whether to show the "Send affiliate test" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_affiliate_test;},
+                'value' => function () {
+                    return $this->show_affiliate_test;
+                },
             ],
             [
                 "name" => 'show_member_test',
                 'doc' => 'Whether to show the "Send member test" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_member_test;},
+                'value' => function () {
+                    return $this->show_member_test;
+                },
             ],
             [
                 "name" => 'show_luminary_test',
                 'doc' => 'Whether to show the "Send luminary test" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_luminary_test;},
+                'value' => function () {
+                    return $this->show_luminary_test;
+                },
             ],
             [
                 "name" => 'show_nonmember_test',
                 'doc' => 'Whether to show the "Send nonmember test" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_nonmember_test;},
+                'value' => function () {
+                    return $this->show_nonmember_test;
+                },
             ],
         ];
     }
-
 }

@@ -26,9 +26,6 @@ class RenameYoutubeColumnsOnDigitalLabel extends Migration
             $table->renameColumn('youtube_url', 'video_url');
             $table->renameColumn('split_youtube_url', 'split_video_url');
         });
-
-
-
     }
 
     /**

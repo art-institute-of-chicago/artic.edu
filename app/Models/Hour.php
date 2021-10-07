@@ -71,37 +71,49 @@ class Hour extends AbstractModel
                 "name" => 'valid_from',
                 "doc" => "Valid From",
                 "type" => "datetime",
-                "value" => function () {return $this->valid_from;},
+                "value" => function () {
+                    return $this->valid_from;
+                },
             ],
             [
                 "name" => 'valid_through',
                 "doc" => "Valid Through",
                 "type" => "datetime",
-                "value" => function () {return $this->valid_through;},
+                "value" => function () {
+                    return $this->valid_through;
+                },
             ],
             [
                 "name" => 'type',
                 "doc" => "Type",
                 "type" => "number",
-                "value" => function () {return $this->type;},
+                "value" => function () {
+                    return $this->type;
+                },
             ],
             [
                 "name" => 'title',
                 "doc" => "Title",
                 "type" => "string",
-                "value" => function () {return $this->title;},
+                "value" => function () {
+                    return $this->title;
+                },
             ],
             [
                 "name" => 'url',
                 "doc" => "URL",
                 "type" => "string",
-                "value" => function () {return $this->url;},
+                "value" => function () {
+                    return $this->url;
+                },
             ],
             [
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function () {return $this->published;},
+                "value" => function () {
+                    return $this->published;
+                },
             ],
         ];
     }
@@ -124,5 +136,4 @@ class Hour extends AbstractModel
         $hour = Hour::today()->first();
         return $hour->url ?? 'visit';
     }
-
 }

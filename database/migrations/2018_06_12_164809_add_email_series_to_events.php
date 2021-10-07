@@ -13,11 +13,9 @@ class AddEmailSeriesToEvents extends Migration
      */
     public function up()
     {
-
         Schema::table('events', function (Blueprint $table) {
             $table->string('email_series')->nullable();
         });
-
     }
 
     /**
@@ -27,10 +25,8 @@ class AddEmailSeriesToEvents extends Migration
      */
     public function down()
     {
-
         Schema::table('events', function (Blueprint $table) {
             $table->dropColumn('email_series');
         });
-
     }
 }

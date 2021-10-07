@@ -1,10 +1,10 @@
 @php
-     $ids = $block->browserIds('selections');
+     $ids = $block->browserIds('highlights');
      $sorter = static function ($item) use ($ids) {
          return array_search($item->id, $ids);
      };
 
-    $items = \App\Models\Selection::whereIn('id', $ids)->get()->sortBy($sorter);
+    $items = \App\Models\Highlight::whereIn('id', $ids)->get()->sortBy($sorter);
 @endphp
 @if ($items->count() > 0)
     @component('components.organisms._o-grid-listing')
@@ -16,14 +16,14 @@
         @php ($count = 0)
         @foreach ($items as $item)
             @php ($count += 1)
-            @component('components.molecules._m-listing----selection')
+            @component('components.molecules._m-listing----highlight')
                 @slot('titleFont', 'f-list-4')
                 @slot('item', $item)
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600,1000,1500),
-                    'sizes' => aic_gridListingImageSizes(array(
+                    'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                           'xsmall' => '1',
                           'small' => '2',
                           'medium' => '2',

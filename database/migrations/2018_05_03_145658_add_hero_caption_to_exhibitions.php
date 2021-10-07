@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddHeroCaptionToExhibitions extends Migration
 {
-   public function up()
+    public function up()
     {
         Schema::table('exhibitions', function (Blueprint $table) {
             $table->string('hero_caption')->nullable();

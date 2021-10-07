@@ -90,8 +90,7 @@ class GeneratePdfs extends Command
         $commandCheck = 'command -v ' . config('aic.prince_command');
 
         if (!`$commandCheck`) {
-            $this->error('Could not found prince command line command.');
-            exit(1);
+            throw new \Exception('Could not found prince command line command.');
         }
 
         $baseUrl = config('aic.protocol') . '://' . config('app.url');

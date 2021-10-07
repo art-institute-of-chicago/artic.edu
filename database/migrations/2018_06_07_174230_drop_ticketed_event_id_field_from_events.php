@@ -13,12 +13,10 @@ class DropTicketedEventIdFieldFromEvents extends Migration
      */
     public function up()
     {
-
         Schema::table('events', function (Blueprint $table) {
             $table->dropForeign('events_ticketed_event_id_foreign');
             $table->dropColumn('ticketed_event_id');
         });
-
     }
 
     /**
@@ -28,11 +26,9 @@ class DropTicketedEventIdFieldFromEvents extends Migration
      */
     public function down()
     {
-
         Schema::table('events', function (Blueprint $table) {
             $table->integer('ticketed_event_id')->unsigned()->nullable()->after('is_admission_required');
             $table->foreign("ticketed_event_id")->references('id')->on('ticketed_events')->onDelete('CASCADE');
         });
-
     }
 }

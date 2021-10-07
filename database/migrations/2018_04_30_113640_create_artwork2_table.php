@@ -52,5 +52,4 @@ class CreateArtwork2Table extends Migration
         Schema::dropIfExists('artwork_exhibition');
         Schema::dropIfExists('artworks');
     }
-
 }

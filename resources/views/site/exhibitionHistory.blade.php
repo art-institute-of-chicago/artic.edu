@@ -24,7 +24,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,300,600,1000,1500),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                         'xsmall' => 58,
                         'small' => 58,
                         'medium' => 28,
@@ -102,7 +102,7 @@
                     @slot('imageSettings', array(
                         // WEB-1880: This one will always be a CMS image, not a IIIF image
                         'srcset' => array(108,216,400,600),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                             'xsmall' => 58,
                             'small' => 58,
                             'medium' => 13,

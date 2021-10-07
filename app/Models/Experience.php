@@ -13,6 +13,7 @@ use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasUnlisted;
+use App\Helpers\ImageHelpers;
 
 class Experience extends AbstractModel implements Sortable
 {
@@ -79,7 +80,7 @@ class Experience extends AbstractModel implements Sortable
 
         // Include all experience modal's image sequence
         $experienceModals = ExperienceModal::whereIn('modalble_id', $this->slides()->pluck('id'))->where('modal_type', 'image_sequence')->get();
-        foreach($experienceModals as $experienceModal) {
+        foreach ($experienceModals as $experienceModal) {
             if ($experienceModal->fileObject('image_sequence_file')) {
                 $images = SeamlessImage::where('zip_file_id', $experienceModal->fileObject('image_sequence_file')->id)->get();
                 $asset = [
@@ -100,7 +101,8 @@ class Experience extends AbstractModel implements Sortable
         return $assets;
     }
 
-    public function imageFront() {
+    public function imageFront()
+    {
         if ($this->hasImage('thumbnail')) {
             $imageObject = $this->imageObject('thumbnail');
         } else {
@@ -117,7 +119,7 @@ class Experience extends AbstractModel implements Sortable
                 'crop_h' => $imageObject->pivot->crop_h
             ];
 
-            return aic_convertFromImage($imageObject, $cropParams);
+            return ImageHelpers::aic_convertFromImage($imageObject, $cropParams);
         }
     }
 
@@ -210,7 +212,8 @@ class Experience extends AbstractModel implements Sortable
         return $query->where('archived', false);
     }
 
-    public function scopeOrderByInteractiveFeature($query, $sort_method = 'ASC') {
+    public function scopeOrderByInteractiveFeature($query, $sort_method = 'ASC')
+    {
         return $query
             ->leftJoin('interactiveFeatures', 'experience.interactive_feature_id', '=', 'interactive_features.id')
             ->select('interactiveFeatures.*', 'experiences.id', 'experiences.title')
@@ -245,49 +248,65 @@ class Experience extends AbstractModel implements Sortable
                 "name" => 'title',
                 "doc" => "Title",
                 "type" => "string",
-                "value" => function () {return $this->title;},
+                "value" => function () {
+                    return $this->title;
+                },
             ],
             [
                 "name" => 'sub_title',
                 "doc" => "Sub-title",
                 "type" => "string",
-                "value" => function () {return $this->sub_title;},
+                "value" => function () {
+                    return $this->sub_title;
+                },
             ],
             [
                 "name" => 'listing_description',
                 "doc" => "Listing description",
                 "type" => "string",
-                "value" => function () {return $this->listing_description;},
+                "value" => function () {
+                    return $this->listing_description;
+                },
             ],
             [
                 "name" => 'position',
                 "doc" => "Position",
                 "type" => "number",
-                "value" => function () {return $this->position;},
+                "value" => function () {
+                    return $this->position;
+                },
             ],
             [
                 "name" => 'interactive_feature_id',
                 "doc" => "Interactive feature ID",
                 "type" => "number",
-                "value" => function () {return $this->interactive_feature_id;},
+                "value" => function () {
+                    return $this->interactive_feature_id;
+                },
             ],
             [
                 "name" => 'archived',
                 "doc" => "Archived",
                 "type" => "boolean",
-                "value" => function () {return $this->archived;},
+                "value" => function () {
+                    return $this->archived;
+                },
             ],
             [
                 "name" => 'kiosk_only',
                 "doc" => "Kiosk-only",
                 "type" => "boolean",
-                "value" => function () {return $this->kiosk_only;},
+                "value" => function () {
+                    return $this->kiosk_only;
+                },
             ],
             [
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function () {return $this->published;},
+                "value" => function () {
+                    return $this->published;
+                },
             ],
         ];
     }

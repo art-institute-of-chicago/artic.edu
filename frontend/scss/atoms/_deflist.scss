@@ -115,7 +115,7 @@ Demonstrated in **statics/article**
         }
       }
 
-      // See .o-article__secondary-actions ~ .o-article__body
+      // @see .o-article__secondary-actions ~ .o-article__body
       // Subtract dt width from that width...
       dd {
         @include breakpoint('small+') {

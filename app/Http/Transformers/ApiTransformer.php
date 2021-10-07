@@ -2,12 +2,10 @@
 
 namespace App\Http\Transformers;
 
-
 use Aic\Hub\Foundation\AbstractTransformer;
 
 class ApiTransformer extends AbstractTransformer
 {
-
     public $excludeIdsAndTitle = false;
     public $excludeDates = false;
 
@@ -19,7 +17,6 @@ class ApiTransformer extends AbstractTransformer
      */
     public function transform($item)
     {
-
         $data = array_merge(
             $this->transformIdsAndTitle($item),
             $this->transformFields($item),
@@ -27,67 +24,50 @@ class ApiTransformer extends AbstractTransformer
         );
 
         // Filters fields, etc.
-        $data = parent::transform( $data );
+        $data = parent::transform($data);
 
         return $data;
-
     }
 
     protected function transformFields($item)
     {
-
         return $item->transform();
-
     }
 
 
     protected function transformIdsAndTitle($item)
     {
-
-        if ($this->excludeIdsAndTitle)
-        {
-
+        if ($this->excludeIdsAndTitle) {
             return [];
-
         }
 
         return [
             'id' => $item->getAttributeValue($item->getKeyName()),
         ];
-
     }
 
     protected function transformDates($item)
     {
-
-        if ($this->excludeDates)
-        {
+        if ($this->excludeDates) {
             return [];
         }
 
         $dates = [];
 
-        if ( $item->source_modified_at )
-        {
+        if ($item->source_modified_at) {
             $dates['last_updated_source'] = $item->source_modified_at->toIso8601String();
         }
 
-        if ( $item->updated_at )
-        {
+        if ($item->updated_at) {
             $dates['last_updated'] = $item->updated_at->toIso8601String();
         }
 
-        if ( $item->created_at )
-        {
+        if ($item->created_at) {
             $dates['created_at'] = $item->created_at->toIso8601String();
-        }
-        else
-        {
+        } else {
             $dates['created_at'] = null;
         }
 
         return $dates;
-
     }
-
 }

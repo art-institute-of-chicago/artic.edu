@@ -14,8 +14,8 @@ class ConvertPressReleaseTitlesToTitleCase extends Migration
     {
         $all = PressRelease::all();
 
-        foreach($all as $pressRelease) {
-            $pressRelease->title = properTitleCase($pressRelease->title);
+        foreach ($all as $pressRelease) {
+            $pressRelease->title = StringHelpers::properTitleCase($pressRelease->title);
             $pressRelease->save();
         }
     }

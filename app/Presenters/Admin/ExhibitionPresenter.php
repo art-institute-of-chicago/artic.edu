@@ -40,7 +40,7 @@ class ExhibitionPresenter extends BasePresenter
             $date .= '–';
         }
 
-        if ($hasEnd){
+        if ($hasEnd) {
             $date .= $end->format('m d Y');
         }
 
@@ -72,7 +72,7 @@ class ExhibitionPresenter extends BasePresenter
      */
     public function formattedDateCanonical()
     {
-        return view('components.organisms._o-public-dates' , [
+        return view('components.organisms._o-public-dates', [
             'formattedDate' => $this->date_display_override,
             'dateStart' => $this->dateStart, // See getter
             'dateEnd' => $this->dateEnd, // See getter
@@ -85,7 +85,7 @@ class ExhibitionPresenter extends BasePresenter
      */
     public function formattedDate()
     {
-        return view('components.organisms._o-public-dates' , [
+        return view('components.organisms._o-public-dates', [
             'formattedDate' => $this->date_display_override,
             'dateStart' => $this->startAt,
             'dateEnd' => $this->endAt,
@@ -98,11 +98,9 @@ class ExhibitionPresenter extends BasePresenter
     {
         if ($this->entity->public_start_date != null) {
             return $this->entity->public_start_date;
-        }
-        elseif ($this->entity->aic_start_at != null) {
+        } elseif ($this->entity->aic_start_at != null) {
             return new Carbon($this->entity->aic_start_at);
-        }
-        else {
+        } else {
             return "";
         }
     }
@@ -111,11 +109,9 @@ class ExhibitionPresenter extends BasePresenter
     {
         if ($this->entity->public_end_date != null) {
             return $this->entity->public_end_date;
-        }
-        elseif ($this->entity->aic_end_at != null) {
+        } elseif ($this->entity->aic_end_at != null) {
             return new Carbon($this->entity->aic_end_at);
-        }
-        else {
+        } else {
             return "";
         }
     }
@@ -130,7 +126,7 @@ class ExhibitionPresenter extends BasePresenter
 
     public function getHistoryImagesForMediaComponent()
     {
-        return $this->entity->historyImages->each(function($image) {
+        return $this->entity->historyImages->each(function ($image) {
             $image->useArtworkSrcset = true;
             $image->isPublicDomain = true;
         })->toArray();
@@ -209,26 +205,26 @@ class ExhibitionPresenter extends BasePresenter
     protected function closingSoonLink()
     {
         if ($this->entity->isOngoing) {
-           return [
+            return [
                 'label' => 'Ongoing',
                 'variation' => 'ongoing'
             ];
-        } else if($this->entity->isClosed) {
-             return [
+        } elseif ($this->entity->isClosed) {
+            return [
                 'label' => 'Closed',
                 'variation' => 'closing-soon'
             ];
-        } else if($this->entity->isNowOpen) {
-             return [
+        } elseif ($this->entity->isNowOpen) {
+            return [
                 'label' => 'Now Open',
                 'variation' => 'ongoing'
             ];
-        } else if($this->entity->isClosingSoon) {
-             return [
+        } elseif ($this->entity->isClosingSoon) {
+            return [
                 'label' => 'Closing Soon',
                 'variation' => 'closing-soon'
             ];
-        } else if($this->entity->exclusive) {
+        } elseif ($this->entity->exclusive) {
             return [
                 'label' => 'Member Exclusive',
                 'variation' => 'ongoing'
@@ -247,7 +243,7 @@ class ExhibitionPresenter extends BasePresenter
             date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 18
         ) && (
             Carbon::now()->between($this->entity->dateStart, $this->dateEnd)
-        )){
+        )) {
             $injectUrl = route('exhibitions.waitTime', [
                 'id' => $this->entity->id,
                 'slug' => $this->entity->getSlug(),

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Behaviors\LintsAttributes;
+use Aic\Hub\Foundation\Concerns\HasByLastModScope;
 use A17\Twill\Models\Model;
 
 /**
@@ -13,6 +14,7 @@ use A17\Twill\Models\Model;
 class AbstractModel extends Model
 {
     use LintsAttributes;
+    use HasByLastModScope;
 
     public function setAttribute($key, $value)
     {
@@ -54,7 +56,8 @@ class AbstractModel extends Model
         return static::published()->find($this->id) !== null;
     }
 
-    public function getPreviewUrl($baseUrl) {
+    public function getPreviewUrl($baseUrl)
+    {
         // $baseUrl is missing protocol, starts with //, and ends with /
         // config('app.url') should have no https://
         return '//' . config('app.url') . '/p/' . encrypt($baseUrl . $this->slug);

@@ -25,5 +25,4 @@ class EducatorAdmissionRequest extends FormRequest
             $this->validateCaptcha($validator);
         });
     }
-
 }

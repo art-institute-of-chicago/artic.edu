@@ -11,6 +11,8 @@ Additional states for scrolling up and down conditions - so the date filters don
 ***/
 
 
+@use "sass:math";
+
 .s-sticky-filters--fixed .o-sticky-filters > .m-links-bar:first-child,
 .s-sticky-filters--bottom .o-sticky-filters > .m-links-bar:first-child {
   @include breakpoint('small+') {
@@ -36,7 +38,7 @@ Additional states for scrolling up and down conditions - so the date filters don
   @include breakpoint('xlarge') {
     left: 50%;
     width: map-get($main-col-widths, xlarge);
-    margin-left: map-get($main-col-widths, xlarge) / -2;
+    margin-left: math.div(map-get($main-col-widths, xlarge), -2);
     padding-right: 0;
     padding-left: 0;
   }

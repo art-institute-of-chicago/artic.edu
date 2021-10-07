@@ -10,12 +10,10 @@ use App\Models\Form\EducatorAdmission;
 
 use App\Mail\FormEducatorAdmission;
 
-
 class EducatorAdmissionController extends FormController
 {
     public function index()
     {
-
         $this->title = 'Educator Admission Request';
         $this->seo->setTitle($this->title);
 
@@ -257,7 +255,6 @@ class EducatorAdmissionController extends FormController
      */
     public function store(EducatorAdmissionRequest $request)
     {
-
         $validated = $request->validated();
 
         $educatorAdmission = new EducatorAdmission;
@@ -274,7 +271,6 @@ class EducatorAdmissionController extends FormController
             ->send(new FormEducatorAdmission($educatorAdmission));
 
         return redirect(route('forms.educator-admission-request.thanks'));
-
     }
 
     private function getSchoolLocationArray()
@@ -288,7 +284,7 @@ class EducatorAdmissionController extends FormController
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];
-        foreach($topics as $value => $label) {
+        foreach ($topics as $value => $label) {
             $item = [
                 'value' => $label
             ,   'label' => $label
@@ -309,7 +305,7 @@ class EducatorAdmissionController extends FormController
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];
-        foreach($topics as $value => $label) {
+        foreach ($topics as $value => $label) {
             $item = [
                 'value' => $label
             ,   'label' => $label
@@ -320,6 +316,4 @@ class EducatorAdmissionController extends FormController
 
         return $list;
     }
-
-
 }

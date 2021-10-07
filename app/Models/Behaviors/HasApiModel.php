@@ -91,7 +91,7 @@ trait HasApiModel
      */
     public function augmentEntity($dataObject)
     {
-        foreach($dataObject as $key => $value) {
+        foreach ($dataObject as $key => $value) {
             if ($this->hasAttribute($key)) {
                 // TODO: If the attribute already exists un-tie with a mapping array and set the attr.
                 // Something like ['id' => 'datahub_id']
@@ -122,9 +122,9 @@ trait HasApiModel
      */
     public function getApiFields()
     {
-        return (object) array_reduce($this->apiFields, function($result, $field) {
-            $result[$field] = $this->$field; return $result;
+        return (object) array_reduce($this->apiFields, function ($result, $field) {
+            $result[$field] = $this->$field;
+            return $result;
         }, array());
     }
-
 }

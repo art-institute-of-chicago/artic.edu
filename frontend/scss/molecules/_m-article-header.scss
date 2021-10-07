@@ -124,6 +124,20 @@
   right: 0;
 }
 
+.m-article-header .img-hero-desktop {
+  display: none;
+  @include breakpoint('medium+') {
+    display: block;
+  }
+}
+
+.m-article-header .img-hero-mobile {
+  display: block;
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}
+
 .m-article-header--feature {
   padding-top: 0;
 

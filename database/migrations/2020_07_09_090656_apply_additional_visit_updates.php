@@ -20,7 +20,6 @@ class ApplyAdditionalVisitUpdates extends Migration
         $visitPage->translate('en')->visit_accessibility_text = 'The Art Institute of Chicago welcomes all visitors and is committed to making its services accessible to everyone. We offer a range of resources for both adults and children with disabilities.';
         $visitPage->translate('en')->visit_accessibility_link_text = 'Learn more about accessibility';
         $visitPage->save();
-
     }
 
     /**

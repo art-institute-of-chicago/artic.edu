@@ -41,7 +41,6 @@ trait HasApiRelations
 
     public function getRelatedWithApiModels($browser_name, $apiModelsDefinitions, $typeUsesApi)
     {
-
         if (!isset($this->relatedCache[$browser_name])) {
             $this->loadRelatedWithApiModels($browser_name, $apiModelsDefinitions, $typeUsesApi);
         }
@@ -62,7 +61,6 @@ trait HasApiRelations
                 }
 
                 if ($typeUsesApi[$type]) {
-
                     $apiElements = $this->getApiElements($items, $type, $apiModelsDefinitions);
                     $localApiMapping = $this->getLocalApiMapping($items, $apiElements);
 

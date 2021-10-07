@@ -14,6 +14,7 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
+use App\Helpers\UrlHelpers;
 use Illuminate\Http\Request;
 
 class BaseApiController extends ModuleController
@@ -70,9 +71,9 @@ class BaseApiController extends ModuleController
         $results = array_values(parent::getBrowserTableData($items));
 
         // WEB-1187: Fix the edit link
-        $results = array_map(function($result) {
-            if (moduleRouteExists($this->moduleName, $this->routePrefix, 'augment')) {
-                $result['edit'] = moduleRoute($this->moduleName, $this->routePrefix, 'augment', $result['id']);
+        $results = array_map(function ($result) {
+            if (UrlHelpers::moduleRouteExists($this->moduleName, $this->routePrefix, 'augment')) {
+                $result['edit'] = moduleRoute($this->moduleName, $this->routePrefix, 'augment', [$result['id']]);
             }
             return $result;
         }, $results);
@@ -100,7 +101,6 @@ class BaseApiController extends ModuleController
 
                 return $item;
             }));
-
         }
 
         return $items;
@@ -118,9 +118,9 @@ class BaseApiController extends ModuleController
     {
         if ($this->hasAugmentedModel) {
             if ($localItem = collect($this->localElements)->where('datahub_id', $item->id)->first()) {
-                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'edit', $localItem->id);
+                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'edit', [$localItem->id]);
             } else {
-                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'augment', $item->id);
+                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'augment', [$item->id]);
             }
         } else {
             $editRoute = null;

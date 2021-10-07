@@ -71,24 +71,29 @@
         ],
     ])
 
-@formField('wysiwyg', [
-    'name' => 'references',
-    'label' => 'References',
-    'toolbarOptions' => [
-        'italic', 'link', 'list-ordered', 'list-unordered'
-    ],
-])
+    @formField('wysiwyg', [
+        'name' => 'references',
+        'label' => 'References',
+        'toolbarOptions' => [
+            'italic', 'link', 'list-ordered', 'list-unordered'
+        ],
+    ])
 
     @formField('block_editor', [
-        'blocks' => getBlocksForEditor([
+        'blocks' => BlockHelpers::getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed', 'quote',
             'list', 'artwork', 'hr', 'citation', 'split_block',
             'membership_banner', 'digital_label', 'audio_player', 'tour_stop', 'button', 'mobile_app',
             '3d_model', '3d_tour', '3d_embed', '360_embed', '360_modal',
-            'gallery_new',
+            'gallery_new', 'table',
             'image_slider', 'mirador_embed', 'mirador_modal',
             'links-bar'
         ])
     ])
+@stop
+
+@section('fieldsets')
+
+    @include('admin.partials.meta')
 
 @stop

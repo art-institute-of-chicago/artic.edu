@@ -14,5 +14,4 @@ class VideoRevision extends Revision
     {
         return $this->belongsTo('App\Models\Video');
     }
-
 }

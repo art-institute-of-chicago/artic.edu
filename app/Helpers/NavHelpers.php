@@ -1,9 +1,12 @@
 <?php
 
+namespace App\Helpers;
+
 use App\Models\GenericPage;
 
-if (!function_exists('get_nav_for_publications')) {
-    function get_nav_for_publications(string $title)
+class NavHelpers
+{
+    public static function get_nav_for_publications(string $title)
     {
         $subNav = [
             [

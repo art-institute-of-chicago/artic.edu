@@ -10,5 +10,4 @@ class Place extends BaseApiModel
         'collection' => '/api/v1/places',
         'search'     => '/api/v1/places/search'
     ];
-
 }

@@ -8,7 +8,6 @@ use App\Models\ExhibitionPressRoom;
 
 class ExhibitionPressRoomController extends FrontController
 {
-
     protected $repository;
 
     public function __construct(ExhibitionPressRoomRepository $repository)
@@ -81,7 +80,5 @@ class ExhibitionPressRoomController extends FrontController
             'page' => $item,
             'canonicalUrl' => $canonicalPath,
         ]);
-
     }
-
 }

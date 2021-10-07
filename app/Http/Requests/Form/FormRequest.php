@@ -6,7 +6,6 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class FormRequest extends Request
 {
-
     public function validateCaptcha($validator)
     {
         $fields = array(
@@ -14,7 +13,9 @@ class FormRequest extends Request
             'response' => urlencode($_POST['g-recaptcha-response']),
         );
         $fields_string = '';
-        foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+        foreach ($fields as $key=>$value) {
+            $fields_string .= $key.'='.$value.'&';
+        }
         rtrim($fields_string, '&');
 
         $ch = curl_init();
@@ -30,8 +31,7 @@ class FormRequest extends Request
         ob_end_clean();
         $res = json_decode($string);
 
-        if (!$res->success)
-        {
+        if (!$res->success) {
             $validator->errors()->add('captcha', 'Your captcha is invalid');
         }
     }

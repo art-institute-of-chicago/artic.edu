@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Helpers;
+
 /**
  * WEB-754: This overrides the `revAsset` function shipped with Twill.
  * The original function uses `Cache` to store the contents of the manifest.
@@ -11,15 +13,16 @@
  *
  * @link https://stackoverflow.com/questions/9555658/why-is-file-get-contents-faster-than-memcache-get
  */
-if (!function_exists('revAsset')) {
+class FrontendHelpers
+{
+
     /**
      * @param string $file
      * @return string
      */
-    function revAsset($file)
+    public static function revAsset($file)
     {
-        //if (!app()->environment('local', 'development')) {
-        if (config('aic.cache_revassets')) {
+        if (config('aic.use_compiled_revassets')) {
             try {
                 $manifest = json_decode(file_get_contents(config('twill.frontend.rev_manifest_path')), true);
 

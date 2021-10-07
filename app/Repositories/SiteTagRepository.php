@@ -13,5 +13,4 @@ class SiteTagRepository extends ModuleRepository
     {
         $this->model = $model;
     }
-
 }

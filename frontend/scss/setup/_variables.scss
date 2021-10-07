@@ -1,4 +1,6 @@
 // Baseline grid height
+@use "sass:math";
+
 $base-height: 4;
 
 
@@ -15,10 +17,10 @@ $main-col-widths: (
 
 // Outer gutters, in px or vw, of each breakpoint
 $outer-gutters: (
-  xsmall: 300vw / 64,
-  small: 300vw / 64,
-  medium: 300vw / 64,
-  large: 300vw / 64,
+  xsmall: math.div(300vw, 64),
+  small: math.div(300vw, 64),
+  medium: math.div(300vw, 64),
+  large: math.div(300vw, 64),
   xlarge: 0,
 );
 

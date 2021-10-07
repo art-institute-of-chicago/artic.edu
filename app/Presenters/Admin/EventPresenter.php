@@ -5,6 +5,7 @@ namespace App\Presenters\Admin;
 use Carbon\Carbon;
 
 use App\Presenters\BasePresenter;
+use App\Helpers\ImageHelpers;
 
 use Illuminate\Support\Str;
 
@@ -92,7 +93,6 @@ class EventPresenter extends BasePresenter
             return $this->entity->forced_date;
         } else {
             if ($next = $this->entity->nextOcurrenceExclusive) {
-
                 return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('F j, Y | g:i').'</time>&ndash;<time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('g:i').'</time>';
             } elseif ($last = $this->entity->lastOcurrence) {
                 return '<time datetime="'.$last->date->format("c").'" itemprop="startDate">'.$last->date->format('F j, Y | g:i').'</time>&ndash;<time datetime="'.$last->date_end->format("c").'" itemprop="endDate">'.$last->date_end->format('g:i').'</time>';
@@ -110,7 +110,6 @@ class EventPresenter extends BasePresenter
     public function nextOcurrenceTime()
     {
         if ($next = $this->entity->nextOcurrence) {
-
             return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('g:i').'</time>&ndash;<time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('g:i').'</time>';
         }
     }
@@ -120,13 +119,15 @@ class EventPresenter extends BasePresenter
         return array_filter([$this->locationLink(), $this->registrationRequired()]);
     }
 
-    public function itemprops() {
+    public function itemprops()
+    {
         return [
             'isAccessibleForFree' => ($this->entity->ticketStatus === 'free') ? 'true' : 'false',
         ];
     }
 
-    protected function locationLink() {
+    protected function locationLink()
+    {
         if ($this->entity->location) {
             return [
                 'label' => $this->entity->location,
@@ -136,7 +137,8 @@ class EventPresenter extends BasePresenter
         }
     }
 
-    protected function registrationRequired() {
+    protected function registrationRequired()
+    {
         if ($this->entity->is_registration_required) {
             return [
                 'label' => 'Registration required',
@@ -158,15 +160,15 @@ class EventPresenter extends BasePresenter
 
         $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
 
-        return ( !isset($ticketedEvent) )
-            || ( !$ticketedEvent->on_sale_at )
+        return (!isset($ticketedEvent))
+            || (!$ticketedEvent->on_sale_at)
             || (
-                 (
-                   ($ticketedEvent->on_sale_at ?? false) && (
+                (
+                     ($ticketedEvent->on_sale_at ?? false) && (
                        (new Carbon($ticketedEvent->on_sale_at))->lessThan(Carbon::now())
                    )
                  ) && (
-                   ($ticketedEvent->off_sale_at ?? false) && (
+                     ($ticketedEvent->off_sale_at ?? false) && (
                        (new Carbon($ticketedEvent->off_sale_at))->greaterThan(Carbon::now())
                    )
                  )
@@ -196,8 +198,9 @@ class EventPresenter extends BasePresenter
         return 'Buy Tickets';
     }
 
-    public function imageUrl() {
-        $settings = aic_imageSettings([
+    public function imageUrl()
+    {
+        $settings = ImageHelpers::aic_imageSettings([
             'image' => $this->entity->imageFront('hero'),
             'settings' => [
                 'srcset' => array(1200),

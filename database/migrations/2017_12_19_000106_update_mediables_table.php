@@ -23,6 +23,5 @@ class UpdateMediablesTable extends Migration
             $table->string('background_position', 20)->default('top');
             $table->dropColumn('metadatas');
         });
-
     }
 }

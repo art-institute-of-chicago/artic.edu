@@ -60,10 +60,10 @@ return [
             'activity' => true,
             'drafts' => true,
         ],
-        'selections' => [
+        'highlights' => [
             'label' => 'Highlights',
             'label_singular' => 'Highlight',
-            'name' => 'selections',
+            'name' => 'highlights',
             'routePrefix' => 'collection',
             'count' => true,
             'create' => true,

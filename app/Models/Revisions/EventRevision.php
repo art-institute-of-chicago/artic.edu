@@ -14,5 +14,4 @@ class EventRevision extends Revision
     {
         return $this->belongsTo('App\Models\Event');
     }
-
 }

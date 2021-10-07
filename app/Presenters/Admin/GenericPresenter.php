@@ -6,8 +6,8 @@ use App\Presenters\BasePresenter;
 
 class GenericPresenter extends BasePresenter
 {
-
-    public function date() {
+    public function date()
+    {
         if (!empty($this->entity->publish_start_date)) {
             return $this->entity->publish_start_date->format('F j, Y');
         }
@@ -19,7 +19,7 @@ class GenericPresenter extends BasePresenter
 
         $ancestors = $this->entity->ancestors()->defaultOrder()->published()->get();
 
-        foreach($ancestors as $ancestor) {
+        foreach ($ancestors as $ancestor) {
             if ($this->getExtraBreadCrumbFor($ancestor->id)) {
                 $crumbs[] = $this->getExtraBreadCrumbFor($ancestor->id);
             }
@@ -37,7 +37,8 @@ class GenericPresenter extends BasePresenter
         return $crumbs;
     }
 
-    private function getExtraBreadCrumbFor($id) {
+    private function getExtraBreadCrumbFor($id)
+    {
         // If the page is Library, Archival Collections or Institutional Archives,
         // add "Resources" to the breadcrumbs
         if (in_array($id, [14, 16, 17])) {
@@ -85,7 +86,7 @@ class GenericPresenter extends BasePresenter
             // Build it with siblings
             $nav = [];
 
-            foreach($this->entity->parent->children()->orderBy('position')->published()->get() as $element) {
+            foreach ($this->entity->parent->children()->orderBy('position')->published()->get() as $element) {
                 $item = [
                     'href'  => $element->url,
                     'label' => $element->title,
@@ -105,5 +106,4 @@ class GenericPresenter extends BasePresenter
 
         return $nav;
     }
-
 }

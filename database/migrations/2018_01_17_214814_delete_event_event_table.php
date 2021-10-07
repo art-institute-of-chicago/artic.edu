@@ -28,5 +28,4 @@ class DeleteEventEventTable extends Migration
             $table->timestamps();
         });
     }
-
 }

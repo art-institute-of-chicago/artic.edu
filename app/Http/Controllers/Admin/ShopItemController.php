@@ -32,5 +32,4 @@ class ShopItemController extends BaseApiController
             'field' => 'description',
         ],
     ];
-
 }

@@ -19,7 +19,7 @@ class ChangeMembershipBannerImageRole extends Migration
         \A17\Twill\Models\Block::where('type', 'membership_banner')->get()
             ->pluck('medias')->collapse()->filter()
             ->pluck('pivot')->filter()
-            ->map(function($item) use ($role) {
+            ->map(function ($item) use ($role) {
                 $item->role = $role;
                 $item->save();
             });

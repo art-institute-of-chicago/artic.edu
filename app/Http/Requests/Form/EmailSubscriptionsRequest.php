@@ -21,5 +21,4 @@ class EmailSubscriptionsRequest extends FormRequest
             $this->validateCaptcha($validator);
         });
     }
-
 }

@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class EventOccurrencesController extends BaseController
 {
-
     protected $eventRepository;
 
     protected $model = \App\Models\Event::class;
@@ -24,12 +23,14 @@ class EventOccurrencesController extends BaseController
 
     public function occurrences(Request $request)
     {
-
-        return $this->collect( $request, function( $limit ) {
-
+        return $this->collect($request, function ($limit) {
             return $this->eventRepository->getEventsFiltered(
-                Carbon::now(), Carbon::tomorrow()->addMonths(6),
-                null, null, null, null,
+                Carbon::now(),
+                Carbon::tomorrow()->addMonths(6),
+                null,
+                null,
+                null,
+                null,
                 $limit,
                 null,
                 true,
@@ -39,13 +40,6 @@ class EventOccurrencesController extends BaseController
                     $query->orderBy('event_metas.date', 'ASC');
                 }
             );
-
         });
-
-    }
-
-    public function validateId($id)
-    {
-        return true;
     }
 }

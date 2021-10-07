@@ -74,6 +74,6 @@ class HasMany
      */
     public function get($columns = [])
     {
-       return $this->query->get($columns);
+        return $this->query->get($columns);
     }
 }

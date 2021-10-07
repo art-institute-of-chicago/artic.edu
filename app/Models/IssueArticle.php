@@ -38,6 +38,8 @@ class IssueArticle extends AbstractModel implements Sortable
         'pdf_download_path',
         'cite_as',
         'type_display',
+        'meta_title',
+        'meta_description',
     ];
 
     public $slugAttributes = [
@@ -59,6 +61,12 @@ class IssueArticle extends AbstractModel implements Sortable
                 [
                     'name' => 'default',
                     'ratio' => 16 / 9,
+                ],
+            ],
+            'mobile' => [
+                [
+                    'name' => 'mobile',
+                    'ratio' => 9 / 16,
                 ],
             ],
             'special' => [
@@ -83,7 +91,7 @@ class IssueArticle extends AbstractModel implements Sortable
         parent::scopePublished($query);
 
         // ...and the parent issue has to be published as well
-        return $query->whereHas('issue', function($subquery) {
+        return $query->whereHas('issue', function ($subquery) {
             $subquery->published();
         });
     }

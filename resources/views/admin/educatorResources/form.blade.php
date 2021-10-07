@@ -46,12 +46,12 @@
     ])
 
     @formField('block_editor', [
-        'blocks' => getBlocksForEditor([
+        'blocks' => BlockHelpers::getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed', 'quote',
             'list', 'artwork', 'hr', 'citiation', 'split_block',
             'accordion', 'membership_banner', 'timeline', 'link',
             'newsletter_signup_inline', 'button', 'mobile_app', 'audio_player', 'tour_stop', '3d_model',
-            'gallery', 'artworks', 'gallery_new',
+            'gallery_new',
         ])
     ])
 @stop

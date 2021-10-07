@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-
 class EventProgram extends AbstractModel
 {
-
     use Transformable;
 
     protected $fillable = [
@@ -25,13 +23,11 @@ class EventProgram extends AbstractModel
     public function scopeAffiliateGroups($query)
     {
         return $query->where('is_affiliate_group', true);
-
     }
 
     public function scopeEventHosts($query)
     {
         return $query->where('is_event_host', true);
-
     }
 
     protected function transformMappingInternal()
@@ -41,19 +37,25 @@ class EventProgram extends AbstractModel
                 "name" => "name",
                 "doc" => "Name",
                 "type" => "string",
-                "value" => function () {return $this->name;},
+                "value" => function () {
+                    return $this->name;
+                },
             ],
             [
                 "name" => "is_affiliate_group",
                 "doc" => "Is Affiliate Group",
                 "type" => "boolean",
-                "value" => function () {return $this->is_affiliate_group;},
+                "value" => function () {
+                    return $this->is_affiliate_group;
+                },
             ],
             [
                 "name" => "is_event_host",
                 "doc" => "Is Event Host",
                 "type" => "boolean",
-                "value" => function () {return $this->is_event_host;},
+                "value" => function () {
+                    return $this->is_event_host;
+                },
             ],
         ];
     }

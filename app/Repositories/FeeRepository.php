@@ -6,7 +6,6 @@ use App\Models\Fee;
 
 class FeeRepository
 {
-
     public function __construct(Fee $model)
     {
         $this->model = $model;
@@ -16,7 +15,7 @@ class FeeRepository
     {
         $fields = ['price' => []];
 
-        foreach($this->model->get() as $fee) {
+        foreach ($this->model->get() as $fee) {
             $fields['price'][$fee->fee_age_id][$fee->fee_category_id] = $fee->price;
         }
 
@@ -25,8 +24,8 @@ class FeeRepository
 
     public function update($feeFields)
     {
-        foreach($feeFields['price'] as $feeAgeId => $feeCategories) {
-            foreach($feeCategories as $feeCategoryId => $price) {
+        foreach ($feeFields['price'] as $feeAgeId => $feeCategories) {
+            foreach ($feeCategories as $feeCategoryId => $price) {
                 $fee = $this->model->firstOrNew(['fee_age_id' => $feeAgeId, 'fee_category_id' => $feeCategoryId]);
                 $fee->price = $price;
                 $fee->save();

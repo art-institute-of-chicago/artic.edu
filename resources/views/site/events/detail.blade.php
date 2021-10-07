@@ -15,6 +15,7 @@
     @slot('formattedDate', $item->present()->formattedNextOcurrence)
     @slot('type', $item->is_member_exclusive ? 'Member Exclusive' : ($item->audience === \App\Models\Event::LUMINARY ? 'Luminary' : $item->present()->type))
     @slot('img', $item->imageAsArray('hero'))
+    @slot('imgMobile', $item->imageAsArray('hero', 'mobile'))
     @slot('credit', $item->present()->hero_caption)
   @endcomponent
 
@@ -119,7 +120,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '216px',
                           'small' => '216px',
                           'medium' => '18',

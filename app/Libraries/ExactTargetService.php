@@ -2,6 +2,7 @@
 
 namespace App\Libraries;
 
+use Illuminate\Support\Str;
 use App\Models\ExactTargetList;
 use FuelSdk\ET_Client;
 use FuelSdk\ET_DataExtension_Row;
@@ -12,7 +13,7 @@ class ExactTargetService
     protected $email;
     protected $list;
 
-    function __construct($email, $list = null)
+    public function __construct($email, $list = null)
     {
         $this->email = $email;
         $this->list  = $list;
@@ -28,9 +29,9 @@ class ExactTargetService
      * they can't see what they're already signed up to, it doesn't make sense to remove
      * them from unchecked lists.
      */
-    function subscribe($alsoRemove = true)
+    public function subscribe($alsoRemove = true)
     {
-        $client = new ET_Client(false, true, config('exact-target'));
+        $client = new ET_Client(false, true, config('exact-target.client'));
 
         // Add the user to a data extension
         $deRow  = new ET_DataExtension_Row();
@@ -40,26 +41,23 @@ class ExactTargetService
             "Email" => $this->email,
         ];
 
-        if ($this->list)
-        {
+        if ($this->list) {
             if (is_array($this->list)) {
                 $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
                 foreach ($allLists as $list) {
                     if (in_array($list, $this->list)) {
                         $deRow->props[$list] = 'True';
-                    }
-                    elseif ($alsoRemove) {
+                    } elseif ($alsoRemove) {
                         $deRow->props[$list] = 'False';
                     }
                 }
-            }
-            else {
+            } else {
                 $deRow->props[$this->list] = 'True';
             }
         }
 
-        $deRow->CustomerKey = "All Subscribers Master";
-        $deRow->Name = "Museum Business Unit";
+        $deRow->CustomerKey = config('exact-target.customer_key');
+        $deRow->Name = config('exact-target.name');
 
         $response = $deRow->post();
 
@@ -83,11 +81,10 @@ class ExactTargetService
             $error = $response->results[0]->ErrorMessage ?? '';
             $status = $response->results[0]->StatusMessage ?? '';
 
-            if (starts_with($error, 'Violation of PRIMARY KEY constraint')
-                || starts_with($status, 'The subscriber is already on the list')) {
+            if (Str::startsWith($error, 'Violation of PRIMARY KEY constraint')
+                || Str::startsWith($status, 'The subscriber is already on the list')) {
                 // Email has been previously subscribed, so proceed
-            }
-            else {
+            } else {
                 return $response;
             }
         }
@@ -104,9 +101,9 @@ class ExactTargetService
         return true;
     }
 
-    function unsubscribe()
+    public function unsubscribe()
     {
-        $client = new ET_Client(false, true, config('exact-target'));
+        $client = new ET_Client(false, true, config('exact-target.client'));
 
         // Delete the user from the data extension
         $deRow  = new ET_DataExtension_Row();
@@ -116,8 +113,8 @@ class ExactTargetService
             "Email" => $this->email,
         ];
 
-        $deRow->CustomerKey = "All Subscribers Master";
-        $deRow->Name = "Museum Business Unit";
+        $deRow->CustomerKey = config('exact-target.customer_key');
+        $deRow->Name = config('exact-target.name');
 
         $response = $deRow->delete();
 
@@ -141,9 +138,9 @@ class ExactTargetService
         return true;
     }
 
-    function get()
+    public function get()
     {
-        $client = new ET_Client(false, config('app.debug'), config('exact-target'));
+        $client = new ET_Client(false, config('app.debug'), config('exact-target.client'));
 
         $deRow  = new ET_DataExtension_Row();
         $deRow->authStub = $client;

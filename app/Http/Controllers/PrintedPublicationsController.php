@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Repositories\PrintedPublicationRepository;
 use App\Models\CatalogCategory;
+use App\Helpers\NavHelpers;
 
 class PrintedPublicationsController extends BaseScopedController
 {
-
     protected $repository;
 
     protected $entity = \App\Models\PrintedPublication::class;
@@ -40,7 +40,7 @@ class PrintedPublicationsController extends BaseScopedController
 
         $this->seo->setTitle($title);
 
-        $navElements = get_nav_for_publications($title);
+        $navElements = NavHelpers::get_nav_for_publications($title);
 
         $view_data = [
             'wideBody' => true,
@@ -91,12 +91,10 @@ class PrintedPublicationsController extends BaseScopedController
             'breadcrumb' => $crumbs,
             'page' => $item,
         ]);
-
     }
 
     protected function getFilters()
     {
-
         $categoryLinks[] = [
             'label'  => 'All',
             'href'   => route('collection.publications.printed-publications'),
@@ -117,7 +115,5 @@ class PrintedPublicationsController extends BaseScopedController
                 'links'  => collect($categoryLinks)
             ]
         ];
-
     }
-
 }

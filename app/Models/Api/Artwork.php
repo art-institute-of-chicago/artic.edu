@@ -4,12 +4,15 @@ namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Models\Article;
-use App\Models\Selection;
+use App\Models\Highlight;
 use App\Models\Experience;
 use App\Models\Video;
 use App\Models\Vendor\Block;
 use App\Models\Behaviors\HasMediasApi;
 use App\Models\Behaviors\HasFeaturedRelated;
+use App\Helpers\DatesHelpers;
+use App\Helpers\ImageHelpers;
+use App\Helpers\StringHelpers;
 
 class Artwork extends BaseApiModel
 {
@@ -120,12 +123,11 @@ class Artwork extends BaseApiModel
         if (!empty($this->catalogue_pivots)) {
             return collect($this->catalogue_pivots);
         }
-
     }
 
     public function getDateBlockAttribute()
     {
-        return join('–', array_unique(array_filter([convertArtworkDates($this->date_start), convertArtworkDates($this->date_end)])));
+        return join('–', array_unique(array_filter([DatesHelpers::convertArtworkDates($this->date_start), DatesHelpers::convertArtworkDates($this->date_end)])));
     }
 
     public function getMultimediaElementsAttribute()
@@ -243,7 +245,7 @@ class Artwork extends BaseApiModel
         });
 
         if ($iiifMedia) {
-            $main['iiifId'] = config('aic.iiif_s3_endpoint') . '/' . get_clean_media_uuid($iiifMedia);
+            $main['iiifId'] = config('aic.iiif_s3_endpoint') . '/' . ImageHelpers::get_clean_media_uuid($iiifMedia);
             $main['width'] = $iiifMedia->width;
             $main['height'] = $iiifMedia->height;
         }
@@ -293,17 +295,17 @@ class Artwork extends BaseApiModel
 
     public function getIdSlugAttribute()
     {
-        return join(array_filter([$this->id, getUtf8Slug($this->title)]), '/');
+        return join(array_filter([$this->id, StringHelpers::getUtf8Slug($this->title)]), '/');
     }
 
     public function getSlugAttribute()
     {
-        return route('artworks.show', $this->id, getUtf8Slug($this->title));
+        return route('artworks.show', $this->id, StringHelpers::getUtf8Slug($this->title));
     }
 
     public function getTitleSlugAttribute()
     {
-        return getUtf8Slug(truncateStr($this->title, 500));
+        return StringHelpers::getUtf8Slug(StringHelpers::truncateStr($this->title, 500));
     }
 
     private function getImageCopyright(array $image)
@@ -455,7 +457,7 @@ class Artwork extends BaseApiModel
                 ->merge($this->getMostSimilarIds());
         }
 
-        $query->where(function($subquery) use ($relatedArtworkIds) {
+        $query->where(function ($subquery) use ($relatedArtworkIds) {
             foreach ($relatedArtworkIds as $id) {
                 $subquery->orWhereJsonContains('content->browsers->artworks', $id);
             }
@@ -473,7 +475,7 @@ class Artwork extends BaseApiModel
                 ->filter(function ($item) {
                     return in_array(get_class($item), [
                         Article::class,
-                        Selection::class,
+                        Highlight::class,
                         Experience::class,
                         Video::class,
                     ]);
@@ -505,7 +507,7 @@ class Artwork extends BaseApiModel
             ->forceEndpoint('search')
             ->byMostSimilar($this->id, get_class($this), true)
             ->getPaginatedModel(13, self::SEARCH_FIELDS)
-            ->filter(function($value, $key) {
+            ->filter(function ($value, $key) {
                 return ($this->id != $value->id);
             })
             ->pluck('id')

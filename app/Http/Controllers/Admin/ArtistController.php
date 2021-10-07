@@ -53,5 +53,4 @@ class ArtistController extends BaseApiController
             'baseUrl' => $baseUrl,
         ];
     }
-
 }

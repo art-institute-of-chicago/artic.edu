@@ -14,5 +14,4 @@ class ExhibitionRevision extends Revision
     {
         return $this->belongsTo('App\Models\Exhibition');
     }
-
 }

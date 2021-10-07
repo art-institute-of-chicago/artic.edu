@@ -11,7 +11,7 @@ class FixGalleryNewItemBrowser extends Migration
      */
     public function up()
     {
-        $blocks = \App\Models\Vendor\Block::where('child_key','gallery_new_item')->where('content->gallery_item_type', 'artwork')->get();
+        $blocks = \App\Models\Vendor\Block::where('child_key', 'gallery_new_item')->where('content->gallery_item_type', 'artwork')->get();
 
         foreach ($blocks as $block) {
             $content = $block->content;

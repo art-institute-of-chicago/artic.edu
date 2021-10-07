@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
@@ -36,6 +35,8 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
         'cite_as',
         'references',
         'type_display',
+        'meta_title',
+        'meta_description',
     ];
 
     public $slugAttributes = [
@@ -57,6 +58,12 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
                 [
                     'name' => 'default',
                     'ratio' => 16 / 9,
+                ],
+            ],
+            'mobile' => [
+                [
+                    'name' => 'mobile',
+                    'ratio' => 9 / 16,
                 ],
             ],
             'special' => [
@@ -83,7 +90,7 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
         parent::scopePublished($query);
 
         // ...and the parent publication has to be published as well
-        return $query->whereHas('digitalPublication', function($subquery) {
+        return $query->whereHas('digitalPublication', function ($subquery) {
             $subquery->published();
         });
     }
@@ -125,73 +132,97 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
                 "name" => 'title',
                 "doc" => "Title",
                 "type" => "string",
-                "value" => function() { return $this->title; }
+                "value" => function () {
+                    return $this->title;
+                }
             ],
             [
                 "name" => 'web_url',
                 "doc" => "Web URL",
                 "type" => "string",
-                "value" => function() { return url($this->url); }
+                "value" => function () {
+                    return url($this->url);
+                }
             ],
             [
                 "name" => 'slug',
                 "doc" => "Slug",
                 "type" => "string",
-                "value" => function() { return $this->getSlug(); }
+                "value" => function () {
+                    return $this->getSlug();
+                }
             ],
             [
                 "name" => 'listing_description',
                 "doc" => "Listing Description",
                 "type" => "string",
-                "value" => function() { return $this->listing_description; }
+                "value" => function () {
+                    return $this->listing_description;
+                }
             ],
             [
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function() { return $this->published; }
+                "value" => function () {
+                    return $this->published;
+                }
             ],
             [
                 "name" => 'publish_start_date',
                 "doc" => "Publish Start Date",
                 "type" => "datetime",
-                "value" => function() { return $this->publish_start_date; }
+                "value" => function () {
+                    return $this->publish_start_date;
+                }
             ],
             [
                 "name" => 'content',
                 "doc" => "Content",
                 "type" => "text",
-                "value" => function() { return $this->present()->blocks; }
+                "value" => function () {
+                    return $this->present()->blocks;
+                }
             ],
             [
                 "name" => 'type',
                 "doc" => "Type of Section",
                 "type" => "string",
-                "value" => function () {return $this->type;},
+                "value" => function () {
+                    return $this->type;
+                },
             ],
             [
                 "name" => "heading",
                 "doc" => "heading",
                 "type" => "string",
-                "value" => function () {return $this->heading;},
+                "value" => function () {
+                    return $this->heading;
+                },
             ],
             [
                 "name" => 'date',
                 "doc" => "Date",
                 "type" => "date",
-                "value" => function () {return $this->date;},
+                "value" => function () {
+                    return $this->date;
+                },
             ],
             [
                 "name" => "author_display",
                 "doc" => "Author display",
                 "type" => "string",
-                "value" => function () {return $this->showAuthors();},
+                "value" => function () {
+                    return $this->showAuthors();
+                },
             ],
             [
                 "name" => "digital_publication_id",
                 "doc" => "Digital Publication ID",
                 "type" => "integer",
-                "value" => function () {return $this->digital_publication_id;},
+                "value" => function () {
+                    return $this->digital_publication_id;
+                },
             ],
         ];
     }

@@ -30,19 +30,25 @@ class Sponsor extends AbstractModel
                 "name" => "title",
                 "doc" => "Title",
                 "type" => "string",
-                "value" => function () {return $this->title;},
+                "value" => function () {
+                    return $this->title;
+                },
             ],
             [
                 "name" => "published",
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function () {return $this->published;},
+                "value" => function () {
+                    return $this->published;
+                },
             ],
             [
                 "name" => 'content',
                 "doc" => "Content",
                 "type" => "string",
-                "value" => function() { return $this->renderBlocks(); }
+                "value" => function () {
+                    return $this->renderBlocks();
+                }
             ],
         ];
     }

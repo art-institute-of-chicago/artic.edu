@@ -113,5 +113,4 @@ class GenericPageController extends ModuleController
     {
         return $this->repository->getShowData($item);
     }
-
 }

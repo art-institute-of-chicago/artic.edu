@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 
 class VisitController extends FrontController
 {
-
     public function index()
     {
         app()->setLocale(request('lang') ?? 'en');
@@ -93,7 +92,7 @@ class VisitController extends FrontController
 
                 if ($fee) {
                     $prices[$age->id]['title'] = $age->title;
-                    $prices[$age->id]['title_en'] = $age->translate('en')->title;
+                    $prices[$age->id]['title_en'] = $age->title;
                     $prices[$age->id][$category->id] = $fee->price;
                 }
             }
@@ -197,5 +196,4 @@ class VisitController extends FrontController
             'itemprops' => $itemprops,
         ]);
     }
-
 }

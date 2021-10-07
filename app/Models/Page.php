@@ -5,7 +5,6 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Behaviors\HasTranslation;
 use App\Models\Admission as Admission;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMedias;
@@ -14,7 +13,7 @@ use App\Models\Behaviors\HasRelated;
 
 class Page extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable, HasTranslation, HasRelated;
+    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable, HasRelated;
 
     protected $presenter = 'App\Presenters\Admin\PagePresenter';
 
@@ -96,10 +95,6 @@ class Page extends AbstractModel
         'visit_what_to_expect_more_link',
         'visit_capacity_btn_url_1',
         'visit_capacity_btn_url_2',
-    ];
-
-    public $translatedAttributes = [
-        // Visit
         'visit_intro',
         'visit_hour_header',
         'visit_hour_subheader',
@@ -279,7 +274,7 @@ class Page extends AbstractModel
     }
 
     /**
-     * DEPRECATED
+     * WEB-2254: Finish deprecating homeFeatures relationship
      */
     public function homeFeatures()
     {
@@ -413,119 +408,153 @@ class Page extends AbstractModel
                 "name" => 'published',
                 "doc" => "Published?",
                 "type" => "boolean",
-                "value" => function () {return $this->published;},
+                "value" => function () {
+                    return $this->published;
+                },
             ],
 
             [
                 "name" => 'type',
                 "doc" => "Type of Page",
                 "type" => "integer",
-                "value" => function () {return $this->type;},
+                "value" => function () {
+                    return $this->type;
+                },
             ],
 
             [
                 "name" => 'home_intro',
                 "doc" => "Home Intro",
                 "type" => "string",
-                "value" => function () {return $this->home_intro;},
+                "value" => function () {
+                    return $this->home_intro;
+                },
             ],
 
             [
                 "name" => 'exhibition_intro',
                 "doc" => "Exhibition Intro",
                 "type" => "string",
-                "value" => function () {return $this->exhibition_intro;},
+                "value" => function () {
+                    return $this->exhibition_intro;
+                },
             ],
 
             [
                 "name" => 'art_intro',
                 "doc" => "Art Intro",
                 "type" => "string",
-                "value" => function () {return $this->art_intro;},
+                "value" => function () {
+                    return $this->art_intro;
+                },
             ],
 
             [
                 "name" => "slug",
                 "doc" => "slug",
                 "type" => "string",
-                "value" => function () {return $this->slug;},
+                "value" => function () {
+                    return $this->slug;
+                },
             ],
 
             [
                 "name" => "exhibition_history_sub_heading",
                 "doc" => "exhibition_history_sub_heading",
                 "type" => "string",
-                "value" => function () {return $this->exhibition_history_sub_heading;},
+                "value" => function () {
+                    return $this->exhibition_history_sub_heading;
+                },
             ],
 
             [
                 "name" => "exhibition_history_intro_copy",
                 "doc" => "exhibition_history_intro_copy",
                 "type" => "string",
-                "value" => function () {return $this->exhibition_history_intro_copy;},
+                "value" => function () {
+                    return $this->exhibition_history_intro_copy;
+                },
             ],
 
             [
                 "name" => "exhibition_history_popup_copy",
                 "doc" => "exhibition_history_popup_copy",
                 "type" => "string",
-                "value" => function () {return $this->exhibition_history_popup_copy;},
+                "value" => function () {
+                    return $this->exhibition_history_popup_copy;
+                },
             ],
 
             [
                 "name" => "exhibition_intro",
                 "doc" => "exhibition_intro",
                 "type" => "string",
-                "value" => function () {return $this->exhibition_intro;},
+                "value" => function () {
+                    return $this->exhibition_intro;
+                },
             ],
 
             [
                 "name" => "visit_intro",
                 "doc" => "visit_intro",
                 "type" => "string",
-                "value" => function () {return $this->visit_intro;},
+                "value" => function () {
+                    return $this->visit_intro;
+                },
             ],
 
             [
                 "name" => "visit_hour_header",
                 "doc" => "visit_hour_header",
                 "type" => "string",
-                "value" => function () {return $this->visit_hour_header;},
+                "value" => function () {
+                    return $this->visit_hour_header;
+                },
             ],
 
             [
                 "name" => "visit_hour_subheader",
                 "doc" => "visit_hour_subheader",
                 "type" => "string",
-                "value" => function () {return $this->visit_hour_subheader;},
+                "value" => function () {
+                    return $this->visit_hour_subheader;
+                },
             ],
 
             [
                 "name" => "visit_city_pass_title",
                 "doc" => "visit_city_pass_title",
                 "type" => "string",
-                "value" => function () {return $this->visit_city_pass_title;},
+                "value" => function () {
+                    return $this->visit_city_pass_title;
+                },
             ],
 
             [
                 "name" => "visit_city_pass_text",
                 "doc" => "visit_city_pass_text",
                 "type" => "string",
-                "value" => function () {return $this->visit_city_pass_text;},
+                "value" => function () {
+                    return $this->visit_city_pass_text;
+                },
             ],
 
             [
                 "name" => "visit_admission_description",
                 "doc" => "visit_admission_description",
                 "type" => "string",
-                "value" => function () {return $this->visit_admission_description;},
+                "value" => function () {
+                    return $this->visit_admission_description;
+                },
             ],
 
             [
                 "name" => "content",
                 "doc" => "content",
                 "type" => "string",
-                "value" => function () {return $this->blocks;},
+                "value" => function () {
+                    return $this->blocks;
+                },
             ],
 
         ];

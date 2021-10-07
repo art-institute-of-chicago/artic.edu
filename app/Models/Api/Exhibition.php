@@ -5,6 +5,7 @@ namespace App\Models\Api;
 use Illuminate\Support\Carbon;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Libraries\Api\Models\BaseApiModel;
+use App\Helpers\StringHelpers;
 
 class Exhibition extends BaseApiModel
 {
@@ -77,7 +78,7 @@ class Exhibition extends BaseApiModel
 
     public function getTitleSlugAttribute()
     {
-        return getUtf8Slug($this->title);
+        return StringHelpers::getUtf8Slug($this->title);
     }
 
     public function getAicDateStartAttribute()
@@ -85,31 +86,26 @@ class Exhibition extends BaseApiModel
         if (!empty($this->aic_start_at)) {
             return new Carbon($this->aic_start_at);
         }
-
     }
 
     public function getDateStartAttribute()
     {
         if (!empty($this->aic_start_at)) {
-            if ($this->public_start_date !== null) // Strange, isset didn't work?
-            {
+            if ($this->public_start_date !== null) { // Strange, isset didn't work?
                 return $this->public_start_date;
             }
             return (new Carbon($this->aic_start_at))->startOfDay();
         }
-
     }
 
     public function getDateEndAttribute()
     {
         if (!empty($this->aic_end_at)) {
-            if ($this->public_end_date !== null) // Strange, isset didn't work?
-            {
+            if ($this->public_end_date !== null) { // Strange, isset didn't work?
                 return $this->public_end_date;
             }
             return (new Carbon($this->aic_end_at))->endOfDay();
         }
-
     }
 
     public function getIsClosingSoonAttribute()
@@ -124,7 +120,6 @@ class Exhibition extends BaseApiModel
                 return Carbon::now()->between($this->dateEnd->endOfDay()->subWeeks(2), $this->dateEnd->endOfDay());
             }
         }
-
     }
 
     public function getIsNowOpenAttribute()
@@ -140,7 +135,6 @@ class Exhibition extends BaseApiModel
         if (!empty($this->dateStart) && !empty($this->dateEnd)) {
             return Carbon::now()->between($this->dateStart, $this->dateStart->addWeeks(2));
         }
-
     }
 
     /**
@@ -167,7 +161,6 @@ class Exhibition extends BaseApiModel
 
     public function getSeoDescriptionAttribute()
     {
-
         if (!empty($this->meta_description)) {
             return $this->meta_description;
         }
@@ -206,7 +199,7 @@ class Exhibition extends BaseApiModel
         }
 
         if (!empty($this->description)) {
-            return truncateStr($this->description);
+            return StringHelpers::truncateStr($this->description);
         }
 
         return null;

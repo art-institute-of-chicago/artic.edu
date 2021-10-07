@@ -5,9 +5,6 @@
     $caption = $block->input('model_caption');
     $thumbnail_url = $block->image('image');
     $guided_tour = $block->input('guided_tour');
-    $artwork_id = Arr::first($block->browserIds('artworks'));
-    $artwork = \App\Models\Api\Artwork::query()->find($artwork_id);
-    $info_url = route('artworks.show', ['artwork' => $artwork]);
     switch($block->input('cc0_override')) {
         case 1:
             $cc0 = true;
@@ -16,7 +13,7 @@
             $cc0 = false;
             break;
         default:
-            $cc0 = empty($artwork->copyright_notice) && $artwork->is_public_domain;
+            $cc0 = false;
             break;
     }
     $camera_position = $block->input('camera_position');
@@ -33,12 +30,11 @@
             'restricted' => !$cc0,
             'fullscreen' => true,
             'media' => [
-                'module3d' => '', 
-                'model_id' => $model_id, 
+                'module3d' => '',
+                'model_id' => $model_id,
                 'annotation_list' => $annotation_list,
                 'cc' => $cc0,
                 'guided' => $guided_tour,
-                'artwork' => $artwork_id ? $artwork : '',
                 'title' => $pageTitle
             ],
             'poster' => [

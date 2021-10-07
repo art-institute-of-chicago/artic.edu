@@ -8,5 +8,7 @@
     'toolbarOptions' => [
         ['header' => 2],
         ['header' => 3],
-        'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered' ],
+        'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered',
+        ['script' => 'super'],
+    ],
 ])

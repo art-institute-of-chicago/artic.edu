@@ -17,7 +17,7 @@
             @slot('item', $item)
             @slot('imageSettings', array(
                 'srcset' => array(300,600,800,1200,1600),
-                'sizes' => aic_imageSizes(array(
+                'sizes' => ImageHelpers::aic_imageSizes(array(
                       'xsmall' => '58',
                       'small' => '58',
                       'medium' => '38',

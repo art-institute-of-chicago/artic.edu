@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -75,7 +76,7 @@ class RenameCatalogsToPublications extends Migration
         $this->dropAllIndexes("{$oldTableName}_slugs");
         $this->dropAllIndexes("{$oldTableName}_revisions");
 
-        Schema::rename(str_plural($oldTableName), str_plural($newTableName));
+        Schema::rename(Str::plural($oldTableName), Str::plural($newTableName));
 
         Schema::rename("{$oldTableName}_slugs", "{$newTableName}_slugs");
         Schema::rename("{$oldTableName}_revisions", "{$newTableName}_revisions");
@@ -85,7 +86,7 @@ class RenameCatalogsToPublications extends Migration
             $table->index('locale');
             $table->foreign("{$newTableName}_id", "fk_{$newTableName}_slugs_{$newTableName}_id")
                 ->references('id')
-                ->on(str_plural($newTableName))
+                ->on(Str::plural($newTableName))
                 ->onDelete('CASCADE')
                 ->onUpdate('NO ACTION');
         });
@@ -95,7 +96,7 @@ class RenameCatalogsToPublications extends Migration
             $table->index("{$newTableName}_id");
             $table->foreign("{$newTableName}_id")
                 ->references('id')
-                ->on(str_plural($newTableName))
+                ->on(Str::plural($newTableName))
                 ->onDelete('cascade');
             $table->foreign('user_id')
                 ->references('id')
@@ -160,19 +161,19 @@ class RenameCatalogsToPublications extends Migration
 
             $table->foreign("{$newFirstTableName}_id")
                 ->references('id')
-                ->on(str_plural($newFirstTableName))
+                ->on(Str::plural($newFirstTableName))
                 ->onDelete('cascade');
             $table->foreign("{$newSecondTableName}_id")
                 ->references('id')
-                ->on(str_plural($newSecondTableName))
+                ->on(Str::plural($newSecondTableName))
                 ->onDelete('cascade');
-            $table->index([
+            $table->index(
+                [
                     "{$newSecondTableName}_id",
                     "{$newFirstTableName}_id"
                 ],
-                "idx_{$newFirstTableName}_{$newSecondTableName}_" . str_random(5) // But why?
+                "idx_{$newFirstTableName}_{$newSecondTableName}_" . Str::random(5) // But why?
             );
         });
-
     }
 }

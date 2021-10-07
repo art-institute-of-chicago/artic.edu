@@ -2,6 +2,8 @@
 
 namespace App\Models\Behaviors;
 
+use App\Helpers\StringHelpers;
+
 trait HasAuthors
 {
     public function authors()
@@ -17,7 +19,7 @@ trait HasAuthors
         if ($this->authors->isNotEmpty()) {
             $names = $this->authors->pluck('title')->all();
 
-            return summation($names);
+            return StringHelpers::summation($names);
         }
 
         if ($this->author_display) {
@@ -31,7 +33,7 @@ trait HasAuthors
     public function showAuthorsWithLinks()
     {
         if ($this->authors->isNotEmpty()) {
-            $links = $this->authors->map(function($author) {
+            $links = $this->authors->map(function ($author) {
                 if (!$author->published) {
                     return $author->title;
                 }
@@ -39,14 +41,14 @@ trait HasAuthors
                 return '<a href="' . route('authors.show', [
                     'id' => $author->id,
                     'slug' => $author->getSlug(),
-                ]) . '">' . $author->title . '</a>';
+                ]) . '" rel="author">' . $author->title . '</a>';
             })->all();
 
-            return summation($links);
+            return StringHelpers::summation($links);
         }
 
         if ($this->author_display) {
-            return $this->author_display;
+            return '<span itemprop="author">' . $this->author_display . '</span>';
         }
     }
 }

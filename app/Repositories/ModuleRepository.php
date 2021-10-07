@@ -6,6 +6,7 @@ use A17\Twill\Repositories\ModuleRepository as BaseModuleRepository;
 use A17\Twill\Repositories\Behaviors\HandleRelatedBrowsers;
 
 use App\Repositories\Behaviors\HandleApiBrowsers;
+use App\Helpers\StringHelpers;
 
 abstract class ModuleRepository extends BaseModuleRepository
 {
@@ -19,14 +20,14 @@ abstract class ModuleRepository extends BaseModuleRepository
 
         // Fields
         foreach ($fields as $key => $field) {
-            $fields[$key] = rightTrim($field, '<p><br></p>');
+            $fields[$key] = StringHelpers::rightTrim($field, '<p><br></p>');
         }
 
         // Block content (for `HasBlocks` only)
         if (isset($fields['blocks'])) {
             foreach ($fields['blocks'] as $blockKey => $block) {
                 foreach ($block['content'] as $contentKey => $content) {
-                    $fields['blocks'][$blockKey]['content'][$contentKey] = rightTrim($content, '<p><br></p>');
+                    $fields['blocks'][$blockKey]['content'][$contentKey] = StringHelpers::rightTrim($content, '<p><br></p>');
                 }
             }
         }

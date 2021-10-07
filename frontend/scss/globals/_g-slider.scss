@@ -94,7 +94,7 @@ $btn-close-size: 20px;
     .g-slider__close {
       position: absolute;
       right: 0;
-      top: $slider-edge-spacing / 2 - $btn-close-size / 2;
+      top: $slider-edge-spacing * 0.5 - $btn-close-size * 0.5;
       padding: 0;
       border: 0 none;
       background: transparent;
@@ -142,12 +142,12 @@ $btn-close-size: 20px;
 
       .g-slider__title {
         @include untuck;
-        margin-bottom: $slider-edge-spacing / 2;
+        margin-bottom: $slider-edge-spacing * 0.5;
       }
 
       .g-slider__intro {
         @include untuck;
-        margin-bottom: $slider-edge-spacing / 2;
+        margin-bottom: $slider-edge-spacing * 0.5;
         color: $color__text--secondary;
 
         @include breakpoint('small+') {
@@ -163,7 +163,7 @@ $btn-close-size: 20px;
       }
 
       .g-slider__form-row {
-        margin-bottom: $slider-edge-spacing / 2;
+        margin-bottom: $slider-edge-spacing * 0.5;
       }
 
       .g-slider__form-row--submit {
@@ -206,7 +206,7 @@ $btn-close-size: 20px;
       .g-slider__intro {
 
         @include breakpoint('small') {
-          margin-bottom: $slider-edge-spacing / 2;
+          margin-bottom: $slider-edge-spacing * 0.5;
         }
       }
     }
@@ -227,7 +227,7 @@ $btn-close-size: 20px;
       .g-slider__form-row {
 
         @include breakpoint('small+') {
-          margin-left: $slider-edge-spacing / 2;
+          margin-left: $slider-edge-spacing * 0.5;
           margin-bottom: 0;
         }
 

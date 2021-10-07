@@ -14,5 +14,4 @@ class EducatorResourceRevision extends Revision
     {
         return $this->belongsTo('App\Models\EducatorResource');
     }
-
 }

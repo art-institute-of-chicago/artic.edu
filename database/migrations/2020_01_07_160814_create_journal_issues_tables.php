@@ -8,7 +8,6 @@ class CreateJournalIssuesTables extends Migration
     public function up()
     {
         Schema::create('journal_issues', function (Blueprint $table) {
-
             createDefaultTableFields($table);
 
             $table->text('title')->nullable();

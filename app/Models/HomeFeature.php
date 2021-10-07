@@ -71,9 +71,9 @@ class HomeFeature extends AbstractModel
         return $this->apiElements()->where('relation', 'exhibitions');
     }
 
-    public function selections()
+    public function highlights()
     {
-        return $this->belongsToMany(\App\Models\Selection::class, 'home_feature_selection', 'home_feature_id', 'selection_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\Highlight::class, 'highlight_home_feature', 'home_feature_id', 'highlight_id')->withPivot('position')->orderBy('position');
     }
 
     public function item()
@@ -81,7 +81,7 @@ class HomeFeature extends AbstractModel
         $item = $this->events()->first();
         $item = $item ?? $this->apiModels('exhibitions', 'Exhibition')->first();
         $item = $item ?? $this->articles()->first();
-        $item = $item ?? $this->selections()->first();
+        $item = $item ?? $this->highlights()->first();
 
         return $item;
     }
@@ -127,5 +127,4 @@ class HomeFeature extends AbstractModel
             return $video;
         }
     }
-
 }

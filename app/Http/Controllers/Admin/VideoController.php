@@ -52,5 +52,4 @@ class VideoController extends ModuleController
     {
         return $this->repository->getShowData($item);
     }
-
 }

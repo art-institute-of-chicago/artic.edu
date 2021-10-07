@@ -12,7 +12,6 @@ class CreateMagazineIssuesTables extends Migration
             $table->text('title')->nullable();
             $table->text('list_description')->nullable();
             $table->timestamp('publish_start_date')->nullable();
-
         });
 
         Schema::create('magazine_issue_slugs', function (Blueprint $table) {

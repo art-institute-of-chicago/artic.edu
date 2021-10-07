@@ -22,5 +22,4 @@ class CategoryTermRepository extends BaseApiRepository
 
         return parent::beforeSave($object, $fields);
     }
-
 }

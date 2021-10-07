@@ -3,6 +3,7 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
+use App\Helpers\StringHelpers;
 
 class Department extends BaseApiModel
 {
@@ -20,7 +21,7 @@ class Department extends BaseApiModel
 
     public function getTitleSlugAttribute()
     {
-        return getUtf8Slug($this->title);
+        return StringHelpers::getUtf8Slug($this->title);
     }
 
     /**

@@ -43,5 +43,4 @@ class VideoRepository extends ModuleRepository
 
         return $this->model::published()->orderBy('date', 'desc')->whereNotIn('id', [$item->id])->limit(4)->get();
     }
-
 }

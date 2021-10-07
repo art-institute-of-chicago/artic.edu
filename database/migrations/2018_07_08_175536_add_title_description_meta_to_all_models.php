@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddTitleDescriptionMetaToAllModels extends Migration
 {
-
     public function up()
     {
         Schema::table('artworks', function (Blueprint $table) {
@@ -139,5 +138,4 @@ class AddTitleDescriptionMetaToAllModels extends Migration
             $table->dropColumn('meta_description');
         });
     }
-
 }

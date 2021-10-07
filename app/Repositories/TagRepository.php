@@ -10,5 +10,4 @@ class TagRepository extends ModuleRepository
     {
         $this->model = $model;
     }
-
 }

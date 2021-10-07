@@ -23,5 +23,4 @@ class ExhibitionRequest extends Request
 
         return $rules;
     }
-
 }

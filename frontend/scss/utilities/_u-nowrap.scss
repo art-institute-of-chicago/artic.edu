@@ -1,0 +1,12 @@
+/**
+ * PUB-137: Prevent footnote numbers from line breaking
+ *
+ * If the footnote number is directly preceeded by a punctuation,
+ * take that punctuation and the footnote number, and wrap them
+ * into a span with `u-nowrap`.
+ *
+ * Do the same for footnotes and their "back" links.
+ */
+.u-nowrap {
+  white-space: nowrap;
+}

@@ -31,5 +31,7 @@ yarn-error.log
 /public/assets/vendor
 /public/mix-manifest.json
 /public/sitemap.xml
+/public/virtual-tours/tour.js
 studio.json
 .php_cs.cache
+.phpunit.result.cache

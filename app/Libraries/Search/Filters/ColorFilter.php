@@ -2,6 +2,8 @@
 
 namespace App\Libraries\Search\Filters;
 
+use App\Helpers\ColorHelpers;
+
 class ColorFilter
 {
     public function generate()
@@ -30,7 +32,6 @@ class ColorFilter
         $color[0] = $color[0] / 360;
         $color[1] = $color[1] / 100;
         $color[2] = $color[2] / 100;
-        return 'Color: #' . hslToHex($color);
+        return 'Color: #' . ColorHelpers::hslToHex($color);
     }
-
 }

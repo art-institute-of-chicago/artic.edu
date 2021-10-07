@@ -13,5 +13,4 @@ class ResourceCategoryRepository extends ModuleRepository
     {
         $this->model = $model;
     }
-
 }

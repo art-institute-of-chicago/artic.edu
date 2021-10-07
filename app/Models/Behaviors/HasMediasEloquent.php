@@ -2,11 +2,13 @@
 
 namespace App\Models\Behaviors;
 
+use App\Helpers\ImageHelpers;
+
 trait HasMediasEloquent
 {
     /**
      * Implement image helpers to avoid overwriting the Twill ones.
-     * If it has an image, run it through aic_convertFromImage
+     * If it has an image, run it through ImageHelpers::aic_convertFromImage
      */
     public function imageFront(...$parameters)
     {
@@ -27,14 +29,14 @@ trait HasMediasEloquent
             return;
         }
 
-        return $imageObjects->map(function($imageObject) {
+        return $imageObjects->map(function ($imageObject) {
             return $this->convertImageFront($imageObject);
         });
     }
 
     private function convertImageFront($imageObject)
     {
-        return aic_convertFromImage($imageObject, [
+        return ImageHelpers::aic_convertFromImage($imageObject, [
             'crop_x' => $imageObject->pivot->crop_x,
             'crop_y' => $imageObject->pivot->crop_y,
             'crop_w' => $imageObject->pivot->crop_w,

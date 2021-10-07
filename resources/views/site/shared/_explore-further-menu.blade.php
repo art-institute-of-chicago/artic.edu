@@ -18,7 +18,7 @@
                 @else
                     <li class="m-links-bar__item {{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
                 @endif
-                    <a class="m-links-bar__item-trigger f-link" href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther"{!! isset($ariaControls) ? ' aria-controls="'.$ariaControls.'"' : ''!!} aria-pressed="{{ (request()->input("ef-{$category}_ids") == $id) ? 'true' : 'false' }}">
+                    <a class="m-links-bar__item-trigger f-link" href="{!! UrlHelpers::currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther"{!! isset($ariaControls) ? ' aria-controls="'.$ariaControls.'"' : ''!!} aria-pressed="{{ (request()->input("ef-{$category}_ids") == $id) ? 'true' : 'false' }}">
                         {{ ucfirst($name) }}
                     </a>
                 </li>
@@ -37,7 +37,7 @@
                         @else
                             <li class="{{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
                         @endif
-                            <a href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
+                            <a href="{!! UrlHelpers::currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
                                 {{ ucfirst($name) }}
                             </a>
                         </li>

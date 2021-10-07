@@ -24,7 +24,7 @@ class AddLocaleColumnToTwillMediables extends Migration
         }
     }
 
-    function getCurrentLocale()
+    public function getCurrentLocale()
     {
         return getLocales()[0] ?? config('app.locale');
     }

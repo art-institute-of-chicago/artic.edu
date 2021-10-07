@@ -87,5 +87,4 @@ trait HasMediasApi
             return isset($image['height']) ? $image['height'] : '';
         }
     }
-
 }

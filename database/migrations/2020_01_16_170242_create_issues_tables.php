@@ -8,7 +8,6 @@ class CreateIssuesTables extends Migration
     public function up()
     {
         Schema::create('issues', function (Blueprint $table) {
-
             createDefaultTableFields($table);
 
             $table->text('title')->nullable();

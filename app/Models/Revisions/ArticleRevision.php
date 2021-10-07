@@ -14,5 +14,4 @@ class ArticleRevision extends Revision
     {
         return $this->belongsTo('App\Models\Article');
     }
-
 }

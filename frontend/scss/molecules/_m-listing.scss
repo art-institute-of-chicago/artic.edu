@@ -22,6 +22,8 @@
 
 ***/
 
+@use "sass:math";
+
 .m-listing {
   display: flex;
   position: relative;
@@ -126,7 +128,7 @@
   content: '';
   display: block;
   height: 0;
-  padding-bottom: percentage(9 / 16); // 16:9
+  padding-bottom: percentage(math.div(9, 16)); // 16:9
 }
 
 .m-listing__img--square::before {
@@ -134,7 +136,7 @@
 }
 
 .m-listing__img--tall::before {
-  padding-bottom: percentage(4 / 3); // 3:4
+  padding-bottom: percentage(math.div(4, 3)); // 3:4
 }
 
 .m-listing__img--icon::before {
@@ -570,7 +572,7 @@
 
 // Variant `m-listing--feature`
 .m-listing--feature .m-listing__img::before {
-  padding-bottom: percentage(9 / 16); // 16:9
+  padding-bottom: percentage(math.div(9, 16)); // 16:9
 }
 
 @include breakpoint('medium+') {
@@ -698,7 +700,7 @@
   padding-bottom: 100%; // 1:1
 
   @include breakpoint('medium+') {
-    padding-bottom: percentage(9 / 16); // 16:9
+    padding-bottom: percentage(math.div(9, 16)); // 16:9
   }
 }
 
@@ -1902,7 +1904,7 @@ $f-audio-subtitle: generate-font-obj(
 }
 
 
-// Adding gradients to homepage features and selections
+// Adding gradients to homepage features and highlights
 @mixin m-listing__img__overlay {
   display: block;
 
@@ -1926,7 +1928,7 @@ $f-audio-subtitle: generate-font-obj(
   display: none;
 }
 
-.m-listing--selection .m-listing__img .m-listing__img__overlay {
+.m-listing--highlight .m-listing__img .m-listing__img__overlay {
   @include m-listing__img__overlay;
   padding: 32px;
 }

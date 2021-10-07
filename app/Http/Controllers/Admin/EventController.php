@@ -57,8 +57,7 @@ class EventController extends ModuleController
         $sortKey = request('sortKey');
 
         // Mitigate Twill bug with regards to `_page_offset` local storage
-        if (!isset($sortKey))
-        {
+        if (!isset($sortKey)) {
             request()->merge([
                 'sortKey' => 'formattedNextOcurrence',
                 'sortDir' => 'desc',
@@ -66,16 +65,14 @@ class EventController extends ModuleController
         }
 
         // This is a db search, not Elasticsearch search
-        if ($this->getRequestFilters()['search'] ?? false)
-        {
+        if ($this->getRequestFilters()['search'] ?? false) {
             request()->merge([
                 'sortKey' => null, // '_score',
                 'sortDir' => null, // 'desc',
             ]);
         }
 
-        if (request('sortKey') !== 'formattedNextOcurrence')
-        {
+        if (request('sortKey') !== 'formattedNextOcurrence') {
             return parent::getIndexItems($scopes, $forcePagination);
         }
 
@@ -121,5 +118,4 @@ class EventController extends ModuleController
             'baseUrl' => $baseUrl,
         ];
     }
-
 }

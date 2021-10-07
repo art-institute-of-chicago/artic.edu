@@ -6,10 +6,10 @@ use App\Libraries\Api\Models\BaseApiModel;
 use App\Libraries\Api\Builders\ApiModelBuilderSearch;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use App\Helpers\DatesHelpers;
 
 class Search extends BaseApiModel
 {
-
     protected $endpoints = [
         'search' => '/api/v1/search',
         'msearch' => '/api/v1/msearch',
@@ -33,7 +33,7 @@ class Search extends BaseApiModel
         'generic-pages'       => 'App\Models\GenericPage',
         'educator-resources'  => 'App\Models\EducatorResource',
         'press-releases'      => 'App\Models\PressRelease',
-        'selections'          => 'App\Models\Selection',
+        'highlights'          => 'App\Models\Highlight',
     ];
 
     /**
@@ -356,7 +356,7 @@ class Search extends BaseApiModel
         //Transform the ID into an array. It could be multiple items comma separated
         $ids = is_array($ids) ? $ids : explode(';', $ids);
 
-        foreach($ids as $id) {
+        foreach ($ids as $id) {
             $elements[] = [
                 "term" => [
                     $parameter => $id
@@ -475,19 +475,17 @@ class Search extends BaseApiModel
 
         $shoulds = [];
         if ($class == \App\Models\Api\Artwork::class) {
-
             $shoulds = [
                 $this->basicQuery('classification_id', $item->classification_id, 4),
                 $this->basicQuery('artist_id', $item->artist_id, 3),
                 $this->basicQuery('style_id', $item->style_id, 2),
             ];
 
-            $date_start = incrementBefore($item->date_start);
-            $date_end = incrementAfter($item->date_start);
+            $date_start = DatesHelpers::incrementBefore($item->date_start);
+            $date_end = DatesHelpers::incrementAfter($item->date_start);
             $dateQuery = $this->dateQuery($date_start, $date_end, 1);
             array_push($shoulds, $dateQuery);
-        }
-        elseif ($class == \App\Models\Api\Artist::class) {
+        } elseif ($class == \App\Models\Api\Artist::class) {
             $shoulds = [
                 $this->basicQuery('style_titles', $item->artworks()->getMetadata('aggregations')->styles->buckets[0]->key ?? null, 0, 'match'),
                 $this->basicQuery('place_of_origin', $item->artworks()->getMetadata('aggregations')->place_of_origin->buckets[0]->key ?? null, 0, 'match'),
@@ -602,7 +600,8 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    protected function transformYear($year) {
+    protected function transformYear($year)
+    {
         // Year could come with BCE, CE, or 'Present'
         if (Str::contains($year, 'BCE')) {
             $year = - (integer) $year;
@@ -621,8 +620,7 @@ class Search extends BaseApiModel
     {
         if (empty($date)) {
             $date = Carbon::today();
-        }
-        else {
+        } else {
             $date = Carbon::parse($date);
         }
         $params = [
@@ -902,8 +900,7 @@ class Search extends BaseApiModel
 
     protected function basicQuery($field, $value, $boost = 0, $queryType = 'term')
     {
-        if (!$value)
-        {
+        if (!$value) {
             return [];
         }
         $ret = [

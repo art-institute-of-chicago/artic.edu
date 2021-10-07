@@ -66,5 +66,4 @@ class HourController extends ModuleController
     {
         return [];
     }
-
 }

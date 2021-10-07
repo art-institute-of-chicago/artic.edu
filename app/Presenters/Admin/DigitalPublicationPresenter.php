@@ -55,7 +55,7 @@ class DigitalPublicationPresenter extends BasePresenter
 
         if (!isset($this->sections[$type])) {
             $this->sections[$type] = $this->sections['all']
-                ->filter(function($section) use ($type) {
+                ->filter(function ($section) use ($type) {
                     return $section->type === $type;
                 })
                 ->values();
@@ -85,7 +85,7 @@ class DigitalPublicationPresenter extends BasePresenter
                             'type'  => 'link-list',
                             'links' => $this
                                 ->getSections($type)
-                                ->map(function($section) use ($currentSection) {
+                                ->map(function ($section) use ($currentSection) {
                                     return [
                                         'label' => $section->title_display ?? $section->title,
                                         'sublabel' => $section->type === DigitalPublicationSection::TEXT ? $section->showAuthors() : null,

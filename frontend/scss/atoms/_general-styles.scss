@@ -122,7 +122,9 @@ mark {
 sub,
 sup {
   font-size: 76.5%;
-  vertical-align: sub;
+
+  // PUB-142: sup breaks line-height
+  line-height: 0;
 
   *[class*=f-] & {
     font-size: 60%;
@@ -141,9 +143,9 @@ sub {
 }
 
 sup {
-  vertical-align: baseline;
+  vertical-align: super;
   position: relative;
-  top: -0.8em;
+  top: -0.2em;
 }
 
 pre,

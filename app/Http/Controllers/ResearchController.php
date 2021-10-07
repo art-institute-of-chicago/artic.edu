@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Page;
 
 class ResearchController extends FrontController
 {
-
     public function index()
     {
         $page = Page::forType('Research and Resources')->first();
@@ -21,9 +19,9 @@ class ResearchController extends FrontController
 
         // WEB-2255: Building links should be moved away from the controller to a presenter.
         $features = [];
-        foreach($featuredPages as $item) {
+        foreach ($featuredPages as $item) {
             $links = [];
-            foreach($item->children()->orderBy('position')->published()->get() as $index => $child) {
+            foreach ($item->children()->orderBy('position')->published()->get() as $index => $child) {
                 if ($index == 4) {
                     break; // Show only the top 4 children.
                 }
@@ -45,7 +43,7 @@ class ResearchController extends FrontController
         }
 
         $studyRooms = [];
-        foreach($page->researchResourcesStudyRooms as $room) {
+        foreach ($page->researchResourcesStudyRooms as $room) {
             array_push($studyRooms, [
                 'title' => $room->title,
                 'titleLink' => $room->url,
@@ -54,7 +52,7 @@ class ResearchController extends FrontController
         }
 
         $studyRoomsLink = '';
-        foreach($page->researchResourcesStudyRoomMore as $room) {
+        foreach ($page->researchResourcesStudyRoomMore as $room) {
             $studyRoomsLink = $room->url;
         }
 
@@ -83,7 +81,5 @@ class ResearchController extends FrontController
             'studyRooms' => $studyRooms,
             'studyRoomsLink' => $studyRoomsLink
         ]);
-
     }
-
 }

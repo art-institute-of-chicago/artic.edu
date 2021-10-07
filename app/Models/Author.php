@@ -47,7 +47,7 @@ class Author extends AbstractModel
 
     public function highlights()
     {
-        return $this->morphedByMany('App\Models\Selection', 'authorable');
+        return $this->morphedByMany('App\Models\Highlight', 'authorable');
     }
 
     public function experiences()

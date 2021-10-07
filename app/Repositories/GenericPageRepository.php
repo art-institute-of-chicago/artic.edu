@@ -69,5 +69,4 @@ class GenericPageRepository extends ModuleRepository
 
         return $results;
     }
-
 }

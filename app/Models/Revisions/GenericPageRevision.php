@@ -14,5 +14,4 @@ class GenericPageRevision extends Revision
     {
         return $this->belongsTo('App\Models\GenericPage');
     }
-
 }

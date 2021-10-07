@@ -7,6 +7,7 @@
         @slot('title', $item->present()->title ?? null)
         @slot('title_display', $item->present()->title_display ?? null)
         @slot('img', $item->imageFront('hero') ?? null)
+        @slot('imgMobile', $item->imageFront('hero', 'mobile') ?? null)
         @slot('credit', $item->hero_caption ?? null)
         @slot('intro', $item->header_text ?? null)
         @slot('issueNumber', $item->issue_number ?? null)
@@ -51,7 +52,7 @@
                             'fit' => 'crop',
                             'ratio' => '16:9',
                             'srcset' => array(200,400,600),
-                            'sizes' => aic_imageSizes(array(
+                            'sizes' => ImageHelpers::aic_imageSizes(array(
                                   'xsmall' => '216px',
                                   'small' => '216px',
                                   'medium' => '18',

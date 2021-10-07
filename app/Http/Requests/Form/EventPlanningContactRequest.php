@@ -37,5 +37,4 @@ class EventPlanningContactRequest extends FormRequest
             $this->validateCaptcha($validator);
         });
     }
-
 }

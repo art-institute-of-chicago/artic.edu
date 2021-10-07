@@ -11,7 +11,6 @@ use Illuminate\Console\Command;
 
 class UpdateSponsors extends Command
 {
-
     protected $signature = 'update:sponsors';
 
     protected $description = 'Migrate sponsor data from exhibition fields to the new sponsor model';
@@ -22,21 +21,19 @@ class UpdateSponsors extends Command
         $blockRepository = app(BlockRepository::class);
 
         // Remove all existing sponsors, including soft-deleted ones
-        Sponsor::withTrashed()->where('id', '!=', 26)->get()->each( function($sponsor) use ($blockRepository) {
+        Sponsor::withTrashed()->where('id', '!=', 26)->get()->each(function ($sponsor) use ($blockRepository) {
 
             // Delete all the blocks - deleting the sponsor doesn't cascade changes
             $blockRepository->bulkDelete($sponsor->blocks()->pluck('id')->toArray());
 
             // Permanently delete the sponsor - cascades to event_sponsors, exhibition_sponsors
             $sponsor->forceDelete();
-
         });
 
         // Find all exhibitions with sponsor field
         $exhibitions = Exhibition::whereNotNull('sponsors_description')->where('id', '!=', 1)->get();
 
-        foreach( $exhibitions as $exhibition )
-        {
+        foreach ($exhibitions as $exhibition) {
             // Create a new sponsor
             $sponsor = new Sponsor();
             $sponsor->title = $exhibition->title;
@@ -44,10 +41,10 @@ class UpdateSponsors extends Command
             $sponsor->save();
 
             // Get cleaned content
-            $content = $this->getSponsorContent( $exhibition->sponsors_description );
+            $content = $this->getSponsorContent($exhibition->sponsors_description);
 
             // Generate a paragraph block for attachment
-            $block = $this->getParagraphBlock( $sponsor, 1, $content );
+            $block = $this->getParagraphBlock($sponsor, 1, $content);
 
             // Create the block
             $blockRepository->create($block);
@@ -59,10 +56,9 @@ class UpdateSponsors extends Command
                 ]
             ]);
         }
-
     }
 
-    private function getParagraphBlock( $model, $position, $content )
+    private function getParagraphBlock($model, $position, $content)
     {
         return [
             'blockable_id' => $model->id,
@@ -73,15 +69,15 @@ class UpdateSponsors extends Command
         ];
     }
 
-    private function getSponsorContent( $content )
+    private function getSponsorContent($content)
     {
         // Remove <br> tags
-        $content = preg_replace( '/<br *\/*>/', '', $content );
+        $content = preg_replace('/<br *\/*>/', '', $content);
 
         // Split by \n\n, trim, and wrap in <p>
-        $paragraphs = collect( explode("\n\n", $content) );
+        $paragraphs = collect(explode("\n\n", $content));
 
-        $paragraphs = $paragraphs->map( function( $paragraph ) {
+        $paragraphs = $paragraphs->map(function ($paragraph) {
             $paragraph = trim($paragraph);
             $paragraph = '<p>' . $paragraph . '</p>';
             return $paragraph;
@@ -91,5 +87,4 @@ class UpdateSponsors extends Command
 
         return $content;
     }
-
 }

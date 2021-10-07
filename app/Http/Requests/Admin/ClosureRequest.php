@@ -6,7 +6,6 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class ClosureRequest extends Request
 {
-
     public function rules()
     {
         $rules = ['type' => 'required'];

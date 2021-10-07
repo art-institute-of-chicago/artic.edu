@@ -10,12 +10,10 @@ use App\Models\Form\FilmingProposal;
 
 use App\Mail\FormFilmingProposal;
 
-
 class FilmingAndPhotoShootProposalController extends FormController
 {
     public function index()
     {
-
         $this->title = 'Filming and Photo Shoot Proposal Form';
         $this->seo->setTitle($this->title);
 
@@ -313,7 +311,6 @@ class FilmingAndPhotoShootProposalController extends FormController
      */
     public function store(FilmingProposalRequest $request)
     {
-
         $validated = $request->validated();
 
         $filmingProposal = new FilmingProposal;
@@ -333,6 +330,5 @@ class FilmingAndPhotoShootProposalController extends FormController
             ->send(new FormFilmingProposal($filmingProposal));
 
         return redirect(route('forms.filming-proposal.thanks'));
-
     }
 }

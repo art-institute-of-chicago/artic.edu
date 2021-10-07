@@ -54,5 +54,4 @@ class RyersonClassVisitRequest extends FormRequest
             'instructor_materials_review_time_1.required' => 'A potential time for instructor materials review is required',
         ];
     }
-
 }

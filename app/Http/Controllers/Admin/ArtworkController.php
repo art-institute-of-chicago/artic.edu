@@ -83,5 +83,4 @@ class ArtworkController extends BaseApiController
         // Allow to filter by IDS when listing artworks.
         return response()->json($this->getBrowserData(['id' => request('artwork_ids')]));
     }
-
 }

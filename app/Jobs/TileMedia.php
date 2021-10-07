@@ -6,6 +6,7 @@ use Exception;
 use Ramsey\Uuid\Uuid;
 use A17\Twill\Models\Media;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\ImageHelpers;
 
 class TileMedia extends BaseJob
 {
@@ -23,7 +24,7 @@ class TileMedia extends BaseJob
     {
         $iiifMedia = $this->item;
 
-        $iiifMediaUuid = get_clean_media_uuid($iiifMedia);
+        $iiifMediaUuid = ImageHelpers::get_clean_media_uuid($iiifMedia);
 
         if (!Uuid::isValid($iiifMediaUuid)) {
             throw new Exception('Invalid UUID');

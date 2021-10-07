@@ -22,7 +22,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600,1000),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                         'xsmall' => '58',
                         'small' => '58',
                         'medium' => '38',
@@ -30,7 +30,7 @@
                         'xlarge' => '28',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug($featureHero->trackingTitle) . '" data-gtm-event-category="blog-listing-1"')
+                @slot('gtmAttributes', 'data-gtm-event="' . StringHelpers::getUtf8Slug($featureHero->trackingTitle) . '" data-gtm-event-category="blog-listing-1"')
             @endcomponent
         @endif
 
@@ -44,7 +44,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                             'xsmall' => '58',
                             'small' => '28',
                             'medium' => '18',
@@ -52,7 +52,7 @@
                             'xlarge' => '13',
                         )),
                     ))
-                @slot('gtmAttributes', 'data-gtm-event="'. getUtf8Slug($editorial->trackingTitle) . '" data-gtm-event-category="blog-listing-' . ($loop->index + 2) . '"')
+                @slot('gtmAttributes', 'data-gtm-event="'. StringHelpers::getUtf8Slug($editorial->trackingTitle) . '" data-gtm-event-category="blog-listing-' . ($loop->index + 2) . '"')
                 @endcomponent
             @endif
         @endforeach
@@ -67,7 +67,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                             'xsmall' => '58',
                             'small' => '28',
                             'medium' => '18',
@@ -75,7 +75,7 @@
                             'xlarge' => '13',
                         )),
                     ))
-                    @slot('gtmAttributes', 'data-gtm-event="'. getUtf8Slug($editorial->title_display ?? $editorial->title) . '" data-gtm-event-category="blog-listing-' . ($loop->index + 2) . '"')
+                    @slot('gtmAttributes', 'data-gtm-event="'. StringHelpers::getUtf8Slug($editorial->title_display ?? $editorial->title) . '" data-gtm-event-category="blog-listing-' . ($loop->index + 2) . '"')
                 @endcomponent
             @endif
         @endforeach

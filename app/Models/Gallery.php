@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasMedias;
+use App\Helpers\StringHelpers;
 
 class Gallery extends AbstractModel
 {
@@ -36,6 +37,6 @@ class Gallery extends AbstractModel
 
     public function getSlugAttribute()
     {
-        return ['en' => getUtf8Slug($this->title)];
+        return ['en' => StringHelpers::getUtf8Slug($this->title)];
     }
 }

@@ -8,7 +8,7 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasMedias;
-
+use App\Helpers\StringHelpers;
 
 class Artwork extends AbstractModel
 {
@@ -56,7 +56,7 @@ class Artwork extends AbstractModel
 
     public function getSlugAttribute()
     {
-        return ['en' => getUtf8Slug($this->title)];
+        return ['en' => StringHelpers::getUtf8Slug($this->title)];
     }
 
     public function getAssetLibraryAttribute()
@@ -83,7 +83,7 @@ class Artwork extends AbstractModel
 
     public function getMiradorManifest()
     {
-        if ($this->default_manifest_url OR $this->file('upload_manifest_file')) {
+        if ($this->default_manifest_url or $this->file('upload_manifest_file')) {
             if ($this->file('upload_manifest_file')) {
                 $manifestFile = $this->file('upload_manifest_file');
             } else {
@@ -91,7 +91,7 @@ class Artwork extends AbstractModel
             }
             return $manifestFile;
         }
-		return null;
+        return null;
     }
 
     public function getMiradorView()

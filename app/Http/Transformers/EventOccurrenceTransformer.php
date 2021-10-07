@@ -2,10 +2,8 @@
 
 namespace App\Http\Transformers;
 
-
 class EventOccurrenceTransformer extends ApiTransformer
 {
-
     public function transform($item)
     {
         return [
@@ -38,8 +36,8 @@ class EventOccurrenceTransformer extends ApiTransformer
             return null;
         }
 
-        $matchingDateRange = $item->all_dates->first( function($dateRange, $key) use ($item) {
-            return isset($dateRange['date']) && $dateRange['date']->eq( $item->date );
+        $matchingDateRange = $item->all_dates->first(function ($dateRange, $key) use ($item) {
+            return isset($dateRange['date']) && $dateRange['date']->eq($item->date);
         });
 
         if ($matchingDateRange && isset($matchingDateRange['date_end'])) {
@@ -70,5 +68,4 @@ class EventOccurrenceTransformer extends ApiTransformer
 
         return $value;
     }
-
 }

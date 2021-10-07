@@ -32,9 +32,11 @@
                 <enclosure url="{{ url($item->enclosure) }}" length="{{ $item->enclosureLength }}" type="{{ $item->enclosureType }}" />
             @endif
             <pubDate>{{ $item->updated->toRssString() }}</pubDate>
-            @if ($item->category)
-            <category>{{ $item->category }}</category>
-            @endif
+            @foreach($item->category as $category)
+            <category type="html">
+                <![CDATA[{!! $category !!}]]>
+            </category>
+            @endforeach
         </item>
     @endforeach
 </channel>

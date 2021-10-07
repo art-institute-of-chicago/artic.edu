@@ -20,7 +20,7 @@ class IncreaseSizeOfHeroCaptionField extends Migration
         Schema::table('selections', function (Blueprint $table) {
             $table->text('hero_caption')->nullable()->change();
         });
-}
+    }
 
     /**
      * Reverse the migrations.

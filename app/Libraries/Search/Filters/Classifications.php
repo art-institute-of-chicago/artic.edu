@@ -29,5 +29,4 @@ class Classifications extends BaseFilteredList
     {
         return ucfirst($key);
     }
-
 }

@@ -24,8 +24,8 @@
                 $type = $item->present()->type;
             }
 
-            if ($featureType === MagazineItem::ITEM_TYPE_SELECTION) {
-                $variation[] = 'm-listing--selection';
+            if ($featureType === MagazineItem::ITEM_TYPE_HIGHLIGHT) {
+                $variation[] = 'm-listing--highlight';
             }
 
             $isBlockReady = true;
@@ -42,7 +42,7 @@
 
         $isBlockReady = true;
 
-        $gtmEvent = lastUrlSegment($href);
+        $gtmEvent = UrlHelpers::lastUrlSegment($href);
     }
 @endphp
 
@@ -60,7 +60,7 @@
             'fit' => 'crop',
             'ratio' => '16:9',
             'srcset' => array(200,400,600),
-            'sizes' => aic_imageSizes(array(
+            'sizes' => ImageHelpers::aic_imageSizes(array(
                   'xsmall' => '216px',
                   'small' => '216px',
                   'medium' => '18',

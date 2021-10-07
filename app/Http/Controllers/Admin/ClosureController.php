@@ -66,5 +66,4 @@ class ClosureController extends ModuleController
             'editableTitle' => false,
         ];
     }
-
 }

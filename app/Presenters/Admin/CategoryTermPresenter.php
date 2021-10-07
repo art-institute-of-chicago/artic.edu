@@ -6,18 +6,21 @@ use App\Presenters\BasePresenter;
 
 class CategoryTermPresenter extends BasePresenter
 {
-    protected function augmented() {
+    protected function augmented()
+    {
         return $this->entity->getAugmentedModel() ? 'Yes' : 'No';
     }
 
-    protected function augmentedTitle() {
+    protected function augmentedTitle()
+    {
         if ($this->entity->getAugmentedModel()) {
             return $this->entity->getAugmentedModel()->title;
         }
     }
 
-    protected function collectionUrl() {
-        switch($this->entity->subtype) {
+    protected function collectionUrl()
+    {
+        switch ($this->entity->subtype) {
             case 'technique':
             case 'theme':
                 $value = $this->entity->id;

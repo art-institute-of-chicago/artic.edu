@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Http\Resources\SlideMedia as SlideMediaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Helpers\UrlHelpers;
 
 class SlideModal extends JsonResource
 {
@@ -15,14 +16,14 @@ class SlideModal extends JsonResource
      */
     public function toArray($request)
     {
-        switch($this->modal_type) {
+        switch ($this->modal_type) {
             case 'image':
                 return [
                     '__mediaType' => 'image',
                     '__option_caption' => !empty($this->image_sequence_caption) || !empty($this->imageCaption('experience_image')),
                     '__option_zoomable' => $this->zoomable,
                     'id' => (string) $this->id,
-                    'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [parseVideoUrl($this->video_url)],
+                    'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [UrlHelpers::parseVideoUrl($this->video_url)],
                     'caption' => $this->image_sequence_caption ?? $this->imageCaption('experience_image'),
                 ];
                 break;
@@ -36,7 +37,7 @@ class SlideModal extends JsonResource
                     '__option_loop' => $this->video_play_settings && in_array('loop', $this->video_play_settings),
                     '__option_zoomable' => $this->zoomable,
                     'id' => (string) $this->id,
-                    'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [parseVideoUrl($this->video_url)],
+                    'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [UrlHelpers::parseVideoUrl($this->video_url)],
                     'caption' => $this->image_sequence_caption ?? $this->imageCaption('experience_image'),
                 ];
                 break;

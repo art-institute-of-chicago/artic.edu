@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Aic\Hub\Foundation\AbstractModel;
@@ -14,13 +14,13 @@ class StaticPagesController extends BaseController
 
     protected function paginate($limit)
     {
-        $offset = ((Input::get('page') ?? 1) - 1) * $limit;
+        $offset = ((Request::input('page') ?? 1) - 1) * $limit;
         $pages = $this->getPageCollection();
         return (new LengthAwarePaginator(
             $pages->slice($offset, $limit)->values(),
             $pages->count(),
             $limit,
-            intdiv($offset,$limit) + 1
+            intdiv($offset, $limit) + 1
         ))->setPath(request()->url());
     }
 
@@ -35,9 +35,10 @@ class StaticPagesController extends BaseController
 
         collect(
             $this->getPages()
-        )->map(function($item) {
-            return new class($item) extends AbstractModel {}; // For transform()
-        })->each(function($item) use ($collection) {
+        )->map(function ($item) {
+            return new class($item) extends AbstractModel {
+            }; // For transform()
+        })->each(function ($item) use ($collection) {
             $collection->push($item);
         });
 

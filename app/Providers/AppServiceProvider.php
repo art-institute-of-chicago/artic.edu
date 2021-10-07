@@ -57,7 +57,7 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'events' => 'App\Models\Event',
             'articles' => 'App\Models\Article',
-            'selections' => 'App\Models\Selection',
+            'highlights' => 'App\Models\Highlight',
             'artists' => 'App\Models\Artist',
             'homeFeatures' => 'App\Models\HomeFeature',
 
@@ -105,7 +105,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton('closureservice', function ($app) {
             return new class() {
-
                 private $checkedForClosure = false;
 
                 private $cachedClosure;
@@ -127,7 +126,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton('printservice', function ($app) {
             return new class() {
-
                 private $isPrintMode;
 
                 public function __construct()
@@ -157,7 +155,6 @@ class AppServiceProvider extends ServiceProvider
     {
         // WEB-2269: Consider moving some of this to a config?
         view()->composer('*', function ($view) {
-
             $view->with([
                 '_pages' => [
                     'visit' => route('visit')

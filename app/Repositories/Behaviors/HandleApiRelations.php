@@ -4,6 +4,7 @@ namespace App\Repositories\Behaviors;
 
 use ImageService;
 use App\Models\ApiRelation;
+use App\Helpers\UrlHelpers;
 use A17\Twill\Models\RelatedItem;
 
 trait HandleApiRelations
@@ -21,7 +22,7 @@ trait HandleApiRelations
         $relatedElements = $fieldsHasElements ? $fields['browsers'][$relationship] : [];
 
         // If we don't have an element to save the datahub_id, let's create one
-        $relatedElements = array_map(function($element) {
+        $relatedElements = array_map(function ($element) {
             return ApiRelation::firstOrCreate(['datahub_id' => $element['id']]);
         }, $relatedElements);
 
@@ -50,7 +51,7 @@ trait HandleApiRelations
         $fieldsHasElements = isset($fields['browsers'][$relationship]) && !empty($fields['browsers'][$relationship]);
         $relatedElements = $fieldsHasElements ? $fields['browsers'][$relationship] : [];
         // If we don't have an element to save the datahub_id, let's create one
-        $relatedElements = array_map(function($element) use ($typeUsesApi) {
+        $relatedElements = array_map(function ($element) use ($typeUsesApi) {
             if ($typeUsesApi[$element['endpointType']]) {
                 $apiItem = ApiRelation::firstOrCreate(['datahub_id' => $element['id']]);
                 $apiItem->endpointType = $element['endpointType'];
@@ -93,7 +94,7 @@ trait HandleApiRelations
         $apiElements = $apiModel::query()->ids($ids)->get();
 
         // Find locally selected objects
-        $localApiMapping = $object->$relation->filter(function($relatedElement) use($apiElements) {
+        $localApiMapping = $object->$relation->filter(function ($relatedElement) use ($apiElements) {
             return $apiElements->where('id', $relatedElement->datahub_id)->first();
         });
 
@@ -104,15 +105,15 @@ trait HandleApiRelations
 
             // If it contains an augmented model create an edit link
             if ($apiElement->hasAugmentedModel() && $apiElement->getAugmentedModel()) {
-                $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'edit', $apiElement->getAugmentedModel()->id);
+                $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'edit', [$apiElement->getAugmentedModel()->id]);
 
                 if (classHasTrait($apiElement->getAugmentedModel(), \App\Models\Behaviors\HasMedias::class)) {
                     $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
                 }
             } else {
                 // WEB-1187: This is reached after page refresh, if the model hasn't been augmented
-                if (moduleRouteExists($moduleName ?? $relation, $routePrefix ?? '', 'augment')) {
-                    $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'augment', $apiElement->id);
+                if (UrlHelpers::moduleRouteExists($moduleName ?? $relation, $routePrefix ?? '', 'augment')) {
+                    $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'augment', [$apiElement->id]);
                 }
 
                 $data['thumbnail'] = ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100]);
@@ -132,7 +133,7 @@ trait HandleApiRelations
         $typedFormFields = $object->relatedItems
             ->where('browser_name', $browser_name)
             ->groupBy('related_type')
-            ->map(function ($items, $type) use($apiModelsDefinitions, $browser_name, $typeUsesApi) {
+            ->map(function ($items, $type) use ($apiModelsDefinitions, $browser_name, $typeUsesApi) {
                 if ($typeUsesApi[$type]) {
                     $apiElements = $this->getApiElements($items, $type, $apiModelsDefinitions);
                     $localApiMapping = $this->getLocalApiMapping($items, $apiElements);
@@ -146,7 +147,7 @@ trait HandleApiRelations
 
                         // If it contains an augmented model create an edit link
                         if ($apiElement->hasAugmentedModel() && $apiElement->getAugmentedModel()) {
-                            $data['edit'] = moduleRoute($apiModelDefinition['moduleName'], $apiModelDefinition['routePrefix'] ?? '', 'edit', $apiElement->getAugmentedModel()->id);
+                            $data['edit'] = moduleRoute($apiModelDefinition['moduleName'], $apiModelDefinition['routePrefix'] ?? '', 'edit', [$apiElement->getAugmentedModel()->id]);
 
                             if (classHasTrait($apiElement->getAugmentedModel(), \App\Models\Behaviors\HasMedias::class)) {
                                 $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
@@ -184,6 +185,5 @@ trait HandleApiRelations
         return $typedFormFields->flatten(1)->sortBy(function ($browserItem, $key) {
             return $browserItem['position'];
         })->values()->toArray();
-
     }
 }

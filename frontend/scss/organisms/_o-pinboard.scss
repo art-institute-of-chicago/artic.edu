@@ -107,7 +107,7 @@
       @if ($name == 'xsmall') {
         margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
         padding-top: #{map-get($pinboard-grid-padding-tops, $name)}px;
-      } @elseif ($name == 'small') {
+      } @else if ($name == 'small') {
         margin-top: colspan(1.5, small);
         padding-top: colspan(1.5, small, -1px);
         border-top: 1px solid $color__rules--primary;

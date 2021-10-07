@@ -15,7 +15,8 @@ class AddHttpProtectedToGenericPages extends Migration
     {
         Schema::table('generic_pages', function (Blueprint $table) {
             $table->boolean('http_protected')->default(false);
-        });    }
+        });
+    }
 
     /**
      * Reverse the migrations.

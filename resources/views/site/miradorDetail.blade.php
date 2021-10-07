@@ -1,4 +1,4 @@
-<link href="{{revAsset('styles/mirador-kiosk.css')}}" rel="stylesheet" />
+<link href="{{FrontendHelpers::revAsset('styles/mirador-kiosk.css')}}" rel="stylesheet" />
 
 @extends('layouts.kiosk')
 

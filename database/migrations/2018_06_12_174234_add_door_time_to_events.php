@@ -13,11 +13,9 @@ class AddDoorTimeToEvents extends Migration
      */
     public function up()
     {
-
         Schema::table('events', function (Blueprint $table) {
             $table->string('door_time')->nullable();
         });
-
     }
 
     /**
@@ -27,10 +25,8 @@ class AddDoorTimeToEvents extends Migration
      */
     public function down()
     {
-
         Schema::table('events', function (Blueprint $table) {
             $table->dropColumn('door_time');
         });
-
     }
 }

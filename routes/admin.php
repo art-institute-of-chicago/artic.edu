@@ -95,8 +95,7 @@ Route::group(['prefix' => 'collection'], function () {
     Route::module('departments');
     Route::name('collection.departments.augment')->get('departments/augment/{datahub_id}', 'DepartmentController@augment');
 
-    Route::module('selections');
-
+    Route::module('highlights');
 });
 
 Route::group(['prefix' => 'generic'], function () {

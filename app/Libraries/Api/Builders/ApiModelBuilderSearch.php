@@ -4,6 +4,7 @@ namespace App\Libraries\Api\Builders;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
+use App\Helpers\CollectionHelpers;
 
 class ApiModelBuilderSearch extends ApiModelBuilder
 {
@@ -27,8 +28,10 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $perPage = is_null($perPage) ? $this->model->getPerPage() : $perPage;
 
         if ($columns) {
-            $columns = array_merge(['thumbnail', 'api_model', 'is_boosted', 'api_link', 'id', 'title', 'timestamp'],
-                                     $columns);
+            $columns = array_merge(
+                ['thumbnail', 'api_model', 'is_boosted', 'api_link', 'id', 'title', 'timestamp'],
+                $columns
+            );
         }
         $results = $this->forPage($page, $perPage)->get($columns);
 
@@ -41,8 +44,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
             } else {
                 $models = $this->makeModelsFlat($results);
             }
-        }
-        else {
+        } else {
             if (isset($options['segregated']) && $options['segregated']) {
                 $models = $this->extractModels($results);
             } else {
@@ -75,7 +77,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $total = $paginationData ? $paginationData->total : $results->count();
 
         // Transform each Search model to the correct instance using typeMap
-        $hydratedModels = $results->transform(function($item, $key) {
+        $hydratedModels = $results->transform(function ($item, $key) {
             return $this->getTypeMap()[$item->api_model]::hydrate([$item->toArray()])[0];
         });
 
@@ -86,7 +88,8 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         ]);
     }
 
-    protected function extractModelsFlat($results) {
+    protected function extractModelsFlat($results)
+    {
         $original = clone $results;
 
         // It's more efficient to get segregated results, and then reshuffle them into the
@@ -94,11 +97,11 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $segregatedResults = $this->extractModels($results);
 
         // Mix them all up together
-        $flatResults = collectApi(array_filter(Arr::flatten($segregatedResults)));
+        $flatResults = CollectionHelpers::collectApi(array_filter(Arr::flatten($segregatedResults)));
 
         // Sort results in their original order
-        $sorted = $flatResults->sortBy(function($model, $key) use ($original) {
-            return $original->search(function($item, $key) use ($model) {
+        $sorted = $flatResults->sortBy(function ($model, $key) use ($original) {
+            return $original->search(function ($item, $key) use ($model) {
                 if (isset($this->getTypeMap()[$item->api_model])) {
                     return $this->getTypeMap()[$item->api_model] == (string) get_class($model) && $item->id == $model->id;
                 }
@@ -111,7 +114,8 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         return $sorted;
     }
 
-    protected function extractModels($results) {
+    protected function extractModels($results)
+    {
         $original = clone $results;
 
         // Group results by type
@@ -133,14 +137,15 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         });
 
         // Remove empty categories
-        $filtered = $segregatedResults->filter(function($value, $key) {
+        $filtered = $segregatedResults->filter(function ($value, $key) {
             return !empty($value);
         });
 
         return $filtered;
     }
 
-    protected function makeModelsFlat($results) {
+    protected function makeModelsFlat($results)
+    {
         $original = clone $results;
 
         // It's more efficient to get segregated results, and then reshuffle them into the
@@ -148,11 +153,11 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $segregatedResults = $this->makeModels($results);
 
         // Mix them all up together
-        $flatResults = collectApi(array_filter(Arr::flatten($segregatedResults)));
+        $flatResults = CollectionHelpers::collectApi(array_filter(Arr::flatten($segregatedResults)));
 
         // Sort results in their original order
-        $sorted = $flatResults->sortBy(function($model, $key) use ($original) {
-            return $original->search(function($item, $key) use ($model) {
+        $sorted = $flatResults->sortBy(function ($model, $key) use ($original) {
+            return $original->search(function ($item, $key) use ($model) {
                 if (isset($this->getTypeMap()[$item->api_model])) {
                     return $this->getTypeMap()[$item->api_model] == (string) get_class($model) && $item->id == $model->id;
                 }
@@ -165,7 +170,8 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         return $sorted;
     }
 
-    protected function makeModels($results) {
+    protected function makeModels($results)
+    {
         $original = clone $results;
 
         // Group results by type
@@ -187,15 +193,15 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         });
 
         // Remove empty categories
-        $filtered = $segregatedResults->filter(function($value, $key) {
+        $filtered = $segregatedResults->filter(function ($value, $key) {
             return !empty($value);
         });
 
         return $filtered;
     }
 
-    protected function getTypeMap() {
+    protected function getTypeMap()
+    {
         return $this->model->typeMap;
     }
-
 }

@@ -19,5 +19,4 @@ class BasicHttpAuth
 
         return $next($request);
     }
-
 }

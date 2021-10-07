@@ -20,5 +20,4 @@ class WaitTime extends AbstractModel
     public $slugAttributes = [
         'title',
     ];
-
 }

@@ -7,7 +7,6 @@ use A17\Twill\Models\Behaviors\HasBlocks as BaseHasBlocks;
 
 trait HasBlocks
 {
-
     use BaseHasBlocks {
         BaseHasBlocks::blocks as parentBlocks;
     }
@@ -16,5 +15,4 @@ trait HasBlocks
     {
         return $this->morphMany(Block::class, 'blockable')->orderBy('blocks.position', 'asc');
     }
-
 }

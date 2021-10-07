@@ -17,6 +17,7 @@
         @slot('title', $item->present()->title)
         @slot('title_display', $item->present()->title_display)
         @slot('img', $item->imageFront('hero'))
+        @slot('imgMobile', $item->imageFront('hero', 'mobile'))
     @endcomponent
 
     <div class="o-article__secondary-actions">
@@ -90,7 +91,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                         'xsmall' => '216px',
                         'small' => '216px',
                         'medium' => '18',

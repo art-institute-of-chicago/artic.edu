@@ -2,7 +2,10 @@
 
 @section('content')
 
-<article class="o-article{{ ($item->articleType === 'editorial') ? ' o-article--editorial' : '' }}">
+<article class="o-article{{ ($item->articleType === 'editorial') ? ' o-article--editorial' : '' }}" itemscope itemtype="http://schema.org/BlogPosting">
+  @component('site.shared._schemaItemProps')
+    @slot('itemprops',$item->present()->itemprops ?? null)
+  @endcomponent
 
   @component('components.molecules._m-article-header')
     @slot('editorial', ($item->articleType === 'editorial'))
@@ -14,6 +17,7 @@
     @slot('type', $item->present()->subtype)
     @slot('intro', $item->present()->heading)
     @slot('img', $item->imageFront('hero'))
+    @slot('imgMobile', $item->imageFront('hero', 'mobile'))
     @slot('galleryImages', $item->galleryImages)
     @slot('nextArticle', $item->nextArticle)
     @slot('prevArticle', $item->prevArticle)
@@ -121,7 +125,7 @@
       </div>
   @endif
 
-  <div class="o-article__body o-blocks">
+  <div class="o-article__body o-blocks" itemprop="articleBody">
 
     @php
         global $_collectedReferences;
@@ -236,7 +240,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '13',
                           'medium' => '13',
@@ -248,7 +252,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '7',
                           'medium' => '7',
@@ -283,7 +287,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '216px',
                           'small' => '216px',
                           'medium' => '18',
@@ -314,7 +318,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '216px',
                           'small' => '216px',
                           'medium' => '18',
@@ -355,10 +359,10 @@
                     @slot('variation', 'o-pinboard__item')
                     @slot('item', $item)
                     @slot('imageSettings', array(
-                        'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
-                        'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
+                        'fit' => ($item->type !== 'highlight' and $item->type !== 'artwork') ? 'crop' : null,
+                        'ratio' => ($item->type !== 'highlight' and $item->type !== 'artwork') ? '16:9' : null,
                         'srcset' => array(200,400,600),
-                        'sizes' => aic_gridListingImageSizes(array(
+                        'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                               'xsmall' => '1',
                               'small' => '2',
                               'medium' => '3',

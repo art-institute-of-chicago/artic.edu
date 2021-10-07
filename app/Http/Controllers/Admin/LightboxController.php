@@ -29,5 +29,4 @@ class LightboxController extends ModuleController
             'sort' => true,
         ]
     ];
-
 }

@@ -2,8 +2,11 @@
 
 namespace App\Repositories\Behaviors;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use A17\Twill\Services\Blocks\BlockCollection;
+
 trait HandleExperienceModule
 {
     public function updateExperienceModule($object, $fields, $relation, $model = null, $fieldName = null)
@@ -28,13 +31,13 @@ trait HandleExperienceModule
                 $morphKey . '_id' => $object->id,
                 $morphKey . '_repeater_name' => $fieldName,
                 ]);
-            }
+        }
 
         // Keep a list of updated and new rows to delete (soft delete?) old rows that were deleted from the frontend
         $currentIdList = [];
 
         foreach ($relationFields as $index => $relationField) {
-            if (isset($relationField['id']) && starts_with($relationField['id'], $relation)) {
+            if (isset($relationField['id']) && Str::startsWith($relationField['id'], $relation)) {
                 // Row already exists, let's update
                 $id = str_replace($relation . '-', '', $relationField['id']);
                 if ($fieldName === 'modal_experience_image') {
@@ -132,18 +135,18 @@ trait HandleExperienceModule
                 }
             }
 
-            $itemFields = method_exists($relationItem, 'toRepeaterArray') ? $relationItem->toRepeaterArray() : array_except($relationItem->attributesToArray(), $translatedFields);
+            $itemFields = method_exists($relationItem, 'toRepeaterArray') ? $relationItem->toRepeaterArray() : Arr::except($relationItem->attributesToArray(), $translatedFields);
 
             if ($model === 'ExperienceModal') {
                 $modal_name = $relation . '-' . $relationItem->id;
-                foreach($relationItem->experienceImage->toArray() as $experienceImage) {
+                foreach ($relationItem->experienceImage->toArray() as $experienceImage) {
                     $experienceImageRepository = app('App\Repositories\ExperienceImageRepository');
                     $experienceImageFormFields = $experienceImageRepository->getFormFields($experienceImageRepository->getById($experienceImage['id']));
                     if (isset($experienceImageFormFields['medias'])) {
                         $fields['repeaterMedias']['modal_experience_image']['blocks[experienceImage-' . $experienceImage['id'] . '][experience_image]'] = $experienceImageFormFields['medias']['experience_image'];
                     }
 ;
-                    foreach($experienceImage as $field => $value) {
+                    foreach ($experienceImage as $field => $value) {
                         $fields['repeaterFields']['modal_experience_image'][] = [
                             'name' => 'blocks[experienceImage-' . $experienceImage['id'] . '][' . $field .']',
                             'value' => $value
@@ -155,7 +158,7 @@ trait HandleExperienceModule
                     return $block->name == 'modal_experience_image';
                 });
 
-                $fields['repeaters']['blocks-' . $modal_name . '_modal_experience_image'] = $relationItem->experienceImage->map(function($experienceImage) use ($rep) {
+                $fields['repeaters']['blocks-' . $modal_name . '_modal_experience_image'] = $relationItem->experienceImage->map(function ($experienceImage) use ($rep) {
                     return [
                         'id' => 'experienceImage-' . $experienceImage->id,
                         'type' => $rep->component,
@@ -170,7 +173,6 @@ trait HandleExperienceModule
                     'value' => $value,
                 ];
             }
-
         }
 
         $fields['repeaters'][$fieldName] = $repeaters;
@@ -184,6 +186,5 @@ trait HandleExperienceModule
         $fields['repeaterBrowsers'][$fieldName] = $repeatersBrowsers;
 
         return $fields;
-
     }
 }

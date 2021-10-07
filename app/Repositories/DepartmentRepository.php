@@ -13,7 +13,8 @@ class DepartmentRepository extends BaseApiRepository
 
     protected $apiBrowsers = [
         'customRelatedArtworks' => [
-            'moduleName' => 'artworks'
+            'moduleName' => 'artworks',
+            'routePrefix' => 'collection'
         ]
     ];
 
@@ -64,5 +65,4 @@ class DepartmentRepository extends BaseApiRepository
 
         return $fields;
     }
-
 }

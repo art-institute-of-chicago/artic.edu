@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .o-gallery {
   @include background-fill;
   padding-top: .02px;
@@ -243,23 +245,23 @@
   .o-gallery__media > *:nth-child(7) ~ * { transition-delay: .8s; }
 
   .m-media__img img {
-    max-height: #{colspan(58, xsmall) * 4/3};
+    max-height: #{math.div(colspan(58, xsmall) * 4, 3)};
     object-fit: contain;
 
     @include breakpoint('small+') {
-      max-height: #{colspan(28, small) * 4/3};
+      max-height: #{math.div(colspan(28, small) * 4, 3)};
     }
 
     @include breakpoint('medium+') {
-      max-height: #{colspan(28, medium) * 4/3};
+      max-height: #{math.div(colspan(28, medium) * 4, 3)};
     }
 
     @include breakpoint('large+') {
-      max-height: #{colspan(22, large) * 4/3};
+      max-height: #{math.div(colspan(22, large) * 4, 3)};
     }
 
     @include breakpoint('xlarge') {
-      max-height: #{colspan(22, xlarge) * 4/3};
+      max-height: #{math.div(colspan(22, xlarge) * 4, 3)};
     }
   }
 
@@ -511,7 +513,7 @@
     @include breakpoint('xlarge') {
       width: 100%;
       max-width: unset;
-      max-height: #{colspan(18, xlarge) * 4/3};
+      max-height: #{math.div(colspan(18, xlarge) * 4, 3)};
     }
   }
 
@@ -551,7 +553,7 @@
 
       @each $name, $point in $breakpoints {
         @include breakpoint('#{$name}') {
-          height: colspan(map-get($mediaColWidth, $name), $name) * 9/16;
+          height: math.div(colspan(map-get($mediaColWidth, $name), $name) * 9, 16);
           max-height: none;
         }
       }
@@ -561,22 +563,22 @@
   .m-media--soundcloud .m-media__img--video,
   .m-media--soundcloud .m-media__img--video img,
   .m-media--soundcloud .m-media__img--video iframe {
-    height: colspan(50, xsmall) * 2/9;
+    height: math.div(colspan(50, xsmall) * 2, 9);
 
     @include breakpoint('small+') {
-      height: colspan(35, small) * 2/9;
+      height: math.div(colspan(35, small) * 2, 9);
     }
 
     @include breakpoint('medium+') {
-      height: colspan(23, medium) * 2/9;
+      height: math.div(colspan(23, medium) * 2, 9);
     }
 
     @include breakpoint('large+') {
-      height: colspan(23, large) * 2/9;
+      height: math.div(colspan(23, large) * 2, 9);
     }
 
     @include breakpoint('xlarge') {
-      height: #{colspan(18, xlarge) * 2/9};
+      height: #{math.div(colspan(18, xlarge) * 2, 9)};
     }
   }
 

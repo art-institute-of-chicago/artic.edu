@@ -13,13 +13,11 @@ class AddAltTypesAndAudiencesToEvents extends Migration
      */
     public function up()
     {
-
         Schema::table('events', function (Blueprint $table) {
             $anchor = Schema::hasColumn('events', 'type') ? 'type' : 'event_type';
             $table->json('alt_types')->nullable()->after($anchor);
             $table->json('alt_audiences')->nullable()->after('audience');
         });
-
     }
 
     /**
@@ -29,11 +27,9 @@ class AddAltTypesAndAudiencesToEvents extends Migration
      */
     public function down()
     {
-
         Schema::table('events', function (Blueprint $table) {
             $table->dropColumn('alt_types');
             $table->dropColumn('alt_audiences');
         });
-
     }
 }

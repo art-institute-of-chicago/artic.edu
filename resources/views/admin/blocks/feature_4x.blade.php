@@ -3,12 +3,12 @@
 
 @formField('browser', [
     'routePrefix' => 'collection',
-    'moduleName' => 'selections',
-    'name' => 'selections',
+    'moduleName' => 'highlights',
+    'name' => 'highlights',
     'endpoints' => [
         [
             'label' => 'Highlights',
-            'value' => moduleRoute('selections', 'collection', 'browser', [], false)
+            'value' => moduleRoute('highlights', 'collection', 'browser', [], false)
         ]
     ],
     'max' => 4,

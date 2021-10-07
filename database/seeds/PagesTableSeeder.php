@@ -7,7 +7,7 @@ class PagesTableSeeder extends Seeder
 {
     public function run()
     {
-        foreach(Page::$types as $type => $name) {
+        foreach (Page::$types as $type => $name) {
             $page = Page::firstOrNew(['type' => $type], [
                 'position' => $type,
                 'published' => 1,

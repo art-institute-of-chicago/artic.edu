@@ -1,6 +1,27 @@
 @twillBlockTitle('360 Embed')
 @twillBlockIcon('image')
 
+@formField('select', [
+    'name' => 'size',
+    'label' => 'Size',
+    'placeholder' => 'Select size',
+    'default' => 's',
+    'options' => [
+        [
+            'value' => 's',
+            'label' => 'Small'
+        ],
+        [
+            'value' => 'm',
+            'label' => 'Medium'
+        ],
+        [
+            'value' => 'l',
+            'label' => 'Large'
+        ]
+    ]
+])
+
 @formField('files', [
     'name' => 'image_sequence_file',
     'label' => '360 Zip',

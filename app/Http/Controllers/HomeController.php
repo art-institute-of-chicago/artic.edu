@@ -9,7 +9,6 @@ use Carbon\Carbon;
 
 class HomeController extends FrontController
 {
-
     public function index()
     {
         $this->seo->setTitle("Downtown Chicago's #1 Museum");
@@ -114,7 +113,7 @@ class HomeController extends FrontController
         $displayedLightboxes = collect([
             $activeLightboxes->firstWhere('geotarget', Lightbox::GEOTARGET_LOCAL),
             $activeLightboxes->firstWhere('geotarget', Lightbox::GEOTARGET_NOT_LOCAL),
-        ])->filter()->map(function($lightbox) {
+        ])->filter()->map(function ($lightbox) {
             return $this->getLightbox($lightbox);
         });
 
@@ -165,5 +164,4 @@ class HomeController extends FrontController
                 break;
         }
     }
-
 }

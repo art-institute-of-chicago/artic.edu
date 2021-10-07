@@ -79,37 +79,49 @@ class InteractiveFeature extends AbstractModel
                 "name" => 'title',
                 "doc" => "Title",
                 "type" => "string",
-                "value" => function () {return $this->title;},
+                "value" => function () {
+                    return $this->title;
+                },
             ],
             [
                 "name" => 'sub_title',
                 "doc" => "Sub-title",
                 "type" => "string",
-                "value" => function () {return $this->sub_title;},
+                "value" => function () {
+                    return $this->sub_title;
+                },
             ],
             [
                 "name" => 'grouping_background_color',
                 "doc" => "Grouping background color",
                 "type" => "string",
-                "value" => function () {return $this->grouping_background_color;},
+                "value" => function () {
+                    return $this->grouping_background_color;
+                },
             ],
             [
                 "name" => 'color',
                 "doc" => "Color",
                 "type" => "string",
-                "value" => function () {return $this->color;},
+                "value" => function () {
+                    return $this->color;
+                },
             ],
             [
                 "name" => 'archived',
                 "doc" => "Archived",
                 "type" => "boolean",
-                "value" => function () {return $this->archived;},
+                "value" => function () {
+                    return $this->archived;
+                },
             ],
             [
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function () {return $this->published;},
+                "value" => function () {
+                    return $this->published;
+                },
             ],
         ];
     }

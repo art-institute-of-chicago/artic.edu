@@ -7,7 +7,6 @@ use App\Models\Api\Search;
 
 class TicketedEventTypeRepository extends BaseApiRepository
 {
-
     const TICKETED_EVENT_TYPES_PER_PAGE = 100;
 
     public function __construct(TicketedEventType $model)
@@ -22,5 +21,4 @@ class TicketedEventTypeRepository extends BaseApiRepository
                 ->byIds([$item->datahub_id])
                 ->getSearch(self::TICKETED_EVENT_TYPES_PER_PAGE);
     }
-
 }

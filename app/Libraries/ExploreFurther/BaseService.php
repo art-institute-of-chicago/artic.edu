@@ -6,6 +6,8 @@ use App\Models\Api\Search;
 
 use Illuminate\Support\Str;
 
+use App\Helpers\DatesHelpers;
+
 /**
  *
  * Service used to retrieve explore further elements.
@@ -96,14 +98,13 @@ class BaseService
 
             // Build Date Tags
             if ($this->resource->birth_date && $this->resource->birth_date) {
-                $tags['date'] = collect([$this->resource->birth_date .'|' .$this->resource->death_date => printYear($this->resource->birth_date) ."–" .printYear($this->resource->death_date)]);
+                $tags['date'] = collect([$this->resource->birth_date .'|' .$this->resource->death_date => DatesHelpers::printYear($this->resource->birth_date) ."–" .DatesHelpers::printYear($this->resource->death_date)]);
             }
-        }
-        else {
+        } else {
             // Build Classification Tags
             $classification = collect([]);
             if ($this->resource->id) {
-                foreach($this->aggregations()->classifications->buckets as $index => $item) {
+                foreach ($this->aggregations()->classifications->buckets as $index => $item) {
                     if ($index == self::MAX_TAGS) {
                         break;
                     }
@@ -127,19 +128,18 @@ class BaseService
             ->resources(['artworks'])
             ->forceEndpoint('search');
 
-        $active = $parameters->filter(function($value, $key) {
+        $active = $parameters->filter(function ($value, $key) {
             return Str::contains($key, 'ef-');
         })->isNotEmpty();
 
         if ($active) {
             if ($parameters->get('ef-most-similar_ids')) {
                 $query->byMostSimilar($this->resource->id, get_class($this->resource));
-            }
-            else {
+            } else {
                 $years = explode('|', $parameters->get('ef-date_ids'));
 
-                $beforeYear = Str::contains($parameters->get('ef-date_ids'), '|') ? $years[0] : incrementBefore($parameters->get('ef-date_ids'));
-                $afterYear = Str::contains($parameters->get('ef-date_ids'), '|') ? $years[1] : incrementAfter($parameters->get('ef-date_ids'));
+                $beforeYear = Str::contains($parameters->get('ef-date_ids'), '|') ? $years[0] : DatesHelpers::incrementBefore($parameters->get('ef-date_ids'));
+                $afterYear = Str::contains($parameters->get('ef-date_ids'), '|') ? $years[1] : DatesHelpers::incrementAfter($parameters->get('ef-date_ids'));
 
                 $query->byClassifications($parameters->get('ef-classification_ids'))
                     ->byArtists($parameters->get('ef-artist_ids'))
@@ -175,7 +175,7 @@ class BaseService
                     $query->byPlaces($id);
                     break;
                 case 'date':
-                    $query->dateRange(incrementBefore($id), incrementAfter($id));
+                    $query->dateRange(DatesHelpers::incrementBefore($id), DatesHelpers::incrementAfter($id));
                     break;
                 case 'color':
                     $query->byColor($id);
@@ -191,7 +191,7 @@ class BaseService
         // Remove our own element from the collection, but only if there's more than one result
         if ($results->count() > 1) {
             $item = $this->resource;
-            $results = $results->filter(function($value, $key) use ($item) {
+            $results = $results->filter(function ($value, $key) use ($item) {
                 return ($item->id != $value->id);
             });
         }
@@ -208,8 +208,8 @@ class BaseService
                 if (in_array($key, self::VALID_FILTERS)) {
                     switch ($key) {
                         case 'ef-date_ids':
-                            return route('collection', ['date-start' => str_replace(' ','', printYear(incrementBefore($value))),
-                                                        'date-end' => str_replace(' ', '', printYear(incrementAfter($value)))]);
+                            return route('collection', ['date-start' => str_replace(' ', '', DatesHelpers::printYear(DatesHelpers::incrementBefore($value))),
+                                                        'date-end' => str_replace(' ', '', DatesHelpers::printYear(DatesHelpers::incrementAfter($value)))]);
                             break;
                         case 'ef-color_ids':
                             return route('collection', ['color' => $value]);
@@ -243,7 +243,7 @@ class BaseService
                         return route('collection', ['place_ids' => $id]);
                         break;
                     case 'date':
-                        return route('collection', ['date-start' => incrementBefore($id), 'date-end' => incrementAfter($id)]);
+                        return route('collection', ['date-start' => DatesHelpers::incrementBefore($id), 'date-end' => DatesHelpers::incrementAfter($id)]);
                         break;
                     case 'color':
                         return route('collection', ['color' => $id]);
@@ -252,5 +252,4 @@ class BaseService
             }
         }
     }
-
 }

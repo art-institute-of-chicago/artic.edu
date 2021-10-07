@@ -21,7 +21,6 @@ class AddVisitParkingAccessibilityLinkToPagesTable extends Migration
 
         $visitPage->visit_parking_accessibility_link = '/visit/accessibility/visitors-with-mobility-needs';
         $visitPage->save();
-
     }
 
     /**

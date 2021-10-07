@@ -4,6 +4,7 @@ namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Models\Behaviors\HasMediasApi;
+use App\Helpers\ImageHelpers;
 
 use Illuminate\Support\Str;
 
@@ -58,7 +59,7 @@ class Asset extends BaseApiModel
         $image = \EmbedConverter::getYoutubeThumbnailImage($this->content);
 
         if (!empty($image)) {
-            return aic_convertFromImageProxy($image, ['source' => 'misc']);
+            return ImageHelpers::aic_convertFromImageProxy($image, ['source' => 'misc']);
         }
     }
 
@@ -86,8 +87,7 @@ class Asset extends BaseApiModel
 
     public function getHrefAttribute()
     {
-        switch ($this->api_model)
-        {
+        switch ($this->api_model) {
             case 'videos':
                 return '//' . config('app.url') . '/videos/' . $this->id;
             case 'sections':
@@ -106,8 +106,7 @@ class Asset extends BaseApiModel
 
     public function getEmbedAttribute()
     {
-        switch ($this->api_model)
-        {
+        switch ($this->api_model) {
             case 'videos':
                 return $this->videoContent;
                 break;

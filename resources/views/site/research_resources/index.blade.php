@@ -29,7 +29,7 @@
                         @slot('image', $page->imageFront('research_landing_image'))
                         @slot('settings', [
                             'srcset' => array(300,600,800,1200,1600,3000,4500),
-                            'sizes' => aic_imageSizes(array(
+                            'sizes' => ImageHelpers::aic_imageSizes(array(
                                   'xsmall' => 58,
                                   'small' => 58,
                                   'medium' => 58,
@@ -72,7 +72,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(200,400,600,800),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => '58',
                               'small' => '23',
                               'medium' => '22',

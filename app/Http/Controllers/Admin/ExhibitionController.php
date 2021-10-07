@@ -68,7 +68,6 @@ class ExhibitionController extends BaseApiController
         } else {
             $this->defaultOrders = ['aic_start_at' => 'desc'];
         }
-
     }
 
     /**
@@ -113,5 +112,4 @@ class ExhibitionController extends BaseApiController
 
         return $apiRepo->getShowData($apiItem);
     }
-
 }

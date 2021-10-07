@@ -29,5 +29,4 @@ class Styles extends BaseFilteredList
     {
         return ucfirst($key);
     }
-
 }

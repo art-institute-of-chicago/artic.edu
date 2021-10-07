@@ -17,6 +17,13 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'App\Http\Controllers';
 
     /**
+     * The path to the "home" route for your application.
+     *
+     * @var string
+     */
+    public const HOME = '/';
+
+    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @return void
@@ -83,13 +90,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapKioskRoutes()
     {
+        $domains = config('app.kiosk_domain');
+        $domains = is_array($domains) ? $domains : [$domains];
 
-        $domain = config('app.kiosk_domain');
-
-        Route::middleware('web')
-                ->namespace($this->namespace)
-                ->domain($domain)
-                ->group(base_path('routes/kiosk.php'));
+        foreach ($domains as $domain) {
+            Route::middleware('web')
+                    ->namespace($this->namespace)
+                    ->domain($domain)
+                    ->group(base_path('routes/kiosk.php'));
+        }
     }
-
 }

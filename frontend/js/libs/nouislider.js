@@ -1,4 +1,5 @@
-/*! nouislider - 11.0.3 - 2018-01-21 14:04:07 */
+/*! nouislider - 11.0.3 - 2018-01-21 14:04:07
+    https://github.com/leongersen/noUiSlider/blob/11.0.3/LICENSE */
 
 (function (factory) {
 

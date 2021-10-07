@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Forms;
 
 use Carbon\Carbon;
 
+use App\Helpers\DatesHelpers;
 use App\Http\Controllers\FrontController;
-
 
 abstract class FormController extends FrontController
 {
-
     protected $title;
 
     public function thanks()
@@ -39,7 +38,7 @@ abstract class FormController extends FrontController
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];
-        foreach($us_state_abbrevs as $value => $label) {
+        foreach ($us_state_abbrevs as $value => $label) {
             $item = [
                 'value' => $label
             ,   'label' => $label
@@ -58,7 +57,7 @@ abstract class FormController extends FrontController
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];
-        foreach($countries as $value => $label) {
+        foreach ($countries as $value => $label) {
             $list[] = [
                 'value' => $label
             ,   'label' => $label
@@ -70,11 +69,11 @@ abstract class FormController extends FrontController
 
     protected function getTimeArray($startAt = 0, $endAt = 24)
     {
-        $hours = hoursSelectOptions($shortlist = true, $startAt, $endAt);
+        $hours = DatesHelpers::hoursSelectOptions($shortlist = true, $startAt, $endAt);
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];
-        foreach($hours as $value => $label) {
+        foreach ($hours as $value => $label) {
             $list[] = [
                 'value' => $label
             ,   'label' => $label
@@ -94,7 +93,7 @@ abstract class FormController extends FrontController
         );
 
         $list = [];
-        foreach($daysOfWeek as $value => $label) {
+        foreach ($daysOfWeek as $value => $label) {
             $item = [
               'type' => 'checkbox',
               'variation' => '',
@@ -127,7 +126,7 @@ abstract class FormController extends FrontController
                          'No' => 'No',);
 
         $list = [];
-        foreach($options as $value => $label) {
+        foreach ($options as $value => $label) {
             $item = [
               'type' => 'radio',
               'variation' => '',

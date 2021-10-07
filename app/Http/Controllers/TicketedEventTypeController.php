@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 class TicketedEventTypeController extends FrontController
 {
     protected $repository;
@@ -15,16 +14,11 @@ class TicketedEventTypeController extends FrontController
 
     public function index()
     {
-
         return $this->repository->listAll();
-
     }
 
     public function show($id)
     {
-
         return $this->repository->getById((Integer) $id);
-
     }
-
 }

@@ -65,7 +65,7 @@
                         'fit' => 'crop',
                         'ratio' => '16:9',
                         'srcset' => array(300,600,800,1200,1600,3000,4500),
-                        'sizes' => aic_imageSizes(array(
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
                             'xsmall' => '58',
                             'small' => '58',
                             'medium' => '38',
@@ -151,7 +151,7 @@
                 @component('components.atoms._arrow-link')
                     @slot('font','f-null')
                     @slot('href', $section['external_link'])
-                    @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($section['title'] ?? 'unknown title').'" data-gtm-event-category="nav-link"')
+                    @slot('gtmAttributes', 'data-gtm-event="'.StringHelpers::getUtf8Slug($section['title'] ?? 'unknown title').'" data-gtm-event-category="nav-link"')
                     {!! SmartyPants::defaultTransform($section['title']) !!}
                 @endcomponent
             @endcomponent
@@ -360,7 +360,7 @@
                       @slot('variation', 'btn--full')
                       @slot('tag', 'a')
                       @slot('href', $admission['buy_tickets']['link'])
-                      @slot('gtmAttributes', 'data-gtm-event="'. getUtf8Slug($admission['buy_tickets']['label']) .'" data-gtm-event-category="nav-cta-button"')
+                      @slot('gtmAttributes', 'data-gtm-event="'. StringHelpers::getUtf8Slug($admission['buy_tickets']['label']) .'" data-gtm-event-category="nav-cta-button"')
                       {!! SmartyPants::defaultTransform($admission['buy_tickets']['label']) !!}
                   @endcomponent
               </li>
@@ -410,7 +410,7 @@
                 'fit' => 'crop',
                 'ratio' => '9:5',
                 'srcset' => array(200,400,600),
-                'sizes' => aic_imageSizes(array(
+                'sizes' => ImageHelpers::aic_imageSizes(array(
                       'xsmall' => '23',
                       'small' => '13',
                       'medium' => '13',
@@ -508,7 +508,7 @@
                     'fit' => 'crop',
                     'ratio' => '16:9',
                     'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
                         'xsmall' => '58',
                         'small' => '23',
                         'medium' => '22',

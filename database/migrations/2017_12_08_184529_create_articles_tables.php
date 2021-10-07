@@ -32,7 +32,6 @@ class CreateArticlesTables extends Migration
 
     public function down()
     {
-
         Schema::dropIfExists('article_revisions');
         Schema::dropIfExists('article_slugs');
         Schema::dropIfExists('articles');

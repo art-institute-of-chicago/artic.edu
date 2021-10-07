@@ -204,5 +204,4 @@ class Slide extends AbstractModel implements Sortable
     {
         return $this->experience->assetLibrary;
     }
-
 }

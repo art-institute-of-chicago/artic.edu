@@ -23,7 +23,7 @@ trait HasRecurrentDates
 
     public function getAllDatesAttribute()
     {
-        return $this->eventMetas()->get()->map(function($element) {
+        return $this->eventMetas()->get()->map(function ($element) {
             return ['date' => $element->date, 'date_end' => $element->date_end];
         });
     }
@@ -32,16 +32,16 @@ trait HasRecurrentDates
     {
         $ruleObjects = $this->dateRules()->whereNull('deleted_at')->get();
 
-        if (!empty($ruleObjects))
+        if (!empty($ruleObjects)) {
             return $this->buildRRules($ruleObjects);
+        }
     }
 
     protected function buildRRules($ruleObjects)
     {
         $rset = new \RRule\RSet();
 
-        foreach($ruleObjects as $rule)
-        {
+        foreach ($ruleObjects as $rule) {
             switch ($rule->getRuleType()) {
                 case 'recurrent':
                     $this->buildRecurrentRule($rset, $rule);
@@ -68,9 +68,9 @@ trait HasRecurrentDates
         ];
 
         if ($ruleObject->ocurrencies) {
-             $options['COUNT'] = $ruleObject->ocurrencies;
+            $options['COUNT'] = $ruleObject->ocurrencies;
         } else {
-             $options['UNTIL'] = $ruleObject->end_date;
+            $options['UNTIL'] = $ruleObject->end_date;
         }
 
         // Options for weekly repeated events
@@ -83,7 +83,7 @@ trait HasRecurrentDates
         if ($ruleObject->getRecurringType() == 'MONTHLY') {
             $options['FREQ'] = \RRule\RRule::MONTHLY;
 
-            switch($ruleObject->getMonthlyRepeatType()) {
+            switch ($ruleObject->getMonthlyRepeatType()) {
                 case 'numeral':
                     $options['BYMONTHDAY'] = $ruleObject->start_date->day;
                     break;

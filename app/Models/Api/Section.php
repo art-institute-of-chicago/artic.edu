@@ -11,5 +11,4 @@ class Section extends BaseApiModel
         'resource'   => '/api/v1/sections/{id}',
         'search'     => '/api/v1/sections/search'
     ];
-
 }

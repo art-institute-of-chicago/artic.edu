@@ -1,30 +1,34 @@
 <?php
 
-if (!function_exists('getBlocksForEditor')) {
+namespace App\Helpers;
+
+class BlockHelpers
+{
+
     /**
      * Sorts a list of blocks by the order in which they are set in the config.
      */
-    function getBlocksForEditor($toUse = [])
+    public static function getBlocksForEditor($toUse = [])
     {
         $allBlocks = config('twill.block_editor.block-order');
 
         return array_intersect($allBlocks, $toUse);
     }
-}
 
-if (!function_exists('innerHTML')) {
     /**
      * Get inner HTML of a DOM node
      * @see https://stackoverflow.com/questions/2087103/how-to-get-innerhtml-of-domnode
      */
-    function innerHTML($node) {
-        return implode(array_map([$node->ownerDocument,'saveHTML'],
-                                 iterator_to_array($node->childNodes)));
+    public static function innerHTML($node)
+    {
+        return implode(array_map(
+            [$node->ownerDocument,'saveHTML'],
+            iterator_to_array($node->childNodes)
+        ));
     }
-}
 
-if (!function_exists('getCaptionFields')) {
-    function getCaptionFields($title, $subtitle, $urlTitle = null) {
+    public static function getCaptionFields($title, $subtitle, $urlTitle = null)
+    {
         global $_allowAdvancedModalFeatures;
 
         $fields = [

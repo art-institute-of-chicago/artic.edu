@@ -8,11 +8,11 @@
         'endpoints' => [
             [
                 'label' => 'Article',
-                'value' => moduleRoute('articles', 'collection.articles_publications', 'browser'),
+                'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
             ],
             [
                 'label' => 'Highlight',
-                'value' => moduleRoute('selections', 'collection', 'browser'),
+                'value' => moduleRoute('highlights', 'collection', 'browser'),
             ],
             [
                 'label' => 'Event',
@@ -35,6 +35,5 @@
                 'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
             ],
         ],
-
     ])
 </a17-fieldset>

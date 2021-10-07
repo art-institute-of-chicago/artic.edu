@@ -44,5 +44,4 @@ class SponsorController extends ModuleController
     {
         return [];
     }
-
 }

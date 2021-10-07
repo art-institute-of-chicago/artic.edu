@@ -8,7 +8,6 @@ use A17\Twill\Models\Behaviors\HasMedias as BaseHasMedias;
 
 trait HasMedias
 {
-
     use BaseHasMedias {
         BaseHasMedias::imageAsArray as parentImageAsArray;
     }
@@ -35,5 +34,4 @@ trait HasMedias
 
         return $this->parentImageAsArray($role, $crop, $params, $media);
     }
-
 }

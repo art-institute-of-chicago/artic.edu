@@ -1,26 +1,25 @@
 <?php
 
+namespace App\Helpers;
+
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
-if (!function_exists('currentUrlWithQuery')) {
-    function currentUrlWithQuery($options = [])
+class UrlHelpers
+{
+    public static function currentUrlWithQuery($options = [])
     {
         return request()->url() . '?' . http_build_query($options);
     }
-}
 
-if (!function_exists('parseVideoUrl')) {
-    function parseVideoUrl($url)
+    public static function parseVideoUrl($url)
     {
         preg_match('/\d+/', $url, $matches);
         return isset($matches[0]) ? $matches[0] : 0;
     }
-}
 
-
-if (!function_exists('secureRoute')) {
-    function secureRoute($routeName)
+    public static function secureRoute($routeName)
     {
         $url = url();
         $defaultScheme = Request::getScheme();
@@ -30,23 +29,18 @@ if (!function_exists('secureRoute')) {
 
         return $route;
     }
-}
 
-if (!function_exists('moduleRouteExists')) {
     /**
      * Whether a module route exists
      * @see moduleRoute
      */
-    function moduleRouteExists($moduleName, $prefix, $action)
+    public static function moduleRouteExists($moduleName, $prefix, $action)
     {
-        $routeName = 'admin.' . ($prefix ? $prefix . '.' : '') . camel_case($moduleName) . '.' . $action;
+        $routeName = 'admin.' . ($prefix ? $prefix . '.' : '') . Str::camel($moduleName) . '.' . $action;
         return Route::has($routeName);
     }
-}
 
-
-if (!function_exists('lastUrlSegment')) {
-    function lastUrlSegment($href)
+    public static function lastUrlSegment($href)
     {
         $url = parse_url($href, PHP_URL_PATH);
         $ret = substr($url, strrpos($url, '/')+1);

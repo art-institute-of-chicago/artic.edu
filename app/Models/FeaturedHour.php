@@ -2,20 +2,13 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasTranslation;
-
 class FeaturedHour extends AbstractModel
 {
-    use HasTranslation;
-
     protected $fillable = [
         'published',
         'position',
         'external_link',
         'page_id',
-    ];
-
-    public $translatedAttributes = [
         'title',
         'copy',
     ];

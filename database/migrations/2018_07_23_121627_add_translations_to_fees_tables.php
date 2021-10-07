@@ -55,7 +55,6 @@ class AddTranslationsToFeesTables extends Migration
         Schema::table('fee_ages', function (Blueprint $table) {
             $table->dropColumn('title');
         });
-
     }
 
     /**

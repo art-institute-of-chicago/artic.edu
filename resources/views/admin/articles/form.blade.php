@@ -99,12 +99,12 @@
     ])
 
     @formField('block_editor', [
-        'blocks' => getBlocksForEditor([
+        'blocks' => BlockHelpers::getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed', 'quote',
             'list', 'artwork', 'hr', 'citation', 'split_block',
             'membership_banner', 'digital_label', 'audio_player', 'tour_stop', 'button', 'mobile_app',
             '3d_model', '3d_tour', '3d_embed', '360_embed', '360_modal',
-            'gallery', 'artworks', 'gallery_new',
+            'gallery_new',
             'image_slider', 'mirador_embed', 'mirador_modal', 'vtour_embed',
             'feature_2x', 'feature_4x'
         ])
@@ -149,7 +149,7 @@
 
         @php
             $category_ids = $item->categories->pluck('id')->all();
-            $relatedArticles = \App\Models\Article::byCategories($category_ids)->published()->orderBy('date', 'desc')->take(5)->get();
+            $relatedArticles = \App\Models\Article::byCategories($category_ids)->published()->notUnlisted()->orderBy('date', 'desc')->take(5)->get();
         @endphp
         <ol style="margin: 1em 0; padding-left: 40px">
             @foreach($relatedArticles as $article)

@@ -14,7 +14,7 @@ class AddIsBoostedToEvents extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-             $table->boolean('is_boosted')->default(false);
+            $table->boolean('is_boosted')->default(false);
         });
     }
 

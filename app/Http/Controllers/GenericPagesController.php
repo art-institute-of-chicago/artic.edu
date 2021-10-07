@@ -62,5 +62,4 @@ class GenericPagesController extends FrontController
 
         return $page;
     }
-
 }

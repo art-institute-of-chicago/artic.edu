@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 
-
 class PageTest extends TestCase
 {
 
@@ -14,5 +13,4 @@ class PageTest extends TestCase
         $response = $this->get('/');
         $response->assertStatus(200);
     }
-
 }

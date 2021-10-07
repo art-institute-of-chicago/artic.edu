@@ -4,7 +4,6 @@ namespace App\Models;
 
 class Admission extends AbstractModel
 {
-
     protected $fillable = [
         'published',
         'time_start',

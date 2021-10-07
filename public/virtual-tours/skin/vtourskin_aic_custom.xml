@@ -412,25 +412,6 @@
 		set(layer[skin_layer].visible, true);
 	</action>
 
-
-	<action name="skin_load_maps_plugin">
-		if (!layer[skin_map].url,
-			if(device.flash,
-				copy(layer[skin_map].key, skin_settings.maps_bing_api_key);
-				set(layer[skin_map].url, '%VIEWER%/plugins/bingmaps.swf');
-			  ,
-				if(skin_settings.maps_type == 'bing',
-					copy(layer[skin_map].key, skin_settings.maps_bing_api_key);
-					set(layer[skin_map].url, '%VIEWER%/plugins/bingmaps.js');
-				  ,
-				 	copy(layer[skin_map].key, skin_settings.maps_google_api_key);
-					set(layer[skin_map].url, '%VIEWER%/plugins/googlemaps.js');
-				);
-			);
-		);
-	</action>
-
-
 	<action name="skin_addthumbs" scope="local">
 
 		<!-- build a global array of visible scene thumbnails -->
@@ -523,27 +504,6 @@
 				set(layer[skin_thumbs].align, 'lefttop');
 			);
 		);
-	</action>
-
-
-	<!-- called from bing- or google-maps plugin onmapready event -->
-	<action name="skin_addmapspots" scope="local">
-		for(set(i,0), i LT scene.count, inc(i),
-			if(scene[get(i)].lat,
-				calc(spotname, 'spot' + i);
-				calc(spotclickevent, 'skin_hidetooltips(); activatespot(' + spotname + '); skin_loadscene(' + scene[get(i)].name + ',get(skin_settings.loadscene_blend)); skin_updatescroll(); delayedcall(0.5,skin_showmap(false));' );
-				copy(scene[get(i)].mapspotname, spotname);
-				caller.addspot(get(spotname), get(scene[get(i)].lat), get(scene[get(i)].lng), get(scene[get(i)].heading), false, get(spotclickevent), null);
-				if(skin_settings.tooltips_mapspots,
-					set(layer[skin_map].spot[get(spotname)].tooltip, get(scene[get(i)].title) );
-					txtadd(layer[skin_map].spot[get(spotname)].onover, 'set(hovering,true);',  get(style[skin_tooltips].onover) );
-					txtadd(layer[skin_map].spot[get(spotname)].onout,  'set(hovering,false);', get(style[skin_tooltips].onout)  );
-				);
-			);
-		);
-
-		caller.activatespot( calc(xml.scene != null ? scene[get(xml.scene)].mapspotname : 'spot0') );
-		caller.zoomToSpotsExtent();
 	</action>
 
 	<action name="skin_lookat" scope="local" args="h, v, fov">
@@ -795,7 +755,7 @@
 		callwith(layer[skin_splitter_bottom], skin_calc_opened_closed() );
 		callwith(layer[skin_control_bar],     skin_calc_opened_closed() );
 
-		if(layer[skin_map].state    != 'closed', skin_showmap(false);    if(hidetime GT 0, wait(0.40)); );
+		if(layer[skin_map].state    != 'closed', if(hidetime GT 0, wait(0.40)); );
 		if(layer[skin_thumbs].state != 'closed', skin_showthumbs(false); if(hidetime GT 0, wait(0.25)); );
 
 		tween(layer[skin_scroll_window].y,   get(layer[skin_scroll_window  ].y_closed), get(hidetime));
@@ -849,28 +809,6 @@
 			tween(layer[skin_scroll_layer].y, calc(-area.pixelheight + layer[skin_scroll_layer].y_offset), 0.5, easeOutQuint, set(layer[skin_thumbs_container].visible, false););
 		);
 	</action>
-
-
-	<action name="skin_showmap" scope="local" args="show">
-		if(show == null, if(layer[skin_map].state == 'closed', set(show,true), set(show,false)); );
-		if(show,
-			skin_load_maps_plugin();
-			tween(layer[skin_thumbs_container].alpha, 0.0, 0.25, default, set(layer[skin_thumbs_container].visible,false));
-			set(layer[skin_map].visible, true);
-			tween(layer[skin_map].alpha, 1.0, 0.25);
-			set(layer[skin_map].state, 'opened');
-			calc(hh, area.pixelheight - skin_settings.controlbar_offset - layer[skin_control_bar].height - 32);
-			calc(layer[skin_map].height, hh - skin_settings.controlbar_overlap);
-			tween(layer[skin_scroll_layer].y, calc(hh - area.pixelheight), 0.5, easeOutQuint);
-		  ,
-		  	if(layer[skin_map].state != 'closed',
-				set(layer[skin_map].state, 'closed');
-				tween(layer[skin_map].alpha, 0.0, 0.5, easeOutQuint);
-				tween(layer[skin_scroll_layer].y, calc(-area.pixelheight + layer[skin_scroll_layer].y_offset), 0.5, easeOutQuint, set(layer[skin_map].visible,false) );
-			);
-		);
-	</action>
-
 
 	<action name="skin_keydown_event">
 		if(keycode == 33, skin_nextscene_loop(-1) );            	<!-- Page Up   - previous scene -->

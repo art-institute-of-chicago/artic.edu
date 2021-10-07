@@ -112,7 +112,8 @@ class InteractiveFeatureExperiencesController extends FrontController
             'experience' => $experience,
             'furtherReadingTitle' => $this->repository->getFurtherReadingTitle($experience) ?? null,
             'furtherReadingItems' => $this->repository->getFurtherReadingItems($experience) ?? null,
-            'canonicalUrl' => route('interactiveFeatures.show',
+            'canonicalUrl' => route(
+                'interactiveFeatures.show',
                 [
                     'slug' => $experience->getSlug()
                 ]

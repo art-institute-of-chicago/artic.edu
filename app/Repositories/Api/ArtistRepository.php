@@ -8,7 +8,6 @@ use App\Models\Api\Search;
 
 class ArtistRepository extends BaseApiRepository
 {
-
     public function __construct(Artist $model)
     {
         $this->model = $model;
@@ -52,7 +51,7 @@ class ArtistRepository extends BaseApiRepository
                 'moduleName' => 'experiences',
             ],
         ], [
-            // See $typeUsesApi in HasApiRelations class
+            // @see $typeUsesApi in HasApiRelations class
             'exhibitions' => true,
             'articles' => false,
             'digitalPublications' => false,
@@ -64,7 +63,7 @@ class ArtistRepository extends BaseApiRepository
 
         $now = Carbon::now();
 
-        $relatedItems = $relatedItems->filter(function($relatedItem) use ($now) {
+        $relatedItems = $relatedItems->filter(function ($relatedItem) use ($now) {
             // We check if the exhibitions are published in `getApiRelatedItems`
             if (get_class($relatedItem) === \App\Models\Api\Exhibition::class) {
                 return true;
@@ -132,7 +131,7 @@ class ArtistRepository extends BaseApiRepository
         if (isset($excludedItems)) {
             $query['bool']['must_not'] = [
                 'terms' => [
-                    'id' => $excludedItems->map(function($excludedItem) {
+                    'id' => $excludedItems->map(function ($excludedItem) {
                         switch (get_class($excludedItem)) {
                             case \App\Models\Api\Exhibition::class:
                                 return $excludedItem->id;

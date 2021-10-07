@@ -35,7 +35,6 @@ class CreateFeaturedHoursTranslationsTable extends Migration
             $table->dropColumn('title');
             $table->dropColumn('copy');
         });
-
     }
 
     /**

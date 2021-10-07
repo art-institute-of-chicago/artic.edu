@@ -3,7 +3,7 @@
 namespace App\Models\Behaviors;
 
 use App\Models\Article;
-use App\Models\Selection;
+use App\Models\Highlight;
 use App\Models\Event;
 use App\Models\Api\Exhibition;
 use App\Models\Experience;
@@ -41,21 +41,22 @@ trait HasFeaturedRelated
 
     public function getFeaturedRelated()
     {
-        if ($this->selectedFeaturedRelateds) {
-            return $this->selectedFeaturedRelateds;
+        if (!$this->selectedFeaturedRelateds) {
+            $relatedItems = $this->getCustomRelatedItems();
+
+            if (($this->showDefaultRelatedItems ?? false) && $relatedItems->count() < 1) {
+                $relatedItems = $this->getDefaultRelatedItems($relatedItems);
+                $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
+                $this->sidebarContainsDefaultRelated = true;
+            }
+
+            $this->selectedFeaturedRelateds = $this->getLabeledRelatedItems($relatedItems);
         }
 
-        $relatedItems = $this->getCustomRelatedItems();
-
-        if (($this->showDefaultRelatedItems ?? false) && $relatedItems->count() < 1) {
-            $relatedItems = $this->getDefaultRelatedItems($relatedItems);
-            $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
-            $this->sidebarContainsDefaultRelated = true;
-        }
-
-        $this->selectedFeaturedRelateds = $this->getLabeledRelatedItems($relatedItems);
-
-        return $this->selectedFeaturedRelateds;
+        // Filter out any items that are unlisted
+        return array_filter($this->selectedFeaturedRelateds, function ($value) {
+            return $value['item']->is_not_unlisted;
+        });
     }
 
     /**
@@ -70,9 +71,9 @@ trait HasFeaturedRelated
                 'moduleName' => 'exhibitions',
             ],
         ], [
-            // See HasApiRelations::$typeUsesApi
+            // @see HasApiRelations::$typeUsesApi
             'articles' => false,
-            'selections' => false,
+            'highlights' => false,
             'events' => false,
             'exhibitions' => true, // API!
             'experiences' => false,
@@ -90,10 +91,9 @@ trait HasFeaturedRelated
 
     protected function getFilteredRelatedItems($relatedItems)
     {
-
         $now = Carbon::now();
 
-        return $relatedItems->filter(function($relatedItem) use ($now) {
+        return $relatedItems->filter(function ($relatedItem) use ($now) {
             // WEB-2265: Verify that we don't need to check if the exhibition is in the future?
             if (get_class($relatedItem) === \App\Models\Api\Exhibition::class) {
                 return true;
@@ -128,7 +128,7 @@ trait HasFeaturedRelated
     private function getDefaultRelatedPool()
     {
         // WEB-2046: Storing this in memcached causes a segfault, try again after WEB-1531
-        return Cache::store('file')->remember('default-content-pool', 60 * 60, function() {
+        return Cache::store('file')->remember('default-content-pool', 60 * 60, function () {
             $poolSize = 20;
 
             // Avoid accidentally seeding the pool with draft items during preview mode
@@ -137,7 +137,7 @@ trait HasFeaturedRelated
 
             // WEB-2018: Do we need to check published date, or is it ok to just keep checking updated_at?
             $articles = Article::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
-            $selections = Selection::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
+            $highlights = Highlight::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
             $experiences = Experience::published()->visible()->notUnlisted()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
             $videos = Video::published()->visible()->orderBy('updated_at', 'desc')->limit($poolSize)->get();
 
@@ -145,10 +145,10 @@ trait HasFeaturedRelated
 
             return collect([])
                 ->merge($articles)
-                ->merge($selections)
+                ->merge($highlights)
                 ->merge($experiences)
                 ->merge($videos)
-                ->filter(function($item) {
+                ->filter(function ($item) {
                     return $item->imageFront('hero') !== null;
                 })
                 ->sortBy('updated_at')
@@ -162,14 +162,14 @@ trait HasFeaturedRelated
     {
         $forbiddenItemHashes = (clone $customRelatedItems)
             ->push($this)
-            ->map(function($relatedItem) {
+            ->map(function ($relatedItem) {
                 return $this->getRelatedItemHash($relatedItem);
             })
             ->values()
             ->all();
 
         return $this->getDefaultRelatedPool()
-            ->filter(function($relatedItem) use ($forbiddenItemHashes) {
+            ->filter(function ($relatedItem) use ($forbiddenItemHashes) {
                 return !in_array($this->getRelatedItemHash($relatedItem), $forbiddenItemHashes);
             })
             ->random($this->targetItemCount)
@@ -187,9 +187,9 @@ trait HasFeaturedRelated
                     $label = 'Article';
                     $type = 'article';
                     break;
-                case Selection::class:
+                case Highlight::class:
                     $label = null;
-                    $type = 'selection';
+                    $type = 'highlight';
                     break;
                 case Event::class:
                     // Tag is replaced by "Tour", "Member Exclusive", etc.
@@ -230,5 +230,4 @@ trait HasFeaturedRelated
 
         return $labeledRelatedItems;
     }
-
 }

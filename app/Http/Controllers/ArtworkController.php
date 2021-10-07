@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
 use App\Libraries\RecentlyViewedService;
@@ -148,5 +149,4 @@ class ArtworkController extends BaseScopedController
 
         return $view;
     }
-
 }

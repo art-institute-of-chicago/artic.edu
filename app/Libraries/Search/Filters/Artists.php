@@ -29,5 +29,4 @@ class Artists extends BaseFilteredList
     {
         return ucfirst($key);
     }
-
 }

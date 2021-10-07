@@ -55,9 +55,9 @@ class ExperienceRepository extends ModuleRepository
         return Experience::where('title', 'ILIKE', "%{$search}%")->published();
     }
 
-    public function order($query, array $orders = []) {
-
-        if (array_key_exists('interactiveFeatureTitle', $orders)){
+    public function order($query, array $orders = [])
+    {
+        if (array_key_exists('interactiveFeatureTitle', $orders)) {
             $sort_method = $orders['interactiveFeatureTitle'];
             unset($orders['interactiveFeatureTitle']);
             $query = $query->orderByInteractiveFeature($sort_method);

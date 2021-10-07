@@ -1,4 +1,4 @@
-$include-icons: false; // see icons.scss!
+$include-icons: false; // @see icons.scss!
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ load fonts
 
@@ -193,6 +193,7 @@ $include-icons: false; // see icons.scss!
 @import 'utilities/u-show@x';
 @import 'utilities/sr-show@x';
 @import 'utilities/u-crisp-image';
+@import 'utilities/u-nowrap';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ styleguide */
 

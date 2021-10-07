@@ -28,7 +28,6 @@ class AddEventTypeToEvents extends Migration
         }
 
         Event::setEventDispatcher($dispatcher);
-
     }
 
     /**

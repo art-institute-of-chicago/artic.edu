@@ -76,8 +76,9 @@ class BaseFilteredList
 
     public function loadLabels()
     {
-        if ($this->labels)
+        if ($this->labels) {
             return $this->labels;
+        }
 
         // Get ID's from buckets
         $ids = $this->buckets->pluck('key')->toArray();
@@ -86,9 +87,8 @@ class BaseFilteredList
         $this->labels = $this->entity::query()
             ->ids($ids)
             ->get(['id', 'title'])
-            ->pluck('title','id');
+            ->pluck('title', 'id');
 
         return $this->labels;
     }
-
 }

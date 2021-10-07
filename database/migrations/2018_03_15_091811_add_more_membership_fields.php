@@ -18,7 +18,6 @@ class AddMoreMembershipFields extends Migration
             $table->string('home_membership_module_headline')->nullable();
             $table->string('home_membership_module_short_copy')->nullable();
             $table->string('home_membership_module_button_text')->nullable();
-
         });
     }
 

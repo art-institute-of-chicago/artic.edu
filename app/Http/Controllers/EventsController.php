@@ -11,7 +11,6 @@ use View;
 
 class EventsController extends FrontController
 {
-
     protected $repository;
     protected $moduleName = 'events';
 
@@ -193,5 +192,4 @@ class EventsController extends FrontController
 
         return $links;
     }
-
 }

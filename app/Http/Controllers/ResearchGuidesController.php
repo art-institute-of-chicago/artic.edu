@@ -9,7 +9,6 @@ use App\Models\ResearchGuide;
 
 class ResearchGuidesController extends FrontController
 {
-
     protected $repository;
 
 
@@ -85,7 +84,5 @@ class ResearchGuidesController extends FrontController
             'nav' => [],
             'page' => $page,
         ]);
-
     }
-
 }

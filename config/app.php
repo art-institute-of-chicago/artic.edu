@@ -39,7 +39,7 @@ return [
     |
      */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -60,7 +60,7 @@ return [
     | The domain used for rending the "Kiosk" kayout of Interactive Features
     |
      */
-    'kiosk_domain' => env('KIOSK_DOMAIN', 'kiosk.artic.edu'),
+    'kiosk_domain' => array_map('trim', explode(',', env('KIOSK_DOMAIN', 'kiosk.artic.edu'))),
 
     /*
     |--------------------------------------------------------------------------
@@ -219,15 +219,12 @@ return [
         App\Providers\VendorServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\InvalidationServiceProvider::class,
         App\Providers\DebugServiceProvider::class,
 
         Aic\Hub\Foundation\ResourceServiceProvider::class,
         Intervention\Httpauth\HttpauthServiceProvider::class,
-        digitaladditive\ExactTargetLaravel\ExactTargetLaravelServiceProvider::class,
-
     ],
 
     /*
@@ -278,11 +275,21 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
         'Httpauth' => Intervention\Httpauth\Facades\Httpauth::class,
 
         'DamsImageService' => App\Facades\DamsImageServiceFacade::class,
         'EmbedConverter' => App\Facades\EmbedConverterFacade::class,
         'SmartyPants' => App\Libraries\SmartyPants::class,
+        'FrontendHelpers' => App\Helpers\FrontendHelpers::class,
+        'BlockHelpers' => App\Helpers\BlockHelpers::class,
+        'ColorHelpers' => App\Helpers\ColorHelpers::class,
+        'DatesHelpers' => App\Helpers\DatesHelpers::class,
+        'ImageHelpers' => App\Helpers\ImageHelpers::class,
+        'NavHelpers' => App\Helpers\NavHelpers::class,
+        'UrlHelpers' => App\Helpers\UrlHelpers::class,
+        'QueryHelpers' => App\Helpers\QueryHelpers::class,
+        'StringHelpers' => App\Helpers\StringHelpers::class,
     ],
 
     'editor' => env('APP_EDITOR', 'sublime'),

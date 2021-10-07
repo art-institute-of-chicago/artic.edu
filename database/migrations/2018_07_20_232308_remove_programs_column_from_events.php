@@ -13,13 +13,11 @@ class RemoveProgramsColumnFromEvents extends Migration
      */
     public function up()
     {
-
         Schema::table('events', function (Blueprint $table) {
             if (env('APP_ENV') != 'testing') {
                 $table->dropColumn('programs');
             }
         });
-
     }
 
     /**
@@ -29,12 +27,10 @@ class RemoveProgramsColumnFromEvents extends Migration
      */
     public function down()
     {
-
         Schema::table('events', function (Blueprint $table) {
             if (env('APP_ENV') != 'testing') {
                 $table->json('programs')->nullable()->after('alt_audiences');
             }
         });
-
     }
 }
