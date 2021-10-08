@@ -5,6 +5,7 @@
 <article class="o-article">
     @component('components.molecules._m-article-header----magazine')
         @slot('images', $item->imagesFront('hero') ?? null)
+        @slot('imagesMobile', $item->imagesFront('hero', 'mobile') ?? null)
         @slot('title', $item->present()->title ?? null)
         @slot('credit', $item->hero_caption ?? null)
         @slot('intro', $item->present()->hero_text ?? null)

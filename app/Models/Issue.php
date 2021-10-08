@@ -58,6 +58,12 @@ class Issue extends AbstractModel implements Sortable
                     'ratio' => 21 / 9,
                 ],
             ],
+            'mobile' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 9 / 21,
+                ],
+            ],
         ],
         'license' => [
             'default' => [
