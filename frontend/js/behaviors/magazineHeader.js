@@ -6,7 +6,6 @@ const magazineHeader = function(container){
 
   let links;
   let images;
-  let imagesMobile;
 
   let pipContainer;
   let pipTemplate;
@@ -76,7 +75,6 @@ const magazineHeader = function(container){
 
     _activateElement(index, links);
     _activateElement(index, images);
-    _activateElement(index, imagesMobile);
     _activateElement(index, pips);
   }
 
@@ -129,8 +127,7 @@ const magazineHeader = function(container){
 
   function _init() {
     links = container.querySelectorAll('a');
-    images = container.querySelectorAll('.m-article-header__img img.img-hero-desktop');
-    imagesMobile = container.querySelectorAll('.m-article-header__img img.img-hero-mobile');
+    images = container.querySelectorAll('.m-article-header__img img');
 
     pipContainer = container.querySelector('.m-article-header__pips');
     pipTemplate = container.querySelector('.m-article-header__pip__template').innerHTML;

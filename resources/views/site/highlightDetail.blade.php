@@ -12,7 +12,6 @@
     @slot('title_display', $item->present()->title_display)
     @slot('type', $item->present()->type)
     @slot('img', $item->imageFront('hero'))
-    @slot('imgMobile', $item->imageFront('hero', 'mobile'))
     @slot('credit', $item->present()->hero_caption)
   @endcomponent
 

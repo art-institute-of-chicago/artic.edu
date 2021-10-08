@@ -13,8 +13,7 @@ class DepartmentRepository extends BaseApiRepository
 
     protected $apiBrowsers = [
         'customRelatedArtworks' => [
-            'moduleName' => 'artworks',
-            'routePrefix' => 'collection'
+            'moduleName' => 'artworks'
         ]
     ];
 

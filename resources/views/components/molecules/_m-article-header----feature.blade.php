@@ -10,15 +10,6 @@
         @if ($img)
             @component('components.atoms._img')
                 @slot('image', $img)
-                @slot('class', 'img-hero-desktop')
-                @slot('settings', array(
-                    'srcset' => array(300,600,1000,1500,3000),
-                    'sizes' => '100vw',
-                ))
-            @endcomponent
-            @component('components.atoms._img')
-                @slot('image', $imgMobile ?? $img)
-                @slot('class', 'img-hero-mobile')
                 @slot('settings', array(
                     'srcset' => array(300,600,1000,1500,3000),
                     'sizes' => '100vw',

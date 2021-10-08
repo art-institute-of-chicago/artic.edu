@@ -15,7 +15,6 @@
     @slot('formattedDate', $item->present()->formattedNextOcurrence)
     @slot('type', $item->is_member_exclusive ? 'Member Exclusive' : ($item->audience === \App\Models\Event::LUMINARY ? 'Luminary' : $item->present()->type))
     @slot('img', $item->imageAsArray('hero'))
-    @slot('imgMobile', $item->imageAsArray('hero', 'mobile'))
     @slot('credit', $item->present()->hero_caption)
   @endcomponent
 

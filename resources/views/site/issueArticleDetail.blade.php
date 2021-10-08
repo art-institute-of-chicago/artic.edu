@@ -17,7 +17,6 @@
         @slot('title', $item->present()->title)
         @slot('title_display', $item->present()->title_display)
         @slot('img', $item->imageFront('hero'))
-        @slot('imgMobile', $item->imageFront('hero', 'mobile'))
     @endcomponent
 
     <div class="o-article__secondary-actions">

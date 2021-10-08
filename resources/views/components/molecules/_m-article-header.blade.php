@@ -20,7 +20,6 @@
         @slot('previewDateEnd', $previewDateEnd ?? null)
         @slot('type', $type ?? null)
         @slot('img', $img ?? null)
-        @slot('imgMobile', $imgMobile ?? null)
         @slot('credit', $credit ?? null)
         @slot('creditUrl', $creditUrl ?? null)
     @endcomponent
@@ -39,7 +38,6 @@
         @slot('type', $type ?? null)
         @slot('intro', $intro ?? null)
         @slot('img', $img ?? null)
-        @slot('imgMobile', $imgMobile ?? null)
         @slot('credit', $credit ?? null)
         @slot('creditUrl', $creditUrl ?? null)
     @endcomponent
@@ -52,7 +50,6 @@
         @slot('title_display', $title_display ?? null)
         @slot('articleType', $type ?? null)
         @slot('img', $img ?? null)
-        @slot('imgMobile', $imgMobile ?? null)
         @slot('credit', $credit ?? null)
         @slot('creditUrl', $creditUrl ?? null)
     @endcomponent
@@ -64,7 +61,6 @@
         @slot('title', $title ?? null)
         @slot('title_display', $title_display ?? null)
         @slot('img', $img ?? null)
-        @slot('imgMobile', $imgMobile ?? null)
         @slot('breadcrumb', $breadcrumb ?? null)
     @endcomponent
 @elseif (isset($headerType) and $headerType === 'gallery')

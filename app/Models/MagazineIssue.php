@@ -44,12 +44,6 @@ class MagazineIssue extends AbstractModel
                     'ratio' => 21 / 9,
                 ],
             ],
-            'mobile' => [
-                [
-                    'name' => 'mobile',
-                    'ratio' => 9 / 21,
-                ],
-            ],
         ],
     ];
 
