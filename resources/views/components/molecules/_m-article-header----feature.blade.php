@@ -17,7 +17,7 @@
                 ))
             @endcomponent
             @component('components.atoms._img')
-                @slot('image', $imgMobile ?? $img)
+                @slot('image', !empty($imgMobile) ? $imgMobile : $img)
                 @slot('class', 'img-hero-mobile')
                 @slot('settings', array(
                     'srcset' => array(300,600,1000,1500,3000),
