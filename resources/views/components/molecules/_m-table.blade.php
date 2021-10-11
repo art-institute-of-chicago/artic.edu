@@ -88,5 +88,8 @@
                 @endforeach
             </tbody>
         </table>
+        @if (!empty($tableCaption))
+            <div class="f-caption">{!! $tableCaption !!}</div>
+        @endif
     </div>
 @endif

@@ -17,6 +17,7 @@
     @slot('size', $block->input('size'))
     @slot('title', $block->input('table_title'))
     @slot('tableHtml', $tableHtml)
+    @slot('tableCaption', $block->input('table_caption'))
     @slot('hasSideHeader', $block->input('has_side_header'))
     @slot('allowWordWrap', $block->input('allow_word_wrap'))
 @endcomponent
