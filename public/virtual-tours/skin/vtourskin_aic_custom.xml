@@ -166,8 +166,6 @@
 		crop="0|0|52|56"
 		ondowncrop="0|67|52|56"
 		edge="center" 
-		distorted="false"
-		zoom="false"
 		scale="0.4"
 		onover.addevent="tween(scale,0.5);"
 	  onout.addevent="tween(scale,0.4);"
@@ -177,12 +175,10 @@
 	<style name="floor_hotspot" 
 		url="vtourskin_aic_floor_hotspot.png" 
 		edge="top" 
-		distorted="true"
 		onclick="skin_hotspotstyle_click();"
-		depth="2000"
-		scale="1"
-		onover.addevent="tween(scale,1.15);"
-		onout.addevent="tween(scale,1);"
+		scale=".5"
+		onover.addevent="tween(scale,.75);"
+		onout.addevent="tween(scale,.5);"
 	/>
 
 	<!-- style for artwork modal -->
