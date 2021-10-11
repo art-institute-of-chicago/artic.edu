@@ -41,3 +41,8 @@
     'name' => 'has_side_header',
     'label' => 'Leftmost column is also a header',
 ])
+
+@formField('checkbox', [
+    'name' => 'allow_word_wrap',
+    'label' => 'Allow word wrap in table cells',
+])
