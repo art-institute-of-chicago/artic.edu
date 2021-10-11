@@ -181,6 +181,20 @@
 		onout.addevent="tween(scale,.5);"
 	/>
 
+	<!-- alternative style for floor hotspots -->
+	<style name="floor_hotspot_alt" 
+		url="vtourskin_aic_hotspot.png" 
+		crop="0|0|52|56"
+		ondowncrop="0|67|52|56"
+		edge="center" 
+		distorted="false"
+		zoom="false"
+		scale="0.4"
+		onover.addevent="tween(scale,0.5);"
+	  onout.addevent="tween(scale,0.4);"
+		onclick="skin_hotspotstyle_click();"
+	/>
+
 	<!-- style for artwork modal -->
 	<style type="container" name="modal_style"
 		align="center" x="0" y="0" 
