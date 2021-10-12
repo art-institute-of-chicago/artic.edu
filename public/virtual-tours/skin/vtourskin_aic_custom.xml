@@ -716,15 +716,26 @@
 
 	<action name="skin_loadscene" scope="local" args="newscenenameorindex, blendmode">
 
+		<!--for custom thumbnail carousel-->
+		set(nextscene, get(newscenenameorindex));
+
+		if(scene[get(newscenenameorindex)].thumburl,
+			<!--do nothing-->
+		,
+			set(newscenenameorindex, get(scene[get(newscenenameorindex)].parent));
+		);
+
 		calc(parentname, 'skin_thumb_' + scene[get(newscenenameorindex)].thumbindex);
+
+		loadscene(get(scene[get(nextscene)].name), null, get(skin_settings.loadscene_flags), get(blendmode));
+
 		if(scene[get(newscenenameorindex)].thumburl AND scene[get(newscenenameorindex)].skipthumb != true AND layer[get(parentname)],
 			set(layer[skin_thumbborder], parent=get(parentname), visible=true);
-		  ,
+		,
 			set(layer[skin_thumbborder].visible, false);
 		);
 
 		layer[skin_thumbs].scrolltocenter(get(scene[get(newscenenameorindex)].thumbx), get(scene[get(newscenenameorindex)].thumby));
-		loadscene(get(scene[get(newscenenameorindex)].name), null, get(skin_settings.loadscene_flags), get(blendmode));
 	</action>
 
 
