@@ -183,7 +183,7 @@
 
 	<!-- alternative style for floor hotspots -->
 	<style name="floor_hotspot_alt" 
-		url="vtourskin_aic_hotspot.png" 
+		url="vtourskin_aic_floor_hotspot2.png" 
 		crop="0|0|52|56"
 		ondowncrop="0|67|52|56"
 		edge="center" 
