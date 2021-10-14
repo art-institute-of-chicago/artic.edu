@@ -7,7 +7,7 @@
 @endphp
 
 @if ($table)
-    <div class="m-table {{ empty($title) ? 'm-table--no-title' : '' }}">
+    <div class="m-table {{ empty($title) ? 'm-table--no-title' : '' }} m-table--{{ $size ?? 's' }} {{ ($allowWordWrap ?? false) ? 'm-table--word-wrap' : '' }}">
         <table>
             @if (!empty($title))
                 <caption>
@@ -21,23 +21,37 @@
                 {!! $colgroupElement->ownerDocument->saveHTML($colgroupElement) !!}
             @endforeach
             <thead>
-                <tr>
-                    @foreach ($crawler->filter('table:first-child > thead > tr > th') as $cellElement)
+                @foreach ($crawler->filter('table:first-child > thead > tr') as $rowElement)
+                    @php
+                        $rowClass = $rowElement->getAttribute('class');
+                    @endphp
+                    <tr {!! !empty($rowClass) ? 'class="' . $rowClass . '"' : '' !!}>
                         @php
-                            $cellStyle = $cellElement->getAttribute('style');
+                            $rowCrawler = new Crawler(BlockHelpers::innerHTML($rowElement));
                         @endphp
-                        <th style="{!! !empty($cellStyle) ? $cellStyle : '' !!}">
-                            @component('components.blocks._text')
-                                @slot('font', 'f-module-title-1')
-                                @slot('tag', 'span')
-                                {!! BlockHelpers::innerHTML($cellElement) !!}
-                            @endcomponent
-                        </th>
+                        @foreach ($rowCrawler->filter('td,th') as $i => $cellElement)
+                            @php
+                                $cellStyle = $cellElement->getAttribute('style');
+                            @endphp
+                            <th style="{!! !empty($cellStyle) ? $cellStyle : '' !!}">
+                                @component('components.blocks._text')
+                                    @slot('font', 'f-module-title-1')
+                                    @slot('tag', 'span')
+                                    {!! BlockHelpers::innerHTML($cellElement) !!}
+                                @endcomponent
+                            </th>
+                            @php
+                                unset($cellStyle);
+                            @endphp
+                        @endforeach
                         @php
-                            unset($cellStyle);
+                            unset($rowCrawler);
                         @endphp
-                    @endforeach
-                </tr>
+                    </tr>
+                    @php
+                        unset($rowClass);
+                    @endphp
+                @endforeach
             </thead>
             <tbody>
                 @foreach ($crawler->filter('table:first-child > tbody > tr') as $rowElement)
@@ -51,9 +65,10 @@
                         @foreach ($rowCrawler->filter('td,th') as $i => $cellElement)
                             @php
                                 $cellStyle = $cellElement->getAttribute('style');
+                                $cellRowspan = $cellElement->getAttribute('rowspan');
                                 $isCellHeader = $cellElement->nodeName === 'th' || ($i === 0 && ($hasSideHeader ?? false));
                             @endphp
-                            <{!! $isCellHeader ? 'th' : 'td' !!} {!! !empty($cellStyle) ? 'style="' . $cellStyle . '"' : '' !!}>
+                            <{!! $isCellHeader ? 'th' : 'td' !!} {!! !empty($cellStyle) ? 'style="' . $cellStyle . '"' : '' !!} {!! !empty($cellRowspan) ? 'rowspan="' . $cellRowspan . '"' : '' !!}>
                                 @component('components.blocks._text')
                                     @slot('font', $isCellHeader ? 'f-module-title-1' : 'f-secondary')
                                     @slot('tag', 'span')
@@ -62,6 +77,8 @@
                             </{!! $isCellHeader ? 'th' : 'td' !!}>
                             @php
                                 unset($cellStyle);
+                                unset($cellRowspan);
+                                unset($isCellHeader);
                             @endphp
                         @endforeach
                         @php
@@ -71,5 +88,8 @@
                 @endforeach
             </tbody>
         </table>
+        @if (!empty($tableCaption))
+            <div class="f-caption">{!! $tableCaption !!}</div>
+        @endif
     </div>
 @endif

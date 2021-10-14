@@ -153,10 +153,20 @@ Intended for very simple m-tables..
     display: inline-block;
     color: $color__text--title;
   }
+
+  .f-caption {
+    @include untuck;
+    margin-top: 16px;
+
+    h3 {
+      text-decoration: underline;
+      font-style: italic;
+    }
+  }
 }
 
-
-
-
-
-
+.m-table--word-wrap {
+  th, td {
+    white-space: normal;
+  }
+}
