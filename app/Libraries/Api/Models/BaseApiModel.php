@@ -249,16 +249,18 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     }
 
     /**
-     * Add hidden attributes for the model.
+     * Make the given, typically visible, attributes hidden.
      *
      * @param  array|string|null  $attributes
-     * @return void
+     * @return $this
      */
-    public function addHidden($attributes = null)
+    public function makeHidden($attributes = null)
     {
         $attributes = is_array($attributes) ? $attributes : func_get_args();
 
         $this->hidden = array_merge($this->hidden, $attributes);
+
+        return $this;
     }
 
     /**
@@ -298,16 +300,18 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     }
 
     /**
-     * Add visible attributes for the model.
+     * Make the given, typically hidden, attributes visible.
      *
      * @param  array|string|null  $attributes
-     * @return void
+     * @return $this
      */
-    public function addVisible($attributes = null)
+    public function makeVisible($attributes = null)
     {
         $attributes = is_array($attributes) ? $attributes : func_get_args();
 
         $this->visible = array_merge($this->visible, $attributes);
+
+        return $this;
     }
 
     /**
@@ -1078,7 +1082,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         return $this->getKeyName();
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return $this->entity;
     }
