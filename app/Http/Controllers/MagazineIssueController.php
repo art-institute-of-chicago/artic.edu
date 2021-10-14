@@ -17,8 +17,8 @@ class MagazineIssueController extends FrontController
 
     public function latest()
     {
-        $mag = $this->repository->getLatestIssue();
-        return $this->show($mag->id, $mag->getSlug(), true);
+        $issue = $this->repository->getLatestIssue();
+        return $this->show($issue->id, $issue->getSlug(), true);
     }
 
     public function show($id, $slug = null, $isRequestForLatest = false)

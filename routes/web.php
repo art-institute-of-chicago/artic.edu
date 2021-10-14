@@ -75,11 +75,13 @@ Route::name('articles_publications')->get('/articles_publications', 'ArticlesPub
 Route::name('articles')->get('/articles', 'ArticleController@index');
 Route::name('articles.show')->get('/articles/{id}/{slug?}', 'ArticleController@show');
 
-// Journal issue routes
+// Journal routes
+Route::name('issues.latest')->get('/artinstitutereview', 'IssueController@latest');
 Route::name('issues.show')->get('/artinstitutereview/issues/{issueNumber}/{slug?}', 'IssueController@show');
 Route::name('issue-articles.show')->get('/artinstitutereview/articles/{id}/{slug?}', 'IssueArticleController@show');
 
-// PUB-148: Redirect legacy URLs via cannonical functionality
+// PUB-148: Redirect legacy journal URLs via cannonical functionality
+Route::name('alt-issues.latest')->get('/journal', 'IssueController@latest');
 Route::name('alt-issues.show')->get('/journal/issues/{issueNumber}/{slug?}', 'IssueController@show');
 Route::name('alt-issue-articles.show')->get('/journal/articles/{id}/{slug?}', 'IssueArticleController@show');
 
