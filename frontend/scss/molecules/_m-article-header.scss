@@ -126,14 +126,14 @@
 
 .m-article-header .img-hero-desktop {
   display: none;
-  @include breakpoint('medium+') {
+  @include breakpoint('small+') {
     display: block;
   }
 }
 
 .m-article-header .img-hero-mobile {
   display: block;
-  @include breakpoint('medium+') {
+  @include breakpoint('small+') {
     display: none;
   }
 }
