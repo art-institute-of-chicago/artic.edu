@@ -79,15 +79,17 @@ class Highlight extends AbstractModel
                     'ratio' => 16 / 9,
                 ],
             ],
-            'mobile' => [
-                [
-                    'name' => 'mobile',
-                    'ratio' => 1,
-                ],
-            ],
             'square' => [
                 [
                     'name' => 'square',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
+        'mobile_hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
                     'ratio' => 1,
                 ],
             ],

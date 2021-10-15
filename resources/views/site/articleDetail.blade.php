@@ -17,7 +17,7 @@
     @slot('type', $item->present()->subtype)
     @slot('intro', $item->present()->heading)
     @slot('img', $item->imageFront('hero'))
-    @slot('imgMobile', $item->imageFront('hero', 'mobile'))
+    @slot('imgMobile', $item->imageFront('mobile_hero'))
     @slot('galleryImages', $item->galleryImages)
     @slot('nextArticle', $item->nextArticle)
     @slot('prevArticle', $item->prevArticle)

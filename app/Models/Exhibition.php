@@ -80,16 +80,18 @@ class Exhibition extends AbstractModel
                     'ratio' => 16 / 9,
                 ],
             ],
-            'mobile' => [
-                [
-                    'name' => 'mobile',
-                    'ratio' => 1,
-                ],
-            ],
             'special' => [
                 [
                     'name' => 'special',
                     'ratio' => 1 / 1,
+                ],
+            ],
+        ],
+        'mobile_hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
                 ],
             ],
         ],

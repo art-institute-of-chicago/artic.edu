@@ -202,9 +202,11 @@ class Event extends AbstractModel
                     'ratio' => 16 / 9,
                 ],
             ],
-            'mobile' => [
+        ],
+        'mobile_hero' => [
+            'default' => [
                 [
-                    'name' => 'mobile',
+                    'name' => 'default',
                     'ratio' => 1,
                 ],
             ],

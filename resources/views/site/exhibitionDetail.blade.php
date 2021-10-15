@@ -15,7 +15,7 @@
     @slot('type', $item->present()->exhibitionType)
     @slot('intro', $item->present()->header_copy)
     @slot('img', $item->imageAsArray('hero', $item->cms_exhibition_type == \App\Models\Exhibition::SPECIAL ? 'special' : 'default'))
-    @slot('imgMobile', $item->imageAsArray('hero', $item->cms_exhibition_type == \App\Models\Exhibition::SPECIAL ? 'special' : 'mobile'))
+    @slot('imgMobile', $item->imageAsArray('mobile_hero'))
     @slot('credit', $item->present()->hero_caption)
     @slot('previewDateStart', $item->member_preview_start_date)
     @slot('previewDateEnd', $item->member_preview_end_date)
