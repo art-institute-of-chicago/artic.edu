@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::name('previewLink')->get('p/{hash}', 'PreviewController@show');
 
 Route::name('today')->get('/today', 'RedirectController@today');

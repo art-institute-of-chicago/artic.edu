@@ -12,7 +12,7 @@ return [
     |
      */
     'rev_manifest_path' => public_path('dist/rev-manifest.json'),
-    'dev_assets_path' => '/dist', // You can use another path for dev to avoid having to recompile after a deploy that compiles assets locally
+    'dev_assets_path' => env('TWILL_DEV_ASSETS_PATH', '/dist'), // You can use another path for dev to avoid having to recompile after a deploy that compiles assets locally
     'dist_assets_path' => '/dist',
     'svg_sprites_path' => 'sprites.svg', // Relative to dev/dist assets paths
     'svg_sprites_use_hash_only' => true,
