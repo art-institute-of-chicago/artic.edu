@@ -205,7 +205,7 @@ class Event extends AbstractModel
             'mobile' => [
                 [
                     'name' => 'mobile',
-                    'ratio' => 9 / 16,
+                    'ratio' => 1,
                 ],
             ],
         ],
