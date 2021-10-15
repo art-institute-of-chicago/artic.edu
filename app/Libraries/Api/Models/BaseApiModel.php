@@ -1087,6 +1087,11 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         return $this->entity;
     }
 
+    public function resolveChildRouteBinding($childType, $value, $field)
+    {
+        return;
+    }
+
     public function getKeyName()
     {
         return $this->primaryKey;
