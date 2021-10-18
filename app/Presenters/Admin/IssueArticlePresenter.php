@@ -86,6 +86,14 @@ class IssueArticlePresenter extends BasePresenter
         return 'Article';
     }
 
+    /**
+     * PUB-146: For `_articleFeature` view on Writings
+     */
+    public function subtype()
+    {
+        return $this->getArticleType();
+    }
+
     public function references()
     {
         //
