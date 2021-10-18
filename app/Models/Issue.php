@@ -92,7 +92,7 @@ class Issue extends AbstractModel implements Sortable
 
     public function getIssueSlugAttribute()
     {
-        return join([$this->issue_number, $this->getSlug()], '/');
+        return join('/', [$this->issue_number, $this->getSlug()]);
     }
 
     /**

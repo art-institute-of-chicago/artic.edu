@@ -119,7 +119,7 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
 
     public function getDigitalPublicationSlugAttribute()
     {
-        return join([$this->id, $this->getSlug()], '/');
+        return join('/', [$this->id, $this->getSlug()]);
     }
 
     public function getUrlAttribute()

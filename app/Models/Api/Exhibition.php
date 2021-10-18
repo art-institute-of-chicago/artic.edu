@@ -73,7 +73,7 @@ class Exhibition extends BaseApiModel
 
     public function getIdSlugAttribute()
     {
-        return join(array_filter([$this->id, $this->getSlug()]), '/');
+        return join('/', array_filter([$this->id, $this->getSlug()]));
     }
 
     public function getTitleSlugAttribute()
