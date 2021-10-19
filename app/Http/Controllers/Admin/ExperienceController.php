@@ -61,7 +61,7 @@ class ExperienceController extends ModuleController
                 ];
             } else {
                 $variant = isset($column['variant']);
-                $crop = $variant ? $column['variant']['crop'] : head(array_keys(head($item->mediasParams)));
+                $crop = $variant ? $column['variant']['crop'] : array_key_first(head($item->mediasParams));
                 $params = $variant && isset($column['variant']['params'])
                 ? $column['variant']['params']
                 : ['w' => 80, 'h' => 80, 'fit' => 'crop'];
