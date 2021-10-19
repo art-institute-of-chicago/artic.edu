@@ -18,6 +18,15 @@
     ])
 
     @formField('browser', [
+        'max' => 4,
+        'endpoint' => route('admin.collection.issues.articles.subbrowser',[
+            'issue' => $item->present()->getFeaturedJournalIssue()->id ?? 0,
+        ]),
+        'name' => 'featuredJournalArticles',
+        'label' => 'Featured journal articles',
+    ])
+
+    @formField('browser', [
         'routePrefix' => 'collection.interactive_features',
         'max' => 4,
         'moduleName' => 'experiences',
