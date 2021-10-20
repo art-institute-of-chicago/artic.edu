@@ -1,5 +1,4 @@
 <?php
-use Illuminate\Support\Facades\App;
 
 namespace App\Models\Behaviors;
 

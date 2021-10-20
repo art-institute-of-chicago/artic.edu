@@ -2,7 +2,6 @@
 
 namespace App\Models\Behaviors;
 
-use Illuminate\Support\Facades\App;
 
 use A17\Twill\Models\Behaviors\HasMedias as BaseHasMedias;
 

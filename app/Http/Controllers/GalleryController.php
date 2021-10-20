@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Api\GalleryRepository;
-use App\Libraries\ExploreFurther\BaseService as ExploreGalleries;
 
 class GalleryController extends FrontController
 {

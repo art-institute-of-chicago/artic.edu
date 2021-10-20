@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
 use App\Models\Experience;
 use App\Repositories\ExperienceRepository;
 use Illuminate\Http\Request;

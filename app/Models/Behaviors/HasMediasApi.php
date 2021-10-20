@@ -2,7 +2,6 @@
 
 namespace App\Models\Behaviors;
 
-use Illuminate\Support\Facades\App;
 use DamsImageService;
 
 trait HasMediasApi

@@ -4,7 +4,6 @@ namespace App\Exceptions;
 
 use A17\Twill\Exceptions\Handler as ExceptionHandler;
 use Throwable;
-use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {

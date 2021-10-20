@@ -5,7 +5,6 @@ namespace App\Libraries\Api\Builders;
 use Illuminate\Support\Str;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Container\Container;
 use App\Libraries\Api\Builders\Grammar\MsearchGrammar;
 use App\Libraries\Api\Builders\Grammar\SearchGrammar;
 use App\Helpers\CollectionHelpers;
