@@ -2,17 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Issue;
+use Carbon\Carbon;
+use App\Models\EventMeta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class IssueFactory extends Factory
+class EventMetaFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Issue::class;
+    protected $model = EventMeta::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +23,8 @@ class IssueFactory extends Factory
     public function definition()
     {
         return [
-            'published' => true,
+            'date' => Carbon::parse('+1 week'),
+            'date_end' => Carbon::parse('+2 weeks'),
         ];
     }
 }

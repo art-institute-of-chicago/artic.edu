@@ -1,10 +1,29 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\Models\Hour::class, function (Faker $faker) {
-    return [
-        'published' => true,
-        'type' => 0,
-    ];
-});
+use App\Models\Hour;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class HourFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Hour::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'published' => true,
+            'type' => 0,
+        ];
+    }
+}
