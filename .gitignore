@@ -1,6 +1,5 @@
 .studio
 .sass-cache
-.vscode
 dist
 toolkit
 /test
@@ -9,12 +8,14 @@ toolkit
 /public/storage
 /storage/*.key
 /vendor
-/.idea
 /.vagrant
+docker-compose.override.yml
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+/.idea
+/.vscode
 .env
 .env.bak
 .DS_Store
