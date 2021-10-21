@@ -15,7 +15,22 @@ class IssueController extends FrontController
         parent::__construct();
     }
 
-    public function show($issueNumber, $slug = null)
+    public function latest()
+    {
+        if (request()->url() !== route('issues.latest')) {
+            return redirect()->route('issues.latest');
+        }
+
+        $issue = $this->repository->getLatestIssue();
+
+        if (!$issue) {
+            return redirect('/artinstitutereview/about');
+        }
+
+        return $this->show($issue->id, $issue->getSlug(), true);
+    }
+
+    public function show($issueNumber, $slug = null, $isRequestForLatest = false)
     {
         $issues = $this->repository->published()->get();
         $item = $issues->where('issue_number', (Integer) $issueNumber)->first();
@@ -26,8 +41,10 @@ class IssueController extends FrontController
 
         $canonicalPath = route('issues.show', ['issueNumber' => $item->issue_number, 'slug' => $item->getSlug()]);
 
-        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
-            return $canonicalRedirect;
+        if (!$isRequestForLatest) {
+            if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
+                return $canonicalRedirect;
+            }
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);

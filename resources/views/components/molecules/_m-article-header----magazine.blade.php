@@ -4,7 +4,15 @@
             @foreach ($images as $key => $image)
                 @component('components.atoms._img')
                     @slot('image', $image)
-                    @slot('class', $key === 0 ? 'is-slideshow-active' : null)
+                    @slot('class', 'img-hero-desktop ' . ($key === 0 ? 'is-slideshow-active' : null))
+                    @slot('settings', array(
+                        'srcset' => array(300,600,1000,1500,3000),
+                        'sizes' => '100vw',
+                    ))
+                @endcomponent
+                @component('components.atoms._img')
+                    @slot('image', $imagesMobile[$key] ?? $image)
+                    @slot('class', 'img-hero-mobile ' . ($key === 0 ? 'is-slideshow-active' : null))
                     @slot('settings', array(
                         'srcset' => array(300,600,1000,1500,3000),
                         'sizes' => '100vw',

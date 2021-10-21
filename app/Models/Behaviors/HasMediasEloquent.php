@@ -31,7 +31,7 @@ trait HasMediasEloquent
 
         return $imageObjects->map(function ($imageObject) {
             return $this->convertImageFront($imageObject);
-        });
+        })->values();
     }
 
     private function convertImageFront($imageObject)

@@ -13,6 +13,7 @@
         @slot('title_display', $item->present()->headerTitle())
         @slot('subtitle_display', $item->present()->headerSubtitle())
         @slot('img', $item->imageFront('listing'))
+        @slot('imgMobile', $item->imageFront('mobile_listing'))
         @slot('editorial', true)
         @slot('bgcolor', $item->bgcolor)
     @endcomponent

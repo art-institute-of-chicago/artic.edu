@@ -55,7 +55,8 @@ trait HasFeaturedRelated
 
         // Filter out any items that are unlisted
         return array_filter($this->selectedFeaturedRelateds, function ($value) {
-            return $value['item']->is_not_unlisted;
+            // WEB-2318: Videos have no `is_unlisted` attribute
+            return $value['item']->is_not_unlisted ?? true;
         });
     }
 

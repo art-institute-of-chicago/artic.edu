@@ -59,6 +59,14 @@ class Issue extends AbstractModel implements Sortable
                 ],
             ],
         ],
+        'mobile_hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
         'license' => [
             'default' => [
                 [
@@ -85,5 +93,21 @@ class Issue extends AbstractModel implements Sortable
     public function getIssueSlugAttribute()
     {
         return join([$this->issue_number, $this->getSlug()], '/');
+    }
+
+    /**
+     * PUB-146: Affects what _m-listing is used for Writings landing
+     */
+    public function getTypeAttribute()
+    {
+        return 'journal-issue';
+    }
+
+    /**
+     * PUB-146: Affects the tag on Writings landing
+     */
+    public function getSubtypeAttribute()
+    {
+        return 'Issue ' . $this->issue_number;
     }
 }

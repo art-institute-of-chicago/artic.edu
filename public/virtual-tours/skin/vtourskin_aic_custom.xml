@@ -11,7 +11,7 @@
 	               followmousecontrol="false"
 	               title="true"
 	               thumbs="false"
-	               thumbs_width="131" thumbs_height="74" thumbs_padding="19" thumbs_crop="0|0|240|160" thumbs_top_padding="33"
+	               thumbs_width="131" thumbs_height="74" thumbs_padding="19" thumbs_crop="" thumbs_top_padding="33"
 	               thumbs_opened="false"
 	               thumbs_text="false"
 	               thumbs_dragging="true"
@@ -166,8 +166,6 @@
 		crop="0|0|52|56"
 		ondowncrop="0|67|52|56"
 		edge="center" 
-		distorted="false"
-		zoom="false"
 		scale="0.4"
 		onover.addevent="tween(scale,0.5);"
 	  onout.addevent="tween(scale,0.4);"
@@ -177,12 +175,24 @@
 	<style name="floor_hotspot" 
 		url="vtourskin_aic_floor_hotspot.png" 
 		edge="top" 
-		distorted="true"
 		onclick="skin_hotspotstyle_click();"
-		depth="2000"
-		scale="1"
-		onover.addevent="tween(scale,1.15);"
-		onout.addevent="tween(scale,1);"
+		scale=".5"
+		onover.addevent="tween(scale,.75);"
+		onout.addevent="tween(scale,.5);"
+	/>
+
+	<!-- alternative style for floor hotspots -->
+	<style name="floor_hotspot_alt" 
+		url="vtourskin_aic_floor_hotspot2.png" 
+		crop="0|0|52|56"
+		ondowncrop="0|67|52|56"
+		edge="center" 
+		distorted="false"
+		zoom="false"
+		scale="0.4"
+		onover.addevent="tween(scale,0.5);"
+	  onout.addevent="tween(scale,0.4);"
+		onclick="skin_hotspotstyle_click();"
 	/>
 
 	<!-- style for artwork modal -->
@@ -706,15 +716,26 @@
 
 	<action name="skin_loadscene" scope="local" args="newscenenameorindex, blendmode">
 
+		<!--for custom thumbnail carousel-->
+		set(nextscene, get(newscenenameorindex));
+
+		if(scene[get(newscenenameorindex)].thumburl,
+			<!--do nothing-->
+		,
+			set(newscenenameorindex, get(scene[get(newscenenameorindex)].parent));
+		);
+
 		calc(parentname, 'skin_thumb_' + scene[get(newscenenameorindex)].thumbindex);
+
+		loadscene(get(scene[get(nextscene)].name), null, get(skin_settings.loadscene_flags), get(blendmode));
+
 		if(scene[get(newscenenameorindex)].thumburl AND scene[get(newscenenameorindex)].skipthumb != true AND layer[get(parentname)],
 			set(layer[skin_thumbborder], parent=get(parentname), visible=true);
-		  ,
+		,
 			set(layer[skin_thumbborder].visible, false);
 		);
 
 		layer[skin_thumbs].scrolltocenter(get(scene[get(newscenenameorindex)].thumbx), get(scene[get(newscenenameorindex)].thumby));
-		loadscene(get(scene[get(newscenenameorindex)].name), null, get(skin_settings.loadscene_flags), get(blendmode));
 	</action>
 
 

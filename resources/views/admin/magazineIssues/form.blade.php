@@ -51,6 +51,14 @@
             'note' => 'Order should match links in header text',
             'max' => 20,
         ])
+
+        @formField('medias', [
+            'with_multiple' => false,
+            'no_crop' => false,
+            'label' => 'Mobile hero image',
+            'name' => 'mobile_hero',
+            'note' => 'Minimum image width 3000px'
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="welcome_note" title="Welcome Note">

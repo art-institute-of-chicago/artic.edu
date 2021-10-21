@@ -17,7 +17,7 @@ class UpdateCloudfrontIps extends Command
         $contents = file_get_contents('http://d7uri8nf7uskq.cloudfront.net/tools/list-cloudfront-ips');
 
         if ($contents === false) {
-            return;
+            return 0;
         }
 
         Storage::put('list-cloudfront-ips.json', $contents);

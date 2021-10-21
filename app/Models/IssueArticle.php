@@ -27,7 +27,6 @@ class IssueArticle extends AbstractModel implements Sortable
         'description',
         'list_description',
         'date',
-        'type',
         'abstract',
         'author_display',
         'review_status',
@@ -67,6 +66,14 @@ class IssueArticle extends AbstractModel implements Sortable
                 [
                     'name' => 'default',
                     'ratio' => 21 / 9,
+                ],
+            ],
+        ],
+        'mobile_hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
                 ],
             ],
         ],
@@ -116,5 +123,13 @@ class IssueArticle extends AbstractModel implements Sortable
     public function getUrlAttribute()
     {
         return route('issue-articles.show', ['id' => $this->id, 'slug' => $this->getSlug()], false);
+    }
+
+    /**
+     * PUB-146: Affects what _m-listing is used for Writings landing
+     */
+    public function getTypeAttribute()
+    {
+        return 'journal-article';
     }
 }

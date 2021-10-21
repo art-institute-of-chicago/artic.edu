@@ -235,7 +235,7 @@
                     @php
                         [$refStart, $refEnd] = \App\Helpers\StringHelpers::getLastWord($item['reference'] ?? '');
                     @endphp
-                    <li id="ref_note-{{ $item['id'] }}">{!! $refStart !!}<span class="u-nowrap">{{ $refEnd }} <a class="return-link" href="#ref_cite-{{ $item['id'] }}"><svg class="icon--arrow" aria-label="back to reference"><use xlink:href="#icon--arrow"></use></svg></a></span></li>
+                    <li id="ref_note-{{ $item['id'] }}">{!! $refStart !!}<span class="u-nowrap">{!! $refEnd !!} <a class="return-link" href="#ref_cite-{{ $item['id'] }}"><svg class="icon--arrow" aria-label="back to reference"><use xlink:href="#icon--arrow"></use></svg></a></span></li>
                 @endforeach
                 </ol>
             @endif

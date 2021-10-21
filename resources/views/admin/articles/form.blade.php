@@ -36,6 +36,14 @@
         'note' => 'Minimum image width 3000px'
     ])
 
+    @formField('medias', [
+        'with_multiple' => false,
+        'no_crop' => false,
+        'label' => 'Mobile hero image',
+        'name' => 'mobile_hero',
+        'note' => 'Minimum image width 3000px'
+    ])
+
     @formField('multi_select', [
         'name' => 'categories',
         'label' => 'Categories',

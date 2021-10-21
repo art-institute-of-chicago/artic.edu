@@ -172,7 +172,7 @@ class StringHelpers
     public static function getLastWord($originalText)
     {
         $originalText = rtrim($originalText);
-        preg_match('/(.*)\b(.+)$$/', $originalText, $textParts);
+        preg_match('/(.* )([^<>]+)$$/', $originalText, $textParts);
 
         return [$textParts[1] ?? $originalText, $textParts[2] ?? ''];
     }

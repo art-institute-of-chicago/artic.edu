@@ -67,6 +67,14 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
                 ],
             ],
         ],
+        'mobile_hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
     ];
 
     const ABOUT = 'about';

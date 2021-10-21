@@ -24,6 +24,7 @@
     @slot('type',  $item->present()->type)
     @slot('intro', $item->present()->heading)
     @slot('img',   $item->imageFront('hero'))
+    @slot('imgMobile', $item->imageFront('mobile_hero'))
     @slot('galleryImages', $item->galleryImages)
     @slot('isZoomable', !$item->is_deaccessioned && $item->is_zoomable)
     @slot('isPublicDomain', !$item->is_deaccessioned && $item->is_public_domain)

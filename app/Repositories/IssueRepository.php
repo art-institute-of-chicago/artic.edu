@@ -32,6 +32,11 @@ class IssueRepository extends ModuleRepository
         return $results;
     }
 
+    public function getLatestIssue()
+    {
+        return Issue::query()->published()->orderBy('date', 'desc')->first();
+    }
+
     public function getWelcomeNote($item)
     {
         $welcomeNotes = $item->getRelated('welcome_note_article');

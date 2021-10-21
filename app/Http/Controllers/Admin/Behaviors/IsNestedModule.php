@@ -18,7 +18,7 @@ trait IsNestedModule
     }
 
     /**
-     * PUB-35, PUB-127: Override inherited function to fix `edit` link
+     * PUB-35, PUB-127, PUB-146: Override inherited function to fix `edit` link
      */
     protected function getBrowserTableData($items)
     {
@@ -35,8 +35,10 @@ trait IsNestedModule
             return [
                 'id' => $item->id,
                 'name' => $name,
-                // Calling `$this->getModuleRoute` checks if it's a submodule
-                'edit' => $this->getModuleRoute($item->id, 'edit'),
+                'edit' => moduleRoute($this->moduleName, $this->routePrefix, 'edit', [
+                    $item->{$this->getParentModuleForeignKey()},
+                    $item->id,
+                ]),
                 'endpointType' => $this->repository->getMorphClass(),
             ] + $columnsData + ($withImage && !array_key_exists('thumbnail', $columnsData) ? [
                 'thumbnail' => $item->defaultCmsImage(['w' => 100, 'h' => 100]),

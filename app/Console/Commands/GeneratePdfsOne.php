@@ -22,8 +22,6 @@ class GeneratePdfsOne extends GeneratePdfs
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {

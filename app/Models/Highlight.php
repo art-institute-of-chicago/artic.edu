@@ -86,6 +86,14 @@ class Highlight extends AbstractModel
                 ],
             ],
         ],
+        'mobile_hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
     ];
 
     public function getListDescriptionAttribute()

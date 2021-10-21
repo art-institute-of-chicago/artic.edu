@@ -93,6 +93,14 @@ class Article extends AbstractModel implements Feedable
                 ],
             ],
         ],
+        'mobile_hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
         'author' => [
             'square' => [
                 [

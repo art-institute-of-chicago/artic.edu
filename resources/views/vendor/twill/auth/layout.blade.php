@@ -19,7 +19,7 @@
             @include('twill::partials.toaster')
 
             <div class="login__copyright f--small">
-                <p style="float: left">
+                <p>
                     <a href="https://github.com/art-institute-of-chicago/website">artic.edu version {{ config('aic.version') }}</a>
                 </p>
                 <p>
