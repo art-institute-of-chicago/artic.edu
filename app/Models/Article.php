@@ -156,7 +156,7 @@ class Article extends AbstractModel implements Feedable
 
     public function getIdSlugAttribute()
     {
-        return join([$this->id, $this->getSlug()], '/');
+        return join('/', [$this->id, $this->getSlug()]);
     }
 
     public function getUrlWithoutSlugAttribute()

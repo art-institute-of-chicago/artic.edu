@@ -10,7 +10,6 @@ use App\Libraries\DamsImageService;
 use App\Observers\FileObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
-use View;
 
 class AppServiceProvider extends ServiceProvider
 {

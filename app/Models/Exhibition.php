@@ -166,7 +166,7 @@ class Exhibition extends AbstractModel
 
     public function getUrlWithoutSlugAttribute()
     {
-        return route('exhibitions.show', $this->datahub_id);
+        return route('exhibitions.show', ['id' => $this->datahub_id]);
     }
 
     protected function transformMappingInternal()

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 /**
  * Quick and oversimplified implementation of Ruby on Rails has_scope gem.

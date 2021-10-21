@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use Fideloper\Proxy\TrustProxies as Middleware;
+use Illuminate\Http\Middleware\TrustProxies as Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -18,14 +18,20 @@ class TrustProxies extends Middleware
     protected $proxies = [];
 
     /**
-     * The headers that should be used to detect proxies.
+     * The proxy header mappings.
      *
-     * @var string
+     * @var int
      */
     protected $headers = Request::HEADER_X_FORWARDED_AWS_ELB;
 
     /**
      * Add remote address to trusted proxy list
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function handle(Request $request, Closure $next)
     {

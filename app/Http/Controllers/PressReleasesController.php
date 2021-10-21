@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Repositories\PressReleaseRepository;
 
 class PressReleasesController extends BaseScopedController
