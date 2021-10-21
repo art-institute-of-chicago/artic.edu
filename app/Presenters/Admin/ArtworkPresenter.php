@@ -140,18 +140,18 @@ class ArtworkPresenter extends BasePresenter
 
     private function getFilteredDescription()
     {
-        $html = strip_tags($this->entity->description, implode('', [
-            '<a>',
-            '<p>',
-            '<br>',
-            '<em>',
-            '<strong>',
-            '<table>',
-            '<thead>',
-            '<tbody>',
-            '<tr>',
-            '<td>',
-        ]));
+        $html = strip_tags($this->entity->description, [
+            'a',
+            'p',
+            'br',
+            'em',
+            'strong',
+            'table',
+            'thead',
+            'tbody',
+            'tr',
+            'td',
+        ]);
 
         // https://stackoverflow.com/questions/1685277
         $oldInternalErrors = libxml_use_internal_errors(true);

@@ -16,7 +16,7 @@ class UpdateCredits extends Command
     {
         foreach (Event::cursor() as $event) {
             if ($event->hero_caption) {
-                $event->hero_caption = strip_tags(html_entity_decode($event->hero_caption), '<p><em><i>');
+                $event->hero_caption = strip_tags(html_entity_decode($event->hero_caption), ['p', 'em', 'i']);
                 dump($event->hero_caption);
                 $event->save();
             }
