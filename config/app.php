@@ -277,7 +277,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Httpauth' => Intervention\Httpauth\Facades\Httpauth::class,
+        'Httpauth' => Intervention\HttpAuth\Laravel\Facades\HttpAuth::class,
 
         'DamsImageService' => App\Facades\DamsImageServiceFacade::class,
         'EmbedConverter' => App\Facades\EmbedConverterFacade::class,
