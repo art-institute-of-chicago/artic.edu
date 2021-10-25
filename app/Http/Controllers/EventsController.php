@@ -118,6 +118,7 @@ class EventsController extends FrontController
 
         // 2. Create Calendar domain entity
         $vCalendar = new \Eluceo\iCal\Domain\Entity\Calendar($vEvents);
+        $vCalendar->addTimeZone(\Eluceo\iCal\Domain\Entity\TimeZone::createFromPhpDateTimeZone(new \DateTimeZone('America/Chicago')));
 
         // 3. Transform domain entity into an iCalendar component
         $componentFactory = new \Eluceo\iCal\Presentation\Factory\CalendarFactory();
