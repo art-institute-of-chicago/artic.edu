@@ -93,6 +93,7 @@ class PageController extends ModuleController
             ['fieldset' => 'capacity', 'label' => 'Cap.'],
             ['fieldset' => 'admissions', 'label' => 'Adm.'],
             ['fieldset' => 'faq', 'label' => 'FAQ'],
+            ['fieldset' => 'citypass', 'label' => 'CityPASS'],
             ['fieldset' => 'accessibility', 'label' => 'A11y'],
             ['fieldset' => 'directions', 'label' => 'Dir.'],
             ['fieldset' => 'explore', 'label' => 'Explore'],
