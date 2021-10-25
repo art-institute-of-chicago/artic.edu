@@ -28,8 +28,7 @@
         @formField('input', [
             'name' => 'visit_hour_intro',
             'label' => 'Intro text',
-            'type' => 'textarea',
-            'translated' => true
+            'type' => 'textarea'
         ])
 
         @formField('medias', [
@@ -42,7 +41,6 @@
             'name' => 'visit_hour_image_caption',
             'field_name' => 'visit_hour_image_caption',
             'label' => 'Image caption',
-            'translated' => true,
             'toolbarOptions' => [
                 'italic', 'link'
             ],
@@ -52,15 +50,13 @@
             'name' => 'visit_hour_header',
             'field_name' => 'visit_hour_header',
             'label' => 'Header',
-            'required' => true,
-            'translated' => true,
+            'required' => true
         ])
         @formField('wysiwyg', [
             'name' => 'visit_hour_subheader',
             'field_name' => 'visit_hour_subheader',
             'label' => 'Description',
-            'required' => true,
-            'translated' => true,
+            'required' => true
         ])
         @formField('repeater', ['type' => 'featured_hours'])
     </a17-fieldset>
@@ -68,8 +64,7 @@
     <a17-fieldset title="Call to Action" id="call-to-action">
         @formField('input', [
             'name' => 'visit_cta_module_header',
-            'label' => 'Header',
-            'translated' => true,
+            'label' => 'Header'
         ])
 
         @formField('wysiwyg', [
@@ -77,14 +72,12 @@
             'label' => 'Body',
             'toolbarOptions' => [
                 'italic'
-            ],
-            'translated' => true,
+            ]
         ])
 
         @formField('input', [
             'name' => 'visit_cta_module_button_text',
-            'label' => 'Button text',
-            'translated' => true,
+            'label' => 'Button text'
         ])
 
         @formField('input', [
@@ -98,8 +91,7 @@
         @formField('input', [
             'name' => 'visit_what_to_expect_more_text',
             'field_name' => 'visit_what_to_expect_more_text',
-            'label' => 'More link text',
-            'translated' => true
+            'label' => 'More link text'
         ])
         @formField('input', [
             'name' => 'visit_what_to_expect_more_link',
@@ -114,14 +106,12 @@
             'name' => 'visit_capacity_alt',
             'field_name' => 'visit_capacity_alt',
             'label' => 'Graph alt text',
-            'translated' => true,
             'note' => 'For screenreaders',
         ])
         @formField('input', [
             'name' => 'visit_capacity_heading',
             'field_name' => 'visit_capacity_heading',
-            'label' => 'Capacity heading',
-            'translated' => true,
+            'label' => 'Capacity heading'
         ])
         @formField('wysiwyg', [
             'name' => 'visit_capacity_text',
@@ -129,16 +119,14 @@
             'label' => 'Capacity text',
             'toolbarOptions' => [
                 'italic', 'link'
-            ],
-            'translated' => true,
+            ]
         ])
         <hr>
         <p>Up to two buttons can be defined. We will only display a button if both its label and URL are filled out.</p>
         @formField('input', [
             'name' => 'visit_capacity_btn_text_1',
             'field_name' => 'visit_capacity_btn_text_1',
-            'label' => 'Button #1 label',
-            'translated' => true,
+            'label' => 'Button #1 label'
         ])
         @formField('input', [
             'name' => 'visit_capacity_btn_url_1',
@@ -148,8 +136,7 @@
         @formField('input', [
             'name' => 'visit_capacity_btn_text_2',
             'field_name' => 'visit_capacity_btn_text_2',
-            'label' => 'Button #2 label',
-            'translated' => true,
+            'label' => 'Button #2 label'
         ])
         @formField('input', [
             'name' => 'visit_capacity_btn_url_2',
@@ -162,14 +149,12 @@
         @formField('wysiwyg', [
             'name' => 'visit_admission_description',
             'field_name' => 'visit_admission_description',
-            'label' => 'Admission table description',
-            'translated' => true,
+            'label' => 'Admission table description'
         ])
         @formField('input', [
             'name' => 'visit_buy_tickets_label',
             'field_name' => 'visit_buy_tickets_label',
-            'label' => 'Buy tickets label',
-            'translated' => true
+            'label' => 'Buy tickets label'
         ])
         @formField('input', [
             'name' => 'visit_buy_tickets_link',
@@ -179,8 +164,7 @@
         @formField('input', [
             'name' => 'visit_become_member_label',
             'field_name' => 'visit_become_member_label',
-            'label' => 'Become a member label',
-            'translated' => true
+            'label' => 'Become a member label'
         ])
         @formField('input', [
             'name' => 'visit_become_member_link',
@@ -211,14 +195,12 @@
         @formField('input', [
             'name' => 'visit_accessibility_text',
             'label' => 'Accessibility text',
-            'type' => 'textarea',
-            'translated' => true
+            'type' => 'textarea'
         ])
 
         @formField('input', [
             'name' => 'visit_accessibility_link_text',
-            'label' => 'Link text',
-            'translated' => true
+            'label' => 'Link text'
         ])
 
         @formField('input', [

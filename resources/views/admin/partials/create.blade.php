@@ -15,7 +15,6 @@
     @formField('input', [
         'name' => 'slug',
         'label' => twillTrans('twill::lang.modal.permalink-field'),
-        'translated' => true,
         'ref' => 'permalink',
         'prefix' => $permalinkPrefix ?? ''
     ])

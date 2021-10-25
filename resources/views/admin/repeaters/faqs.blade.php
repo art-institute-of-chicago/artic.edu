@@ -8,8 +8,7 @@
             'name' => 'title',
             'field_name' => 'title',
             'label' => 'Title',
-            'required' => true,
-            'translated' => true
+            'required' => true
         ])
         @formField('input', [
             'name' => 'link',

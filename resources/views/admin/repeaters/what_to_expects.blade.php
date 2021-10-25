@@ -14,7 +14,6 @@
             'name' => 'text',
             'field_name' => 'text',
             'label' => 'Text',
-            'required' => true,
-            'translated' => true
+            'required' => true
         ])
     </div>
