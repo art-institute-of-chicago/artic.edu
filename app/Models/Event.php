@@ -518,7 +518,7 @@ class Event extends AbstractModel
 
     public function scopeDefault($query)
     {
-        return $query->betweenDates(Carbon::today(), Carbon::today()->addDay(14));
+        return $this->scopeSixMonths($query);
     }
 
     public function scopeSixMonths($query)
