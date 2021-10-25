@@ -98,21 +98,34 @@ class EventsController extends FrontController
     {
         $event = Event::findOrFail($id);
 
-        $vCalendar = new \Eluceo\iCal\Component\Calendar($event->title);
-
+        // @see https://ical.poerschke.nrw/docs/
+        // 1. Create Event domain entities
+        $vEvents = [];
+        $vTimezone = \Eluceo\iCal\Domain\Entity\TimeZone::createFromPhpDateTimeZone(new \DateTimeZone('America/Chicago'));
         foreach ($event->all_dates as $dates) {
             if ($dates['date'] > Carbon::now()) {
-                $vEvent = new \Eluceo\iCal\Component\Event();
+                $vEvent = new \Eluceo\iCal\Domain\Entity\Event();
                 $vEvent->setSummary($event->title);
-                $vEvent->setDtStart($dates['date'])->setDtEnd($dates['date_end']);
-                $vCalendar->addComponent($vEvent);
+                $vEvent->setOccurrence(
+                    new \Eluceo\iCal\Domain\ValueObject\TimeSpan(
+                        ($dates['date'] ? new \Eluceo\iCal\Domain\ValueObject\DateTime($dates['date']->toDate(), false) : null),
+                        ($dates['date_end'] ? new \Eluceo\iCal\Domain\ValueObject\DateTime($dates['date_end']->toDate(), false) : null),
+                    )
+                );
+                $vEvents[] = $vEvent;
             }
         }
 
-        $content = $vCalendar->render();
+        // 2. Create Calendar domain entity
+        $vCalendar = new \Eluceo\iCal\Domain\Entity\Calendar($vEvents);
+        $vCalendar->addTimeZone(\Eluceo\iCal\Domain\Entity\TimeZone::createFromPhpDateTimeZone(new \DateTimeZone('America/Chicago')));
+
+        // 3. Transform domain entity into an iCalendar component
+        $componentFactory = new \Eluceo\iCal\Presentation\Factory\CalendarFactory();
+        $content = $componentFactory->createCalendar($vCalendar);
 
         $headers = [
-            'Content-type' => 'text/calendar',
+            'Content-type' => 'text/calendar; charset=utf-8',
             'Content-Disposition' => 'attachment; filename="' . $event->title . '.ics"',
         ];
 

@@ -39,7 +39,7 @@
         "php": "^7.3|^8.0",
         "aic/data-hub-foundation": "dev-laravel-8-support",
         "area17/twill": "2.5.*",
-        "eluceo/ical": "0.16.*",
+        "eluceo/ical": "2.3.*",
         "erusev/parsedown": "^1.7",
         "guzzlehttp/guzzle": "^7.0.1",
         "fruitcake/laravel-cors": "^2.0",
