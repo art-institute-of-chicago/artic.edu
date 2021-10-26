@@ -121,7 +121,7 @@ class EventsController extends FrontController
 
     protected function collection()
     {
-        return $this->repository->getEventsFiltered(request('start'), request('end'), request('time'), request('type'), request('audience'), request('program'), self::PER_PAGE);
+        return $this->repository->getEventsFiltered(request('start'), request('end'), request('time'), request('type'), request('audience'), request('program'), self::PER_PAGE, request('page'));
     }
 
     protected function isFiltered()
