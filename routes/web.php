@@ -244,4 +244,4 @@ Route::middleware(['httpauth'])->get('/press/art-institute-images', function () 
 })->name('about.press.art-institute-images');
 
 // Generic Page
-Route::get('{any}', ['as' => 'genericPages.show', 'uses' => [GenericPagesController::class, 'show']])->where('any', '.*');
+Route::get('{any}', [GenericPagesController::class, 'show'])->where('any', '.*')->name('genericPages.show');
