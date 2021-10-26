@@ -184,8 +184,8 @@
 	<!-- alternative style for floor hotspots -->
 	<style name="floor_hotspot_alt" 
 		url="vtourskin_aic_floor_hotspot2.png" 
-		crop="0|0|52|56"
-		ondowncrop="0|67|52|56"
+		crop="0|0|56|56"
+		ondowncrop="0|68|56|56"
 		edge="center" 
 		distorted="false"
 		zoom="false"
@@ -1074,7 +1074,7 @@
 	<!-- add drop shadow layer for each hotspot -->
 	<action name="add_hotspot_shadow">
 		for(set(i,0), i LT hotspot.count, inc(i),
-			if(hotspot[get(i)].style != 'floor_hotspot' || floor_hotspot_alt', 
+			if(!contains(hotspot[get(i)].style, 'floor_hotspot'), 
 				txtadd(shadow_layername, get(hotspot[get(i)].name), '_shadow');
 				addlayer(get(shadow_layername));
 				txtadd(layer[get(shadow_layername)].parent, 'hotspot[', get(hotspot[get(i)].name), ']');
