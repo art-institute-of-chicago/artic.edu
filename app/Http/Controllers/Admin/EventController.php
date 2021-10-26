@@ -13,6 +13,7 @@ class EventController extends ModuleController
     protected $indexOptions = [
         'publish' => true,
         'bulkPublish' => true,
+        'duplicate' => true,
     ];
 
     protected $indexColumns = [

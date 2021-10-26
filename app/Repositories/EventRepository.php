@@ -292,4 +292,21 @@ class EventRepository extends ModuleRepository
 
         return $results;
     }
+
+    public function duplicate($id, $titleColumnKey = 'title')
+    {
+        $newObject = parent::duplicate($id, $titleColumnKey);
+
+        $newObject->published = 0;
+        $newObject->publish_start_date = null;
+        $newObject->publish_end_date = null;
+        $newObject->title = 'Copy of ' . $newObject->title;
+        $newObject->dateRules()->delete();
+        $newObject->start_time = null;
+        $newObject->end_time = null;
+        $newObject->door_time = null;
+        $newObject->save();
+
+        return $newObject;
+    }
 }
