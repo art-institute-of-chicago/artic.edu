@@ -583,6 +583,9 @@ a.m-media__img:hover object {
   @media screen and (max-height: 400px) {
     min-height: 350px;
   }
+  #krpanoSWFObject {
+    background: none !important;;
+  }
 }
 
 .m-media--l .m-viewer-virtualtour {
