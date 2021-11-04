@@ -6,17 +6,9 @@
                     @slot('image', $item->imageFront('hero'))
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
-                @if ($item->videoFront)
-                    @component('components.atoms._video')
-                        @slot('video', $item->videoFront)
-                        @slot('autoplay', true)
-                        @slot('loop', true)
-                        @slot('muted', true)
-                        @slot('title', $item->videoFront['fallbackImage']['alt'] ?? $item->imageFront('hero')['alt'] ?? null)
-                    @endcomponent
-                    @component('components.atoms._media-play-pause-video')
-                    @endcomponent
-                @endif
+                @component('components.molecules._m-listing-video')
+                    @slot('item', $item)
+                @endcomponent
             @else
                 <span class="default-img"></span>
             @endif
