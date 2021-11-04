@@ -20,9 +20,6 @@
             @else
                 <span class="default-img"></span>
             @endif
-            @if ($item->isVideo)
-                <svg class="icon--play--48"><use xlink:href="#icon--play--48" /></svg>
-            @endif
         </span>
         <span class="m-listing__meta" data-blur-clip-to>
             @component('components.atoms._title')

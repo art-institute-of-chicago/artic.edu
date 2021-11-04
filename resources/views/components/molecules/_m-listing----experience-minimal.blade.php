@@ -20,9 +20,6 @@
             @else
                 <span class="default-img"></span>
             @endif
-            @if ($item->isVideo)
-                <svg class="icon--play--48"><use xlink:href="#icon--play--48" /></svg>
-            @endif
             <span class="m-listing__img__overlay">
                 <svg class="icon--closer-look"><use xlink:href="#icon--closer-look"></use></svg>
             </span>
