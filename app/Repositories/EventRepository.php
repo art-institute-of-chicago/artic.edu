@@ -297,6 +297,10 @@ class EventRepository extends ModuleRepository
     {
         $newObject = parent::duplicate($id, $titleColumnKey);
 
+        if (!$newObject) {
+            throw new \Exception('Original event does not pass validation');
+        }
+
         $newObject->published = 0;
         $newObject->publish_start_date = null;
         $newObject->publish_end_date = null;
