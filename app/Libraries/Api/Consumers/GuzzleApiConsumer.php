@@ -19,6 +19,9 @@ class GuzzleApiConsumer implements ApiConsumerInterface
      */
     public function request($method, $uri = '', array $options = [])
     {
+        // WEB-2259, WEB-2345: Allow 4xx and 5xx responses
+        $options = array_merge($options, ['http_errors' => false]);
+
         $response = $this->client->request($method, $uri, $options);
         $contents = $response->getBody()->getContents();
         $body = json_decode($contents);
