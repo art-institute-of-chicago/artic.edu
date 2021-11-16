@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Api\DepartmentRepository;
-use App\Libraries\ExploreFurther\BaseService as ExploreDepartments;
 
 class DepartmentController extends FrontController
 {

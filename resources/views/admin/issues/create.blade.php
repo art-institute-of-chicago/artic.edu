@@ -18,7 +18,6 @@
     @formField('input', [
         'name' => 'slug',
         'label' => 'Permalink',
-        'translated' => true,
         'ref' => 'permalink',
         'prefix' => $permalinkPrefix ?? ''
     ])

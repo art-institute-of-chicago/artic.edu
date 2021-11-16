@@ -122,7 +122,7 @@ class AicConnection implements ApiConnectionInterface
             $ttl = $this->ttl ?? config('api.cache_ttl');
 
             $response = \Cache::remember($cacheKey, $ttl, function () use ($verb, $endpoint, $options) {
-                // WEB-2259: Somewhere here – figure out if the request failed?
+                // WEB-2259: Error handling is done in the ApiConsumer
                 return $this->client->request($verb, $endpoint, $options);
             });
 

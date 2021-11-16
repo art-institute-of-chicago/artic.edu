@@ -19,14 +19,23 @@ class GuzzleApiConsumer implements ApiConsumerInterface
      */
     public function request($method, $uri = '', array $options = [])
     {
+        // WEB-2259, WEB-2345: Allow 4xx and 5xx responses
+        $options = array_merge($options, ['http_errors' => false]);
+
         $response = $this->client->request($method, $uri, $options);
         $contents = $response->getBody()->getContents();
         $body = json_decode($contents);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new \Exception($contents);
-        } elseif (isset($body->error) && $body->status !== 404) {
-            throw new \Exception($contents);
+            throw new \Exception('Invalid JSON: ' . $contents);
+        }
+
+        if (is_object($body) && isset($body->error) && $body->status !== 404) {
+            throw new \Exception('API error: ' . $contents);
+        }
+
+        if (!in_array($response->getStatusCode(), [200, 404])) {
+            throw new \Exception('API invalid response: ' . $contents);
         }
 
         return (object) [

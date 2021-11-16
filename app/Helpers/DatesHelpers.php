@@ -95,6 +95,7 @@ class DatesHelpers
             }
             $prev = $year;
         }
+        return $prev;
     }
 
     public static function incrementAfter($date)
@@ -104,5 +105,6 @@ class DatesHelpers
                 return $year;
             }
         }
+        return Carbon::now()->year;
     }
 }

@@ -6,7 +6,6 @@ use App\Models\Fee;
 use App\Models\FeeAge;
 use App\Models\FeeCategory;
 use App\Models\Page;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class VisitController extends FrontController

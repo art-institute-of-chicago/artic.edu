@@ -7,17 +7,10 @@
                         @slot('image', $image ?? $item->imageFront('default') ?? $item->imageFront('hero') ?? $item->imageFront('listing'))
                         @slot('settings', $imageSettings ?? '')
                     @endcomponent
-                    @if ($item->videoFront)
-                        @component('components.atoms._video')
-                            @slot('video', $item->videoFront)
-                            @slot('autoplay', true)
-                            @slot('loop', true)
-                            @slot('muted', true)
-                            @slot('title', $item->videoFront['fallbackImage']['alt'] ?? $image['alt'] ?? $item->imageFront('default')['alt'] ?? $item->imageFront('hero')['alt'] ?? $item->imageFront('listing')['alt'] ?? null)
-                        @endcomponent
-                        @component('components.atoms._media-play-pause-video')
-                        @endcomponent
-                    @endif
+                    @component('components.molecules._m-listing-video')
+                        @slot('item', $item)
+                        @slot('image', $image ?? null)
+                    @endcomponent
                 </span>
             @elseif (isset($hideImage) && !$hideImage)
                 <span class="default-img"></span>

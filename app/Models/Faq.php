@@ -10,10 +10,9 @@ class Faq extends AbstractModel
         'link',
         'page_id',
         'title',
-        'active'
     ];
 
-    public $checkboxes = ['published', 'active'];
+    public $checkboxes = ['published'];
 
     public function page()
     {

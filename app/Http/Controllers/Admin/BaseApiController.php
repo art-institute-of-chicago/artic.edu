@@ -15,7 +15,6 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Helpers\UrlHelpers;
-use Illuminate\Http\Request;
 
 class BaseApiController extends ModuleController
 {

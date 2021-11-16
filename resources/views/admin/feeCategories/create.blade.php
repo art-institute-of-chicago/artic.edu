@@ -1,12 +1,10 @@
 @formField('input', [
     'name' => 'title',
     'label' => 'Ttle',
-    'required' => true,
-    'translated' => true
+    'required' => true
 ])
 @formField('input', [
     'name' => 'tooltip',
     'label' => 'Tooltip',
-    'required' => true,
-    'translated' => true
+    'required' => true
 ])

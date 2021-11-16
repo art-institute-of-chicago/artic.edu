@@ -3,7 +3,7 @@
   -- found in the DAMS it returns dimension of 0x0. In which case This
   -- whole block should be skipped.
   --}}
-@if (isset($images) and $images and $images->first()['width'])
+@if (isset($images) && $images && $images->first() && $images->first()['width'])
 
 @php
 $maxZoomWindowSize = (isset($maxZoomWindowSize) && $maxZoomWindowSize) ? $maxZoomWindowSize : 1280;

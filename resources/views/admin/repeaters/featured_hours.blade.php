@@ -8,9 +8,7 @@
             'name' => 'title',
             'field_name' => 'title',
             'label' => 'Title',
-            'required' => true,
-            'translated' => true
-
+            'required' => true
         ])
         @formField('input', [
             'name' => 'external_link',
@@ -23,7 +21,6 @@
             'name' => 'copy',
             'field_name' => 'copy',
             'label' => 'Text',
-            'required' => true,
-            'translated' => true
+            'required' => true
         ])
     </div>

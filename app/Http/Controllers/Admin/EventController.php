@@ -13,6 +13,7 @@ class EventController extends ModuleController
     protected $indexOptions = [
         'publish' => true,
         'bulkPublish' => true,
+        'duplicate' => true,
     ];
 
     protected $indexColumns = [
@@ -65,7 +66,9 @@ class EventController extends ModuleController
         }
 
         // This is a db search, not Elasticsearch search
-        if ($this->getRequestFilters()['search'] ?? false) {
+        $filters = $this->getRequestFilters();
+
+        if (is_array($filters) && ($filters['search'] ?? false)) {
             request()->merge([
                 'sortKey' => null, // '_score',
                 'sortDir' => null, // 'desc',

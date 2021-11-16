@@ -6,8 +6,7 @@
 @formField('input', [
     'name' => 'name',
     'label' => 'Entrance',
-    'required' => true,
-    'translated' => true
+    'required' => true
 ])
 
 @component('twill::partials.form.utils._collapsed_fields', ['label' => 'Edit location'])

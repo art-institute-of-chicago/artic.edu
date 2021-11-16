@@ -1,7 +1,32 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\ArticlesController;
+use App\Http\Controllers\API\ArtistsController;
+use App\Http\Controllers\API\ClosuresController;
+use App\Http\Controllers\API\DigitalPublicationsController;
+use App\Http\Controllers\API\DigitalPublicationSectionsController;
+use App\Http\Controllers\API\EducatorResourcesController;
+use App\Http\Controllers\API\EmailSeriesController;
+use App\Http\Controllers\API\EventsController;
+use App\Http\Controllers\API\EventOccurrencesController;
+use App\Http\Controllers\API\EventProgramsController;
+use App\Http\Controllers\API\ExhibitionsController;
+use App\Http\Controllers\API\ExperiencesController;
+use App\Http\Controllers\API\GenericPagesController;
+use App\Http\Controllers\API\GeotargetController;
+use App\Http\Controllers\API\HighlightsController;
+use App\Http\Controllers\API\HoursController;
+use App\Http\Controllers\API\InteractiveFeaturesController;
+use App\Http\Controllers\API\LocationsController;
+use App\Http\Controllers\API\PressReleasesController;
+use App\Http\Controllers\API\PrintedPublicationsController;
+use App\Http\Controllers\API\ResearchGuidesController;
+use App\Http\Controllers\API\SponsorsController;
+use App\Http\Controllers\API\StaticPagesController;
+use App\Http\Controllers\API\TagsController;
+use App\Http\Controllers\API\VideosController;
+use App\Http\Controllers\SeamlessImagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +44,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'v1'], function () {
-    Route::get('geotarget', 'API\GeotargetController@geotarget');
+    Route::get('geotarget', [GeotargetController::class, 'geotarget']);
 
     Route::get('/', function () {
         return "API";
@@ -28,143 +53,143 @@ Route::group(['prefix' => 'v1'], function () {
     /**
      * Tags ------------------------------------------------------
      */
-    Route::get('tags', 'API\TagsController@index');
-    Route::get('tags/{id}', 'API\TagsController@show');
+    Route::get('tags', [TagsController::class, 'index']);
+    Route::get('tags/{id}', [TagsController::class, 'show']);
 
     /**
      * Locations ------------------------------------------------------
      */
-    Route::get('locations', 'API\LocationsController@index');
-    Route::get('locations/{id}', 'API\LocationsController@show');
+    Route::get('locations', [LocationsController::class, 'index']);
+    Route::get('locations/{id}', [LocationsController::class, 'show']);
 
     /**
      * Hours ------------------------------------------------------
      */
-    Route::get('hours', 'API\HoursController@index');
-    Route::get('hours/{id}', 'API\HoursController@show');
+    Route::get('hours', [HoursController::class, 'index']);
+    Route::get('hours/{id}', [HoursController::class, 'show']);
 
     /**
      * Hours ------------------------------------------------------
      */
-    Route::get('closures', 'API\ClosuresController@index');
-    Route::get('closures/deleted', 'API\ClosuresController@deleted');
-    Route::get('closures/{id}', 'API\ClosuresController@show');
+    Route::get('closures', [ClosuresController::class, 'index']);
+    Route::get('closures/deleted', [ClosuresController::class, 'deleted']);
+    Route::get('closures/{id}', [ClosuresController::class, 'show']);
 
     /**
      * Exhibitions ------------------------------------------------------
      */
-    Route::get('exhibitions', 'API\ExhibitionsController@index');
-    Route::get('exhibitions/{id}', 'API\ExhibitionsController@show');
+    Route::get('exhibitions', [ExhibitionsController::class, 'index']);
+    Route::get('exhibitions/{id}', [ExhibitionsController::class, 'show']);
 
     /**
      * Events ------------------------------------------------------
      */
-    Route::get('events', 'API\EventsController@index');
-    Route::get('events/deleted', 'API\EventsController@deleted');
-    Route::get('event-occurrences', 'API\EventOccurrencesController@occurrences');
-    Route::get('events/{id}', 'API\EventsController@show');
+    Route::get('events', [EventsController::class, 'index']);
+    Route::get('events/deleted', [EventsController::class, 'deleted']);
+    Route::get('event-occurrences', [EventOccurrencesController::class, 'occurrences']);
+    Route::get('events/{id}', [EventsController::class, 'show']);
 
     /**
      * Sponsors ------------------------------------------------------
      */
-    Route::get('sponsors', 'API\SponsorsController@index');
+    Route::get('sponsors', [SponsorsController::class, 'index']);
 
     /**
      * Event-programs ------------------------------------------------------
      */
-    Route::get('event-programs', 'API\EventProgramsController@index');
+    Route::get('event-programs', [EventProgramsController::class, 'index']);
 
     /**
      * Articles ------------------------------------------------------
      */
-    Route::get('articles', 'API\ArticlesController@index');
-    Route::get('articles/deleted', 'API\ArticlesController@deleted');
-    Route::get('articles/{id}', 'API\ArticlesController@show');
+    Route::get('articles', [ArticlesController::class, 'index']);
+    Route::get('articles/deleted', [ArticlesController::class, 'deleted']);
+    Route::get('articles/{id}', [ArticlesController::class, 'show']);
 
     /**
      * Highlights ------------------------------------------------------
      */
-    Route::get('highlights', 'API\HighlightsController@index');
-    Route::get('highlights/{id}', 'API\HighlightsController@show');
+    Route::get('highlights', [HighlightsController::class, 'index']);
+    Route::get('highlights/{id}', [HighlightsController::class, 'show']);
 
     /**
      * Artists ------------------------------------------------------
      */
-    Route::get('artists', 'API\ArtistsController@index');
-    Route::get('artists/{id}', 'API\ArtistsController@show');
+    Route::get('artists', [ArtistsController::class, 'index']);
+    Route::get('artists/{id}', [ArtistsController::class, 'show']);
 
-    Route::get('staticpages', 'API\StaticPagesController@index');
+    Route::get('staticpages', [StaticPagesController::class, 'index']);
 
-    Route::get('staticpages/{id}', 'API\StaticPagesController@show');
+    Route::get('staticpages/{id}', [StaticPagesController::class, 'show']);
 
-    Route::get('emailseries', 'API\EmailSeriesController@index');
+    Route::get('emailseries', [EmailSeriesController::class, 'index']);
 
-    Route::get('emailseries/{id}', 'API\EmailSeriesController@show');
+    Route::get('emailseries/{id}', [EmailSeriesController::class, 'show']);
 
     /**
      * Generic pages ------------------------------------------------------
      */
-    Route::get('genericpages', 'API\GenericPagesController@index');
-    Route::get('genericpages/deleted', 'API\GenericPagesController@deleted');
-    Route::get('genericpages/{id}', 'API\GenericPagesController@show');
+    Route::get('genericpages', [GenericPagesController::class, 'index']);
+    Route::get('genericpages/deleted', [GenericPagesController::class, 'deleted']);
+    Route::get('genericpages/{id}', [GenericPagesController::class, 'show']);
 
     /**
      * Press releases ------------------------------------------------------
      */
-    Route::get('pressreleases', 'API\PressReleasesController@index');
-    Route::get('pressreleases/deleted', 'API\PressReleasesController@deleted');
-    Route::get('pressreleases/{id}', 'API\PressReleasesController@show');
+    Route::get('pressreleases', [PressReleasesController::class, 'index']);
+    Route::get('pressreleases/deleted', [PressReleasesController::class, 'deleted']);
+    Route::get('pressreleases/{id}', [PressReleasesController::class, 'show']);
 
     /**
      * Research guides ------------------------------------------------------
      */
-    Route::get('researchguides', 'API\ResearchGuidesController@index');
-    Route::get('researchguides/deleted', 'API\ResearchGuidesController@deleted');
-    Route::get('researchguides/{id}', 'API\ResearchGuidesController@show');
+    Route::get('researchguides', [ResearchGuidesController::class, 'index']);
+    Route::get('researchguides/deleted', [ResearchGuidesController::class, 'deleted']);
+    Route::get('researchguides/{id}', [ResearchGuidesController::class, 'show']);
 
     /**
      * Educator resources ------------------------------------------------------
      */
-    Route::get('educatorresources', 'API\EducatorResourcesController@index');
-    Route::get('educatorresources/deleted', 'API\EducatorResourcesController@deleted');
-    Route::get('educatorresources/{id}', 'API\EducatorResourcesController@show');
+    Route::get('educatorresources', [EducatorResourcesController::class, 'index']);
+    Route::get('educatorresources/deleted', [EducatorResourcesController::class, 'deleted']);
+    Route::get('educatorresources/{id}', [EducatorResourcesController::class, 'show']);
 
     /**
      * Digital publications ------------------------------------------------------
      */
-    Route::get('digitalpublications', 'API\DigitalPublicationsController@index');
-    Route::get('digitalpublications/deleted', 'API\DigitalPublicationsController@deleted');
-    Route::get('digitalpublications/{id}', 'API\DigitalPublicationsController@show');
+    Route::get('digitalpublications', [DigitalPublicationsController::class, 'index']);
+    Route::get('digitalpublications/deleted', [DigitalPublicationsController::class, 'deleted']);
+    Route::get('digitalpublications/{id}', [DigitalPublicationsController::class, 'show']);
 
     /**
      * Digital publication sections ------------------------------------------------------
      */
-    Route::get('digitalpublicationsections', 'API\DigitalPublicationSectionsController@index');
-    Route::get('digitalpublicationsections/deleted', 'API\DigitalPublicationSectionsController@deleted');
-    Route::get('digitalpublicationsections/{id}', 'API\DigitalPublicationSectionsController@show');
+    Route::get('digitalpublicationsections', [DigitalPublicationSectionsController::class, 'index']);
+    Route::get('digitalpublicationsections/deleted', [DigitalPublicationSectionsController::class, 'deleted']);
+    Route::get('digitalpublicationsections/{id}', [DigitalPublicationSectionsController::class, 'show']);
 
     /**
      * Printed publications ------------------------------------------------------
      */
-    Route::get('printedpublications', 'API\PrintedPublicationsController@index');
-    Route::get('printedpublications/deleted', 'API\PrintedPublicationsController@deleted');
-    Route::get('printedpublications/{id}', 'API\PrintedPublicationsController@show');
+    Route::get('printedpublications', [PrintedPublicationsController::class, 'index']);
+    Route::get('printedpublications/deleted', [PrintedPublicationsController::class, 'deleted']);
+    Route::get('printedpublications/{id}', [PrintedPublicationsController::class, 'show']);
 
     /**
      * Videos --------------------------------------------------------------------
      */
-    Route::get('videos', 'API\VideosController@index');
-    Route::get('videos/deleted', 'API\VideosController@deleted');
-    Route::get('videos/{id}', 'API\VideosController@show');
+    Route::get('videos', [VideosController::class, 'index']);
+    Route::get('videos/deleted', [VideosController::class, 'deleted']);
+    Route::get('videos/{id}', [VideosController::class, 'show']);
 
     /**
      * Interactive features --------------------------------------------------------------------
      */
-    Route::get('interactive-features', 'API\InteractiveFeaturesController@index');
-    Route::get('interactive-features/{id}', 'API\InteractiveFeaturesController@show');
-    Route::get('experiences', 'API\ExperiencesController@index');
-    Route::get('experiences/{id}', 'API\ExperiencesController@show');
+    Route::get('interactive-features', [InteractiveFeaturesController::class, 'index']);
+    Route::get('interactive-features/{id}', [InteractiveFeaturesController::class, 'show']);
+    Route::get('experiences', [ExperiencesController::class, 'index']);
+    Route::get('experiences/{id}', [ExperiencesController::class, 'show']);
 
-    Route::options('seamless-images/{id}', 'SeamlessImagesController@byFile');
-    Route::get('seamless-images/{id}', 'SeamlessImagesController@byFile');
+    Route::options('seamless-images/{id}', [SeamlessImagesController::class, 'byFile']);
+    Route::get('seamless-images/{id}', [SeamlessImagesController::class, 'byFile']);
 });

@@ -63,7 +63,9 @@ class ExhibitionController extends BaseApiController
     {
         parent::__construct(...func_get_args());
 
-        if ($this->getRequestFilters()['search'] ?? false) {
+        $filters = $this->getRequestFilters();
+
+        if (is_array($filters) && ($filters['search'] ?? false)) {
             $this->defaultOrders = ['_score' => 'desc'];
         } else {
             $this->defaultOrders = ['aic_start_at' => 'desc'];
