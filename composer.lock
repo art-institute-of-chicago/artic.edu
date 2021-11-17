@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4455ee74e2b1a16718ebc0cb12d0b8a",
+    "content-hash": "98dee1ee534ebf83d8143ec7574e36e8",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -6434,16 +6434,16 @@
         },
         {
             "name": "salesforce-mc/fuel-sdk-php",
-            "version": "v1.4.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/salesforce-marketingcloud/FuelSDK-PHP.git",
-                "reference": "27895de944c1e64ccc09a36a5bdb1838d0b5c8aa"
+                "url": "https://github.com/axsweet/FuelSDK-PHP.git",
+                "reference": "a5be7ca56420b9cbc6114faff4f6d1846e5d9c53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/salesforce-marketingcloud/FuelSDK-PHP/zipball/27895de944c1e64ccc09a36a5bdb1838d0b5c8aa",
-                "reference": "27895de944c1e64ccc09a36a5bdb1838d0b5c8aa",
+                "url": "https://api.github.com/repos/axsweet/FuelSDK-PHP/zipball/a5be7ca56420b9cbc6114faff4f6d1846e5d9c53",
+                "reference": "a5be7ca56420b9cbc6114faff4f6d1846e5d9c53",
                 "shasum": ""
             },
             "require": {
@@ -6459,13 +6459,18 @@
                 "phpdocumentor/phpdocumentor": "2.8.0",
                 "phpunit/phpunit": ">=5.7.20"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "FuelSdk\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "FuelSdk\\Test\\": "tests/"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -6481,10 +6486,9 @@
                 "sdk"
             ],
             "support": {
-                "issues": "https://github.com/salesforce-marketingcloud/FuelSDK-PHP/issues",
-                "source": "https://github.com/salesforce-marketingcloud/FuelSDK-PHP/tree/v1.4.0"
+                "source": "https://github.com/axsweet/FuelSDK-PHP/tree/master"
             },
-            "time": "2019-08-21T13:35:31+00:00"
+            "time": "2021-10-26T20:46:29+00:00"
         },
         {
             "name": "sentry/sdk",
@@ -14700,6 +14704,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "aic/data-hub-foundation": 20,
+        "salesforce-mc/fuel-sdk-php": 20,
         "yeslogic/prince-php-wrapper": 20
     },
     "prefer-stable": false,

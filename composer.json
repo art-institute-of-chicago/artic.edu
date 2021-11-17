@@ -14,6 +14,10 @@
             "url": "https://github.com/art-institute-of-chicago/prince-php-wrapper.git"
         },
         {
+            "type": "vcs",
+            "url": "https://github.com/axsweet/FuelSDK-PHP.git"
+        },
+        {
             "type": "package",
             "package": {
                 "type": "metapackage",
@@ -52,7 +56,7 @@
         "michelf/php-smartypants": "^1.8",
         "ramsey/uuid": "^4.0",
         "rlanvin/php-rrule": "^2.0",
-        "salesforce-mc/fuel-sdk-php": "^1.4",
+        "salesforce-mc/fuel-sdk-php": "dev-master",
         "sentry/sentry-laravel": "^2.9",
         "spatie/calendar-links": "^1.5",
         "spatie/laravel-feed": "^2.7",
