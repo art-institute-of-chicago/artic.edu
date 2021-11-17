@@ -1,6 +1,10 @@
 @php
 $print = app('printservice')->isPrintMode();
-$pClass = request()->route()->getAction()['controller'] ?? 'App\Http\Controllers\GenericPagesController';
+$action = request()->route()->getAction();
+$pClass = 'App\Http\Controllers\GenericPagesController';
+if (is_array($action) && $action['controller']) {
+    $pClass = $action['controller'];
+}
 $pClass = preg_replace('/App\\\\Http\\\\Controllers\\\\/i','p-',$pClass);
 $pClass = preg_replace('/Controller/i','',$pClass);
 $pClass = strtolower(preg_replace('/@/i','-',$pClass));
