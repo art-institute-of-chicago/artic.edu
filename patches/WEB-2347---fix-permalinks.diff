@@ -1,0 +1,14 @@
+diff --git a/frontend/js/components/TitleEditor.vue b/frontend/js/components/TitleEditor.vue
+index b3175ea1df832abc4b7e917a22da243101050e93..f62e73a2b0b10c160139710b269dd72b94e78619 100755
+--- a/frontend/js/components/TitleEditor.vue
++++ b/frontend/js/components/TitleEditor.vue
+@@ -107,7 +107,8 @@
+         return titleValue || this.warningMessage
+       },
+       permalink: function () {
+-        return this.fieldValueByName('slug')[this.currentLocale.value]
++        const slug = this.fieldValueByName('slug') ? this.fieldValueByName('slug') : ''
++        return typeof slug === 'string' ? slug : slug[this.currentLocale.value]
+       },
+       ...mapState({
+         baseUrl: state => state.form.baseUrl,
