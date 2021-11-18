@@ -37,7 +37,8 @@ class ArticleRepository extends ModuleRepository
 
         $this->updateMultiBrowserApiRelated($object, $fields, 'further_reading_items', [
             'articles' => false,
-            'experiences' => false
+            'experiences' => false,
+            'highlights' => false,
         ]);
 
         parent::afterSave($object, $fields);
@@ -49,7 +50,8 @@ class ArticleRepository extends ModuleRepository
 
         $fields['browsers']['further_reading_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'further_reading_items', [], [
             'articles' => false,
-            'experiences' => false
+            'experiences' => false,
+            'highlights' => false,
         ]);
 
         return $fields;
