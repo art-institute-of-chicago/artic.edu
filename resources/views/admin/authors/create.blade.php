@@ -21,6 +21,7 @@
     @formField('input', [
         'name' => 'slug',
         'label' => 'Permalink',
+        'translated' => true, # WEB-2347
         'ref' => 'permalink',
         'prefix' => $permalinkPrefix ?? ''
     ])
