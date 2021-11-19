@@ -1,10 +1,4 @@
-@formField('input', [
-    'name' => $titleFormKey ?? 'title',
-    'label' => ucfirst($titleFormKey ?? 'title'),
-    'translated' => $translateTitle ?? false,
-    'required' => true,
-    'onChange' => 'formatPermalink'
-])
+@include('admin.partials.create')
 
 @formField('wysiwyg', [
     'name' => 'description',
@@ -16,13 +10,3 @@
         'bold', 'italic', 'link'
     ],
 ])
-
-@if ($permalink ?? true)
-    @formField('input', [
-        'name' => 'slug',
-        'label' => 'Permalink',
-        'translated' => true, # WEB-2347
-        'ref' => 'permalink',
-        'prefix' => $permalinkPrefix ?? ''
-    ])
-@endif
