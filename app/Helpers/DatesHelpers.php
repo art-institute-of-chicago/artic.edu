@@ -2,10 +2,29 @@
 
 namespace App\Helpers;
 
-use \Carbon\Carbon;
+use Carbon\Carbon;
 
 class DatesHelpers
 {
+    /**
+     * WEB-2344: Fix event dates from incrementing by UTC offset on save.
+     * @link https://github.com/area17/twill/issues/745
+     */
+    public static function stripTime($value)
+    {
+        if (!$value) {
+            return;
+        }
+
+        if (!is_string($value)) {
+            return;
+        }
+
+        return (new Carbon($value))
+            ->setTime(0, 0, 0)
+            ->toDateTimeString();
+    }
+
     public static function printDay($date)
     {
         return \Carbon\Carbon::parse($date)->format('D');

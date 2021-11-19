@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Helpers\DatesHelpers;
+
 class DateRule extends AbstractModel
 {
     protected $fillable = [
@@ -97,5 +99,25 @@ class DateRule extends AbstractModel
                 return strtoupper(substr($element, 0, 2));
             }
         }, ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']));
+    }
+
+    public function setStartDateAttribute($value)
+    {
+        $this->attributes['start_date'] = DatesHelpers::stripTime($value);
+    }
+
+    public function setEndDateAttribute($value)
+    {
+        $this->attributes['end_date'] = DatesHelpers::stripTime($value);
+    }
+
+    public function getStartDateAttribute()
+    {
+        return DatesHelpers::stripTime($this->attributes['start_date']);
+    }
+
+    public function getEndDateAttribute()
+    {
+        return DatesHelpers::stripTime($this->attributes['end_date']);
     }
 }
