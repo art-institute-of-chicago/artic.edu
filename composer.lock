@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b0282a1fc277d43e97314339c1d49e0",
+    "content-hash": "98dee1ee534ebf83d8143ec7574e36e8",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -10567,7 +10567,7 @@
         },
         {
             "name": "vendor/package-patches",
-            "version": "1.2.0",
+            "version": "1.1.0",
             "require": {
                 "netresearch/composer-patches-plugin": "~1.0"
             },
@@ -10578,10 +10578,6 @@
                         {
                             "title": "WEB-2103: Get repository model of API models",
                             "url": "patches/WEB-2301---get-repository-of-API-models.diff"
-                        },
-                        {
-                            "title": "WEB-2347: Fix permalinks",
-                            "url": "patches/WEB-2347---fix-permalinks.diff"
                         }
                     ]
                 }

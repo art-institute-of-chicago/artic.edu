@@ -22,7 +22,7 @@
             "package": {
                 "type": "metapackage",
                 "name": "vendor/package-patches",
-                "version": "1.2.0",
+                "version": "1.1.0",
                 "require": {
                     "netresearch/composer-patches-plugin": "~1.0"
                 },
@@ -32,10 +32,6 @@
                             {
                                 "title": "WEB-2103: Get repository model of API models",
                                 "url": "patches/WEB-2301---get-repository-of-API-models.diff"
-                            },
-                            {
-                                "title": "WEB-2347: Fix permalinks",
-                                "url": "patches/WEB-2347---fix-permalinks.diff"
                             }
                         ]
                     }
@@ -65,7 +61,7 @@
         "spatie/calendar-links": "^1.5",
         "spatie/laravel-feed": "^2.7",
         "spatie/laravel-sitemap": "^5.9",
-        "vendor/package-patches": "1.*",
+        "vendor/package-patches": "^1.0",
         "yeslogic/prince-php-wrapper": "dev-master"
     },
     "require-dev": {
