@@ -32,9 +32,9 @@ Example usage:
 
 ```
 <code><pre>@component('components.atoms._day')
-    @slot('date', DatesHelpers::printDate($date))
-    @slot('month', DatesHelpers::printMonth($date))
-    @slot('day', DatesHelpers::printDay($date))
+    @slot('date', DateHelpers::printDate($date))
+    @slot('month', DateHelpers::printMonth($date))
+    @slot('day', DateHelpers::printDay($date))
 @endcomponent</code></pre>
 ```
 

@@ -6,7 +6,7 @@ use App\Models\Api\Search;
 
 use Illuminate\Support\Str;
 
-use App\Helpers\DatesHelpers;
+use App\Helpers\DateHelpers;
 
 /**
  *
@@ -98,7 +98,7 @@ class BaseService
 
             // Build Date Tags
             if ($this->resource->birth_date && $this->resource->birth_date) {
-                $tags['date'] = collect([$this->resource->birth_date .'|' .$this->resource->death_date => DatesHelpers::printYear($this->resource->birth_date) ."–" .DatesHelpers::printYear($this->resource->death_date)]);
+                $tags['date'] = collect([$this->resource->birth_date .'|' .$this->resource->death_date => DateHelpers::printYear($this->resource->birth_date) ."–" .DateHelpers::printYear($this->resource->death_date)]);
             }
         } else {
             // Build Classification Tags
@@ -138,8 +138,8 @@ class BaseService
             } else {
                 $years = explode('|', $parameters->get('ef-date_ids'));
 
-                $beforeYear = Str::contains($parameters->get('ef-date_ids'), '|') ? $years[0] : DatesHelpers::incrementBefore($parameters->get('ef-date_ids'));
-                $afterYear = Str::contains($parameters->get('ef-date_ids'), '|') ? $years[1] : DatesHelpers::incrementAfter($parameters->get('ef-date_ids'));
+                $beforeYear = Str::contains($parameters->get('ef-date_ids'), '|') ? $years[0] : DateHelpers::incrementBefore($parameters->get('ef-date_ids'));
+                $afterYear = Str::contains($parameters->get('ef-date_ids'), '|') ? $years[1] : DateHelpers::incrementAfter($parameters->get('ef-date_ids'));
 
                 $query->byClassifications($parameters->get('ef-classification_ids'))
                     ->byArtists($parameters->get('ef-artist_ids'))
@@ -175,7 +175,7 @@ class BaseService
                     $query->byPlaces($id);
                     break;
                 case 'date':
-                    $query->dateRange(DatesHelpers::incrementBefore($id), DatesHelpers::incrementAfter($id));
+                    $query->dateRange(DateHelpers::incrementBefore($id), DateHelpers::incrementAfter($id));
                     break;
                 case 'color':
                     $query->byColor($id);
@@ -208,8 +208,8 @@ class BaseService
                 if (in_array($key, self::VALID_FILTERS)) {
                     switch ($key) {
                         case 'ef-date_ids':
-                            return route('collection', ['date-start' => str_replace(' ', '', DatesHelpers::printYear(DatesHelpers::incrementBefore($value))),
-                                                        'date-end' => str_replace(' ', '', DatesHelpers::printYear(DatesHelpers::incrementAfter($value)))]);
+                            return route('collection', ['date-start' => str_replace(' ', '', DateHelpers::printYear(DateHelpers::incrementBefore($value))),
+                                                        'date-end' => str_replace(' ', '', DateHelpers::printYear(DateHelpers::incrementAfter($value)))]);
                             break;
                         case 'ef-color_ids':
                             return route('collection', ['color' => $value]);
@@ -243,7 +243,7 @@ class BaseService
                         return route('collection', ['place_ids' => $id]);
                         break;
                     case 'date':
-                        return route('collection', ['date-start' => DatesHelpers::incrementBefore($id), 'date-end' => DatesHelpers::incrementAfter($id)]);
+                        return route('collection', ['date-start' => DateHelpers::incrementBefore($id), 'date-end' => DateHelpers::incrementAfter($id)]);
                         break;
                     case 'color':
                         return route('collection', ['color' => $id]);

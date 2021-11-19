@@ -3,7 +3,7 @@ namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
 use App\Helpers\StringHelpers;
-use App\Helpers\DatesHelpers;
+use App\Helpers\DateHelpers;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use DamsImageService;
@@ -325,7 +325,7 @@ class ArtworkPresenter extends BasePresenter
                 $date_start = Carbon::parse($item->date_earliest)->year;
                 $date_end = Carbon::parse($item->date_latest)->year;
 
-                $joined = join('-', array_unique([DatesHelpers::convertArtworkDates($date_start), DatesHelpers::convertArtworkDates($date_end)]));
+                $joined = join('-', array_unique([DateHelpers::convertArtworkDates($date_start), DateHelpers::convertArtworkDates($date_end)]));
 
                 return [
                     'label' => join(' ', [ $item->qualifier_title, $joined ]),

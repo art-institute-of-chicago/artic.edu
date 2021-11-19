@@ -6,7 +6,7 @@ use App\Libraries\Api\Models\BaseApiModel;
 use App\Libraries\Api\Builders\ApiModelBuilderSearch;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use App\Helpers\DatesHelpers;
+use App\Helpers\DateHelpers;
 
 class Search extends BaseApiModel
 {
@@ -481,8 +481,8 @@ class Search extends BaseApiModel
                 $this->basicQuery('style_id', $item->style_id, 2),
             ];
 
-            $date_start = DatesHelpers::incrementBefore($item->date_start);
-            $date_end = DatesHelpers::incrementAfter($item->date_start);
+            $date_start = DateHelpers::incrementBefore($item->date_start);
+            $date_end = DateHelpers::incrementAfter($item->date_start);
             $dateQuery = $this->dateQuery($date_start, $date_end, 1);
             array_push($shoulds, $dateQuery);
         } elseif ($class == \App\Models\Api\Artist::class) {

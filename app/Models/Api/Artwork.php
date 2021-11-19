@@ -10,7 +10,7 @@ use App\Models\Video;
 use App\Models\Vendor\Block;
 use App\Models\Behaviors\HasMediasApi;
 use App\Models\Behaviors\HasFeaturedRelated;
-use App\Helpers\DatesHelpers;
+use App\Helpers\DateHelpers;
 use App\Helpers\ImageHelpers;
 use App\Helpers\StringHelpers;
 
@@ -127,7 +127,7 @@ class Artwork extends BaseApiModel
 
     public function getDateBlockAttribute()
     {
-        return join('–', array_unique(array_filter([DatesHelpers::convertArtworkDates($this->date_start), DatesHelpers::convertArtworkDates($this->date_end)])));
+        return join('–', array_unique(array_filter([DateHelpers::convertArtworkDates($this->date_start), DateHelpers::convertArtworkDates($this->date_end)])));
     }
 
     public function getMultimediaElementsAttribute()
