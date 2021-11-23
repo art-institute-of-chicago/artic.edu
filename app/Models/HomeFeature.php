@@ -113,6 +113,11 @@ class HomeFeature extends AbstractModel
         return $this->imageFront('hero');
     }
 
+    public function getVideoFrontAttribute()
+    {
+        return $this->videoFront();
+    }
+
     public function videoFront($image = null)
     {
         if (!$image) {
