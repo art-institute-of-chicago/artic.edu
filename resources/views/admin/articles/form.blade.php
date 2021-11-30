@@ -145,6 +145,10 @@
                     'value' => '/collection/articles_publications/articles/browser'
                 ],
                 [
+                    'label' => 'Highlight',
+                    'value' => moduleRoute('highlights', 'collection', 'browser')
+                ],
+                [
                     'label' => 'Interactive feature',
                     'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser')
                 ]

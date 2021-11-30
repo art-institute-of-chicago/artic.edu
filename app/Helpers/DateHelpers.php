@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use Carbon\Carbon;
 
-class DatesHelpers
+class DateHelpers
 {
     /**
      * WEB-2344: Fix event dates from incrementing by UTC offset on save.

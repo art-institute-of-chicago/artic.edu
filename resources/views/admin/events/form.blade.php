@@ -52,20 +52,20 @@
                 @formField('select', [
                     'name' => 'start_time',
                     'label' => 'Start Time',
-                    'options' => DatesHelpers::hoursSelectOptions()
+                    'options' => DateHelpers::hoursSelectOptions()
                 ])
 
                 @formField('select', [
                     'name' => 'door_time',
                     'label' => 'Door Time',
-                    'options' => DatesHelpers::hoursSelectOptions()
+                    'options' => DateHelpers::hoursSelectOptions()
                 ])
             @endslot
             @slot('right')
                 @formField('select', [
                     'name' => 'end_time',
                     'label' => 'End Time',
-                    'options' => DatesHelpers::hoursSelectOptions()
+                    'options' => DateHelpers::hoursSelectOptions()
                 ])
             @endslot
         @endcomponent

@@ -287,7 +287,7 @@ return [
         'FrontendHelpers' => App\Helpers\FrontendHelpers::class,
         'BlockHelpers' => App\Helpers\BlockHelpers::class,
         'ColorHelpers' => App\Helpers\ColorHelpers::class,
-        'DatesHelpers' => App\Helpers\DatesHelpers::class,
+        'DateHelpers' => App\Helpers\DateHelpers::class,
         'ImageHelpers' => App\Helpers\ImageHelpers::class,
         'NavHelpers' => App\Helpers\NavHelpers::class,
         'UrlHelpers' => App\Helpers\UrlHelpers::class,

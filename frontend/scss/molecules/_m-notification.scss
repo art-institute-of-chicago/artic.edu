@@ -72,10 +72,16 @@
   position: relative;
 }
 
-// Re-enable this if the close button is enabled
-// .m-notification--header .m-notification__text {
-//   margin-right: 27px;
-// }
+// WEB-2354: Prevent text from colliding with close button
+.m-notification--header .m-notification__text {
+  margin-right: 28px;
+
+  @include breakpoint('small+') {
+    br {
+      display: none;
+    }
+  }
+}
 
 .m-notification--header .m-notification__close {
   width: auto;
@@ -132,6 +138,11 @@
   background: transparent;
   color: $color__text--title-contrast;
   cursor: pointer;
+
+  // WEB-2354: Raise close button on small and xsmall
+  @include breakpoint('small-') {
+    top: -4px;
+  }
 }
 
 

@@ -1,23 +1,4 @@
-{{-- Copied from resources/views/admin/partials/create.blade.php --}}
-@formField('input', [
-    'name' => $titleFormKey ?? 'title',
-    'label' => ucfirst($titleFormKey ?? 'title'),
-    'translated' => $translateTitle ?? false,
-    'required' => true,
-    'onChange' => 'formatPermalink',
-    'note' => 'Avoid HTML in this field. Use the "Title formatting (optional)" field for italics.',
-])
-
-@if ($permalink ?? true)
-    @formField('input', [
-        'name' => 'slug',
-        'label' => 'Permalink',
-        'ref' => 'permalink',
-        'prefix' => $permalinkPrefix ?? '',
-    ])
-@endif
-
-{{-- Custom fields below --}}
+@include('admin.partials.create')
 
 @formField('checkbox', [
     'name' => 'is_affiliate_group',

@@ -4,7 +4,7 @@ namespace App\Libraries\ExploreFurther;
 
 use App\Models\Api\Search;
 use Illuminate\Support\Arr;
-use App\Helpers\DatesHelpers;
+use App\Helpers\DateHelpers;
 
 /**
  *
@@ -50,9 +50,9 @@ class ArtworkService extends BaseService
 
         // Build Date Tags
         if ($this->resource->date_start && $this->resource->date_end) {
-            $before = DatesHelpers::incrementBefore($this->resource->date_start);
-            $after = DatesHelpers::incrementAfter($this->resource->date_start);
-            $tags['date'] = collect([$this->resource->date_start => DatesHelpers::printYear($before) ."–" .DatesHelpers::printYear($after)]);
+            $before = DateHelpers::incrementBefore($this->resource->date_start);
+            $after = DateHelpers::incrementAfter($this->resource->date_start);
+            $tags['date'] = collect([$this->resource->date_start => DateHelpers::printYear($before) ."–" .DateHelpers::printYear($after)]);
         }
 
         // Build Color Tags

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Helpers\DatesHelpers;
+use App\Helpers\DateHelpers;
 
 class DateRule extends AbstractModel
 {
@@ -103,21 +103,21 @@ class DateRule extends AbstractModel
 
     public function setStartDateAttribute($value)
     {
-        $this->attributes['start_date'] = DatesHelpers::stripTime($value);
+        $this->attributes['start_date'] = DateHelpers::stripTime($value);
     }
 
     public function setEndDateAttribute($value)
     {
-        $this->attributes['end_date'] = DatesHelpers::stripTime($value);
+        $this->attributes['end_date'] = DateHelpers::stripTime($value);
     }
 
     public function getStartDateAttribute()
     {
-        return DatesHelpers::stripTime($this->attributes['start_date']);
+        return DateHelpers::stripTime($this->attributes['start_date']);
     }
 
     public function getEndDateAttribute()
     {
-        return DatesHelpers::stripTime($this->attributes['end_date']);
+        return DateHelpers::stripTime($this->attributes['end_date']);
     }
 }
