@@ -257,7 +257,7 @@ class Artwork extends BaseApiModel
     {
         $main = $this->mainImage;
 
-        if ($main->isNotEmpty()) {
+        if (!empty($main)) {
             $main = $main->first()->imageFront();
             $main = array_merge($this->imageFront('hero'), [
                 'credit' => $this->getImageCopyright($main),
