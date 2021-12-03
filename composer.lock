@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/art-institute-of-chicago/data-hub-foundation.git",
-                "reference": "2abb9c8cc3bc3dd8099d92cd40f3ee6dc853b4c6"
+                "reference": "9496c44eba03f97c3748770b00dfadb1adf60160"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/art-institute-of-chicago/data-hub-foundation/zipball/2abb9c8cc3bc3dd8099d92cd40f3ee6dc853b4c6",
-                "reference": "2abb9c8cc3bc3dd8099d92cd40f3ee6dc853b4c6",
+                "url": "https://api.github.com/repos/art-institute-of-chicago/data-hub-foundation/zipball/9496c44eba03f97c3748770b00dfadb1adf60160",
+                "reference": "9496c44eba03f97c3748770b00dfadb1adf60160",
                 "shasum": ""
             },
             "require": {
@@ -51,7 +51,7 @@
                 "source": "https://github.com/art-institute-of-chicago/data-hub-foundation/tree/laravel-8-support",
                 "issues": "https://github.com/art-institute-of-chicago/data-hub-foundation/issues"
             },
-            "time": "2021-10-20T17:07:11+00:00"
+            "time": "2021-12-03T04:20:03+00:00"
         },
         {
             "name": "area17/twill",
