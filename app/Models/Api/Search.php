@@ -4,6 +4,7 @@ namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Libraries\Api\Builders\ApiModelBuilderSearch;
+use App\Libraries\Search\Filters\Departments as DepartmentFilter;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use App\Helpers\DateHelpers;
@@ -200,7 +201,13 @@ class Search extends BaseApiModel
 
     public function scopeByDepartments($query, $ids)
     {
-        return $this->scopeByListType($query, $ids, 'department_title.keyword');
+        // ART-48: Handle filtering by "Research Center"
+        $ids = empty($ids) ? $ids : str_replace(DepartmentFilter::RESEARCH_TITLE, implode(';', [
+            DepartmentFilter::ARCHIVE_TITLE,
+            DepartmentFilter::LIBRARY_TITLE,
+        ]), $ids);
+
+        return $this->scopeByListType($query, $ids, 'department_title.keyword', true);
     }
 
     public function scopeByPlaces($query, $ids)
@@ -347,7 +354,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByListType($query, $ids, $parameter)
+    public function scopeByListType($query, $ids, $parameter, $additive = false)
     {
         if (empty($ids)) {
             return $query;
@@ -360,6 +367,16 @@ class Search extends BaseApiModel
             $elements[] = [
                 "term" => [
                     $parameter => $id
+                ]
+            ];
+        }
+
+        if ($additive) {
+            $elements = [
+                [
+                    "bool" => [
+                        "should" => $elements
+                    ]
                 ]
             ];
         }
