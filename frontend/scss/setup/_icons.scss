@@ -223,6 +223,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--visit-capacity">
     <use xlink:href="#icon--visit-capacity"></use>
   </svg>
+  <svg class="icon--visit-capacity-2">
+    <use xlink:href="#icon--visit-capacity-2"></use>
+  </svg>
   <svg class="icon--zoom--24">
     <use xlink:href="#icon--zoom--24"></use>
   </svg>
@@ -611,6 +614,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 }
 
 .icon--visit-capacity {
+  width: 385px;
+  height: 260px;
+}
+
+.icon--visit-capacity-2 {
   width: 385px;
   height: 260px;
 }
