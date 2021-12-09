@@ -201,11 +201,7 @@ class Search extends BaseApiModel
 
     public function scopeByDepartments($query, $ids)
     {
-        // ART-48: Handle filtering by "Research Center"
-        $ids = empty($ids) ? $ids : str_replace(DepartmentFilter::RESEARCH_TITLE, implode(';', [
-            DepartmentFilter::ARCHIVE_TITLE,
-            DepartmentFilter::LIBRARY_TITLE,
-        ]), $ids);
+        $ids = DepartmentFilter::handleResearchCenter($ids);
 
         return $this->scopeByListType($query, $ids, 'department_title.keyword', true);
     }
