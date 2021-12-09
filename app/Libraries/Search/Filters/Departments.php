@@ -8,8 +8,8 @@ class Departments extends BaseFilteredList
     protected $entity     = \App\Models\Api\Department::class;
 
     private $hiddenDepartments = [
-        'PC‌-826' => 'AIC Archives',
-        'PC‌-824' => 'Ryerson and Burnham Libraries Special Collections',
+        'PC-826' => 'AIC Archives',
+        'PC-824' => 'Ryerson and Burnham Libraries Special Collections',
     ];
 
     public function generate()
