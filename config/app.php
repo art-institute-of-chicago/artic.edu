@@ -223,7 +223,7 @@ return [
         App\Providers\InvalidationServiceProvider::class,
         App\Providers\DebugServiceProvider::class,
 
-        Aic\Hub\Foundation\ResourceServiceProvider::class,
+        Aic\Hub\Foundation\Providers\ResourceServiceProvider::class,
         Intervention\HttpAuth\Laravel\HttpauthServiceProvider::class,
     ],
 
