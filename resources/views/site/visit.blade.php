@@ -1,3 +1,10 @@
+@php
+use Carbon\Carbon;
+
+$newHoursStartAt = Carbon::parse('2022-01-02T00:00:00-0600');
+$showNewHours = Carbon::now()->gt($newHoursStartAt);
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -94,7 +101,11 @@
                                     <span class="f-secondary">10&ndash;11 a.m.</span>
                                 </td>
                                 <td>
-                                    <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
+                                    @if ($showNewHours)
+                                        <span class="f-secondary">11 a.m.&ndash;5 p.m.</span>
+                                    @else
+                                        <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -116,7 +127,11 @@
                                     <span class="f-secondary">10&ndash;11 a.m.</span>
                                 </td>
                                 <td>
-                                    <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
+                                    @if ($showNewHours)
+                                        <span class="f-secondary">11 a.m.&ndash;5 p.m.</span>
+                                    @else
+                                        <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
+                                    @endif
                                 </td>
                             </tr>
                         </tbody>
@@ -206,9 +221,15 @@
 
         <div class="o-visit-capacity">
             <div class="o-visit-capacity__graph">
-                <svg role="img" aria-label="{{ $page->visit_capacity_alt }}" class="icon--visit-capacity">
-                    <use xlink:href="#icon--visit-capacity"></use>
-                </svg>
+                @if ($showNewHours)
+                    <svg role="img" aria-label="{{ $page->visit_capacity_alt }}" class="icon--visit-capacity-2">
+                        <use xlink:href="#icon--visit-capacity-2"></use>
+                    </svg>
+                @else
+                    <svg role="img" aria-label="{{ $page->visit_capacity_alt }}" class="icon--visit-capacity">
+                        <use xlink:href="#icon--visit-capacity"></use>
+                    </svg>
+                @endif
             </div>
             <div class="o-visit-capacity__text">
                 @if (!empty($page->visit_capacity_heading))

@@ -130,7 +130,7 @@ class Artwork extends BaseApiModel
         return join('–', array_unique(array_filter([DateHelpers::convertArtworkDates($this->date_start), DateHelpers::convertArtworkDates($this->date_end)])));
     }
 
-    public function getMultimediaElementsAttribute()
+    public function getMultimediaResourcesAttribute()
     {
         return Asset::query()
             ->forceEndpoint('generalSearch')

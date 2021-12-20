@@ -446,8 +446,8 @@ class ArtworkPresenter extends BasePresenter
             $content[] = $block;
         }
 
-        if ($this->entity->multimediaElements && $this->entity->multimediaElements->isNotEmpty()) {
-            $resultsByType = $this->entity->multimediaElements->groupBy('api_model')->sortKeys();
+        if ($this->entity->multimediaResources && $this->entity->multimediaResources->isNotEmpty()) {
+            $resultsByType = $this->entity->multimediaResources->groupBy('api_model')->sortKeys();
             $content[] = $this->buildMultimediaBlocks($resultsByType, 'Multimedia');
         }
 

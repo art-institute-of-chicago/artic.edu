@@ -7,10 +7,36 @@ class Departments extends BaseFilteredList
     protected $parameter  = 'department_ids';
     protected $entity     = \App\Models\Api\Department::class;
 
-    private $hiddenDepartments = [
-        'PC‌-826' => 'AIC Archives',
-        'PC‌-824' => 'Ryerson and Burnham Libraries Special Collections',
-    ];
+    // ART-48, WEB-1831: Combine library and archives into one filter
+    const RESEARCH_TITLE = 'Research Center';
+
+    private string $archiveTitle;
+    private string $libraryTitle;
+
+    private $hiddenDepartments;
+
+    public function __construct($buckets, $aggregationName)
+    {
+        parent::__construct(...func_get_args());
+
+        $this->archiveTitle = config('aic.department_archive_title');
+        $this->libraryTitle = config('aic.department_library_title');
+
+        $this->hiddenDepartments = [
+            'PC-826' => $this->archiveTitle,
+            'PC-824' => $this->libraryTitle,
+        ];
+
+        $archive = $this->buckets->firstWhere('key', $this->archiveTitle);
+        $library = $this->buckets->firstWhere('key', $this->libraryTitle);
+
+        if ($archive || $library) {
+            $this->buckets->push((object) [
+                'key' => self::RESEARCH_TITLE,
+                'doc_count' => ($archive->doc_count ?? 0) + ($library->doc_count ?? 0),
+            ]);
+        }
+    }
 
     public function generate()
     {
@@ -40,5 +66,13 @@ class Departments extends BaseFilteredList
     public function findLabel($key)
     {
         return ucfirst($key);
+    }
+
+    public static function handleResearchCenter($ids)
+    {
+        return empty($ids) ? $ids : str_replace(self::RESEARCH_TITLE, implode(';', [
+            config('aic.department_archive_title'),
+            config('aic.department_library_title'),
+        ]), $ids);
     }
 }
