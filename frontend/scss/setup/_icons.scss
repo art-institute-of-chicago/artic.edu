@@ -181,6 +181,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--print--24">
     <use xlink:href="#icon--print--24"></use>
   </svg>
+  <svg class="icon--proof-of-vaccination">
+    <use xlink:href="#icon--proof-of-vaccination"></use>
+  </svg>
   <svg class="icon--quote--48">
     <use xlink:href="#icon--quote--48"></use>
   </svg>
@@ -546,6 +549,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--print--24 {
   width: 24px;
   height: 24px;
+}
+
+.icon--proof-of-vaccination {
+  width: 1087.2px;
+  height: 696.9px;
 }
 
 .icon--quote--48 {
