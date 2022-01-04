@@ -398,27 +398,6 @@ $showNewHours = Carbon::now()->gt($newHoursStartAt);
         </div>
     @endcomponent
 
-    @component('components.molecules._m-title-bar')
-        @slot('links', array(
-          array('label' => __('More FAQs'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-category="nav-link"')
-        ))
-        @slot('id', 'faqs')
-        @lang('FAQs')
-    @endcomponent
-
-    @component('components.molecules._m-link-list')
-        @slot('screenreaderTitle', 'Example questions')
-        @slot('links', $faq['questions'])
-    @endcomponent
-
-    @component('components.molecules._m-links-bar')
-        @slot('variation', 'm-links-bar--title-bar-companion')
-        @slot('linksPrimary', array(
-        array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link'], 'variation' => 'btn--secondary'),
-        array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-category="nav-link"')
-        ))
-    @endcomponent
-
     @if (isset($admission['cityPass']['title']))
         <div class="m-mini-promo">
             @component('components.atoms._img')
@@ -456,6 +435,27 @@ $showNewHours = Carbon::now()->gt($newHoursStartAt);
             @endcomponent
         </div>
     @endif
+
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(
+          array('label' => __('More FAQs'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-category="nav-link"')
+        ))
+        @slot('id', 'faqs')
+        @lang('FAQs')
+    @endcomponent
+
+    @component('components.molecules._m-link-list')
+        @slot('screenreaderTitle', 'Example questions')
+        @slot('links', $faq['questions'])
+    @endcomponent
+
+    @component('components.molecules._m-links-bar')
+        @slot('variation', 'm-links-bar--title-bar-companion')
+        @slot('linksPrimary', array(
+        array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link'], 'variation' => 'btn--secondary'),
+        array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-category="nav-link"')
+        ))
+    @endcomponent
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'accessibility')
