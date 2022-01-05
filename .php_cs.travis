@@ -68,6 +68,7 @@ return $config->setRules([
     'no_break_comment' => true,             // There must be a comment when fall-through is intentional in a non-empty case body.
     'no_closing_tag' => true,               // The closing \?\> tag MUST be omitted from files containing only PHP.
     'no_empty_comment' => true,             // There should not be any empty comments.
+    'no_empty_phpdoc' => true,              // There should not be empty PHPDoc blocks.
 
 ])
 ->setFinder($finder);
