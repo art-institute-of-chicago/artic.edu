@@ -69,6 +69,7 @@ return $config->setRules([
     'no_closing_tag' => true,               // The closing \?\> tag MUST be omitted from files containing only PHP.
     'no_empty_comment' => true,             // There should not be any empty comments.
     'no_empty_phpdoc' => true,              // There should not be empty PHPDoc blocks.
+    'no_empty_statement' => true,           // Remove useless (semicolon) statements.
 
 ])
 ->setFinder($finder);

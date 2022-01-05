@@ -98,7 +98,7 @@ class Experience extends AbstractModel implements Sortable
                 ];
                 array_push($assets, $asset);
             }
-        };
+        }
 
         return $assets;
     }

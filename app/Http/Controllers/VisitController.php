@@ -69,7 +69,7 @@ class VisitController extends FrontController
                 'iconType' => $item->icon_type,
                 'text' => $item->text,
             ]);
-        };
+        }
         $whatToExpect = [
             'more_link' => $page->visit_what_to_expect_more_link,
             'more_text' => $page->visit_what_to_expect_more_text,
@@ -143,7 +143,7 @@ class VisitController extends FrontController
                 'label' => $faq->title,
                 'href' => $faq->link,
             ]);
-        };
+        }
 
         $faq = [
             'accesibility_link' => $page->visit_faq_accessibility_link,
@@ -170,7 +170,7 @@ class VisitController extends FrontController
                     'label' => $item->link_label,
                 ]],
             ]);
-        };
+        }
 
         $itemprops = [
             'name' => 'Art Institute of Chicago',

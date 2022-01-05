@@ -63,7 +63,7 @@ trait Handle3DModel
             $fields["{$fieldName}[annotation_list]"] = $model3d->getOriginal('annotation_list');
             $fields["{$fieldName}[hide_annotation]"] = $model3d->getOriginal('hide_annotation');
             $fields["{$fieldName}[hide_annotation_title]"] = $model3d->getOriginal('hide_annotation_title');
-        };
+        }
             
         return $fields;
     }

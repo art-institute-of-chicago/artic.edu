@@ -112,7 +112,7 @@ class BaseService
                     $classification = $classification->merge(
                         [$item->key => ucfirst($item->key)]
                     );
-                };
+                }
             }
             $tags['classification'] = $classification;
         }

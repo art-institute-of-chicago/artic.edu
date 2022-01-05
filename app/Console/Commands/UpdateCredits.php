@@ -20,6 +20,6 @@ class UpdateCredits extends Command
                 dump($event->hero_caption);
                 $event->save();
             }
-        };
+        }
     }
 }
