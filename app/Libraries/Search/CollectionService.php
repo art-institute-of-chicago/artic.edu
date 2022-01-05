@@ -40,7 +40,7 @@ class CollectionService
     /**
      * Pagination index used as a flag to get prev/next elements
      */
-    protected $page = null;
+    protected $page;
 
     public function __construct()
     {

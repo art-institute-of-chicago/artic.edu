@@ -13,7 +13,7 @@ use App\Models\Form\EmailSubscriptions;
 
 class EmailSubscriptionsController extends FormController
 {
-    protected $old = null;
+    protected $old;
 
     public function index(\Illuminate\Http\Request $request)
     {
