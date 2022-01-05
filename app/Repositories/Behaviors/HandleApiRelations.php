@@ -79,7 +79,7 @@ trait HandleApiRelations
                 'browser_name' => $relationship,
                 'position' => $position,
             ]);
-            $position++;
+            ++$position;
         });
     }
 

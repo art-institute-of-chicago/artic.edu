@@ -152,7 +152,7 @@ class StringHelpers
 
         $openedTags = array_reverse($openedTags);
 
-        for ($i = 0; $i < $openedLength; $i++) {
+        for ($i = 0; $i < $openedLength; ++$i) {
             if (!in_array($openedTags[$i], $closedTags)) {
                 $string .= '</' . $openedTags[$i] . '>';
             } else {
