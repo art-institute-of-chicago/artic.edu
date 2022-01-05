@@ -61,6 +61,7 @@ return $config->setRules([
     'multiline_comment_opening_closing' => true, // DocBlocks must start with two asterisks, multiline comments must start with a single asterisk, after the opening slash. Both must end with a single asterisk before the closing slash.
     'multiline_whitespace_before_semicolons' => true, // Forbid multi-line whitespace before the closing semicolon or move the semicolon to the new line for chained calls.
     'native_function_casing' => true,       // Function defined by PHP should be called using the correct casing.
+    'native_function_type_declaration_casing' => true, // Native type hints for functions should use the correct case.
 
 ])
 ->setFinder($finder);
