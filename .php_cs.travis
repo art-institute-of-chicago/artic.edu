@@ -95,6 +95,7 @@ return $config->setRules([
     'no_whitespace_in_blank_line' => true,  // Remove trailing whitespace at the end of blank lines.
     'normalize_index_brace' => true,        // Array index should always be written by using square braces.
     'object_operator_without_whitespace' => true, // There should not be space before or after object operators -> and ?->.
+    'return_type_declaration' => true,      // There should be one or no space before colon, and one space after it in return type declarations, according to configuration.
 
 ])
 ->setFinder($finder);
