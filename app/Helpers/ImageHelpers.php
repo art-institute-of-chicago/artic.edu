@@ -331,9 +331,9 @@ class ImageHelpers
                 }
             }
             // For place holders its a bit dumb because its not passing through a service
-            foreach ($srcset as $size):
+            foreach ($srcset as $size) {
                 $stringSrcset .= "//placehold.dev.area17.com/image/" . $size . "x" . round(($height / $width) * $size) . " " . $size . "w, ";
-            endforeach;
+            }
 
             $stringSrc = "//placehold.dev.area17.com/image/" . $LQIPDimension . "x" . round(($height / $width) * $LQIPDimension);
         }
@@ -427,7 +427,7 @@ class ImageHelpers
             $imgixSettings['h'] = $height;
 
             // Generate variants
-            foreach ($srcset as $i => $size):
+            foreach ($srcset as $i => $size) {
                 if ($stringSrcset) {
                     $stringSrcset .= ", ";
                 }
@@ -437,7 +437,7 @@ class ImageHelpers
             }
             $imgixSettingsString = http_build_query($imgixSettings);
             $stringSrcset .= $base . $imgixSettingsString . " " . $size . "w";
-            endforeach;
+            }
 
             // Get data-pin-media for pinterest
             $imgixSettings['w'] = 600;
@@ -515,12 +515,12 @@ class ImageHelpers
             }
 
             // Generate variants
-            foreach ($srcset as $i => $size):
+            foreach ($srcset as $i => $size) {
                 if (!empty($stringSrcset)) {
                     $stringSrcset .= ", ";
                 }
             $stringSrcset .= $base . "/" . $resizeVal . "/" . $size . ",/0/default.jpg " . $size . "w";
-            endforeach;
+            }
 
             // Get data-pin-media for pinterest
             $pinterestMedia = $base . "/" . $resizeVal . "/600,/0/default.jpg";
@@ -595,7 +595,7 @@ class ImageHelpers
         $totalCSScolumns = $settings['totalCSScolumns'];
         $outerGutterCSScolumns = $settings['outerGutterCSScolumns'];
         //
-        foreach ($breakpoints as $name => $point):
+        foreach ($breakpoints as $name => $point) {
             if (array_key_exists($name, $data)) {
                 if (strrpos($data[$name], 'px') > 0 || strrpos($data[$name], 'vw') > 0) {
                     $thisSize = $data[$name];
@@ -612,7 +612,7 @@ class ImageHelpers
                 }
             }
         $sizes .= ($name === 'xlarge' ? '' : ', ') . $point . ' ' . $thisSize;
-        endforeach;
+        }
 
         return $sizes;
     }
@@ -655,13 +655,13 @@ class ImageHelpers
         $totalCSScolumns = $settings['totalCSScolumns'];
         $innerGutterCSSColumns = $settings['innerGutterCSSColumns'];
 
-        foreach ($breakpoints as $name => $point):
+        foreach ($breakpoints as $name => $point) {
             if (array_key_exists($name, $data)) {
                 $newData[$name] = ($totalCSScolumns - (($data[$name] - 1) * $innerGutterCSSColumns)) / $data[$name];
             } else {
                 $newData[$name] = 58;
             }
-        endforeach;
+        }
 
         $sizes = static::aic_imageSizes($newData);
 
