@@ -75,6 +75,7 @@ return $config->setRules([
     'no_mixed_echo_print' => true,          // Either language construct print or echo should be used.
     'no_multiline_whitespace_around_double_arrow' => true, // Operator => should not be surrounded by multi-line whitespaces.
     'no_null_property_initialization' => true, // Properties MUST not be explicitly initialized with null except when they have a type declaration (PHP 7.4).
+    'no_short_bool_cast' => true,           // Short cast bool using double exclamation mark should not be used.
 
 ])
 ->setFinder($finder);
