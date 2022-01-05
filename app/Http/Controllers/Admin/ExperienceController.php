@@ -84,7 +84,7 @@ class ExperienceController extends ModuleController
                 : Str::singular($column['title']))) . '</a>';
         } else {
             $field = $column['field'];
-            $value = $item->$field;
+            $value = $item->{$field};
         }
 
         if (isset($column['relationship'])) {

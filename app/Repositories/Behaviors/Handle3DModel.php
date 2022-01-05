@@ -47,7 +47,7 @@ trait Handle3DModel
             foreach ($aic3dFields as $aic3dField) {
                 array_push($fields['repeaterFields']['secondary_experience_modal'], [
                     'name' => "blocks[secondaryExperienceModal-{$secondaryExperienceModal->id}][aic_split_3d_model][{$aic3dField}]",
-                    'value' => $model3d->$aic3dField
+                    'value' => $model3d->{$aic3dField}
                 ]);
             }
         }

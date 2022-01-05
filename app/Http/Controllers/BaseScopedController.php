@@ -116,7 +116,7 @@ class BaseScopedController extends FrontController
         if (!empty($this->scopes)) {
             foreach ($this->scopes as $parameter => $scope) {
                 if (request()->input($parameter) != null) {
-                    $query->$scope(request()->input($parameter));
+                    $query->{$scope}(request()->input($parameter));
                 }
             }
         }

@@ -69,9 +69,9 @@ trait HasApiCalls
     {
         foreach ($this->getDefaultScopes() as $name => $parameters) {
             if (empty($parameters)) {
-                $builder->$name();
+                $builder->{$name}();
             } else {
-                $builder->$name($parameters);
+                $builder->{$name}($parameters);
             }
         }
 

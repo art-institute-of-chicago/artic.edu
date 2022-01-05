@@ -18,7 +18,7 @@ trait HasApiRelations
         $modelClass = "\\App\\Models\\Api\\" . ucfirst($model);
 
         // Get all Ids
-        $ids = $this->$relation->pluck('datahub_id')->toArray();
+        $ids = $this->{$relation}->pluck('datahub_id')->toArray();
 
         if (empty($ids)) {
             return collect();

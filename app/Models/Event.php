@@ -1038,19 +1038,19 @@ class Event extends AbstractModel
                             'luminary_copy',
                             'nonmember_copy',
                         ] as $field) {
-                            if (isset($item->$field)) {
+                            if (isset($item->{$field})) {
                                 if (isset($eventHostTitle)) {
-                                    $item->$field = str_replace(
+                                    $item->{$field} = str_replace(
                                         '%%EventHost%%',
                                         $eventHostTitle,
-                                        $item->$field
+                                        $item->{$field}
                                     );
                                 } else {
-                                    $paragraphs = preg_split('/(?<=<\/p>)\s*(?=<p)/', $item->$field, -1, PREG_SPLIT_DELIM_CAPTURE);
+                                    $paragraphs = preg_split('/(?<=<\/p>)\s*(?=<p)/', $item->{$field}, -1, PREG_SPLIT_DELIM_CAPTURE);
                                     $paragraphs = array_filter($paragraphs, function ($paragraph) {
                                         return strpos($paragraph, '%%EventHost%%') === false;
                                     });
-                                    $item->$field = count($paragraphs) > 0 ? implode('', $paragraphs) : null;
+                                    $item->{$field} = count($paragraphs) > 0 ? implode('', $paragraphs) : null;
                                 }
                             }
                         }

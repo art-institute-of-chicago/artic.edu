@@ -36,8 +36,8 @@ trait HandleApiRelations
             ];
         }
 
-        $object->$relationship()->detach($object->$relationship->pluck('id'));
-        $object->$relationship()->attach($relatedElementsWithPosition);
+        $object->{$relationship}()->detach($object->{$relationship}->pluck('id'));
+        $object->{$relationship}()->attach($relatedElementsWithPosition);
     }
 
     public function updateMultiBrowserApiRelated($object, $fields, $relationship, $typeUsesApi)
@@ -91,12 +91,12 @@ trait HandleApiRelations
     public function getFormFieldsForBrowserApi($object, $relation, $apiModel, $routePrefix = null, $titleKey = 'title', $moduleName = null)
     {
         // Get all datahub_id's
-        $ids = $object->$relation->pluck('datahub_id')->toArray();
+        $ids = $object->{$relation}->pluck('datahub_id')->toArray();
         // Use those to load API records
         $apiElements = $apiModel::query()->ids($ids)->get();
 
         // Find locally selected objects
-        $localApiMapping = $object->$relation->filter(function ($relatedElement) use ($apiElements) {
+        $localApiMapping = $object->{$relation}->filter(function ($relatedElement) use ($apiElements) {
             return $apiElements->where('id', $relatedElement->datahub_id)->first();
         });
 
@@ -123,7 +123,7 @@ trait HandleApiRelations
 
             return [
                 'id' => $apiElement->id,
-                'name' => $apiElement->titleInBrowser ?? $apiElement->$titleKey,
+                'name' => $apiElement->titleInBrowser ?? $apiElement->{$titleKey},
             ] + $data;
         })->values()->toArray();
     }

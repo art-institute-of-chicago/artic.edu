@@ -41,8 +41,8 @@ class DamsImageService implements ImageServiceInterface
 
         $preLoadedInfo = $this->getInfo($object, $imageField);
 
-        $src = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height]);
-        $srcset = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height]) . " 300w";
+        $src = $this->getUrl($object->{$imageField}, ['width' => $width, 'height' => $height]);
+        $srcset = $this->getUrl($object->{$imageField}, ['width' => $width, 'height' => $height]) . " 300w";
 
         $image = [
             "type" => 'dams',
@@ -56,7 +56,7 @@ class DamsImageService implements ImageServiceInterface
             "downloadName" => $downloadName,
             "credit" => $credit,
             "creditUrl" => $creditUrl,
-            "iiifId" => $this->base_url . $this->version . '/' . $object->$imageField,
+            "iiifId" => $this->base_url . $this->version . '/' . $object->{$imageField},
         ];
 
         if (isset($preLoadedInfo['lqip']) && !empty($preLoadedInfo['lqip'])) {
@@ -118,7 +118,7 @@ class DamsImageService implements ImageServiceInterface
                 $info['width'] = $object->thumbnail->width;
                 $info['height'] = $object->thumbnail->height;
             } else {
-                $info = array_merge($info, $this->getDimensions($object->$imageField));
+                $info = array_merge($info, $this->getDimensions($object->{$imageField}));
             }
 
             if ($object->thumbnail->lqip) {
@@ -132,7 +132,7 @@ class DamsImageService implements ImageServiceInterface
             return $info;
         } else {
             // Hit the server to get the info if not available
-            return $this->getDimensions($object->$imageField);
+            return $this->getDimensions($object->{$imageField});
         }
     }
 

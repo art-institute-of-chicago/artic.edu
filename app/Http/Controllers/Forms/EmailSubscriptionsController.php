@@ -310,6 +310,6 @@ class EmailSubscriptionsController extends FormController
 
     private function old($field)
     {
-        return $this->old->$field ?? old($field);
+        return $this->old->{$field} ?? old($field);
     }
 }

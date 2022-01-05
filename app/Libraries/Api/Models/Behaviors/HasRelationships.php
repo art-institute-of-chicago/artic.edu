@@ -42,7 +42,7 @@ trait HasRelationships
 
         // If we have no data in our localKey we ignore the relationship to
         // avoid calling to an endpoint with no data
-        if (empty($this->$localKey)) {
+        if (empty($this->{$localKey})) {
             return;
         } else {
             return $this->newHasMany(
@@ -89,7 +89,7 @@ trait HasRelationships
 
     protected function getRelationshipFromMethod($method)
     {
-        $relation = $this->$method();
+        $relation = $this->{$method}();
 
         if (!$relation) { // Empty relationships return null to avoid calling the API
             return null;

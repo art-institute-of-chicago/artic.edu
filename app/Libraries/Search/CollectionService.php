@@ -235,7 +235,7 @@ class CollectionService
     public function __call($method, $parameters)
     {
         if (method_exists($this, $method)) {
-            return $this->$method($parameters);
+            return $this->{$method}($parameters);
         }
 
         $this->chain->{$method}(...$parameters);

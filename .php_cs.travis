@@ -39,6 +39,7 @@ return $config->setRules([
     ],
     'elseif' => true,                       // The keyword elseif should be used instead of else if so that all control keywords look like single words.
     'encoding' => true,                     // PHP code MUST use only UTF-8 without BOM (remove BOM).
+    'explicit_indirect_variable' => true,   // Add curly braces to indirect variables to make them clear to understand. Requires PHP >= 7.0.=
 
 ])
 ->setFinder($finder);

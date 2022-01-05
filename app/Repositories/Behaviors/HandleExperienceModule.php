@@ -63,7 +63,7 @@ trait HandleExperienceModule
             }
         }
 
-        foreach ($object->$relation->pluck('id') as $id) {
+        foreach ($object->{$relation}->pluck('id') as $id) {
             if (!in_array($id, $currentIdList)) {
                 $relationRepository->updateBasic(null, [
                     'deleted_at' => Carbon::now(),
@@ -84,7 +84,7 @@ trait HandleExperienceModule
         $relationRepository = $this->getModelRepository($relation, $model);
         $repeatersConfig = app(BlockCollection::class)->getRepeaters();
 
-        foreach ($object->$relation as $relationItem) {
+        foreach ($object->{$relation} as $relationItem) {
             $rep = $repeatersConfig->first(function (\A17\Twill\Services\Blocks\Block $block) use ($fieldName) {
                 return $block->name == $fieldName;
             });

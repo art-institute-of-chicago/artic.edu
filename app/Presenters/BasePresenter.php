@@ -37,7 +37,7 @@ abstract class BasePresenter
      */
     public function input($name)
     {
-        return $this->$name;
+        return $this->{$name};
     }
 
     public function contrastHeader()

@@ -964,7 +964,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     {
         $value = $this->getAttribute($key);
         if (!$value && method_exists($this, 'getAugmentedModel') && $this->getAugmentedModel()) {
-            return $this->getAugmentedModel()->$key;
+            return $this->getAugmentedModel()->{$key};
         } else {
             return $value;
         }
@@ -994,7 +994,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function offsetExists($offset)
     {
-        return isset($this->$offset);
+        return isset($this->{$offset});
     }
 
     /**
@@ -1005,7 +1005,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function offsetGet($offset)
     {
-        return $this->$offset;
+        return $this->{$offset};
     }
 
     /**
@@ -1017,7 +1017,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function offsetSet($offset, $value)
     {
-        $this->$offset = $value;
+        $this->{$offset} = $value;
     }
 
     /**
@@ -1028,7 +1028,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function offsetUnset($offset)
     {
-        unset($this->$offset);
+        unset($this->{$offset});
     }
 
     /**

@@ -477,13 +477,13 @@ class ArtworkPresenter extends BasePresenter
     {
         $blocks = [];
         foreach ($elements as $key => $value) {
-            if (!empty($this->entity->$key)) {
+            if (!empty($this->entity->{$key})) {
                 $block = [
                     'title' => $value,
                     'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="' . StringHelpers::getUtf8Slug($value) . '"',
                     'blocks' => []
                 ];
-                $explodedKeys = explode("\n", $this->entity->$key);
+                $explodedKeys = explode("\n", $this->entity->{$key});
                 $blockHtml = '';
                 if (count($explodedKeys) < 2) {
                     foreach ($explodedKeys as $txt) {

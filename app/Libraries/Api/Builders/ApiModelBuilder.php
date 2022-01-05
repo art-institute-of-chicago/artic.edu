@@ -675,6 +675,6 @@ class ApiModelBuilder
      */
     public function __get($key)
     {
-        return $this->query->$key;
+        return $this->query->{$key};
     }
 }
