@@ -83,6 +83,7 @@ return $config->setRules([
     'no_superfluous_phpdoc_tags' => [       // Removes @param, @return and @var tags that don't provide any useful information.
         'allow_mixed' => true,
     ],
+    'no_trailing_comma_in_list_call' => true, // Remove trailing commas in list function calls.
 
 ])
 ->setFinder($finder);
