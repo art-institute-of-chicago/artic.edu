@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Page;
 use App\Libraries\Search\CollectionService;
 

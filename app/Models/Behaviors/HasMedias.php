@@ -2,7 +2,6 @@
 
 namespace App\Models\Behaviors;
 
-
 use A17\Twill\Models\Behaviors\HasMedias as BaseHasMedias;
 
 trait HasMedias
