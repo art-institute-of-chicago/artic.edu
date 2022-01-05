@@ -71,6 +71,7 @@ return $config->setRules([
     'no_empty_phpdoc' => true,              // There should not be empty PHPDoc blocks.
     'no_empty_statement' => true,           // Remove useless (semicolon) statements.
     'no_leading_import_slash' => true,      // Remove leading slashes in use clauses.
+    'no_leading_namespace_whitespace' => true, // The namespace declaration line shouldn't contain leading whitespace.
 
 ])
 ->setFinder($finder);
