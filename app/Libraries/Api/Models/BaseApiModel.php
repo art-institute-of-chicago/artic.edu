@@ -1054,7 +1054,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
     public function getTable()
     {
-        return;
+        
     }
 
     /**
@@ -1079,7 +1079,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
     public function resolveChildRouteBinding($childType, $value, $field)
     {
-        return;
+        
     }
 
     public function getKeyName()
