@@ -14,6 +14,7 @@ class SmartyPants extends BasePants
         if (!isset($text)) {
             return null;
         }
+
         return parent::defaultTransform(...func_get_args());
     }
 }

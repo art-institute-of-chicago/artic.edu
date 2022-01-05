@@ -70,6 +70,7 @@ class Experience extends AbstractModel implements Sortable
 
             if ($slide->media_type === 'seamless') {
                 $seamless_file = $slide->fileObject('sequence_file');
+
                 return $seamless_file && SeamlessImage::where('zip_file_id', $seamless_file->id)->get()->count() > 0;
             }
 
@@ -98,6 +99,7 @@ class Experience extends AbstractModel implements Sortable
                 array_push($assets, $asset);
             }
         };
+
         return $assets;
     }
 
@@ -130,6 +132,7 @@ class Experience extends AbstractModel implements Sortable
         } else {
             $attract_slide = $this->slides()->where('module_type', 'attract')->first();
             $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
+
             return $attract_image ? $attract_image->cmsImage('experience_image', 'default', $params) : '';
         }
     }

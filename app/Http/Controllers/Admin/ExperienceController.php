@@ -67,6 +67,7 @@ class ExperienceController extends ModuleController
                 : ['w' => 80, 'h' => 80, 'fit' => 'crop'];
 
                 $thumbnail_image = $item->defaultCmsImage($params);
+
                 return [
                     'thumbnail' => $thumbnail_image,
                 ];
@@ -106,6 +107,7 @@ class ExperienceController extends ModuleController
             'slug' => 'archived',
             'number' => Experience::archived()->count(),
         ]);
+
         return $statusFilters;
     }
 
@@ -117,6 +119,7 @@ class ExperienceController extends ModuleController
         } else {
             $scopes = $scopes + ['unarchived' => true];
         }
+
         return parent::getIndexItems($scopes, $forcePagination);
     }
 

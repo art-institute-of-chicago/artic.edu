@@ -148,6 +148,7 @@ class GenerateSitemap extends Command
             return $link->getUri();
         })->filter(function (string $url) {
             $path = parse_url($url, PHP_URL_PATH);
+
             return (
                 // Eliminate buggy paths that lead nowhere
                 empty(parse_url($url, PHP_URL_FRAGMENT)) && !Str::endsWith($url, '#')

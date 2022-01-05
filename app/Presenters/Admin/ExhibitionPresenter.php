@@ -52,12 +52,15 @@ class ExhibitionPresenter extends BasePresenter
         switch ($this->entity->cms_exhibition_type) {
             case \App\Models\Exhibition::SPECIAL:
                 return "super-hero";
+
                 break;
             case \App\Models\Exhibition::LARGE:
                 return "feature";
+
                 break;
             case \App\Models\Exhibition::BASIC:
                 return null;
+
                 break;
         }
     }

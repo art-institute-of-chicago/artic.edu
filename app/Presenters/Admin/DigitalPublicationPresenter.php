@@ -122,8 +122,10 @@ class DigitalPublicationPresenter extends BasePresenter
                 $return .= $section->title ."<br/>";
             }
             $return .= "</p>";
+
             return $return;
         }
+
         return $this->entity->blocks;
     }
 }

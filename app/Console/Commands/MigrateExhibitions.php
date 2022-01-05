@@ -51,6 +51,7 @@ class MigrateExhibitions extends Command
 
         if (!method_exists($apiItem, 'toArray')) {
             $this->error('Errored: ' . $id);
+
             return;
         }
 

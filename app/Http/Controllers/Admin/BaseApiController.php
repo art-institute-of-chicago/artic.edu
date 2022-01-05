@@ -74,6 +74,7 @@ class BaseApiController extends ModuleController
             if (UrlHelpers::moduleRouteExists($this->moduleName, $this->routePrefix, 'augment')) {
                 $result['edit'] = moduleRoute($this->moduleName, $this->routePrefix, 'augment', [$result['id']]);
             }
+
             return $result;
         }, $results);
 

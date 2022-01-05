@@ -43,6 +43,7 @@ class DigitalPublicationSectionController extends ModuleController
     protected function indexData($request)
     {
         $digPub = app(DigitalPublicationRepository::class)->getById(request('digitalPublication'));
+
         return [
             'breadcrumb' => [
                 [

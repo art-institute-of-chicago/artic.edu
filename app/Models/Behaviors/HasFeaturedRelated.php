@@ -187,38 +187,46 @@ trait HasFeaturedRelated
                     // Tag is often "In the Lab", "Collection Spotlight", etc.
                     $label = 'Article';
                     $type = 'article';
+
                     break;
                 case Highlight::class:
                     $label = null;
                     $type = 'highlight';
+
                     break;
                 case Event::class:
                     // Tag is replaced by "Tour", "Member Exclusive", etc.
                     $label = 'Event';
                     $type = 'event';
+
                     break;
                 case Exhibition::class:
                     // Tag is often "Closed", "Ongoing", "Closing soon", etc.
                     $label = 'Exhibition';
                     $type = 'exhibition';
+
                     break;
                 case Experience::class:
                     // Tag is "Interactive Feature"
                     $label = null;
                     $type = 'experience';
+
                     break;
                 case DigitalPublication::class:
                     // No tag
                     $label = 'Digital Publication';
                     $type = 'generic';
+
                     break;
                 case Video::class:
                     // Tag is "Video"
                     $label = 'Media';
                     $type = 'media';
+
                     break;
                 default:
                     throw new \Exception('Cannot determine sidebar item type');
+
                     break;
             }
 

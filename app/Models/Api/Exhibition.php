@@ -94,6 +94,7 @@ class Exhibition extends BaseApiModel
             if ($this->public_start_date !== null) { // Strange, isset didn't work?
                 return $this->public_start_date;
             }
+
             return (new Carbon($this->aic_start_at))->startOfDay();
         }
     }
@@ -104,6 +105,7 @@ class Exhibition extends BaseApiModel
             if ($this->public_end_date !== null) { // Strange, isset didn't work?
                 return $this->public_end_date;
             }
+
             return (new Carbon($this->aic_end_at))->endOfDay();
         }
     }
@@ -208,6 +210,7 @@ class Exhibition extends BaseApiModel
     public function getDescriptionAttribute($value)
     {
         $desc = nl2br($value);
+
         return '<p>' . preg_replace('#(<br>[\r\n\s]+){2}#', "</p>\n\n<p>", $desc) . '</p>';
     }
 

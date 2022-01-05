@@ -97,6 +97,7 @@ trait HasApiRelations
         // Use those to load API records
         $apiModelDefinition = $apiModelsDefinitions[$type];
         $apiModel = $apiModelDefinition['apiModel'];
+
         return $apiModel::query()->ids($datahubIds)->get();
     }
 
@@ -109,6 +110,7 @@ trait HasApiRelations
             if ($result) {
                 $result->position = $relatedElement->position;
             }
+
             return $result;
         });
     }

@@ -295,6 +295,7 @@ class ArtworkPresenter extends BasePresenter
         if ($this->entity->place_pivots != null && count($this->entity->place_pivots) > 0) {
             $places = collect($this->entity->place_pivots)->map(function ($item) {
                 $title = $item->place_title;
+
                 return  $item->qualifier_title ? $title . " ({$item->qualifier_title})" : $title;
             });
 
@@ -393,6 +394,7 @@ class ArtworkPresenter extends BasePresenter
                 $blocks[] = ['key' => $key, 'value' => $value, 'itemprop' => $itemprop];
             }
         }
+
         return $blocks;
     }
 
@@ -432,6 +434,7 @@ class ArtworkPresenter extends BasePresenter
         if ($this->entity->catalogues) {
             $rows = $this->entity->catalogues->map(function ($item) {
                 $content = "{$item->catalogue_title} {$item->number} {$item->state_edition}";
+
                 return [
                     "type" => 'text',
                     "content" => '<p>'. $content .'</p>'

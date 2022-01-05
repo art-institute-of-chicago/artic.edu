@@ -211,6 +211,7 @@ class EventRepository extends ModuleRepository
             switch ($time) {
                 case 'weekend':
                     $query->weekend();
+
                 break;
                 default:
                     if ($audience || $type) {
@@ -218,6 +219,7 @@ class EventRepository extends ModuleRepository
                     } else {
                         $query->default();
                     }
+
                 break;
             }
         }

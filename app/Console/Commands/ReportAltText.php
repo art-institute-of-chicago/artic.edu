@@ -48,6 +48,7 @@ class ReportAltText extends Command
             if (\Schema::hasColumn($table, 'deleted_at')) {
                 $query->whereNull('deleted_at');
             }
+
             return $query->with('medias');
         })->map(function ($query) use (&$medias) {
             return $query->chunk(100, function ($items) use (&$medias) {

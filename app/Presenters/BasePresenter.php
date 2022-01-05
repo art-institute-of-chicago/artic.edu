@@ -28,6 +28,7 @@ abstract class BasePresenter
         if (is_string($return)) {
             return $return ? SmartyPants::defaultTransform($return) : null;
         }
+
         return $return;
     }
 
@@ -46,6 +47,7 @@ abstract class BasePresenter
             case 'super-hero':
             case 'hero':
                 return true;
+
                 break;
 
             default:
@@ -58,6 +60,7 @@ abstract class BasePresenter
         switch ($this->headerType()) {
             case 'gallery':
                 return true;
+
                 break;
 
             default:

@@ -44,12 +44,15 @@ trait HasRecurrentDates
             switch ($rule->getRuleType()) {
                 case 'recurrent':
                     $this->buildRecurrentRule($rset, $rule);
+
                     break;
                 case 'include':
                     $this->buildIncludeRule($rset, $rule);
+
                     break;
                 case 'exclude':
                     $this->buildExcludeRule($rset, $rule);
+
                     break;
             }
         }
@@ -85,9 +88,11 @@ trait HasRecurrentDates
             switch ($ruleObject->getMonthlyRepeatType()) {
                 case 'numeral':
                     $options['BYMONTHDAY'] = $ruleObject->start_date->day;
+
                     break;
                 case 'first_day':
                     $options['BYDAY'] = '1'. strtoupper(substr($ruleObject->start_date->format('D'), 0, 2));
+
                     break;
             }
         }

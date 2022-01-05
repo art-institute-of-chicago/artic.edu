@@ -55,6 +55,7 @@ class Mirador extends AbstractModel
             } else {
                 $manifestFile = config('api.public_uri').'/api/v1/artworks/'.$this->object_id.'/manifest.json';
             }
+
             return $manifestFile;
         }
     }

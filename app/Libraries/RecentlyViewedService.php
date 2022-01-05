@@ -81,6 +81,7 @@ class RecentlyViewedService
         foreach ($ids as $id) {
             $artworksSorted[] = $artworks->firstWhere('id', $id);
         }
+
         return collect($artworksSorted)->filter();
     }
 
@@ -123,18 +124,21 @@ class RecentlyViewedService
                             'href' => route('collection', ['artist_ids' => $elementKey]),
                             'label' => ucfirst($elementKey)
                         ];
+
                         break;
                     case 'departments':
                         $themes[] = [
                             'href' => route('collection', ['department_ids' => $elementKey]),
                             'label' => ucfirst($elementKey)
                         ];
+
                         break;
                     case 'styles':
                         $themes[] = [
                             'href' => route('collection', ['style_ids' => $elementKey]),
                             'label' => ucfirst($elementKey)
                         ];
+
                         break;
                 }
             }

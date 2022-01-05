@@ -93,6 +93,7 @@ class Asset extends BaseApiModel
             case 'sections':
             case 'sites':
                 return $this->web_url;
+
                 break;
         }
 
@@ -109,6 +110,7 @@ class Asset extends BaseApiModel
         switch ($this->api_model) {
             case 'videos':
                 return $this->videoContent;
+
                 break;
             case 'sounds':
                 return view('components.molecules._m-listing----sound', [
@@ -117,6 +119,7 @@ class Asset extends BaseApiModel
                         'href' => $this->href,
                     ]
                 ])->render();
+
                 break;
 
             // All other cases were deprecated.
@@ -129,12 +132,15 @@ class Asset extends BaseApiModel
         switch ($this->api_model) {
             case 'sounds':
                 return 'audio';
+
             break;
             case 'videos':
                 return 'video';
+
             break;
             default:
                 return 'new-window';
+
             break;
 
         }

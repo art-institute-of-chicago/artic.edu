@@ -24,6 +24,7 @@ class SeamlessImagesController extends Controller
                 'height' => $image->height,
             ];
         });
+
         return response()->json($images)->withHeaders([
             "Access-Control-Allow-Origin" => "*",
             "Access-Control-Allow-Methods" => "GET",

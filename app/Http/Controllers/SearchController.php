@@ -147,38 +147,47 @@ class SearchController extends BaseScopedController
                 case 'Artwork':
                     $item->url = route('artworks.show', $item);
                     $item->section = 'Artworks';
+
                     break;
                 case 'Exhibition':
                     $item->url = route('exhibitions.show', $item);
                     $item->section = 'Exhibitions and Events';
+
                     break;
                 case 'DigitalLabel':
                     $item->url = route('interactiveFeatures.show', $item);
                     $item->section = 'Interactive Features';
+
                     break;
                 case 'Artist':
                     $item->url = route('artists.show', $item);
                     $item->section = 'Artists/Cultures';
+
                     break;
                 case 'Event':
                     $item->url = route('events.show', $item);
                     $item->section = 'Events';
+
                     break;
                 case 'Article':
                     $item->url = route('articles.show', $item);
                     $item->section = 'Articles';
+
                     break;
                 case 'DigitalPublication':
                     $item->url = route('collection.publications.digital-publications.show', $item);
                     $item->section = 'Digital Publications';
+
                     break;
                 case 'PrintedPublication':
                     $item->url = route('collection.publications.printed-publications.show', $item);
                     $item->section = 'Print Publications';
+
                     break;
                 case 'Highlight':
                     $item->url = route('highlights.show', $item);
                     $item->section = 'Highlights';
+
                     break;
                 }
 

@@ -130,6 +130,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
                 if ($elements && method_exists($elements, 'ttl')) {
                     $elements->ttl($this->ttl);
                 }
+
                 return $elements->get();
             } elseif (!$class) {
                 return $collection; // e.g. static-pages
@@ -184,8 +185,10 @@ class ApiModelBuilderSearch extends ApiModelBuilder
             if (isset($class) && $class) {
                 $elements = $collection->map(function ($searchItem) use ($class) {
                     $item = new $class($searchItem->getAttributes());
+
                     return $item;
                 });
+
                 return $elements;
             } elseif (!$class) {
                 return $collection; // e.g. static-pages

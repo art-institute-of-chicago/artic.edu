@@ -15,6 +15,7 @@ class ExhibitionHistoryService
     public function activeYear()
     {
         $default = date("Y") - (date("n") < 3 ? 1 : 0);
+
         return intval(request()->get('year') ?? $default);
     }
 

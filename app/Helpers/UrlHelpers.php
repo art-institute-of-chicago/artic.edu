@@ -16,6 +16,7 @@ class UrlHelpers
     public static function parseVideoUrl($url)
     {
         preg_match('/\d+/', $url, $matches);
+
         return isset($matches[0]) ? $matches[0] : 0;
     }
 
@@ -37,6 +38,7 @@ class UrlHelpers
     public static function moduleRouteExists($moduleName, $prefix, $action)
     {
         $routeName = 'admin.' . ($prefix ? $prefix . '.' : '') . Str::camel($moduleName) . '.' . $action;
+
         return Route::has($routeName);
     }
 
@@ -49,6 +51,7 @@ class UrlHelpers
         if ($fragment) {
             return $ret . '#' . $fragment;
         }
+
         return $ret;
     }
 }

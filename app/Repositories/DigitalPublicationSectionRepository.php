@@ -39,6 +39,7 @@ class DigitalPublicationSectionRepository extends ModuleRepository
     {
         $search = Search::query()->search($string)->published()->resources(['digital-publication-sections']);
         $results = $search->getSearch($perPage);
+
         return $results;
     }
 }

@@ -121,6 +121,7 @@ class CollectionService
                             ]);
                         }
                     }
+
                     break;
 
                 case 'date':
@@ -130,6 +131,7 @@ class CollectionService
                             'label' => $category['label']
                         ]);
                     }
+
                     break;
                 case 'color':
                     if ($category['enabled']) {
@@ -138,6 +140,7 @@ class CollectionService
                             'label' => $category['label']
                         ]);
                     }
+
                     break;
             }
         }
@@ -190,24 +193,28 @@ class CollectionService
     protected function buildSortFilters()
     {
         $sortFilters = new SortFilters($this->sortingOptions);
+
         return $sortFilters->generate();
     }
 
     protected function buildDateFilters()
     {
         $dateFilters = new DateRange();
+
         return $dateFilters->generate();
     }
 
     protected function buildColorFilters()
     {
         $colorFilters = new ColorFilter();
+
         return $colorFilters->generate();
     }
 
     protected function buildBooleanFilters()
     {
         $booleanFilters = new BooleanFilter($this->booleanOptions);
+
         return $booleanFilters->generate();
     }
 
@@ -217,6 +224,7 @@ class CollectionService
     public function perPage($perPage)
     {
         $this->perPage = $perPage;
+
         return $this;
     }
 

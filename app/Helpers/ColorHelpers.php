@@ -28,12 +28,15 @@ class ColorHelpers
             switch ($max) {
                 case $rgb[0]:
                     $h = ($rgb[1] - $rgb[2]) / $diff + ($rgb[1] < $rgb[2] ? 6 : 0);
+
                     break;
                 case $rgb[1]:
                     $h = ($rgb[2] - $rgb[0]) / $diff + 2;
+
                     break;
                 case $rgb[2]:
                     $h = ($rgb[0] - $rgb[1]) / $diff + 4;
+
                     break;
             }
 

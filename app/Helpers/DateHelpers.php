@@ -58,6 +58,7 @@ class DateHelpers
         if ($date == Carbon::now()->year) {
             return "Present";
         }
+
         return $date;
     }
 
@@ -114,6 +115,7 @@ class DateHelpers
             }
             $prev = $year;
         }
+
         return $prev;
     }
 
@@ -124,6 +126,7 @@ class DateHelpers
                 return $year;
             }
         }
+
         return Carbon::now()->year;
     }
 }

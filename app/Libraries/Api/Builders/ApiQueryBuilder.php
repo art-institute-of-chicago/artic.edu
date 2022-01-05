@@ -171,6 +171,7 @@ class ApiQueryBuilder
     {
         if ($column == 'id') {
             $this->ids($values);
+
             return $this;
         } else {
             throw new \Exception("whereIn function has been defined only for IDS at the API Query Builder");
@@ -555,6 +556,7 @@ class ApiQueryBuilder
         } elseif (Str::endsWith($endpoint, '/search')) {
             $grammar = new SearchGrammar;
         }
+
         return $this->connection->ttl($this->ttl)->get($endpoint, $this->resolveParameters($grammar));
     }
 
@@ -568,6 +570,7 @@ class ApiQueryBuilder
         if ($grammar) {
             return $grammar->compileParameters($this);
         }
+
         return $this->grammar->compileParameters($this);
     }
 

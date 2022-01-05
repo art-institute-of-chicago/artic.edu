@@ -36,8 +36,10 @@ class Block extends BaseModel
                     ];
                 })->toArray(),
             ];
+
             return $asset;
         }
+
         return null;
     }
 

@@ -149,21 +149,27 @@ class DepartmentRepository extends BaseApiRepository
             switch (get_class($relatedItem)) {
                 case \App\Models\Article::class:
                     $relatedItem->subtype = 'Article';
+
                     break;
                 case \App\Models\DigitalPublication::class:
                     $relatedItem->subtype = 'Digital Publication';
+
                     break;
                 case \App\Models\PrintedPublication::class:
                     $relatedItem->subtype = 'Print Publication';
+
                     break;
                 case \App\Models\EducatorResource::class:
                     $relatedItem->subtype = 'Educator Resource';
+
                     break;
                 case \App\Models\Experience::class:
                     $relatedItem->subtype = 'Interactive Feature';
+
                     break;
                 case \App\Models\Video::class:
                     $relatedItem->subtype = 'Video';
+
                     break;
             }
 

@@ -76,8 +76,10 @@ class Artwork extends AbstractModel
                     ];
                 })->toArray(),
             ];
+
             return $asset;
         }
+
         return null;
     }
 
@@ -89,8 +91,10 @@ class Artwork extends AbstractModel
             } else {
                 $manifestFile = config('api.public_uri').'/api/v1/artworks/'.$this->datahub_id.'/manifest.json';
             }
+
             return $manifestFile;
         }
+
         return null;
     }
 

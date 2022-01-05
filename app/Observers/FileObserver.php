@@ -90,6 +90,7 @@ class FileObserver
             return false;
         }
         $ext = end($filenameArray);
+
         return $ext === 'zip';
     }
 
@@ -98,6 +99,7 @@ class FileObserver
         $fileUrl = ($file->toCmsArray())['src'];
         $zipFile = storage_path('app') . '/tempFile.zip';
         file_put_contents($zipFile, fopen($fileUrl, 'r'));
+
         return $zipFile;
     }
 
@@ -111,6 +113,7 @@ class FileObserver
             if (strpos($zipFolderName, '.')) {
                 return '';
             }
+
             return $zipFolderName;
         } else {
             throw new Exception('Cannot read the zip file');
@@ -125,6 +128,7 @@ class FileObserver
             if (count($fileNameArray) < 2) {
                 return false;
             }
+
             return in_array(end($fileNameArray), ['jpg', 'png', 'jpeg']) && strlen($fileNameArray[0]) > 0;
         })));
         foreach ($images as $index => $imageName) {

@@ -47,6 +47,7 @@ trait HasApiModel
             // Mark the entity as augmented to avoid double calls
             $this->apiFilled = true;
         }
+
         return $this;
     }
 
@@ -122,6 +123,7 @@ trait HasApiModel
     {
         return (object) array_reduce($this->apiFields, function ($result, $field) {
             $result[$field] = $this->$field;
+
             return $result;
         }, []);
     }

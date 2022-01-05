@@ -152,15 +152,18 @@ class HomeController extends FrontController
         switch ($value) {
             case Lightbox::GEOTARGET_LOCAL:
                 return 'local';
+
                 break;
             case Lightbox::GEOTARGET_NOT_LOCAL:
                 return 'not-local';
+
                 break;
             case Lightbox::GEOTARGET_ALL:
                 // Passthrough
             default:
                 // Also catches null
                 return 'all';
+
                 break;
         }
     }

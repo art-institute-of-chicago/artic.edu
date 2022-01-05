@@ -34,6 +34,7 @@ class Galleries
     public function findLabel($id)
     {
         $label = $this->entity::query()->find($id);
+
         return $label->title;
     }
 }

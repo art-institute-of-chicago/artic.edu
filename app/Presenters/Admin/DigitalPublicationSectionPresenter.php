@@ -49,9 +49,11 @@ class DigitalPublicationSectionPresenter extends BasePresenter
         switch ($this->entity->type) {
             case DigitalPublicationSection::TEXT:
                 return 'Essay';
+
                 break;
             case DigitalPublicationSection::WORK:
                 return 'Gallery';
+
                 break;
         }
 

@@ -81,6 +81,7 @@ class Search extends BaseApiModel
     {
         $curMonth = date("m");
         $curHalf = ceil($curMonth / 6);
+
         return date("Y") - ($curHalf % 2);
     }
 
@@ -686,6 +687,7 @@ class Search extends BaseApiModel
                         $field
                     ]
                 ];
+
                 break;
 
             case 'deaccession':
@@ -699,6 +701,7 @@ class Search extends BaseApiModel
                         ],
                     ]
                 ];
+
                 break;
 
             default:
@@ -707,6 +710,7 @@ class Search extends BaseApiModel
                         "{$field}.keyword"
                     ]
                 ];
+
                 break;
         }
 

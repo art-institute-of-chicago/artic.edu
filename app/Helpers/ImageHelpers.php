@@ -671,6 +671,7 @@ class ImageHelpers
     public static function aic_getIconClass($key = 0)
     {
         $icons = \App\Models\Page::getIconTypes();
+
         return Str::kebab($icons[$key]);
     }
 }

@@ -17,6 +17,7 @@ class SlideAsset extends JsonResource
     {
         if ($this->media_type === 'type_image') {
             $image = $this->seamlessExperienceImage->first();
+
             return [
                 'type' => 'image',
                 'title' => $this->media_title,
@@ -33,6 +34,7 @@ class SlideAsset extends JsonResource
                     'frame' => $image->frame,
                 ];
             })->toArray();
+
             return [
                 'type' => 'sequence',
                 'title' => $this->media_title,

@@ -126,6 +126,7 @@ class ArtworkController extends BaseScopedController
             // Add artwork to the Recently Viewed collection
             $service->addArtwork($item);
         }
+
         return response()->json();
     }
 

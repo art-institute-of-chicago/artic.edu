@@ -52,6 +52,7 @@ class TrustProxies extends Middleware
         );
 
         array_push($this->proxies, $request->server->get('REMOTE_ADDR'));
+
         return parent::handle($request, $next);
     }
 }

@@ -179,6 +179,7 @@ class PageRepository extends ModuleRepository
     public function byName($name, $with = [])
     {
         $type = array_search($name, $this->model::$types);
+
         return $this->model->whereType($type)->with($with)->first();
     }
 

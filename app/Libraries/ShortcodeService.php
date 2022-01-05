@@ -42,6 +42,7 @@ class ShortcodeService
             $key = $value['name'];
             $attributes[$i][$key] = $value['value'];
         }
+
         return $attributes;
     }
 }

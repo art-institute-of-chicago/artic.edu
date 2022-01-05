@@ -140,6 +140,7 @@ trait HasApiCalls
     {
         return preg_replace_callback('!\{(\w+)\}!', function ($matches) use ($params) {
             $name = $matches[1];
+
             return $params[$name];
         }, $this->getEndpoint($type));
     }

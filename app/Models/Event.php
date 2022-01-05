@@ -336,8 +336,10 @@ class Event extends AbstractModel
         $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
         if ($ticketedEvent) {
             $date = $this->nextOcurrence->date ?? $this->lastOcurrence->date ?? null;
+
             return "https://sales.artic.edu/Events/Event/" . $ticketedEvent->id . ($date ? "?date=" . $date->format('n/j/Y') : '');
         }
+
         return $value;
     }
 
@@ -715,6 +717,7 @@ class Event extends AbstractModel
                 "type" => "string",
                 "value" => function () {
                     $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
+
                     return $ticketedEvent ? $ticketedEvent->id : null;
                 },
             ],

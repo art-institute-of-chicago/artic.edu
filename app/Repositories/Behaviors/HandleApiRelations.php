@@ -55,8 +55,10 @@ trait HandleApiRelations
             if ($typeUsesApi[$element['endpointType']]) {
                 $apiItem = ApiRelation::firstOrCreate(['datahub_id' => $element['id']]);
                 $apiItem->endpointType = $element['endpointType'];
+
                 return $apiItem;
             }
+
             return $element;
         }, $relatedElements);
 

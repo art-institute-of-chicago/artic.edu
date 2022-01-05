@@ -94,6 +94,7 @@ class ApiModelBuilder
     public function setModel($model)
     {
         $this->model = $model;
+
         return $this;
     }
 
@@ -106,6 +107,7 @@ class ApiModelBuilder
     public function with($relations)
     {
         $this->eagerLoad = array_merge($this->eagerLoad, $relations);
+
         return $this;
     }
 
@@ -228,6 +230,7 @@ class ApiModelBuilder
     public function ids(array $ids)
     {
         $this->query->ids($ids);
+
         return $this;
     }
 
@@ -500,6 +503,7 @@ class ApiModelBuilder
         }
 
         $models = $result = $this->model->hydrate($results->all());
+
         return collect($models)->first();
     }
 
@@ -637,6 +641,7 @@ class ApiModelBuilder
     {
         array_unshift($parameters, $this);
         $result = $scope(...array_values($parameters)) ?? $this;
+
         return $result;
     }
 

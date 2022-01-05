@@ -52,6 +52,7 @@ class PublicationsRepository
             }
             $pub['titleLink'] = $pub->url;
             $pub['image'] = $pub->imageFront('listing');
+
             return $pub;
         });
 

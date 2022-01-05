@@ -233,6 +233,7 @@ class StringHelpers
         }
 
         $string = implode(' ', $newwords);
+
         return $string;
     }
 
@@ -254,6 +255,7 @@ class StringHelpers
                 $string = substr($string, 0, -strlen($needle));
             }
         }
+
         return $string;
     }
 
@@ -270,12 +272,15 @@ class StringHelpers
                 return null;
             case 1:
                 return array_pop($array);
+
                 break;
             case 2:
                 return implode(' and ', $array);
+
                 break;
             default:
                 $last = array_pop($array);
+
                 return implode(', ', $array) . ', and ' . $last;
         }
     }
