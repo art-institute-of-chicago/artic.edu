@@ -48,6 +48,7 @@ return $config->setRules([
     'include' => true,                      // Include/Require and file path should be divided with a single space. File path should not be placed under brackets.
     'increment_style' => true,              // Pre- or post-increment and decrement operators should be used if possible.
     'indentation_type' => true,             // Code MUST use configured indentation type.
+    'line_ending' => true,                  // All PHP files must use same line ending.
 
 ])
 ->setFinder($finder);
