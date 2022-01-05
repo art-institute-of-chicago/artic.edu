@@ -47,16 +47,16 @@ class GeotargetController extends BaseController
     }
 
     /**
-    * Calculates the great-circle distance between two points, with
-    * the Haversine formula.
-    * @link https://stackoverflow.com/questions/14750275/haversine-formula-with-php
-    * @param float $latitudeFrom Latitude of start point in [deg decimal]
-    * @param float $longitudeFrom Longitude of start point in [deg decimal]
-    * @param float $latitudeTo Latitude of target point in [deg decimal]
-    * @param float $longitudeTo Longitude of target point in [deg decimal]
-    * @param float $earthRadius Mean earth radius in [m]
-    * @return float Distance between points in [m] (same as earthRadius)
-    */
+     * Calculates the great-circle distance between two points, with
+     * the Haversine formula.
+     * @link https://stackoverflow.com/questions/14750275/haversine-formula-with-php
+     * @param float $latitudeFrom Latitude of start point in [deg decimal]
+     * @param float $longitudeFrom Longitude of start point in [deg decimal]
+     * @param float $latitudeTo Latitude of target point in [deg decimal]
+     * @param float $longitudeTo Longitude of target point in [deg decimal]
+     * @param float $earthRadius Mean earth radius in [m]
+     * @return float Distance between points in [m] (same as earthRadius)
+     */
     public function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000)
     {
         // Convert from degrees to radians

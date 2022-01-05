@@ -1,6 +1,23 @@
 <?php
 
-return (new PhpCsFixer\Config)->setRules([
+$finder = PhpCsFixer\Finder::create()
+    ->exclude([
+        '.git',
+        'bootstrap/cache',
+        'node_modules',
+        'public',
+        'resources/lang',
+        'storage',
+        'vendor',
+    ])
+    ->in(__DIR__);
+
+$config = new PhpCsFixer\Config();
+return $config->setRules([
     '@PSR1' => true,
-    'no_unused_imports' => true,
-]);
+
+    'align_multiline_comment' => [          // Each line of multi-line DocComments must have an asterisk [PSR-5] and must be aligned with the first one.
+        'comment_type' => 'phpdocs_like',
+    ],
+])
+->setFinder($finder);
