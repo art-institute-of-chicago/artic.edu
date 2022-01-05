@@ -485,7 +485,7 @@ class Search extends BaseApiModel
 
         // Generalize to use this scope on artworks as well as artists
         $item = $class::query()
-              ->findOrFail((Integer) $id);
+              ->findOrFail((integer) $id);
 
         $shoulds = [];
         if ($class == \App\Models\Api\Artwork::class) {

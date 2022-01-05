@@ -144,7 +144,7 @@ class EventsController extends FrontController
 
     protected function show($id, $slug = null)
     {
-        $item = $this->repository->published()->findOrFail((Integer) $id);
+        $item = $this->repository->published()->findOrFail((integer) $id);
 
         $canonicalPath = route('events.show', $item);
 

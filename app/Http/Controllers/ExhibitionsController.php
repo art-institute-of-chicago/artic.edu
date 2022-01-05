@@ -66,7 +66,7 @@ class ExhibitionsController extends FrontController
 
     protected function show($id, $slug = null)
     {
-        $item = $this->apiRepository->getById((Integer) $id, ['apiElements']);
+        $item = $this->apiRepository->getById((integer) $id, ['apiElements']);
 
         // If the exhibition has not started or not ended, check if its augmented model is published before showing
         // WEB-1796: Consider adding a global `getPublishedAttribute` method that checks preview mode status?
@@ -97,7 +97,7 @@ class ExhibitionsController extends FrontController
 
     public function loadMoreRelatedEvents($idSlug)
     {
-        $item = $this->apiRepository->getById((Integer) $idSlug);
+        $item = $this->apiRepository->getById((integer) $idSlug);
         $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE, request('page'));
         $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
 
@@ -114,7 +114,7 @@ class ExhibitionsController extends FrontController
 
     public function waitTime($id, $slug = null, $variation = null)
     {
-        $item = $this->repository->getById((Integer) $id);
+        $item = $this->repository->getById((integer) $id);
 
         $view['html'] = view('site.shared._waitTime', [
             'item' => $item,

@@ -18,7 +18,7 @@ class GalleryController extends FrontController
 
     public function show($id, $slug = null)
     {
-        $item = $this->repository->getById((Integer) $id);
+        $item = $this->repository->getById((integer) $id);
 
         $canonicalPath = route('galleries.show', ['id' => $item->id, 'slug' => $item->titleSlug ]);
 

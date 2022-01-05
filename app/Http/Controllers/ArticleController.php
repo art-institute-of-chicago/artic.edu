@@ -103,7 +103,7 @@ class ArticleController extends FrontController
 
     public function show($id, $slug = null)
     {
-        $item = $this->repository->published()->find((Integer) $id);
+        $item = $this->repository->published()->find((integer) $id);
 
         if (!$item) {
             abort(404);

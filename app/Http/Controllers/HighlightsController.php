@@ -49,7 +49,7 @@ class HighlightsController extends FrontController
 
     public function show($id, $slug = null)
     {
-        $item = $this->repository->getById((Integer) $id);
+        $item = $this->repository->getById((integer) $id);
 
         $canonicalPath = route('highlights.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
 

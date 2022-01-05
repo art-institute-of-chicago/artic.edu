@@ -54,7 +54,7 @@ class ResearchGuidesController extends FrontController
 
     public function show($id)
     {
-        $page = $this->repository->find((Integer) $id);
+        $page = $this->repository->find((integer) $id);
         if (!$page) {
             $page = $this->repository->forSlug($id);
 
