@@ -38,7 +38,7 @@ class GeotargetController extends BaseController
             return null;
         }
 
-        list($lat, $long) = array_map('floatval', explode(',', $response, 2));
+        [$lat, $long] = array_map('floatval', explode(',', $response, 2));
 
         $distMeters = $this->haversineGreatCircleDistance($lat, $long, 41.8500, -87.6500);
         $distMiles = $distMeters / 1609.344;

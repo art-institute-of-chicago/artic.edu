@@ -48,7 +48,7 @@ class ColorHelpers
 
     public static function hslToHex($hsl)
     {
-        list($h, $s, $l) = $hsl;
+        [$h, $s, $l] = $hsl;
 
         if ($s == 0) {
             $r = $g = $b = 1;
