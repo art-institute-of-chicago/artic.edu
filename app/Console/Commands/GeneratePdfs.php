@@ -87,7 +87,7 @@ class GeneratePdfs extends Command
         // Check that the prince command exists
         $commandCheck = 'command -v ' . config('aic.prince_command');
 
-        if (!`$commandCheck`) {
+        if (!shell_exec($commandCheck)) {
             throw new \Exception('Could not found prince command line command.');
         }
 

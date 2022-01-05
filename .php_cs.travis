@@ -21,6 +21,7 @@ return $config->setRules([
     ],
     'array_indentation' => true,            // Each element of an array must be indented exactly once.
     'array_syntax' => true,                 // PHP arrays should be declared using the configured syntax.
+    'backtick_to_shell_exec' => true,       // Converts backtick operators to shell_exec calls.
 
 ])
 ->setFinder($finder);
