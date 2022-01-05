@@ -47,6 +47,7 @@ return $config->setRules([
     'function_typehint_space' => true,      // Ensure single space between function's argument and its typehint.
     'include' => true,                      // Include/Require and file path should be divided with a single space. File path should not be placed under brackets.
     'increment_style' => true,              // Pre- or post-increment and decrement operators should be used if possible.
+    'indentation_type' => true,             // Code MUST use configured indentation type.
 
 ])
 ->setFinder($finder);
