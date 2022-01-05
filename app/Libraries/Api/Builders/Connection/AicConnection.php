@@ -30,7 +30,7 @@ class AicConnection implements ApiConnectionInterface
 
     protected function useDefaultQueryGrammar()
     {
-        $this->queryGrammar = new $this->defaultGrammar;
+        $this->queryGrammar = new $this->defaultGrammar();
     }
 
     public function getQueryGrammar()

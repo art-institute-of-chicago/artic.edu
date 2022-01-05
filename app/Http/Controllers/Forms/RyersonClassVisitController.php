@@ -587,7 +587,7 @@ class RyersonClassVisitController extends FormController
     {
         $validated = $request->validated();
 
-        $ryersonClassVisit = new RyersonClassVisit;
+        $ryersonClassVisit = new RyersonClassVisit();
         $ryersonClassVisit->name = $validated['name'] ?? '';
         $ryersonClassVisit->email = $validated['email'] ?? '';
         $ryersonClassVisit->phone_number = $validated['phone_number'] ?? '';

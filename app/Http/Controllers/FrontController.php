@@ -13,7 +13,7 @@ class FrontController extends BaseController
     {
         parent::__construct();
 
-        $this->seo = new Seo;
+        $this->seo = new Seo();
         $this->seo->title = config('twill.seo.site_title');
         $this->seo->description = config('twill.seo.site_desc');
         $this->seo->image = config('twill.seo.image');

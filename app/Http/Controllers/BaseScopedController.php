@@ -87,7 +87,7 @@ class BaseScopedController extends FrontController
      */
     protected function beginOfAssociationChain()
     {
-        $model = new $this->entity;
+        $model = new $this->entity();
         $builder = $model->newQuery();
 
         return $builder;

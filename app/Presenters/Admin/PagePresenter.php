@@ -33,7 +33,7 @@ class PagePresenter extends BasePresenter
 
     public function getFeaturedJournalIssue()
     {
-        return $this->featuredJournalIssue ?? $this->featuredJournalIssue = (new IssueRepository(new Issue))->getLatestIssue();
+        return $this->featuredJournalIssue ?? $this->featuredJournalIssue = (new IssueRepository(new Issue()))->getLatestIssue();
     }
 
     public function getFeaturedJournalArticles()

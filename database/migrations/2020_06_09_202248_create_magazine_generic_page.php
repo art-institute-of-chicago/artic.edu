@@ -13,7 +13,7 @@ class CreateMagazineGenericPage extends Migration
      */
     public function up()
     {
-        $page = new GenericPage;
+        $page = new GenericPage();
         $page->title = 'Member Magazine';
         $page->redirect_url = '/magazine';
         $page->published = true;

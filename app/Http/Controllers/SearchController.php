@@ -233,7 +233,7 @@ class SearchController extends BaseScopedController
     protected function beginOfAssociationChain()
     {
         // Define base entity
-        $collectionService = new CollectionService;
+        $collectionService = new CollectionService();
 
         // Implement default filters and scopes
         $collectionService->resources(['artworks'])

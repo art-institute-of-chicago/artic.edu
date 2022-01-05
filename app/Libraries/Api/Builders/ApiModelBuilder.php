@@ -284,7 +284,7 @@ class ApiModelBuilder
             return $result;
         }
 
-        throw (new ModelNotFoundException)->setModel(
+        throw (new ModelNotFoundException())->setModel(
             get_class($this->model),
             $id
         );

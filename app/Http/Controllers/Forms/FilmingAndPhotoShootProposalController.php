@@ -313,7 +313,7 @@ class FilmingAndPhotoShootProposalController extends FormController
     {
         $validated = $request->validated();
 
-        $filmingProposal = new FilmingProposal;
+        $filmingProposal = new FilmingProposal();
         $filmingProposal->name = $validated['name'] ?? '';
         $filmingProposal->email = $validated['email'] ?? '';
         $filmingProposal->phone_number = $validated['phone_number'] ?? '';

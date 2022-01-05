@@ -216,7 +216,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public static function hydrate(array $items)
     {
-        $instance = new static;
+        $instance = new static();
 
         $items = array_map(function ($item) use ($instance) {
             return $instance->newInstance($item);
@@ -884,7 +884,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
         $attributes = Arr::except($this->attributes, $except);
 
-        return with($instance = new static)->fill($attributes);
+        return with($instance = new static())->fill($attributes);
     }
 
     /**
@@ -1131,7 +1131,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public static function __callStatic($method, $parameters)
     {
-        $instance = new static;
+        $instance = new static();
 
         return call_user_func_array([$instance, $method], $parameters);
     }

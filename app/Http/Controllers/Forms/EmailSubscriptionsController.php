@@ -26,7 +26,7 @@ class EmailSubscriptionsController extends FormController
             $response = $exactTarget->get();
 
             if ($response->status && $response->code == 200 && count($response->results)) {
-                $old = new EmailSubscriptions;
+                $old = new EmailSubscriptions();
                 $subscriptions = [];
                 foreach ($response->results[0]->Properties->Property as $index => $keyval) {
                     if ($keyval->Name == 'Email') {

@@ -552,9 +552,9 @@ class ApiQueryBuilder
     {
         $grammar = null;
         if (Str::endsWith($endpoint, '/msearch')) {
-            $grammar = new MsearchGrammar;
+            $grammar = new MsearchGrammar();
         } elseif (Str::endsWith($endpoint, '/search')) {
-            $grammar = new SearchGrammar;
+            $grammar = new SearchGrammar();
         }
 
         return $this->connection->ttl($this->ttl)->get($endpoint, $this->resolveParameters($grammar));

@@ -487,7 +487,7 @@ class EventPlanningContactController extends FormController
     {
         $validated = $request->validated();
 
-        $eventPlanningContact = new EventPlanningContact;
+        $eventPlanningContact = new EventPlanningContact();
         $eventPlanningContact->name = $validated['name'] ?? '';
         $eventPlanningContact->address_1 = $validated['address_1'] ?? '';
         $eventPlanningContact->address_2 = $validated['address_2'] ?? '';

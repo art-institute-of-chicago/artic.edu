@@ -486,7 +486,7 @@ class GroupReservationsController extends FormController
     {
         $validated = $request->validated();
 
-        $groupReservation = new GroupReservation;
+        $groupReservation = new GroupReservation();
         $groupReservation->group_name = $validated['group_name'] ?? '';
         $groupReservation->contact_name = $validated['contact_name'] ?? '';
         $groupReservation->email = $validated['email'] ?? '';

@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
      */
     private function hotfixSeoForAdminPreview()
     {
-        $seo = new Seo;
+        $seo = new Seo();
 
         $seo->title = config('twill.seo.site_title');
         $seo->description = config('twill.seo.site_desc');

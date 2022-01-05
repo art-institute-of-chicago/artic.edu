@@ -40,7 +40,7 @@ class ReportAltText extends Command
             \App\Models\Video::class,
             \A17\Twill\Models\Block::class,
         ])->map(function ($model) {
-            $table = with(new $model)->getTable();
+            $table = with(new $model())->getTable();
             $query = $model::whereHas('medias');
             if (\Schema::hasColumn($table, 'published')) {
                 $query->published();

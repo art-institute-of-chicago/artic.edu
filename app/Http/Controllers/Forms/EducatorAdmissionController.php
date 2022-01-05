@@ -257,7 +257,7 @@ class EducatorAdmissionController extends FormController
     {
         $validated = $request->validated();
 
-        $educatorAdmission = new EducatorAdmission;
+        $educatorAdmission = new EducatorAdmission();
 
         $educatorAdmission->name = $validated['name'] ?? '';
         $educatorAdmission->email = $validated['email'] ?? '';

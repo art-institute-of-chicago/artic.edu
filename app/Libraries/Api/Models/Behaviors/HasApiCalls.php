@@ -24,7 +24,7 @@ trait HasApiCalls
      */
     public static function with($relations)
     {
-        return (new static)->newQuery()->with(
+        return (new static())->newQuery()->with(
             is_string($relations) ? func_get_args() : $relations
         );
     }
@@ -36,7 +36,7 @@ trait HasApiCalls
      */
     public static function query()
     {
-        return (new static)->newQuery();
+        return (new static())->newQuery();
     }
 
     /**
@@ -46,7 +46,7 @@ trait HasApiCalls
      */
     public static function search($value)
     {
-        return (new static)->newQuery()->search($value);
+        return (new static())->newQuery()->search($value);
     }
 
     /**

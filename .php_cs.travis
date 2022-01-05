@@ -62,6 +62,7 @@ return $config->setRules([
     'multiline_whitespace_before_semicolons' => true, // Forbid multi-line whitespace before the closing semicolon or move the semicolon to the new line for chained calls.
     'native_function_casing' => true,       // Function defined by PHP should be called using the correct casing.
     'native_function_type_declaration_casing' => true, // Native type hints for functions should use the correct case.
+    'new_with_braces' => true,              // All instances created with new keyword must be followed by braces.
 
 ])
 ->setFinder($finder);
