@@ -26,6 +26,10 @@ return $config->setRules([
     'blank_line_after_namespace' => true,   // There MUST be one blank line after the namespace declaration.
     'blank_line_after_opening_tag' => true, // Ensure there is no code on the same line as the PHP open tag and it is followed by a blank line.
     'blank_line_before_statement' => true,  // An empty line feed must precede any configured statement.
+    'class_definition' => [                 // Whitespace around the keywords of a class, trait or interfaces definition should be one space.
+        'multi_line_extends_each_single_line' => true,
+        'single_item_single_line' => true,
+    ],
 
 ])
 ->setFinder($finder);
