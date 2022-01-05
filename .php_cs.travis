@@ -70,6 +70,7 @@ return $config->setRules([
     'no_empty_comment' => true,             // There should not be any empty comments.
     'no_empty_phpdoc' => true,              // There should not be empty PHPDoc blocks.
     'no_empty_statement' => true,           // Remove useless (semicolon) statements.
+    'no_leading_import_slash' => true,      // Remove leading slashes in use clauses.
 
 ])
 ->setFinder($finder);
