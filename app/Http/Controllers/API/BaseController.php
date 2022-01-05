@@ -11,7 +11,6 @@ class BaseController extends AbstractController
     /**
      * Display a listing of the deleted resources.
      *
-     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function deleted(Request $request)

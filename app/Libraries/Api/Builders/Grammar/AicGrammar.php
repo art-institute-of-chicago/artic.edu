@@ -26,7 +26,6 @@ class AicGrammar
     /**
      * Compile all components into API parameters.
      *
-     * @param  ApiQueryBuilder $query
      * @return string
      */
     public function compileParameters(ApiQueryBuilder $query)

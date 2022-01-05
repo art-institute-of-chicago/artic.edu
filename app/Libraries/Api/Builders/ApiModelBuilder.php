@@ -197,7 +197,6 @@ class ApiModelBuilder
     /**
      * When searching filter by specific resources
      *
-     * @param  array $resources
      * @return $this
      */
     public function resources(array $resources)
@@ -224,7 +223,6 @@ class ApiModelBuilder
     /**
      * Filter elements by specific ID's
      *
-     * @param  array $ids
      * @return $this
      */
     public function ids(array $ids)
@@ -237,7 +235,6 @@ class ApiModelBuilder
     /**
      * Include fields at the results
      *
-     * @param  array $include
      * @return $this
      */
     public function include(array $inclusions)
@@ -633,7 +630,6 @@ class ApiModelBuilder
     /**
      * Apply the given scope on the current builder instance.
      *
-     * @param  callable  $scope
      * @param  array  $parameters
      * @return mixed
      */

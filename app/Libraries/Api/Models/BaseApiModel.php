@@ -127,7 +127,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Create a new Eloquent model instance.
      *
-     * @param  array  $attributes
      * @return void
      */
     public function __construct(array $attributes = [])
@@ -138,7 +137,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Fill the model with an array of attributes.
      *
-     * @param  array  $attributes
      * @return $this
      *
      * @throws MassAssignmentException
@@ -164,7 +162,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Fill the model with an array of attributes. Force mass assignment.
      *
-     * @param  array  $attributes
      * @return $this
      */
     public function forceFill(array $attributes)
@@ -182,7 +179,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Get the fillable attributes of a given array.
      *
-     * @param  array  $attributes
      * @return array
      */
     protected function fillableFromArray(array $attributes)
@@ -198,7 +194,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * Create a new instance of the given model.
      *
      * @param  array  $attributes
-     * @param  bool   $exists
      * @return \Jenssegers\Model\Model
      */
     public function newInstance($attributes = [])
@@ -211,7 +206,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Create a collection of models from plain arrays.
      *
-     * @param  array  $items
      * @return array
      */
     public static function hydrate(array $items)
@@ -238,7 +232,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Set the hidden attributes for the model.
      *
-     * @param  array  $hidden
      * @return $this
      */
     public function setHidden(array $hidden)
@@ -289,7 +282,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Set the visible attributes for the model.
      *
-     * @param  array  $visible
      * @return $this
      */
     public function setVisible(array $visible)
@@ -317,7 +309,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Set the accessors to append to model arrays.
      *
-     * @param  array  $appends
      * @return $this
      */
     public function setAppends(array $appends)
@@ -340,7 +331,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Set the fillable attributes for the model.
      *
-     * @param  array  $fillable
      * @return $this
      */
     public function fillable(array $fillable)
@@ -363,7 +353,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Set the guarded attributes for the model.
      *
-     * @param  array  $guarded
      * @return $this
      */
     public function guard(array $guarded)
@@ -407,7 +396,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Run the given callable while being unguarded.
      *
-     * @param  callable  $callback
      * @return mixed
      */
     public static function unguarded(callable $callback)
@@ -582,7 +570,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Get an attribute array of all arrayable values.
      *
-     * @param  array  $values
      * @return array
      */
     protected function getArrayableItems(array $values)
@@ -875,7 +862,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Clone the model into a new, non-existing instance.
      *
-     * @param  array|null  $except
      * @return \Jenssegers\Model\Model
      */
     public function replicate(array $except = null)

@@ -19,7 +19,6 @@ class AicConnection implements ApiConnectionInterface
     /**
      * Create a new API connection instance.
      *
-     * @param  $endpoint
      * @return void
      */
     public function __construct()

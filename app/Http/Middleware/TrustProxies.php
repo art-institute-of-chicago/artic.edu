@@ -27,8 +27,6 @@ class TrustProxies extends Middleware
     /**
      * Add remote address to trusted proxy list
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException

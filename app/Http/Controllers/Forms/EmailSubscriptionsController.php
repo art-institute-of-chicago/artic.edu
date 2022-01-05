@@ -236,9 +236,7 @@ class EmailSubscriptionsController extends FormController
         return view('site.forms.form', $view_data)->withErrors($withErrors, 'notices');
     }
 
-    /**
-     * @param EmailSubscriptionsRequest $request
-     */
+    
     public function store(EmailSubscriptionsRequest $request)
     {
         $validated = $request->validated();

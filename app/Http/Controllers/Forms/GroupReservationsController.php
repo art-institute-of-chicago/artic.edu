@@ -479,9 +479,7 @@ class GroupReservationsController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-    /**
-     * @param GroupReservationRequest $request
-     */
+    
     public function store(GroupReservationRequest $request)
     {
         $validated = $request->validated();

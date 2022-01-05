@@ -238,8 +238,6 @@ class ApiQueryBuilder
     /**
      * Add an "ids" clause to the query. This will bring only records with these ids
      *
-     * @param  string  $column
-     * @param  string  $direction
      * @return $this
      */
     public function ids($ids = [])
@@ -254,8 +252,6 @@ class ApiQueryBuilder
     /**
      * Add an "includes" clause to the query. This will add those attributes
      *
-     * @param  string  $column
-     * @param  string  $direction
      * @return $this
      */
     public function include($inclusions = [])
@@ -395,7 +391,6 @@ class ApiQueryBuilder
     /**
      * Search for specific resources
      *
-     * @param  string  $search
      * @return $this
      */
     public function resources($resources)
