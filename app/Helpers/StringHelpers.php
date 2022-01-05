@@ -131,7 +131,7 @@ class StringHelpers
             return $string;
         }
 
-        $string = preg_replace("/^(.{1,$limit})(\s.*|$)/s", '\1...', $string);
+        $string = preg_replace("/^(.{1,${limit}})(\s.*|$)/s", '\1...', $string);
 
         if (strpos($string, '<') < 0) {
             return $truncatedString;

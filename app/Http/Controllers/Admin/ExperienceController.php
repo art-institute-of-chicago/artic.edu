@@ -95,7 +95,7 @@ class ExperienceController extends ModuleController
         }
 
         return [
-            "$field" => $value,
+            "${field}" => $value,
         ];
     }
 

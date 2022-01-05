@@ -67,7 +67,7 @@ trait HandleApiBlocks
             })->toArray();
 
             return [
-                "blocks[$block->id][$relation]" => $items,
+                "blocks[{$block->id}][${relation}]" => $items,
             ];
         })->filter()->toArray();
     }
