@@ -25,11 +25,11 @@ class ArtworkController extends BaseScopedController
         try {
             $item = Artwork::query()
                 ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
-                ->findOrFail((integer) $id);
+                ->findOrFail((int) $id);
         } catch (\Throwable $e) {
             $item = Artwork::query()->forceEndpoint('deaccession')
                 ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
-                ->findOrFail((integer) $id);
+                ->findOrFail((int) $id);
         }
 
         $canonicalPath = route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ]);
@@ -118,7 +118,7 @@ class ArtworkController extends BaseScopedController
 
     public function addRecentlyViewed($idSlug, $slug = null, RecentlyViewedService $service)
     {
-        $item = Artwork::query()->findOrFail((integer) $idSlug);
+        $item = Artwork::query()->findOrFail((int) $idSlug);
 
         if (empty($item)) {
             abort(404);
@@ -135,11 +135,11 @@ class ArtworkController extends BaseScopedController
         try {
             $item = Artwork::query()
                 ->include(['artist_pivots'])
-                ->findOrFail((integer) $id);
+                ->findOrFail((int) $id);
         } catch (\Throwable $e) {
             $item = Artwork::query()->forceEndpoint('deaccession')
                 ->include(['artist_pivots'])
-                ->findOrFail((integer) $id);
+                ->findOrFail((int) $id);
         }
 
         $exploreFurther = new ExploreFurther($item);

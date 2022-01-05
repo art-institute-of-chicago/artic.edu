@@ -485,7 +485,7 @@ class Search extends BaseApiModel
 
         // Generalize to use this scope on artworks as well as artists
         $item = $class::query()
-            ->findOrFail((integer) $id);
+            ->findOrFail((int) $id);
 
         $shoulds = [];
         if ($class == \App\Models\Api\Artwork::class) {
@@ -618,12 +618,12 @@ class Search extends BaseApiModel
     {
         // Year could come with BCE, CE, or 'Present'
         if (Str::contains($year, 'BCE')) {
-            $year = - (integer) $year;
+            $year = - (int) $year;
         } else {
             if (Str::contains($year, 'Present')) {
                 $year = Carbon::now()->year;
             } else {
-                $year = (integer) $year;
+                $year = (int) $year;
             }
         }
 

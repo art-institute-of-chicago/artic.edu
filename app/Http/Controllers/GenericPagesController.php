@@ -54,7 +54,7 @@ class GenericPagesController extends FrontController
         $idSlug = collect(explode("/", $slug))->last();
         $page = $this->genericPageRepository->forSlug($idSlug);
         if (empty($page)) {
-            $page = $this->genericPageRepository->getById((integer) $idSlug);
+            $page = $this->genericPageRepository->getById((int) $idSlug);
             if (!$page) {
                 abort(404);
             }

@@ -69,7 +69,7 @@ class EducatorResourcesController extends BaseScopedController
 
     public function show($id)
     {
-        $item = $this->repository->find((integer) $id);
+        $item = $this->repository->find((int) $id);
 
         if (!$item) {
             $item = $this->repository->forSlug($id);

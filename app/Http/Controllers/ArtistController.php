@@ -19,7 +19,7 @@ class ArtistController extends FrontController
 
     public function show($id, $slug = null)
     {
-        $item = $this->repository->getById((integer) $id);
+        $item = $this->repository->getById((int) $id);
 
         $canonicalPath = route('artists.show', ['id' => $item->id, 'slug' => $item->titleSlug]);
 

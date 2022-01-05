@@ -25,7 +25,7 @@ class MagazineIssueController extends FrontController
     public function show($id, $slug = null, $isRequestForLatest = false)
     {
         $issues = $this->repository->published()->ordered()->get();
-        $item = $issues->where('id', (integer) $id)->first();
+        $item = $issues->where('id', (int) $id)->first();
 
         if (!$item) {
             abort(404);

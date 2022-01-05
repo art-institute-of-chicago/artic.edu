@@ -39,7 +39,7 @@ class DigitalPublicationsController extends BaseScopedController
 
     public function show($id)
     {
-        $item = $this->repository->published()->find((integer) $id);
+        $item = $this->repository->published()->find((int) $id);
 
         if (empty($item)) {
             $item = $this->repository->forSlug($id);

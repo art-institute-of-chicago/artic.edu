@@ -97,6 +97,7 @@ return $config->setRules([
     'object_operator_without_whitespace' => true, // There should not be space before or after object operators -> and ?->.
     'return_type_declaration' => true,      // There should be one or no space before colon, and one space after it in return type declarations, according to configuration.
     'semicolon_after_instruction' => true,  // Instructions must be terminated with a semicolon.
+    'short_scalar_cast' => true,            // Cast (boolean) and (integer) should be written as (bool) and (int), (double) and (real) as (float), (binary) as (string).
 
 ])
 ->setFinder($finder);

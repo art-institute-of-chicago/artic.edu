@@ -54,7 +54,7 @@ class ExhibitionPressRoomController extends FrontController
 
     public function show($id)
     {
-        $item = $this->repository->getById((integer) $id);
+        $item = $this->repository->getById((int) $id);
 
         $canonicalPath = route('about.exhibitionPressRooms.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
 
