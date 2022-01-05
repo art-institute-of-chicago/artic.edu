@@ -37,7 +37,7 @@ class ExactTargetService
         $clientSecret = config('exact-target.client.clientsecret');
 
         $api = new \GuzzleHttp\Client();
-        $result = $api->request('POST', $auth_url . '/v2/token' , ['json' => ['client_id' => $clientId, 'client_secret' => $clientSecret, 'grant_type' => "client_credentials"]]);
+        $result = $api->request('POST', $auth_url . '/v2/token', ['json' => ['client_id' => $clientId, 'client_secret' => $clientSecret, 'grant_type' => "client_credentials"]]);
         $tokenInfo = json_decode($result->getBody()->getContents(), true);
 
         $client = new ET_Client(true, config('app.debug'), array_merge(config('exact-target.client'), [ 'authorizationCode' => $tokenInfo['access_token'], 'scope' => $tokenInfo['scope'] ]));
