@@ -33,7 +33,7 @@ class ConvertEndCreditsToWysiwyg extends Migration
     public function down()
     {
         Schema::table('wysiwyg', function (Blueprint $table) {
-            
+
         });
     }
 }

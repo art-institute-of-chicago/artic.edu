@@ -134,7 +134,7 @@ class Experience extends AbstractModel implements Sortable
             $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
 
             return $attract_image ? $attract_image->cmsImage('experience_image', 'default', $params) : '';
-        
+
     }
 
     public function slides()

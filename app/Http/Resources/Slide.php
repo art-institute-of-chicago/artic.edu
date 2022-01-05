@@ -168,7 +168,7 @@ class Slide extends JsonResource
                 return [
 
                 ];
-            
+
         } else {
             $src = '';
         }
@@ -231,7 +231,7 @@ class Slide extends JsonResource
             return [
 
             ];
-        
+
     }
 
     protected function getEndAttributes()

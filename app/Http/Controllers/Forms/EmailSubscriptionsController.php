@@ -236,7 +236,7 @@ class EmailSubscriptionsController extends FormController
         return view('site.forms.form', $view_data)->withErrors($withErrors, 'notices');
     }
 
-    
+
     public function store(EmailSubscriptionsRequest $request)
     {
         $validated = $request->validated();
@@ -265,7 +265,7 @@ class EmailSubscriptionsController extends FormController
             return redirect(route('forms.email-subscriptions.thanks'));
         }
             abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
-        
+
     }
 
 

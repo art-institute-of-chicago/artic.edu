@@ -52,7 +52,7 @@ trait HasRelationships
                 $localKey,
                 $limit
             );
-        
+
     }
 
     /**
@@ -85,7 +85,7 @@ trait HasRelationships
             if (method_exists($this, $key)) {
                 return $this->getRelationshipFromMethod($key);
             }
-        
+
     }
 
     protected function getRelationshipFromMethod($method)

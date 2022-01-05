@@ -57,6 +57,6 @@ class MigrateArticleBrowsers extends Migration
      */
     public function down()
     {
-        
+
     }
 }

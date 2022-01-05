@@ -133,7 +133,7 @@ class AicConnection implements ApiConnectionInterface
         }
 
             return $this->client->request($verb, $endpoint, $options);
-        
+
     }
 
     /**

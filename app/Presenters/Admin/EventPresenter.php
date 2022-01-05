@@ -86,7 +86,7 @@ class EventPresenter extends BasePresenter
             if (isset($this->entity->date)) {
                 return $this->formatDate($this->entity->date);
             }
-        
+
     }
 
     public function formattedNextOcurrence()
@@ -100,7 +100,7 @@ class EventPresenter extends BasePresenter
             if ($last = $this->entity->lastOcurrence) {
                 return '<time datetime="' . $last->date->format("c") . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format("c") . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
             }
-        
+
     }
 
     public function nextOcurrenceDate()

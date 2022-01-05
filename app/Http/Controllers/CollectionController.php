@@ -169,6 +169,6 @@ class CollectionController extends BaseScopedController
                     return true;
                 }
             }
-        
+
     }
 }

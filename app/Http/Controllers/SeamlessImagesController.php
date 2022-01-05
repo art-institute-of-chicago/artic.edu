@@ -14,7 +14,7 @@ class SeamlessImagesController extends Controller
             $file = File::findOrFail($file_id);
             app('App\Observers\FileObserver')->handleImageSequenceZip($file);
         }
-        
+
         $images = SeamlessImage::where('zip_file_id', $file_id)->get()->map(function ($image) {
             return [
                 'id' => $image->id,

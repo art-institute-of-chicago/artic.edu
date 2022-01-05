@@ -176,7 +176,7 @@ class ApiQueryBuilder
         }
 
             throw new \Exception("whereIn function has been defined only for IDS at the API Query Builder");
-        
+
     }
 
     /**
@@ -476,7 +476,7 @@ class ApiQueryBuilder
             }
 
                 return $results;
-            
+
         }
 
         $this->columns = $original;

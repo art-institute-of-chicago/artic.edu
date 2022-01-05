@@ -549,7 +549,7 @@ class ApiModelBuilder
         }
 
             return $this->getPaginated($perPage, $columns, $pageName, $page);
-        
+
     }
 
     protected function paginator($items, $total, $perPage, $currentPage, $options)
@@ -598,7 +598,7 @@ class ApiModelBuilder
         }
 
             return $this->performSearch ? 'search' : 'collection';
-        
+
     }
 
     /**

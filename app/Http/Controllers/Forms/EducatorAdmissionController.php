@@ -250,7 +250,7 @@ class EducatorAdmissionController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-    
+
     public function store(EducatorAdmissionRequest $request)
     {
         $validated = $request->validated();

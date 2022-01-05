@@ -66,11 +66,11 @@ class Exhibition extends BaseApiModel
             }
 
                 return $this->dateStart->year < 2010;
-            
+
         }
 
             return Carbon::now()->gt($this->dateEnd->endOfDay());
-        
+
     }
 
     public function getIdSlugAttribute()

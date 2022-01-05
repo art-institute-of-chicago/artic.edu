@@ -42,7 +42,7 @@ trait HasMediasApi
 
                     return $image;
                 }
-            
+
         }
 
         // If nothing has been returned on the API side, check for an augmented model
@@ -69,7 +69,7 @@ trait HasMediasApi
         }
 
             return 'image_id';
-        
+
     }
 
     protected function getWidth($role, $crop, $image)
@@ -79,7 +79,7 @@ trait HasMediasApi
         }
 
             return isset($image['width']) ? $image['width'] : '';
-        
+
     }
 
     protected function getHeight($role, $crop, $image)
@@ -89,6 +89,6 @@ trait HasMediasApi
         }
 
             return isset($image['height']) ? $image['height'] : '';
-        
+
     }
 }

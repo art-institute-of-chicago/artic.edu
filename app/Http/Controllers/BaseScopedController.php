@@ -138,8 +138,8 @@ class BaseScopedController extends FrontController
                     return true;
                 }
             }
-        
 
-        
+
+
     }
 }

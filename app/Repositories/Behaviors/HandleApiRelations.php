@@ -156,7 +156,7 @@ trait HandleApiRelations
                             }
                         }
                             // WEB-1187: Add augment route here!
-                        
+
 
                         return [
                             'id' => $apiElement->id,

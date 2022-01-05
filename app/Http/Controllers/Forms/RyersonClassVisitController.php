@@ -580,7 +580,7 @@ class RyersonClassVisitController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-    
+
     public function store(RyersonClassVisitRequest $request)
     {
         $validated = $request->validated();

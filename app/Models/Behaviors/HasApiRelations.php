@@ -34,7 +34,7 @@ trait HasApiRelations
             });
 
             return $sorted;
-        
+
     }
 
     public function getRelatedWithApiModels($browser_name, $apiModelsDefinitions, $typeUsesApi)

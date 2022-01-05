@@ -938,7 +938,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         }
 
             return new BaseCollection($models);
-        
+
     }
 
     /**
@@ -955,7 +955,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         }
 
             return $value;
-        
+
     }
 
     /**
@@ -1054,7 +1054,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
     public function getTable()
     {
-        
+
     }
 
     /**
@@ -1079,7 +1079,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
     public function resolveChildRouteBinding($childType, $value, $field)
     {
-        
+
     }
 
     public function getKeyName()

@@ -480,7 +480,7 @@ class EventPlanningContactController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-    
+
     public function store(EventPlanningContactRequest $request)
     {
         $validated = $request->validated();

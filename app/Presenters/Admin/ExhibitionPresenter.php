@@ -107,7 +107,7 @@ class ExhibitionPresenter extends BasePresenter
         }
 
             return "";
-        
+
     }
 
     public function endAt()
@@ -120,7 +120,7 @@ class ExhibitionPresenter extends BasePresenter
         }
 
             return "";
-        
+
     }
 
     public function itemprops()

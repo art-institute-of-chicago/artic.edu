@@ -123,7 +123,7 @@ class AicGrammar
         }
 
             return [];
-        
+
     }
 
     protected function compileSearchParameters($query, array $elasticParameters)

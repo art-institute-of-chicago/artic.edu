@@ -26,7 +26,7 @@ class RemoveLegacyColumnsInInteractiveFeaturesTable extends Migration
     public function down()
     {
         Schema::table('interactive_features', function (Blueprint $table) {
-            
+
         });
     }
 }

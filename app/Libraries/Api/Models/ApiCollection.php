@@ -22,7 +22,7 @@ class ApiCollection extends \Illuminate\Support\Collection
             }
 
                 return $this->metadata;
-            
+
         }
     }
 

@@ -71,7 +71,7 @@ class ExperienceController extends ModuleController
                 return [
                     'thumbnail' => $thumbnail_image,
                 ];
-            
+
         }
 
         if (isset($column['nested']) && $column['nested']) {

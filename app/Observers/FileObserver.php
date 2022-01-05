@@ -31,7 +31,7 @@ class FileObserver
      */
     public function updated(File $file)
     {
-        
+
     }
 
     /**
@@ -42,7 +42,7 @@ class FileObserver
      */
     public function deleted(File $file)
     {
-        
+
     }
 
     /**
@@ -53,7 +53,7 @@ class FileObserver
      */
     public function restored(File $file)
     {
-        
+
     }
 
     /**
@@ -64,7 +64,7 @@ class FileObserver
      */
     public function forceDeleted(File $file)
     {
-        
+
     }
 
     public function handleImageSequenceZip($file)
@@ -118,7 +118,7 @@ class FileObserver
         }
 
             throw new Exception('Cannot read the zip file');
-        
+
     }
 
     private function uploadToS3($zipFolderName, $file)

@@ -471,7 +471,7 @@ class ArtworkPresenter extends BasePresenter
                 "content" => $content,
                 "titleFont" => "f-module-title-2"
             ];
-        
+
     }
 
     protected function formatDescriptionBlocks($elements)

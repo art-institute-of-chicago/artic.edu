@@ -23,7 +23,7 @@ class HighlightPresenter extends BasePresenter
         }
 
             return 'Highlights'; // For detail header
-        
+
     }
 
     public function url()

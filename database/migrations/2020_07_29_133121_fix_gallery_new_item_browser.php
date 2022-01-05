@@ -31,6 +31,6 @@ class FixGalleryNewItemBrowser extends Migration
      */
     public function down()
     {
-        
+
     }
 }

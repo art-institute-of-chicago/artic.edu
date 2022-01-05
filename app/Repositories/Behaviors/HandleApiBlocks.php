@@ -86,6 +86,6 @@ trait HandleApiBlocks
         }
 
             return app(config('twill.namespace') . "\\Repositories\\" . ucfirst($model) . "Repository");
-        
+
     }
 }

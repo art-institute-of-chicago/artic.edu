@@ -306,7 +306,7 @@ class FilmingAndPhotoShootProposalController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-    
+
     public function store(FilmingProposalRequest $request)
     {
         $validated = $request->validated();
