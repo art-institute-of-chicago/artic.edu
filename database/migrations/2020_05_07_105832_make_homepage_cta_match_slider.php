@@ -44,8 +44,7 @@ class MakeHomepageCtaMatchSlider extends Migration
         });
 
         Schema::table('pages', function (Blueprint $table) {
-            $table->string('home_cta_module_headling')->nullable()->change();
-            ;
+            $table->string('home_cta_module_headling')->nullable()->change();;
             $table->string('home_cta_module_short_copy')->nullable()->change();
             $table->string('home_cta_module_url')->nullable()->change();
         });

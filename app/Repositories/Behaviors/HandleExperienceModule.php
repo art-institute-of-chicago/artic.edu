@@ -144,8 +144,7 @@ trait HandleExperienceModule
                     $experienceImageFormFields = $experienceImageRepository->getFormFields($experienceImageRepository->getById($experienceImage['id']));
                     if (isset($experienceImageFormFields['medias'])) {
                         $fields['repeaterMedias']['modal_experience_image']['blocks[experienceImage-' . $experienceImage['id'] . '][experience_image]'] = $experienceImageFormFields['medias']['experience_image'];
-                    }
-;
+                    };
                     foreach ($experienceImage as $field => $value) {
                         $fields['repeaterFields']['modal_experience_image'][] = [
                             'name' => 'blocks[experienceImage-' . $experienceImage['id'] . '][' . $field . ']',
