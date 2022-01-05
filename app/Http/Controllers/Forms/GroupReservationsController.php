@@ -24,11 +24,7 @@ class GroupReservationsController extends FormController
 
         $errors = session('errors');
 
-        /*
-         *
-         *  Contact information
-         *
-         */
+        // Contact information
         $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
@@ -231,11 +227,7 @@ class GroupReservationsController extends FormController
         ];
 
 
-        /*
-         *
-         *  Visit information
-         *
-         */
+        // Visit information
         $visitInformationFields[] = [
             'variation' => null,
             'blocks' => [

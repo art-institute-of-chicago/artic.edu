@@ -23,11 +23,7 @@ class EducatorAdmissionController extends FormController
 
         $errors = session('errors');
 
-        /*
-         *
-         *  Registration information
-         *
-         */
+        // Registration information
         $registrationInformationFields[] = [
             'variation' => null,
             'blocks' => [

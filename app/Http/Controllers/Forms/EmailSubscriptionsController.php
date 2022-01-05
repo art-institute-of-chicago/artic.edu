@@ -56,11 +56,7 @@ class EmailSubscriptionsController extends FormController
 
         $errors = session('errors');
 
-        /*
-         *
-         *  Subscriptions information
-         *
-         */
+        // Subscriptions information
         $subFields = [
             'variation' => 'm-fieldset__field--group',
             'blocks' => [
@@ -79,11 +75,7 @@ class EmailSubscriptionsController extends FormController
         }
         $subscriptionsFields[] = $subFields;
 
-        /*
-         *
-         *  Unsubscribe
-         *
-         */
+        // Unsubscribe
         $unsubscribeFields[] = [
             'variation' => 'm-fieldset__field--group',
             'blocks' => [
@@ -112,11 +104,7 @@ class EmailSubscriptionsController extends FormController
             ],
         ];
 
-        /*
-         *
-         *  Personal information
-         *
-         */
+        // Personal information
         $personalInformationFields[] = [
             'variation' => null,
             'blocks' => [

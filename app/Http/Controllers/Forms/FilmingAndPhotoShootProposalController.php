@@ -24,11 +24,7 @@ class FilmingAndPhotoShootProposalController extends FormController
 
         $errors = session('errors');
 
-        /*
-         *
-         *  Contact information
-         *
-         */
+        // Contact information
         $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
@@ -86,11 +82,7 @@ class FilmingAndPhotoShootProposalController extends FormController
             ],
         ];
 
-        /*
-         *
-         *  Project description
-         *
-         */
+        // Project description
         $projectDescriptionFields[] = [
             'variation' => null,
             'blocks' => [

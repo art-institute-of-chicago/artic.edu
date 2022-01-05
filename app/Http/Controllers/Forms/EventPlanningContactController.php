@@ -24,11 +24,7 @@ class EventPlanningContactController extends FormController
 
         $errors = session('errors');
 
-        /*
-         *
-         *  Inquiry form
-         *
-         */
+        // Inquiry form
         $inquiryFields[] = [
             'variation' => null,
             'blocks' => [
@@ -322,11 +318,7 @@ class EventPlanningContactController extends FormController
             ],
         ];
 
-        /*
-         *
-         *  Daytime information
-         *
-         */
+        // Daytime information
         $daytimeFields[] = [
             'variation' => null,
             'blocks' => [

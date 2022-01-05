@@ -13,23 +13,17 @@ return [
              */
             'items' => 'App\Models\Article@getAllFeedItems',
 
-            /*
-             * The feed will be available on this url.
-             */
+            // The feed will be available on this url.
             'url' => 'feed',
 
             'title' => 'Art Institute of Chicago',
             'description' => 'The latest articles from the Art Institute of Chicago',
             'language' => 'en-US',
 
-            /*
-             * The view that will render the feed.
-             */
+            // The view that will render the feed.
             'view' => 'feed::feed',
 
-            /*
-             * The type to be used in the <link> tag
-             */
+            // The type to be used in the <link> tag
             'type' => 'application/atom+xml',
         ],
     ],

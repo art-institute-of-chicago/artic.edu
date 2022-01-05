@@ -26,11 +26,7 @@ class RyersonClassVisitController extends FormController
 
         $errors = session('errors');
 
-        /*
-         *
-         *  Contact information
-         *
-         */
+        // Contact information
         $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
@@ -88,11 +84,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        /*
-         *
-         *  Institution information
-         *
-         */
+        // Institution information
         $affiliationFields = [
             'variation' => 'm-fieldset__field--group',
             'blocks' => [
@@ -187,11 +179,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        /*
-         *
-         *  Course information
-         *
-         */
+        // Course information
         $daysClassMeetsFields = [
             'variation' => 'm-fieldset__field--group',
             'blocks' => [
@@ -246,11 +234,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        /*
-         *
-         *  Visit information
-         *
-         */
+        // Visit information
         $visitInformationFields[] = [
             'variation' => null,
             'blocks' => [
