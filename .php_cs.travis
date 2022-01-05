@@ -54,6 +54,7 @@ return $config->setRules([
     'lowercase_cast' => true,               // Cast should be written in lower case.
     'lowercase_keywords' => true,           // PHP keywords MUST be in lower case.
     'lowercase_static_reference' => true,   // Class static references self, static and parent MUST be in lower case.
+    'magic_constant_casing' => true,        // Magic constants should be referred to using the correct casing.
 
 ])
 ->setFinder($finder);
