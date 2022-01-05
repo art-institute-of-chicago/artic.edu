@@ -30,6 +30,7 @@ return $config->setRules([
         'multi_line_extends_each_single_line' => true,
         'single_item_single_line' => true,
     ],
+    'compact_nullable_typehint' => true,    // Remove extra spaces in a nullable typehint.
 
 ])
 ->setFinder($finder);
