@@ -79,6 +79,7 @@ return $config->setRules([
     'no_singleline_whitespace_before_semicolons' => true, // Single-line whitespace before closing semicolon are prohibited.
     'no_spaces_after_function_name' => true, // When making a method or function call, there MUST NOT be a space between the method or function name and the opening parenthesis.
     'no_spaces_inside_parenthesis' => true, // There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the closing parenthesis.
+    'no_superfluous_elseif' => true,        // Replaces superfluous elseif with if.
 
 ])
 ->setFinder($finder);

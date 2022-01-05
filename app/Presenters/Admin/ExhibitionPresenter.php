@@ -101,7 +101,8 @@ class ExhibitionPresenter extends BasePresenter
     {
         if ($this->entity->public_start_date != null) {
             return $this->entity->public_start_date;
-        } elseif ($this->entity->aic_start_at != null) {
+        }
+        if ($this->entity->aic_start_at != null) {
             return new Carbon($this->entity->aic_start_at);
         } else {
             return "";
@@ -112,7 +113,8 @@ class ExhibitionPresenter extends BasePresenter
     {
         if ($this->entity->public_end_date != null) {
             return $this->entity->public_end_date;
-        } elseif ($this->entity->aic_end_at != null) {
+        }
+        if ($this->entity->aic_end_at != null) {
             return new Carbon($this->entity->aic_end_at);
         } else {
             return "";
@@ -212,22 +214,26 @@ class ExhibitionPresenter extends BasePresenter
                 'label' => 'Ongoing',
                 'variation' => 'ongoing'
             ];
-        } elseif ($this->entity->isClosed) {
+        }
+        if ($this->entity->isClosed) {
             return [
                 'label' => 'Closed',
                 'variation' => 'closing-soon'
             ];
-        } elseif ($this->entity->isNowOpen) {
+        }
+        if ($this->entity->isNowOpen) {
             return [
                 'label' => 'Now Open',
                 'variation' => 'ongoing'
             ];
-        } elseif ($this->entity->isClosingSoon) {
+        }
+        if ($this->entity->isClosingSoon) {
             return [
                 'label' => 'Closing Soon',
                 'variation' => 'closing-soon'
             ];
-        } elseif ($this->entity->exclusive) {
+        }
+        if ($this->entity->exclusive) {
             return [
                 'label' => 'Member Exclusive',
                 'variation' => 'ongoing'

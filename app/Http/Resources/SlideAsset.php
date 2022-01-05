@@ -26,7 +26,8 @@ class SlideAsset extends JsonResource
                 'height' => $image->imageObject('experience_image')->height,
                 'src' => [$image->image('experience_image')],
             ];
-        } elseif ($this->fileObject('sequence_file')) {
+        }
+        if ($this->fileObject('sequence_file')) {
             $images = SeamlessImage::where('zip_file_id', $this->fileObject('sequence_file')->id)->orderBy('frame', 'asc')->get();
             $src = $images->map(function ($image) {
                 return [

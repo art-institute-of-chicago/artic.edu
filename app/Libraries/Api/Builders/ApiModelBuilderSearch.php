@@ -132,7 +132,8 @@ class ApiModelBuilderSearch extends ApiModelBuilder
                 }
 
                 return $elements->get();
-            } elseif (!$class) {
+            }
+            if (!$class) {
                 return $collection; // e.g. static-pages
             }
         });
@@ -190,7 +191,8 @@ class ApiModelBuilderSearch extends ApiModelBuilder
                 });
 
                 return $elements;
-            } elseif (!$class) {
+            }
+            if (!$class) {
                 return $collection; // e.g. static-pages
             }
         });
