@@ -42,6 +42,7 @@ return $config->setRules([
     'explicit_indirect_variable' => true,   // Add curly braces to indirect variables to make them clear to understand. Requires PHP >= 7.0.=
     'explicit_string_variable' => true,     // Converts implicit variables into explicit ones in double-quoted strings or heredoc syntax.
     'full_opening_tag' => true,             // PHP code must use the long <?php tags or short-echo <?= tags and not other tag variations.
+    'fully_qualified_strict_types' => true, // Transforms imported FQCN parameters and return types in function arguments to short version.
 
 ])
 ->setFinder($finder);
