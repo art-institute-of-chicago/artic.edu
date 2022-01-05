@@ -17,8 +17,8 @@ class TicketedEventTypeRepository extends BaseApiRepository
     public function getTicketedEventTypesCollection($item)
     {
         return Search::query()
-                ->resources(['ticketed-event-types'])
-                ->byIds([$item->datahub_id])
-                ->getSearch(self::TICKETED_EVENT_TYPES_PER_PAGE);
+            ->resources(['ticketed-event-types'])
+            ->byIds([$item->datahub_id])
+            ->getSearch(self::TICKETED_EVENT_TYPES_PER_PAGE);
     }
 }

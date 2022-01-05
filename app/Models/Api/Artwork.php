@@ -282,8 +282,8 @@ class Artwork extends BaseApiModel
 
             return false;
         })
-        ->prepend($main)
-        ->reject(function ($name) {
+            ->prepend($main)
+            ->reject(function ($name) {
             return empty($name);
         });
     }

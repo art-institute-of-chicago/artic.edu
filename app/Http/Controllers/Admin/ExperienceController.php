@@ -131,9 +131,9 @@ class ExperienceController extends ModuleController
     protected function previewData($item)
     {
         $articles = Article::published()
-        ->orderBy('date', 'desc')
-        ->notUnlisted()
-        ->paginate(4);
+            ->orderBy('date', 'desc')
+            ->notUnlisted()
+            ->paginate(4);
 
         return [
             'experience' => $item,

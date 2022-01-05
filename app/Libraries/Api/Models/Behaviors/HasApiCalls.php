@@ -101,7 +101,7 @@ trait HasApiCalls
         // builder can easily access any information it may need from the model
         // while it is constructing and executing various queries against it.
         return $builder->setModel($this)
-                    ->with($this->with);
+            ->with($this->with);
     }
 
     public function newApiModelBuilder($query)

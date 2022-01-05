@@ -36,8 +36,8 @@ class RouteServiceProvider extends ServiceProvider
 
             foreach ($domains as $domain) {
                 Route::middleware('web')
-                        ->domain($domain)
-                        ->group(base_path('routes/kiosk.php'));
+                    ->domain($domain)
+                    ->group(base_path('routes/kiosk.php'));
             }
 
             // Web routes
