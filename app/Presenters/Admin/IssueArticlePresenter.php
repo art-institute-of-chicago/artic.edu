@@ -96,7 +96,7 @@ class IssueArticlePresenter extends BasePresenter
 
     public function references()
     {
-        //
+        
     }
 
     public function citeAs()

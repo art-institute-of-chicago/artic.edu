@@ -27,7 +27,7 @@ class AddSplitVideoRelatedColumnsToSlidesTable extends Migration
     public function down()
     {
         Schema::table('slides', function (Blueprint $table) {
-            //
+            
         });
     }
 }

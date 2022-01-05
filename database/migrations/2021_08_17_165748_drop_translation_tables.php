@@ -271,6 +271,6 @@ class DropTranslationTables extends Migration
      */
     public function down()
     {
-        //
+        
     }
 }

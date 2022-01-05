@@ -67,6 +67,7 @@ return $config->setRules([
     'no_binary_string' => true,             // There should not be a binary flag before strings.
     'no_break_comment' => true,             // There must be a comment when fall-through is intentional in a non-empty case body.
     'no_closing_tag' => true,               // The closing \?\> tag MUST be omitted from files containing only PHP.
+    'no_empty_comment' => true,             // There should not be any empty comments.
 
 ])
 ->setFinder($finder);

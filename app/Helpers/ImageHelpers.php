@@ -594,7 +594,7 @@ class ImageHelpers
         $xlargeMaxSize = $settings['xlargeMaxSize'];
         $totalCSScolumns = $settings['totalCSScolumns'];
         $outerGutterCSScolumns = $settings['outerGutterCSScolumns'];
-        //
+        
         foreach ($breakpoints as $name => $point) {
             if (array_key_exists($name, $data)) {
                 if (strrpos($data[$name], 'px') > 0 || strrpos($data[$name], 'vw') > 0) {
