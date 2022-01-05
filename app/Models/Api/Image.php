@@ -27,7 +27,7 @@ class Image extends BaseApiModel
         $src = $dams->getUrl($this->id);
         $srcset = $src ." 300w";
 
-        $image = array(
+        $image = [
             "type" => 'dams',
             "src" => $src,
             "srcset" => $srcset,
@@ -41,7 +41,7 @@ class Image extends BaseApiModel
             "creditUrl" => $creditUrl,
             "iiifId" => $dams->getBaseUrl().$dams->getVersion().'/'.$this->id,
             "alt"    => $this->alt_text
-        );
+        ];
 
         if (isset($this->lqip) && !empty($this->lqip)) {
             $image['lqip'] = $this->lqip;

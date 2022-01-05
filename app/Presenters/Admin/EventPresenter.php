@@ -203,7 +203,7 @@ class EventPresenter extends BasePresenter
         $settings = ImageHelpers::aic_imageSettings([
             'image' => $this->entity->imageFront('hero'),
             'settings' => [
-                'srcset' => array(1200),
+                'srcset' => [1200],
                 'sizes' => '1200px',
             ],
         ]);

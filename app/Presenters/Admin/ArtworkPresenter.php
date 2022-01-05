@@ -288,7 +288,7 @@ class ArtworkPresenter extends BasePresenter
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Title' => array($this->entity->all_titles,'name')
+            'Title' => [$this->entity->all_titles,'name']
         ]));
 
         if ($this->entity->place_pivots != null && count($this->entity->place_pivots) > 0) {
@@ -351,12 +351,12 @@ class ArtworkPresenter extends BasePresenter
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Medium'           => array($this->entity->medium_display,'material'),
-            'Inscriptions'     => array($this->entity->inscriptions),
-            'Dimensions'       => array($this->entity->dimensions, 'size'),
-            'Credit Line'      => array($this->entity->credit_line),
-            'Reference Number' => array($this->entity->main_reference_number, 'identifier'),
-            'Copyright'        => array($this->entity->copyright_notice),
+            'Medium'           => [$this->entity->medium_display,'material'],
+            'Inscriptions'     => [$this->entity->inscriptions],
+            'Dimensions'       => [$this->entity->dimensions, 'size'],
+            'Credit Line'      => [$this->entity->credit_line],
+            'Reference Number' => [$this->entity->main_reference_number, 'identifier'],
+            'Copyright'        => [$this->entity->copyright_notice],
         ]));
 
         if ($this->entity->is_public_domain) {
@@ -370,7 +370,7 @@ class ArtworkPresenter extends BasePresenter
                     . '        The International Image Interoperability Framework (IIIF) represents a set of open standards that enables rich access to digital media from libraries, archives, museums, and other cultural institutions around the world.<br/><br/>'
                     . '        <a href="/open-access/open-access-images">Learn more</a>.'
                     . '    </span>'
-                    . '</span>' => array($this->getIiifManifestUrl()),
+                    . '</span>' => [$this->getIiifManifestUrl()],
             ]));
         }
 
@@ -474,11 +474,11 @@ class ArtworkPresenter extends BasePresenter
         $blocks = [];
         foreach ($elements as $key => $value) {
             if (!empty($this->entity->$key)) {
-                $block = array(
+                $block = [
                     'title' => $value,
                     'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.StringHelpers::getUtf8Slug($value).'"',
                     'blocks' => []
-                );
+                ];
                 $explodedKeys = explode("\n", $this->entity->$key);
                 $blockHtml = '';
                 if (count($explodedKeys) < 2) {
@@ -496,10 +496,10 @@ class ArtworkPresenter extends BasePresenter
                     }
                     $blockHtml .= '</ul>';
                 }
-                $block['blocks'][] = array(
+                $block['blocks'][] = [
                     "type" => 'text',
                     "content" => $blockHtml
-                );
+                ];
                 $blocks[] = $block;
             }
         }

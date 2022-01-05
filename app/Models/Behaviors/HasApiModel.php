@@ -123,6 +123,6 @@ trait HasApiModel
         return (object) array_reduce($this->apiFields, function ($result, $field) {
             $result[$field] = $this->$field;
             return $result;
-        }, array());
+        }, []);
     }
 }

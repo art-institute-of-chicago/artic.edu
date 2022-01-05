@@ -82,8 +82,8 @@ class ExactTargetService
         // Add the subscriber
         $subscriber  = new ET_Subscriber();
         $subscriber->authStub = $client;
-        $subscriber->props = array("EmailAddress" => $this->email,
-            "SubscriberKey" => $this->email);
+        $subscriber->props = ["EmailAddress" => $this->email,
+            "SubscriberKey" => $this->email];
         $response = $subscriber->post();
 
         if (!$response->status) {
@@ -134,9 +134,9 @@ class ExactTargetService
         // Set the subscriber to Unsubscribed
         $subscriber  = new ET_Subscriber();
         $subscriber->authStub = $client;
-        $subscriber->props = array("EmailAddress" => $this->email,
+        $subscriber->props = ["EmailAddress" => $this->email,
             "SubscriberKey" => $this->email,
-            "Status" => "Unsubscribed");
+            "Status" => "Unsubscribed"];
         $subscriber->Name = "Museum Business Unit";
         $response = $subscriber->patch();
 

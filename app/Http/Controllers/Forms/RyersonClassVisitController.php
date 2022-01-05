@@ -17,12 +17,12 @@ class RyersonClassVisitController extends FormController
         $this->title = 'Schedule a Class Visit';
         $this->seo->setTitle($this->title);
 
-        $blocks = array();
-        $formBlocks = array();
-        $contactInformationFields = array();
-        $institutionInformationFields = array();
-        $courseInformationFields = array();
-        $visitInformationFields = array();
+        $blocks = [];
+        $formBlocks = [];
+        $contactInformationFields = [];
+        $institutionInformationFields = [];
+        $courseInformationFields = [];
+        $visitInformationFields = [];
 
         $errors = session('errors');
 
@@ -31,10 +31,10 @@ class RyersonClassVisitController extends FormController
          *  Contact information
          *
          */
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'name',
@@ -46,14 +46,14 @@ class RyersonClassVisitController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Name *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'email',
                     'variation' => null,
                     'id' => 'email',
@@ -65,14 +65,14 @@ class RyersonClassVisitController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Email *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'tel',
                     'variation' => null,
                     'id' => 'phone_number',
@@ -84,9 +84,9 @@ class RyersonClassVisitController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Phone number',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         /*
          *
@@ -95,26 +95,26 @@ class RyersonClassVisitController extends FormController
          */
         $affiliationFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('affiliation')) ? $errors->first('affiliation') : null,
                     'optional' => false,
                     'hint' => null,
                     'label' => 'Affiliation *',
-                )
-            ),
+                ]
+            ],
         ];
         foreach ($this->getAffiliationArray(old('affiliation')) as $t) {
             array_push($affiliationFields['blocks'], $t);
         }
         $institutionInformationFields[] = $affiliationFields;
 
-        $institutionInformationFields[]= array(
+        $institutionInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'non_saic_institution',
@@ -126,14 +126,14 @@ class RyersonClassVisitController extends FormController
                     'hint' => 'If a Non-SAIC program, please provide the institution name.',
                     'disabled' => false,
                     'label' => 'Non-SAIC Institution',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $institutionInformationFields[]= array(
+        $institutionInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'department',
@@ -145,14 +145,14 @@ class RyersonClassVisitController extends FormController
                     'hint' => '',
                     'disabled' => false,
                     'label' => 'Department *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $institutionInformationFields[]= array(
+        $institutionInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'course_title',
@@ -164,14 +164,14 @@ class RyersonClassVisitController extends FormController
                     'hint' => '',
                     'disabled' => false,
                     'label' => 'Course Title *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $institutionInformationFields[]= array(
+        $institutionInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'course_level',
@@ -183,9 +183,9 @@ class RyersonClassVisitController extends FormController
                     'hint' => '',
                     'disabled' => false,
                     'label' => 'Course Level *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         /*
          *
@@ -194,16 +194,16 @@ class RyersonClassVisitController extends FormController
          */
         $daysClassMeetsFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('days_class_meets')) ? $errors->first('days_class_meets') : null,
                     'optional' => false,
                     'hint' => '',
                     'label' => 'Days the Class Meets *',
-                )
-            ),
+                ]
+            ],
         ];
         foreach ($this->getDaysOfWeekArray(old('days_class_meets'), 'days_class_meets') as $d) {
             array_push($daysClassMeetsFields['blocks'], $d);
@@ -212,16 +212,16 @@ class RyersonClassVisitController extends FormController
 
         $noOfSessionsFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('no_of_sessions')) ? $errors->first('no_of_sessions') : null,
                     'optional' => false,
                     'hint' => '',
                     'label' => 'Number of Sessions *',
-                )
-            ),
+                ]
+            ],
         ];
         foreach ($this->getNoOfSessionsArray(old('no_of_sessions')) as $d) {
             array_push($noOfSessionsFields['blocks'], $d);
@@ -230,8 +230,8 @@ class RyersonClassVisitController extends FormController
 
         $courseInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     "type" => 'textarea',
                     'variation' => null,
                     'id' => 'multiple_sessions_description',
@@ -242,8 +242,8 @@ class RyersonClassVisitController extends FormController
                     'hint' => '',
                     'disabled' => false,
                     'label' => 'Please describe multiple sessions here',
-                ),
-            ),
+                ],
+            ],
         ];
 
         /*
@@ -251,21 +251,21 @@ class RyersonClassVisitController extends FormController
          *  Visit information
          *
          */
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'text',
                     'content' => '<span class="input s-disabled"><label class="label f-secondary">Preferred Dates *'
                     .'<em class="label__hint">Please select 3 options for the date of your visit. Monday through Friday only.</em></label></span>'
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'date-select',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'preferred_date_1',
@@ -276,8 +276,8 @@ class RyersonClassVisitController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-                array(
+                ],
+                [
                     'type' => 'date-select',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'preferred_date_2',
@@ -288,8 +288,8 @@ class RyersonClassVisitController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-                array(
+                ],
+                [
                     'type' => 'date-select',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'preferred_date_3',
@@ -300,14 +300,14 @@ class RyersonClassVisitController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'select',
                     'variation' => '',
                     'id' => 'preferred_time',
@@ -318,14 +318,14 @@ class RyersonClassVisitController extends FormController
                     'disabled' => false,
                     'label' => 'Preferred Time *',
                     'options' => $this->getTimeArray(10, 12 + 4)
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[]= array(
+        $visitInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'alt_times',
@@ -337,14 +337,14 @@ class RyersonClassVisitController extends FormController
                     'hint' => '',
                     'disabled' => false,
                     'label' => 'Alternate Time(s)',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[]= array(
+        $visitInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'number',
                     'pattern' => '\d*',
                     'variation' => null,
@@ -357,22 +357,22 @@ class RyersonClassVisitController extends FormController
                     'hint' => '',
                     'disabled' => false,
                     'label' => 'Number of Students *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         $typeOfVisitFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('type_of_visit')) ? $errors->first('type_of_visit') : null,
                     'optional' => false,
                     'hint' => 'View <a href="/library/request-a-class-visit">descriptions</a>',
                     'label' => 'Type of Visit *',
-                )
-            ),
+                ]
+            ],
         ];
         foreach ($this->getTypeOfVisitArray(old('type_of_visit')) as $t) {
             array_push($typeOfVisitFields['blocks'], $t);
@@ -381,26 +381,26 @@ class RyersonClassVisitController extends FormController
 
         $sessionObjectiveFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('session_objective')) ? $errors->first('session_objective') : null,
                     'optional' => false,
                     'hint' => 'Select all that apply',
                     'label' => 'Objective for this Session *',
-                )
-            ),
+                ]
+            ],
         ];
         foreach ($this->getSessionObjectiveArray(old('session_objective')) as $d) {
             array_push($sessionObjectiveFields['blocks'], $d);
         }
         $visitInformationFields[] = $sessionObjectiveFields;
 
-        $visitInformationFields[]= array(
+        $visitInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'textarea',
                     'variation' => null,
                     'id' => 'collections_related_assignment_description',
@@ -411,14 +411,14 @@ class RyersonClassVisitController extends FormController
                     'hint' => '',
                     'disabled' => false,
                     'label' => 'Collections-Related Assignment Description *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[]= array(
+        $visitInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'textarea',
                     'variation' => null,
                     'id' => 'collection_materials_requested_for_visit',
@@ -429,26 +429,26 @@ class RyersonClassVisitController extends FormController
                     'hint' => 'Please paste permalinks from the online catalog here or provide bibliographic citations.',
                     'disabled' => false,
                     'label' => 'Collection Materials Requested for Visit *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'text',
                     'content' => '<span class="input s-disabled"><label class="label f-secondary">Three Potential Dates/Times for Instructor Materials Review *'
                     .'<em class="label__hint">Only available Monday through Friday, 10:30-3:30.</em></label></span>'
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         for ($i = 1; $i <= 3; $i++) {
-            $visitInformationFields[] = array(
+            $visitInformationFields[] = [
                 'variation' => null,
-                'blocks' => array(
-                    array(
+                'blocks' => [
+                    [
                         'type' => 'date-select',
                         'variation' => 'm-fieldset__input-narrow-x3',
                         'id' => 'instructor_materials_review_date_' .$i,
@@ -459,8 +459,8 @@ class RyersonClassVisitController extends FormController
                         'hint' => null,
                         'disabled' => false,
                         'label' => '',
-                    ),
-                    array(
+                    ],
+                    [
                         'type' => 'select',
                         'variation' => 'm-fieldset__input-narrow-x3',
                         'id' => 'instructor_materials_review_time_' .$i,
@@ -471,33 +471,33 @@ class RyersonClassVisitController extends FormController
                         'disabled' => false,
                         'label' => '',
                         'options' => $this->getTimeArray(10, 12 + 4)
-                    ),
-                ),
-            );
+                    ],
+                ],
+            ];
         }
 
         $researchShelfFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('research_shelf_required')) ? $errors->first('research_shelf_required') : null,
                     'optional' => false,
                     'hint' => null,
                     'label' => 'Will you require a research shelf for this course? *',
-                )
-            ),
+                ]
+            ],
         ];
         foreach ($this->getYesNoArray(old('research_shelf_required'), 'research_shelf_required') as $t) {
             array_push($researchShelfFields['blocks'], $t);
         }
         $visitInformationFields[] = $researchShelfFields;
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'captcha',
                     'variation' => null,
                     'id' => 'captcha',
@@ -506,57 +506,57 @@ class RyersonClassVisitController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $contactInformationFields,
             'legend' => 'Contact Information',
-        ));
+        ]);
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $institutionInformationFields,
             'legend' => 'Institution Information',
-        ));
+        ]);
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $courseInformationFields,
             'legend' => 'Course Information',
-        ));
+        ]);
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $visitInformationFields,
             'legend' => 'Visit Information',
-        ));
+        ]);
 
-        array_push($blocks, array(
+        array_push($blocks, [
             'type' => 'text',
             'content' => '<p>Please fill out the form below to request an instruction session. If you have questions contact the reference desk at (312) 443-3666 or libinstruction@artic.edu. All requests for the semester must be received by the end of the fourth week in the semester <strong>Please allow at least 2 weeks between your request and proposed date of visit.</strong></p>'
-        ));
+        ]);
 
-        array_push($blocks, array(
+        array_push($blocks, [
             'type' => 'form',
             'variation' => null,
             'action' => '/library/request-a-class-visit/schedule',
             'method' => 'POST',
             'blocks' => $formBlocks,
-            'actions' => array(
-                array(
+            'actions' => [
+                [
                     'variation' => null,
                     'type' => 'submit',
                     'label' => "Submit",
-                )
-            )
-        ));
+                ]
+            ]
+        ]);
 
         $breadcrumbs = [
             [
@@ -626,7 +626,7 @@ class RyersonClassVisitController extends FormController
 
     private function getAffiliationArray($selected)
     {
-        $options = array('SAIC Undergraduate', 'SAIC Graduate', 'Non-SAIC');
+        $options = ['SAIC Undergraduate', 'SAIC Graduate', 'Non-SAIC'];
 
         $list = [];
         foreach ($options as $value) {
@@ -656,9 +656,9 @@ class RyersonClassVisitController extends FormController
 
     private function getNoOfSessionsArray($selected)
     {
-        $options = array('Single Session' => 'Single Session',
+        $options = ['Single Session' => 'Single Session',
             'Multiple Sessions' => 'Multiple Sessions',
-        );
+        ];
 
         $list = [];
         foreach ($options as $value) {
@@ -688,7 +688,7 @@ class RyersonClassVisitController extends FormController
 
     private function getTypeOfVisitArray($selected)
     {
-        $options = array('Library Orientation', 'Course-Related Research Session', 'Library Tour');
+        $options = ['Library Orientation', 'Course-Related Research Session', 'Library Tour'];
 
         $list = [];
         foreach ($options as $value) {
@@ -718,12 +718,12 @@ class RyersonClassVisitController extends FormController
 
     protected function getSessionObjectiveArray($selected)
     {
-        $options = array('How to access library collections and services' => 'How to access library collections and services',
+        $options = ['How to access library collections and services' => 'How to access library collections and services',
             'How to use the online catalog' => 'How to use the online catalog',
             'How to use a finding aid and archival digital collections' => 'How to use a finding aid and archival digital collections',
             'Course-specific research strategies (eg, costume history resources at the RB Libraries; how to research a work of art)' => 'Course-specific research strategies (eg, costume history resources at the RB Libraries; how to research a work of art)',
             'Use of RB collection materials to support course instruction' => 'Use of RB collection materials to support course instruction',
-        );
+        ];
 
         $list = [];
         foreach ($options as $value => $label) {

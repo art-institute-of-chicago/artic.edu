@@ -44,7 +44,7 @@ class DamsImageService implements ImageServiceInterface
         $src = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height]);
         $srcset = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height]) . " 300w";
 
-        $image = array(
+        $image = [
             "type" => 'dams',
             "src" => $src,
             "srcset" => $srcset,
@@ -57,7 +57,7 @@ class DamsImageService implements ImageServiceInterface
             "credit" => $credit,
             "creditUrl" => $creditUrl,
             "iiifId" => $this->base_url . $this->version . '/' . $object->$imageField,
-        );
+        ];
 
         if (isset($preLoadedInfo['lqip']) && !empty($preLoadedInfo['lqip'])) {
             $image['lqip'] = $preLoadedInfo['lqip'];

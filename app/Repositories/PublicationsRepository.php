@@ -43,10 +43,10 @@ class PublicationsRepository
                 $pub->searchSections = collect($pub->searchSections)->take(4);
                 $links = [];
                 foreach ($pub->searchSections() as $section) {
-                    array_push($links, array(
+                    array_push($links, [
                         'href' => $section->web_url,
                         'label' => $section->title,
-                    ));
+                    ]);
                 }
                 $pub['links'] = $links;
             }

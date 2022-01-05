@@ -20,6 +20,7 @@ return $config->setRules([
         'comment_type' => 'phpdocs_like',
     ],
     'array_indentation' => true,            // Each element of an array must be indented exactly once.
+    'array_syntax' => true,                 // PHP arrays should be declared using the configured syntax.
 
 ])
 ->setFinder($finder);

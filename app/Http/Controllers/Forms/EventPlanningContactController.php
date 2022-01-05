@@ -17,10 +17,10 @@ class EventPlanningContactController extends FormController
         $this->title = 'Event Planning Contact';
         $this->seo->setTitle($this->title);
 
-        $blocks = array();
-        $formBlocks = array();
-        $inquiryFields = array();
-        $daytimeFields = array();
+        $blocks = [];
+        $formBlocks = [];
+        $inquiryFields = [];
+        $daytimeFields = [];
 
         $errors = session('errors');
 
@@ -29,10 +29,10 @@ class EventPlanningContactController extends FormController
          *  Inquiry form
          *
          */
-        $inquiryFields[]= array(
+        $inquiryFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'name',
@@ -44,14 +44,14 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Name *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'address_1',
@@ -63,14 +63,14 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Street address',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'address_2',
@@ -82,14 +82,14 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Apartment or suite',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'city',
@@ -101,14 +101,14 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'City',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $inquiryFields[] = array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'select',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'state',
@@ -119,8 +119,8 @@ class EventPlanningContactController extends FormController
                     'value' => old('state'),
                     'label' => 'State',
                     'options' => $this->getStatesArray(),
-                ),
-                array(
+                ],
+                [
                     'type' => 'input',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'zipcode',
@@ -132,14 +132,14 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Zipcode',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $inquiryFields[] = array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'select',
                     'variation' => null,
                     'id' => 'country',
@@ -150,14 +150,14 @@ class EventPlanningContactController extends FormController
                     'disabled' => false,
                     'label' => 'Country',
                     'options' => $this->getCountriesArray(),
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'company',
@@ -169,14 +169,14 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Company',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'email',
                     'variation' => null,
                     'id' => 'email',
@@ -188,14 +188,14 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Email *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'tel',
                     'variation' => null,
                     'id' => 'phone_number',
@@ -207,22 +207,22 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Phone number *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         $preferredContactFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('preferred_contact')) ? $errors->first('preferred_contact') : null,
                     'optional' => null,
                     'hint' => null,
                     'label' => 'Preferred method of contact',
-                )
-            ),
+                ]
+            ],
         ];
         foreach ($this->getPreferredContactArray(old('preferred_contact')) as $t) {
             array_push($preferredContactFields['blocks'], $t);
@@ -231,16 +231,16 @@ class EventPlanningContactController extends FormController
 
         $howDidYouHearFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     "type" => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('how_did_you_hear')) ? $errors->first('how_did_you_hear') : null,
                     'optional' => null,
                     'hint' => 'Select all that apply',
                     'label' => 'How did you hear about us?',
-                ),
-            ),
+                ],
+            ],
         ];
         $items = $this->getHowDidYouHearArray(old('how_did_you_hear'));
         foreach ($items as $key => $d) {
@@ -248,10 +248,10 @@ class EventPlanningContactController extends FormController
         }
         $inquiryFields[] = $howDidYouHearFields;
 
-        $inquiryFields[]= array(
+        $inquiryFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'how_did_you_hear_other',
@@ -263,22 +263,22 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Other',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         $areYouPlanningFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('are_you_currently_planning')) ? $errors->first('are_you_currently_planning') : null,
                     'optional' => false,
                     'hint' => null,
                     'label' => 'Are you currently planning an event?',
-                )
-            ),
+                ]
+            ],
         ];
         foreach ($this->getYesNoArray(old('are_you_currently_planning'), 'are_you_currently_planning') as $t) {
             array_push($areYouPlanningFields['blocks'], $t);
@@ -287,26 +287,26 @@ class EventPlanningContactController extends FormController
 
         $typeOfEventFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     "type" => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('type_of_event')) ? $errors->first('type_of_event') : null,
                     'optional' => null,
                     'hint' => 'Select all that apply',
                     'label' => 'If so, what type of event do you have in mind?',
-                )
-            ),
+                ]
+            ],
         ];
         foreach ($this->getTypeOfEventArray(old('type_of_event')) as $d) {
             array_push($typeOfEventFields['blocks'], $d);
         }
         $inquiryFields[] = $typeOfEventFields;
 
-        $inquiryFields[]= array(
+        $inquiryFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'type_of_event_other',
@@ -318,19 +318,19 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Other',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         /*
          *
          *  Daytime information
          *
          */
-        $daytimeFields[]= array(
+        $daytimeFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'no_of_expected_guests',
@@ -342,25 +342,25 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Number of expected guests',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $daytimeFields[] = array(
+        $daytimeFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'text',
                     'content' => '<span class="input s-disabled"><label class="label f-secondary">Possible Dates *'
                     .'<em class="label__hint">Please select 3 options for the date of your event.</em></label></span>'
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $daytimeFields[] = array(
+        $daytimeFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'date-select',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'possible_date_1',
@@ -371,8 +371,8 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-                array(
+                ],
+                [
                     'type' => 'date-select',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'possible_date_2',
@@ -383,8 +383,8 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-                array(
+                ],
+                [
                     'type' => 'date-select',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'possible_date_3',
@@ -395,14 +395,14 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $daytimeFields[] = array(
+        $daytimeFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     "type" => 'textarea',
                     'variation' => null,
                     'id' => 'other_info',
@@ -413,14 +413,14 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Please share any other important information',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $daytimeFields[] = array(
+        $daytimeFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'captcha',
                     'variation' => null,
                     'id' => 'captcha',
@@ -429,38 +429,38 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $inquiryFields,
             'legend' => 'Inquiry Form',
-        ));
+        ]);
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $daytimeFields,
             'legend' => 'Daytime event',
-        ));
+        ]);
 
-        array_push($blocks, array(
+        array_push($blocks, [
             'type' => 'form',
             'variation' => null,
             'action' => '/venue-rental/contact-us',
             'method' => 'POST',
             'blocks' => $formBlocks,
-            'actions' => array(
-                array(
+            'actions' => [
+                [
                     'variation' => null,
                     'type' => 'submit',
                     'label' => "Submit",
-                )
-            )
-        ));
+                ]
+            ]
+        ]);
 
         $breadcrumbs = [
             [
@@ -519,7 +519,7 @@ class EventPlanningContactController extends FormController
 
     private function getPreferredContactArray($selected)
     {
-        $options = array('Email', 'Phone');
+        $options = ['Email', 'Phone'];
 
         $list = [];
         foreach ($options as $value) {

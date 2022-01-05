@@ -17,10 +17,10 @@ class GroupReservationsController extends FormController
         $this->title = 'Adult and University Group Reservation Form';
         $this->seo->setTitle($this->title);
 
-        $blocks = array();
-        $formBlocks = array();
-        $contactInformationFields = array();
-        $visitInformationFields = array();
+        $blocks = [];
+        $formBlocks = [];
+        $contactInformationFields = [];
+        $visitInformationFields = [];
 
         $errors = session('errors');
 
@@ -29,10 +29,10 @@ class GroupReservationsController extends FormController
          *  Contact information
          *
          */
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'group_name',
@@ -44,14 +44,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Group name',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'contact_name',
@@ -63,14 +63,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Contact name *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'email',
                     'variation' => null,
                     'id' => 'email',
@@ -82,14 +82,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Email *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'tel',
                     'variation' => null,
                     'id' => 'phone_number',
@@ -101,14 +101,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Phone number',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'tel',
                     'variation' => null,
                     'id' => 'fax_number',
@@ -120,14 +120,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Fax number',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'address_1',
@@ -139,14 +139,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Street address',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'address_2',
@@ -158,14 +158,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Apartment or suite',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'city',
@@ -177,14 +177,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'City',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[] = array(
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'select',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'state',
@@ -195,8 +195,8 @@ class GroupReservationsController extends FormController
                     'value' => old('state'),
                     'label' => 'State',
                     'options' => $this->getStatesArray(),
-                ),
-                array(
+                ],
+                [
                     'type' => 'input',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'zipcode',
@@ -208,14 +208,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Zipcode',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[] = array(
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'select',
                     'variation' => null,
                     'id' => 'country',
@@ -226,9 +226,9 @@ class GroupReservationsController extends FormController
                     'disabled' => false,
                     'label' => 'Country',
                     'options' => $this->getCountriesArray(),
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
 
         /*
@@ -236,10 +236,10 @@ class GroupReservationsController extends FormController
          *  Visit information
          *
          */
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'date-select',
                     'variation' => null,
                     'id' => 'visit_date',
@@ -250,14 +250,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Visit date',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'visit_time',
@@ -269,24 +269,24 @@ class GroupReservationsController extends FormController
                     'hint' => 'Our <a href="/visit#hours">daily hours</a> are 10:30–5:00',
                     'disabled' => false,
                     'label' => 'Time',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'text',
                     'content' => '<p>Total number of people in group:</p>'
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'number',
                     'pattern' => '\d*',
                     'variation' => 'm-fieldset__input-narrow-x3',
@@ -297,8 +297,8 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Adults',
-                ),
-                array(
+                ],
+                [
                     'type' => 'number',
                     'pattern' => '\d*',
                     'variation' => 'm-fieldset__input-narrow-x3',
@@ -309,8 +309,8 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Students',
-                ),
-                array(
+                ],
+                [
                     'type' => 'number',
                     'pattern' => '\d*',
                     'variation' => 'm-fieldset__input-narrow-x3',
@@ -321,14 +321,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Seniors',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[]= array(
+        $visitInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'number',
                     'pattern' => '\d*',
                     'variation' => null,
@@ -341,14 +341,14 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Number of Audio Tours',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'select',
                     'variation' => null,
                     'id' => 'topic',
@@ -359,22 +359,22 @@ class GroupReservationsController extends FormController
                     'disabled' => false,
                     'label' => 'Topic of gallery tour/slide lecture',
                     'options' => $this->getTopicsArray(),
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         $needsFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('needs')) ? $errors->first('needs') : null,
                     'optional' => null,
                     'hint' => 'Please specify the needs of your group',
                     'label' => 'Special needs',
-                )
-            ),
+                ]
+            ],
         ];
         foreach ($this->getNeedsArray(old('needs')) as $d) {
             array_push($needsFields['blocks'], $d);
@@ -383,8 +383,8 @@ class GroupReservationsController extends FormController
 
         $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     "type" => 'textarea',
                     'variation' => null,
                     'id' => 'additional_info',
@@ -395,14 +395,14 @@ class GroupReservationsController extends FormController
                     'hint' => '',
                     'disabled' => false,
                     'label' => 'Additional details (specify language, any needs not listed, purpose or occasion for your visit, etc.)',
-                ),
-            ),
+                ],
+            ],
         ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'captcha',
                     'variation' => null,
                     'id' => 'captcha',
@@ -411,25 +411,25 @@ class GroupReservationsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $contactInformationFields,
             'legend' => 'Contact Information',
-        ));
+        ]);
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $visitInformationFields,
             'legend' => 'Visit Information',
-        ));
+        ]);
 
-        array_push($blocks, array(
+        array_push($blocks, [
             'type' => 'text',
             'content' => '<p>Please note the form below is for booking adult or university group tours only. Use the <a href="https://scheduler.artic.edu/">student tours application form</a> for pre-K–12th grade student tours.</p>'
             .'<p>Group visits require a minimum of 15 people. Reservations are requested 21 days in advance and will be confirmed in writing within 10 business days of receipt. Thank you for thinking of the Art Institute of Chicago.</p>'
@@ -440,22 +440,22 @@ class GroupReservationsController extends FormController
             .'111 S. Michigan Avenue<br/>'
             .'Chicago, IL 60603-6110<br/>'
             .'(312) 857-7104</p>'
-        ));
+        ]);
 
-        array_push($blocks, array(
+        array_push($blocks, [
             'type' => 'form',
             'variation' => null,
             'action' => '/visit/visiting-with-a-group/reservation-form',
             'method' => 'POST',
             'blocks' => $formBlocks,
-            'actions' => array(
-                array(
+            'actions' => [
+                [
                     'variation' => null,
                     'type' => 'submit',
                     'label' => "Submit",
-                )
-            )
-        ));
+                ]
+            ]
+        ]);
 
         $breadcrumbs = [
             [
@@ -517,7 +517,7 @@ class GroupReservationsController extends FormController
 
     private function getTopicsArray()
     {
-        $topics = array('Highlights of the Art Institute',
+        $topics = ['Highlights of the Art Institute',
             'Adult Interactive Workshop (additional fees apply)',
             'American Art',
             'Asian Art Through a Global Lens',
@@ -529,7 +529,7 @@ class GroupReservationsController extends FormController
             'Modern Wing Highlights: Modern and Contemporary Art',
             'Underdogs and Hidden Histories',
             'None',
-        );
+        ];
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];
@@ -548,11 +548,11 @@ class GroupReservationsController extends FormController
 
     private function getNeedsArray($selected)
     {
-        $needs = array('Foreign language' => 'Foreign language',
+        $needs = ['Foreign language' => 'Foreign language',
             'Wheelchair use' => 'Wheelchair use',
             'Sign language' => 'Sign language',
             'No special needs' => 'No special needs',
-        );
+        ];
 
         $list = [];
         foreach ($needs as $value => $label) {

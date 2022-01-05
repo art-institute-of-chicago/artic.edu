@@ -35,7 +35,7 @@ class ImageHelpers
     {
         $src = $imageUrl;
 
-        $image = array(
+        $image = [
             "sourceType" => $options['sourceType'] ?? 'imgix',
             "src" => $src,
             "width" => $options['width'] ?? '',
@@ -50,7 +50,7 @@ class ImageHelpers
             "alt" => $options['alt_text'] ?? null,
             "caption" => $options['caption'] ?? null,
             "iiifId" => $options['iiifId'] ?? null,
-        );
+        ];
 
         return $image;
     }
@@ -68,7 +68,7 @@ class ImageHelpers
         $credit = '';
         $creditUrl = '';
 
-        $image = array(
+        $image = [
             "sourceType" => $sourceType,
             "src" => $src,
             "width" =>  $cropParams['crop_w'] ?? $imageObject->width,
@@ -84,7 +84,7 @@ class ImageHelpers
             "caption" => $imageObject->caption ?? null,
             "iiifId" => $imageObject->iiifId ?? null,
             "restrict" => $imageObject->tags->contains('slug', 'restrict-download') ?? false,
-        );
+        ];
 
         return $image;
     }
@@ -95,25 +95,25 @@ class ImageHelpers
      */
     public static function aic_imageSizesCSSsettings()
     {
-        $breakpoints = array(
+        $breakpoints = [
             'xlarge' => '(min-width: 1640px)',
             'large' => '(min-width: 1200px)',
             'medium' => '(min-width: 900px)',
             'small' => '(min-width: 600px)',
             'xsmall' => '',
-        );
+        ];
         $totalCSScolumns = 58; // All breakpoints
         $xlargeMaxSize = 1500; // Just xlarge, it's not fluid
         $innerGutterCSSColumns = 2; // All breakpoints
         $outerGutterCSScolumns = 3; // All breakpoints
 
-        return array(
+        return [
             'breakpoints' => $breakpoints,
             'totalCSScolumns' => $totalCSScolumns,
             'xlargeMaxSize' => $xlargeMaxSize,
             'innerGutterCSSColumns' => $innerGutterCSSColumns,
             'outerGutterCSScolumns' => $outerGutterCSScolumns,
-        );
+        ];
     }
 
     public static function aic_determineImageSourceType($src = '')
@@ -157,9 +157,9 @@ class ImageHelpers
 
             if ($sourceType === 'imgix') {
                 $base = explode('?', $src)[0].'?';
-                $originalSrcParams = array();
+                $originalSrcParams = [];
                 parse_str($src, $originalSrcParams);
-                $imgixSettings = array();
+                $imgixSettings = [];
 
                 if (!empty($originalSrcParams['rect'])) {
                     $imgixSettings['rect'] = $originalSrcParams['rect'];
@@ -288,16 +288,16 @@ class ImageHelpers
         // Return if not enough datas, fail safe
         if (!$srcset || !$sourceType || !$originalSrc || !$width || !$height) {
             if ($sourceType === 'artinstituteshop') {
-                return array(
+                return [
                     'src' => $originalSrc,
                     'sizes' => $stringSizes,
                     'srcset' => null,
                     'width' => null,
                     'height' => null,
                     'lqip' => $lqip,
-                );
+                ];
             } else {
-                return array(
+                return [
                     'srcset' => $stringSrcset,
                     'src' => $originalSrc,
                     'sizes' => $stringSizes,
@@ -305,7 +305,7 @@ class ImageHelpers
                     'height' => $stringHeight,
                     'lqip' => $lqip,
                     'iiifId' => $iiifId,
-                );
+                ];
             }
         }
 
@@ -340,9 +340,9 @@ class ImageHelpers
 
         if ($sourceType === 'imgix') {
             $base = explode('?', $originalSrc)[0].'?';
-            $originalSrcParams = array();
+            $originalSrcParams = [];
             parse_str($originalSrc, $originalSrcParams);
-            $imgixSettings = array();
+            $imgixSettings = [];
 
             if (!empty($originalSrcParams['rect'])) {
                 $imgixSettings['rect'] = $originalSrcParams['rect'];
@@ -531,7 +531,7 @@ class ImageHelpers
         $stringWidth = $width;
         $stringHeight = $height;
 
-        return array(
+        return [
             'srcset' => $lazyload ? $stringSrcset : '',
             'src' => $lazyload ? $stringSrc : $pinterestMedia,
             'sizes' => $lazyload ? $stringSizes : '',
@@ -541,7 +541,7 @@ class ImageHelpers
             'pinterestMedia' => $pinterestMedia ?? null,
             'lqip' => $lazyload ? $lqip : '',
             'iiifId' => $iiifId,
-        );
+        ];
     }
 
 
@@ -647,7 +647,7 @@ class ImageHelpers
      */
     public static function aic_gridListingImageSizes($data)
     {
-        $newData = array();
+        $newData = [];
         // Grab settings
         $settings = static::aic_imageSizesCSSsettings();
         // Make friendly

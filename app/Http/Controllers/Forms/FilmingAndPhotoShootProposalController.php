@@ -17,10 +17,10 @@ class FilmingAndPhotoShootProposalController extends FormController
         $this->title = 'Filming and Photo Shoot Proposal Form';
         $this->seo->setTitle($this->title);
 
-        $blocks = array();
-        $formBlocks = array();
-        $contactInformationFields = array();
-        $projectDescriptionFields = array();
+        $blocks = [];
+        $formBlocks = [];
+        $contactInformationFields = [];
+        $projectDescriptionFields = [];
 
         $errors = session('errors');
 
@@ -29,10 +29,10 @@ class FilmingAndPhotoShootProposalController extends FormController
          *  Contact information
          *
          */
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'name',
@@ -44,14 +44,14 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Name *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'email',
                     'variation' => null,
                     'id' => 'email',
@@ -63,14 +63,14 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Email *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'tel',
                     'variation' => null,
                     'id' => 'phone_number',
@@ -82,9 +82,9 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Phone number',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         /*
          *
@@ -93,8 +93,8 @@ class FilmingAndPhotoShootProposalController extends FormController
          */
         $projectDescriptionFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     "type" => 'textarea',
                     'variation' => null,
                     'id' => 'description',
@@ -105,24 +105,24 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => 'Provide a brief description of your project',
                     'disabled' => false,
                     'label' => 'Project Description *',
-                ),
-            ),
+                ],
+            ],
         ];
 
-        $projectDescriptionFields[] = array(
+        $projectDescriptionFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'text',
                     'content' => '<p>Provide up to three (3) preferred dates for filming *:</p>'
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $projectDescriptionFields[] = array(
+        $projectDescriptionFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'date-select',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'preferred_date_1',
@@ -133,8 +133,8 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-                array(
+                ],
+                [
                     'type' => 'date-select',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'preferred_date_2',
@@ -145,8 +145,8 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-                array(
+                ],
+                [
                     'type' => 'date-select',
                     'variation' => 'm-fieldset__input-narrow-x3',
                     'id' => 'preferred_date_3',
@@ -157,14 +157,14 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         $projectDescriptionFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     "type" => 'textarea',
                     'variation' => null,
                     'id' => 'locations',
@@ -175,14 +175,14 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => 'Provide a list of locations in the museum you plan to shoot',
                     'disabled' => false,
                     'label' => 'Museum Locations *',
-                ),
-            ),
+                ],
+            ],
         ];
 
-        $projectDescriptionFields[]= array(
+        $projectDescriptionFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'required_time',
@@ -194,14 +194,14 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => 'Provide the amount of time you need to shoot in the museum',
                     'disabled' => false,
                     'label' => 'Required Time *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         $projectDescriptionFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     "type" => 'textarea',
                     'variation' => null,
                     'id' => 'crew_members',
@@ -212,14 +212,14 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => 'Include names of all crew members that will need access to the museum',
                     'disabled' => false,
                     'label' => 'Crew Members *',
-                ),
-            ),
+                ],
+            ],
         ];
 
         $projectDescriptionFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     "type" => 'textarea',
                     'variation' => null,
                     'id' => 'equipment_list',
@@ -230,14 +230,14 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => 'Provide a detailed list of all equipment that you will be bringing into the museum',
                     'disabled' => false,
                     'label' => 'Equipment List *',
-                ),
-            ),
+                ],
+            ],
         ];
 
-        $projectDescriptionFields[] = array(
+        $projectDescriptionFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'captcha',
                     'variation' => null,
                     'id' => 'captcha',
@@ -246,43 +246,43 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $contactInformationFields,
             'legend' => 'Contact Information',
-        ));
+        ]);
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $projectDescriptionFields,
             'legend' => 'Project Description',
-        ));
+        ]);
 
-        array_push($blocks, array(
+        array_push($blocks, [
             'type' => 'text',
             'content' => '<p>Please read the <a href="/press/filming-policy">Filming Policy</a> before submitting a request. If you have additional questions, call (312) 443-3363 or e-mail publicaffairs@artic.edu.</p>'
-        ));
+        ]);
 
-        array_push($blocks, array(
+        array_push($blocks, [
             'type' => 'form',
             'variation' => null,
             'action' => '/press/filming-policy/filming-photo-shoot-proposal-form',
             'method' => 'POST',
             'blocks' => $formBlocks,
-            'actions' => array(
-                array(
+            'actions' => [
+                [
                     'variation' => null,
                     'type' => 'submit',
                     'label' => "Submit",
-                )
-            )
-        ));
+                ]
+            ]
+        ]);
 
         $breadcrumbs = [
             [

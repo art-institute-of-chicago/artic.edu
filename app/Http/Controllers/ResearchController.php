@@ -26,11 +26,11 @@ class ResearchController extends FrontController
                     break; // Show only the top 4 children.
                 }
 
-                array_push($links, array(
+                array_push($links, [
                     'href' => $child->url,
                     'label' => $child->title,
                     'external' => $child->is_redirect_url_external
-                ));
+                ]);
             }
 
             array_push($features, [

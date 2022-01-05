@@ -48,11 +48,11 @@ class EmailSubscriptionsController extends FormController
         $this->title = 'Email Subscriptions';
         $this->seo->setTitle($this->title);
 
-        $blocks = array();
-        $formBlocks = array();
-        $subscriptionsFields = array();
-        $personalInformationFields = array();
-        $unsubscribeFields = array();
+        $blocks = [];
+        $formBlocks = [];
+        $subscriptionsFields = [];
+        $personalInformationFields = [];
+        $unsubscribeFields = [];
 
         $errors = session('errors');
 
@@ -63,16 +63,16 @@ class EmailSubscriptionsController extends FormController
          */
         $subFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     "type" => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('subscriptions')) ? $errors->first('subscriptions') : null,
                     'optional' => null,
                     'hint' => null,
                     'label' => '',
-                )
-            ),
+                ]
+            ],
         ];
         foreach ($this->getSubscriptionsArray($this->old('subscriptions')) as $d) {
             array_push($subFields['blocks'], $d);
@@ -86,16 +86,16 @@ class EmailSubscriptionsController extends FormController
          */
         $unsubscribeFields[] = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     "type" => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('unsubscribe')) ? $errors->first('unsubscribe') : null,
                     'optional' => null,
                     'hint' => null,
                     'label' => '',
-                ),
-                array(
+                ],
+                [
                     'type' => 'checkbox',
                     'variation' => '',
                     'id' => 'unsubscribe',
@@ -108,8 +108,8 @@ class EmailSubscriptionsController extends FormController
                     'checked' => $this->old('unsubscribe') ?? false,
                     'label' => 'I no longer wish to receive any Art Institute emails.',
                     'behavior' => 'formUnsubscribe'
-                ),
-            ),
+                ],
+            ],
         ];
 
         /*
@@ -117,10 +117,10 @@ class EmailSubscriptionsController extends FormController
          *  Personal information
          *
          */
-        $personalInformationFields[]= array(
+        $personalInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'email',
                     'variation' => null,
                     'id' => 'email',
@@ -132,14 +132,14 @@ class EmailSubscriptionsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Email *',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $personalInformationFields[]= array(
+        $personalInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'first_name',
@@ -151,14 +151,14 @@ class EmailSubscriptionsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'First Name',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $personalInformationFields[]= array(
+        $personalInformationFields[]= [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'input',
                     'variation' => null,
                     'id' => 'last_name',
@@ -170,14 +170,14 @@ class EmailSubscriptionsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Last Name',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $personalInformationFields[] = array(
+        $personalInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'captcha',
                     'variation' => null,
                     'id' => 'captcha',
@@ -186,45 +186,45 @@ class EmailSubscriptionsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => '',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $subscriptionsFields,
             'legend' => 'Newsletter Options',
-        ));
+        ]);
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $unsubscribeFields,
             'legend' => 'Unsubscribe',
-        ));
+        ]);
 
-        array_push($formBlocks, array(
+        array_push($formBlocks, [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $personalInformationFields,
             'legend' => 'Personal Information',
-        ));
+        ]);
 
-        array_push($blocks, array(
+        array_push($blocks, [
             'type' => 'form',
             'variation' => null,
             'action' => '/email-subscriptions',
             'method' => 'POST',
             'blocks' => $formBlocks,
-            'actions' => array(
-                array(
+            'actions' => [
+                [
                     'variation' => null,
                     'type' => 'submit',
                     'label' => "Update",
-                )
-            )
-        ));
+                ]
+            ]
+        ]);
 
         $view_data = [
             'subNav' => [],
