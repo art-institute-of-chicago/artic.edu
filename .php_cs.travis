@@ -64,6 +64,7 @@ return $config->setRules([
     'native_function_type_declaration_casing' => true, // Native type hints for functions should use the correct case.
     'new_with_braces' => true,              // All instances created with new keyword must be followed by braces.
     'no_alternative_syntax' => true,        // Replace control structure alternative syntax to use braces.]
+    'no_binary_string' => true,             // There should not be a binary flag before strings.
 
 ])
 ->setFinder($finder);
