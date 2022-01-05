@@ -10,7 +10,7 @@ return [
     'environment' => env('SENTRY_ENVIRONMENT'),
 
     'breadcrumbs' => [
-       // Capture Laravel logs in breadcrumbs
+        // Capture Laravel logs in breadcrumbs
         'logs' => true,
 
         // Capture SQL queries in breadcrumbs

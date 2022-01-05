@@ -211,8 +211,8 @@ class StringHelpers
         // Exceptions in uppercase will be converted to uppercase
         // Exceptions in mixedcase will be have to match exact and be left untouched
         $exceptions = array("and", "as", "at", "for", "from", "in", "of", "the", "this", "to", "with",
-                            "GPS", "U.S.",
-                            "d’Orsay", "iOS", "McQueen");
+            "GPS", "U.S.",
+            "d’Orsay", "iOS", "McQueen");
         $delimiters = "“\"-–-";
         $words = explode(' ', $string);
 

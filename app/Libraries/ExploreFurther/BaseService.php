@@ -209,7 +209,7 @@ class BaseService
                     switch ($key) {
                         case 'ef-date_ids':
                             return route('collection', ['date-start' => str_replace(' ', '', DateHelpers::printYear(DateHelpers::incrementBefore($value))),
-                                                        'date-end' => str_replace(' ', '', DateHelpers::printYear(DateHelpers::incrementAfter($value)))]);
+                                'date-end' => str_replace(' ', '', DateHelpers::printYear(DateHelpers::incrementAfter($value)))]);
                             break;
                         case 'ef-color_ids':
                             return route('collection', ['color' => $value]);

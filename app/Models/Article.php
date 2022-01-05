@@ -220,17 +220,17 @@ class Article extends AbstractModel implements Feedable
         curl_close($ch);
 
         return FeedItem::create([
-           'id' => $this->id,
-           'title' => $this->title,
-           'summary' => $this->heading ?? $this->list_description ?? 'Article',
-           'author' => 'AIC',
-           'updated' => $this->date ?? $this->updated_at, // WEB-1278: Display date
-           'link' => route('articles.show', $this),
-           'enclosure' => $heroImage['src'],
-           'enclosureLength' => $length,
-           'enclosureType' => $type,
-           'category' => $this->categories->first()->name ?? '',
-       ]);
+            'id' => $this->id,
+            'title' => $this->title,
+            'summary' => $this->heading ?? $this->list_description ?? 'Article',
+            'author' => 'AIC',
+            'updated' => $this->date ?? $this->updated_at, // WEB-1278: Display date
+            'link' => route('articles.show', $this),
+            'enclosure' => $heroImage['src'],
+            'enclosureLength' => $length,
+            'enclosureType' => $type,
+            'category' => $this->categories->first()->name ?? '',
+        ]);
     }
 
     protected function transformMappingInternal()

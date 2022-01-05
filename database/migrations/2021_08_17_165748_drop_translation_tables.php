@@ -72,29 +72,29 @@ class DropTranslationTables extends Migration
                 . 'visit_hour_image_caption = ? '
                 . 'where id = ?',
             [$cols->visit_intro,
-            $cols->visit_hour_header,
-            $cols->visit_hour_subheader,
-            $cols->visit_hour_intro,
-            $cols->visit_city_pass_title,
-            $cols->visit_city_pass_text,
-            $cols->visit_city_pass_button_label,
-            $cols->visit_city_pass_link,
-            $cols->visit_admission_description,
-            $cols->visit_buy_tickets_label,
-            $cols->visit_become_member_label,
-            $cols->visit_accessibility_text,
-            $cols->visit_accessibility_link_text,
-            $cols->visit_cta_module_header,
-            $cols->visit_cta_module_body,
-            $cols->visit_cta_module_button_text,
-            $cols->visit_what_to_expect_more_text,
-            $cols->visit_capacity_alt,
-            $cols->visit_capacity_heading,
-            $cols->visit_capacity_text,
-            $cols->visit_capacity_btn_text_1,
-            $cols->visit_capacity_btn_text_2,
-            $cols->visit_hour_image_caption,
-            6]
+                $cols->visit_hour_header,
+                $cols->visit_hour_subheader,
+                $cols->visit_hour_intro,
+                $cols->visit_city_pass_title,
+                $cols->visit_city_pass_text,
+                $cols->visit_city_pass_button_label,
+                $cols->visit_city_pass_link,
+                $cols->visit_admission_description,
+                $cols->visit_buy_tickets_label,
+                $cols->visit_become_member_label,
+                $cols->visit_accessibility_text,
+                $cols->visit_accessibility_link_text,
+                $cols->visit_cta_module_header,
+                $cols->visit_cta_module_body,
+                $cols->visit_cta_module_button_text,
+                $cols->visit_what_to_expect_more_text,
+                $cols->visit_capacity_alt,
+                $cols->visit_capacity_heading,
+                $cols->visit_capacity_text,
+                $cols->visit_capacity_btn_text_1,
+                $cols->visit_capacity_btn_text_2,
+                $cols->visit_hour_image_caption,
+                6]
         );
 
         //
@@ -112,8 +112,8 @@ class DropTranslationTables extends Migration
                 . 'hours = ? '
                 . 'where id = ?',
                 [$cols->name,
-                $cols->hours,
-                $cols->dining_hour_id]
+                    $cols->hours,
+                    $cols->dining_hour_id]
             );
         }
 
@@ -134,9 +134,9 @@ class DropTranslationTables extends Migration
                 . 'link_label = ? '
                 . 'where id = ?',
                 [$cols->title,
-                $cols->text,
-                $cols->link_label,
-                $cols->family_id]
+                    $cols->text,
+                    $cols->link_label,
+                    $cols->family_id]
             );
         }
 
@@ -153,7 +153,7 @@ class DropTranslationTables extends Migration
                 . 'title = ? '
                 . 'where id = ?',
                 [$cols->title,
-                $cols->faq_id]
+                    $cols->faq_id]
             );
         }
 
@@ -172,8 +172,8 @@ class DropTranslationTables extends Migration
                 . 'copy = ? '
                 . 'where id = ?',
                 [$cols->title,
-                $cols->copy,
-                $cols->featured_hour_id]
+                    $cols->copy,
+                    $cols->featured_hour_id]
             );
         }
 
@@ -190,7 +190,7 @@ class DropTranslationTables extends Migration
                 . 'title = ? '
                 . 'where id = ?',
                 [$cols->title,
-                $cols->fee_age_id]
+                    $cols->fee_age_id]
             );
         }
 
@@ -209,8 +209,8 @@ class DropTranslationTables extends Migration
                 . 'tooltip = ? '
                 . 'where id = ?',
                 [$cols->title,
-                $cols->tooltip,
-                $cols->fee_category_id]
+                    $cols->tooltip,
+                    $cols->fee_category_id]
             );
         }
 
@@ -227,7 +227,7 @@ class DropTranslationTables extends Migration
                 . 'name = ? '
                 . 'where id = ?',
                 [$cols->name,
-                $cols->location_id]
+                    $cols->location_id]
             );
         }
 
@@ -244,7 +244,7 @@ class DropTranslationTables extends Migration
                 . 'text = ? '
                 . 'where id = ?',
                 [$cols->text,
-                $cols->what_to_expect_id]
+                    $cols->what_to_expect_id]
             );
         }
 

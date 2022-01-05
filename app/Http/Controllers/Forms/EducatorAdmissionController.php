@@ -32,17 +32,17 @@ class EducatorAdmissionController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'name',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('name'),
-                  'error' => (!empty($errors) && $errors->first('name')) ? $errors->first('name') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Name *',
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'name',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('name'),
+                    'error' => (!empty($errors) && $errors->first('name')) ? $errors->first('name') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Name *',
                 ),
             ),
         );
@@ -51,17 +51,17 @@ class EducatorAdmissionController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'email',
-                  'variation' => null,
-                  'id' => 'email',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('email'),
-                  'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Email *',
+                    'type' => 'email',
+                    'variation' => null,
+                    'id' => 'email',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('email'),
+                    'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Email *',
                 ),
             ),
         );
@@ -70,16 +70,16 @@ class EducatorAdmissionController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'date-select',
-                  'variation' => '',
-                  'id' => 'visit_date',
-                  'placeholder' => 'mm/dd/yy',
-                  'value' => old('visit_date'),
-                  'error' => (!empty($errors) && $errors->first('visit_date')) ? $errors->first('visit_date') : null,
-                  'optional' => null,
-                  'hint' => 'Please review the museum’s current <a href="/visit">hours of operation</a>',
-                  'disabled' => false,
-                  'label' => 'Visit date *',
+                    'type' => 'date-select',
+                    'variation' => '',
+                    'id' => 'visit_date',
+                    'placeholder' => 'mm/dd/yy',
+                    'value' => old('visit_date'),
+                    'error' => (!empty($errors) && $errors->first('visit_date')) ? $errors->first('visit_date') : null,
+                    'optional' => null,
+                    'hint' => 'Please review the museum’s current <a href="/visit">hours of operation</a>',
+                    'disabled' => false,
+                    'label' => 'Visit date *',
                 ),
             ),
         );
@@ -88,16 +88,16 @@ class EducatorAdmissionController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'select',
-                  'variation' => null,
-                  'id' => 'school_location',
-                  'error' => (!empty($errors) && $errors->first('school_location')) ? $errors->first('school_location') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'value' => old('school_location'),
-                  'label' => 'School Location *',
-                  'options' => $this->getSchoolLocationArray(),
+                    'type' => 'select',
+                    'variation' => null,
+                    'id' => 'school_location',
+                    'error' => (!empty($errors) && $errors->first('school_location')) ? $errors->first('school_location') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'value' => old('school_location'),
+                    'label' => 'School Location *',
+                    'options' => $this->getSchoolLocationArray(),
                 ),
             ),
         );
@@ -106,16 +106,16 @@ class EducatorAdmissionController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'select',
-                  'variation' => null,
-                  'id' => 'type_of_educator',
-                  'error' => (!empty($errors) && $errors->first('type_of_educator')) ? $errors->first('type_of_educator') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'value' => old('type_of_educator'),
-                  'label' => 'Type of Educator *',
-                  'options' => $this->getTypeOfEducatorArray(),
+                    'type' => 'select',
+                    'variation' => null,
+                    'id' => 'type_of_educator',
+                    'error' => (!empty($errors) && $errors->first('type_of_educator')) ? $errors->first('type_of_educator') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'value' => old('type_of_educator'),
+                    'label' => 'Type of Educator *',
+                    'options' => $this->getTypeOfEducatorArray(),
                 ),
             ),
         );
@@ -124,17 +124,17 @@ class EducatorAdmissionController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'grades_taught',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('grades_taught'),
-                  'error' => (!empty($errors) && $errors->first('grades_taught')) ? $errors->first('grades_taught') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Grades Taught *',
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'grades_taught',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('grades_taught'),
+                    'error' => (!empty($errors) && $errors->first('grades_taught')) ? $errors->first('grades_taught') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Grades Taught *',
                 ),
             ),
         );
@@ -143,17 +143,17 @@ class EducatorAdmissionController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'subjects_taught',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('subjects_taught'),
-                  'error' => (!empty($errors) && $errors->first('subjects_taught')) ? $errors->first('subjects_taught') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Subjects Taught *',
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'subjects_taught',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('subjects_taught'),
+                    'error' => (!empty($errors) && $errors->first('subjects_taught')) ? $errors->first('subjects_taught') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Subjects Taught *',
                 ),
             ),
         );
@@ -162,51 +162,51 @@ class EducatorAdmissionController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'captcha',
-                  'variation' => null,
-                  'id' => 'captcha',
-                  'error' => (!empty($errors) && $errors->first('captcha')) ? $errors->first('captcha') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => '',
+                    'type' => 'captcha',
+                    'variation' => null,
+                    'id' => 'captcha',
+                    'error' => (!empty($errors) && $errors->first('captcha')) ? $errors->first('captcha') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => '',
                 ),
             ),
         );
 
         array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $registrationInformationFields,
-          'legend' => 'Registration Information',
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $registrationInformationFields,
+            'legend' => 'Registration Information',
         ));
 
         array_push($blocks, array(
-          'type' => 'text',
-          'content' => '<p>Free admission to the Art Institute of Chicago is available to current Illinois educators, including pre-K–12 teachers, teaching artists working in schools, and homeschool parents. Educators can register here to receive a voucher for a complimentary ticket to the museum. This voucher must be presented at one of the museum’s admission counters with a valid educator ID.</p>'
-          .'<p>Museum hours are subject to change. Please review the museum\'s current <a href="/visit"> hours of operation</a> before reserving your free admission.</p>'
-          .'<p>A complimentary ticket will not be granted without one of the following forms of acceptable identification:</p>'
-          .'<p>Pre-K–12 teachers'
-          .'<ul>'
-          .'<li>Current school ID</li>'
-          .'<li>Current Illinois Education Association ID card</li>'
-          .'</ul>'
-          .'</p>'
+            'type' => 'text',
+            'content' => '<p>Free admission to the Art Institute of Chicago is available to current Illinois educators, including pre-K–12 teachers, teaching artists working in schools, and homeschool parents. Educators can register here to receive a voucher for a complimentary ticket to the museum. This voucher must be presented at one of the museum’s admission counters with a valid educator ID.</p>'
+            .'<p>Museum hours are subject to change. Please review the museum\'s current <a href="/visit"> hours of operation</a> before reserving your free admission.</p>'
+            .'<p>A complimentary ticket will not be granted without one of the following forms of acceptable identification:</p>'
+            .'<p>Pre-K–12 teachers'
+            .'<ul>'
+            .'<li>Current school ID</li>'
+            .'<li>Current Illinois Education Association ID card</li>'
+            .'</ul>'
+            .'</p>'
 
-          .'<p>Teaching Artist Working in Schools'
-          .'<ul>'
-          .'<li>Letter on school letterhead indicating that the teaching artist is currently working in an Illinois pre-K–12 school</li>'
-          .'</ul>'
-          .'</p>'
+            .'<p>Teaching Artist Working in Schools'
+            .'<ul>'
+            .'<li>Letter on school letterhead indicating that the teaching artist is currently working in an Illinois pre-K–12 school</li>'
+            .'</ul>'
+            .'</p>'
 
-          .'<p>Homeschool Parents'
-          .'<ul>'
-          .'<li>Illinois homeschool co-op member ID card</li>'
-          .'<li>Illinois homeschool legal defense association member ID card</li>'
-          .'</ul>'
-          .'</p>'
+            .'<p>Homeschool Parents'
+            .'<ul>'
+            .'<li>Illinois homeschool co-op member ID card</li>'
+            .'<li>Illinois homeschool legal defense association member ID card</li>'
+            .'</ul>'
+            .'</p>'
 
-          .'<p>Illinois Educator Admission Requests may not be used in conjunction with Student Tours or Groups. For more information, visit <a href="/learn-with-us/educators/visit-with-my-students">Student Tours</a>.</p>'
+            .'<p>Illinois Educator Admission Requests may not be used in conjunction with Student Tours or Groups. For more information, visit <a href="/learn-with-us/educators/visit-with-my-students">Student Tours</a>.</p>'
         ));
 
         array_push($blocks, array(
@@ -276,10 +276,10 @@ class EducatorAdmissionController extends FormController
     private function getSchoolLocationArray()
     {
         $topics = array('Chicago Public Schools (CPS)',
-                        'Other Chicago schools',
-                        'Suburbs (Cook County)',
-                        'Suburbs (DuPage, Kane, Lake, McHenry, Will County)',
-                        'Other Illinois',
+            'Other Chicago schools',
+            'Suburbs (Cook County)',
+            'Suburbs (DuPage, Kane, Lake, McHenry, Will County)',
+            'Other Illinois',
         );
 
         $list = [];
@@ -287,7 +287,7 @@ class EducatorAdmissionController extends FormController
         foreach ($topics as $value => $label) {
             $item = [
                 'value' => $label
-            ,   'label' => $label
+                ,   'label' => $label
             ];
 
             $list[] = $item;
@@ -299,8 +299,8 @@ class EducatorAdmissionController extends FormController
     private function getTypeOfEducatorArray()
     {
         $topics = array('Pre-K–12 teacher',
-                        'Teaching artist in a pre-K–12 school',
-                        'Homeschool educator',
+            'Teaching artist in a pre-K–12 school',
+            'Homeschool educator',
         );
 
         $list = [];
@@ -308,7 +308,7 @@ class EducatorAdmissionController extends FormController
         foreach ($topics as $value => $label) {
             $item = [
                 'value' => $label
-            ,   'label' => $label
+                ,   'label' => $label
             ];
 
             $list[] = $item;

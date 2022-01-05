@@ -30,7 +30,7 @@ trait HandleExperienceModule
                 $morphKey . '_type' => get_class($object),
                 $morphKey . '_id' => $object->id,
                 $morphKey . '_repeater_name' => $fieldName,
-                ]);
+            ]);
         }
 
         // Keep a list of updated and new rows to delete (soft delete?) old rows that were deleted from the frontend

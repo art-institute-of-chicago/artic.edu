@@ -93,7 +93,7 @@ class CollectionController extends BaseScopedController
             [
                 'articles' => false,
                 'experiences' => false
-        ]
+            ]
         );
 
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();
@@ -105,14 +105,14 @@ class CollectionController extends BaseScopedController
         }
 
         return view('site.collection.index', [
-          'primaryNavCurrent' => 'collection',
-          'page'              => $page,
-          'artworks'          => $collection,
-          'filterCategories'  => $filters,
-          'activeFilters'     => $activeFilters,
-          'hasAnyFilter'      => $this->hasAnyScope(),
-          'featuredItemsHero' => $featuredItemsHero ?? null,
-          'featuredItems'     => $featuredItems ?? null,
+            'primaryNavCurrent' => 'collection',
+            'page'              => $page,
+            'artworks'          => $collection,
+            'filterCategories'  => $filters,
+            'activeFilters'     => $activeFilters,
+            'hasAnyFilter'      => $this->hasAnyScope(),
+            'featuredItemsHero' => $featuredItemsHero ?? null,
+            'featuredItems'     => $featuredItems ?? null,
         ]);
     }
 

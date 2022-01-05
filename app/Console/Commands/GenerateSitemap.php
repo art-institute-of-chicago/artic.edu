@@ -171,9 +171,9 @@ class GenerateSitemap extends Command
     {
         $this->addNativeModel($sitemap, Exhibition::class, 'exhibitions.show', 0.9, Url::CHANGE_FREQUENCY_WEEKLY, function ($entity) {
             return [
-                    'id' => $entity->datahub_id,
-                    'slug' => $entity->slug,
-                ];
+                'id' => $entity->datahub_id,
+                'slug' => $entity->slug,
+            ];
         }, ['datahub_id']);
     }
 

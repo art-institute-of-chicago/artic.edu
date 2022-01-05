@@ -30,7 +30,7 @@ class ResearchController extends FrontController
                     'href' => $child->url,
                     'label' => $child->title,
                     'external' => $child->is_redirect_url_external
-                  ));
+                ));
             }
 
             array_push($features, [

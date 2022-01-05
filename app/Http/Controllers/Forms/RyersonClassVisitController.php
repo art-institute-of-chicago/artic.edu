@@ -35,17 +35,17 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'name',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('name'),
-                  'error' => (!empty($errors) && $errors->first('name')) ? $errors->first('name') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Name *',
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'name',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('name'),
+                    'error' => (!empty($errors) && $errors->first('name')) ? $errors->first('name') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Name *',
                 ),
             ),
         );
@@ -54,17 +54,17 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'email',
-                  'variation' => null,
-                  'id' => 'email',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('email'),
-                  'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Email *',
+                    'type' => 'email',
+                    'variation' => null,
+                    'id' => 'email',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('email'),
+                    'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Email *',
                 ),
             ),
         );
@@ -73,17 +73,17 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'tel',
-                  'variation' => null,
-                  'id' => 'phone_number',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('phone_number'),
-                  'error' => (!empty($errors) && $errors->first('phone_number')) ? $errors->first('phone_number') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Phone number',
+                    'type' => 'tel',
+                    'variation' => null,
+                    'id' => 'phone_number',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('phone_number'),
+                    'error' => (!empty($errors) && $errors->first('phone_number')) ? $errors->first('phone_number') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Phone number',
                 ),
             ),
         );
@@ -97,12 +97,12 @@ class RyersonClassVisitController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => array(
                 array(
-                  'type' => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('affiliation')) ? $errors->first('affiliation') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'label' => 'Affiliation *',
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('affiliation')) ? $errors->first('affiliation') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'label' => 'Affiliation *',
                 )
             ),
         ];
@@ -115,17 +115,17 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'non_saic_institution',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('non_saic_institution'),
-                  'error' => (!empty($errors) && $errors->first('non_saic_institution')) ? $errors->first('non_saic_institution') : null,
-                  'optional' => null,
-                  'hint' => 'If a Non-SAIC program, please provide the institution name.',
-                  'disabled' => false,
-                  'label' => 'Non-SAIC Institution',
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'non_saic_institution',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('non_saic_institution'),
+                    'error' => (!empty($errors) && $errors->first('non_saic_institution')) ? $errors->first('non_saic_institution') : null,
+                    'optional' => null,
+                    'hint' => 'If a Non-SAIC program, please provide the institution name.',
+                    'disabled' => false,
+                    'label' => 'Non-SAIC Institution',
                 ),
             ),
         );
@@ -134,17 +134,17 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'department',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('department'),
-                  'error' => (!empty($errors) && $errors->first('department')) ? $errors->first('department') : null,
-                  'optional' => false,
-                  'hint' => '',
-                  'disabled' => false,
-                  'label' => 'Department *',
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'department',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('department'),
+                    'error' => (!empty($errors) && $errors->first('department')) ? $errors->first('department') : null,
+                    'optional' => false,
+                    'hint' => '',
+                    'disabled' => false,
+                    'label' => 'Department *',
                 ),
             ),
         );
@@ -153,17 +153,17 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'course_title',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('course_title'),
-                  'error' => (!empty($errors) && $errors->first('course_title')) ? $errors->first('course_title') : null,
-                  'optional' => false,
-                  'hint' => '',
-                  'disabled' => false,
-                  'label' => 'Course Title *',
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'course_title',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('course_title'),
+                    'error' => (!empty($errors) && $errors->first('course_title')) ? $errors->first('course_title') : null,
+                    'optional' => false,
+                    'hint' => '',
+                    'disabled' => false,
+                    'label' => 'Course Title *',
                 ),
             ),
         );
@@ -172,17 +172,17 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'course_level',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('course_level'),
-                  'error' => (!empty($errors) && $errors->first('course_level')) ? $errors->first('course_level') : null,
-                  'optional' => false,
-                  'hint' => '',
-                  'disabled' => false,
-                  'label' => 'Course Level *',
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'course_level',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('course_level'),
+                    'error' => (!empty($errors) && $errors->first('course_level')) ? $errors->first('course_level') : null,
+                    'optional' => false,
+                    'hint' => '',
+                    'disabled' => false,
+                    'label' => 'Course Level *',
                 ),
             ),
         );
@@ -196,12 +196,12 @@ class RyersonClassVisitController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => array(
                 array(
-                  'type' => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('days_class_meets')) ? $errors->first('days_class_meets') : null,
-                  'optional' => false,
-                  'hint' => '',
-                  'label' => 'Days the Class Meets *',
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('days_class_meets')) ? $errors->first('days_class_meets') : null,
+                    'optional' => false,
+                    'hint' => '',
+                    'label' => 'Days the Class Meets *',
                 )
             ),
         ];
@@ -214,12 +214,12 @@ class RyersonClassVisitController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => array(
                 array(
-                  'type' => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('no_of_sessions')) ? $errors->first('no_of_sessions') : null,
-                  'optional' => false,
-                  'hint' => '',
-                  'label' => 'Number of Sessions *',
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('no_of_sessions')) ? $errors->first('no_of_sessions') : null,
+                    'optional' => false,
+                    'hint' => '',
+                    'label' => 'Number of Sessions *',
                 )
             ),
         ];
@@ -232,16 +232,16 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  "type" => 'textarea',
-                  'variation' => null,
-                  'id' => 'multiple_sessions_description',
-                  'placeholder' => '',
-                  'value' => old('multiple_sessions_description'),
-                  'error' => (!empty($errors) && $errors->first('multiple_sessions_description')) ? $errors->first('multiple_sessions_description') : null,
-                  'optional' => false,
-                  'hint' => '',
-                  'disabled' => false,
-                  'label' => 'Please describe multiple sessions here',
+                    "type" => 'textarea',
+                    'variation' => null,
+                    'id' => 'multiple_sessions_description',
+                    'placeholder' => '',
+                    'value' => old('multiple_sessions_description'),
+                    'error' => (!empty($errors) && $errors->first('multiple_sessions_description')) ? $errors->first('multiple_sessions_description') : null,
+                    'optional' => false,
+                    'hint' => '',
+                    'disabled' => false,
+                    'label' => 'Please describe multiple sessions here',
                 ),
             ),
         ];
@@ -266,40 +266,40 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'preferred_date_1',
-                  'placeholder' => 'mm/dd/yy',
-                  'value' => old('preferred_date_1'),
-                  'error' => (!empty($errors) && $errors->first('preferred_date_1')) ? $errors->first('preferred_date_1') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => '',
+                    'type' => 'date-select',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'preferred_date_1',
+                    'placeholder' => 'mm/dd/yy',
+                    'value' => old('preferred_date_1'),
+                    'error' => (!empty($errors) && $errors->first('preferred_date_1')) ? $errors->first('preferred_date_1') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => '',
                 ),
                 array(
-                  'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'preferred_date_2',
-                  'placeholder' => 'mm/dd/yy',
-                  'value' => old('preferred_date_2'),
-                  'error' => (!empty($errors) && $errors->first('preferred_date_2')) ? $errors->first('preferred_date_2') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => '',
+                    'type' => 'date-select',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'preferred_date_2',
+                    'placeholder' => 'mm/dd/yy',
+                    'value' => old('preferred_date_2'),
+                    'error' => (!empty($errors) && $errors->first('preferred_date_2')) ? $errors->first('preferred_date_2') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => '',
                 ),
                 array(
-                  'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'preferred_date_3',
-                  'placeholder' => 'mm/dd/yy',
-                  'value' => old('preferred_date_3'),
-                  'error' => (!empty($errors) && $errors->first('preferred_date_3')) ? $errors->first('preferred_date_3') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => '',
+                    'type' => 'date-select',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'preferred_date_3',
+                    'placeholder' => 'mm/dd/yy',
+                    'value' => old('preferred_date_3'),
+                    'error' => (!empty($errors) && $errors->first('preferred_date_3')) ? $errors->first('preferred_date_3') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => '',
                 ),
             ),
         );
@@ -308,16 +308,16 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'select',
-                  'variation' => '',
-                  'id' => 'preferred_time',
-                  'error' => (!empty($errors) && $errors->first('preferred_time')) ? $errors->first('preferred_time') : null,
-                  'value' => old('preferred_time'),
-                  'optional' => false,
-                  'hint' => 'Only available weekdays 10:30 am through 4:00 pm',
-                  'disabled' => false,
-                  'label' => 'Preferred Time *',
-                  'options' => $this->getTimeArray(10, 12 + 4)
+                    'type' => 'select',
+                    'variation' => '',
+                    'id' => 'preferred_time',
+                    'error' => (!empty($errors) && $errors->first('preferred_time')) ? $errors->first('preferred_time') : null,
+                    'value' => old('preferred_time'),
+                    'optional' => false,
+                    'hint' => 'Only available weekdays 10:30 am through 4:00 pm',
+                    'disabled' => false,
+                    'label' => 'Preferred Time *',
+                    'options' => $this->getTimeArray(10, 12 + 4)
                 ),
             ),
         );
@@ -326,17 +326,17 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'alt_times',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('alt_times'),
-                  'error' => (!empty($errors) && $errors->first('alt_times')) ? $errors->first('alt_times') : null,
-                  'optional' => null,
-                  'hint' => '',
-                  'disabled' => false,
-                  'label' => 'Alternate Time(s)',
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'alt_times',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('alt_times'),
+                    'error' => (!empty($errors) && $errors->first('alt_times')) ? $errors->first('alt_times') : null,
+                    'optional' => null,
+                    'hint' => '',
+                    'disabled' => false,
+                    'label' => 'Alternate Time(s)',
                 ),
             ),
         );
@@ -345,18 +345,18 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'number',
-                  'pattern' => '\d*',
-                  'variation' => null,
-                  'id' => 'no_of_students',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('no_of_students'),
-                  'error' => (!empty($errors) && $errors->first('no_of_students')) ? $errors->first('no_of_students') : null,
-                  'optional' => false,
-                  'hint' => '',
-                  'disabled' => false,
-                  'label' => 'Number of Students *',
+                    'type' => 'number',
+                    'pattern' => '\d*',
+                    'variation' => null,
+                    'id' => 'no_of_students',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('no_of_students'),
+                    'error' => (!empty($errors) && $errors->first('no_of_students')) ? $errors->first('no_of_students') : null,
+                    'optional' => false,
+                    'hint' => '',
+                    'disabled' => false,
+                    'label' => 'Number of Students *',
                 ),
             ),
         );
@@ -365,12 +365,12 @@ class RyersonClassVisitController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => array(
                 array(
-                  'type' => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('type_of_visit')) ? $errors->first('type_of_visit') : null,
-                  'optional' => false,
-                  'hint' => 'View <a href="/library/request-a-class-visit">descriptions</a>',
-                  'label' => 'Type of Visit *',
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('type_of_visit')) ? $errors->first('type_of_visit') : null,
+                    'optional' => false,
+                    'hint' => 'View <a href="/library/request-a-class-visit">descriptions</a>',
+                    'label' => 'Type of Visit *',
                 )
             ),
         ];
@@ -383,12 +383,12 @@ class RyersonClassVisitController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => array(
                 array(
-                  'type' => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('session_objective')) ? $errors->first('session_objective') : null,
-                  'optional' => false,
-                  'hint' => 'Select all that apply',
-                  'label' => 'Objective for this Session *',
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('session_objective')) ? $errors->first('session_objective') : null,
+                    'optional' => false,
+                    'hint' => 'Select all that apply',
+                    'label' => 'Objective for this Session *',
                 )
             ),
         ];
@@ -401,16 +401,16 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'textarea',
-                  'variation' => null,
-                  'id' => 'collections_related_assignment_description',
-                  'placeholder' => '',
-                  'value' => old('collections_related_assignment_description'),
-                  'error' => (!empty($errors) && $errors->first('collections_related_assignment_description')) ? $errors->first('collections_related_assignment_description') : null,
-                  'optional' => false,
-                  'hint' => '',
-                  'disabled' => false,
-                  'label' => 'Collections-Related Assignment Description *',
+                    'type' => 'textarea',
+                    'variation' => null,
+                    'id' => 'collections_related_assignment_description',
+                    'placeholder' => '',
+                    'value' => old('collections_related_assignment_description'),
+                    'error' => (!empty($errors) && $errors->first('collections_related_assignment_description')) ? $errors->first('collections_related_assignment_description') : null,
+                    'optional' => false,
+                    'hint' => '',
+                    'disabled' => false,
+                    'label' => 'Collections-Related Assignment Description *',
                 ),
             ),
         );
@@ -419,16 +419,16 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => array(
                 array(
-                  'type' => 'textarea',
-                  'variation' => null,
-                  'id' => 'collection_materials_requested_for_visit',
-                  'placeholder' => '',
-                  'value' => old('collection_materials_requested_for_visit'),
-                  'error' => (!empty($errors) && $errors->first('collection_materials_requested_for_visit')) ? $errors->first('collection_materials_requested_for_visit') : null,
-                  'optional' => false,
-                  'hint' => 'Please paste permalinks from the online catalog here or provide bibliographic citations.',
-                  'disabled' => false,
-                  'label' => 'Collection Materials Requested for Visit *',
+                    'type' => 'textarea',
+                    'variation' => null,
+                    'id' => 'collection_materials_requested_for_visit',
+                    'placeholder' => '',
+                    'value' => old('collection_materials_requested_for_visit'),
+                    'error' => (!empty($errors) && $errors->first('collection_materials_requested_for_visit')) ? $errors->first('collection_materials_requested_for_visit') : null,
+                    'optional' => false,
+                    'hint' => 'Please paste permalinks from the online catalog here or provide bibliographic citations.',
+                    'disabled' => false,
+                    'label' => 'Collection Materials Requested for Visit *',
                 ),
             ),
         );
@@ -480,12 +480,12 @@ class RyersonClassVisitController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => array(
                 array(
-                  'type' => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('research_shelf_required')) ? $errors->first('research_shelf_required') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'label' => 'Will you require a research shelf for this course? *',
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('research_shelf_required')) ? $errors->first('research_shelf_required') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'label' => 'Will you require a research shelf for this course? *',
                 )
             ),
         ];
@@ -511,36 +511,36 @@ class RyersonClassVisitController extends FormController
         );
 
         array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $contactInformationFields,
-          'legend' => 'Contact Information',
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $contactInformationFields,
+            'legend' => 'Contact Information',
         ));
 
         array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $institutionInformationFields,
-          'legend' => 'Institution Information',
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $institutionInformationFields,
+            'legend' => 'Institution Information',
         ));
 
         array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $courseInformationFields,
-          'legend' => 'Course Information',
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $courseInformationFields,
+            'legend' => 'Course Information',
         ));
 
         array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $visitInformationFields,
-          'legend' => 'Visit Information',
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $visitInformationFields,
+            'legend' => 'Visit Information',
         ));
 
         array_push($blocks, array(
-          'type' => 'text',
-          'content' => '<p>Please fill out the form below to request an instruction session. If you have questions contact the reference desk at (312) 443-3666 or libinstruction@artic.edu. All requests for the semester must be received by the end of the fourth week in the semester <strong>Please allow at least 2 weeks between your request and proposed date of visit.</strong></p>'
+            'type' => 'text',
+            'content' => '<p>Please fill out the form below to request an instruction session. If you have questions contact the reference desk at (312) 443-3666 or libinstruction@artic.edu. All requests for the semester must be received by the end of the fourth week in the semester <strong>Please allow at least 2 weeks between your request and proposed date of visit.</strong></p>'
         ));
 
         array_push($blocks, array(
@@ -631,17 +631,17 @@ class RyersonClassVisitController extends FormController
         $list = [];
         foreach ($options as $value) {
             $item = [
-              'type' => 'radio',
-              'variation' => '',
-              'id' => 'affiliation_'.$value,
-              'name' => 'affiliation',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $value
+                'type' => 'radio',
+                'variation' => '',
+                'id' => 'affiliation_'.$value,
+                'name' => 'affiliation',
+                'value' => $value,
+                'error' => null,
+                'optional' => null,
+                'hint' => null,
+                'disabled' => false,
+                'checked' => false,
+                'label' => $value
             ];
 
             if ($selected == $value) {
@@ -657,23 +657,23 @@ class RyersonClassVisitController extends FormController
     private function getNoOfSessionsArray($selected)
     {
         $options = array('Single Session' => 'Single Session',
-                         'Multiple Sessions' => 'Multiple Sessions',
+            'Multiple Sessions' => 'Multiple Sessions',
         );
 
         $list = [];
         foreach ($options as $value) {
             $item = [
-              'type' => 'radio',
-              'variation' => '',
-              'id' => 'no_of_sessions-'.$value,
-              'name' => 'no_of_sessions',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $value
+                'type' => 'radio',
+                'variation' => '',
+                'id' => 'no_of_sessions-'.$value,
+                'name' => 'no_of_sessions',
+                'value' => $value,
+                'error' => null,
+                'optional' => null,
+                'hint' => null,
+                'disabled' => false,
+                'checked' => false,
+                'label' => $value
             ];
 
             if ($selected == $value) {
@@ -693,17 +693,17 @@ class RyersonClassVisitController extends FormController
         $list = [];
         foreach ($options as $value) {
             $item = [
-              'type' => 'radio',
-              'variation' => '',
-              'id' => 'type_of_visit_'.$value,
-              'name' => 'type_of_visit',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $value
+                'type' => 'radio',
+                'variation' => '',
+                'id' => 'type_of_visit_'.$value,
+                'name' => 'type_of_visit',
+                'value' => $value,
+                'error' => null,
+                'optional' => null,
+                'hint' => null,
+                'disabled' => false,
+                'checked' => false,
+                'label' => $value
             ];
 
             if ($selected == $value) {
@@ -719,26 +719,26 @@ class RyersonClassVisitController extends FormController
     protected function getSessionObjectiveArray($selected)
     {
         $options = array('How to access library collections and services' => 'How to access library collections and services',
-                         'How to use the online catalog' => 'How to use the online catalog',
-                         'How to use a finding aid and archival digital collections' => 'How to use a finding aid and archival digital collections',
-                         'Course-specific research strategies (eg, costume history resources at the RB Libraries; how to research a work of art)' => 'Course-specific research strategies (eg, costume history resources at the RB Libraries; how to research a work of art)',
-                         'Use of RB collection materials to support course instruction' => 'Use of RB collection materials to support course instruction',
+            'How to use the online catalog' => 'How to use the online catalog',
+            'How to use a finding aid and archival digital collections' => 'How to use a finding aid and archival digital collections',
+            'Course-specific research strategies (eg, costume history resources at the RB Libraries; how to research a work of art)' => 'Course-specific research strategies (eg, costume history resources at the RB Libraries; how to research a work of art)',
+            'Use of RB collection materials to support course instruction' => 'Use of RB collection materials to support course instruction',
         );
 
         $list = [];
         foreach ($options as $value => $label) {
             $item = [
-              'type' => 'checkbox',
-              'variation' => '',
-              'id' => 'session_objective-' .$value,
-              'name' => 'session_objective[]',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $label
+                'type' => 'checkbox',
+                'variation' => '',
+                'id' => 'session_objective-' .$value,
+                'name' => 'session_objective[]',
+                'value' => $value,
+                'error' => null,
+                'optional' => null,
+                'hint' => null,
+                'disabled' => false,
+                'checked' => false,
+                'label' => $label
             ];
 
             if ($selected) {

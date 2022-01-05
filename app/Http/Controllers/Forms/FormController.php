@@ -15,8 +15,8 @@ abstract class FormController extends FrontController
     {
         $blocks = [];
         array_push($blocks, array(
-          'type' => 'text',
-          'content' => '<p>Submission complete.</p>'
+            'type' => 'text',
+            'content' => '<p>Submission complete.</p>'
         ));
 
 
@@ -41,7 +41,7 @@ abstract class FormController extends FrontController
         foreach ($us_state_abbrevs as $value => $label) {
             $item = [
                 'value' => $label
-            ,   'label' => $label
+                ,   'label' => $label
             ];
 
             $list[] = $item;
@@ -60,7 +60,7 @@ abstract class FormController extends FrontController
         foreach ($countries as $value => $label) {
             $list[] = [
                 'value' => $label
-            ,   'label' => $label
+                ,   'label' => $label
             ];
         }
 
@@ -76,7 +76,7 @@ abstract class FormController extends FrontController
         foreach ($hours as $value => $label) {
             $list[] = [
                 'value' => $label
-            ,   'label' => $label
+                ,   'label' => $label
             ];
         }
 
@@ -86,26 +86,26 @@ abstract class FormController extends FrontController
     protected function getDaysOfWeekArray($selected, $fieldName = 'days_of_week')
     {
         $daysOfWeek = array('Monday' => 'Monday',
-                            'Tuesday' => 'Tuesday',
-                            'Wednesday' => 'Wednesday',
-                            'Thursday' => 'Thursday',
-                            'Friday' => 'Friday',
+            'Tuesday' => 'Tuesday',
+            'Wednesday' => 'Wednesday',
+            'Thursday' => 'Thursday',
+            'Friday' => 'Friday',
         );
 
         $list = [];
         foreach ($daysOfWeek as $value => $label) {
             $item = [
-              'type' => 'checkbox',
-              'variation' => '',
-              'id' => $fieldName .'-' .$value,
-              'name' => $fieldName .'[]',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $label
+                'type' => 'checkbox',
+                'variation' => '',
+                'id' => $fieldName .'-' .$value,
+                'name' => $fieldName .'[]',
+                'value' => $value,
+                'error' => null,
+                'optional' => null,
+                'hint' => null,
+                'disabled' => false,
+                'checked' => false,
+                'label' => $label
             ];
 
             if ($selected) {
@@ -123,22 +123,22 @@ abstract class FormController extends FrontController
     protected function getYesNoArray($selected, $fieldName = 'yes_no')
     {
         $options = array('Yes' => 'Yes',
-                         'No' => 'No',);
+            'No' => 'No',);
 
         $list = [];
         foreach ($options as $value => $label) {
             $item = [
-              'type' => 'radio',
-              'variation' => '',
-              'id' => $fieldName .'_'.$value,
-              'name' => $fieldName,
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $label
+                'type' => 'radio',
+                'variation' => '',
+                'id' => $fieldName .'_'.$value,
+                'name' => $fieldName,
+                'value' => $value,
+                'error' => null,
+                'optional' => null,
+                'hint' => null,
+                'disabled' => false,
+                'checked' => false,
+                'label' => $label
             ];
 
             if ($selected == $value) {

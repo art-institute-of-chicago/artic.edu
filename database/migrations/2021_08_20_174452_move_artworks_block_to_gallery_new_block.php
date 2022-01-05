@@ -23,12 +23,12 @@ class MoveArtworksBlockToGalleryNewBlock extends Migration
                 foreach ($artworkIds as $id) {
                     DB::table('blocks')->insert(
                         ['blockable_id' => $cols->blockable_id,
-                        'blockable_type' => $cols->blockable_type,
-                        'position' => $i++,
-                        'content' => '{"gallery_item_type":"artwork","browsers":{"artworks":[' . $id . ']}}',
-                        'type' => 'gallery_new_item',
-                        'child_key' => 'gallery_new_item',
-                        'parent_id' => $cols->id
+                            'blockable_type' => $cols->blockable_type,
+                            'position' => $i++,
+                            'content' => '{"gallery_item_type":"artwork","browsers":{"artworks":[' . $id . ']}}',
+                            'type' => 'gallery_new_item',
+                            'child_key' => 'gallery_new_item',
+                            'parent_id' => $cols->id
                         ]
                     );
                 }
@@ -42,8 +42,8 @@ class MoveArtworksBlockToGalleryNewBlock extends Migration
                 . 'type = ? '
                 . 'where id = ?',
                 [json_encode($content),
-                'gallery_new',
-                $cols->id]
+                    'gallery_new',
+                    $cols->id]
             );
         }
     }

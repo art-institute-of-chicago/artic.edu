@@ -58,12 +58,12 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->description) {
             array_push($blocks, [
-              "type"    => 'itemprop',
-              "content" => [[
-                "type"    => 'text',
-                "content" => $this->getFilteredDescription(),
-              ]],
-              'itemprop' => 'description',
+                "type"    => 'itemprop',
+                "content" => [[
+                    "type"    => 'text',
+                    "content" => $this->getFilteredDescription(),
+                ]],
+                'itemprop' => 'description',
             ]);
         }
 
