@@ -98,6 +98,7 @@ return $config->setRules([
     'return_type_declaration' => true,      // There should be one or no space before colon, and one space after it in return type declarations, according to configuration.
     'semicolon_after_instruction' => true,  // Instructions must be terminated with a semicolon.
     'short_scalar_cast' => true,            // Cast (boolean) and (integer) should be written as (bool) and (int), (double) and (real) as (float), (binary) as (string).
+    'single_blank_line_at_eof' => true,     // A PHP file without end tag must always end with a single empty line feed.
 
 ])
 ->setFinder($finder);
