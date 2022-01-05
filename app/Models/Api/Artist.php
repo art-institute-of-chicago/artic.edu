@@ -38,7 +38,7 @@ class Artist extends BaseApiModel
             ->aggregationClassifications(2)
             ->aggregationPlaces(1)
             ->aggregationStyles(1)
-            ->getSearch($perPage, ['id','title','image_id','main_reference_number','thumbnail','date_display','artist_title',], 'page', null, ['do-not-extract' => true]);
+            ->getSearch($perPage, ['id','title','image_id','main_reference_number','thumbnail','date_display','artist_title'], 'page', null, ['do-not-extract' => true]);
     }
 
     public function getTitleSlugAttribute()

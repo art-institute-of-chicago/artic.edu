@@ -84,6 +84,7 @@ return $config->setRules([
         'allow_mixed' => true,
     ],
     'no_trailing_comma_in_list_call' => true, // Remove trailing commas in list function calls.
+    'no_trailing_comma_in_singleline_array' => true, // PHP single-line arrays should not have trailing comma.
 
 ])
 ->setFinder($finder);
