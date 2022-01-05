@@ -77,6 +77,7 @@ return $config->setRules([
     'no_null_property_initialization' => true, // Properties MUST not be explicitly initialized with null except when they have a type declaration (PHP 7.4).
     'no_short_bool_cast' => true,           // Short cast bool using double exclamation mark should not be used.
     'no_singleline_whitespace_before_semicolons' => true, // Single-line whitespace before closing semicolon are prohibited.
+    'no_spaces_after_function_name' => true, // When making a method or function call, there MUST NOT be a space between the method or function name and the opening parenthesis.
 
 ])
 ->setFinder($finder);
