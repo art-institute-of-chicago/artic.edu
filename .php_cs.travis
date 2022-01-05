@@ -37,6 +37,7 @@ return $config->setRules([
     'declare_equal_normalize' => [          // Equal sign in declare statement should be surrounded by spaces or not following configuration.
         'space' => 'single',
     ],
+    'elseif' => true,                       // The keyword elseif should be used instead of else if so that all control keywords look like single words.
 
 ])
 ->setFinder($finder);
