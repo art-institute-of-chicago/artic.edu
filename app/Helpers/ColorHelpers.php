@@ -53,9 +53,9 @@ class ColorHelpers
             $q = $l < 0.5 ? $l * (1 + $s) : $l + $s - $l * $s;
             $p = 2 * $l - $q;
 
-            $r = static::hue2rgb($p, $q, $h + 1/3);
+            $r = static::hue2rgb($p, $q, $h + 1 / 3);
             $g = static::hue2rgb($p, $q, $h);
-            $b = static::hue2rgb($p, $q, $h - 1/3);
+            $b = static::hue2rgb($p, $q, $h - 1 / 3);
         }
 
         return static::rgb2hex($r) . static::rgb2hex($g) . static::rgb2hex($b);
@@ -69,14 +69,14 @@ class ColorHelpers
         if ($t > 1) {
             $t -= 1;
         }
-        if ($t < 1/6) {
+        if ($t < 1 / 6) {
             return $p + ($q - $p) * 6 * $t;
         }
-        if ($t < 1/2) {
+        if ($t < 1 / 2) {
             return $q;
         }
-        if ($t < 2/3) {
-            return $p + ($q - $p) * (2/3 - $t) * 6;
+        if ($t < 2 / 3) {
+            return $p + ($q - $p) * (2 / 3 - $t) * 6;
         }
 
         return $p;

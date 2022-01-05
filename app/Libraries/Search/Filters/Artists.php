@@ -4,8 +4,8 @@ namespace App\Libraries\Search\Filters;
 
 class Artists extends BaseFilteredList
 {
-    protected $parameter  = 'artist_ids';
-    protected $entity     = \App\Models\Api\Artist::class;
+    protected $parameter = 'artist_ids';
+    protected $entity = \App\Models\Api\Artist::class;
 
     public function generate()
     {
@@ -14,11 +14,11 @@ class Artists extends BaseFilteredList
         if (!$list->isEmpty()) {
             return [
                 'placeholder' => "Find Artists",
-                'title'       => "Artists",
-                'active'      => $this->activeList,
-                'list'        => $list,
-                'listSearch'  => true,
-                'type'        => 'list',
+                'title' => "Artists",
+                'active' => $this->activeList,
+                'list' => $list,
+                'listSearch' => true,
+                'type' => 'list',
                 'aggregation' => $this->aggregationName,
                 'listSearchUrl' => route('collection.categorySearch', request()->except(['categoryName', 'categoryQuery']) + ['categoryName' => 'artists'])
             ];

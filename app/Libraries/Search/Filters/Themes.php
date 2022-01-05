@@ -4,8 +4,8 @@ namespace App\Libraries\Search\Filters;
 
 class Themes
 {
-    protected $parameter  = 'theme_ids';
-    protected $entity     = \App\Models\Api\Category::class;
+    protected $parameter = 'theme_ids';
+    protected $entity = \App\Models\Api\Category::class;
 
     /**
      * Basic functionality to get currently active hidden filters to build
@@ -13,7 +13,7 @@ class Themes
      */
     public function generate()
     {
-        $list  = [];
+        $list = [];
         $input = collect(explode(';', request()->input($this->parameter)))->filter();
 
         foreach ($input as $element) {

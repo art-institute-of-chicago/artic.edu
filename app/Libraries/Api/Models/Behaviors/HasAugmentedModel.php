@@ -12,7 +12,7 @@ trait HasAugmentedModel
     public function setAugmentedModel($model)
     {
         $this->augmentedModel = $model;
-        $this->augmented      = true;
+        $this->augmented = true;
     }
 
     public function getAugmentedModelClass()

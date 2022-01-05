@@ -37,12 +37,12 @@ class ExhibitionPressRoomController extends FrontController
         ];
 
         $view_data = [
-            'title'  => $title,
+            'title' => $title,
             'subNav' => $subNav,
-            'nav'    => $nav,
+            'nav' => $nav,
             "breadcrumb" => $crumbs,
-            'wideBody'   => true,
-            'filters'    => null,
+            'wideBody' => true,
+            'filters' => null,
             'listingCountText' => 'Showing '.$items->total().' exhibition press rooms',
             'listingItems' => $items,
         ];

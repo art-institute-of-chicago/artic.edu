@@ -58,9 +58,9 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->description) {
             array_push($blocks, [
-                "type"    => 'itemprop',
+                "type" => 'itemprop',
                 "content" => [[
-                    "type"    => 'text',
+                    "type" => 'text',
                     "content" => $this->getFilteredDescription(),
                 ]],
                 'itemprop' => 'description',
@@ -90,10 +90,10 @@ class ArtworkPresenter extends BasePresenter
         }
 
         array_push($blocks, [
-            "type"      => 'deflist',
+            "type" => 'deflist',
             "variation" => 'u-hide@large+ sr-show@large+',
-            "ariaOwns"  => "dl-artwork-details",
-            "items"     => $items
+            "ariaOwns" => "dl-artwork-details",
+            "items" => $items
         ]);
 
         array_push($blocks, $this->getArtworkDetailsBlock());
@@ -257,14 +257,14 @@ class ArtworkPresenter extends BasePresenter
             if ($showCultureFirst) {
                 if (count($cultureLinks) > 0) {
                     $details[] = [
-                        'key'   => Str::plural('Culture', count($cultureLinks)),
+                        'key' => Str::plural('Culture', count($cultureLinks)),
                         'links' => $cultureLinks,
                         'itemprop' => 'creator',
                     ];
                 }
                 if (count($artistLinks) > 0) {
                     $details[] = [
-                        'key'   => Str::plural('Artist', count($artistLinks)),
+                        'key' => Str::plural('Artist', count($artistLinks)),
                         'links' => $artistLinks,
                         'itemprop' => 'creator',
                     ];
@@ -272,14 +272,14 @@ class ArtworkPresenter extends BasePresenter
             } else {
                 if (count($artistLinks) > 0) {
                     $details[] = [
-                        'key'   => Str::plural('Artist', count($artistLinks)),
+                        'key' => Str::plural('Artist', count($artistLinks)),
                         'links' => $artistLinks,
                         'itemprop' => 'creator',
                     ];
                 }
                 if (count($cultureLinks) > 0) {
                     $details[] = [
-                        'key'   => Str::plural('Culture', count($cultureLinks)),
+                        'key' => Str::plural('Culture', count($cultureLinks)),
                         'links' => $cultureLinks,
                         'itemprop' => 'creator',
                     ];
@@ -298,7 +298,7 @@ class ArtworkPresenter extends BasePresenter
             });
 
             $details[] = [
-                'key'   => Str::plural('Place', count($this->entity->place_pivots)),
+                'key' => Str::plural('Place', count($this->entity->place_pivots)),
                 'value' => join(', ', $places->toArray()),
                 'itemprop' => 'locationCreated',
             ];
@@ -333,7 +333,7 @@ class ArtworkPresenter extends BasePresenter
                 ];
             });
             $details[] = [
-                'key'   => Str::plural('Date', count($this->entity->dates)),
+                'key' => Str::plural('Date', count($this->entity->dates)),
                 'itemprop' => 'dateCreated',
                 'links' => $dates,
             ];
@@ -351,12 +351,12 @@ class ArtworkPresenter extends BasePresenter
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Medium'           => [$this->entity->medium_display,'material'],
-            'Inscriptions'     => [$this->entity->inscriptions],
-            'Dimensions'       => [$this->entity->dimensions, 'size'],
-            'Credit Line'      => [$this->entity->credit_line],
+            'Medium' => [$this->entity->medium_display,'material'],
+            'Inscriptions' => [$this->entity->inscriptions],
+            'Dimensions' => [$this->entity->dimensions, 'size'],
+            'Credit Line' => [$this->entity->credit_line],
             'Reference Number' => [$this->entity->main_reference_number, 'identifier'],
-            'Copyright'        => [$this->entity->copyright_notice],
+            'Copyright' => [$this->entity->copyright_notice],
         ]));
 
         if ($this->entity->is_public_domain) {
@@ -375,9 +375,9 @@ class ArtworkPresenter extends BasePresenter
         }
 
         return [
-            "type"  => 'deflist',
+            "type" => 'deflist',
             "items" => $details,
-            "id"    => "dl-artwork-details"
+            "id" => "dl-artwork-details"
         ];
     }
 
@@ -398,13 +398,13 @@ class ArtworkPresenter extends BasePresenter
     protected function buildMultimediaBlocks($resultsByType, $title)
     {
         $block = [
-            'title'  => $title,
+            'title' => $title,
             'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.StringHelpers::getUtf8Slug($title).'"',
             'blocks' => []
         ];
 
         $localBlock = [
-            'type'  => 'link-list',
+            'type' => 'link-list',
             'links' => [],
         ];
 
@@ -424,8 +424,8 @@ class ArtworkPresenter extends BasePresenter
     {
         $content = $this->formatDescriptionBlocks([
             'publication_history' => 'Publication History',
-            'exhibition_history'  => 'Exhibition History',
-            'provenance_text'     => 'Provenance'
+            'exhibition_history' => 'Exhibition History',
+            'provenance_text' => 'Provenance'
         ]);
 
         if ($this->entity->catalogues) {
@@ -438,7 +438,7 @@ class ArtworkPresenter extends BasePresenter
             });
 
             $block = [
-                'title'  => 'Catalogues Raisonnés',
+                'title' => 'Catalogues Raisonnés',
                 'blocks' => $rows,
                 'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="catalogue-raisonnes"'
             ];
@@ -462,7 +462,7 @@ class ArtworkPresenter extends BasePresenter
             return [];
         } else {
             return [
-                "type"    => 'accordion',
+                "type" => 'accordion',
                 "content" => $content,
                 "titleFont" => "f-module-title-2"
             ];
@@ -510,11 +510,11 @@ class ArtworkPresenter extends BasePresenter
     public function buildSchemaItemProps()
     {
         $itemprops = [
-            'accessMode'            => 'visual',
-            'alternativeHeadline'   => (!empty($this->entity->alt_titles)) ? implode(', ', $this->entity->alt_titles) : null,
-            'contributor'           => (!empty($this->entity->alt_artists)) ? implode(', ', $this->entity->alt_artists) : null,
-            'about'                 => (!empty($this->entity->subject_titles)) ? implode(', ', $this->entity->subject_titles) : null,
-            'provider'              => $this->entity->department_title,
+            'accessMode' => 'visual',
+            'alternativeHeadline' => (!empty($this->entity->alt_titles)) ? implode(', ', $this->entity->alt_titles) : null,
+            'contributor' => (!empty($this->entity->alt_artists)) ? implode(', ', $this->entity->alt_artists) : null,
+            'about' => (!empty($this->entity->subject_titles)) ? implode(', ', $this->entity->subject_titles) : null,
+            'provider' => $this->entity->department_title,
         ];
 
         if ($this->entity->image_id) {

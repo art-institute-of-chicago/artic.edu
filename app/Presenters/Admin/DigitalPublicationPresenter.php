@@ -82,7 +82,7 @@ class DigitalPublicationPresenter extends BasePresenter
                     'active' => !isset($currentSection) || $currentSection->type === $type,
                     'blocks' => [
                         [
-                            'type'  => 'link-list',
+                            'type' => 'link-list',
                             'links' => $this
                                 ->getSections($type)
                                 ->map(function ($section) use ($currentSection) {

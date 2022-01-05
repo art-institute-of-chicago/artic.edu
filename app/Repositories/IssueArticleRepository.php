@@ -31,7 +31,7 @@ class IssueArticleRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null)
     {
-        $search  = Search::query()->search($string)->published()->resources(['issue-articles']);
+        $search = Search::query()->search($string)->published()->resources(['issue-articles']);
 
         $results = $search->getSearch($perPage);
 

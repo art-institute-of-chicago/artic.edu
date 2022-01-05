@@ -25,7 +25,7 @@ class IssueRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null)
     {
-        $search  = Search::query()->search($string)->published()->resources(['issues']);
+        $search = Search::query()->search($string)->published()->resources(['issues']);
 
         $results = $search->getSearch($perPage);
 

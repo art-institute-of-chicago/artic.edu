@@ -115,7 +115,7 @@ class DamsImageService implements ImageServiceInterface
         // Try returning already loaded information
         if (!empty($object->thumbnail)) {
             if ($object->thumbnail->width && $object->thumbnail->height) {
-                $info['width']  = $object->thumbnail->width;
+                $info['width'] = $object->thumbnail->width;
                 $info['height'] = $object->thumbnail->height;
             } else {
                 $info = array_merge($info, $this->getDimensions($object->$imageField));
@@ -126,7 +126,7 @@ class DamsImageService implements ImageServiceInterface
             }
 
             if ($object->thumbnail->alt_text) {
-                $info['alt']  = $object->thumbnail->alt_text;
+                $info['alt'] = $object->thumbnail->alt_text;
             }
 
             return $info;

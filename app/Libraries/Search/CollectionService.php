@@ -64,7 +64,7 @@ class CollectionService
 
         if ($page) {
             $this->results = $builder->ttl(self::API_SEARCH_CACHE_TTL)->getPaginatedModel($this->perPage, \App\Models\Api\Artwork::SEARCH_FIELDS, null, $page);
-            $this->page    = $page;
+            $this->page = $page;
         } else {
             $this->results = $builder->ttl(self::API_SEARCH_CACHE_TTL)->getPaginatedModel($this->perPage, \App\Models\Api\Artwork::SEARCH_FIELDS);
         }
@@ -116,7 +116,7 @@ class CollectionService
                     foreach ($category['list'] as $item) {
                         if ($item['enabled']) {
                             $activeFilters->push([
-                                'href'  => $item['href'],
+                                'href' => $item['href'],
                                 'label' => $item['label']
                             ]);
                         }
@@ -126,7 +126,7 @@ class CollectionService
                 case 'date':
                     if ($category['enabled']) {
                         $activeFilters->push([
-                            'href'  => $category['href'],
+                            'href' => $category['href'],
                             'label' => $category['label']
                         ]);
                     }
@@ -134,7 +134,7 @@ class CollectionService
                 case 'color':
                     if ($category['enabled']) {
                         $activeFilters->push([
-                            'href'  => $category['href'],
+                            'href' => $category['href'],
                             'label' => $category['label']
                         ]);
                     }
@@ -154,10 +154,10 @@ class CollectionService
      */
     protected function getActiveHiddenFilters()
     {
-        $themes     = (new Filters\Themes())->generate();
+        $themes = (new Filters\Themes())->generate();
         $techniques = (new Filters\Techniques())->generate();
-        $galleries  = (new Filters\Galleries())->generate();
-        $deaccessions  = (new Filters\Deaccessions())->generate();
+        $galleries = (new Filters\Galleries())->generate();
+        $deaccessions = (new Filters\Deaccessions())->generate();
 
         return array_merge($themes, $techniques, $galleries, $deaccessions);
     }

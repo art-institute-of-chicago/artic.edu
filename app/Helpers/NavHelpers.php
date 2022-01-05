@@ -10,13 +10,13 @@ class NavHelpers
     {
         $subNav = [
             [
-                'label'  => 'Print Publications',
-                'href'   => route('collection.publications.printed-publications'),
+                'label' => 'Print Publications',
+                'href' => route('collection.publications.printed-publications'),
                 'active' => request()->route()->getName() == 'collection.publications.printed-publications'
             ],
             [
-                'label'  => 'Digital Publications',
-                'href'   => route('collection.publications.digital-publications'),
+                'label' => 'Digital Publications',
+                'href' => route('collection.publications.digital-publications'),
                 'active' => request()->route()->getName() == 'collection.publications.digital-publications'
             ],
         ];
@@ -27,8 +27,8 @@ class NavHelpers
             $journalPageUrl = $journalPage->url;
 
             array_push($subNav, [
-                'label'  => $journalPage->present()->title,
-                'href'   => $journalPageUrl,
+                'label' => $journalPage->present()->title,
+                'href' => $journalPageUrl,
                 'active' => request()->path() == ltrim($journalPageUrl, '/'),
             ]);
         }

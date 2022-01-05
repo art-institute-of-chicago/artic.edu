@@ -9,8 +9,8 @@ class Image extends BaseApiModel
 {
     protected $endpoints = [
         'collection' => '/api/v1/images',
-        'resource'   => '/api/v1/images/{id}',
-        'search'     => '/api/v1/images/search'
+        'resource' => '/api/v1/images/{id}',
+        'search' => '/api/v1/images/search'
     ];
 
     /**
@@ -40,7 +40,7 @@ class Image extends BaseApiModel
             "credit" => $credit,
             "creditUrl" => $creditUrl,
             "iiifId" => $dams->getBaseUrl().$dams->getVersion().'/'.$this->id,
-            "alt"    => $this->alt_text
+            "alt" => $this->alt_text
         ];
 
         if (isset($this->lqip) && !empty($this->lqip)) {

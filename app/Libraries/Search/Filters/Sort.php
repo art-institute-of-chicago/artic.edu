@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 class Sort
 {
     protected $activeList = false;
-    protected $parameter  = 'sort_by';
+    protected $parameter = 'sort_by';
 
     protected $options;
 
@@ -22,11 +22,11 @@ class Sort
 
         if (!$list->isEmpty()) {
             return [
-                'list'        => $list,
-                'title'       => 'Sort',
-                'prompt'      => 'By ' . $this->generateLabel(request('sort_by') ?? 'relevance'),
-                'active'      => $this->activeList,
-                'type'        => 'dropdown',
+                'list' => $list,
+                'title' => 'Sort',
+                'prompt' => 'By ' . $this->generateLabel(request('sort_by') ?? 'relevance'),
+                'active' => $this->activeList,
+                'type' => 'dropdown',
                 'collapsible' => true,
             ];
         }
@@ -47,8 +47,8 @@ class Sort
             }
 
             return [
-                'href'    => $route,
-                'label'   => 'By ' . $this->generateLabel($option),
+                'href' => $route,
+                'label' => 'By ' . $this->generateLabel($option),
                 'enabled' => $enabled ?? false
             ];
         });

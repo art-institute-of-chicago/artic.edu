@@ -179,7 +179,7 @@ class EventsController extends FrontController
 
         foreach (Event::$eventTypes as $key => $type) {
             array_push($links, [
-                'href'  => route('events', array_merge(request()->all(), ['type' => $key])),
+                'href' => route('events', array_merge(request()->all(), ['type' => $key])),
                 'label' => $type
             ]);
         }
@@ -198,7 +198,7 @@ class EventsController extends FrontController
 
         foreach (Event::$eventAudiences as $key => $audience) {
             array_push($links, [
-                'href'  => route('events', array_merge(request()->all(), ['audience' => $key])),
+                'href' => route('events', array_merge(request()->all(), ['audience' => $key])),
                 'label' => $audience
             ]);
         }

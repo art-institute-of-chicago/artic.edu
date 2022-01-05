@@ -16,14 +16,14 @@ class HomeController extends FrontController
 
         $page = Page::forType('Home')->first();
 
-        $exhibitions  = $page->apiModels('homeExhibitions', 'Exhibition');
-        $products     = $page->apiModels('homeShopItems', 'ShopItem');
+        $exhibitions = $page->apiModels('homeExhibitions', 'Exhibition');
+        $products = $page->apiModels('homeShopItems', 'ShopItem');
         $homeArtworks = $page->apiModels('homeArtworks', 'Artwork');
 
-        $events      = $page->homeEvents()->future()->published()->limit(4)->get();
+        $events = $page->homeEvents()->future()->published()->limit(4)->get();
 
-        $mainHomeFeatures       = $page->mainHomeFeatures()->published()->limit(1)->get();
-        $secondaryHomeFeatures  = $page->secondaryHomeFeatures()->published()->limit(2)->get();
+        $mainHomeFeatures = $page->mainHomeFeatures()->published()->limit(1)->get();
+        $secondaryHomeFeatures = $page->secondaryHomeFeatures()->published()->limit(2)->get();
 
         $mainFeatures = $mainHomeFeatures->concat($secondaryHomeFeatures);
 
@@ -34,7 +34,7 @@ class HomeController extends FrontController
 
         $view_data = [
             'contrastHeader' => sizeof($mainFeatures) > 0,
-            'filledLogo'     => sizeof($mainFeatures) > 0,
+            'filledLogo' => sizeof($mainFeatures) > 0,
             'mainFeatures' => $mainFeatures,
             'intro' => $page->home_intro,
             'visit_button_text' => $page->home_visit_button_text ?? 'Visit',
@@ -51,7 +51,7 @@ class HomeController extends FrontController
             'products' => $products,
             'cta_module_image' => $page->imageFront('home_cta_module_image'),
             'cta_module_action_url' => $page->home_cta_module_action_url,
-            'cta_module_header' =>  $page->home_cta_module_header,
+            'cta_module_header' => $page->home_cta_module_header,
             'cta_module_button_text' => $page->home_cta_module_button_text,
             'cta_module_body' => $page->home_cta_module_body,
             'roadblocks' => $this->getLightboxes(),

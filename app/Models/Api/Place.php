@@ -8,6 +8,6 @@ class Place extends BaseApiModel
 {
     protected $endpoints = [
         'collection' => '/api/v1/places',
-        'search'     => '/api/v1/places/search'
+        'search' => '/api/v1/places/search'
     ];
 }

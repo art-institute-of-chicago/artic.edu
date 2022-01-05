@@ -29,7 +29,7 @@ class GroupReservationsController extends FormController
          *  Contact information
          *
          */
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -48,7 +48,7 @@ class GroupReservationsController extends FormController
             ],
         ];
 
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -67,7 +67,7 @@ class GroupReservationsController extends FormController
             ],
         ];
 
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -86,7 +86,7 @@ class GroupReservationsController extends FormController
             ],
         ];
 
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -105,7 +105,7 @@ class GroupReservationsController extends FormController
             ],
         ];
 
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -124,7 +124,7 @@ class GroupReservationsController extends FormController
             ],
         ];
 
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -143,7 +143,7 @@ class GroupReservationsController extends FormController
             ],
         ];
 
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -162,7 +162,7 @@ class GroupReservationsController extends FormController
             ],
         ];
 
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -325,7 +325,7 @@ class GroupReservationsController extends FormController
             ],
         ];
 
-        $visitInformationFields[]= [
+        $visitInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [

@@ -97,7 +97,7 @@ class SearchController extends BaseScopedController
 
         // Specific elements search. We run separate queries because we want to ensure elements
         // in all sections. A general search sorting might cause empty categories.
-        $artworks                   = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
+        $artworks = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
 
         // If first artwork accession number matches search query, redirect to artwork page
         if ($artworks->count()) {
@@ -107,29 +107,29 @@ class SearchController extends BaseScopedController
             }
         }
 
-        $publications               = $this->publicationsRepository->searchApi(request('q'), self::ALL_PER_PAGE_PUBLICATIONS);
-        $articles                   = $this->articlesRepository->searchApi(request('q'), self::ALL_PER_PAGE_ARTICLES);
-        $artists                    = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
-        $exhibitions                = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
-        $events                     = $this->eventsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
-        $pages                      = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_PAGES);
-        $guides                     = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
-        $press                      = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
-        $interactiveFeatures        = $this->interactiveFeatureRespository->search(request('q'))->paginate(self::ALL_PER_PAGE_INTERACTIVEFEATURES);
-        $highlights                 = $this->highlightRepository->searchApi(request('q'), self::ALL_PER_PAGE_HIGHLIGHTS);
+        $publications = $this->publicationsRepository->searchApi(request('q'), self::ALL_PER_PAGE_PUBLICATIONS);
+        $articles = $this->articlesRepository->searchApi(request('q'), self::ALL_PER_PAGE_ARTICLES);
+        $artists = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
+        $exhibitions = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
+        $events = $this->eventsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $pages = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_PAGES);
+        $guides = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $press = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $interactiveFeatures = $this->interactiveFeatureRespository->search(request('q'))->paginate(self::ALL_PER_PAGE_INTERACTIVEFEATURES);
+        $highlights = $this->highlightRepository->searchApi(request('q'), self::ALL_PER_PAGE_HIGHLIGHTS);
 
         return view('site.search.index', [
             'featuredResults' => $general->where('is_boosted', true),
             'artworks' => $artworks,
-            'artists'  => $artists,
+            'artists' => $artists,
             'articles' => $articles,
-            'events'   => $events,
-            'pages'    => $pages,
-            'exhibitions'  => $exhibitions,
-            'interactiveFeatures'  => $interactiveFeatures,
-            'highlights'  => $highlights,
+            'events' => $events,
+            'pages' => $pages,
+            'exhibitions' => $exhibitions,
+            'interactiveFeatures' => $interactiveFeatures,
+            'highlights' => $highlights,
             'publications' => $publications,
-            'pressReleases'  => $press,
+            'pressReleases' => $press,
             'researchGuides' => $guides,
             'allResultsView' => false,
             'searchResultsTypeLinks' => $links
@@ -197,10 +197,10 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
-        $general  = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
 
-        $artworks      = $this->collection()->perPage(self::ARTWORKS_PER_PAGE)->results();
-        $filters       = $this->collection()->generateFilters();
+        $artworks = $this->collection()->perPage(self::ARTWORKS_PER_PAGE)->results();
+        $filters = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
 
         $links = $this->buildSearchLinks($general, 'artworks');
@@ -210,7 +210,7 @@ class SearchController extends BaseScopedController
             'allResultsView' => true,
             'searchResultsTypeLinks' => $links,
             'filterCategories' => $filters,
-            'activeFilters'    => $activeFilters
+            'activeFilters' => $activeFilters
         ]);
     }
 
@@ -238,7 +238,7 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
-        $general     = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $exhibitions = $this->exhibitionsRepository->searchApi(request('q'), self::EXHIBITIONS_PER_PAGE, request('time'));
 
         $links = $this->buildSearchLinks($general, 'exhibitions');
@@ -302,7 +302,7 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
-        $general  = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $articles = $this->articlesRepository->searchApi(request('q'), self::ARTICLES_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'articles');
@@ -319,7 +319,7 @@ class SearchController extends BaseScopedController
         $this->seo->setTitle('Search');
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $events  = $this->eventsRepository->searchApi(request('q'), self::EVENTS_PER_PAGE);
+        $events = $this->eventsRepository->searchApi(request('q'), self::EVENTS_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'events');
 
@@ -335,7 +335,7 @@ class SearchController extends BaseScopedController
         $this->seo->setTitle('Search');
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $pages   = $this->pagesRepository->searchApi(request('q'), self::PAGES_PER_PAGE);
+        $pages = $this->pagesRepository->searchApi(request('q'), self::PAGES_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'pages');
 
@@ -351,7 +351,7 @@ class SearchController extends BaseScopedController
         $this->seo->setTitle('Search');
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $guides  = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $guides = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
 
         $links = $this->buildSearchLinks($general, 'research-guides');
 
@@ -367,7 +367,7 @@ class SearchController extends BaseScopedController
         $this->seo->setTitle('Search');
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $press   = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $press = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
 
         $links = $this->buildSearchLinks($general, 'press-releases');
 

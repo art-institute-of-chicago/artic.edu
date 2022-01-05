@@ -18,8 +18,8 @@ class Asset extends BaseApiModel
 
     protected $endpoints = [
         'collection' => '/api/v1/assets',
-        'resource'   => '/api/v1/assets/{id}',
-        'search'     => '/api/v1/assets/search',
+        'resource' => '/api/v1/assets/{id}',
+        'search' => '/api/v1/assets/search',
         'generalSearch' => '/api/v1/search'
     ];
 

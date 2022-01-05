@@ -34,7 +34,7 @@ class DepartmentController extends FrontController
         $relatedItems = $this->repository->getRelatedItems($item);
 
         return view('site.tagDetail', [
-            'item'     => $item,
+            'item' => $item,
             'artworks' => $artworks,
             'relatedItems' => $relatedItems->count() > 0 ? $relatedItems : null,
             'canonicalUrl' => $canonicalPath,

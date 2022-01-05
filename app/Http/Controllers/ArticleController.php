@@ -71,8 +71,8 @@ class ArticleController extends FrontController
             array_push(
                 $categories,
                 [
-                    'label'  => $category->name,
-                    'href'   => route('articles', ['category' => $category->id]),
+                    'label' => $category->name,
+                    'href' => route('articles', ['category' => $category->id]),
                     'active' => request()->get('category') == $category->id,
                     'ajaxScrollTarget' => 'listing',
                 ]

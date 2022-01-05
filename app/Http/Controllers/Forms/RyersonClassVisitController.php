@@ -31,7 +31,7 @@ class RyersonClassVisitController extends FormController
          *  Contact information
          *
          */
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -50,7 +50,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -69,7 +69,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -111,7 +111,7 @@ class RyersonClassVisitController extends FormController
         }
         $institutionInformationFields[] = $affiliationFields;
 
-        $institutionInformationFields[]= [
+        $institutionInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -130,7 +130,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        $institutionInformationFields[]= [
+        $institutionInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -149,7 +149,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        $institutionInformationFields[]= [
+        $institutionInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -168,7 +168,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        $institutionInformationFields[]= [
+        $institutionInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -322,7 +322,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        $visitInformationFields[]= [
+        $visitInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -341,7 +341,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        $visitInformationFields[]= [
+        $visitInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -397,7 +397,7 @@ class RyersonClassVisitController extends FormController
         }
         $visitInformationFields[] = $sessionObjectiveFields;
 
-        $visitInformationFields[]= [
+        $visitInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -415,7 +415,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        $visitInformationFields[]= [
+        $visitInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [

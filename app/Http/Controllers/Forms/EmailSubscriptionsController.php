@@ -117,7 +117,7 @@ class EmailSubscriptionsController extends FormController
          *  Personal information
          *
          */
-        $personalInformationFields[]= [
+        $personalInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -136,7 +136,7 @@ class EmailSubscriptionsController extends FormController
             ],
         ];
 
-        $personalInformationFields[]= [
+        $personalInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -155,7 +155,7 @@ class EmailSubscriptionsController extends FormController
             ],
         ];
 
-        $personalInformationFields[]= [
+        $personalInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [

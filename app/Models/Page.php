@@ -172,7 +172,7 @@ class Page extends AbstractModel
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 9/5,
+                    'ratio' => 9 / 5,
                 ],
             ],
         ],

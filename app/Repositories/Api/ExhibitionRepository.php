@@ -47,7 +47,7 @@ class ExhibitionRepository extends BaseApiRepository
 
     public function searchApi($string, $perPage = null, $time = null)
     {
-        $search  = Search::query()->search($string)->resources(['exhibitions']);
+        $search = Search::query()->search($string)->resources(['exhibitions']);
 
         // WEB-2264: `upcoming` and `past` might be dead code. Remove?
         if ($time == 'upcoming') {

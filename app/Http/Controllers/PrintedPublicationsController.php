@@ -84,8 +84,8 @@ class PrintedPublicationsController extends BaseScopedController
         return view('site.genericPage.show', [
             'canonicalUrl' => $canonicalPath,
             'borderlessHeader' => !(empty($item->imageFront('banner'))),
-            'nav'    => null,
-            'intro'  => $item->short_description,
+            'nav' => null,
+            'intro' => $item->short_description,
             'headerImage' => $item->imageFront('banner'),
             'title' => $item->title,
             'breadcrumb' => $crumbs,
@@ -96,15 +96,15 @@ class PrintedPublicationsController extends BaseScopedController
     protected function getFilters()
     {
         $categoryLinks[] = [
-            'label'  => 'All',
-            'href'   => route('collection.publications.printed-publications'),
+            'label' => 'All',
+            'href' => route('collection.publications.printed-publications'),
             'active' => empty(request('category', null))
         ];
 
         foreach (CatalogCategory::all() as $category) {
             $categoryLinks[] = [
-                'href'   => route('collection.publications.printed-publications', request()->except('category') + ['category' => $category->id]),
-                'label'  => $category->name,
+                'href' => route('collection.publications.printed-publications', request()->except('category') + ['category' => $category->id]),
+                'label' => $category->name,
                 'active' => request('category') == $category->id
             ];
         }
@@ -112,7 +112,7 @@ class PrintedPublicationsController extends BaseScopedController
         return [
             [
                 'prompt' => 'Subject',
-                'links'  => collect($categoryLinks)
+                'links' => collect($categoryLinks)
             ]
         ];
     }

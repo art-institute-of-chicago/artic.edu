@@ -4,8 +4,8 @@ namespace App\Libraries\Search\Filters;
 
 class Techniques
 {
-    protected $parameter  = 'technique_ids';
-    protected $entity     = \App\Models\Api\CategoryTerm::class;
+    protected $parameter = 'technique_ids';
+    protected $entity = \App\Models\Api\CategoryTerm::class;
 
     /**
      * Basic functionality to get currently active hidden filters to build
@@ -13,7 +13,7 @@ class Techniques
      */
     public function generate()
     {
-        $list  = [];
+        $list = [];
         $input = collect(explode(';', request()->input($this->parameter)))->filter();
 
         foreach ($input as $element) {

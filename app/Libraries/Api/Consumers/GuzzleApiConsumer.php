@@ -39,8 +39,8 @@ class GuzzleApiConsumer implements ApiConsumerInterface
         }
 
         return (object) [
-            'body'       => $body,
-            'status'     => $response->getStatusCode()
+            'body' => $body,
+            'status' => $response->getStatusCode()
         ];
     }
 

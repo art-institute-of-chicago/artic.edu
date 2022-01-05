@@ -60,7 +60,7 @@ class ResearchController extends FrontController
             'primaryNavCurrent' => 'collection',
             'title' => 'The Collection',
             'intro' => $artIdeasPage->art_intro,
-            'page'  => $page,
+            'page' => $page,
             'linksBar' => [
                 [
                     'href' => route('collection'),

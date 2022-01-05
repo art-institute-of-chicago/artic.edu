@@ -59,7 +59,7 @@ class CollectionController extends BaseScopedController
         }
 
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();
-        $filters       = $this->collection()->generateFilters();
+        $filters = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
 
         if ($activeFilters->count()) {
@@ -97,7 +97,7 @@ class CollectionController extends BaseScopedController
         );
 
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();
-        $filters       = $this->collection()->generateFilters();
+        $filters = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
 
         if ($featuredItems->count()) {
@@ -106,13 +106,13 @@ class CollectionController extends BaseScopedController
 
         return view('site.collection.index', [
             'primaryNavCurrent' => 'collection',
-            'page'              => $page,
-            'artworks'          => $collection,
-            'filterCategories'  => $filters,
-            'activeFilters'     => $activeFilters,
-            'hasAnyFilter'      => $this->hasAnyScope(),
+            'page' => $page,
+            'artworks' => $collection,
+            'filterCategories' => $filters,
+            'activeFilters' => $activeFilters,
+            'hasAnyFilter' => $this->hasAnyScope(),
             'featuredItemsHero' => $featuredItemsHero ?? null,
-            'featuredItems'     => $featuredItems ?? null,
+            'featuredItems' => $featuredItems ?? null,
         ]);
     }
 
@@ -125,7 +125,7 @@ class CollectionController extends BaseScopedController
     {
         // Search through the facets including current parameters. Get only aggregations.
         $collection = $this->collection()->results(0);
-        $filters    = $this->collection()->generateFilters();
+        $filters = $this->collection()->generateFilters();
 
         // Get the correct aggregation
         $list = $filters->where('aggregation', $category)->first();

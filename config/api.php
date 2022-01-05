@@ -47,9 +47,9 @@ return [
     */
 
     'cache_enabled' => (bool) env('API_CACHE_ENABLED', false),
-    'cache_ttl'     => env('API_CACHE_TTL', 30 * 60), //Half an hour default
+    'cache_ttl' => env('API_CACHE_TTL', 30 * 60), //Half an hour default
     'cache_version' => env('API_CACHE_VERSION', 1),
-    'cache_buster'  => env('API_CACHE_BUSTER'),
+    'cache_buster' => env('API_CACHE_BUSTER'),
 
     'logger' => (bool) env('API_LOGGER', false),
 

@@ -15,7 +15,7 @@ class PagePresenter extends BasePresenter
     {
         return [
             [
-                "type"    => 'text',
+                "type" => 'text',
                 "content" => '<p>' . $this->entity->exhibition_history_intro_copy . '</p>'
             ]
         ];
@@ -24,8 +24,8 @@ class PagePresenter extends BasePresenter
     public function exhibitionHistoryMedia()
     {
         return [
-            'type'  => 'image',
-            'size'  => 's',
+            'type' => 'image',
+            'size' => 's',
             'media' => $this->entity->imageFront('exhibition_history_intro'),
             'hideCaption' => true
         ];

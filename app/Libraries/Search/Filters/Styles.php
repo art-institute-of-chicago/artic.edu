@@ -4,8 +4,8 @@ namespace App\Libraries\Search\Filters;
 
 class Styles extends BaseFilteredList
 {
-    protected $parameter  = 'style_ids';
-    protected $entity     = \App\Models\Api\CategoryTerm::class;
+    protected $parameter = 'style_ids';
+    protected $entity = \App\Models\Api\CategoryTerm::class;
 
     public function generate()
     {
@@ -14,11 +14,11 @@ class Styles extends BaseFilteredList
         if (!$list->isEmpty()) {
             return [
                 'placeholder' => "Find Styles",
-                'title'       => "Styles",
-                'active'      => $this->activeList,
-                'list'        => $list,
-                'listSearch'  => true,
-                'type'        => 'list',
+                'title' => "Styles",
+                'active' => $this->activeList,
+                'list' => $list,
+                'listSearch' => true,
+                'type' => 'list',
                 'aggregation' => $this->aggregationName,
                 'listSearchUrl' => route('collection.categorySearch', request()->except(['categoryQuery']) + ['categoryName' => 'styles'])
             ];

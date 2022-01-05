@@ -33,7 +33,7 @@ class GalleryController extends FrontController
         $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
 
         return view('site.tagDetail', [
-            'item'     => $item,
+            'item' => $item,
             'artworks' => $artworks,
             'canonicalUrl' => $canonicalPath,
         ]);

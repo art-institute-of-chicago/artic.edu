@@ -27,8 +27,8 @@ class ExhibitionHistoryController extends FrontController
         $page = Page::forType('Exhibition History')->firstOrFail();
 
         $activeYear = $service->activeYear();
-        $decades    = $service->decades();
-        $years      = $service->years();
+        $decades = $service->decades();
+        $years = $service->years();
 
         $exhibitions = $this->apiRepository->history($activeYear, request()->get('q'), self::PER_PAGE);
 
@@ -38,13 +38,13 @@ class ExhibitionHistoryController extends FrontController
         }
 
         $viewData = [
-            'page'    => $page,
-            'years'   => $years,
+            'page' => $page,
+            'years' => $years,
             'decades' => $decades,
-            'activeYear'    => $activeYear,
+            'activeYear' => $activeYear,
             'decade_prompt' => $service->getDecadePrompt(),
-            'exhibitions'   => $exhibitions,
-            'extraResults'  => $extraResults ?? null
+            'exhibitions' => $exhibitions,
+            'extraResults' => $extraResults ?? null
         ];
 
         return view('site.exhibitionHistory', $viewData);

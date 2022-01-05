@@ -37,10 +37,10 @@ class ArtistController extends FrontController
         $relatedItems = $this->repository->getRelatedItems($item);
 
         return view('site.tagDetail', [
-            'item'     => $item,
+            'item' => $item,
             'artworks' => $artworks,
-            'exploreFurtherTags'    => $exploreFurther->tags(),
-            'exploreFurther'        => $exploreFurther->collection(request()->all()),
+            'exploreFurtherTags' => $exploreFurther->tags(),
+            'exploreFurther' => $exploreFurther->collection(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'relatedItems' => $relatedItems->count() > 0 ? $relatedItems : null,
             'canonicalUrl' => $canonicalPath,

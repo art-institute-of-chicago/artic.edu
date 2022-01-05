@@ -16,7 +16,7 @@ class ExactTargetService
     public function __construct($email, $list = null)
     {
         $this->email = $email;
-        $this->list  = $list;
+        $this->list = $list;
     }
 
     /**
@@ -43,7 +43,7 @@ class ExactTargetService
         $client = new ET_Client(true, config('app.debug'), array_merge(config('exact-target.client'), [ 'authorizationCode' => $tokenInfo['access_token'], 'scope' => $tokenInfo['scope'] ]));
 
         // Add the user to a data extension
-        $deRow  = new ET_DataExtension_Row();
+        $deRow = new ET_DataExtension_Row();
 
         $deRow->authStub = $client;
         $deRow->props = [
@@ -80,7 +80,7 @@ class ExactTargetService
         }
 
         // Add the subscriber
-        $subscriber  = new ET_Subscriber();
+        $subscriber = new ET_Subscriber();
         $subscriber->authStub = $client;
         $subscriber->props = ["EmailAddress" => $this->email,
             "SubscriberKey" => $this->email];
@@ -115,7 +115,7 @@ class ExactTargetService
         $client = new ET_Client(false, true, config('exact-target.client'));
 
         // Delete the user from the data extension
-        $deRow  = new ET_DataExtension_Row();
+        $deRow = new ET_DataExtension_Row();
 
         $deRow->authStub = $client;
         $deRow->props = [
@@ -132,7 +132,7 @@ class ExactTargetService
         }
 
         // Set the subscriber to Unsubscribed
-        $subscriber  = new ET_Subscriber();
+        $subscriber = new ET_Subscriber();
         $subscriber->authStub = $client;
         $subscriber->props = ["EmailAddress" => $this->email,
             "SubscriberKey" => $this->email,
@@ -151,7 +151,7 @@ class ExactTargetService
     {
         $client = new ET_Client(false, config('app.debug'), config('exact-target.client'));
 
-        $deRow  = new ET_DataExtension_Row();
+        $deRow = new ET_DataExtension_Row();
         $deRow->authStub = $client;
 
         // Select

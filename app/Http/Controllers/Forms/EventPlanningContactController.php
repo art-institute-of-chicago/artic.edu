@@ -29,7 +29,7 @@ class EventPlanningContactController extends FormController
          *  Inquiry form
          *
          */
-        $inquiryFields[]= [
+        $inquiryFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -48,7 +48,7 @@ class EventPlanningContactController extends FormController
             ],
         ];
 
-        $inquiryFields[]= [
+        $inquiryFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -67,7 +67,7 @@ class EventPlanningContactController extends FormController
             ],
         ];
 
-        $inquiryFields[]= [
+        $inquiryFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -86,7 +86,7 @@ class EventPlanningContactController extends FormController
             ],
         ];
 
-        $inquiryFields[]= [
+        $inquiryFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -154,7 +154,7 @@ class EventPlanningContactController extends FormController
             ],
         ];
 
-        $inquiryFields[]= [
+        $inquiryFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -173,7 +173,7 @@ class EventPlanningContactController extends FormController
             ],
         ];
 
-        $inquiryFields[]= [
+        $inquiryFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -192,7 +192,7 @@ class EventPlanningContactController extends FormController
             ],
         ];
 
-        $inquiryFields[]= [
+        $inquiryFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -248,7 +248,7 @@ class EventPlanningContactController extends FormController
         }
         $inquiryFields[] = $howDidYouHearFields;
 
-        $inquiryFields[]= [
+        $inquiryFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -303,7 +303,7 @@ class EventPlanningContactController extends FormController
         }
         $inquiryFields[] = $typeOfEventFields;
 
-        $inquiryFields[]= [
+        $inquiryFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -327,7 +327,7 @@ class EventPlanningContactController extends FormController
          *  Daytime information
          *
          */
-        $daytimeFields[]= [
+        $daytimeFields[] = [
             'variation' => null,
             'blocks' => [
                 [

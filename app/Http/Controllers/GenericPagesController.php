@@ -29,7 +29,7 @@ class GenericPagesController extends FrontController
             \Httpauth::secure();
         }
 
-        $crumbs     = $page->present()->breadCrumb($page);
+        $crumbs = $page->present()->breadCrumb($page);
         $navigation = $page->present()->navigation();
 
         $this->seo->setTitle($page->meta_title ?: $page->title);

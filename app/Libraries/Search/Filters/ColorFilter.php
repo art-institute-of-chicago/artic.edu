@@ -9,10 +9,10 @@ class ColorFilter
     public function generate()
     {
         $base = [
-            'title'   => 'Color',
-            'type'    => 'color',
-            'label'   => 'Colorless',
-            'active'  => false,
+            'title' => 'Color',
+            'type' => 'color',
+            'label' => 'Colorless',
+            'active' => false,
             'enabled' => false,
         ];
 

@@ -33,11 +33,11 @@ class AuthorController extends FrontController
         $this->seo->setTitle($title);
 
         $view_data = [
-            'title'  => $title,
+            'title' => $title,
             'subNav' => $subNav,
-            'nav'    => $nav,
+            'nav' => $nav,
             'wideBody' => true,
-            'filters'    => null,
+            'filters' => null,
             'listingCountText' => 'Showing '.$items->total().' authors',
             'listingItems' => $items,
         ];

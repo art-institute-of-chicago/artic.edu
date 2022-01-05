@@ -63,7 +63,7 @@ class GenericPageRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null)
     {
-        $search  = Search::query()->search($string)->published()->resources(['generic-pages', 'static-pages']);
+        $search = Search::query()->search($string)->published()->resources(['generic-pages', 'static-pages']);
 
         $results = $search->getSearch($perPage, ['api_model', 'id', 'title', 'web_url']);
 

@@ -120,7 +120,7 @@ class ExhibitionPresenter extends BasePresenter
     {
         return [
             'description' => $this->entity->short_description,
-            'department'  => $this->entity->department_display,
+            'department' => $this->entity->department_display,
         ];
     }
 
@@ -195,7 +195,7 @@ class ExhibitionPresenter extends BasePresenter
 
         if ($count > 0) {
             return [
-                'label' =>  $count . ' related ' . Str::plural('event', $count),
+                'label' => $count . ' related ' . Str::plural('event', $count),
                 'href' => '#related_events',
                 'iconBefore' => 'calendar'
             ];

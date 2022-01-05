@@ -61,9 +61,9 @@ trait HasRecurrentDates
     {
         // Common options
         $options = [
-            'FREQ'     => \RRule\RRule::DAILY,
+            'FREQ' => \RRule\RRule::DAILY,
             'INTERVAL' => $ruleObject->every,
-            'DTSTART'  => $ruleObject->start_date
+            'DTSTART' => $ruleObject->start_date
         ];
 
         if ($ruleObject->ocurrencies) {

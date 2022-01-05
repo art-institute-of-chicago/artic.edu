@@ -12,8 +12,8 @@ class PressReleasesController extends BaseScopedController
     protected $entity = \App\Models\PressRelease::class;
 
     protected $scopes = [
-        'year'    => 'byYear',
-        'month'   => 'byMonth'
+        'year' => 'byYear',
+        'month' => 'byMonth'
     ];
 
 
@@ -67,7 +67,7 @@ class PressReleasesController extends BaseScopedController
 
         $viewData = [
             'wideBody' => true,
-            'filters'  => $this->getFilters(range(2011, 1939), null, 'about.press.archive'),
+            'filters' => $this->getFilters(range(2011, 1939), null, 'about.press.archive'),
             'listingCountText' => 'Showing '.$items->total().' press releases',
             'listingItems' => $items,
         ] + $navElements;
@@ -82,22 +82,22 @@ class PressReleasesController extends BaseScopedController
 
         if ($yearRange) {
             $yearLinks[] = [
-                'label'  => 'All',
-                'href'   => route($baseRoute, request()->except('year')),
+                'label' => 'All',
+                'href' => route($baseRoute, request()->except('year')),
                 'active' => empty(request('year', null))
             ];
 
             foreach ($yearRange as $year) {
                 $yearLinks[] = [
-                    'href'   => route($baseRoute, request()->except('year') + ['year' => $year]),
-                    'label'  => $year,
+                    'href' => route($baseRoute, request()->except('year') + ['year' => $year]),
+                    'label' => $year,
                     'active' => request('year') == $year
                 ];
             }
 
             $filters[] = [
                 'prompt' => 'Year',
-                'links'  => collect($yearLinks)
+                'links' => collect($yearLinks)
             ];
         }
 
@@ -110,15 +110,15 @@ class PressReleasesController extends BaseScopedController
 
             foreach ($monthRange as $month) {
                 $monthLinks[] = [
-                    'href'   => route($baseRoute, request()->except('month') + ['month' => $month]),
-                    'label'  => Carbon::create(date('Y'), $month)->format('F'),
+                    'href' => route($baseRoute, request()->except('month') + ['month' => $month]),
+                    'label' => Carbon::create(date('Y'), $month)->format('F'),
                     'active' => request('month') == $month
                 ];
             }
 
             $filters[] = [
                 'prompt' => 'Month',
-                'links'  => collect($monthLinks)
+                'links' => collect($monthLinks)
             ];
         }
 
@@ -130,13 +130,13 @@ class PressReleasesController extends BaseScopedController
     {
         $subNav = [
             [
-                'label'  => 'Press Releases',
-                'href'   => route('about.press'),
+                'label' => 'Press Releases',
+                'href' => route('about.press'),
                 'active' => request()->route()->getName() == 'about.press'
             ],
             [
-                'label'  => 'Press Releases Archive',
-                'href'   => route('about.press.archive'),
+                'label' => 'Press Releases Archive',
+                'href' => route('about.press.archive'),
                 'active' => request()->route()->getName() == 'about.press.archive'
             ]
         ];

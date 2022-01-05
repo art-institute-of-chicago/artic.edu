@@ -71,8 +71,8 @@ class ImageHelpers
         $image = [
             "sourceType" => $sourceType,
             "src" => $src,
-            "width" =>  $cropParams['crop_w'] ?? $imageObject->width,
-            "height" =>  $cropParams['crop_h'] ?? $imageObject->height,
+            "width" => $cropParams['crop_w'] ?? $imageObject->width,
+            "height" => $cropParams['crop_h'] ?? $imageObject->height,
             "shareUrl" => '#',
             "shareTitle" => '',
             "downloadUrl" => $src,
@@ -278,7 +278,7 @@ class ImageHelpers
                 } elseif (sizeof(explode(":", $ratio)) === 2) {
                     $ratioW = explode(":", $settings['ratio'])[0];
                     $ratioH = explode(":", $settings['ratio'])[1];
-                    $height = round($width * ($ratioH/$ratioW));
+                    $height = round($width * ($ratioH / $ratioW));
                 }
             } elseif ($sourceType === 'imgix') {
                 $height = 'auto';
@@ -327,15 +327,15 @@ class ImageHelpers
                     // Some other ratio
                     $ratioW = explode(":", $settings['ratio'])[0];
                     $ratioH = explode(":", $settings['ratio'])[1];
-                    $height = round($width * ($ratioH/$ratioW));
+                    $height = round($width * ($ratioH / $ratioW));
                 }
             }
             // For place holders its a bit dumb because its not passing through a service
             foreach ($srcset as $size):
-                $stringSrcset .= "//placehold.dev.area17.com/image/".$size."x".round(($height/$width) * $size)." ".$size."w, ";
+                $stringSrcset .= "//placehold.dev.area17.com/image/".$size."x".round(($height / $width) * $size)." ".$size."w, ";
             endforeach;
 
-            $stringSrc = "//placehold.dev.area17.com/image/".$LQIPDimension."x".round(($height/$width) * $LQIPDimension);
+            $stringSrc = "//placehold.dev.area17.com/image/".$LQIPDimension."x".round(($height / $width) * $LQIPDimension);
         }
 
         if ($sourceType === 'imgix') {
@@ -361,7 +361,7 @@ class ImageHelpers
                     // Some other ratio
                     $ratioW = explode(":", $settings['ratio'])[0];
                     $ratioH = explode(":", $settings['ratio'])[1];
-                    $height = round($width * ($ratioH/$ratioW));
+                    $height = round($width * ($ratioH / $ratioW));
                 }
                 // Because we're limiting with a dimension, we need to crop
                 if (empty($settings['fit'])) {
@@ -433,7 +433,7 @@ class ImageHelpers
                 }
             $imgixSettings['w'] = $size;
             if ($height && $height !== 'auto') {
-                $imgixSettings['h'] = round(($height/$width) * $size);
+                $imgixSettings['h'] = round(($height / $width) * $size);
             }
             $imgixSettingsString = http_build_query($imgixSettings);
             $stringSrcset .= $base.$imgixSettingsString." ".$size."w";
@@ -442,7 +442,7 @@ class ImageHelpers
             // Get data-pin-media for pinterest
             $imgixSettings['w'] = 600;
             if ($height && $height !== 'auto') {
-                $imgixSettings['h'] = round(($height/$width) * 600);
+                $imgixSettings['h'] = round(($height / $width) * 600);
             }
             $imgixSettingsString = http_build_query($imgixSettings);
             $pinterestMedia = $base.$imgixSettingsString;
@@ -450,7 +450,7 @@ class ImageHelpers
             // Build LQIP
             $imgixSettings['w'] = $LQIPDimension;
             if ($height && $height !== 'auto') {
-                $imgixSettings['h'] = round(($height/$width) * $LQIPDimension);
+                $imgixSettings['h'] = round(($height / $width) * $LQIPDimension);
             }
             $imgixSettings['auto'] = 'format';
             $imgixSettings['q'] = '1';
@@ -489,24 +489,24 @@ class ImageHelpers
                     // Some other ratio
                     $ratioW = explode(":", $settings['ratio'])[0];
                     $ratioH = explode(":", $settings['ratio'])[1];
-                    $height = round($width * ($ratioH/$ratioW));
+                    $height = round($width * ($ratioH / $ratioW));
                     // Need to manually calc area to grab..
                     // First check the image is taller than the ratio height we need
-                    $ratioHeight = round($width * ($ratioH/$ratioW));
+                    $ratioHeight = round($width * ($ratioH / $ratioW));
                     if ($height === $ratioHeight) {
                         // The source image *is* 16:9
                         $resizeVal = 'full';
                     } elseif ($height > $ratioHeight) {
                         // The source image is 16:something-taller-than-9
                         $cropWidth = $width;
-                        $cropHeight = round($cropWidth * ($ratioH/$ratioW));
+                        $cropHeight = round($cropWidth * ($ratioH / $ratioW));
                         $topPosition = round(($height - $cropHeight) / 2);
                         $resizeVal = "0,".$topPosition.",".$cropWidth.",".$cropHeight;
                         $height = $cropHeight;
                     } else {
                         // The source image is 16:something-less-than-9
                         $cropHeight = $height;
-                        $cropWidth = round($cropHeight * ($ratioW/$ratioH));
+                        $cropWidth = round($cropHeight * ($ratioW / $ratioH));
                         $leftPosition = round(($width - $cropWidth) / 2);
                         $resizeVal = $leftPosition.",0,".$cropWidth.",".$cropHeight;
                         $width = $cropWidth;
@@ -600,15 +600,15 @@ class ImageHelpers
                 if (strrpos($data[$name], 'px') > 0 || strrpos($data[$name], 'vw') > 0) {
                     $thisSize = $data[$name];
                 } elseif ($name === 'xlarge') {
-                    $thisSize = round($data[$name] * ($xlargeMaxSize/$totalCSScolumns)).'px';
+                    $thisSize = round($data[$name] * ($xlargeMaxSize / $totalCSScolumns)).'px';
                 } else {
-                    $thisSize = round(($data[$name] * (100/($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2).'vw';
+                    $thisSize = round(($data[$name] * (100 / ($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2).'vw';
                 }
             } else {
                 if ($name === 'xlarge') {
                     $thisSize = $xlargeMaxSize.'px';
                 } else {
-                    $thisSize = round(($totalCSScolumns * (100/($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2).'vw';
+                    $thisSize = round(($totalCSScolumns * (100 / ($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2).'vw';
                 }
             }
         $sizes .= ($name === 'xlarge' ? '' : ', '). $point .' '. $thisSize;

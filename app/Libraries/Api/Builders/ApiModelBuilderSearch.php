@@ -24,7 +24,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
     {
         $builder = clone $this;
 
-        $page    = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
+        $page = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
         $perPage = is_null($perPage) ? $this->model->getPerPage() : $perPage;
 
         if ($columns) {

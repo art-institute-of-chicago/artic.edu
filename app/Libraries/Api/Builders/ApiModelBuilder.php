@@ -356,7 +356,7 @@ class ApiModelBuilder
             return $results;
         }
 
-        $models  = $this->model->hydrate($results->all());
+        $models = $this->model->hydrate($results->all());
 
         // Preserve metadata after hydrating the collection
         return CollectionHelpers::collectApi($models)->setMetadata($results->getMetadata());
@@ -371,7 +371,7 @@ class ApiModelBuilder
     {
         $builder = clone $this;
 
-        $page    = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
+        $page = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
         $perPage = is_null($perPage) ? $this->model->getPerPage() : $perPage;
 
         $results = $this->forPage($page, $perPage)->get($columns);
@@ -520,7 +520,7 @@ class ApiModelBuilder
 
         $perPage = $perPage ?: $this->model->getPerPage();
 
-        $results        = $this->forPage($page, $perPage)->get($columns);
+        $results = $this->forPage($page, $perPage)->get($columns);
         $paginationData = $results->getMetadata('pagination');
         $total = $paginationData ? $paginationData->total : $results->count();
 

@@ -9,7 +9,7 @@ class SubscribeController extends Controller
 {
     public function store(Request $request)
     {
-        $data = $request->validate(['email'=>'required|email', 'subscriptions' => 'sometimes']);
+        $data = $request->validate(['email' => 'required|email', 'subscriptions' => 'sometimes']);
 
         $exactTarget = new ExactTargetService($data['email'], $data['subscriptions'] ?? null);
         $response = $exactTarget->subscribe(false);

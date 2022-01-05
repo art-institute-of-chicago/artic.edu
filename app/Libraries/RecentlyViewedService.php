@@ -36,7 +36,7 @@ class RecentlyViewedService
         // Keep 20 items max
         $recentlyViewed = $recentlyViewed->slice(0, 20);
 
-        Cookie::queue('recently_viewed_artwork', json_encode($recentlyViewed), 60*24*14); // 14 days
+        Cookie::queue('recently_viewed_artwork', json_encode($recentlyViewed), 60 * 24 * 14); // 14 days
     }
 
     /**
@@ -92,7 +92,7 @@ class RecentlyViewedService
     public function getThemes()
     {
         $themes = [];
-        $ids    = $this->getArtworkIds()->toArray();
+        $ids = $this->getArtworkIds()->toArray();
 
         // If we have recently viewed elements
         if (!empty($ids)) {
@@ -120,19 +120,19 @@ class RecentlyViewedService
                 switch ($bucket) {
                     case 'artists':
                         $themes[] = [
-                            'href'  => route('collection', ['artist_ids' => $elementKey]),
+                            'href' => route('collection', ['artist_ids' => $elementKey]),
                             'label' => ucfirst($elementKey)
                         ];
                         break;
                     case 'departments':
                         $themes[] = [
-                            'href'  => route('collection', ['department_ids' => $elementKey]),
+                            'href' => route('collection', ['department_ids' => $elementKey]),
                             'label' => ucfirst($elementKey)
                         ];
                         break;
                     case 'styles':
                         $themes[] = [
-                            'href'  => route('collection', ['style_ids' => $elementKey]),
+                            'href' => route('collection', ['style_ids' => $elementKey]),
                             'label' => ucfirst($elementKey)
                         ];
                         break;

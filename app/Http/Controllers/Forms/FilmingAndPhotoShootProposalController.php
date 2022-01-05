@@ -29,7 +29,7 @@ class FilmingAndPhotoShootProposalController extends FormController
          *  Contact information
          *
          */
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -48,7 +48,7 @@ class FilmingAndPhotoShootProposalController extends FormController
             ],
         ];
 
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -67,7 +67,7 @@ class FilmingAndPhotoShootProposalController extends FormController
             ],
         ];
 
-        $contactInformationFields[]= [
+        $contactInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -179,7 +179,7 @@ class FilmingAndPhotoShootProposalController extends FormController
             ],
         ];
 
-        $projectDescriptionFields[]= [
+        $projectDescriptionFields[] = [
             'variation' => null,
             'blocks' => [
                 [

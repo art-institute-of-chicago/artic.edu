@@ -152,7 +152,7 @@ class StringHelpers
 
         $openedTags = array_reverse($openedTags);
 
-        for ($i=0; $i < $openedLength; $i++) {
+        for ($i = 0; $i < $openedLength; $i++) {
             if (!in_array($openedTags[$i], $closedTags)) {
                 $string .= '</'.$openedTags[$i].'>';
             } else {
@@ -182,7 +182,7 @@ class StringHelpers
         $codes = \App\Libraries\ShortcodeService::parse_ref($text);
         foreach ($codes as $index => $code) {
             if (isset($code['name']) && ($code['name'] == 'ref')) {
-                $_collectedReferences[] = ['id' => sizeof($_collectedReferences)+1, 'reference' => $code['content']];
+                $_collectedReferences[] = ['id' => sizeof($_collectedReferences) + 1, 'reference' => $code['content']];
                 $pos = sizeof($_collectedReferences);
                 $ref = '<sup id="ref_cite-'.$pos.'"><a href="#ref_note-'.$pos.'">['.$pos.']</a></sup>';
 

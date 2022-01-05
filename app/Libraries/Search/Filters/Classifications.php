@@ -4,8 +4,8 @@ namespace App\Libraries\Search\Filters;
 
 class Classifications extends BaseFilteredList
 {
-    protected $parameter  = 'classification_ids';
-    protected $entity     = \App\Models\Api\CategoryTerm::class;
+    protected $parameter = 'classification_ids';
+    protected $entity = \App\Models\Api\CategoryTerm::class;
 
     public function generate()
     {
@@ -14,11 +14,11 @@ class Classifications extends BaseFilteredList
         if (!$list->isEmpty()) {
             return [
                 'placeholder' => "Find Classifications",
-                'title'       => "Classifications",
-                'active'      => $this->activeList,
-                'list'        => $list,
-                'listSearch'  => true,
-                'type'        => 'list',
+                'title' => "Classifications",
+                'active' => $this->activeList,
+                'list' => $list,
+                'listSearch' => true,
+                'type' => 'list',
                 'aggregation' => $this->aggregationName,
                 'listSearchUrl' => route('collection.categorySearch', request()->except(['categoryQuery']) + ['categoryName' => 'classifications'])
             ];

@@ -63,7 +63,7 @@ class GenericPresenter extends BasePresenter
 
         foreach ($childItems as $item) {
             $element = [
-                'href'  => $item->url,
+                'href' => $item->url,
                 'label' => $item->title
             ];
 
@@ -77,7 +77,7 @@ class GenericPresenter extends BasePresenter
         if ($isRoot) {
             // Build the nav only with children
             $nav[] = [
-                'href'  => $this->entity->url,
+                'href' => $this->entity->url,
                 'label' => $this->entity->title,
                 'links' => $subNav,
                 'active' => true
@@ -88,7 +88,7 @@ class GenericPresenter extends BasePresenter
 
             foreach ($this->entity->parent->children()->orderBy('position')->published()->get() as $element) {
                 $item = [
-                    'href'  => $element->url,
+                    'href' => $element->url,
                     'label' => $element->title,
                 ];
 
@@ -96,7 +96,7 @@ class GenericPresenter extends BasePresenter
                     $item['active'] = true;
 
                     if (!empty($subNav)) {
-                        $item['links']  = $subNav;
+                        $item['links'] = $subNav;
                     }
                 }
 

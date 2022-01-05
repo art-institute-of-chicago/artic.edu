@@ -10,7 +10,7 @@ namespace App\Libraries\Search;
 class ExhibitionHistoryService
 {
     protected $decadePrompt = '';
-    protected $decades      = [];
+    protected $decades = [];
 
     public function activeYear()
     {
@@ -33,10 +33,10 @@ class ExhibitionHistoryService
             }
 
             $d = [
-                'href'  => route('exhibitions.history', ['year' => $decade]),
+                'href' => route('exhibitions.history', ['year' => $decade]),
                 'label' => join('–', [$decade, $decadeEnd]),
                 'start' => $decade,
-                'end'   => $decadeEnd,
+                'end' => $decadeEnd,
                 'ajaxScrollTarget' => 'listing'
             ];
 
@@ -58,8 +58,8 @@ class ExhibitionHistoryService
         foreach (range($active['start'], $active['end']) as $year) {
             if ($year <= date('Y')) {
                 $years[] = [
-                    'href'   => route('exhibitions.history', ['year' => $year]),
-                    'label'  => $year,
+                    'href' => route('exhibitions.history', ['year' => $year]),
+                    'label' => $year,
                     'active' => $this->activeYear() == $year,
                     'ajaxScrollTarget' => 'listing'
                 ];

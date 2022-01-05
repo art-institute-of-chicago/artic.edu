@@ -34,11 +34,11 @@ class HighlightsController extends FrontController
         $this->seo->setTitle($title);
 
         $view_data = [
-            'title'  => $title,
+            'title' => $title,
             'subNav' => $subNav,
-            'nav'    => $nav,
+            'nav' => $nav,
             'wideBody' => true,
-            'filters'    => null,
+            'filters' => null,
             'listingCountText' => 'Showing '.$items->total().' highlights',
             'listingItems' => $items,
         ];
@@ -71,8 +71,8 @@ class HighlightsController extends FrontController
         return view('site.highlightDetail', [
             'item' => $item,
             'contrastHeader' => $item->present()->contrastHeader,
-            'exploreFurtherTags'    => $exploreFurther->tags(),
-            'exploreFurther'        => $exploreFurther->collection(request()->all()),
+            'exploreFurtherTags' => $exploreFurther->tags(),
+            'exploreFurther' => $exploreFurther->collection(request()->all()),
             'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'furtherReadingTitle' => $this->repository->getFurtherReadingTitle($item) ?? null,

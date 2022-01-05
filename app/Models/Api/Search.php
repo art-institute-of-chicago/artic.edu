@@ -21,20 +21,20 @@ class Search extends BaseApiModel
      * IF IT'S NOT HERE IT WILL BE REMOVED FROM THE RESULTS
      */
     public $typeMap = [
-        'artworks'    => 'App\Models\Api\Artwork',
+        'artworks' => 'App\Models\Api\Artwork',
         'exhibitions' => 'App\Models\Api\Exhibition',
-        'agents'      => 'App\Models\Api\Artist',
-        'sections'    => 'App\Models\Api\Section',
-        'events'      => 'App\Models\Event',
-        'articles'    => 'App\Models\Article',
-        'printed-catalogs'    => 'App\Models\PrintedPublication',
-        'digital-catalogs'    => 'App\Models\DigitalPublication',
+        'agents' => 'App\Models\Api\Artist',
+        'sections' => 'App\Models\Api\Section',
+        'events' => 'App\Models\Event',
+        'articles' => 'App\Models\Article',
+        'printed-catalogs' => 'App\Models\PrintedPublication',
+        'digital-catalogs' => 'App\Models\DigitalPublication',
         'digital-publication-sections' => 'App\Models\DigitalPublicationSection',
-        'static-pages'        => 'App\Models\Page',
-        'generic-pages'       => 'App\Models\GenericPage',
-        'educator-resources'  => 'App\Models\EducatorResource',
-        'press-releases'      => 'App\Models\PressRelease',
-        'highlights'          => 'App\Models\Highlight',
+        'static-pages' => 'App\Models\Page',
+        'generic-pages' => 'App\Models\GenericPage',
+        'educator-resources' => 'App\Models\EducatorResource',
+        'press-releases' => 'App\Models\PressRelease',
+        'highlights' => 'App\Models\Highlight',
     ];
 
     /**
@@ -80,7 +80,7 @@ class Search extends BaseApiModel
     public function recentAcquisitionConsideredYear()
     {
         $curMonth = date("m");
-        $curHalf = ceil($curMonth/6);
+        $curHalf = ceil($curMonth / 6);
         return date("Y") - ($curHalf % 2);
     }
 
@@ -88,13 +88,13 @@ class Search extends BaseApiModel
     {
         // AggregationName => Parameter
         $aggsParams = [
-            'classifications'  => 'classification_titles.keyword',
-            'artists'          => 'artist_titles.keyword',
-            'styles'           => 'style_titles.keyword',
-            'materials'        => 'material_titles.keyword',
-            'subjects'         => 'subject_titles.keyword',
-            'places'           => 'place_of_origin.keyword',
-            'departments'      => [
+            'classifications' => 'classification_titles.keyword',
+            'artists' => 'artist_titles.keyword',
+            'styles' => 'style_titles.keyword',
+            'materials' => 'material_titles.keyword',
+            'subjects' => 'subject_titles.keyword',
+            'places' => 'place_of_origin.keyword',
+            'departments' => [
                 'field' => 'department_title.keyword',
                 'size' => 20,
             ],
@@ -145,7 +145,7 @@ class Search extends BaseApiModel
             'classifications' => [
                 'terms' => [
                     'field' => 'classification_titles.keyword',
-                    'size'  => $max
+                    'size' => $max
                 ]
             ]
         ];
@@ -159,7 +159,7 @@ class Search extends BaseApiModel
             'styles' => [
                 'terms' => [
                     'field' => 'style_titles.keyword',
-                    'size'  => $max
+                    'size' => $max
                 ]
             ]
         ];
@@ -173,7 +173,7 @@ class Search extends BaseApiModel
             'place_of_origin' => [
                 'terms' => [
                     'field' => 'place_of_origin.keyword',
-                    'size'  => $max
+                    'size' => $max
                 ]
             ]
         ];
@@ -399,8 +399,8 @@ class Search extends BaseApiModel
         $si = 30;
         $li = 30;
 
-        $hueMin = ($hsl[0] - $hi/2 / 100 * 360);
-        $hueMax = ($hsl[0] + $hi/2 / 100 * 360);
+        $hueMin = ($hsl[0] - $hi / 2 / 100 * 360);
+        $hueMax = ($hsl[0] + $hi / 2 / 100 * 360);
 
         $hueQueries = [
             [
@@ -446,16 +446,16 @@ class Search extends BaseApiModel
                     [
                         'range' => [
                             'color.s' => [
-                                'gte' => max($hsl[1] - $si/2, 0),
-                                'lte' => min($hsl[1] + $si/2, 100),
+                                'gte' => max($hsl[1] - $si / 2, 0),
+                                'lte' => min($hsl[1] + $si / 2, 100),
                             ]
                         ]
                     ],
                     [
                         'range' => [
                             'color.l' => [
-                                'gte' => max($hsl[2] - $li/2, 0),
-                                'lte' => min($hsl[2] + $li/2, 100),
+                                'gte' => max($hsl[2] - $li / 2, 0),
+                                'lte' => min($hsl[2] + $li / 2, 100),
                             ]
                         ]
                     ]

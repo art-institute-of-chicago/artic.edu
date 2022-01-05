@@ -284,7 +284,7 @@ class Slide extends JsonResource
         }
 
         if ($this->module_type === 'interstitial') {
-            $headline =  $this->interstitial_headline;
+            $headline = $this->interstitial_headline;
         } elseif ($this->module_type === 'attract') {
             $headline = $this->attract_title;
         } else {

@@ -28,7 +28,7 @@ class EducatorAdmissionController extends FormController
          *  Registration information
          *
          */
-        $registrationInformationFields[]= [
+        $registrationInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -47,7 +47,7 @@ class EducatorAdmissionController extends FormController
             ],
         ];
 
-        $registrationInformationFields[]= [
+        $registrationInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -120,7 +120,7 @@ class EducatorAdmissionController extends FormController
             ],
         ];
 
-        $registrationInformationFields[]= [
+        $registrationInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [
@@ -139,7 +139,7 @@ class EducatorAdmissionController extends FormController
             ],
         ];
 
-        $registrationInformationFields[]= [
+        $registrationInformationFields[] = [
             'variation' => null,
             'blocks' => [
                 [

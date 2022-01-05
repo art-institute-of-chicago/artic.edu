@@ -55,8 +55,8 @@ class ArtworkController extends BaseScopedController
         $viewData = [
             'item' => $item,
             'model3d' => $item->model3d,
-            'contrastHeader'    => $item->present()->contrastHeader,
-            'borderlessHeader'  => $item->present()->borderlessHeader,
+            'contrastHeader' => $item->present()->contrastHeader,
+            'borderlessHeader' => $item->present()->borderlessHeader,
             'primaryNavCurrent' => 'collection',
             'canonicalUrl' => $canonicalPath,
         ];
@@ -98,7 +98,7 @@ class ArtworkController extends BaseScopedController
 
     public function recentlyViewed(RecentlyViewedService $service)
     {
-        $recentlyViewed  = $service->getArtworks();
+        $recentlyViewed = $service->getArtworks();
         $suggestedThemes = $service->getThemes();
 
         $view['html'] = view('site.shared._recentlyViewed', [

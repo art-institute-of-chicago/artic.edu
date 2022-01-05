@@ -496,9 +496,9 @@ class ApiQueryBuilder
         $collection = $this->getSortedCollection($collection);
 
         $collection->setMetadata([
-            'pagination'   => $results->body->pagination ?? null,
+            'pagination' => $results->body->pagination ?? null,
             'aggregations' => $results->body->aggregations ?? null,
-            'suggestions'  => $results->body->suggest ?? null
+            'suggestions' => $results->body->suggest ?? null
         ]);
 
         return $collection;
@@ -529,9 +529,9 @@ class ApiQueryBuilder
         $collection = $this->getSortedCollection($collection);
 
         $collection->setMetadata([
-            'pagination'   => $results->body->pagination ?? null,
+            'pagination' => $results->body->pagination ?? null,
             'aggregations' => $results->body->aggregations ?? null,
-            'suggestions'  => $results->body->suggest ?? null
+            'suggestions' => $results->body->suggest ?? null
         ]);
 
         return $collection;

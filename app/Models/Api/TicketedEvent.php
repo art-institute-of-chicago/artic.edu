@@ -10,8 +10,8 @@ class TicketedEvent extends BaseApiModel
 {
     protected $endpoints = [
         'collection' => '/api/v1/ticketed-events',
-        'resource'   => '/api/v1/ticketed-events/{id}',
-        'search'     => '/api/v1/ticketed-events/search'
+        'resource' => '/api/v1/ticketed-events/{id}',
+        'search' => '/api/v1/ticketed-events/search'
     ];
 
     public function getCmsTitleAttribute()

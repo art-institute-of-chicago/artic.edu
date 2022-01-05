@@ -150,7 +150,7 @@ class AicGrammar
     {
         return [
             'limit' => $limit,
-            'size'  => $limit // Elasticsearch search parameter for limiting
+            'size' => $limit // Elasticsearch search parameter for limiting
         ];
     }
 
@@ -158,7 +158,7 @@ class AicGrammar
     {
         return [
             'offset' => $offset,
-            'from'   => $offset // Elasticsearch search parameter for offset
+            'from' => $offset // Elasticsearch search parameter for offset
         ];
     }
 

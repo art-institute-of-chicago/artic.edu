@@ -4,8 +4,8 @@ namespace App\Libraries\Search\Filters;
 
 class Galleries
 {
-    protected $parameter  = 'gallery_ids';
-    protected $entity     = \App\Models\Api\Gallery::class;
+    protected $parameter = 'gallery_ids';
+    protected $entity = \App\Models\Api\Gallery::class;
 
     /**
      * Basic functionality to get currently active hidden filters to build
@@ -13,7 +13,7 @@ class Galleries
      */
     public function generate()
     {
-        $list  = [];
+        $list = [];
         $input = collect(explode(';', request()->input($this->parameter)))->filter();
 
         foreach ($input as $element) {
