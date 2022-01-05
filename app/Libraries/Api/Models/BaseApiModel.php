@@ -935,9 +935,10 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     {
         if ($models instanceof BaseCollection) {
             return $models;
-        } else {
-            return new BaseCollection($models);
         }
+
+            return new BaseCollection($models);
+        
     }
 
     /**
@@ -951,9 +952,10 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         $value = $this->getAttribute($key);
         if (!$value && method_exists($this, 'getAugmentedModel') && $this->getAugmentedModel()) {
             return $this->getAugmentedModel()->{$key};
-        } else {
-            return $value;
         }
+
+            return $value;
+        
     }
 
     /**

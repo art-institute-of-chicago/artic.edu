@@ -173,9 +173,10 @@ class ApiQueryBuilder
             $this->ids($values);
 
             return $this;
-        } else {
-            throw new \Exception("whereIn function has been defined only for IDS at the API Query Builder");
         }
+
+            throw new \Exception("whereIn function has been defined only for IDS at the API Query Builder");
+        
     }
 
     /**
@@ -472,9 +473,10 @@ class ApiQueryBuilder
         if (isset($results->status) && $results->status != 200) {
             if (isset($results->body)) {
                 return $results->body;
-            } else {
-                return $results;
             }
+
+                return $results;
+            
         }
 
         $this->columns = $original;

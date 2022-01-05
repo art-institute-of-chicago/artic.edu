@@ -83,8 +83,9 @@ trait HandleApiBlocks
 
         if (class_exists($apiRepo)) {
             return app($apiRepo);
-        } else {
-            return app(config('twill.namespace') . "\\Repositories\\" . ucfirst($model) . "Repository");
         }
+
+            return app(config('twill.namespace') . "\\Repositories\\" . ucfirst($model) . "Repository");
+        
     }
 }

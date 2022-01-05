@@ -22,7 +22,7 @@ trait HasApiRelations
 
         if (empty($ids)) {
             return collect();
-        } else {
+        }
             // Load real the real models from the API
             $results = $modelClass::query()->ttl($ttl)->ids($ids)->get();
 
@@ -34,7 +34,7 @@ trait HasApiRelations
             });
 
             return $sorted;
-        }
+        
     }
 
     public function getRelatedWithApiModels($browser_name, $apiModelsDefinitions, $typeUsesApi)

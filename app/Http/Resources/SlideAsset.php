@@ -44,8 +44,9 @@ class SlideAsset extends JsonResource
                 'height' => $images->first() ? $images->first()->height : 0,
                 'src' => $src,
             ];
-        } else {
-            return [];
         }
+
+            return [];
+        
     }
 }

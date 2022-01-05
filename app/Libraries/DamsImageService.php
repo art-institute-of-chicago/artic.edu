@@ -130,10 +130,10 @@ class DamsImageService implements ImageServiceInterface
             }
 
             return $info;
-        } else {
+        }
             // Hit the server to get the info if not available
             return $this->getDimensions($object->{$imageField});
-        }
+        
     }
 
     public function getDimensions($id)

@@ -130,9 +130,10 @@ class AicConnection implements ApiConnectionInterface
             }
 
             return $response;
-        } else {
-            return $this->client->request($verb, $endpoint, $options);
         }
+
+            return $this->client->request($verb, $endpoint, $options);
+        
     }
 
     /**

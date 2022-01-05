@@ -546,9 +546,10 @@ class ApiModelBuilder
     {
         if ($this->performSearch) {
             return $this->getSearch($perPage, $columns, $pageName, $page);
-        } else {
-            return $this->getPaginated($perPage, $columns, $pageName, $page);
         }
+
+            return $this->getPaginated($perPage, $columns, $pageName, $page);
+        
     }
 
     protected function paginator($items, $total, $perPage, $currentPage, $options)
@@ -594,9 +595,10 @@ class ApiModelBuilder
     {
         if ($this->customEndpoint) {
             return $this->customEndpoint;
-        } else {
-            return $this->performSearch ? 'search' : 'collection';
         }
+
+            return $this->performSearch ? 'search' : 'collection';
+        
     }
 
     /**

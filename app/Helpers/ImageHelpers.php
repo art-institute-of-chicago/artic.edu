@@ -296,7 +296,8 @@ class ImageHelpers
                     'height' => null,
                     'lqip' => $lqip,
                 ];
-            } else {
+            }
+
                 return [
                     'srcset' => $stringSrcset,
                     'src' => $originalSrc,
@@ -306,7 +307,7 @@ class ImageHelpers
                     'lqip' => $lqip,
                     'iiifId' => $iiifId,
                 ];
-            }
+            
         }
 
         // Assign the sizes

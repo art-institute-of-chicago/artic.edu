@@ -36,13 +36,13 @@ trait HasMediasApi
                 $image['height'] = $this->getHeight($role, $crop, $image);
 
                 return $image;
-            } else {
+            }
                 if (!empty($this->{$this->getImageField($role, 'default')})) {
                     $image = DamsImageService::getImage($this, $this->getImageField($role, 'default'));
 
                     return $image;
                 }
-            }
+            
         }
 
         // If nothing has been returned on the API side, check for an augmented model
@@ -66,26 +66,29 @@ trait HasMediasApi
     {
         if (isset($this->mediasParams[$role][$crop]['field'])) {
             return $this->mediasParams[$role][$crop]['field'];
-        } else {
-            return 'image_id';
         }
+
+            return 'image_id';
+        
     }
 
     protected function getWidth($role, $crop, $image)
     {
         if (isset($this->mediasParams[$role][$crop]['width'])) {
             return $this->mediasParams[$role][$crop]['width'];
-        } else {
-            return isset($image['width']) ? $image['width'] : '';
         }
+
+            return isset($image['width']) ? $image['width'] : '';
+        
     }
 
     protected function getHeight($role, $crop, $image)
     {
         if (isset($this->mediasParams[$role][$crop]['height'])) {
             return $this->mediasParams[$role][$crop]['height'];
-        } else {
-            return isset($image['height']) ? $image['height'] : '';
         }
+
+            return isset($image['height']) ? $image['height'] : '';
+        
     }
 }

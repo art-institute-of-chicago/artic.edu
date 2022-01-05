@@ -120,9 +120,10 @@ class AicGrammar
     {
         if ($text) {
             return ['q' => $text];
-        } else {
-            return [];
         }
+
+            return [];
+        
     }
 
     protected function compileSearchParameters($query, array $elasticParameters)

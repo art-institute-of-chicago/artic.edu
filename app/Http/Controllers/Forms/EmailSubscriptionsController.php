@@ -263,9 +263,9 @@ class EmailSubscriptionsController extends FormController
 
         if ($response === true) {
             return redirect(route('forms.email-subscriptions.thanks'));
-        } else {
-            abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
         }
+            abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
+        
     }
 
 

@@ -160,7 +160,7 @@ class CollectionController extends BaseScopedController
 
         if ($count > 1) {
             return true;
-        } else {
+        }
             if ($count == 1) {
                 // If there's only one selected filter, check if it has more than one active element
                 $input = request()->input();
@@ -169,6 +169,6 @@ class CollectionController extends BaseScopedController
                     return true;
                 }
             }
-        }
+        
     }
 }

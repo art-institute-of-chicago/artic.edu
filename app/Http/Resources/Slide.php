@@ -163,11 +163,12 @@ class Slide extends JsonResource
                     'camera_target' => $model3d->camera_target,
                     'annotation_list' => json_decode($model3d->annotation_list)
                 ];
-            } else {
+            }
+
                 return [
 
                 ];
-            }
+            
         } else {
             $src = '';
         }
@@ -225,11 +226,12 @@ class Slide extends JsonResource
                 'annotation_list' => json_decode($model3d->annotation_list),
                 'hide_annotation_title' => $model3d->hide_annotation_title
             ];
-        } else {
+        }
+
             return [
 
             ];
-        }
+        
     }
 
     protected function getEndAttributes()

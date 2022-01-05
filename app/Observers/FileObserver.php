@@ -115,9 +115,10 @@ class FileObserver
             }
 
             return $zipFolderName;
-        } else {
-            throw new Exception('Cannot read the zip file');
         }
+
+            throw new Exception('Cannot read the zip file');
+        
     }
 
     private function uploadToS3($zipFolderName, $file)

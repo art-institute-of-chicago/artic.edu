@@ -59,9 +59,10 @@ class BaseApiController extends ModuleController
     {
         if ($this->hasAugmentedModel) {
             return parent::getRepository();
-        } else {
-            return $this->getApiRepository();
         }
+
+            return $this->getApiRepository();
+        
     }
 
     protected function getBrowserTableData($items)

@@ -44,14 +44,15 @@ trait HasRelationships
         // avoid calling to an endpoint with no data
         if (empty($this->{$localKey})) {
             return;
-        } else {
+        }
+
             return $this->newHasMany(
                 $queryInstance,
                 $this,
                 $localKey,
                 $limit
             );
-        }
+        
     }
 
     /**
@@ -80,11 +81,11 @@ trait HasRelationships
         // here because there is no need to query within the relations twice.
         if ($this->relationLoaded($key)) {
             return $this->relations[$key];
-        } else {
+        }
             if (method_exists($this, $key)) {
                 return $this->getRelationshipFromMethod($key);
             }
-        }
+        
     }
 
     protected function getRelationshipFromMethod($method)

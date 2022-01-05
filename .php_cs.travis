@@ -90,6 +90,7 @@ return $config->setRules([
     'no_unneeded_curly_braces' => true,     // Removes unneeded curly braces that are superfluous and aren't part of a control structure's body.
     'no_unset_cast' => true,                // Variables must be set null instead of using (unset) casting.
     'no_unused_imports' => true,            // Unused use statements must be removed.
+    'no_useless_else' => true,              // There should not be useless else cases.
 
 ])
 ->setFinder($finder);

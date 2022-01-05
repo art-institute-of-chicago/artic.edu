@@ -154,9 +154,9 @@ trait HandleApiRelations
                             if (classHasTrait($apiElement->getAugmentedModel(), \App\Models\Behaviors\HasMedias::class)) {
                                 $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
                             }
-                        } else {
-                            // WEB-1187: Add augment route here!
                         }
+                            // WEB-1187: Add augment route here!
+                        
 
                         return [
                             'id' => $apiElement->id,

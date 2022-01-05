@@ -59,7 +59,7 @@ class ExperienceController extends ModuleController
                 return [
                     'thumbnail' => $item->presentAdmin()->{$column['presenter']},
                 ];
-            } else {
+            }
                 $variant = isset($column['variant']);
                 $crop = $variant ? $column['variant']['crop'] : head(array_keys(head($item->mediasParams)));
                 $params = $variant && isset($column['variant']['params'])
@@ -71,7 +71,7 @@ class ExperienceController extends ModuleController
                 return [
                     'thumbnail' => $thumbnail_image,
                 ];
-            }
+            
         }
 
         if (isset($column['nested']) && $column['nested']) {

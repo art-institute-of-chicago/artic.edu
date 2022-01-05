@@ -63,12 +63,14 @@ class Exhibition extends BaseApiModel
         if (empty($this->aic_end_at)) {
             if (empty($this->aic_start_at)) {
                 return true;
-            } else {
-                return $this->dateStart->year < 2010;
             }
-        } else {
-            return Carbon::now()->gt($this->dateEnd->endOfDay());
+
+                return $this->dateStart->year < 2010;
+            
         }
+
+            return Carbon::now()->gt($this->dateEnd->endOfDay());
+        
     }
 
     public function getIdSlugAttribute()

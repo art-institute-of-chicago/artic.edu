@@ -104,9 +104,10 @@ class ExhibitionPresenter extends BasePresenter
         }
         if ($this->entity->aic_start_at != null) {
             return new Carbon($this->entity->aic_start_at);
-        } else {
-            return "";
         }
+
+            return "";
+        
     }
 
     public function endAt()
@@ -116,9 +117,10 @@ class ExhibitionPresenter extends BasePresenter
         }
         if ($this->entity->aic_end_at != null) {
             return new Carbon($this->entity->aic_end_at);
-        } else {
-            return "";
         }
+
+            return "";
+        
     }
 
     public function itemprops()

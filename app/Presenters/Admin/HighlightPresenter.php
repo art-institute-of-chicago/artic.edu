@@ -20,9 +20,10 @@ class HighlightPresenter extends BasePresenter
     {
         if ($this->entity->siteTags->first()) {
             return $this->entity->type = $this->entity->siteTags->first()->name;
-        } else {
-            return 'Highlights'; // For detail header
         }
+
+            return 'Highlights'; // For detail header
+        
     }
 
     public function url()

@@ -81,26 +81,26 @@ class EventPresenter extends BasePresenter
     {
         if (!empty($this->entity->forced_date)) {
             return $this->entity->forced_date;
-        } else {
+        }
             // EventRepository::getEventsFiltered() adds this from `event_metas`
             if (isset($this->entity->date)) {
                 return $this->formatDate($this->entity->date);
             }
-        }
+        
     }
 
     public function formattedNextOcurrence()
     {
         if (!empty($this->entity->forced_date)) {
             return $this->entity->forced_date;
-        } else {
+        }
             if ($next = $this->entity->nextOcurrenceExclusive) {
                 return '<time datetime="' . $next->date->format("c") . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format("c") . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
             }
             if ($last = $this->entity->lastOcurrence) {
                 return '<time datetime="' . $last->date->format("c") . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format("c") . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
             }
-        }
+        
     }
 
     public function nextOcurrenceDate()
