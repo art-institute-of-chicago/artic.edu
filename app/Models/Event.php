@@ -392,7 +392,7 @@ class Event extends AbstractModel
     public function getProgramUrlsAttribute()
     {
         return $this->programs->reduce(function ($carry, $item) {
-            return $carry .'https://' .config('app.url') .route('events', [], false) .'?program=' .$item->id ."\n";
+            return $carry . 'https://' . config('app.url') . route('events', [], false) . '?program=' . $item->id . "\n";
         });
     }
 

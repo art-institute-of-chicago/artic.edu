@@ -25,7 +25,7 @@ class Image extends BaseApiModel
         $downloadName = null;
 
         $src = $dams->getUrl($this->id);
-        $srcset = $src ." 300w";
+        $srcset = $src . " 300w";
 
         $image = [
             "type" => 'dams',
@@ -39,7 +39,7 @@ class Image extends BaseApiModel
             "downloadName" => $shareTitle,
             "credit" => $credit,
             "creditUrl" => $creditUrl,
-            "iiifId" => $dams->getBaseUrl().$dams->getVersion().'/'.$this->id,
+            "iiifId" => $dams->getBaseUrl() . $dams->getVersion() . '/' . $this->id,
             "alt" => $this->alt_text
         ];
 

@@ -53,7 +53,7 @@ class Mirador extends AbstractModel
             if ($this->file('upload_manifest_file')) {
                 $manifestFile = $this->file('upload_manifest_file');
             } else {
-                $manifestFile = config('api.public_uri').'/api/v1/artworks/'.$this->object_id.'/manifest.json';
+                $manifestFile = config('api.public_uri') . '/api/v1/artworks/' . $this->object_id . '/manifest.json';
             }
 
             return $manifestFile;

@@ -99,22 +99,22 @@ class EventRepository extends ModuleRepository
                 ])->filter()->count();
 
                 foreach (array_keys(EmailSeries::$memberTypes) as $type) {
-                    $pivotAttributes['override_' .$type] = $fields['email_series_' .$series->id .'_' .$type .'_override'] ?? false;
-                    if ($pivotAttributes['override_' .$type]) {
-                        $pivotAttributes[$type .'_copy'] = ($fields['email_series_' .$series->id .'_' .$type .'_copy'] ?? null) ?: null;
+                    $pivotAttributes['override_' . $type] = $fields['email_series_' . $series->id . '_' . $type . '_override'] ?? false;
+                    if ($pivotAttributes['override_' . $type]) {
+                        $pivotAttributes[$type . '_copy'] = ($fields['email_series_' . $series->id . '_' . $type . '_copy'] ?? null) ?: null;
                     } else {
-                        $pivotAttributes[$type .'_copy'] = null;
+                        $pivotAttributes[$type . '_copy'] = null;
                     }
 
                     $pivotAttributes['send_' . $type . '_test'] = (
                         $fields['send_test_emails'] ?? false
                     ) && (
-                        $fields['email_series_' .$series->id .'_test'] ?? false
+                        $fields['email_series_' . $series->id . '_test'] ?? false
                     ) && (
                         (
-                            $fields['email_series_' .$series->id .'_test_' .$type] ?? false
+                            $fields['email_series_' . $series->id . '_test_' . $type] ?? false
                         ) || (
-                            $isOnlyOneTestAudienceFieldShown && $series->{'show_' .$type .'_test'} === true
+                            $isOnlyOneTestAudienceFieldShown && $series->{'show_' . $type . '_test'} === true
                         )
                     );
                 }

@@ -73,7 +73,7 @@ class ArtworkPresenter extends BasePresenter
         ];
 
         if ($this->entity->is_on_view && $this->entity->gallery_id) {
-            $status[] = '<a href="' .route('galleries.show', [$this->entity->gallery_id . '/' . StringHelpers::getUtf8Slug($this->entity->gallery_title)]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>';
+            $status[] = '<a href="' . route('galleries.show', [$this->entity->gallery_id . '/' . StringHelpers::getUtf8Slug($this->entity->gallery_title)]) . '" data-gtm-event="' . $this->entity->gallery_title . '" data-gtm-event-category="collection-nav">' . $this->entity->gallery_title . '</a>';
         }
 
         $items = [
@@ -86,7 +86,7 @@ class ArtworkPresenter extends BasePresenter
         if (!$this->entity->is_deaccessioned && $this->entity->department_id) {
             $items[] = [
                 'key' => 'Department',
-                'value' => '<a href="' . route('departments.show', [$this->entity->department_id . '/' . StringHelpers::getUtf8Slug($this->entity->department_title)]) . '" data-gtm-event="' . $this->entity->department_title .'" data-gtm-event-category="collection-nav">' . $this->entity->department_title .'</a>',
+                'value' => '<a href="' . route('departments.show', [$this->entity->department_id . '/' . StringHelpers::getUtf8Slug($this->entity->department_title)]) . '" data-gtm-event="' . $this->entity->department_title . '" data-gtm-event-category="collection-nav">' . $this->entity->department_title . '</a>',
             ];
         }
 
@@ -115,8 +115,8 @@ class ArtworkPresenter extends BasePresenter
         ] : [
             "type" => 'text',
             "content" => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu">'
-            .(app('printservice')->isPrintMode() ? 'collections@artic.edu' : '')
-            .'</a>. Information about image downloads and licensing is <a href="/image-licensing">available here</a>.</p>',
+            . (app('printservice')->isPrintMode() ? 'collections@artic.edu' : '')
+            . '</a>. Information about image downloads and licensing is <a href="/image-licensing">available here</a>.</p>',
         ]);
 
         return array_filter($blocks);
@@ -201,14 +201,14 @@ class ArtworkPresenter extends BasePresenter
         return [
             'label' => $label,
             'href' => $href,
-            'gtmAttributes' => 'data-gtm-event="'. $pivot->artist_title . '"'
+            'gtmAttributes' => 'data-gtm-event="' . $pivot->artist_title . '"'
                 . ' data-gtm-event-category="collection-nav"',
         ];
     }
 
     protected function getIiifManifestUrl()
     {
-        return str_replace('-', '&#8209;', config('api.public_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json');
+        return str_replace('-', '&#8209;', config('api.public_uri') . '/api/v1/artworks/' . $this->entity->id . '/manifest.json');
     }
 
     protected function getArtworkDetailsBlock()
@@ -402,7 +402,7 @@ class ArtworkPresenter extends BasePresenter
     {
         $block = [
             'title' => $title,
-            'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.StringHelpers::getUtf8Slug($title).'"',
+            'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="' . StringHelpers::getUtf8Slug($title) . '"',
             'blocks' => []
         ];
 
@@ -437,7 +437,7 @@ class ArtworkPresenter extends BasePresenter
 
                 return [
                     "type" => 'text',
-                    "content" => '<p>'. $content .'</p>'
+                    "content" => '<p>' . $content . '</p>'
                 ];
             });
 
@@ -480,7 +480,7 @@ class ArtworkPresenter extends BasePresenter
             if (!empty($this->entity->$key)) {
                 $block = [
                     'title' => $value,
-                    'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.StringHelpers::getUtf8Slug($value).'"',
+                    'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="' . StringHelpers::getUtf8Slug($value) . '"',
                     'blocks' => []
                 ];
                 $explodedKeys = explode("\n", $this->entity->$key);
@@ -488,14 +488,14 @@ class ArtworkPresenter extends BasePresenter
                 if (count($explodedKeys) < 2) {
                     foreach ($explodedKeys as $txt) {
                         if (!empty($txt)) {
-                            $blockHtml .= '<p>'.$txt.'</p>';
+                            $blockHtml .= '<p>' . $txt . '</p>';
                         }
                     }
                 } else {
                     $blockHtml .= '<ul>';
                     foreach ($explodedKeys as $txt) {
                         if (!empty($txt)) {
-                            $blockHtml .= '<li>'.$txt.'</li>';
+                            $blockHtml .= '<li>' . $txt . '</li>';
                         }
                     }
                     $blockHtml .= '</ul>';

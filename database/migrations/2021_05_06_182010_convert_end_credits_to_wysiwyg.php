@@ -19,7 +19,7 @@ class ConvertEndCreditsToWysiwyg extends Migration
 
         foreach ($slides as $slide) {
             if ($slide->end_credit_copy) {
-                $slide->end_credit_copy = '<p>' .$slide->end_credit_copy .'</p>';
+                $slide->end_credit_copy = '<p>' . $slide->end_credit_copy . '</p>';
                 $slide->save();
             }
         }

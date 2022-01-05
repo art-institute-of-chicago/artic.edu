@@ -44,7 +44,7 @@ class ExhibitionPressRoomController extends FrontController
             "breadcrumb" => $crumbs,
             'wideBody' => true,
             'filters' => null,
-            'listingCountText' => 'Showing '.$items->total().' exhibition press rooms',
+            'listingCountText' => 'Showing ' . $items->total() . ' exhibition press rooms',
             'listingItems' => $items,
         ];
 

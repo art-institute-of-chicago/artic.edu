@@ -39,7 +39,7 @@ class HighlightsController extends FrontController
             'nav' => $nav,
             'wideBody' => true,
             'filters' => null,
-            'listingCountText' => 'Showing '.$items->total().' highlights',
+            'listingCountText' => 'Showing ' . $items->total() . ' highlights',
             'listingItems' => $items,
         ];
 

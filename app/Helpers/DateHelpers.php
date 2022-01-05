@@ -50,10 +50,10 @@ class DateHelpers
             return null;
         }
         if ($date < 0) {
-            return abs($date) ." BCE";
+            return abs($date) . " BCE";
         }
         if ($date <= 1000) {
-            return $date ." CE";
+            return $date . " CE";
         }
         if ($date == Carbon::now()->year) {
             return "Present";
@@ -72,7 +72,7 @@ class DateHelpers
             $mins = $shortlist ? ['00', '30'] : ['00', '15', '30', '45'];
             foreach ($mins as $time) {
                 // Save hours on DatetimeInterval format to be added later
-                $hours["PT{$i}H{$time}M"] = ($hour == 0 ? "12" : "{$hour}") .":{$time}{$ampm}";
+                $hours["PT{$i}H{$time}M"] = ($hour == 0 ? "12" : "{$hour}") . ":{$time}{$ampm}";
             }
         }
 

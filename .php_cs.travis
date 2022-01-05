@@ -31,6 +31,9 @@ return $config->setRules([
         'single_item_single_line' => true,
     ],
     'compact_nullable_typehint' => true,    // Remove extra spaces in a nullable typehint.
+    'concat_space' => [                     // Concatenation should be spaced according configuration.
+        'spacing' => 'one',
+    ],
 
 ])
 ->setFinder($finder);

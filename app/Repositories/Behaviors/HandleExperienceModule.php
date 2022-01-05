@@ -148,7 +148,7 @@ trait HandleExperienceModule
 ;
                     foreach ($experienceImage as $field => $value) {
                         $fields['repeaterFields']['modal_experience_image'][] = [
-                            'name' => 'blocks[experienceImage-' . $experienceImage['id'] . '][' . $field .']',
+                            'name' => 'blocks[experienceImage-' . $experienceImage['id'] . '][' . $field . ']',
                             'value' => $value
                         ];
                     }

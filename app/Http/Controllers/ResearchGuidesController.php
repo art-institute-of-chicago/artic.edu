@@ -44,7 +44,7 @@ class ResearchGuidesController extends FrontController
             "breadcrumb" => $crumbs,
             'wideBody' => true,
             'filters' => null,
-            'listingCountText' => 'Showing '.$items->total().' research guides',
+            'listingCountText' => 'Showing ' . $items->total() . ' research guides',
             'listingItems' => $items,
         ];
 

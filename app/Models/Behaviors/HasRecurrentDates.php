@@ -91,7 +91,7 @@ trait HasRecurrentDates
 
                     break;
                 case 'first_day':
-                    $options['BYDAY'] = '1'. strtoupper(substr($ruleObject->start_date->format('D'), 0, 2));
+                    $options['BYDAY'] = '1' . strtoupper(substr($ruleObject->start_date->format('D'), 0, 2));
 
                     break;
             }

@@ -257,7 +257,7 @@ class RyersonClassVisitController extends FormController
                 [
                     'type' => 'text',
                     'content' => '<span class="input s-disabled"><label class="label f-secondary">Preferred Dates *'
-                    .'<em class="label__hint">Please select 3 options for the date of your visit. Monday through Friday only.</em></label></span>'
+                    . '<em class="label__hint">Please select 3 options for the date of your visit. Monday through Friday only.</em></label></span>'
                 ],
             ],
         ];
@@ -439,7 +439,7 @@ class RyersonClassVisitController extends FormController
                 [
                     'type' => 'text',
                     'content' => '<span class="input s-disabled"><label class="label f-secondary">Three Potential Dates/Times for Instructor Materials Review *'
-                    .'<em class="label__hint">Only available Monday through Friday, 10:30-3:30.</em></label></span>'
+                    . '<em class="label__hint">Only available Monday through Friday, 10:30-3:30.</em></label></span>'
                 ],
             ],
         ];
@@ -451,10 +451,10 @@ class RyersonClassVisitController extends FormController
                     [
                         'type' => 'date-select',
                         'variation' => 'm-fieldset__input-narrow-x3',
-                        'id' => 'instructor_materials_review_date_' .$i,
+                        'id' => 'instructor_materials_review_date_' . $i,
                         'placeholder' => 'mm/dd/yy',
-                        'value' => old('instructor_materials_review_date_' .$i),
-                        'error' => (!empty($errors) && $errors->first('instructor_materials_review_date_' .$i)) ? $errors->first('instructor_materials_review_date_' .$i) : null,
+                        'value' => old('instructor_materials_review_date_' . $i),
+                        'error' => (!empty($errors) && $errors->first('instructor_materials_review_date_' . $i)) ? $errors->first('instructor_materials_review_date_' . $i) : null,
                         'optional' => $i == 1 ? false : null,
                         'hint' => null,
                         'disabled' => false,
@@ -463,9 +463,9 @@ class RyersonClassVisitController extends FormController
                     [
                         'type' => 'select',
                         'variation' => 'm-fieldset__input-narrow-x3',
-                        'id' => 'instructor_materials_review_time_' .$i,
-                        'error' => (!empty($errors) && $errors->first('instructor_materials_review_time_' .$i)) ? $errors->first('instructor_materials_review_time_' .$i) : null,
-                        'value' => old('instructor_materials_review_time_' .$i),
+                        'id' => 'instructor_materials_review_time_' . $i,
+                        'error' => (!empty($errors) && $errors->first('instructor_materials_review_time_' . $i)) ? $errors->first('instructor_materials_review_time_' . $i) : null,
+                        'value' => old('instructor_materials_review_time_' . $i),
                         'optional' => false,
                         'hint' => null,
                         'disabled' => false,
@@ -633,7 +633,7 @@ class RyersonClassVisitController extends FormController
             $item = [
                 'type' => 'radio',
                 'variation' => '',
-                'id' => 'affiliation_'.$value,
+                'id' => 'affiliation_' . $value,
                 'name' => 'affiliation',
                 'value' => $value,
                 'error' => null,
@@ -665,7 +665,7 @@ class RyersonClassVisitController extends FormController
             $item = [
                 'type' => 'radio',
                 'variation' => '',
-                'id' => 'no_of_sessions-'.$value,
+                'id' => 'no_of_sessions-' . $value,
                 'name' => 'no_of_sessions',
                 'value' => $value,
                 'error' => null,
@@ -695,7 +695,7 @@ class RyersonClassVisitController extends FormController
             $item = [
                 'type' => 'radio',
                 'variation' => '',
-                'id' => 'type_of_visit_'.$value,
+                'id' => 'type_of_visit_' . $value,
                 'name' => 'type_of_visit',
                 'value' => $value,
                 'error' => null,
@@ -730,7 +730,7 @@ class RyersonClassVisitController extends FormController
             $item = [
                 'type' => 'checkbox',
                 'variation' => '',
-                'id' => 'session_objective-' .$value,
+                'id' => 'session_objective-' . $value,
                 'name' => 'session_objective[]',
                 'value' => $value,
                 'error' => null,

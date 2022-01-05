@@ -280,7 +280,7 @@ class EmailSubscriptionsController extends FormController
             $item = [
                 'type' => 'checkbox',
                 'variation' => '',
-                'id' => 'subscriptions-'.$value,
+                'id' => 'subscriptions-' . $value,
                 'name' => 'subscriptions[]',
                 'value' => $value,
                 'error' => null,

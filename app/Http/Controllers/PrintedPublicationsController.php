@@ -45,7 +45,7 @@ class PrintedPublicationsController extends BaseScopedController
         $view_data = [
             'wideBody' => true,
             'filters' => $this->getFilters(),
-            'listingCountText' => 'Showing '.$items->total().' print publications',
+            'listingCountText' => 'Showing ' . $items->total() . ' print publications',
             'listingItems' => $items,
         ] + $navElements;
 

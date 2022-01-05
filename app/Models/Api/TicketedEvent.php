@@ -16,6 +16,6 @@ class TicketedEvent extends BaseApiModel
 
     public function getCmsTitleAttribute()
     {
-        return "{$this->title} (" . ($this->start_at ? Carbon::parse($this->start_at)->toFormattedDateString() .', ' : '') ."#{$this->id})";
+        return "{$this->title} (" . ($this->start_at ? Carbon::parse($this->start_at)->toFormattedDateString() . ', ' : '') . "#{$this->id})";
     }
 }

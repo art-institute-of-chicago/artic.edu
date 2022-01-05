@@ -73,7 +73,7 @@ class CollectionController extends BaseScopedController
             $this->seo->setImage($artwork->imageFront('hero'));
         } else {
             // Otherwise, fall back to La Grande Jatte as social image
-            $this->seo->image = 'https://' .rtrim(config('app.url'), '/') . '/iiif/2/4eddcf49-3efd-d993-fb1a-75d7e7d5b5a1/full/843,/0/default.jpg';
+            $this->seo->image = 'https://' . rtrim(config('app.url'), '/') . '/iiif/2/4eddcf49-3efd-d993-fb1a-75d7e7d5b5a1/full/843,/0/default.jpg';
             $this->seo->width = 1200;
             $this->seo->height = 799;
         }
@@ -81,7 +81,7 @@ class CollectionController extends BaseScopedController
         $description = "Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.";
 
         if (request('q')) {
-            $description = 'You searched for: ' .request('q') .'. ' .$description;
+            $description = 'You searched for: ' . request('q') . '. ' . $description;
         }
         $this->seo->setDescription($description);
         $this->seo->nofollow = $this->setNofollowMeta();

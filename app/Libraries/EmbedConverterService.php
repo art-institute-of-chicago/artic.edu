@@ -55,7 +55,7 @@ class EmbedConverterService
         $videoId = $this->getYouTubeIdCode($url);
 
         if ($videoId) {
-            return '<iframe src="https://www.youtube.com/embed/'.$videoId.'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+            return '<iframe src="https://www.youtube.com/embed/' . $videoId . '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
         }
     }
 
@@ -82,6 +82,6 @@ class EmbedConverterService
             $videoId = substr($url, 10, strlen($url));
         }
 
-        return '<iframe src="https://player.vimeo.com/video/'.$videoId.'?title=0&byline=0&portrait=0" frameborder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        return '<iframe src="https://player.vimeo.com/video/' . $videoId . '?title=0&byline=0&portrait=0" frameborder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
     }
 }

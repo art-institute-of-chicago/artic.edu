@@ -15,12 +15,12 @@ class FormModel extends Model
 
         foreach ($this->getAttributes() as $key => $value) {
             if (in_array($key, $this->dates)) {
-                $ret .= $key ." | " .($value ? Carbon::parse($value)->toFormattedDateString() : '') ."\n";
+                $ret .= $key . " | " . ($value ? Carbon::parse($value)->toFormattedDateString() : '') . "\n";
             } else {
                 if (is_array($value)) {
-                    $ret .= $key ." | " .implode(',', $value) ."\n";
+                    $ret .= $key . " | " . implode(',', $value) . "\n";
                 } else {
-                    $ret .= $key ." | " .$value ."\n";
+                    $ret .= $key . " | " . $value . "\n";
                 }
             }
         }

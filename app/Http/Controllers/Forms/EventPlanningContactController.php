@@ -352,7 +352,7 @@ class EventPlanningContactController extends FormController
                 [
                     'type' => 'text',
                     'content' => '<span class="input s-disabled"><label class="label f-secondary">Possible Dates *'
-                    .'<em class="label__hint">Please select 3 options for the date of your event.</em></label></span>'
+                    . '<em class="label__hint">Please select 3 options for the date of your event.</em></label></span>'
                 ],
             ],
         ];
@@ -526,7 +526,7 @@ class EventPlanningContactController extends FormController
             $item = [
                 'type' => 'radio',
                 'variation' => '',
-                'id' => 'preferred_contact_'.$value,
+                'id' => 'preferred_contact_' . $value,
                 'name' => 'preferred_contact',
                 'value' => $value,
                 'error' => null,
@@ -557,7 +557,7 @@ class EventPlanningContactController extends FormController
             $item = [
                 'type' => 'checkbox',
                 'variation' => '',
-                'id' => 'how_did_you_hear-'.$value,
+                'id' => 'how_did_you_hear-' . $value,
                 'name' => 'how_did_you_hear[]',
                 'value' => $value,
                 'error' => null,
@@ -589,7 +589,7 @@ class EventPlanningContactController extends FormController
             $item = [
                 'type' => 'checkbox',
                 'variation' => '',
-                'id' => 'type_of_event-'.$value,
+                'id' => 'type_of_event-' . $value,
                 'name' => 'type_of_event[]',
                 'value' => $value,
                 'error' => null,

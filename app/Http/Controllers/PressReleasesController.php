@@ -47,7 +47,7 @@ class PressReleasesController extends BaseScopedController
         $viewData = [
             'wideBody' => true,
             'filters' => $this->getFilters(range(date('Y'), 2012), range(1, 12)),
-            'listingCountText' => 'Showing '.$items->total().' press releases',
+            'listingCountText' => 'Showing ' . $items->total() . ' press releases',
             'listingItems' => $items,
         ] + $navElements;
 
@@ -68,7 +68,7 @@ class PressReleasesController extends BaseScopedController
         $viewData = [
             'wideBody' => true,
             'filters' => $this->getFilters(range(2011, 1939), null, 'about.press.archive'),
-            'listingCountText' => 'Showing '.$items->total().' press releases',
+            'listingCountText' => 'Showing ' . $items->total() . ' press releases',
             'listingItems' => $items,
         ] + $navElements;
 

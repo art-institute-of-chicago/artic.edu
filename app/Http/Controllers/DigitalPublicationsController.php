@@ -30,7 +30,7 @@ class DigitalPublicationsController extends BaseScopedController
         $view_data = [
             'wideBody' => true,
             'filters' => null,
-            'listingCountText' => 'Showing '.$items->total().' digital publications',
+            'listingCountText' => 'Showing ' . $items->total() . ' digital publications',
             'listingItems' => $items,
         ] + $navElements;
 

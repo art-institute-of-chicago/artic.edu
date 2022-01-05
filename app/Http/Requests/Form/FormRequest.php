@@ -14,7 +14,7 @@ class FormRequest extends Request
         ];
         $fields_string = '';
         foreach ($fields as $key => $value) {
-            $fields_string .= $key.'='.$value.'&';
+            $fields_string .= $key . '=' . $value . '&';
         }
         rtrim($fields_string, '&');
 

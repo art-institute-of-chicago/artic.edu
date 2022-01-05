@@ -59,7 +59,7 @@ class EducatorResourcesController extends BaseScopedController
             "breadcrumb" => $crumbs,
             'wideBody' => true,
             'filters' => $this->getFilters(),
-            'listingCountText' => 'Showing '.$items->total().' educator resources',
+            'listingCountText' => 'Showing ' . $items->total() . ' educator resources',
             'listingItems' => $items,
         ];
 

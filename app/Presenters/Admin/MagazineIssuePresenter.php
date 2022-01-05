@@ -22,6 +22,6 @@ class MagazineIssuePresenter extends GenericPresenter
             $gtmEvent = substr($url, strrpos($url, '/') + 1); // Last part of path
         }
 
-        return '<a ' . $matches[1] . ' data-gtm-event="' . $gtmEvent . '" data-gtm-event-category="header-text-link-' . $this->linkIndex++ . '">' . $matches[2] .'</a>';
+        return '<a ' . $matches[1] . ' data-gtm-event="' . $gtmEvent . '" data-gtm-event-category="header-text-link-' . $this->linkIndex++ . '">' . $matches[2] . '</a>';
     }
 }

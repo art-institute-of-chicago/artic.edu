@@ -104,7 +104,7 @@ class AicConnection implements ApiConnectionInterface
 
         if (config('api.logger')) {
             $ttl = $this->ttl ?? config('api.cache_ttl');
-            \Log::info($verb . " ttl = ". $ttl . " " . $endpoint);
+            \Log::info($verb . " ttl = " . $ttl . " " . $endpoint);
             \Log::info(print_r($options, true));
         }
 

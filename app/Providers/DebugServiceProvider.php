@@ -14,7 +14,7 @@ class DebugServiceProvider extends ServiceProvider
 
                 public function log($class, $field, $mutator = false)
                 {
-                    $class = $class .($mutator ? ' as mutator' : '');
+                    $class = $class . ($mutator ? ' as mutator' : '');
 
                     if (!isset($this->output[$class])) {
                         $this->output[$class] = [];

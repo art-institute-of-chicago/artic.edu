@@ -154,7 +154,7 @@ class StringHelpers
 
         for ($i = 0; $i < $openedLength; $i++) {
             if (!in_array($openedTags[$i], $closedTags)) {
-                $string .= '</'.$openedTags[$i].'>';
+                $string .= '</' . $openedTags[$i] . '>';
             } else {
                 unset($closedTags[array_search($openedTags[$i], $closedTags)]);
             }
@@ -184,7 +184,7 @@ class StringHelpers
             if (isset($code['name']) && ($code['name'] == 'ref')) {
                 $_collectedReferences[] = ['id' => sizeof($_collectedReferences) + 1, 'reference' => $code['content']];
                 $pos = sizeof($_collectedReferences);
-                $ref = '<sup id="ref_cite-'.$pos.'"><a href="#ref_note-'.$pos.'">['.$pos.']</a></sup>';
+                $ref = '<sup id="ref_cite-' . $pos . '"><a href="#ref_note-' . $pos . '">[' . $pos . ']</a></sup>';
 
                 $refPos = strpos($text, $code['shortcode']);
                 $beforeRef = substr($text, 0, $refPos);

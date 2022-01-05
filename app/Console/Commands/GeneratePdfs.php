@@ -101,7 +101,7 @@ class GeneratePdfs extends Command
 
         if (config('app.debug') || config('aic.pdf_debug')) {
             $prince->setVerbose(true);
-            $prince->setLog(storage_path('logs/prince-' .date('Y-m-d') .'.log'));
+            $prince->setLog(storage_path('logs/prince-' . date('Y-m-d') . '.log'));
         }
 
         set_time_limit(0);

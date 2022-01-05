@@ -156,7 +156,7 @@ class ImageHelpers
             }
 
             if ($sourceType === 'imgix') {
-                $base = explode('?', $src)[0].'?';
+                $base = explode('?', $src)[0] . '?';
                 $originalSrcParams = [];
                 parse_str($src, $originalSrcParams);
                 $imgixSettings = [];
@@ -175,14 +175,14 @@ class ImageHelpers
                 $imgixSettings['q'] = '10';
                 $imgixSettings['blur'] = '75';
                 $imgixSettingsString = http_build_query($imgixSettings);
-                $posterSrc = $base.$imgixSettingsString;
+                $posterSrc = $base . $imgixSettingsString;
             }
 
             if ($sourceType === 'dams') {
                 $fullVal = strpos($originalSrc, '!3000,3000') ? '!3000,3000' : 'full';
                 $base = explode('/full/' . $fullVal . '/0/default.jpg', $originalSrc)[0];
                 $resizeVal = 'full';
-                $strposterSrcingSrc = $base."/".$resizeVal."/150,/0/default.jpg";
+                $strposterSrcingSrc = $base . "/" . $resizeVal . "/150,/0/default.jpg";
             }
         }
 
@@ -332,14 +332,14 @@ class ImageHelpers
             }
             // For place holders its a bit dumb because its not passing through a service
             foreach ($srcset as $size):
-                $stringSrcset .= "//placehold.dev.area17.com/image/".$size."x".round(($height / $width) * $size)." ".$size."w, ";
+                $stringSrcset .= "//placehold.dev.area17.com/image/" . $size . "x" . round(($height / $width) * $size) . " " . $size . "w, ";
             endforeach;
 
-            $stringSrc = "//placehold.dev.area17.com/image/".$LQIPDimension."x".round(($height / $width) * $LQIPDimension);
+            $stringSrc = "//placehold.dev.area17.com/image/" . $LQIPDimension . "x" . round(($height / $width) * $LQIPDimension);
         }
 
         if ($sourceType === 'imgix') {
-            $base = explode('?', $originalSrc)[0].'?';
+            $base = explode('?', $originalSrc)[0] . '?';
             $originalSrcParams = [];
             parse_str($originalSrc, $originalSrcParams);
             $imgixSettings = [];
@@ -436,7 +436,7 @@ class ImageHelpers
                 $imgixSettings['h'] = round(($height / $width) * $size);
             }
             $imgixSettingsString = http_build_query($imgixSettings);
-            $stringSrcset .= $base.$imgixSettingsString." ".$size."w";
+            $stringSrcset .= $base . $imgixSettingsString . " " . $size . "w";
             endforeach;
 
             // Get data-pin-media for pinterest
@@ -445,7 +445,7 @@ class ImageHelpers
                 $imgixSettings['h'] = round(($height / $width) * 600);
             }
             $imgixSettingsString = http_build_query($imgixSettings);
-            $pinterestMedia = $base.$imgixSettingsString;
+            $pinterestMedia = $base . $imgixSettingsString;
 
             // Build LQIP
             $imgixSettings['w'] = $LQIPDimension;
@@ -458,7 +458,7 @@ class ImageHelpers
             $imgixSettings['sat'] = '20';
             $imgixSettingsString = http_build_query($imgixSettings);
 
-            $stringSrc = $base.$imgixSettingsString;
+            $stringSrc = $base . $imgixSettingsString;
         }
 
         if ($sourceType === 'dams') {
@@ -501,14 +501,14 @@ class ImageHelpers
                         $cropWidth = $width;
                         $cropHeight = round($cropWidth * ($ratioH / $ratioW));
                         $topPosition = round(($height - $cropHeight) / 2);
-                        $resizeVal = "0,".$topPosition.",".$cropWidth.",".$cropHeight;
+                        $resizeVal = "0," . $topPosition . "," . $cropWidth . "," . $cropHeight;
                         $height = $cropHeight;
                     } else {
                         // The source image is 16:something-less-than-9
                         $cropHeight = $height;
                         $cropWidth = round($cropHeight * ($ratioW / $ratioH));
                         $leftPosition = round(($width - $cropWidth) / 2);
-                        $resizeVal = $leftPosition.",0,".$cropWidth.",".$cropHeight;
+                        $resizeVal = $leftPosition . ",0," . $cropWidth . "," . $cropHeight;
                         $width = $cropWidth;
                     }
                 }
@@ -519,13 +519,13 @@ class ImageHelpers
                 if (!empty($stringSrcset)) {
                     $stringSrcset .= ", ";
                 }
-            $stringSrcset .= $base."/".$resizeVal."/".$size.",/0/default.jpg ".$size."w";
+            $stringSrcset .= $base . "/" . $resizeVal . "/" . $size . ",/0/default.jpg " . $size . "w";
             endforeach;
 
             // Get data-pin-media for pinterest
-            $pinterestMedia = $base."/".$resizeVal."/600,/0/default.jpg";
+            $pinterestMedia = $base . "/" . $resizeVal . "/600,/0/default.jpg";
 
-            $stringSrc = $base."/".$resizeVal."/".$LQIPDimension.",/0/default.jpg";
+            $stringSrc = $base . "/" . $resizeVal . "/" . $LQIPDimension . ",/0/default.jpg";
         }
 
         $stringWidth = $width;
@@ -600,18 +600,18 @@ class ImageHelpers
                 if (strrpos($data[$name], 'px') > 0 || strrpos($data[$name], 'vw') > 0) {
                     $thisSize = $data[$name];
                 } elseif ($name === 'xlarge') {
-                    $thisSize = round($data[$name] * ($xlargeMaxSize / $totalCSScolumns)).'px';
+                    $thisSize = round($data[$name] * ($xlargeMaxSize / $totalCSScolumns)) . 'px';
                 } else {
-                    $thisSize = round(($data[$name] * (100 / ($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2).'vw';
+                    $thisSize = round(($data[$name] * (100 / ($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2) . 'vw';
                 }
             } else {
                 if ($name === 'xlarge') {
-                    $thisSize = $xlargeMaxSize.'px';
+                    $thisSize = $xlargeMaxSize . 'px';
                 } else {
-                    $thisSize = round(($totalCSScolumns * (100 / ($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2).'vw';
+                    $thisSize = round(($totalCSScolumns * (100 / ($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2) . 'vw';
                 }
             }
-        $sizes .= ($name === 'xlarge' ? '' : ', '). $point .' '. $thisSize;
+        $sizes .= ($name === 'xlarge' ? '' : ', ') . $point . ' ' . $thisSize;
         endforeach;
 
         return $sizes;

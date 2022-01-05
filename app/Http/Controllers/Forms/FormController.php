@@ -97,8 +97,8 @@ abstract class FormController extends FrontController
             $item = [
                 'type' => 'checkbox',
                 'variation' => '',
-                'id' => $fieldName .'-' .$value,
-                'name' => $fieldName .'[]',
+                'id' => $fieldName . '-' . $value,
+                'name' => $fieldName . '[]',
                 'value' => $value,
                 'error' => null,
                 'optional' => null,
@@ -130,7 +130,7 @@ abstract class FormController extends FrontController
             $item = [
                 'type' => 'radio',
                 'variation' => '',
-                'id' => $fieldName .'_'.$value,
+                'id' => $fieldName . '_' . $value,
                 'name' => $fieldName,
                 'value' => $value,
                 'error' => null,

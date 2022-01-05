@@ -38,7 +38,7 @@ class AuthorController extends FrontController
             'nav' => $nav,
             'wideBody' => true,
             'filters' => null,
-            'listingCountText' => 'Showing '.$items->total().' authors',
+            'listingCountText' => 'Showing ' . $items->total() . ' authors',
             'listingItems' => $items,
         ];
 

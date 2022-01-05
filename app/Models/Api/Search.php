@@ -63,7 +63,7 @@ class Search extends BaseApiModel
         if ($queryFilter && !empty($queryFilter)) {
             $firstLetter = substr($queryFilter, 0, 1);
             $rest = substr($queryFilter, 1);
-            $searchString = ".*[" . ucfirst($firstLetter) . lcfirst($firstLetter) . "]" .$rest.".*";
+            $searchString = ".*[" . ucfirst($firstLetter) . lcfirst($firstLetter) . "]" . $rest . ".*";
 
             $agg[$name]['terms']['include'] = $searchString;
         }
