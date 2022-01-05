@@ -171,8 +171,8 @@ class EventPresenter extends BasePresenter
                     )
                 ) && (
                     ($ticketedEvent->off_sale_at ?? false) && (
-                         (new Carbon($ticketedEvent->off_sale_at))->greaterThan(Carbon::now())
-                     )
+                        (new Carbon($ticketedEvent->off_sale_at))->greaterThan(Carbon::now())
+                    )
                 )
             );
     }
