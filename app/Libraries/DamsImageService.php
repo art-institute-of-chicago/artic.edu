@@ -14,7 +14,7 @@ class DamsImageService implements ImageServiceInterface
     protected $base_url;
     protected $version;
 
-    protected $cacheVersion = "1";
+    protected $cacheVersion = '1';
 
     public function __construct()
     {
@@ -42,21 +42,21 @@ class DamsImageService implements ImageServiceInterface
         $preLoadedInfo = $this->getInfo($object, $imageField);
 
         $src = $this->getUrl($object->{$imageField}, ['width' => $width, 'height' => $height]);
-        $srcset = $this->getUrl($object->{$imageField}, ['width' => $width, 'height' => $height]) . " 300w";
+        $srcset = $this->getUrl($object->{$imageField}, ['width' => $width, 'height' => $height]) . ' 300w';
 
         $image = [
-            "type" => 'dams',
-            "src" => $src,
-            "srcset" => $srcset,
-            "width" => $preLoadedInfo['width'],
-            "height" => $preLoadedInfo['height'],
-            "shareUrl" => '#',
-            "shareTitle" => $shareTitle,
-            "downloadUrl" => $src,
-            "downloadName" => $downloadName,
-            "credit" => $credit,
-            "creditUrl" => $creditUrl,
-            "iiifId" => $this->base_url . $this->version . '/' . $object->{$imageField},
+            'type' => 'dams',
+            'src' => $src,
+            'srcset' => $srcset,
+            'width' => $preLoadedInfo['width'],
+            'height' => $preLoadedInfo['height'],
+            'shareUrl' => '#',
+            'shareTitle' => $shareTitle,
+            'downloadUrl' => $src,
+            'downloadName' => $downloadName,
+            'credit' => $credit,
+            'creditUrl' => $creditUrl,
+            'iiifId' => $this->base_url . $this->version . '/' . $object->{$imageField},
         ];
 
         if (isset($preLoadedInfo['lqip']) && !empty($preLoadedInfo['lqip'])) {

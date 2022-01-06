@@ -13,7 +13,7 @@ class HighlightPresenter extends BasePresenter
 
     public function headerType()
     {
-        return "hero";
+        return 'hero';
     }
 
     public function type()

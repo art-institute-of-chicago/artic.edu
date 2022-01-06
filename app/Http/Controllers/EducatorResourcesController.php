@@ -56,7 +56,7 @@ class EducatorResourcesController extends BaseScopedController
             'title' => $title,
             'subNav' => $subNav,
             'nav' => $nav,
-            "breadcrumb" => $crumbs,
+            'breadcrumb' => $crumbs,
             'wideBody' => true,
             'filters' => $this->getFilters(),
             'listingCountText' => 'Showing ' . $items->total() . ' educator resources',

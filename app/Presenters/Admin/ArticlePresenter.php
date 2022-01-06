@@ -26,7 +26,7 @@ class ArticlePresenter extends BasePresenter
     {
         switch ($this->entity->layout_type) {
             case \App\Models\Article::LARGE:
-                return "feature";
+                return 'feature';
 
                 break;
             default:

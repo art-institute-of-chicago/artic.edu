@@ -18,8 +18,8 @@ class VisitController extends FrontController
 
         $page = Page::forType('Visit')->first();
 
-        $this->seo->setTitle("Visit a Chicago Landmark");
-        $this->seo->setDescription("Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!");
+        $this->seo->setTitle('Visit a Chicago Landmark');
+        $this->seo->setDescription('Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
         $this->seo->setImage($page->imageFront('visit_hero') ?? $page->imageFront('visit_mobile'));
 
         $video_url = $page->file('video', 'en');
@@ -98,7 +98,7 @@ class VisitController extends FrontController
         }
 
         $citypassImg = $page->imageFront('visit_city_pass');
-        $citypassImg['alt'] = "";
+        $citypassImg['alt'] = '';
 
         $admission = [
             'text' => preg_replace('/<p>/i', '<p class="f-secondary">', $page->visit_admission_description),

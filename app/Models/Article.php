@@ -237,90 +237,90 @@ class Article extends AbstractModel implements Feedable
     {
         return [
             [
-                "name" => 'published',
-                "doc" => "Published",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->published;
                 },
             ],
             [
-                "name" => 'publish_start_date',
-                "doc" => "Publish Start Date",
-                "type" => "datetime",
-                "value" => function () {
+                'name' => 'publish_start_date',
+                'doc' => 'Publish Start Date',
+                'type' => 'datetime',
+                'value' => function () {
                     return $this->publish_start_date;
                 }
             ],
             [
-                "name" => 'publish_end_date',
-                "doc" => "Publish End Date",
-                "type" => "datetime",
-                "value" => function () {
+                'name' => 'publish_end_date',
+                'doc' => 'Publish End Date',
+                'type' => 'datetime',
+                'value' => function () {
                     return $this->publish_end_date;
                 }
             ],
             [
-                "name" => 'date',
-                "doc" => "Date",
-                "type" => "date",
-                "value" => function () {
+                'name' => 'date',
+                'doc' => 'Date',
+                'type' => 'date',
+                'value' => function () {
                     return $this->date;
                 },
             ],
             [
-                "name" => 'copy',
-                "doc" => "Copy",
-                "type" => "text",
-                "value" => function () {
+                'name' => 'copy',
+                'doc' => 'Copy',
+                'type' => 'text',
+                'value' => function () {
                     return $this->blocks;
                 },
             ],
             [
-                "name" => "slug",
-                "doc" => "slug",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'slug',
+                'doc' => 'slug',
+                'type' => 'string',
+                'value' => function () {
                     return $this->slug;
                 },
             ],
             [
-                "name" => "web_url",
-                "doc" => "web_url",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'web_url',
+                'doc' => 'web_url',
+                'type' => 'string',
+                'value' => function () {
                     return url(route('articles.show', $this));
                 },
             ],
             [
-                "name" => "subtype",
-                "doc" => "Subtype",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'subtype',
+                'doc' => 'Subtype',
+                'type' => 'string',
+                'value' => function () {
                     return $this->subtype;
                 },
             ],
             [
-                "name" => "heading",
-                "doc" => "heading",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'heading',
+                'doc' => 'heading',
+                'type' => 'string',
+                'value' => function () {
                     return $this->heading;
                 },
             ],
             [
-                "name" => "list_description",
-                "doc" => "list_description",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'list_description',
+                'doc' => 'list_description',
+                'type' => 'string',
+                'value' => function () {
                     return $this->list_description;
                 },
             ],
             [
-                "name" => 'related',
-                "doc" => "Related Content",
-                "type" => "array",
-                "value" => function () {
+                'name' => 'related',
+                'doc' => 'Related Content',
+                'type' => 'array',
+                'value' => function () {
                     return $this->transformRelated();
                 },
             ],

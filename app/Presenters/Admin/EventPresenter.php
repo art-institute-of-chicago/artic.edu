@@ -31,7 +31,7 @@ class EventPresenter extends BasePresenter
     {
         switch ($this->entity->layout_type) {
             case \App\Models\Event::LARGE_LAYOUT:
-                return "feature";
+                return 'feature';
 
                 break;
             case \App\Models\Event::BASIC_LAYOUT:
@@ -74,7 +74,7 @@ class EventPresenter extends BasePresenter
 
     protected function formatDate($date)
     {
-        return '<time datetime="' . $date->format("c") . '" itemprop="startDate">' . $date->format('M j, Y') . '</time>';
+        return '<time datetime="' . $date->format('c') . '" itemprop="startDate">' . $date->format('M j, Y') . '</time>';
     }
 
     public function formattedBlockDate()
@@ -95,10 +95,10 @@ class EventPresenter extends BasePresenter
             return $this->entity->forced_date;
         }
             if ($next = $this->entity->nextOcurrenceExclusive) {
-                return '<time datetime="' . $next->date->format("c") . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format("c") . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
+                return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
             }
             if ($last = $this->entity->lastOcurrence) {
-                return '<time datetime="' . $last->date->format("c") . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format("c") . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
+                return '<time datetime="' . $last->date->format('c') . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format('c') . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
             }
 
     }
@@ -113,7 +113,7 @@ class EventPresenter extends BasePresenter
     public function nextOcurrenceTime()
     {
         if ($next = $this->entity->nextOcurrence) {
-            return '<time datetime="' . $next->date->format("c") . '" itemprop="startDate">' . $next->date->format('g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format("c") . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
+            return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
         }
     }
 
@@ -191,7 +191,7 @@ class EventPresenter extends BasePresenter
     public function buyButtonText()
     {
         if ($this->isSoldOut()) {
-            return "Sold Out";
+            return 'Sold Out';
         }
 
         if ($this->entity->buy_button_text) {

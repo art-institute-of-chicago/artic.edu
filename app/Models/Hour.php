@@ -68,50 +68,50 @@ class Hour extends AbstractModel
     {
         return [
             [
-                "name" => 'valid_from',
-                "doc" => "Valid From",
-                "type" => "datetime",
-                "value" => function () {
+                'name' => 'valid_from',
+                'doc' => 'Valid From',
+                'type' => 'datetime',
+                'value' => function () {
                     return $this->valid_from;
                 },
             ],
             [
-                "name" => 'valid_through',
-                "doc" => "Valid Through",
-                "type" => "datetime",
-                "value" => function () {
+                'name' => 'valid_through',
+                'doc' => 'Valid Through',
+                'type' => 'datetime',
+                'value' => function () {
                     return $this->valid_through;
                 },
             ],
             [
-                "name" => 'type',
-                "doc" => "Type",
-                "type" => "number",
-                "value" => function () {
+                'name' => 'type',
+                'doc' => 'Type',
+                'type' => 'number',
+                'value' => function () {
                     return $this->type;
                 },
             ],
             [
-                "name" => 'title',
-                "doc" => "Title",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'title',
+                'doc' => 'Title',
+                'type' => 'string',
+                'value' => function () {
                     return $this->title;
                 },
             ],
             [
-                "name" => 'url',
-                "doc" => "URL",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'url',
+                'doc' => 'URL',
+                'type' => 'string',
+                'value' => function () {
                     return $this->url;
                 },
             ],
             [
-                "name" => 'published',
-                "doc" => "Published",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->published;
                 },
             ],

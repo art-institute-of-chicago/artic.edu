@@ -17,11 +17,11 @@ class DeleteSelectionSelectionTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->integer("selection_id")->unsigned();
-            $table->foreign("selection_id")->references('id')->on('selections')->onDelete('cascade');
-            $table->integer("related_selection_id")->unsigned();
-            $table->foreign("related_selection_id")->references('id')->on('selections')->onDelete('cascade');
-            $table->index(["related_selection_id", "selection_id"]);
+            $table->integer('selection_id')->unsigned();
+            $table->foreign('selection_id')->references('id')->on('selections')->onDelete('cascade');
+            $table->integer('related_selection_id')->unsigned();
+            $table->foreign('related_selection_id')->references('id')->on('selections')->onDelete('cascade');
+            $table->index(['related_selection_id', 'selection_id']);
 
             $table->integer('position')->unsigned()->index();
         });

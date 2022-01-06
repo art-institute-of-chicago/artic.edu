@@ -64,7 +64,7 @@ class EmailSeries extends AbstractModel implements Sortable
     {
         return [
             [
-                "name" => 'title',
+                'name' => 'title',
                 'doc' => 'Name of this email series',
                 'type' => 'string',
                 'value' => function () {
@@ -72,7 +72,7 @@ class EmailSeries extends AbstractModel implements Sortable
                 },
             ],
             [
-                "name" => 'timing_message',
+                'name' => 'timing_message',
                 'doc' => 'Notice regarding how often this email series is sent',
                 'type' => 'string',
                 'value' => function () {
@@ -80,7 +80,7 @@ class EmailSeries extends AbstractModel implements Sortable
                 },
             ],
             [
-                "name" => 'alert_message',
+                'name' => 'alert_message',
                 'doc' => 'Custom notice to display above the copy selection options',
                 'type' => 'string',
                 'value' => function () {
@@ -88,7 +88,7 @@ class EmailSeries extends AbstractModel implements Sortable
                 },
             ],
             [
-                "name" => 'show_affiliate',
+                'name' => 'show_affiliate',
                 'doc' => 'Whether to show the "Include affiliate-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {
@@ -96,7 +96,7 @@ class EmailSeries extends AbstractModel implements Sortable
                 },
             ],
             [
-                "name" => 'show_member',
+                'name' => 'show_member',
                 'doc' => 'Whether to show the "Include member-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {
@@ -104,7 +104,7 @@ class EmailSeries extends AbstractModel implements Sortable
                 },
             ],
             [
-                "name" => 'show_luminary',
+                'name' => 'show_luminary',
                 'doc' => 'Whether to show the "Include luminary-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {
@@ -112,7 +112,7 @@ class EmailSeries extends AbstractModel implements Sortable
                 },
             ],
             [
-                "name" => 'show_nonmember',
+                'name' => 'show_nonmember',
                 'doc' => 'Whether to show the "Include nonmember-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {
@@ -120,7 +120,7 @@ class EmailSeries extends AbstractModel implements Sortable
                 },
             ],
             [
-                "name" => 'show_affiliate_test',
+                'name' => 'show_affiliate_test',
                 'doc' => 'Whether to show the "Send affiliate test" option',
                 'type' => 'boolean',
                 'value' => function () {
@@ -128,7 +128,7 @@ class EmailSeries extends AbstractModel implements Sortable
                 },
             ],
             [
-                "name" => 'show_member_test',
+                'name' => 'show_member_test',
                 'doc' => 'Whether to show the "Send member test" option',
                 'type' => 'boolean',
                 'value' => function () {
@@ -136,7 +136,7 @@ class EmailSeries extends AbstractModel implements Sortable
                 },
             ],
             [
-                "name" => 'show_luminary_test',
+                'name' => 'show_luminary_test',
                 'doc' => 'Whether to show the "Send luminary test" option',
                 'type' => 'boolean',
                 'value' => function () {
@@ -144,7 +144,7 @@ class EmailSeries extends AbstractModel implements Sortable
                 },
             ],
             [
-                "name" => 'show_nonmember_test',
+                'name' => 'show_nonmember_test',
                 'doc' => 'Whether to show the "Send nonmember test" option',
                 'type' => 'boolean',
                 'value' => function () {

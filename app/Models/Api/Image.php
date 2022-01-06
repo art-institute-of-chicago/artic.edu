@@ -25,22 +25,22 @@ class Image extends BaseApiModel
         $downloadName = null;
 
         $src = $dams->getUrl($this->id);
-        $srcset = $src . " 300w";
+        $srcset = $src . ' 300w';
 
         $image = [
-            "type" => 'dams',
-            "src" => $src,
-            "srcset" => $srcset,
-            "width" => $this->width,
-            "height" => $this->height,
-            "shareUrl" => $src,
-            "shareTitle" => $shareTitle,
-            "downloadUrl" => $src,
-            "downloadName" => $shareTitle,
-            "credit" => $credit,
-            "creditUrl" => $creditUrl,
-            "iiifId" => $dams->getBaseUrl() . $dams->getVersion() . '/' . $this->id,
-            "alt" => $this->alt_text
+            'type' => 'dams',
+            'src' => $src,
+            'srcset' => $srcset,
+            'width' => $this->width,
+            'height' => $this->height,
+            'shareUrl' => $src,
+            'shareTitle' => $shareTitle,
+            'downloadUrl' => $src,
+            'downloadName' => $shareTitle,
+            'credit' => $credit,
+            'creditUrl' => $creditUrl,
+            'iiifId' => $dams->getBaseUrl() . $dams->getVersion() . '/' . $this->id,
+            'alt' => $this->alt_text
         ];
 
         if (isset($this->lqip) && !empty($this->lqip)) {

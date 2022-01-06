@@ -105,7 +105,7 @@ class GeneratePdfs extends Command
         }
 
         set_time_limit(0);
-        $html = file_get_contents($fullUrl . "?print=true");
+        $html = file_get_contents($fullUrl . '?print=true');
 
         $pdfFileName = 'download-' . $route . '-' . $model->id . '.pdf';
         $pdfPath = storage_path('app/' . $pdfFileName);

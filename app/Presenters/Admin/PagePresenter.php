@@ -15,8 +15,8 @@ class PagePresenter extends BasePresenter
     {
         return [
             [
-                "type" => 'text',
-                "content" => '<p>' . $this->entity->exhibition_history_intro_copy . '</p>'
+                'type' => 'text',
+                'content' => '<p>' . $this->entity->exhibition_history_intro_copy . '</p>'
             ]
         ];
     }

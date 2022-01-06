@@ -77,14 +77,14 @@ class Artist extends BaseApiModel
 
     public function getShortNameAttribute()
     {
-        $arr = explode(",", $this->sort_title, 2);
+        $arr = explode(',', $this->sort_title, 2);
 
         return $arr[0];
     }
 
     public function getShortNameQualifierAttribute()
     {
-        $arr = explode(",", $this->sort_title, 2);
+        $arr = explode(',', $this->sort_title, 2);
 
         return count($arr) > 1 ? trim($arr[1]) : '';
     }

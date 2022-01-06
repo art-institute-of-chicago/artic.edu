@@ -14,7 +14,7 @@ class CreateFaqTables extends Migration
             $table->integer('position')->unsigned()->nullable();
 
             $table->integer('page_id')->unsigned();
-            $table->foreign("page_id")->references('id')->on('pages')->onDelete('CASCADE');
+            $table->foreign('page_id')->references('id')->on('pages')->onDelete('CASCADE');
         });
     }
 

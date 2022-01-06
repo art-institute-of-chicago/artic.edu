@@ -220,7 +220,7 @@ class RyersonClassVisitController extends FormController
             'variation' => null,
             'blocks' => [
                 [
-                    "type" => 'textarea',
+                    'type' => 'textarea',
                     'variation' => null,
                     'id' => 'multiple_sessions_description',
                     'placeholder' => '',
@@ -537,7 +537,7 @@ class RyersonClassVisitController extends FormController
                 [
                     'variation' => null,
                     'type' => 'submit',
-                    'label' => "Submit",
+                    'label' => 'Submit',
                 ]
             ]
         ]);

@@ -25,10 +25,10 @@ class SiteTag extends AbstractModel
     {
         return [
             [
-                "name" => 'name',
-                "doc" => "Name of this tag",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'name',
+                'doc' => 'Name of this tag',
+                'type' => 'string',
+                'value' => function () {
                     return $this->name;
                 },
             ],

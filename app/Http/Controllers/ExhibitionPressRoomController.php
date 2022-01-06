@@ -41,7 +41,7 @@ class ExhibitionPressRoomController extends FrontController
             'title' => $title,
             'subNav' => $subNav,
             'nav' => $nav,
-            "breadcrumb" => $crumbs,
+            'breadcrumb' => $crumbs,
             'wideBody' => true,
             'filters' => null,
             'listingCountText' => 'Showing ' . $items->total() . ' exhibition press rooms',

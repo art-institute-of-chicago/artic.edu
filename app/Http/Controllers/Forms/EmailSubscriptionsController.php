@@ -42,7 +42,7 @@ class EmailSubscriptionsController extends FormController
                 $old->subscriptions = $subscriptions;
                 $this->old = $old;
             } else {
-                $withErrors['message'] = "Your e-mail address is not currently subscribed. Please fill out and submit the form below to begin receiving messages from the Art Institute of Chicago.";
+                $withErrors['message'] = 'Your e-mail address is not currently subscribed. Please fill out and submit the form below to begin receiving messages from the Art Institute of Chicago.';
             }
         }
         $this->title = 'Email Subscriptions';
@@ -61,7 +61,7 @@ class EmailSubscriptionsController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => [
                 [
-                    "type" => 'label',
+                    'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('subscriptions')) ? $errors->first('subscriptions') : null,
                     'optional' => null,
@@ -80,7 +80,7 @@ class EmailSubscriptionsController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => [
                 [
-                    "type" => 'label',
+                    'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('unsubscribe')) ? $errors->first('unsubscribe') : null,
                     'optional' => null,
@@ -209,7 +209,7 @@ class EmailSubscriptionsController extends FormController
                 [
                     'variation' => null,
                     'type' => 'submit',
-                    'label' => "Update",
+                    'label' => 'Update',
                 ]
             ]
         ]);

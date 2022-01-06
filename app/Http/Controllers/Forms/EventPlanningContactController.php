@@ -229,7 +229,7 @@ class EventPlanningContactController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => [
                 [
-                    "type" => 'label',
+                    'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('how_did_you_hear')) ? $errors->first('how_did_you_hear') : null,
                     'optional' => null,
@@ -285,7 +285,7 @@ class EventPlanningContactController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => [
                 [
-                    "type" => 'label',
+                    'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('type_of_event')) ? $errors->first('type_of_event') : null,
                     'optional' => null,
@@ -395,7 +395,7 @@ class EventPlanningContactController extends FormController
             'variation' => null,
             'blocks' => [
                 [
-                    "type" => 'textarea',
+                    'type' => 'textarea',
                     'variation' => null,
                     'id' => 'other_info',
                     'placeholder' => '',
@@ -449,7 +449,7 @@ class EventPlanningContactController extends FormController
                 [
                     'variation' => null,
                     'type' => 'submit',
-                    'label' => "Submit",
+                    'label' => 'Submit',
                 ]
             ]
         ]);

@@ -41,7 +41,7 @@ class ExperienceImageRepository extends ModuleRepository
             }
         } else {
             foreach ($credits_map as $contentBundleKey => $artworkKey) {
-                $fields[$contentBundleKey] = "";
+                $fields[$contentBundleKey] = '';
             }
         }
 

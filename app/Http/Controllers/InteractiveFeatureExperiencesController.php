@@ -70,7 +70,7 @@ class InteractiveFeatureExperiencesController extends FrontController
         $view_data = [
             'title' => $title,
             'nav' => $nav,
-            "breadcrumb" => $crumbs,
+            'breadcrumb' => $crumbs,
             'wideBody' => true,
             'filters' => null,
             'listingCountText' => 'Showing ' . $items->total() . ' items',

@@ -47,7 +47,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('geotarget', [GeotargetController::class, 'geotarget']);
 
     Route::get('/', function () {
-        return "API";
+        return 'API';
     });
 
     /**

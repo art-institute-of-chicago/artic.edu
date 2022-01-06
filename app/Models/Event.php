@@ -337,7 +337,7 @@ class Event extends AbstractModel
         if ($ticketedEvent) {
             $date = $this->nextOcurrence->date ?? $this->lastOcurrence->date ?? null;
 
-            return "https://sales.artic.edu/Events/Event/" . $ticketedEvent->id . ($date ? "?date=" . $date->format('n/j/Y') : '');
+            return 'https://sales.artic.edu/Events/Event/' . $ticketedEvent->id . ($date ? '?date=' . $date->format('n/j/Y') : '');
         }
 
         return $value;
@@ -592,442 +592,442 @@ class Event extends AbstractModel
     {
         return [
             [
-                "name" => "title",
-                "doc" => "Title",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'title',
+                'doc' => 'Title',
+                'type' => 'string',
+                'value' => function () {
                     return $this->title;
                 },
             ],
             [
-                "name" => "title_display",
-                "doc" => "Display Title",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'title_display',
+                'doc' => 'Display Title',
+                'type' => 'string',
+                'value' => function () {
                     return $this->title_display;
                 },
             ],
             [
-                "name" => "image_url",
-                "doc" => "Image URL",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'image_url',
+                'doc' => 'Image URL',
+                'type' => 'string',
+                'value' => function () {
                     return $this->present()->imageUrl();
                 },
             ],
             [
-                "name" => "hero_caption",
-                "doc" => "Hero caption",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'hero_caption',
+                'doc' => 'Hero caption',
+                'type' => 'string',
+                'value' => function () {
                     return $this->hero_caption;
                 },
             ],
             [
-                "name" => "header_description",
-                "doc" => "Header Description",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'header_description',
+                'doc' => 'Header Description',
+                'type' => 'string',
+                'value' => function () {
                     return $this->description;
                 },
             ],
             [
-                "name" => "short_description",
-                "doc" => "Short Description",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'short_description',
+                'doc' => 'Short Description',
+                'type' => 'string',
+                'value' => function () {
                     return $this->short_description;
                 },
             ],
             [
-                "name" => "list_description",
-                "doc" => "list_description",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'list_description',
+                'doc' => 'list_description',
+                'type' => 'string',
+                'value' => function () {
                     return $this->list_description;
                 },
             ],
             [
-                "name" => "description",
-                "doc" => "All copy text",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'description',
+                'doc' => 'All copy text',
+                'type' => 'string',
+                'value' => function () {
                     return $this->present()->copy();
                 },
             ],
             [
-                "name" => "location",
-                "doc" => "Location",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'location',
+                'doc' => 'Location',
+                'type' => 'string',
+                'value' => function () {
                     return $this->location;
                 },
             ],
             [
-                "name" => "event_type",
-                "doc" => "Type",
-                "type" => "number",
-                "value" => function () {
+                'name' => 'event_type',
+                'doc' => 'Type',
+                'type' => 'number',
+                'value' => function () {
                     return $this->event_type;
                 },
             ],
             [
-                "name" => "alt_event_types",
-                "doc" => "Alternate Type",
-                "type" => "number",
-                "value" => function () {
+                'name' => 'alt_event_types',
+                'doc' => 'Alternate Type',
+                'type' => 'number',
+                'value' => function () {
                     return Arr::pluck($this->alt_types, 'id');
                 },
             ],
             [
-                "name" => "audience",
-                "doc" => "Audience",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'audience',
+                'doc' => 'Audience',
+                'type' => 'string',
+                'value' => function () {
                     return $this->audience;
                 },
             ],
             [
-                "name" => "alt_audiences",
-                "doc" => "Alternate Audiences",
-                "type" => "number",
-                "value" => function () {
+                'name' => 'alt_audiences',
+                'doc' => 'Alternate Audiences',
+                'type' => 'number',
+                'value' => function () {
                     return Arr::pluck($this->alt_audiences, 'id');
                 },
             ],
             [
-                "name" => "programs",
-                "doc" => "Programs",
-                "type" => "number",
-                "value" => function () {
+                'name' => 'programs',
+                'doc' => 'Programs',
+                'type' => 'number',
+                'value' => function () {
                     return Arr::pluck($this->programs, 'pivot.event_program_id');
                 },
             ],
             [
-                "name" => "is_ticketed",
-                "doc" => "Is ticketed",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_ticketed',
+                'doc' => 'Is ticketed',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_ticketed;
                 },
             ],
             [
-                "name" => "ticketed_event_id",
-                "doc" => "Unique identifer of the event in our central ticketing system",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'ticketed_event_id',
+                'doc' => 'Unique identifer of the event in our central ticketing system',
+                'type' => 'string',
+                'value' => function () {
                     $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
 
                     return $ticketedEvent ? $ticketedEvent->id : null;
                 },
             ],
             [
-                "name" => "buy_tickets_link",
-                "doc" => "buy_tickets_link",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'buy_tickets_link',
+                'doc' => 'buy_tickets_link',
+                'type' => 'string',
+                'value' => function () {
                     return $this->buy_tickets_link;
                 },
             ],
             [
-                "name" => "rsvp_link",
-                "doc" => "RSVP Link",
-                "type" => "string",
+                'name' => 'rsvp_link',
+                'doc' => 'RSVP Link',
+                'type' => 'string',
                 // WEB-1198: Derive sales site link from related ticketed event
-                "value" => function () {
+                'value' => function () {
                     return $this->buy_tickets_link;
                 },
             ],
             [
-                "name" => "buy_button_text",
-                "doc" => "buy_button_text",
-                "type" => "string",
+                'name' => 'buy_button_text',
+                'doc' => 'buy_button_text',
+                'type' => 'string',
                 // WEB-1198: Derive sales site link from related ticketed event
-                "value" => function () {
+                'value' => function () {
                     return $this->present()->buyButtonText();
                 },
             ],
             [
-                "name" => "buy_button_caption",
-                "doc" => "buy_button_caption",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'buy_button_caption',
+                'doc' => 'buy_button_caption',
+                'type' => 'string',
+                'value' => function () {
                     return $this->buy_button_caption;
                 },
             ],
             [
-                "name" => "is_registration_required",
-                "doc" => "Is Registration required",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_registration_required',
+                'doc' => 'Is Registration required',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_registration_required;
                 },
             ],
             [
-                "name" => "is_member_exclusive",
-                "doc" => "Is member exclusive",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_member_exclusive',
+                'doc' => 'Is member exclusive',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_member_exclusive;
                 },
             ],
             [
-                "name" => "is_sold_out",
-                "doc" => "is_sold_out",
-                "type" => "boolean",
+                'name' => 'is_sold_out',
+                'doc' => 'is_sold_out',
+                'type' => 'boolean',
                 // WEB-414: Do not use `$this->present()->isSoldOut` here
-                "value" => function () {
+                'value' => function () {
                     return $this->is_sold_out;
                 },
             ],
             [
-                "name" => "is_free",
-                "doc" => "Is Free",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_free',
+                'doc' => 'Is Free',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_free;
                 },
             ],
             [
-                "name" => "is_rsvp",
-                "doc" => "Is RSVP",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_rsvp',
+                'doc' => 'Is RSVP',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_rsvp;
                 },
             ],
             [
-                "name" => "is_private",
-                "doc" => "Is Private",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_private',
+                'doc' => 'Is Private',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_private;
                 },
             ],
             [
-                "name" => "is_sales_button_hidden",
-                "doc" => "Is Sales Button Hidden",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_sales_button_hidden',
+                'doc' => 'Is Sales Button Hidden',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_sales_button_hidden;
                 },
             ],
             [
-                "name" => "start_time",
-                "doc" => "Start Time",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'start_time',
+                'doc' => 'Start Time',
+                'type' => 'string',
+                'value' => function () {
                     // https://www.php.net/manual/en/dateinterval.format.php
                     return $this->start_time ? \Carbon\CarbonInterval::create($this->start_time)->format('%H:%I') : null;
                 }
             ],
             [
-                "name" => "end_time",
-                "doc" => "End Time",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'end_time',
+                'doc' => 'End Time',
+                'type' => 'string',
+                'value' => function () {
                     // https://www.php.net/manual/en/dateinterval.format.php
                     return $this->end_time ? \Carbon\CarbonInterval::create($this->end_time)->format('%H:%I') : null;
                 }
             ],
             [
-                "name" => "start_date",
-                "doc" => "Date the event begins",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'start_date',
+                'doc' => 'Date the event begins',
+                'type' => 'string',
+                'value' => function () {
                     return $this->date_start ? $this->date_start->toIso8601String() : null;
                 },
             ],
             [
-                "name" => "end_date",
-                "doc" => "Date the event ends",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'end_date',
+                'doc' => 'Date the event ends',
+                'type' => 'string',
+                'value' => function () {
                     return $this->date_end ? $this->date_end->toIso8601String() : null;
                 },
             ],
             [
-                "name" => "forced_date",
-                "doc" => "forced_date",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'forced_date',
+                'doc' => 'forced_date',
+                'type' => 'string',
+                'value' => function () {
                     return $this->forced_date;
                 },
             ],
             [
-                "name" => "door_time",
-                "doc" => "door_time",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'door_time',
+                'doc' => 'door_time',
+                'type' => 'string',
+                'value' => function () {
                     // https://www.php.net/manual/en/dateinterval.format.php
                     return $this->door_time ? \Carbon\CarbonInterval::create($this->door_time)->format('%H:%I') : null;
                 }
             ],
             [
-                "name" => "sponsor_id",
-                "doc" => "Sponsor ID",
-                "type" => "integer",
-                "value" => function () {
+                'name' => 'sponsor_id',
+                'doc' => 'Sponsor ID',
+                'type' => 'integer',
+                'value' => function () {
                     return $this->sponsors->first()->id ?? null;
                 },
             ],
             [
-                "name" => "content",
-                "doc" => "Content",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'content',
+                'doc' => 'Content',
+                'type' => 'string',
+                'value' => function () {
                     return $this->content;
                 },
             ],
             [
-                "name" => "layout_type",
-                "doc" => "Layout Type",
-                "type" => "number",
-                "value" => function () {
+                'name' => 'layout_type',
+                'doc' => 'Layout Type',
+                'type' => 'number',
+                'value' => function () {
                     return $this->layout_type;
                 },
             ],
             [
-                "name" => "published",
-                "doc" => "Published",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->published;
                 },
             ],
             [
-                "name" => 'publish_start_date',
-                "doc" => "Publish Start Date",
-                "type" => "datetime",
-                "value" => function () {
+                'name' => 'publish_start_date',
+                'doc' => 'Publish Start Date',
+                'type' => 'datetime',
+                'value' => function () {
                     return $this->publish_start_date;
                 }
             ],
             [
-                "name" => 'publish_end_date',
-                "doc" => "Publish End Date",
-                "type" => "datetime",
-                "value" => function () {
+                'name' => 'publish_end_date',
+                'doc' => 'Publish End Date',
+                'type' => 'datetime',
+                'value' => function () {
                     return $this->publish_end_date;
                 }
             ],
             [
-                "name" => "slug",
-                "doc" => "slug",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'slug',
+                'doc' => 'slug',
+                'type' => 'string',
+                'value' => function () {
                     return $this->slug;
                 },
             ],
             [
-                "name" => "web_url",
-                "doc" => "web_url",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'web_url',
+                'doc' => 'web_url',
+                'type' => 'string',
+                'value' => function () {
                     return url(route('events.show', $this));
                 },
             ],
             [
-                "name" => "search_tags",
-                "doc" => "search_tags",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'search_tags',
+                'doc' => 'search_tags',
+                'type' => 'string',
+                'value' => function () {
                     return $this->search_tags;
                 },
             ],
             [
-                "name" => "is_admission_required",
-                "doc" => "Is admission required",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_admission_required',
+                'doc' => 'Is admission required',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_admission_required;
                 },
             ],
             [
-                "name" => "is_after_hours",
-                "doc" => "Is after hours",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_after_hours',
+                'doc' => 'Is after hours',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_after_hours;
                 },
             ],
             [
-                "name" => "entrance",
-                "doc" => "Which entrance to use for this event",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'entrance',
+                'doc' => 'Which entrance to use for this event',
+                'type' => 'string',
+                'value' => function () {
                     return self::$eventEntrances[$this->entrance] ?? null;
                 },
             ],
             [
-                "name" => "is_virtual_event",
-                "doc" => "Is virtual event",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_virtual_event',
+                'doc' => 'Is virtual event',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_virtual_event;
                 },
             ],
             [
-                "name" => "virtual_event_url",
-                "doc" => "Virtual event URL",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'virtual_event_url',
+                'doc' => 'Virtual event URL',
+                'type' => 'string',
+                'value' => function () {
                     return $this->virtual_event_url;
                 },
             ],
             [
-                "name" => "virtual_event_passcode",
-                "doc" => "Virtual event passcode",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'virtual_event_passcode',
+                'doc' => 'Virtual event passcode',
+                'type' => 'string',
+                'value' => function () {
                     return $this->virtual_event_passcode;
                 },
             ],
             [
-                "name" => "affiliate_group_id",
-                "doc" => "Identifier of affiliate group (event program) associated with this event",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'affiliate_group_id',
+                'doc' => 'Identifier of affiliate group (event program) associated with this event',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->affiliateGroup->id ?? null;
                 },
             ],
             [
-                "name" => "event_host_id",
-                "doc" => "Identifier of an event host (event program) associated with this event",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'event_host_id',
+                'doc' => 'Identifier of an event host (event program) associated with this event',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->eventHost->id ?? null;
                 },
             ],
             [
-                "name" => "join_url",
-                "doc" => "URL to the membership signup page",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'join_url',
+                'doc' => 'URL to the membership signup page',
+                'type' => 'string',
+                'value' => function () {
                     return $this->join_url;
                 },
             ],
             [
-                "name" => "survey_url",
-                "doc" => "URL to the survey associated with this event",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'survey_url',
+                'doc' => 'URL to the survey associated with this event',
+                'type' => 'string',
+                'value' => function () {
                     return $this->survey_url;
                 },
             ],
             [
-                "name" => "test_emails",
-                "doc" => "Extra email addresses to which to send email series tests",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'test_emails',
+                'doc' => 'Extra email addresses to which to send email series tests',
+                'type' => 'string',
+                'value' => function () {
                     return $this->test_emails;
                 },
             ],
             [
-                "name" => "email_series",
-                "doc" => "email_series",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'email_series',
+                'doc' => 'email_series',
+                'type' => 'string',
+                'value' => function () {
                     $eventHostTitle = $this->eventHost->name ?? null;
                     $emailSeriesPivots = $this->emailSeries->pluck('pivot');
 

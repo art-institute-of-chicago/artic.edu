@@ -13,8 +13,8 @@ class Styles extends BaseFilteredList
 
         if (!$list->isEmpty()) {
             return [
-                'placeholder' => "Find Styles",
-                'title' => "Styles",
+                'placeholder' => 'Find Styles',
+                'title' => 'Styles',
                 'active' => $this->activeList,
                 'list' => $list,
                 'listSearch' => true,

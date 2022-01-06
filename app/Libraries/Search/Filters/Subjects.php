@@ -13,8 +13,8 @@ class Subjects extends BaseFilteredList
 
         if (!$list->isEmpty()) {
             return [
-                'placeholder' => "Find Subjects",
-                'title' => "Subjects",
+                'placeholder' => 'Find Subjects',
+                'title' => 'Subjects',
                 'active' => $this->activeList,
                 'list' => $list,
                 'listSearch' => true,

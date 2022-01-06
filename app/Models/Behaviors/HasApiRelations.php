@@ -15,7 +15,7 @@ trait HasApiRelations
     public function apiModels($relation, $model, $ttl = null)
     {
         // Obtain the API class
-        $modelClass = "\\App\\Models\\Api\\" . ucfirst($model);
+        $modelClass = '\\App\\Models\\Api\\' . ucfirst($model);
 
         // Get all Ids
         $ids = $this->{$relation}->pluck('datahub_id')->toArray();

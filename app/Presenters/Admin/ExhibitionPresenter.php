@@ -22,7 +22,7 @@ class ExhibitionPresenter extends BasePresenter
      */
     public function date()
     {
-        $date = "";
+        $date = '';
 
         // Strangely, we cannot use isset() or empty() here
         $hasStart = $this->aic_start_at !== null;
@@ -51,11 +51,11 @@ class ExhibitionPresenter extends BasePresenter
     {
         switch ($this->entity->cms_exhibition_type) {
             case \App\Models\Exhibition::SPECIAL:
-                return "super-hero";
+                return 'super-hero';
 
                 break;
             case \App\Models\Exhibition::LARGE:
-                return "feature";
+                return 'feature';
 
                 break;
             case \App\Models\Exhibition::BASIC:
@@ -106,7 +106,7 @@ class ExhibitionPresenter extends BasePresenter
             return new Carbon($this->entity->aic_start_at);
         }
 
-            return "";
+            return '';
 
     }
 
@@ -119,7 +119,7 @@ class ExhibitionPresenter extends BasePresenter
             return new Carbon($this->entity->aic_end_at);
         }
 
-            return "";
+            return '';
 
     }
 

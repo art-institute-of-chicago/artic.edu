@@ -29,9 +29,9 @@ class ExhibitionPressRoomRepository extends ModuleRepository
             'nav' => null,
             'intro' => $item->short_description,
             'headerImage' => $item->imageFront('banner'),
-            "title" => $item->title,
-            "breadcrumb" => [],
-            "blocks" => null,
+            'title' => $item->title,
+            'breadcrumb' => [],
+            'blocks' => null,
             'nav' => [],
             'page' => $item,
         ];

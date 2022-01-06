@@ -311,11 +311,11 @@ class MigrateSidebarRelatedBrowsers extends Migration
         Schema::create('article_article_sidebar', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer("article_id")->unsigned();
-            $table->foreign("article_id")->references('id')->on('articles')->onDelete('cascade');
-            $table->integer("related_article_id")->unsigned();
-            $table->foreign("related_article_id")->references('id')->on('articles')->onDelete('cascade');
-            $table->index(["related_article_id", "article_id"]);
+            $table->integer('article_id')->unsigned();
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->integer('related_article_id')->unsigned();
+            $table->foreign('related_article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->index(['related_article_id', 'article_id']);
             $table->integer('position')->unsigned()->index();
         });
 
@@ -381,9 +381,9 @@ class MigrateSidebarRelatedBrowsers extends Migration
             $table->timestamps();
             $table->integer('experience_id')->unsigned();
             $table->foreign('experience_id')->references('id')->on('experiences')->onDelete('cascade');
-            $table->integer("artwork_id")->unsigned();
-            $table->foreign("artwork_id")->references('id')->on('artworks')->onDelete('cascade');
-            $table->index(["artwork_id", "experience_id"], 'artwork_experience_artwork_id_experience_id_idx');
+            $table->integer('artwork_id')->unsigned();
+            $table->foreign('artwork_id')->references('id')->on('artworks')->onDelete('cascade');
+            $table->index(['artwork_id', 'experience_id'], 'artwork_experience_artwork_id_experience_id_idx');
             $table->integer('position')->unsigned()->index();
         });
 

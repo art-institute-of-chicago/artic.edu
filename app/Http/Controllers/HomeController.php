@@ -70,7 +70,7 @@ class HomeController extends FrontController
     private function getArticles()
     {
         $page = Page::forType('Articles and Publications')->first();
-        $articles = $page->getRelatedWithApiModels("featured_items", [], [
+        $articles = $page->getRelatedWithApiModels('featured_items', [], [
             'articles' => false,
             'experiences' => false
         ]) ?? null;

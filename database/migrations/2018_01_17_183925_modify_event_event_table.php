@@ -14,9 +14,9 @@ class ModifyEventEventTable extends Migration
     public function up()
     {
         Schema::table('event_event', function (Blueprint $table) {
-            $table->dropForeign("event_event_related_event_id_foreign");
-            $table->dropColumn("related_event_id")->unsigned();
-            $table->integer("datahub_id")->unsigned()->nullable();
+            $table->dropForeign('event_event_related_event_id_foreign');
+            $table->dropColumn('related_event_id')->unsigned();
+            $table->integer('datahub_id')->unsigned()->nullable();
         });
     }
 
@@ -28,10 +28,10 @@ class ModifyEventEventTable extends Migration
     public function down()
     {
         Schema::table('event_event', function (Blueprint $table) {
-            $table->dropColumn("datahub_id");
-            $table->integer("related_event_id")->unsigned();
-            $table->foreign("related_event_id")->references('id')->on('events')->onDelete('cascade');
-            $table->index(["related_event_id", "event_id"]);
+            $table->dropColumn('datahub_id');
+            $table->integer('related_event_id')->unsigned();
+            $table->foreign('related_event_id')->references('id')->on('events')->onDelete('cascade');
+            $table->index(['related_event_id', 'event_id']);
         });
     }
 }

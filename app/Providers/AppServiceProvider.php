@@ -31,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
         $this->composeTemplatesViews();
         File::observe(FileObserver::class);
 
-        \Illuminate\Pagination\AbstractPaginator::defaultView("site.pagination.aic");
-        \Illuminate\Pagination\AbstractPaginator::defaultSimpleView("site.pagination.simple-aic");
+        \Illuminate\Pagination\AbstractPaginator::defaultView('site.pagination.aic');
+        \Illuminate\Pagination\AbstractPaginator::defaultSimpleView('site.pagination.simple-aic');
     }
 
     /**

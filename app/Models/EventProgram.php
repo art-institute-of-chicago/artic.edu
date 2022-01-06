@@ -34,26 +34,26 @@ class EventProgram extends AbstractModel
     {
         return [
             [
-                "name" => "name",
-                "doc" => "Name",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'name',
+                'doc' => 'Name',
+                'type' => 'string',
+                'value' => function () {
                     return $this->name;
                 },
             ],
             [
-                "name" => "is_affiliate_group",
-                "doc" => "Is Affiliate Group",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_affiliate_group',
+                'doc' => 'Is Affiliate Group',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_affiliate_group;
                 },
             ],
             [
-                "name" => "is_event_host",
-                "doc" => "Is Event Host",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'is_event_host',
+                'doc' => 'Is Event Host',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->is_event_host;
                 },
             ],

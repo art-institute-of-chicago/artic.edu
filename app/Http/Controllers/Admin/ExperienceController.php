@@ -78,8 +78,8 @@ class ExperienceController extends ModuleController
             $field = $column['nested'];
             $nestedCount = $item->{$column['nested']}->count();
             $value = '<a href="';
-            $value .= moduleRoute("experiences.slides", $this->routePrefix, 'index', [$item->id]);
-            $value .= '">' . $nestedCount . " " . (strtolower($nestedCount > 1
+            $value .= moduleRoute('experiences.slides', $this->routePrefix, 'index', [$item->id]);
+            $value .= '">' . $nestedCount . ' ' . (strtolower($nestedCount > 1
                 ? Str::plural($column['title'])
                 : Str::singular($column['title']))) . '</a>';
         } else {

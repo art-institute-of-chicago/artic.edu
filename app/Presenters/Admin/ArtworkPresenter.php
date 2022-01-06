@@ -33,7 +33,7 @@ class ArtworkPresenter extends BasePresenter
 
     public function headerType()
     {
-        return "gallery";
+        return 'gallery';
     }
 
     public function imageThumb()
@@ -59,10 +59,10 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->description) {
             array_push($blocks, [
-                "type" => 'itemprop',
-                "content" => [[
-                    "type" => 'text',
-                    "content" => $this->getFilteredDescription(),
+                'type' => 'itemprop',
+                'content' => [[
+                    'type' => 'text',
+                    'content' => $this->getFilteredDescription(),
                 ]],
                 'itemprop' => 'description',
             ]);
@@ -91,30 +91,30 @@ class ArtworkPresenter extends BasePresenter
         }
 
         array_push($blocks, [
-            "type" => 'deflist',
-            "variation" => 'u-hide@large+ sr-show@large+',
-            "ariaOwns" => "dl-artwork-details",
-            "items" => $items
+            'type' => 'deflist',
+            'variation' => 'u-hide@large+ sr-show@large+',
+            'ariaOwns' => 'dl-artwork-details',
+            'items' => $items
         ]);
 
         array_push($blocks, $this->getArtworkDetailsBlock());
 
         array_push($blocks, [
-            "type" => 'text',
-            "content" => '<h2 class="sr-only">Extended information about this artwork</h2>',
+            'type' => 'text',
+            'content' => '<h2 class="sr-only">Extended information about this artwork</h2>',
         ]);
         array_push($blocks, $this->getArtworkAccordionBlocks());
 
         array_push($blocks, [
-            "type" => 'hr',
+            'type' => 'hr',
         ]);
 
         array_push($blocks, $this->entity->is_deaccessioned ? [
-            "type" => 'text',
-            "content" => '<p class="f-caption">Object information is based on information known at time of deaccession and does not reflect any subsequent changes or new research findings about the object.</p>',
+            'type' => 'text',
+            'content' => '<p class="f-caption">Object information is based on information known at time of deaccession and does not reflect any subsequent changes or new research findings about the object.</p>',
         ] : [
-            "type" => 'text',
-            "content" => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu">'
+            'type' => 'text',
+            'content' => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu">'
             . (app('printservice')->isPrintMode() ? 'collections@artic.edu' : '')
             . '</a>. Information about image downloads and licensing is <a href="/image-licensing">available here</a>.</p>',
         ]);
@@ -377,9 +377,9 @@ class ArtworkPresenter extends BasePresenter
         }
 
         return [
-            "type" => 'deflist',
-            "items" => $details,
-            "id" => "dl-artwork-details"
+            'type' => 'deflist',
+            'items' => $details,
+            'id' => 'dl-artwork-details'
         ];
     }
 
@@ -436,8 +436,8 @@ class ArtworkPresenter extends BasePresenter
                 $content = "{$item->catalogue_title} {$item->number} {$item->state_edition}";
 
                 return [
-                    "type" => 'text',
-                    "content" => '<p>' . $content . '</p>'
+                    'type' => 'text',
+                    'content' => '<p>' . $content . '</p>'
                 ];
             });
 
@@ -467,9 +467,9 @@ class ArtworkPresenter extends BasePresenter
         }
 
             return [
-                "type" => 'accordion',
-                "content" => $content,
-                "titleFont" => "f-module-title-2"
+                'type' => 'accordion',
+                'content' => $content,
+                'titleFont' => 'f-module-title-2'
             ];
 
     }
@@ -502,8 +502,8 @@ class ArtworkPresenter extends BasePresenter
                     $blockHtml .= '</ul>';
                 }
                 $block['blocks'][] = [
-                    "type" => 'text',
-                    "content" => $blockHtml
+                    'type' => 'text',
+                    'content' => $blockHtml
                 ];
                 $blocks[] = $block;
             }

@@ -81,7 +81,7 @@ abstract class BasePresenter
             }
         }
 
-        return "No";
+        return 'No';
     }
 
     protected function addCssClass($html, $class)

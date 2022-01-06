@@ -84,7 +84,7 @@ class BaseApiController extends ModuleController
 
     protected function getApiRepository()
     {
-        return $this->app->make("{$this->namespace}\Repositories\\Api\\" . $this->modelName . "Repository");
+        return $this->app->make("{$this->namespace}\Repositories\\Api\\" . $this->modelName . 'Repository');
     }
 
     public function getIndexItems($scopes = [], $forcePagination = false)

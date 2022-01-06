@@ -17,7 +17,7 @@ class CreateOffersTables extends Migration
             $table->integer('position')->unsigned()->nullable();
 
             $table->integer('exhibition_id')->unsigned();
-            $table->foreign("exhibition_id")->references('id')->on('exhibitions')->onDelete('CASCADE');
+            $table->foreign('exhibition_id')->references('id')->on('exhibitions')->onDelete('CASCADE');
         });
     }
 

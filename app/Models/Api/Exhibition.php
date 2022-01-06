@@ -222,7 +222,7 @@ class Exhibition extends BaseApiModel
     public function scopeOrderBy($query, $field, $direction = 'asc')
     {
         $params = [
-            "sort" => [
+            'sort' => [
                 "{$field}" => $direction
             ]
         ];
@@ -233,7 +233,7 @@ class Exhibition extends BaseApiModel
     public function scopeOrderByDate($query, $direction = 'asc')
     {
         $params = [
-            "sort" => [
+            'sort' => [
                 'aic_start_at' => $direction
             ]
         ];

@@ -13,8 +13,8 @@ class Artists extends BaseFilteredList
 
         if (!$list->isEmpty()) {
             return [
-                'placeholder' => "Find Artists",
-                'title' => "Artists",
+                'placeholder' => 'Find Artists',
+                'title' => 'Artists',
                 'active' => $this->activeList,
                 'list' => $list,
                 'listSearch' => true,

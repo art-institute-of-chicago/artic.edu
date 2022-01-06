@@ -41,17 +41,17 @@ class GenericPagesController extends FrontController
             'nav' => $navigation,
             'intro' => $page->short_description, // WEB-2253: Add different field here to prevent SEO pollution?
             'headerImage' => $page->imageFront('banner'),
-            "title" => $page->title,
+            'title' => $page->title,
             'title_display' => $page->title_display,
-            "breadcrumb" => $crumbs,
-            "blocks" => null,
+            'breadcrumb' => $crumbs,
+            'blocks' => null,
             'page' => $page,
         ]);
     }
 
     protected function getPage($slug)
     {
-        $idSlug = collect(explode("/", $slug))->last();
+        $idSlug = collect(explode('/', $slug))->last();
         $page = $this->genericPageRepository->forSlug($idSlug);
         if (empty($page)) {
             $page = $this->genericPageRepository->getById((int) $idSlug);

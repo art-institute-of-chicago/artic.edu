@@ -58,7 +58,7 @@ class EventOccurrenceTransformer extends ApiTransformer
         $value = strip_tags($value);
 
         // Remove &nbsp;
-        $value = str_replace("&nbsp;", "", $value);
+        $value = str_replace('&nbsp;', '', $value);
 
         $value = trim($value);
 

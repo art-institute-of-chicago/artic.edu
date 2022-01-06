@@ -43,8 +43,8 @@ class GenericPresenter extends BasePresenter
         // add "Resources" to the breadcrumbs
         if (in_array($id, [14, 16, 17])) {
             $crumb = [];
-            $crumb['label'] = "Resources";
-            $crumb['href'] = "/collection/research_resources";
+            $crumb['label'] = 'Resources';
+            $crumb['href'] = '/collection/research_resources';
 
             return $crumb;
         }

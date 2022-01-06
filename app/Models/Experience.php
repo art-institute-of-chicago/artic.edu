@@ -248,66 +248,66 @@ class Experience extends AbstractModel implements Sortable
     {
         return [
             [
-                "name" => 'title',
-                "doc" => "Title",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'title',
+                'doc' => 'Title',
+                'type' => 'string',
+                'value' => function () {
                     return $this->title;
                 },
             ],
             [
-                "name" => 'sub_title',
-                "doc" => "Sub-title",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'sub_title',
+                'doc' => 'Sub-title',
+                'type' => 'string',
+                'value' => function () {
                     return $this->sub_title;
                 },
             ],
             [
-                "name" => 'listing_description',
-                "doc" => "Listing description",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'listing_description',
+                'doc' => 'Listing description',
+                'type' => 'string',
+                'value' => function () {
                     return $this->listing_description;
                 },
             ],
             [
-                "name" => 'position',
-                "doc" => "Position",
-                "type" => "number",
-                "value" => function () {
+                'name' => 'position',
+                'doc' => 'Position',
+                'type' => 'number',
+                'value' => function () {
                     return $this->position;
                 },
             ],
             [
-                "name" => 'interactive_feature_id',
-                "doc" => "Interactive feature ID",
-                "type" => "number",
-                "value" => function () {
+                'name' => 'interactive_feature_id',
+                'doc' => 'Interactive feature ID',
+                'type' => 'number',
+                'value' => function () {
                     return $this->interactive_feature_id;
                 },
             ],
             [
-                "name" => 'archived',
-                "doc" => "Archived",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'archived',
+                'doc' => 'Archived',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->archived;
                 },
             ],
             [
-                "name" => 'kiosk_only',
-                "doc" => "Kiosk-only",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'kiosk_only',
+                'doc' => 'Kiosk-only',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->kiosk_only;
                 },
             ],
             [
-                "name" => 'published',
-                "doc" => "Published",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->published;
                 },
             ],

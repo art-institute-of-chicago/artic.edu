@@ -27,26 +27,26 @@ class Sponsor extends AbstractModel
     {
         return [
             [
-                "name" => "title",
-                "doc" => "Title",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'title',
+                'doc' => 'Title',
+                'type' => 'string',
+                'value' => function () {
                     return $this->title;
                 },
             ],
             [
-                "name" => "published",
-                "doc" => "Published",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->published;
                 },
             ],
             [
-                "name" => 'content',
-                "doc" => "Content",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'content',
+                'doc' => 'Content',
+                'type' => 'string',
+                'value' => function () {
                     return $this->renderBlocks();
                 }
             ],

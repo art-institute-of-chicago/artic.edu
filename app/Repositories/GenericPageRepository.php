@@ -53,9 +53,9 @@ class GenericPageRepository extends ModuleRepository
             'nav' => $navigation,
             'intro' => $item->short_description,
             'headerImage' => $item->imageFront('banner'),
-            "title" => $item->title,
-            "breadcrumb" => $item->present()->breadCrumb(),
-            "blocks" => null,
+            'title' => $item->title,
+            'breadcrumb' => $item->present()->breadCrumb(),
+            'blocks' => null,
             'page' => $item,
 
         ];

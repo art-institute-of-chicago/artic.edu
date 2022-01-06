@@ -79,13 +79,13 @@ trait HandleApiBlocks
         }
 
         // Always load the API repository first and fallback to the augmented or regular one.
-        $apiRepo = config('twill.namespace') . "\\Repositories\\Api\\" . ucfirst($model) . "Repository";
+        $apiRepo = config('twill.namespace') . '\\Repositories\\Api\\' . ucfirst($model) . 'Repository';
 
         if (class_exists($apiRepo)) {
             return app($apiRepo);
         }
 
-            return app(config('twill.namespace') . "\\Repositories\\" . ucfirst($model) . "Repository");
+            return app(config('twill.namespace') . '\\Repositories\\' . ucfirst($model) . 'Repository');
 
     }
 }

@@ -26,7 +26,7 @@ class ArticleController extends FrontController
 
         $page = Page::forType('Articles')->first();
 
-        $featuredItems = $page->getRelatedWithApiModels("featured_items", [], [
+        $featuredItems = $page->getRelatedWithApiModels('featured_items', [], [
             'articles' => false,
             'experiences' => false
         ]);

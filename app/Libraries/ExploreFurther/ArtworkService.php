@@ -52,7 +52,7 @@ class ArtworkService extends BaseService
         if ($this->resource->date_start && $this->resource->date_end) {
             $before = DateHelpers::incrementBefore($this->resource->date_start);
             $after = DateHelpers::incrementAfter($this->resource->date_start);
-            $tags['date'] = collect([$this->resource->date_start => DateHelpers::printYear($before) . "–" . DateHelpers::printYear($after)]);
+            $tags['date'] = collect([$this->resource->date_start => DateHelpers::printYear($before) . '–' . DateHelpers::printYear($after)]);
         }
 
         // Build Color Tags

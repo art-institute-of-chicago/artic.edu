@@ -215,7 +215,7 @@ class EducatorAdmissionController extends FormController
                 [
                     'variation' => null,
                     'type' => 'submit',
-                    'label' => "Submit",
+                    'label' => 'Submit',
                 ]
             ]
         ]);

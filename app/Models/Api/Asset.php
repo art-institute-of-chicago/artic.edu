@@ -167,48 +167,48 @@ class Asset extends BaseApiModel
     public function scopeMultimediaForArtwork($query, $artworkId)
     {
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "bool" => [
-                            "should" => [
+                        'bool' => [
+                            'should' => [
                                 [
-                                    "term" => [
-                                        "artwork_ids" => $artworkId
+                                    'term' => [
+                                        'artwork_ids' => $artworkId
                                     ],
                                 ],
                                 [
-                                    "term" => [
-                                        "artwork_id" => $artworkId
+                                    'term' => [
+                                        'artwork_id' => $artworkId
                                     ]
                                 ]
                             ]
                         ]
                     ],
                     [
-                        "bool" => [
-                            "should" => [
+                        'bool' => [
+                            'should' => [
                                 [
-                                    "bool" => [
-                                        "must" => [
+                                    'bool' => [
+                                        'must' => [
                                             [
-                                                "term" => [
-                                                    "is_multimedia_resource" => true
+                                                'term' => [
+                                                    'is_multimedia_resource' => true
                                                 ]
                                             ],
                                             [
-                                                "exists" => [
-                                                    "field" => "content"
+                                                'exists' => [
+                                                    'field' => 'content'
                                                 ]
                                             ]
                                         ]
                                     ]
                                 ],
                                 [
-                                    "bool" => [
-                                        "must_not" => [
-                                            "terms" => [
-                                                "api_model" => ['videos', 'images', 'sounds', 'texts']
+                                    'bool' => [
+                                        'must_not' => [
+                                            'terms' => [
+                                                'api_model' => ['videos', 'images', 'sounds', 'texts']
                                             ]
                                         ]
                                     ]
@@ -217,18 +217,18 @@ class Asset extends BaseApiModel
                         ]
                     ],
                     [
-                        "bool" => [
-                            "should" => [
+                        'bool' => [
+                            'should' => [
                                 [
-                                    "prefix" => [
-                                        "content.keyword" => 'https://www.youtube.com'
+                                    'prefix' => [
+                                        'content.keyword' => 'https://www.youtube.com'
                                     ]
                                 ],
                                 [
-                                    "bool" => [
-                                        "must_not" => [
-                                            "term" => [
-                                                "api_model" => "videos"
+                                    'bool' => [
+                                        'must_not' => [
+                                            'term' => [
+                                                'api_model' => 'videos'
                                             ]
                                         ]
                                     ]
@@ -246,36 +246,36 @@ class Asset extends BaseApiModel
     public function scopeEducationalForArtwork($query, $artworkId)
     {
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "term" => [
-                            "artwork_ids" => $artworkId
+                        'term' => [
+                            'artwork_ids' => $artworkId
                         ],
                     ],
                     [
-                        "term" => [
-                            "is_educational_resource" => true
+                        'term' => [
+                            'is_educational_resource' => true
                         ]
                     ],
                     [
-                        "exists" => [
-                            "field" => "content"
+                        'exists' => [
+                            'field' => 'content'
                         ]
                     ],
                     [
-                        "bool" => [
-                            "should" => [
+                        'bool' => [
+                            'should' => [
                                 [
-                                    "prefix" => [
-                                        "content.keyword" => 'https://www.youtube.com'
+                                    'prefix' => [
+                                        'content.keyword' => 'https://www.youtube.com'
                                     ]
                                 ],
                                 [
-                                    "bool" => [
-                                        "must_not" => [
-                                            "term" => [
-                                                "api_model" => "videos"
+                                    'bool' => [
+                                        'must_not' => [
+                                            'term' => [
+                                                'api_model' => 'videos'
                                             ]
                                         ]
                                     ]

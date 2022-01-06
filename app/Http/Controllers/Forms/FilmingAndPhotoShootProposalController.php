@@ -87,7 +87,7 @@ class FilmingAndPhotoShootProposalController extends FormController
             'variation' => null,
             'blocks' => [
                 [
-                    "type" => 'textarea',
+                    'type' => 'textarea',
                     'variation' => null,
                     'id' => 'description',
                     'placeholder' => '',
@@ -157,7 +157,7 @@ class FilmingAndPhotoShootProposalController extends FormController
             'variation' => null,
             'blocks' => [
                 [
-                    "type" => 'textarea',
+                    'type' => 'textarea',
                     'variation' => null,
                     'id' => 'locations',
                     'placeholder' => '',
@@ -194,7 +194,7 @@ class FilmingAndPhotoShootProposalController extends FormController
             'variation' => null,
             'blocks' => [
                 [
-                    "type" => 'textarea',
+                    'type' => 'textarea',
                     'variation' => null,
                     'id' => 'crew_members',
                     'placeholder' => '',
@@ -212,7 +212,7 @@ class FilmingAndPhotoShootProposalController extends FormController
             'variation' => null,
             'blocks' => [
                 [
-                    "type" => 'textarea',
+                    'type' => 'textarea',
                     'variation' => null,
                     'id' => 'equipment_list',
                     'placeholder' => '',
@@ -271,7 +271,7 @@ class FilmingAndPhotoShootProposalController extends FormController
                 [
                     'variation' => null,
                     'type' => 'submit',
-                    'label' => "Submit",
+                    'label' => 'Submit',
                 ]
             ]
         ]);

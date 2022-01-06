@@ -175,7 +175,7 @@ class ApiQueryBuilder
             return $this;
         }
 
-            throw new \Exception("whereIn function has been defined only for IDS at the API Query Builder");
+            throw new \Exception('whereIn function has been defined only for IDS at the API Query Builder');
 
     }
 
@@ -194,7 +194,7 @@ class ApiQueryBuilder
         // and can add them each as a where clause. We will maintain the boolean we
         // received when the method was called and pass it into the nested where.
         if (is_array($column)) {
-            throw new \Exception("where function should be called with 1 level of nesting. No arrays.");
+            throw new \Exception('where function should be called with 1 level of nesting. No arrays.');
         }
 
         // If the given operator is not found in the list of valid operators we will

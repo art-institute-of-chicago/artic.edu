@@ -13,7 +13,7 @@ class CreateExperiencesTables extends Migration
             $table->text('description')->nullable();
             $table->integer('position')->unsigned()->nullable();
             $table->integer('digital_label_id')->unsigned();
-            $table->foreign("digital_label_id")->references('id')->on('digital_labels')->onDelete('CASCADE');
+            $table->foreign('digital_label_id')->references('id')->on('digital_labels')->onDelete('CASCADE');
         });
 
         Schema::create('experience_slugs', function (Blueprint $table) {

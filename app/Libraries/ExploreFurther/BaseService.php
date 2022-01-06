@@ -98,7 +98,7 @@ class BaseService
 
             // Build Date Tags
             if ($this->resource->birth_date && $this->resource->birth_date) {
-                $tags['date'] = collect([$this->resource->birth_date . '|' . $this->resource->death_date => DateHelpers::printYear($this->resource->birth_date) . "–" . DateHelpers::printYear($this->resource->death_date)]);
+                $tags['date'] = collect([$this->resource->birth_date . '|' . $this->resource->death_date => DateHelpers::printYear($this->resource->birth_date) . '–' . DateHelpers::printYear($this->resource->death_date)]);
             }
         } else {
             // Build Classification Tags

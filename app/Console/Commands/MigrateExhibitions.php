@@ -21,7 +21,7 @@ class MigrateExhibitions extends Command
 
     public function handle()
     {
-        ini_set("memory_limit", "-1");
+        ini_set('memory_limit', '-1');
 
         $ids = Search::query()->resources(['exhibitions'])->rawSearch([
             'exists' => [

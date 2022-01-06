@@ -13,8 +13,8 @@ class Places extends BaseFilteredList
 
         if (!$list->isEmpty()) {
             return [
-                'placeholder' => "Find Places",
-                'title' => "Places",
+                'placeholder' => 'Find Places',
+                'title' => 'Places',
                 'active' => $this->activeList,
                 'list' => $list,
                 'listSearch' => true,

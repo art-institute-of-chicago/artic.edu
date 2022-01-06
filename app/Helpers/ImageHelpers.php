@@ -36,20 +36,20 @@ class ImageHelpers
         $src = $imageUrl;
 
         $image = [
-            "sourceType" => $options['sourceType'] ?? 'imgix',
-            "src" => $src,
-            "width" => $options['width'] ?? '',
-            "height" => $options['height'] ?? '',
-            "shareUrl" => '#',
-            "shareTitle" => '',
-            "downloadUrl" => $src,
-            "downloadName" => '',
-            "credit" => '',
-            "creditUrl" => '',
-            "lqip" => $lqip ?? null,
-            "alt" => $options['alt_text'] ?? null,
-            "caption" => $options['caption'] ?? null,
-            "iiifId" => $options['iiifId'] ?? null,
+            'sourceType' => $options['sourceType'] ?? 'imgix',
+            'src' => $src,
+            'width' => $options['width'] ?? '',
+            'height' => $options['height'] ?? '',
+            'shareUrl' => '#',
+            'shareTitle' => '',
+            'downloadUrl' => $src,
+            'downloadName' => '',
+            'credit' => '',
+            'creditUrl' => '',
+            'lqip' => $lqip ?? null,
+            'alt' => $options['alt_text'] ?? null,
+            'caption' => $options['caption'] ?? null,
+            'iiifId' => $options['iiifId'] ?? null,
         ];
 
         return $image;
@@ -69,21 +69,21 @@ class ImageHelpers
         $creditUrl = '';
 
         $image = [
-            "sourceType" => $sourceType,
-            "src" => $src,
-            "width" => $cropParams['crop_w'] ?? $imageObject->width,
-            "height" => $cropParams['crop_h'] ?? $imageObject->height,
-            "shareUrl" => '#',
-            "shareTitle" => '',
-            "downloadUrl" => $src,
-            "downloadName" => $imageObject->filename,
-            "credit" => $credit,
-            "creditUrl" => $creditUrl,
-            "lqip" => $lqip ?? null,
-            "alt" => $imageObject->alt_text ?? null,
-            "caption" => $imageObject->caption ?? null,
-            "iiifId" => $imageObject->iiifId ?? null,
-            "restrict" => $imageObject->tags->contains('slug', 'restrict-download') ?? false,
+            'sourceType' => $sourceType,
+            'src' => $src,
+            'width' => $cropParams['crop_w'] ?? $imageObject->width,
+            'height' => $cropParams['crop_h'] ?? $imageObject->height,
+            'shareUrl' => '#',
+            'shareTitle' => '',
+            'downloadUrl' => $src,
+            'downloadName' => $imageObject->filename,
+            'credit' => $credit,
+            'creditUrl' => $creditUrl,
+            'lqip' => $lqip ?? null,
+            'alt' => $imageObject->alt_text ?? null,
+            'caption' => $imageObject->caption ?? null,
+            'iiifId' => $imageObject->iiifId ?? null,
+            'restrict' => $imageObject->tags->contains('slug', 'restrict-download') ?? false,
         ];
 
         return $image;
@@ -152,7 +152,7 @@ class ImageHelpers
             $sourceType = static::aic_determineImageSourceType($src);
 
             if ($sourceType === 'placeholder') {
-                $posterSrc = "//placehold.dev.area17.com/image/150x84";
+                $posterSrc = '//placehold.dev.area17.com/image/150x84';
             }
 
             if ($sourceType === 'imgix') {
@@ -182,7 +182,7 @@ class ImageHelpers
                 $fullVal = strpos($originalSrc, '!3000,3000') ? '!3000,3000' : 'full';
                 $base = explode('/full/' . $fullVal . '/0/default.jpg', $originalSrc)[0];
                 $resizeVal = 'full';
-                $strposterSrcingSrc = $base . "/" . $resizeVal . "/150,/0/default.jpg";
+                $strposterSrcingSrc = $base . '/' . $resizeVal . '/150,/0/default.jpg';
             }
         }
 
@@ -273,11 +273,11 @@ class ImageHelpers
         if (!$width && !$height && $srcset) {
             $width = array_values($srcset)[0];
             if ($ratio) {
-                if ($ratio === "1:1") {
+                if ($ratio === '1:1') {
                     $height = $width;
-                } elseif (sizeof(explode(":", $ratio)) === 2) {
-                    $ratioW = explode(":", $settings['ratio'])[0];
-                    $ratioH = explode(":", $settings['ratio'])[1];
+                } elseif (sizeof(explode(':', $ratio)) === 2) {
+                    $ratioW = explode(':', $settings['ratio'])[0];
+                    $ratioH = explode(':', $settings['ratio'])[1];
                     $height = round($width * ($ratioH / $ratioW));
                 }
             } elseif ($sourceType === 'imgix') {
@@ -317,26 +317,26 @@ class ImageHelpers
         if ($sourceType === 'placeholder') {
             // Work out ratio cropping
             if (!empty($settings['ratio'])) {
-                if ($settings['ratio'] === "1:1") {
+                if ($settings['ratio'] === '1:1') {
                     // Square
                     if ($height > $width) {
                         $width = $height;
                     } else {
                         $height = $width;
                     }
-                } elseif (sizeof(explode(":", $settings['ratio'])) === 2) {
+                } elseif (sizeof(explode(':', $settings['ratio'])) === 2) {
                     // Some other ratio
-                    $ratioW = explode(":", $settings['ratio'])[0];
-                    $ratioH = explode(":", $settings['ratio'])[1];
+                    $ratioW = explode(':', $settings['ratio'])[0];
+                    $ratioH = explode(':', $settings['ratio'])[1];
                     $height = round($width * ($ratioH / $ratioW));
                 }
             }
             // For place holders its a bit dumb because its not passing through a service
             foreach ($srcset as $size) {
-                $stringSrcset .= "//placehold.dev.area17.com/image/" . $size . "x" . round(($height / $width) * $size) . " " . $size . "w, ";
+                $stringSrcset .= '//placehold.dev.area17.com/image/' . $size . 'x' . round(($height / $width) * $size) . ' ' . $size . 'w, ';
             }
 
-            $stringSrc = "//placehold.dev.area17.com/image/" . $LQIPDimension . "x" . round(($height / $width) * $LQIPDimension);
+            $stringSrc = '//placehold.dev.area17.com/image/' . $LQIPDimension . 'x' . round(($height / $width) * $LQIPDimension);
         }
 
         if ($sourceType === 'imgix') {
@@ -351,17 +351,17 @@ class ImageHelpers
 
             // Work out ratio cropping
             if (!empty($settings['ratio']) && $width && $height && $height !== 'auto') {
-                if ($settings['ratio'] === "1:1") {
+                if ($settings['ratio'] === '1:1') {
                     // Square
                     if ($height > $width) {
                         $width = $height;
                     } else {
                         $height = $width;
                     }
-                } elseif (sizeof(explode(":", $settings['ratio'])) === 2) {
+                } elseif (sizeof(explode(':', $settings['ratio'])) === 2) {
                     // Some other ratio
-                    $ratioW = explode(":", $settings['ratio'])[0];
-                    $ratioH = explode(":", $settings['ratio'])[1];
+                    $ratioW = explode(':', $settings['ratio'])[0];
+                    $ratioH = explode(':', $settings['ratio'])[1];
                     $height = round($width * ($ratioH / $ratioW));
                 }
                 // Because we're limiting with a dimension, we need to crop
@@ -430,14 +430,14 @@ class ImageHelpers
             // Generate variants
             foreach ($srcset as $i => $size) {
                 if ($stringSrcset) {
-                    $stringSrcset .= ", ";
+                    $stringSrcset .= ', ';
                 }
             $imgixSettings['w'] = $size;
             if ($height && $height !== 'auto') {
                 $imgixSettings['h'] = round(($height / $width) * $size);
             }
             $imgixSettingsString = http_build_query($imgixSettings);
-            $stringSrcset .= $base . $imgixSettingsString . " " . $size . "w";
+            $stringSrcset .= $base . $imgixSettingsString . ' ' . $size . 'w';
             }
 
             // Get data-pin-media for pinterest
@@ -478,7 +478,7 @@ class ImageHelpers
 
             // Check to see if a ratio is defined
             if (!empty($settings['ratio'])) {
-                if ($settings['ratio'] === "1:1") {
+                if ($settings['ratio'] === '1:1') {
                     // IIIF does have a square region pre-defined
                     $resizeVal = 'square';
                     if ($height > $width) {
@@ -486,10 +486,10 @@ class ImageHelpers
                     } else {
                         $height = $width;
                     }
-                } elseif (sizeof(explode(":", $settings['ratio'])) === 2) {
+                } elseif (sizeof(explode(':', $settings['ratio'])) === 2) {
                     // Some other ratio
-                    $ratioW = explode(":", $settings['ratio'])[0];
-                    $ratioH = explode(":", $settings['ratio'])[1];
+                    $ratioW = explode(':', $settings['ratio'])[0];
+                    $ratioH = explode(':', $settings['ratio'])[1];
                     $height = round($width * ($ratioH / $ratioW));
                     // Need to manually calc area to grab..
                     // First check the image is taller than the ratio height we need
@@ -502,14 +502,14 @@ class ImageHelpers
                         $cropWidth = $width;
                         $cropHeight = round($cropWidth * ($ratioH / $ratioW));
                         $topPosition = round(($height - $cropHeight) / 2);
-                        $resizeVal = "0," . $topPosition . "," . $cropWidth . "," . $cropHeight;
+                        $resizeVal = '0,' . $topPosition . ',' . $cropWidth . ',' . $cropHeight;
                         $height = $cropHeight;
                     } else {
                         // The source image is 16:something-less-than-9
                         $cropHeight = $height;
                         $cropWidth = round($cropHeight * ($ratioW / $ratioH));
                         $leftPosition = round(($width - $cropWidth) / 2);
-                        $resizeVal = $leftPosition . ",0," . $cropWidth . "," . $cropHeight;
+                        $resizeVal = $leftPosition . ',0,' . $cropWidth . ',' . $cropHeight;
                         $width = $cropWidth;
                     }
                 }
@@ -518,15 +518,15 @@ class ImageHelpers
             // Generate variants
             foreach ($srcset as $i => $size) {
                 if (!empty($stringSrcset)) {
-                    $stringSrcset .= ", ";
+                    $stringSrcset .= ', ';
                 }
-            $stringSrcset .= $base . "/" . $resizeVal . "/" . $size . ",/0/default.jpg " . $size . "w";
+            $stringSrcset .= $base . '/' . $resizeVal . '/' . $size . ',/0/default.jpg ' . $size . 'w';
             }
 
             // Get data-pin-media for pinterest
-            $pinterestMedia = $base . "/" . $resizeVal . "/600,/0/default.jpg";
+            $pinterestMedia = $base . '/' . $resizeVal . '/600,/0/default.jpg';
 
-            $stringSrc = $base . "/" . $resizeVal . "/" . $LQIPDimension . ",/0/default.jpg";
+            $stringSrc = $base . '/' . $resizeVal . '/' . $LQIPDimension . ',/0/default.jpg';
         }
 
         $stringWidth = $width;

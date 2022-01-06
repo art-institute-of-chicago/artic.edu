@@ -50,8 +50,8 @@ class Departments extends BaseFilteredList
 
         if (!$list->isEmpty()) {
             return [
-                'placeholder' => "Find Departments",
-                'title' => "Departments",
+                'placeholder' => 'Find Departments',
+                'title' => 'Departments',
                 'active' => $this->activeList,
                 'list' => $sortedList,
                 'listSearch' => false,

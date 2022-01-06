@@ -377,7 +377,7 @@ class GroupReservationsController extends FormController
             'variation' => null,
             'blocks' => [
                 [
-                    "type" => 'textarea',
+                    'type' => 'textarea',
                     'variation' => null,
                     'id' => 'additional_info',
                     'placeholder' => '',
@@ -444,7 +444,7 @@ class GroupReservationsController extends FormController
                 [
                     'variation' => null,
                     'type' => 'submit',
-                    'label' => "Submit",
+                    'label' => 'Submit',
                 ]
             ]
         ]);

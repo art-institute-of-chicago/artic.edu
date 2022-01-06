@@ -90,66 +90,66 @@ class Video extends AbstractModel
     {
         return [
             [
-                "name" => 'published',
-                "doc" => "Published",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->published;
                 },
             ],
             [
-                "name" => 'date',
-                "doc" => "Date",
-                "type" => "date",
-                "value" => function () {
+                'name' => 'date',
+                'doc' => 'Date',
+                'type' => 'date',
+                'value' => function () {
                     return $this->date;
                 },
             ],
             [
-                "name" => 'video_url',
-                "doc" => "Video URL",
-                "type" => "text",
-                "value" => function () {
+                'name' => 'video_url',
+                'doc' => 'Video URL',
+                'type' => 'text',
+                'value' => function () {
                     return $this->video_url;
                 },
             ],
             [
-                "name" => "slug",
-                "doc" => "slug",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'slug',
+                'doc' => 'slug',
+                'type' => 'string',
+                'value' => function () {
                     return $this->slug;
                 },
             ],
             [
-                "name" => "web_url",
-                "doc" => "web_url",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'web_url',
+                'doc' => 'web_url',
+                'type' => 'string',
+                'value' => function () {
                     return url(route('articles.show', $this));
                 },
             ],
             [
-                "name" => "heading",
-                "doc" => "heading",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'heading',
+                'doc' => 'heading',
+                'type' => 'string',
+                'value' => function () {
                     return $this->heading;
                 },
             ],
             [
-                "name" => 'copy',
-                "doc" => "Copy",
-                "type" => "text",
-                "value" => function () {
+                'name' => 'copy',
+                'doc' => 'Copy',
+                'type' => 'text',
+                'value' => function () {
                     return $this->blocks;
                 },
             ],
             [
-                "name" => 'related',
-                "doc" => "Related Content",
-                "type" => "array",
-                "value" => function () {
+                'name' => 'related',
+                'doc' => 'Related Content',
+                'type' => 'array',
+                'value' => function () {
                     return $this->transformRelated();
                 },
             ],

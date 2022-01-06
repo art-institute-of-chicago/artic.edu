@@ -39,7 +39,7 @@ class EventsController extends FrontController
             $ongoing = null;
             $eventsByDay = $this->repository->groupByDate($collection);
             if (request('program')) {
-                $subtitle = "These are events related to " . EventProgram::find(request('program'))->name . ".";
+                $subtitle = 'These are events related to ' . EventProgram::find(request('program'))->name . '.';
             }
         } else {
             // Divide the collection by normal events and ongoing ones
