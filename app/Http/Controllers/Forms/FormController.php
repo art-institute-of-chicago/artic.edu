@@ -123,7 +123,7 @@ abstract class FormController extends FrontController
     protected function getYesNoArray($selected, $fieldName = 'yes_no')
     {
         $options = ['Yes' => 'Yes',
-            'No' => 'No',];
+            'No' => 'No', ];
 
         $list = [];
         foreach ($options as $value => $label) {

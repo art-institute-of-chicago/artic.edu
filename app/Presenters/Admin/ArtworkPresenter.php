@@ -289,7 +289,7 @@ class ArtworkPresenter extends BasePresenter
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Title' => [$this->entity->all_titles,'name']
+            'Title' => [$this->entity->all_titles, 'name']
         ]));
 
         if ($this->entity->place_pivots != null && count($this->entity->place_pivots) > 0) {
@@ -353,7 +353,7 @@ class ArtworkPresenter extends BasePresenter
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Medium' => [$this->entity->medium_display,'material'],
+            'Medium' => [$this->entity->medium_display, 'material'],
             'Inscriptions' => [$this->entity->inscriptions],
             'Dimensions' => [$this->entity->dimensions, 'size'],
             'Credit Line' => [$this->entity->credit_line],
