@@ -112,6 +112,5 @@ return $config->setRules([
     'trim_array_spaces' => true,            // Arrays should be formatted like function/method arguments, without leading or trailing single line space.
     'unary_operator_spaces' => true,        // Unary operators should be placed adjacent to their operands.
     'whitespace_after_comma_in_array' => true, // In array declaration, there MUST be a whitespace after each comma.
-
 ])
 ->setFinder($finder);
