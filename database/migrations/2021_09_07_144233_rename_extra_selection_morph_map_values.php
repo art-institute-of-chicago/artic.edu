@@ -16,7 +16,7 @@ class RenameExtraSelectionMorphMapValues extends Migration
             . 'subject_type = ? '
             . 'where subject_type = ?',
             ['highlights',
-            'selections']
+                'selections']
         );
 
         DB::update(
@@ -24,7 +24,7 @@ class RenameExtraSelectionMorphMapValues extends Migration
             . 'related_type = ? '
             . 'where related_type = ?',
             ['highlights',
-            'selections']
+                'selections']
         );
     }
 
@@ -40,7 +40,7 @@ class RenameExtraSelectionMorphMapValues extends Migration
             . 'subject_type = ? '
             . 'where subject_type = ?',
             ['selections',
-            'highlights']
+                'highlights']
         );
 
         DB::update(
@@ -48,7 +48,7 @@ class RenameExtraSelectionMorphMapValues extends Migration
             . 'related_type = ? '
             . 'where related_type = ?',
             ['selections',
-            'highlights']
+                'highlights']
         );
     }
 }

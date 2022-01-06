@@ -16,6 +16,7 @@ class StaticPagesController extends BaseController
     {
         $offset = ((Request::input('page') ?? 1) - 1) * $limit;
         $pages = $this->getPageCollection();
+
         return (new LengthAwarePaginator(
             $pages->slice($offset, $limit)->values(),
             $pages->count(),

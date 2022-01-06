@@ -13,7 +13,7 @@ use App\Models\Form\EmailSubscriptions;
 
 class EmailSubscriptionsController extends FormController
 {
-    protected $old = null;
+    protected $old;
 
     public function index(\Illuminate\Http\Request $request)
     {
@@ -26,7 +26,7 @@ class EmailSubscriptionsController extends FormController
             $response = $exactTarget->get();
 
             if ($response->status && $response->code == 200 && count($response->results)) {
-                $old = new EmailSubscriptions;
+                $old = new EmailSubscriptions();
                 $subscriptions = [];
                 foreach ($response->results[0]->Properties->Property as $index => $keyval) {
                     if ($keyval->Name == 'Email') {
@@ -42,60 +42,52 @@ class EmailSubscriptionsController extends FormController
                 $old->subscriptions = $subscriptions;
                 $this->old = $old;
             } else {
-                $withErrors['message'] = "Your e-mail address is not currently subscribed. Please fill out and submit the form below to begin receiving messages from the Art Institute of Chicago.";
+                $withErrors['message'] = 'Your e-mail address is not currently subscribed. Please fill out and submit the form below to begin receiving messages from the Art Institute of Chicago.';
             }
         }
         $this->title = 'Email Subscriptions';
         $this->seo->setTitle($this->title);
 
-        $blocks = array();
-        $formBlocks = array();
-        $subscriptionsFields = array();
-        $personalInformationFields = array();
-        $unsubscribeFields = array();
+        $blocks = [];
+        $formBlocks = [];
+        $subscriptionsFields = [];
+        $personalInformationFields = [];
+        $unsubscribeFields = [];
 
         $errors = session('errors');
 
-        /*
-         *
-         *  Subscriptions information
-         *
-         */
+        // Subscriptions information
         $subFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
-                  "type" => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('subscriptions')) ? $errors->first('subscriptions') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'label' => '',
-                )
-            ),
+            'blocks' => [
+                [
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('subscriptions')) ? $errors->first('subscriptions') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'label' => '',
+                ]
+            ],
         ];
         foreach ($this->getSubscriptionsArray($this->old('subscriptions')) as $d) {
             array_push($subFields['blocks'], $d);
         }
         $subscriptionsFields[] = $subFields;
 
-        /*
-         *
-         *  Unsubscribe
-         *
-         */
+        // Unsubscribe
         $unsubscribeFields[] = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
-                  "type" => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('unsubscribe')) ? $errors->first('unsubscribe') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'label' => '',
-                ),
-                array(
+            'blocks' => [
+                [
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('unsubscribe')) ? $errors->first('unsubscribe') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'label' => '',
+                ],
+                [
                     'type' => 'checkbox',
                     'variation' => '',
                     'id' => 'unsubscribe',
@@ -108,123 +100,119 @@ class EmailSubscriptionsController extends FormController
                     'checked' => $this->old('unsubscribe') ?? false,
                     'label' => 'I no longer wish to receive any Art Institute emails.',
                     'behavior' => 'formUnsubscribe'
-                ),
-            ),
+                ],
+            ],
         ];
 
-        /*
-         *
-         *  Personal information
-         *
-         */
-        $personalInformationFields[]= array(
+        // Personal information
+        $personalInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'email',
-                  'variation' => null,
-                  'id' => 'email',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => $this->old('email'),
-                  'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Email *',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'email',
+                    'variation' => null,
+                    'id' => 'email',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => $this->old('email'),
+                    'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Email *',
+                ],
+            ],
+        ];
 
-        $personalInformationFields[]= array(
+        $personalInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'first_name',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => $this->old('first_name'),
-                  'error' => (!empty($errors) && $errors->first('first_name')) ? $errors->first('first_name') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'First Name',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'first_name',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => $this->old('first_name'),
+                    'error' => (!empty($errors) && $errors->first('first_name')) ? $errors->first('first_name') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'First Name',
+                ],
+            ],
+        ];
 
-        $personalInformationFields[]= array(
+        $personalInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'last_name',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => $this->old('last_name'),
-                  'error' => (!empty($errors) && $errors->first('last_name')) ? $errors->first('last_name') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Last Name',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'last_name',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => $this->old('last_name'),
+                    'error' => (!empty($errors) && $errors->first('last_name')) ? $errors->first('last_name') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Last Name',
+                ],
+            ],
+        ];
 
-        $personalInformationFields[] = array(
+        $personalInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'captcha',
-                  'variation' => null,
-                  'id' => 'captcha',
-                  'error' => (!empty($errors) && $errors->first('captcha')) ? $errors->first('captcha') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => '',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'captcha',
+                    'variation' => null,
+                    'id' => 'captcha',
+                    'error' => (!empty($errors) && $errors->first('captcha')) ? $errors->first('captcha') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => '',
+                ],
+            ],
+        ];
 
-        array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $subscriptionsFields,
-          'legend' => 'Newsletter Options',
-        ));
+        array_push($formBlocks, [
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $subscriptionsFields,
+            'legend' => 'Newsletter Options',
+        ]);
 
-        array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $unsubscribeFields,
-          'legend' => 'Unsubscribe',
-        ));
+        array_push($formBlocks, [
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $unsubscribeFields,
+            'legend' => 'Unsubscribe',
+        ]);
 
-        array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $personalInformationFields,
-          'legend' => 'Personal Information',
-        ));
+        array_push($formBlocks, [
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $personalInformationFields,
+            'legend' => 'Personal Information',
+        ]);
 
-        array_push($blocks, array(
+        array_push($blocks, [
             'type' => 'form',
             'variation' => null,
             'action' => '/email-subscriptions',
             'method' => 'POST',
             'blocks' => $formBlocks,
-            'actions' => array(
-                array(
+            'actions' => [
+                [
                     'variation' => null,
                     'type' => 'submit',
-                    'label' => "Update",
-                )
-            )
-        ));
+                    'label' => 'Update',
+                ]
+            ]
+        ]);
 
         $view_data = [
             'subNav' => [],
@@ -236,9 +224,7 @@ class EmailSubscriptionsController extends FormController
         return view('site.forms.form', $view_data)->withErrors($withErrors, 'notices');
     }
 
-    /**
-     * @param EmailSubscriptionsRequest $request
-     */
+
     public function store(EmailSubscriptionsRequest $request)
     {
         $validated = $request->validated();
@@ -265,9 +251,9 @@ class EmailSubscriptionsController extends FormController
 
         if ($response === true) {
             return redirect(route('forms.email-subscriptions.thanks'));
-        } else {
-            abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
         }
+            abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
+
     }
 
 
@@ -278,17 +264,17 @@ class EmailSubscriptionsController extends FormController
         $list = [];
         foreach ($subs as $value => $label) {
             $item = [
-              'type' => 'checkbox',
-              'variation' => '',
-              'id' => 'subscriptions-'.$value,
-              'name' => 'subscriptions[]',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $label
+                'type' => 'checkbox',
+                'variation' => '',
+                'id' => 'subscriptions-' . $value,
+                'name' => 'subscriptions[]',
+                'value' => $value,
+                'error' => null,
+                'optional' => null,
+                'hint' => null,
+                'disabled' => false,
+                'checked' => false,
+                'label' => $label
             ];
 
             if ($selected) {
@@ -310,6 +296,6 @@ class EmailSubscriptionsController extends FormController
 
     private function old($field)
     {
-        return $this->old->$field ?? old($field);
+        return $this->old->{$field} ?? old($field);
     }
 }

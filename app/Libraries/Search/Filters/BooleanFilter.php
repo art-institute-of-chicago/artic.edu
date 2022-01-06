@@ -17,8 +17,8 @@ class BooleanFilter
     public function generate()
     {
         $base = [
-            'type'   => 'list',
-            'title'  => 'Show Only',
+            'type' => 'list',
+            'title' => 'Show Only',
             'active' => true,
             'collapsible' => false,
             'list' => $this->generateOptionsList()
@@ -32,7 +32,7 @@ class BooleanFilter
         return collect($this->options)->map(function ($label, $item) {
             $base = [
                 'enabled' => false,
-                'label'   => $label,
+                'label' => $label,
                 'disableCount' => true, //Disable count as we have no facets here
             ];
 

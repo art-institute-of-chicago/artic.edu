@@ -94,6 +94,7 @@ class ApiModelBuilder
     public function setModel($model)
     {
         $this->model = $model;
+
         return $this;
     }
 
@@ -106,6 +107,7 @@ class ApiModelBuilder
     public function with($relations)
     {
         $this->eagerLoad = array_merge($this->eagerLoad, $relations);
+
         return $this;
     }
 
@@ -195,7 +197,6 @@ class ApiModelBuilder
     /**
      * When searching filter by specific resources
      *
-     * @param  array $resources
      * @return $this
      */
     public function resources(array $resources)
@@ -222,19 +223,18 @@ class ApiModelBuilder
     /**
      * Filter elements by specific ID's
      *
-     * @param  array $ids
      * @return $this
      */
     public function ids(array $ids)
     {
         $this->query->ids($ids);
+
         return $this;
     }
 
     /**
      * Include fields at the results
      *
-     * @param  array $include
      * @return $this
      */
     public function include(array $inclusions)
@@ -277,11 +277,11 @@ class ApiModelBuilder
             if (count($result) == count(array_unique($id))) {
                 return $result;
             }
-        } elseif (! is_null($result)) {
+        } elseif (!is_null($result)) {
             return $result;
         }
 
-        throw (new ModelNotFoundException)->setModel(
+        throw (new ModelNotFoundException())->setModel(
             get_class($this->model),
             $id
         );
@@ -356,7 +356,7 @@ class ApiModelBuilder
             return $results;
         }
 
-        $models  = $this->model->hydrate($results->all());
+        $models = $this->model->hydrate($results->all());
 
         // Preserve metadata after hydrating the collection
         return CollectionHelpers::collectApi($models)->setMetadata($results->getMetadata());
@@ -371,7 +371,7 @@ class ApiModelBuilder
     {
         $builder = clone $this;
 
-        $page    = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
+        $page = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
         $perPage = is_null($perPage) ? $this->model->getPerPage() : $perPage;
 
         $results = $this->forPage($page, $perPage)->get($columns);
@@ -500,6 +500,7 @@ class ApiModelBuilder
         }
 
         $models = $result = $this->model->hydrate($results->all());
+
         return collect($models)->first();
     }
 
@@ -520,7 +521,7 @@ class ApiModelBuilder
 
         $perPage = $perPage ?: $this->model->getPerPage();
 
-        $results        = $this->forPage($page, $perPage)->get($columns);
+        $results = $this->forPage($page, $perPage)->get($columns);
         $paginationData = $results->getMetadata('pagination');
         $total = $paginationData ? $paginationData->total : $results->count();
 
@@ -545,9 +546,10 @@ class ApiModelBuilder
     {
         if ($this->performSearch) {
             return $this->getSearch($perPage, $columns, $pageName, $page);
-        } else {
-            return $this->getPaginated($perPage, $columns, $pageName, $page);
         }
+
+            return $this->getPaginated($perPage, $columns, $pageName, $page);
+
     }
 
     protected function paginator($items, $total, $perPage, $currentPage, $options)
@@ -593,9 +595,10 @@ class ApiModelBuilder
     {
         if ($this->customEndpoint) {
             return $this->customEndpoint;
-        } else {
-            return $this->performSearch ? 'search' : 'collection';
         }
+
+            return $this->performSearch ? 'search' : 'collection';
+
     }
 
     /**
@@ -629,7 +632,6 @@ class ApiModelBuilder
     /**
      * Apply the given scope on the current builder instance.
      *
-     * @param  callable  $scope
      * @param  array  $parameters
      * @return mixed
      */
@@ -637,6 +639,7 @@ class ApiModelBuilder
     {
         array_unshift($parameters, $this);
         $result = $scope(...array_values($parameters)) ?? $this;
+
         return $result;
     }
 
@@ -649,7 +652,7 @@ class ApiModelBuilder
      */
     public function __call($method, $parameters)
     {
-        if (method_exists($this->model, $scope = 'scope'.ucfirst($method))) {
+        if (method_exists($this->model, $scope = 'scope' . ucfirst($method))) {
             return $this->callScope([$this->model, $scope], $parameters);
         }
 
@@ -670,6 +673,6 @@ class ApiModelBuilder
      */
     public function __get($key)
     {
-        return $this->query->$key;
+        return $this->query->{$key};
     }
 }

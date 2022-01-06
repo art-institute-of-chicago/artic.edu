@@ -58,7 +58,7 @@ class IssueArticlePresenter extends BasePresenter
                 'active' => false,
                 'blocks' => [
                     [
-                        'type'  => 'link-list',
+                        'type' => 'link-list',
                         'links' => $this->entity
                             ->issue
                             ->present()
@@ -96,7 +96,7 @@ class IssueArticlePresenter extends BasePresenter
 
     public function references()
     {
-        //
+
     }
 
     public function citeAs()

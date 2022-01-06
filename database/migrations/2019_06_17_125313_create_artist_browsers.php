@@ -17,12 +17,12 @@ class CreateArtistBrowsers extends Migration
 
         foreach ($articleArtists as $article) {
             DB::table('related')->insert([
-                'subject_id'    =>  $article->artist_id,
-                'subject_type'  =>  'artists',
-                'related_type'  =>  'articles',
-                'related_id'    =>  $article->article_id,
-                'browser_name'  =>  'related_items',
-                'position'      =>  $article->position,
+                'subject_id' => $article->artist_id,
+                'subject_type' => 'artists',
+                'related_type' => 'articles',
+                'related_id' => $article->article_id,
+                'browser_name' => 'related_items',
+                'position' => $article->position,
             ]);
         }
 

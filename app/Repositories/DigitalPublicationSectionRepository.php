@@ -37,8 +37,9 @@ class DigitalPublicationSectionRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null)
     {
-        $search  = Search::query()->search($string)->published()->resources(['digital-publication-sections']);
+        $search = Search::query()->search($string)->published()->resources(['digital-publication-sections']);
         $results = $search->getSearch($perPage);
+
         return $results;
     }
 }

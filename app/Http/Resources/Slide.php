@@ -29,27 +29,35 @@ class Slide extends JsonResource
         switch ($this->module_type) {
             case 'attract':
                 return $this->getAttractAttributes();
+
                 break;
             case 'split':
                 return $this->getSplitAttributes();
+
                 break;
             case 'interstitial':
                 return $this->getInterstitalAttributes();
+
                 break;
             case 'tooltip':
                 return $this->getTooltipAttributes();
+
                 break;
             case 'fullwidthmedia':
                 return $this->getFullWidthMediaAttributes();
+
                 break;
             case 'compare':
                 return $this->getCompareAttributes();
+
                 break;
             case '3dtour':
                 return $this->get3DTourAttributes();
+
                 break;
             case 'end':
                 return $this->getEndAttributes();
+
                 break;
         }
     }
@@ -79,6 +87,7 @@ class Slide extends JsonResource
             return $modal;
         })->values();
         $secondary_image_enabled = in_array(['id' => 'secondary_image'], $this->split_attributes ?? []);
+
         return [
             'primaryCopy' => $this->split_primary_copy,
             '__option_flip' => $this->image_side === 'right',
@@ -110,6 +119,7 @@ class Slide extends JsonResource
     protected function getInterstitalAttributes()
     {
         $this->media = $this->interstitialExperienceImage;
+
         return [
             'title' => $this->section_title,
             'copy' => $this->body_copy,
@@ -123,6 +133,7 @@ class Slide extends JsonResource
     protected function getTooltipAttributes()
     {
         $this->media = $this->tooltipExperienceImage;
+
         return [
             'title' => $this->object_title,
             '__option_object_title' => !empty($this->object_title),
@@ -152,11 +163,12 @@ class Slide extends JsonResource
                     'camera_target' => $model3d->camera_target,
                     'annotation_list' => json_decode($model3d->annotation_list)
                 ];
-            } else {
+            }
+
                 return [
 
                 ];
-            }
+
         } else {
             $src = '';
         }
@@ -188,6 +200,7 @@ class Slide extends JsonResource
             $caption1 = $compareImage1 ? ($compareImage1->caption ?? $compareImage1->imageCaption('experience_image')) : null;
         }
         $caption2 = $compareImage2 ? ($compareImage2->caption ?? $compareImage2->imageCaption('experience_image')) : null;
+
         return [
             'object1Src' => $compareImage1 ? (new SlideMediaResource($compareImage1))->toArray(request()) : [],
             'object1Caption' => $caption1,
@@ -213,16 +226,18 @@ class Slide extends JsonResource
                 'annotation_list' => json_decode($model3d->annotation_list),
                 'hide_annotation_title' => $model3d->hide_annotation_title
             ];
-        } else {
+        }
+
             return [
 
             ];
-        }
+
     }
 
     protected function getEndAttributes()
     {
         $this->media = $this->endBackgroundExperienceImages;
+
         return [
             'button' => 'Start Over',
             '__option_credits' => !empty($this->getString($this->end_credit_copy) || $this->end_credit_subhead) ||
@@ -284,7 +299,7 @@ class Slide extends JsonResource
         }
 
         if ($this->module_type === 'interstitial') {
-            $headline =  $this->interstitial_headline;
+            $headline = $this->interstitial_headline;
         } elseif ($this->module_type === 'attract') {
             $headline = $this->attract_title;
         } else {
@@ -334,9 +349,11 @@ class Slide extends JsonResource
         switch ($this->module_type) {
             case 'tooltip':
                 return $this->media->first() ? (new SlideMediaResource($this->media->first()))->toArray(request()) : [];
+
                 break;
             case 'interstitial':
                 return $this->media->first() ? (new SlideMediaResource($this->media->first()))->toArray(request()) : [];
+
                 break;
             default:
                 return SlideMediaResource::collection($this->media)->toArray(request());
@@ -348,11 +365,12 @@ class Slide extends JsonResource
         if (!$hotspots) {
             return [];
         }
+
         return array_map(function ($hotspot) {
             return [
                 'x' => $hotspot['x'],
                 'y' => $hotspot['y'],
-                'content' => isset($hotspot['description']) ? $hotspot['description'] : '',
+                'content' => $hotspot['description'] ?? '',
             ];
         }, $hotspots);
     }

@@ -41,10 +41,10 @@ class ResearchGuidesController extends FrontController
             'title' => $title,
             'subNav' => $subNav,
             'nav' => $nav,
-            "breadcrumb" => $crumbs,
+            'breadcrumb' => $crumbs,
             'wideBody' => true,
             'filters' => null,
-            'listingCountText' => 'Showing '.$items->total().' research guides',
+            'listingCountText' => 'Showing ' . $items->total() . ' research guides',
             'listingItems' => $items,
         ];
 
@@ -54,7 +54,7 @@ class ResearchGuidesController extends FrontController
 
     public function show($id)
     {
-        $page = $this->repository->find((Integer) $id);
+        $page = $this->repository->find((int) $id);
         if (!$page) {
             $page = $this->repository->forSlug($id);
 
@@ -78,9 +78,9 @@ class ResearchGuidesController extends FrontController
             'subNav' => null,
             'intro' => $page->short_description,
             'headerImage' => $page->imageFront('banner'),
-            "title" => $page->title,
-            "breadcrumb" => $crumbs,
-            "blocks" => null,
+            'title' => $page->title,
+            'breadcrumb' => $crumbs,
+            'blocks' => null,
             'nav' => [],
             'page' => $page,
         ]);

@@ -24,9 +24,11 @@ class CategoryTermPresenter extends BasePresenter
             case 'technique':
             case 'theme':
                 $value = $this->entity->id;
+
                 break;
             default:
                 $value = $this->entity->title;
+
                 break;
         }
 

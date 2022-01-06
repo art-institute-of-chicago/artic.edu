@@ -26,6 +26,7 @@ class ExperienceSlideController extends ModuleController
     protected function indexData($request)
     {
         $experience = app(ExperienceRepository::class)->getById(request('experience'));
+
         return [
             'breadcrumb' => [
                 [
@@ -50,6 +51,7 @@ class ExperienceSlideController extends ModuleController
         $slide = app(SlideRepository::class)->getById(request('slide'));
         $slides = $this->repository->get([], ['experience_id' => $experience->id], ['position' => 'asc']);
         $currentSlideIndex = $slides->search($slide);
+
         return [
             'parentPreviousUrl' => $currentSlideIndex !== false && $currentSlideIndex > 0 ? moduleRoute($this->moduleName, $this->routePrefix, 'edit', ['slide' => $slides[$currentSlideIndex - 1]]) : '',
             'parentNextUrl' => $currentSlideIndex !== false && $currentSlideIndex < $slides->count() - 1 ? moduleRoute($this->moduleName, $this->routePrefix, 'edit', ['slide' => $slides[$currentSlideIndex + 1]]) : '',
@@ -105,6 +107,7 @@ class ExperienceSlideController extends ModuleController
         if ($this->repository->delete($submoduleId ?? $id)) {
             $this->fireEvent();
             activity()->performedOn($item)->log('deleted');
+
             return $this->respondWithSuccess($this->modelTitle . ' moved to trash!');
         }
 

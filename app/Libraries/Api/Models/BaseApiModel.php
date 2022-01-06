@@ -127,7 +127,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Create a new Eloquent model instance.
      *
-     * @param  array  $attributes
      * @return void
      */
     public function __construct(array $attributes = [])
@@ -138,7 +137,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Fill the model with an array of attributes.
      *
-     * @param  array  $attributes
      * @return $this
      *
      * @throws MassAssignmentException
@@ -164,7 +162,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Fill the model with an array of attributes. Force mass assignment.
      *
-     * @param  array  $attributes
      * @return $this
      */
     public function forceFill(array $attributes)
@@ -182,7 +179,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Get the fillable attributes of a given array.
      *
-     * @param  array  $attributes
      * @return array
      */
     protected function fillableFromArray(array $attributes)
@@ -198,7 +194,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * Create a new instance of the given model.
      *
      * @param  array  $attributes
-     * @param  bool   $exists
      * @return \Jenssegers\Model\Model
      */
     public function newInstance($attributes = [])
@@ -211,12 +206,11 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Create a collection of models from plain arrays.
      *
-     * @param  array  $items
      * @return array
      */
     public static function hydrate(array $items)
     {
-        $instance = new static;
+        $instance = new static();
 
         $items = array_map(function ($item) use ($instance) {
             return $instance->newInstance($item);
@@ -238,7 +232,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Set the hidden attributes for the model.
      *
-     * @param  array  $hidden
      * @return $this
      */
     public function setHidden(array $hidden)
@@ -289,7 +282,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Set the visible attributes for the model.
      *
-     * @param  array  $visible
      * @return $this
      */
     public function setVisible(array $visible)
@@ -317,7 +309,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Set the accessors to append to model arrays.
      *
-     * @param  array  $appends
      * @return $this
      */
     public function setAppends(array $appends)
@@ -340,7 +331,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Set the fillable attributes for the model.
      *
-     * @param  array  $fillable
      * @return $this
      */
     public function fillable(array $fillable)
@@ -363,7 +353,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Set the guarded attributes for the model.
      *
-     * @param  array  $guarded
      * @return $this
      */
     public function guard(array $guarded)
@@ -407,7 +396,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Run the given callable while being unguarded.
      *
-     * @param  callable  $callback
      * @return mixed
      */
     public static function unguarded(callable $callback)
@@ -582,7 +570,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Get an attribute array of all arrayable values.
      *
-     * @param  array  $values
      * @return array
      */
     protected function getArrayableItems(array $values)
@@ -625,6 +612,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         // retrieval from the model to a form that is more useful for usage.
         if ($this->hasGetMutator($key)) {
             app('debug')->log(class_basename(get_called_class()), $key, true);
+
             return $this->mutateAttribute($key, $value);
         }
 
@@ -636,6 +624,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         }
 
         app('debug')->log(class_basename(get_called_class()), $key);
+
         return $value;
     }
 
@@ -873,7 +862,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     /**
      * Clone the model into a new, non-existing instance.
      *
-     * @param  array|null  $except
      * @return \Jenssegers\Model\Model
      */
     public function replicate(array $except = null)
@@ -882,7 +870,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
         $attributes = Arr::except($this->attributes, $except);
 
-        return with($instance = new static)->fill($attributes);
+        return with($instance = new static())->fill($attributes);
     }
 
     /**
@@ -947,9 +935,10 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     {
         if ($models instanceof BaseCollection) {
             return $models;
-        } else {
-            return new BaseCollection($models);
         }
+
+            return new BaseCollection($models);
+
     }
 
     /**
@@ -962,10 +951,11 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     {
         $value = $this->getAttribute($key);
         if (!$value && method_exists($this, 'getAugmentedModel') && $this->getAugmentedModel()) {
-            return $this->getAugmentedModel()->$key;
-        } else {
-            return $value;
+            return $this->getAugmentedModel()->{$key};
         }
+
+            return $value;
+
     }
 
     /**
@@ -992,7 +982,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function offsetExists($offset)
     {
-        return isset($this->$offset);
+        return isset($this->{$offset});
     }
 
     /**
@@ -1003,7 +993,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function offsetGet($offset)
     {
-        return $this->$offset;
+        return $this->{$offset};
     }
 
     /**
@@ -1015,7 +1005,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function offsetSet($offset, $value)
     {
-        $this->$offset = $value;
+        $this->{$offset} = $value;
     }
 
     /**
@@ -1026,7 +1016,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function offsetUnset($offset)
     {
-        unset($this->$offset);
+        unset($this->{$offset});
     }
 
     /**
@@ -1064,7 +1054,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
     public function getTable()
     {
-        return;
+
     }
 
     /**
@@ -1089,7 +1079,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
     public function resolveChildRouteBinding($childType, $value, $field)
     {
-        return;
+
     }
 
     public function getKeyName()
@@ -1129,7 +1119,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public static function __callStatic($method, $parameters)
     {
-        $instance = new static;
+        $instance = new static();
 
         return call_user_func_array([$instance, $method], $parameters);
     }

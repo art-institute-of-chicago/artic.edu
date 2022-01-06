@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
@@ -32,7 +33,7 @@ class ArtworkPresenter extends BasePresenter
 
     public function headerType()
     {
-        return "gallery";
+        return 'gallery';
     }
 
     public function imageThumb()
@@ -58,12 +59,12 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->description) {
             array_push($blocks, [
-              "type"    => 'itemprop',
-              "content" => [[
-                "type"    => 'text',
-                "content" => $this->getFilteredDescription(),
-              ]],
-              'itemprop' => 'description',
+                'type' => 'itemprop',
+                'content' => [[
+                    'type' => 'text',
+                    'content' => $this->getFilteredDescription(),
+                ]],
+                'itemprop' => 'description',
             ]);
         }
 
@@ -72,7 +73,7 @@ class ArtworkPresenter extends BasePresenter
         ];
 
         if ($this->entity->is_on_view && $this->entity->gallery_id) {
-            $status[] = '<a href="' .route('galleries.show', [$this->entity->gallery_id . '/' . StringHelpers::getUtf8Slug($this->entity->gallery_title)]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>';
+            $status[] = '<a href="' . route('galleries.show', [$this->entity->gallery_id . '/' . StringHelpers::getUtf8Slug($this->entity->gallery_title)]) . '" data-gtm-event="' . $this->entity->gallery_title . '" data-gtm-event-category="collection-nav">' . $this->entity->gallery_title . '</a>';
         }
 
         $items = [
@@ -85,37 +86,37 @@ class ArtworkPresenter extends BasePresenter
         if (!$this->entity->is_deaccessioned && $this->entity->department_id) {
             $items[] = [
                 'key' => 'Department',
-                'value' => '<a href="' . route('departments.show', [$this->entity->department_id . '/' . StringHelpers::getUtf8Slug($this->entity->department_title)]) . '" data-gtm-event="' . $this->entity->department_title .'" data-gtm-event-category="collection-nav">' . $this->entity->department_title .'</a>',
+                'value' => '<a href="' . route('departments.show', [$this->entity->department_id . '/' . StringHelpers::getUtf8Slug($this->entity->department_title)]) . '" data-gtm-event="' . $this->entity->department_title . '" data-gtm-event-category="collection-nav">' . $this->entity->department_title . '</a>',
             ];
         }
 
         array_push($blocks, [
-            "type"      => 'deflist',
-            "variation" => 'u-hide@large+ sr-show@large+',
-            "ariaOwns"  => "dl-artwork-details",
-            "items"     => $items
+            'type' => 'deflist',
+            'variation' => 'u-hide@large+ sr-show@large+',
+            'ariaOwns' => 'dl-artwork-details',
+            'items' => $items
         ]);
 
         array_push($blocks, $this->getArtworkDetailsBlock());
 
         array_push($blocks, [
-            "type" => 'text',
-            "content" => '<h2 class="sr-only">Extended information about this artwork</h2>',
+            'type' => 'text',
+            'content' => '<h2 class="sr-only">Extended information about this artwork</h2>',
         ]);
         array_push($blocks, $this->getArtworkAccordionBlocks());
 
         array_push($blocks, [
-            "type" => 'hr',
+            'type' => 'hr',
         ]);
 
         array_push($blocks, $this->entity->is_deaccessioned ? [
-            "type" => 'text',
-            "content" => '<p class="f-caption">Object information is based on information known at time of deaccession and does not reflect any subsequent changes or new research findings about the object.</p>',
+            'type' => 'text',
+            'content' => '<p class="f-caption">Object information is based on information known at time of deaccession and does not reflect any subsequent changes or new research findings about the object.</p>',
         ] : [
-            "type" => 'text',
-            "content" => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu">'
-            .(app('printservice')->isPrintMode() ? 'collections@artic.edu' : '')
-            .'</a>. Information about image downloads and licensing is <a href="/image-licensing">available here</a>.</p>',
+            'type' => 'text',
+            'content' => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu">'
+            . (app('printservice')->isPrintMode() ? 'collections@artic.edu' : '')
+            . '</a>. Information about image downloads and licensing is <a href="/image-licensing">available here</a>.</p>',
         ]);
 
         return array_filter($blocks);
@@ -200,14 +201,14 @@ class ArtworkPresenter extends BasePresenter
         return [
             'label' => $label,
             'href' => $href,
-            'gtmAttributes' => 'data-gtm-event="'. $pivot->artist_title . '"'
+            'gtmAttributes' => 'data-gtm-event="' . $pivot->artist_title . '"'
                 . ' data-gtm-event-category="collection-nav"',
         ];
     }
 
     protected function getIiifManifestUrl()
     {
-        return str_replace('-', '&#8209;', config('api.public_uri') .'/api/v1/artworks/' . $this->entity->id . '/manifest.json');
+        return str_replace('-', '&#8209;', config('api.public_uri') . '/api/v1/artworks/' . $this->entity->id . '/manifest.json');
     }
 
     protected function getArtworkDetailsBlock()
@@ -257,14 +258,14 @@ class ArtworkPresenter extends BasePresenter
             if ($showCultureFirst) {
                 if (count($cultureLinks) > 0) {
                     $details[] = [
-                        'key'   => Str::plural('Culture', count($cultureLinks)),
+                        'key' => Str::plural('Culture', count($cultureLinks)),
                         'links' => $cultureLinks,
                         'itemprop' => 'creator',
                     ];
                 }
                 if (count($artistLinks) > 0) {
                     $details[] = [
-                        'key'   => Str::plural('Artist', count($artistLinks)),
+                        'key' => Str::plural('Artist', count($artistLinks)),
                         'links' => $artistLinks,
                         'itemprop' => 'creator',
                     ];
@@ -272,14 +273,14 @@ class ArtworkPresenter extends BasePresenter
             } else {
                 if (count($artistLinks) > 0) {
                     $details[] = [
-                        'key'   => Str::plural('Artist', count($artistLinks)),
+                        'key' => Str::plural('Artist', count($artistLinks)),
                         'links' => $artistLinks,
                         'itemprop' => 'creator',
                     ];
                 }
                 if (count($cultureLinks) > 0) {
                     $details[] = [
-                        'key'   => Str::plural('Culture', count($cultureLinks)),
+                        'key' => Str::plural('Culture', count($cultureLinks)),
                         'links' => $cultureLinks,
                         'itemprop' => 'creator',
                     ];
@@ -288,17 +289,18 @@ class ArtworkPresenter extends BasePresenter
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Title' => array($this->entity->all_titles,'name')
+            'Title' => [$this->entity->all_titles, 'name']
         ]));
 
         if ($this->entity->place_pivots != null && count($this->entity->place_pivots) > 0) {
             $places = collect($this->entity->place_pivots)->map(function ($item) {
                 $title = $item->place_title;
+
                 return  $item->qualifier_title ? $title . " ({$item->qualifier_title})" : $title;
             });
 
             $details[] = [
-                'key'   => Str::plural('Place', count($this->entity->place_pivots)),
+                'key' => Str::plural('Place', count($this->entity->place_pivots)),
                 'value' => join(', ', $places->toArray()),
                 'itemprop' => 'locationCreated',
             ];
@@ -328,12 +330,12 @@ class ArtworkPresenter extends BasePresenter
                 $joined = join('-', array_unique([DateHelpers::convertArtworkDates($date_start), DateHelpers::convertArtworkDates($date_end)]));
 
                 return [
-                    'label' => join(' ', [ $item->qualifier_title, $joined ]),
+                    'label' => join(' ', [$item->qualifier_title, $joined]),
                     'href' => $generateDateRangeHref($date_start, $date_end),
                 ];
             });
             $details[] = [
-                'key'   => Str::plural('Date', count($this->entity->dates)),
+                'key' => Str::plural('Date', count($this->entity->dates)),
                 'itemprop' => 'dateCreated',
                 'links' => $dates,
             ];
@@ -351,12 +353,12 @@ class ArtworkPresenter extends BasePresenter
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Medium'           => array($this->entity->medium_display,'material'),
-            'Inscriptions'     => array($this->entity->inscriptions),
-            'Dimensions'       => array($this->entity->dimensions, 'size'),
-            'Credit Line'      => array($this->entity->credit_line),
-            'Reference Number' => array($this->entity->main_reference_number, 'identifier'),
-            'Copyright'        => array($this->entity->copyright_notice),
+            'Medium' => [$this->entity->medium_display, 'material'],
+            'Inscriptions' => [$this->entity->inscriptions],
+            'Dimensions' => [$this->entity->dimensions, 'size'],
+            'Credit Line' => [$this->entity->credit_line],
+            'Reference Number' => [$this->entity->main_reference_number, 'identifier'],
+            'Copyright' => [$this->entity->copyright_notice],
         ]));
 
         if ($this->entity->is_public_domain) {
@@ -370,14 +372,14 @@ class ArtworkPresenter extends BasePresenter
                     . '        The International Image Interoperability Framework (IIIF) represents a set of open standards that enables rich access to digital media from libraries, archives, museums, and other cultural institutions around the world.<br/><br/>'
                     . '        <a href="/open-access/open-access-images">Learn more</a>.'
                     . '    </span>'
-                    . '</span>' => array($this->getIiifManifestUrl()),
+                    . '</span>' => [$this->getIiifManifestUrl()],
             ]));
         }
 
         return [
-            "type"  => 'deflist',
-            "items" => $details,
-            "id"    => "dl-artwork-details"
+            'type' => 'deflist',
+            'items' => $details,
+            'id' => 'dl-artwork-details'
         ];
     }
 
@@ -392,19 +394,20 @@ class ArtworkPresenter extends BasePresenter
                 $blocks[] = ['key' => $key, 'value' => $value, 'itemprop' => $itemprop];
             }
         }
+
         return $blocks;
     }
 
     protected function buildMultimediaBlocks($resultsByType, $title)
     {
         $block = [
-            'title'  => $title,
-            'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.StringHelpers::getUtf8Slug($title).'"',
+            'title' => $title,
+            'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="' . StringHelpers::getUtf8Slug($title) . '"',
             'blocks' => []
         ];
 
         $localBlock = [
-            'type'  => 'link-list',
+            'type' => 'link-list',
             'links' => [],
         ];
 
@@ -424,21 +427,22 @@ class ArtworkPresenter extends BasePresenter
     {
         $content = $this->formatDescriptionBlocks([
             'publication_history' => 'Publication History',
-            'exhibition_history'  => 'Exhibition History',
-            'provenance_text'     => 'Provenance'
+            'exhibition_history' => 'Exhibition History',
+            'provenance_text' => 'Provenance'
         ]);
 
         if ($this->entity->catalogues) {
             $rows = $this->entity->catalogues->map(function ($item) {
                 $content = "{$item->catalogue_title} {$item->number} {$item->state_edition}";
+
                 return [
-                    "type" => 'text',
-                    "content" => '<p>'. $content .'</p>'
+                    'type' => 'text',
+                    'content' => '<p>' . $content . '</p>'
                 ];
             });
 
             $block = [
-                'title'  => 'Catalogues Raisonnés',
+                'title' => 'Catalogues Raisonnés',
                 'blocks' => $rows,
                 'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="catalogue-raisonnes"'
             ];
@@ -460,46 +464,47 @@ class ArtworkPresenter extends BasePresenter
 
         if (empty($content)) {
             return [];
-        } else {
-            return [
-                "type"    => 'accordion',
-                "content" => $content,
-                "titleFont" => "f-module-title-2"
-            ];
         }
+
+            return [
+                'type' => 'accordion',
+                'content' => $content,
+                'titleFont' => 'f-module-title-2'
+            ];
+
     }
 
     protected function formatDescriptionBlocks($elements)
     {
         $blocks = [];
         foreach ($elements as $key => $value) {
-            if (!empty($this->entity->$key)) {
-                $block = array(
+            if (!empty($this->entity->{$key})) {
+                $block = [
                     'title' => $value,
-                    'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.StringHelpers::getUtf8Slug($value).'"',
+                    'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="' . StringHelpers::getUtf8Slug($value) . '"',
                     'blocks' => []
-                );
-                $explodedKeys = explode("\n", $this->entity->$key);
+                ];
+                $explodedKeys = explode("\n", $this->entity->{$key});
                 $blockHtml = '';
                 if (count($explodedKeys) < 2) {
                     foreach ($explodedKeys as $txt) {
                         if (!empty($txt)) {
-                            $blockHtml .= '<p>'.$txt.'</p>';
+                            $blockHtml .= '<p>' . $txt . '</p>';
                         }
                     }
                 } else {
                     $blockHtml .= '<ul>';
                     foreach ($explodedKeys as $txt) {
                         if (!empty($txt)) {
-                            $blockHtml .= '<li>'.$txt.'</li>';
+                            $blockHtml .= '<li>' . $txt . '</li>';
                         }
                     }
                     $blockHtml .= '</ul>';
                 }
-                $block['blocks'][] = array(
-                    "type" => 'text',
-                    "content" => $blockHtml
-                );
+                $block['blocks'][] = [
+                    'type' => 'text',
+                    'content' => $blockHtml
+                ];
                 $blocks[] = $block;
             }
         }
@@ -510,11 +515,11 @@ class ArtworkPresenter extends BasePresenter
     public function buildSchemaItemProps()
     {
         $itemprops = [
-            'accessMode'            => 'visual',
-            'alternativeHeadline'   => (!empty($this->entity->alt_titles)) ? implode(', ', $this->entity->alt_titles) : null,
-            'contributor'           => (!empty($this->entity->alt_artists)) ? implode(', ', $this->entity->alt_artists) : null,
-            'about'                 => (!empty($this->entity->subject_titles)) ? implode(', ', $this->entity->subject_titles) : null,
-            'provider'              => $this->entity->department_title,
+            'accessMode' => 'visual',
+            'alternativeHeadline' => (!empty($this->entity->alt_titles)) ? implode(', ', $this->entity->alt_titles) : null,
+            'contributor' => (!empty($this->entity->alt_artists)) ? implode(', ', $this->entity->alt_artists) : null,
+            'about' => (!empty($this->entity->subject_titles)) ? implode(', ', $this->entity->subject_titles) : null,
+            'provider' => $this->entity->department_title,
         ];
 
         if ($this->entity->image_id) {

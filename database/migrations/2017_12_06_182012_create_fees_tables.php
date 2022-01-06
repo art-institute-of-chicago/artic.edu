@@ -11,9 +11,9 @@ class CreateFeesTables extends Migration
             createDefaultTableFields($table, true, false);
 
             $table->integer('fee_age_id')->unsigned();
-            $table->foreign("fee_age_id")->references('id')->on('fee_ages')->onDelete('CASCADE');
+            $table->foreign('fee_age_id')->references('id')->on('fee_ages')->onDelete('CASCADE');
             $table->integer('fee_category_id')->unsigned();
-            $table->foreign("fee_category_id")->references('id')->on('fee_categories')->onDelete('CASCADE');
+            $table->foreign('fee_category_id')->references('id')->on('fee_categories')->onDelete('CASCADE');
             $table->double('price', 8, 2)->nullable();
         });
     }

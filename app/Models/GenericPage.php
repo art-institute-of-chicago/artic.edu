@@ -111,18 +111,18 @@ class GenericPage extends AbstractModel implements Sortable
             return $this->redirect_url;
         }
 
-        $url = "";
+        $url = '';
         foreach ($this->ancestors()->defaultOrder()->get() as $item) {
-            $url = $url . "/" . $item->slug;
+            $url = $url . '/' . $item->slug;
         }
-        $url = $url . "/" . $this->slug;
+        $url = $url . '/' . $this->slug;
 
         return $url;
     }
 
-    public function getUrl($prefix = "")
+    public function getUrl($prefix = '')
     {
-        return $prefix . "/" . $this->slug;
+        return $prefix . '/' . $this->slug;
     }
 
     public function getAdminEditUrlAttribute()
@@ -186,82 +186,82 @@ class GenericPage extends AbstractModel implements Sortable
     {
         return [
             [
-                "name" => 'title',
-                "doc" => "Title",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'title',
+                'doc' => 'Title',
+                'type' => 'string',
+                'value' => function () {
                     return $this->title;
                 }
             ],
             [
-                "name" => 'web_url',
-                "doc" => "Web URL",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'web_url',
+                'doc' => 'Web URL',
+                'type' => 'string',
+                'value' => function () {
                     return url($this->url);
                 }
             ],
             [
-                "name" => 'slug',
-                "doc" => "Slug",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'slug',
+                'doc' => 'Slug',
+                'type' => 'string',
+                'value' => function () {
                     return $this->slug;
                 }
             ],
             [
-                "name" => 'listing_description',
-                "doc" => "Listing Description",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'listing_description',
+                'doc' => 'Listing Description',
+                'type' => 'string',
+                'value' => function () {
                     return $this->listing_description;
                 }
             ],
             [
-                "name" => 'short_description',
-                "doc" => "Short Description",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'short_description',
+                'doc' => 'Short Description',
+                'type' => 'string',
+                'value' => function () {
                     return $this->short_description;
                 }
             ],
             [
-                "name" => 'published',
-                "doc" => "Published",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->published;
                 }
             ],
             [
-                "name" => 'publish_start_date',
-                "doc" => "Publish Start Date",
-                "type" => "datetime",
-                "value" => function () {
+                'name' => 'publish_start_date',
+                'doc' => 'Publish Start Date',
+                'type' => 'datetime',
+                'value' => function () {
                     return $this->publish_start_date;
                 }
             ],
             [
-                "name" => 'publish_end_date',
-                "doc" => "Publish End Date",
-                "type" => "datetime",
-                "value" => function () {
+                'name' => 'publish_end_date',
+                'doc' => 'Publish End Date',
+                'type' => 'datetime',
+                'value' => function () {
                     return $this->publish_end_date;
                 }
             ],
             [
-                "name" => "search_tags",
-                "doc" => "search_tags",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'search_tags',
+                'doc' => 'search_tags',
+                'type' => 'string',
+                'value' => function () {
                     return $this->search_tags;
                 },
             ],
             [
-                "name" => 'content',
-                "doc" => "Content",
-                "type" => "text",
-                "value" => function () {
+                'name' => 'content',
+                'doc' => 'Content',
+                'type' => 'text',
+                'value' => function () {
                     return $this->blocks;
                 }
             ],

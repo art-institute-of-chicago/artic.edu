@@ -65,6 +65,7 @@ class SlideRepository extends ModuleRepository
         $fields = $this->getExperienceModule($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
         $fields = $this->getFormFieldsFor3DModel($object, $fields, 'aic_3d_model');
         $fields = $this->getFormFieldsFor3DModel($object, $fields, 'aic_split_3d_model');
+
         return $fields;
     }
 
@@ -80,6 +81,7 @@ class SlideRepository extends ModuleRepository
         $slide->save();
         $end_slide->position = $this->getCountForAll() + 1;
         $end_slide->save();
+
         return $slide;
     }
 }

@@ -17,212 +17,208 @@ class EventPlanningContactController extends FormController
         $this->title = 'Event Planning Contact';
         $this->seo->setTitle($this->title);
 
-        $blocks = array();
-        $formBlocks = array();
-        $inquiryFields = array();
-        $daytimeFields = array();
+        $blocks = [];
+        $formBlocks = [];
+        $inquiryFields = [];
+        $daytimeFields = [];
 
         $errors = session('errors');
 
-        /*
-         *
-         *  Inquiry form
-         *
-         */
-        $inquiryFields[]= array(
+        // Inquiry form
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'name',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('name'),
-                  'error' => (!empty($errors) && $errors->first('name')) ? $errors->first('name') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Name *',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'name',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('name'),
+                    'error' => (!empty($errors) && $errors->first('name')) ? $errors->first('name') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Name *',
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'address_1',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('address_1'),
-                  'error' => (!empty($errors) && $errors->first('address_1')) ? $errors->first('address_1') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Street address',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'address_1',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('address_1'),
+                    'error' => (!empty($errors) && $errors->first('address_1')) ? $errors->first('address_1') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Street address',
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'address_2',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('address_2'),
-                  'error' => (!empty($errors) && $errors->first('address_2')) ? $errors->first('address_2') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Apartment or suite',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'address_2',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('address_2'),
+                    'error' => (!empty($errors) && $errors->first('address_2')) ? $errors->first('address_2') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Apartment or suite',
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'city',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('city'),
-                  'error' => (!empty($errors) && $errors->first('city')) ? $errors->first('city') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'City',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'city',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('city'),
+                    'error' => (!empty($errors) && $errors->first('city')) ? $errors->first('city') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'City',
+                ],
+            ],
+        ];
 
-        $inquiryFields[] = array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'select',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'state',
-                  'error' => (!empty($errors) && $errors->first('state')) ? $errors->first('state') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'value' => old('state'),
-                  'label' => 'State',
-                  'options' => $this->getStatesArray(),
-                ),
-                array(
-                  'type' => 'input',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'zipcode',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('zipcode'),
-                  'error' => (!empty($errors) && $errors->first('zipcode')) ? $errors->first('zipcode') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Zipcode',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'select',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'state',
+                    'error' => (!empty($errors) && $errors->first('state')) ? $errors->first('state') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'value' => old('state'),
+                    'label' => 'State',
+                    'options' => $this->getStatesArray(),
+                ],
+                [
+                    'type' => 'input',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'zipcode',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('zipcode'),
+                    'error' => (!empty($errors) && $errors->first('zipcode')) ? $errors->first('zipcode') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Zipcode',
+                ],
+            ],
+        ];
 
-        $inquiryFields[] = array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'select',
-                  'variation' => null,
-                  'id' => 'country',
-                  'error' => (!empty($errors) && $errors->first('country')) ? $errors->first('country') : null,
-                  'value' => old('country'),
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Country',
-                  'options' => $this->getCountriesArray(),
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'select',
+                    'variation' => null,
+                    'id' => 'country',
+                    'error' => (!empty($errors) && $errors->first('country')) ? $errors->first('country') : null,
+                    'value' => old('country'),
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Country',
+                    'options' => $this->getCountriesArray(),
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'company',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('company'),
-                  'error' => (!empty($errors) && $errors->first('company')) ? $errors->first('company') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Company',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'company',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('company'),
+                    'error' => (!empty($errors) && $errors->first('company')) ? $errors->first('company') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Company',
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'email',
-                  'variation' => null,
-                  'id' => 'email',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('email'),
-                  'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Email *',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'email',
+                    'variation' => null,
+                    'id' => 'email',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('email'),
+                    'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Email *',
+                ],
+            ],
+        ];
 
-        $inquiryFields[]= array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'tel',
-                  'variation' => null,
-                  'id' => 'phone_number',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('phone_number'),
-                  'error' => (!empty($errors) && $errors->first('phone_number')) ? $errors->first('phone_number') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Phone number *',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'tel',
+                    'variation' => null,
+                    'id' => 'phone_number',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('phone_number'),
+                    'error' => (!empty($errors) && $errors->first('phone_number')) ? $errors->first('phone_number') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Phone number *',
+                ],
+            ],
+        ];
 
         $preferredContactFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
-                  'type' => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('preferred_contact')) ? $errors->first('preferred_contact') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'label' => 'Preferred method of contact',
-                )
-            ),
+            'blocks' => [
+                [
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('preferred_contact')) ? $errors->first('preferred_contact') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'label' => 'Preferred method of contact',
+                ]
+            ],
         ];
         foreach ($this->getPreferredContactArray(old('preferred_contact')) as $t) {
             array_push($preferredContactFields['blocks'], $t);
@@ -231,16 +227,16 @@ class EventPlanningContactController extends FormController
 
         $howDidYouHearFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
-                    "type" => 'label',
+            'blocks' => [
+                [
+                    'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('how_did_you_hear')) ? $errors->first('how_did_you_hear') : null,
                     'optional' => null,
                     'hint' => 'Select all that apply',
                     'label' => 'How did you hear about us?',
-                ),
-            ),
+                ],
+            ],
         ];
         $items = $this->getHowDidYouHearArray(old('how_did_you_hear'));
         foreach ($items as $key => $d) {
@@ -248,37 +244,37 @@ class EventPlanningContactController extends FormController
         }
         $inquiryFields[] = $howDidYouHearFields;
 
-        $inquiryFields[]= array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'how_did_you_hear_other',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('how_did_you_hear_other'),
-                  'error' => (!empty($errors) && $errors->first('how_did_you_hear_other')) ? $errors->first('how_did_you_hear_other') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Other',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'how_did_you_hear_other',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('how_did_you_hear_other'),
+                    'error' => (!empty($errors) && $errors->first('how_did_you_hear_other')) ? $errors->first('how_did_you_hear_other') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Other',
+                ],
+            ],
+        ];
 
         $areYouPlanningFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
-                  'type' => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('are_you_currently_planning')) ? $errors->first('are_you_currently_planning') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'label' => 'Are you currently planning an event?',
-                )
-            ),
+            'blocks' => [
+                [
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('are_you_currently_planning')) ? $errors->first('are_you_currently_planning') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'label' => 'Are you currently planning an event?',
+                ]
+            ],
         ];
         foreach ($this->getYesNoArray(old('are_you_currently_planning'), 'are_you_currently_planning') as $t) {
             array_push($areYouPlanningFields['blocks'], $t);
@@ -287,123 +283,119 @@ class EventPlanningContactController extends FormController
 
         $typeOfEventFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
-                  "type" => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('type_of_event')) ? $errors->first('type_of_event') : null,
-                  'optional' => null,
-                  'hint' => 'Select all that apply',
-                  'label' => 'If so, what type of event do you have in mind?',
-                )
-            ),
+            'blocks' => [
+                [
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('type_of_event')) ? $errors->first('type_of_event') : null,
+                    'optional' => null,
+                    'hint' => 'Select all that apply',
+                    'label' => 'If so, what type of event do you have in mind?',
+                ]
+            ],
         ];
         foreach ($this->getTypeOfEventArray(old('type_of_event')) as $d) {
             array_push($typeOfEventFields['blocks'], $d);
         }
         $inquiryFields[] = $typeOfEventFields;
 
-        $inquiryFields[]= array(
+        $inquiryFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'type_of_event_other',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('type_of_event_other'),
-                  'error' => (!empty($errors) && $errors->first('type_of_event_other')) ? $errors->first('type_of_event_other') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Other',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'type_of_event_other',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('type_of_event_other'),
+                    'error' => (!empty($errors) && $errors->first('type_of_event_other')) ? $errors->first('type_of_event_other') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Other',
+                ],
+            ],
+        ];
 
-        /*
-         *
-         *  Daytime information
-         *
-         */
-        $daytimeFields[]= array(
+        // Daytime information
+        $daytimeFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'no_of_expected_guests',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('no_of_expected_guests'),
-                  'error' => (!empty($errors) && $errors->first('no_of_expected_guests')) ? $errors->first('no_of_expected_guests') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Number of expected guests',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'no_of_expected_guests',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('no_of_expected_guests'),
+                    'error' => (!empty($errors) && $errors->first('no_of_expected_guests')) ? $errors->first('no_of_expected_guests') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Number of expected guests',
+                ],
+            ],
+        ];
 
-        $daytimeFields[] = array(
+        $daytimeFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'text',
                     'content' => '<span class="input s-disabled"><label class="label f-secondary">Possible Dates *'
-                    .'<em class="label__hint">Please select 3 options for the date of your event.</em></label></span>'
-                ),
-            ),
-        );
+                    . '<em class="label__hint">Please select 3 options for the date of your event.</em></label></span>'
+                ],
+            ],
+        ];
 
-        $daytimeFields[] = array(
+        $daytimeFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'possible_date_1',
-                  'placeholder' => 'mm/dd/yy',
-                  'value' => old('possible_date_1'),
-                  'error' => (!empty($errors) && $errors->first('possible_date_1')) ? $errors->first('possible_date_1') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => '',
-                ),
-                array(
-                  'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'possible_date_2',
-                  'placeholder' => 'mm/dd/yy',
-                  'value' => old('possible_date_2'),
-                  'error' => (!empty($errors) && $errors->first('possible_date_2')) ? $errors->first('possible_date_2') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => '',
-                ),
-                array(
-                  'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'possible_date_3',
-                  'placeholder' => 'mm/dd/yy',
-                  'value' => old('possible_date_3'),
-                  'error' => (!empty($errors) && $errors->first('possible_date_3')) ? $errors->first('possible_date_3') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => '',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'date-select',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'possible_date_1',
+                    'placeholder' => 'mm/dd/yy',
+                    'value' => old('possible_date_1'),
+                    'error' => (!empty($errors) && $errors->first('possible_date_1')) ? $errors->first('possible_date_1') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => '',
+                ],
+                [
+                    'type' => 'date-select',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'possible_date_2',
+                    'placeholder' => 'mm/dd/yy',
+                    'value' => old('possible_date_2'),
+                    'error' => (!empty($errors) && $errors->first('possible_date_2')) ? $errors->first('possible_date_2') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => '',
+                ],
+                [
+                    'type' => 'date-select',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'possible_date_3',
+                    'placeholder' => 'mm/dd/yy',
+                    'value' => old('possible_date_3'),
+                    'error' => (!empty($errors) && $errors->first('possible_date_3')) ? $errors->first('possible_date_3') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => '',
+                ],
+            ],
+        ];
 
-        $daytimeFields[] = array(
+        $daytimeFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                    "type" => 'textarea',
+            'blocks' => [
+                [
+                    'type' => 'textarea',
                     'variation' => null,
                     'id' => 'other_info',
                     'placeholder' => '',
@@ -413,54 +405,54 @@ class EventPlanningContactController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'label' => 'Please share any other important information',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $daytimeFields[] = array(
+        $daytimeFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'captcha',
-                  'variation' => null,
-                  'id' => 'captcha',
-                  'error' => (!empty($errors) && $errors->first('captcha')) ? $errors->first('captcha') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => '',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'captcha',
+                    'variation' => null,
+                    'id' => 'captcha',
+                    'error' => (!empty($errors) && $errors->first('captcha')) ? $errors->first('captcha') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => '',
+                ],
+            ],
+        ];
 
-        array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $inquiryFields,
-          'legend' => 'Inquiry Form',
-        ));
+        array_push($formBlocks, [
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $inquiryFields,
+            'legend' => 'Inquiry Form',
+        ]);
 
-        array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $daytimeFields,
-          'legend' => 'Daytime event',
-        ));
+        array_push($formBlocks, [
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $daytimeFields,
+            'legend' => 'Daytime event',
+        ]);
 
-        array_push($blocks, array(
+        array_push($blocks, [
             'type' => 'form',
             'variation' => null,
             'action' => '/venue-rental/contact-us',
             'method' => 'POST',
             'blocks' => $formBlocks,
-            'actions' => array(
-                array(
+            'actions' => [
+                [
                     'variation' => null,
                     'type' => 'submit',
-                    'label' => "Submit",
-                )
-            )
-        ));
+                    'label' => 'Submit',
+                ]
+            ]
+        ]);
 
         $breadcrumbs = [
             [
@@ -480,14 +472,12 @@ class EventPlanningContactController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-    /**
-     * @param EventPlanningContactRequest $request
-     */
+
     public function store(EventPlanningContactRequest $request)
     {
         $validated = $request->validated();
 
-        $eventPlanningContact = new EventPlanningContact;
+        $eventPlanningContact = new EventPlanningContact();
         $eventPlanningContact->name = $validated['name'] ?? '';
         $eventPlanningContact->address_1 = $validated['address_1'] ?? '';
         $eventPlanningContact->address_2 = $validated['address_2'] ?? '';
@@ -519,22 +509,22 @@ class EventPlanningContactController extends FormController
 
     private function getPreferredContactArray($selected)
     {
-        $options = array('Email', 'Phone');
+        $options = ['Email', 'Phone'];
 
         $list = [];
         foreach ($options as $value) {
             $item = [
-              'type' => 'radio',
-              'variation' => '',
-              'id' => 'preferred_contact_'.$value,
-              'name' => 'preferred_contact',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $value
+                'type' => 'radio',
+                'variation' => '',
+                'id' => 'preferred_contact_' . $value,
+                'name' => 'preferred_contact',
+                'value' => $value,
+                'error' => null,
+                'optional' => null,
+                'hint' => null,
+                'disabled' => false,
+                'checked' => false,
+                'label' => $value
             ];
 
             if ($selected == $value) {
@@ -550,22 +540,22 @@ class EventPlanningContactController extends FormController
     private function getHowDidYouHearArray($selected)
     {
         $hows = ['Open Table', 'TripAdvisor', 'Website search', 'Special event', 'Museum visit', 'The Knot', 'Chicago Social',
-                 'Party Slate', 'Choose Chicago'];
+            'Party Slate', 'Choose Chicago'];
 
         $list = [];
         foreach ($hows as $value) {
             $item = [
-              'type' => 'checkbox',
-              'variation' => '',
-              'id' => 'how_did_you_hear-'.$value,
-              'name' => 'how_did_you_hear[]',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $value
+                'type' => 'checkbox',
+                'variation' => '',
+                'id' => 'how_did_you_hear-' . $value,
+                'name' => 'how_did_you_hear[]',
+                'value' => $value,
+                'error' => null,
+                'optional' => null,
+                'hint' => null,
+                'disabled' => false,
+                'checked' => false,
+                'label' => $value
             ];
 
             if ($selected) {
@@ -587,17 +577,17 @@ class EventPlanningContactController extends FormController
         $list = [];
         foreach ($types as $value) {
             $item = [
-              'type' => 'checkbox',
-              'variation' => '',
-              'id' => 'type_of_event-'.$value,
-              'name' => 'type_of_event[]',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $value
+                'type' => 'checkbox',
+                'variation' => '',
+                'id' => 'type_of_event-' . $value,
+                'name' => 'type_of_event[]',
+                'value' => $value,
+                'error' => null,
+                'optional' => null,
+                'hint' => null,
+                'disabled' => false,
+                'checked' => false,
+                'label' => $value
             ];
 
             if ($selected) {

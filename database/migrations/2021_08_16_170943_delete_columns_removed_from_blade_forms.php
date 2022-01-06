@@ -34,7 +34,7 @@ class DeleteColumnsRemovedFromBladeForms extends Migration
     public function down()
     {
         Schema::table('blade_forms', function (Blueprint $table) {
-            //
+
         });
     }
 }

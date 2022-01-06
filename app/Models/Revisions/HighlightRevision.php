@@ -6,7 +6,7 @@ use A17\Twill\Models\Revision;
 
 class HighlightRevision extends Revision
 {
-    protected $table = "highlight_revisions";
+    protected $table = 'highlight_revisions';
 
     protected $touches = ['highlight'];
 

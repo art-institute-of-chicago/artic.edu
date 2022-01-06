@@ -60,6 +60,7 @@ class IssueArticleController extends ModuleController
     protected function indexData($request)
     {
         $issue = app(IssueRepository::class)->getById(request('issue'));
+
         return [
             'breadcrumb' => [
                 [
@@ -81,9 +82,10 @@ class IssueArticleController extends ModuleController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('article') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/' .$this->permalinkBase . $item->id . '/';
+        $baseUrl = '//' . config('app.url') . '/' . $this->permalinkBase . $item->id . '/';
 
         $issue = app(IssueRepository::class)->getById(request('issue'));
+
         return [
             'baseUrl' => $baseUrl,
             'breadcrumb' => [

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Page;
 use App\Libraries\Search\CollectionService;
 
@@ -23,7 +22,7 @@ class CollectionController extends BaseScopedController
     protected function beginOfAssociationChain()
     {
         // Define base entity
-        $collectionService = new CollectionService;
+        $collectionService = new CollectionService();
 
         // Implement default filters and scopes
         $collectionService->resources(['artworks'])
@@ -59,7 +58,7 @@ class CollectionController extends BaseScopedController
         }
 
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();
-        $filters       = $this->collection()->generateFilters();
+        $filters = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
 
         if ($activeFilters->count()) {
@@ -74,7 +73,7 @@ class CollectionController extends BaseScopedController
             $this->seo->setImage($artwork->imageFront('hero'));
         } else {
             // Otherwise, fall back to La Grande Jatte as social image
-            $this->seo->image = 'https://' .rtrim(config('app.url'), '/') . '/iiif/2/4eddcf49-3efd-d993-fb1a-75d7e7d5b5a1/full/843,/0/default.jpg';
+            $this->seo->image = 'https://' . rtrim(config('app.url'), '/') . '/iiif/2/4eddcf49-3efd-d993-fb1a-75d7e7d5b5a1/full/843,/0/default.jpg';
             $this->seo->width = 1200;
             $this->seo->height = 799;
         }
@@ -82,7 +81,7 @@ class CollectionController extends BaseScopedController
         $description = "Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.";
 
         if (request('q')) {
-            $description = 'You searched for: ' .request('q') .'. ' .$description;
+            $description = 'You searched for: ' . request('q') . '. ' . $description;
         }
         $this->seo->setDescription($description);
         $this->seo->nofollow = $this->setNofollowMeta();
@@ -93,11 +92,11 @@ class CollectionController extends BaseScopedController
             [
                 'articles' => false,
                 'experiences' => false
-        ]
+            ]
         );
 
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();
-        $filters       = $this->collection()->generateFilters();
+        $filters = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
 
         if ($featuredItems->count()) {
@@ -105,14 +104,14 @@ class CollectionController extends BaseScopedController
         }
 
         return view('site.collection.index', [
-          'primaryNavCurrent' => 'collection',
-          'page'              => $page,
-          'artworks'          => $collection,
-          'filterCategories'  => $filters,
-          'activeFilters'     => $activeFilters,
-          'hasAnyFilter'      => $this->hasAnyScope(),
-          'featuredItemsHero' => $featuredItemsHero ?? null,
-          'featuredItems'     => $featuredItems ?? null,
+            'primaryNavCurrent' => 'collection',
+            'page' => $page,
+            'artworks' => $collection,
+            'filterCategories' => $filters,
+            'activeFilters' => $activeFilters,
+            'hasAnyFilter' => $this->hasAnyScope(),
+            'featuredItemsHero' => $featuredItemsHero ?? null,
+            'featuredItems' => $featuredItems ?? null,
         ]);
     }
 
@@ -125,7 +124,7 @@ class CollectionController extends BaseScopedController
     {
         // Search through the facets including current parameters. Get only aggregations.
         $collection = $this->collection()->results(0);
-        $filters    = $this->collection()->generateFilters();
+        $filters = $this->collection()->generateFilters();
 
         // Get the correct aggregation
         $list = $filters->where('aggregation', $category)->first();
@@ -161,7 +160,7 @@ class CollectionController extends BaseScopedController
 
         if ($count > 1) {
             return true;
-        } else {
+        }
             if ($count == 1) {
                 // If there's only one selected filter, check if it has more than one active element
                 $input = request()->input();
@@ -170,6 +169,6 @@ class CollectionController extends BaseScopedController
                     return true;
                 }
             }
-        }
+
     }
 }

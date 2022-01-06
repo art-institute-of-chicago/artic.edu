@@ -17,12 +17,12 @@ class IssueArticleTest extends TestCase
     {
         $issue = factory(Issue::class)->create([
             'published' => false,
-            'title' => "Unpublished test",
+            'title' => 'Unpublished test',
         ]);
 
         $issueArticle = factory(IssueArticle::class)->create([
             'publish_start_date' => Carbon::yesterday(),
-            'title' => "Published test",
+            'title' => 'Published test',
             'issue_id' => $issue->id,
         ]);
 

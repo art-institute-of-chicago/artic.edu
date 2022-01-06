@@ -9,8 +9,8 @@ class Artist extends BaseApiModel
 {
     protected $endpoints = [
         'collection' => '/api/v1/artists',
-        'resource'   => '/api/v1/artists/{id}',
-        'search'     => '/api/v1/artists/search'
+        'resource' => '/api/v1/artists/{id}',
+        'search' => '/api/v1/artists/search'
     ];
 
     protected $augmented = true;
@@ -38,7 +38,7 @@ class Artist extends BaseApiModel
             ->aggregationClassifications(2)
             ->aggregationPlaces(1)
             ->aggregationStyles(1)
-            ->getSearch($perPage, ['id','title','image_id','main_reference_number','thumbnail','date_display','artist_title',], 'page', null, ['do-not-extract' => true]);
+            ->getSearch($perPage, ['id', 'title', 'image_id', 'main_reference_number', 'thumbnail', 'date_display', 'artist_title'], 'page', null, ['do-not-extract' => true]);
     }
 
     public function getTitleSlugAttribute()
@@ -77,13 +77,15 @@ class Artist extends BaseApiModel
 
     public function getShortNameAttribute()
     {
-        $arr = explode(",", $this->sort_title, 2);
+        $arr = explode(',', $this->sort_title, 2);
+
         return $arr[0];
     }
 
     public function getShortNameQualifierAttribute()
     {
-        $arr = explode(",", $this->sort_title, 2);
+        $arr = explode(',', $this->sort_title, 2);
+
         return count($arr) > 1 ? trim($arr[1]) : '';
     }
 }

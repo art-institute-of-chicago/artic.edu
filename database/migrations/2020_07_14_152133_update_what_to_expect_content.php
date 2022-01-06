@@ -15,7 +15,7 @@ class UpdateWhatToExpectContent extends Migration
 
         $visitPage->whatToExpects()->delete();
 
-        $whatToExpect = new \App\Models\WhatToExpect;
+        $whatToExpect = new \App\Models\WhatToExpect();
         $whatToExpect->icon_type = 0;
         $whatToExpect->translateOrNew('en')->text = 'Face coverings will be required for your entire museum visit.';
         $whatToExpect->translateOrNew('en')->active = true;
@@ -24,7 +24,7 @@ class UpdateWhatToExpectContent extends Migration
         $whatToExpect->page_id = $visitPage->id;
         $whatToExpect->save();
 
-        $whatToExpect = new \App\Models\WhatToExpect;
+        $whatToExpect = new \App\Models\WhatToExpect();
         $whatToExpect->icon_type = 1;
         $whatToExpect->translateOrNew('en')->text = 'Maintain a physical distance of six-feet from staff and visitors.';
         $whatToExpect->translateOrNew('en')->active = true;
@@ -33,7 +33,7 @@ class UpdateWhatToExpectContent extends Migration
         $whatToExpect->page_id = $visitPage->id;
         $whatToExpect->save();
 
-        $whatToExpect = new \App\Models\WhatToExpect;
+        $whatToExpect = new \App\Models\WhatToExpect();
         $whatToExpect->icon_type = 2;
         $whatToExpect->translateOrNew('en')->text = 'Advance ticket purchase is required. Members will be required to display digital member card using the Art Institute of Chicago mobile app.';
         $whatToExpect->translateOrNew('en')->active = true;
@@ -42,7 +42,7 @@ class UpdateWhatToExpectContent extends Migration
         $whatToExpect->page_id = $visitPage->id;
         $whatToExpect->save();
 
-        $whatToExpect = new \App\Models\WhatToExpect;
+        $whatToExpect = new \App\Models\WhatToExpect();
         $whatToExpect->icon_type = 3;
         $whatToExpect->translateOrNew('en')->text = 'Anyone feeling unwell should postpone their visit for another time.';
         $whatToExpect->translateOrNew('en')->active = true;
@@ -51,7 +51,7 @@ class UpdateWhatToExpectContent extends Migration
         $whatToExpect->page_id = $visitPage->id;
         $whatToExpect->save();
 
-        $whatToExpect = new \App\Models\WhatToExpect;
+        $whatToExpect = new \App\Models\WhatToExpect();
         $whatToExpect->icon_type = 4;
         $whatToExpect->translateOrNew('en')->text = 'Our checkrooms are currently closed. Pack light, and remember some items are not allowed in the galleries.';
         $whatToExpect->translateOrNew('en')->active = true;
@@ -60,7 +60,7 @@ class UpdateWhatToExpectContent extends Migration
         $whatToExpect->page_id = $visitPage->id;
         $whatToExpect->save();
 
-        $whatToExpect = new \App\Models\WhatToExpect;
+        $whatToExpect = new \App\Models\WhatToExpect();
         $whatToExpect->icon_type = 5;
         $whatToExpect->translateOrNew('en')->text = 'Our amenities are temporarily limited. Service and spaces currently unavailable include restaurants, auditoria, valet service, and the Member Lounge.';
         $whatToExpect->translateOrNew('en')->active = true;
@@ -69,7 +69,7 @@ class UpdateWhatToExpectContent extends Migration
         $whatToExpect->page_id = $visitPage->id;
         $whatToExpect->save();
 
-        $whatToExpect = new \App\Models\WhatToExpect;
+        $whatToExpect = new \App\Models\WhatToExpect();
         $whatToExpect->icon_type = 6;
         $whatToExpect->translateOrNew('en')->text = 'Some galleries may have limited capacity or be temporarily closed.';
         $whatToExpect->translateOrNew('en')->active = true;
@@ -78,7 +78,7 @@ class UpdateWhatToExpectContent extends Migration
         $whatToExpect->page_id = $visitPage->id;
         $whatToExpect->save();
 
-        $whatToExpect = new \App\Models\WhatToExpect;
+        $whatToExpect = new \App\Models\WhatToExpect();
         $whatToExpect->icon_type = 7;
         $whatToExpect->translateOrNew('en')->text = 'Be mindful to abide by directional signage, including designated entrances and exits.';
         $whatToExpect->translateOrNew('en')->active = true;
@@ -87,7 +87,7 @@ class UpdateWhatToExpectContent extends Migration
         $whatToExpect->page_id = $visitPage->id;
         $whatToExpect->save();
 
-        $whatToExpect = new \App\Models\WhatToExpect;
+        $whatToExpect = new \App\Models\WhatToExpect();
         $whatToExpect->icon_type = 8;
         $whatToExpect->translateOrNew('en')->text = 'Special exhibitions may use timed queueing systems. Check in at exhibition entrances to reserve your spot in line.';
         $whatToExpect->translateOrNew('en')->active = true;

@@ -14,7 +14,7 @@ class DamsImageService implements ImageServiceInterface
     protected $base_url;
     protected $version;
 
-    protected $cacheVersion = "1";
+    protected $cacheVersion = '1';
 
     public function __construct()
     {
@@ -37,27 +37,27 @@ class DamsImageService implements ImageServiceInterface
         $credit = null;
         $creditUrl = null;
         $shareTitle = null;
-        $downloadName = $object->main_reference_number .' - ' .StringHelpers::truncateStr($object->title, 50) .'.jpg';
+        $downloadName = $object->main_reference_number . ' - ' . StringHelpers::truncateStr($object->title, 50) . '.jpg';
 
         $preLoadedInfo = $this->getInfo($object, $imageField);
 
-        $src = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height]);
-        $srcset = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height]) . " 300w";
+        $src = $this->getUrl($object->{$imageField}, ['width' => $width, 'height' => $height]);
+        $srcset = $this->getUrl($object->{$imageField}, ['width' => $width, 'height' => $height]) . ' 300w';
 
-        $image = array(
-            "type" => 'dams',
-            "src" => $src,
-            "srcset" => $srcset,
-            "width" => $preLoadedInfo['width'],
-            "height" => $preLoadedInfo['height'],
-            "shareUrl" => '#',
-            "shareTitle" => $shareTitle,
-            "downloadUrl" => $src,
-            "downloadName" => $downloadName,
-            "credit" => $credit,
-            "creditUrl" => $creditUrl,
-            "iiifId" => $this->base_url . $this->version . '/' . $object->$imageField,
-        );
+        $image = [
+            'type' => 'dams',
+            'src' => $src,
+            'srcset' => $srcset,
+            'width' => $preLoadedInfo['width'],
+            'height' => $preLoadedInfo['height'],
+            'shareUrl' => '#',
+            'shareTitle' => $shareTitle,
+            'downloadUrl' => $src,
+            'downloadName' => $downloadName,
+            'credit' => $credit,
+            'creditUrl' => $creditUrl,
+            'iiifId' => $this->base_url . $this->version . '/' . $object->{$imageField},
+        ];
 
         if (isset($preLoadedInfo['lqip']) && !empty($preLoadedInfo['lqip'])) {
             $image['lqip'] = $preLoadedInfo['lqip'];
@@ -72,9 +72,9 @@ class DamsImageService implements ImageServiceInterface
 
     public function getUrl($id, array $params = [])
     {
-        $width = isset($params['width']) ? $params['width'] : '';
-        $height = isset($params['height']) ? $params['height'] : '';
-        $size = isset($params['size']) ? $params['size'] : 'full';
+        $width = $params['width'] ?? '';
+        $height = $params['height'] ?? '';
+        $size = $params['size'] ?? 'full';
 
         $dimensions = '!3000,3000';
         if ($width != '' || $height != '') {
@@ -115,10 +115,10 @@ class DamsImageService implements ImageServiceInterface
         // Try returning already loaded information
         if (!empty($object->thumbnail)) {
             if ($object->thumbnail->width && $object->thumbnail->height) {
-                $info['width']  = $object->thumbnail->width;
+                $info['width'] = $object->thumbnail->width;
                 $info['height'] = $object->thumbnail->height;
             } else {
-                $info = array_merge($info, $this->getDimensions($object->$imageField));
+                $info = array_merge($info, $this->getDimensions($object->{$imageField}));
             }
 
             if ($object->thumbnail->lqip) {
@@ -126,14 +126,14 @@ class DamsImageService implements ImageServiceInterface
             }
 
             if ($object->thumbnail->alt_text) {
-                $info['alt']  = $object->thumbnail->alt_text;
+                $info['alt'] = $object->thumbnail->alt_text;
             }
 
             return $info;
-        } else {
-            // Hit the server to get the info if not available
-            return $this->getDimensions($object->$imageField);
         }
+            // Hit the server to get the info if not available
+            return $this->getDimensions($object->{$imageField});
+
     }
 
     public function getDimensions($id)

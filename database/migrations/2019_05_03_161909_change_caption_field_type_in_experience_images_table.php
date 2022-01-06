@@ -26,7 +26,7 @@ class ChangeCaptionFieldTypeInExperienceImagesTable extends Migration
     public function down()
     {
         Schema::table('experience_images', function (Blueprint $table) {
-            //
+
         });
     }
 }

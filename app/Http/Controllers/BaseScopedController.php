@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 /**
  * Quick and oversimplified implementation of Ruby on Rails has_scope gem.
  *
@@ -39,27 +38,27 @@ class BaseScopedController extends FrontController
      * better to place them here to have a single control point
      */
     protected $scopes = [
-        'q'            => 'search',
-        'artist_ids'   => 'byArtists',
-        'style_ids'    => 'byStyles',
-        'subject_ids'  => 'bySubjects',
+        'q' => 'search',
+        'artist_ids' => 'byArtists',
+        'style_ids' => 'byStyles',
+        'subject_ids' => 'bySubjects',
         'material_ids' => 'byMaterials',
-        'place_ids'    => 'byPlaces',
-        'color'        => 'byColor',
-        'sort_by'      => 'sortBy',
-        'date-start'   => 'yearMin',
-        'date-end'     => 'yearMax',
-        'is_on_view'   => 'onView',
+        'place_ids' => 'byPlaces',
+        'color' => 'byColor',
+        'sort_by' => 'sortBy',
+        'date-start' => 'yearMin',
+        'date-end' => 'yearMax',
+        'is_on_view' => 'onView',
         'classification_ids' => 'byClassifications',
-        'department_ids'     => 'byDepartments',
-        'is_public_domain'   => 'publicDomain',
-        'is_recent_acquisition'     => 'recentAcquisition',
-        'has_multimedia'            => 'hasMultimedia',
+        'department_ids' => 'byDepartments',
+        'is_public_domain' => 'publicDomain',
+        'is_recent_acquisition' => 'recentAcquisition',
+        'has_multimedia' => 'hasMultimedia',
         'has_educational_resources' => 'hasEducationalResources',
 
         // Hidden from filters but present in Quick facets
-        'theme_ids'     => 'byThemes',
-        'gallery_ids'   => 'byGalleryIdsOnView',
+        'theme_ids' => 'byThemes',
+        'gallery_ids' => 'byGalleryIdsOnView',
         'technique_ids' => 'byTechniques',
     ];
 
@@ -88,7 +87,7 @@ class BaseScopedController extends FrontController
      */
     protected function beginOfAssociationChain()
     {
-        $model   = new $this->entity;
+        $model = new $this->entity();
         $builder = $model->newQuery();
 
         return $builder;
@@ -117,7 +116,7 @@ class BaseScopedController extends FrontController
         if (!empty($this->scopes)) {
             foreach ($this->scopes as $parameter => $scope) {
                 if (request()->input($parameter) != null) {
-                    $query->$scope(request()->input($parameter));
+                    $query->{$scope}(request()->input($parameter));
                 }
             }
         }
@@ -133,14 +132,14 @@ class BaseScopedController extends FrontController
     {
         if (empty($this->scopes)) {
             return true;
-        } else {
+        }
             foreach ($this->scopes as $parameter => $scope) {
                 if (request()->input($parameter) != null) {
                     return true;
                 }
             }
-        }
 
-        return;
+
+
     }
 }

@@ -38,7 +38,7 @@ class GeotargetController extends BaseController
             return null;
         }
 
-        list($lat, $long) = array_map('floatval', explode(',', $response, 2));
+        [$lat, $long] = array_map('floatval', explode(',', $response, 2));
 
         $distMeters = $this->haversineGreatCircleDistance($lat, $long, 41.8500, -87.6500);
         $distMiles = $distMeters / 1609.344;
@@ -47,16 +47,16 @@ class GeotargetController extends BaseController
     }
 
     /**
-    * Calculates the great-circle distance between two points, with
-    * the Haversine formula.
-    * @link https://stackoverflow.com/questions/14750275/haversine-formula-with-php
-    * @param float $latitudeFrom Latitude of start point in [deg decimal]
-    * @param float $longitudeFrom Longitude of start point in [deg decimal]
-    * @param float $latitudeTo Latitude of target point in [deg decimal]
-    * @param float $longitudeTo Longitude of target point in [deg decimal]
-    * @param float $earthRadius Mean earth radius in [m]
-    * @return float Distance between points in [m] (same as earthRadius)
-    */
+     * Calculates the great-circle distance between two points, with
+     * the Haversine formula.
+     * @link https://stackoverflow.com/questions/14750275/haversine-formula-with-php
+     * @param float $latitudeFrom Latitude of start point in [deg decimal]
+     * @param float $longitudeFrom Longitude of start point in [deg decimal]
+     * @param float $latitudeTo Latitude of target point in [deg decimal]
+     * @param float $longitudeTo Longitude of target point in [deg decimal]
+     * @param float $earthRadius Mean earth radius in [m]
+     * @return float Distance between points in [m] (same as earthRadius)
+     */
     public function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000)
     {
         // Convert from degrees to radians
@@ -70,6 +70,7 @@ class GeotargetController extends BaseController
 
         $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
         cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+
         return $angle * $earthRadius;
     }
 }

@@ -70,6 +70,7 @@ class Experience extends AbstractModel implements Sortable
 
             if ($slide->media_type === 'seamless') {
                 $seamless_file = $slide->fileObject('sequence_file');
+
                 return $seamless_file && SeamlessImage::where('zip_file_id', $seamless_file->id)->get()->count() > 0;
             }
 
@@ -97,7 +98,8 @@ class Experience extends AbstractModel implements Sortable
                 ];
                 array_push($assets, $asset);
             }
-        };
+        }
+
         return $assets;
     }
 
@@ -127,11 +129,12 @@ class Experience extends AbstractModel implements Sortable
     {
         if ($this->hasImage('thumbnail')) {
             return $this->image('thumbnail');
-        } else {
+        }
             $attract_slide = $this->slides()->where('module_type', 'attract')->first();
             $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
+
             return $attract_image ? $attract_image->cmsImage('experience_image', 'default', $params) : '';
-        }
+
     }
 
     public function slides()
@@ -245,66 +248,66 @@ class Experience extends AbstractModel implements Sortable
     {
         return [
             [
-                "name" => 'title',
-                "doc" => "Title",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'title',
+                'doc' => 'Title',
+                'type' => 'string',
+                'value' => function () {
                     return $this->title;
                 },
             ],
             [
-                "name" => 'sub_title',
-                "doc" => "Sub-title",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'sub_title',
+                'doc' => 'Sub-title',
+                'type' => 'string',
+                'value' => function () {
                     return $this->sub_title;
                 },
             ],
             [
-                "name" => 'listing_description',
-                "doc" => "Listing description",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'listing_description',
+                'doc' => 'Listing description',
+                'type' => 'string',
+                'value' => function () {
                     return $this->listing_description;
                 },
             ],
             [
-                "name" => 'position',
-                "doc" => "Position",
-                "type" => "number",
-                "value" => function () {
+                'name' => 'position',
+                'doc' => 'Position',
+                'type' => 'number',
+                'value' => function () {
                     return $this->position;
                 },
             ],
             [
-                "name" => 'interactive_feature_id',
-                "doc" => "Interactive feature ID",
-                "type" => "number",
-                "value" => function () {
+                'name' => 'interactive_feature_id',
+                'doc' => 'Interactive feature ID',
+                'type' => 'number',
+                'value' => function () {
                     return $this->interactive_feature_id;
                 },
             ],
             [
-                "name" => 'archived',
-                "doc" => "Archived",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'archived',
+                'doc' => 'Archived',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->archived;
                 },
             ],
             [
-                "name" => 'kiosk_only',
-                "doc" => "Kiosk-only",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'kiosk_only',
+                'doc' => 'Kiosk-only',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->kiosk_only;
                 },
             ],
             [
-                "name" => 'published',
-                "doc" => "Published",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->published;
                 },
             ],

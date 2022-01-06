@@ -36,8 +36,8 @@ trait HandleApiRelations
             ];
         }
 
-        $object->$relationship()->detach($object->$relationship->pluck('id'));
-        $object->$relationship()->attach($relatedElementsWithPosition);
+        $object->{$relationship}()->detach($object->{$relationship}->pluck('id'));
+        $object->{$relationship}()->attach($relatedElementsWithPosition);
     }
 
     public function updateMultiBrowserApiRelated($object, $fields, $relationship, $typeUsesApi)
@@ -55,8 +55,10 @@ trait HandleApiRelations
             if ($typeUsesApi[$element['endpointType']]) {
                 $apiItem = ApiRelation::firstOrCreate(['datahub_id' => $element['id']]);
                 $apiItem->endpointType = $element['endpointType'];
+
                 return $apiItem;
             }
+
             return $element;
         }, $relatedElements);
 
@@ -77,7 +79,7 @@ trait HandleApiRelations
                 'browser_name' => $relationship,
                 'position' => $position,
             ]);
-            $position++;
+            ++$position;
         });
     }
 
@@ -89,12 +91,12 @@ trait HandleApiRelations
     public function getFormFieldsForBrowserApi($object, $relation, $apiModel, $routePrefix = null, $titleKey = 'title', $moduleName = null)
     {
         // Get all datahub_id's
-        $ids = $object->$relation->pluck('datahub_id')->toArray();
+        $ids = $object->{$relation}->pluck('datahub_id')->toArray();
         // Use those to load API records
         $apiElements = $apiModel::query()->ids($ids)->get();
 
         // Find locally selected objects
-        $localApiMapping = $object->$relation->filter(function ($relatedElement) use ($apiElements) {
+        $localApiMapping = $object->{$relation}->filter(function ($relatedElement) use ($apiElements) {
             return $apiElements->where('id', $relatedElement->datahub_id)->first();
         });
 
@@ -121,7 +123,7 @@ trait HandleApiRelations
 
             return [
                 'id' => $apiElement->id,
-                'name' => $apiElement->titleInBrowser ?? $apiElement->$titleKey,
+                'name' => $apiElement->titleInBrowser ?? $apiElement->{$titleKey},
             ] + $data;
         })->values()->toArray();
     }
@@ -152,9 +154,9 @@ trait HandleApiRelations
                             if (classHasTrait($apiElement->getAugmentedModel(), \App\Models\Behaviors\HasMedias::class)) {
                                 $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
                             }
-                        } else {
-                            // WEB-1187: Add augment route here!
                         }
+                            // WEB-1187: Add augment route here!
+
 
                         return [
                             'id' => $apiElement->id,

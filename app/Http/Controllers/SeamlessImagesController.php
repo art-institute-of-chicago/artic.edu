@@ -14,7 +14,7 @@ class SeamlessImagesController extends Controller
             $file = File::findOrFail($file_id);
             app('App\Observers\FileObserver')->handleImageSequenceZip($file);
         }
-        
+
         $images = SeamlessImage::where('zip_file_id', $file_id)->get()->map(function ($image) {
             return [
                 'id' => $image->id,
@@ -24,11 +24,12 @@ class SeamlessImagesController extends Controller
                 'height' => $image->height,
             ];
         });
+
         return response()->json($images)->withHeaders([
-            "Access-Control-Allow-Origin" => "*",
-            "Access-Control-Allow-Methods" => "GET",
-            "Access-Control-Allow-Headers" => "Content-Type",
-            "Access-Control-Allow-Headers" => "*",
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => 'GET',
+            'Access-Control-Allow-Headers' => 'Content-Type',
+            'Access-Control-Allow-Headers' => '*',
         ]);
     }
 }

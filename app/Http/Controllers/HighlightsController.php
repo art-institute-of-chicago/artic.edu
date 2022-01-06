@@ -28,18 +28,18 @@ class HighlightsController extends FrontController
         ];
 
         $nav = [
-            [ 'label' => 'The Collection', 'href' => route('collection'), 'links' => $subNav ]
+            ['label' => 'The Collection', 'href' => route('collection'), 'links' => $subNav]
         ];
 
         $this->seo->setTitle($title);
 
         $view_data = [
-            'title'  => $title,
+            'title' => $title,
             'subNav' => $subNav,
-            'nav'    => $nav,
+            'nav' => $nav,
             'wideBody' => true,
-            'filters'    => null,
-            'listingCountText' => 'Showing '.$items->total().' highlights',
+            'filters' => null,
+            'listingCountText' => 'Showing ' . $items->total() . ' highlights',
             'listingItems' => $items,
         ];
 
@@ -49,7 +49,7 @@ class HighlightsController extends FrontController
 
     public function show($id, $slug = null)
     {
-        $item = $this->repository->getById((Integer) $id);
+        $item = $this->repository->getById((int) $id);
 
         $canonicalPath = route('highlights.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
 
@@ -71,8 +71,8 @@ class HighlightsController extends FrontController
         return view('site.highlightDetail', [
             'item' => $item,
             'contrastHeader' => $item->present()->contrastHeader,
-            'exploreFurtherTags'    => $exploreFurther->tags(),
-            'exploreFurther'        => $exploreFurther->collection(request()->all()),
+            'exploreFurtherTags' => $exploreFurther->tags(),
+            'exploreFurther' => $exploreFurther->collection(request()->all()),
             'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'furtherReadingTitle' => $this->repository->getFurtherReadingTitle($item) ?? null,

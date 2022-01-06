@@ -30,6 +30,7 @@ class ClosurePresenter extends BasePresenter
         $closure_copy = $this->entity->closure_copy;
         $closure_copy = str_replace('<p>', ' ', $closure_copy);
         $closure_copy = str_replace('</p>', ' ', $closure_copy);
+
         return $closure_copy;
     }
 }

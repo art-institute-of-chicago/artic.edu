@@ -98,7 +98,7 @@ class HomeFeature extends AbstractModel
 
         // Assign image and video to the actual item. Fallback to the element image if no image has been selected.
         $item->featureImage = $this->featureImage ?? $item->imageFront('hero');
-        $item->videoFront   = $this->videoFront($item->featureImage);
+        $item->videoFront = $this->videoFront($item->featureImage);
 
         // Generalize the article tag
         if ($item->type == 'article') {

@@ -28,6 +28,7 @@ class DigitalPublicationController extends ModuleController
     {
         $item = $this->repository->getById(request('digitalPublication') ?? request('id'));
         $baseUrl = '//' . config('app.url') . '/digital-publications/' . $item->id . '/';
+
         return [
             'baseUrl' => $baseUrl,
         ];

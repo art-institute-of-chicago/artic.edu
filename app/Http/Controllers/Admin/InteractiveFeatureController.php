@@ -39,6 +39,7 @@ class InteractiveFeatureController extends ModuleController
             'slug' => 'archived',
             'number' => InteractiveFeature::archived()->count(),
         ]);
+
         return $statusFilters;
     }
 
@@ -50,6 +51,7 @@ class InteractiveFeatureController extends ModuleController
         } else {
             $scopes = $scopes + ['unarchived' => true];
         }
+
         return parent::getIndexItems($scopes, $forcePagination);
     }
 }

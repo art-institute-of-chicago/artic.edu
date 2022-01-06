@@ -23,6 +23,7 @@ class EmbedConverterFacade extends Facade
     public static function convertUrl($url)
     {
         $service = \App::make('embedconverterservice');
+
         return $service->convertUrl($url);
     }
 }

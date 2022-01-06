@@ -40,7 +40,7 @@ class ReportAltText extends Command
             \App\Models\Video::class,
             \A17\Twill\Models\Block::class,
         ])->map(function ($model) {
-            $table = with(new $model)->getTable();
+            $table = with(new $model())->getTable();
             $query = $model::whereHas('medias');
             if (\Schema::hasColumn($table, 'published')) {
                 $query->published();
@@ -48,6 +48,7 @@ class ReportAltText extends Command
             if (\Schema::hasColumn($table, 'deleted_at')) {
                 $query->whereNull('deleted_at');
             }
+
             return $query->with('medias');
         })->map(function ($query) use (&$medias) {
             return $query->chunk(100, function ($items) use (&$medias) {
@@ -80,7 +81,7 @@ class ReportAltText extends Command
         // Prep for str_putcsv()
         foreach ($medias as $id => $props) {
             $out[] = [
-                'image_url' => 'https://' . config('twill.imgix_source_host') .'/' .$props['uuid'],
+                'image_url' => 'https://' . config('twill.imgix_source_host') . '/' . $props['uuid'],
                 'alt_text' => $props['alt_text'],
                 'on_page' => $props['url'],
                 'id' => $id,
@@ -155,23 +156,23 @@ class ReportAltText extends Command
         if (\App\Models\Artist::class == get_class($item)
             || \App\Models\Department::class == get_class($item)
             || \App\Models\Exhibition::class == get_class($item)) {
-            $slug = $item->datahub_id .'/' .$item->getApiModelFilled()->titleSlug;
+            $slug = $item->datahub_id . '/' . $item->getApiModelFilled()->titleSlug;
         }
         if (\App\Models\GenericPage::class == get_class($item)) {
-            return 'https://www.artic.edu' .$item->url;
+            return 'https://www.artic.edu' . $item->url;
         }
         if (\App\Models\CategoryTerm::class == get_class($item)) {
             if ($item->local_subtype == 'style') {
-                return 'https://www.artic.edu/collection?style_ids=' .urlencode($item->local_title);
+                return 'https://www.artic.edu/collection?style_ids=' . urlencode($item->local_title);
             }
             if ($item->local_subtype == 'subject') {
-                return 'https://www.artic.edu/collection?subject_ids=' .urlencode($item->local_title);
+                return 'https://www.artic.edu/collection?subject_ids=' . urlencode($item->local_title);
             }
             if ($item->local_subtype == 'classification') {
-                return 'https://www.artic.edu/collection?classification_ids=' .urlencode($item->local_title);
+                return 'https://www.artic.edu/collection?classification_ids=' . urlencode($item->local_title);
             }
             if ($item->local_subtype == 'theme') {
-                return 'https://www.artic.edu/collection?theme_ids=' .urlencode($item->datahub_id);
+                return 'https://www.artic.edu/collection?theme_ids=' . urlencode($item->datahub_id);
             }
         }
         if (\App\Models\HomeFeature::class == get_class($item)) {
@@ -212,7 +213,7 @@ class ReportAltText extends Command
             return '';
         }
 
-        return 'https://www.artic.edu/' .$prefix .'/'. $slug;
+        return 'https://www.artic.edu/' . $prefix . '/' . $slug;
     }
 
     public function pathPrefix($item)

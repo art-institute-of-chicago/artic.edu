@@ -27,7 +27,6 @@ class ExhibitionRepository extends BaseApiRepository
     public function history($year = null, $q = null, $perPage = 20)
     {
         return $this->model->query()->history($year)->search($q)->getPaginatedModel($perPage, \App\Models\Api\Exhibition::SEARCH_FIELDS);
-        ;
     }
 
     /**
@@ -47,7 +46,7 @@ class ExhibitionRepository extends BaseApiRepository
 
     public function searchApi($string, $perPage = null, $time = null)
     {
-        $search  = Search::query()->search($string)->resources(['exhibitions']);
+        $search = Search::query()->search($string)->resources(['exhibitions']);
 
         // WEB-2264: `upcoming` and `past` might be dead code. Remove?
         if ($time == 'upcoming') {

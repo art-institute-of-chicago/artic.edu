@@ -6,5 +6,5 @@ use A17\Twill\Models\Revision;
 
 class IssueArticleRevision extends Revision
 {
-    protected $table = "issue_article_revisions";
+    protected $table = 'issue_article_revisions';
 }

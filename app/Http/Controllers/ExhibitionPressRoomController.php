@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class ExhibitionPressRoomController extends FrontController
         ];
 
         $nav = [
-            [ 'label' => 'Press', 'href' => route('genericPages.show', 'press'), 'links' => $subNav ]
+            ['label' => 'Press', 'href' => route('genericPages.show', 'press'), 'links' => $subNav]
         ];
 
         $crumbs = [
@@ -37,13 +38,13 @@ class ExhibitionPressRoomController extends FrontController
         ];
 
         $view_data = [
-            'title'  => $title,
+            'title' => $title,
             'subNav' => $subNav,
-            'nav'    => $nav,
-            "breadcrumb" => $crumbs,
-            'wideBody'   => true,
-            'filters'    => null,
-            'listingCountText' => 'Showing '.$items->total().' exhibition press rooms',
+            'nav' => $nav,
+            'breadcrumb' => $crumbs,
+            'wideBody' => true,
+            'filters' => null,
+            'listingCountText' => 'Showing ' . $items->total() . ' exhibition press rooms',
             'listingItems' => $items,
         ];
 
@@ -53,7 +54,7 @@ class ExhibitionPressRoomController extends FrontController
 
     public function show($id)
     {
-        $item = $this->repository->getById((Integer) $id);
+        $item = $this->repository->getById((int) $id);
 
         $canonicalPath = route('about.exhibitionPressRooms.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
 

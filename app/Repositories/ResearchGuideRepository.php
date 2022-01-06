@@ -27,9 +27,9 @@ class ResearchGuideRepository extends ModuleRepository
             'nav' => null,
             'intro' => $item->short_description,
             'headerImage' => $item->imageFront('banner'),
-            "title" => $item->title,
-            "breadcrumb" => [],
-            "blocks" => null,
+            'title' => $item->title,
+            'breadcrumb' => [],
+            'blocks' => null,
             'nav' => [],
             'page' => $item,
         ];
@@ -37,7 +37,7 @@ class ResearchGuideRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null, $page = null, $columns = [])
     {
-        $search  = Search::query()->search($string)->published()->resources(['educator-resources']);
+        $search = Search::query()->search($string)->published()->resources(['educator-resources']);
 
         $results = $search->getSearch($perPage, $columns, null, $page);
 

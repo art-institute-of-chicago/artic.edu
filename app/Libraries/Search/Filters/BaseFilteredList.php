@@ -71,6 +71,7 @@ class BaseFilteredList
     public function findLabel($id)
     {
         $label = $this->loadLabels()->get($id);
+
         return ucfirst($label);
     }
 

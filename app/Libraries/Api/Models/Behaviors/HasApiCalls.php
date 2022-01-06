@@ -24,7 +24,7 @@ trait HasApiCalls
      */
     public static function with($relations)
     {
-        return (new static)->newQuery()->with(
+        return (new static())->newQuery()->with(
             is_string($relations) ? func_get_args() : $relations
         );
     }
@@ -36,7 +36,7 @@ trait HasApiCalls
      */
     public static function query()
     {
-        return (new static)->newQuery();
+        return (new static())->newQuery();
     }
 
     /**
@@ -46,7 +46,7 @@ trait HasApiCalls
      */
     public static function search($value)
     {
-        return (new static)->newQuery()->search($value);
+        return (new static())->newQuery()->search($value);
     }
 
     /**
@@ -69,9 +69,9 @@ trait HasApiCalls
     {
         foreach ($this->getDefaultScopes() as $name => $parameters) {
             if (empty($parameters)) {
-                $builder->$name();
+                $builder->{$name}();
             } else {
-                $builder->$name($parameters);
+                $builder->{$name}($parameters);
             }
         }
 
@@ -101,7 +101,7 @@ trait HasApiCalls
         // builder can easily access any information it may need from the model
         // while it is constructing and executing various queries against it.
         return $builder->setModel($this)
-                    ->with($this->with);
+            ->with($this->with);
     }
 
     public function newApiModelBuilder($query)
@@ -140,6 +140,7 @@ trait HasApiCalls
     {
         return preg_replace_callback('!\{(\w+)\}!', function ($matches) use ($params) {
             $name = $matches[1];
+
             return $params[$name];
         }, $this->getEndpoint($type));
     }

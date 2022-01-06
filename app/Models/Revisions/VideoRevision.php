@@ -6,7 +6,7 @@ use A17\Twill\Models\Revision;
 
 class VideoRevision extends Revision
 {
-    protected $table = "video_revisions";
+    protected $table = 'video_revisions';
 
     protected $touches = ['video'];
 

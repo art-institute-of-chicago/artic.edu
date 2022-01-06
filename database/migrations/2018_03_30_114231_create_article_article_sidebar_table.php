@@ -17,11 +17,11 @@ class CreateArticleArticleSidebarTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->integer("article_id")->unsigned();
-            $table->foreign("article_id")->references('id')->on('articles')->onDelete('cascade');
-            $table->integer("related_article_id")->unsigned();
-            $table->foreign("related_article_id")->references('id')->on('articles')->onDelete('cascade');
-            $table->index(["related_article_id", "article_id"]);
+            $table->integer('article_id')->unsigned();
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->integer('related_article_id')->unsigned();
+            $table->foreign('related_article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->index(['related_article_id', 'article_id']);
 
             $table->integer('position')->unsigned()->index();
         });

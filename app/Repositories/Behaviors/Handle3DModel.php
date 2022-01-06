@@ -47,7 +47,7 @@ trait Handle3DModel
             foreach ($aic3dFields as $aic3dField) {
                 array_push($fields['repeaterFields']['secondary_experience_modal'], [
                     'name' => "blocks[secondaryExperienceModal-{$secondaryExperienceModal->id}][aic_split_3d_model][{$aic3dField}]",
-                    'value' => $model3d->$aic3dField
+                    'value' => $model3d->{$aic3dField}
                 ]);
             }
         }
@@ -63,8 +63,8 @@ trait Handle3DModel
             $fields["{$fieldName}[annotation_list]"] = $model3d->getOriginal('annotation_list');
             $fields["{$fieldName}[hide_annotation]"] = $model3d->getOriginal('hide_annotation');
             $fields["{$fieldName}[hide_annotation_title]"] = $model3d->getOriginal('hide_annotation_title');
-        };
-            
+        }
+
         return $fields;
     }
 }

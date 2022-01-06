@@ -32,10 +32,10 @@ class HasMany
 
     public function __construct($query, $parent, $localKey, $limit = -1)
     {
-        $this->query    = $query;
-        $this->parent   = $parent;
+        $this->query = $query;
+        $this->parent = $parent;
         $this->localKey = $localKey;
-        $this->limit    = $limit;
+        $this->limit = $limit;
 
         $this->addConstraints();
     }

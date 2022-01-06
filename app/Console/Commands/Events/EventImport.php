@@ -39,6 +39,7 @@ class EventImport extends BaseCommand
             if (!$event) {
                 $this->warn('Event not found:' . $record['event_id']);
                 $output['not_found'][] = $record['event_id'];
+
                 continue;
             }
 
@@ -55,6 +56,7 @@ class EventImport extends BaseCommand
             if ($newTicketedEvent->error ?? false) {
                 $this->warn('Ticketed event #' . $record['ticketed_event_id'] . ' not found for event #' . $record['event_id']);
                 $output['ticketed_not_found'][] = $record['event_id'];
+
                 continue;
             }
 
@@ -68,6 +70,7 @@ class EventImport extends BaseCommand
                 } else {
                     $this->comment('Same ticketed event #' . $record['ticketed_event_id'] . ' for event #' . $record['event_id']);
                     $output['not_changed'][] = $record['event_id'];
+
                     continue;
                 }
             }

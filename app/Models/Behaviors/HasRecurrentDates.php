@@ -44,12 +44,15 @@ trait HasRecurrentDates
             switch ($rule->getRuleType()) {
                 case 'recurrent':
                     $this->buildRecurrentRule($rset, $rule);
+
                     break;
                 case 'include':
                     $this->buildIncludeRule($rset, $rule);
+
                     break;
                 case 'exclude':
                     $this->buildExcludeRule($rset, $rule);
+
                     break;
             }
         }
@@ -61,9 +64,9 @@ trait HasRecurrentDates
     {
         // Common options
         $options = [
-            'FREQ'     => \RRule\RRule::DAILY,
+            'FREQ' => \RRule\RRule::DAILY,
             'INTERVAL' => $ruleObject->every,
-            'DTSTART'  => $ruleObject->start_date
+            'DTSTART' => $ruleObject->start_date
         ];
 
         if ($ruleObject->ocurrencies) {
@@ -85,9 +88,11 @@ trait HasRecurrentDates
             switch ($ruleObject->getMonthlyRepeatType()) {
                 case 'numeral':
                     $options['BYMONTHDAY'] = $ruleObject->start_date->day;
+
                     break;
                 case 'first_day':
-                    $options['BYDAY'] = '1'. strtoupper(substr($ruleObject->start_date->format('D'), 0, 2));
+                    $options['BYDAY'] = '1' . strtoupper(substr($ruleObject->start_date->format('D'), 0, 2));
+
                     break;
             }
         }

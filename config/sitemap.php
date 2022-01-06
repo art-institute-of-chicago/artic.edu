@@ -13,9 +13,7 @@ return [
      */
     'guzzle_options' => [
 
-        /*
-         * Whether or not cookies are used in a request.
-         */
+        // Whether or not cookies are used in a request.
         RequestOptions::COOKIES => true,
 
         /*
@@ -24,14 +22,10 @@ return [
          */
         RequestOptions::CONNECT_TIMEOUT => 40,
 
-        /*
-         * The timeout of the request in seconds. Use 0 to wait indefinitely.
-         */
+        // The timeout of the request in seconds. Use 0 to wait indefinitely.
         RequestOptions::TIMEOUT => 40,
 
-        /*
-         * Describes the redirect behavior of a request.
-         */
+        // Describes the redirect behavior of a request.
         RequestOptions::ALLOW_REDIRECTS => false,
     ],
 
@@ -54,14 +48,10 @@ return [
      */
     'crawl_profile' => Profile::class,
 
-    /*
-     * Set this envar if you want to generate the sitemap in a differet env.
-     */
+    // Set this envar if you want to generate the sitemap in a differet env.
     'base_url' => env('SITEMAP_BASE_URL', null),
 
-    /*
-     * WEB-2218: What base URL to curl for sitemap?
-     */
+    // WEB-2218: What base URL to curl for sitemap?
     'crawl_url' => env('SITEMAP_CRAWL_URL', null),
 
 ];

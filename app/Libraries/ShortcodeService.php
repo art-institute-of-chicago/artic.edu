@@ -18,7 +18,7 @@ class ShortcodeService
     private static function parse_text_with_regexp($text, $regexp)
     {
         preg_match_all($regexp, $text, $matches, PREG_SET_ORDER);
-        $shortcodes = array();
+        $shortcodes = [];
         foreach ($matches as $i => $value) {
             $shortcodes[$i]['shortcode'] = $value['shortcode'];
             $shortcodes[$i]['name'] = $value['name'];
@@ -37,11 +37,12 @@ class ShortcodeService
     private static function parse_attrs($attrs)
     {
         preg_match_all(self::ATTRIBUTE_REGEXP, $attrs, $matches, PREG_SET_ORDER);
-        $attributes = array();
+        $attributes = [];
         foreach ($matches as $i => $value) {
             $key = $value['name'];
             $attributes[$i][$key] = $value['value'];
         }
+
         return $attributes;
     }
 }

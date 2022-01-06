@@ -27,18 +27,18 @@ class AuthorController extends FrontController
         ];
 
         $nav = [
-            [ 'label' => 'Writings', 'href' => route('articles_publications'), 'links' => $subNav ]
+            ['label' => 'Writings', 'href' => route('articles_publications'), 'links' => $subNav]
         ];
 
         $this->seo->setTitle($title);
 
         $view_data = [
-            'title'  => $title,
+            'title' => $title,
             'subNav' => $subNav,
-            'nav'    => $nav,
+            'nav' => $nav,
             'wideBody' => true,
-            'filters'    => null,
-            'listingCountText' => 'Showing '.$items->total().' authors',
+            'filters' => null,
+            'listingCountText' => 'Showing ' . $items->total() . ' authors',
             'listingItems' => $items,
         ];
 
@@ -48,7 +48,7 @@ class AuthorController extends FrontController
 
     public function show($id, $slug = null)
     {
-        $item = $this->repository->published()->where('id', (Integer) $id)->first();
+        $item = $this->repository->published()->where('id', (int) $id)->first();
 
         if (!$item) {
             abort(404);

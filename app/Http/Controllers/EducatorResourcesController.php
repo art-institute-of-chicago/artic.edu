@@ -56,10 +56,10 @@ class EducatorResourcesController extends BaseScopedController
             'title' => $title,
             'subNav' => $subNav,
             'nav' => $nav,
-            "breadcrumb" => $crumbs,
+            'breadcrumb' => $crumbs,
             'wideBody' => true,
             'filters' => $this->getFilters(),
-            'listingCountText' => 'Showing '.$items->total().' educator resources',
+            'listingCountText' => 'Showing ' . $items->total() . ' educator resources',
             'listingItems' => $items,
         ];
 
@@ -69,7 +69,7 @@ class EducatorResourcesController extends BaseScopedController
 
     public function show($id)
     {
-        $item = $this->repository->find((Integer) $id);
+        $item = $this->repository->find((int) $id);
 
         if (!$item) {
             $item = $this->repository->forSlug($id);
@@ -106,15 +106,15 @@ class EducatorResourcesController extends BaseScopedController
     protected function getFilters()
     {
         $categoryLinks[] = [
-            'label'  => 'All',
-            'href'   => route('collection.resources.educator-resources'),
+            'label' => 'All',
+            'href' => route('collection.resources.educator-resources'),
             'active' => empty(request('category', null))
         ];
 
         foreach (ResourceCategory::all() as $category) {
             $categoryLinks[] = [
-                'href'   => route('collection.resources.educator-resources', request()->except('category') + ['category' => $category->id]),
-                'label'  => $category->name,
+                'href' => route('collection.resources.educator-resources', request()->except('category') + ['category' => $category->id]),
+                'label' => $category->name,
                 'active' => request('category') == $category->id
             ];
         }
@@ -122,7 +122,7 @@ class EducatorResourcesController extends BaseScopedController
         return [
             [
                 'prompt' => 'Type',
-                'links'  => collect($categoryLinks)
+                'links' => collect($categoryLinks)
             ]
         ];
     }

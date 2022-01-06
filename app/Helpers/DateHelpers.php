@@ -50,14 +50,15 @@ class DateHelpers
             return null;
         }
         if ($date < 0) {
-            return abs($date) ." BCE";
+            return abs($date) . ' BCE';
         }
         if ($date <= 1000) {
-            return $date ." CE";
+            return $date . ' CE';
         }
         if ($date == Carbon::now()->year) {
-            return "Present";
+            return 'Present';
         }
+
         return $date;
     }
 
@@ -65,13 +66,13 @@ class DateHelpers
     {
         $hours = [];
 
-        for ($i = $startAt; $i < $endAt; $i++) {
+        for ($i = $startAt; $i < $endAt; ++$i) {
             $hour = ($i % 12 ?? 12);
             $ampm = ($i >= 12 ? 'pm' : 'am');
             $mins = $shortlist ? ['00', '30'] : ['00', '15', '30', '45'];
             foreach ($mins as $time) {
                 // Save hours on DatetimeInterval format to be added later
-                $hours["PT{$i}H{$time}M"] = ($hour == 0 ? "12" : "{$hour}") .":{$time}{$ampm}";
+                $hours["PT{$i}H{$time}M"] = ($hour == 0 ? '12' : "{$hour}") . ":{$time}{$ampm}";
             }
         }
 
@@ -83,12 +84,12 @@ class DateHelpers
         if (!$date) {
             return null;
         }
-        $formatdate = "";
+        $formatdate = '';
 
         if ($date < 0) {
-            $formatdate = abs($date) . " BCE";
+            $formatdate = abs($date) . ' BCE';
         } elseif ($date < 1000) {
-            $formatdate = $date . " CE";
+            $formatdate = $date . ' CE';
         } else {
             $formatdate = $date;
         }
@@ -114,6 +115,7 @@ class DateHelpers
             }
             $prev = $year;
         }
+
         return $prev;
     }
 
@@ -124,6 +126,7 @@ class DateHelpers
                 return $year;
             }
         }
+
         return Carbon::now()->year;
     }
 }

@@ -18,7 +18,7 @@ class CreatePagesTable extends Migration
             $table->integer('position')->unsigned()->index();
             $table->string('title');
 
-            # Page type
+            // Page type
             $table->integer('type')->unsigned();
             $table->unique('type');
         });

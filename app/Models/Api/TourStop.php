@@ -8,8 +8,8 @@ class TourStop extends BaseApiModel
 {
     protected $endpoints = [
         'collection' => '/api/v1/mobile-sounds',
-        'resource'   => '/api/v1/mobile-sounds/{id}',
-        'search'     => '/api/v1/mobile-sounds/search'
+        'resource' => '/api/v1/mobile-sounds/{id}',
+        'search' => '/api/v1/mobile-sounds/search'
     ];
 
     protected $presenter = 'App\Presenters\Admin\TourStopPresenter';

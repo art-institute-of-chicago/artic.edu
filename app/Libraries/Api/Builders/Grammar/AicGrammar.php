@@ -26,7 +26,6 @@ class AicGrammar
     /**
      * Compile all components into API parameters.
      *
-     * @param  ApiQueryBuilder $query
      * @return string
      */
     public function compileParameters(ApiQueryBuilder $query)
@@ -57,10 +56,10 @@ class AicGrammar
             // To compile the query, we'll spin through each component of the query and
             // see if that component exists. If it does we'll just call the compiler
             // function for the component which is responsible for making the parameter/s.
-            if (! is_null($query->$component)) {
-                $method = 'compile'.ucfirst($component);
+            if (!is_null($query->{$component})) {
+                $method = 'compile' . ucfirst($component);
 
-                $parameters = array_merge($parameters, $this->$method($query, $query->$component));
+                $parameters = array_merge($parameters, $this->{$method}($query, $query->{$component}));
             }
         }
 
@@ -121,9 +120,10 @@ class AicGrammar
     {
         if ($text) {
             return ['q' => $text];
-        } else {
-            return [];
         }
+
+            return [];
+
     }
 
     protected function compileSearchParameters($query, array $elasticParameters)
@@ -150,7 +150,7 @@ class AicGrammar
     {
         return [
             'limit' => $limit,
-            'size'  => $limit // Elasticsearch search parameter for limiting
+            'size' => $limit // Elasticsearch search parameter for limiting
         ];
     }
 
@@ -158,7 +158,7 @@ class AicGrammar
     {
         return [
             'offset' => $offset,
-            'from'   => $offset // Elasticsearch search parameter for offset
+            'from' => $offset // Elasticsearch search parameter for offset
         ];
     }
 

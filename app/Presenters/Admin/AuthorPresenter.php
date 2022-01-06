@@ -30,9 +30,9 @@ class AuthorPresenter extends BasePresenter
         $writings = [];
 
         foreach (['articles', 'highlights', 'experiences', 'issueArticles'] as $relation) {
-            if ($this->$relation) {
+            if ($this->{$relation}) {
                 $writings[] =
-                    $this->$relation
+                    $this->{$relation}
                         ->map(function ($element) use ($relation) {
                             return $this->_prepWriting($element, $relation);
                         });

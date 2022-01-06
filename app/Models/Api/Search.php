@@ -21,20 +21,20 @@ class Search extends BaseApiModel
      * IF IT'S NOT HERE IT WILL BE REMOVED FROM THE RESULTS
      */
     public $typeMap = [
-        'artworks'    => 'App\Models\Api\Artwork',
+        'artworks' => 'App\Models\Api\Artwork',
         'exhibitions' => 'App\Models\Api\Exhibition',
-        'agents'      => 'App\Models\Api\Artist',
-        'sections'    => 'App\Models\Api\Section',
-        'events'      => 'App\Models\Event',
-        'articles'    => 'App\Models\Article',
-        'printed-catalogs'    => 'App\Models\PrintedPublication',
-        'digital-catalogs'    => 'App\Models\DigitalPublication',
+        'agents' => 'App\Models\Api\Artist',
+        'sections' => 'App\Models\Api\Section',
+        'events' => 'App\Models\Event',
+        'articles' => 'App\Models\Article',
+        'printed-catalogs' => 'App\Models\PrintedPublication',
+        'digital-catalogs' => 'App\Models\DigitalPublication',
         'digital-publication-sections' => 'App\Models\DigitalPublicationSection',
-        'static-pages'        => 'App\Models\Page',
-        'generic-pages'       => 'App\Models\GenericPage',
-        'educator-resources'  => 'App\Models\EducatorResource',
-        'press-releases'      => 'App\Models\PressRelease',
-        'highlights'          => 'App\Models\Highlight',
+        'static-pages' => 'App\Models\Page',
+        'generic-pages' => 'App\Models\GenericPage',
+        'educator-resources' => 'App\Models\EducatorResource',
+        'press-releases' => 'App\Models\PressRelease',
+        'highlights' => 'App\Models\Highlight',
     ];
 
     /**
@@ -63,7 +63,7 @@ class Search extends BaseApiModel
         if ($queryFilter && !empty($queryFilter)) {
             $firstLetter = substr($queryFilter, 0, 1);
             $rest = substr($queryFilter, 1);
-            $searchString = ".*[" . ucfirst($firstLetter) . lcfirst($firstLetter) . "]" .$rest.".*";
+            $searchString = '.*[' . ucfirst($firstLetter) . lcfirst($firstLetter) . ']' . $rest . '.*';
 
             $agg[$name]['terms']['include'] = $searchString;
         }
@@ -79,22 +79,23 @@ class Search extends BaseApiModel
      */
     public function recentAcquisitionConsideredYear()
     {
-        $curMonth = date("m");
-        $curHalf = ceil($curMonth/6);
-        return date("Y") - ($curHalf % 2);
+        $curMonth = date('m');
+        $curHalf = ceil($curMonth / 6);
+
+        return date('Y') - ($curHalf % 2);
     }
 
     public function scopeAllAggregations($query, $categoryFilter = null, $queryFilter = null)
     {
         // AggregationName => Parameter
         $aggsParams = [
-            'classifications'  => 'classification_titles.keyword',
-            'artists'          => 'artist_titles.keyword',
-            'styles'           => 'style_titles.keyword',
-            'materials'        => 'material_titles.keyword',
-            'subjects'         => 'subject_titles.keyword',
-            'places'           => 'place_of_origin.keyword',
-            'departments'      => [
+            'classifications' => 'classification_titles.keyword',
+            'artists' => 'artist_titles.keyword',
+            'styles' => 'style_titles.keyword',
+            'materials' => 'material_titles.keyword',
+            'subjects' => 'subject_titles.keyword',
+            'places' => 'place_of_origin.keyword',
+            'departments' => [
                 'field' => 'department_title.keyword',
                 'size' => 20,
             ],
@@ -145,7 +146,7 @@ class Search extends BaseApiModel
             'classifications' => [
                 'terms' => [
                     'field' => 'classification_titles.keyword',
-                    'size'  => $max
+                    'size' => $max
                 ]
             ]
         ];
@@ -159,7 +160,7 @@ class Search extends BaseApiModel
             'styles' => [
                 'terms' => [
                     'field' => 'style_titles.keyword',
-                    'size'  => $max
+                    'size' => $max
                 ]
             ]
         ];
@@ -173,7 +174,7 @@ class Search extends BaseApiModel
             'place_of_origin' => [
                 'terms' => [
                     'field' => 'place_of_origin.keyword',
-                    'size'  => $max
+                    'size' => $max
                 ]
             ]
         ];
@@ -255,8 +256,8 @@ class Search extends BaseApiModel
         $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
 
         $params = [
-            "terms" => [
-                "id" => $ids,
+            'terms' => [
+                'id' => $ids,
             ],
         ];
 
@@ -266,10 +267,10 @@ class Search extends BaseApiModel
     public function scopePublicDomain($query, $value = true)
     {
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "term" => [
+                        'term' => [
                             'is_public_domain' => ($value == true) //Value could be 1, "1"
                         ]
                     ]
@@ -283,12 +284,12 @@ class Search extends BaseApiModel
     public function scopeRecentAcquisition($query, $value = null)
     {
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "range" => [
-                            "fiscal_year" => [
-                                "gte" => $this->recentAcquisitionConsideredYear()
+                        'range' => [
+                            'fiscal_year' => [
+                                'gte' => $this->recentAcquisitionConsideredYear()
                             ]
                         ]
                     ]
@@ -302,10 +303,10 @@ class Search extends BaseApiModel
     public function scopeHasMultimedia($query, $value = false)
     {
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "term" => [
+                        'term' => [
                             'has_multimedia_resources' => ($value == true) //Value could be 1, "1"
                         ]
                     ]
@@ -319,10 +320,10 @@ class Search extends BaseApiModel
     public function scopeHasEducationalResources($query, $value = false)
     {
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "term" => [
+                        'term' => [
                             'has_educational_resources' => ($value == true) //Value could be 1, "1"
                         ]
                     ]
@@ -336,10 +337,10 @@ class Search extends BaseApiModel
     public function scopeOnView($query, $value = true)
     {
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "term" => [
+                        'term' => [
                             'is_on_view' => ($value == true) //Value could be 1, "1"
                         ]
                     ]
@@ -361,7 +362,7 @@ class Search extends BaseApiModel
 
         foreach ($ids as $id) {
             $elements[] = [
-                "term" => [
+                'term' => [
                     $parameter => $id
                 ]
             ];
@@ -370,16 +371,16 @@ class Search extends BaseApiModel
         if ($additive) {
             $elements = [
                 [
-                    "bool" => [
-                        "should" => $elements
+                    'bool' => [
+                        'should' => $elements
                     ]
                 ]
             ];
         }
 
         $params = [
-            "bool" => [
-                "must" => $elements
+            'bool' => [
+                'must' => $elements
             ]
         ];
 
@@ -399,8 +400,8 @@ class Search extends BaseApiModel
         $si = 30;
         $li = 30;
 
-        $hueMin = ($hsl[0] - $hi/2 / 100 * 360);
-        $hueMax = ($hsl[0] + $hi/2 / 100 * 360);
+        $hueMin = ($hsl[0] - $hi / 2 / 100 * 360);
+        $hueMax = ($hsl[0] + $hi / 2 / 100 * 360);
 
         $hueQueries = [
             [
@@ -446,16 +447,16 @@ class Search extends BaseApiModel
                     [
                         'range' => [
                             'color.s' => [
-                                'gte' => max($hsl[1] - $si/2, 0),
-                                'lte' => min($hsl[1] + $si/2, 100),
+                                'gte' => max($hsl[1] - $si / 2, 0),
+                                'lte' => min($hsl[1] + $si / 2, 100),
                             ]
                         ]
                     ],
                     [
                         'range' => [
                             'color.l' => [
-                                'gte' => max($hsl[2] - $li/2, 0),
-                                'lte' => min($hsl[2] + $li/2, 100),
+                                'gte' => max($hsl[2] - $li / 2, 0),
+                                'lte' => min($hsl[2] + $li / 2, 100),
                             ]
                         ]
                     ]
@@ -484,7 +485,7 @@ class Search extends BaseApiModel
 
         // Generalize to use this scope on artworks as well as artists
         $item = $class::query()
-              ->findOrFail((Integer) $id);
+            ->findOrFail((int) $id);
 
         $shoulds = [];
         if ($class == \App\Models\Api\Artwork::class) {
@@ -515,10 +516,10 @@ class Search extends BaseApiModel
         $shoulds = array_filter($shoulds);
 
         $params = [
-            "bool" => [
-                "should" => collect($shoulds)->values()->all(),
-                "minimum_should_match" => 2,
-                "filter" => [
+            'bool' => [
+                'should' => collect($shoulds)->values()->all(),
+                'minimum_should_match' => 2,
+                'filter' => [
                     'exists' => [
                         'field' => 'image_id',
                     ],
@@ -527,7 +528,7 @@ class Search extends BaseApiModel
         ];
 
         if ($class == \App\Models\Api\Artist::class) {
-            $params["bool"]["must_not"] = $this->basicQuery('artist_id', $item->id);
+            $params['bool']['must_not'] = $this->basicQuery('artist_id', $item->id);
         }
 
         return $query->rawSearch($params);
@@ -540,12 +541,12 @@ class Search extends BaseApiModel
         }
 
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "range" => [
-                            "date_start" => [
-                                "gte" => $this->transformYear($year)
+                        'range' => [
+                            'date_start' => [
+                                'gte' => $this->transformYear($year)
                             ]
                         ]
                     ]
@@ -563,12 +564,12 @@ class Search extends BaseApiModel
         }
 
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "range" => [
-                            "date_end" => [
-                                "lte" => $this->transformYear($year)
+                        'range' => [
+                            'date_end' => [
+                                'lte' => $this->transformYear($year)
                             ]
                         ]
                     ]
@@ -590,19 +591,19 @@ class Search extends BaseApiModel
         }
 
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "range" => [
-                            "date_start" => [
-                                "gte" => $min
+                        'range' => [
+                            'date_start' => [
+                                'gte' => $min
                             ]
                         ]
                     ],
                     [
-                        "range" => [
-                            "date_end" => [
-                                "lte" => $max
+                        'range' => [
+                            'date_end' => [
+                                'lte' => $max
                             ]
                         ]
                     ]
@@ -617,12 +618,12 @@ class Search extends BaseApiModel
     {
         // Year could come with BCE, CE, or 'Present'
         if (Str::contains($year, 'BCE')) {
-            $year = - (integer) $year;
+            $year = -(int) $year;
         } else {
             if (Str::contains($year, 'Present')) {
                 $year = Carbon::now()->year;
             } else {
-                $year = (integer) $year;
+                $year = (int) $year;
             }
         }
 
@@ -637,12 +638,12 @@ class Search extends BaseApiModel
             $date = Carbon::parse($date);
         }
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "range" => [
-                            "end_date" => [
-                                "gte" => $date->toIso8601String()
+                        'range' => [
+                            'end_date' => [
+                                'gte' => $date->toIso8601String()
                             ]
                         ]
                     ]
@@ -658,8 +659,8 @@ class Search extends BaseApiModel
         $ids = is_array($ids) ? $ids : explode(';', $ids); //Transform the ID into an array
 
         $params = [
-            "terms" => [
-                "id" => $ids
+            'terms' => [
+                'id' => $ids
             ]
         ];
 
@@ -682,15 +683,16 @@ class Search extends BaseApiModel
 
             case 'date_start':
                 $params = [
-                    "sort" => [
+                    'sort' => [
                         $field
                     ]
                 ];
+
                 break;
 
             case 'deaccession':
                 $params = [
-                    "sort" => [
+                    'sort' => [
                         'fiscal_year_deaccession' => [
                             'order' => 'desc',
                         ],
@@ -699,14 +701,16 @@ class Search extends BaseApiModel
                         ],
                     ]
                 ];
+
                 break;
 
             default:
                 $params = [
-                    "sort" => [
+                    'sort' => [
                         "{$field}.keyword"
                     ]
                 ];
+
                 break;
         }
 
@@ -903,7 +907,7 @@ class Search extends BaseApiModel
     public function scopeExhibitionOrderByDate($query, $direction = 'asc')
     {
         $params = [
-            "sort" => [
+            'sort' => [
                 'aic_start_at' => $direction
             ]
         ];
@@ -924,7 +928,7 @@ class Search extends BaseApiModel
 
         if ($boost) {
             return [
-                "bool" => [
+                'bool' => [
                     'boost' => $boost,
                     'must' => [
                         $ret,
@@ -942,19 +946,19 @@ class Search extends BaseApiModel
             return [];
         }
         $ret = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "range" => [
-                            "date_start" => [
-                                "gte" => $date_start
+                        'range' => [
+                            'date_start' => [
+                                'gte' => $date_start
                             ]
                         ]
                     ],
                     [
-                        "range" => [
-                            "date_end" => [
-                                "lte" => $date_end ?? date("Y")
+                        'range' => [
+                            'date_end' => [
+                                'lte' => $date_end ?? date('Y')
                             ]
                         ]
                     ]
@@ -975,29 +979,29 @@ class Search extends BaseApiModel
             return [];
         }
         $ret = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "range" => [
-                            "color.h" => [
-                                "gte" => ($color->h - 5),
-                                "lte" => ($color->h + 5),
+                        'range' => [
+                            'color.h' => [
+                                'gte' => ($color->h - 5),
+                                'lte' => ($color->h + 5),
                             ]
                         ]
                     ],
                     [
-                        "range" => [
-                            "color.s" => [
-                                "gte" => ($color->s - 5),
-                                "lte" => ($color->s + 5),
+                        'range' => [
+                            'color.s' => [
+                                'gte' => ($color->s - 5),
+                                'lte' => ($color->s + 5),
                             ]
                         ]
                     ],
                     [
-                        "range" => [
-                            "color.l" => [
-                                "gte" => ($color->l - 5),
-                                "lte" => ($color->l + 5),
+                        'range' => [
+                            'color.l' => [
+                                'gte' => ($color->l - 5),
+                                'lte' => ($color->l + 5),
                             ]
                         ]
                     ]

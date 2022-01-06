@@ -131,98 +131,98 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
     {
         return [
             [
-                "name" => 'title',
-                "doc" => "Title",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'title',
+                'doc' => 'Title',
+                'type' => 'string',
+                'value' => function () {
                     return $this->title;
                 }
             ],
             [
-                "name" => 'web_url',
-                "doc" => "Web URL",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'web_url',
+                'doc' => 'Web URL',
+                'type' => 'string',
+                'value' => function () {
                     return url($this->url);
                 }
             ],
             [
-                "name" => 'slug',
-                "doc" => "Slug",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'slug',
+                'doc' => 'Slug',
+                'type' => 'string',
+                'value' => function () {
                     return $this->getSlug();
                 }
             ],
             [
-                "name" => 'listing_description',
-                "doc" => "Listing Description",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'listing_description',
+                'doc' => 'Listing Description',
+                'type' => 'string',
+                'value' => function () {
                     return $this->listing_description;
                 }
             ],
             [
-                "name" => 'published',
-                "doc" => "Published",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->published;
                 }
             ],
             [
-                "name" => 'publish_start_date',
-                "doc" => "Publish Start Date",
-                "type" => "datetime",
-                "value" => function () {
+                'name' => 'publish_start_date',
+                'doc' => 'Publish Start Date',
+                'type' => 'datetime',
+                'value' => function () {
                     return $this->publish_start_date;
                 }
             ],
             [
-                "name" => 'content',
-                "doc" => "Content",
-                "type" => "text",
-                "value" => function () {
+                'name' => 'content',
+                'doc' => 'Content',
+                'type' => 'text',
+                'value' => function () {
                     return $this->present()->blocks;
                 }
             ],
             [
-                "name" => 'type',
-                "doc" => "Type of Section",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'type',
+                'doc' => 'Type of Section',
+                'type' => 'string',
+                'value' => function () {
                     return $this->type;
                 },
             ],
             [
-                "name" => "heading",
-                "doc" => "heading",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'heading',
+                'doc' => 'heading',
+                'type' => 'string',
+                'value' => function () {
                     return $this->heading;
                 },
             ],
             [
-                "name" => 'date',
-                "doc" => "Date",
-                "type" => "date",
-                "value" => function () {
+                'name' => 'date',
+                'doc' => 'Date',
+                'type' => 'date',
+                'value' => function () {
                     return $this->date;
                 },
             ],
             [
-                "name" => "author_display",
-                "doc" => "Author display",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'author_display',
+                'doc' => 'Author display',
+                'type' => 'string',
+                'value' => function () {
                     return $this->showAuthors();
                 },
             ],
             [
-                "name" => "digital_publication_id",
-                "doc" => "Digital Publication ID",
-                "type" => "integer",
-                "value" => function () {
+                'name' => 'digital_publication_id',
+                'doc' => 'Digital Publication ID',
+                'type' => 'integer',
+                'value' => function () {
                     return $this->digital_publication_id;
                 },
             ],

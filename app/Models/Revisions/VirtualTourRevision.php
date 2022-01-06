@@ -6,5 +6,5 @@ use A17\Twill\Models\Revision;
 
 class VirtualTourRevision extends Revision
 {
-    protected $table = "virtual_tour_revisions";
+    protected $table = 'virtual_tour_revisions';
 }

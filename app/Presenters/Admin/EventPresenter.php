@@ -31,10 +31,12 @@ class EventPresenter extends BasePresenter
     {
         switch ($this->entity->layout_type) {
             case \App\Models\Event::LARGE_LAYOUT:
-                return "feature";
+                return 'feature';
+
                 break;
             case \App\Models\Event::BASIC_LAYOUT:
                 return null;
+
                 break;
         }
     }
@@ -72,32 +74,33 @@ class EventPresenter extends BasePresenter
 
     protected function formatDate($date)
     {
-        return '<time datetime="'.$date->format("c").'" itemprop="startDate">'.$date->format('M j, Y').'</time>';
+        return '<time datetime="' . $date->format('c') . '" itemprop="startDate">' . $date->format('M j, Y') . '</time>';
     }
 
     public function formattedBlockDate()
     {
         if (!empty($this->entity->forced_date)) {
             return $this->entity->forced_date;
-        } else {
+        }
             // EventRepository::getEventsFiltered() adds this from `event_metas`
             if (isset($this->entity->date)) {
                 return $this->formatDate($this->entity->date);
             }
-        }
+
     }
 
     public function formattedNextOcurrence()
     {
         if (!empty($this->entity->forced_date)) {
             return $this->entity->forced_date;
-        } else {
-            if ($next = $this->entity->nextOcurrenceExclusive) {
-                return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('F j, Y | g:i').'</time>&ndash;<time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('g:i').'</time>';
-            } elseif ($last = $this->entity->lastOcurrence) {
-                return '<time datetime="'.$last->date->format("c").'" itemprop="startDate">'.$last->date->format('F j, Y | g:i').'</time>&ndash;<time datetime="'.$last->date_end->format("c").'" itemprop="endDate">'.$last->date_end->format('g:i').'</time>';
-            }
         }
+            if ($next = $this->entity->nextOcurrenceExclusive) {
+                return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
+            }
+            if ($last = $this->entity->lastOcurrence) {
+                return '<time datetime="' . $last->date->format('c') . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format('c') . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
+            }
+
     }
 
     public function nextOcurrenceDate()
@@ -110,7 +113,7 @@ class EventPresenter extends BasePresenter
     public function nextOcurrenceTime()
     {
         if ($next = $this->entity->nextOcurrence) {
-            return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('g:i').'</time>&ndash;<time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('g:i').'</time>';
+            return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
         }
     }
 
@@ -164,14 +167,14 @@ class EventPresenter extends BasePresenter
             || (!$ticketedEvent->on_sale_at)
             || (
                 (
-                     ($ticketedEvent->on_sale_at ?? false) && (
-                       (new Carbon($ticketedEvent->on_sale_at))->lessThan(Carbon::now())
-                   )
-                 ) && (
-                     ($ticketedEvent->off_sale_at ?? false) && (
-                       (new Carbon($ticketedEvent->off_sale_at))->greaterThan(Carbon::now())
-                   )
-                 )
+                    ($ticketedEvent->on_sale_at ?? false) && (
+                        (new Carbon($ticketedEvent->on_sale_at))->lessThan(Carbon::now())
+                    )
+                ) && (
+                    ($ticketedEvent->off_sale_at ?? false) && (
+                        (new Carbon($ticketedEvent->off_sale_at))->greaterThan(Carbon::now())
+                    )
+                )
             );
     }
 
@@ -188,7 +191,7 @@ class EventPresenter extends BasePresenter
     public function buyButtonText()
     {
         if ($this->isSoldOut()) {
-            return "Sold Out";
+            return 'Sold Out';
         }
 
         if ($this->entity->buy_button_text) {
@@ -203,7 +206,7 @@ class EventPresenter extends BasePresenter
         $settings = ImageHelpers::aic_imageSettings([
             'image' => $this->entity->imageFront('hero'),
             'settings' => [
-                'srcset' => array(1200),
+                'srcset' => [1200],
                 'sizes' => '1200px',
             ],
         ]);

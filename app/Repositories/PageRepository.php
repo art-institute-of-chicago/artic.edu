@@ -179,16 +179,17 @@ class PageRepository extends ModuleRepository
     public function byName($name, $with = [])
     {
         $type = array_search($name, $this->model::$types);
+
         return $this->model->whereType($type)->with($with)->first();
     }
 
     public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
     {
         if ($relation === 'experiences') {
-            return $object->$relation->map(function ($relatedElement) use ($titleKey, $routePrefix, $relation, $moduleName) {
+            return $object->{$relation}->map(function ($relatedElement) use ($titleKey, $routePrefix, $relation, $moduleName) {
                 return [
                     'id' => $relatedElement->id,
-                    'name' => $relatedElement->titleInBrowser ?? $relatedElement->$titleKey,
+                    'name' => $relatedElement->titleInBrowser ?? $relatedElement->{$titleKey},
                     'edit' => '',
                     'endpointType' => $relatedElement->getMorphClass(),
                 ] + (classHasTrait($relatedElement, \App\Models\Behaviors\HasMedias::class) ? [

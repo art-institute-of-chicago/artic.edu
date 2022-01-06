@@ -19,6 +19,6 @@ class TicketedEventTypeController extends FrontController
 
     public function show($id)
     {
-        return $this->repository->getById((Integer) $id);
+        return $this->repository->getById((int) $id);
     }
 }

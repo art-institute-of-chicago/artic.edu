@@ -69,10 +69,10 @@ class GenericPageController extends ModuleController
         $item = $this->repository->getById(request('genericPage') ?? request('id'));
         $ancestors = $item->ancestors()->defaultOrder()->get();
 
-        $baseUrl = '//' . config('app.url') . "/";
+        $baseUrl = '//' . config('app.url') . '/';
 
         foreach ($ancestors as $ancestor) {
-            $baseUrl = $baseUrl . $ancestor->slug . "/";
+            $baseUrl = $baseUrl . $ancestor->slug . '/';
         }
 
         $breadcrumb = $ancestors->map(function ($parentPage) {

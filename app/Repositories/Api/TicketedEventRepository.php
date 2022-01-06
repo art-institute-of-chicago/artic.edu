@@ -17,8 +17,8 @@ class TicketedEventRepository extends BaseApiRepository
     public function getTicketedEventsCollection($item)
     {
         return Search::query()
-                ->resources(['ticketed-events'])
-                ->byIds([$item->datahub_id])
-                ->getSearch(self::TICKETED_EVENTS_PER_PAGE);
+            ->resources(['ticketed-events'])
+            ->byIds([$item->datahub_id])
+            ->getSearch(self::TICKETED_EVENTS_PER_PAGE);
     }
 }

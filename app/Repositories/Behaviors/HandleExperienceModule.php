@@ -30,7 +30,7 @@ trait HandleExperienceModule
                 $morphKey . '_type' => get_class($object),
                 $morphKey . '_id' => $object->id,
                 $morphKey . '_repeater_name' => $fieldName,
-                ]);
+            ]);
         }
 
         // Keep a list of updated and new rows to delete (soft delete?) old rows that were deleted from the frontend
@@ -63,7 +63,7 @@ trait HandleExperienceModule
             }
         }
 
-        foreach ($object->$relation->pluck('id') as $id) {
+        foreach ($object->{$relation}->pluck('id') as $id) {
             if (!in_array($id, $currentIdList)) {
                 $relationRepository->updateBasic(null, [
                     'deleted_at' => Carbon::now(),
@@ -84,7 +84,7 @@ trait HandleExperienceModule
         $relationRepository = $this->getModelRepository($relation, $model);
         $repeatersConfig = app(BlockCollection::class)->getRepeaters();
 
-        foreach ($object->$relation as $relationItem) {
+        foreach ($object->{$relation} as $relationItem) {
             $rep = $repeatersConfig->first(function (\A17\Twill\Services\Blocks\Block $block) use ($fieldName) {
                 return $block->name == $fieldName;
             });
@@ -101,7 +101,7 @@ trait HandleExperienceModule
             if (isset($relatedItemFormFields['translations'])) {
                 foreach ($relatedItemFormFields['translations'] as $key => $values) {
                     $repeatersFields[] = [
-                        'name' => "blocks[$relation-$relationItem->id][$key]",
+                        'name' => "blocks[${relation}-{$relationItem->id}][${key}]",
                         'value' => $values,
                     ];
 
@@ -111,7 +111,7 @@ trait HandleExperienceModule
 
             if (isset($relatedItemFormFields['medias'])) {
                 foreach ($relatedItemFormFields['medias'] as $key => $values) {
-                    $repeatersMedias["blocks[$relation-$relationItem->id][$key]"] = $values;
+                    $repeatersMedias["blocks[${relation}-{$relationItem->id}][${key}]"] = $values;
                 }
             }
 
@@ -121,7 +121,7 @@ trait HandleExperienceModule
                 collect($relatedItemFormFields['files'])->each(function ($rolesWithFiles, $locale) use (&$repeatersFiles, $relation, $relationItem) {
                     $repeatersFiles[] = collect($rolesWithFiles)->mapWithKeys(function ($files, $role) use ($locale, $relation, $relationItem) {
                         return [
-                            "blocks[$relation-$relationItem->id][$role][$locale]" => $files,
+                            "blocks[${relation}-{$relationItem->id}][${role}][${locale}]" => $files,
                         ];
                     })->toArray();
                 });
@@ -131,7 +131,7 @@ trait HandleExperienceModule
 
             if (isset($relatedItemFormFields['browsers'])) {
                 foreach ($relatedItemFormFields['browsers'] as $key => $values) {
-                    $repeatersBrowsers["blocks[$relation-$relationItem->id][$key]"] = $values;
+                    $repeatersBrowsers["blocks[${relation}-{$relationItem->id}][${key}]"] = $values;
                 }
             }
 
@@ -145,10 +145,9 @@ trait HandleExperienceModule
                     if (isset($experienceImageFormFields['medias'])) {
                         $fields['repeaterMedias']['modal_experience_image']['blocks[experienceImage-' . $experienceImage['id'] . '][experience_image]'] = $experienceImageFormFields['medias']['experience_image'];
                     }
-;
                     foreach ($experienceImage as $field => $value) {
                         $fields['repeaterFields']['modal_experience_image'][] = [
-                            'name' => 'blocks[experienceImage-' . $experienceImage['id'] . '][' . $field .']',
+                            'name' => 'blocks[experienceImage-' . $experienceImage['id'] . '][' . $field . ']',
                             'value' => $value
                         ];
                     }
@@ -169,7 +168,7 @@ trait HandleExperienceModule
 
             foreach ($itemFields as $key => $value) {
                 $repeatersFields[] = [
-                    'name' => "blocks[$relation-$relationItem->id][$key]",
+                    'name' => "blocks[${relation}-{$relationItem->id}][${key}]",
                     'value' => $value,
                 ];
             }

@@ -80,6 +80,7 @@ class UpdateSponsors extends Command
         $paragraphs = $paragraphs->map(function ($paragraph) {
             $paragraph = trim($paragraph);
             $paragraph = '<p>' . $paragraph . '</p>';
+
             return $paragraph;
         });
 

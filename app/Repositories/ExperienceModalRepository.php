@@ -33,7 +33,7 @@ class ExperienceModalRepository extends ModuleRepository
         if (isset($fields['blocks']) && !empty($fields['blocks'])) {
             $fields['repeaters'] = $fields['blocks'];
             unset($fields['blocks']);
-        };
+        }
 
         return parent::prepareFieldsBeforeCreate($fields);
     }

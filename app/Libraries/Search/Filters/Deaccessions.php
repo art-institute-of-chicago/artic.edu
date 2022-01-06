@@ -4,7 +4,7 @@ namespace App\Libraries\Search\Filters;
 
 class Deaccessions
 {
-    protected $parameter  = 'is_deaccessioned';
+    protected $parameter = 'is_deaccessioned';
 
     public function generate()
     {

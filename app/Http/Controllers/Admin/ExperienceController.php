@@ -59,7 +59,7 @@ class ExperienceController extends ModuleController
                 return [
                     'thumbnail' => $item->presentAdmin()->{$column['presenter']},
                 ];
-            } else {
+            }
                 $variant = isset($column['variant']);
                 $crop = $variant ? $column['variant']['crop'] : head(array_keys(head($item->mediasParams)));
                 $params = $variant && isset($column['variant']['params'])
@@ -67,23 +67,24 @@ class ExperienceController extends ModuleController
                 : ['w' => 80, 'h' => 80, 'fit' => 'crop'];
 
                 $thumbnail_image = $item->defaultCmsImage($params);
+
                 return [
                     'thumbnail' => $thumbnail_image,
                 ];
-            }
+
         }
 
         if (isset($column['nested']) && $column['nested']) {
             $field = $column['nested'];
             $nestedCount = $item->{$column['nested']}->count();
             $value = '<a href="';
-            $value .= moduleRoute("experiences.slides", $this->routePrefix, 'index', [$item->id]);
-            $value .= '">' . $nestedCount . " " . (strtolower($nestedCount > 1
+            $value .= moduleRoute('experiences.slides', $this->routePrefix, 'index', [$item->id]);
+            $value .= '">' . $nestedCount . ' ' . (strtolower($nestedCount > 1
                 ? Str::plural($column['title'])
                 : Str::singular($column['title']))) . '</a>';
         } else {
             $field = $column['field'];
-            $value = $item->$field;
+            $value = $item->{$field};
         }
 
         if (isset($column['relationship'])) {
@@ -94,7 +95,7 @@ class ExperienceController extends ModuleController
         }
 
         return [
-            "$field" => $value,
+            "${field}" => $value,
         ];
     }
 
@@ -106,6 +107,7 @@ class ExperienceController extends ModuleController
             'slug' => 'archived',
             'number' => Experience::archived()->count(),
         ]);
+
         return $statusFilters;
     }
 
@@ -117,6 +119,7 @@ class ExperienceController extends ModuleController
         } else {
             $scopes = $scopes + ['unarchived' => true];
         }
+
         return parent::getIndexItems($scopes, $forcePagination);
     }
 
@@ -128,9 +131,9 @@ class ExperienceController extends ModuleController
     protected function previewData($item)
     {
         $articles = Article::published()
-        ->orderBy('date', 'desc')
-        ->notUnlisted()
-        ->paginate(4);
+            ->orderBy('date', 'desc')
+            ->notUnlisted()
+            ->paginate(4);
 
         return [
             'experience' => $item,

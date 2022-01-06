@@ -8,7 +8,7 @@ class TicketedEventType extends BaseApiModel
 {
     protected $endpoints = [
         'collection' => '/api/v1/ticketed-event-types',
-        'resource'   => '/api/v1/ticketed-event-types/{id}',
+        'resource' => '/api/v1/ticketed-event-types/{id}',
     ];
 
     public function getTitleInBrowserAttribute()

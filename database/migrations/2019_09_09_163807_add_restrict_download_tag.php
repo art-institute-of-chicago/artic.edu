@@ -13,7 +13,7 @@ class AddRestrictDownloadTag extends Migration
      */
     public function up()
     {
-        $tag = new IlluminateTag;
+        $tag = new IlluminateTag();
         $tag->name = 'Restrict Download';
         $tag->slug = 'restrict-download';
         $tag->namespace = 'media';

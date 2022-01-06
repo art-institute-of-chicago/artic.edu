@@ -98,7 +98,7 @@ class BaseService
 
             // Build Date Tags
             if ($this->resource->birth_date && $this->resource->birth_date) {
-                $tags['date'] = collect([$this->resource->birth_date .'|' .$this->resource->death_date => DateHelpers::printYear($this->resource->birth_date) ."–" .DateHelpers::printYear($this->resource->death_date)]);
+                $tags['date'] = collect([$this->resource->birth_date . '|' . $this->resource->death_date => DateHelpers::printYear($this->resource->birth_date) . '–' . DateHelpers::printYear($this->resource->death_date)]);
             }
         } else {
             // Build Classification Tags
@@ -112,7 +112,7 @@ class BaseService
                     $classification = $classification->merge(
                         [$item->key => ucfirst($item->key)]
                     );
-                };
+                }
             }
             $tags['classification'] = $classification;
         }
@@ -164,24 +164,31 @@ class BaseService
             switch ($category) {
                 case 'classification':
                     $query->byClassifications($id);
+
                     break;
                 case 'artist':
                     $query->byArtists($id);
+
                     break;
                 case 'style':
                     $query->byStyles($id);
+
                     break;
                 case 'place':
                     $query->byPlaces($id);
+
                     break;
                 case 'date':
                     $query->dateRange(DateHelpers::incrementBefore($id), DateHelpers::incrementAfter($id));
+
                     break;
                 case 'color':
                     $query->byColor($id);
+
                     break;
                 case 'most-similar':
                     $query->byMostSimilar($this->resource->id, get_class($this->resource));
+
                     break;
             }
         }
@@ -209,10 +216,12 @@ class BaseService
                     switch ($key) {
                         case 'ef-date_ids':
                             return route('collection', ['date-start' => str_replace(' ', '', DateHelpers::printYear(DateHelpers::incrementBefore($value))),
-                                                        'date-end' => str_replace(' ', '', DateHelpers::printYear(DateHelpers::incrementAfter($value)))]);
+                                'date-end' => str_replace(' ', '', DateHelpers::printYear(DateHelpers::incrementAfter($value)))]);
+
                             break;
                         case 'ef-color_ids':
                             return route('collection', ['color' => $value]);
+
                             break;
                         default:
                             return route('collection', [str_replace('ef-', '', $key) => $value]);
@@ -232,21 +241,27 @@ class BaseService
                 switch ($category) {
                     case 'classification':
                         return route('collection', ['classification_ids' => $id]);
+
                         break;
                     case 'artist':
                         return route('collection', ['artist_ids' => $id]);
+
                         break;
                     case 'style':
                         return route('collection', ['style_ids' => $id]);
+
                         break;
                     case 'place':
                         return route('collection', ['place_ids' => $id]);
+
                         break;
                     case 'date':
                         return route('collection', ['date-start' => DateHelpers::incrementBefore($id), 'date-end' => DateHelpers::incrementAfter($id)]);
+
                         break;
                     case 'color':
                         return route('collection', ['color' => $id]);
+
                         break;
                 }
             }

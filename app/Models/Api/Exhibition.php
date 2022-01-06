@@ -63,12 +63,14 @@ class Exhibition extends BaseApiModel
         if (empty($this->aic_end_at)) {
             if (empty($this->aic_start_at)) {
                 return true;
-            } else {
-                return $this->dateStart->year < 2010;
             }
-        } else {
-            return Carbon::now()->gt($this->dateEnd->endOfDay());
+
+                return $this->dateStart->year < 2010;
+
         }
+
+            return Carbon::now()->gt($this->dateEnd->endOfDay());
+
     }
 
     public function getIdSlugAttribute()
@@ -94,6 +96,7 @@ class Exhibition extends BaseApiModel
             if ($this->public_start_date !== null) { // Strange, isset didn't work?
                 return $this->public_start_date;
             }
+
             return (new Carbon($this->aic_start_at))->startOfDay();
         }
     }
@@ -104,6 +107,7 @@ class Exhibition extends BaseApiModel
             if ($this->public_end_date !== null) { // Strange, isset didn't work?
                 return $this->public_end_date;
             }
+
             return (new Carbon($this->aic_end_at))->endOfDay();
         }
     }
@@ -208,6 +212,7 @@ class Exhibition extends BaseApiModel
     public function getDescriptionAttribute($value)
     {
         $desc = nl2br($value);
+
         return '<p>' . preg_replace('#(<br>[\r\n\s]+){2}#', "</p>\n\n<p>", $desc) . '</p>';
     }
 
@@ -217,7 +222,7 @@ class Exhibition extends BaseApiModel
     public function scopeOrderBy($query, $field, $direction = 'asc')
     {
         $params = [
-            "sort" => [
+            'sort' => [
                 "{$field}" => $direction
             ]
         ];
@@ -228,7 +233,7 @@ class Exhibition extends BaseApiModel
     public function scopeOrderByDate($query, $direction = 'asc')
     {
         $params = [
-            "sort" => [
+            'sort' => [
                 'aic_start_at' => $direction
             ]
         ];

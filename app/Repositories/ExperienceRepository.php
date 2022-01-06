@@ -27,6 +27,7 @@ class ExperienceRepository extends ModuleRepository
     public function getCountByStatusSlug($slug, $scope = [])
     {
         $scope = $scope + ['archived' => false];
+
         return parent::getCountByStatusSlug($slug, $scope);
     }
 
@@ -47,6 +48,7 @@ class ExperienceRepository extends ModuleRepository
         ];
         app(\App\Repositories\SlideRepository::class)->create($attract_fields);
         app(\App\Repositories\SlideRepository::class)->create($end_fields);
+
         return $experience;
     }
 

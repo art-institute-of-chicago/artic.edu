@@ -15,9 +15,11 @@ class EmbedConverterService
             if (isset($parts['host'])) {
                 if (stripos($parts['host'], 'youtu') !== false) {
                     return $this->getYouTubeEmbedCode($url);
-                } elseif (stripos($parts['host'], 'vimeo') !== false) {
+                }
+                if (stripos($parts['host'], 'vimeo') !== false) {
                     return $this->getVimeoEmbedCode($url);
-                } elseif (stripos($parts['host'], 'soundcloud') !== false) {
+                }
+                if (stripos($parts['host'], 'soundcloud') !== false) {
                     return $this->getSoundCloudEmbedCode($url);
                 }
             }
@@ -41,6 +43,7 @@ class EmbedConverterService
     private function getYouTubeIdCode($url)
     {
         preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+
         return $match[1] ?? null;
     }
 
@@ -54,7 +57,7 @@ class EmbedConverterService
         $videoId = $this->getYouTubeIdCode($url);
 
         if ($videoId) {
-            return '<iframe src="https://www.youtube.com/embed/'.$videoId.'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+            return '<iframe src="https://www.youtube.com/embed/' . $videoId . '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
         }
     }
 
@@ -81,6 +84,6 @@ class EmbedConverterService
             $videoId = substr($url, 10, strlen($url));
         }
 
-        return '<iframe src="https://player.vimeo.com/video/'.$videoId.'?title=0&byline=0&portrait=0" frameborder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        return '<iframe src="https://player.vimeo.com/video/' . $videoId . '?title=0&byline=0&portrait=0" frameborder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
     }
 }

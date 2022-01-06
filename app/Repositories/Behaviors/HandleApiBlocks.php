@@ -67,7 +67,7 @@ trait HandleApiBlocks
             })->toArray();
 
             return [
-                "blocks[$block->id][$relation]" => $items,
+                "blocks[{$block->id}][${relation}]" => $items,
             ];
         })->filter()->toArray();
     }
@@ -79,12 +79,13 @@ trait HandleApiBlocks
         }
 
         // Always load the API repository first and fallback to the augmented or regular one.
-        $apiRepo = config('twill.namespace') . "\\Repositories\\Api\\" . ucfirst($model) . "Repository";
+        $apiRepo = config('twill.namespace') . '\\Repositories\\Api\\' . ucfirst($model) . 'Repository';
 
         if (class_exists($apiRepo)) {
             return app($apiRepo);
-        } else {
-            return app(config('twill.namespace') . "\\Repositories\\" . ucfirst($model) . "Repository");
         }
+
+            return app(config('twill.namespace') . '\\Repositories\\' . ucfirst($model) . 'Repository');
+
     }
 }

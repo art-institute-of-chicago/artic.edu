@@ -95,7 +95,7 @@ class DateRule extends AbstractModel
     public function getDays()
     {
         return array_filter(array_map(function ($element) {
-            if ($this->$element) {
+            if ($this->{$element}) {
                 return strtoupper(substr($element, 0, 2));
             }
         }, ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']));
