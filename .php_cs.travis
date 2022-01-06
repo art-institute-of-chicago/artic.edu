@@ -106,6 +106,7 @@ return $config->setRules([
     'single_quote' => true,                 // Convert double quotes to single quotes for simple strings.
     'standardize_not_equals' => true,       // Replace all <> with !=.
     'switch_case_semicolon_to_colon' => true, // A case should be followed by a colon and not a semicolon.
+    'switch_case_space' => true,            // Removes extra spaces between colon and case value.
 
 ])
 ->setFinder($finder);
