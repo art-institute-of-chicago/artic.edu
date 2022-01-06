@@ -40,7 +40,7 @@ class ExactTargetService
         $result = $api->request('POST', $auth_url . '/v2/token', ['json' => ['client_id' => $clientId, 'client_secret' => $clientSecret, 'grant_type' => 'client_credentials']]);
         $tokenInfo = json_decode($result->getBody()->getContents(), true);
 
-        $client = new ET_Client(true, config('app.debug'), array_merge(config('exact-target.client'), [ 'authorizationCode' => $tokenInfo['access_token'], 'scope' => $tokenInfo['scope'] ]));
+        $client = new ET_Client(true, config('app.debug'), array_merge(config('exact-target.client'), ['authorizationCode' => $tokenInfo['access_token'], 'scope' => $tokenInfo['scope']]));
 
         // Add the user to a data extension
         $deRow = new ET_DataExtension_Row();

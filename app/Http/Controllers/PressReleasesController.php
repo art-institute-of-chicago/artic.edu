@@ -142,12 +142,12 @@ class PressReleasesController extends BaseScopedController
         ];
 
         $nav = [
-            [ 'label' => 'Press', 'href' => route('genericPages.show', 'press'), 'links' => $subNav ]
+            ['label' => 'Press', 'href' => route('genericPages.show', 'press'), 'links' => $subNav]
         ];
 
         $crumbs = [
-            [ 'label' => 'Press', 'href' => route('genericPages.show', 'press') ],
-            [ 'label' => $title,  'href' => '' ]
+            ['label' => 'Press', 'href' => route('genericPages.show', 'press')],
+            ['label' => $title,  'href' => '']
         ];
 
         return compact('title', 'subNav', 'nav', 'crumbs');

@@ -233,7 +233,7 @@ class Exhibition extends AbstractModel
                 'doc' => 'Web URL',
                 'type' => 'string',
                 'value' => function () {
-                    return route('exhibitions.show', ['id' => $this->datahub_id, 'slug' => $this->getSlug() ]);
+                    return route('exhibitions.show', ['id' => $this->datahub_id, 'slug' => $this->getSlug()]);
                 },
             ],
             [

@@ -29,7 +29,7 @@ class ExhibitionPressRoomController extends FrontController
         ];
 
         $nav = [
-            [ 'label' => 'Press', 'href' => route('genericPages.show', 'press'), 'links' => $subNav ]
+            ['label' => 'Press', 'href' => route('genericPages.show', 'press'), 'links' => $subNav]
         ];
 
         $crumbs = [

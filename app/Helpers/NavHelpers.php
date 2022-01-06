@@ -34,7 +34,7 @@ class NavHelpers
         }
 
         $nav = [
-            [ 'label' => 'Collection', 'href' => route('collection'), 'links' => $subNav ]
+            ['label' => 'Collection', 'href' => route('collection'), 'links' => $subNav]
         ];
 
         $breadcrumb = [

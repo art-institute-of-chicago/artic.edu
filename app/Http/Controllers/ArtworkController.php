@@ -32,7 +32,7 @@ class ArtworkController extends BaseScopedController
                 ->findOrFail((int) $id);
         }
 
-        $canonicalPath = route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ]);
+        $canonicalPath = route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug]);
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;

@@ -330,7 +330,7 @@ class ArtworkPresenter extends BasePresenter
                 $joined = join('-', array_unique([DateHelpers::convertArtworkDates($date_start), DateHelpers::convertArtworkDates($date_end)]));
 
                 return [
-                    'label' => join(' ', [ $item->qualifier_title, $joined ]),
+                    'label' => join(' ', [$item->qualifier_title, $joined]),
                     'href' => $generateDateRangeHref($date_start, $date_end),
                 ];
             });

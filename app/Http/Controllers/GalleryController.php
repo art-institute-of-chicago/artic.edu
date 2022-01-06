@@ -20,7 +20,7 @@ class GalleryController extends FrontController
     {
         $item = $this->repository->getById((int) $id);
 
-        $canonicalPath = route('galleries.show', ['id' => $item->id, 'slug' => $item->titleSlug ]);
+        $canonicalPath = route('galleries.show', ['id' => $item->id, 'slug' => $item->titleSlug]);
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;

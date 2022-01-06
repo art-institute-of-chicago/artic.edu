@@ -74,7 +74,7 @@ class ExhibitionsController extends FrontController
             abort(404);
         }
 
-        $canonicalPath = route('exhibitions.show', ['id' => $item->id, 'slug' => $item->titleSlug ]);
+        $canonicalPath = route('exhibitions.show', ['id' => $item->id, 'slug' => $item->titleSlug]);
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;

@@ -28,7 +28,7 @@ class HighlightsController extends FrontController
         ];
 
         $nav = [
-            [ 'label' => 'The Collection', 'href' => route('collection'), 'links' => $subNav ]
+            ['label' => 'The Collection', 'href' => route('collection'), 'links' => $subNav]
         ];
 
         $this->seo->setTitle($title);
