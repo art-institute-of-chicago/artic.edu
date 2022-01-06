@@ -72,9 +72,9 @@ class DamsImageService implements ImageServiceInterface
 
     public function getUrl($id, array $params = [])
     {
-        $width = isset($params['width']) ? $params['width'] : '';
-        $height = isset($params['height']) ? $params['height'] : '';
-        $size = isset($params['size']) ? $params['size'] : 'full';
+        $width = $params['width'] ?? '';
+        $height = $params['height'] ?? '';
+        $size = $params['size'] ?? 'full';
 
         $dimensions = '!3000,3000';
         if ($width != '' || $height != '') {

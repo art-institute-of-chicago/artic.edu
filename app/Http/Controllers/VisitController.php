@@ -27,7 +27,7 @@ class VisitController extends FrontController
         if ($video_url) {
             $headerImage = $page->imageFront('visit_mobile');
 
-            $poster_url = isset($headerImage['src']) ? $headerImage['src'] : '';
+            $poster_url = $headerImage['src'] ?? '';
             $video = [
                 'src' => $video_url,
                 'poster' => $poster_url,

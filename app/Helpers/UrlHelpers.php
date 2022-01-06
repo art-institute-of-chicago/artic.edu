@@ -17,7 +17,7 @@ class UrlHelpers
     {
         preg_match('/\d+/', $url, $matches);
 
-        return isset($matches[0]) ? $matches[0] : 0;
+        return $matches[0] ?? 0;
     }
 
     public static function secureRoute($routeName)

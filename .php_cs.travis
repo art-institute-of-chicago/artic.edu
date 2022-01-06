@@ -108,6 +108,7 @@ return $config->setRules([
     'switch_case_semicolon_to_colon' => true, // A case should be followed by a colon and not a semicolon.
     'switch_case_space' => true,            // Removes extra spaces between colon and case value.
     'ternary_operator_spaces' => true,      // Standardize spaces around ternary operator.
+    'ternary_to_null_coalescing' => true,   // Use null coalescing operator ?? where possible. Requires PHP >= 7.0.
 
 ])
 ->setFinder($finder);

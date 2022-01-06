@@ -78,7 +78,7 @@ trait HasMediasApi
             return $this->mediasParams[$role][$crop]['width'];
         }
 
-            return isset($image['width']) ? $image['width'] : '';
+            return $image['width'] ?? '';
 
     }
 
@@ -88,7 +88,7 @@ trait HasMediasApi
             return $this->mediasParams[$role][$crop]['height'];
         }
 
-            return isset($image['height']) ? $image['height'] : '';
+            return $image['height'] ?? '';
 
     }
 }

@@ -370,7 +370,7 @@ class Slide extends JsonResource
             return [
                 'x' => $hotspot['x'],
                 'y' => $hotspot['y'],
-                'content' => isset($hotspot['description']) ? $hotspot['description'] : '',
+                'content' => $hotspot['description'] ?? '',
             ];
         }, $hotspots);
     }
