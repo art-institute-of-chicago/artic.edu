@@ -56,7 +56,7 @@ class AicGrammar
             // To compile the query, we'll spin through each component of the query and
             // see if that component exists. If it does we'll just call the compiler
             // function for the component which is responsible for making the parameter/s.
-            if (! is_null($query->{$component})) {
+            if (!is_null($query->{$component})) {
                 $method = 'compile' . ucfirst($component);
 
                 $parameters = array_merge($parameters, $this->{$method}($query, $query->{$component}));

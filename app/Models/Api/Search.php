@@ -618,7 +618,7 @@ class Search extends BaseApiModel
     {
         // Year could come with BCE, CE, or 'Present'
         if (Str::contains($year, 'BCE')) {
-            $year = - (int) $year;
+            $year = -(int) $year;
         } else {
             if (Str::contains($year, 'Present')) {
                 $year = Carbon::now()->year;

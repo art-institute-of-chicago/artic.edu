@@ -277,7 +277,7 @@ class ApiModelBuilder
             if (count($result) == count(array_unique($id))) {
                 return $result;
             }
-        } elseif (! is_null($result)) {
+        } elseif (!is_null($result)) {
             return $result;
         }
 
