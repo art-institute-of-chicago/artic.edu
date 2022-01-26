@@ -141,3 +141,7 @@
 </article>
 
 @endsection
+
+@section('extra_scripts')
+    <script src="{{FrontendHelpers::revAsset('scripts/blocks360.js')}}"></script>
+@endsection

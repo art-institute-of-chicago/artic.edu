@@ -20,6 +20,7 @@ module.exports = function(gulp, data, util, taskName) {
           app: scriptsPath + 'app.js',
           head: scriptsPath + 'head.js',
           interactiveFeatures: scriptsPath + 'interactiveFeatures.js',
+          blocks360: scriptsPath + 'blocks360.js',
         },
         stats: {
           errorDetails: true,
