@@ -1,5 +1,5 @@
 import { purgeProperties, ajaxRequest, triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
-import { googleTagManagerDataFromLink } from '../functions';
+import { googleTagManagerDataFromLink } from '../../functions';
 
 const autocomplete = function(container) {
   const autoCompleteUrl = container.getAttribute('data-autocomplete-url');

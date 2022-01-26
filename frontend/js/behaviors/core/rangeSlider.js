@@ -1,5 +1,5 @@
 import { purgeProperties, queryStringHandler, forEach, getUrlParameterByName, triggerCustomEvent } from '@area17/a17-helpers';
-import noUiSlider from '../libs/nouislider';
+import noUiSlider from '../../libs/nouislider';
 
 const rangeSlider = function(container){
   // Objects

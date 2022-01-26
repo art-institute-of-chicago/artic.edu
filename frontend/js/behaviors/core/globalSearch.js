@@ -1,5 +1,5 @@
 import { purgeProperties, setFocusOnTarget, triggerCustomEvent, ajaxRequest, queryStringHandler } from '@area17/a17-helpers';
-import { googleTagManagerDataFromLink } from '../functions';
+import { googleTagManagerDataFromLink } from '../../functions';
 
 const globalSearch = function(container) {
   const autoCompleteUrl = container.getAttribute('data-autocomplete-url');

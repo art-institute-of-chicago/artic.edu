@@ -1,7 +1,7 @@
 import Sketchfab from '@sketchfab/viewer-api';
 import vec3 from 'gl-vec3';
-import ScrollWindow from '../functions/scrollWindow';
-import distance2d from '../functions/distance2D';
+import ScrollWindow from '../../functions/scrollWindow';
+import distance2d from '../../functions/distance2D';
 import { purgeProperties, triggerCustomEvent } from '@area17/a17-helpers';
 
 const viewer3D = function(container) {
