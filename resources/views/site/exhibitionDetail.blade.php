@@ -326,4 +326,5 @@
 
 @section('extra_scripts')
     <script src="{{FrontendHelpers::revAsset('scripts/blocks360.js')}}"></script>
-@endsection
+    <script src="{{FrontendHelpers::revAsset('scripts/mirador.js')}}"></script>
+\@endsection
