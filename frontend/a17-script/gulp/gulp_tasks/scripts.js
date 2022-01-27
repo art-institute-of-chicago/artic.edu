@@ -22,6 +22,7 @@ module.exports = function(gulp, data, util, taskName) {
           interactiveFeatures: scriptsPath + 'interactiveFeatures.js',
           blocks360: scriptsPath + 'blocks360.js',
           mirador: scriptsPath + 'mirador.js',
+          virtualTour: scriptsPath + 'virtualTour.js',
         },
         stats: {
           errorDetails: true,

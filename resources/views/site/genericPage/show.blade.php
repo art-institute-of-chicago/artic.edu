@@ -87,3 +87,7 @@
 </article>
 
 @endsection
+
+@section('extra_scripts')
+    <script src="{{FrontendHelpers::revAsset('scripts/virtualTour.js')}}"></script>
+@endsection

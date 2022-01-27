@@ -66,4 +66,3 @@ export { default as imageSlider } from './imageSlider';
 export { default as relatedSidebar } from './relatedSidebar';
 
 export { default as viewer3D } from './viewer3D';
-export { default as viewerVirtualTour } from './viewerVirtualTour';
