@@ -389,3 +389,10 @@
 <div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div>
 
 @endsection
+
+@section('extra_scripts')
+    <script src="{{FrontendHelpers::revAsset('scripts/blocks360.js')}}"></script>
+    <script src="{{FrontendHelpers::revAsset('scripts/blocks3D.js')}}"></script>
+    <script src="{{FrontendHelpers::revAsset('scripts/mirador.js')}}"></script>
+    <script src="{{FrontendHelpers::revAsset('scripts/virtualTour.js')}}"></script>
+@endsection

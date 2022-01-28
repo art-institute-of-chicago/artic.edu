@@ -1,5 +1,5 @@
 import { setFocusOnTarget, purgeProperties, triggerCustomEvent } from '@area17/a17-helpers';
-import { positionElementToTarget, focusTrap } from '../functions';
+import { positionElementToTarget, focusTrap } from '../../functions';
 
 const infoButtonTrigger = function(container) {
 

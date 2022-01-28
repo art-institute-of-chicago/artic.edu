@@ -1,5 +1,5 @@
 import { purgeProperties, triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
-import { focusTrap, mediaQuery } from '../functions';
+import { focusTrap, mediaQuery } from '../../functions';
 
 const collectionSearch = function(container) {
 

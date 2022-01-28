@@ -1,5 +1,5 @@
 import { purgeProperties, setFocusOnTarget, forEach, triggerCustomEvent, ajaxRequest } from '@area17/a17-helpers';
-import { focusTrap } from '../functions';
+import { focusTrap } from '../../functions';
 
 const navMobile = function(container) {
 

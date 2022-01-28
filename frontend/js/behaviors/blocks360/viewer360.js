@@ -1,7 +1,7 @@
-import { includes, memoize } from 'lodash'; 
-import assetURL from "../functions/assetURL";
-import fetchImageBlob from '../functions/fetchImageBlob';
-import { protectFromUnmount } from '../functions/protectFromUnmount';
+import { includes, memoize } from 'lodash';
+import assetURL from "../../functions/assetURL";
+import fetchImageBlob from '../../functions/fetchImageBlob';
+import { protectFromUnmount } from '../../functions/protectFromUnmount';
 
 const viewer360 = function(container) {
 	let wrapper = container;
@@ -31,7 +31,7 @@ const viewer360 = function(container) {
 			q: 75
 		})
 	}));
-	
+
 	//store indexes of frames
 	const loadedFrameIndexes = Object.keys(frames360).map(k => parseInt(k));
 	input360.setAttribute('max', frames360.length-1);
@@ -83,9 +83,9 @@ const viewer360 = function(container) {
 					update360(curFrame);
 				}
 			}));
-			
+
 		})
-		
+
   };
 
 	//inputs
@@ -107,7 +107,7 @@ const viewer360 = function(container) {
 				touchX = pageX;
 				touchFrame = curFrame;
 				break;
-			
+
 			case "mousemove":
 			case "touchmove":
 				if (touchX === null) return;
@@ -118,19 +118,19 @@ const viewer360 = function(container) {
 				curFrame = newFrame;
 				update360(curFrame);
 				break;
-			
+
 			case "touchend":
 			case "touchcancel":
 			case "mouseup":
 				touchX = null;
 				touchFrame = null;
 				break;
-			
+
 			default:
 				return;
 		}
 	}
-	
+
 	function handleMouseWheel(e) {
 		e.preventDefault();
     //if (this.state.touchX !== null) return;
@@ -147,7 +147,7 @@ const viewer360 = function(container) {
 
 	function _init() {
 		preloadFrameIndexes(loadedFrameIndexes);
-	}  
+	}
 
 	this.init = function() {
 			_init();

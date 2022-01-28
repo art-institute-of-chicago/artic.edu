@@ -1,10 +1,10 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import mirador from 'mirador/dist/es/src/index';
-import aicZoomButtonsPlugin from '../libs/mirador/aicZoomButtonsPlugin';
-import aicNavigationButtonsPlugin from '../libs/mirador/aicNavigationButtonsPlugin';
-import aicRemoveNavPlugin from '../libs/mirador/aicRemoveNavPlugin';
-import aicThumbnailCustomization from '../libs/mirador/aicThumbnailCustomizationPlugin';
+import aicZoomButtonsPlugin from '../../libs/mirador/aicZoomButtonsPlugin';
+import aicNavigationButtonsPlugin from '../../libs/mirador/aicNavigationButtonsPlugin';
+import aicRemoveNavPlugin from '../../libs/mirador/aicRemoveNavPlugin';
+import aicThumbnailCustomization from '../../libs/mirador/aicThumbnailCustomizationPlugin';
 
 const viewerMirador = function(container) {
   let viewerId = 'm-viewer-mirador-' + container.dataset.id;

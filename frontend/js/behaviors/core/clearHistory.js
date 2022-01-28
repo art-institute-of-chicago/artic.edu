@@ -1,5 +1,5 @@
 import { purgeProperties, triggerCustomEvent, ajaxRequest } from '@area17/a17-helpers';
-import { displayNotification } from '../functions';
+import { displayNotification } from '../../functions';
 
 const clearHistory = function(container) {
 

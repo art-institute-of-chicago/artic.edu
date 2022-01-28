@@ -1,6 +1,6 @@
 import { purgeProperties } from '@area17/a17-helpers';
-import OpenSeadragon from '../libs/openseadragon';
-import '../libs/imgixtilesource';
+import OpenSeadragon from '../../libs/openseadragon';
+import '../../libs/imgixtilesource';
 
 const imageSlider = function(container) {
 
