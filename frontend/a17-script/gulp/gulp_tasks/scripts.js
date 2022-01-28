@@ -23,6 +23,8 @@ module.exports = function(gulp, data, util, taskName) {
           blocks360: scriptsPath + 'blocks360.js',
           mirador: scriptsPath + 'mirador.js',
           virtualTour: scriptsPath + 'virtualTour.js',
+          blocks3D: scriptsPath + 'blocks3D.js',
+          collectionSearch: scriptsPath + 'collectionSearch.js',
         },
         stats: {
           errorDetails: true,

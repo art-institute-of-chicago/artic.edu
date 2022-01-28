@@ -235,3 +235,7 @@
 </section>
 
 @endsection
+
+@section('extra_scripts')
+    <script src="{{FrontendHelpers::revAsset('scripts/collectionSearch.js')}}"></script>
+@endsection
