@@ -1,4 +1,4 @@
-import { purgeProperties, forEach, ajaxRequest, triggerCustomEvent } from '@area17/a17-helpers';
+import { ajaxRequest, triggerCustomEvent } from '@area17/a17-helpers';
 
 const loadMore = function(container) {
   var ajaxUrl = container.getAttribute('data-load-more-url');
@@ -100,7 +100,7 @@ const loadMore = function(container) {
     container.removeEventListener('click', _handleClicks);
 
     // Remove properties of this behavior
-    purgeProperties(this);
+    A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {

@@ -1,5 +1,3 @@
-import { purgeProperties } from '@area17/a17-helpers';
-
 const searchBarBlock = function(container) {
 
   function _executeSearch(event) {

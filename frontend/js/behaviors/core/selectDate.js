@@ -1,4 +1,4 @@
-import { setFocusOnTarget, purgeProperties, triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
+import { setFocusOnTarget, triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
 import { positionElementToTarget, googleTagManagerDataFromLink } from '../../functions';
 
 const selectDate = function(container) {
@@ -160,7 +160,7 @@ const selectDate = function(container) {
     window.removeEventListener('resized', _resized);
 
     // Remove properties of this behavior
-    purgeProperties(this);
+    A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {

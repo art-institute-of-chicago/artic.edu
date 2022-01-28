@@ -1,4 +1,4 @@
-import { purgeProperties, triggerCustomEvent, setFocusOnTarget, forEach, getOffset } from '@area17/a17-helpers';
+import { triggerCustomEvent, setFocusOnTarget, forEach, getOffset } from '@area17/a17-helpers';
 import { googleTagManagerDataFromLink } from '../../functions';
 
 const accordion = function(container) {

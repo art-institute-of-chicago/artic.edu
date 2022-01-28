@@ -1,4 +1,4 @@
-import { purgeProperties, forEach, ajaxRequest, cookieHandler, triggerCustomEvent } from '@area17/a17-helpers';
+import { forEach, cookieHandler, triggerCustomEvent } from '@area17/a17-helpers';
 
 const notification = function(container) {
 
@@ -56,7 +56,7 @@ const notification = function(container) {
     });
     closers = undefined;
     // Remove properties of this behavior
-    purgeProperties(this);
+    A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {

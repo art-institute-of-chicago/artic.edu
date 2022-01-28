@@ -1,4 +1,4 @@
-import { purgeProperties, queryStringHandler, triggerCustomEvent } from '@area17/a17-helpers';
+import { queryStringHandler } from '@area17/a17-helpers';
 import { youtubePercentTracking } from '../../functions';
 
 const triggerMediaInline = function(container) {

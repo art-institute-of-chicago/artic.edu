@@ -1,4 +1,4 @@
-import { purgeProperties, forEach, triggerCustomEvent } from '@area17/a17-helpers';
+import { forEach, triggerCustomEvent } from '@area17/a17-helpers';
 import { mediaQuery } from '../../functions';
 
 const pinboard = function(container){

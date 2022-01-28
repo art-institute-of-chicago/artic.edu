@@ -1,5 +1,4 @@
-import { purgeProperties, setFocusOnTarget, forEach, triggerCustomEvent, ajaxRequest } from '@area17/a17-helpers';
-import { focusTrap } from '../../functions';
+import { setFocusOnTarget, forEach, triggerCustomEvent, ajaxRequest } from '@area17/a17-helpers';
 
 const navMobile = function(container) {
 
@@ -103,7 +102,7 @@ const navMobile = function(container) {
     });
 
     // Remove properties of this behavior
-    purgeProperties(this);
+    A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {

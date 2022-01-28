@@ -18,6 +18,10 @@ const viewerVirtualTour = function(container) {
       }
     );
   }
+
+  this.destroy = function() {
+    A17.Helpers.purgeProperties(this);
+  }
 }
 
 export default viewerVirtualTour;

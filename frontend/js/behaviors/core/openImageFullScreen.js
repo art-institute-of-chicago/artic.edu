@@ -1,4 +1,4 @@
-import { purgeProperties, triggerCustomEvent } from '@area17/a17-helpers';
+import { triggerCustomEvent } from '@area17/a17-helpers';
 
 const openImageFullScreen = function(container) {
 
@@ -85,7 +85,7 @@ const openImageFullScreen = function(container) {
     container.removeEventListener('keyup', _handleKeyUp);
 
     // Remove properties of this behavior
-    purgeProperties(this);
+    A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {

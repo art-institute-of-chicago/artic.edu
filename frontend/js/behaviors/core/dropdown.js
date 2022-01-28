@@ -1,4 +1,4 @@
-import { purgeProperties, setFocusOnTarget, triggerCustomEvent } from '@area17/a17-helpers';
+import { setFocusOnTarget, triggerCustomEvent } from '@area17/a17-helpers';
 import { mediaQuery } from '../../functions';
 
 const dropdown = function(container) {

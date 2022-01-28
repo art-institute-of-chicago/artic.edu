@@ -1,4 +1,4 @@
-import { purgeProperties, ajaxRequest, objectifyForm, triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
+import { ajaxRequest, objectifyForm, triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
 
 const newsletter = function(container) {
 

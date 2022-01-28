@@ -1,4 +1,4 @@
-import { purgeProperties, triggerCustomEvent, ajaxRequest } from '@area17/a17-helpers';
+import { ajaxRequest } from '@area17/a17-helpers';
 
 const addHistory = function(container) {
 

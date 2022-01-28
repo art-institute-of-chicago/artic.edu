@@ -1,4 +1,4 @@
-import { purgeProperties, triggerCustomEvent, queryStringHandler, forEach } from '@area17/a17-helpers';
+import { triggerCustomEvent, queryStringHandler, forEach } from '@area17/a17-helpers';
 
 const calendar = function(container) {
 
@@ -401,7 +401,7 @@ const calendar = function(container) {
     container.removeEventListener('calendar:opener', _openerSent);
 
     // Remove properties of this behavior
-    purgeProperties(this);
+    A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {

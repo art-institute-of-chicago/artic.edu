@@ -1,5 +1,3 @@
-import { purgeProperties } from '@area17/a17-helpers';
-
 const blurMyBackground = function(container) {
 
   let active = false;

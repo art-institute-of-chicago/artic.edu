@@ -1,5 +1,3 @@
-import { purgeProperties, forEach, triggerCustomEvent } from '@area17/a17-helpers';
-
 const recaptcha = function(container){
 
   function _captchaOnload() {

@@ -1,4 +1,4 @@
-import { purgeProperties, setFocusOnTarget, triggerCustomEvent, ajaxRequest, queryStringHandler } from '@area17/a17-helpers';
+import { setFocusOnTarget, triggerCustomEvent, ajaxRequest, queryStringHandler } from '@area17/a17-helpers';
 import { googleTagManagerDataFromLink } from '../../functions';
 
 const globalSearch = function(container) {

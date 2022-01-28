@@ -1,4 +1,3 @@
-import { purgeProperties } from '@area17/a17-helpers';
 import OpenSeadragon from '../../libs/openseadragon';
 import '../../libs/imgixtilesource';
 
@@ -182,7 +181,7 @@ const imageSlider = function(container) {
 
   this.destroy = function() {
     // Remove properties of this behavior
-    purgeProperties(this);
+    A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {

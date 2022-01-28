@@ -1,5 +1,3 @@
-import { purgeProperties, triggerCustomEvent } from '@area17/a17-helpers';
-
 const fixedOnScroll = function(container) {
   const getOffsetTop = element => {
     let offsetTop = 0;

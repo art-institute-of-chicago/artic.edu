@@ -1,5 +1,3 @@
-import { purgeProperties } from '@area17/a17-helpers';
-
 const restrictDownload = function(container) {
 
   function _init() {
@@ -18,7 +16,7 @@ const restrictDownload = function(container) {
 
   this.destroy = function() {
     // Remove properties of this behavior
-    purgeProperties(this);
+    A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {

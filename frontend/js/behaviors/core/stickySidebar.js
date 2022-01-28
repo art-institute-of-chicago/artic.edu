@@ -1,5 +1,5 @@
-import { purgeProperties, getOffset, triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
-import { mediaQuery, focusTrap } from '../../functions';
+import { triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
+import { mediaQuery } from '../../functions';
 
 const stickySidebar = function(container){
 

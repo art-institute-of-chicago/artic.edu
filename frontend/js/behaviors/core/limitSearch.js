@@ -1,4 +1,4 @@
-import { cookieHandler, purgeProperties } from '@area17/a17-helpers';
+import { cookieHandler } from '@area17/a17-helpers';
 
 const limitSearch = function(container) {
 

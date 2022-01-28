@@ -1,5 +1,3 @@
-import { purgeProperties } from '@area17/a17-helpers';
-
 const formSelectFocus = function(container) {
 
   function _focus() {

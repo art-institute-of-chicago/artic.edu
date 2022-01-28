@@ -112,6 +112,10 @@ const viewerMirador = function(container) {
     }
     document.addEventListener('modal:close', removeComponent);
   };
+
+  this.destroy = function() {
+    A17.Helpers.purgeProperties(this);
+  };
 }
 
 export default viewerMirador;

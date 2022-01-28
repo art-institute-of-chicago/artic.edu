@@ -1,4 +1,4 @@
-import { purgeProperties, escapeString, copyTextToClipboard, forEach, triggerCustomEvent } from '@area17/a17-helpers';
+import { escapeString, copyTextToClipboard, forEach, triggerCustomEvent } from '@area17/a17-helpers';
 import { googleTagManagerDataFromLink } from '../../functions';
 
 const shareMenu = function(container) {

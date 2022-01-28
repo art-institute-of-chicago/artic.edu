@@ -1,4 +1,4 @@
-import { purgeProperties, forEach } from '@area17/a17-helpers';
+import { forEach } from '@area17/a17-helpers';
 import fitty from 'fitty';
 
 const fitText = function(container) {
@@ -18,7 +18,7 @@ const fitText = function(container) {
     });
 
     // Remove properties of this behavior
-    purgeProperties(this);
+    A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {

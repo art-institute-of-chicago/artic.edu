@@ -1,4 +1,4 @@
-import { purgeProperties, triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
+import { triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
 import '../../libs/conic-gradient';
 
 const colorPickerFilter = function(container) {

@@ -152,6 +152,10 @@ const viewer360 = function(container) {
 	this.init = function() {
 			_init();
 	};
+
+  this.destroy = function() {
+    A17.Helpers.purgeProperties(this);
+  }
 }
 
 export default viewer360;

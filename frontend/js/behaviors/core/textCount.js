@@ -1,5 +1,3 @@
-import { purgeProperties } from '@area17/a17-helpers';
-
 const textCount = function(container) {
 
   const input = container.querySelector('input');
@@ -28,7 +26,7 @@ const textCount = function(container) {
     input.removeEventListener('input', _updateOutput);
 
     // Remove properties of this behavior
-    purgeProperties(this);
+    A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {

@@ -1,4 +1,4 @@
-import { purgeProperties, forEach, getIndex, triggerCustomEvent } from '@area17/a17-helpers';
+import { forEach, getIndex, triggerCustomEvent } from '@area17/a17-helpers';
 
 const headerGallery = function(container) {
 
@@ -200,7 +200,7 @@ const headerGallery = function(container) {
     nodes = {};
     data = {};
     // Remove properties of this behavior
-    purgeProperties(this);
+    A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {
