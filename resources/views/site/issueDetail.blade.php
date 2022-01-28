@@ -85,3 +85,7 @@
 @include('components.organisms._o-publication-footer----journal')
 
 @endsection
+
+@section('extra_scripts')
+    <script src="{{FrontendHelpers::revAsset('scripts/blocks3D.js')}}"></script>
+@endsection
