@@ -90,3 +90,7 @@
         @endcomponent
     @endif
 @endsection
+
+@section('extra_scripts')
+    <script src="{{FrontendHelpers::revAsset('scripts/videojs.js')}}"></script>
+@endsection

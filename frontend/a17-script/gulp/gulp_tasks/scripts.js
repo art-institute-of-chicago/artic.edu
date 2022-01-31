@@ -25,6 +25,7 @@ module.exports = function(gulp, data, util, taskName) {
           virtualTour: scriptsPath + 'virtualTour.js',
           blocks3D: scriptsPath + 'blocks3D.js',
           collectionSearch: scriptsPath + 'collectionSearch.js',
+          videojs: scriptsPath + 'videojs.js',
         },
         stats: {
           errorDetails: true,

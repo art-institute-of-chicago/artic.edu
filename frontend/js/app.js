@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery, forEach, lazyLoad } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors/core';
-import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, videojsActivate, headerHeight, roadblock } from './functions';
+import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, headerHeight, roadblock } from './functions/core';
 /**
  * A17
  * @see Doc: https://code.area17.com/a17/fe-boilerplate/wikis/js-app
@@ -43,8 +43,6 @@ document.addEventListener('DOMContentLoaded', function(){
     });
     return;
   }
-  // Activates all video-js audio players
-  videojsActivate();
   // Rebind "Skip to Content" target
   accessibleContent();
   // Listen for google tag manager dataLayer pushes
