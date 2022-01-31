@@ -1,4 +1,4 @@
-import { purgeProperties, setFocusOnTarget, scrollToY, getOffset, triggerCustomEvent } from '@area17/a17-helpers';
+import { setFocusOnTarget, scrollToY, getOffset, triggerCustomEvent } from '@area17/a17-helpers';
 
 const anchorLinksScroll = function(container) {
 

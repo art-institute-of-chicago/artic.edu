@@ -1,5 +1,5 @@
-import { triggerCustomEvent, setFocusOnTarget, queryStringHandler, objectifyForm, cookieHandler, ajaxRequest } from '@area17/a17-helpers';
-import { parseHTML, youtubePercentTracking, googleTagManagerDataFromLink } from '../core';
+import { triggerCustomEvent, setFocusOnTarget, objectifyForm, cookieHandler, ajaxRequest } from '@area17/a17-helpers';
+import { googleTagManagerDataFromLink } from '../core';
 
 const roadblock = function(container) {
 

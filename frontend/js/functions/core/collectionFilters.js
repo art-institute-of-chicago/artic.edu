@@ -1,5 +1,5 @@
-import { purgeProperties, triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
-import { focusTrap, mediaQuery } from '../core';
+import { triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
+import { mediaQuery } from '../core';
 
 const collectionFilters = function(container) {
 

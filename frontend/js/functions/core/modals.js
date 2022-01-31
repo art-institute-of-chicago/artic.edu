@@ -1,5 +1,5 @@
-import { triggerCustomEvent, setFocusOnTarget, queryStringHandler, cookieHandler, ajaxRequest } from '@area17/a17-helpers';
-import { parseHTML, youtubePercentTracking, googleTagManagerDataFromLink } from '../core';
+import { triggerCustomEvent, setFocusOnTarget, queryStringHandler } from '@area17/a17-helpers';
+import { parseHTML, youtubePercentTracking } from '../core';
 
 const modals = function() {
 
