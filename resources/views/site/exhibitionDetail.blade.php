@@ -329,4 +329,5 @@
     <script src="{{FrontendHelpers::revAsset('scripts/blocks3D.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/mirador.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/virtualTour.js')}}"></script>
+    <script src="/virtual-tours/tour.js"></script>
 @endsection
