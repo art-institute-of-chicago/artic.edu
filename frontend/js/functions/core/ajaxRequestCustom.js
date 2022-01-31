@@ -9,7 +9,7 @@ import queryStringHandler from '@area17/a17-helpers';
  *
  * ...with this:
  *
- *   import { ajaxRequestCustom } from '../functions';
+ *   import { ajaxRequestCustom } from '../core';
  *
  * ...and replace calls to `ajaxRequest` with `ajaxRequestCustom`.
  *

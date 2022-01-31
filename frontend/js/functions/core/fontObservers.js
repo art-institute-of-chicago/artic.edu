@@ -1,5 +1,5 @@
 import { cookieHandler, triggerCustomEvent } from '@area17/a17-helpers';
-import FontFaceOnload from '../libs/fontfaceonload';
+import FontFaceOnload from '../../libs/fontfaceonload';
 
 const fontObservers = function(fonts) {
   if ((typeof fonts).toLowerCase() !== 'object') {

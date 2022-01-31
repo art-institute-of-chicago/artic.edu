@@ -1,7 +1,7 @@
 import { includes, memoize } from 'lodash';
-import assetURL from "../../functions/assetURL";
-import fetchImageBlob from '../../functions/fetchImageBlob';
-import { protectFromUnmount } from '../../functions/protectFromUnmount';
+import assetURL from "../../functions/core/assetURL";
+import fetchImageBlob from '../../functions/core/fetchImageBlob';
+import { protectFromUnmount } from '../../functions/core/protectFromUnmount';
 
 const viewer360 = function(container) {
 	let wrapper = container;

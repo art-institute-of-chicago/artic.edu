@@ -1,4 +1,4 @@
-import { ajaxableHref } from '../functions';
+import { ajaxableHref } from '../core';
 
 const ajaxableLink = function(link, event) {
   if (!link || !event) {

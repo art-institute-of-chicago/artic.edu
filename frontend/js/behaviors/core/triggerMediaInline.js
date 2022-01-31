@@ -1,5 +1,5 @@
 import { queryStringHandler } from '@area17/a17-helpers';
-import { youtubePercentTracking } from '../../functions';
+import { youtubePercentTracking } from '../../functions/core';
 
 const triggerMediaInline = function(container) {
   let iframe;

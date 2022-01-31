@@ -1,5 +1,5 @@
 import { triggerCustomEvent, getOffset, forEach, scrollToY, setFocusOnTarget } from '@area17/a17-helpers';
-import { findAncestorByTagName, ajaxRequestCustom, ajaxableLink, ajaxableHref, googleTagManagerDataFromLink, parseHTML } from '../functions';
+import { findAncestorByTagName, ajaxRequestCustom, ajaxableLink, ajaxableHref, googleTagManagerDataFromLink, parseHTML } from '.';
 const ajaxPageLoad = function() {
   var ajaxing = false;
   var ajaxTimeOutTime = 5000;

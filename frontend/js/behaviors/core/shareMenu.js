@@ -1,5 +1,5 @@
 import { escapeString, copyTextToClipboard, forEach, triggerCustomEvent } from '@area17/a17-helpers';
-import { googleTagManagerDataFromLink } from '../../functions';
+import { googleTagManagerDataFromLink } from '../../functions/core';
 
 const shareMenu = function(container) {
 

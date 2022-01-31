@@ -1,5 +1,5 @@
 import { getOffset } from '@area17/a17-helpers';
-import { mediaQuery } from '../../functions';
+import { mediaQuery } from '../../functions/core';
 
 const stickyFilters = function(container){
 

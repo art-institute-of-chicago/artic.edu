@@ -1,5 +1,5 @@
 import { setFocusOnTarget, triggerCustomEvent } from '@area17/a17-helpers';
-import { positionElementToTarget } from '../../functions';
+import { positionElementToTarget } from '../../functions/core';
 
 const sharePage = function(container) {
 

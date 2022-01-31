@@ -1,5 +1,5 @@
 import { setFocusOnTarget, triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
-import { positionElementToTarget, googleTagManagerDataFromLink } from '../../functions';
+import { positionElementToTarget, googleTagManagerDataFromLink } from '../../functions/core';
 
 const selectDate = function(container) {
 
