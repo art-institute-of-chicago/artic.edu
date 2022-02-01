@@ -26,6 +26,7 @@ module.exports = function(gulp, data, util, taskName) {
           blocks3D: scriptsPath + 'blocks3D.js',
           collectionSearch: scriptsPath + 'collectionSearch.js',
           videojs: scriptsPath + 'videojs.js',
+          recaptcha: scriptsPath + 'recaptcha.js',
         },
         stats: {
           errorDetails: true,

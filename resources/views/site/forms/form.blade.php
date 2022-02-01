@@ -111,3 +111,7 @@
 </article>
 
 @endsection
+
+@section('extra_scripts')
+    <script src="{{FrontendHelpers::revAsset('scripts/recaptcha.js')}}"></script>
+@endsection
