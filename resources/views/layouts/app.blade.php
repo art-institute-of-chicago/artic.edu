@@ -70,7 +70,6 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.eot')}});src: url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.eot?#iefix')}}) format('embedded-opentype'),url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}) format('woff2'),url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff')}}) format('woff'),url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.ttf')}}) format('truetype');font-weight:normal;font-weight:400;font-style:italic;}
   @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.eot')}});src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.eot?#iefix')}}) format('embedded-opentype'),url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}) format('woff2'),url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff')}}) format('woff'),url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.ttf')}}) format('truetype');font-weight:normal;font-weight:500;font-style:normal;}
   </style>
-  <link rel="stylesheet" href="https://vjs.zencdn.net/7.1.0/video-js.css" />
   <meta name="msvalidate.01" content="1E22F0BBEF5CF0D71FF4C150D094A1CA" />
   <link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet" />
   @if ($print)
