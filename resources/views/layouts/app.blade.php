@@ -53,7 +53,6 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}" as="font" type="font/woff2" crossorigin="anonymous" />
   <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}" as="font" type="font/woff2" crossorigin="anonymous" />
   <style media="print" onload="this.media='all'">
-  @import url("//hello.myfonts.net/count/3545d5");
   @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff2')}}) format('woff2');font-weight:normal;font-weight:400;font-style:normal;}
   @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}) format('woff2');font-weight:normal;font-weight:400;font-style:italic;}
   @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}) format('woff2');font-weight:normal;font-weight:500;font-style:normal;}
