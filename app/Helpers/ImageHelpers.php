@@ -168,7 +168,7 @@ class ImageHelpers
                 $imgixSettings['fit'] = 'crop';
                 $imgixSettings['crop'] = 'faces,edges,entropy';
                 $imgixSettings['auto'] = 'compress';
-                $imgixSettings['fm'] = 'jpg';
+                $imgixSettings['fm'] = 'webp';
                 $imgixSettings['q'] = '20';
                 $imgixSettings['w'] = '150';
                 $imgixSettings['h'] = '84';
@@ -380,7 +380,7 @@ class ImageHelpers
             }
 
             if (empty($settings['fm'])) {
-                $imgixSettings['fm'] = 'jpg';
+                $imgixSettings['fm'] = 'webp';
             } else {
                 $imgixSettings['fm'] = $settings['fm'];
             }
