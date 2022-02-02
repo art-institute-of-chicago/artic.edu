@@ -48,6 +48,8 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   @if ($print)
       <script>A17.print = true;</script>
   @endif
+  <link rel="preconnect" href="https://artic-web.imgix.net" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
   <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff2')}}" as="font" type="font/woff2" crossorigin="anonymous" />
   <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}" as="font" type="font/woff2" crossorigin="anonymous" />
   <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}" as="font" type="font/woff2" crossorigin="anonymous" />
