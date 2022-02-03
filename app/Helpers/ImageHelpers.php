@@ -167,8 +167,7 @@ class ImageHelpers
 
                 $imgixSettings['fit'] = 'crop';
                 $imgixSettings['crop'] = 'faces,edges,entropy';
-                $imgixSettings['auto'] = 'compress';
-                $imgixSettings['fm'] = 'webp';
+                $imgixSettings['auto'] = 'format,compress';
                 $imgixSettings['q'] = '20';
                 $imgixSettings['w'] = '150';
                 $imgixSettings['h'] = '84';
@@ -375,13 +374,15 @@ class ImageHelpers
 
             if (empty($settings['auto'])) {
                 $imgixSettings['auto'] = 'compress';
+
+                if (empty($settings['fm'])) {
+                    $imgixSettings['auto'] = 'format,' . $imgixSettings['auto'];
+                }
             } else {
                 $imgixSettings['auto'] = $settings['auto'];
             }
 
-            if (empty($settings['fm'])) {
-                $imgixSettings['fm'] = 'webp';
-            } else {
+            if (!empty($settings['fm'])) {
                 $imgixSettings['fm'] = $settings['fm'];
             }
 
