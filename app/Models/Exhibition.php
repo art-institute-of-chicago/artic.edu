@@ -173,7 +173,7 @@ class Exhibition extends AbstractModel
     {
         return [
             [
-                "name" => 'is_featured',
+                'name' => 'is_featured',
                 'doc' => 'Is this exhibition in the primary or secondary feature listings on the landing page?',
                 'type' => 'boolean',
                 'value' => function () {
@@ -181,15 +181,15 @@ class Exhibition extends AbstractModel
                 },
             ],
             [
-                "name" => 'published',
-                "doc" => "Published",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->published;
                 },
             ],
             [
-                "name" => 'title',
+                'name' => 'title',
                 'doc' => 'The title of  this exhibition',
                 'type' => 'string',
                 'value' => function () {
@@ -197,91 +197,91 @@ class Exhibition extends AbstractModel
                 },
             ],
             [
-                "name" => 'header_copy',
-                "doc" => "Header Copy",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'header_copy',
+                'doc' => 'Header Copy',
+                'type' => 'string',
+                'value' => function () {
                     return $this->header_copy;
                 },
             ],
             [
-                "name" => "list_description",
-                "doc" => "list_description",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'list_description',
+                'doc' => 'list_description',
+                'type' => 'string',
+                'value' => function () {
                     return $this->list_description;
                 },
             ],
             [
-                "name" => 'content',
-                "doc" => "Content",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'content',
+                'doc' => 'Content',
+                'type' => 'string',
+                'value' => function () {
                     return $this->content;
                 },
             ],
             [
-                "name" => 'image_url',
-                "doc" => "Image URL",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'image_url',
+                'doc' => 'Image URL',
+                'type' => 'string',
+                'value' => function () {
                     return Str::startsWith($this->image('hero'), 'http') ? $this->image('hero') : null;
                 },
             ],
             [
-                "name" => 'web_url',
-                "doc" => "Web URL",
-                "type" => "string",
-                "value" => function () {
-                    return route('exhibitions.show', ['id' => $this->datahub_id, 'slug' => $this->getSlug() ]);
+                'name' => 'web_url',
+                'doc' => 'Web URL',
+                'type' => 'string',
+                'value' => function () {
+                    return route('exhibitions.show', ['id' => $this->datahub_id, 'slug' => $this->getSlug()]);
                 },
             ],
             [
-                "name" => 'datahub_id',
-                "doc" => "Souce ID",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'datahub_id',
+                'doc' => 'Souce ID',
+                'type' => 'string',
+                'value' => function () {
                     return (int) $this->datahub_id;
                 },
             ],
             [
-                "name" => 'exhibition_message',
-                "doc" => "Message",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'exhibition_message',
+                'doc' => 'Message',
+                'type' => 'string',
+                'value' => function () {
                     return $this->exhibition_message;
                 },
             ],
             [
-                "name" => "public_start_at",
-                "doc" => "Public opening at",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'public_start_at',
+                'doc' => 'Public opening at',
+                'type' => 'string',
+                'value' => function () {
                     return $this->public_start_date ? $this->public_start_date->toIso8601String() : null;
                 },
             ],
             [
-                "name" => "public_end_at",
-                "doc" => "Public closing at",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'public_end_at',
+                'doc' => 'Public closing at',
+                'type' => 'string',
+                'value' => function () {
                     return $this->public_end_date ? $this->public_end_date->toIso8601String() : null;
                 },
             ],
             [
-                "name" => "date_display",
-                "doc" => "Formatted date with override",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'date_display',
+                'doc' => 'Formatted date with override',
+                'type' => 'string',
+                'value' => function () {
                     // WEB-1822, WEB-1830: This causes errors when the API model isn't found, needs more work on several fronts
                     // return trim(html_entity_decode(strip_tags($this->getApiModelFilledCached()->present()->formattedDate()->render())));
                 },
             ],
             [
-                "name" => 'related',
-                "doc" => "Related Content",
-                "type" => "array",
-                "value" => function () {
+                'name' => 'related',
+                'doc' => 'Related Content',
+                'type' => 'array',
+                'value' => function () {
                     return $this->transformRelated();
                 },
             ],

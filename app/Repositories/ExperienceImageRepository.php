@@ -41,7 +41,7 @@ class ExperienceImageRepository extends ModuleRepository
             }
         } else {
             foreach ($credits_map as $contentBundleKey => $artworkKey) {
-                $fields[$contentBundleKey] = "";
+                $fields[$contentBundleKey] = '';
             }
         }
 
@@ -53,6 +53,7 @@ class ExperienceImageRepository extends ModuleRepository
         if ($fields['credits_input'] == 'datahub') {
             $fields = $this->updateFieldsFromApi($fields);
         }
+
         return parent::prepareFieldsBeforeCreate($fields);
     }
 
@@ -61,6 +62,7 @@ class ExperienceImageRepository extends ModuleRepository
         if ($fields['credits_input'] == 'datahub') {
             $fields = $this->updateFieldsFromApi($fields);
         }
+
         return parent::prepareFieldsBeforeSave($object, $fields);
     }
 }

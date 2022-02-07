@@ -4,8 +4,8 @@ namespace App\Libraries\Search\Filters;
 
 class Departments extends BaseFilteredList
 {
-    protected $parameter  = 'department_ids';
-    protected $entity     = \App\Models\Api\Department::class;
+    protected $parameter = 'department_ids';
+    protected $entity = \App\Models\Api\Department::class;
 
     // ART-48, WEB-1831: Combine library and archives into one filter
     const RESEARCH_TITLE = 'Research Center';
@@ -50,13 +50,13 @@ class Departments extends BaseFilteredList
 
         if (!$list->isEmpty()) {
             return [
-                'placeholder' => "Find Departments",
-                'title'       => "Departments",
-                'active'      => $this->activeList,
-                'list'        => $sortedList,
-                'listSearch'  => false,
-                'showMore'    => false,
-                'type'        => 'list',
+                'placeholder' => 'Find Departments',
+                'title' => 'Departments',
+                'active' => $this->activeList,
+                'list' => $sortedList,
+                'listSearch' => false,
+                'showMore' => false,
+                'type' => 'list',
                 'aggregation' => $this->aggregationName,
                 'listSearchUrl' => route('collection.categorySearch', request()->except(['categoryQuery']) + ['categoryName' => 'departments'])
             ];

@@ -6,7 +6,7 @@ use A17\Twill\Models\Revision;
 
 class ExhibitionPressRoomRevision extends Revision
 {
-    protected $table = "exhibition_press_room_revisions";
+    protected $table = 'exhibition_press_room_revisions';
 
     protected $touches = ['exhibitionPressRoom'];
 

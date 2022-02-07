@@ -22,7 +22,7 @@ class ExhibitionPresenter extends BasePresenter
      */
     public function date()
     {
-        $date = "";
+        $date = '';
 
         // Strangely, we cannot use isset() or empty() here
         $hasStart = $this->aic_start_at !== null;
@@ -51,13 +51,16 @@ class ExhibitionPresenter extends BasePresenter
     {
         switch ($this->entity->cms_exhibition_type) {
             case \App\Models\Exhibition::SPECIAL:
-                return "super-hero";
+                return 'super-hero';
+
                 break;
             case \App\Models\Exhibition::LARGE:
-                return "feature";
+                return 'feature';
+
                 break;
             case \App\Models\Exhibition::BASIC:
                 return null;
+
                 break;
         }
     }
@@ -98,29 +101,33 @@ class ExhibitionPresenter extends BasePresenter
     {
         if ($this->entity->public_start_date != null) {
             return $this->entity->public_start_date;
-        } elseif ($this->entity->aic_start_at != null) {
-            return new Carbon($this->entity->aic_start_at);
-        } else {
-            return "";
         }
+        if ($this->entity->aic_start_at != null) {
+            return new Carbon($this->entity->aic_start_at);
+        }
+
+            return '';
+
     }
 
     public function endAt()
     {
         if ($this->entity->public_end_date != null) {
             return $this->entity->public_end_date;
-        } elseif ($this->entity->aic_end_at != null) {
-            return new Carbon($this->entity->aic_end_at);
-        } else {
-            return "";
         }
+        if ($this->entity->aic_end_at != null) {
+            return new Carbon($this->entity->aic_end_at);
+        }
+
+            return '';
+
     }
 
     public function itemprops()
     {
         return [
             'description' => $this->entity->short_description,
-            'department'  => $this->entity->department_display,
+            'department' => $this->entity->department_display,
         ];
     }
 
@@ -195,7 +202,7 @@ class ExhibitionPresenter extends BasePresenter
 
         if ($count > 0) {
             return [
-                'label' =>  $count . ' related ' . Str::plural('event', $count),
+                'label' => $count . ' related ' . Str::plural('event', $count),
                 'href' => '#related_events',
                 'iconBefore' => 'calendar'
             ];
@@ -209,22 +216,26 @@ class ExhibitionPresenter extends BasePresenter
                 'label' => 'Ongoing',
                 'variation' => 'ongoing'
             ];
-        } elseif ($this->entity->isClosed) {
+        }
+        if ($this->entity->isClosed) {
             return [
                 'label' => 'Closed',
                 'variation' => 'closing-soon'
             ];
-        } elseif ($this->entity->isNowOpen) {
+        }
+        if ($this->entity->isNowOpen) {
             return [
                 'label' => 'Now Open',
                 'variation' => 'ongoing'
             ];
-        } elseif ($this->entity->isClosingSoon) {
+        }
+        if ($this->entity->isClosingSoon) {
             return [
                 'label' => 'Closing Soon',
                 'variation' => 'closing-soon'
             ];
-        } elseif ($this->entity->exclusive) {
+        }
+        if ($this->entity->exclusive) {
             return [
                 'label' => 'Member Exclusive',
                 'variation' => 'ongoing'

@@ -6,5 +6,5 @@ use A17\Twill\Models\Revision;
 
 class MiradorRevision extends Revision
 {
-    protected $table = "mirador_revisions";
+    protected $table = 'mirador_revisions';
 }

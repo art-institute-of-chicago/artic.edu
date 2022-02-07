@@ -39,8 +39,8 @@ class GuzzleApiConsumer implements ApiConsumerInterface
         }
 
         return (object) [
-            'body'       => $body,
-            'status'     => $response->getStatusCode()
+            'body' => $body,
+            'status' => $response->getStatusCode()
         ];
     }
 
@@ -95,6 +95,6 @@ class GuzzleApiConsumer implements ApiConsumerInterface
         }
 
         // If it doesn't exists locally push the call to the API client.
-        return $this->client->$name(...$args);
+        return $this->client->{$name}(...$args);
     }
 }

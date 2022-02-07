@@ -19,9 +19,9 @@ class CreateArtworkExperienceTable extends Migration
 
             $table->integer('experience_id')->unsigned();
             $table->foreign('experience_id')->references('id')->on('experiences')->onDelete('cascade');
-            $table->integer("artwork_id")->unsigned();
-            $table->foreign("artwork_id")->references('id')->on('artworks')->onDelete('cascade');
-            $table->index(["artwork_id", "experience_id"], 'artwork_experience_artwork_id_experience_id_idx');
+            $table->integer('artwork_id')->unsigned();
+            $table->foreign('artwork_id')->references('id')->on('artworks')->onDelete('cascade');
+            $table->index(['artwork_id', 'experience_id'], 'artwork_experience_artwork_id_experience_id_idx');
 
             $table->integer('position')->unsigned()->index();
         });

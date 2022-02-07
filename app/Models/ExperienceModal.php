@@ -60,6 +60,7 @@ class ExperienceModal extends AbstractModel implements Sortable
         $fields = $this->attributesToArray();
         $fields['image_sequence_playback'] = $fields['image_sequence_playback'] ?? [];
         $fields['video_play_settings'] = $fields['video_play_settings'] ?? [];
+
         return $fields;
     }
 

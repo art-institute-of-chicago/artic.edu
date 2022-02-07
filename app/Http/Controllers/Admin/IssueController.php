@@ -50,7 +50,7 @@ class IssueController extends ModuleController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('issue') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/' .$this->permalinkBase . $item->issue_number . '/';
+        $baseUrl = '//' . config('app.url') . '/' . $this->permalinkBase . $item->issue_number . '/';
 
         return [
             'baseUrl' => $baseUrl,

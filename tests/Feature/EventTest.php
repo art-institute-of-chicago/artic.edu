@@ -38,7 +38,6 @@ class EventTest extends TestCase
      * Visit the given URI with a GET request.
      *
      * @param  string  $uri
-     * @param  array  $headers
      * @return \Illuminate\Testing\TestResponse
      */
     public function get($uri, array $headers = [], $parameters = [])

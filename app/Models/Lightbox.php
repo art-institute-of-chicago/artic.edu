@@ -72,15 +72,19 @@ class Lightbox extends AbstractModel
         switch ($this->variation) {
             case self::VARIATION_TICKETING:
                 return 'ticketing';
+
                 break;
             case self::VARIATION_EMAIL:
                 return 'email';
+
                 break;
             case self::VARIATION_NEWSLETTER:
                 return 'newsletter';
+
                 break;
             default:
                 return 'default';
+
                 break;
         }
     }

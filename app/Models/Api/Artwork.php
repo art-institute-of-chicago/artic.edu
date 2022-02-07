@@ -75,12 +75,14 @@ class Artwork extends BaseApiModel
     public function getFullTitleAttribute()
     {
         $artist = $this->mainArtist ? $this->mainArtist->first() : null;
+
         return $this->title . ' (' . ($artist->title ?? '') . ' #' . $this->main_reference_number . ')';
     }
 
     public function getFullArtistAttribute()
     {
         $artist = $this->mainArtist ? $this->mainArtist->first() : null;
+
         return ($artist->title ?? '') . ($artist && $artist->title && $this->date_display ? ', ' : '') . ($this->date_display ?? '');
     }
 
@@ -94,6 +96,7 @@ class Artwork extends BaseApiModel
                 return $artist->artist_title;
             }
         }
+
         return $this->artist_title ?? null;
     }
 
@@ -105,17 +108,18 @@ class Artwork extends BaseApiModel
     public function getAllTitlesAttribute()
     {
         $titles = collect($this->title)->push($this->alt_titles)->filter()->flatten();
+
         return join(', ', $titles->toArray());
     }
 
     public function getArtistDisplayAttribute($value)
     {
-        return str_replace("\n", "<br/>", $value);
+        return str_replace("\n", '<br/>', $value);
     }
 
     public function getDateDisplayAttribute($value)
     {
-        return str_replace("\n", "<br/>", $value);
+        return str_replace("\n", '<br/>', $value);
     }
 
     public function getCataloguesAttribute()
@@ -137,7 +141,7 @@ class Artwork extends BaseApiModel
             ->multimediaForArtwork($this->id)
             ->multimediaAssets()
             ->forPage(null, self::RELATED_MULTIMEDIA)
-            ->get(["id", "title", "content", "api_model", "is_multimedia_resource", "is_educational_resource", "web_url"]);
+            ->get(['id', 'title', 'content', 'api_model', 'is_multimedia_resource', 'is_educational_resource', 'web_url']);
     }
 
     public function getEducationalResourcesAttribute()
@@ -147,7 +151,7 @@ class Artwork extends BaseApiModel
             ->educationalForArtwork($this->id)
             ->educationalAssets()
             ->forPage(null, self::RELATED_MULTIMEDIA)
-            ->get(["id", "title", "content", "api_model", "is_multimedia_resource", "is_educational_resource", "web_url"]);
+            ->get(['id', 'title', 'content', 'api_model', 'is_multimedia_resource', 'is_educational_resource', 'web_url']);
     }
 
     public function getTypeAttribute()
@@ -183,6 +187,7 @@ class Artwork extends BaseApiModel
         if (!empty($this->alt_style_ids)) {
             return $this->alt_style_ids[0];
         }
+
         return null;
     }
 
@@ -194,6 +199,7 @@ class Artwork extends BaseApiModel
         if (!empty($this->alt_classification_ids)) {
             return $this->alt_classification_ids[0];
         }
+
         return null;
     }
 
@@ -270,12 +276,14 @@ class Artwork extends BaseApiModel
                 $img = $image->imageFront();
                 $img['credit'] = $this->getImageCopyright($img);
                 $img['creditUrl'] = $this->getImageCopyrightUrl($img);
+
                 return $img;
             }
+
             return false;
         })
-        ->prepend($main)
-        ->reject(function ($name) {
+            ->prepend($main)
+            ->reject(function ($name) {
             return empty($name);
         });
     }
@@ -359,11 +367,11 @@ class Artwork extends BaseApiModel
         $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
 
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "terms" => [
-                            "classification_id" => $ids,
+                        'terms' => [
+                            'classification_id' => $ids,
                         ],
                     ],
                 ],
@@ -382,11 +390,11 @@ class Artwork extends BaseApiModel
         $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
 
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "terms" => [
-                            "artist_id" => $ids,
+                        'terms' => [
+                            'artist_id' => $ids,
                         ],
                     ],
                 ],
@@ -405,11 +413,11 @@ class Artwork extends BaseApiModel
         $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
 
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        "terms" => [
-                            "style_id" => $ids,
+                        'terms' => [
+                            'style_id' => $ids,
                         ],
                     ],
                 ],

@@ -15,7 +15,7 @@ class AddTicketedEventIdToEvents extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             $table->integer('ticketed_event_id')->unsigned()->nullable()->after('is_admission_required');
-            $table->foreign("ticketed_event_id")->references('id')->on('ticketed_events')->onDelete('CASCADE');
+            $table->foreign('ticketed_event_id')->references('id')->on('ticketed_events')->onDelete('CASCADE');
         });
     }
 

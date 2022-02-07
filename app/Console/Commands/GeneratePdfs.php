@@ -87,7 +87,7 @@ class GeneratePdfs extends Command
         // Check that the prince command exists
         $commandCheck = 'command -v ' . config('aic.prince_command');
 
-        if (!`$commandCheck`) {
+        if (!shell_exec($commandCheck)) {
             throw new \Exception('Could not found prince command line command.');
         }
 
@@ -101,11 +101,11 @@ class GeneratePdfs extends Command
 
         if (config('app.debug') || config('aic.pdf_debug')) {
             $prince->setVerbose(true);
-            $prince->setLog(storage_path('logs/prince-' .date('Y-m-d') .'.log'));
+            $prince->setLog(storage_path('logs/prince-' . date('Y-m-d') . '.log'));
         }
 
         set_time_limit(0);
-        $html = file_get_contents($fullUrl . "?print=true");
+        $html = file_get_contents($fullUrl . '?print=true');
 
         $pdfFileName = 'download-' . $route . '-' . $model->id . '.pdf';
         $pdfPath = storage_path('app/' . $pdfFileName);

@@ -2,7 +2,6 @@
 
 namespace App\Models\Behaviors;
 
-
 use A17\Twill\Models\Behaviors\HasMedias as BaseHasMedias;
 
 trait HasMedias
@@ -11,7 +10,7 @@ trait HasMedias
         BaseHasMedias::imageAsArray as parentImageAsArray;
     }
 
-    public function imageAsArray($role, $crop = "default", $params = [], $media = null)
+    public function imageAsArray($role, $crop = 'default', $params = [], $media = null)
     {
         if (!$media) {
             $media = $this->medias->first(function ($media) use ($role, $crop) {

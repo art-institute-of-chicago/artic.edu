@@ -64,26 +64,26 @@ class Artist extends AbstractModel
     {
         return [
             [
-                "name" => 'intro',
-                "doc" => "Intro Copy",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'intro',
+                'doc' => 'Intro Copy',
+                'type' => 'string',
+                'value' => function () {
                     return $this->intro;
                 },
             ],
             [
-                "name" => 'datahub_id',
-                "doc" => "Data Hub ID",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'datahub_id',
+                'doc' => 'Data Hub ID',
+                'type' => 'string',
+                'value' => function () {
                     return $this->datahub_id;
                 },
             ],
             [
-                "name" => 'related',
-                "doc" => "Related Content",
-                "type" => "array",
-                "value" => function () {
+                'name' => 'related',
+                'doc' => 'Related Content',
+                'type' => 'array',
+                'value' => function () {
                     return $this->transformRelated();
                 },
             ],

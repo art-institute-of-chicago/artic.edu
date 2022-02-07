@@ -22,7 +22,7 @@ class BlockHelpers
     public static function innerHTML($node)
     {
         return implode(array_map(
-            [$node->ownerDocument,'saveHTML'],
+            [$node->ownerDocument, 'saveHTML'],
             iterator_to_array($node->childNodes)
         ));
     }

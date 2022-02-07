@@ -39,7 +39,7 @@ class EventsController extends FrontController
             $ongoing = null;
             $eventsByDay = $this->repository->groupByDate($collection);
             if (request('program')) {
-                $subtitle = "These are events related to " .EventProgram::find(request('program'))->name .".";
+                $subtitle = 'These are events related to ' . EventProgram::find(request('program'))->name . '.';
             }
         } else {
             // Divide the collection by normal events and ongoing ones
@@ -144,7 +144,7 @@ class EventsController extends FrontController
 
     protected function show($id, $slug = null)
     {
-        $item = $this->repository->published()->findOrFail((Integer) $id);
+        $item = $this->repository->published()->findOrFail((int) $id);
 
         $canonicalPath = route('events.show', $item);
 
@@ -179,7 +179,7 @@ class EventsController extends FrontController
 
         foreach (Event::$eventTypes as $key => $type) {
             array_push($links, [
-                'href'  => route('events', array_merge(request()->all(), ['type' => $key])),
+                'href' => route('events', array_merge(request()->all(), ['type' => $key])),
                 'label' => $type
             ]);
         }
@@ -198,7 +198,7 @@ class EventsController extends FrontController
 
         foreach (Event::$eventAudiences as $key => $audience) {
             array_push($links, [
-                'href'  => route('events', array_merge(request()->all(), ['audience' => $key])),
+                'href' => route('events', array_merge(request()->all(), ['audience' => $key])),
                 'label' => $audience
             ]);
         }

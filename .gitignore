@@ -35,4 +35,5 @@ yarn-error.log
 /public/virtual-tours/tour.js
 studio.json
 .php_cs.cache
+.php-cs-fixer.cache
 .phpunit.result.cache

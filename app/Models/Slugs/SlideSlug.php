@@ -6,5 +6,5 @@ use A17\Twill\Models\Model;
 
 class SlideSlug extends Model
 {
-    protected $table = "slide_slugs";
+    protected $table = 'slide_slugs';
 }

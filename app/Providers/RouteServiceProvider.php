@@ -36,13 +36,13 @@ class RouteServiceProvider extends ServiceProvider
 
             foreach ($domains as $domain) {
                 Route::middleware('web')
-                        ->domain($domain)
-                        ->group(base_path('routes/kiosk.php'));
+                    ->domain($domain)
+                    ->group(base_path('routes/kiosk.php'));
             }
 
             // Web routes
             // These routes all receive session state, CSRF protection, etc.
-            $allowedDomains = config('app.allowed_domains') ?? [ config('app.url') ];
+            $allowedDomains = config('app.allowed_domains') ?? [config('app.url')];
             $host = request()->getHttpHost();
             $domain = in_array($host, $allowedDomains) ? $host : config('app.url');
 

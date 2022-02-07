@@ -34,7 +34,7 @@ class UpdateExperienceImageCredits extends Command
                     'copyright_notice' => 'copyright_notice',
                 ];
                 foreach ($credits_map as $contentBundleKey => $artworkKey) {
-                    $image->$contentBundleKey = $artwork[$artworkKey];
+                    $image->{$contentBundleKey} = $artwork[$artworkKey];
                 }
                 $image->save();
                 $bar->advance();

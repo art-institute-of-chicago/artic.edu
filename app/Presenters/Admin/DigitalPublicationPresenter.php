@@ -82,7 +82,7 @@ class DigitalPublicationPresenter extends BasePresenter
                     'active' => !isset($currentSection) || $currentSection->type === $type,
                     'blocks' => [
                         [
-                            'type'  => 'link-list',
+                            'type' => 'link-list',
                             'links' => $this
                                 ->getSections($type)
                                 ->map(function ($section) use ($currentSection) {
@@ -115,15 +115,17 @@ class DigitalPublicationPresenter extends BasePresenter
     public function blocks()
     {
         if (!$this->entity->is_dsc_stub) {
-            $return = "<h1>" .$this->entity->title ."</h1>";
+            $return = '<h1>' . $this->entity->title . '</h1>';
             $return .= $this->entity->welcome_note_display;
-            $return .= "<p>";
+            $return .= '<p>';
             foreach ($this->entity->sections as $section) {
-                $return .= $section->title ."<br/>";
+                $return .= $section->title . '<br/>';
             }
-            $return .= "</p>";
+            $return .= '</p>';
+
             return $return;
         }
+
         return $this->entity->blocks;
     }
 }

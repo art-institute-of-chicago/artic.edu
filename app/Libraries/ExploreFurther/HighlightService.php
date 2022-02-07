@@ -18,7 +18,7 @@ class HighlightService extends BaseService
                 $tags = $tags->merge(
                     [$item->key => ucfirst($item->key)]
                 );
-            };
+            }
         }
 
         return [

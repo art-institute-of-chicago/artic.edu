@@ -27,8 +27,6 @@ class TrustProxies extends Middleware
     /**
      * Add remote address to trusted proxy list
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
@@ -47,11 +45,12 @@ class TrustProxies extends Middleware
 
         $this->proxies = array_merge(
             $this->proxies,
-            $ips->{"CLOUDFRONT_GLOBAL_IP_LIST"},
-            $ips->{"CLOUDFRONT_REGIONAL_EDGE_IP_LIST"}
+            $ips->{'CLOUDFRONT_GLOBAL_IP_LIST'},
+            $ips->{'CLOUDFRONT_REGIONAL_EDGE_IP_LIST'}
         );
 
         array_push($this->proxies, $request->server->get('REMOTE_ADDR'));
+
         return parent::handle($request, $next);
     }
 }

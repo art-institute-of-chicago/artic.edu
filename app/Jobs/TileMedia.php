@@ -82,7 +82,7 @@ class TileMedia extends BaseJob
     private function deleteOut($local, $localFilename)
     {
         if ($local->exists('tiles/out/' . $localFilename)) {
-            exec(sprintf("rm -r %s", escapeshellarg(storage_path() . '/app/tiles/out/' . $localFilename)));
+            exec(sprintf('rm -r %s', escapeshellarg(storage_path() . '/app/tiles/out/' . $localFilename)));
         }
     }
 }

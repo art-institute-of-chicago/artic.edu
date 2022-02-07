@@ -15,14 +15,14 @@ trait HasApiRelations
     public function apiModels($relation, $model, $ttl = null)
     {
         // Obtain the API class
-        $modelClass = "\\App\\Models\\Api\\" . ucfirst($model);
+        $modelClass = '\\App\\Models\\Api\\' . ucfirst($model);
 
         // Get all Ids
-        $ids = $this->$relation->pluck('datahub_id')->toArray();
+        $ids = $this->{$relation}->pluck('datahub_id')->toArray();
 
         if (empty($ids)) {
             return collect();
-        } else {
+        }
             // Load real the real models from the API
             $results = $modelClass::query()->ttl($ttl)->ids($ids)->get();
 
@@ -34,7 +34,7 @@ trait HasApiRelations
             });
 
             return $sorted;
-        }
+
     }
 
     public function getRelatedWithApiModels($browser_name, $apiModelsDefinitions, $typeUsesApi)
@@ -97,6 +97,7 @@ trait HasApiRelations
         // Use those to load API records
         $apiModelDefinition = $apiModelsDefinitions[$type];
         $apiModel = $apiModelDefinition['apiModel'];
+
         return $apiModel::query()->ids($datahubIds)->get();
     }
 
@@ -109,6 +110,7 @@ trait HasApiRelations
             if ($result) {
                 $result->position = $relatedElement->position;
             }
+
             return $result;
         });
     }

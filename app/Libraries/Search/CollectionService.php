@@ -40,7 +40,7 @@ class CollectionService
     /**
      * Pagination index used as a flag to get prev/next elements
      */
-    protected $page = null;
+    protected $page;
 
     public function __construct()
     {
@@ -64,7 +64,7 @@ class CollectionService
 
         if ($page) {
             $this->results = $builder->ttl(self::API_SEARCH_CACHE_TTL)->getPaginatedModel($this->perPage, \App\Models\Api\Artwork::SEARCH_FIELDS, null, $page);
-            $this->page    = $page;
+            $this->page = $page;
         } else {
             $this->results = $builder->ttl(self::API_SEARCH_CACHE_TTL)->getPaginatedModel($this->perPage, \App\Models\Api\Artwork::SEARCH_FIELDS);
         }
@@ -116,28 +116,31 @@ class CollectionService
                     foreach ($category['list'] as $item) {
                         if ($item['enabled']) {
                             $activeFilters->push([
-                                'href'  => $item['href'],
+                                'href' => $item['href'],
                                 'label' => $item['label']
                             ]);
                         }
                     }
+
                     break;
 
                 case 'date':
                     if ($category['enabled']) {
                         $activeFilters->push([
-                            'href'  => $category['href'],
+                            'href' => $category['href'],
                             'label' => $category['label']
                         ]);
                     }
+
                     break;
                 case 'color':
                     if ($category['enabled']) {
                         $activeFilters->push([
-                            'href'  => $category['href'],
+                            'href' => $category['href'],
                             'label' => $category['label']
                         ]);
                     }
+
                     break;
             }
         }
@@ -154,10 +157,10 @@ class CollectionService
      */
     protected function getActiveHiddenFilters()
     {
-        $themes     = (new Filters\Themes())->generate();
+        $themes = (new Filters\Themes())->generate();
         $techniques = (new Filters\Techniques())->generate();
-        $galleries  = (new Filters\Galleries())->generate();
-        $deaccessions  = (new Filters\Deaccessions())->generate();
+        $galleries = (new Filters\Galleries())->generate();
+        $deaccessions = (new Filters\Deaccessions())->generate();
 
         return array_merge($themes, $techniques, $galleries, $deaccessions);
     }
@@ -190,24 +193,28 @@ class CollectionService
     protected function buildSortFilters()
     {
         $sortFilters = new SortFilters($this->sortingOptions);
+
         return $sortFilters->generate();
     }
 
     protected function buildDateFilters()
     {
         $dateFilters = new DateRange();
+
         return $dateFilters->generate();
     }
 
     protected function buildColorFilters()
     {
         $colorFilters = new ColorFilter();
+
         return $colorFilters->generate();
     }
 
     protected function buildBooleanFilters()
     {
         $booleanFilters = new BooleanFilter($this->booleanOptions);
+
         return $booleanFilters->generate();
     }
 
@@ -217,6 +224,7 @@ class CollectionService
     public function perPage($perPage)
     {
         $this->perPage = $perPage;
+
         return $this;
     }
 
@@ -227,7 +235,7 @@ class CollectionService
     public function __call($method, $parameters)
     {
         if (method_exists($this, $method)) {
-            return $this->$method($parameters);
+            return $this->{$method}($parameters);
         }
 
         $this->chain->{$method}(...$parameters);

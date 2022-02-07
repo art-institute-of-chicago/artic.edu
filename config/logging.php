@@ -74,7 +74,7 @@ return [
             'level' => env('LOG_LEVEL', 'error'),
         ],
 
-        # WEB-2129: Optional channel to disable log files
+        // WEB-2129: Optional channel to disable log files
         'null' => [
             'driver' => 'monolog',
             'handler' => \Monolog\Handler\NullHandler::class,

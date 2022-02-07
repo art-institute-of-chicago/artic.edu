@@ -4,8 +4,8 @@ namespace App\Libraries\Search\Filters;
 
 class Places extends BaseFilteredList
 {
-    protected $parameter  = 'place_ids';
-    protected $entity     = \App\Models\Api\Place::class;
+    protected $parameter = 'place_ids';
+    protected $entity = \App\Models\Api\Place::class;
 
     public function generate()
     {
@@ -13,12 +13,12 @@ class Places extends BaseFilteredList
 
         if (!$list->isEmpty()) {
             return [
-                'placeholder' => "Find Places",
-                'title'       => "Places",
-                'active'      => $this->activeList,
-                'list'        => $list,
-                'listSearch'  => true,
-                'type'        => 'list',
+                'placeholder' => 'Find Places',
+                'title' => 'Places',
+                'active' => $this->activeList,
+                'list' => $list,
+                'listSearch' => true,
+                'type' => 'list',
                 'aggregation' => $this->aggregationName,
                 'listSearchUrl' => route('collection.categorySearch', request()->except(['categoryQuery']) + ['categoryName' => 'places'])
             ];

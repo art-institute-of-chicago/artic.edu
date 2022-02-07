@@ -35,6 +35,6 @@ class ChangeDataahubIdOnGallery extends Migration
      */
     public function down()
     {
-        //
+
     }
 }

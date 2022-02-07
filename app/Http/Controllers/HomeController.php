@@ -16,14 +16,14 @@ class HomeController extends FrontController
 
         $page = Page::forType('Home')->first();
 
-        $exhibitions  = $page->apiModels('homeExhibitions', 'Exhibition');
-        $products     = $page->apiModels('homeShopItems', 'ShopItem');
+        $exhibitions = $page->apiModels('homeExhibitions', 'Exhibition');
+        $products = $page->apiModels('homeShopItems', 'ShopItem');
         $homeArtworks = $page->apiModels('homeArtworks', 'Artwork');
 
-        $events      = $page->homeEvents()->future()->published()->limit(4)->get();
+        $events = $page->homeEvents()->future()->published()->limit(4)->get();
 
-        $mainHomeFeatures       = $page->mainHomeFeatures()->published()->limit(1)->get();
-        $secondaryHomeFeatures  = $page->secondaryHomeFeatures()->published()->limit(2)->get();
+        $mainHomeFeatures = $page->mainHomeFeatures()->published()->limit(1)->get();
+        $secondaryHomeFeatures = $page->secondaryHomeFeatures()->published()->limit(2)->get();
 
         $mainFeatures = $mainHomeFeatures->concat($secondaryHomeFeatures);
 
@@ -34,7 +34,7 @@ class HomeController extends FrontController
 
         $view_data = [
             'contrastHeader' => sizeof($mainFeatures) > 0,
-            'filledLogo'     => sizeof($mainFeatures) > 0,
+            'filledLogo' => sizeof($mainFeatures) > 0,
             'mainFeatures' => $mainFeatures,
             'intro' => $page->home_intro,
             'visit_button_text' => $page->home_visit_button_text ?? 'Visit',
@@ -51,7 +51,7 @@ class HomeController extends FrontController
             'products' => $products,
             'cta_module_image' => $page->imageFront('home_cta_module_image'),
             'cta_module_action_url' => $page->home_cta_module_action_url,
-            'cta_module_header' =>  $page->home_cta_module_header,
+            'cta_module_header' => $page->home_cta_module_header,
             'cta_module_button_text' => $page->home_cta_module_button_text,
             'cta_module_body' => $page->home_cta_module_body,
             'roadblocks' => $this->getLightboxes(),
@@ -70,7 +70,7 @@ class HomeController extends FrontController
     private function getArticles()
     {
         $page = Page::forType('Articles and Publications')->first();
-        $articles = $page->getRelatedWithApiModels("featured_items", [], [
+        $articles = $page->getRelatedWithApiModels('featured_items', [], [
             'articles' => false,
             'experiences' => false
         ]) ?? null;
@@ -152,15 +152,18 @@ class HomeController extends FrontController
         switch ($value) {
             case Lightbox::GEOTARGET_LOCAL:
                 return 'local';
+
                 break;
             case Lightbox::GEOTARGET_NOT_LOCAL:
                 return 'not-local';
+
                 break;
             case Lightbox::GEOTARGET_ALL:
                 // Passthrough
             default:
                 // Also catches null
                 return 'all';
+
                 break;
         }
     }

@@ -24,6 +24,6 @@ class UpdateCancelled extends Command
                     }
                 }
             }
-        };
+        }
     }
 }

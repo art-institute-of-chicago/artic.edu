@@ -24,7 +24,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
     {
         $builder = clone $this;
 
-        $page    = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
+        $page = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
         $perPage = is_null($perPage) ? $this->model->getPerPage() : $perPage;
 
         if ($columns) {
@@ -130,8 +130,10 @@ class ApiModelBuilderSearch extends ApiModelBuilder
                 if ($elements && method_exists($elements, 'ttl')) {
                     $elements->ttl($this->ttl);
                 }
+
                 return $elements->get();
-            } elseif (!$class) {
+            }
+            if (!$class) {
                 return $collection; // e.g. static-pages
             }
         });
@@ -184,10 +186,13 @@ class ApiModelBuilderSearch extends ApiModelBuilder
             if (isset($class) && $class) {
                 $elements = $collection->map(function ($searchItem) use ($class) {
                     $item = new $class($searchItem->getAttributes());
+
                     return $item;
                 });
+
                 return $elements;
-            } elseif (!$class) {
+            }
+            if (!$class) {
                 return $collection; // e.g. static-pages
             }
         });

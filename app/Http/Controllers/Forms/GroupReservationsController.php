@@ -17,364 +17,356 @@ class GroupReservationsController extends FormController
         $this->title = 'Adult and University Group Reservation Form';
         $this->seo->setTitle($this->title);
 
-        $blocks = array();
-        $formBlocks = array();
-        $contactInformationFields = array();
-        $visitInformationFields = array();
+        $blocks = [];
+        $formBlocks = [];
+        $contactInformationFields = [];
+        $visitInformationFields = [];
 
         $errors = session('errors');
 
-        /*
-         *
-         *  Contact information
-         *
-         */
-        $contactInformationFields[]= array(
+        // Contact information
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'group_name',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('group_name'),
-                  'error' => (!empty($errors) && $errors->first('group_name')) ? $errors->first('group_name') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Group name',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'group_name',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('group_name'),
+                    'error' => (!empty($errors) && $errors->first('group_name')) ? $errors->first('group_name') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Group name',
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'contact_name',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('contact_name'),
-                  'error' => (!empty($errors) && $errors->first('contact_name')) ? $errors->first('contact_name') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Contact name *',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'contact_name',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('contact_name'),
+                    'error' => (!empty($errors) && $errors->first('contact_name')) ? $errors->first('contact_name') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Contact name *',
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'email',
-                  'variation' => null,
-                  'id' => 'email',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('email'),
-                  'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Email *',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'email',
+                    'variation' => null,
+                    'id' => 'email',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('email'),
+                    'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Email *',
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'tel',
-                  'variation' => null,
-                  'id' => 'phone_number',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('phone_number'),
-                  'error' => (!empty($errors) && $errors->first('phone_number')) ? $errors->first('phone_number') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Phone number',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'tel',
+                    'variation' => null,
+                    'id' => 'phone_number',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('phone_number'),
+                    'error' => (!empty($errors) && $errors->first('phone_number')) ? $errors->first('phone_number') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Phone number',
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'tel',
-                  'variation' => null,
-                  'id' => 'fax_number',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('fax_number'),
-                  'error' => (!empty($errors) && $errors->first('fax_number')) ? $errors->first('fax_number') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Fax number',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'tel',
+                    'variation' => null,
+                    'id' => 'fax_number',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('fax_number'),
+                    'error' => (!empty($errors) && $errors->first('fax_number')) ? $errors->first('fax_number') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Fax number',
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'address_1',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('address_1'),
-                  'error' => (!empty($errors) && $errors->first('address_1')) ? $errors->first('address_1') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Street address',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'address_1',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('address_1'),
+                    'error' => (!empty($errors) && $errors->first('address_1')) ? $errors->first('address_1') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Street address',
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'address_2',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('address_2'),
-                  'error' => (!empty($errors) && $errors->first('address_2')) ? $errors->first('address_2') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Apartment or suite',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'address_2',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('address_2'),
+                    'error' => (!empty($errors) && $errors->first('address_2')) ? $errors->first('address_2') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Apartment or suite',
+                ],
+            ],
+        ];
 
-        $contactInformationFields[]= array(
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'city',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('city'),
-                  'error' => (!empty($errors) && $errors->first('city')) ? $errors->first('city') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'City',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'city',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('city'),
+                    'error' => (!empty($errors) && $errors->first('city')) ? $errors->first('city') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'City',
+                ],
+            ],
+        ];
 
-        $contactInformationFields[] = array(
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'select',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'state',
-                  'error' => (!empty($errors) && $errors->first('state')) ? $errors->first('state') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'value' => old('state'),
-                  'label' => 'State',
-                  'options' => $this->getStatesArray(),
-                ),
-                array(
-                  'type' => 'input',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'zipcode',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('zipcode'),
-                  'error' => (!empty($errors) && $errors->first('zipcode')) ? $errors->first('zipcode') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Zipcode',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'select',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'state',
+                    'error' => (!empty($errors) && $errors->first('state')) ? $errors->first('state') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'value' => old('state'),
+                    'label' => 'State',
+                    'options' => $this->getStatesArray(),
+                ],
+                [
+                    'type' => 'input',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'zipcode',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('zipcode'),
+                    'error' => (!empty($errors) && $errors->first('zipcode')) ? $errors->first('zipcode') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Zipcode',
+                ],
+            ],
+        ];
 
-        $contactInformationFields[] = array(
+        $contactInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'select',
-                  'variation' => null,
-                  'id' => 'country',
-                  'error' => (!empty($errors) && $errors->first('country')) ? $errors->first('country') : null,
-                  'value' => old('country'),
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Country',
-                  'options' => $this->getCountriesArray(),
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'select',
+                    'variation' => null,
+                    'id' => 'country',
+                    'error' => (!empty($errors) && $errors->first('country')) ? $errors->first('country') : null,
+                    'value' => old('country'),
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Country',
+                    'options' => $this->getCountriesArray(),
+                ],
+            ],
+        ];
 
 
-        /*
-         *
-         *  Visit information
-         *
-         */
-        $visitInformationFields[] = array(
+        // Visit information
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'date-select',
-                  'variation' => null,
-                  'id' => 'visit_date',
-                  'placeholder' => 'mm/dd/yy',
-                  'value' => old('visit_date'),
-                  'error' => (!empty($errors) && $errors->first('visit_date')) ? $errors->first('visit_date') : null,
-                  'optional' => false,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Visit date',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'date-select',
+                    'variation' => null,
+                    'id' => 'visit_date',
+                    'placeholder' => 'mm/dd/yy',
+                    'value' => old('visit_date'),
+                    'error' => (!empty($errors) && $errors->first('visit_date')) ? $errors->first('visit_date') : null,
+                    'optional' => false,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Visit date',
+                ],
+            ],
+        ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'visit_time',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('visit_time'),
-                  'error' => (!empty($errors) && $errors->first('visit_time')) ? $errors->first('visit_time') : null,
-                  'optional' => false,
-                  'hint' => 'Our <a href="/visit#hours">daily hours</a> are 10:30–5:00',
-                  'disabled' => false,
-                  'label' => 'Time',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'input',
+                    'variation' => null,
+                    'id' => 'visit_time',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('visit_time'),
+                    'error' => (!empty($errors) && $errors->first('visit_time')) ? $errors->first('visit_time') : null,
+                    'optional' => false,
+                    'hint' => 'Our <a href="/visit#hours">daily hours</a> are 10:30–5:00',
+                    'disabled' => false,
+                    'label' => 'Time',
+                ],
+            ],
+        ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
+            'blocks' => [
+                [
                     'type' => 'text',
                     'content' => '<p>Total number of people in group:</p>'
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'number',
-                  'pattern' => '\d*',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'no_of_adults',
-                  'value' => old('no_of_adults'),
-                  'error' => (!empty($errors) && $errors->first('no_of_adults')) ? $errors->first('no_of_adults') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Adults',
-                ),
-                array(
-                  'type' => 'number',
-                  'pattern' => '\d*',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'no_of_students',
-                  'value' => old('no_of_students'),
-                  'error' => (!empty($errors) && $errors->first('no_of_students')) ? $errors->first('no_of_students') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Students',
-                ),
-                array(
-                  'type' => 'number',
-                  'pattern' => '\d*',
-                  'variation' => 'm-fieldset__input-narrow-x3',
-                  'id' => 'no_of_seniors',
-                  'value' => old('no_of_seniors'),
-                  'error' => (!empty($errors) && $errors->first('no_of_seniors')) ? $errors->first('no_of_seniors') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Seniors',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'number',
+                    'pattern' => '\d*',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'no_of_adults',
+                    'value' => old('no_of_adults'),
+                    'error' => (!empty($errors) && $errors->first('no_of_adults')) ? $errors->first('no_of_adults') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Adults',
+                ],
+                [
+                    'type' => 'number',
+                    'pattern' => '\d*',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'no_of_students',
+                    'value' => old('no_of_students'),
+                    'error' => (!empty($errors) && $errors->first('no_of_students')) ? $errors->first('no_of_students') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Students',
+                ],
+                [
+                    'type' => 'number',
+                    'pattern' => '\d*',
+                    'variation' => 'm-fieldset__input-narrow-x3',
+                    'id' => 'no_of_seniors',
+                    'value' => old('no_of_seniors'),
+                    'error' => (!empty($errors) && $errors->first('no_of_seniors')) ? $errors->first('no_of_seniors') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Seniors',
+                ],
+            ],
+        ];
 
-        $visitInformationFields[]= array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'number',
-                  'pattern' => '\d*',
-                  'variation' => null,
-                  'id' => 'no_of_audio_tours',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => old('no_of_audio_tours'),
-                  'error' => (!empty($errors) && $errors->first('no_of_audio_tours')) ? $errors->first('no_of_audio_tours') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Number of Audio Tours',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'number',
+                    'pattern' => '\d*',
+                    'variation' => null,
+                    'id' => 'no_of_audio_tours',
+                    'placeholder' => '',
+                    'textCount' => false,
+                    'value' => old('no_of_audio_tours'),
+                    'error' => (!empty($errors) && $errors->first('no_of_audio_tours')) ? $errors->first('no_of_audio_tours') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Number of Audio Tours',
+                ],
+            ],
+        ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'select',
-                  'variation' => null,
-                  'id' => 'topic',
-                  'error' => (!empty($errors) && $errors->first('topic')) ? $errors->first('topic') : null,
-                  'value' => old('topic'),
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Topic of gallery tour/slide lecture',
-                  'options' => $this->getTopicsArray(),
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'select',
+                    'variation' => null,
+                    'id' => 'topic',
+                    'error' => (!empty($errors) && $errors->first('topic')) ? $errors->first('topic') : null,
+                    'value' => old('topic'),
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => 'Topic of gallery tour/slide lecture',
+                    'options' => $this->getTopicsArray(),
+                ],
+            ],
+        ];
 
         $needsFields = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
-                  'type' => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('needs')) ? $errors->first('needs') : null,
-                  'optional' => null,
-                  'hint' => 'Please specify the needs of your group',
-                  'label' => 'Special needs',
-                )
-            ),
+            'blocks' => [
+                [
+                    'type' => 'label',
+                    'variation' => 'm-fieldset__group-label',
+                    'error' => (!empty($errors) && $errors->first('needs')) ? $errors->first('needs') : null,
+                    'optional' => null,
+                    'hint' => 'Please specify the needs of your group',
+                    'label' => 'Special needs',
+                ]
+            ],
         ];
         foreach ($this->getNeedsArray(old('needs')) as $d) {
             array_push($needsFields['blocks'], $d);
@@ -383,79 +375,79 @@ class GroupReservationsController extends FormController
 
         $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  "type" => 'textarea',
-                  'variation' => null,
-                  'id' => 'additional_info',
-                  'placeholder' => '',
-                  'value' => old('additional_info'),
-                  'error' => (!empty($errors) && $errors->first('additional_info')) ? $errors->first('additional_info') : null,
-                  'optional' => null,
-                  'hint' => '',
-                  'disabled' => false,
-                  'label' => 'Additional details (specify language, any needs not listed, purpose or occasion for your visit, etc.)',
-                ),
-            ),
+            'blocks' => [
+                [
+                    'type' => 'textarea',
+                    'variation' => null,
+                    'id' => 'additional_info',
+                    'placeholder' => '',
+                    'value' => old('additional_info'),
+                    'error' => (!empty($errors) && $errors->first('additional_info')) ? $errors->first('additional_info') : null,
+                    'optional' => null,
+                    'hint' => '',
+                    'disabled' => false,
+                    'label' => 'Additional details (specify language, any needs not listed, purpose or occasion for your visit, etc.)',
+                ],
+            ],
         ];
 
-        $visitInformationFields[] = array(
+        $visitInformationFields[] = [
             'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'captcha',
-                  'variation' => null,
-                  'id' => 'captcha',
-                  'error' => (!empty($errors) && $errors->first('captcha')) ? $errors->first('captcha') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => '',
-                ),
-            ),
-        );
+            'blocks' => [
+                [
+                    'type' => 'captcha',
+                    'variation' => null,
+                    'id' => 'captcha',
+                    'error' => (!empty($errors) && $errors->first('captcha')) ? $errors->first('captcha') : null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'label' => '',
+                ],
+            ],
+        ];
 
-        array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $contactInformationFields,
-          'legend' => 'Contact Information',
-        ));
+        array_push($formBlocks, [
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $contactInformationFields,
+            'legend' => 'Contact Information',
+        ]);
 
-        array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $visitInformationFields,
-          'legend' => 'Visit Information',
-        ));
+        array_push($formBlocks, [
+            'type' => 'fieldset',
+            'variation' => null,
+            'fields' => $visitInformationFields,
+            'legend' => 'Visit Information',
+        ]);
 
-        array_push($blocks, array(
-          'type' => 'text',
-          'content' => '<p>Please note the form below is for booking adult or university group tours only. Use the <a href="https://scheduler.artic.edu/">student tours application form</a> for pre-K–12th grade student tours.</p>'
-          .'<p>Group visits require a minimum of 15 people. Reservations are requested 21 days in advance and will be confirmed in writing within 10 business days of receipt. Thank you for thinking of the Art Institute of Chicago.</p>'
-          .'<p>Contact us at (312) 857-7104 or <a href="mailto:groupsales@artic.edu">groupsales@artic.edu</a>.</p>'
-          .'<p>You may also print this form and return it to:</p>'
-          .'<p>Group Sales<br/>'
-          .'The Art Institute of Chicago<br/>'
-          .'111 S. Michigan Avenue<br/>'
-          .'Chicago, IL 60603-6110<br/>'
-          .'(312) 857-7104</p>'
-        ));
+        array_push($blocks, [
+            'type' => 'text',
+            'content' => '<p>Please note the form below is for booking adult or university group tours only. Use the <a href="https://scheduler.artic.edu/">student tours application form</a> for pre-K–12th grade student tours.</p>'
+            . '<p>Group visits require a minimum of 15 people. Reservations are requested 21 days in advance and will be confirmed in writing within 10 business days of receipt. Thank you for thinking of the Art Institute of Chicago.</p>'
+            . '<p>Contact us at (312) 857-7104 or <a href="mailto:groupsales@artic.edu">groupsales@artic.edu</a>.</p>'
+            . '<p>You may also print this form and return it to:</p>'
+            . '<p>Group Sales<br/>'
+            . 'The Art Institute of Chicago<br/>'
+            . '111 S. Michigan Avenue<br/>'
+            . 'Chicago, IL 60603-6110<br/>'
+            . '(312) 857-7104</p>'
+        ]);
 
-        array_push($blocks, array(
+        array_push($blocks, [
             'type' => 'form',
             'variation' => null,
             'action' => '/visit/visiting-with-a-group/reservation-form',
             'method' => 'POST',
             'blocks' => $formBlocks,
-            'actions' => array(
-                array(
+            'actions' => [
+                [
                     'variation' => null,
                     'type' => 'submit',
-                    'label' => "Submit",
-                )
-            )
-        ));
+                    'label' => 'Submit',
+                ]
+            ]
+        ]);
 
         $breadcrumbs = [
             [
@@ -479,14 +471,12 @@ class GroupReservationsController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-    /**
-     * @param GroupReservationRequest $request
-     */
+
     public function store(GroupReservationRequest $request)
     {
         $validated = $request->validated();
 
-        $groupReservation = new GroupReservation;
+        $groupReservation = new GroupReservation();
         $groupReservation->group_name = $validated['group_name'] ?? '';
         $groupReservation->contact_name = $validated['contact_name'] ?? '';
         $groupReservation->email = $validated['email'] ?? '';
@@ -517,26 +507,26 @@ class GroupReservationsController extends FormController
 
     private function getTopicsArray()
     {
-        $topics = array('Highlights of the Art Institute',
-                        'Adult Interactive Workshop (additional fees apply)',
-                        'American Art',
-                        'Asian Art Through a Global Lens',
-                        'Chicago Stories',
-                        'The Foodie’s Tour',
-                        'Impressionism: Monet, Degas, Renoir, and More',
-                        'Innovators and Renegades',
-                        'Mindfulness Tours',
-                        'Modern Wing Highlights: Modern and Contemporary Art',
-                        'Underdogs and Hidden Histories',
-                        'None',
-        );
+        $topics = ['Highlights of the Art Institute',
+            'Adult Interactive Workshop (additional fees apply)',
+            'American Art',
+            'Asian Art Through a Global Lens',
+            'Chicago Stories',
+            'The Foodie’s Tour',
+            'Impressionism: Monet, Degas, Renoir, and More',
+            'Innovators and Renegades',
+            'Mindfulness Tours',
+            'Modern Wing Highlights: Modern and Contemporary Art',
+            'Underdogs and Hidden Histories',
+            'None',
+        ];
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];
         foreach ($topics as $value => $label) {
             $item = [
                 'value' => $label
-            ,   'label' => $label
+                ,   'label' => $label
             ];
 
             $list[] = $item;
@@ -548,26 +538,26 @@ class GroupReservationsController extends FormController
 
     private function getNeedsArray($selected)
     {
-        $needs = array('Foreign language' => 'Foreign language',
-                       'Wheelchair use' => 'Wheelchair use',
-                       'Sign language' => 'Sign language',
-                       'No special needs' => 'No special needs',
-        );
+        $needs = ['Foreign language' => 'Foreign language',
+            'Wheelchair use' => 'Wheelchair use',
+            'Sign language' => 'Sign language',
+            'No special needs' => 'No special needs',
+        ];
 
         $list = [];
         foreach ($needs as $value => $label) {
             $item = [
-              'type' => 'checkbox',
-              'variation' => '',
-              'id' => 'needs-'.$value,
-              'name' => 'needs[]',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $label
+                'type' => 'checkbox',
+                'variation' => '',
+                'id' => 'needs-' . $value,
+                'name' => 'needs[]',
+                'value' => $value,
+                'error' => null,
+                'optional' => null,
+                'hint' => null,
+                'disabled' => false,
+                'checked' => false,
+                'label' => $label
             ];
 
             if ($selected) {

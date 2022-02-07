@@ -58,6 +58,7 @@ class VirtualTour extends AbstractModel
         if ($this->file('vtour_xml_file')) {
             return $this->file('vtour_xml_file');
         }
+
         return null;
     }
 }

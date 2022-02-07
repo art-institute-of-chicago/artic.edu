@@ -12,7 +12,7 @@ trait HasAugmentedModel
     public function setAugmentedModel($model)
     {
         $this->augmentedModel = $model;
-        $this->augmented      = true;
+        $this->augmented = true;
     }
 
     public function getAugmentedModelClass()
@@ -51,7 +51,7 @@ trait HasAugmentedModel
     public function __call($method, $parameters)
     {
         if (method_exists($this, $method)) {
-            return $this->$method($parameters);
+            return $this->{$method}($parameters);
         }
 
         if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), $method)) {

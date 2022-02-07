@@ -16,7 +16,8 @@ class UrlHelpers
     public static function parseVideoUrl($url)
     {
         preg_match('/\d+/', $url, $matches);
-        return isset($matches[0]) ? $matches[0] : 0;
+
+        return $matches[0] ?? 0;
     }
 
     public static function secureRoute($routeName)
@@ -37,18 +38,20 @@ class UrlHelpers
     public static function moduleRouteExists($moduleName, $prefix, $action)
     {
         $routeName = 'admin.' . ($prefix ? $prefix . '.' : '') . Str::camel($moduleName) . '.' . $action;
+
         return Route::has($routeName);
     }
 
     public static function lastUrlSegment($href)
     {
         $url = parse_url($href, PHP_URL_PATH);
-        $ret = substr($url, strrpos($url, '/')+1);
+        $ret = substr($url, strrpos($url, '/') + 1);
 
         $fragment = parse_url($href, PHP_URL_FRAGMENT);
         if ($fragment) {
             return $ret . '#' . $fragment;
         }
+
         return $ret;
     }
 }

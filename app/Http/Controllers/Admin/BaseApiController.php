@@ -59,9 +59,10 @@ class BaseApiController extends ModuleController
     {
         if ($this->hasAugmentedModel) {
             return parent::getRepository();
-        } else {
-            return $this->getApiRepository();
         }
+
+            return $this->getApiRepository();
+
     }
 
     protected function getBrowserTableData($items)
@@ -74,6 +75,7 @@ class BaseApiController extends ModuleController
             if (UrlHelpers::moduleRouteExists($this->moduleName, $this->routePrefix, 'augment')) {
                 $result['edit'] = moduleRoute($this->moduleName, $this->routePrefix, 'augment', [$result['id']]);
             }
+
             return $result;
         }, $results);
 
@@ -82,7 +84,7 @@ class BaseApiController extends ModuleController
 
     protected function getApiRepository()
     {
-        return $this->app->make("$this->namespace\Repositories\\Api\\" . $this->modelName . "Repository");
+        return $this->app->make("{$this->namespace}\Repositories\\Api\\" . $this->modelName . 'Repository');
     }
 
     public function getIndexItems($scopes = [], $forcePagination = false)

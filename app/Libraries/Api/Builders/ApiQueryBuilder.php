@@ -171,10 +171,12 @@ class ApiQueryBuilder
     {
         if ($column == 'id') {
             $this->ids($values);
+
             return $this;
-        } else {
-            throw new \Exception("whereIn function has been defined only for IDS at the API Query Builder");
         }
+
+            throw new \Exception('whereIn function has been defined only for IDS at the API Query Builder');
+
     }
 
     /**
@@ -192,14 +194,14 @@ class ApiQueryBuilder
         // and can add them each as a where clause. We will maintain the boolean we
         // received when the method was called and pass it into the nested where.
         if (is_array($column)) {
-            throw new \Exception("where function should be called with 1 level of nesting. No arrays.");
+            throw new \Exception('where function should be called with 1 level of nesting. No arrays.');
         }
 
         // If the given operator is not found in the list of valid operators we will
         // assume that the developer is just short-cutting the '=' operators and
         // we will set the operators to '=' and set the values appropriately.
         if ($this->invalidOperator($operator)) {
-            list($value, $operator) = [$operator, '='];
+            [$value, $operator] = [$operator, '='];
         }
 
         // Now that we are working with just a simple query we can put the elements
@@ -237,8 +239,6 @@ class ApiQueryBuilder
     /**
      * Add an "ids" clause to the query. This will bring only records with these ids
      *
-     * @param  string  $column
-     * @param  string  $direction
      * @return $this
      */
     public function ids($ids = [])
@@ -253,8 +253,6 @@ class ApiQueryBuilder
     /**
      * Add an "includes" clause to the query. This will add those attributes
      *
-     * @param  string  $column
-     * @param  string  $direction
      * @return $this
      */
     public function include($inclusions = [])
@@ -394,7 +392,6 @@ class ApiQueryBuilder
     /**
      * Search for specific resources
      *
-     * @param  string  $search
      * @return $this
      */
     public function resources($resources)
@@ -476,9 +473,10 @@ class ApiQueryBuilder
         if (isset($results->status) && $results->status != 200) {
             if (isset($results->body)) {
                 return $results->body;
-            } else {
-                return $results;
             }
+
+                return $results;
+
         }
 
         $this->columns = $original;
@@ -496,9 +494,9 @@ class ApiQueryBuilder
         $collection = $this->getSortedCollection($collection);
 
         $collection->setMetadata([
-            'pagination'   => $results->body->pagination ?? null,
+            'pagination' => $results->body->pagination ?? null,
             'aggregations' => $results->body->aggregations ?? null,
-            'suggestions'  => $results->body->suggest ?? null
+            'suggestions' => $results->body->suggest ?? null
         ]);
 
         return $collection;
@@ -529,9 +527,9 @@ class ApiQueryBuilder
         $collection = $this->getSortedCollection($collection);
 
         $collection->setMetadata([
-            'pagination'   => $results->body->pagination ?? null,
+            'pagination' => $results->body->pagination ?? null,
             'aggregations' => $results->body->aggregations ?? null,
-            'suggestions'  => $results->body->suggest ?? null
+            'suggestions' => $results->body->suggest ?? null
         ]);
 
         return $collection;
@@ -551,10 +549,11 @@ class ApiQueryBuilder
     {
         $grammar = null;
         if (Str::endsWith($endpoint, '/msearch')) {
-            $grammar = new MsearchGrammar;
+            $grammar = new MsearchGrammar();
         } elseif (Str::endsWith($endpoint, '/search')) {
-            $grammar = new SearchGrammar;
+            $grammar = new SearchGrammar();
         }
+
         return $this->connection->ttl($this->ttl)->get($endpoint, $this->resolveParameters($grammar));
     }
 
@@ -568,6 +567,7 @@ class ApiQueryBuilder
         if ($grammar) {
             return $grammar->compileParameters($this);
         }
+
         return $this->grammar->compileParameters($this);
     }
 

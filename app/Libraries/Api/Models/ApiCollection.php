@@ -19,9 +19,10 @@ class ApiCollection extends \Illuminate\Support\Collection
         if ($this->metadata) {
             if ($name) {
                 return $this->metadata->get($name);
-            } else {
-                return $this->metadata;
             }
+
+                return $this->metadata;
+
         }
     }
 

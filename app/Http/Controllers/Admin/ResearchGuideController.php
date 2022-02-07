@@ -11,7 +11,8 @@ class ResearchGuideController extends ModuleController
 
     protected function formData($request)
     {
-        $baseUrl = '//' . config('app.url') . "/collection/resources/research-guides/";
+        $baseUrl = '//' . config('app.url') . '/collection/resources/research-guides/';
+
         return [
             'baseUrl' => $baseUrl,
         ];

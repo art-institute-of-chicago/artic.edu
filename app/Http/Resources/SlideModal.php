@@ -26,6 +26,7 @@ class SlideModal extends JsonResource
                     'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [UrlHelpers::parseVideoUrl($this->video_url)],
                     'caption' => $this->image_sequence_caption ?? $this->imageCaption('experience_image'),
                 ];
+
                 break;
             case 'video':
                 return [
@@ -40,6 +41,7 @@ class SlideModal extends JsonResource
                     'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [UrlHelpers::parseVideoUrl($this->video_url)],
                     'caption' => $this->image_sequence_caption ?? $this->imageCaption('experience_image'),
                 ];
+
                 break;
             case 'image_sequence':
                 return [
@@ -51,6 +53,7 @@ class SlideModal extends JsonResource
                     'assetId' => $this->fileObject('image_sequence_file') ? $this->fileObject('image_sequence_file')->id : '0',
                     'caption' => $this->image_sequence_caption ?? $this->imageCaption('experience_image'),
                 ];
+
                 break;
             case '3d_model':
                 $model3d = $this->model3d;
@@ -65,6 +68,7 @@ class SlideModal extends JsonResource
                         'caption' => $this->image_sequence_caption ?? ''
                     ];
                 }
+
                 break;
         }
     }

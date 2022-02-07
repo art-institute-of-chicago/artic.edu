@@ -26,7 +26,7 @@ class ArticleController extends FrontController
 
         $page = Page::forType('Articles')->first();
 
-        $featuredItems = $page->getRelatedWithApiModels("featured_items", [], [
+        $featuredItems = $page->getRelatedWithApiModels('featured_items', [], [
             'articles' => false,
             'experiences' => false
         ]);
@@ -71,8 +71,8 @@ class ArticleController extends FrontController
             array_push(
                 $categories,
                 [
-                    'label'  => $category->name,
-                    'href'   => route('articles', ['category' => $category->id]),
+                    'label' => $category->name,
+                    'href' => route('articles', ['category' => $category->id]),
                     'active' => request()->get('category') == $category->id,
                     'ajaxScrollTarget' => 'listing',
                 ]
@@ -103,7 +103,7 @@ class ArticleController extends FrontController
 
     public function show($id, $slug = null)
     {
-        $item = $this->repository->published()->find((Integer) $id);
+        $item = $this->repository->published()->find((int) $id);
 
         if (!$item) {
             abort(404);

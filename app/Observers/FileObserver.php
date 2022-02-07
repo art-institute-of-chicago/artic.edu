@@ -31,7 +31,7 @@ class FileObserver
      */
     public function updated(File $file)
     {
-        //
+
     }
 
     /**
@@ -42,7 +42,7 @@ class FileObserver
      */
     public function deleted(File $file)
     {
-        //
+
     }
 
     /**
@@ -53,7 +53,7 @@ class FileObserver
      */
     public function restored(File $file)
     {
-        //
+
     }
 
     /**
@@ -64,7 +64,7 @@ class FileObserver
      */
     public function forceDeleted(File $file)
     {
-        //
+
     }
 
     public function handleImageSequenceZip($file)
@@ -90,6 +90,7 @@ class FileObserver
             return false;
         }
         $ext = end($filenameArray);
+
         return $ext === 'zip';
     }
 
@@ -98,12 +99,13 @@ class FileObserver
         $fileUrl = ($file->toCmsArray())['src'];
         $zipFile = storage_path('app') . '/tempFile.zip';
         file_put_contents($zipFile, fopen($fileUrl, 'r'));
+
         return $zipFile;
     }
 
     private function unzip($zipFile)
     {
-        $zip = new ZipArchive;
+        $zip = new ZipArchive();
         if ($zip->open($zipFile) === true) {
             $zip->extractTo(storage_path('app') . '/tempDir');
             $zipFolderName = trim($zip->getNameIndex(0), '/');
@@ -111,10 +113,12 @@ class FileObserver
             if (strpos($zipFolderName, '.')) {
                 return '';
             }
+
             return $zipFolderName;
-        } else {
-            throw new Exception('Cannot read the zip file');
         }
+
+            throw new Exception('Cannot read the zip file');
+
     }
 
     private function uploadToS3($zipFolderName, $file)
@@ -125,6 +129,7 @@ class FileObserver
             if (count($fileNameArray) < 2) {
                 return false;
             }
+
             return in_array(end($fileNameArray), ['jpg', 'png', 'jpeg']) && strlen($fileNameArray[0]) > 0;
         })));
         foreach ($images as $index => $imageName) {

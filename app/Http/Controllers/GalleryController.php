@@ -18,9 +18,9 @@ class GalleryController extends FrontController
 
     public function show($id, $slug = null)
     {
-        $item = $this->repository->getById((Integer) $id);
+        $item = $this->repository->getById((int) $id);
 
-        $canonicalPath = route('galleries.show', ['id' => $item->id, 'slug' => $item->titleSlug ]);
+        $canonicalPath = route('galleries.show', ['id' => $item->id, 'slug' => $item->titleSlug]);
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
@@ -33,7 +33,7 @@ class GalleryController extends FrontController
         $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
 
         return view('site.tagDetail', [
-            'item'     => $item,
+            'item' => $item,
             'artworks' => $artworks,
             'canonicalUrl' => $canonicalPath,
         ]);

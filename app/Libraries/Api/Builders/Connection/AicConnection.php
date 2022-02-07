@@ -9,7 +9,7 @@ class AicConnection implements ApiConnectionInterface
 {
     protected $client;
     protected $defaultGrammar = 'App\Libraries\Api\Builders\Grammar\AicGrammar';
-    protected $cacheKeyName   = 'Aic-cache-key';
+    protected $cacheKeyName = 'Aic-cache-key';
 
     /**
      * Define a custom TTL for the queries using this connection instance.
@@ -19,7 +19,6 @@ class AicConnection implements ApiConnectionInterface
     /**
      * Create a new API connection instance.
      *
-     * @param  $endpoint
      * @return void
      */
     public function __construct()
@@ -30,7 +29,7 @@ class AicConnection implements ApiConnectionInterface
 
     protected function useDefaultQueryGrammar()
     {
-        $this->queryGrammar = new $this->defaultGrammar;
+        $this->queryGrammar = new $this->defaultGrammar();
     }
 
     public function getQueryGrammar()
@@ -104,7 +103,7 @@ class AicConnection implements ApiConnectionInterface
 
         if (config('api.logger')) {
             $ttl = $this->ttl ?? config('api.cache_ttl');
-            \Log::info($verb . " ttl = ". $ttl . " " . $endpoint);
+            \Log::info($verb . ' ttl = ' . $ttl . ' ' . $endpoint);
             \Log::info(print_r($options, true));
         }
 
@@ -131,9 +130,10 @@ class AicConnection implements ApiConnectionInterface
             }
 
             return $response;
-        } else {
-            return $this->client->request($verb, $endpoint, $options);
         }
+
+            return $this->client->request($verb, $endpoint, $options);
+
     }
 
     /**

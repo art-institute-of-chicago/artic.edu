@@ -19,10 +19,10 @@ trait HandleApiBrowsers
 
             return [
                 'relation' => !empty($browser['relation']) ? $browser['relation'] : $this->inferRelationFromBrowserName($browserName),
-                'routePrefix' => isset($browser['routePrefix']) ? $browser['routePrefix'] : null,
+                'routePrefix' => $browser['routePrefix'] ?? null,
                 'titleKey' => !empty($browser['titleKey']) ? $browser['titleKey'] : 'title',
                 'moduleName' => $moduleName,
-                'model' => !empty($browser['model']) ? $browser['model'] : 'App\\Models\\Api\\' .$this->inferModelFromModuleName($moduleName),
+                'model' => !empty($browser['model']) ? $browser['model'] : 'App\\Models\\Api\\' . $this->inferModelFromModuleName($moduleName),
                 'browserName' => $browserName,
             ];
         })->values();

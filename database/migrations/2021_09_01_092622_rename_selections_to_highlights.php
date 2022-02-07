@@ -38,7 +38,7 @@ class RenameSelectionsToHighlights extends Migration
             . 'api_relatable_type = ? '
             . 'where api_relatable_type = ?',
             ['highlights',
-            'selections']
+                'selections']
         );
 
         DB::update(
@@ -46,7 +46,7 @@ class RenameSelectionsToHighlights extends Migration
             . 'mediable_type = ? '
             . 'where mediable_type = ?',
             ['highlights',
-            'selections']
+                'selections']
         );
 
         DB::update(
@@ -54,7 +54,7 @@ class RenameSelectionsToHighlights extends Migration
             . 'blockable_type = ? '
             . 'where blockable_type = ?',
             ['highlights',
-            'selections']
+                'selections']
         );
     }
 
@@ -90,7 +90,7 @@ class RenameSelectionsToHighlights extends Migration
             . 'api_relatable_type = ? '
             . 'where api_relatable_type = ?',
             ['selections',
-            'highlights']
+                'highlights']
         );
 
         DB::update(
@@ -98,7 +98,7 @@ class RenameSelectionsToHighlights extends Migration
             . 'mediable_type = ? '
             . 'where mediable_type = ?',
             ['selections',
-            'highlights']
+                'highlights']
         );
 
         DB::update(
@@ -106,7 +106,7 @@ class RenameSelectionsToHighlights extends Migration
             . 'blockable_type = ? '
             . 'where blockable_type = ?',
             ['selections',
-            'highlights']
+                'highlights']
         );
     }
 }

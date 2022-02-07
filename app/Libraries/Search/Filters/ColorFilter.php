@@ -9,10 +9,10 @@ class ColorFilter
     public function generate()
     {
         $base = [
-            'title'   => 'Color',
-            'type'    => 'color',
-            'label'   => 'Colorless',
-            'active'  => false,
+            'title' => 'Color',
+            'type' => 'color',
+            'label' => 'Colorless',
+            'active' => false,
             'enabled' => false,
         ];
 
@@ -32,6 +32,7 @@ class ColorFilter
         $color[0] = $color[0] / 360;
         $color[1] = $color[1] / 100;
         $color[2] = $color[2] / 100;
+
         return 'Color: #' . ColorHelpers::hslToHex($color);
     }
 }

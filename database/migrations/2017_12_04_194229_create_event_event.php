@@ -16,10 +16,10 @@ class CreateEventEvent extends Migration
         Schema::create('event_event', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer("event_id")->unsigned();
-            $table->foreign("event_id")->references('id')->on('events')->onDelete('cascade');
-            $table->integer("related_event_id")->unsigned();
-            $table->foreign("related_event_id")->references('id')->on('events')->onDelete('cascade');
+            $table->integer('event_id')->unsigned();
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+            $table->integer('related_event_id')->unsigned();
+            $table->foreign('related_event_id')->references('id')->on('events')->onDelete('cascade');
 
             $table->integer('position')->unsigned()->index();
 

@@ -20,8 +20,8 @@ class MoveOldGalleryBlocksToGalleryNewBlock extends Migration
                 . 'child_key = ? '
                 . 'where id = ?',
                 ['gallery_new_item',
-                'gallery_new_item',
-                $cols->id]
+                    'gallery_new_item',
+                    $cols->id]
             );
 
             $newContent = str_replace('"caption"', '"captionText"', $cols->content);
@@ -30,7 +30,7 @@ class MoveOldGalleryBlocksToGalleryNewBlock extends Migration
                 . 'content = ? '
                 . 'where id = ?',
                 [$newContent,
-                $cols->id]
+                    $cols->id]
             );
         }
 
@@ -42,7 +42,7 @@ class MoveOldGalleryBlocksToGalleryNewBlock extends Migration
                 . 'type = ? '
                 . 'where id = ?',
                 ['gallery_new',
-                $cols->id]
+                    $cols->id]
             );
         }
     }

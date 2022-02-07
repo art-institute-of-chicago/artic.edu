@@ -14,18 +14,18 @@ class StringHelpers
         // Make sure string is in UTF-8 and strip invalid UTF-8 characters
         $str = mb_convert_encoding((string) $str, 'UTF-8', mb_list_encodings());
 
-        $defaults = array(
+        $defaults = [
             'delimiter' => '-',
             'limit' => null,
             'lowercase' => true,
-            'replacements' => array(),
+            'replacements' => [],
             'transliterate' => true,
-        );
+        ];
 
         // Merge options
         $options = array_merge($defaults, $options);
 
-        $char_map = array(
+        $char_map = [
             // Latin
             'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'AE', 'Ç' => 'C',
             'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I',
@@ -98,7 +98,7 @@ class StringHelpers
             // Romanian
             'Ă' => 'A', 'Â' => 'A', 'Î' => 'I', 'Ș' => 'S', 'Ț' => 'T',
             'ă' => 'a', 'â' => 'a', 'î' => 'i', 'ș' => 's', 'ț' => 't',
-        );
+        ];
 
         // Make custom replacements
         $str = preg_replace(array_keys($options['replacements']), $options['replacements'], $str);
@@ -131,7 +131,7 @@ class StringHelpers
             return $string;
         }
 
-        $string = preg_replace("/^(.{1,$limit})(\s.*|$)/s", '\1...', $string);
+        $string = preg_replace("/^(.{1,${limit}})(\s.*|$)/s", '\1...', $string);
 
         if (strpos($string, '<') < 0) {
             return $truncatedString;
@@ -152,9 +152,9 @@ class StringHelpers
 
         $openedTags = array_reverse($openedTags);
 
-        for ($i=0; $i < $openedLength; $i++) {
+        for ($i = 0; $i < $openedLength; ++$i) {
             if (!in_array($openedTags[$i], $closedTags)) {
-                $string .= '</'.$openedTags[$i].'>';
+                $string .= '</' . $openedTags[$i] . '>';
             } else {
                 unset($closedTags[array_search($openedTags[$i], $closedTags)]);
             }
@@ -182,9 +182,9 @@ class StringHelpers
         $codes = \App\Libraries\ShortcodeService::parse_ref($text);
         foreach ($codes as $index => $code) {
             if (isset($code['name']) && ($code['name'] == 'ref')) {
-                $_collectedReferences[] = ['id' => sizeof($_collectedReferences)+1, 'reference' => $code['content']];
+                $_collectedReferences[] = ['id' => sizeof($_collectedReferences) + 1, 'reference' => $code['content']];
                 $pos = sizeof($_collectedReferences);
-                $ref = '<sup id="ref_cite-'.$pos.'"><a href="#ref_note-'.$pos.'">['.$pos.']</a></sup>';
+                $ref = '<sup id="ref_cite-' . $pos . '"><a href="#ref_note-' . $pos . '">[' . $pos . ']</a></sup>';
 
                 $refPos = strpos($text, $code['shortcode']);
                 $beforeRef = substr($text, 0, $refPos);
@@ -210,13 +210,13 @@ class StringHelpers
         // Exceptions in lowercase will be converted to lowercase
         // Exceptions in uppercase will be converted to uppercase
         // Exceptions in mixedcase will be have to match exact and be left untouched
-        $exceptions = array("and", "as", "at", "for", "from", "in", "of", "the", "this", "to", "with",
-                            "GPS", "U.S.",
-                            "d’Orsay", "iOS", "McQueen");
-        $delimiters = "“\"-–-";
+        $exceptions = ['and', 'as', 'at', 'for', 'from', 'in', 'of', 'the', 'this', 'to', 'with',
+            'GPS', 'U.S.',
+            'd’Orsay', 'iOS', 'McQueen'];
+        $delimiters = '“"-–-';
         $words = explode(' ', $string);
 
-        $newwords = array();
+        $newwords = [];
         foreach ($words as $index => $word) {
             if ($index == 0) {
                 $word = ucwords(strtolower($word), $delimiters);
@@ -233,6 +233,7 @@ class StringHelpers
         }
 
         $string = implode(' ', $newwords);
+
         return $string;
     }
 
@@ -254,6 +255,7 @@ class StringHelpers
                 $string = substr($string, 0, -strlen($needle));
             }
         }
+
         return $string;
     }
 
@@ -270,12 +272,15 @@ class StringHelpers
                 return null;
             case 1:
                 return array_pop($array);
+
                 break;
             case 2:
                 return implode(' and ', $array);
+
                 break;
             default:
                 $last = array_pop($array);
+
                 return implode(', ', $array) . ', and ' . $last;
         }
     }

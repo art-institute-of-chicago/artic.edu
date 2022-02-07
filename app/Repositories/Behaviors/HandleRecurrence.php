@@ -24,7 +24,7 @@ trait HandleRecurrence
             // Generate an Event Meta, add hours to the start and end dates
             \App\Models\EventMeta::create(
                 [
-                    'date'     => (clone $begginingOfDay)->setTime($startInterval->h, $startInterval->i),
+                    'date' => (clone $begginingOfDay)->setTime($startInterval->h, $startInterval->i),
                     'date_end' => (clone $begginingOfDay)->setTime($endInterval->h, $endInterval->i),
                     'event_id' => $object->id
                 ]

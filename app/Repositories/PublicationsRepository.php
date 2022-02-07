@@ -10,11 +10,11 @@ class PublicationsRepository
     public function searchApi($string, $perPage = null, $page = null, $columns = [])
     {
         // Find top-level catalogs that match the search
-        $search = Search::query()->search($string)->published()->resources(["digital-catalogs", "printed-catalogs"]);
+        $search = Search::query()->search($string)->published()->resources(['digital-catalogs', 'printed-catalogs']);
         $results = $search->getSearch($perPage, $columns, null, $page);
 
         // Now find matching `sections` and add them to the catalogs
-        $searchSections = Search::query()->search($string)->resources(["sections", "digital-publication-sections"]);
+        $searchSections = Search::query()->search($string)->resources(['sections', 'digital-publication-sections']);
         $resultsSections = $searchSections->getSearch(50, $columns, null, $page);
 
         foreach ($resultsSections as $section) {
@@ -43,15 +43,16 @@ class PublicationsRepository
                 $pub->searchSections = collect($pub->searchSections)->take(4);
                 $links = [];
                 foreach ($pub->searchSections() as $section) {
-                    array_push($links, array(
+                    array_push($links, [
                         'href' => $section->web_url,
                         'label' => $section->title,
-                    ));
+                    ]);
                 }
                 $pub['links'] = $links;
             }
             $pub['titleLink'] = $pub->url;
             $pub['image'] = $pub->imageFront('listing');
+
             return $pub;
         });
 

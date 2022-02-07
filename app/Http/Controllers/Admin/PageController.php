@@ -27,7 +27,7 @@ class PageController extends ModuleController
     public function home(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Home'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.homepage.landing'));
+        Session::put('pages_back_link', route('admin.homepage.landing'));
 
         $additionalFieldsets = [
             ['fieldset' => 'plan-your-visit', 'label' => 'Plan Your Visit'],
@@ -48,7 +48,7 @@ class PageController extends ModuleController
     public function exhibitions(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Exhibitions and Events'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.exhibitions_events.landing'));
+        Session::put('pages_back_link', route('admin.exhibitions_events.landing'));
 
         $additionalFieldsets = [];
         $fields = $this->form($page->id);
@@ -60,7 +60,7 @@ class PageController extends ModuleController
     public function art(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Art and Ideas'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.collection.landing'));
+        Session::put('pages_back_link', route('admin.collection.landing'));
 
         $additionalFieldsets = [];
         $fields = $this->form($page->id);
@@ -72,7 +72,7 @@ class PageController extends ModuleController
     public function articles_publications(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Articles and Publications'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.collection.articles_publications.landing'));
+        Session::put('pages_back_link', route('admin.collection.articles_publications.landing'));
 
         $additionalFieldsets = [];
         $fields = $this->form($page->id);
@@ -84,7 +84,7 @@ class PageController extends ModuleController
     public function visit(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Visit'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.homepage.landing'));
+        Session::put('pages_back_link', route('admin.homepage.landing'));
 
         $additionalFieldsets = [
             ['fieldset' => 'hours', 'label' => 'Hours'],
@@ -108,7 +108,7 @@ class PageController extends ModuleController
     public function articles(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Articles'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.collection.articles_publications.landing'));
+        Session::put('pages_back_link', route('admin.collection.articles_publications.landing'));
         $additionalFieldsets = [];
         $fields = $this->form($page->id);
         $fields['additionalFieldsets'] = $additionalFieldsets;
@@ -119,7 +119,7 @@ class PageController extends ModuleController
     public function exhibitionHistory(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Exhibition History'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.exhibitions_events.history'));
+        Session::put('pages_back_link', route('admin.exhibitions_events.history'));
 
         $additionalFieldsets = [];
         $fields = $this->form($page->id);
@@ -131,7 +131,7 @@ class PageController extends ModuleController
     public function collection(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Collection'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.collection.landing'));
+        Session::put('pages_back_link', route('admin.collection.landing'));
 
         $additionalFieldsets = [];
         $fields = $this->form($page->id);

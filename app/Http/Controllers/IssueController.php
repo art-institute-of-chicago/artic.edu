@@ -33,7 +33,7 @@ class IssueController extends FrontController
     public function show($issueNumber, $slug = null, $isRequestForLatest = false)
     {
         $issues = $this->repository->published()->get();
-        $item = $issues->where('issue_number', (Integer) $issueNumber)->first();
+        $item = $issues->where('issue_number', (int) $issueNumber)->first();
 
         if (!$item) {
             abort(404);

@@ -6,5 +6,5 @@ use A17\Twill\Models\Model;
 
 class ResearchGuideSlug extends Model
 {
-    protected $table = "research_guide_slugs";
+    protected $table = 'research_guide_slugs';
 }

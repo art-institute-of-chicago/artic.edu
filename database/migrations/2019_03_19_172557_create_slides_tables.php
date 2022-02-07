@@ -17,7 +17,7 @@ class CreateSlidesTables extends Migration
             $table->string('media_type')->default('type_image');
             $table->string('media_title')->nullable();
             $table->integer('experience_id')->unsigned();
-            $table->foreign("experience_id")->references('id')->on('experiences')->onDelete('CASCADE');
+            $table->foreign('experience_id')->references('id')->on('experiences')->onDelete('CASCADE');
         });
 
         Schema::create('slide_slugs', function (Blueprint $table) {

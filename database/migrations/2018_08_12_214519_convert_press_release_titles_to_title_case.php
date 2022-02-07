@@ -27,6 +27,6 @@ class ConvertPressReleaseTitlesToTitleCase extends Migration
      */
     public function down()
     {
-        //
+
     }
 }

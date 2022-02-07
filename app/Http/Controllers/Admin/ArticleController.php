@@ -73,6 +73,7 @@ class ArticleController extends ModuleController
         if ($this->request->has('is_unlisted')) {
             $prependScope['is_unlisted'] = $this->request->get('is_unlisted');
         }
+
         return parent::getBrowserData($prependScope);
     }
 }

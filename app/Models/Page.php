@@ -172,7 +172,7 @@ class Page extends AbstractModel
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 9/5,
+                    'ratio' => 9 / 5,
                 ],
             ],
         ],
@@ -406,154 +406,154 @@ class Page extends AbstractModel
     {
         return [
             [
-                "name" => 'published',
-                "doc" => "Published?",
-                "type" => "boolean",
-                "value" => function () {
+                'name' => 'published',
+                'doc' => 'Published?',
+                'type' => 'boolean',
+                'value' => function () {
                     return $this->published;
                 },
             ],
 
             [
-                "name" => 'type',
-                "doc" => "Type of Page",
-                "type" => "integer",
-                "value" => function () {
+                'name' => 'type',
+                'doc' => 'Type of Page',
+                'type' => 'integer',
+                'value' => function () {
                     return $this->type;
                 },
             ],
 
             [
-                "name" => 'home_intro',
-                "doc" => "Home Intro",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'home_intro',
+                'doc' => 'Home Intro',
+                'type' => 'string',
+                'value' => function () {
                     return $this->home_intro;
                 },
             ],
 
             [
-                "name" => 'exhibition_intro',
-                "doc" => "Exhibition Intro",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'exhibition_intro',
+                'doc' => 'Exhibition Intro',
+                'type' => 'string',
+                'value' => function () {
                     return $this->exhibition_intro;
                 },
             ],
 
             [
-                "name" => 'art_intro',
-                "doc" => "Art Intro",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'art_intro',
+                'doc' => 'Art Intro',
+                'type' => 'string',
+                'value' => function () {
                     return $this->art_intro;
                 },
             ],
 
             [
-                "name" => "slug",
-                "doc" => "slug",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'slug',
+                'doc' => 'slug',
+                'type' => 'string',
+                'value' => function () {
                     return $this->slug;
                 },
             ],
 
             [
-                "name" => "exhibition_history_sub_heading",
-                "doc" => "exhibition_history_sub_heading",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'exhibition_history_sub_heading',
+                'doc' => 'exhibition_history_sub_heading',
+                'type' => 'string',
+                'value' => function () {
                     return $this->exhibition_history_sub_heading;
                 },
             ],
 
             [
-                "name" => "exhibition_history_intro_copy",
-                "doc" => "exhibition_history_intro_copy",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'exhibition_history_intro_copy',
+                'doc' => 'exhibition_history_intro_copy',
+                'type' => 'string',
+                'value' => function () {
                     return $this->exhibition_history_intro_copy;
                 },
             ],
 
             [
-                "name" => "exhibition_history_popup_copy",
-                "doc" => "exhibition_history_popup_copy",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'exhibition_history_popup_copy',
+                'doc' => 'exhibition_history_popup_copy',
+                'type' => 'string',
+                'value' => function () {
                     return $this->exhibition_history_popup_copy;
                 },
             ],
 
             [
-                "name" => "exhibition_intro",
-                "doc" => "exhibition_intro",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'exhibition_intro',
+                'doc' => 'exhibition_intro',
+                'type' => 'string',
+                'value' => function () {
                     return $this->exhibition_intro;
                 },
             ],
 
             [
-                "name" => "visit_intro",
-                "doc" => "visit_intro",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'visit_intro',
+                'doc' => 'visit_intro',
+                'type' => 'string',
+                'value' => function () {
                     return $this->visit_intro;
                 },
             ],
 
             [
-                "name" => "visit_hour_header",
-                "doc" => "visit_hour_header",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'visit_hour_header',
+                'doc' => 'visit_hour_header',
+                'type' => 'string',
+                'value' => function () {
                     return $this->visit_hour_header;
                 },
             ],
 
             [
-                "name" => "visit_hour_subheader",
-                "doc" => "visit_hour_subheader",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'visit_hour_subheader',
+                'doc' => 'visit_hour_subheader',
+                'type' => 'string',
+                'value' => function () {
                     return $this->visit_hour_subheader;
                 },
             ],
 
             [
-                "name" => "visit_city_pass_title",
-                "doc" => "visit_city_pass_title",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'visit_city_pass_title',
+                'doc' => 'visit_city_pass_title',
+                'type' => 'string',
+                'value' => function () {
                     return $this->visit_city_pass_title;
                 },
             ],
 
             [
-                "name" => "visit_city_pass_text",
-                "doc" => "visit_city_pass_text",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'visit_city_pass_text',
+                'doc' => 'visit_city_pass_text',
+                'type' => 'string',
+                'value' => function () {
                     return $this->visit_city_pass_text;
                 },
             ],
 
             [
-                "name" => "visit_admission_description",
-                "doc" => "visit_admission_description",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'visit_admission_description',
+                'doc' => 'visit_admission_description',
+                'type' => 'string',
+                'value' => function () {
                     return $this->visit_admission_description;
                 },
             ],
 
             [
-                "name" => "content",
-                "doc" => "content",
-                "type" => "string",
-                "value" => function () {
+                'name' => 'content',
+                'doc' => 'content',
+                'type' => 'string',
+                'value' => function () {
                     return $this->blocks;
                 },
             ],

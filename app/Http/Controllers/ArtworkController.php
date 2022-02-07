@@ -25,14 +25,14 @@ class ArtworkController extends BaseScopedController
         try {
             $item = Artwork::query()
                 ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
-                ->findOrFail((Integer) $id);
+                ->findOrFail((int) $id);
         } catch (\Throwable $e) {
             $item = Artwork::query()->forceEndpoint('deaccession')
                 ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
-                ->findOrFail((Integer) $id);
+                ->findOrFail((int) $id);
         }
 
-        $canonicalPath = route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ]);
+        $canonicalPath = route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug]);
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
@@ -55,8 +55,8 @@ class ArtworkController extends BaseScopedController
         $viewData = [
             'item' => $item,
             'model3d' => $item->model3d,
-            'contrastHeader'    => $item->present()->contrastHeader,
-            'borderlessHeader'  => $item->present()->borderlessHeader,
+            'contrastHeader' => $item->present()->contrastHeader,
+            'borderlessHeader' => $item->present()->borderlessHeader,
             'primaryNavCurrent' => 'collection',
             'canonicalUrl' => $canonicalPath,
         ];
@@ -86,7 +86,7 @@ class ArtworkController extends BaseScopedController
     protected function beginOfAssociationChain()
     {
         // Define base entity
-        $collectionService = new CollectionService;
+        $collectionService = new CollectionService();
 
         // Implement default filters and scopes
         $collectionService->resources(['artworks'])
@@ -98,7 +98,7 @@ class ArtworkController extends BaseScopedController
 
     public function recentlyViewed(RecentlyViewedService $service)
     {
-        $recentlyViewed  = $service->getArtworks();
+        $recentlyViewed = $service->getArtworks();
         $suggestedThemes = $service->getThemes();
 
         $view['html'] = view('site.shared._recentlyViewed', [
@@ -118,7 +118,7 @@ class ArtworkController extends BaseScopedController
 
     public function addRecentlyViewed($idSlug, $slug = null, RecentlyViewedService $service)
     {
-        $item = Artwork::query()->findOrFail((Integer) $idSlug);
+        $item = Artwork::query()->findOrFail((int) $idSlug);
 
         if (empty($item)) {
             abort(404);
@@ -126,6 +126,7 @@ class ArtworkController extends BaseScopedController
             // Add artwork to the Recently Viewed collection
             $service->addArtwork($item);
         }
+
         return response()->json();
     }
 
@@ -134,11 +135,11 @@ class ArtworkController extends BaseScopedController
         try {
             $item = Artwork::query()
                 ->include(['artist_pivots'])
-                ->findOrFail((Integer) $id);
+                ->findOrFail((int) $id);
         } catch (\Throwable $e) {
             $item = Artwork::query()->forceEndpoint('deaccession')
                 ->include(['artist_pivots'])
-                ->findOrFail((Integer) $id);
+                ->findOrFail((int) $id);
         }
 
         $exploreFurther = new ExploreFurther($item);

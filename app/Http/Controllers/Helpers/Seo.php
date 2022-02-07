@@ -28,7 +28,7 @@ class Seo extends BaseSeo
             $settings = ImageHelpers::aic_imageSettings([
                 'image' => $image,
                 'settings' => [
-                    'srcset' => array($maxWidth),
+                    'srcset' => [$maxWidth],
                     'sizes' => $maxWidth . 'px',
                 ],
             ]);

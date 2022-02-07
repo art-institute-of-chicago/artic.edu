@@ -33,7 +33,7 @@ trait Transformable
         $out = [];
 
         foreach ($fields as $field) {
-            $out[ $field["name"] ] = call_user_func($field["value"]);
+            $out[ $field['name'] ] = call_user_func($field['value']);
         }
 
         return $out;

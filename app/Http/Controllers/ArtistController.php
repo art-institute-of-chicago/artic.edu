@@ -19,7 +19,7 @@ class ArtistController extends FrontController
 
     public function show($id, $slug = null)
     {
-        $item = $this->repository->getById((Integer) $id);
+        $item = $this->repository->getById((int) $id);
 
         $canonicalPath = route('artists.show', ['id' => $item->id, 'slug' => $item->titleSlug]);
 
@@ -37,10 +37,10 @@ class ArtistController extends FrontController
         $relatedItems = $this->repository->getRelatedItems($item);
 
         return view('site.tagDetail', [
-            'item'     => $item,
+            'item' => $item,
             'artworks' => $artworks,
-            'exploreFurtherTags'    => $exploreFurther->tags(),
-            'exploreFurther'        => $exploreFurther->collection(request()->all()),
+            'exploreFurtherTags' => $exploreFurther->tags(),
+            'exploreFurther' => $exploreFurther->collection(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'relatedItems' => $relatedItems->count() > 0 ? $relatedItems : null,
             'canonicalUrl' => $canonicalPath,

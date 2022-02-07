@@ -93,7 +93,7 @@ class Slide extends AbstractModel implements Sortable
             return array_map(function ($option) {
                 return ['id' => $option];
             }, json_decode($this->attributes['video_play_settings']));
-        };
+        }
     }
 
     public function getSplitVideoPlaySettingsAttribute()
@@ -102,7 +102,7 @@ class Slide extends AbstractModel implements Sortable
             return array_map(function ($option) {
                 return ['id' => $option];
             }, json_decode($this->attributes['split_video_play_settings']));
-        };
+        }
     }
 
     public function experience()

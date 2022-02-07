@@ -42,16 +42,17 @@ trait HasRelationships
 
         // If we have no data in our localKey we ignore the relationship to
         // avoid calling to an endpoint with no data
-        if (empty($this->$localKey)) {
+        if (empty($this->{$localKey})) {
             return;
-        } else {
+        }
+
             return $this->newHasMany(
                 $queryInstance,
                 $this,
                 $localKey,
                 $limit
             );
-        }
+
     }
 
     /**
@@ -80,16 +81,16 @@ trait HasRelationships
         // here because there is no need to query within the relations twice.
         if ($this->relationLoaded($key)) {
             return $this->relations[$key];
-        } else {
+        }
             if (method_exists($this, $key)) {
                 return $this->getRelationshipFromMethod($key);
             }
-        }
+
     }
 
     protected function getRelationshipFromMethod($method)
     {
-        $relation = $this->$method();
+        $relation = $this->{$method}();
 
         if (!$relation) { // Empty relationships return null to avoid calling the API
             return null;
@@ -115,7 +116,7 @@ trait HasRelationships
     {
         $morphMap = Relation::morphMap();
 
-        if (! empty($morphMap) && in_array(static::class, $morphMap)) {
+        if (!empty($morphMap) && in_array(static::class, $morphMap)) {
             return array_search(static::class, $morphMap, true);
         }
 

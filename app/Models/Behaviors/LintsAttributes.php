@@ -8,7 +8,7 @@ trait LintsAttributes
     {
         if (is_object($value)) {
             foreach ($value as $key => $subvalue) {
-                $value->$key = $this->lintValue($subvalue);
+                $value->{$key} = $this->lintValue($subvalue);
             }
         }
 

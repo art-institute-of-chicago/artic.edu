@@ -148,6 +148,7 @@ class GenerateSitemap extends Command
             return $link->getUri();
         })->filter(function (string $url) {
             $path = parse_url($url, PHP_URL_PATH);
+
             return (
                 // Eliminate buggy paths that lead nowhere
                 empty(parse_url($url, PHP_URL_FRAGMENT)) && !Str::endsWith($url, '#')
@@ -171,9 +172,9 @@ class GenerateSitemap extends Command
     {
         $this->addNativeModel($sitemap, Exhibition::class, 'exhibitions.show', 0.9, Url::CHANGE_FREQUENCY_WEEKLY, function ($entity) {
             return [
-                    'id' => $entity->datahub_id,
-                    'slug' => $entity->slug,
-                ];
+                'id' => $entity->datahub_id,
+                'slug' => $entity->slug,
+            ];
         }, ['datahub_id']);
     }
 

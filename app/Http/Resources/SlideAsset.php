@@ -17,6 +17,7 @@ class SlideAsset extends JsonResource
     {
         if ($this->media_type === 'type_image') {
             $image = $this->seamlessExperienceImage->first();
+
             return [
                 'type' => 'image',
                 'title' => $this->media_title,
@@ -25,7 +26,8 @@ class SlideAsset extends JsonResource
                 'height' => $image->imageObject('experience_image')->height,
                 'src' => [$image->image('experience_image')],
             ];
-        } elseif ($this->fileObject('sequence_file')) {
+        }
+        if ($this->fileObject('sequence_file')) {
             $images = SeamlessImage::where('zip_file_id', $this->fileObject('sequence_file')->id)->orderBy('frame', 'asc')->get();
             $src = $images->map(function ($image) {
                 return [
@@ -33,16 +35,18 @@ class SlideAsset extends JsonResource
                     'frame' => $image->frame,
                 ];
             })->toArray();
+
             return [
                 'type' => 'sequence',
                 'title' => $this->media_title,
-                'id' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : "0",
+                'id' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : '0',
                 'width' => $images->first() ? $images->first()->width : 0,
                 'height' => $images->first() ? $images->first()->height : 0,
                 'src' => $src,
             ];
-        } else {
-            return [];
         }
+
+            return [];
+
     }
 }

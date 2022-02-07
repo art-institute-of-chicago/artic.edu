@@ -8,8 +8,8 @@ use App\Libraries\SmartyPants;
 
 use Illuminate\Support\Str;
 
-use \DomDocument;
-use \DOMXpath;
+use DomDocument;
+use DOMXpath;
 
 class BlockPresenter extends BasePresenter
 {

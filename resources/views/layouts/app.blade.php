@@ -48,29 +48,16 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   @if ($print)
       <script>A17.print = true;</script>
   @endif
-  <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_0_0.eot')}}" as="font" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_0_0.eot?#iefix')}}" as="font" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://artic-web.imgix.net" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
   <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff2')}}" as="font" type="font/woff2" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff')}}" as="font" type="font/woff" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_0_0.ttf')}}" as="font" type="font/ttf" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_1_0.eot')}}" as="font" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_1_0.eot?#iefix')}}" as="font" crossorigin="anonymous" />
   <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}" as="font" type="font/woff2" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff')}}" as="font" type="font/woff" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_1_0.ttf')}}" as="font" type="font/ttf" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_2_0.eot')}}" as="font" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_2_0.eot?#iefix')}}" as="font" crossorigin="anonymous" />
   <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}" as="font" type="font/woff2" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff')}}" as="font" type="font/woff" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_2_0.ttf')}}" as="font" type="font/ttf" crossorigin="anonymous" />
-  <style>
-  @import url("//hello.myfonts.net/count/3545d5");
-  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.eot')}});src: url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.eot?#iefix')}}) format('embedded-opentype'),url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff2')}}) format('woff2'),url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff')}}) format('woff'),url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.ttf')}}) format('truetype');font-weight:normal;font-weight:400;font-style:normal;}
-  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.eot')}});src: url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.eot?#iefix')}}) format('embedded-opentype'),url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}) format('woff2'),url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff')}}) format('woff'),url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.ttf')}}) format('truetype');font-weight:normal;font-weight:400;font-style:italic;}
-  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.eot')}});src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.eot?#iefix')}}) format('embedded-opentype'),url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}) format('woff2'),url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff')}}) format('woff'),url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.ttf')}}) format('truetype');font-weight:normal;font-weight:500;font-style:normal;}
+  <style media="print" onload="this.media='all'">
+  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff2')}}) format('woff2');font-weight:normal;font-weight:400;font-style:normal;}
+  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}) format('woff2');font-weight:normal;font-weight:400;font-style:italic;}
+  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}) format('woff2');font-weight:normal;font-weight:500;font-style:normal;}
   </style>
-  <link rel="stylesheet" href="https://vjs.zencdn.net/7.1.0/video-js.css" />
   <meta name="msvalidate.01" content="1E22F0BBEF5CF0D71FF4C150D094A1CA" />
   <link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet" />
   @if ($print)
@@ -87,6 +74,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
         <!-- End Google Tag Manager -->
       @endif
   @endif
+  <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" media="print" onload="this.media='all'" />
 </head>
 
 <body{!! $print ? ' onload="window.print();"' : '' !!}>
