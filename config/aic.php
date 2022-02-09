@@ -16,6 +16,8 @@ return [
     'pdf_s3_endpoint' => env('PDF_S3_ENDPOINT'),
     'pdf_debug' => (bool) env('PDF_DEBUG', false),
 
+    'disable_extra_scripts' => (bool) env('DISABLE_EXTRA_SCRIPTS', false),
+
     // Feature flags
     'is_preview_mode' => (bool) env('ALWAYS_PREVIEW_MODE', false),
     'show_design_grids' => (bool) env('SHOW_DESIGN_GRIDS', false),
