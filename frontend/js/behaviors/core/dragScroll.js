@@ -6,6 +6,7 @@ const dragScroll = function(container) {
   let allowClicks = true;
   let xVelocity = 0;
   let allow = false;
+  let allowedOnce = false;
   let scrollPositionCheck = null;
   let imgChildEls = [];
   let prevBtnEl;
@@ -14,7 +15,7 @@ const dragScroll = function(container) {
   const percentOfContainerToScrollPerClick = 0.5;
 
   function _wideEnoughToScroll() {
-    allow = container.scrollWidth > container.clientWidth;
+    allow = allowedOnce || container.scrollWidth > container.clientWidth;
     if (allow) {
       container.classList.add('s-scrollable');
 
@@ -25,6 +26,8 @@ const dragScroll = function(container) {
       if (nextBtnEl) {
         nextBtnEl.classList.remove('s-hidden');
       }
+
+      allowedOnce = true;
     } else {
       container.classList.remove('s-scrollable');
       container.classList.remove('s-dragging');
@@ -180,7 +183,7 @@ const dragScroll = function(container) {
     window.addEventListener('resized', _wideEnoughToScroll, false);
 
     // @see `lazyLoad` in @area17/a17-helpers
-    imgChildEls = container.querySelectorAll('img');
+    imgChildEls = container.querySelectorAll('img,iframe');
 
     for (let i = 0; i < imgChildEls.length; i++) {
       imgChildEls[i].addEventListener('load', _wideEnoughToScroll, false);
