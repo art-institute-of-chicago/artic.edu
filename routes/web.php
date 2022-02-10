@@ -40,7 +40,6 @@ use App\Http\Controllers\Forms\EmailSubscriptionsController;
 use App\Http\Controllers\Forms\EventPlanningContactController;
 use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
 use App\Http\Controllers\Forms\GroupReservationsController;
-use App\Http\Controllers\Forms\RyersonClassVisitController;
 
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 
@@ -212,11 +211,6 @@ Route::get('/educators/visit-on-my-own/educator-admission-request/thanks', [Educ
 Route::get('/press/filming-policy/filming-photo-shoot-proposal-form', [FilmingAndPhotoShootProposalController::class, 'index'])->name('forms.filming-proposal');
 Route::post('/press/filming-policy/filming-photo-shoot-proposal-form', [FilmingAndPhotoShootProposalController::class, 'store'])->name('forms.filming-proposal.store');
 Route::get('/press/filming-policy/filming-photo-shoot-proposal-form/thanks', [FilmingAndPhotoShootProposalController::class, 'thanks'])->name('forms.filming-proposal.thanks');
-
-// Ryerson class visit request
-Route::get('/library/request-a-class-visit/schedule', [RyersonClassVisitController::class, 'index'])->name('forms.ryerson-class-visit');
-Route::post('/library/request-a-class-visit/schedule', [RyersonClassVisitController::class, 'store'])->name('forms.ryerson-class-visit.store');
-Route::get('/library/request-a-class-visit/schedule/thanks', [RyersonClassVisitController::class, 'thanks'])->name('forms.ryerson-class-visit.thanks');
 
 // Email subscriptions request
 Route::get('/email-subscriptions', [EmailSubscriptionsController::class, 'index'])->name('forms.email-subscriptions');
