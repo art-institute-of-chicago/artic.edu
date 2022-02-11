@@ -48,6 +48,24 @@
         'name' => 'image',
         'label' => 'Video loop'
     ])
+
+    @formField('radios', [
+        'name' => 'loop_or_once',
+        'label' => 'Loop or play just once?',
+        'default' => 'loop',
+        'inline' => true,
+        'options' => [
+            [
+                'value' => 'loop',
+                'label' => 'Loop'
+            ],
+            [
+                'value' => 'just_once',
+                'label' => 'Play just once'
+            ],
+        ]
+    ])
+
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [

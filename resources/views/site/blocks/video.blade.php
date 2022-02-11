@@ -1,5 +1,6 @@
 @php
     $media_type = $block->input('media_type', 'youtube');
+    $loop_or_once = $block->input('loop_or_once', 'loop');
     $source_url = $block->input('url');
     $image = $block->imageAsArray('image', 'desktop');
     $embed_code = EmbedConverter::convertUrl($source_url);
@@ -24,6 +25,7 @@
             'caption' => $caption,
             'platform' => $platform,
             'loop' => true,
+            'loop_or_once' => $loop_or_once,
         ])
     @endcomponent
 @else
