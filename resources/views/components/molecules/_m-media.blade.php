@@ -15,6 +15,8 @@
     $fitCaptionTitle = $type === 'artist';
     $type = $type === 'artist' ? 'image' : $type;
 
+    $loop = isset($item['loop']) && $item['loop'];
+
     // WEB-912: For Gallery Items; image module is an array, but gallery item is object?
     if (isset($item['videoUrl']) || (!is_array($item) && !empty($item->present()->input('videoUrl'))))
     {
@@ -190,7 +192,10 @@
                     @slot('loop', true)
                     @slot('muted', true)
                 @else
-                    @slot('controls', true)
+                    @slot('controls', !$loop)
+                    @slot('autoplay', $loop)
+                    @slot('loop', $loop)
+                    @slot('muted', $loop)
                 @endif
                 @slot('title', $media['fallbackImage']['alt'] ?? null)
             @endcomponent
