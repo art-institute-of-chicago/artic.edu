@@ -95,6 +95,7 @@ class Search extends BaseApiModel
             'materials' => 'material_titles.keyword',
             'subjects' => 'subject_titles.keyword',
             'places' => 'place_of_origin.keyword',
+            'artwork_type' => 'artwork_type_title.keyword',
             'departments' => [
                 'field' => 'department_title.keyword',
                 'size' => 20,
@@ -146,6 +147,20 @@ class Search extends BaseApiModel
             'classifications' => [
                 'terms' => [
                     'field' => 'classification_titles.keyword',
+                    'size' => $max
+                ]
+            ]
+        ];
+
+        return $query->aggregations($aggs);
+    }
+
+    public function scopeAggregationArtworkType($query, $max = 3)
+    {
+        $aggs = [
+            'artworkTypes' => [
+                'terms' => [
+                    'field' => 'artwork_type_title.keyword',
                     'size' => $max
                 ]
             ]
@@ -245,6 +260,11 @@ class Search extends BaseApiModel
     public function scopeByThemes($query, $ids)
     {
         return $this->scopeByListType($query, $ids, 'category_ids');
+    }
+
+    public function scopeByArtworkType($query, $ids)
+    {
+        return $this->scopeByListType($query, $ids, 'artwork_type_title.keyword');
     }
 
     public function scopeByArtworkIds($query, $ids)

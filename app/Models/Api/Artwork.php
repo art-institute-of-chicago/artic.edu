@@ -358,6 +358,19 @@ class Artwork extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
+    public function scopeAggregationArtworkType($query)
+    {
+        $aggs = [
+            'types' => [
+                'terms' => [
+                    'field' => 'artwork_type_id',
+                ],
+            ],
+        ];
+
+        return $query->aggregations($aggs);
+    }
+
     public function scopeByClassifications($query, $ids)
     {
         if (empty($ids)) {
@@ -372,6 +385,29 @@ class Artwork extends BaseApiModel
                     [
                         'terms' => [
                             'classification_id' => $ids,
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeByArtworkType($query, $id)
+    {
+        if (empty($id)) {
+            return $query;
+        }
+
+        $id = is_array($id) ? $id[0] : $id;
+
+        $params = [
+            'bool' => [
+                'must' => [
+                    [
+                        'terms' => [
+                            'artwork_type_id' => $id,
                         ],
                     ],
                 ],
