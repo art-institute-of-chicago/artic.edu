@@ -59,6 +59,9 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}) format('woff2');font-weight:normal;font-weight:500;font-style:normal;}
   </style>
   <meta name="msvalidate.01" content="1E22F0BBEF5CF0D71FF4C150D094A1CA" />
+  <style>
+    {{FrontendHelpers::embedAsset('styles/setup.css')}}
+  </style>
   <link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet" />
   @if ($print)
     <link href="{{FrontendHelpers::revAsset('styles/print.css')}}" rel="stylesheet" />

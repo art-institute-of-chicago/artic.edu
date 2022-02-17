@@ -36,4 +36,22 @@ class FrontendHelpers
 
         return (rtrim(config('twill.frontend.dev_assets_path'), '/') . '/') . $file;
     }
+
+    /**
+     * @param string $file
+     * @return string
+     */
+    public static function embedAsset($file)
+    {
+        return file_get_contents(FrontendHelpers::dist_path($file));
+    }
+
+    /**
+     * Returns the fully qualified path to the application's `frontend` directory.
+     * You may generate a fully qualified path to a file relative to the frontend directory.
+     */
+    public static function dist_path($file = null)
+    {
+        return base_path() . '/public' . config('twill.frontend.dist_assets_path') . (!empty($file) ? '/' . $file : '');
+    }
 }
