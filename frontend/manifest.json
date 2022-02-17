@@ -19,6 +19,11 @@
       "files": [
         "scss/mirador-kiosk.scss"
       ]
+    },
+    "setup.css": {
+      "files": [
+        "scss/setup.scss"
+      ]
     }
 
   },
