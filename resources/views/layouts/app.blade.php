@@ -62,11 +62,11 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   <style>
     {{FrontendHelpers::embedAsset('styles/setup.css')}}
   </style>
-  <link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet" />
+  <link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet" async />
   @if ($print)
-    <link href="{{FrontendHelpers::revAsset('styles/print.css')}}" rel="stylesheet" />
+    <link href="{{FrontendHelpers::revAsset('styles/print.css')}}" rel="stylesheet" async />
   @else
-      <link href="{{FrontendHelpers::revAsset('styles/print.css')}}" rel="stylesheet" media="print" />
+      <link href="{{FrontendHelpers::revAsset('styles/print.css')}}" rel="stylesheet" media="print" async />
       @if (config('services.google_tag_manager.enabled'))
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -77,7 +77,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
         <!-- End Google Tag Manager -->
       @endif
   @endif
-  <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" media="print" onload="this.media='all'" async />
 </head>
 
 <body{!! $print ? ' onload="window.print();"' : '' !!}>
