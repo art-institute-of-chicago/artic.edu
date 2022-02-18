@@ -331,6 +331,27 @@ const ajaxPageLoad = function() {
       // WEB-1323
       && link.href.indexOf('interactive-features') < 0
       && window.location.href.indexOf('interactive-features') < 0
+      // ART-52
+      && link.href.indexOf('articles') < 0
+      && link.href.indexOf('artworks') < 0
+      && link.href.indexOf('digital-publications') < 0
+      && link.href.indexOf('exhibitions') < 0
+      && link.href.indexOf('highlights') < 0
+      && link.href.indexOf('artinstitutereview') < 0
+      && link.href.indexOf('videos') < 0
+      && link.href.indexOf('virtual-tours') < 0
+      && link.href.indexOf('collection') < 0
+      && link.href.indexOf('events') < 0
+      && window.location.href.indexOf('articles') < 0
+      && window.location.href.indexOf('artworks') < 0
+      && window.location.href.indexOf('digital-publications') < 0
+      && window.location.href.indexOf('exhibitions') < 0
+      && window.location.href.indexOf('highlights') < 0
+      && window.location.href.indexOf('artinstitutereview') < 0
+      && window.location.href.indexOf('videos') < 0
+      && window.location.href.indexOf('virtual-tours') < 0
+      && window.location.href.indexOf('collection') < 0
+      && window.location.href.indexOf('events') < 0
     ) {
       event.preventDefault();
       var win = window.open(link.href, '_blank');
