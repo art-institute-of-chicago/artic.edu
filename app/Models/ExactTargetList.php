@@ -12,11 +12,10 @@ class ExactTargetList
         return collect([
             'OptEnews' => 'News and Exhibitions',
             'OptHumanResources' => 'Career Opportunities',
-            'OptEveningAssociates' => 'Young Professionals',
             'OptFamilyPrograms' => 'Families',
             'OptEvents' => 'Public Programs',
-            'OptStudentTeacherPrograms' => 'Students and Teachers',
-            'OptTeenPrograms' => 'Teens',
+            'OptStudentTeacherPrograms' => 'K-12 Educator Resources',
+            'OptTeenPrograms' => 'Teen Opportunities',
             'OptAcademicEngagement' => 'Research, Publishing, and Conservation',
         ]);
     }
