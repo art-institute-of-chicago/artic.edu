@@ -89,5 +89,4 @@
     <script src="{{FrontendHelpers::revAsset('scripts/blocks3D.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/mirador.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/videojs.js')}}"></script>
-    <link rel="stylesheet" href="https://vjs.zencdn.net/7.1.0/video-js.css" />
 @endsection
