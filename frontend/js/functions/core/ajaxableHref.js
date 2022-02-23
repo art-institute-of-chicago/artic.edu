@@ -1,4 +1,8 @@
 const ajaxableHref = function(href, event) {
+
+  // Disbale all Ajax page loads [ART-52]
+  return false;
+
   // Fail if no href
   if (!href || href === '#') {
     return false;
