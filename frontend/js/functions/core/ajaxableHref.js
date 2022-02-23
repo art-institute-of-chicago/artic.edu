@@ -1,8 +1,5 @@
 const ajaxableHref = function(href, event) {
 
-  // Disbale all Ajax page loads [ART-52]
-  return false;
-
   // Fail if no href
   if (!href || href === '#') {
     return false;
@@ -33,6 +30,14 @@ const ajaxableHref = function(href, event) {
     // Probably a same page anchor link
     return false;
   }
+
+  if (target.host === window.location.host && target.pathname === window.location.pathname) {
+    // Use Ajax for same page anchor link
+    return true;
+  }
+
+  // Disbale all other Ajax page loads [ART-52]
+  return false;
 
   if (target.pathname.startsWith('/assets/')) {
     // Link targets a DAMS asset
