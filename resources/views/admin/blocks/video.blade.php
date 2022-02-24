@@ -87,6 +87,11 @@
 
 @endcomponent
 
+@formField('checkbox', [
+    'name' => 'use_alt_background',
+    'label' => 'Use white instead of gray to pillarbox the image',
+])
+
 @formField('wysiwyg', [
     'name' => 'caption_title',
     'label' => 'Caption title',

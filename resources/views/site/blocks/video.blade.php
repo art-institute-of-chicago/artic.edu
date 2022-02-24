@@ -26,6 +26,7 @@
             'platform' => $platform,
             'loop' => true,
             'loop_or_once' => $loop_or_once,
+            'useAltBackground' => $block->input('use_alt_background'),
         ])
     @endcomponent
 @else
