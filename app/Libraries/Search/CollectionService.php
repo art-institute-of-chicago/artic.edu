@@ -8,6 +8,8 @@ use App\Libraries\Search\Filters\BooleanFilter;
 use App\Libraries\Search\Filters\ColorFilter;
 use App\Models\Api\Search;
 
+use Illuminate\Support\Str;
+
 class CollectionService
 {
     const API_SEARCH_CACHE_TTL = 3600;
@@ -25,11 +27,11 @@ class CollectionService
      * Options for BooleanFilter class. [ parameter => label, ... ]
      */
     protected $booleanOptions = [
+        'is_on_view' => 'On view',
         'is_public_domain' => 'Public domain',
         'is_recent_acquisition' => 'Recent acquisition',
         'has_multimedia' => 'Has multimedia',
         'has_educational_resources' => 'Has educational resources',
-        'is_on_view' => 'On view',
     ];
 
     /**
@@ -82,13 +84,22 @@ class CollectionService
         $results = $this->results();
 
         // Generate listing filters
-        $filters = $this->buildListFilters($results->getMetadata('aggregations'));
-
-        // Color Filter
-        $filters->prepend($this->buildColorFilters());
+        $filters = collect([]);
+        $filters->push($this->buildListFilter($results->getMetadata('aggregations'), 'artists'));
+        $filters->push($this->buildListFilter($results->getMetadata('aggregations'), 'places'));
+        $filters->push($this->buildListFilter($results->getMetadata('aggregations'), 'artwork_type'));
 
         // Date Filter
-        $filters->prepend($this->buildDateFilters());
+        $filters->push($this->buildDateFilters());
+
+        // Color Filter
+        $filters->push($this->buildColorFilters());
+
+        $filters->push($this->buildListFilter($results->getMetadata('aggregations'), 'styles'));
+        $filters->push($this->buildListFilter($results->getMetadata('aggregations'), 'subjects'));
+        $filters->push($this->buildListFilter($results->getMetadata('aggregations'), 'classifications'));
+        $filters->push($this->buildListFilter($results->getMetadata('aggregations'), 'materials'));
+        $filters->push($this->buildListFilter($results->getMetadata('aggregations'), 'departments'));
 
         // Prepend sorting filters at the beginning
         if (!request('is_deaccessioned')) {
@@ -98,7 +109,7 @@ class CollectionService
         // Appends boolean filters
         $filters->push($this->buildBooleanFilters());
 
-        return $filters;
+        return $filters->filter();
     }
 
     /**
@@ -175,7 +186,7 @@ class CollectionService
 
         if ($aggregations) {
             foreach ($aggregations as $name => $data) {
-                $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst($name);
+                $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst(Str::camel($name));
                 if (class_exists($filterClass)) {
                     $filter = new $filterClass($data->buckets, $name);
                     $filters->push($filter->generate());
@@ -185,6 +196,27 @@ class CollectionService
 
         return $filters->filter();
     }
+
+    /**
+     * Go through all aggregations and process a the given bucket with the proper
+     * filter class.
+     */
+    protected function buildListFilter($aggregations, $name)
+    {
+        if ($aggregations) {
+            if (isset($aggregations->$name)) {
+                $data = $aggregations->$name;
+                $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst(Str::camel($name));
+                if (class_exists($filterClass)) {
+                    $filter = new $filterClass($data->buckets, $name);
+                    return $filter->generate();
+                }
+            }
+        }
+
+        return null;
+    }
+
 
     /**
      * Sort filters receive all possible sorting values and create

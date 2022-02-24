@@ -58,12 +58,16 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}) format('woff2');font-weight:normal;font-weight:400;font-style:italic;}
   @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}) format('woff2');font-weight:normal;font-weight:500;font-style:normal;}
   </style>
+  <link rel="stylesheet" href="https://vjs.zencdn.net/7.1.0/video-js.css" />
   <meta name="msvalidate.01" content="1E22F0BBEF5CF0D71FF4C150D094A1CA" />
-  <link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet" />
+  <style>
+    {{FrontendHelpers::embedAsset('styles/setup.css')}}
+  </style>
+  <link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet" async />
   @if ($print)
-    <link href="{{FrontendHelpers::revAsset('styles/print.css')}}" rel="stylesheet" />
+    <link href="{{FrontendHelpers::revAsset('styles/print.css')}}" rel="stylesheet" async />
   @else
-      <link href="{{FrontendHelpers::revAsset('styles/print.css')}}" rel="stylesheet" media="print" />
+      <link href="{{FrontendHelpers::revAsset('styles/print.css')}}" rel="stylesheet" media="print" async />
       @if (config('services.google_tag_manager.enabled'))
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -74,7 +78,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
         <!-- End Google Tag Manager -->
       @endif
   @endif
-  <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" media="print" onload="this.media='all'" async />
 </head>
 
 <body{!! $print ? ' onload="window.print();"' : '' !!}>
