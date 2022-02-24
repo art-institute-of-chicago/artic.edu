@@ -85,21 +85,22 @@
         'label' => 'Video URL'
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'caption_title',
-        'label' => 'Caption title',
-        'toolbarOptions' => [
-            'italic',
-        ],
-    ])
-
-    @formField('wysiwyg', [
-        'name' => 'caption',
-        'label' => 'Caption',
-        'maxlength' => 200,
-        'note' => 'Max 200 characters',
-        'toolbarOptions' => [
-            'italic', 'link',
-        ],
-    ])
 @endcomponent
+
+@formField('wysiwyg', [
+    'name' => 'caption_title',
+    'label' => 'Caption title',
+    'toolbarOptions' => [
+        'italic',
+    ],
+])
+
+@formField('wysiwyg', [
+    'name' => 'caption',
+    'label' => 'Caption',
+    'maxlength' => 200,
+    'note' => 'Max 200 characters',
+    'toolbarOptions' => [
+        'italic', 'link',
+    ],
+])
