@@ -21,6 +21,6 @@
         'name' => 'valid_through',
         'label' => 'Valid Through',
         'withTime' => false,
-        'required' => true
+        'required' => false
     ])
 @endif
