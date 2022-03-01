@@ -46,7 +46,7 @@ $nav = [
                 'title' => 'Hours',
                 'module' => true,
             ],
-            'closures' => [
+            'buildingClosures' => [
                 'title' => 'Closures',
                 'module' => true,
             ],

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ArticlesController;
 use App\Http\Controllers\API\ArtistsController;
-use App\Http\Controllers\API\ClosuresController;
+use App\Http\Controllers\API\BuildingClosuresController;
 use App\Http\Controllers\API\DigitalPublicationsController;
 use App\Http\Controllers\API\DigitalPublicationSectionsController;
 use App\Http\Controllers\API\EducatorResourcesController;
@@ -71,9 +71,9 @@ Route::group(['prefix' => 'v1'], function () {
     /**
      * Hours ------------------------------------------------------
      */
-    Route::get('closures', [ClosuresController::class, 'index']);
-    Route::get('closures/deleted', [ClosuresController::class, 'deleted']);
-    Route::get('closures/{id}', [ClosuresController::class, 'show']);
+    Route::get('closures', [BuildingClosuresController::class, 'index']);
+    Route::get('closures/deleted', [BuildingClosuresController::class, 'deleted']);
+    Route::get('closures/{id}', [BuildingClosuresController::class, 'show']);
 
     /**
      * Exhibitions ------------------------------------------------------

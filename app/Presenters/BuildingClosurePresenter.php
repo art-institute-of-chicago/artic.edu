@@ -2,9 +2,9 @@
 
 namespace App\Presenters;
 
-use App\Models\Closure;
+use App\Models\BuildingClosure;
 
-class ClosurePresenter extends BasePresenter
+class BuildingClosurePresenter extends BasePresenter
 {
     public function presentStartDate()
     {
@@ -22,7 +22,7 @@ class ClosurePresenter extends BasePresenter
 
     public function presentType()
     {
-        return Closure::$types[$this->entity->type];
+        return BuildingClosure::$types[$this->entity->type];
     }
 
     public function closureCopy()
