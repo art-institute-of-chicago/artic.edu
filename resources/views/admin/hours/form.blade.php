@@ -326,4 +326,11 @@
     ])
 </a17-fieldset>
 
+<a17-fieldset id="closures" title="Closures">
+    @formField('repeater', [
+        'type' => 'building_closures',
+        'title' => 'Closures',
+    ])
+</a17-fieldset>
+
 @stop

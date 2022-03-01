@@ -112,6 +112,11 @@ class Hour extends AbstractModel
             ->whereNull('valid_through');
     }
 
+    public function buildingClosures()
+    {
+        return $this->hasMany(\App\Models\BuildingClosure::class);
+    }
+
     protected function transformMappingInternal()
     {
         return [
