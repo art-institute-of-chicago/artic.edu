@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class EventProgram extends AbstractModel
 {
-    use Transformable;
+    use Transformable, HasFactory;
 
     protected $fillable = [
         'name',

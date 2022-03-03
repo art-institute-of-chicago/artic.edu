@@ -11,9 +11,11 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class Issue extends AbstractModel implements Sortable
 {
-    use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasPosition, HasRelated;
+    use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasPosition, HasRelated, HasFactory;
 
     protected $presenter = 'App\Presenters\Admin\IssuePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\IssuePresenter';

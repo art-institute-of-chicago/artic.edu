@@ -15,12 +15,13 @@ use Carbon\Carbon;
 // WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use PDO;
 
 class Event extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasApiRelations, HasMedias, HasMediasEloquent, HasBlocks, HasRecurrentDates, Transformable;
+    use HasSlug, HasRevisions, HasApiRelations, HasMedias, HasMediasEloquent, HasBlocks, HasRecurrentDates, Transformable, HasFactory;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
     protected $presenter = 'App\Presenters\Admin\EventPresenter';

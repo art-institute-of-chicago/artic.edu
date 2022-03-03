@@ -12,9 +12,12 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasBlocks;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+
 class IssueArticle extends AbstractModel implements Sortable
 {
-    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, HasAuthors;
+    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, HasAuthors, HasFactory;
 
     protected $presenter = 'App\Presenters\Admin\IssueArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\IssueArticlePresenter';

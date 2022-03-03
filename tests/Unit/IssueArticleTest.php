@@ -15,12 +15,12 @@ class IssueArticleTest extends TestCase
     /** @test */
     public function it_doesnt_publish_if_issue_isnt_published()
     {
-        $issue = factory(Issue::class)->create([
+        $issue = Issue::factory()->create([
             'published' => false,
             'title' => 'Unpublished test',
         ]);
 
-        $issueArticle = factory(IssueArticle::class)->create([
+        $issueArticle = IssueArticle::factory()->create([
             'publish_start_date' => Carbon::yesterday(),
             'title' => 'Published test',
             'issue_id' => $issue->id,
