@@ -169,10 +169,10 @@ class AppServiceProvider extends ServiceProvider
                     , 'events' => route('events')
 
                     , 'about-us' => '/about-us'
-                    , 'about-us-identity' => '/about-us/identity'
-                    , 'about-us-history' => '/about-us/history'
+                    , 'about-us-identity-and-history' => '/about-us/identity-and-history'
                     , 'about-us-leadership' => '/about-us/leadership'
                     , 'about-us-departments' => '/about-us/departments'
+                    , 'about-us-financial-reporting' => '/about-us/financial-reporting'
 
                     , 'support-us' => '/support-us'
                     , 'support-us-membership' => '/support-us/membership'
