@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Hour extends AbstractModel
 {
-    use Transformable;
+    use Transformable, HasFactory;
 
     protected $presenter = 'App\Presenters\HoursPresenter';
     protected $presenterAdmin = 'App\Presenters\HoursPresenter';
@@ -86,6 +87,20 @@ class Hour extends AbstractModel
         'saturday_is_closed',
         'sunday_is_closed',
     ];
+
+    private $now;
+
+    public function __construct($now = null) {
+        $this->now = $now ?? time();
+    }
+
+    public function setNow($now) {
+        $this->now = $now;
+    }
+
+    public function getNow() {
+        return $this->now;
+    }
 
     public function scopeToday($query, $type = 0)
     {
