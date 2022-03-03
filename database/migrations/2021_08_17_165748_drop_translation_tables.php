@@ -43,59 +43,61 @@ class DropTranslationTables extends Migration
             $table->text('visit_hour_image_caption')->nullable();
         });
 
-        // Copy content from the translatable field to the table
-        $cols = DB::selectOne('select * from page_translations where page_id = ? and locale = ?', [6, 'en']);
-        DB::update(
-            'update pages set '
-                . 'visit_intro = ?, '
-                . 'visit_hour_header = ?, '
-                . 'visit_hour_subheader = ?, '
-                . 'visit_hour_intro = ?, '
-                . 'visit_city_pass_title = ?, '
-                . 'visit_city_pass_text = ?, '
-                . 'visit_city_pass_button_label = ?, '
-                . 'visit_city_pass_link = ?, '
-                . 'visit_admission_description = ?, '
-                . 'visit_buy_tickets_label = ?, '
-                . 'visit_become_member_label = ?, '
-                . 'visit_accessibility_text = ?, '
-                . 'visit_accessibility_link_text = ?, '
-                . 'visit_cta_module_header = ?, '
-                . 'visit_cta_module_body = ?, '
-                . 'visit_cta_module_button_text = ?, '
-                . 'visit_what_to_expect_more_text = ?, '
-                . 'visit_capacity_alt = ?, '
-                . 'visit_capacity_heading = ?, '
-                . 'visit_capacity_text = ?, '
-                . 'visit_capacity_btn_text_1 = ?, '
-                . 'visit_capacity_btn_text_2 = ?, '
-                . 'visit_hour_image_caption = ? '
-                . 'where id = ?',
-            [$cols->visit_intro,
-                $cols->visit_hour_header,
-                $cols->visit_hour_subheader,
-                $cols->visit_hour_intro,
-                $cols->visit_city_pass_title,
-                $cols->visit_city_pass_text,
-                $cols->visit_city_pass_button_label,
-                $cols->visit_city_pass_link,
-                $cols->visit_admission_description,
-                $cols->visit_buy_tickets_label,
-                $cols->visit_become_member_label,
-                $cols->visit_accessibility_text,
-                $cols->visit_accessibility_link_text,
-                $cols->visit_cta_module_header,
-                $cols->visit_cta_module_body,
-                $cols->visit_cta_module_button_text,
-                $cols->visit_what_to_expect_more_text,
-                $cols->visit_capacity_alt,
-                $cols->visit_capacity_heading,
-                $cols->visit_capacity_text,
-                $cols->visit_capacity_btn_text_1,
-                $cols->visit_capacity_btn_text_2,
-                $cols->visit_hour_image_caption,
-                6]
-        );
+        if (env('APP_ENV') != 'testing') {
+            // Copy content from the translatable field to the table
+            $cols = DB::selectOne('select * from page_translations where page_id = ? and locale = ?', [6, 'en']);
+            DB::update(
+                'update pages set '
+                    . 'visit_intro = ?, '
+                    . 'visit_hour_header = ?, '
+                    . 'visit_hour_subheader = ?, '
+                    . 'visit_hour_intro = ?, '
+                    . 'visit_city_pass_title = ?, '
+                    . 'visit_city_pass_text = ?, '
+                    . 'visit_city_pass_button_label = ?, '
+                    . 'visit_city_pass_link = ?, '
+                    . 'visit_admission_description = ?, '
+                    . 'visit_buy_tickets_label = ?, '
+                    . 'visit_become_member_label = ?, '
+                    . 'visit_accessibility_text = ?, '
+                    . 'visit_accessibility_link_text = ?, '
+                    . 'visit_cta_module_header = ?, '
+                    . 'visit_cta_module_body = ?, '
+                    . 'visit_cta_module_button_text = ?, '
+                    . 'visit_what_to_expect_more_text = ?, '
+                    . 'visit_capacity_alt = ?, '
+                    . 'visit_capacity_heading = ?, '
+                    . 'visit_capacity_text = ?, '
+                    . 'visit_capacity_btn_text_1 = ?, '
+                    . 'visit_capacity_btn_text_2 = ?, '
+                    . 'visit_hour_image_caption = ? '
+                    . 'where id = ?',
+                [$cols->visit_intro,
+                    $cols->visit_hour_header,
+                    $cols->visit_hour_subheader,
+                    $cols->visit_hour_intro,
+                    $cols->visit_city_pass_title,
+                    $cols->visit_city_pass_text,
+                    $cols->visit_city_pass_button_label,
+                    $cols->visit_city_pass_link,
+                    $cols->visit_admission_description,
+                    $cols->visit_buy_tickets_label,
+                    $cols->visit_become_member_label,
+                    $cols->visit_accessibility_text,
+                    $cols->visit_accessibility_link_text,
+                    $cols->visit_cta_module_header,
+                    $cols->visit_cta_module_body,
+                    $cols->visit_cta_module_button_text,
+                    $cols->visit_what_to_expect_more_text,
+                    $cols->visit_capacity_alt,
+                    $cols->visit_capacity_heading,
+                    $cols->visit_capacity_text,
+                    $cols->visit_capacity_btn_text_1,
+                    $cols->visit_capacity_btn_text_2,
+                    $cols->visit_hour_image_caption,
+                    6]
+            );
+        }
 
         //
         // Dining hours
@@ -104,17 +106,19 @@ class DropTranslationTables extends Migration
             $table->text('hours')->nullable();
         });
 
-        $rows = DB::select('select * from dining_hour_translations where locale = ?', ['en']);
-        foreach ($rows as $cols) {
-            DB::update(
-                'update dining_hours set '
-                . 'name = ?, '
-                . 'hours = ? '
-                . 'where id = ?',
-                [$cols->name,
-                    $cols->hours,
-                    $cols->dining_hour_id]
-            );
+        if (env('APP_ENV') != 'testing') {
+            $rows = DB::select('select * from dining_hour_translations where locale = ?', ['en']);
+            foreach ($rows as $cols) {
+                DB::update(
+                    'update dining_hours set '
+                    . 'name = ?, '
+                    . 'hours = ? '
+                    . 'where id = ?',
+                    [$cols->name,
+                        $cols->hours,
+                        $cols->dining_hour_id]
+                );
+            }
         }
 
         //
@@ -125,19 +129,21 @@ class DropTranslationTables extends Migration
             $table->string('link_label')->nullable();
         });
 
-        $rows = DB::select('select * from family_translations where locale = ?', ['en']);
-        foreach ($rows as $cols) {
-            DB::update(
-                'update families set '
-                . 'title = ?, '
-                . 'text = ?, '
-                . 'link_label = ? '
-                . 'where id = ?',
-                [$cols->title,
-                    $cols->text,
-                    $cols->link_label,
-                    $cols->family_id]
-            );
+        if (env('APP_ENV') != 'testing') {
+            $rows = DB::select('select * from family_translations where locale = ?', ['en']);
+            foreach ($rows as $cols) {
+                DB::update(
+                    'update families set '
+                    . 'title = ?, '
+                    . 'text = ?, '
+                    . 'link_label = ? '
+                    . 'where id = ?',
+                    [$cols->title,
+                        $cols->text,
+                        $cols->link_label,
+                        $cols->family_id]
+                );
+            }
         }
 
         //
@@ -146,15 +152,17 @@ class DropTranslationTables extends Migration
             $table->string('title')->nullable();
         });
 
-        $rows = DB::select('select * from faq_translations where locale = ?', ['en']);
-        foreach ($rows as $cols) {
-            DB::update(
-                'update faqs set '
-                . 'title = ? '
-                . 'where id = ?',
-                [$cols->title,
-                    $cols->faq_id]
-            );
+        if (env('APP_ENV') != 'testing') {
+            $rows = DB::select('select * from faq_translations where locale = ?', ['en']);
+            foreach ($rows as $cols) {
+                DB::update(
+                    'update faqs set '
+                    . 'title = ? '
+                    . 'where id = ?',
+                    [$cols->title,
+                        $cols->faq_id]
+                );
+            }
         }
 
         //
@@ -164,17 +172,19 @@ class DropTranslationTables extends Migration
             $table->text('copy')->nullable();
         });
 
-        $rows = DB::select('select * from featured_hour_translations where locale = ?', ['en']);
-        foreach ($rows as $cols) {
-            DB::update(
-                'update featured_hours set '
-                . 'title = ?, '
-                . 'copy = ? '
-                . 'where id = ?',
-                [$cols->title,
-                    $cols->copy,
-                    $cols->featured_hour_id]
-            );
+        if (env('APP_ENV') != 'testing') {
+            $rows = DB::select('select * from featured_hour_translations where locale = ?', ['en']);
+            foreach ($rows as $cols) {
+                DB::update(
+                    'update featured_hours set '
+                    . 'title = ?, '
+                    . 'copy = ? '
+                    . 'where id = ?',
+                    [$cols->title,
+                        $cols->copy,
+                        $cols->featured_hour_id]
+                );
+            }
         }
 
         //
@@ -183,15 +193,17 @@ class DropTranslationTables extends Migration
             $table->string('title')->nullable();
         });
 
-        $rows = DB::select('select * from fee_age_translations where locale = ?', ['en']);
-        foreach ($rows as $cols) {
-            DB::update(
-                'update fee_ages set '
-                . 'title = ? '
-                . 'where id = ?',
-                [$cols->title,
-                    $cols->fee_age_id]
-            );
+        if (env('APP_ENV') != 'testing') {
+            $rows = DB::select('select * from fee_age_translations where locale = ?', ['en']);
+            foreach ($rows as $cols) {
+                DB::update(
+                    'update fee_ages set '
+                    . 'title = ? '
+                    . 'where id = ?',
+                    [$cols->title,
+                        $cols->fee_age_id]
+                );
+            }
         }
 
         //
@@ -201,17 +213,19 @@ class DropTranslationTables extends Migration
             $table->string('tooltip')->nullable();
         });
 
-        $rows = DB::select('select * from fee_category_translations where locale = ?', ['en']);
-        foreach ($rows as $cols) {
-            DB::update(
-                'update fee_categories set '
-                . 'title = ?, '
-                . 'tooltip = ? '
-                . 'where id = ?',
-                [$cols->title,
-                    $cols->tooltip,
-                    $cols->fee_category_id]
-            );
+        if (env('APP_ENV') != 'testing') {
+            $rows = DB::select('select * from fee_category_translations where locale = ?', ['en']);
+            foreach ($rows as $cols) {
+                DB::update(
+                    'update fee_categories set '
+                    . 'title = ?, '
+                    . 'tooltip = ? '
+                    . 'where id = ?',
+                    [$cols->title,
+                        $cols->tooltip,
+                        $cols->fee_category_id]
+                );
+            }
         }
 
         //
@@ -220,15 +234,17 @@ class DropTranslationTables extends Migration
             $table->string('name')->nullable();
         });
 
-        $rows = DB::select('select * from location_translations where locale = ?', ['en']);
-        foreach ($rows as $cols) {
-            DB::update(
-                'update locations set '
-                . 'name = ? '
-                . 'where id = ?',
-                [$cols->name,
-                    $cols->location_id]
-            );
+        if (env('APP_ENV') != 'testing') {
+            $rows = DB::select('select * from location_translations where locale = ?', ['en']);
+            foreach ($rows as $cols) {
+                DB::update(
+                    'update locations set '
+                    . 'name = ? '
+                    . 'where id = ?',
+                    [$cols->name,
+                        $cols->location_id]
+                );
+            }
         }
 
         //
@@ -237,15 +253,17 @@ class DropTranslationTables extends Migration
             $table->text('text')->nullable();
         });
 
-        $rows = DB::select('select * from what_to_expect_translations where locale = ?', ['en']);
-        foreach ($rows as $cols) {
-            DB::update(
-                'update what_to_expects set '
-                . 'text = ? '
-                . 'where id = ?',
-                [$cols->text,
-                    $cols->what_to_expect_id]
-            );
+        if (env('APP_ENV') != 'testing') {
+            $rows = DB::select('select * from what_to_expect_translations where locale = ?', ['en']);
+            foreach ($rows as $cols) {
+                DB::update(
+                    'update what_to_expects set '
+                    . 'text = ? '
+                    . 'where id = ?',
+                    [$cols->text,
+                        $cols->what_to_expect_id]
+                );
+            }
         }
 
         Schema::dropIfExists('page_translations');
