@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class IssueArticle extends AbstractModel implements Sortable
 {
-    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, HasAuthors, HasFactory;
+    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, HasAuthors, HasFactory, Transformable;
 
     protected $presenter = 'App\Presenters\Admin\IssueArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\IssueArticlePresenter';
@@ -134,5 +134,131 @@ class IssueArticle extends AbstractModel implements Sortable
     public function getTypeAttribute()
     {
         return 'journal-article';
+    }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
+                    return $this->published;
+                },
+            ],
+            [
+                'name' => 'publish_start_date',
+                'doc' => 'Publish Start Date',
+                'type' => 'datetime',
+                'value' => function () {
+                    return $this->publish_start_date;
+                }
+            ],
+            [
+                'name' => 'date',
+                'doc' => 'Date',
+                'type' => 'date',
+                'value' => function () {
+                    return $this->date;
+                },
+            ],
+            [
+                'name' => 'copy',
+                'doc' => 'Copy',
+                'type' => 'text',
+                'value' => function () {
+                    return $this->blocks;
+                },
+            ],
+            [
+                'name' => 'slug',
+                'doc' => 'Slug',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->slug;
+                },
+            ],
+            [
+                'name' => 'web_url',
+                'doc' => 'Web URL',
+                'type' => 'string',
+                'value' => function () {
+                    return url(route('issues.show', $this));
+                },
+            ],
+            [
+                'name' => 'description',
+                'doc' => 'Description',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->description;
+                },
+            ],
+            [
+                'name' => 'list_description',
+                'doc' => 'List description',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->list_description;
+                },
+            ],
+            [
+                'name' => 'issue_id',
+                'doc' => 'Issue ID',
+                'type' => 'integer',
+                'value' => function () {
+                    return $this->issue_id;
+                },
+            ],
+            [
+                'name' => 'license_text',
+                'doc' => 'License text',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->license_text;
+                },
+            ],
+            [
+                'name' => 'abstract',
+                'doc' => 'Abstract',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->abstract;
+                },
+            ],
+            [
+                'name' => 'author_display',
+                'doc' => 'Author display',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->author_display;
+                },
+            ],
+            [
+                'name' => 'review_status',
+                'doc' => 'Review status',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->review_status;
+                },
+            ],
+            [
+                'name' => 'cite_as',
+                'doc' => 'Cite as',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->cite_as;
+                },
+            ],
+            [
+                'name' => 'type_display',
+                'doc' => 'Type display',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->type_display;
+                },
+            ],
+        ];
     }
 }

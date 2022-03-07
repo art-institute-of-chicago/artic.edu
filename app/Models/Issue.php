@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Issue extends AbstractModel implements Sortable
 {
-    use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasPosition, HasRelated, HasFactory;
+    use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasPosition, HasRelated, HasFactory, Transformable;
 
     protected $presenter = 'App\Presenters\Admin\IssuePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\IssuePresenter';
@@ -111,5 +111,115 @@ class Issue extends AbstractModel implements Sortable
     public function getSubtypeAttribute()
     {
         return 'Issue ' . $this->issue_number;
+    }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                'name' => 'published',
+                'doc' => 'Published',
+                'type' => 'boolean',
+                'value' => function () {
+                    return $this->published;
+                },
+            ],
+            [
+                'name' => 'publish_start_date',
+                'doc' => 'Publish Start Date',
+                'type' => 'datetime',
+                'value' => function () {
+                    return $this->publish_start_date;
+                }
+            ],
+            [
+                'name' => 'date',
+                'doc' => 'Date',
+                'type' => 'date',
+                'value' => function () {
+                    return $this->date;
+                },
+            ],
+            [
+                'name' => 'copy',
+                'doc' => 'Copy',
+                'type' => 'text',
+                'value' => function () {
+                    return $this->blocks;
+                },
+            ],
+            [
+                'name' => 'slug',
+                'doc' => 'Slug',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->slug;
+                },
+            ],
+            [
+                'name' => 'web_url',
+                'doc' => 'Web URL',
+                'type' => 'string',
+                'value' => function () {
+                    return url(route('issues.show', $this));
+                },
+            ],
+            [
+                'name' => 'heading',
+                'doc' => 'Heading',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->header_text;
+                },
+            ],
+            [
+                'name' => 'list_description',
+                'doc' => 'List description',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->list_description;
+                },
+            ],
+            [
+                'name' => 'issue_number',
+                'doc' => 'Issue number',
+                'type' => 'integer',
+                'value' => function () {
+                    return $this->issue_number;
+                },
+            ],
+            [
+                'name' => 'license_text',
+                'doc' => 'License text',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->license_text;
+                },
+            ],
+            [
+                'name' => 'hero_caption',
+                'doc' => 'Hero caption',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->hero_caption;
+                },
+            ],
+            [
+                'name' => 'cite_as',
+                'doc' => 'Cite as',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->cite_as;
+                },
+            ],
+            [
+                'name' => 'welcome_note_display',
+                'doc' => 'Welcome note',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->welcome_note_display;
+                },
+            ],
+        ];
     }
 }
