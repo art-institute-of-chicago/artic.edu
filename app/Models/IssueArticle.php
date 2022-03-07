@@ -140,6 +140,14 @@ class IssueArticle extends AbstractModel implements Sortable
     {
         return [
             [
+                'name' => 'title',
+                'doc' => 'Title',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->title;
+                },
+            ],
+            [
                 'name' => 'published',
                 'doc' => 'Published',
                 'type' => 'boolean',
