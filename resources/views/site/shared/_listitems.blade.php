@@ -1,4 +1,4 @@
-<?php for ($i = 0; $i < 6; ++$i) { ?>
+<?php for ($i = 0; $i < 6; $i++) { ?>
   <li class="m-listing">
     <a href="#" class="m-listing__link">
       <span class="m-listing__img">
