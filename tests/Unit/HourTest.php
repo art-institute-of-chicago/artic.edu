@@ -53,48 +53,60 @@ class HourTest extends TestCase
     /** @test */
     public function it_displays_before_member_open_hour()
     {
-        $this->assertEquals('Open today 10&ndash;11 members | 11&ndash;5 public',
-                            $this->hour->present()->display(false, Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago')));
+        $this->assertEquals(
+            'Open today 10&ndash;11 members | 11&ndash;5 public',
+            $this->hour->present()->display(false, Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'))
+        );
 
     }
 
     /** @test */
     public function it_displays_before_member_open_hour_on_mobile()
     {
-        $this->assertEquals('Today 10&ndash;11 members | 11&ndash;5 public',
-                            $this->hour->present()->display(true, Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago')));
+        $this->assertEquals(
+            'Today 10&ndash;11 members | 11&ndash;5 public',
+            $this->hour->present()->display(true, Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'))
+        );
 
     }
 
     /** @test */
     public function it_displays_during_open_hours()
     {
-        $this->assertEquals('Open today until 5',
-                            $this->hour->present()->display(false, Carbon::create(2022, 2, 28, 12, 0, 0, 'America/Chicago')));
+        $this->assertEquals(
+            'Open today until 5',
+            $this->hour->present()->display(false, Carbon::create(2022, 2, 28, 12, 0, 0, 'America/Chicago'))
+        );
 
     }
 
     /** @test */
     public function it_displays_after_public_close_hour_before_a_closed_day()
     {
-        $this->assertEquals('Closed now. Next open Thursday.',
-                            $this->hour->present()->display(false, Carbon::create(2022, 2, 28, 20, 0, 0, 'America/Chicago')));
+        $this->assertEquals(
+            'Closed now. Next open Thursday.',
+            $this->hour->present()->display(false, Carbon::create(2022, 2, 28, 20, 0, 0, 'America/Chicago'))
+        );
 
     }
 
     /** @test */
     public function it_displays_a_closed_day_before_a_closed_day()
     {
-        $this->assertEquals('Closed today. Next open Thursday.',
-                            $this->hour->present()->display(false, Carbon::create(2022, 3, 1, 6, 0, 0, 'America/Chicago')));
+        $this->assertEquals(
+            'Closed today. Next open Thursday.',
+            $this->hour->present()->display(false, Carbon::create(2022, 3, 1, 6, 0, 0, 'America/Chicago'))
+        );
 
     }
 
     /** @test */
     public function it_displays_a_closed_day_before_an_open_day()
     {
-        $this->assertEquals('Closed today. Next open tomorrow.',
-                            $this->hour->present()->display(false, Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago')));
+        $this->assertEquals(
+            'Closed today. Next open tomorrow.',
+            $this->hour->present()->display(false, Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'))
+        );
 
     }
 

@@ -14,7 +14,6 @@ use App\Models\Behaviors\HasBlocks;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-
 class IssueArticle extends AbstractModel implements Sortable
 {
     use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, HasAuthors, HasFactory, Transformable;

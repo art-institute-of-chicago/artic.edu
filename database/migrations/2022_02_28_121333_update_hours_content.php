@@ -47,6 +47,6 @@ class UpdateHoursContent extends Migration
 
     public function down()
     {
-        //
+
     }
 }

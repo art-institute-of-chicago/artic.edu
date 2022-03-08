@@ -4,7 +4,6 @@ namespace App\Presenters;
 
 use App\Models\Hour;
 
-use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Str;
 
@@ -53,11 +52,12 @@ class HoursPresenter extends BasePresenter
             $nextOpen = $now->addDay();
             $fieldNextDayClosed = Str::lower($nextOpen->englishDayOfWeek) . '_is_closed';
             $tries = 1;
-            while ($this->entity->{$fieldNextDayClosed} && $tries <=7 ) {
+            while ($this->entity->{$fieldNextDayClosed} && $tries <= 7) {
                 $nextOpen = $now->addDay();
                 $fieldNextDayClosed = Str::lower($nextOpen->englishDayOfWeek) . '_is_closed';
                 $tries++;
             }
+
             return 'Closed today. Next open ' . ($tries == 1 ? 'tomorrow' : $nextOpen->englishDayOfWeek) . '.';
         }
 
@@ -108,6 +108,7 @@ class HoursPresenter extends BasePresenter
         $thisnow->hour = 0;
         $thisnow->minute = 0;
         $thisnow->second = 0;
+
         return CarbonInterval::instance($this->entity->{$field})->convertDate($thisnow);
     }
 }
