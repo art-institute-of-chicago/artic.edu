@@ -94,6 +94,14 @@ class IssueArticlePresenter extends BasePresenter
         return $this->getArticleType();
     }
 
+    /**
+     * PUB-84: For search results
+     */
+    public function subtypeForSearch()
+    {
+        return 'Issue ' . $this->issueNumber() . ': ' . $this->entity->issue->title;
+    }
+
     public function references()
     {
 

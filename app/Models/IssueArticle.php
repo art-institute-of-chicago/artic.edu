@@ -99,6 +99,11 @@ class IssueArticle extends AbstractModel implements Sortable
         });
     }
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     public function getPublishedAttribute()
     {
         return ($this->issue->isPublished ?? false) && $this->isPublished;
@@ -133,6 +138,14 @@ class IssueArticle extends AbstractModel implements Sortable
     public function getTypeAttribute()
     {
         return 'journal-article';
+    }
+
+    /**
+     * PUB-146: Affects the tag on Writings landing
+     */
+    public function getSubtypeAttribute()
+    {
+        return $this->type_display ?? 'Journal Article';
     }
 
     protected function transformMappingInternal()

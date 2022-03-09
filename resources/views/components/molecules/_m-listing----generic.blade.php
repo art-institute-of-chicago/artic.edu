@@ -18,7 +18,7 @@
         @endif
         <span class="m-listing__meta">
             @if ($item->subtype)
-                <em class="type f-tag">{!! $item->present()->subtype !!}</em>
+                <em class="type f-tag">{!! $item->present()->subtypeForSearch ?? $item->present()->subtype !!}</em>
                 <br>
             @endif
             @component('components.atoms._title')

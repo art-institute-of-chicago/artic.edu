@@ -96,6 +96,7 @@ Route::get('/search/articles', [SearchController::class, 'articles'])->name('sea
 Route::get('/search/events', [SearchController::class, 'events'])->name('search.events');
 Route::get('/search/pages', [SearchController::class, 'pages'])->name('search.pages');
 Route::get('/search/publications', [SearchController::class, 'publications'])->name('search.publications');
+Route::get('/search/issue-articles', [SearchController::class, 'issueArticles'])->name('search.issue-articles');
 Route::get('/search/artworks', [SearchController::class, 'artworks'])->name('search.artworks');
 Route::get('/search/press-releases', [SearchController::class, 'pressReleases'])->name('search.press-releases');
 Route::get('/search/research-guides', [SearchController::class, 'researchGuides'])->name('search.research-guides');
