@@ -17,51 +17,53 @@ class HourTest extends TestCase
     {
         parent::setUp();
 
-        $this->hour = Hour::factory()->make();
-        $this->hour->title = 'Hours';
-        $this->hour->published = true;
-        $this->hour->valid_from = Carbon::now()->subWeek()->getTimestamp();
-        $this->hour->valid_through = Carbon::now()->addWeek()->getTimestamp();
-        $this->hour->monday_is_closed = false;
-        $this->hour->monday_member_open = new \DateInterval('PT10H00M');
-        $this->hour->monday_member_close = new \DateInterval('PT11H00M');
-        $this->hour->monday_public_open = new \DateInterval('PT11H00M');
-        $this->hour->monday_public_close = new \DateInterval('PT17H00M');
-        $this->hour->tuesday_is_closed = true;
-        $this->hour->wednesday_is_closed = true;
-        $this->hour->thursday_is_closed = false;
-        $this->hour->thursday_member_open = new \DateInterval('PT10H00M');
-        $this->hour->thursday_member_close = new \DateInterval('PT11H00M');
-        $this->hour->thursday_public_open = new \DateInterval('PT11H00M');
-        $this->hour->thursday_public_close = new \DateInterval('PT17H00M');
-        $this->hour->friday_is_closed = false;
-        $this->hour->friday_member_open = new \DateInterval('PT10H00M');
-        $this->hour->friday_member_close = new \DateInterval('PT11H00M');
-        $this->hour->friday_public_open = new \DateInterval('PT11H00M');
-        $this->hour->friday_public_close = new \DateInterval('PT17H00M');
-        $this->hour->saturday_is_closed = false;
-        $this->hour->saturday_member_open = new \DateInterval('PT10H00M');
-        $this->hour->saturday_member_close = new \DateInterval('PT11H00M');
-        $this->hour->saturday_public_open = new \DateInterval('PT11H00M');
-        $this->hour->saturday_public_close = new \DateInterval('PT17H00M');
-        $this->hour->sunday_is_closed = false;
-        $this->hour->sunday_member_open = new \DateInterval('PT10H00M');
-        $this->hour->sunday_member_close = new \DateInterval('PT11H00M');
-        $this->hour->sunday_public_open = new \DateInterval('PT11H00M');
-        $this->hour->sunday_public_close = new \DateInterval('PT17H00M');
+        $this->hour = Hour::factory()->make([
+            'title' => 'Hours',
+            'published' => true,
+            'valid_from' => Carbon::now()->subWeek()->getTimestamp(),
+            'valid_through' => Carbon::now()->addWeek()->getTimestamp(),
+            'monday_is_closed' => false,
+            'monday_member_open' => new \DateInterval('PT10H00M'),
+            'monday_member_close' => new \DateInterval('PT11H00M'),
+            'monday_public_open' => new \DateInterval('PT11H00M'),
+            'monday_public_close' => new \DateInterval('PT17H00M'),
+            'tuesday_is_closed' => true,
+            'wednesday_is_closed' => true,
+            'thursday_is_closed' => false,
+            'thursday_member_open' => new \DateInterval('PT10H00M'),
+            'thursday_member_close' => new \DateInterval('PT11H00M'),
+            'thursday_public_open' => new \DateInterval('PT11H00M'),
+            'thursday_public_close' => new \DateInterval('PT17H00M'),
+            'friday_is_closed' => false,
+            'friday_member_open' => new \DateInterval('PT10H00M'),
+            'friday_member_close' => new \DateInterval('PT11H00M'),
+            'friday_public_open' => new \DateInterval('PT11H00M'),
+            'friday_public_close' => new \DateInterval('PT17H00M'),
+            'saturday_is_closed' => false,
+            'saturday_member_open' => new \DateInterval('PT10H00M'),
+            'saturday_member_close' => new \DateInterval('PT11H00M'),
+            'saturday_public_open' => new \DateInterval('PT11H00M'),
+            'saturday_public_close' => new \DateInterval('PT17H00M'),
+            'sunday_is_closed' => false,
+            'sunday_member_open' => new \DateInterval('PT10H00M'),
+            'sunday_member_close' => new \DateInterval('PT11H00M'),
+            'sunday_public_open' => new \DateInterval('PT11H00M'),
+            'sunday_public_close' => new \DateInterval('PT17H00M'),
+        ]);
 
-        $this->hourAllClosed = Hour::factory()->make();
-        $this->hourAllClosed->title = 'Hours all closed';
-        $this->hourAllClosed->published = true;
-        $this->hourAllClosed->valid_from = Carbon::now()->subWeek()->getTimestamp();
-        $this->hourAllClosed->valid_through = Carbon::now()->addWeek()->getTimestamp();
-        $this->hourAllClosed->monday_is_closed = true;
-        $this->hourAllClosed->tuesday_is_closed = true;
-        $this->hourAllClosed->wednesday_is_closed = true;
-        $this->hourAllClosed->thursday_is_closed = true;
-        $this->hourAllClosed->friday_is_closed = true;
-        $this->hourAllClosed->saturday_is_closed = true;
-        $this->hourAllClosed->sunday_is_closed = true;
+        $this->hourAllClosed = Hour::factory()->make([
+            'title' => 'Hours all closed',
+            'published' => true,
+            'valid_from' => Carbon::now()->subWeek()->getTimestamp(),
+            'valid_through' => Carbon::now()->addWeek()->getTimestamp(),
+            'monday_is_closed' => true,
+            'tuesday_is_closed' => true,
+            'wednesday_is_closed' => true,
+            'thursday_is_closed' => true,
+            'friday_is_closed' => true,
+            'saturday_is_closed' => true,
+            'sunday_is_closed' => true,
+        ]);
     }
 
     /** @test */
