@@ -1,9 +1,9 @@
-@if(!isset($item))
-    @formField('input', [
-        'name' => 'title',
-        'label' => 'Title',
-    ])
+@formField('input', [
+    'name' => 'title',
+    'label' => 'Title',
+])
 
+@if(!isset($item))
     @formField('input', [
         'name' => 'url',
         'label' => 'URL',
