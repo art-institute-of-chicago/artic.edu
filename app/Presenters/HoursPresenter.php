@@ -58,7 +58,7 @@ class HoursPresenter extends BasePresenter
                 $tries++;
             }
 
-            return 'Closed today. Next open ' . ($tries == 1 ? 'tomorrow' : $nextOpen->englishDayOfWeek) . '.';
+            return 'Closed today.' . ($tries <= 7 ? (' Next open ' . ($tries == 1 ? 'tomorrow' : $nextOpen->englishDayOfWeek) . '.') : '');
         }
 
         // Before open member hours
@@ -79,7 +79,7 @@ class HoursPresenter extends BasePresenter
                 $tries++;
             }
 
-            return 'Closed now. Next open ' . ($tries == 1 ? 'tomorrow' : $nextOpen->englishDayOfWeek) . '.';
+            return 'Closed now.' . ($tries <= 7 ? (' Next open ' . ($tries == 1 ? 'tomorrow' : $nextOpen->englishDayOfWeek) . '.') : '');
         }
 
         // Any other time

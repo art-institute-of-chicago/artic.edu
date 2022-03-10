@@ -11,6 +11,7 @@ use App\Models\Hour;
 class HourTest extends TestCase
 {
     private $hour;
+    private $hourAllClosed;
 
     protected function setUp(): void
     {
@@ -48,6 +49,19 @@ class HourTest extends TestCase
         $this->hour->sunday_member_close = new \DateInterval('PT11H00M');
         $this->hour->sunday_public_open = new \DateInterval('PT11H00M');
         $this->hour->sunday_public_close = new \DateInterval('PT17H00M');
+
+        $this->hourAllClosed = Hour::factory()->make();
+        $this->hourAllClosed->title = 'Hours all closed';
+        $this->hourAllClosed->published = true;
+        $this->hourAllClosed->valid_from = Carbon::now()->subWeek()->getTimestamp();
+        $this->hourAllClosed->valid_through = Carbon::now()->addWeek()->getTimestamp();
+        $this->hourAllClosed->monday_is_closed = true;
+        $this->hourAllClosed->tuesday_is_closed = true;
+        $this->hourAllClosed->wednesday_is_closed = true;
+        $this->hourAllClosed->thursday_is_closed = true;
+        $this->hourAllClosed->friday_is_closed = true;
+        $this->hourAllClosed->saturday_is_closed = true;
+        $this->hourAllClosed->sunday_is_closed = true;
     }
 
     /** @test */
@@ -106,6 +120,16 @@ class HourTest extends TestCase
         $this->assertEquals(
             'Closed today. Next open tomorrow.',
             $this->hour->present()->display(false, Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'))
+        );
+
+    }
+
+    /** @test */
+    public function it_displays_when_closed_all_days()
+    {
+        $this->assertEquals(
+            'Closed today.',
+            $this->hourAllClosed->present()->display(false, Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'))
         );
 
     }
