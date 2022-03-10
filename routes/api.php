@@ -74,7 +74,6 @@ Route::group(['prefix' => 'v1'], function () {
      * Hours ------------------------------------------------------
      */
     Route::get('closures', [BuildingClosuresController::class, 'index']);
-    Route::get('closures/deleted', [BuildingClosuresController::class, 'deleted']);
     Route::get('closures/{id}', [BuildingClosuresController::class, 'show']);
 
     /**
@@ -87,7 +86,6 @@ Route::group(['prefix' => 'v1'], function () {
      * Events ------------------------------------------------------
      */
     Route::get('events', [EventsController::class, 'index']);
-    Route::get('events/deleted', [EventsController::class, 'deleted']);
     Route::get('event-occurrences', [EventOccurrencesController::class, 'occurrences']);
     Route::get('events/{id}', [EventsController::class, 'show']);
 
@@ -105,7 +103,6 @@ Route::group(['prefix' => 'v1'], function () {
      * Articles ------------------------------------------------------
      */
     Route::get('articles', [ArticlesController::class, 'index']);
-    Route::get('articles/deleted', [ArticlesController::class, 'deleted']);
     Route::get('articles/{id}', [ArticlesController::class, 'show']);
 
     /**
@@ -132,56 +129,48 @@ Route::group(['prefix' => 'v1'], function () {
      * Generic pages ------------------------------------------------------
      */
     Route::get('genericpages', [GenericPagesController::class, 'index']);
-    Route::get('genericpages/deleted', [GenericPagesController::class, 'deleted']);
     Route::get('genericpages/{id}', [GenericPagesController::class, 'show']);
 
     /**
      * Press releases ------------------------------------------------------
      */
     Route::get('pressreleases', [PressReleasesController::class, 'index']);
-    Route::get('pressreleases/deleted', [PressReleasesController::class, 'deleted']);
     Route::get('pressreleases/{id}', [PressReleasesController::class, 'show']);
 
     /**
      * Research guides ------------------------------------------------------
      */
     Route::get('researchguides', [ResearchGuidesController::class, 'index']);
-    Route::get('researchguides/deleted', [ResearchGuidesController::class, 'deleted']);
     Route::get('researchguides/{id}', [ResearchGuidesController::class, 'show']);
 
     /**
      * Educator resources ------------------------------------------------------
      */
     Route::get('educatorresources', [EducatorResourcesController::class, 'index']);
-    Route::get('educatorresources/deleted', [EducatorResourcesController::class, 'deleted']);
     Route::get('educatorresources/{id}', [EducatorResourcesController::class, 'show']);
 
     /**
      * Digital publications ------------------------------------------------------
      */
     Route::get('digitalpublications', [DigitalPublicationsController::class, 'index']);
-    Route::get('digitalpublications/deleted', [DigitalPublicationsController::class, 'deleted']);
     Route::get('digitalpublications/{id}', [DigitalPublicationsController::class, 'show']);
 
     /**
      * Digital publication sections ------------------------------------------------------
      */
     Route::get('digitalpublicationsections', [DigitalPublicationSectionsController::class, 'index']);
-    Route::get('digitalpublicationsections/deleted', [DigitalPublicationSectionsController::class, 'deleted']);
     Route::get('digitalpublicationsections/{id}', [DigitalPublicationSectionsController::class, 'show']);
 
     /**
      * Printed publications ------------------------------------------------------
      */
     Route::get('printedpublications', [PrintedPublicationsController::class, 'index']);
-    Route::get('printedpublications/deleted', [PrintedPublicationsController::class, 'deleted']);
     Route::get('printedpublications/{id}', [PrintedPublicationsController::class, 'show']);
 
     /**
      * Videos --------------------------------------------------------------------
      */
     Route::get('videos', [VideosController::class, 'index']);
-    Route::get('videos/deleted', [VideosController::class, 'deleted']);
     Route::get('videos/{id}', [VideosController::class, 'show']);
 
     /**
@@ -199,10 +188,8 @@ Route::group(['prefix' => 'v1'], function () {
      * Journal issues and articles --------------------------------------------------------------------
      */
     Route::get('issues', [IssuesController::class, 'index']);
-    Route::get('issues/deleted', [IssuesController::class, 'deleted']);
     Route::get('issues/{id}', [IssuesController::class, 'show']);
 
     Route::get('issue-articles', [IssueArticlesController::class, 'index']);
-    Route::get('issue-articles/deleted', [IssueArticlesController::class, 'deleted']);
     Route::get('issue-articles/{id}', [IssueArticlesController::class, 'show']);
 });
