@@ -64,15 +64,10 @@ class Hour extends AbstractModel
         2 => 'Library',
     ];
 
-    protected $dates = [
+    public $dates = [
         'valid_from',
         'valid_through',
     ];
-
-    /**
-     * Those fields get auto set to null if not submitted
-     */
-    public $nullable = [];
 
     /**
      * Those fields get auto set to false if not submitted
@@ -87,20 +82,6 @@ class Hour extends AbstractModel
         'saturday_is_closed',
         'sunday_is_closed',
     ];
-
-    private $now;
-
-    public function __construct($now = null) {
-        $this->now = $now ?? time();
-    }
-
-    public function setNow($now) {
-        $this->now = $now;
-    }
-
-    public function getNow() {
-        return $this->now;
-    }
 
     public function scopeToday($query, $type = 0)
     {

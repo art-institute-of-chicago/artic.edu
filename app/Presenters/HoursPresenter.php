@@ -33,11 +33,9 @@ class HoursPresenter extends BasePresenter
      * If we decide to do member hours at a different part of the day in relation
      * to public hours this function will need to be refactored.
      */
-    public function display($isMobile = false, $now = null)
+    public function display($isMobile = false)
     {
-        if ($now) {
-            $this->entity->setNow($now);
-        }
+        $now = now();
 
         $dayOfWeek = Str::lower($now->englishDayOfWeek);
 
@@ -104,7 +102,7 @@ class HoursPresenter extends BasePresenter
     }
 
     private function dateTime($field) {
-        $thisnow = clone $this->entity->getNow();
+        $thisnow = now();
         $thisnow->hour = 0;
         $thisnow->minute = 0;
         $thisnow->second = 0;
