@@ -708,7 +708,7 @@
         @unless ($allResultsView)
             @slot('links', array(array('label' => 'See all '. $issueArticles->getMetadata('pagination')->total. ' '. Str::plural('Art Institute Review article', $issueArticles->getMetadata('pagination')->total), 'href' => route('search.issue-articles', ['q' => request('q')]))))
         @endunless
-        issues
+        Art Institute Review
     @endcomponent
 
     @if (isset($allResultsView) && $allResultsView)
