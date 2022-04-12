@@ -8,6 +8,8 @@ class ArtworkRequest extends Request
 {
     public function rules()
     {
-        return [];
+        return [
+            'artwork_website_url' => 'url',
+        ];
     }
 }
