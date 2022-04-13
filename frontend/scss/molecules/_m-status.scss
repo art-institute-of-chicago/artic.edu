@@ -1,0 +1,17 @@
+/***
+
+status
+=================
+
+Sets placement of status text
+
+```
+<span class="m-status f-second-line">Cauleen Smith: Human_3.0 Reading Listz</span>
+```
+
+***/
+
+.m-status.f-second-line {
+  padding-top: 6px;
+  display: block;
+}

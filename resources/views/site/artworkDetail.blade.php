@@ -55,7 +55,12 @@
                 <li><a href="{!! route('galleries.show', [$item->gallery_id . '/' . StringHelpers::getUtf8Slug($item->gallery_title)]) !!}" data-gtm-event="{{ $item->gallery_title }}" data-gtm-event-category="collection-nav">{!! $item->present()->gallery_title !!}</a></li>
             @endif
         </ul>
-    @endif
+        @if ($item->artwork_website_url)
+            <ul class="list list--inline f-secondary">
+                <li><a href="{!! $item->artwork_website_url !!}" data-gtm-event="artwork website" data-gtm-event-category="collection-nav">Visit artwork website</a></li>
+            </ul>
+        @endif
+@endif
   </div>
 
   <div class="o-article__inline-header">
