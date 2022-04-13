@@ -9,7 +9,7 @@ class ArtworkRequest extends Request
     public function rules()
     {
         return [
-            'artwork_website_url' => 'url',
+            'artwork_website_url' => 'nullable|url',
         ];
     }
 }
