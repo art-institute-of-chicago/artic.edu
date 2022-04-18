@@ -53,7 +53,7 @@ class PressReleaseRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null, $page = null, $columns = [])
     {
-        $search = Search::query()->search($string)->resources(['press-releases']);
+        $search = Search::query()->search($string)->notUnlisted()->published()->resources(['press-releases']);
 
         $results = $search->getSearch($perPage, $columns, null, $page);
 

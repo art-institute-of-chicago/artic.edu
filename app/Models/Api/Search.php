@@ -925,6 +925,25 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeNotUnlisted($query)
+    {
+        $params = [
+            'bool' => [
+                'filter' => [
+                    [
+                        'term' => [
+                            'is_unlisted' => [
+                                'value' => false,
+                            ],
+                        ],
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopeExhibitionOrderByDate($query, $direction = 'asc')
     {
         $params = [

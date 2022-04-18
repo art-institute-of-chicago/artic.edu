@@ -16,6 +16,6 @@ class PressReleasesController extends BaseController
      */
     protected function paginate($limit)
     {
-        return ($this->model)::notUnlisted()->orderBy('updated_at', 'desc')->paginate($limit);
+        return ($this->model)::orderBy('updated_at', 'desc')->paginate($limit);
     }
 }

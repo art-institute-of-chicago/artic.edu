@@ -64,7 +64,7 @@ class ArticleRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null)
     {
-        $search = Search::query()->search($string)->published()->resources(['articles']);
+        $search = Search::query()->search($string)->published()->notUnlisted()->resources(['articles']);
 
         $results = $search->getSearch($perPage);
 

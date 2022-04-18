@@ -210,6 +210,14 @@ class PressRelease extends AbstractModel
                 }
             ],
             [
+                'name' => 'is_unlisted',
+                'doc' => 'Whether the press release is unlisted',
+                'type' => 'boolean',
+                'value' => function () {
+                    return $this->is_unlisted;
+                }
+            ],
+            [
                 'name' => 'content',
                 'doc' => 'Content',
                 'type' => 'text',
