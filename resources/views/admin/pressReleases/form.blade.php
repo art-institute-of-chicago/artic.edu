@@ -37,6 +37,12 @@
         'type' => 'textarea',
         'maxlength' => 255
     ])
+
+    @formField('checkbox', [
+        'name' => 'is_unlisted',
+        'label' => 'Don\'t show this press release in listings',
+    ])
+
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed', 'list',

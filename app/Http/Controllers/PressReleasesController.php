@@ -36,7 +36,7 @@ class PressReleasesController extends BaseScopedController
 
     public function index()
     {
-        $items = $this->collection()->current()->paginate();
+        $items = $this->collection()->notUnlisted()->current()->paginate();
 
         $title = 'Press Releases';
 
@@ -57,7 +57,7 @@ class PressReleasesController extends BaseScopedController
 
     public function archive()
     {
-        $items = $this->collection()->archive()->paginate();
+        $items = $this->collection()->notUnlisted()->archive()->paginate();
 
         $title = 'Press Releases Archive';
 
@@ -167,6 +167,10 @@ class PressReleasesController extends BaseScopedController
         $this->seo->setTitle($item->meta_title ?? $item->title);
         $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->listing_description);
         $this->seo->setImage($item->imageFront('listing'));
+        if ($item->is_unlisted) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
 
         $crumbs = [
             ['label' => 'Press', 'href' => route('genericPages.show', 'press')],
