@@ -24,7 +24,7 @@ Route::group(['prefix' => 'homepage'], function () {
 Route::group(['prefix' => 'visit'], function () {
     Route::name('visit.landing')->get('landing', [PageController::class, 'visit']);
     Route::module('hours');
-    Route::module('closures');
+    Route::module('buildingClosures');
     Route::module('questions');
     Route::module('feeAges');
     Route::module('feeCategories');

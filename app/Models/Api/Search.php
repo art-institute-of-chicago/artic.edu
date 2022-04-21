@@ -30,6 +30,7 @@ class Search extends BaseApiModel
         'printed-catalogs' => 'App\Models\PrintedPublication',
         'digital-catalogs' => 'App\Models\DigitalPublication',
         'digital-publication-sections' => 'App\Models\DigitalPublicationSection',
+        'issue-articles' => 'App\Models\IssueArticle',
         'static-pages' => 'App\Models\Page',
         'generic-pages' => 'App\Models\GenericPage',
         'educator-resources' => 'App\Models\EducatorResource',
@@ -916,6 +917,25 @@ class Search extends BaseApiModel
                                 ]
                             ]
                         ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeNotUnlisted($query)
+    {
+        $params = [
+            'bool' => [
+                'filter' => [
+                    [
+                        'term' => [
+                            'is_unlisted' => [
+                                'value' => false,
+                            ],
+                        ],
                     ]
                 ]
             ]

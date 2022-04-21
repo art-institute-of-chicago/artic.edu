@@ -14,10 +14,10 @@ class EventTest extends TestCase
     /** @test */
     public function it_loads_events_by_program()
     {
-        $eventProgram = factory(EventProgram::class)->create();
-        $events = factory(Event::class, 2)->create()->each(function ($event) use ($eventProgram) {
+        $eventProgram = EventProgram::factory()->create();
+        $events = Event::factory()->count(2)->create()->each(function ($event) use ($eventProgram) {
             $event->programs()->attach($eventProgram->id);
-            $event->eventMetas()->save(factory(EventMeta::class)->make(['event_id' => $event->id]));
+            $event->eventMetas()->save(EventMeta::factory()->make(['event_id' => $event->id]));
             $event->save();
         });
 

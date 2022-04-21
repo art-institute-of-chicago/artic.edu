@@ -237,6 +237,14 @@ class Highlight extends AbstractModel
                 }
             ],
             [
+                'name' => 'is_unlisted',
+                'doc' => 'Whether the highlight is unlisted',
+                'type' => 'boolean',
+                'value' => function () {
+                    return $this->is_unlisted;
+                }
+            ],
+            [
                 'name' => 'updated_at',
                 'doc' => 'Updated',
                 'type' => 'date',

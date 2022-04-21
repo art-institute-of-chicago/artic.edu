@@ -23,14 +23,10 @@ class FrontendHelpers
     public static function revAsset($file)
     {
         if (config('aic.use_compiled_revassets')) {
-            try {
-                $manifest = json_decode(file_get_contents(config('twill.frontend.rev_manifest_path')), true);
+            $manifest = json_decode(file_get_contents(config('twill.frontend.rev_manifest_path')), true);
 
-                if (isset($manifest[$file])) {
-                    return (rtrim(config('twill.frontend.dist_assets_path'), '/') . '/') . $manifest[$file];
-                }
-            } catch (\Exception $e) {
-                return '/' . $file;
+            if (isset($manifest[$file])) {
+                return (rtrim(config('twill.frontend.dist_assets_path'), '/') . '/') . $manifest[$file];
             }
         }
 
@@ -43,16 +39,11 @@ class FrontendHelpers
      */
     public static function embedAsset($file)
     {
-
         if (config('aic.use_compiled_revassets')) {
-            try {
-                $manifest = json_decode(file_get_contents(config('twill.frontend.rev_manifest_path')), true);
+            $manifest = json_decode(file_get_contents(config('twill.frontend.rev_manifest_path')), true);
 
-                if (isset($manifest[$file])) {
-                    return file_get_contents(FrontendHelpers::dist_path($manifest[$file]));
-                }
-            } catch (\Exception $e) {
-                return '/' . $file;
+            if (isset($manifest[$file])) {
+                return file_get_contents(FrontendHelpers::dist_path($manifest[$file]));
             }
         }
 

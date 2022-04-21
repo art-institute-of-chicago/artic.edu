@@ -11,9 +11,11 @@ class UpdateMemberVisitHours extends Migration
      */
     public function up()
     {
-        $visitPage = \App\Models\Page::where('type', 3)->first();
-        $visitPage->visit_hour_subheader = '<p>Monday 10&ndash;11 a.m.<br/>Thursday&ndash;Sunday 10-11 a.m.</p>';
-        $visitPage->save();
+        if (env('APP_ENV') != 'testing') {
+            $visitPage = \App\Models\Page::where('type', 3)->first();
+            $visitPage->visit_hour_subheader = '<p>Monday 10&ndash;11 a.m.<br/>Thursday&ndash;Sunday 10-11 a.m.</p>';
+            $visitPage->save();
+        }
     }
 
     /**
@@ -23,8 +25,10 @@ class UpdateMemberVisitHours extends Migration
      */
     public function down()
     {
-        $visitPage = \App\Models\Page::where('type', 3)->first();
-        $visitPage->visit_hour_subheader = '<p>Monday 10&ndash;11 a.m.<br/>Thursday&ndash;Friday 12-1 p.m.<br/>Saturday&ndash;Sunday 10&ndash;11 a.m.</p>';
-        $visitPage->save();
+        if (env('APP_ENV') != 'testing') {
+            $visitPage = \App\Models\Page::where('type', 3)->first();
+            $visitPage->visit_hour_subheader = '<p>Monday 10&ndash;11 a.m.<br/>Thursday&ndash;Friday 12-1 p.m.<br/>Saturday&ndash;Sunday 10&ndash;11 a.m.</p>';
+            $visitPage->save();
+        }
     }
 }

@@ -12,9 +12,11 @@ class RenameEmailSeriesTitles extends Migration
      */
     public function up()
     {
-        $series = EmailSeries::where('title', 'Sustaining Fellow Tickets on Sale/Registration Open/RSVP')->first();
-        $series->title = 'Luminary Tickets on Sale/Registration Open/RSVP';
-        $series->save();
+        if (env('APP_ENV') != 'testing') {
+            $series = EmailSeries::where('title', 'Sustaining Fellow Tickets on Sale/Registration Open/RSVP')->first();
+            $series->title = 'Luminary Tickets on Sale/Registration Open/RSVP';
+            $series->save();
+        }
     }
 
     /**
@@ -24,8 +26,10 @@ class RenameEmailSeriesTitles extends Migration
      */
     public function down()
     {
-        $series = EmailSeries::where('title', 'Luminary Tickets on Sale/Registration Open/RSVP')->first();
-        $series->title = 'Sustaining Fellow Tickets on Sale/Registration Open/RSVP';
-        $series->save();
+        if (env('APP_ENV') != 'testing') {
+            $series = EmailSeries::where('title', 'Luminary Tickets on Sale/Registration Open/RSVP')->first();
+            $series->title = 'Sustaining Fellow Tickets on Sale/Registration Open/RSVP';
+            $series->save();
+        }
     }
 }

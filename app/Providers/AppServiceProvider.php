@@ -111,7 +111,7 @@ class AppServiceProvider extends ServiceProvider
                 public function getClosure()
                 {
                     if (!$this->checkedForClosure) {
-                        $this->cachedClosure = \App\Models\Closure::today()->first();
+                        $this->cachedClosure = \App\Models\BuildingClosure::today()->first();
                         $this->checkedForClosure = true;
                     }
 

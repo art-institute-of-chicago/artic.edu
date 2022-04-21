@@ -204,11 +204,12 @@ class CollectionService
     protected function buildListFilter($aggregations, $name)
     {
         if ($aggregations) {
-            if (isset($aggregations->$name)) {
-                $data = $aggregations->$name;
+            if (isset($aggregations->{$name})) {
+                $data = $aggregations->{$name};
                 $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst(Str::camel($name));
                 if (class_exists($filterClass)) {
                     $filter = new $filterClass($data->buckets, $name);
+
                     return $filter->generate();
                 }
             }

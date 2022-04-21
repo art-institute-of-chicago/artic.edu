@@ -66,7 +66,7 @@ class DateHelpers
     {
         $hours = [];
 
-        for ($i = $startAt; $i < $endAt; ++$i) {
+        for ($i = $startAt; $i < $endAt; $i++) {
             $hour = ($i % 12 ?? 12);
             $ampm = ($i >= 12 ? 'pm' : 'am');
             $mins = $shortlist ? ['00', '30'] : ['00', '15', '30', '45'];

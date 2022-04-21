@@ -428,7 +428,7 @@ class RyersonClassVisitController extends FormController
             ],
         ];
 
-        for ($i = 1; $i <= 3; ++$i) {
+        for ($i = 1; $i <= 3; $i++) {
             $visitInformationFields[] = [
                 'variation' => null,
                 'blocks' => [

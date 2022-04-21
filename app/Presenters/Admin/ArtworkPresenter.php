@@ -76,10 +76,14 @@ class ArtworkPresenter extends BasePresenter
             $status[] = '<a href="' . route('galleries.show', [$this->entity->gallery_id . '/' . StringHelpers::getUtf8Slug($this->entity->gallery_title)]) . '" data-gtm-event="' . $this->entity->gallery_title . '" data-gtm-event-category="collection-nav">' . $this->entity->gallery_title . '</a>';
         }
 
+        $status = implode(', ', $status);
+        if ($this->entity->artwork_website_url) {
+            $status .= '<div class="m-status f-second-line"><a href="' . $this->entity->artwork_website_url . '" data-gtm-event="artwork website" data-gtm-event-category="collection-nav">Visit artwork website</a></div>';
+        }
         $items = [
             [
                 'key' => 'Status',
-                'value' => implode(', ', $status),
+                'value' => $status,
             ],
         ];
 

@@ -121,7 +121,15 @@ We've developed detailed descriptions of a few key aspects of our website codeba
 * [API models](docs/apiModels.md): How we've developed Eloquent-style model classes that are backed by our API
 * [Images](docs/images.md): How to use images in the various types of models in our codebase
 
+## Testing
 
+The website unit tests are configured to run with its own PostgreSQL database out of the box,
+see [.env.testing](.env.testing). You'll need to create a database `testing` in your local
+DB environment and run the following before you run any tests:
+
+```
+php artisan migrate:fresh --env=testing
+```
 
 ## Contributing
 

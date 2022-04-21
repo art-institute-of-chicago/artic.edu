@@ -10,4 +10,10 @@ class HourRepository extends ModuleRepository
     {
         $this->model = $model;
     }
+
+    protected $repeaters = [
+        'building_closures' => [
+            'relation' => 'buildingClosures'
+        ],
+    ];
 }

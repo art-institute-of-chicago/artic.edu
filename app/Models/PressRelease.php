@@ -8,12 +8,13 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasUnlisted;
 use Carbon\Carbon;
 use DB;
 
 class PressRelease extends AbstractModel
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable, HasUnlisted;
 
     protected $fillable = [
         'short_description',
@@ -28,13 +29,14 @@ class PressRelease extends AbstractModel
         'migrated_at',
         'meta_title',
         'meta_description',
+        'is_unlisted',
     ];
 
     public $slugAttributes = [
         'title',
     ];
 
-    public $checkboxes = ['published', 'active', 'public'];
+    public $checkboxes = ['published', 'active', 'public', 'is_unlisted'];
 
     public $dates = ['publish_start_date', 'publish_end_date', 'migrated_at'];
 
@@ -205,6 +207,14 @@ class PressRelease extends AbstractModel
                 'type' => 'datetime',
                 'value' => function () {
                     return $this->publish_end_date;
+                }
+            ],
+            [
+                'name' => 'is_unlisted',
+                'doc' => 'Whether the press release is unlisted',
+                'type' => 'boolean',
+                'value' => function () {
+                    return $this->is_unlisted;
                 }
             ],
             [

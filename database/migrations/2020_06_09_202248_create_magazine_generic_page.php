@@ -18,8 +18,10 @@ class CreateMagazineGenericPage extends Migration
         $page->redirect_url = '/magazine';
         $page->published = true;
 
-        $parent = GenericPage::where('title', 'Membership')->first();
-        $page->parent_id = $parent->id;
+        if (env('APP_ENV') != 'testing') {
+            $parent = GenericPage::where('title', 'Membership')->first();
+            $page->parent_id = $parent->id;
+        }
 
         $page->save();
     }

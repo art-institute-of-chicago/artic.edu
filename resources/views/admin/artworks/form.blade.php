@@ -91,6 +91,14 @@
             ]
         ])
     </a17-fieldset>
+
+    <a17-fieldset id="website" title="Artwork website">
+        <p>When the work of art is itself a website, enter its information here.</p>
+        @formField('input', [
+            'name' => 'artwork_website_url',
+            'label' => 'Artwork website URL',
+        ])
+    </a17-fieldset>
 @stop
 
 @push('vuexStore')

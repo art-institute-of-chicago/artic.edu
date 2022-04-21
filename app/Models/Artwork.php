@@ -22,6 +22,7 @@ class Artwork extends AbstractModel
         'meta_description',
         'default_manifest_url',
         'default_view',
+        'artwork_website_url',
     ];
 
     public $mediasParams = [

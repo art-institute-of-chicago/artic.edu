@@ -61,7 +61,7 @@ class HighlightRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null)
     {
-        $search = Search::query()->search($string)->published()->resources(['highlights']);
+        $search = Search::query()->search($string)->published()->notUnlisted()->resources(['highlights']);
 
         $results = $search->getSearch($perPage);
 

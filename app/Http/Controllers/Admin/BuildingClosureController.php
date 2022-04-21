@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
-use App\Models\Closure;
+use App\Models\BuildingClosure;
 
-class ClosureController extends ModuleController
+class BuildingClosureController extends ModuleController
 {
-    protected $moduleName = 'closures';
+    protected $moduleName = 'buildingClosures';
 
     protected $titleColumnKey = 'presentType';
     protected $titleFormKey = 'cmsFormTitle';
@@ -55,14 +55,14 @@ class ClosureController extends ModuleController
     protected function indexData($request)
     {
         return [
-            'typesList' => collect(Closure::$types),
+            'typesList' => collect(BuildingClosure::$types),
         ];
     }
 
     protected function formData($request)
     {
         return [
-            'typesList' => collect(Closure::$types),
+            'typesList' => collect(BuildingClosure::$types),
             'editableTitle' => false,
         ];
     }

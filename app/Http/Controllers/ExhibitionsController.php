@@ -101,7 +101,7 @@ class ExhibitionsController extends FrontController
         $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE, request('page'));
         $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
 
-        $view['html'] = view('statics.exhibitions_load_more', [
+        $view['html'] = view('site.exhibitions_load_more', [
             'items' => $relatedEventsByDay,
         ])->render();
 

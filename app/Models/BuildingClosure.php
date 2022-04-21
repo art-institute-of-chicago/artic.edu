@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
-class Closure extends AbstractModel
+class BuildingClosure extends AbstractModel
 {
     use Transformable;
 
-    protected $presenter = 'App\Presenters\ClosurePresenter';
-    protected $presenterAdmin = 'App\Presenters\ClosurePresenter';
+    protected $presenter = 'App\Presenters\BuildingClosurePresenter';
+    protected $presenterAdmin = 'App\Presenters\BuildingClosurePresenter';
 
     protected $fillable = [
         'published',
@@ -17,6 +17,7 @@ class Closure extends AbstractModel
         'date_end',
         'closure_copy',
         'type',
+        'hour_id'
     ];
 
     public static $types = [

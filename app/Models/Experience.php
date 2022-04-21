@@ -311,6 +311,14 @@ class Experience extends AbstractModel implements Sortable
                     return $this->published;
                 },
             ],
+            [
+                'name' => 'is_unlisted',
+                'doc' => 'Whether the press release is unlisted',
+                'type' => 'boolean',
+                'value' => function () {
+                    return $this->is_unlisted;
+                }
+            ],
         ];
     }
 }

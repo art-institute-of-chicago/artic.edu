@@ -7,19 +7,6 @@ use Aic\Hub\Foundation\AbstractController;
 
 class BaseController extends AbstractController
 {
-
-    /**
-     * Display a listing of the deleted resources.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function deleted(Request $request)
-    {
-        return $this->collect($request, function ($limit) {
-            return $this->paginateTrashed($limit);
-        });
-    }
-
     /**
      * Call to get a model list. Override this method when logic to get
      * models is more complex than a simple `$model::paginate($limit)` call.

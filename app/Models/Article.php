@@ -261,6 +261,14 @@ class Article extends AbstractModel implements Feedable
                 }
             ],
             [
+                'name' => 'is_unlisted',
+                'doc' => 'Whether the article is unlisted',
+                'type' => 'boolean',
+                'value' => function () {
+                    return $this->is_unlisted;
+                }
+            ],
+            [
                 'name' => 'date',
                 'doc' => 'Date',
                 'type' => 'date',

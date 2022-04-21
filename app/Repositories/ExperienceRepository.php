@@ -54,7 +54,7 @@ class ExperienceRepository extends ModuleRepository
 
     public function search($search)
     {
-        return Experience::where('title', 'ILIKE', "%{$search}%")->published();
+        return Experience::where('title', 'ILIKE', "%{$search}%")->published()->notUnlisted();
     }
 
     public function order($query, array $orders = [])

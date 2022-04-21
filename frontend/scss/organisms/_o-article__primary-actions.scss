@@ -62,6 +62,10 @@
   @include tucked-margin-top($f-secondary, ('xsmall': 52));
 }
 
+.o-article__primary-actions > *.f-secondary:nth-child(3) {
+  @include tucked-margin-top($f-secondary, ('xsmall': 39));
+}
+
 .o-article__primary-actions > .m-article-actions:nth-child(1) {
   @include breakpoint('large+') {
     margin-top: 8px;

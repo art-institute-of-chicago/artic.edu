@@ -31,7 +31,7 @@
     @endcomponent
 @endif
 
-@if (empty($featuredResults) && empty($artists) && empty($researchGuides) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles) && empty($interactiveFeatures) && empty($highlights))
+@if (empty($featuredResults) && empty($artists) && empty($researchGuides) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles) && empty($interactiveFeatures) && empty($highlights) && empty($issueArticles))
     @component('components.molecules._m-no-results')
     @endcomponent
 @endif
@@ -703,6 +703,84 @@
     @endif
 @endif
 
+@if (isset($issueArticles) && $issueArticles->getMetadata('pagination')->total > 0)
+    @component('components.molecules._m-title-bar')
+        @unless ($allResultsView)
+            @slot('links', array(array('label' => 'See all '. $issueArticles->getMetadata('pagination')->total. ' '. Str::plural('Art Institute Review article', $issueArticles->getMetadata('pagination')->total), 'href' => route('search.issue-articles', ['q' => request('q')]))))
+        @endunless
+        Art Institute Review
+    @endcomponent
+
+    @if (isset($allResultsView) && $allResultsView)
+
+        @component('components.organisms._o-grid-listing')
+          @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+          @slot('cols_small','2')
+          @slot('cols_medium','3')
+          @slot('cols_large','4')
+          @slot('cols_xlarge','4')
+          @foreach ($issueArticles as $item)
+              @component('components.molecules._m-listing----generic')
+                  @slot('imgVariation','')
+                  @slot('item', $item)
+                  @slot('hideDate', true)
+                  @slot('image', $item->imageFront('listing', 'default'))
+                  @slot('imageSettings', array(
+                      'fit' => 'crop',
+                      'ratio' => '16:9',
+                      'srcset' => array(200,400,600),
+                      'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
+                            'xsmall' => '1',
+                            'small' => '2',
+                            'medium' => '3',
+                            'large' => '4',
+                            'xlarge' => '4',
+                      )),
+                  ))
+              @endcomponent
+          @endforeach
+        @endcomponent
+
+    @else
+
+        @component('components.atoms._hr')
+        @endcomponent
+
+        @component('components.organisms._o-grid-listing')
+            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+            @slot('cols_medium','3')
+            @slot('cols_large','4')
+            @slot('cols_xlarge','4')
+
+            @foreach ($issueArticles as $item)
+                @component('components.molecules._m-listing----generic')
+                    @slot('imgVariation','')
+                    @slot('item', $item)
+                    @slot('hideDate', true)
+                    @slot('image', $item->imageFront('listing', 'default'))
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600),
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                              'xsmall' => '216px',
+                              'small' => '216px',
+                              'medium' => '18',
+                              'large' => '13',
+                              'xlarge' => '13',
+                        )),
+                    ))
+                @endcomponent
+            @endforeach
+        @endcomponent
+
+    @endif
+
+    @if (isset($allResultsView) && $allResultsView)
+        {{-- Pagination --}}
+        {!! $issueArticles->appends(request()->except('page'))->render() !!}
+    @endif
+@endif
 
 {{-- WEB-448: This includes both Research Guides and Educator Resources. --}}
 @if (isset($researchGuides) && $researchGuides->getMetadata('pagination')->total > 0)
