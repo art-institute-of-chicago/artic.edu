@@ -64,7 +64,10 @@
 
   &.s-serif-loaded .o-blocks>p:not([class*=f-]),
   &.s-serif-loaded .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
-  &.s-serif-loaded .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+  &.s-serif-loaded .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  &.s-serif-loaded .o-blocks>p:not([class*=f-]) em,
+  &.s-serif-loaded .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) em,
+  &.s-serif-loaded .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) em {
     font-family: $serif-font--loaded;
   }
 
