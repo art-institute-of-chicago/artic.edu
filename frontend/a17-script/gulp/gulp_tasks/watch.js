@@ -13,7 +13,6 @@ module.exports = function(gulp, data, util, taskName){
   gulp.task('watch', function() {
     gulp.watch([path.source + path.styles +'**/*'], ['styles']);
     gulp.watch([path.source + path.scripts +'**/*'], ['scripts']);
-    gulp.watch([path.source + 'fonts/**/*'], ['fonts']);
     gulp.watch([path.source + path.icons +'**/*'], ['icons']);
     gulp.watch([path.source + 'images/**/*'], ['images']);
     gulp.watch([path.source + 'manifest.json'], ['build']);

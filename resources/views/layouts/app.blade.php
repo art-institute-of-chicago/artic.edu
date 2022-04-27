@@ -50,13 +50,13 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   @endif
   <link rel="preconnect" href="https://artic-web.imgix.net" />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff2')}}" as="font" type="font/woff2" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}" as="font" type="font/woff2" crossorigin="anonymous" />
-  <link rel="preload" href="{{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="https://www.artic.edu/fonts/sabon/3545D5_0_0.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="https://www.artic.edu/fonts/sabon/3545D5_1_0.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="https://www.artic.edu/fonts/sabon/3545D5_2_0.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <style media="print" onload="this.media='all'">
-  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff2')}}) format('woff2');font-weight:normal;font-weight:400;font-style:normal;}
-  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}) format('woff2');font-weight:normal;font-weight:400;font-style:italic;}
-  @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}) format('woff2');font-weight:normal;font-weight:500;font-style:normal;}
+  @font-face {font-family: 'Sabon';src: url(https://www.artic.edu/fonts/sabon/3545D5_0_0.woff2) format('woff2');font-weight:normal;font-weight:400;font-style:normal;}
+  @font-face {font-family: 'Sabon';src: url(https://www.artic.edu/fonts/sabon/3545D5_1_0.woff2) format('woff2');font-weight:normal;font-weight:400;font-style:italic;}
+  @font-face {font-family: 'Sabon';src: url(https://www.artic.edu/fonts/sabon/3545D5_2_0.woff2) format('woff2');font-weight:normal;font-weight:500;font-style:normal;}
   </style>
   <link rel="stylesheet" href="https://vjs.zencdn.net/7.1.0/video-js.css" />
   <meta name="msvalidate.01" content="1E22F0BBEF5CF0D71FF4C150D094A1CA" />

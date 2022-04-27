@@ -10,7 +10,6 @@ build:
 buildComponents:
   - 'images'
   - 'icons'
-  - 'fonts'
   - 'styles'
   - 'scripts'
   - 'rev'
