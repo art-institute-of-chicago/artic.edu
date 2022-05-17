@@ -30,6 +30,11 @@
   .o-hours__text {
     > * {
       vertical-align: top;
+      margin-right: 8px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
     }
   }
 }
