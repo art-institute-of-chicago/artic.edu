@@ -1,0 +1,35 @@
+.o-hours {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+
+  margin-top: 12px;
+
+  @include breakpoint('small+') {
+    margin-top: colspan(2, small);
+  }
+
+  @include breakpoint('medium') {
+    margin-top: colspan(2, medium);
+  }
+
+  @include breakpoint('large') {
+    margin-top: colspan(2, large);
+  }
+
+  @include breakpoint('xlarge') {
+    margin-top: colspan(2, xlarge);
+  }
+
+  .o-hours__clock {
+    color: $color__black--80;
+    margin-right: 8px;
+    margin-top: -2px;
+  }
+
+  .o-hours__text {
+    > * {
+      vertical-align: top;
+    }
+  }
+}

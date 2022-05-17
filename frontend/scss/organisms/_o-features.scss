@@ -5,17 +5,17 @@
   flex-flow: row wrap;
   margin-top: 0;
 
-  @include breakpoint('small+') {
+  @include breakpoint('small') {
     margin-right: colspan(2, small, 0, true);
     margin-left: colspan(2, small, 0, true);
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint('medium') {
     margin-right: colspan(2, medium, 0, true);
     margin-left: colspan(2, medium, 0, true);
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint('large') {
     margin-right: colspan(2, large, 0, true);
     margin-left: colspan(2, large, 0, true);
   }

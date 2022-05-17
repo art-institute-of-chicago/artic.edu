@@ -13,6 +13,9 @@
     </div>
 @endif
 
+@component('components.organisms._o-hours')
+@endcomponent
+
 @if ($mainFeatures->count() > 1)
     <div class="o-features">
         @foreach ($mainFeatures->slice(1) as $key => $item)
