@@ -22,7 +22,7 @@
   }
 
   .o-hours__clock {
-    color: $color__black--80;
+    color: $color__text--title;
     margin-right: 8px;
     margin-top: -2px;
   }
@@ -35,6 +35,14 @@
       &:last-child {
         margin-right: 0px;
       }
+    }
+
+    .o-hours__text__status {
+      color: $color__text--title;
+    }
+
+    .o-hours__text__hours {
+      //
     }
   }
 }

@@ -5,8 +5,8 @@
         </svg>
     </div>
     <div class="o-hours__text">
-        <span>Open</span>
-        <span>10–11 members | 11–5 public</span>
+        <span class="o-hours__text__status">Open</span>
+        <span class="o-hours__text__hours">10–11 members | 11–5 public</span>
         @component('components.atoms._dropdown')
             @slot('variation', 'dropdown--filter')
             @slot('prompt', 'See all hours')
