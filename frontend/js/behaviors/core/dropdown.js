@@ -27,8 +27,12 @@ const dropdown = function(container) {
       event.stopPropagation();
     }
 
-    let trigger = event.target.classList.contains('dropdown__trigger') ? event.target : event.target.parentNode;
-    let button = trigger.firstElementChild;
+    let trigger = event.target.classList.contains('dropdown__trigger') ? event.target : (
+      event.target.querySelector('.dropdown__trigger') || event.target.parentNode
+    );
+
+    let button = trigger.querySelector('button');
+
     button.setAttribute('aria-expanded', 'true');
 
     triggerCustomEvent(document, 'dropdown:close');
@@ -69,8 +73,12 @@ const dropdown = function(container) {
       }
     }
 
-    let trigger = event.target.classList.contains('dropdown__trigger') ? event.target : event.target.parentNode;
-    let button = trigger.firstElementChild;
+    let trigger = event.target.classList.contains('dropdown__trigger') ? event.target : (
+      event.target.querySelector('.dropdown__trigger') || event.target.parentNode
+    );
+
+    let button = trigger.querySelector('button');
+
     button.setAttribute('aria-expanded', 'false');
 
     container.classList.remove('s-active');
