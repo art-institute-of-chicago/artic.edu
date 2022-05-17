@@ -2,7 +2,7 @@
 
 @section('content')
 
-@component('components.organisms._o-features')
+<ul class="o-features">
     @php ($countMain = 0)
     @foreach ($mainFeatures as $key => $item)
         @php ($countMain = $countMain + 1)
@@ -32,7 +32,7 @@
             @endcomponent
         @endif
     @endforeach
-@endcomponent
+</ul>
 
 @component('components.molecules._m-intro-block')
     @slot('links', array(
