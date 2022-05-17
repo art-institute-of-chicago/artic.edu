@@ -2,37 +2,29 @@
 
 @section('content')
 
-<ul class="o-features">
-    @php ($countMain = 0)
-    @foreach ($mainFeatures as $key => $item)
-        @php ($countMain = $countMain + 1)
-        @if ($item->enclosedItem())
-            @component('components.molecules._m-listing----' . strtolower($item->enclosedItem()->type))
-                @slot('item', $item->enclosedItem())
-                @slot('image', $item->enclosedItem()->featureImage)
-                @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
-                @slot('titleFont', ($loop->first) ? 'f-display-1' : 'f-list-4')
-                @slot('imageSettings', array(
-                    'srcset' => array(300,600,1000,1500,3000),
-                    'sizes' => '100vw',
-                ))
-                @slot('gtmAttributes', 'data-gtm-event="'.StringHelpers::getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
-            @endcomponent
-        @elseif ($item->url)
-            @component('components.molecules._m-listing----custom')
+@if ($mainFeatures->count() > 0)
+    <div class="o-features">
+        @component('components.organisms._o-feature')
+            @slot('tag', 'div')
+            @slot('item', $mainFeatures->first())
+            @slot('isHero', true)
+            @slot('gtmCount', 1)
+        @endcomponent
+    </div>
+@endif
+
+@if ($mainFeatures->count() > 1)
+    <div class="o-features">
+        @foreach ($mainFeatures->slice(1) as $key => $item)
+            @component('components.organisms._o-feature')
+                @slot('tag', 'div')
                 @slot('item', $item)
-                @slot('image', $item->featureImage)
-                @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
-                @slot('titleFont', ($loop->first) ? 'f-display-1' : 'f-list-4')
-                @slot('imageSettings', array(
-                    'srcset' => array(300,600,1000,1500,3000),
-                    'sizes' => '100vw',
-                ))
-                @slot('gtmAttributes', 'data-gtm-event="'.(UrlHelpers::lastUrlSegment($item->url) ?? 'unknown title').'" data-gtm-event-category="nav-hero-' . $countMain . '"')
+                @slot('isHero', false)
+                @slot('gtmCount', $key + 1)
             @endcomponent
-        @endif
-    @endforeach
-</ul>
+        @endforeach
+    </div>
+@endif
 
 @component('components.molecules._m-intro-block')
     @slot('links', array(
