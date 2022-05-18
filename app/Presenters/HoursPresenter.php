@@ -28,85 +28,123 @@ class HoursPresenter extends BasePresenter
         return Hour::$types[$this->entity->type];
     }
 
-    /**
-     * We assume that member hours are before public hours. E.g., 10–11 members | 11–5 public
-     * If we decide to do member hours at a different part of the day in relation
-     * to public hours this function will need to be refactored.
-     */
-    public function display($isMobile = false)
+    public function getStatusHeader($when = null, $isMobile = false)
     {
-        $now = now();
+        $when = $when ?? now();
 
-        $dayOfWeek = Str::lower($now->englishDayOfWeek);
+        [
+            $fieldIsClosed,
+            $fieldMemberOpen,
+            $fieldMemberClose,
+            $fieldPublicOpen,
+            $fieldPublicClose,
+        ] = $this->getFieldsFromWhen($when);
 
         // Museum is closed today
-        $fieldIsClosed = $dayOfWeek . '_is_closed';
-        $fieldMemberOpen = $dayOfWeek . '_member_open';
-        $fieldMemberClose = $dayOfWeek . '_member_close';
-        $fieldPublicOpen = $dayOfWeek . '_public_open';
-        $fieldPublicClose = $dayOfWeek . '_public_close';
-
         if ($this->entity->{$fieldIsClosed}) {
-            $nextOpen = $now->addDay();
-            $fieldNextDayClosed = Str::lower($nextOpen->englishDayOfWeek) . '_is_closed';
-            $tries = 1;
-            while ($this->entity->{$fieldNextDayClosed} && $tries <= 7) {
-                $nextOpen = $now->addDay();
-                $fieldNextDayClosed = Str::lower($nextOpen->englishDayOfWeek) . '_is_closed';
-                $tries++;
-            }
-
-            return 'Closed today.' . ($tries <= 7 ? (' Next open ' . ($tries == 1 ? 'tomorrow' : $nextOpen->englishDayOfWeek) . '.') : '');
-        }
-
-        // Before open member hours
-        if ($now->lessThan($this->dateTime($fieldMemberClose))) {
-            return ($isMobile ? 'Today ' : 'Open today ')
-            . $this->hours($fieldMemberOpen) . '&ndash;' . $this->hours($fieldMemberClose) . ' members | '
-            . $this->hours($fieldPublicOpen) . '&ndash;' . $this->hours($fieldPublicClose) . ' public';
+            return 'Closed today.' . $this->getNextOpen($when);
         }
 
         // After public hours
-        if ($now->greaterThanOrEqualTo($this->dateTime($fieldPublicClose))) {
-            $nextOpen = $now->addDay();
-            $fieldNextDayClosed = Str::lower($nextOpen->englishDayOfWeek) . '_is_closed';
-            $tries = 1;
-            while ($this->entity->{$fieldNextDayClosed} && $tries <= 7) {
-                $nextOpen = $now->addDay();
-                $fieldNextDayClosed = Str::lower($nextOpen->englishDayOfWeek) . '_is_closed';
-                $tries++;
-            }
-
-            return 'Closed now.' . ($tries <= 7 ? (' Next open ' . ($tries == 1 ? 'tomorrow' : $nextOpen->englishDayOfWeek) . '.') : '');
+        if ($when->greaterThanOrEqualTo($this->getDateTime($fieldPublicClose, $when))) {
+            return 'Closed now.' . $this->getNextOpen($when);
         }
 
-        // Any other time
-        return 'Open today until ' . $this->hours($fieldPublicClose);
+        // Before public hours
+        if ($when->lessThan($this->getDateTime($fieldPublicOpen, $when))) {
+            return $isMobile ? 'Today' : 'Open today';
+        }
+
+        // During public hours
+        return 'Open today until ' . $this->getHours($fieldPublicClose, $when);
     }
 
-    private function hours($field = null)
+    public function getHoursHeader($when = null)
+    {
+        $when = $when ?? now();
+
+        [
+            $fieldIsClosed,
+            $fieldMemberOpen,
+            $fieldMemberClose,
+            $fieldPublicOpen,
+            $fieldPublicClose,
+        ] = $this->getFieldsFromWhen($when);
+
+        // Museum is closed today
+        if ($this->entity->{$fieldIsClosed}) {
+            return;
+        }
+
+        // After public hours open
+        if ($when->greaterThanOrEqualTo($this->getDateTime($fieldPublicOpen, $when))) {
+            return;
+        }
+
+        return sprintf(
+            '%d—%d members | %d—%d public',
+            $this->getHours($fieldMemberOpen, $when),
+            $this->getHours($fieldMemberClose, $when),
+            $this->getHours($fieldPublicOpen, $when),
+            $this->getHours($fieldPublicClose, $when)
+        );
+    }
+
+    private function getFieldsFromWhen($when)
+    {
+        $dayOfWeek = Str::lower($when->englishDayOfWeek);
+
+        return [
+            $dayOfWeek . '_is_closed',
+            $dayOfWeek . '_member_open',
+            $dayOfWeek . '_member_close',
+            $dayOfWeek . '_public_open',
+            $dayOfWeek . '_public_close',
+        ];
+    }
+
+    private function getNextOpen($when)
+    {
+        $nextOpen = clone $when;
+        $tries = 0;
+
+        do {
+            $nextOpen = $nextOpen->addDay();
+            $fieldNextDayClosed = Str::lower($nextOpen->englishDayOfWeek) . '_is_closed';
+            $tries++;
+        } while ($this->entity->{$fieldNextDayClosed} && $tries < 7);
+
+        if ($tries > 6 && $this->entity->{$fieldNextDayClosed}) {
+            return '';
+        }
+
+        return ' Next open ' . (
+            $tries == 1 ? 'tomorrow' : $nextOpen->englishDayOfWeek
+        ) . '.';
+    }
+
+    private function getHours($field)
     {
         $hours = $this->entity->{$field}->format('%h');
 
-        if (!$hours)
-        {
+        if (!$hours) {
             return null;
         }
 
-        if (intval($hours) > 12)
-        {
+        if (intval($hours) > 12) {
             return intval($hours) - 12;
         }
 
         return intval($hours);
     }
 
-    private function dateTime($field) {
-        $thisnow = now();
-        $thisnow->hour = 0;
-        $thisnow->minute = 0;
-        $thisnow->second = 0;
+    private function getDateTime($field, $when)
+    {
+        $whenClean = clone $when;
+        $whenClean->hour = 0;
+        $whenClean->minute = 0;
+        $whenClean->second = 0;
 
-        return CarbonInterval::instance($this->entity->{$field})->convertDate($thisnow);
+        return CarbonInterval::instance($this->entity->{$field})->convertDate($whenClean);
     }
 }

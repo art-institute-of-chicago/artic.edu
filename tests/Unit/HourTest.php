@@ -66,81 +66,93 @@ class HourTest extends TestCase
         ]);
     }
 
+    private function getStatusHeader($hour = null, $isMobile = false)
+    {
+        return ($hour ?? $this->hour)->present()->getStatusHeader(null, $isMobile);
+    }
+
+    private function getHoursHeader($hour = null)
+    {
+        return ($hour ?? $this->hour)->present()->getHoursHeader();
+    }
+
     /** @test */
     public function it_displays_before_member_open_hour()
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
-        $this->assertEquals(
-            'Open today 10&ndash;11 members | 11&ndash;5 public',
-            $this->hour->present()->display()
-        );
-
+        $this->assertEquals('Open today', $this->getStatusHeader());
+        $this->assertEquals('10—11 members | 11—5 public', $this->getHoursHeader());
     }
 
     /** @test */
     public function it_displays_before_member_open_hour_on_mobile()
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
-        $this->assertEquals(
-            'Today 10&ndash;11 members | 11&ndash;5 public',
-            $this->hour->present()->display(true)
-        );
-
+        $this->assertEquals('Today', $this->getStatusHeader(null, true));
+        $this->assertEquals('10—11 members | 11—5 public', $this->getHoursHeader());
     }
 
     /** @test */
-    public function it_displays_during_open_hours()
+    public function it_displays_during_member_open_hour()
+    {
+        $this->travelTo(Carbon::create(2022, 2, 28, 10, 30, 0, 'America/Chicago'));
+        $this->assertEquals('Open today', $this->getStatusHeader());
+        $this->assertEquals('10—11 members | 11—5 public', $this->getHoursHeader());
+    }
+
+    /** @test */
+    public function it_displays_during_member_open_hour_on_mobile()
+    {
+        $this->travelTo(Carbon::create(2022, 2, 28, 10, 30, 0, 'America/Chicago'));
+        $this->assertEquals('Today', $this->getStatusHeader(null, true));
+        $this->assertEquals('10—11 members | 11—5 public', $this->getHoursHeader());
+    }
+
+    /** @test */
+    public function it_displays_during_public_open_hours()
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 12, 0, 0, 'America/Chicago'));
-        $this->assertEquals(
-            'Open today until 5',
-            $this->hour->present()->display()
-        );
-
+        $this->assertEquals('Open today until 5', $this->getStatusHeader());
+        $this->assertEquals(null, $this->getHoursHeader());
     }
 
     /** @test */
     public function it_displays_after_public_close_hour_before_a_closed_day()
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 20, 0, 0, 'America/Chicago'));
-        $this->assertEquals(
-            'Closed now. Next open Thursday.',
-            $this->hour->present()->display()
-        );
+        $this->assertEquals('Closed now. Next open Thursday.', $this->getStatusHeader());
+        $this->assertEquals(null, $this->getHoursHeader());
+    }
 
+    /** @test */
+    public function it_displays_after_public_close_hour_before_an_open_day()
+    {
+        $this->travelTo(Carbon::create(2022, 3, 3, 20, 0, 0, 'America/Chicago'));
+        $this->assertEquals('Closed now. Next open tomorrow.', $this->getStatusHeader());
+        $this->assertEquals(null, $this->getHoursHeader());
     }
 
     /** @test */
     public function it_displays_a_closed_day_before_a_closed_day()
     {
         $this->travelTo(Carbon::create(2022, 3, 1, 6, 0, 0, 'America/Chicago'));
-        $this->assertEquals(
-            'Closed today. Next open Thursday.',
-            $this->hour->present()->display()
-        );
-
+        $this->assertEquals('Closed today. Next open Thursday.', $this->getStatusHeader());
+        $this->assertEquals(null, $this->getHoursHeader());
     }
 
     /** @test */
     public function it_displays_a_closed_day_before_an_open_day()
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
-        $this->assertEquals(
-            'Closed today. Next open tomorrow.',
-            $this->hour->present()->display()
-        );
-
+        $this->assertEquals('Closed today. Next open tomorrow.', $this->getStatusHeader());
+        $this->assertEquals(null, $this->getHoursHeader());
     }
 
     /** @test */
     public function it_displays_when_closed_all_days()
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
-        $this->assertEquals(
-            'Closed today.',
-            $this->hourAllClosed->present()->display()
-        );
-
+        $this->assertEquals('Closed today.', $this->getStatusHeader($this->hourAllClosed));
+        $this->assertEquals(null, $this->getHoursHeader($this->hourAllClosed));
     }
-
 }
