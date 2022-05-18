@@ -87,25 +87,16 @@ class Hour extends AbstractModel
     {
         $today = Carbon::today();
 
-        $queryModified = clone $query;
-        $queryModified
-            ->published()
-            ->where('type', $type)
-            ->whereDate('valid_from', '<=', $today)
-            ->whereDate('valid_through', '>=', $today)
-            ->orWhere
-            ->whereNull('valid_through');
-
-        return $queryModified->exists() ? $queryModified : $this->scopeDefault($query, $type);
-    }
-
-    public function scopeDefault($query, $type = 0)
-    {
         return $query
             ->published()
             ->where('type', $type)
-            ->whereNull('valid_from')
-            ->whereNull('valid_through');
+            ->whereDate('valid_from', '<=', $today)
+            ->where(function ($query) use ($today) {
+                $query
+                    ->whereDate('valid_through', '>=', $today)
+                    ->orWhereNull('valid_through');
+            })
+            ->orderByDesc('valid_from');
     }
 
     public function buildingClosures()
