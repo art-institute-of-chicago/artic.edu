@@ -13,6 +13,7 @@ class ExactTargetList
             'OptEnews' => 'News and Exhibitions',
             'OptHumanResources' => 'Career Opportunities',
             'OptFamilyPrograms' => 'Families',
+            'OptShop' => 'Museum Shop',
             'OptEvents' => 'Public Programs',
             'OptStudentTeacherPrograms' => 'K-12 Educator Resources',
             'OptTeenPrograms' => 'Teen Opportunities',
