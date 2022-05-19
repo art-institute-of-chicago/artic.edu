@@ -37,11 +37,25 @@
       }
     }
 
-    .o-hours__text__status {
+    .o-hours__status {
       color: $color__text--title;
+
+      &.o-hours__status--desktop {
+        display: none;
+      }
+
+      @include breakpoint('small+') {
+        &.o-hours__status--mobile {
+          display: none;
+        }
+
+        &.o-hours__status--desktop {
+          display: inline;
+        }
+      }
     }
 
-    .o-hours__text__hours {
+    .o-hours__hours {
       //
     }
   }

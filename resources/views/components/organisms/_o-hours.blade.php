@@ -5,9 +5,14 @@
         </svg>
     </div>
     <div class="o-hours__text">
-        <span class="o-hours__text__status">{{ $hour->present()->getStatusHeader() }}</span>
+        <span class="o-hours__status o-hours__status--mobile">{{
+            $hour->present()->getStatusHeader(null, true)
+        }}</span>
+        <span class="o-hours__status o-hours__status--desktop">{{
+            $hour->present()->getStatusHeader()
+        }}</span>
         @if ($hoursHeader = $hour->present()->getHoursHeader())
-            <span class="o-hours__text__hours">{{ $hoursHeader }}</span>
+            <span class="o-hours__hours">{{ $hoursHeader }}</span>
         @endif
         @component('components.atoms._dropdown')
             @slot('variation', 'dropdown--filter')
