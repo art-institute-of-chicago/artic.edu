@@ -2,11 +2,9 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
-
-use Carbon\Carbon;
-
 use App\Models\Hour;
+use Carbon\Carbon;
+use Tests\TestCase;
 
 class HourTest extends TestCase
 {
@@ -18,10 +16,6 @@ class HourTest extends TestCase
         parent::setUp();
 
         $this->hour = Hour::factory()->make([
-            'title' => 'Hours',
-            'published' => true,
-            'valid_from' => Carbon::now()->subWeek()->getTimestamp(),
-            'valid_through' => Carbon::now()->addWeek()->getTimestamp(),
             'monday_is_closed' => false,
             'monday_member_open' => new \DateInterval('PT10H00M'),
             'monday_member_close' => new \DateInterval('PT11H00M'),
@@ -52,10 +46,6 @@ class HourTest extends TestCase
         ]);
 
         $this->hourAllClosed = Hour::factory()->make([
-            'title' => 'Hours all closed',
-            'published' => true,
-            'valid_from' => Carbon::now()->subWeek()->getTimestamp(),
-            'valid_through' => Carbon::now()->addWeek()->getTimestamp(),
             'monday_is_closed' => true,
             'tuesday_is_closed' => true,
             'wednesday_is_closed' => true,
@@ -63,6 +53,29 @@ class HourTest extends TestCase
             'friday_is_closed' => true,
             'saturday_is_closed' => true,
             'sunday_is_closed' => true,
+        ]);
+
+        $this->hourEdgeCases = Hour::factory()->make([
+            'monday_is_closed' => false,
+            'monday_member_open' => null,
+            'monday_member_close' => null,
+            'monday_public_open' => null,
+            'monday_public_close' => null,
+            'tuesday_is_closed' => false,
+            'tuesday_member_open' => null,
+            'tuesday_member_close' => null,
+            'tuesday_public_open' => new \DateInterval('PT11H00M'),
+            'tuesday_public_close' => new \DateInterval('PT17H00M'),
+            'wednesday_is_closed' => false,
+            'wednesday_member_open' => null,
+            'wednesday_member_close' => null,
+            'wednesday_public_open' => null,
+            'wednesday_public_close' => new \DateInterval('PT17H00M'),
+            'thursday_is_closed' => false,
+            'thursday_member_open' => null,
+            'thursday_member_close' => null,
+            'thursday_public_open' => new \DateInterval('PT17H00M'),
+            'thursday_public_close' => null,
         ]);
     }
 
@@ -154,5 +167,37 @@ class HourTest extends TestCase
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Closed today.', $this->getStatusHeader($this->hourAllClosed));
         $this->assertEquals(null, $this->getHoursHeader($this->hourAllClosed));
+    }
+
+    /** @test */
+    public function it_displays_when_all_hours_are_missing()
+    {
+        $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
+        $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
+        $this->assertEquals(null, $this->getHoursHeader($this->hourEdgeCases));
+    }
+
+    /** @test */
+    public function it_displays_when_member_hours_are_missing()
+    {
+        $this->travelTo(Carbon::create(2022, 3, 1, 6, 0, 0, 'America/Chicago'));
+        $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
+        $this->assertEquals('11–5', $this->getHoursHeader($this->hourEdgeCases));
+    }
+
+    /** @test */
+    public function it_displays_when_public_open_is_missing()
+    {
+        $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
+        $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
+        $this->assertEquals(null, $this->getHoursHeader($this->hourEdgeCases));
+    }
+
+    /** @test */
+    public function it_displays_when_public_close_is_missing()
+    {
+        $this->travelTo(Carbon::create(2022, 3, 3, 6, 0, 0, 'America/Chicago'));
+        $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
+        $this->assertEquals(null, $this->getHoursHeader($this->hourEdgeCases));
     }
 }
