@@ -3,7 +3,7 @@
 namespace App\Presenters;
 
 use App\Models\Hour;
-
+use DateInterval;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Str;
 
@@ -145,6 +145,8 @@ class HoursPresenter extends BasePresenter
         $whenClean->minute = 0;
         $whenClean->second = 0;
 
-        return CarbonInterval::instance($this->entity->{$field})->convertDate($whenClean);
+        $dateInterval = new DateInterval($this->entity->{$field});
+
+        return CarbonInterval::instance($dateInterval)->convertDate($whenClean);
     }
 }
