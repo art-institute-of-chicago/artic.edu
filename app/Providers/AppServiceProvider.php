@@ -176,7 +176,7 @@ class AppServiceProvider extends ServiceProvider
 
                     , 'support-us' => '/support-us'
                     , 'support-us-membership' => '/support-us/membership'
-                    , 'support-us-annual-fund' => '/support-us/ways-to-give/annual-fund'
+                    , 'support-us-luminary' => '/support-us/membership/luminary-levels'
                     , 'support-us-planned-giving' => '/support-us/ways-to-give/planned-giving'
                     , 'support-us-corporate-sponsorship' => '/support-us/ways-to-give/corporate-sponsorship'
 
