@@ -86,6 +86,11 @@ class HourTest extends TestCase
             'saturday_member_close' => null,
             'saturday_public_open' => new \DateInterval('PT11H15M'),
             'saturday_public_close' => new \DateInterval('PT17H45M'),
+            'sunday_is_closed' => null,
+            'sunday_member_open' => null,
+            'sunday_member_close' => null,
+            'sunday_public_open' => null,
+            'sunday_public_close' => null,
         ]);
     }
 
@@ -235,6 +240,14 @@ class HourTest extends TestCase
     {
         $this->travelTo(Carbon::create(2022, 3, 5, 12, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today until 5:45', $this->getStatusHeader($this->hourEdgeCases));
+        $this->assertEquals(null, $this->getHoursHeader($this->hourEdgeCases));
+    }
+
+    /** @test */
+    public function it_displays_when_all_fields_are_missing()
+    {
+        $this->travelTo(Carbon::create(2022, 3, 6, 6, 0, 0, 'America/Chicago'));
+        $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
         $this->assertEquals(null, $this->getHoursHeader($this->hourEdgeCases));
     }
 }
