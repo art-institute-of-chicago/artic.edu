@@ -94,7 +94,7 @@ class HourTest extends TestCase
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader());
-        $this->assertEquals('10—11 members | 11—5 public', $this->getHoursHeader());
+        $this->assertEquals('10–11 members | 11–5 public', $this->getHoursHeader());
     }
 
     /** @test */
@@ -102,7 +102,7 @@ class HourTest extends TestCase
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Today', $this->getStatusHeader(null, true));
-        $this->assertEquals('10—11 members | 11—5 public', $this->getHoursHeader());
+        $this->assertEquals('10–11 members | 11–5 public', $this->getHoursHeader());
     }
 
     /** @test */
@@ -110,7 +110,7 @@ class HourTest extends TestCase
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 10, 30, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader());
-        $this->assertEquals('10—11 members | 11—5 public', $this->getHoursHeader());
+        $this->assertEquals('10–11 members | 11–5 public', $this->getHoursHeader());
     }
 
     /** @test */
@@ -118,7 +118,7 @@ class HourTest extends TestCase
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 10, 30, 0, 'America/Chicago'));
         $this->assertEquals('Today', $this->getStatusHeader(null, true));
-        $this->assertEquals('10—11 members | 11—5 public', $this->getHoursHeader());
+        $this->assertEquals('10–11 members | 11–5 public', $this->getHoursHeader());
     }
 
     /** @test */
