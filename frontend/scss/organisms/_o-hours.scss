@@ -63,13 +63,13 @@
   .dropdown {
     position: initial;
 
-    @include breakpoint('medium+') {
+    @include breakpoint('small+') {
       position: relative;
     }
   }
 
   .dropdown__list {
-    @include breakpoint('medium+') {
+    @include breakpoint('small+') {
       min-width: 290px;
     }
   }

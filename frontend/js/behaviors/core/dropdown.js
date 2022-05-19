@@ -36,9 +36,34 @@ const dropdown = function(container) {
     button.setAttribute('aria-expanded', 'true');
 
     triggerCustomEvent(document, 'dropdown:close');
+
     container.classList.add('s-active');
-    setTimeout(function(){ setFocusOnTarget(container.querySelector('ul')); }, 0)
+
+    setTimeout(function() {
+      let ul = container.querySelector('ul');
+      setFocusOnTarget(ul);
+      fixEdgeCollision();
+    }, 0)
+
     active = true;
+  }
+
+  function fixEdgeCollision(event) {
+      if (!active) {
+        return;
+      }
+
+      let ul = container.querySelector('ul');
+      ul.removeAttribute('style');
+
+      let r1 = ul.getBoundingClientRect();
+      let r2 = document.getElementById('content').getBoundingClientRect();
+
+      if (r1.x + r1.width > r2.x + r2.width) {
+        ul.setAttribute('style', 'left: ' + (
+          (r2.x + r2.width) - (r1.x + r1.width)
+        ).toString() + 'px');
+      }
   }
 
   function _globalOpen(event) {
@@ -135,6 +160,7 @@ const dropdown = function(container) {
     if (!setup) {
       container.setAttribute('tabindex','0');
       active = container.classList.contains('s-active');
+      window.addEventListener('resize', fixEdgeCollision, true);
       document.addEventListener('focus', _focus, true);
       document.addEventListener('click', _clicks, false);
       //document.addEventListener('touchstart', _touchstart, false);
@@ -148,6 +174,7 @@ const dropdown = function(container) {
   function _destroy() {
     if (setup) {
       active = false;
+      window.removeEventListener('resize', fixEdgeCollision);
       document.removeEventListener('focus', _focus);
       document.removeEventListener('click', _clicks);
       //document.removeEventListener('touchstart', _touchstart);
