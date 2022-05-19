@@ -104,6 +104,11 @@ class HourTest extends TestCase
         return ($hour ?? $this->hour)->present()->getHoursHeader();
     }
 
+    private function getHoursTable($hour = null)
+    {
+        return ($hour ?? $this->hour)->present()->getHoursTable();
+    }
+
     /** @test */
     public function it_displays_before_member_open_hour()
     {
@@ -249,5 +254,98 @@ class HourTest extends TestCase
         $this->travelTo(Carbon::create(2022, 3, 6, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
         $this->assertEquals(null, $this->getHoursHeader($this->hourEdgeCases));
+    }
+
+    /** @test */
+    public function it_displays_hours_table()
+    {
+        $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
+        $this->assertEquals(
+            [
+                [
+                    'start' => 'Mon',
+                    'end' => 'Mon',
+                    'hours' => '10–11 members | 11–5 public',
+                    'days' => 'Mon',
+                ],
+                [
+                    'start' => 'Tue',
+                    'end' => 'Wed',
+                    'hours' => 'Closed',
+                    'days' => 'Tue–Wed',
+                ],
+                [
+                    'start' => 'Thu',
+                    'end' => 'Sun',
+                    'hours' => '10–11 members | 11–5 public',
+                    'days' => 'Thu–Sun',
+                ]
+            ],
+            $this->getHoursTable(),
+        );
+    }
+
+    /** @test */
+    public function it_displays_hours_table_when_closed_all_days()
+    {
+        $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
+        $this->assertEquals(
+            [
+                [
+                    'start' => 'Mon',
+                    'end' => 'Sun',
+                    'hours' => 'Closed',
+                    'days' => 'Mon–Sun',
+                ],
+            ],
+            $this->getHoursTable($this->hourAllClosed),
+        );
+    }
+
+    /** @test */
+    public function it_displays_hours_table_with_edge_cases()
+    {
+        $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
+        $this->assertEquals(
+            [
+                [
+                    'start' => 'Mon',
+                    'end' => 'Mon',
+                    'hours' => 'Open',
+                    'days' => 'Mon',
+                ],
+                [
+                    'start' => 'Tue',
+                    'end' => 'Tue',
+                    'hours' => '11–5',
+                    'days' => 'Tue',
+                ],
+                [
+                    'start' => 'Wed',
+                    'end' => 'Thu',
+                    'hours' => 'Open',
+                    'days' => 'Wed–Thu',
+                ],
+                [
+                    'start' => 'Fri',
+                    'end' => 'Fri',
+                    'hours' => '10:15–10:45 members | 10:45–5:15 public',
+                    'days' => 'Fri',
+                ],
+                [
+                    'start' => 'Sat',
+                    'end' => 'Sat',
+                    'hours' => '11:15–5:45',
+                    'days' => 'Sat',
+                ],
+                [
+                    'start' => 'Sun',
+                    'end' => 'Sun',
+                    'hours' => 'Open',
+                    'days' => 'Sun',
+                ],
+            ],
+            $this->getHoursTable($this->hourEdgeCases),
+        );
     }
 }

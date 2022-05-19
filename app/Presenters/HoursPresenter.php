@@ -4,6 +4,7 @@ namespace App\Presenters;
 
 use App\Models\Hour;
 use DateInterval;
+use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Str;
 
@@ -59,6 +60,61 @@ class HoursPresenter extends BasePresenter
             return;
         }
 
+        return $this->getWhenHours($when);
+    }
+
+    public function getHoursTable($when = null)
+    {
+        $when = $when
+            ? clone $when
+            : Carbon::now();
+
+        $weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+        $items = [];
+
+        // Start on Sunday so that first `addDay` returns Monday
+        $when = $when->startOfWeek()->subDay();
+
+        foreach ($weekdays as $weekday) {
+            $when = $when->addDay();
+
+            $hours = $this->isMuseumClosedToday($when)
+                ? 'Closed'
+                : ($this->getWhenHours($when) ?: 'Open');
+
+            if (!empty($items)) {
+                $prevItem = array_pop($items);
+
+                if ($prevItem['hours'] === $hours) {
+                    $prevItem['end'] = $weekday;
+                    array_push($items, $prevItem);
+                    continue;
+                }
+
+                array_push($items, $prevItem);
+            }
+
+            $item = [
+                'start' => $weekday,
+                'end' => $weekday,
+                'hours' => $hours,
+            ];
+
+            array_push($items, $item);
+        }
+
+        foreach ($items as &$item) {
+            $item['days'] = $item['start'] === $item['end']
+                ? $item['start']
+                : $item['start'] . '–' . $item['end'];
+        }
+
+        return $items;
+    }
+
+    private function getWhenHours($when)
+    {
         $whenFields = $this->getWhenFields($when);
 
         if (empty($whenFields['public_open']) || empty($whenFields['public_close'])) {
