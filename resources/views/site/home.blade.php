@@ -13,8 +13,11 @@
     </div>
 @endif
 
-@component('components.organisms._o-hours')
-@endcomponent
+@if (!empty($hour))
+    @component('components.organisms._o-hours')
+        @slot('hour', $hour)
+    @endcomponent
+@endif
 
 @if ($mainFeatures->count() > 1)
     <div class="o-features">
