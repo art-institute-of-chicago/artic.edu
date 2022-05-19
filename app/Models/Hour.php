@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use App\Casts\DateIntervalCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Hour extends AbstractModel
@@ -68,37 +67,6 @@ class Hour extends AbstractModel
     public $dates = [
         'valid_from',
         'valid_through',
-    ];
-
-    protected $casts = [
-        'monday_member_open' => DateIntervalCast::class,
-        'monday_member_close' => DateIntervalCast::class,
-        'monday_public_open' => DateIntervalCast::class,
-        'monday_public_close' => DateIntervalCast::class,
-        'tuesday_member_open' => DateIntervalCast::class,
-        'tuesday_member_close' => DateIntervalCast::class,
-        'tuesday_public_open' => DateIntervalCast::class,
-        'tuesday_public_close' => DateIntervalCast::class,
-        'wednesday_member_open' => DateIntervalCast::class,
-        'wednesday_member_close' => DateIntervalCast::class,
-        'wednesday_public_open' => DateIntervalCast::class,
-        'wednesday_public_close' => DateIntervalCast::class,
-        'thursday_member_open' => DateIntervalCast::class,
-        'thursday_member_close' => DateIntervalCast::class,
-        'thursday_public_open' => DateIntervalCast::class,
-        'thursday_public_close' => DateIntervalCast::class,
-        'friday_member_open' => DateIntervalCast::class,
-        'friday_member_close' => DateIntervalCast::class,
-        'friday_public_open' => DateIntervalCast::class,
-        'friday_public_close' => DateIntervalCast::class,
-        'saturday_member_open' => DateIntervalCast::class,
-        'saturday_member_close' => DateIntervalCast::class,
-        'saturday_public_open' => DateIntervalCast::class,
-        'saturday_public_close' => DateIntervalCast::class,
-        'sunday_member_open' => DateIntervalCast::class,
-        'sunday_member_close' => DateIntervalCast::class,
-        'sunday_public_open' => DateIntervalCast::class,
-        'sunday_public_close' => DateIntervalCast::class,
     ];
 
     /**

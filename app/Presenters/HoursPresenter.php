@@ -239,10 +239,12 @@ class HoursPresenter extends BasePresenter
         return $this->getHourDisplay($publicClose);
     }
 
-    private function getHourDisplay(DateInterval $dateInterval)
+    private function getHourDisplay(string $serializedDateInterval)
     {
-        $hour = intval($dateInterval->format('%h'));
-        $min = intval($dateInterval->format('%i'));
+        $carbonInterval = $this->getCarbonInterval($serializedDateInterval);
+
+        $hour = intval($carbonInterval->format('%h'));
+        $min = intval($carbonInterval->format('%i'));
 
         $hour = $hour > 12
             ? $hour - 12
@@ -257,13 +259,23 @@ class HoursPresenter extends BasePresenter
             );
     }
 
-    private function getDateTime(DateInterval $dateInterval, $when)
+    private function getDateTime(string $serializedDateInterval, $when)
     {
+        $carbonInterval = $this->getCarbonInterval($serializedDateInterval);
+
         $whenMidnight = clone $when;
         $whenMidnight->hour = 0;
         $whenMidnight->minute = 0;
         $whenMidnight->second = 0;
 
-        return CarbonInterval::instance($dateInterval)->convertDate($whenMidnight);
+        return $carbonInterval->convertDate($whenMidnight);
+    }
+
+    private function getCarbonInterval(string $serializedDateInterval)
+    {
+        $dateInterval = new DateInterval($serializedDateInterval);
+        $carbonInterval = CarbonInterval::instance($dateInterval);
+
+        return $carbonInterval;
     }
 }
