@@ -67,14 +67,14 @@ class HoursPresenter extends BasePresenter
 
         if (empty($whenFields['member_open']) || empty($whenFields['member_close'])) {
             return sprintf(
-                '%d–%d',
+                '%s–%s',
                 $this->getHourDisplay($whenFields['public_open'], $when),
                 $this->getHourDisplay($whenFields['public_close'], $when),
             );
         }
 
         return sprintf(
-            '%d–%d members | %d–%d public',
+            '%s–%s members | %s–%s public',
             $this->getHourDisplay($whenFields['member_open'], $when),
             $this->getHourDisplay($whenFields['member_close'], $when),
             $this->getHourDisplay($whenFields['public_open'], $when),

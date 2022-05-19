@@ -74,8 +74,18 @@ class HourTest extends TestCase
             'thursday_is_closed' => false,
             'thursday_member_open' => null,
             'thursday_member_close' => null,
-            'thursday_public_open' => new \DateInterval('PT17H00M'),
+            'thursday_public_open' => new \DateInterval('PT11H00M'),
             'thursday_public_close' => null,
+            'friday_is_closed' => false,
+            'friday_member_open' => new \DateInterval('PT10H15M'),
+            'friday_member_close' => new \DateInterval('PT10H45M'),
+            'friday_public_open' => new \DateInterval('PT10H45M'),
+            'friday_public_close' => new \DateInterval('PT17H15M'),
+            'saturday_is_closed' => false,
+            'saturday_member_open' => null,
+            'saturday_member_close' => null,
+            'saturday_public_open' => new \DateInterval('PT11H15M'),
+            'saturday_public_close' => new \DateInterval('PT17H45M'),
         ]);
     }
 
@@ -198,6 +208,33 @@ class HourTest extends TestCase
     {
         $this->travelTo(Carbon::create(2022, 3, 3, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
+        $this->assertEquals(null, $this->getHoursHeader($this->hourEdgeCases));
+    }
+
+    /** @test */
+    public function it_displays_with_minutes()
+    {
+        $this->travelTo(Carbon::create(2022, 3, 4, 6, 0, 0, 'America/Chicago'));
+        $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
+        $this->assertEquals(
+            '10:15–10:45 members | 10:45–5:15 public',
+            $this->getHoursHeader($this->hourEdgeCases)
+        );
+    }
+
+    /** @test */
+    public function it_displays_when_member_hours_are_missing_with_minutes()
+    {
+        $this->travelTo(Carbon::create(2022, 3, 5, 6, 0, 0, 'America/Chicago'));
+        $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
+        $this->assertEquals('11:15–5:45', $this->getHoursHeader($this->hourEdgeCases));
+    }
+
+    /** @test */
+    public function it_displays_during_public_open_hours_with_minutes()
+    {
+        $this->travelTo(Carbon::create(2022, 3, 5, 12, 0, 0, 'America/Chicago'));
+        $this->assertEquals('Open today until 5:45', $this->getStatusHeader($this->hourEdgeCases));
         $this->assertEquals(null, $this->getHoursHeader($this->hourEdgeCases));
     }
 }
