@@ -265,7 +265,7 @@ class HourTest extends TestCase
                 [
                     'start' => 'Mon',
                     'end' => 'Mon',
-                    'hours' => '10–11 members | 11–5 public',
+                    'hours' => '11–5',
                     'days' => 'Mon',
                 ],
                 [
@@ -277,7 +277,7 @@ class HourTest extends TestCase
                 [
                     'start' => 'Thu',
                     'end' => 'Sun',
-                    'hours' => '10–11 members | 11–5 public',
+                    'hours' => '11–5',
                     'days' => 'Thu–Sun',
                 ]
             ],
@@ -329,7 +329,7 @@ class HourTest extends TestCase
                 [
                     'start' => 'Fri',
                     'end' => 'Fri',
-                    'hours' => '10:15–10:45 members | 10:45–5:15 public',
+                    'hours' => '10:45–5:15',
                     'days' => 'Fri',
                 ],
                 [

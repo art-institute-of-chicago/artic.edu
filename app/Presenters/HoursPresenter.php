@@ -60,7 +60,7 @@ class HoursPresenter extends BasePresenter
             return;
         }
 
-        return $this->getWhenHours($when);
+        return $this->getHoursForHeader($when);
     }
 
     public function getHoursTable($when = null)
@@ -78,10 +78,7 @@ class HoursPresenter extends BasePresenter
 
         foreach ($weekdays as $weekday) {
             $when = $when->addDay();
-
-            $hours = $this->isMuseumClosedToday($when)
-                ? 'Closed'
-                : ($this->getWhenHours($when) ?: 'Open');
+            $hours = $this->getHoursForTable($when);
 
             if (!empty($items)) {
                 $prevItem = array_pop($items);
@@ -113,7 +110,7 @@ class HoursPresenter extends BasePresenter
         return $items;
     }
 
-    private function getWhenHours($when)
+    private function getHoursForHeader($when)
     {
         $whenFields = $this->getWhenFields($when);
 
@@ -135,6 +132,25 @@ class HoursPresenter extends BasePresenter
             $this->getHourDisplay($whenFields['member_close'], $when),
             $this->getHourDisplay($whenFields['public_open'], $when),
             $this->getHourDisplay($whenFields['public_close'], $when)
+        );
+    }
+
+    private function getHoursForTable($when)
+    {
+        if ($this->isMuseumClosedToday($when)) {
+            return 'Closed';
+        }
+
+        $whenFields = $this->getWhenFields($when);
+
+        if (empty($whenFields['public_open']) || empty($whenFields['public_close'])) {
+            return 'Open';
+        }
+
+        return sprintf(
+            '%s–%s',
+            $this->getHourDisplay($whenFields['public_open'], $when),
+            $this->getHourDisplay($whenFields['public_close'], $when),
         );
     }
 
