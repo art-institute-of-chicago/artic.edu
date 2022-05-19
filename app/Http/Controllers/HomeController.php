@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Hour;
 use App\Models\Lightbox;
 
 use Carbon\Carbon;
@@ -32,10 +33,13 @@ class HomeController extends FrontController
             $mainFeatures = $page->homeFeatures()->published()->limit(3)->get();
         }
 
+        $hour = Hour::today()->first();
+
         $view_data = [
             'contrastHeader' => sizeof($mainFeatures) > 0,
             'filledLogo' => sizeof($mainFeatures) > 0,
             'mainFeatures' => $mainFeatures,
+            'hour' => $hour,
             'intro' => $page->home_intro,
             'visit_button_text' => $page->home_visit_button_text ?? 'Visit',
             'visit_button_url' => $page->home_visit_button_url ?? route('visit'),

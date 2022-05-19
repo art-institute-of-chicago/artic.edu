@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Hour;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HourFactory extends Factory
@@ -22,8 +23,11 @@ class HourFactory extends Factory
     public function definition()
     {
         return [
+            'title' => 'Hours',
             'published' => true,
             'type' => 0,
+            'valid_from' => Carbon::now()->subWeek()->getTimestamp(),
+            'valid_through' => Carbon::now()->addWeek()->getTimestamp(),
         ];
     }
 }
