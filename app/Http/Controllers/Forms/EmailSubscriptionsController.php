@@ -78,30 +78,20 @@ class EmailSubscriptionsController extends FormController
         // Unsubscribe
         $unsubscribeFields[] = [
             'variation' => 'm-fieldset__field--group',
-            'blocks' => [
-                [
-                    'type' => 'label',
-                    'variation' => 'm-fieldset__group-label',
-                    'error' => (!empty($errors) && $errors->first('unsubscribe')) ? $errors->first('unsubscribe') : null,
-                    'optional' => null,
-                    'hint' => null,
-                    'label' => '',
-                ],
-                [
-                    'type' => 'checkbox',
-                    'variation' => '',
-                    'id' => 'unsubscribe',
-                    'name' => 'unsubscribe',
-                    'value' => 'unsubscribe',
-                    'error' => null,
-                    'optional' => null,
-                    'hint' => null,
-                    'disabled' => false,
-                    'checked' => $this->old('unsubscribe') ?? false,
-                    'label' => 'I no longer wish to receive any Art Institute emails.',
-                    'behavior' => 'formUnsubscribe'
-                ],
-            ],
+            'blocks' => array_merge(
+                $this->getUnsubscribeBlocks(
+                    'unsubscribeFromMuseum',
+                    'I no longer wish to receive museum marketing emails..'
+                ),
+                $this->getUnsubscribeBlocks(
+                    'unsubscribeFromShop',
+                    'I no longer wish to receive museum shop emails.'
+                ),
+                $this->getUnsubscribeBlocks(
+                    'unsubscribeFromAll',
+                    'I no longer wish to receive any Art Institute emails.'
+                )
+            ),
         ];
 
         // Personal information
@@ -224,6 +214,42 @@ class EmailSubscriptionsController extends FormController
         return view('site.forms.form', $view_data)->withErrors($withErrors, 'notices');
     }
 
+    private function getUnsubscribeBlocks($fieldName, $fieldLabel)
+    {
+        $errors = session('errors');
+
+        $out = [];
+
+        if (!empty($errors) && $errors->first($fieldName)) {
+            $out[] = [
+                'type' => 'label',
+                'variation' => 'm-fieldset__group-label',
+                'error' => (!empty($errors) && $errors->first($fieldName))
+                    ? $errors->first($fieldName)
+                    : null,
+                'optional' => null,
+                'hint' => null,
+                'label' => '',
+            ];
+        }
+
+        $out[] = [
+            'type' => 'checkbox',
+            'variation' => '',
+            'id' => $fieldName,
+            'name' => $fieldName,
+            'value' => $fieldName,
+            'error' => null,
+            'optional' => null,
+            'hint' => null,
+            'disabled' => false,
+            'checked' => $this->old($fieldName) ?? false,
+            'label' => $fieldLabel,
+            'behavior' => 'formUnsubscribe'
+        ];
+
+        return $out;
+    }
 
     public function store(EmailSubscriptionsRequest $request)
     {
@@ -231,8 +257,17 @@ class EmailSubscriptionsController extends FormController
 
         $exactTarget = new ExactTargetService($validated['email'], $validated['subscriptions'] ?? null);
 
-        if (array_key_exists('unsubscribe', $validated) && $validated['unsubscribe']) {
+        $unsubscribeFromMuseum = $this->getCheckbox('unsubscribeFromMuseum', $validated);
+        $unsubscribeFromShop = $this->getCheckbox('unsubscribeFromShop', $validated);
+        $unsubscribeFromAll = $this->getCheckbox('unsubscribeFromAll', $validated);
+
+        if ($unsubscribeFromShop && $unsubscribeFromMuseum) {
+            $unsubscribeFromAll = true;
+        }
+
+        if ($unsubscribeFromAll) {
             $response = $exactTarget->unsubscribe();
+
             if ($response !== true) {
                 /* If the user doesn't exist in our email list, ET will throw an
                  * error. It's ok if the user doesn't exist, because that's
@@ -252,10 +287,9 @@ class EmailSubscriptionsController extends FormController
         if ($response === true) {
             return redirect(route('forms.email-subscriptions.thanks'));
         }
-            abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
 
+        abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
     }
-
 
     private function getSubscriptionsArray($selected)
     {
@@ -297,5 +331,10 @@ class EmailSubscriptionsController extends FormController
     private function old($field)
     {
         return $this->old->{$field} ?? old($field);
+    }
+
+    private function getCheckbox(string $field, array $validated): boolean
+    {
+        return array_key_exists($field, $validated) && $validated[$field];
     }
 }

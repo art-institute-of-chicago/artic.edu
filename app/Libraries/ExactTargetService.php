@@ -37,10 +37,32 @@ class ExactTargetService
         $clientSecret = config('exact-target.client.clientsecret');
 
         $api = new \GuzzleHttp\Client();
-        $result = $api->request('POST', $auth_url . '/v2/token', ['json' => ['client_id' => $clientId, 'client_secret' => $clientSecret, 'grant_type' => 'client_credentials']]);
+
+        $result = $api->request(
+            'POST',
+            $auth_url . '/v2/token',
+            [
+                'json' => [
+                    'client_id' => $clientId,
+                    'client_secret' => $clientSecret,
+                    'grant_type' => 'client_credentials',
+                ]
+            ]
+        );
+
         $tokenInfo = json_decode($result->getBody()->getContents(), true);
 
-        $client = new ET_Client(true, config('app.debug'), array_merge(config('exact-target.client'), ['authorizationCode' => $tokenInfo['access_token'], 'scope' => $tokenInfo['scope']]));
+        $client = new ET_Client(
+            true,
+            config('app.debug'),
+            array_merge(
+                config('exact-target.client'),
+                [
+                    'authorizationCode' => $tokenInfo['access_token'],
+                    'scope' => $tokenInfo['scope'],
+                ]
+            )
+        );
 
         // Add the user to a data extension
         $deRow = new ET_DataExtension_Row();
@@ -51,17 +73,26 @@ class ExactTargetService
         ];
 
         if ($this->list) {
-            if (is_array($this->list)) {
-                $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
-                foreach ($allLists as $list) {
-                    if (in_array($list, $this->list)) {
-                        $deRow->props[$list] = 'True';
-                    } elseif ($alsoRemove) {
-                        $deRow->props[$list] = 'False';
-                    }
+            if (!is_array($this->list)) {
+                $this->list = [$this->list];
+            }
+
+            $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
+
+            foreach ($allLists as $list) {
+                if (in_array($list, $this->list)) {
+                    $deRow->props[$list] = 'True';
+                } elseif ($alsoRemove) {
+                    $deRow->props[$list] = 'False';
                 }
-            } else {
-                $deRow->props[$this->list] = 'True';
+            }
+
+            $museumLists = ExactTargetList::getList()->except('OptShop')->keys()->all();
+
+            if (count(array_intersect($this->list, $museumLists)) > 0) {
+                $deRow->props['OptMuseum'] = 'True';
+            } elseif ($alsoRemove) {
+                $deRow->props['OptMuseum'] = 'False';
             }
         }
 
@@ -82,8 +113,10 @@ class ExactTargetService
         // Add the subscriber
         $subscriber = new ET_Subscriber();
         $subscriber->authStub = $client;
-        $subscriber->props = ['EmailAddress' => $this->email,
-            'SubscriberKey' => $this->email];
+        $subscriber->props = [
+            'EmailAddress' => $this->email,
+            'SubscriberKey' => $this->email,
+        ];
         $response = $subscriber->post();
 
         if (!$response->status) {
@@ -110,6 +143,9 @@ class ExactTargetService
         return true;
     }
 
+    /**
+     * WEB-2401: Only use this function for `unsubscribeFromAll`, not partial.
+     */
     public function unsubscribe()
     {
         $client = new ET_Client(false, true, config('exact-target.client'));
@@ -134,9 +170,11 @@ class ExactTargetService
         // Set the subscriber to Unsubscribed
         $subscriber = new ET_Subscriber();
         $subscriber->authStub = $client;
-        $subscriber->props = ['EmailAddress' => $this->email,
+        $subscriber->props = [
+            'EmailAddress' => $this->email,
             'SubscriberKey' => $this->email,
-            'Status' => 'Unsubscribed'];
+            'Status' => 'Unsubscribed'
+        ];
         $subscriber->Name = 'Museum Business Unit';
         $response = $subscriber->patch();
 
@@ -155,7 +193,16 @@ class ExactTargetService
         $deRow->authStub = $client;
 
         // Select
-        $fields = array_merge(['Email', 'FirstName', 'LastName'], ExactTargetList::getList()->except('OptEnews')->keys()->all());
+        $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
+        $fields = array_merge(
+            [
+                'Email',
+                'FirstName',
+                'LastName',
+            ],
+            $allLists
+        );
+
         $deRow->props = array_fill_keys($fields, 'True');
 
         // From
