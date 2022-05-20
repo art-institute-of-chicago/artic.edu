@@ -91,6 +91,8 @@ class ExactTargetService
 
             if (count(array_intersect($this->list, $museumLists)) > 0) {
                 $deRow->props['OptMuseum'] = 'True';
+            } elseif ($alsoRemove) {
+                $deRow->props['OptMuseum'] = 'False';
             }
         }
 
@@ -141,6 +143,9 @@ class ExactTargetService
         return true;
     }
 
+    /**
+     * WEB-2401: Only use this function for `unsubscribeFromAll`, not partial.
+     */
     public function unsubscribe()
     {
         $client = new ET_Client(false, true, config('exact-target.client'));
