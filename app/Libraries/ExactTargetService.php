@@ -73,17 +73,24 @@ class ExactTargetService
         ];
 
         if ($this->list) {
-            if (is_array($this->list)) {
-                $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
-                foreach ($allLists as $list) {
-                    if (in_array($list, $this->list)) {
-                        $deRow->props[$list] = 'True';
-                    } elseif ($alsoRemove) {
-                        $deRow->props[$list] = 'False';
-                    }
+            if (!is_array($this->list)) {
+                $this->list = [$this->list];
+            }
+
+            $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
+
+            foreach ($allLists as $list) {
+                if (in_array($list, $this->list)) {
+                    $deRow->props[$list] = 'True';
+                } elseif ($alsoRemove) {
+                    $deRow->props[$list] = 'False';
                 }
-            } else {
-                $deRow->props[$this->list] = 'True';
+            }
+
+            $museumLists = ExactTargetList::getList()->except('OptShop')->keys()->all();
+
+            if (count(array_intersect($this->list, $museumLists)) > 0) {
+                $deRow->props['OptMuseum'] = 'True';
             }
         }
 
