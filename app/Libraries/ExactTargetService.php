@@ -37,10 +37,32 @@ class ExactTargetService
         $clientSecret = config('exact-target.client.clientsecret');
 
         $api = new \GuzzleHttp\Client();
-        $result = $api->request('POST', $auth_url . '/v2/token', ['json' => ['client_id' => $clientId, 'client_secret' => $clientSecret, 'grant_type' => 'client_credentials']]);
+
+        $result = $api->request(
+            'POST',
+            $auth_url . '/v2/token',
+            [
+                'json' => [
+                    'client_id' => $clientId,
+                    'client_secret' => $clientSecret,
+                    'grant_type' => 'client_credentials',
+                ]
+            ]
+        );
+
         $tokenInfo = json_decode($result->getBody()->getContents(), true);
 
-        $client = new ET_Client(true, config('app.debug'), array_merge(config('exact-target.client'), ['authorizationCode' => $tokenInfo['access_token'], 'scope' => $tokenInfo['scope']]));
+        $client = new ET_Client(
+            true,
+            config('app.debug'),
+            array_merge(
+                config('exact-target.client'),
+                [
+                    'authorizationCode' => $tokenInfo['access_token'],
+                    'scope' => $tokenInfo['scope'],
+                ]
+            )
+        );
 
         // Add the user to a data extension
         $deRow = new ET_DataExtension_Row();
@@ -82,8 +104,10 @@ class ExactTargetService
         // Add the subscriber
         $subscriber = new ET_Subscriber();
         $subscriber->authStub = $client;
-        $subscriber->props = ['EmailAddress' => $this->email,
-            'SubscriberKey' => $this->email];
+        $subscriber->props = [
+            'EmailAddress' => $this->email,
+            'SubscriberKey' => $this->email,
+        ];
         $response = $subscriber->post();
 
         if (!$response->status) {
@@ -134,9 +158,11 @@ class ExactTargetService
         // Set the subscriber to Unsubscribed
         $subscriber = new ET_Subscriber();
         $subscriber->authStub = $client;
-        $subscriber->props = ['EmailAddress' => $this->email,
+        $subscriber->props = [
+            'EmailAddress' => $this->email,
             'SubscriberKey' => $this->email,
-            'Status' => 'Unsubscribed'];
+            'Status' => 'Unsubscribed'
+        ];
         $subscriber->Name = 'Museum Business Unit';
         $response = $subscriber->patch();
 
@@ -155,7 +181,16 @@ class ExactTargetService
         $deRow->authStub = $client;
 
         // Select
-        $fields = array_merge(['Email', 'FirstName', 'LastName'], ExactTargetList::getList()->except('OptEnews')->keys()->all());
+        $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
+        $fields = array_merge(
+            [
+                'Email',
+                'FirstName',
+                'LastName',
+            ],
+            $allLists
+        );
+
         $deRow->props = array_fill_keys($fields, 'True');
 
         // From
