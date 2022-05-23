@@ -115,13 +115,13 @@
         @endif
 
         {{-- History Detail - Exhibition Photos --}}
-        @if ($item->historyImages)
+        @if ($item->present()->getHistoryImages()->count() > 0)
             @component('components.atoms._hr')
             @endcomponent
             @component('components.blocks._text')
                 @slot('font', 'f-subheading-1')
                 @slot('tag', 'h4')
-                {{ Str::plural('Picture', $item->historyImages->count()) }}
+                Installation {{ Str::plural('Photo', $item->present()->getHistoryImages()->count()) }}
             @endcomponent
             @foreach ($item->present()->getHistoryImagesForMediaComponent() as $picture)
                     @component('components.molecules._m-media')
