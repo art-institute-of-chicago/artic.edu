@@ -461,25 +461,4 @@ class Hour extends AbstractModel
             ],
         ];
     }
-
-    public static function getOpening()
-    {
-        $hour = Hour::today()->first();
-
-        return $hour->title ?? 'Open daily 10:30&ndash;5:00';
-    }
-
-    public static function getOpeningUnlessClosure()
-    {
-        $closure = app('closureservice')->getClosure();
-
-        return $closure ? null : self::getOpening();
-    }
-
-    public static function getOpeningUrl()
-    {
-        $hour = Hour::today()->first();
-
-        return $hour->url ?? 'visit';
-    }
 }
