@@ -13,38 +13,8 @@ use App\Models\Form\EmailSubscriptions;
 
 class EmailSubscriptionsController extends FormController
 {
-    protected $old;
-
     public function index(\Illuminate\Http\Request $request)
     {
-        $withErrors = [];
-
-        if (request('e')) {
-            $email = base64_decode(request('e'));
-
-            $exactTarget = new ExactTargetService($email);
-            $response = $exactTarget->get();
-
-            if ($response->status && $response->code == 200 && count($response->results)) {
-                $old = new EmailSubscriptions();
-                $subscriptions = [];
-                foreach ($response->results[0]->Properties->Property as $index => $keyval) {
-                    if ($keyval->Name == 'Email') {
-                        $old->email = $keyval->Value;
-                    } elseif ($keyval->Name == 'FirstName') {
-                        $old->first_name = $keyval->Value;
-                    } elseif ($keyval->Name == 'LastName') {
-                        $old->last_name = $keyval->Value;
-                    } elseif ($keyval->Value == 'True') {
-                        $subscriptions[] = $keyval->Name;
-                    }
-                }
-                $old->subscriptions = $subscriptions;
-                $this->old = $old;
-            } else {
-                $withErrors['message'] = 'Your e-mail address is not currently subscribed. Please fill out and submit the form below to begin receiving messages from the Art Institute of Chicago.';
-            }
-        }
         $this->title = 'Email Subscriptions';
         $this->seo->setTitle($this->title);
 
@@ -70,9 +40,11 @@ class EmailSubscriptionsController extends FormController
                 ]
             ],
         ];
-        foreach ($this->getSubscriptionsArray($this->old('subscriptions')) as $d) {
+
+        foreach ($this->getSubscriptionsArray(old('subscriptions')) as $d) {
             array_push($subFields['blocks'], $d);
         }
+
         $subscriptionsFields[] = $subFields;
 
         // Unsubscribe
@@ -104,7 +76,7 @@ class EmailSubscriptionsController extends FormController
                     'id' => 'email',
                     'placeholder' => '',
                     'textCount' => false,
-                    'value' => $this->old('email'),
+                    'value' => old('email'),
                     'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
                     'optional' => false,
                     'hint' => null,
@@ -123,7 +95,7 @@ class EmailSubscriptionsController extends FormController
                     'id' => 'first_name',
                     'placeholder' => '',
                     'textCount' => false,
-                    'value' => $this->old('first_name'),
+                    'value' => old('first_name'),
                     'error' => (!empty($errors) && $errors->first('first_name')) ? $errors->first('first_name') : null,
                     'optional' => null,
                     'hint' => null,
@@ -142,7 +114,7 @@ class EmailSubscriptionsController extends FormController
                     'id' => 'last_name',
                     'placeholder' => '',
                     'textCount' => false,
-                    'value' => $this->old('last_name'),
+                    'value' => old('last_name'),
                     'error' => (!empty($errors) && $errors->first('last_name')) ? $errors->first('last_name') : null,
                     'optional' => null,
                     'hint' => null,
@@ -211,7 +183,7 @@ class EmailSubscriptionsController extends FormController
             'blocks' => $blocks
         ];
 
-        return view('site.forms.form', $view_data)->withErrors($withErrors, 'notices');
+        return view('site.forms.form', $view_data);
     }
 
     private function getUnsubscribeBlocks($fieldName, $fieldLabel)
@@ -243,7 +215,7 @@ class EmailSubscriptionsController extends FormController
             'optional' => null,
             'hint' => null,
             'disabled' => false,
-            'checked' => $this->old($fieldName) ?? false,
+            'checked' => old($fieldName) ?? false,
             'label' => $fieldLabel,
             'behavior' => 'formUnsubscribe'
         ];
@@ -326,11 +298,6 @@ class EmailSubscriptionsController extends FormController
         }
 
         return $list;
-    }
-
-    private function old($field)
-    {
-        return $this->old->{$field} ?? old($field);
     }
 
     private function getCheckbox(string $field, array $validated): boolean
