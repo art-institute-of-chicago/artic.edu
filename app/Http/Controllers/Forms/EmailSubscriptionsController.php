@@ -300,7 +300,7 @@ class EmailSubscriptionsController extends FormController
         return $list;
     }
 
-    private function getCheckbox(string $field, array $validated): boolean
+    private function getCheckbox(string $field, array $validated): bool
     {
         return array_key_exists($field, $validated) && $validated[$field];
     }
