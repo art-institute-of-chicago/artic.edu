@@ -148,7 +148,11 @@ class ExactTargetService
      */
     public function unsubscribe()
     {
-        $client = new ET_Client(false, true, config('exact-target.client'));
+        $client = new ET_Client(
+            true,
+            config('app.debug'),
+            config('exact-target.client')
+        );
 
         // Delete the user from the data extension
         $deRow = new ET_DataExtension_Row();
