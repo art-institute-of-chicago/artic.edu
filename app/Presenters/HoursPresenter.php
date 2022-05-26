@@ -34,11 +34,11 @@ class HoursPresenter extends BasePresenter
         $when = $when ?? now();
 
         if ($this->isMuseumClosedToday($when)) {
-            return 'Closed today.' . $this->getNextOpen($when);
+            return $this->getNextOpen($when, 'Closed today');
         }
 
         if ($this->isAfterPublicClose($when)) {
-            return 'Closed now.' . $this->getNextOpen($when);
+            return $this->getNextOpen($when, 'Closed now');
         }
 
         return $isMobile ? 'Today' : 'Open today';
@@ -216,7 +216,7 @@ class HoursPresenter extends BasePresenter
             && $this->isBeforePublicClose($when);
     }
 
-    private function getNextOpen($when)
+    private function getNextOpen($when, $prefix)
     {
         $nextWhen = clone $when;
         $tries = 0;
@@ -228,10 +228,10 @@ class HoursPresenter extends BasePresenter
         } while ($isClosed && $tries < 7);
 
         if ($tries > 6 && $isClosed) {
-            return '';
+            return $prefix . '.';
         }
 
-        return ' Next open ' . (
+        return $prefix . ', next open ' . (
             $tries == 1 ? 'tomorrow' : $nextWhen->englishDayOfWeek
         ) . '.';
     }

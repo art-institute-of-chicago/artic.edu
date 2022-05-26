@@ -161,7 +161,7 @@ class HourTest extends TestCase
     public function it_displays_after_public_close_hour_before_a_closed_day()
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 20, 0, 0, 'America/Chicago'));
-        $this->assertEquals('Closed now. Next open Thursday.', $this->getStatusHeader());
+        $this->assertEquals('Closed now, next open Thursday.', $this->getStatusHeader());
         $this->assertEquals(null, $this->getHoursHeader());
     }
 
@@ -169,7 +169,7 @@ class HourTest extends TestCase
     public function it_displays_after_public_close_hour_before_an_open_day()
     {
         $this->travelTo(Carbon::create(2022, 3, 3, 20, 0, 0, 'America/Chicago'));
-        $this->assertEquals('Closed now. Next open tomorrow.', $this->getStatusHeader());
+        $this->assertEquals('Closed now, next open tomorrow.', $this->getStatusHeader());
         $this->assertEquals(null, $this->getHoursHeader());
     }
 
@@ -177,7 +177,7 @@ class HourTest extends TestCase
     public function it_displays_a_closed_day_before_a_closed_day()
     {
         $this->travelTo(Carbon::create(2022, 3, 1, 6, 0, 0, 'America/Chicago'));
-        $this->assertEquals('Closed today. Next open Thursday.', $this->getStatusHeader());
+        $this->assertEquals('Closed today, next open Thursday.', $this->getStatusHeader());
         $this->assertEquals(null, $this->getHoursHeader());
     }
 
@@ -185,7 +185,7 @@ class HourTest extends TestCase
     public function it_displays_a_closed_day_before_an_open_day()
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
-        $this->assertEquals('Closed today. Next open tomorrow.', $this->getStatusHeader());
+        $this->assertEquals('Closed today, next open tomorrow.', $this->getStatusHeader());
         $this->assertEquals(null, $this->getHoursHeader());
     }
 
