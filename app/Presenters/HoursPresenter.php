@@ -41,10 +41,6 @@ class HoursPresenter extends BasePresenter
             return 'Closed now.' . $this->getNextOpen($when);
         }
 
-        if ($this->isDuringPublicHours($when)) {
-            return 'Open today until ' . $this->getClosingHour($when);
-        }
-
         return $isMobile ? 'Today' : 'Open today';
     }
 
@@ -56,8 +52,12 @@ class HoursPresenter extends BasePresenter
             return;
         }
 
-        if ($this->isAfterPublicOpen($when)) {
+        if ($this->isAfterPublicClose($when)) {
             return;
+        }
+
+        if ($this->isAfterPublicOpen($when)) {
+            return $this->getHoursForHeader($when, true);
         }
 
         return $this->getHoursForHeader($when);
@@ -110,7 +110,7 @@ class HoursPresenter extends BasePresenter
         return $items;
     }
 
-    private function getHoursForHeader($when)
+    private function getHoursForHeader($when, $hideMemberHours = false)
     {
         $whenFields = $this->getWhenFields($when);
 
@@ -118,7 +118,11 @@ class HoursPresenter extends BasePresenter
             return;
         }
 
-        if (empty($whenFields['member_open']) || empty($whenFields['member_close'])) {
+        if (
+            $hideMemberHours ||
+            empty($whenFields['member_open']) ||
+            empty($whenFields['member_close'])
+        ) {
             return sprintf(
                 '%s–%s',
                 $this->getHourDisplay($whenFields['public_open'], $when),

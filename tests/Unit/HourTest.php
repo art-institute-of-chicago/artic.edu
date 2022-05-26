@@ -145,8 +145,16 @@ class HourTest extends TestCase
     public function it_displays_during_public_open_hours()
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 12, 0, 0, 'America/Chicago'));
-        $this->assertEquals('Open today until 5', $this->getStatusHeader());
-        $this->assertEquals(null, $this->getHoursHeader());
+        $this->assertEquals('Open today', $this->getStatusHeader());
+        $this->assertEquals('11–5', $this->getHoursHeader());
+    }
+
+    /** @test */
+    public function it_displays_during_public_open_hours_on_mobile()
+    {
+        $this->travelTo(Carbon::create(2022, 2, 28, 12, 0, 0, 'America/Chicago'));
+        $this->assertEquals('Today', $this->getStatusHeader(null, true));
+        $this->assertEquals('11–5', $this->getHoursHeader());
     }
 
     /** @test */
@@ -244,8 +252,8 @@ class HourTest extends TestCase
     public function it_displays_during_public_open_hours_with_minutes()
     {
         $this->travelTo(Carbon::create(2022, 3, 5, 12, 0, 0, 'America/Chicago'));
-        $this->assertEquals('Open today until 5:45', $this->getStatusHeader($this->hourEdgeCases));
-        $this->assertEquals(null, $this->getHoursHeader($this->hourEdgeCases));
+        $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
+        $this->assertEquals('11:15–5:45', $this->getHoursHeader($this->hourEdgeCases));
     }
 
     /** @test */
