@@ -69,6 +69,8 @@
   }
 
   .dropdown__list {
+    margin-top: 12px;
+
     @include breakpoint('small+') {
       min-width: 290px;
     }

@@ -35,6 +35,13 @@
   margin-top: #{map-get($grid-margin-tops, 'xsmall')}px;
   padding-top: colspan(map-get($grid-padding-tops, 'xsmall'), 'xsmall');
 
+  @include breakpoint('xsmall') {
+    &:first-child {
+      margin-top: 12px;
+      padding-top: 30px;
+    }
+  }
+
   @include breakpoint('small+') {
     width: colspan(grid-cols-to-colspan(2), 'small');
     margin-top: colspan(2, small);
