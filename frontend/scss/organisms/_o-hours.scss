@@ -88,7 +88,10 @@
     }
   }
 
-  + .m-header-block {
+  // WEB-2414, WEB-2415: /exhibitions, /collection
+  + .m-header-block,
+  // WEB-2416: artwork detail pages
+  + .o-article {
     margin-top: 12px;
   }
 }

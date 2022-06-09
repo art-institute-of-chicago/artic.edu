@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if (!empty($hour))
+    @component('components.organisms._o-hours')
+        @slot('hour', $hour)
+    @endcomponent
+@endif
+
 @if ($item->assetLibrary)
     <script type="application/json" id="assetLibrary">
         {!! json_encode($item->assetLibrary) !!}
