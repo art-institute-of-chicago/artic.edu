@@ -6,6 +6,12 @@
     $isWideBody = (isset($wideBody) && $wideBody);
 @endphp
 
+@if (!empty($hour))
+    @component('components.organisms._o-hours')
+        @slot('hour', $hour)
+    @endcomponent
+@endif
+
 <article class="o-article o-article--generic-page">
 
   @component('components.molecules._m-article-header')

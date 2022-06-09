@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hour;
 use App\Repositories\GenericPageRepository;
 
 class GenericPagesController extends FrontController
@@ -17,6 +18,8 @@ class GenericPagesController extends FrontController
 
     public function show($slug)
     {
+        $hour = Hour::today()->first();
+
         $page = $this->getPage($slug);
 
         // Redirect the user if "Redirect URL" is defined
@@ -37,7 +40,8 @@ class GenericPagesController extends FrontController
         $this->seo->setImage($page->imageFront('listing'));
 
         return view('site.genericPage.show', [
-            'borderlessHeader' => !(empty($page->imageFront('banner'))),
+            'hour' => $hour,
+            'borderlessHeader' => empty($hour) && !(empty($page->imageFront('banner'))),
             'nav' => $navigation,
             'intro' => $page->short_description, // WEB-2253: Add different field here to prevent SEO pollution?
             'headerImage' => $page->imageFront('banner'),
