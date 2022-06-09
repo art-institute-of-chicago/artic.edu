@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Hour;
 use App\Libraries\Search\CollectionService;
 
 class CollectionController extends BaseScopedController
@@ -47,6 +48,8 @@ class CollectionController extends BaseScopedController
             return redirect(route('collection', ['is_public_domain' => 1]));
         }
 
+        $hour = Hour::today()->first();
+
         $collection = $this->collection()->perPage(static::PER_PAGE)->results();
 
         // If first artwork accession number matches search query, redirect to artwork page
@@ -83,6 +86,7 @@ class CollectionController extends BaseScopedController
         if (request('q')) {
             $description = 'You searched for: ' . request('q') . '. ' . $description;
         }
+
         $this->seo->setDescription($description);
         $this->seo->nofollow = $this->setNofollowMeta();
 
@@ -104,6 +108,7 @@ class CollectionController extends BaseScopedController
         }
 
         return view('site.collection.index', [
+            'hour' => $hour,
             'primaryNavCurrent' => 'collection',
             'page' => $page,
             'artworks' => $collection,
