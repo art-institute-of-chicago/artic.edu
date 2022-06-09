@@ -6,7 +6,7 @@
     $isWideBody = (isset($wideBody) && $wideBody);
 @endphp
 
-@if (!empty($hour))
+@if (!empty($hour) && !empty($headerImage))
     @component('components.organisms._o-hours')
         @slot('hour', $hour)
     @endcomponent
