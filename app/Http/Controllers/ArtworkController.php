@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hour;
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
 use App\Libraries\RecentlyViewedService;
@@ -38,6 +39,8 @@ class ArtworkController extends BaseScopedController
             return $canonicalRedirect;
         }
 
+        $hour = Hour::today()->first();
+
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->fullArtist);
         $this->seo->setImage($item->imageFront('hero'), 843);
@@ -53,10 +56,11 @@ class ArtworkController extends BaseScopedController
 
         // Start building data for output to view
         $viewData = [
+            'hour' => $hour,
             'item' => $item,
             'model3d' => $item->model3d,
             'contrastHeader' => $item->present()->contrastHeader,
-            'borderlessHeader' => $item->present()->borderlessHeader,
+            'borderlessHeader' => empty($hour) && $item->present()->borderlessHeader,
             'primaryNavCurrent' => 'collection',
             'canonicalUrl' => $canonicalPath,
         ];

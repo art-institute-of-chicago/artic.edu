@@ -1,5 +1,6 @@
 @extends('twill::layouts.form', [
     'additionalFieldsets' => [
+        ['fieldset' => 'hours', 'label' => 'Hours'],
         ['fieldset' => 'side_related', 'label' => 'Sidebar Related'],
         ['fieldset' => 'metadata', 'label' => 'Metadata'],
     ]
@@ -81,6 +82,15 @@
 @stop
 
 @section('fieldsets')
+    <a17-fieldset id="hours" title="Hours">
+        @formField('checkbox', [
+            'name'  => 'show_hours',
+            'label' => 'Select to display museum hours on the page',
+        ])
+
+        <p>The page must have a banner image in order to display museum hours.</p>
+    </a17-fieldset>
+
     @component('admin.partials.featured-related', ['form_fields' => $form_fields])
         @slot('routePrefix', 'generic')
         @slot('moduleName', 'genericPages')
