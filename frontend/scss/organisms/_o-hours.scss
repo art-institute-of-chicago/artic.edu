@@ -5,20 +5,22 @@
 
   margin-top: 12px;
 
-  @include breakpoint('small+') {
-    margin-top: colspan(2, small);
-  }
+  .o-features + & {
+    @include breakpoint('small+') {
+      margin-top: colspan(2, small);
+    }
 
-  @include breakpoint('medium') {
-    margin-top: colspan(2, medium);
-  }
+    @include breakpoint('medium') {
+      margin-top: colspan(2, medium);
+    }
 
-  @include breakpoint('large') {
-    margin-top: colspan(2, large);
-  }
+    @include breakpoint('large') {
+      margin-top: colspan(2, large);
+    }
 
-  @include breakpoint('xlarge') {
-    margin-top: colspan(2, xlarge);
+    @include breakpoint('xlarge') {
+      margin-top: colspan(2, xlarge);
+    }
   }
 
   .o-hours__clock {
