@@ -74,6 +74,11 @@
   margin-top: 4px;
 }
 
+.g-footer__link-list--flush {
+  @include untuck;
+  margin-top: 0;
+}
+
 .g-footer__link-list--spaced li {
   margin-top: 16px;
 }
