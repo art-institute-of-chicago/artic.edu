@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
-use App\Models\Hour;
 use App\Libraries\Search\CollectionService;
 
 class CollectionController extends BaseScopedController
@@ -47,8 +46,6 @@ class CollectionController extends BaseScopedController
         ])) {
             return redirect(route('collection', ['is_public_domain' => 1]));
         }
-
-        $hour = Hour::today()->first();
 
         $collection = $this->collection()->perPage(static::PER_PAGE)->results();
 
@@ -108,7 +105,6 @@ class CollectionController extends BaseScopedController
         }
 
         return view('site.collection.index', [
-            'hour' => $hour,
             'primaryNavCurrent' => 'collection',
             'page' => $page,
             'artworks' => $collection,
