@@ -101,11 +101,7 @@ $showNewHours = Carbon::now()->gt($newHoursStartAt);
                                     <span class="f-secondary">10&ndash;11 a.m.</span>
                                 </td>
                                 <td>
-                                    @if ($showNewHours)
-                                        <span class="f-secondary">11 a.m.&ndash;5 p.m.</span>
-                                    @else
-                                        <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
-                                    @endif
+                                    <span class="f-secondary">11 a.m.&ndash;5 p.m.</span>
                                 </td>
                             </tr>
                             <tr>
@@ -127,11 +123,7 @@ $showNewHours = Carbon::now()->gt($newHoursStartAt);
                                     <span class="f-secondary">10&ndash;11 a.m.</span>
                                 </td>
                                 <td>
-                                    @if ($showNewHours)
-                                        <span class="f-secondary">11 a.m.&ndash;5 p.m.</span>
-                                    @else
-                                        <span class="f-secondary">11 a.m.&ndash;6 p.m.</span>
-                                    @endif
+                                    <span class="f-secondary">11 a.m.&ndash;5 p.m.</span>
                                 </td>
                             </tr>
                         </tbody>
