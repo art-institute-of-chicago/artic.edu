@@ -10,17 +10,6 @@ const formUnsubscribe = function(container) {
     let targets;
 
     switch (checkbox.id) {
-      case 'unsubscribeFromMuseum':
-        targets = document.querySelectorAll(
-          'input[type=checkbox]' +
-          '[name^="subscriptions[]"]' +
-          ':not([id="subscriptions-OptEnews"])' +
-          ':not([id="subscriptions-OptShop"])'
-        );
-        break;
-      case 'unsubscribeFromShop':
-        targets = document.querySelectorAll('input[type=checkbox][id="subscriptions-OptShop"]');
-        break;
       case 'unsubscribeFromAll':
         targets = document.querySelectorAll(
           'input[type=checkbox]' +
