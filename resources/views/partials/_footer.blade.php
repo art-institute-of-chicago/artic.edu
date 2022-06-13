@@ -1,3 +1,7 @@
+@php
+  $showHourSummary = !empty($hour) && trim(strip_tags($hour->summary));
+@endphp
+
 <footer id="footer" class="g-footer">
   <a href="#a17" class="g-footer__top-link arrow-link arrow-link--up f-small-caps">
     Back to top
@@ -8,14 +12,29 @@
 
   <div class="g-footer__inner">
     <h2 class="sr-only" id="h-footer-grid">Footer content</h2>
-    <ul class="g-footer__grid" aria-labelledby="h-footer-grid">
+    <ul class="g-footer__grid {!! $showHourSummary ? 'g-footer__grid--hours' : '' !!}" aria-labelledby="h-footer-grid">
       <li>
         @include('partials._footer--primary')
       </li>
 
-      <li class="u-hide@small-">
-        @include('partials._footer--locations')
-      </li>
+      @if (!$showHourSummary)
+        <li class="u-hide@small-">
+          @include('partials._footer--locations')
+        </li>
+      @else
+        <li>
+          <div class="g-footer__grid__group">
+            <h3 class="g-footer__hours-heading" id="h-footer-nav-hours"><svg aria-hidden="true" class="icon--clock"><use xlink:href="#icon--clock" /></svg>Hours</h3>
+            <div class="g-footer__link-list g-footer__link-list--hours">
+            {!! $hour->summary !!}
+            </div>
+          </div>
+
+          <div class="g-footer__grid__group u-hide@small-">
+            @include('partials._footer--locations')
+          </div>
+        </li>
+      @endif
 
       <li class="u-hide@small-">
         <div class="g-footer__grid__group">
