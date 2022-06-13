@@ -88,7 +88,7 @@ $showNewHours = Carbon::now()->gt($newHoursStartAt);
                         <thead>
                             <tr>
                                 <th> </th>
-                                <th aria-labelledby="h-member-hours"><span class="f-module-title-1" id="h-member-hours">Members <div class="u-hide@small+"></div>Only</span></th>
+                                <th aria-labelledby="h-member-hours"><span class="f-module-title-1" id="h-member-hours">Members</span></th>
                                 <th aria-labelledby="h-public-hours"><span class="f-module-title-1" id="h-public-hours">Public</span></th>
                             </tr>
                         </thead>
