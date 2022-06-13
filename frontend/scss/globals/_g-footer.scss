@@ -74,6 +74,11 @@
   margin-top: 4px;
 }
 
+.g-footer__link-list--flush {
+  @include untuck;
+  margin-top: 0;
+}
+
 .g-footer__link-list--spaced li {
   margin-top: 16px;
 }
@@ -316,5 +321,101 @@
   &::before,
   &::after {
     display: none;
+  }
+}
+
+.g-footer__grid--hours {
+  .g-footer__hours-heading {
+    @extend %f-secondary;
+    @include untuck;
+
+    font-weight: 400;
+    color: $color__text--title-contrast;
+
+    svg {
+      margin-right: 8px;
+      margin-top: -4px;
+    }
+  }
+
+  .g-footer__link-list--hours {
+    @include untuck;
+
+    p, h4 {
+      margin-top: 4px;
+    }
+
+    h4:first-child {
+      margin-top: 0px;
+    }
+
+    p {
+      color: $color__text--footer;
+    }
+  }
+
+  @each $name, $point in ('xsmall', 'small') {
+    @include breakpoint('#{$name}') {
+      > li:nth-child(2) .g-footer__grid__group {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  @include breakpoint('medium') {
+    > li:first-child {
+      width: colspan(grid-cols-to-colspan(3, 58), 'medium');
+    }
+
+
+    > li:nth-child(2) {
+      display: flex;
+      justify-content: space-between;
+
+      width: colspan(38, 'medium');
+
+      .g-footer__grid__group {
+        width: colspan(grid-cols-to-colspan(3, 58), 'medium');
+        border-top: none;
+        padding-top: 0;
+
+        &:nth-child(1)::after {
+          content: '';
+          position: absolute;
+          display: block;
+          top: 0;
+          bottom: 0;
+          left: 50%;
+          width: 1px;
+          background-color: $color__rules--contrast;
+          pointer-events: none;
+        }
+
+        &:nth-child(2) {
+          margin-left: colspan(2, 'medium');
+        }
+      }
+    }
+
+    > li:nth-child(3)::before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 1px;
+      width: colspan(58, 'medium');
+      background-color: $color__rules--contrast;
+      pointer-events: none;
+    }
+
+    > li {
+
+      .g-footer__grid__group:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+    }
   }
 }

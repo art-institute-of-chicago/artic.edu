@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
-use App\Models\Hour;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\EventRepository;
 use Carbon\Carbon;
@@ -36,8 +35,6 @@ class ExhibitionsController extends FrontController
         $this->seo->setTitle('Exhibitions');
         $this->seo->setDescription("Now on view—explore the Art Institute's current and upcoming exhibits to plan your visit.");
 
-        $hour = Hour::today()->first();
-
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
         if ($upcoming) {
@@ -52,7 +49,6 @@ class ExhibitionsController extends FrontController
         $featured = $upcoming ? $page->apiModels('exhibitionsUpcoming', 'Exhibition') : $page->apiModels('exhibitionsExhibitions', 'Exhibition');
 
         return view('site.exhibitions', [
-            'hour' => $hour,
             'page' => $page,
             'collection' => $collection,
             'eventsByDay' => $eventsByDay,

@@ -322,7 +322,7 @@
         'maxlength' => 255,
         'note' => 'Shown in the site-wide footer',
         'toolbarOptions' => [
-            'bold'
+            ['header' => 4],
         ],
     ])
 </a17-fieldset>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
-use App\Models\Hour;
 use App\Models\Lightbox;
 
 use Carbon\Carbon;
@@ -14,8 +13,6 @@ class HomeController extends FrontController
     {
         $this->seo->setTitle("Downtown Chicago's #1 Museum");
         $this->seo->setDescription("Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
-
-        $hour = Hour::today()->first();
 
         $page = Page::forType('Home')->first();
 
@@ -36,7 +33,6 @@ class HomeController extends FrontController
         }
 
         $view_data = [
-            'hour' => $hour,
             'contrastHeader' => sizeof($mainFeatures) > 0,
             'filledLogo' => sizeof($mainFeatures) > 0,
             'mainFeatures' => $mainFeatures,
