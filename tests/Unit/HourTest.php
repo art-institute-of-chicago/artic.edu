@@ -104,9 +104,9 @@ class HourTest extends TestCase
         return ($hour ?? $this->hour)->present()->getHoursHeader();
     }
 
-    private function getHoursTable($hour = null)
+    private function getHoursTableForHeader($hour = null)
     {
-        return ($hour ?? $this->hour)->present()->getHoursTable();
+        return ($hour ?? $this->hour)->present()->getHoursTableForHeader();
     }
 
     /** @test */
@@ -265,7 +265,7 @@ class HourTest extends TestCase
     }
 
     /** @test */
-    public function it_displays_hours_table()
+    public function it_displays_hours_table_for_header()
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals(
@@ -289,12 +289,12 @@ class HourTest extends TestCase
                     'days' => 'Thu–Sun',
                 ]
             ],
-            $this->getHoursTable(),
+            $this->getHoursTableForHeader(),
         );
     }
 
     /** @test */
-    public function it_displays_hours_table_when_closed_all_days()
+    public function it_displays_hours_table_for_header_when_closed_all_days()
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals(
@@ -306,12 +306,12 @@ class HourTest extends TestCase
                     'days' => 'Mon–Sun',
                 ],
             ],
-            $this->getHoursTable($this->hourAllClosed),
+            $this->getHoursTableForHeader($this->hourAllClosed),
         );
     }
 
     /** @test */
-    public function it_displays_hours_table_with_edge_cases()
+    public function it_displays_hours_table_for_header_with_edge_cases()
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals(
@@ -353,7 +353,7 @@ class HourTest extends TestCase
                     'days' => 'Sun',
                 ],
             ],
-            $this->getHoursTable($this->hourEdgeCases),
+            $this->getHoursTableForHeader($this->hourEdgeCases),
         );
     }
 }

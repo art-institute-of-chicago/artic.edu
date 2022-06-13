@@ -63,7 +63,7 @@ class HoursPresenter extends BasePresenter
         return $this->getHoursForHeader($when);
     }
 
-    public function getHoursTable($when = null)
+    public function getHoursTableForHeader($when = null)
     {
         $when = $when
             ? clone $when
