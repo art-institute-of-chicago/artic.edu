@@ -1,5 +1,7 @@
 @php
-  $showHourSummary = !empty($hour) && trim(strip_tags($hour->summary));
+  $showHourSummary = config('aic.show_hours_in_footer')
+    && !empty($hour)
+    && trim(strip_tags($hour->summary));
 @endphp
 
 <footer id="footer" class="g-footer">
