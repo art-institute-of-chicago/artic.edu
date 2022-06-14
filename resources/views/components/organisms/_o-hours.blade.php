@@ -18,7 +18,7 @@
             @slot('variation', 'dropdown--filter')
             @slot('prompt', 'See all hours')
             @slot('ariaTitle', 'See all hours')
-            @foreach ($hour->present()->getHoursTable() as $item)
+            @foreach ($hour->present()->getHoursTableForHeader() as $item)
                 <li class="o-hours__item o-hours__item--hours">
                     <span class="o-hours__item__days">{{ $item['days'] }}</span>
                     <span class="o-hours__item__hours">{{ $item['hours'] }}</span>
