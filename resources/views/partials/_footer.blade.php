@@ -35,7 +35,9 @@
 
       @if (!$showHourSummary)
         <li class="u-hide@small-">
-          @include('partials._footer--locations')
+          @component('partials._footer--locations')
+            @slot('showMap', true)
+          @endcomponent
         </li>
       @else
         <li>
@@ -47,7 +49,9 @@
           </div>
 
           <div class="g-footer__grid__group u-hide@small-">
-            @include('partials._footer--locations')
+            @component('partials._footer--locations')
+              @slot('showMap', false)
+            @endcomponent
           </div>
         </li>
       @endif
