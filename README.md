@@ -163,7 +163,7 @@ We welcome bug reports and questions under GitHub's [Issues](issues). For other 
 
 ## Acknowledgments
 
-Thank you to everyone who has ever contributed to our website project! We appreciated all contributions, big and small. Learn more about who has worked on this project in our [contributors](CONTRIBUTORS.MD) doc.
+Thank you to everyone who has ever contributed to our website project! We appreciated all contributions, big and small. Learn more about who has worked on this project in our [contributors](CONTRIBUTORS.md) doc.
 
 
 
