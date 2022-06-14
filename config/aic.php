@@ -28,4 +28,5 @@ return [
     'show_button_and_date_select_lightbox_variation' => (bool) env('SHOW_BUTTON_AND_DATE_SELECT_LIGHTBOX_VARIATION', false),
     'show_artist_gender' => (bool) env('SHOW_ARTIST_GENDER', false),
     'show_artist_places' => (bool) env('SHOW_ARTIST_PLACES', false),
+    'show_hours_in_footer' => (bool) env('SHOW_HOURS_IN_FOOTER', false),
 ];
