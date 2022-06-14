@@ -93,39 +93,55 @@ $showNewHours = Carbon::now()->gt($newHoursStartAt);
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>
-                                    <span class="f-module-title-1">Monday</span>
-                                </th>
-                                <td>
-                                    <span class="f-secondary">10&ndash;11 a.m.</span>
-                                </td>
-                                <td>
-                                    <span class="f-secondary">11 a.m.&ndash;5 p.m.</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <span class="f-module-title-1">Tuesday&ndash;<div class="u-hide@small+"></div>Wednesday</span>
-                                </th>
-                                <td>
-                                    <span class="f-secondary">Closed</span>
-                                </td>
-                                <td>
-                                    <span class="f-secondary">Closed</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <span class="f-module-title-1">Thursday&ndash;<div class="u-hide@small+"></div>Sunday</span>
-                                </th>
-                                <td>
-                                    <span class="f-secondary">10&ndash;11 a.m.</span>
-                                </td>
-                                <td>
-                                    <span class="f-secondary">11 a.m.&ndash;5 p.m.</span>
-                                </td>
-                            </tr>
+                            @if (!empty($hour))
+                                @foreach ($hour->present()->getHoursTableForVisit() as $item)
+                                    <tr>
+                                        <th>
+                                            <span class="f-module-title-1">{{ $item['days'] }}</span>
+                                        </th>
+                                        <td>
+                                            <span class="f-secondary">{{ $item['member_hours'] }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="f-secondary">{{ $item['public_hours'] }}</span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <th>
+                                        <span class="f-module-title-1">Monday</span>
+                                    </th>
+                                    <td>
+                                        <span class="f-secondary">10&ndash;11 a.m.</span>
+                                    </td>
+                                    <td>
+                                        <span class="f-secondary">11 a.m.&ndash;5 p.m.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span class="f-module-title-1">Tuesday&ndash;<div class="u-hide@small+"></div>Wednesday</span>
+                                    </th>
+                                    <td>
+                                        <span class="f-secondary">Closed</span>
+                                    </td>
+                                    <td>
+                                        <span class="f-secondary">Closed</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span class="f-module-title-1">Thursday&ndash;<div class="u-hide@small+"></div>Sunday</span>
+                                    </th>
+                                    <td>
+                                        <span class="f-secondary">10&ndash;11 a.m.</span>
+                                    </td>
+                                    <td>
+                                        <span class="f-secondary">11 a.m.&ndash;5 p.m.</span>
+                                    </td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
