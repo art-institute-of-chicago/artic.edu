@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
+use App\Models\Hour;
 use App\Libraries\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\EmbedConverterService;
 use App\Libraries\DamsImageService;
@@ -152,9 +153,12 @@ class AppServiceProvider extends ServiceProvider
 
     private function composeTemplatesViews()
     {
+        $hour = Hour::today()->first();
+
         // WEB-2269: Consider moving some of this to a config?
-        view()->composer('*', function ($view) {
+        view()->composer('*', function ($view) use ($hour) {
             $view->with([
+                'hour' => $hour,
                 '_pages' => [
                     'visit' => route('visit')
                     , 'hours' => route('visit') . '#hours'
@@ -176,7 +180,7 @@ class AppServiceProvider extends ServiceProvider
 
                     , 'support-us' => '/support-us'
                     , 'support-us-membership' => '/support-us/membership'
-                    , 'support-us-annual-fund' => '/support-us/ways-to-give/annual-fund'
+                    , 'support-us-luminary' => '/support-us/membership/luminary-levels'
                     , 'support-us-planned-giving' => '/support-us/ways-to-give/planned-giving'
                     , 'support-us-corporate-sponsorship' => '/support-us/ways-to-give/corporate-sponsorship'
 

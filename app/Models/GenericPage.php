@@ -37,6 +37,7 @@ class GenericPage extends AbstractModel implements Sortable
         'meta_description',
         'search_tags',
         'http_protected',
+        'show_hours',
     ];
 
     public $dates = [

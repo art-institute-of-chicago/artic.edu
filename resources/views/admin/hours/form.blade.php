@@ -313,15 +313,16 @@
     @formField('input', [
         'name' => 'additional_text',
         'label' => 'Additional text',
+        'note' => 'For the "See all hours" modal',
     ])
 
     @formField('wysiwyg', [
         'name' => 'summary',
         'label' => 'Summary',
         'maxlength' => 255,
-        'note' => 'Will be used in the footer',
+        'note' => 'Shown in the site-wide footer',
         'toolbarOptions' => [
-            'bold'
+            ['header' => 4],
         ],
     ])
 </a17-fieldset>

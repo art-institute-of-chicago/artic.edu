@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if (!empty($hour))
+    @component('components.organisms._o-hours')
+        @slot('hour', $hour)
+    @endcomponent
+@endif
+
 @component('components.molecules._m-header-block')
     {!! $page->present()->title_display ?? $page->present()->title !!}
 @endcomponent

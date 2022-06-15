@@ -368,9 +368,14 @@ class Exhibition extends BaseApiModel
         return $this->hasMany(\App\Models\Api\Artist::class, 'artist_ids');
     }
 
-    public function historyImages()
+    public function mainImage()
     {
-        return $this->hasMany(\App\Models\Api\Asset::class, 'alt_image_ids');
+        return $this->hasMany(\App\Models\Api\Image::class, 'image_id');
+    }
+
+    public function extraImages()
+    {
+        return $this->hasMany(\App\Models\Api\Image::class, 'alt_image_ids');
     }
 
     public function historyDocuments()

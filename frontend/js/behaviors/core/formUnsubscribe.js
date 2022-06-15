@@ -5,17 +5,29 @@ const formUnsubscribe = function(container) {
   function _toggle(event) {
     event.preventDefault();
     event.stopPropagation();
-    forEach(document.querySelectorAll('input[type=checkbox][name^="subscriptions[]"]:not([id="subscriptions-OptEnews"])'), function(index, el) {
-      if (el.getAttribute('disabled') === 'true') {
-        // Enable
-        el.removeAttribute('disabled');
-        container.querySelector('input[type=checkbox][name="unsubscribe"]').checked = false;
-      } else {
-        // Disable
+
+    let checkbox = container.querySelector('input[type=checkbox][name^="unsubscribe"]');
+    let targets;
+
+    switch (checkbox.id) {
+      case 'unsubscribeFromAll':
+        targets = document.querySelectorAll(
+          'input[type=checkbox]' +
+          '[name^="subscriptions[]"]' +
+          ':not([id="subscriptions-OptEnews"])'
+        );
+        break;
+    }
+
+    checkbox.checked = !checkbox.checked;
+
+    forEach(targets, function(index, el) {
+      if (checkbox.checked) {
         el.setAttribute('disabled', 'true');
         el.removeAttribute('checked');
         el.checked = false;
-        container.querySelector('input[type=checkbox][name="unsubscribe"]').checked = true;
+      } else {
+        el.removeAttribute('disabled');
       }
     });
   }

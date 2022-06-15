@@ -1,7 +1,7 @@
 # Contributors
 > Thank you to everyone who has ever contributed to our website project!
 
-Contributions to artic.edu may include major feature development, bug fixing, writing documentation, editing, reviewing, idea generation, presentation, product management, and maintenance. We are grateful for every contributions.
+Contributions to artic.edu may include major feature development, bug fixing, writing documentation, editing, reviewing, idea generation, presentation, product management, and maintenance. We are grateful for every contribution.
 
 ## Art Institute of Chicago team
 > Past and present
@@ -12,7 +12,7 @@ GitHub: [nikhiltri](https://github.com/nikhiltri)
 Twitter: [@nikhiltri](https://twitter.com/nikhiltri)
 
 ### Illya Moskvin
-Role: Web Developer  
+Role: Senior Web Developer  
 GitHub: [IllyaMoskvin](https://github.com/IllyaMoskvin)  
 Twitter: [@IllyaMoskvin](https://twitter.com/IllyaMoskvin)
 

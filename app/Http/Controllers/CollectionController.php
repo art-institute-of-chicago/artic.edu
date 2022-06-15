@@ -83,6 +83,7 @@ class CollectionController extends BaseScopedController
         if (request('q')) {
             $description = 'You searched for: ' . request('q') . '. ' . $description;
         }
+
         $this->seo->setDescription($description);
         $this->seo->nofollow = $this->setNofollowMeta();
 

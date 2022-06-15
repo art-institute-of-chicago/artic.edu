@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 class ExhibitionPresenter extends BasePresenter
 {
+    private $cachedHistoryImages;
+
     public function startDate()
     {
         if ($this->entity->start_date) {
@@ -131,12 +133,31 @@ class ExhibitionPresenter extends BasePresenter
         ];
     }
 
+    public function getHistoryImages()
+    {
+        if ($this->cachedHistoryImages) {
+            return $this->cachedHistoryImages;
+        }
+
+        $main = collect($this->entity->mainImage);
+        $extra = collect($this->entity->extraImages);
+
+        return $this->cachedHistoryImages = $main->merge($extra);
+    }
+
     public function getHistoryImagesForMediaComponent()
     {
-        return $this->entity->historyImages->each(function ($image) {
-            $image->useArtworkSrcset = true;
-            $image->isPublicDomain = true;
-        })->toArray();
+        return $this
+            ->getHistoryImages()
+            ->map(function ($image) {
+                return [
+                    'type' => 'image',
+                    'useArtworkSrcset' => true,
+                    'isPublicDomain' => true,
+                    'media' => $image->imageFront(),
+                ];
+            })
+            ->toArray();
     }
 
     public function navigation()

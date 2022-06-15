@@ -4,6 +4,12 @@
 
 <section class="o-collection-listing">
 
+@if (!empty($hour))
+    @component('components.organisms._o-hours')
+        @slot('hour', $hour)
+    @endcomponent
+@endif
+
 @component('components.molecules._m-header-block')
     The Collection
 @endcomponent

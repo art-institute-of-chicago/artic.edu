@@ -5,7 +5,7 @@
 <section class="o-articles">
 
     @if (isset($heroArticle) && $heroArticle)
-        @component('components.organisms._o-features')
+        <ul class="o-features">
             @component('components.molecules._m-listing----article-hero')
                 @slot('item', $heroArticle)
                 @slot('variation', 'm-listing--hero m-listing--hero-editorial')
@@ -16,7 +16,7 @@
                     'sizes' => '100vw',
                 ))
             @endcomponent
-        @endcomponent
+        </ul>
     @endif
 
   @component('components.molecules._m-title-bar')
