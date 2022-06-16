@@ -17,6 +17,10 @@ class EmailSubscriptionsRequest extends FormRequest
 
     public function withValidator($validator)
     {
+        if (config('aic.disable_captcha')) {
+            return;
+        }
+
         $validator->after(function ($validator) {
             $this->validateCaptcha($validator);
         });

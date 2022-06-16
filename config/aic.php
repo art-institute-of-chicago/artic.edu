@@ -29,4 +29,5 @@ return [
     'show_artist_gender' => (bool) env('SHOW_ARTIST_GENDER', false),
     'show_artist_places' => (bool) env('SHOW_ARTIST_PLACES', false),
     'show_hours_in_footer' => (bool) env('SHOW_HOURS_IN_FOOTER', false),
+    'disable_captcha' => (bool) env('DISABLE_CAPTCHA', false),
 ];
