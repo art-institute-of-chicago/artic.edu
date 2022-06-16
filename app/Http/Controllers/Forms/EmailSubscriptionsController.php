@@ -116,21 +116,26 @@ class EmailSubscriptionsController extends FormController
             ],
         ];
 
-        $personalInformationFields[] = [
-            'variation' => null,
-            'blocks' => [
-                [
-                    'type' => 'captcha',
-                    'variation' => null,
-                    'id' => 'captcha',
-                    'error' => (!empty($errors) && $errors->first('captcha')) ? $errors->first('captcha') : null,
-                    'optional' => null,
-                    'hint' => null,
-                    'disabled' => false,
-                    'label' => '',
+
+        if (!config('aic.disable_captcha')) {
+            $personalInformationFields[] = [
+                'variation' => null,
+                'blocks' => [
+                    [
+                        'type' => 'captcha',
+                        'variation' => null,
+                        'id' => 'captcha',
+                        'error' => (!empty($errors) && $errors->first('captcha'))
+                            ? $errors->first('captcha')
+                            : null,
+                        'optional' => null,
+                        'hint' => null,
+                        'disabled' => false,
+                        'label' => '',
+                    ],
                 ],
-            ],
-        ];
+            ];
+        }
 
         array_push($formBlocks, [
             'type' => 'fieldset',

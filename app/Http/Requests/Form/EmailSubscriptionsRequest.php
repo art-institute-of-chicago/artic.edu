@@ -9,7 +9,7 @@ class EmailSubscriptionsRequest extends FormRequest
         return [
             'email' => 'required',
             'subscriptions' => 'sometimes',
-            'unsubscribe' => 'sometimes',
+            'unsubscribeFromAll' => 'sometimes',
             'first_name' => 'sometimes',
             'last_name' => 'sometimes',
         ];
@@ -17,6 +17,10 @@ class EmailSubscriptionsRequest extends FormRequest
 
     public function withValidator($validator)
     {
+        if (config('aic.disable_captcha')) {
+            return;
+        }
+
         $validator->after(function ($validator) {
             $this->validateCaptcha($validator);
         });
