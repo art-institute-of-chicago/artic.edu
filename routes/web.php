@@ -39,7 +39,6 @@ use App\Http\Controllers\Forms\EducatorAdmissionController;
 use App\Http\Controllers\Forms\EmailSubscriptionsController;
 use App\Http\Controllers\Forms\EventPlanningContactController;
 use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
-use App\Http\Controllers\Forms\GroupReservationsController;
 
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 
@@ -192,11 +191,6 @@ Route::get('/press/press-releases/{id}/{slug?}', [PressReleasesController::class
 
 Route::middleware(['httpauth'])->get('/press/exhibition-press-room', [ExhibitionPressRoomController::class, 'index'])->name('about.exhibitionPressRooms');
 Route::middleware(['httpauth'])->get('/press/exhibition-press-room/{id}/{slug?}', [ExhibitionPressRoomController::class, 'show'])->name('about.exhibitionPressRooms.show');
-
-// Group reservation form
-Route::get('/visit/visiting-with-a-group/reservation-form', [GroupReservationsController::class, 'index'])->name('forms.group-reservation');
-Route::post('/visit/visiting-with-a-group/reservation-form', [GroupReservationsController::class, 'store'])->name('forms.group-reservation.store');
-Route::get('/visit/visiting-with-a-group/reservation-form/thanks', [GroupReservationsController::class, 'thanks'])->name('forms.group-reservation.thanks');
 
 // Event planning contact
 Route::get('/venue-rental/contact-us', [EventPlanningContactController::class, 'index'])->name('forms.event-planning-contact');
