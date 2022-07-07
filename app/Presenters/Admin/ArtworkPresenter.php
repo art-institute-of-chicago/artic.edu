@@ -225,7 +225,9 @@ class ArtworkPresenter extends BasePresenter
                 return isset($item->artist_id) && isset($item->artist_title);
             });
 
-            $preferredArtist = $artistPivots->firstWhere('preferred', true);
+            $preferredArtist = $artistPivots->firstWhere('is_preferred', true)
+                ?: $artistPivots->firstWhere('preferred', true);
+
             $showCultureFirst = false;
 
             $cultureLinks = [];
