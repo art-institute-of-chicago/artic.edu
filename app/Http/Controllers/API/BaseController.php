@@ -8,14 +8,19 @@ use Aic\Hub\Foundation\AbstractController;
 class BaseController extends AbstractController
 {
     /**
-     * Call to get a model list. Override this method when logic to get
-     * models is more complex than a simple `$model::paginate($limit)` call.
-     *
      * @param int $limit
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     protected function paginateTrashed($limit)
     {
         return ($this->model)::onlyTrashed()->paginate($limit);
+    }
+
+    /**
+     * API-331: Remove unpublished items from the API
+     */
+    protected function getBaseQuery()
+    {
+        return parent::getBaseQuery()->published();
     }
 }
