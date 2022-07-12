@@ -54,10 +54,6 @@ class ApiTransformer extends AbstractTransformer
 
         $dates = [];
 
-        if ($item->source_modified_at) {
-            $dates['last_updated_source'] = $item->source_modified_at->toIso8601String();
-        }
-
         if ($item->updated_at) {
             $dates['last_updated'] = $item->updated_at->toIso8601String();
         }
