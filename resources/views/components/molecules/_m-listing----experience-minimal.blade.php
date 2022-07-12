@@ -23,9 +23,9 @@
             <br>
             <span class="m-listing__meta-bottom">
                 <span class="intro f-caption">
-                    @if ($item->last_updated)
+                    @if ($item->updated_at)
                         @component('components.atoms._date')
-                            {{ date('F j, Y', strtotime($item->last_updated)) }}
+                            {{ date('F j, Y', strtotime($item->updated_at)) }}
                         @endcomponent
                     @endif
                 </span>

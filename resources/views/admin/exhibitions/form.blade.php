@@ -283,8 +283,8 @@
             'disabled' => true
         ])
         @formField('input', [
-            'name' => 'last_updated',
-            'label' => 'Last updated',
+            'name' => 'updated_at',
+            'label' => 'Updated at',
             'disabled' => true
         ])
         @formField('input', [
