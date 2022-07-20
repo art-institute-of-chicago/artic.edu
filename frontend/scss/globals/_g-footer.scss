@@ -347,14 +347,17 @@
       > li:nth-child(2) .g-footer__grid__group {
         padding-bottom: 0;
       }
+
+      > li:nth-child(4) .g-footer__grid__group {
+        margin-top: -8px;
+      }
     }
   }
 
   @include breakpoint('medium+') {
-    > li:first-child {
+    > li:nth-child(1) {
       width: colspan(grid-cols-to-colspan(3, 58), 'medium');
     }
-
 
     > li:nth-child(2) {
       display: flex;
@@ -404,6 +407,16 @@
         border-top: none;
         padding-top: 0;
       }
+    }
+
+    > li:nth-child(1),
+    > li:nth-child(2) {
+      min-height: initial;
+    }
+
+    nav,
+    .g-footer__grid__group {
+      padding-bottom: 60px;
     }
   }
 
