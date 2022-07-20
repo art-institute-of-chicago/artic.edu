@@ -85,12 +85,6 @@
           </div>
         </li>
 
-        <li class="u-hide@medium-">
-          <div class="g-footer__grid__group">
-            @include('partials._footer--support')
-          </div>
-        </li>
-
         <li>
           <div class="g-footer__grid__group u-hide@small-">
             @include('partials._footer--learn')
@@ -98,6 +92,12 @@
 
           <div class="g-footer__grid__group u-hide@large+">
             @include('partials._footer--follow')
+          </div>
+        </li>
+
+        <li class="u-hide@medium-">
+          <div class="g-footer__grid__group">
+            @include('partials._footer--support')
           </div>
         </li>
 
