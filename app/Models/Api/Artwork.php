@@ -122,13 +122,6 @@ class Artwork extends BaseApiModel
         return str_replace("\n", '<br/>', $value);
     }
 
-    public function getCataloguesAttribute()
-    {
-        if (!empty($this->catalogue_pivots)) {
-            return collect($this->catalogue_pivots);
-        }
-    }
-
     public function getDateBlockAttribute()
     {
         return join('–', array_unique(array_filter([DateHelpers::convertArtworkDates($this->date_start), DateHelpers::convertArtworkDates($this->date_end)])));
