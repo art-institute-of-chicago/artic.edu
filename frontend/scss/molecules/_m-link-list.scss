@@ -217,3 +217,12 @@ a.m-link-list__trigger.f-secondary {
 .m-link-list__trigger--wait-time.f-secondary {
   margin-top: 0;
 }
+
+// API-311: Match spacing above catalogue PDF
+.m-link-list--exhibition-microsite {
+  margin-top: 20px;
+
+  .m-link-list__item:first-child::after {
+    content: none;
+  }
+}
