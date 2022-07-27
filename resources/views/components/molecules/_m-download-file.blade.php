@@ -8,7 +8,7 @@
     @endif
     <span class="m-download-file__meta f-secondary">
         @if (isset($file['title']))
-            {{ $file['title'] }}@if (isset($file['extension'])).{{ strtolower($file['extension']) }}@endif
+            {{ $file['title'] }}
         @endif
         <br>
         @if (isset($file['extension']))
