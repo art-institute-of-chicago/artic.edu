@@ -24,7 +24,7 @@
         @slot('icon', 'icon--download--24')
         @slot('tag', 'a')
         @slot('href', $file['content'] ?? null)
-        @slot('download', true)
+        @slot('download', $file['title'] ?? true)
         @slot('ariaLabel','Download file')
     @endcomponent
 </p>
