@@ -251,6 +251,7 @@ class EmailSubscriptionsController extends FormController
             return redirect(route('forms.email-subscriptions.thanks'));
         }
 
+        // TODO: This message won't render due to `getTwillErrorView`
         abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
     }
 

@@ -201,8 +201,8 @@ class ExactTargetService
 
         $deRow->props = array_fill_keys($fields, 'True');
 
-        // From
-        $deRow->Name = 'All Subscribers Master';
+        // From (e.g. "All Subscribers Master")
+        $deRow->Name = config('exact-target.customer_key');
 
         // Where
         $deRow->filter = [
