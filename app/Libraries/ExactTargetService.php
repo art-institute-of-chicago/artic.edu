@@ -86,6 +86,14 @@ class ExactTargetService
                     $deRow->props[$list] = 'False';
                 }
             }
+
+            $museumLists = ExactTargetList::getList()->except('OptShop')->keys()->all();
+
+            if (count(array_intersect($this->list, $museumLists)) > 0) {
+                $deRow->props['OptMuseum'] = 'True';
+            } elseif ($alsoRemove) {
+                $deRow->props['OptMuseum'] = 'False';
+            }
         }
 
         $deRow->CustomerKey = config('exact-target.customer_key');
