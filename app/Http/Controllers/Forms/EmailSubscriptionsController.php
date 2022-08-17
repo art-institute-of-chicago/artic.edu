@@ -173,6 +173,7 @@ class EmailSubscriptionsController extends FormController
             'action' => '/email-subscriptions',
             'method' => 'POST',
             'blocks' => $formBlocks,
+            'behavior' => 'emailSubscriptions',
             'actions' => [
                 [
                     'variation' => null,

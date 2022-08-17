@@ -296,6 +296,7 @@
                     @slot('action', $block['action'] ?? null)
                     @slot('method', $block['method'] ?? null)
                     @slot('actions', $block['actions'] ?? null)
+                    @slot('behavior', $block['behavior'] ?? null)
                 @endcomponent
             @endif
 
