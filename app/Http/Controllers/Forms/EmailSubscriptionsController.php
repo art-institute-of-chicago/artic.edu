@@ -220,6 +220,7 @@ class EmailSubscriptionsController extends FormController
             'error' => null,
             'optional' => null,
             'hint' => null,
+            'autocomplete' => false,
             'disabled' => false,
             'checked' => old($fieldName) ?? false,
             'label' => $fieldLabel,
@@ -286,6 +287,7 @@ class EmailSubscriptionsController extends FormController
                 'error' => null,
                 'optional' => null,
                 'hint' => null,
+                'autocomplete' => false,
                 'disabled' => false,
                 'checked' => false,
                 'label' => $label

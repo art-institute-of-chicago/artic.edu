@@ -390,6 +390,7 @@
                     @slot('label', $block['label'] ?? false)
                     @slot('checked', $block['checked'] ?? false)
                     @slot('behavior', $block['behavior'] ?? false)
+                    @slot('autocomplete', $block['autocomplete'] ?? true)
                 @endcomponent
             @endif
 
