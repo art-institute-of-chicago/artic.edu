@@ -6,40 +6,61 @@ const formUnsubscribe = function(container) {
     event.preventDefault();
     event.stopPropagation();
 
-    let checkbox = container.querySelector('input[type=checkbox][name^="unsubscribe"]');
-    let targets;
+    let optMuseum = document.getElementById('subscriptions-OptMuseum');
+    let optShop = document.getElementById('subscriptions-OptShop');
+    let optOthers = Array.from(document.querySelectorAll(
+      'input[type=checkbox]' +
+      '[name^="subscriptions[]"]' +
+      ':not([id="subscriptions-OptMuseum"])' +
+      ':not([id="subscriptions-OptShop"])'
+    ));
 
-    switch (checkbox.id) {
-      case 'unsubscribeFromMuseum':
-        targets = document.querySelectorAll(
-          'input[type=checkbox]' +
-          '[name^="subscriptions[]"]' +
-          ':not([id="subscriptions-OptMuseum"])' +
-          ':not([id="subscriptions-OptShop"])'
-        );
-        break;
-      case 'unsubscribeFromShop':
-        targets = document.querySelectorAll('input[type=checkbox][id="subscriptions-OptShop"]');
-        break;
-      case 'unsubscribeFromAll':
-        targets = document.querySelectorAll(
-          'input[type=checkbox]' +
-          '[name^="subscriptions[]"]' +
-          ':not([id="subscriptions-OptMuseum"])'
-        );
-        break;
-    }
+    let unsubscribeFromMuseum = document.getElementById('unsubscribeFromMuseum');
+    let unsubscribeFromShop = document.getElementById('unsubscribeFromShop');
+    let unsubscribeFromAll = document.getElementById('unsubscribeFromAll');
+
+    let checkbox = container.querySelector('input[type=checkbox][name^="unsubscribe"]');
+    let targets = [];
 
     checkbox.checked = !checkbox.checked;
 
+    if (checkbox.id == 'unsubscribeFromAll') {
+      unsubscribeFromMuseum.checked = unsubscribeFromAll.checked;
+      unsubscribeFromShop.checked = unsubscribeFromAll.checked;
+    }
+
+    if (unsubscribeFromMuseum.checked) {
+      _disable(optOthers);
+    } else {
+      _enable(optOthers);
+    }
+
+    if (unsubscribeFromShop.checked) {
+      _disable([optShop]);
+    } else {
+      _enable([optShop]);
+    }
+
+    optMuseum.checked = !unsubscribeFromMuseum.checked;
+
+    if (unsubscribeFromAll.checked && (
+      !unsubscribeFromMuseum.checked || !unsubscribeFromShop.checked
+    )) {
+      unsubscribeFromAll.checked = false
+    }
+  }
+
+  function _disable(targets) {
     forEach(targets, function(index, el) {
-      if (checkbox.checked) {
-        el.setAttribute('disabled', 'true');
-        el.removeAttribute('checked');
-        el.checked = false;
-      } else {
-        el.removeAttribute('disabled');
-      }
+      el.setAttribute('disabled', 'true');
+      el.removeAttribute('checked');
+      el.checked = false;
+    });
+  }
+
+  function _enable(targets) {
+    forEach(targets, function(index, el) {
+      el.removeAttribute('disabled');
     });
   }
 
