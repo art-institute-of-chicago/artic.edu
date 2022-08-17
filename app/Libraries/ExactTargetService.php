@@ -77,7 +77,7 @@ class ExactTargetService
                 $this->list = [$this->list];
             }
 
-            $allLists = ExactTargetList::getList()->except('OptMuseum')->keys()->all();
+            $allLists = ExactTargetList::getList()->keys()->all();
 
             foreach ($allLists as $list) {
                 if (in_array($list, $this->list)) {
@@ -85,14 +85,6 @@ class ExactTargetService
                 } elseif ($alsoRemove) {
                     $deRow->props[$list] = 'False';
                 }
-            }
-
-            $museumLists = ExactTargetList::getList()->except('OptShop')->keys()->all();
-
-            if (count(array_intersect($this->list, $museumLists)) > 0) {
-                $deRow->props['OptMuseum'] = 'True';
-            } elseif ($alsoRemove) {
-                $deRow->props['OptMuseum'] = 'False';
             }
         }
 
@@ -197,7 +189,7 @@ class ExactTargetService
         $deRow->authStub = $client;
 
         // Select
-        $allLists = ExactTargetList::getList()->except('OptMuseum')->keys()->all();
+        $allLists = ExactTargetList::getList()->keys()->all();
         $fields = array_merge(
             [
                 'Email',
