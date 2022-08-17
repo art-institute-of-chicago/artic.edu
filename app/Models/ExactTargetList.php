@@ -10,7 +10,7 @@ class ExactTargetList
     public static function getList()
     {
         return collect([
-            'OptEnews' => 'News and Exhibitions',
+            'OptMuseum' => 'News and Exhibitions',
             'OptHumanResources' => 'Career Opportunities',
             'OptFamilyPrograms' => 'Families',
             'OptEvents' => 'Public Programs',

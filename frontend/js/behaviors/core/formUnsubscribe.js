@@ -14,7 +14,7 @@ const formUnsubscribe = function(container) {
         targets = document.querySelectorAll(
           'input[type=checkbox]' +
           '[name^="subscriptions[]"]' +
-          ':not([id="subscriptions-OptEnews"])' +
+          ':not([id="subscriptions-OptMuseum"])' +
           ':not([id="subscriptions-OptShop"])'
         );
         break;
@@ -25,7 +25,7 @@ const formUnsubscribe = function(container) {
         targets = document.querySelectorAll(
           'input[type=checkbox]' +
           '[name^="subscriptions[]"]' +
-          ':not([id="subscriptions-OptEnews"])'
+          ':not([id="subscriptions-OptMuseum"])'
         );
         break;
     }

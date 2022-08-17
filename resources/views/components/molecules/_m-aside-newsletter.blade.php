@@ -38,8 +38,8 @@
                           <li class="m-fieldset__field o-blocks m-fieldset__field--group">
                           @foreach($left as $value => $label)
                               @component('components.atoms._checkbox')
-                                  @slot('checked', $value === 'OptEnews' ? 'checked' : null)
-                                  @slot('disabled', $value === 'OptEnews' ? 'disabled' : null)
+                                  @slot('checked', $value === 'OptMuseum' ? 'checked' : null)
+                                  @slot('disabled', $value === 'OptMuseum' ? 'disabled' : null)
                                   @slot('id', 'subscriptions-' . $value)
                                   @slot('value', $value)
                                   @slot('name', 'subscriptions[' .$i .']')

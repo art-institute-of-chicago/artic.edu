@@ -297,7 +297,7 @@ class EmailSubscriptionsController extends FormController
                 }
             }
 
-            if ($value === 'OptEnews') {
+            if ($value === 'OptMuseum') {
                 $item['checked'] = 'checked';
                 $item['disabled'] = 'disabled';
             }

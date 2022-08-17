@@ -77,7 +77,7 @@ class ExactTargetService
                 $this->list = [$this->list];
             }
 
-            $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
+            $allLists = ExactTargetList::getList()->except('OptMuseum')->keys()->all();
 
             foreach ($allLists as $list) {
                 if (in_array($list, $this->list)) {
@@ -197,7 +197,7 @@ class ExactTargetService
         $deRow->authStub = $client;
 
         // Select
-        $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
+        $allLists = ExactTargetList::getList()->except('OptMuseum')->keys()->all();
         $fields = array_merge(
             [
                 'Email',
