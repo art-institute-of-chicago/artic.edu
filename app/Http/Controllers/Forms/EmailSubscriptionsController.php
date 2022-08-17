@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Forms;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use App\Http\Requests\Form\EmailSubscriptionsRequest;
@@ -13,7 +14,7 @@ use App\Models\Form\EmailSubscriptions;
 
 class EmailSubscriptionsController extends FormController
 {
-    public function index(\Illuminate\Http\Request $request)
+    public function index(Request $request)
     {
         $this->title = 'Email Subscriptions';
         $this->seo->setTitle($this->title);
@@ -145,28 +146,28 @@ class EmailSubscriptionsController extends FormController
             ];
         }
 
-        array_push($formBlocks, [
+        $formBlocks[] = [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $subscriptionsFields,
             'legend' => 'Newsletter Options',
-        ]);
+        ];
 
-        array_push($formBlocks, [
+        $formBlocks[] = [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $unsubscribeFields,
             'legend' => 'Unsubscribe',
-        ]);
+        ];
 
-        array_push($formBlocks, [
+        $formBlocks[] = [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $personalInformationFields,
             'legend' => 'Personal Information',
-        ]);
+        ];
 
-        array_push($blocks, [
+        $blocks[] = [
             'type' => 'form',
             'variation' => null,
             'action' => '/email-subscriptions',
@@ -179,7 +180,7 @@ class EmailSubscriptionsController extends FormController
                     'label' => 'Update',
                 ]
             ]
-        ]);
+        ];
 
         $view_data = [
             'subNav' => [],
@@ -191,7 +192,7 @@ class EmailSubscriptionsController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-    private function getUnsubscribeBlocks($fieldName, $fieldLabel)
+    private function getUnsubscribeBlocks($fieldName, $fieldLabel): array
     {
         $errors = session('errors');
 
@@ -248,7 +249,7 @@ class EmailSubscriptionsController extends FormController
             if ($response !== true) {
                 /* If the user doesn't exist in our email list, ET will throw an
                  * error. It's ok if the user doesn't exist, because that's
-                 * ultimately what we want. So idenfity if this is the case and
+                 * ultimately what we want. So identify if this is the case and
                  * provide a message to the user. The full expected error is
                  * 'Concurrency violation: the DeleteCommand affected 0 of the
                  * expected 1 records.' [WEB-1427]
@@ -269,11 +270,12 @@ class EmailSubscriptionsController extends FormController
         abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
     }
 
-    private function getSubscriptionsArray($selected)
+    private function getSubscriptionsArray($selected): array
     {
         $subs = ExactTargetList::getList();
 
         $list = [];
+
         foreach ($subs as $value => $label) {
             $item = [
                 'type' => 'checkbox',
