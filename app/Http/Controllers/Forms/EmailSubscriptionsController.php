@@ -14,8 +14,50 @@ use App\Models\Form\EmailSubscriptions;
 
 class EmailSubscriptionsController extends FormController
 {
+    private $old;
+
     public function index(Request $request)
     {
+        $withErrors = [];
+
+        $this->old = new EmailSubscriptions();
+
+        if (request('e')) {
+            $email = request('e');
+
+            $exactTarget = new ExactTargetService($email);
+            $response = $exactTarget->get();
+
+            if ($response->status && $response->code == 200 && count($response->results)) {
+                // When a new property gets added to the data extension,
+                // even if it is given a default value, existing records
+                // will not be updated with that value. We need to assume
+                // some true/false defaults here.
+                foreach ($response->results[0]->Properties->Property as $item) {
+                    switch ($item->Name) {
+                        case 'Email':
+                            $this->old->email = $item->Value;
+                            break;
+                        case 'FirstName':
+                            $this->old->first_name = $item->Value;
+                            break;
+                        case 'LastName':
+                            $this->old->last_name = $item->Value;
+                            break;
+                        case 'OptMuseum':
+                            $this->old->OptMuseum = empty($item->Value)
+                                || strtolower($item->Value) == 'true';
+                            break;
+                        default:
+                            $this->old->{$item->Name} = !empty($item->Value)
+                                && strtolower($item->Value) == 'true';
+                    }
+                }
+            } else {
+                $withErrors['message'] = 'Your e-mail address is not currently subscribed. Please fill out and submit the form below to begin receiving messages from the Art Institute of Chicago.';
+            }
+        }
+
         $this->title = 'Email Subscriptions';
         $this->seo->setTitle($this->title);
 
@@ -42,9 +84,7 @@ class EmailSubscriptionsController extends FormController
             ],
         ];
 
-        foreach ($this->getSubscriptionsArray(old('subscriptions')) as $d) {
-            array_push($subFields['blocks'], $d);
-        }
+        array_push($subFields['blocks'], ...$this->getSubscriptionsArray());
 
         $subscriptionsFields[] = $subFields;
 
@@ -54,7 +94,12 @@ class EmailSubscriptionsController extends FormController
             'blocks' => array_merge(
                 $this->getUnsubscribeBlocks(
                     'unsubscribeFromMuseum',
-                    'I no longer wish to receive museum marketing emails..'
+                    'I no longer wish to receive museum marketing emails..',
+                    [
+                        'checked' => $this->getOld('OptMuseum') === false
+                            ? 'checked'
+                            : false,
+                    ]
                 ),
                 $this->getUnsubscribeBlocks(
                     'unsubscribeFromShop',
@@ -77,7 +122,7 @@ class EmailSubscriptionsController extends FormController
                     'id' => 'email',
                     'placeholder' => '',
                     'textCount' => false,
-                    'value' => old('email'),
+                    'value' => $this->getOld('email'),
                     'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
                     'optional' => false,
                     'hint' => null,
@@ -96,7 +141,7 @@ class EmailSubscriptionsController extends FormController
                     'id' => 'first_name',
                     'placeholder' => '',
                     'textCount' => false,
-                    'value' => old('first_name'),
+                    'value' => $this->getOld('first_name'),
                     'error' => (!empty($errors) && $errors->first('first_name')) ? $errors->first('first_name') : null,
                     'optional' => null,
                     'hint' => null,
@@ -115,7 +160,7 @@ class EmailSubscriptionsController extends FormController
                     'id' => 'last_name',
                     'placeholder' => '',
                     'textCount' => false,
-                    'value' => old('last_name'),
+                    'value' => $this->getOld('last_name'),
                     'error' => (!empty($errors) && $errors->first('last_name')) ? $errors->first('last_name') : null,
                     'optional' => null,
                     'hint' => null,
@@ -193,8 +238,11 @@ class EmailSubscriptionsController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-    private function getUnsubscribeBlocks($fieldName, $fieldLabel): array
-    {
+    private function getUnsubscribeBlocks(
+        string $fieldName,
+        string $fieldLabel,
+        array $checkboxModifiers = []
+    ): array {
         $errors = session('errors');
 
         $out = [];
@@ -212,7 +260,7 @@ class EmailSubscriptionsController extends FormController
             ];
         }
 
-        $out[] = [
+        $out[] = array_merge([
             'type' => 'checkbox',
             'variation' => '',
             'id' => $fieldName,
@@ -223,10 +271,10 @@ class EmailSubscriptionsController extends FormController
             'hint' => null,
             'autocomplete' => false,
             'disabled' => false,
-            'checked' => old($fieldName) ?? false,
+            'checked' => $this->getOld($fieldName) ?? false,
             'label' => $fieldLabel,
             'behavior' => 'formUnsubscribe'
-        ];
+        ], $checkboxModifiers);
 
         return $out;
     }
@@ -235,11 +283,18 @@ class EmailSubscriptionsController extends FormController
     {
         $validated = $request->validated();
 
-        $exactTarget = new ExactTargetService($validated['email'], $validated['subscriptions'] ?? null);
+        $exactTarget = new ExactTargetService(
+            $validated['email'],
+            $validated['subscriptions'] ?? null
+        );
 
         $unsubscribeFromMuseum = $this->getCheckbox('unsubscribeFromMuseum', $validated);
         $unsubscribeFromShop = $this->getCheckbox('unsubscribeFromShop', $validated);
         $unsubscribeFromAll = $this->getCheckbox('unsubscribeFromAll', $validated);
+
+        if (!in_array('OptShop', $validated['subscriptions'] ?? [])) {
+            $unsubscribeFromShop = true;
+        }
 
         if ($unsubscribeFromShop && $unsubscribeFromMuseum) {
             $unsubscribeFromAll = true;
@@ -272,13 +327,20 @@ class EmailSubscriptionsController extends FormController
         abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
     }
 
-    private function getSubscriptionsArray($selected): array
+    private function getSubscriptionsArray(): array
     {
         $subs = ExactTargetList::getList();
-
         $list = [];
 
         foreach ($subs as $value => $label) {
+            $isChecked = $this->getOld($value) ?? false;
+            $isDisabled = $this->getOld('OptMuseum') === false && $value !== 'OptShop';
+
+            if ($value === 'OptMuseum') {
+                $isChecked = $this->getOld($value) ?? true;
+                $isDisabled = true;
+            }
+
             $item = [
                 'type' => 'checkbox',
                 'variation' => '',
@@ -289,26 +351,20 @@ class EmailSubscriptionsController extends FormController
                 'optional' => null,
                 'hint' => null,
                 'autocomplete' => false,
-                'disabled' => false,
-                'checked' => false,
+                'disabled' => $isDisabled ? 'disabled' : false,
+                'checked' => $isChecked ? 'checked' : false,
                 'label' => $label
             ];
-
-            if ($selected) {
-                if (in_array($value, $selected)) {
-                    $item['checked'] = 'checked';
-                }
-            }
-
-            if ($value === 'OptMuseum') {
-                $item['checked'] = 'checked';
-                $item['disabled'] = 'disabled';
-            }
 
             $list[] = $item;
         }
 
         return $list;
+    }
+
+    private function getOld($field)
+    {
+        return $this->old->{$field} ?? old($field);
     }
 
     private function getCheckbox(string $field, array $validated): bool
