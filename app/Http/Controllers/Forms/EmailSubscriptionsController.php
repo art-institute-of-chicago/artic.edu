@@ -23,7 +23,13 @@ class EmailSubscriptionsController extends FormController
         $this->old = new EmailSubscriptions();
 
         if (request('e')) {
-            $email = request('e');
+            $email = trim(openssl_decrypt(
+                base64_decode(request('e')),
+                'des-ecb',
+                hex2bin(config('exact-target.encryption_key')),
+                OPENSSL_ZERO_PADDING,
+                ''
+            ));
 
             $exactTarget = new ExactTargetService($email);
             $response = $exactTarget->get();
