@@ -317,7 +317,7 @@
                 @endcomponent
             @endif
 
-            @if ($block['type'] === 'input' || $block['type'] === 'email' || $block['type'] === 'number' || $block['type'] === 'tel')
+            @if ($block['type'] === 'input' || $block['type'] === 'email' || $block['type'] === 'number' || $block['type'] === 'tel' || $block['type'] == 'hidden')
                 @component('components.atoms._input')
                     @slot('type', $block['type'] === 'input' ? 'text' : $block['type'])
                     @slot('variation', $block['variation'] ?? null)
@@ -331,7 +331,7 @@
                     @slot('optional', $block['optional'] ?? null)
                     @slot('hint', $block['hint'] ?? null)
                     @slot('disabled', $block['disabled'] ?? false)
-                    {!! $block['label'] !!}
+                    {!! $block['label'] ?? '' !!}
                 @endcomponent
             @endif
 

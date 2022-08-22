@@ -14,17 +14,20 @@ class ExactTargetService
     protected $list;
     protected $firstName;
     protected $lastName;
+    protected $wasFormPrefilled;
 
     public function __construct(
         $email,
         $list = null,
         $firstName = null,
-        $lastName = null
+        $lastName = null,
+        $wasFormPrefilled = null
     ) {
         $this->email = $email;
         $this->list = $list;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->wasFormPrefilled = $wasFormPrefilled;
     }
 
     /**
@@ -96,11 +99,11 @@ class ExactTargetService
             }
         }
 
-        if ($this->firstName) {
+        if ($this->wasFormPrefilled || $this->firstName) {
             $deRow->props['FirstName'] = $this->firstName;
         }
 
-        if ($this->lastName) {
+        if ($this->wasFormPrefilled || $this->lastName) {
             $deRow->props['LastName'] = $this->lastName;
         }
 

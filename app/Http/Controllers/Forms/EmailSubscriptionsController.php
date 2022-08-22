@@ -23,13 +23,7 @@ class EmailSubscriptionsController extends FormController
         $this->old = new EmailSubscriptions();
 
         if (request('e')) {
-            $email = trim(openssl_decrypt(
-                base64_decode(request('e')),
-                'des-ecb',
-                hex2bin(config('exact-target.encryption_key')),
-                OPENSSL_ZERO_PADDING,
-                ''
-            ));
+            $email = $this->getDecryptedEmail(request('e'));
 
             $exactTarget = new ExactTargetService($email);
             $response = $exactTarget->get();
@@ -137,6 +131,19 @@ class EmailSubscriptionsController extends FormController
                 ],
             ],
         ];
+
+        if (request('e')) {
+            $personalInformationFields[] = [
+                'variation' => 'm-fieldset__field--flush',
+                'blocks' => [
+                    [
+                        'type' => 'hidden',
+                        'id' => 'encrypted_email',
+                        'value' => request('e'),
+                    ],
+                ],
+            ];
+        }
 
         $personalInformationFields[] = [
             'variation' => null,
@@ -289,11 +296,16 @@ class EmailSubscriptionsController extends FormController
     {
         $validated = $request->validated();
 
+        $wasFormPrefilled = $validated['email'] === $this->getDecryptedEmail(
+            $validated['encrypted_email'] ?? null
+        );
+
         $exactTarget = new ExactTargetService(
             $validated['email'],
             $validated['subscriptions'] ?? null,
             $validated['first_name'] ?? null,
             $validated['last_name'] ?? null,
+            $wasFormPrefilled
         );
 
         $unsubscribeFromMuseum = $this->getCheckbox('unsubscribeFromMuseum', $validated);
@@ -378,5 +390,16 @@ class EmailSubscriptionsController extends FormController
     private function getCheckbox(string $field, array $validated): bool
     {
         return array_key_exists($field, $validated) && $validated[$field];
+    }
+
+    private function getDecryptedEmail($encryptedEmail)
+    {
+        return trim(openssl_decrypt(
+            base64_decode($encryptedEmail),
+            'des-ecb',
+            hex2bin(config('exact-target.encryption_key')),
+            OPENSSL_ZERO_PADDING,
+            ''
+        ));
     }
 }
