@@ -15,4 +15,5 @@ return [
     ],
     'customer_key' => env('EXACT_TARGET_CUSTOMER_KEY'),
     'name' => env('EXACT_TARGET_NAME'),
+    'encryption_key' => env('EXACT_TARGET_ENCRYPTION_KEY'),
 ];

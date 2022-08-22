@@ -12,11 +12,22 @@ class ExactTargetService
 {
     protected $email;
     protected $list;
+    protected $firstName;
+    protected $lastName;
+    protected $wasFormPrefilled;
 
-    public function __construct($email, $list = null)
-    {
+    public function __construct(
+        $email,
+        $list = null,
+        $firstName = null,
+        $lastName = null,
+        $wasFormPrefilled = null
+    ) {
         $this->email = $email;
         $this->list = $list;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->wasFormPrefilled = $wasFormPrefilled;
     }
 
     /**
@@ -77,7 +88,7 @@ class ExactTargetService
                 $this->list = [$this->list];
             }
 
-            $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
+            $allLists = ExactTargetList::getList()->keys()->all();
 
             foreach ($allLists as $list) {
                 if (in_array($list, $this->list)) {
@@ -86,6 +97,14 @@ class ExactTargetService
                     $deRow->props[$list] = 'False';
                 }
             }
+        }
+
+        if ($this->wasFormPrefilled || $this->firstName) {
+            $deRow->props['FirstName'] = $this->firstName;
+        }
+
+        if ($this->wasFormPrefilled || $this->lastName) {
+            $deRow->props['LastName'] = $this->lastName;
         }
 
         $deRow->CustomerKey = config('exact-target.customer_key');
@@ -189,7 +208,7 @@ class ExactTargetService
         $deRow->authStub = $client;
 
         // Select
-        $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
+        $allLists = ExactTargetList::getList()->keys()->all();
         $fields = array_merge(
             [
                 'Email',
@@ -201,8 +220,8 @@ class ExactTargetService
 
         $deRow->props = array_fill_keys($fields, 'True');
 
-        // From
-        $deRow->Name = 'All Subscribers Master';
+        // From (e.g. "All Subscribers Master")
+        $deRow->Name = config('exact-target.customer_key');
 
         // Where
         $deRow->filter = [

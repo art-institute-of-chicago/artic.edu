@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Forms;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use App\Http\Requests\Form\EmailSubscriptionsRequest;
@@ -13,8 +14,50 @@ use App\Models\Form\EmailSubscriptions;
 
 class EmailSubscriptionsController extends FormController
 {
-    public function index(\Illuminate\Http\Request $request)
+    private $old;
+
+    public function index(Request $request)
     {
+        $withErrors = [];
+
+        $this->old = new EmailSubscriptions();
+
+        if (request('e')) {
+            $email = $this->getDecryptedEmail(request('e'));
+
+            $exactTarget = new ExactTargetService($email);
+            $response = $exactTarget->get();
+
+            if ($response->status && $response->code == 200 && count($response->results)) {
+                // When a new property gets added to the data extension,
+                // even if it is given a default value, existing records
+                // will not be updated with that value. We need to assume
+                // some true/false defaults here.
+                foreach ($response->results[0]->Properties->Property as $item) {
+                    switch ($item->Name) {
+                        case 'Email':
+                            $this->old->email = $item->Value;
+                            break;
+                        case 'FirstName':
+                            $this->old->first_name = $item->Value;
+                            break;
+                        case 'LastName':
+                            $this->old->last_name = $item->Value;
+                            break;
+                        case 'OptMuseum':
+                            $this->old->OptMuseum = empty($item->Value)
+                                || strtolower($item->Value) == 'true';
+                            break;
+                        default:
+                            $this->old->{$item->Name} = !empty($item->Value)
+                                && strtolower($item->Value) == 'true';
+                    }
+                }
+            } else {
+                $withErrors['message'] = 'Your e-mail address is not currently subscribed. Please fill out and submit the form below to begin receiving messages from the Art Institute of Chicago.';
+            }
+        }
+
         $this->title = 'Email Subscriptions';
         $this->seo->setTitle($this->title);
 
@@ -41,9 +84,7 @@ class EmailSubscriptionsController extends FormController
             ],
         ];
 
-        foreach ($this->getSubscriptionsArray(old('subscriptions')) as $d) {
-            array_push($subFields['blocks'], $d);
-        }
+        array_push($subFields['blocks'], ...$this->getSubscriptionsArray());
 
         $subscriptionsFields[] = $subFields;
 
@@ -51,6 +92,19 @@ class EmailSubscriptionsController extends FormController
         $unsubscribeFields[] = [
             'variation' => 'm-fieldset__field--group',
             'blocks' => array_merge(
+                $this->getUnsubscribeBlocks(
+                    'unsubscribeFromMuseum',
+                    'I no longer wish to receive museum marketing emails..',
+                    [
+                        'checked' => $this->getOld('OptMuseum') === false
+                            ? 'checked'
+                            : false,
+                    ]
+                ),
+                $this->getUnsubscribeBlocks(
+                    'unsubscribeFromShop',
+                    'I no longer wish to receive museum shop emails.'
+                ),
                 $this->getUnsubscribeBlocks(
                     'unsubscribeFromAll',
                     'I no longer wish to receive any Art Institute emails.'
@@ -68,7 +122,7 @@ class EmailSubscriptionsController extends FormController
                     'id' => 'email',
                     'placeholder' => '',
                     'textCount' => false,
-                    'value' => old('email'),
+                    'value' => $this->getOld('email'),
                     'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
                     'optional' => false,
                     'hint' => null,
@@ -77,6 +131,19 @@ class EmailSubscriptionsController extends FormController
                 ],
             ],
         ];
+
+        if (request('e')) {
+            $personalInformationFields[] = [
+                'variation' => 'm-fieldset__field--flush',
+                'blocks' => [
+                    [
+                        'type' => 'hidden',
+                        'id' => 'encrypted_email',
+                        'value' => request('e'),
+                    ],
+                ],
+            ];
+        }
 
         $personalInformationFields[] = [
             'variation' => null,
@@ -87,7 +154,7 @@ class EmailSubscriptionsController extends FormController
                     'id' => 'first_name',
                     'placeholder' => '',
                     'textCount' => false,
-                    'value' => old('first_name'),
+                    'value' => $this->getOld('first_name'),
                     'error' => (!empty($errors) && $errors->first('first_name')) ? $errors->first('first_name') : null,
                     'optional' => null,
                     'hint' => null,
@@ -106,7 +173,7 @@ class EmailSubscriptionsController extends FormController
                     'id' => 'last_name',
                     'placeholder' => '',
                     'textCount' => false,
-                    'value' => old('last_name'),
+                    'value' => $this->getOld('last_name'),
                     'error' => (!empty($errors) && $errors->first('last_name')) ? $errors->first('last_name') : null,
                     'optional' => null,
                     'hint' => null,
@@ -137,33 +204,34 @@ class EmailSubscriptionsController extends FormController
             ];
         }
 
-        array_push($formBlocks, [
+        $formBlocks[] = [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $subscriptionsFields,
             'legend' => 'Newsletter Options',
-        ]);
+        ];
 
-        array_push($formBlocks, [
+        $formBlocks[] = [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $unsubscribeFields,
             'legend' => 'Unsubscribe',
-        ]);
+        ];
 
-        array_push($formBlocks, [
+        $formBlocks[] = [
             'type' => 'fieldset',
             'variation' => null,
             'fields' => $personalInformationFields,
             'legend' => 'Personal Information',
-        ]);
+        ];
 
-        array_push($blocks, [
+        $blocks[] = [
             'type' => 'form',
             'variation' => null,
             'action' => '/email-subscriptions',
             'method' => 'POST',
             'blocks' => $formBlocks,
+            'behavior' => 'emailSubscriptions',
             'actions' => [
                 [
                     'variation' => null,
@@ -171,7 +239,7 @@ class EmailSubscriptionsController extends FormController
                     'label' => 'Update',
                 ]
             ]
-        ]);
+        ];
 
         $view_data = [
             'subNav' => [],
@@ -183,8 +251,11 @@ class EmailSubscriptionsController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-    private function getUnsubscribeBlocks($fieldName, $fieldLabel)
-    {
+    private function getUnsubscribeBlocks(
+        string $fieldName,
+        string $fieldLabel,
+        array $checkboxModifiers = []
+    ): array {
         $errors = session('errors');
 
         $out = [];
@@ -202,7 +273,7 @@ class EmailSubscriptionsController extends FormController
             ];
         }
 
-        $out[] = [
+        $out[] = array_merge([
             'type' => 'checkbox',
             'variation' => '',
             'id' => $fieldName,
@@ -211,11 +282,12 @@ class EmailSubscriptionsController extends FormController
             'error' => null,
             'optional' => null,
             'hint' => null,
+            'autocomplete' => false,
             'disabled' => false,
-            'checked' => old($fieldName) ?? false,
+            'checked' => $this->getOld($fieldName) ?? false,
             'label' => $fieldLabel,
             'behavior' => 'formUnsubscribe'
-        ];
+        ], $checkboxModifiers);
 
         return $out;
     }
@@ -224,9 +296,29 @@ class EmailSubscriptionsController extends FormController
     {
         $validated = $request->validated();
 
-        $exactTarget = new ExactTargetService($validated['email'], $validated['subscriptions'] ?? null);
+        $wasFormPrefilled = $validated['email'] === $this->getDecryptedEmail(
+            $validated['encrypted_email'] ?? null
+        );
 
+        $exactTarget = new ExactTargetService(
+            $validated['email'],
+            $validated['subscriptions'] ?? null,
+            $validated['first_name'] ?? null,
+            $validated['last_name'] ?? null,
+            $wasFormPrefilled
+        );
+
+        $unsubscribeFromMuseum = $this->getCheckbox('unsubscribeFromMuseum', $validated);
+        $unsubscribeFromShop = $this->getCheckbox('unsubscribeFromShop', $validated);
         $unsubscribeFromAll = $this->getCheckbox('unsubscribeFromAll', $validated);
+
+        if (!in_array('OptShop', $validated['subscriptions'] ?? [])) {
+            $unsubscribeFromShop = true;
+        }
+
+        if ($unsubscribeFromShop && $unsubscribeFromMuseum) {
+            $unsubscribeFromAll = true;
+        }
 
         if ($unsubscribeFromAll) {
             $response = $exactTarget->unsubscribe();
@@ -234,7 +326,7 @@ class EmailSubscriptionsController extends FormController
             if ($response !== true) {
                 /* If the user doesn't exist in our email list, ET will throw an
                  * error. It's ok if the user doesn't exist, because that's
-                 * ultimately what we want. So idenfity if this is the case and
+                 * ultimately what we want. So identify if this is the case and
                  * provide a message to the user. The full expected error is
                  * 'Concurrency violation: the DeleteCommand affected 0 of the
                  * expected 1 records.' [WEB-1427]
@@ -251,15 +343,24 @@ class EmailSubscriptionsController extends FormController
             return redirect(route('forms.email-subscriptions.thanks'));
         }
 
+        // TODO: This message won't render due to `getTwillErrorView`
         abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
     }
 
-    private function getSubscriptionsArray($selected)
+    private function getSubscriptionsArray(): array
     {
         $subs = ExactTargetList::getList();
-
         $list = [];
+
         foreach ($subs as $value => $label) {
+            $isChecked = $this->getOld($value) ?? false;
+            $isDisabled = $this->getOld('OptMuseum') === false && $value !== 'OptShop';
+
+            if ($value === 'OptMuseum') {
+                $isChecked = $this->getOld($value) ?? true;
+                $isDisabled = true;
+            }
+
             $item = [
                 'type' => 'checkbox',
                 'variation' => '',
@@ -269,21 +370,11 @@ class EmailSubscriptionsController extends FormController
                 'error' => null,
                 'optional' => null,
                 'hint' => null,
-                'disabled' => false,
-                'checked' => false,
+                'autocomplete' => false,
+                'disabled' => $isDisabled ? 'disabled' : false,
+                'checked' => $isChecked ? 'checked' : false,
                 'label' => $label
             ];
-
-            if ($selected) {
-                if (in_array($value, $selected)) {
-                    $item['checked'] = 'checked';
-                }
-            }
-
-            if ($value === 'OptEnews') {
-                $item['checked'] = 'checked';
-                $item['disabled'] = 'disabled';
-            }
 
             $list[] = $item;
         }
@@ -291,8 +382,24 @@ class EmailSubscriptionsController extends FormController
         return $list;
     }
 
+    private function getOld($field)
+    {
+        return $this->old->{$field} ?? old($field);
+    }
+
     private function getCheckbox(string $field, array $validated): bool
     {
         return array_key_exists($field, $validated) && $validated[$field];
+    }
+
+    private function getDecryptedEmail($encryptedEmail)
+    {
+        return trim(openssl_decrypt(
+            base64_decode($encryptedEmail),
+            'des-ecb',
+            hex2bin(config('exact-target.encryption_key')),
+            OPENSSL_ZERO_PADDING,
+            ''
+        ));
     }
 }

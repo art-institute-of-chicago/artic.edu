@@ -296,6 +296,7 @@
                     @slot('action', $block['action'] ?? null)
                     @slot('method', $block['method'] ?? null)
                     @slot('actions', $block['actions'] ?? null)
+                    @slot('behavior', $block['behavior'] ?? null)
                 @endcomponent
             @endif
 
@@ -316,7 +317,7 @@
                 @endcomponent
             @endif
 
-            @if ($block['type'] === 'input' || $block['type'] === 'email' || $block['type'] === 'number' || $block['type'] === 'tel')
+            @if ($block['type'] === 'input' || $block['type'] === 'email' || $block['type'] === 'number' || $block['type'] === 'tel' || $block['type'] == 'hidden')
                 @component('components.atoms._input')
                     @slot('type', $block['type'] === 'input' ? 'text' : $block['type'])
                     @slot('variation', $block['variation'] ?? null)
@@ -330,7 +331,7 @@
                     @slot('optional', $block['optional'] ?? null)
                     @slot('hint', $block['hint'] ?? null)
                     @slot('disabled', $block['disabled'] ?? false)
-                    {!! $block['label'] !!}
+                    {!! $block['label'] ?? '' !!}
                 @endcomponent
             @endif
 
@@ -390,6 +391,7 @@
                     @slot('label', $block['label'] ?? false)
                     @slot('checked', $block['checked'] ?? false)
                     @slot('behavior', $block['behavior'] ?? false)
+                    @slot('autocomplete', $block['autocomplete'] ?? true)
                 @endcomponent
             @endif
 
