@@ -291,7 +291,9 @@ class EmailSubscriptionsController extends FormController
 
         $exactTarget = new ExactTargetService(
             $validated['email'],
-            $validated['subscriptions'] ?? null
+            $validated['subscriptions'] ?? null,
+            $validated['first_name'] ?? null,
+            $validated['last_name'] ?? null,
         );
 
         $unsubscribeFromMuseum = $this->getCheckbox('unsubscribeFromMuseum', $validated);

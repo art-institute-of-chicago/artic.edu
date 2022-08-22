@@ -12,11 +12,19 @@ class ExactTargetService
 {
     protected $email;
     protected $list;
+    protected $firstName;
+    protected $lastName;
 
-    public function __construct($email, $list = null)
-    {
+    public function __construct(
+        $email,
+        $list = null,
+        $firstName = null,
+        $lastName = null
+    ) {
         $this->email = $email;
         $this->list = $list;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
     }
 
     /**
@@ -86,6 +94,14 @@ class ExactTargetService
                     $deRow->props[$list] = 'False';
                 }
             }
+        }
+
+        if ($this->firstName) {
+            $deRow->props['FirstName'] = $this->firstName;
+        }
+
+        if ($this->lastName) {
+            $deRow->props['LastName'] = $this->lastName;
         }
 
         $deRow->CustomerKey = config('exact-target.customer_key');
