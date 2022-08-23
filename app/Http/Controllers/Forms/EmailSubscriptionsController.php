@@ -94,7 +94,7 @@ class EmailSubscriptionsController extends FormController
             'blocks' => array_merge(
                 $this->getUnsubscribeBlocks(
                     'unsubscribeFromMuseum',
-                    'I no longer wish to receive museum marketing emails..',
+                    'I no longer wish to receive museum marketing emails.',
                     [
                         'checked' => $this->getOld('OptMuseum') === false
                             ? 'checked'
