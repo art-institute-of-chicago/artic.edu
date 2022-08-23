@@ -29,6 +29,14 @@ const formUnsubscribe = function(container) {
       unsubscribeFromShop.checked = unsubscribeFromAll.checked;
     }
 
+    if ((
+      checkbox.id == 'unsubscribeFromMuseum' || checkbox.id == 'unsubscribeFromShop'
+    ) && (
+      unsubscribeFromMuseum.checked && unsubscribeFromShop.checked
+    )) {
+      unsubscribeFromAll.checked = true;
+    }
+
     if (unsubscribeFromAll.checked && (
       !unsubscribeFromMuseum.checked || !unsubscribeFromShop.checked
     )) {
