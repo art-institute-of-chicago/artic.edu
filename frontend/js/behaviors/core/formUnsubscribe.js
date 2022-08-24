@@ -60,15 +60,22 @@ const formUnsubscribe = function(container) {
 
   function _disable(targets) {
     forEach(targets, function(index, el) {
-      el.setAttribute('disabled', 'true');
-      el.removeAttribute('checked');
-      el.checked = false;
+      if (el.disabled !== true) {
+        el.savedState = el.checked;
+        el.setAttribute('disabled', 'true');
+        el.removeAttribute('checked');
+        el.checked = false;
+      }
     });
   }
 
   function _enable(targets) {
     forEach(targets, function(index, el) {
       el.removeAttribute('disabled');
+      if (el.hasOwnProperty('savedState')) {
+        el.checked = el.savedState;
+        delete el.savedState;
+      }
     });
   }
 
