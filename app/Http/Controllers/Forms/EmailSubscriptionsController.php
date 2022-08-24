@@ -86,6 +86,11 @@ class EmailSubscriptionsController extends FormController
 
         array_push($subFields['blocks'], ...$this->getSubscriptionsArray());
 
+        $subFields['blocks'][] = [
+            'type' => 'text',
+            'content' => '<p>Set your preferences: check to opt-in, uncheck to opt-out and click &ldquo;Update&rdquo; to submit.</p>',
+        ];
+
         $subscriptionsFields[] = $subFields;
 
         // Unsubscribe
