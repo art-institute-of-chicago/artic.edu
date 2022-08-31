@@ -74,21 +74,19 @@ class EmailSubscriptionsController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => [
                 [
+                    'type' => 'text',
+                    'content' => '<p>Set your preferences: check to opt-in, uncheck to opt-out and click &ldquo;Update&rdquo; to submit.</p>',
+                ],
+                [
                     'type' => 'label',
                     'variation' => 'm-fieldset__group-label',
                     'error' => (!empty($errors) && $errors->first('subscriptions')) ? $errors->first('subscriptions') : null,
                     'optional' => null,
                     'hint' => null,
                     'label' => '',
-                ]
+                ],
+                ...$this->getSubscriptionsArray(),
             ],
-        ];
-
-        array_push($subFields['blocks'], ...$this->getSubscriptionsArray());
-
-        $subFields['blocks'][] = [
-            'type' => 'text',
-            'content' => '<p>Set your preferences: check to opt-in, uncheck to opt-out and click &ldquo;Update&rdquo; to submit.</p>',
         ];
 
         $subscriptionsFields[] = $subFields;
