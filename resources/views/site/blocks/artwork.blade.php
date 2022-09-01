@@ -43,6 +43,7 @@
         $artworkItem['urlTitle'] = isset($figureNumber) ? null : $urlTitle;
         $artworkItem['showUrl'] = true;
         $artworkItem['isArtwork'] = true;
+        $artworkItem['useContain'] = true;
         $artworkItem['isZoomable'] = $artwork->is_zoomable;
         $artworkItem['isPublicDomain'] = $artwork->is_public_domain;
         $artworkItem['maxZoomWindowSize'] = $artwork->max_zoom_window_size;
