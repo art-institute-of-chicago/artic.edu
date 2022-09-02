@@ -47,4 +47,29 @@ class FrontController extends BaseController
             return redirect($canonicalPath, 301);
         }
     }
+
+    /**
+     * WEB-2436: For `page-meta-data` events in GTM/GA4. Per discussion:
+     *  - Booleans should be 'yes' or 'no'
+     *  - Empty string '' is preferred to `null`
+     */
+    protected function getPageMetaData($item)
+    {
+        return json_encode(
+            array_map(
+                function ($value) {
+                    if (is_bool($value)) {
+                        return $value ? 'yes' : 'no';
+                    }
+
+                    if ($value === null) {
+                        return '';
+                    }
+
+                    return $value;
+                },
+                $this->setPageMetaData($item)
+            ),
+        );
+    }
 }

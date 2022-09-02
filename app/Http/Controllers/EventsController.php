@@ -165,6 +165,7 @@ class EventsController extends FrontController
             'item' => $item,
             'contrastHeader' => $item->present()->contrastHeader,
             'canonicalUrl' => $canonicalPath,
+            'pageMetaData' => $this->getPageMetaData($item),
         ]);
     }
 
@@ -204,5 +205,20 @@ class EventsController extends FrontController
         }
 
         return $links;
+    }
+
+    protected function setPageMetaData($item)
+    {
+        return [
+            'type' => 'event',
+            'date' => ($next = $item->nextOcurrence)
+                ? $next->date->toDateString()
+                : null,
+            'time' => ($next)
+                ? $next->date->format('g:ia') . '-' . $next->date_end->format('g:ia')
+                : null,
+            'location' => $item->location,
+            'registration-required' => $item->is_registration_required,
+        ];
     }
 }

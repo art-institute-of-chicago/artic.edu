@@ -59,6 +59,7 @@ class ArtworkController extends BaseScopedController
             'borderlessHeader' => $item->present()->borderlessHeader,
             'primaryNavCurrent' => 'collection',
             'canonicalUrl' => $canonicalPath,
+            'pageMetaData' => $this->getPageMetaData($item),
         ];
 
         // Build Explore further module
@@ -149,5 +150,21 @@ class ArtworkController extends BaseScopedController
         ])->render();
 
         return $view;
+    }
+
+    protected function setPageMetaData($item)
+    {
+        return [
+            'type' => 'artwork',
+            'public-domain' => $item->is_public_domain,
+            'on-view' => $item->is_on_view,
+            'collection' => $item->department_title,
+            'start-year' => $item->date_start,
+            'end-year' => $item->date_end,
+            'artist' => $item->artist_title,
+            'nationality-location' => $item->place_of_origin,
+            'medium' => $item->medium_title,
+            'reference-number' => $item->main_reference_number,
+        ];
     }
 }

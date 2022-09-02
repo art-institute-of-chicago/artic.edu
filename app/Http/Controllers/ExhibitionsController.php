@@ -96,6 +96,7 @@ class ExhibitionsController extends FrontController
             'contrastHeader' => $item->present()->contrastHeader,
             'relatedEventsByDay' => $relatedEventsByDay,
             'canonicalUrl' => $canonicalPath,
+            'pageMetaData' => $this->getPageMetaData($item),
         ]);
     }
 
@@ -126,5 +127,20 @@ class ExhibitionsController extends FrontController
         ])->render();
 
         return $view;
+    }
+
+    protected function setPageMetaData($item)
+    {
+        return [
+            'type' => 'exhibition',
+            'start-date' => ($startAt = $item->present()->startAt())
+                ? $startAt->toDateString()
+                : null,
+            'end-date' => ($endAt = $item->present()->endAt())
+                ? $endAt->toDateString()
+                : null,
+            'location' => $item->exhibition_location
+                ?: $item->gallery_title,
+        ];
     }
 }

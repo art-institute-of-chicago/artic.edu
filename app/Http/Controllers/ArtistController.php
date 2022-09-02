@@ -44,6 +44,14 @@ class ArtistController extends FrontController
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'relatedItems' => $relatedItems->count() > 0 ? $relatedItems : null,
             'canonicalUrl' => $canonicalPath,
+            'pageMetaData' => $this->getPageMetaData($item),
         ]);
+    }
+
+    protected function setPageMetaData($item)
+    {
+        return [
+            'type' => 'artist',
+        ];
     }
 }

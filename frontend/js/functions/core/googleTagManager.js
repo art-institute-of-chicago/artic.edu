@@ -1,3 +1,5 @@
+import { triggerCustomEvent } from '@area17/a17-helpers';
+
 const googleTagManager = function() {
 
   document.addEventListener('gtm:push',function(event){
@@ -19,6 +21,18 @@ const googleTagManager = function() {
       }
     }
   }, false);
+
+  window.addEventListener('load', function () {
+    let pageMetaDataEm = document.getElementById('page-meta-data');
+
+    if (pageMetaDataEm) {
+      let pageMetaData = Object.assign({
+        'event': 'page-meta-data',
+      }, JSON.parse(pageMetaDataEm.innerHTML));
+
+      triggerCustomEvent(document, 'gtm:push', pageMetaData);
+    }
+  });
 
 };
 
