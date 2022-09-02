@@ -122,8 +122,6 @@
 
         if ($item['isPublicDomain'] ?? false) {
             $variation .= ' m-media--artwork--cc0';
-        } elseif ($item['maxZoomWindowSize'] === 1280) {
-            $variation .= ' m-media--artwork--ars';
         }
 
         $isZoomable = $item['isZoomable'] ?? false;
