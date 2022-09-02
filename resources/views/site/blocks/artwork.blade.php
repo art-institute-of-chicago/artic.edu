@@ -35,7 +35,7 @@
 
         $artworkItem = array();
         $artworkItem['type'] = 'image';
-        $artworkItem['size'] = (!$artwork->is_zoomable or $artwork->max_zoom_window_size < 1280) ? (!$artwork->is_public_domain ? 's' : $block->input('size')) : $block->input('size');
+        $artworkItem['size'] = $block->input('size') ?? 's';
         $artworkItem['media'] = $image;
         $artworkItem['captionTitle'] = $artwork->present()->listingTitle;
         $artworkItem['caption'] = $caption.'<br>'.$galleryLocation.($captionAddendum ? '<br>'.$captionAddendum : '');
