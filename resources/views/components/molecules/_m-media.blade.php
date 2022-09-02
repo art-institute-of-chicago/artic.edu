@@ -118,7 +118,14 @@
     $showUrlFullscreen = $item['showUrl'] ?? false && $item['showUrlFullscreen']  ?? false && $item['urlTitle'] ?? null;
 
     if (isset($item['isArtwork'])) {
-        $variation = ($variation ?? '').' m-media--artwork';
+        $variation = ($variation ?? '') . ' m-media--artwork';
+
+        if ($item['isPublicDomain'] ?? false) {
+            $variation .= ' m-media--artwork--cc0';
+        } elseif ($item['maxZoomWindowSize'] === 1280) {
+            $variation .= ' m-media--artwork--ars';
+        }
+
         $isZoomable = $item['isZoomable'] ?? false;
         $maxZoomWindowSize = $item['maxZoomWindowSize'] ?? 843;
         $maxZoomWindowSize = ($maxZoomWindowSize === -1) ? 1280 : $maxZoomWindowSize;

@@ -308,7 +308,7 @@
     max-height: 80vh;
   }
 
-  .m-media--artwork & {
+  .m-media--s.m-media--artwork & {
     width: auto;
     max-width: 843px;
     max-height: 843px;
@@ -343,6 +343,26 @@
 .m-media__img.m-media__img--video img {
   @include objectFitFix;
   object-fit: contain;
+}
+
+.m-media__img img {
+  .m-media--m.m-media--artwork &,
+  .m-media--l.m-media--artwork & {
+    max-height: 843px;
+    max-width: 843px;
+  }
+
+  .m-media--m.m-media--artwork.m-media--artwork--ars &,
+  .m-media--l.m-media--artwork.m-media--artwork--ars & {
+    max-height: calc(95vh - 70px);
+    max-width: 1280px;
+  }
+
+  .m-media--m.m-media--artwork.m-media--artwork--cc0 &,
+  .m-media--l.m-media--artwork.m-media--artwork--cc0 & {
+    max-height: calc(95vh - 70px);
+    max-width: initial;
+  }
 }
 
 .m-media--m:not(.m-media--contain) .m-media__img img,
