@@ -25,9 +25,15 @@
                     'srcset' => ImageHelpers::aic_getSrcsetForImage($item->imageFront(), $item->is_public_domain ?? false),
                     'sizes' => ImageHelpers::aic_gridListingImageSizes($sizes),
                 ))
-                @if (isset($gtmAttributesForItem))
-                    @slot('gtmAttributes', $gtmAttributesForItem($item, $loop))
-                @endif
+                @php
+                    if (!isset($gtmAttributesForItem)) {
+                        $gtmAttributesForItem = [
+                            \App\Helpers\GtmHelpers::class,
+                            'getGtmAttributesForClickMetaDataEventOnArtwork'
+                        ];
+                    }
+                @endphp
+                @slot('gtmAttributes', $gtmAttributesForItem($item, $loop))
             @endcomponent
         @endforeach
     @endcomponent

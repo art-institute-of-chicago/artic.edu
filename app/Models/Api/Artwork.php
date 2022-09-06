@@ -54,7 +54,29 @@ class Artwork extends BaseApiModel
     /**
      * Fields used when performing a search so we avoid a double call retrieving the complete entities
      */
-    const SEARCH_FIELDS = ['id', 'title', 'date_display', 'thumbnail', 'image_id', 'api_model', 'artist_pivots', 'artist_title', 'artist_display', 'main_reference_number'];
+    const SEARCH_FIELDS = [
+        'id',
+        'title',
+        'date_display',
+        'thumbnail',
+        'image_id',
+        'api_model',
+        'artist_pivots',
+        'artist_title',
+        'artist_display',
+        'main_reference_number',
+
+        // WEB-2436: Additional fields for `click-meta-data` event
+        'is_public_domain',
+        'is_on_view',
+        'department_title',
+        'date_start',
+        'date_end',
+        // 'artist_title',
+        'place_of_origin',
+        'medium_display',
+        // 'main_reference_number',
+    ];
 
     public $mediasParams = [
         'hero' => [

@@ -320,7 +320,7 @@ const ajaxPageLoad = function() {
   }
 
   function nonAjaxLinks(link,googleTagManagerObject,event) {
-    // See WEB-1323, ART-52, WEB-2425
+    // See WEB-1323, ART-52, WEB-2425, WEB-2436
     // If the link has some google tag manager props, tell GTM
     if (googleTagManagerObject) {
       window.addEventListener('beforeunload', function() {

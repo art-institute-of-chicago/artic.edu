@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
+use App\Helpers\GtmHelpers;
 use App\Libraries\RecentlyViewedService;
 use App\Libraries\Search\CollectionService;
 use App\Libraries\ExploreFurther\ArtworkService as ExploreFurther;
@@ -154,17 +155,6 @@ class ArtworkController extends BaseScopedController
 
     protected function setPageMetaData($item)
     {
-        return [
-            'type' => 'artwork',
-            'public-domain' => $item->is_public_domain,
-            'on-view' => $item->is_on_view,
-            'collection' => $item->department_title,
-            'start-year' => $item->date_start,
-            'end-year' => $item->date_end,
-            'artist' => $item->artist_title,
-            'nationality-location' => $item->place_of_origin,
-            'medium' => $item->medium_title,
-            'reference-number' => $item->main_reference_number,
-        ];
+        return GtmHelpers::getMetaDataForArtwork($item);
     }
 }

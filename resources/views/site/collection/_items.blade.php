@@ -16,6 +16,6 @@
                   'xlarge' => '4',
             )),
         ))
-        @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="collection-nav"')
+        @slot('gtmAttributes', \App\Helpers\GtmHelpers::getGtmAttributesForClickMetaDataEventOnArtwork($item))
     @endcomponent
 @endforeach

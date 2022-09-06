@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\GtmHelpers;
 use App\Http\Controllers\Helpers\Seo;
 use A17\Twill\Http\Controllers\Front\Controller as BaseController;
 use Illuminate\Support\Str;
@@ -56,20 +57,9 @@ class FrontController extends BaseController
     protected function getPageMetaData($item)
     {
         return json_encode(
-            array_map(
-                function ($value) {
-                    if (is_bool($value)) {
-                        return $value ? 'yes' : 'no';
-                    }
-
-                    if ($value === null) {
-                        return '';
-                    }
-
-                    return $value;
-                },
+            GtmHelpers::getTransformedMetaData(
                 $this->setPageMetaData($item)
-            ),
+            )
         );
     }
 }
