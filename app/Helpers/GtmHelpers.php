@@ -4,6 +4,24 @@ namespace App\Helpers;
 
 class GtmHelpers
 {
+    public static function getTransformedMetaData($metadata)
+    {
+        return array_map(
+            function ($value) {
+                if (is_bool($value)) {
+                    return $value ? 'yes' : 'no';
+                }
+
+                if ($value === null) {
+                    return '';
+                }
+
+                return $value;
+            },
+            $metadata
+        );
+    }
+
     public static function getGtmAttributesForClickMetaDataEventOnArtwork($item)
     {
         return self::getGtmAttributesFromMetaData(
@@ -11,7 +29,9 @@ class GtmHelpers
                 [
                     'event' => 'click-meta-data',
                 ],
-                self::getMetaDataForArtwork($item)
+                self::getTransformedMetaData(
+                    self::getMetaDataForArtwork($item)
+                )
             )
         );
     }
