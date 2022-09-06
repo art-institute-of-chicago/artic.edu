@@ -293,9 +293,6 @@
             'large' => '3',
             'xlarge' => '3',
         ])
-        @slot('gtmAttributesForItem', function($item, $loop) {
-            return 'data-gtm-event="' . $item->title . '" data-gtm-event-category="collection-listing-' . ($loop->index + 1) . '"';
-        })
     @endcomponent
 @endif
 
