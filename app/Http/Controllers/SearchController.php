@@ -11,7 +11,6 @@ use App\Repositories\Api\SearchRepository;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\ArticleRepository;
 use App\Repositories\PublicationsRepository;
-use App\Repositories\IssueArticleRepository;
 use App\Repositories\EventRepository;
 use App\Repositories\GenericPageRepository;
 use App\Repositories\PressReleaseRepository;
@@ -35,7 +34,6 @@ class SearchController extends BaseScopedController
     const ALL_PER_PAGE_PAGES = 3;
     const ALL_PER_PAGE_ARTICLES = 4;
     const ALL_PER_PAGE_PUBLICATIONS = 4;
-    const ALL_PER_PAGE_ISSUE_ARTICLES = 4;
     const ALL_PER_PAGE_INTERACTIVEFEATURES = 4;
     const ALL_PER_PAGE_HIGHLIGHTS = 4;
 
@@ -47,7 +45,6 @@ class SearchController extends BaseScopedController
     const ARTICLES_PER_PAGE = 20;
     const EVENTS_PER_PAGE = 20;
     const PUBLICATIONS_PER_PAGE = 20;
-    const ISSUE_ARTICLES_PER_PAGE = 20;
     const ARTISTS_PER_PAGE = 30;
     const AUTOCOMPLETE_PER_PAGE = 10;
 
@@ -58,7 +55,6 @@ class SearchController extends BaseScopedController
     protected $articlesRepository;
     protected $eventsRepository;
     protected $publicationsRepository;
-    protected $issueArticlesRepository;
     protected $pagesRepository;
     protected $researchGuideRepository;
     protected $pressRepository;
@@ -72,7 +68,6 @@ class SearchController extends BaseScopedController
         ExhibitionRepository $exhibitions,
         ArticleRepository $articles,
         PublicationsRepository $publications,
-        IssueArticleRepository $issueArticles,
         EventRepository $events,
         GenericPageRepository $pages,
         ResearchGuideRepository $researchGuide,
@@ -87,7 +82,6 @@ class SearchController extends BaseScopedController
         $this->articlesRepository = $articles;
         $this->eventsRepository = $events;
         $this->publicationsRepository = $publications;
-        $this->issueArticleRepository = $issueArticles;
         $this->pagesRepository = $pages;
         $this->researchGuideRepository = $researchGuide;
         $this->pressRepository = $press;
@@ -119,7 +113,6 @@ class SearchController extends BaseScopedController
         }
 
         $publications = $this->publicationsRepository->searchApi(request('q'), self::ALL_PER_PAGE_PUBLICATIONS);
-        $issueArticles = $this->issueArticleRepository->searchApi(request('q'), self::ALL_PER_PAGE_ISSUE_ARTICLES);
         $articles = $this->articlesRepository->searchApi(request('q'), self::ALL_PER_PAGE_ARTICLES);
         $artists = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
         $exhibitions = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
@@ -141,7 +134,6 @@ class SearchController extends BaseScopedController
             'interactiveFeatures' => $interactiveFeatures,
             'highlights' => $highlights,
             'publications' => $publications,
-            'issueArticles' => $issueArticles,
             'pressReleases' => $press,
             'researchGuides' => $guides,
             'allResultsView' => false,
@@ -411,22 +403,6 @@ class SearchController extends BaseScopedController
 
         return view('site.search.index', [
             'publications' => $publications,
-            'allResultsView' => true,
-            'searchResultsTypeLinks' => $links,
-        ]);
-    }
-
-    public function issueArticles()
-    {
-        $this->seo->setTitle('Search');
-
-        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $issueArticles = $this->issueArticleRepository->searchApi(request('q'), self::ISSUE_ARTICLES_PER_PAGE);
-
-        $links = $this->buildSearchLinks($general, 'issueArticles');
-
-        return view('site.search.index', [
-            'issueArticles' => $issueArticles,
             'allResultsView' => true,
             'searchResultsTypeLinks' => $links,
         ]);
