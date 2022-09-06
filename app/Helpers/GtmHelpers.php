@@ -61,7 +61,7 @@ class GtmHelpers
             'end-year' => $item->date_end,
             'artist' => $item->artist_title,
             'nationality-location' => $item->place_of_origin,
-            'medium' => $item->medium_title,
+            'medium' => $item->medium_display,
             'reference-number' => $item->main_reference_number,
         ];
     }
