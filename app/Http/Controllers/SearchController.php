@@ -464,9 +464,6 @@ class SearchController extends BaseScopedController
         if (QueryHelpers::extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs'])) {
             array_push($links, $this->buildLabel('Publications', QueryHelpers::extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
-        if (QueryHelpers::extractAggregation($aggregations, ['issue-articles'])) {
-            array_push($links, $this->buildLabel('Art Institute Review', 1, route('search.issue-articles', ['q' => request('q')]), $active == 'issue-articles'));
-        }
         if (QueryHelpers::extractAggregation($aggregations, ['research-guides', 'educator-resources'])) {
             array_push($links, $this->buildLabel('Resources', QueryHelpers::extractAggregation($aggregations, ['research-guides', 'educator-resources']), route('search.research-guides', ['q' => request('q')]), $active == 'research-guides'));
         }

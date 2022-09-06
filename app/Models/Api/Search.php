@@ -30,7 +30,6 @@ class Search extends BaseApiModel
         'printed-catalogs' => 'App\Models\PrintedPublication',
         'digital-catalogs' => 'App\Models\DigitalPublication',
         'digital-publication-sections' => 'App\Models\DigitalPublicationSection',
-        'issue-articles' => 'App\Models\IssueArticle',
         'static-pages' => 'App\Models\Page',
         'generic-pages' => 'App\Models\GenericPage',
         'educator-resources' => 'App\Models\EducatorResource',
