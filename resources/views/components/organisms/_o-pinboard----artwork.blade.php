@@ -26,14 +26,27 @@
                     'sizes' => ImageHelpers::aic_gridListingImageSizes($sizes),
                 ))
                 @php
-                    if (!isset($gtmAttributesForItem)) {
-                        $gtmAttributesForItem = [
-                            \App\Helpers\GtmHelpers::class,
-                            'getGtmAttributesForClickMetaDataEventOnArtwork'
-                        ];
+                    // WEB-2436: Support sending multiple events per click
+                    $allGtmAttributesForItem = [
+                        \App\Helpers\GtmHelpers::getGtmAttributesForClickMetaDataEventOnArtwork($item)
+                    ];
+
+                    // Passed via `slot` to this component
+                    if (isset($gtmAttributesForItem)) {
+                        $allGtmAttributesForItem[] = $gtmAttributesForItem($item, $loop);
                     }
+
+                    $allGtmAttributesForItem = array_map(
+                        function ($value, $index) {
+                            return str_replace('-gtm-', '-gtm-' . $index . '-', $value);
+                        },
+                        $allGtmAttributesForItem,
+                        array_keys($allGtmAttributesForItem)
+                    );
+
+                    $allGtmAttributesForItem = implode(' ', $allGtmAttributesForItem);
                 @endphp
-                @slot('gtmAttributes', $gtmAttributesForItem($item, $loop))
+                @slot('gtmAttributes', $allGtmAttributesForItem)
             @endcomponent
         @endforeach
     @endcomponent
