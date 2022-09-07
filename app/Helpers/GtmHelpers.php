@@ -4,6 +4,21 @@ namespace App\Helpers;
 
 class GtmHelpers
 {
+    public static function combineGtmAttributes($gtmAttributes)
+    {
+        $gtmAttributes = array_filter($gtmAttributes);
+
+        $gtmAttributes = array_map(
+            function ($value, $index) {
+                return str_replace('-gtm-', '-gtm-' . $index . '-', $value);
+            },
+            $gtmAttributes,
+            array_keys($gtmAttributes)
+        );
+
+        return implode(' ', $gtmAttributes);
+    }
+
     public static function getTransformedMetaData($metadata)
     {
         return array_map(
