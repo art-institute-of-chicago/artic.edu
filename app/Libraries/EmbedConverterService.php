@@ -22,6 +22,9 @@ class EmbedConverterService
                 if (stripos($parts['host'], 'soundcloud') !== false) {
                     return $this->getSoundCloudEmbedCode($url);
                 }
+                if (stripos($parts['host'], 'query.daap.bannerrepeater.org') !== false) {
+                    return $this->getWikidataEmbedCode($url);
+                }
             }
         }
 
@@ -69,6 +72,16 @@ class EmbedConverterService
     private function getSoundCloudEmbedCode($url)
     {
         return $url;
+    }
+
+    /**
+     * getWikidataEmbedCode description
+     * @param  string $url Wikidata embed url, eg: https://query.daap.bannerrepeater.org/embed.html#...
+     * @return string html code to embed in page
+     */
+    private function getWikidataEmbedCode($url)
+    {
+        return '<iframe src="' . $url . '" frameborder="0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
     }
 
     /**
