@@ -32,6 +32,16 @@
     'label' => 'Use white instead of gray to pillarbox the image',
 ])
 
+@formField('checkbox', [
+    'name' => 'is_modal',
+    'label' => 'Allow this image to be viewed in a modal',
+])
+
+@formField('checkbox', [
+    'name' => 'is_zoomable',
+    'label' => 'Make the image modal zoomable',
+])
+
 @formField('medias', [
     'name' => 'image',
     'label' => 'Image'
