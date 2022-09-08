@@ -144,6 +144,17 @@ class ArticleController extends FrontController
             'furtherReadingTitle' => $this->repository->getFurtherReadingTitle($item) ?? null,
             'furtherReadingItems' => $this->repository->getFurtherReadingItems($item) ?? null,
             'canonicalUrl' => $canonicalPath,
+            'pageMetaData' => $this->getPageMetaData($item),
         ]);
+    }
+
+    protected function setPageMetaData($item)
+    {
+        return [
+            'type' => 'article',
+            'tags' => $item->categories->implode(','),
+            'authors' => implode(',', $this->seo->citationAuthor),
+            'publish-date' => $item->date->toDateString(),
+        ];
     }
 }

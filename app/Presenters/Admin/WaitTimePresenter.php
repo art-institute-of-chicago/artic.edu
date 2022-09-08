@@ -9,6 +9,6 @@ class WaitTimePresenter extends BasePresenter
 {
     public function display()
     {
-        return $this->entity->duration . ' ' . Str::plural($this->entity->units, $this->entity->duration);
+        return $this->entity->wait_display ?? $this->entity->display;
     }
 }

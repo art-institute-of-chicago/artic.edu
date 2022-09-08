@@ -237,6 +237,14 @@ class Article extends AbstractModel implements Feedable
     {
         return [
             [
+                'name' => 'title',
+                'doc' => 'Title',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->title;
+                }
+            ],
+            [
                 'name' => 'published',
                 'doc' => 'Published',
                 'type' => 'boolean',

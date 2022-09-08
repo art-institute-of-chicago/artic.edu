@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\API\Behaviors\HideUnlisted;
+
 class PressReleasesController extends BaseController
 {
+    use HideUnlisted;
+
     protected $model = \App\Models\PressRelease::class;
     protected $transformer = \App\Http\Transformers\PressReleaseTransformer::class;
-
 
     /**
      * Exclude unlisted experiences.

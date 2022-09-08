@@ -30,7 +30,7 @@ class Exhibition extends BaseApiModel
     /**
      * Fields used when performing a search so we avoid a double call retrieving the complete entities
      */
-    const SEARCH_FIELDS = ['id', 'title', 'status', 'aic_start_at', 'aic_end_at', 'is_boosted', 'thumbnail', 'short_description', 'department_display', 'gallery_title', 'gallery_id', 'image_id', 'api_model'];
+    const SEARCH_FIELDS = ['id', 'title', 'status', 'aic_start_at', 'aic_end_at', 'is_boosted', 'thumbnail', 'short_description', 'gallery_title', 'gallery_id', 'image_id', 'api_model'];
 
     /**
      * Generates the id-slug type of URL

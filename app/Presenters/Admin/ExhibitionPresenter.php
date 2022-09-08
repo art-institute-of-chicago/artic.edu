@@ -129,7 +129,6 @@ class ExhibitionPresenter extends BasePresenter
     {
         return [
             'description' => $this->entity->short_description,
-            'department' => $this->entity->department_display,
         ];
     }
 

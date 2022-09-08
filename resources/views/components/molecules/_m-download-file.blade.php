@@ -8,7 +8,7 @@
     @endif
     <span class="m-download-file__meta f-secondary">
         @if (isset($file['title']))
-            {{ $file['title'] }}@if (isset($file['extension'])).{{ strtolower($file['extension']) }}@endif
+            {{ $file['title'] }}
         @endif
         <br>
         @if (isset($file['extension']))
@@ -24,7 +24,7 @@
         @slot('icon', 'icon--download--24')
         @slot('tag', 'a')
         @slot('href', $file['content'] ?? null)
-        @slot('download', true)
+        @slot('download', $file['title'] ?? true)
         @slot('ariaLabel','Download file')
     @endcomponent
 </p>

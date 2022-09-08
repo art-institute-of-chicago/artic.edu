@@ -42,18 +42,6 @@
                         <dt>Date of death</dt>
                         <dd><time datetime="{{ $item->death_date }}" itemprop="deathDate">{{ $item->death_date }}</time></dd>
                     @endif
-
-                    {{-- WEB-2242: Dedupe w/ `place_pivots` in ArtworkPresenter? --}}
-                    @if ($item->place_pivots != null && count($item->place_pivots) > 0 && config('aic.show_artist_places'))
-                        @php
-                            $places = collect($item->place_pivots)->map(function($pivot) {
-                                $title = $pivot->place_title;
-                                return $pivot->qualifier_title ? $title . " ({$pivot->qualifier_title})" : $title;
-                            });
-                        @endphp
-                        <dt>{{ Str::plural('Place', count($item->place_pivots)) }}</dt>
-                        <dd itemprop="locationCreated">{{ join(', ', $places->toArray()) }}</dd>
-                    @endif
                 </dl>
             @endif
 

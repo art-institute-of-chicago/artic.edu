@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\GtmHelpers;
 use App\Http\Controllers\Helpers\Seo;
 use A17\Twill\Http\Controllers\Front\Controller as BaseController;
 use Illuminate\Support\Str;
@@ -46,5 +47,19 @@ class FrontController extends BaseController
         if (!Str::endsWith($canonicalPath, request()->path())) {
             return redirect($canonicalPath, 301);
         }
+    }
+
+    /**
+     * WEB-2436: For `page-meta-data` events in GTM/GA4. Per discussion:
+     *  - Booleans should be 'yes' or 'no'
+     *  - Empty string '' is preferred to `null`
+     */
+    protected function getPageMetaData($item)
+    {
+        return json_encode(
+            GtmHelpers::getTransformedMetaData(
+                $this->setPageMetaData($item)
+            )
+        );
     }
 }

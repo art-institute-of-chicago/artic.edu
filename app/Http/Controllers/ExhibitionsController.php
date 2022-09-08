@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Api\Exhibition;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\EventRepository;
 use Carbon\Carbon;
@@ -66,7 +67,10 @@ class ExhibitionsController extends FrontController
 
     protected function show($id, $slug = null)
     {
-        $item = $this->apiRepository->getById((int) $id, ['apiElements']);
+        $item = Exhibition::query()
+            ->with(['apiElements'])
+            ->include(['sites'])
+            ->findOrFail((int) $id);
 
         // If the exhibition has not started or not ended, check if its augmented model is published before showing
         // WEB-1796: Consider adding a global `getPublishedAttribute` method that checks preview mode status?
@@ -92,6 +96,7 @@ class ExhibitionsController extends FrontController
             'contrastHeader' => $item->present()->contrastHeader,
             'relatedEventsByDay' => $relatedEventsByDay,
             'canonicalUrl' => $canonicalPath,
+            'pageMetaData' => $this->getPageMetaData($item),
         ]);
     }
 
@@ -122,5 +127,20 @@ class ExhibitionsController extends FrontController
         ])->render();
 
         return $view;
+    }
+
+    protected function setPageMetaData($item)
+    {
+        return [
+            'type' => 'exhibition',
+            'start-date' => ($startAt = $item->present()->startAt())
+                ? $startAt->toDateString()
+                : null,
+            'end-date' => ($endAt = $item->present()->endAt())
+                ? $endAt->toDateString()
+                : null,
+            'location' => $item->exhibition_location
+                ?: $item->gallery_title,
+        ];
     }
 }

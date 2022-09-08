@@ -1,5 +1,5 @@
 <span class="checkbox{{ (isset($variation)) ? ' '.$variation : '' }}{{ (isset($error)) ? ' s-error' : '' }}{{ (isset($disabled)) ? ' s-disabled' : '' }}"{!! (isset($behavior)) ? ' data-behavior="'.$behavior.'"' : '' !!}>
-  <input type="checkbox" value="{{ $value ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name ?? '' }}" {{ $checked ?? '' }} {{ $disabled ?? '' }}>
+  <input type="checkbox" value="{{ $value ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name ?? '' }}" {{ $checked ?? '' }} {{ $disabled ?? '' }} {!! ($autocomplete ?? true) ? '' : 'autocomplete="off"' !!}>
   <span class="{{ $font ?? 'f-secondary' }}">
       @component('components.atoms._label')
         @slot('for', $id)

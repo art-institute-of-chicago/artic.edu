@@ -126,6 +126,10 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 @include('partials._modal')
 @include('partials._ajax-loader')
 
+@if (!empty($pageMetaData))
+    <script type="text/template" id="page-meta-data">{!! $pageMetaData !!}</script>
+@endif
+
 @include('partials._scripts')
 </body>
 </html>

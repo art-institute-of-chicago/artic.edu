@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
+use App\Helpers\GtmHelpers;
 use App\Libraries\RecentlyViewedService;
 use App\Libraries\Search\CollectionService;
 use App\Libraries\ExploreFurther\ArtworkService as ExploreFurther;
@@ -24,11 +25,11 @@ class ArtworkController extends BaseScopedController
     {
         try {
             $item = Artwork::query()
-                ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
+                ->include(['artist_pivots', 'place_pivots', 'dates'])
                 ->findOrFail((int) $id);
         } catch (\Throwable $e) {
             $item = Artwork::query()->forceEndpoint('deaccession')
-                ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
+                ->include(['artist_pivots', 'place_pivots', 'dates'])
                 ->findOrFail((int) $id);
         }
 
@@ -59,6 +60,7 @@ class ArtworkController extends BaseScopedController
             'borderlessHeader' => $item->present()->borderlessHeader,
             'primaryNavCurrent' => 'collection',
             'canonicalUrl' => $canonicalPath,
+            'pageMetaData' => $this->getPageMetaData($item),
         ];
 
         // Build Explore further module
@@ -149,5 +151,10 @@ class ArtworkController extends BaseScopedController
         ])->render();
 
         return $view;
+    }
+
+    protected function setPageMetaData($item)
+    {
+        return GtmHelpers::getMetaDataForArtwork($item);
     }
 }

@@ -35,7 +35,7 @@
 
         $artworkItem = array();
         $artworkItem['type'] = 'image';
-        $artworkItem['size'] = 's';
+        $artworkItem['size'] = $block->input('size') ?? 's';
         $artworkItem['media'] = $image;
         $artworkItem['captionTitle'] = $artwork->present()->listingTitle;
         $artworkItem['caption'] = $caption.'<br>'.$galleryLocation.($captionAddendum ? '<br>'.$captionAddendum : '');
@@ -43,6 +43,7 @@
         $artworkItem['urlTitle'] = isset($figureNumber) ? null : $urlTitle;
         $artworkItem['showUrl'] = true;
         $artworkItem['isArtwork'] = true;
+        $artworkItem['useContain'] = true;
         $artworkItem['isZoomable'] = $artwork->is_zoomable;
         $artworkItem['isPublicDomain'] = $artwork->is_public_domain;
         $artworkItem['maxZoomWindowSize'] = $artwork->max_zoom_window_size;

@@ -403,7 +403,7 @@ If you need scopes to be applied by default to every query within a model, just 
 
 ```php
 protected static $defaultScopes = [
-    'include' => ['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots']
+    'include' => ['artist_pivots', 'place_pivots', 'dates']
 ];
 ```
 

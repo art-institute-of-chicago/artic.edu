@@ -114,6 +114,27 @@
             @endforeach
         @endif
 
+        {{-- History Detail - Microsites --}}
+        @if ($item->sites)
+            @component('components.atoms._hr')
+            @endcomponent
+            @component('components.blocks._text')
+                @slot('font', 'f-subheading-1')
+                @slot('tag', 'h4')
+                {{ Str::plural('Archived Microsite', count($item->sites)) }}
+            @endcomponent
+            @component('components.molecules._m-link-list')
+                @slot('variation', 'm-link-list--exhibition-microsite')
+                @slot('links', array_map(function ($site) {
+                    return [
+                        'href' => $site->web_url,
+                        'label' => $site->title,
+                        'iconAfter' => 'new-window',
+                    ];
+                }, $item->sites))
+            @endcomponent
+        @endif
+
         {{-- History Detail - Exhibition Photos --}}
         @if ($item->present()->getHistoryImages()->count() > 0)
             @component('components.atoms._hr')
@@ -124,7 +145,7 @@
                 Installation {{ Str::plural('Photo', $item->present()->getHistoryImages()->count()) }}
             @endcomponent
             @foreach ($item->present()->getHistoryImagesForMediaComponent() as $picture)
-                    @component('components.molecules._m-media')
+                @component('components.molecules._m-media')
                     @slot('variation', 'o-blocks__block')
                     @slot('item', $picture)
                 @endcomponent

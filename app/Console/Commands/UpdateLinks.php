@@ -18,7 +18,7 @@ class UpdateLinks extends Command
             $blocks = $blocks->cursor();
 
             foreach ($blocks as $block) {
-                $content = $block->getOriginal('content');
+                $content = json_encode($block->getOriginal('content'));
                 $content = str_replace("http:\/\/" . $url, '', $content);
                 $content = str_replace("https:\/\/" . $url, '', $content);
                 $content = str_replace('"' . $url, '"', $content);

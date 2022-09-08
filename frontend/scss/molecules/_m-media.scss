@@ -308,7 +308,7 @@
     max-height: 80vh;
   }
 
-  .m-media--artwork & {
+  .m-media--s.m-media--artwork & {
     width: auto;
     max-width: 843px;
     max-height: 843px;
@@ -321,8 +321,8 @@
   }
 }
 
-.m-media--m .m-media__img:not(.m-media--mirador-embed):not(.m-media--360-embed) img,
-.m-media--l .m-media__img:not(.m-media--mirador-embed):not(.m-media--360-embed) img,
+.m-media--m:not(.m-media--artwork) .m-media__img:not(.m-media--mirador-embed):not(.m-media--360-embed) img,
+.m-media--l:not(.m-media--artwork) .m-media__img:not(.m-media--mirador-embed):not(.m-media--360-embed) img,
 .m-media__img video,
 .m-media__img embed,
 .m-media:not(.m-media--soundcloud) .m-media__img iframe,
@@ -343,6 +343,20 @@
 .m-media__img.m-media__img--video img {
   @include objectFitFix;
   object-fit: contain;
+}
+
+.m-media__img img {
+  .m-media--m.m-media--artwork &,
+  .m-media--l.m-media--artwork & {
+    max-height: 843px;
+    max-width: 843px;
+  }
+
+  .m-media--m.m-media--artwork.m-media--artwork--cc0 &,
+  .m-media--l.m-media--artwork.m-media--artwork--cc0 & {
+    max-height: calc(95vh - 70px);
+    max-width: initial;
+  }
 }
 
 .m-media--m:not(.m-media--contain) .m-media__img img,

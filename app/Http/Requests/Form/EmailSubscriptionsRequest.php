@@ -8,7 +8,10 @@ class EmailSubscriptionsRequest extends FormRequest
     {
         return [
             'email' => 'required',
+            'encrypted_email' => 'sometimes',
             'subscriptions' => 'sometimes',
+            'unsubscribeFromMuseum' => 'sometimes',
+            'unsubscribeFromShop' => 'sometimes',
             'unsubscribeFromAll' => 'sometimes',
             'first_name' => 'sometimes',
             'last_name' => 'sometimes',

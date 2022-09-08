@@ -1,3 +1,6 @@
+@php
+    use App\Helpers\GtmHelpers;
+@endphp
 @unless ($artworks->isEmpty())
     @php
         $sizes = [
@@ -25,9 +28,12 @@
                     'srcset' => ImageHelpers::aic_getSrcsetForImage($item->imageFront(), $item->is_public_domain ?? false),
                     'sizes' => ImageHelpers::aic_gridListingImageSizes($sizes),
                 ))
-                @if (isset($gtmAttributesForItem))
-                    @slot('gtmAttributes', $gtmAttributesForItem($item, $loop))
-                @endif
+                @slot('gtmAttributes', GtmHelpers::combineGtmAttributes([
+                    GtmHelpers::getGtmAttributesForClickMetaDataEventOnArtwork($item),
+                    isset($gtmAttributesForItem)
+                        ? $gtmAttributesForItem($item, $loop)
+                        : null,
+                ]))
             @endcomponent
         @endforeach
     @endcomponent

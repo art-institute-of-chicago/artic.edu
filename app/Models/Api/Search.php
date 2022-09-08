@@ -30,7 +30,6 @@ class Search extends BaseApiModel
         'printed-catalogs' => 'App\Models\PrintedPublication',
         'digital-catalogs' => 'App\Models\DigitalPublication',
         'digital-publication-sections' => 'App\Models\DigitalPublicationSection',
-        'issue-articles' => 'App\Models\IssueArticle',
         'static-pages' => 'App\Models\Page',
         'generic-pages' => 'App\Models\GenericPage',
         'educator-resources' => 'App\Models\EducatorResource',
@@ -865,9 +864,33 @@ class Search extends BaseApiModel
                                     ],
                                 ],
                                 [
+                                    'bool' => [
+                                        'must_not' => [
+                                            'exists' => [
+                                                'field' => 'published',
+                                            ],
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        'bool' => [
+                            'should' => [
+                                [
                                     'term' => [
                                         'is_published' => [
                                             'value' => true,
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'bool' => [
+                                        'must_not' => [
+                                            'exists' => [
+                                                'field' => 'is_published',
+                                            ],
                                         ]
                                     ]
                                 ]
@@ -931,11 +954,26 @@ class Search extends BaseApiModel
             'bool' => [
                 'filter' => [
                     [
-                        'term' => [
-                            'is_unlisted' => [
-                                'value' => false,
-                            ],
-                        ],
+                        'bool' => [
+                            'should' => [
+                                [
+                                    'term' => [
+                                        'is_unlisted' => [
+                                            'value' => false,
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'bool' => [
+                                        'must_not' => [
+                                            'exists' => [
+                                                'field' => 'is_unlisted',
+                                            ],
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
                     ]
                 ]
             ]

@@ -950,12 +950,12 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     public function __get($key)
     {
         $value = $this->getAttribute($key);
-        if (!$value && method_exists($this, 'getAugmentedModel') && $this->getAugmentedModel()) {
+
+        if ($value === null && method_exists($this, 'getAugmentedModel') && $this->getAugmentedModel()) {
             return $this->getAugmentedModel()->{$key};
         }
 
-            return $value;
-
+        return $value;
     }
 
     /**

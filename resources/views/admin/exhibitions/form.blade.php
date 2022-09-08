@@ -258,11 +258,6 @@
             'disabled' => true
         ])
         @formField('input', [
-            'name' => 'department_title',
-            'label' => 'Department',
-            'disabled' => true
-        ])
-        @formField('input', [
             'name' => 'department_id',
             'label' => 'Department ID',
             'disabled' => true
@@ -283,8 +278,8 @@
             'disabled' => true
         ])
         @formField('input', [
-            'name' => 'last_updated',
-            'label' => 'Last updated',
+            'name' => 'updated_at',
+            'label' => 'Updated at',
             'disabled' => true
         ])
         @formField('input', [

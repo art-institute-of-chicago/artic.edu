@@ -10,7 +10,6 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleAuthors;
 use App\Jobs\GeneratePdf;
 use App\Models\IssueArticle;
-use App\Models\Api\Search;
 
 class IssueArticleRepository extends ModuleRepository
 {
@@ -27,14 +26,5 @@ class IssueArticleRepository extends ModuleRepository
     {
         parent::afterSave($object, $fields);
         GeneratePdf::dispatch($object);
-    }
-
-    public function searchApi($string, $perPage = null)
-    {
-        $search = Search::query()->search($string)->published()->resources(['issue-articles']);
-
-        $results = $search->getSearch($perPage);
-
-        return $results;
     }
 }

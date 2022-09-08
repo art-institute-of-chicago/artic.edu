@@ -1,3 +1,6 @@
+@php
+    use App\Helpers\GtmHelpers;
+@endphp
 @foreach ($artworks as $item)
     @component('components.molecules._m-listing----artwork')
         @slot('variation', 'o-pinboard__item')
@@ -16,6 +19,9 @@
                   'xlarge' => '4',
             )),
         ))
-        @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-category="collection-nav"')
+        @slot('gtmAttributes', GtmHelpers::combineGtmAttributes([
+            GtmHelpers::getGtmAttributesForClickMetaDataEventOnArtwork($item),
+            'data-gtm-event="' . $item->title . '" data-gtm-event-category="collection-nav"',
+        ]))
     @endcomponent
 @endforeach

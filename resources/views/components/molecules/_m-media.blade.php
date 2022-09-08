@@ -118,7 +118,12 @@
     $showUrlFullscreen = $item['showUrl'] ?? false && $item['showUrlFullscreen']  ?? false && $item['urlTitle'] ?? null;
 
     if (isset($item['isArtwork'])) {
-        $variation = ($variation ?? '').' m-media--artwork';
+        $variation = ($variation ?? '') . ' m-media--artwork';
+
+        if ($item['isPublicDomain'] ?? false) {
+            $variation .= ' m-media--artwork--cc0';
+        }
+
         $isZoomable = $item['isZoomable'] ?? false;
         $maxZoomWindowSize = $item['maxZoomWindowSize'] ?? 843;
         $maxZoomWindowSize = ($maxZoomWindowSize === -1) ? 1280 : $maxZoomWindowSize;
@@ -133,7 +138,7 @@
 
 <{{ $tag ?? 'figure' }} data-type="{{ $type }}" data-title="{{ $item['captionTitle'] ?? $item['caption'] ?? $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ $useContain ? ' m-media--contain' : '' }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
     <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : (($type === 'virtualtour') ? ' m-media__img--virtualtour' : '' )}}{{ $useAltBackground ? ' m-media__img--alt-background' : '' }}{{ $disablePlaceholder ? ' m-media__img--disable-placeholder' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}" data-platform="{!! isset($item['platform']) ? $item['platform'] : '' !!}" {!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! ($_allowAdvancedModalFeatures ?? false) ? ' data-modal-advanced="true"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}{!! !empty($item['credit']) ? ' data-credit="' . $item['credit'] . '"' : '' !!}>
-        @if ($useContain && ($size === 'm' || $size === 'l'))
+        @if ($useContain && !($item['isArtwork'] ?? false) && ($size === 'm' || $size === 'l'))
             <div class="m-media__contain--spacer" style="padding-bottom: {{ min(62.5, intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100) }}%"></div>
         @endif
         @if ($type == 'image')
