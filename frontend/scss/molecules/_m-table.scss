@@ -91,6 +91,7 @@ Intended for very simple m-tables..
     font-weight: normal;
     text-align: left;
     white-space: nowrap;
+    vertical-align: middle;
 
     @include breakpoint('xsmall') {
       padding-right: 7px;
