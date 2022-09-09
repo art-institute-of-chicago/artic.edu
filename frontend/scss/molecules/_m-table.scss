@@ -88,6 +88,8 @@ Intended for very simple m-tables..
     padding: 15px 12px 23px;
     border-top: 1px solid $color__rules--primary;
     border-bottom: 1px solid $color__rules--primary;
+    border-left: 1px solid $color__rules--primary;
+    border-right: 1px solid $color__rules--primary;
     font-weight: normal;
     text-align: left;
     white-space: nowrap;
@@ -120,11 +122,6 @@ Intended for very simple m-tables..
     tr:last-child td {
       border-bottom: 0;
     }
-  }
-
-  th:first-child,
-  td:first-child {
-    padding-left: 0;
   }
 
   td[rowspan],
@@ -172,14 +169,14 @@ Intended for very simple m-tables..
   }
 }
 
-.m-table--show-columns {
-  td:first-child,
-  th:first-child {
-    padding-left: 12px;
+.m-table--hide-columns {
+  th:first-child,
+  td:first-child {
+    padding-left: 0;
   }
 
   td, th {
-    border-left: 1px solid $color__rules--primary;
-    border-right: 1px solid $color__rules--primary;
+    border-left: none;
+    border-right: none;
   }
 }

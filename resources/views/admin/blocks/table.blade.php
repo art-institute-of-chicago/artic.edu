@@ -49,11 +49,6 @@
 ])
 
 @formField('checkbox', [
-    'name' => 'show_columns',
-    'label' => 'Draw vertical borders (columns and outside)',
-])
-
-@formField('checkbox', [
     'name' => 'has_side_header',
     'label' => 'Leftmost column is also a header',
 ])
