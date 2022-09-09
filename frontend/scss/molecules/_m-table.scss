@@ -170,3 +170,15 @@ Intended for very simple m-tables..
     white-space: normal;
   }
 }
+
+.m-table--show-columns {
+  td:first-child,
+  th:first-child {
+    padding-left: 12px;
+  }
+
+  td, th {
+    border-left: 1px solid $color__rules--primary;
+    border-right: 1px solid $color__rules--primary;
+  }
+}
