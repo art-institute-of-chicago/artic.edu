@@ -373,6 +373,47 @@
   }
 }
 
+.m-article-header--digital-publication .m-info-trigger {
+  right: 0;
+  z-index: 2;
+  bottom: initial;
+
+  top: 202px;
+
+  @include breakpoint('small') {
+    top: 252px;
+  }
+
+  @include breakpoint('medium') {
+    top: 302px;
+  }
+
+  @include breakpoint('large+') {
+    top: initial;
+    bottom: 0;
+  }
+}
+
+.m-article-header--digital-publication .m-info-trigger__info {
+  right: 0;
+  z-index: 2;
+  bottom: initial;
+
+  top: 154px;
+
+  @include breakpoint('small') {
+    top: 204px;
+  }
+
+  @include breakpoint('medium') {
+    top: 246px;
+  }
+
+  @include breakpoint('large+') {
+    top: initial;
+    bottom: 0;
+  }
+}
 
 
 
