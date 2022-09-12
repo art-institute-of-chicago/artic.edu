@@ -40,6 +40,9 @@ class DigitalPublicationSectionPresenter extends BasePresenter
         ]);
     }
 
+    /**
+     * PUB-163: Use for cards, not for sidebar.
+     */
     public function getSectionType()
     {
         if (isset($this->entity->type_display)) {
