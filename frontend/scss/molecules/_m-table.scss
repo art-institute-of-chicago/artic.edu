@@ -82,6 +82,11 @@ Intended for very simple m-tables..
 
   caption {
     margin-bottom: 40px;
+    text-align: left;
+
+    h2 {
+      max-width: 100%;
+    }
   }
 
   th, td {
