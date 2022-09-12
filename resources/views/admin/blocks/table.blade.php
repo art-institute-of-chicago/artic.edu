@@ -57,3 +57,9 @@
     'name' => 'allow_word_wrap',
     'label' => 'Allow word wrap in table cells',
 ])
+
+@formField('checkbox', [
+    'name' => 'hide_columns',
+    'label' => 'Hide vertical cell borders',
+])
+
