@@ -83,7 +83,7 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
 
     public static $types = [
         self::ABOUT => 'About',
-        self::TEXT => 'Essays',
+        self::TEXT => 'Contributions',
         self::WORK => 'Works',
     ];
 
