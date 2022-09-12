@@ -45,22 +45,7 @@ class DigitalPublicationSectionPresenter extends BasePresenter
      */
     public function getSectionType()
     {
-        if (isset($this->entity->type_display)) {
-            return $this->entity->type_display;
-        }
-
-        switch ($this->entity->type) {
-            case DigitalPublicationSection::TEXT:
-                return 'Essay'; // PUB-161
-
-                break;
-            case DigitalPublicationSection::WORK:
-                return 'Gallery';
-
-                break;
-        }
-
-        return $this->entity->type;
+        return $this->entity->type_display;
     }
 
     public function references()
