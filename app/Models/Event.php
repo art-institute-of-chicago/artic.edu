@@ -98,21 +98,21 @@ class Event extends AbstractModel
     const NULL_OPTION_EVENT_HOST = 1024;
 
     const CLASSES_AND_WORKSHOPS = 1;
-    const LIVE_ARTS = 2;
+    // const LIVE_ARTS = 2;
     const SCREENINGS = 3;
     const SPECIAL_EVENT = 4;
     const TALKS = 5;
     const TOUR = 6;
-    const COMMUNITIES = 7;
+    // const COMMUNITIES = 7;
 
     public static $eventTypes = [
-        self::CLASSES_AND_WORKSHOPS => 'Classes and Workshops',
-        self::LIVE_ARTS => 'Live Arts',
-        self::SCREENINGS => 'Screenings',
-        self::SPECIAL_EVENT => 'Special Event',
-        self::TALKS => 'Talks',
+        self::CLASSES_AND_WORKSHOPS => 'Class/Workshop',
+        self::TALKS => 'Talk',
         self::TOUR => 'Tour',
-        self::COMMUNITIES => 'Programs in Communities',
+        self::SCREENINGS => 'Screening',
+        self::SPECIAL_EVENT => 'Special Event',
+        // self::LIVE_ARTS => 'Live Arts',
+        // self::COMMUNITIES => 'Programs in Communities',
     ];
 
     const FAMILIES = 1;
@@ -124,13 +124,13 @@ class Event extends AbstractModel
     const LUMINARY = 8;
 
     public static $eventAudiences = [
-        self::FAMILIES => 'Families',
+        self::ADULTS => 'General Public',
         self::MEMBERS => 'Members',
-        self::ADULTS => 'Adults',
-        self::TEENS => 'Teens',
-        self::RESEARCHERS_SCHOLARS => 'Researchers/Scholars',
-        self::TEACHERS => 'Teachers',
         self::LUMINARY => 'Luminary',
+        self::FAMILIES => 'Families',
+        self::TEENS => 'Teens',
+        self::TEACHERS => 'Educators',
+        self::RESEARCHERS_SCHOLARS => 'Researchers/Scholars',
     ];
 
     const BASIC_LAYOUT = 0;
