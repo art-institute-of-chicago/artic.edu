@@ -12,7 +12,7 @@ use App\Helpers\StringHelpers;
 
 class Artwork extends AbstractModel
 {
-    use HasApiModel, HasRelated, HasApiRelations, HasFeaturedRelated, HasMedias, HasFiles;
+    use HasApiModel, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated, HasMedias, HasFiles;
 
     protected $apiModel = 'App\Models\Api\Artwork';
 
@@ -102,5 +102,35 @@ class Artwork extends AbstractModel
     public function getMiradorView()
     {
         return $this->default_view;
+    }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                'name' => 'datahub_id',
+                'doc' => 'Data Hub ID',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->datahub_id;
+                },
+            ],
+            [
+                'name' => 'has_advanced_imaging',
+                'doc' => 'Has 360 photography, 3D model, etc.',
+                'type' => 'boolean',
+                'value' => function () {
+                    return false
+                        || $this->files()
+                                ->wherePivotIn('role', [
+                                    'image_sequence_file',
+                                    'upload_manifest_file',
+                                ])
+                                ->exists()
+                        || $this->model3d()->exists()
+                        || (bool) $this->default_manifest_url;
+                },
+            ],
+        ];
     }
 }

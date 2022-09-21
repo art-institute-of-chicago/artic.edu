@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ArticlesController;
+use App\Http\Controllers\API\ArtworksController;
 use App\Http\Controllers\API\ArtistsController;
 use App\Http\Controllers\API\BuildingClosuresController;
 use App\Http\Controllers\API\DigitalPublicationsController;
@@ -110,6 +111,12 @@ Route::group(['prefix' => 'v1'], function () {
      */
     Route::get('highlights', [HighlightsController::class, 'index']);
     Route::get('highlights/{id}', [HighlightsController::class, 'show']);
+
+    /**
+     * Artworks ------------------------------------------------------
+     */
+    Route::get('artworks', [ArtworksController::class, 'index']);
+    Route::get('artworks/{id}', [ArtworksController::class, 'show']);
 
     /**
      * Artists ------------------------------------------------------
