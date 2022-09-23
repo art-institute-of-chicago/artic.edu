@@ -24,7 +24,7 @@ trait HasRecurrentDates
     {
         return $this->eventMetas()->get()->map(function ($element) {
             return ['date' => $element->date, 'date_end' => $element->date_end];
-        });
+        })->sortByDesc('date');
     }
 
     public function getRules()
