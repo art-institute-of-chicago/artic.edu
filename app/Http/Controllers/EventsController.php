@@ -47,7 +47,7 @@ class EventsController extends FrontController
                 return ($item->date <= Carbon::now()) && ($item->date_end > Carbon::now());
             });
             $recurrent = $collection->filter(function ($item) {
-                return ($item->date > Carbon::now());
+                return ($item->date_end > Carbon::now());
             });
 
             // Show ongoing events as regular if there's no more events for the day
