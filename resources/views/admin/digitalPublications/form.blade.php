@@ -23,6 +23,17 @@
     ])
 
     @formField('wysiwyg', [
+        'type' => 'textarea',
+        'name' => 'hero_caption',
+        'label' => 'Hero image caption',
+        'note' => 'Usually used for copyright',
+        'maxlength' => 255,
+        'toolbarOptions' => [
+            'italic', 'link',
+        ],
+    ])
+
+    @formField('wysiwyg', [
         'name' => 'listing_description',
         'label' => 'Listing description',
         'note' => 'Max 255 characters',

@@ -32,6 +32,7 @@ class CollectionService
         'is_recent_acquisition' => 'Recent acquisition',
         'has_multimedia' => 'Has multimedia',
         'has_educational_resources' => 'Has educational resources',
+        'has_advanced_imaging' => 'Has 360° image',
     ];
 
     /**

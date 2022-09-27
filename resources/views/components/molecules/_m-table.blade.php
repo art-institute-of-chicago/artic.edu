@@ -7,7 +7,7 @@
 @endphp
 
 @if ($table)
-    <div class="m-table {{ empty($title) ? 'm-table--no-title' : '' }} m-table--{{ $size ?? 's' }} {{ ($allowWordWrap ?? false) ? 'm-table--word-wrap' : '' }}">
+    <div class="m-table {{ empty($title) ? 'm-table--no-title' : '' }} m-table--{{ $size ?? 's' }} {{ ($allowWordWrap ?? false) ? 'm-table--word-wrap' : '' }} {{ ($hideColumns ?? false) ? 'm-table--hide-columns' : '' }}">
         <table>
             @if (!empty($title))
                 <caption>

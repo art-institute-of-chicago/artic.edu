@@ -20,4 +20,5 @@
     @slot('tableCaption', $block->input('table_caption'))
     @slot('hasSideHeader', $block->input('has_side_header'))
     @slot('allowWordWrap', $block->input('allow_word_wrap'))
+    @slot('hideColumns', $block->input('hide_columns'))
 @endcomponent

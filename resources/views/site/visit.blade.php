@@ -83,7 +83,7 @@ $showNewHours = Carbon::now()->gt($newHoursStartAt);
                 @endcomponent
             </div>
             <div class="o-blocks">
-                <div class="m-table m-table--minimal">
+                <div class="m-table m-table--minimal m-table--hide-columns">
                     <table>
                         <thead>
                             <tr>
@@ -269,7 +269,7 @@ $showNewHours = Carbon::now()->gt($newHoursStartAt);
         </div>
     @endif
 
-    <div class="m-table">
+    <div class="m-table m-table--hide-columns">
       <table>
         <caption>
             @component('components.molecules._m-title-bar')

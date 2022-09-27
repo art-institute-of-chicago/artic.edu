@@ -16,10 +16,12 @@
             </span>
         </span>
         <span class="m-listing__meta">
-            @component('components.atoms._type')
-                {!! $type !!}
-            @endcomponent
-            <br>
+            @if (isset($type))
+                @component('components.atoms._type')
+                    {!! $type !!}
+                @endcomponent
+                <br>
+            @endif
             @component('components.atoms._title')
                 @slot('font', (isset($variation) && $variation == 'm-listing--work') ? 'f-headline' : 'f-list-3')
                 @slot('title', $title)

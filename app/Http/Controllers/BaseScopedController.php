@@ -56,6 +56,7 @@ class BaseScopedController extends FrontController
         'is_recent_acquisition' => 'recentAcquisition',
         'has_multimedia' => 'hasMultimedia',
         'has_educational_resources' => 'hasEducationalResources',
+        'has_advanced_imaging' => 'hasAdvancedImaging',
 
         // Hidden from filters but present in Quick facets
         'theme_ids' => 'byThemes',

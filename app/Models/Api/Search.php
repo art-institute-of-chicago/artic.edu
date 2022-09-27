@@ -354,6 +354,23 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeHasAdvancedImaging($query, $value = false)
+    {
+        $params = [
+            'bool' => [
+                'must' => [
+                    [
+                        'term' => [
+                            'has_advanced_imaging' => ($value == true)
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopeOnView($query, $value = true)
     {
         $params = [

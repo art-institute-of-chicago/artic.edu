@@ -211,8 +211,8 @@
     background-color: $color__white;
   }
 
-  .m-media--m:not(.m-media--contain) &:not(.m-media__img--virtualtour):not(.m-media--360-embed)::before,
-  .m-media--l:not(.m-media--contain) &:not(.m-media__img--virtualtour):not(.m-media--360-embed)::before,
+  .m-media--m:not(.m-media--contain) &:not(.m-media__img--virtualtour):not(.m-media--360-embed):not(.m-media__img--disable-placeholder)::before,
+  .m-media--l:not(.m-media--contain) &:not(.m-media__img--virtualtour):not(.m-media--360-embed):not(.m-media__img--disable-placeholder)::before,
   &.m-media__img--video:not(.m-media__img--disable-placeholder)::before {
     content: '';
     display: block;

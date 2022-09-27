@@ -39,6 +39,12 @@
         'options' => $typesList,
     ])
 
+    @formField('input', [
+        'name' => 'type_display',
+        'label' => 'Section label',
+        'note' => 'Used in the "eyebrow" of cards on the publication page',
+    ])
+
     @formField('wysiwyg', [
         'name' => 'list_description',
         'label' => 'List description',
