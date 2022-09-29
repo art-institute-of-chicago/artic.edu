@@ -22,6 +22,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InteractiveFeatureExperiencesController;
 use App\Http\Controllers\MagazineIssueController;
 use App\Http\Controllers\MiradorController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PressReleasesController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\PrintedPublicationsController;
@@ -45,6 +46,8 @@ Route::get('/target', [HomeController::class, 'target'])->name('target');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
+
+Route::get('/pages/{id}/{slug?}', [PageController::class, 'show'])->name('pages.show');
 
 // Collection routes
 Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
