@@ -289,7 +289,7 @@ class Event extends AbstractModel
 
     public function getDateStartAttribute()
     {
-        $firstDate = $this->all_dates->first();
+        $firstDate = $this->all_dates->last();
 
         if (empty($firstDate)) {
             return;
@@ -300,13 +300,18 @@ class Event extends AbstractModel
 
     public function getDateEndAttribute()
     {
-        $lastDate = $this->all_dates->last();
+        $lastDate = $this->all_dates->first();
 
         if (empty($lastDate)) {
             return;
         }
 
         return $lastDate['date_end'];
+    }
+
+    public function getDateEndTimeAttribute()
+    {
+        return $this->date->setTime($this->date_end->hour, $this->date_end->minute, $this->date_end->second);
     }
 
     public function getAltTypesAttribute($value)

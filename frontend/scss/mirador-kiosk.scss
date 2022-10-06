@@ -1,6 +1,11 @@
 @import 'setup/colors';
 @import 'atoms/loader';
 
+html.s-interactive-feature--kiosk {
+  overflow-y: hidden;
+  -ms-overflow-style: hidden;
+}
+
 .mirador-kiosk {
 
   .mosaic-tile {

@@ -36,6 +36,13 @@ class GenericPagesController extends FrontController
         $this->seo->setDescription($page->meta_description ?? $page->short_description ?? $page->listing_description);
         $this->seo->setImage($page->imageFront('listing'));
 
+        // Add Farharbor JS to "Visit with my Students" page.
+        // @see instructions here: https://fareharbor.com/artic/dashboard/settings/embeds/
+        $addFareHarborJS = false;
+        if ($page->id == 126) {
+            $addFareHarborJS = true;
+        }
+
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'nav' => $navigation,
@@ -46,6 +53,7 @@ class GenericPagesController extends FrontController
             'breadcrumb' => $crumbs,
             'blocks' => null,
             'page' => $page,
+            'addFareHarborJS' => $addFareHarborJS,
         ]);
     }
 
