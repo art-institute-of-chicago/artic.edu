@@ -518,7 +518,7 @@ class Event extends AbstractModel
 
     public function setAudienceAttribute($value)
     {
-        $this->attributes['audience'] = $value > count(self::$eventAudiences) ? null : $value; // 1-based
+        $this->attributes['audience'] = $value > (count(self::$eventAudiences) + 1) ? null : $value; // 1-based
     }
 
     public function setEntranceAttribute($value)
