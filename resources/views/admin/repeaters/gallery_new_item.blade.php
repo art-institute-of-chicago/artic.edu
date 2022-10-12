@@ -34,7 +34,7 @@
         'name' => 'captionTitle',
         'label' => 'Caption title',
         'toolbarOptions' => [
-            'italic',
+            'italic', 'link',
         ],
     ])
 
