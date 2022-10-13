@@ -21,6 +21,7 @@
     @slot('galleryImages', $item->galleryImages)
     @slot('nextArticle', $item->nextArticle)
     @slot('prevArticle', $item->prevArticle)
+    @slot('credit', $item->hero_caption ?? null)
   @endcomponent
 
   <div class="o-article__primary-actions{{ ($item->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}{{ ($item->articleType === 'artwork') ? ' u-show@large+' : '' }}">

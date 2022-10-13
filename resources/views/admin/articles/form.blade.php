@@ -44,6 +44,17 @@
         'note' => 'Minimum image width 3000px'
     ])
 
+    @formField('wysiwyg', [
+        'type' => 'textarea',
+        'name' => 'hero_caption',
+        'label' => 'Hero image caption',
+        'note' => 'Usually used for copyright',
+        'maxlength' => 255,
+        'toolbarOptions' => [
+            'italic', 'link',
+        ],
+    ])
+
     @formField('multi_select', [
         'name' => 'categories',
         'label' => 'Categories',

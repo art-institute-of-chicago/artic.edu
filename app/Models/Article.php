@@ -35,6 +35,7 @@ class Article extends AbstractModel implements Feedable
         'title_display',
         'heading',
         'list_description',
+        'hero_caption',
         'author_display',
         'copy',
         'subtype',
@@ -330,6 +331,14 @@ class Article extends AbstractModel implements Feedable
                 'type' => 'string',
                 'value' => function () {
                     return $this->list_description;
+                },
+            ],
+            [
+                'name' => 'hero_caption',
+                'doc' => 'Hero caption',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->hero_caption;
                 },
             ],
             [
