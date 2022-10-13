@@ -86,6 +86,7 @@
         'label' => 'Listing description',
         'maxlength'  => 255,
         'note' => 'Max 255 characters',
+        'required' => true,
         'toolbarOptions' => [
             'italic'
         ],

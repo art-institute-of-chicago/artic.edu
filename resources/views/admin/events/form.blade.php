@@ -256,6 +256,7 @@
             'label' => 'Listing description',
             'maxlength'  => 255,
             'note' => 'Used by website and Mobile App for listings',
+            'required' => true,
             'toolbarOptions' => [
                 'italic'
             ],

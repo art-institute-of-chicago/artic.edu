@@ -49,6 +49,7 @@ class EventRequest extends Request
             'start_time' => 'required',
             'end_time' => 'required',
             'short_description' => 'required',
+            'list_description' => 'required',
             'event_host_id' => [
                 'required_if:add_to_event_email_series,true',
                 Rule::notIn([Event::NULL_OPTION_EVENT_HOST]),

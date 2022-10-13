@@ -19,6 +19,7 @@ class ExhibitionRequest extends Request
     {
         $rules = [
             'title' => 'required',
+            'list_description' => 'required',
         ];
 
         return $rules;
