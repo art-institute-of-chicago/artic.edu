@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Behaviors\LintsAttributes;
-use Aic\Hub\Foundation\Concerns\HasByLastModScope;
+use Aic\Hub\Foundation\Models\Concerns\HasByLastModScope;
 use A17\Twill\Models\Model;
 
 /**
