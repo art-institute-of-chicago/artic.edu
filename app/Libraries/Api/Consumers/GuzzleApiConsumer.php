@@ -90,10 +90,6 @@ class GuzzleApiConsumer implements ApiConsumerInterface
             return call_user_func_array($this->__classMethods[$name], $args);
         }
 
-        if (get_parent_class()) {
-            return parent::__call($name, $args);
-        }
-
         // If it doesn't exists locally push the call to the API client.
         return $this->client->{$name}(...$args);
     }
