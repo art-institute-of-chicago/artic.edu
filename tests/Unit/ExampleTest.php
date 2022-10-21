@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
+use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
 
-class ExampleTest extends TestCase
+class ExampleTest extends BaseTestCase
 {
     /**
      * A basic test example.

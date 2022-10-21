@@ -4,9 +4,9 @@ namespace Tests\Unit;
 
 use App\Models\Hour;
 use Carbon\Carbon;
-use Tests\TestCase;
+use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
 
-class HourTest extends TestCase
+class HourTest extends BaseTestCase
 {
     private $hour;
     private $hourAllClosed;

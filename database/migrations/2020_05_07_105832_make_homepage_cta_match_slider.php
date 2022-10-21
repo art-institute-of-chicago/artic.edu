@@ -15,7 +15,11 @@ class MakeHomepageCtaMatchSlider extends Migration
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_cta_module_headline', 'home_cta_module_header');
+        });
+        Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_cta_module_short_copy', 'home_cta_module_body');
+        });
+        Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_cta_module_url', 'home_cta_module_action_url');
         });
 
@@ -39,7 +43,11 @@ class MakeHomepageCtaMatchSlider extends Migration
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_cta_module_header', 'home_cta_module_headline');
+        });
+        Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_cta_module_body', 'home_cta_module_short_copy');
+        });
+        Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_cta_module_action_url', 'home_cta_module_url');
         });
 

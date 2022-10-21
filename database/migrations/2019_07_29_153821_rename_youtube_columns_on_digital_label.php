@@ -19,11 +19,15 @@ class RenameYoutubeColumnsOnDigitalLabel extends Migration
 
         Schema::table('experience_modals', function (Blueprint $table) {
             $table->dropColumn('video_url');
+        });
+        Schema::table('experience_modals', function (Blueprint $table) {
             $table->renameColumn('youtube_url', 'video_url');
         });
 
         Schema::table('slides', function (Blueprint $table) {
             $table->renameColumn('youtube_url', 'video_url');
+        });
+        Schema::table('slides', function (Blueprint $table) {
             $table->renameColumn('split_youtube_url', 'split_video_url');
         });
     }

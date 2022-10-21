@@ -14,9 +14,7 @@ class DropColumnsFromMagazineItemsTable extends Migration
     public function up()
     {
         Schema::table('magazine_items', function (Blueprint $table) {
-            $table->dropColumn('tag');
-            $table->dropColumn('title');
-            $table->dropColumn('url');
+            $table->dropColumn(['tag', 'title', 'url']);
         });
     }
 

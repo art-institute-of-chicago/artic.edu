@@ -2,14 +2,14 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
+use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
 
 use Carbon\Carbon;
 
 use App\Models\Issue;
 use App\Models\IssueArticle;
 
-class IssueArticleTest extends TestCase
+class IssueArticleTest extends BaseTestCase
 {
 
     /** @test */

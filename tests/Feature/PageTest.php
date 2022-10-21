@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
+use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
 
-class PageTest extends TestCase
+class PageTest extends BaseTestCase
 {
 
     /** @test */

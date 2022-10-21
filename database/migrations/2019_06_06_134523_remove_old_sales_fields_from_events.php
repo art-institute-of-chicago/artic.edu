@@ -14,8 +14,7 @@ class RemoveOldSalesFieldsFromEvents extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('survey_link');
-            $table->dropColumn('email_series');
+            $table->dropColumn(['survey_link', 'email_series']);
         });
     }
 

@@ -153,7 +153,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function composeTemplatesViews()
     {
-        $hour = Hour::today()->first();
+        $hour = app()->environment() === 'testing' ? null : Hour::today()->first();
 
         // WEB-2269: Consider moving some of this to a config?
         view()->composer('*', function ($view) use ($hour) {

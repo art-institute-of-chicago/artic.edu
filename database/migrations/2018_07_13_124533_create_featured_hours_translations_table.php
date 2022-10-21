@@ -32,8 +32,7 @@ class CreateFeaturedHoursTranslationsTable extends Migration
         }
 
         Schema::table('featured_hours', function (Blueprint $table) {
-            $table->dropColumn('title');
-            $table->dropColumn('copy');
+            $table->dropColumn(['title','copy']);
         });
     }
 

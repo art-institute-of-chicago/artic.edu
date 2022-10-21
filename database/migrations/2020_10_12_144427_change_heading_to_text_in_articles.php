@@ -14,7 +14,9 @@ class ChangeHeadingToTextInArticles extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->text('heading')->change();
+            if (env('APP_ENV') != 'testing') {
+                $table->text('heading')->change();
+            }
         });
     }
 

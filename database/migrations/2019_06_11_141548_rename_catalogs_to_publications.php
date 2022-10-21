@@ -113,10 +113,12 @@ class RenameCatalogsToPublications extends Migration
         $indexes = Schema::getConnection()->getDoctrineSchemaManager()->listTableIndexes($tableName);
         $foreignKeys = Schema::getConnection()->getDoctrineSchemaManager()->listTableForeignKeys($tableName);
 
-        foreach ($foreignKeys as $foreignKey) {
-            Schema::table($tableName, function (Blueprint $table) use ($foreignKey) {
-                $table->dropForeign($foreignKey->getName());
-            });
+        if (env('APP_ENV') != 'testing') {
+            foreach ($foreignKeys as $foreignKey) {
+                Schema::table($tableName, function (Blueprint $table) use ($foreignKey) {
+                    $table->dropForeign($foreignKey->getName());
+                });
+            }
         }
 
         foreach ($indexes as $index) {
