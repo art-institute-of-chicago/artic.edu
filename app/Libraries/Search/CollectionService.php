@@ -266,7 +266,7 @@ class CollectionService
      * Bypass missed methods directly to the chain.
      * Chain is usually a Query Builder type (eloquent or AIC API query builder)
      */
-    public function __call($method, $parameters)
+    public function __call($method, $parameters): mixed
     {
         if (method_exists($this, $method)) {
             return $this->{$method}($parameters);

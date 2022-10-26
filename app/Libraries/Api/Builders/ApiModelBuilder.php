@@ -650,7 +650,7 @@ class ApiModelBuilder
      * @param  array  $parameters
      * @return mixed
      */
-    public function __call($method, $parameters)
+    public function __call($method, $parameters): mixed
     {
         if (method_exists($this->model, $scope = 'scope' . ucfirst($method))) {
             return $this->callScope([$this->model, $scope], $parameters);
@@ -671,7 +671,7 @@ class ApiModelBuilder
      * @param  string  $key
      * @return mixed
      */
-    public function __get($key)
+    public function __get($key): mixed
     {
         return $this->query->{$key};
     }

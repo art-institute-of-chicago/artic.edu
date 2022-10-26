@@ -84,7 +84,7 @@ class GuzzleApiConsumer implements ApiConsumerInterface
      * exists locally. This way it's easier to extend/
      *
      */
-    public function __call($name, $args)
+    public function __call($name, $args): mixed
     {
         if (isset($this->__classMethods[$name]) && $this->__classMethods[$name] instanceof \Closure) {
             return call_user_func_array($this->__classMethods[$name], $args);

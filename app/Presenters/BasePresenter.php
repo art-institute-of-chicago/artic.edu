@@ -17,7 +17,7 @@ abstract class BasePresenter
         $this->entity = &$entity;
     }
 
-    public function __get($property)
+    public function __get($property): mixed
     {
         $return = $this->entity->{$property};
 
