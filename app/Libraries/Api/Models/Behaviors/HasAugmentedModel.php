@@ -54,7 +54,7 @@ trait HasAugmentedModel
             return $this->{$method}($parameters);
         }
 
-        if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), $method)) {
+        if ($this->hasAugmentedModel() && $this->getAugmentedModel() && method_exists($this->getAugmentedModel(), $method)) {
             return $this->getAugmentedModel()->{$method}(...$parameters);
         }
 

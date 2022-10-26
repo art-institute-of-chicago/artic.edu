@@ -46,7 +46,7 @@ trait HasMediasApi
         }
 
         // If nothing has been returned on the API side, check for an augmented model
-        if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), 'imageFront')) {
+        if ($this->hasAugmentedModel() && $this->getAugmentedModel() && method_exists($this->getAugmentedModel(), 'imageFront')) {
             return $this->getAugmentedModel()->imageFront($role, $crop);
         }
     }

@@ -386,7 +386,7 @@ class Exhibition extends BaseApiModel
     public function getCustomRelatedItems()
     {
         // if this exhibition is augmented and its augmented model has custom related items, return those
-        if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), 'getCustomRelatedItems')) {
+        if ($this->hasAugmentedModel() && $this->getAugmentedModel() && method_exists($this->getAugmentedModel(), 'getCustomRelatedItems')) {
             return $this->getAugmentedModel()->getCustomRelatedItems();
         }
 
