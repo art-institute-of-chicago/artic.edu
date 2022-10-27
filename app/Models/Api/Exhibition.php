@@ -45,8 +45,7 @@ class Exhibition extends BaseApiModel
         return 'exhibition';
     }
 
-    public function getIsClosedAttribute()
-    {
+    private function commonStatusChecks() {
         // If the start and end dates are overriden, don't consider this exhibition as closed
         if ($this->date_display_override) {
             return false;
@@ -58,6 +57,11 @@ class Exhibition extends BaseApiModel
                 return $augmentedModel->getOriginal('status_override') == 'Closed';
             }
         }
+    }
+
+    public function getIsClosedAttribute()
+    {
+        $this->commonStatusChecks();
 
         // Otherwise, look at the dates to determine if the exhibition is closed
         if (empty($this->aic_end_at)) {
@@ -69,6 +73,22 @@ class Exhibition extends BaseApiModel
         }
 
         return Carbon::now()->gt($this->dateEnd->endOfDay());
+    }
+
+    public function getIsUpcomingAttribute()
+    {
+        $this->commonStatusChecks();
+
+        // Otherwise, look at the dates to determine if the exhibition is upcoming
+        if (empty($this->aic_end_at)) {
+            if (empty($this->aic_start_at)) {
+                return false;
+            }
+
+            return $this->dateStart->year >= 2010;
+        }
+
+        return Carbon::now()->lt($this->dateStart->startOfDay());
     }
 
     public function getIdSlugAttribute()

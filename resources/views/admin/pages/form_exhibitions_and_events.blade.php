@@ -29,7 +29,7 @@
     <a17-fieldset id="upcoming" title="Upcoming exhibitions">
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
-            'max' => 2,
+            'max' => 8,
             'moduleName' => 'exhibitions',
             'name' => 'exhibitionsUpcoming',
             'label' => 'Featured exhibitions - upcoming'

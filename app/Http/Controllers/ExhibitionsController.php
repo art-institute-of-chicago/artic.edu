@@ -40,9 +40,13 @@ class ExhibitionsController extends FrontController
         $isCurrentFilter = function ($exhibition) {
             return !$exhibition->is_closed;
         };
+        $isUpcomingFilter = function ($exhibition) {
+            return $exhibition->is_upcoming;
+        };
 
         if ($upcoming) {
             $collection = $page->apiModels('exhibitionsUpcomingListing', 'Exhibition');
+            $collection = $collection->filter($isUpcomingFilter);
         } else {
             $collection = $page->apiModels('exhibitionsCurrent', 'Exhibition');
             $collection = $collection->filter($isCurrentFilter);
@@ -53,6 +57,7 @@ class ExhibitionsController extends FrontController
 
         if ($upcoming) {
             $featured = $page->apiModels('exhibitionsUpcoming', 'Exhibition');
+            $featured = $featured->filter($isUpcomingFilter);
         }
         else {
             $featured = $page->apiModels('exhibitionsExhibitions', 'Exhibition');
