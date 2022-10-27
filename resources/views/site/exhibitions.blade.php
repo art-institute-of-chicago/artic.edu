@@ -58,6 +58,9 @@
                     )),
                 ))
             @endcomponent
+            @if ($loop->index == 1)
+                @break
+            @endif
         @endforeach
     @endcomponent
 

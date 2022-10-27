@@ -11,7 +11,7 @@
     <a17-fieldset id="current" title="Current exhibitions">
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
-            'max' => 2,
+            'max' => 8,
             'moduleName' => 'exhibitions',
             'name' => 'exhibitionsExhibitions',
             'label' => 'Featured exhibitions - current'
