@@ -20,6 +20,7 @@ class FixGalleries extends Command
 
         foreach ($blocks as $block) {
             $content = $block->content;
+
             if (isset($content['browsers']['artwork'])) {
                 $content['browsers']['artworks'] = $content['browsers']['artwork'];
                 unset($content['browsers']['artwork']);

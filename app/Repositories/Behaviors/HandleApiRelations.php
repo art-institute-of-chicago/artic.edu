@@ -62,7 +62,6 @@ trait HandleApiRelations
             return $element;
         }, $relatedElements);
 
-
         RelatedItem::where([
             'browser_name' => $relationship,
             'subject_id' => $object->getKey(),
@@ -157,7 +156,6 @@ trait HandleApiRelations
                         }
                             // WEB-1187: Add augment route here!
 
-
                         return [
                             'id' => $apiElement->id,
                             'name' => $apiElement->titleInBrowser ?? $apiElement->title,
@@ -169,6 +167,7 @@ trait HandleApiRelations
                     return $items->map(function ($relatedElement) {
                         $element = $relatedElement->related;
                         $elementPosition = $relatedElement->position;
+
                         if ($element) {
                             return [
                                 'id' => $element->id,

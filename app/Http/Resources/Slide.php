@@ -155,6 +155,7 @@ class Slide extends JsonResource
             })->toArray();
         } elseif ($this->asset_type === '3dModel') {
             $model3d = $this->model3d()->first();
+
             if ($model3d) {
                 return [
                     'model_id' => $model3d->model_id,
@@ -194,6 +195,7 @@ class Slide extends JsonResource
         $compareImage2 = $this->compareExperienceImage2->first();
         $compareModal1 = $this->compareExperienceModal->first();
         $compareModal2 = $this->compareExperienceModal->count() > 1 ? $this->compareExperienceModal->get(1) : null;
+
         if ($this->asset_type === 'seamless') {
             $caption1 = $this->caption;
         } else {
@@ -218,6 +220,7 @@ class Slide extends JsonResource
     protected function get3DTourAttributes()
     {
         $model3d = $this->model3d()->first();
+
         if ($model3d) {
             return [
                 'model_id' => $model3d->model_id,

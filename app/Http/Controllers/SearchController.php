@@ -18,7 +18,6 @@ use App\Repositories\ResearchGuideRepository;
 use App\Repositories\InteractiveFeatureRepository;
 use App\Repositories\HighlightRepository;
 
-
 use App\Libraries\Search\CollectionService;
 
 use App\Helpers\QueryHelpers;
@@ -91,7 +90,6 @@ class SearchController extends BaseScopedController
         parent::__construct();
     }
 
-
     public function index()
     {
         $this->seo->setTitle('Search');
@@ -107,6 +105,7 @@ class SearchController extends BaseScopedController
         // If first artwork accession number matches search query, redirect to artwork page
         if ($artworks->count()) {
             $artwork = $artworks->first();
+
             if ($artwork->main_reference_number == request('q')) {
                 return redirect(route('artworks.show', $artwork));
             }
@@ -418,31 +417,40 @@ class SearchController extends BaseScopedController
         if (QueryHelpers::extractAggregation($aggregations, 'agents')) {
             array_push($links, $this->buildLabel('Artists/Cultures', QueryHelpers::extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }
+
         if (QueryHelpers::extractAggregation($aggregations, 'generic-pages')) {
             array_push($links, $this->buildLabel('Pages', QueryHelpers::extractAggregation($aggregations, 'generic-pages'), route('search.pages', ['q' => request('q')]), $active == 'generic-pages'));
         }
+
         if (QueryHelpers::extractAggregation($aggregations, 'artworks')) {
             array_push($links, $this->buildLabel('Artwork', QueryHelpers::extractAggregation($aggregations, 'artworks'), route('search.artworks', ['q' => request('q')]), $active == 'artworks'));
         }
+
         if (QueryHelpers::extractAggregation($aggregations, 'highlights')) {
             array_push($links, $this->buildLabel('Highlights', QueryHelpers::extractAggregation($aggregations, 'highlights'), route('search.highlights', ['q' => request('q')]), $active == 'highlights'));
         }
+
         if (QueryHelpers::extractAggregation($aggregations, 'exhibitions')) {
             array_push($links, $this->buildLabel('Exhibitions', QueryHelpers::extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', ['q' => request('q')]), $active == 'exhibitions'));
         }
+
         if (QueryHelpers::extractAggregation($aggregations, 'events')) {
             array_push($links, $this->buildLabel('Events', QueryHelpers::extractAggregation($aggregations, 'events'), route('search.events', ['q' => request('q')]), $active == 'events'));
         }
+
         if (QueryHelpers::extractAggregation($aggregations, 'articles')) {
             array_push($links, $this->buildLabel('Articles', QueryHelpers::extractAggregation($aggregations, 'articles'), route('search.articles', ['q' => request('q')]), $active == 'articles'));
         }
         array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
+
         if (QueryHelpers::extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs'])) {
             array_push($links, $this->buildLabel('Publications', QueryHelpers::extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
+
         if (QueryHelpers::extractAggregation($aggregations, ['research-guides', 'educator-resources'])) {
             array_push($links, $this->buildLabel('Resources', QueryHelpers::extractAggregation($aggregations, ['research-guides', 'educator-resources']), route('search.research-guides', ['q' => request('q')]), $active == 'research-guides'));
         }
+
         if (QueryHelpers::extractAggregation($aggregations, 'press-releases')) {
             array_push($links, $this->buildLabel('Press Releases', QueryHelpers::extractAggregation($aggregations, 'press-releases'), route('search.press-releases', ['q' => request('q')]), $active == 'press-releases'));
         }

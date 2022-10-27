@@ -37,6 +37,7 @@ trait HasMediasApi
 
                 return $image;
             }
+
                 if (!empty($this->{$this->getImageField($role, 'default')})) {
                     $image = DamsImageService::getImage($this, $this->getImageField($role, 'default'));
 

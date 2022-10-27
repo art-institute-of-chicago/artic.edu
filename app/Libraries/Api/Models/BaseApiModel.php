@@ -945,7 +945,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * Dynamically retrieve attributes on the model.
      *
      * @param  string  $key
-     * @return mixed
      */
     public function __get($key): mixed
     {
@@ -967,7 +966,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      *
      * @param  string  $key
      * @param  mixed  $value
-     * @return void
      */
     public function __set($key, $value): void
     {
@@ -1091,7 +1089,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * Determine if an attribute exists on the model.
      *
      * @param  string  $key
-     * @return bool
      */
     public function __isset($key): bool
     {
@@ -1103,7 +1100,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * Unset an attribute on the model.
      *
      * @param  string  $key
-     * @return void
      */
     public function __unset($key): void
     {
@@ -1115,7 +1111,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      *
      * @param  string  $method
      * @param  array   $parameters
-     * @return mixed
      */
     public static function __callStatic($method, $parameters): mixed
     {

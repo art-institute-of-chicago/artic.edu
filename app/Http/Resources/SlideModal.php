@@ -57,6 +57,7 @@ class SlideModal extends JsonResource
                 break;
             case '3d_model':
                 $model3d = $this->model3d;
+
                 if ($model3d) {
                     return [
                         'id' => (string) $this->id,

@@ -23,6 +23,7 @@ class PublicationsRepository
                 return $item instanceof DigitalPublication &&
                     ($item->id == $section->generic_page_id || $item->id == $section->publication_id || $item->id == $section->digital_publication_id);
             });
+
             if ($pub) {
                 $pub->addSearchSection($section);
             }
@@ -30,6 +31,7 @@ class PublicationsRepository
             // If the section represents a pub we haven't found, retrieve it
             else {
                 $pub = DigitalPublication::find($section->generic_page_id ?? $section->publication_id ?? $section->digital_publication_id);
+
                 if ($pub) {
                     $pub->addSearchSection($section);
                     $results->push($pub);
@@ -42,6 +44,7 @@ class PublicationsRepository
             if ($pub instanceof \App\Models\DigitalPublication) {
                 $pub->searchSections = collect($pub->searchSections)->take(4);
                 $links = [];
+
                 foreach ($pub->searchSections() as $section) {
                     array_push($links, [
                         'href' => $section->web_url,

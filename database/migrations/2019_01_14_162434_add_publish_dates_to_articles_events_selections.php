@@ -35,6 +35,7 @@ class AddPublishDatesToArticlesEventsSelections extends Migration
                 if (Schema::hasColumn($tableName, 'publish_start_date')) {
                     $table->dropColumn('publish_start_date');
                 }
+
                 if (Schema::hasColumn($tableName, 'publish_end_date')) {
                     $table->dropColumn('publish_end_date');
                 }

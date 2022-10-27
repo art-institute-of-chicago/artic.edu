@@ -36,6 +36,7 @@ class ExperienceImageRepository extends ModuleRepository
 
         if ($object_id && $apiResult instanceof Artwork) {
             $artwork = $apiResult->toArray();
+
             foreach ($credits_map as $contentBundleKey => $artworkKey) {
                 $fields[$contentBundleKey] = $artwork[$artworkKey];
             }

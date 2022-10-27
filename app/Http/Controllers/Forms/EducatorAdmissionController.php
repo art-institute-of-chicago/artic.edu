@@ -246,7 +246,6 @@ class EducatorAdmissionController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-
     public function store(EducatorAdmissionRequest $request)
     {
         $validated = $request->validated();
@@ -278,10 +277,10 @@ class EducatorAdmissionController extends FormController
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];
+
         foreach ($topics as $value => $label) {
             $item = [
-                'value' => $label
-                ,   'label' => $label
+                'value' => $label,   'label' => $label
             ];
 
             $list[] = $item;
@@ -299,10 +298,10 @@ class EducatorAdmissionController extends FormController
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];
+
         foreach ($topics as $value => $label) {
             $item = [
-                'value' => $label
-                ,   'label' => $label
+                'value' => $label,   'label' => $label
             ];
 
             $list[] = $item;

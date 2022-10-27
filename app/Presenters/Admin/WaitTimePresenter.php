@@ -3,7 +3,6 @@
 namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
-use Illuminate\Support\Str;
 
 class WaitTimePresenter extends BasePresenter
 {

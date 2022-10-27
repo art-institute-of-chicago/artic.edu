@@ -21,6 +21,7 @@ class UpdateArticle
     public function __construct(\App\Models\Article $item)
     {
         $this->item = $item;
+
         if ($item->is_published) {
             $this->urls = [
                 route('articles.show', $item, false),

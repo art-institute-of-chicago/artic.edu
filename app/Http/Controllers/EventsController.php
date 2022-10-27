@@ -38,6 +38,7 @@ class EventsController extends FrontController
         if ($this->isFiltered()) {
             $ongoing = null;
             $eventsByDay = $this->repository->groupByDate($collection);
+
             if (request('program')) {
                 $subtitle = 'These are events related to ' . EventProgram::find(request('program'))->name . '.';
             }
@@ -47,7 +48,7 @@ class EventsController extends FrontController
                 return ($item->date <= Carbon::now()) && ($item->date_end_time > Carbon::now());
             });
             $recurrent = $collection->filter(function ($item) {
-                return ($item->date > Carbon::now());
+                return $item->date > Carbon::now();
             });
 
             // Show ongoing events as regular if there's no more events for the day
@@ -61,6 +62,7 @@ class EventsController extends FrontController
             // Check if the dates of $ongoing events are in the $eventsByDay array
             $ongoing->each(function ($item) use ($eventsByDay) {
                 $keys = $eventsByDay->keys();
+
                 if (!$keys->contains($item->date->format('Y-m-d'))) {
                     $eventsByDay->prepend([], $item->date->format('Y-m-d'));
                 }
@@ -102,6 +104,7 @@ class EventsController extends FrontController
         // 1. Create Event domain entities
         $vEvents = [];
         $vTimezone = \Eluceo\iCal\Domain\Entity\TimeZone::createFromPhpDateTimeZone(new \DateTimeZone('America/Chicago'));
+
         foreach ($event->all_dates as $dates) {
             if ($dates['date'] > Carbon::now()) {
                 $vEvent = new \Eluceo\iCal\Domain\Entity\Event();

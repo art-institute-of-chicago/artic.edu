@@ -18,7 +18,6 @@ class JournalPresenter extends GenericPresenter
         return $this->getNav()['breadcrumb'] ?? [];
     }
 
-
     public function navigation()
     {
         return $this->getNav()['nav'] ?? [];

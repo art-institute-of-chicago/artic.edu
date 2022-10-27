@@ -86,6 +86,7 @@ class FileObserver
     private function checkZipType($file)
     {
         $filenameArray = explode('.', $file->filename);
+
         if (count($filenameArray) < 2) {
             return false;
         }
@@ -106,10 +107,12 @@ class FileObserver
     private function unzip($zipFile)
     {
         $zip = new ZipArchive();
+
         if ($zip->open($zipFile) === true) {
             $zip->extractTo(storage_path('app') . '/tempDir');
             $zipFolderName = trim($zip->getNameIndex(0), '/');
             $zip->close();
+
             if (strpos($zipFolderName, '.')) {
                 return '';
             }
@@ -126,12 +129,14 @@ class FileObserver
         $files = Storage::disk('local')->allFiles('/tempDir\/' . $zipFolderName);
         $images = array_values(Arr::sort(array_filter($files, function ($filePath) {
             $fileNameArray = explode('.', basename($filePath));
+
             if (count($fileNameArray) < 2) {
                 return false;
             }
 
             return in_array(end($fileNameArray), ['jpg', 'png', 'jpeg']) && strlen($fileNameArray[0]) > 0;
         })));
+
         foreach ($images as $index => $imageName) {
             $image_size = getimagesize(storage_path('app') . '/' . $imageName);
             $uploaded = Storage::disk('s3')->putFile('seq', new HttpFile(storage_path('app') . '/' . $imageName), 'public');

@@ -118,6 +118,7 @@ class DigitalPublicationPresenter extends BasePresenter
             $return = '<h1>' . $this->entity->title . '</h1>';
             $return .= $this->entity->welcome_note_display;
             $return .= '<p>';
+
             foreach ($this->entity->sections as $section) {
                 $return .= $section->title . '<br/>';
             }

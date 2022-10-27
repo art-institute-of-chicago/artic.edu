@@ -104,6 +104,7 @@ class ExperienceSlideController extends ModuleController
     public function destroy($id, $submoduleId = null)
     {
         $item = $this->repository->getById($submoduleId);
+
         if ($this->repository->delete($submoduleId ?? $id)) {
             $this->fireEvent();
             activity()->performedOn($item)->log('deleted');

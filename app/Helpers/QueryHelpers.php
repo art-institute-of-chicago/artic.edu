@@ -13,6 +13,7 @@ class QueryHelpers
         }
 
         $count = 0;
+
         foreach ($names as $name) {
             $element = Arr::first($aggregations, function ($value) use ($name) {
                 return $value->key == $name;

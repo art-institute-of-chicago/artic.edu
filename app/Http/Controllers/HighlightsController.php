@@ -43,7 +43,6 @@ class HighlightsController extends FrontController
             'listingItems' => $items,
         ];
 
-
         return view('site.genericPage.index', $view_data);
     }
 
@@ -60,6 +59,7 @@ class HighlightsController extends FrontController
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->short_copy);
         $this->seo->setImage($item->imageFront('hero'));
+
         if ($item->is_unlisted) {
             $this->seo->nofollow = true;
             $this->seo->noindex = true;

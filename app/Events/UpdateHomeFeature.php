@@ -21,6 +21,7 @@ class UpdateHomeFeature
     public function __construct(\App\Models\HomeFeature $item)
     {
         $this->item = $item;
+
         if ($item->is_published) {
             $this->urls = [
                 '/'

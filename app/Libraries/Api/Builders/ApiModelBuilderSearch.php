@@ -125,14 +125,17 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $segregatedResults = $resultsByType->map(function ($collection, $type) {
             $ids = $collection->pluck('id')->toArray();
             $class = $this->getTypeMap()[$type];
+
             if (isset($class) && $class) {
                 $elements = $this->getTypeMap()[$type]::query()->ids($ids);
+
                 if ($elements && method_exists($elements, 'ttl')) {
                     $elements->ttl($this->ttl);
                 }
 
                 return $elements->get();
             }
+
             if (!$class) {
                 return $collection; // e.g. static-pages
             }
@@ -192,6 +195,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
 
                 return $elements;
             }
+
             if (!$class) {
                 return $collection; // e.g. static-pages
             }

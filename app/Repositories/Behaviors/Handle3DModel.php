@@ -44,6 +44,7 @@ trait Handle3DModel
         $model3d = $object->secondaryExperienceModal->first()->model3d) {
             $secondaryExperienceModal = $object->secondaryExperienceModal->first();
             $aic3dFields = ['model_url', 'model_id', 'model_caption_title', 'model_caption', 'camera_position', 'guided_tour', 'camera_target', 'annotation_list', 'hide_annotation', 'hide_annotation_title'];
+
             foreach ($aic3dFields as $aic3dField) {
                 array_push($fields['repeaterFields']['secondary_experience_modal'], [
                     'name' => "blocks[secondaryExperienceModal-{$secondaryExperienceModal->id}][aic_split_3d_model][{$aic3dField}]",
@@ -53,6 +54,7 @@ trait Handle3DModel
         }
 
         $model3d = $object->model3d;
+
         if ($model3d) {
             $fields["{$fieldName}[model_id]"] = $model3d->model_id;
             $fields["{$fieldName}[model_caption_title]"] = $model3d->getOriginal('model_caption_title');

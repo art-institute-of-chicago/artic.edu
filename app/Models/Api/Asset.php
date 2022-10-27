@@ -44,6 +44,7 @@ class Asset extends BaseApiModel
     public function getExtensionAttribute()
     {
         $info = pathinfo($this->title);
+
         if (isset($info['extension'])) {
             return $info['extension'];
         }

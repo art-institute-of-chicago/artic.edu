@@ -31,6 +31,7 @@ class DigitalPublicationSectionController extends FrontController
 
         $this->seo->citationTitle = $item->meta_title ?: $item->title;
         $this->seo->citationPublisher = 'The Art Institute of Chicago';
+
         if ($item->authors) {
             foreach ($item->authors as $author) {
                 $this->seo->citationAuthor[] = $author->title;
@@ -38,6 +39,7 @@ class DigitalPublicationSectionController extends FrontController
         } else {
             $this->seo->citationAuthor[] = $item->author_display;
         }
+
         if ($item->date) {
             $this->seo->citationPublicationDate = $item->date->toDateString();
             $this->seo->citationOnlineDate = $item->date->toDateString();

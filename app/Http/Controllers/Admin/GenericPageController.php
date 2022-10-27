@@ -104,9 +104,9 @@ class GenericPageController extends ModuleController
 
     protected function indexItemData($item)
     {
-        return ($item->children ? [
+        return $item->children ? [
             'children' => $this->getIndexTableData($item->children),
-        ] : []);
+        ] : [];
     }
 
     protected function previewData($item)

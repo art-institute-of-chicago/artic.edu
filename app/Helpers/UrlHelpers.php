@@ -48,6 +48,7 @@ class UrlHelpers
         $ret = substr($url, strrpos($url, '/') + 1);
 
         $fragment = parse_url($href, PHP_URL_FRAGMENT);
+
         if ($fragment) {
             return $ret . '#' . $fragment;
         }

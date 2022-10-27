@@ -77,6 +77,7 @@ class DamsImageService implements ImageServiceInterface
         $size = $params['size'] ?? 'full';
 
         $dimensions = '!3000,3000';
+
         if ($width != '' || $height != '') {
             $dimensions = '!' . $width . ',' . $height;
         }

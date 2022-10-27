@@ -65,12 +65,10 @@ class Exhibition extends BaseApiModel
                 return true;
             }
 
-                return $this->dateStart->year < 2010;
-
+            return $this->dateStart->year < 2010;
         }
 
-            return Carbon::now()->gt($this->dateEnd->endOfDay());
-
+        return Carbon::now()->gt($this->dateEnd->endOfDay());
     }
 
     public function getIdSlugAttribute()
@@ -136,6 +134,7 @@ class Exhibition extends BaseApiModel
         if (app('closureservice')->getClosure()) {
             return false;
         }
+
         if (!empty($this->dateStart) && !empty($this->dateEnd)) {
             return Carbon::now()->between($this->dateStart, $this->dateStart->addWeeks(2));
         }

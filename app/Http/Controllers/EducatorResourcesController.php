@@ -63,7 +63,6 @@ class EducatorResourcesController extends BaseScopedController
             'listingItems' => $items,
         ];
 
-
         return view('site.genericPage.index', $view_data);
     }
 

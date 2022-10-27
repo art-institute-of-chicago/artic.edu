@@ -18,7 +18,6 @@ class ExhibitionPressRoomController extends FrontController
         parent::__construct();
     }
 
-
     public function index(Request $request)
     {
         $items = ExhibitionPressRoom::published()->ordered()->paginate();
@@ -47,7 +46,6 @@ class ExhibitionPressRoomController extends FrontController
             'listingCountText' => 'Showing ' . $items->total() . ' exhibition press rooms',
             'listingItems' => $items,
         ];
-
 
         return view('site.genericPage.index', $view_data);
     }

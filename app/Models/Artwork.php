@@ -123,14 +123,14 @@ class Artwork extends AbstractModel
                     // ART-66: For now, limit this to 360 imagery
                     return false
                         || $this->files()
-                                ->wherePivotIn('role', [
-                                    'image_sequence_file',
-                                    // 'upload_manifest_file',
-                                ])
-                                ->exists()
+                            ->wherePivotIn('role', [
+                                'image_sequence_file',
+                                // 'upload_manifest_file',
+                            ])
+                            ->exists()
                         // || $this->model3d()->exists()
                         // || (bool) $this->default_manifest_url
-                    ;
+;
                 },
             ],
         ];

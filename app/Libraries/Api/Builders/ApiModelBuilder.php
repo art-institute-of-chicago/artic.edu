@@ -329,7 +329,6 @@ class ApiModelBuilder
         return $builder->getModel()->newCollection($models);
     }
 
-
     /**
      * Execute the query and return a raw response
      *
@@ -648,7 +647,6 @@ class ApiModelBuilder
      *
      * @param  string  $method
      * @param  array  $parameters
-     * @return mixed
      */
     public function __call($method, $parameters): mixed
     {
@@ -669,7 +667,6 @@ class ApiModelBuilder
      * Dynamically retrieve attributes on the model.
      *
      * @param  string  $key
-     * @return mixed
      */
     public function __get($key): mixed
     {

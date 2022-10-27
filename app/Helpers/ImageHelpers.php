@@ -247,6 +247,7 @@ class ImageHelpers
         $srcset = $settings['srcset'] ?? false;
         $sizes = $settings['sizes'] ?? false;
         $lazyload = $settings['lazyload'] ?? true;
+
         if (app('printservice')->isPrintMode()) {
             $lazyload = false;
         }
@@ -271,6 +272,7 @@ class ImageHelpers
         // Trying to fill image dimensions in if dimensions haven't been set but we do have a srcset and a ratio specified
         if (!$width && !$height && $srcset) {
             $width = array_values($srcset)[0];
+
             if ($ratio) {
                 if ($ratio === '1:1') {
                     $height = $width;
@@ -367,6 +369,7 @@ class ImageHelpers
                 if (empty($settings['fit'])) {
                     $settings['fit'] = 'crop';
                 }
+
                 if (empty($settings['crop'])) {
                     $settings['crop'] = 'faces,edges,entropy';
                 }
@@ -434,6 +437,7 @@ class ImageHelpers
                     $stringSrcset .= ', ';
                 }
             $imgixSettings['w'] = $size;
+
             if ($height && $height !== 'auto') {
                 $imgixSettings['h'] = round(($height / $width) * $size);
             }
@@ -443,6 +447,7 @@ class ImageHelpers
 
             // Get data-pin-media for pinterest
             $imgixSettings['w'] = 600;
+
             if ($height && $height !== 'auto') {
                 $imgixSettings['h'] = round(($height / $width) * 600);
             }
@@ -451,6 +456,7 @@ class ImageHelpers
 
             // Build LQIP
             $imgixSettings['w'] = $LQIPDimension;
+
             if ($height && $height !== 'auto') {
                 $imgixSettings['h'] = round(($height / $width) * $LQIPDimension);
             }
@@ -482,6 +488,7 @@ class ImageHelpers
                 if ($settings['ratio'] === '1:1') {
                     // IIIF does have a square region pre-defined
                     $resizeVal = 'square';
+
                     if ($height > $width) {
                         $width = $height;
                     } else {
@@ -495,6 +502,7 @@ class ImageHelpers
                     // Need to manually calc area to grab..
                     // First check the image is taller than the ratio height we need
                     $ratioHeight = round($width * ($ratioH / $ratioW));
+
                     if ($height === $ratioHeight) {
                         // The source image *is* 16:9
                         $resizeVal = 'full';
@@ -545,7 +553,6 @@ class ImageHelpers
             'iiifId' => $iiifId,
         ];
     }
-
 
     /**
      * aic_imageSizes

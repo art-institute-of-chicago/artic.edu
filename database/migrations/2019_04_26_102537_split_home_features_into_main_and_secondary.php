@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -24,7 +23,6 @@ class SplitHomeFeaturesIntoMainAndSecondary extends Migration
 
             $table->timestamps();
         });
-
 
         Schema::create('page_home_secondary_home_feature', function (Blueprint $table) {
             $table->increments('id');

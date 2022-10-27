@@ -188,6 +188,7 @@ class CollectionService
         if ($aggregations) {
             foreach ($aggregations as $name => $data) {
                 $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst(Str::camel($name));
+
                 if (class_exists($filterClass)) {
                     $filter = new $filterClass($data->buckets, $name);
                     $filters->push($filter->generate());
@@ -208,6 +209,7 @@ class CollectionService
             if (isset($aggregations->{$name})) {
                 $data = $aggregations->{$name};
                 $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst(Str::camel($name));
+
                 if (class_exists($filterClass)) {
                     $filter = new $filterClass($data->buckets, $name);
 
@@ -218,7 +220,6 @@ class CollectionService
 
         return null;
     }
-
 
     /**
      * Sort filters receive all possible sorting values and create

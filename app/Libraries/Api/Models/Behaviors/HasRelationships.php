@@ -82,6 +82,7 @@ trait HasRelationships
         if ($this->relationLoaded($key)) {
             return $this->relations[$key];
         }
+
             if (method_exists($this, $key)) {
                 return $this->getRelationshipFromMethod($key);
             }

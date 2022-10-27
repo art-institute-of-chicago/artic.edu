@@ -11,7 +11,7 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 
 class HomeFeatureRepository extends ModuleRepository
 {
-    use  HandleMedias, HandleBLocks, HandleApiBlocks, HandleFiles, HandleApiRelations {
+    use HandleMedias, HandleBLocks, HandleApiBlocks, HandleFiles, HandleApiRelations {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 

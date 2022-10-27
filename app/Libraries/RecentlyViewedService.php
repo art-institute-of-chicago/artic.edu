@@ -78,6 +78,7 @@ class RecentlyViewedService
         $artworks = \App\Models\Api\Artwork::query()->findMany($ids->toArray());
 
         $artworksSorted = [];
+
         foreach ($ids as $id) {
             $artworksSorted[] = $artworks->firstWhere('id', $id);
         }

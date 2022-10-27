@@ -199,6 +199,7 @@ class Artwork extends BaseApiModel
         if ($value) {
             return $value;
         }
+
         if (!empty($this->alt_style_ids)) {
             return $this->alt_style_ids[0];
         }
@@ -211,6 +212,7 @@ class Artwork extends BaseApiModel
         if ($value) {
             return $value;
         }
+
         if (!empty($this->alt_classification_ids)) {
             return $this->alt_classification_ids[0];
         }
@@ -358,7 +360,6 @@ class Artwork extends BaseApiModel
             return '/image-licensing';
         }
     }
-
 
     public function scopeAggregationClassification($query)
     {
@@ -567,7 +568,7 @@ class Artwork extends BaseApiModel
             ->byMostSimilar($this->id, get_class($this), true)
             ->getPaginatedModel(13, self::SEARCH_FIELDS)
             ->filter(function ($value, $key) {
-                return ($this->id != $value->id);
+                return $this->id != $value->id;
             })
             ->pluck('id')
             ->all();

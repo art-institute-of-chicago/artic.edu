@@ -18,9 +18,11 @@ class UpdateExperienceImageCredits extends Command
 
         $bar = $this->output->createProgressBar(count($images));
         $bar->start();
+
         foreach ($images as $image) {
             $object_id = $image->object_id;
             $apiResult = Artwork::query()->find($object_id);
+
             if ($apiResult instanceof Artwork) {
                 $artwork = $apiResult->toArray();
                 $credits_map = [
@@ -33,6 +35,7 @@ class UpdateExperienceImageCredits extends Command
                     'main_reference_number' => 'main_reference_number',
                     'copyright_notice' => 'copyright_notice',
                 ];
+
                 foreach ($credits_map as $contentBundleKey => $artworkKey) {
                     $image->{$contentBundleKey} = $artwork[$artworkKey];
                 }

@@ -132,7 +132,6 @@ class RenameCatalogsToPublications extends Migration
         }
     }
 
-
     // Spoof of `createDefaultRelationshipTableFields`
     private function renameRelationshipTable(
         $oldPivotTableName,
@@ -157,6 +156,7 @@ class RenameCatalogsToPublications extends Migration
             if ($oldFirstTableName !== $newFirstTableName) {
                 $table->renameColumn("{$oldFirstTableName}_id", "{$newFirstTableName}_id");
             }
+
             if ($oldSecondTableName !== $newSecondTableName) {
                 $table->renameColumn("{$oldSecondTableName}_id", "{$newSecondTableName}_id");
             }

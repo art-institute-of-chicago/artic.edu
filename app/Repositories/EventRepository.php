@@ -100,6 +100,7 @@ class EventRepository extends ModuleRepository
 
                 foreach (array_keys(EmailSeries::$memberTypes) as $type) {
                     $pivotAttributes['override_' . $type] = $fields['email_series_' . $series->id . '_' . $type . '_override'] ?? false;
+
                     if ($pivotAttributes['override_' . $type]) {
                         $pivotAttributes[$type . '_copy'] = ($fields['email_series_' . $series->id . '_' . $type . '_copy'] ?? null) ?: null;
                     } else {
@@ -151,6 +152,7 @@ class EventRepository extends ModuleRepository
                         $fields[$currentSeriesName . '_' . $subFieldName . '_override'] = true;
 
                         $copyForOverride = $series->pivot->{$subFieldName . '_copy'};
+
                         if ($copyForOverride) {
                             $fields[$currentSeriesName . '_' . $subFieldName . '_copy'] = $copyForOverride;
                         }
@@ -248,6 +250,7 @@ class EventRepository extends ModuleRepository
         if (!$object->events()) {
             return null;
         }
+
         if ($object->events()->count() == 0) {
             return null;
         }

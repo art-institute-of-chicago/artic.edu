@@ -74,9 +74,11 @@ trait HasApiRelations
                     return $items->map(function ($relatedElement) {
                         $element = $relatedElement->related;
                         $element->position = $relatedElement->position;
+
                         if ($element->isNotUnlisted === false) {
                             return false;
                         }
+
                         if ($element->isPublished === false) {
                             return false;
                         }
@@ -107,6 +109,7 @@ trait HasApiRelations
         return $items->filter(function ($relatedElement) use ($apiElements) {
             $apiRelationElement = \App\Models\ApiRelation::where('id', $relatedElement->related_id)->first();
             $result = $apiElements->where('id', $apiRelationElement->datahub_id)->first();
+
             if ($result) {
                 $result->position = $relatedElement->position;
             }

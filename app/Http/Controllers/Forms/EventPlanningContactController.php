@@ -220,6 +220,7 @@ class EventPlanningContactController extends FormController
                 ]
             ],
         ];
+
         foreach ($this->getPreferredContactArray(old('preferred_contact')) as $t) {
             array_push($preferredContactFields['blocks'], $t);
         }
@@ -239,6 +240,7 @@ class EventPlanningContactController extends FormController
             ],
         ];
         $items = $this->getHowDidYouHearArray(old('how_did_you_hear'));
+
         foreach ($items as $key => $d) {
             array_push($howDidYouHearFields['blocks'], $d);
         }
@@ -276,6 +278,7 @@ class EventPlanningContactController extends FormController
                 ]
             ],
         ];
+
         foreach ($this->getYesNoArray(old('are_you_currently_planning'), 'are_you_currently_planning') as $t) {
             array_push($areYouPlanningFields['blocks'], $t);
         }
@@ -294,6 +297,7 @@ class EventPlanningContactController extends FormController
                 ]
             ],
         ];
+
         foreach ($this->getTypeOfEventArray(old('type_of_event')) as $d) {
             array_push($typeOfEventFields['blocks'], $d);
         }
@@ -472,7 +476,6 @@ class EventPlanningContactController extends FormController
         return view('site.forms.form', $view_data);
     }
 
-
     public function store(EventPlanningContactRequest $request)
     {
         $validated = $request->validated();
@@ -512,6 +515,7 @@ class EventPlanningContactController extends FormController
         $options = ['Email', 'Phone'];
 
         $list = [];
+
         foreach ($options as $value) {
             $item = [
                 'type' => 'radio',
@@ -543,6 +547,7 @@ class EventPlanningContactController extends FormController
             'Party Slate', 'Choose Chicago'];
 
         $list = [];
+
         foreach ($hows as $value) {
             $item = [
                 'type' => 'checkbox',
@@ -575,6 +580,7 @@ class EventPlanningContactController extends FormController
         $types = ['Reception', 'Seated dinner', 'Wedding', 'Meeting', 'Performance Program', 'Nonprofit fundraiser'];
 
         $list = [];
+
         foreach ($types as $value) {
             $item = [
                 'type' => 'checkbox',

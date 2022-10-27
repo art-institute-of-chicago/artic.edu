@@ -39,7 +39,6 @@ class AuthorPresenter extends BasePresenter
             }
         }
 
-
         return $this->writingsCache = collect($writings)->flatten(1)->filter()->sortByDesc('date');
     }
 
@@ -51,6 +50,7 @@ class AuthorPresenter extends BasePresenter
         if ($element->isNotUnlisted === false) {
             return false;
         }
+
         if ($element->isPublished === false) {
             return false;
         }

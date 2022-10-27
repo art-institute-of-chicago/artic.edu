@@ -12,16 +12,20 @@ class EmbedConverterService
     {
         if (!empty($url)) {
             $parts = parse_url($url);
+
             if (isset($parts['host'])) {
                 if (stripos($parts['host'], 'youtu') !== false) {
                     return $this->getYouTubeEmbedCode($url);
                 }
+
                 if (stripos($parts['host'], 'vimeo') !== false) {
                     return $this->getVimeoEmbedCode($url);
                 }
+
                 if (stripos($parts['host'], 'soundcloud') !== false) {
                     return $this->getSoundCloudEmbedCode($url);
                 }
+
                 if (stripos($parts['host'], 'query.daap.bannerrepeater.org') !== false) {
                     return $this->getWikidataEmbedCode($url);
                 }

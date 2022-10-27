@@ -13,6 +13,7 @@ class FormRequest extends Request
             'response' => urlencode($_POST['g-recaptcha-response']),
         ];
         $fields_string = '';
+
         foreach ($fields as $key => $value) {
             $fields_string .= $key . '=' . $value . '&';
         }

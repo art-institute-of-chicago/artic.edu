@@ -49,7 +49,6 @@ class ApiQueryBuilder
      */
     public $boost = true;
 
-
     /**
      * The current page number
      *
@@ -113,14 +112,12 @@ class ApiQueryBuilder
      */
     public $searchParameters = [];
 
-
     /**
      * Completely raw ES query.
      *
      * @var array
      */
     public $rawQuery = [];
-
 
     /**
      * Aggregations parameters for a raw ES query.
@@ -150,7 +147,6 @@ class ApiQueryBuilder
      * Suggestion data saved after a request
      */
     public $suggestionsData;
-
 
     public function __construct($connection, $grammar = null)
     {
@@ -360,7 +356,6 @@ class ApiQueryBuilder
         return $this->limit($value);
     }
 
-
     /**
      * Set the "limit" value of the query.
      *
@@ -548,6 +543,7 @@ class ApiQueryBuilder
     public function runGet($endpoint)
     {
         $grammar = null;
+
         if (Str::endsWith($endpoint, '/msearch')) {
             $grammar = new MsearchGrammar();
         } elseif (Str::endsWith($endpoint, '/search')) {
