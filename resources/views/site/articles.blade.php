@@ -19,60 +19,50 @@
         </ul>
     @endif
 
-  @component('components.molecules._m-title-bar')
-      @slot('id','listing')
-      Explore Articles
-  @endcomponent
+    @component('components.molecules._m-title-bar')
+        @slot('id','listing')
+        Explore {{ isset($exploreTitle) && $exploreTitle ? $exploreTitle : 'Articles' }}
+    @endcomponent
 
-  @component('components.molecules._m-links-bar')
-      @slot('overflow', true)
-      @slot('linksPrimary', $categories)
-      @slot('secondaryHtml')
-          <li class="m-links-bar__item m-links-bar__item--primary">
-              @component('components.atoms._dropdown')
-                @slot('prompt', 'Sort by: Date')
-                @slot('ariaTitle', 'Sort list by')
-                @slot('variation','dropdown--filter f-link')
-                @slot('font', null)
-                @slot('options', array(
-                  array('href' => '#', 'label' => 'Date'),
-                  array('href' => '#', 'label' => 'Featured'),
-                ))
-              @endcomponent
-          </li>
-      @endslot
-  @endcomponent
+    @if (isset($categories) && $categories)
+        @component('components.molecules._m-links-bar')
+            @slot('overflow', true)
+            @slot('linksPrimary', $categories)
+        @endcomponent
+    @endif
 
-  @component('components.atoms._hr')
-    @slot('variation', 'hr--flush-top')
-  @endcomponent
+    @if (isset($featuredArticles) && $featuredArticles)
+        @component('components.atoms._hr')
+            @slot('variation', 'hr--flush-top')
+        @endcomponent
 
-  @component('components.organisms._o-grid-listing')
-      @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-      @slot('cols_small','2')
-      @slot('cols_medium','2')
-      @slot('cols_large','2')
-      @slot('cols_xlarge','2')
-      @foreach ($featuredArticles as $item)
-          @component('components.molecules._m-listing----' . strtolower($item->type))
-              @slot('item', $item)
-              @slot('titleFont', 'f-list-4')
-              @slot('captionFont', 'f-secondary')
-              @slot('imageSettings', array(
-                  'fit' => 'crop',
-                  'ratio' => '16:9',
-                  'srcset' => array(200,400,600,1000,1500),
-                  'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
-                        'xsmall' => '1',
-                        'small' => '2',
-                        'medium' => '2',
-                        'large' => '2',
-                        'xlarge' => '2',
-                  )),
-              ))
-          @endcomponent
-      @endforeach
-  @endcomponent
+        @component('components.organisms._o-grid-listing')
+            @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+            @slot('cols_small','2')
+            @slot('cols_medium','2')
+            @slot('cols_large','2')
+            @slot('cols_xlarge','2')
+            @foreach ($featuredArticles as $item)
+                @component('components.molecules._m-listing----' . strtolower($item->type))
+                    @slot('item', $item)
+                    @slot('titleFont', 'f-list-4')
+                    @slot('captionFont', 'f-secondary')
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600,1000,1500),
+                        'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
+                                'xsmall' => '1',
+                                'small' => '2',
+                                'medium' => '2',
+                                'large' => '2',
+                                'xlarge' => '2',
+                        )),
+                    ))
+                @endcomponent
+            @endforeach
+        @endcomponent
+    @endif
 
   @component('components.atoms._hr')
   @endcomponent
