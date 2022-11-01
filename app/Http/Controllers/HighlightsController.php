@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Repositories\HighlightRepository;
 use App\Libraries\ExploreFurther\HighlightService as ExploreFurther;
 
 class HighlightsController extends FrontController
 {
+    const HIGHLIGHTS_PER_PAGE = 12;
     protected $repository;
 
     public function __construct(HighlightRepository $repository)
@@ -18,32 +17,21 @@ class HighlightsController extends FrontController
         parent::__construct();
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $items = $this->repository->published()->notUnlisted()->ordered()->paginate();
-        $title = 'Highlights';
+        $this->seo->setTitle('Highlights');
 
-        $subNav = [
-            ['label' => $title, 'href' => route('highlights.index'), 'active' => true]
-        ];
+        $items = $this->repository
+            ->published()
+            ->notUnlisted()
+            ->orderBy('publish_start_date', 'desc')
+            ->paginate(self::HIGHLIGHTS_PER_PAGE);
 
-        $nav = [
-            ['label' => 'The Collection', 'href' => route('collection'), 'links' => $subNav]
-        ];
 
-        $this->seo->setTitle($title);
-
-        $view_data = [
-            'title' => $title,
-            'subNav' => $subNav,
-            'nav' => $nav,
-            'wideBody' => true,
-            'filters' => null,
-            'listingCountText' => 'Showing ' . $items->total() . ' highlights',
-            'listingItems' => $items,
-        ];
-
-        return view('site.genericPage.index', $view_data);
+        return view('site.articles', [
+            'articles' => $items,
+            'exploreTitle' => 'Highlights',
+        ]);
     }
 
     public function show($id, $slug = null)
