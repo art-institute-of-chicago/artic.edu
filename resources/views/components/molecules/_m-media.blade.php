@@ -202,6 +202,7 @@
                     @slot('autoplay', $loop)
                     @slot('loop', $loop && $loop_or_once == 'loop')
                     @slot('muted', $loop)
+                    @slot('playsinline', $loop)
                 @endif
                 @slot('title', $media['fallbackImage']['alt'] ?? null)
             @endcomponent
