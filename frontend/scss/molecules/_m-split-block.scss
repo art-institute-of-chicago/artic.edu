@@ -14,8 +14,19 @@
 
   margin: 16px 0;
 
-  @include breakpoint('small+') {
+  @include breakpoint('xsmall') {
+    &:last-child {
+      margin-right: 0;
+      margin-left: 4px;
+    }
 
+    &:first-child {
+      margin-left: 0;
+      margin-right: 4px;
+    }
+  }
+
+  @include breakpoint('small+') {
     &:last-child {
       margin-right: 0;
       margin-left: 8px;
@@ -25,7 +36,6 @@
       margin-left: 0;
       margin-right: 8px;
     }
-
   }
 
 }
@@ -55,8 +65,15 @@
     flex-basis: 25%;
   }
 
-  &:last-child {
-    flex-basis: 75%;
+  @include breakpoint('xsmall') {
+    &:last-child {
+      flex-basis: 72%;
+    }
+  }
+  @include breakpoint('small+') {
+    &:last-child {
+      flex-basis: 75%;
+    }
   }
 
 }
