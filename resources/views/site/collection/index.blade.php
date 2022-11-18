@@ -80,7 +80,7 @@
     @slot('onViewActive', request()->filled('is_on_view'))
     @slot('hasAnyFilter', $hasAnyFilter)
 
-    @slot('total', number_format($artworks->total()))
+    @slot('total', $artworks->total())
 @endcomponent
 
 <div class="o-collection-listing__colset">
