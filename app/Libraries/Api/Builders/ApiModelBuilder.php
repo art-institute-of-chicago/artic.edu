@@ -466,15 +466,17 @@ class ApiModelBuilder
     protected function eagerLoadRelation($models, $name)
     {
         foreach ($models as $model) {
-            // For each model get the relationship
-            $relation = $model->{$name}();
+            if ($model instanceof BaseApiModel) {
+                // For each model get the relationship
+                $relation = $model->{$name}();
 
-            // Set the relationship loading the data from the API
-            // this will generate N + 1 calls in total
-            // improve later using real eager loading to
-            // reduce the number of calls to 1 + relationships_number
-            if ($relation) {
-                $model->setRelation($name, $relation->getEager());
+                // Set the relationship loading the data from the API
+                // this will generate N + 1 calls in total
+                // improve later using real eager loading to
+                // reduce the number of calls to 1 + relationships_number
+                if ($relation) {
+                    $model->setRelation($name, $relation->getEager());
+                }
             }
         }
 
