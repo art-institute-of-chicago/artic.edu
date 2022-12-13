@@ -113,6 +113,7 @@ class AicConnection implements ApiConnectionInterface
 
             // Manual cachebusting
             $decacheHash = Request::input('nocache');
+
             if ($decacheHash && config('api.cache_buster') && $decacheHash === config('api.cache_buster')) {
                 \Cache::forget($cacheKey);
             }

@@ -329,7 +329,6 @@ class ApiModelBuilder
         return $builder->getModel()->newCollection($models);
     }
 
-
     /**
      * Execute the query and return a raw response
      *
@@ -467,15 +466,17 @@ class ApiModelBuilder
     protected function eagerLoadRelation($models, $name)
     {
         foreach ($models as $model) {
-            // For each model get the relationship
-            $relation = $model->{$name}();
+            if ($model instanceof BaseApiModel) {
+                // For each model get the relationship
+                $relation = $model->{$name}();
 
-            // Set the relationship loading the data from the API
-            // this will generate N + 1 calls in total
-            // improve later using real eager loading to
-            // reduce the number of calls to 1 + relationships_number
-            if ($relation) {
-                $model->setRelation($name, $relation->getEager());
+                // Set the relationship loading the data from the API
+                // this will generate N + 1 calls in total
+                // improve later using real eager loading to
+                // reduce the number of calls to 1 + relationships_number
+                if ($relation) {
+                    $model->setRelation($name, $relation->getEager());
+                }
             }
         }
 
@@ -648,9 +649,8 @@ class ApiModelBuilder
      *
      * @param  string  $method
      * @param  array  $parameters
-     * @return mixed
      */
-    public function __call($method, $parameters)
+    public function __call($method, $parameters): mixed
     {
         if (method_exists($this->model, $scope = 'scope' . ucfirst($method))) {
             return $this->callScope([$this->model, $scope], $parameters);
@@ -669,9 +669,8 @@ class ApiModelBuilder
      * Dynamically retrieve attributes on the model.
      *
      * @param  string  $key
-     * @return mixed
      */
-    public function __get($key)
+    public function __get($key): mixed
     {
         return $this->query->{$key};
     }

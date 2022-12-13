@@ -81,6 +81,7 @@ class Experience extends AbstractModel implements Sortable
 
         // Include all experience modal's image sequence
         $experienceModals = ExperienceModal::whereIn('modalble_id', $this->slides()->pluck('id'))->where('modal_type', 'image_sequence')->get();
+
         foreach ($experienceModals as $experienceModal) {
             if ($experienceModal->fileObject('image_sequence_file')) {
                 $images = SeamlessImage::where('zip_file_id', $experienceModal->fileObject('image_sequence_file')->id)->get();

@@ -99,6 +99,7 @@ class InteractiveFeatureExperiencesController extends FrontController
         $this->seo->setTitle($experience->title);
         $this->seo->setDescription($experience->listing_description ?? $experience->subtitle);
         $this->seo->setImage($experience->imageFront('thumbnail', 'default'));
+
         if ($experience->is_unlisted) {
             $this->seo->nofollow = true;
             $this->seo->noindex = true;
@@ -124,6 +125,7 @@ class InteractiveFeatureExperiencesController extends FrontController
     protected function showKiosk($slug)
     {
         $experience = $this->repository->forSlug($slug);
+
         if (!$experience) {
             abort(404);
         }

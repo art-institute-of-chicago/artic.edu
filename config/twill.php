@@ -209,8 +209,6 @@ return [
         'ru',
     ],
 
-
-
     /*
     |--------------------------------------------------------------------------
     | Base classes for automatic generation of Modules and Capsules

@@ -34,7 +34,6 @@ class ApiTransformer extends AbstractTransformer
         return $item->transform();
     }
 
-
     protected function transformIdsAndTitle($item)
     {
         if ($this->excludeIdsAndTitle) {

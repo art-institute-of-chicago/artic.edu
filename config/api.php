@@ -25,7 +25,6 @@ return [
 
     'public_uri' => env('API_PUBLIC_URI', 'https://api.artic.edu'),
 
-
     /*
     |--------------------------------------------------------------------------
     | Force API requests to use POST

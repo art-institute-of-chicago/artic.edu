@@ -46,6 +46,7 @@ class InteractiveFeatureController extends ModuleController
     protected function getIndexItems($scopes = [], $forcePagination = false)
     {
         $requestFilters = $this->getRequestFilters();
+
         if (array_key_exists('status', $requestFilters) && $requestFilters['status'] == 'archived') {
             $scopes = $scopes + ['archived' => true];
         } else {

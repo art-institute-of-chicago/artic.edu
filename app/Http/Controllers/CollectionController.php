@@ -52,6 +52,7 @@ class CollectionController extends BaseScopedController
         // If first artwork accession number matches search query, redirect to artwork page
         if ($collection->count()) {
             $artwork = $collection->first();
+
             if ($artwork->main_reference_number == request('q')) {
                 return redirect(route('artworks.show', $artwork));
             }
@@ -162,6 +163,7 @@ class CollectionController extends BaseScopedController
         if ($count > 1) {
             return true;
         }
+
             if ($count == 1) {
                 // If there's only one selected filter, check if it has more than one active element
                 $input = request()->input();

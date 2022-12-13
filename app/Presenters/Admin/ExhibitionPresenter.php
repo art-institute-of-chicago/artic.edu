@@ -104,6 +104,7 @@ class ExhibitionPresenter extends BasePresenter
         if ($this->entity->public_start_date != null) {
             return $this->entity->public_start_date;
         }
+
         if ($this->entity->aic_start_at != null) {
             return new Carbon($this->entity->aic_start_at);
         }
@@ -117,6 +118,7 @@ class ExhibitionPresenter extends BasePresenter
         if ($this->entity->public_end_date != null) {
             return $this->entity->public_end_date;
         }
+
         if ($this->entity->aic_end_at != null) {
             return new Carbon($this->entity->aic_end_at);
         }
@@ -172,6 +174,7 @@ class ExhibitionPresenter extends BasePresenter
     protected function galleryLink()
     {
         $location = $this->entity->exhibition_location ?: $this->entity->gallery_title;
+
         if ($location) {
             return [
                 'label' => $location,
@@ -237,24 +240,28 @@ class ExhibitionPresenter extends BasePresenter
                 'variation' => 'ongoing'
             ];
         }
+
         if ($this->entity->isClosed) {
             return [
                 'label' => 'Closed',
                 'variation' => 'closing-soon'
             ];
         }
+
         if ($this->entity->isNowOpen) {
             return [
                 'label' => 'Now Open',
                 'variation' => 'ongoing'
             ];
         }
+
         if ($this->entity->isClosingSoon) {
             return [
                 'label' => 'Closing Soon',
                 'variation' => 'closing-soon'
             ];
         }
+
         if ($this->entity->exclusive) {
             return [
                 'label' => 'Member Exclusive',

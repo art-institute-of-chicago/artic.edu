@@ -42,9 +42,11 @@ class ReportAltText extends Command
         ])->map(function ($model) {
             $table = with(new $model())->getTable();
             $query = $model::whereHas('medias');
+
             if (\Schema::hasColumn($table, 'published')) {
                 $query->published();
             }
+
             if (\Schema::hasColumn($table, 'deleted_at')) {
                 $query->whereNull('deleted_at');
             }
@@ -136,18 +138,23 @@ class ReportAltText extends Command
         if (\App\Models\DigitalPublication::class == get_class($item)) {
             $prefix = 'digital-publications';
         }
+
         if (\App\Models\PrintedPublication::class == get_class($item)) {
             $prefix = 'print-publications';
         }
+
         if (\App\Models\EducatorResource::class == get_class($item)) {
             $prefix = 'collection/resources/educator-resources';
         }
+
         if (\App\Models\ExhibitionPressRoom::class == get_class($item)) {
             $prefix = 'press/exhibition-press-room';
         }
+
         if (\App\Models\PressRelease::class == get_class($item)) {
             $prefix = 'press/press-releases';
         }
+
         if (\App\Models\Highlight::class == get_class($item)) {
             $prefix = 'highlights';
         }
@@ -158,51 +165,66 @@ class ReportAltText extends Command
             || \App\Models\Exhibition::class == get_class($item)) {
             $slug = $item->datahub_id . '/' . $item->getApiModelFilled()->titleSlug;
         }
+
         if (\App\Models\GenericPage::class == get_class($item)) {
             return 'https://www.artic.edu' . $item->url;
         }
+
         if (\App\Models\CategoryTerm::class == get_class($item)) {
             if ($item->local_subtype == 'style') {
                 return 'https://www.artic.edu/collection?style_ids=' . urlencode($item->local_title);
             }
+
             if ($item->local_subtype == 'subject') {
                 return 'https://www.artic.edu/collection?subject_ids=' . urlencode($item->local_title);
             }
+
             if ($item->local_subtype == 'classification') {
                 return 'https://www.artic.edu/collection?classification_ids=' . urlencode($item->local_title);
             }
+
             if ($item->local_subtype == 'theme') {
                 return 'https://www.artic.edu/collection?theme_ids=' . urlencode($item->datahub_id);
             }
         }
+
         if (\App\Models\HomeFeature::class == get_class($item)) {
             return 'https://www.artic.edu';
         }
+
         if (\App\Models\Page::class == get_class($item)) {
             if ($item->id == 1) {
                 return 'https://www.artic.edu/collection/research_resources';
             }
+
             if ($item->id == 2) {
                 return 'https://www.artic.edu/articles_publications';
             }
+
             if ($item->id == 3) {
                 return 'https://www.artic.edu';
             }
+
             if ($item->id == 4) {
                 return 'https://www.artic.edu/exhibitions';
             }
+
             if ($item->id == 5) {
                 return 'https://www.artic.edu/collection';
             }
+
             if ($item->id == 6) {
                 return 'https://www.artic.edu/visit';
             }
+
             if ($item->id == 7) {
                 return 'https://www.artic.edu/articles';
             }
+
             if ($item->id == 8) {
                 return 'https://www.artic.edu/exhibitions/history';
             }
+
             if ($item->id == 9) {
                 return 'https://www.artic.edu/collection';
             }

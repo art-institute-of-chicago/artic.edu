@@ -204,7 +204,7 @@ class Article extends AbstractModel implements Feedable
         return \App\Models\Article::query()->published()->notUnlisted()->orderBy('date', 'desc')->limit(300)->get();
     }
 
-    public function toFeedItem()
+    public function toFeedItem(): FeedItem
     {
         $heroImage = $this->imageFront('hero');
 

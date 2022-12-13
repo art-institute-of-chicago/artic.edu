@@ -5,6 +5,7 @@
     {{ isset($autoplay) ? ' autoplay' : '' }}
     {{ isset($loop) && $loop ? ' loop' : '' }}
     {{ isset($muted) ? ' muted' : '' }}
+    {{ isset($playsinline) ? ' playsinline=playsinline' : '' }}
     {{ isset($preload) ? ' preload' : '' }}
     {{ isset($controls) && $controls ? ' controls' : '' }}
 ></video>

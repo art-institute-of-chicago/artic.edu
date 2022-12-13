@@ -22,7 +22,6 @@ class CreateJournalIssuesTables extends Migration
             $table->integer('position')->unsigned()->nullable();
         });
 
-
         Schema::create('journal_issue_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'journal_issue');
         });

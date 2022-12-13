@@ -33,9 +33,11 @@ class IssueArticleController extends FrontController
         $this->seo->citationJournalTitle = 'Art Institute Review';
         $this->seo->citationJournalAbbrev = 'AIR';
         $this->seo->citationPublisher = 'The Art Institute of Chicago';
+
         foreach ($item->authors as $author) {
             $this->seo->citationAuthor[] = $author->title;
         }
+
         if (empty($this->seo->citationAuthor)) {
             $this->seo->citationAuthor[] = $item->author_display;
         }

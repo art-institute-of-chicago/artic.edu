@@ -13,13 +13,17 @@ class Add3dModelIdToSlidesTable extends Migration
      */
     public function up()
     {
-        Schema::table('slides', function (Blueprint $table) {
-            $table->unsignedInteger('3d_model_id')->nullable();
-            $table->foreign('3d_model_id')
-                ->references('id')
-                ->on('3d_models')
-                ->onDelete('set null');
-        });
+        // SQLite doesn't support column names that start with numbers,
+        // so skip this in our testing environment
+        if (env('APP_ENV') != 'testing') {
+            Schema::table('slides', function (Blueprint $table) {
+                $table->unsignedInteger('3d_model_id')->nullable();
+                $table->foreign('3d_model_id')
+                    ->references('id')
+                    ->on('3d_models')
+                    ->onDelete('set null');
+            });
+        }
     }
 
     /**

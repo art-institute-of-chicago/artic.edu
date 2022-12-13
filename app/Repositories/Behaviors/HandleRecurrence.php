@@ -13,7 +13,7 @@ trait HandleRecurrence
 
         // Create dates in all ocurrences
         foreach ($rules as $occurrence) {
-            $date = clone ($occurrence);
+            $date = clone $occurrence;
 
             // Force rewind the date to the beginning of the day
             $begginingOfDay = \Carbon\Carbon::instance($date)->startOfDay();

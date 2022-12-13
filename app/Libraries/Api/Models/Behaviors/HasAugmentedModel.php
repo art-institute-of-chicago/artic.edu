@@ -48,14 +48,16 @@ trait HasAugmentedModel
      * Bypass missed methods to the augmented model if existent
      *
      */
-    public function __call($method, $parameters)
+    public function __call($method, $parameters): mixed
     {
         if (method_exists($this, $method)) {
             return $this->{$method}($parameters);
         }
 
-        if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), $method)) {
+        if ($this->hasAugmentedModel() && $this->getAugmentedModel() && method_exists($this->getAugmentedModel(), $method)) {
             return $this->getAugmentedModel()->{$method}(...$parameters);
         }
+
+        return null;
     }
 }

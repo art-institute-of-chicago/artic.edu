@@ -48,15 +48,7 @@ class CreatePageTranslationsTable extends Migration
         }
 
         Schema::table('pages', function (Blueprint $table) {
-            $table->dropColumn('visit_intro');
-            $table->dropColumn('visit_hour_header');
-            $table->dropColumn('visit_hour_subheader');
-            $table->dropColumn('visit_city_pass_title');
-            $table->dropColumn('visit_city_pass_text');
-            $table->dropColumn('visit_city_pass_button_label');
-            $table->dropColumn('visit_admission_description');
-            $table->dropColumn('visit_buy_tickets_label');
-            $table->dropColumn('visit_become_member_label');
+            $table->dropColumn(['visit_intro', 'visit_hour_header', 'visit_hour_subheader', 'visit_city_pass_title', 'visit_city_pass_text', 'visit_city_pass_button_label', 'visit_admission_description', 'visit_buy_tickets_label', 'visit_become_member_label']);
         });
     }
 
@@ -80,4 +72,5 @@ class CreatePageTranslationsTable extends Migration
             $table->string('visit_become_member_label')->nullable();
         });
     }
+
 }

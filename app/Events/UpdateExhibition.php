@@ -21,6 +21,7 @@ class UpdateExhibition
     public function __construct(\App\Models\Exhibition $item)
     {
         $this->item = $item;
+
         if ($item->is_published) {
             $this->urls = [
                 route('exhibitions.show', $item->getApiModelFilled(), false),

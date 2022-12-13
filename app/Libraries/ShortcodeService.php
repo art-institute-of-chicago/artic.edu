@@ -19,13 +19,16 @@ class ShortcodeService
     {
         preg_match_all($regexp, $text, $matches, PREG_SET_ORDER);
         $shortcodes = [];
+
         foreach ($matches as $i => $value) {
             $shortcodes[$i]['shortcode'] = $value['shortcode'];
             $shortcodes[$i]['name'] = $value['name'];
+
             if (isset($value['attrs'])) {
                 $attrs = self::parse_attrs($value['attrs']);
                 $shortcodes[$i]['attrs'] = $attrs;
             }
+
             if (isset($value['content'])) {
                 $shortcodes[$i]['content'] = $value['content'];
             }
@@ -38,6 +41,7 @@ class ShortcodeService
     {
         preg_match_all(self::ATTRIBUTE_REGEXP, $attrs, $matches, PREG_SET_ORDER);
         $attributes = [];
+
         foreach ($matches as $i => $value) {
             $key = $value['name'];
             $attributes[$i][$key] = $value['value'];

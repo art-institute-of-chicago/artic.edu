@@ -13,6 +13,7 @@ class MoveArtworksBlockToGalleryNewBlock extends Migration
     {
         // Move browser artworks in individual gallery_new_items
         $rows = DB::select('select * from blocks where type=?;', ['artworks']);
+
         foreach ($rows as $cols) {
             $content = json_decode($cols->content);
 
@@ -20,6 +21,7 @@ class MoveArtworksBlockToGalleryNewBlock extends Migration
             if (isset($content->browsers)) {
                 $artworkIds = $content->browsers->artworks;
                 $i = 1;
+
                 foreach ($artworkIds as $id) {
                     DB::table('blocks')->insert(
                         ['blockable_id' => $cols->blockable_id,

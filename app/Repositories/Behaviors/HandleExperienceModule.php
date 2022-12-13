@@ -40,6 +40,7 @@ trait HandleExperienceModule
             if (isset($relationField['id']) && Str::startsWith($relationField['id'], $relation)) {
                 // Row already exists, let's update
                 $id = str_replace($relation . '-', '', $relationField['id']);
+
                 if ($fieldName === 'modal_experience_image') {
                     $medias = $relationField['medias'];
                     $relationField = $relationField['content'];
@@ -50,6 +51,7 @@ trait HandleExperienceModule
             } else {
                 // New row, let's attach to our object and create
                 unset($relationField['id']);
+
                 if ($fieldName === 'modal_experience_image') {
                     $medias = $relationField['medias'];
                     $relationField = $relationField['content'];
@@ -139,12 +141,15 @@ trait HandleExperienceModule
 
             if ($model === 'ExperienceModal') {
                 $modal_name = $relation . '-' . $relationItem->id;
+
                 foreach ($relationItem->experienceImage->toArray() as $experienceImage) {
                     $experienceImageRepository = app('App\Repositories\ExperienceImageRepository');
                     $experienceImageFormFields = $experienceImageRepository->getFormFields($experienceImageRepository->getById($experienceImage['id']));
+
                     if (isset($experienceImageFormFields['medias'])) {
                         $fields['repeaterMedias']['modal_experience_image']['blocks[experienceImage-' . $experienceImage['id'] . '][experience_image]'] = $experienceImageFormFields['medias']['experience_image'];
                     }
+
                     foreach ($experienceImage as $field => $value) {
                         $fields['repeaterFields']['modal_experience_image'][] = [
                             'name' => 'blocks[experienceImage-' . $experienceImage['id'] . '][' . $field . ']',

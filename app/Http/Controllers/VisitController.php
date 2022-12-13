@@ -64,6 +64,7 @@ class VisitController extends FrontController
         ];
 
         $expects = [];
+
         foreach ($page->whatToExpects as $item) {
             array_push($expects, [
                 'iconType' => $item->icon_type,
@@ -81,6 +82,7 @@ class VisitController extends FrontController
         $fees = Fee::all();
         $prices = [];
         $titles = [];
+
         foreach (FeeCategory::ordered()->get() as $category) {
             $titles[$category->id]['title'] = $category->title;
             $titles[$category->id]['id'] = Str::slug($category->title);
@@ -138,6 +140,7 @@ class VisitController extends FrontController
         ];
 
         $questions = [];
+
         foreach ($page->faqs as $faq) {
             array_push($questions, [
                 'label' => $faq->title,
@@ -159,6 +162,7 @@ class VisitController extends FrontController
         ];
 
         $explore = [];
+
         foreach ($page->families as $item) {
             array_push($explore, [
                 'image' => $item->imageFront('family_cover'),

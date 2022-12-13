@@ -135,13 +135,12 @@ class BaseScopedController extends FrontController
         if (empty($this->scopes)) {
             return true;
         }
+
             foreach ($this->scopes as $parameter => $scope) {
                 if (request()->input($parameter) != null) {
                     return true;
                 }
             }
-
-
 
     }
 }

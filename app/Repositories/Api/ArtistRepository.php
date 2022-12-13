@@ -153,12 +153,22 @@ class ArtistRepository extends BaseApiRepository
             ];
         }
 
-        return Search::query()
+        $items = Search::query()
             ->exhibitionGlobal()
             ->exhibitionOrderByDate('desc')
             ->resources(['exhibitions'])
             ->rawSearch($query)
             ->getPaginatedModel(100, \App\Models\Api\Exhibition::SEARCH_FIELDS)
             ->items();
+
+
+        $items = array_filter($items, function($value) {
+            if ($value->hasAugmentedModel() && $value->getAugmentedModel()) {
+                return $value->getAugmentedModel()->published;
+            }
+            return true;
+        });
+
+        return $items;
     }
 }

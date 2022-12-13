@@ -118,6 +118,7 @@ class ArticleController extends FrontController
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->heading ?: StringHelpers::truncateStr(strip_tags($item->present()->copy()), 297));
         $this->seo->setImage($item->imageFront('hero'));
+
         if ($item->is_unlisted) {
             $this->seo->nofollow = true;
             $this->seo->noindex = true;
@@ -125,9 +126,11 @@ class ArticleController extends FrontController
 
         $this->seo->citationTitle = $item->meta_title ?: $item->title;
         $this->seo->citationPublisher = 'The Art Institute of Chicago';
+
         foreach ($item->authors as $author) {
             $this->seo->citationAuthor[] = $author->title;
         }
+
         if (empty($this->seo->citationAuthor)) {
             $this->seo->citationAuthor[] = $item->author_display;
         }

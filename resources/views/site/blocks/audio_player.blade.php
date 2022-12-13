@@ -11,6 +11,8 @@
             'href' => FileService::getUrl($audioFile->uuid),
             'transcript' => $block->input('transcript'),
             'subtitle' => null,
+            'captionTitle' => $block->present()->input('caption_title'),
+            'caption' => $block->present()->input('caption'),
         ])
     @endcomponent
 @endif

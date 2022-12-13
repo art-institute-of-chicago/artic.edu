@@ -153,56 +153,14 @@ class AppServiceProvider extends ServiceProvider
 
     private function composeTemplatesViews()
     {
-        $hour = Hour::today()->first();
+        $hour = app()->environment() === 'testing' ? null : Hour::today()->first();
 
         // WEB-2269: Consider moving some of this to a config?
         view()->composer('*', function ($view) use ($hour) {
             $view->with([
                 'hour' => $hour,
                 '_pages' => [
-                    'visit' => route('visit')
-                    , 'hours' => route('visit') . '#hours'
-                    , 'directions' => route('visit') . '#directions'
-
-                    , 'buy' => 'https://sales.artic.edu/admissions'
-                    , 'become-a-member' => 'https://sales.artic.edu/memberships'
-                    , 'shop' => 'https://shop.artic.edu/'
-
-                    , 'collection' => route('collection')
-                    , 'exhibitions' => route('exhibitions')
-                    , 'events' => route('events')
-
-                    , 'about-us' => '/about-us'
-                    , 'about-us-mission-and-history' => '/about-us/mission-and-history'
-                    , 'about-us-leadership' => '/about-us/leadership'
-                    , 'about-us-departments' => '/about-us/departments'
-                    , 'about-us-financial-reporting' => '/about-us/financial-reporting'
-
-                    , 'support-us' => '/support-us'
-                    , 'support-us-membership' => '/support-us/membership'
-                    , 'support-us-luminary' => '/support-us/membership/luminary-levels'
-                    , 'support-us-planned-giving' => '/support-us/ways-to-give/planned-giving'
-                    , 'support-us-corporate-sponsorship' => '/support-us/ways-to-give/corporate-sponsorship'
-
-                    , 'learn' => '/learn-with-us'
-                    , 'learn-families' => '/learn-with-us/families'
-                    , 'learn-teens' => '/learn-with-us/teens'
-                    , 'learn-adults' => '/learn-with-us/adults'
-                    , 'learn-educators' => '/learn-with-us/educators'
-
-                    , 'follow-facebook' => 'https://www.facebook.com/artic'
-                    , 'follow-twitter' => 'https://twitter.com/artinstitutechi'
-                    , 'follow-instagram' => 'https://www.instagram.com/artinstitutechi/'
-                    , 'follow-youtube' => 'https://www.youtube.com/user/ArtInstituteChicago'
-
-                    , 'legal-articles' => route('articles')
-                    , 'legal-employment' => '/employment'
-                    , 'legal-venue-rental' => '/venue-rental'
-                    , 'legal-contact' => '/contact'
-                    , 'legal-press' => '/press'
-                    , 'legal-terms' => '/terms'
-                    , 'legal-image-licensing' => '/image-licensing'
-                    , 'legal-saic' => 'https://www.saic.edu',
+                    'visit' => route('visit'), 'hours' => route('visit') . '#hours', 'directions' => route('visit') . '#directions', 'buy' => 'https://sales.artic.edu/admissions', 'become-a-member' => 'https://sales.artic.edu/memberships', 'shop' => 'https://shop.artic.edu/', 'collection' => route('collection'), 'exhibitions' => route('exhibitions'), 'events' => route('events'), 'about-us' => '/about-us', 'about-us-mission-and-history' => '/about-us/mission-and-history', 'about-us-leadership' => '/about-us/leadership', 'about-us-departments' => '/about-us/departments', 'about-us-financial-reporting' => '/about-us/financial-reporting', 'support-us' => '/support-us', 'support-us-membership' => '/support-us/membership', 'support-us-luminary' => '/support-us/membership/luminary-levels', 'support-us-planned-giving' => '/support-us/ways-to-give/planned-giving', 'support-us-corporate-sponsorship' => '/support-us/ways-to-give/corporate-sponsorship', 'learn' => '/learn-with-us', 'learn-families' => '/learn-with-us/families', 'learn-teens' => '/learn-with-us/teens', 'learn-adults' => '/learn-with-us/adults', 'learn-educators' => '/learn-with-us/educators', 'follow-facebook' => 'https://www.facebook.com/artic', 'follow-twitter' => 'https://twitter.com/artinstitutechi', 'follow-instagram' => 'https://www.instagram.com/artinstitutechi/', 'follow-youtube' => 'https://www.youtube.com/user/ArtInstituteChicago', 'legal-articles' => route('articles'), 'legal-employment' => '/employment', 'legal-venue-rental' => '/venue-rental', 'legal-contact' => '/contact', 'legal-press' => '/press', 'legal-terms' => '/terms', 'legal-image-licensing' => '/image-licensing', 'legal-saic' => 'https://www.saic.edu',
                 ],
                 'mobileNav' => [
                     [

@@ -167,11 +167,13 @@ class Highlight extends AbstractModel
     public function getArtworkIds()
     {
         $artwork_ids = collect([]);
+
         foreach ($this->blocks as $block) {
             if (in_array($block->type, ['artwork', 'artworks'])) {
                 if (isset($block->content['browsers'])) {
                     if (isset($block->content['browsers']['artworks'])) {
                         $ids = $block->content['browsers']['artworks'];
+
                         foreach ($ids as $id) {
                             $artwork_ids->push($id);
                         }
@@ -190,6 +192,7 @@ class Highlight extends AbstractModel
 
         if ($artwork_ids->isNotEmpty()) {
             $artworks = Artwork::query()->ids($artwork_ids->toArray())->get();
+
             foreach ($artworks as $artwork) {
                 if ($artwork->imageFront()) {
                     $list[] = $artwork->imageFront();

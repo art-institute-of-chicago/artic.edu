@@ -114,6 +114,7 @@ class Search extends BaseApiModel
         // If we get a category filter, then we should just pass that aggregation
         // to improve performance. This is done because it means we are searching over that category.
         $aggs = [];
+
         foreach ($aggsParams as $facet => $parameter) {
             if ($categoryFilter) {
                 if ($categoryFilter == $facet) {
@@ -525,6 +526,7 @@ class Search extends BaseApiModel
             ->findOrFail((int) $id);
 
         $shoulds = [];
+
         if ($class == \App\Models\Api\Artwork::class) {
             $shoulds = [
                 $this->basicQuery('classification_id', $item->classification_id, 4),

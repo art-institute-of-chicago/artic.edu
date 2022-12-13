@@ -191,11 +191,6 @@ Route::get('/press/press-releases/{id}/{slug?}', [PressReleasesController::class
 Route::middleware(['httpauth'])->get('/press/exhibition-press-room', [ExhibitionPressRoomController::class, 'index'])->name('about.exhibitionPressRooms');
 Route::middleware(['httpauth'])->get('/press/exhibition-press-room/{id}/{slug?}', [ExhibitionPressRoomController::class, 'show'])->name('about.exhibitionPressRooms.show');
 
-// Event planning contact
-Route::get('/venue-rental/contact-us', [EventPlanningContactController::class, 'index'])->name('forms.event-planning-contact');
-Route::post('/venue-rental/contact-us', [EventPlanningContactController::class, 'store'])->name('forms.event-planning-contact.store');
-Route::get('/venue-rental/contact-us/thanks', [EventPlanningContactController::class, 'thanks'])->name('forms.event-planning-contact.thanks');
-
 // Educator admission request
 Route::get('/educators/visit-on-my-own/educator-admission-request', [EducatorAdmissionController::class, 'index'])->name('forms.educator-admission-request');
 Route::post('/educators/visit-on-my-own/educator-admission-request', [EducatorAdmissionController::class, 'store'])->name('forms.educator-admission-request.store');

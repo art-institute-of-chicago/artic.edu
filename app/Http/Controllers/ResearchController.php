@@ -19,8 +19,10 @@ class ResearchController extends FrontController
 
         // WEB-2255: Building links should be moved away from the controller to a presenter.
         $features = [];
+
         foreach ($featuredPages as $item) {
             $links = [];
+
             foreach ($item->children()->orderBy('position')->published()->get() as $index => $child) {
                 if ($index == 4) {
                     break; // Show only the top 4 children.
@@ -43,6 +45,7 @@ class ResearchController extends FrontController
         }
 
         $studyRooms = [];
+
         foreach ($page->researchResourcesStudyRooms as $room) {
             array_push($studyRooms, [
                 'title' => $room->title,
@@ -52,6 +55,7 @@ class ResearchController extends FrontController
         }
 
         $studyRoomsLink = '';
+
         foreach ($page->researchResourcesStudyRoomMore as $room) {
             $studyRoomsLink = $room->url;
         }

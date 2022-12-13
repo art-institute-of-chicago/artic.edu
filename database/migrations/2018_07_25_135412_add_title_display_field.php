@@ -31,7 +31,6 @@ class AddTitleDisplayField extends Migration
         }
     }
 
-
     public function down()
     {
         foreach ($this->tables as $table) {

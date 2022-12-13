@@ -14,7 +14,9 @@ class ModifyEventEventTable extends Migration
     public function up()
     {
         Schema::table('event_event', function (Blueprint $table) {
-            $table->dropForeign('event_event_related_event_id_foreign');
+            if (env('APP_ENV') != 'testing') {
+                $table->dropForeign('event_event_related_event_id_foreign');
+            }
             $table->dropColumn('related_event_id')->unsigned();
             $table->integer('datahub_id')->unsigned()->nullable();
         });

@@ -17,6 +17,7 @@ class MagazineIssuePresenter extends GenericPresenter
     {
         $gtmEvent = $matches[2]; // Link text
         preg_match("{href=\"([a-zA-Z0-9\/\:\?\#\-\_\.]+)\"}i", $matches[1], $urlMatches);
+
         if ($urlMatches) {
             $url = parse_url($urlMatches[1], PHP_URL_PATH);
             $gtmEvent = substr($url, strrpos($url, '/') + 1); // Last part of path

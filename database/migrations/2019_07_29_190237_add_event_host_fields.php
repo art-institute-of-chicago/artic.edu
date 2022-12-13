@@ -19,6 +19,8 @@ class AddEventHostFields extends Migration
 
         Schema::table('events', function (Blueprint $table) {
             $table->renameColumn('affiliate_group_id', 'event_host_id');
+        });
+        Schema::table('events', function (Blueprint $table) {
             $table->renameColumn('is_presented_by_affiliate', 'show_presented_by');
         });
     }
@@ -36,6 +38,8 @@ class AddEventHostFields extends Migration
 
         Schema::table('events', function (Blueprint $table) {
             $table->renameColumn('event_host_id', 'affiliate_group_id');
+        });
+        Schema::table('events', function (Blueprint $table) {
             $table->renameColumn('show_presented_by', 'is_presented_by_affiliate');
         });
     }

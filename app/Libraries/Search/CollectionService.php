@@ -188,6 +188,7 @@ class CollectionService
         if ($aggregations) {
             foreach ($aggregations as $name => $data) {
                 $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst(Str::camel($name));
+
                 if (class_exists($filterClass)) {
                     $filter = new $filterClass($data->buckets, $name);
                     $filters->push($filter->generate());
@@ -208,6 +209,7 @@ class CollectionService
             if (isset($aggregations->{$name})) {
                 $data = $aggregations->{$name};
                 $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst(Str::camel($name));
+
                 if (class_exists($filterClass)) {
                     $filter = new $filterClass($data->buckets, $name);
 
@@ -218,7 +220,6 @@ class CollectionService
 
         return null;
     }
-
 
     /**
      * Sort filters receive all possible sorting values and create
@@ -266,7 +267,7 @@ class CollectionService
      * Bypass missed methods directly to the chain.
      * Chain is usually a Query Builder type (eloquent or AIC API query builder)
      */
-    public function __call($method, $parameters)
+    public function __call($method, $parameters): mixed
     {
         if (method_exists($this, $method)) {
             return $this->{$method}($parameters);

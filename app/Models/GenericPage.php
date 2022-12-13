@@ -113,6 +113,7 @@ class GenericPage extends AbstractModel implements Sortable
         }
 
         $url = '';
+
         foreach ($this->ancestors()->defaultOrder()->get() as $item) {
             $url = $url . '/' . $item->slug;
         }

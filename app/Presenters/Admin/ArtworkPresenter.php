@@ -77,6 +77,7 @@ class ArtworkPresenter extends BasePresenter
         }
 
         $status = implode(', ', $status);
+
         if ($this->entity->artwork_website_url) {
             $status .= '<div class="m-status f-second-line"><a href="' . $this->entity->artwork_website_url . '" data-gtm-event="artwork website" data-gtm-event-category="collection-nav">Visit artwork website</a></div>';
         }
@@ -269,6 +270,7 @@ class ArtworkPresenter extends BasePresenter
                         'itemprop' => 'creator',
                     ];
                 }
+
                 if (count($artistLinks) > 0) {
                     $details[] = [
                         'key' => Str::plural('Artist', count($artistLinks)),
@@ -284,6 +286,7 @@ class ArtworkPresenter extends BasePresenter
                         'itemprop' => 'creator',
                     ];
                 }
+
                 if (count($cultureLinks) > 0) {
                     $details[] = [
                         'key' => Str::plural('Culture', count($cultureLinks)),
@@ -302,7 +305,7 @@ class ArtworkPresenter extends BasePresenter
             $places = collect($this->entity->place_pivots)->map(function ($item) {
                 $title = $item->place_title;
 
-                return  $item->qualifier_title ? $title . " ({$item->qualifier_title})" : $title;
+                return $item->qualifier_title ? $title . " ({$item->qualifier_title})" : $title;
             });
 
             $details[] = [
@@ -396,6 +399,7 @@ class ArtworkPresenter extends BasePresenter
         foreach ($elements as $key => $element) {
             $value = $element[0] ?? null;
             $itemprop = $element[1] ?? null;
+
             if (!empty($value)) {
                 $blocks[] = ['key' => $key, 'value' => $value, 'itemprop' => $itemprop];
             }
@@ -424,7 +428,6 @@ class ArtworkPresenter extends BasePresenter
         if (!empty($localBlock['links'])) {
             $block['blocks'][] = $localBlock;
         }
-
 
         return $block;
     }
@@ -477,6 +480,7 @@ class ArtworkPresenter extends BasePresenter
     protected function formatDescriptionBlocks($elements)
     {
         $blocks = [];
+
         foreach ($elements as $key => $value) {
             if (!empty($this->entity->{$key})) {
                 $block = [
@@ -486,6 +490,7 @@ class ArtworkPresenter extends BasePresenter
                 ];
                 $explodedKeys = explode("\n", $this->entity->{$key});
                 $blockHtml = '';
+
                 if (count($explodedKeys) < 2) {
                     foreach ($explodedKeys as $txt) {
                         if (!empty($txt)) {
@@ -494,6 +499,7 @@ class ArtworkPresenter extends BasePresenter
                     }
                 } else {
                     $blockHtml .= '<ul>';
+
                     foreach ($explodedKeys as $txt) {
                         if (!empty($txt)) {
                             $blockHtml .= '<li>' . $txt . '</li>';

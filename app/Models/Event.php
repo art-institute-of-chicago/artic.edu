@@ -280,6 +280,7 @@ class Event extends AbstractModel
     public function getAllDatesCmsAttribute()
     {
         $dates_string = '';
+
         foreach ($this->all_dates as $date) {
             $dates_string .= $date['date']->format('F j, Y g:i') . ' - ' . $date['date_end']->format('F j, Y g:i') . "\n";
         }
@@ -340,6 +341,7 @@ class Event extends AbstractModel
             return $this->rsvp_link;
         }
         $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
+
         if ($ticketedEvent) {
             $date = $this->nextOcurrence->date ?? $this->lastOcurrence->date ?? null;
 

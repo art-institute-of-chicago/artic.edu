@@ -32,8 +32,7 @@ class AddTranslationsToDiningHoursAndFamiliesTable extends Migration
         }
 
         Schema::table('dining_hours', function (Blueprint $table) {
-            $table->dropColumn('name');
-            $table->dropColumn('hours');
+            $table->dropColumn(['name', 'hours']);
         });
 
         Schema::create('family_translations', function (Blueprint $table) {
@@ -57,9 +56,7 @@ class AddTranslationsToDiningHoursAndFamiliesTable extends Migration
         }
 
         Schema::table('families', function (Blueprint $table) {
-            $table->dropColumn('title');
-            $table->dropColumn('text');
-            $table->dropColumn('link_label');
+            $table->dropColumn(['title', 'text', 'link_label']);
         });
     }
 

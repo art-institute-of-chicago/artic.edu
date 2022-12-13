@@ -28,5 +28,17 @@
                 {!! $item->subtitle !!}
             </div>
         @endif
+        @if (isset($item->caption) or isset($item->captionTitle))
+        <figcaption>
+            @if (isset($item->captionTitle))
+                <div class="{{ isset($item->caption) ? 'f-caption-title' : 'f-caption' }}"><div>
+                    {!! $item->captionTitle !!}
+                </div></div> <br>
+            @endif
+            @if (isset($item->caption))
+                <div class="f-caption">{!! $item->caption !!}</div>
+            @endif
+        </figcaption>
+        @endif
     </div>
 </li>

@@ -21,6 +21,7 @@ class UpdatePage
     public function __construct(\App\Models\Page $item)
     {
         $this->item = $item;
+
         if ($item->is_published) {
             $this->urls = [
                 route('events', null, false),

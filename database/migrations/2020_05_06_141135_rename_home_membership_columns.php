@@ -15,8 +15,14 @@ class RenameHomeMembershipColumns extends Migration
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_membership_module_headline', 'home_cta_module_headline');
+        });
+        Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_membership_module_short_copy', 'home_cta_module_short_copy');
+        });
+        Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_membership_module_button_text', 'home_cta_module_button_text');
+        });
+        Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_membership_module_url', 'home_cta_module_url');
         });
 
@@ -32,8 +38,14 @@ class RenameHomeMembershipColumns extends Migration
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_cta_module_headline', 'home_membership_module_headline');
+        });
+        Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_cta_module_short_copy', 'home_membership_module_short_copy');
+        });
+        Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_cta_module_button_text', 'home_membership_module_button_text');
+        });
+        Schema::table('pages', function (Blueprint $table) {
             $table->renameColumn('home_cta_module_url', 'home_membership_module_url');
         });
 

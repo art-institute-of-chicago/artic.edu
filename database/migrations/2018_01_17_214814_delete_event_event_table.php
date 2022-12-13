@@ -11,7 +11,6 @@ class DeleteEventEventTable extends Migration
         Schema::dropIfExists('event_event');
     }
 
-
     public function down()
     {
         Schema::create('event_event', function (Blueprint $table) {

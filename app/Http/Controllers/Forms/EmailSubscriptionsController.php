@@ -186,7 +186,6 @@ class EmailSubscriptionsController extends FormController
             ],
         ];
 
-
         if (!config('aic.disable_captcha')) {
             $personalInformationFields[] = [
                 'variation' => null,

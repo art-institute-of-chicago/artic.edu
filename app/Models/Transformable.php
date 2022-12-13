@@ -16,7 +16,6 @@ trait Transformable
         return $this->transformFields($withTitles);
     }
 
-
     /**
      * Turn this model object into a generic array.
      *
@@ -33,12 +32,11 @@ trait Transformable
         $out = [];
 
         foreach ($fields as $field) {
-            $out[ $field['name'] ] = call_user_func($field['value']);
+            $out[$field['name']] = call_user_func($field['value']);
         }
 
         return $out;
     }
-
 
     /**
      * Turn the titles for related models into a generic array
@@ -49,7 +47,6 @@ trait Transformable
     {
         return [];
     }
-
 
     /**
      * Define how the fields in the API are mapped to model properties.

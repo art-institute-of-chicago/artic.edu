@@ -14,7 +14,7 @@ class MoveAttractEndColumnsToSlidesTable extends Migration
     public function up()
     {
         Schema::table('experiences', function (Blueprint $table) {
-            $table->dropColumn(['attract_title', 'attract_subhead', 'end_credit_subhead', 'end_credit_copy', 'end_copy', 'end_headline']);
+            $table->dropColumn(['attract_title', 'attract_subhead', 'end_credit_subhead', 'end_credit_copy', 'end_headline']);
         });
 
         Schema::table('slides', function (Blueprint $table) {

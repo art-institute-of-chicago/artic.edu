@@ -125,7 +125,7 @@ class StringHelpers
 
     public static function truncateStr($string, $length = 150)
     {
-        $limit = abs((int)$length);
+        $limit = abs((int) $length);
 
         if ($limit > strlen($string)) {
             return $string;
@@ -180,6 +180,7 @@ class StringHelpers
     public static function convertReferenceLinks($text, $_collectedReferences)
     {
         $codes = \App\Libraries\ShortcodeService::parse_ref($text);
+
         foreach ($codes as $index => $code) {
             if (isset($code['name']) && ($code['name'] == 'ref')) {
                 $_collectedReferences[] = ['id' => sizeof($_collectedReferences) + 1, 'reference' => $code['content']];
@@ -217,6 +218,7 @@ class StringHelpers
         $words = explode(' ', $string);
 
         $newwords = [];
+
         foreach ($words as $index => $word) {
             if ($index == 0) {
                 $word = ucwords(strtolower($word), $delimiters);

@@ -48,7 +48,7 @@ class MigrateOSCIPublicationOne extends Command
 
         $apiPub = $this->repository->getById($pubId);
         $webPub = new DigitalPublication();
-        $webPub->title = 'Migrated ' . date("M j, Y") . ' | ' . $apiPub->title;
+        $webPub->title = 'Migrated ' . date('M j, Y') . ' | ' . $apiPub->title;
         $webPub->published = false;
         $webPub->is_dsc_stub = false;
         $webPub->save();

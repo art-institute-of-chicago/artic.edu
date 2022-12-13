@@ -80,18 +80,21 @@ class BaseService
 
             // Build Style Tag
             $style = $this->resource->artworks()->getMetadata('aggregations')->styles->buckets[0]->key ?? false;
+
             if ($style) {
                 $tags['style'] = collect([$style => $style]);
             }
 
             // Build Classification Tag
             $classification = $this->resource->artworks()->getMetadata('aggregations')->classifications->buckets[0]->key ?? false;
+
             if ($classification) {
                 $tags['classification'] = collect([$classification => $classification]);
             }
 
             // Build Place tag
             $place = $this->resource->artworks()->getMetadata('aggregations')->place_of_origin->buckets[0]->key ?? false;
+
             if ($place) {
                 $tags['place'] = collect([$place => $place]);
             }
@@ -103,6 +106,7 @@ class BaseService
         } else {
             // Build Classification Tags
             $classification = collect([]);
+
             if ($this->resource->id) {
                 foreach ($this->aggregations()->classifications->buckets as $index => $item) {
                     if ($index == self::MAX_TAGS) {
@@ -199,7 +203,7 @@ class BaseService
         if ($results->count() > 1) {
             $item = $this->resource;
             $results = $results->filter(function ($value, $key) use ($item) {
-                return ($item->id != $value->id);
+                return $item->id != $value->id;
             });
         }
 

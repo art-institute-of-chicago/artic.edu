@@ -11,14 +11,12 @@ class ResearchGuidesController extends FrontController
 {
     protected $repository;
 
-
     public function __construct(ResearchGuideRepository $repository)
     {
         $this->repository = $repository;
 
         parent::__construct();
     }
-
 
     public function index(Request $request)
     {
@@ -48,13 +46,13 @@ class ResearchGuidesController extends FrontController
             'listingItems' => $items,
         ];
 
-
         return view('site.genericPage.index', $view_data);
     }
 
     public function show($id)
     {
         $page = $this->repository->find((int) $id);
+
         if (!$page) {
             $page = $this->repository->forSlug($id);
 

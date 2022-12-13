@@ -16,10 +16,7 @@ class RefactorHoursTable extends Migration
     public function up()
     {
         Schema::table('hours', function (Blueprint $table) {
-            $table->dropColumn('opening_time');
-            $table->dropColumn('closing_time');
-            $table->dropColumn('day_of_week');
-            $table->dropColumn('closed');
+            $table->dropColumn(['opening_time', 'closing_time', 'day_of_week', 'closed']);
         });
 
         Schema::table('hours', function (Blueprint $table) {
@@ -48,10 +45,7 @@ class RefactorHoursTable extends Migration
     public function down()
     {
         Schema::table('hours', function (Blueprint $table) {
-            $table->dropColumn('valid_from');
-            $table->dropColumn('valid_through');
-            $table->dropColumn('title');
-            $table->dropColumn('url');
+            $table->dropColumn(['valid_from', 'valid_through', 'title', 'url']);
         });
 
         Schema::table('hours', function (Blueprint $table) {

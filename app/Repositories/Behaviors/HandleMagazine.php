@@ -40,6 +40,7 @@ trait HandleMagazine
         }
 
         $items = $magIssue->magazineItems()->where('position', '>', $position)->get();
+
         if ($items->count() < 4) {
             $items = $items->concat($magIssue->magazineItems()->where('position', '<', $position)->get());
         }

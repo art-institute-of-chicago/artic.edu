@@ -108,6 +108,7 @@ class DropTranslationTables extends Migration
 
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from dining_hour_translations where locale = ?', ['en']);
+
             foreach ($rows as $cols) {
                 DB::update(
                     'update dining_hours set '
@@ -131,6 +132,7 @@ class DropTranslationTables extends Migration
 
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from family_translations where locale = ?', ['en']);
+
             foreach ($rows as $cols) {
                 DB::update(
                     'update families set '
@@ -154,6 +156,7 @@ class DropTranslationTables extends Migration
 
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from faq_translations where locale = ?', ['en']);
+
             foreach ($rows as $cols) {
                 DB::update(
                     'update faqs set '
@@ -174,6 +177,7 @@ class DropTranslationTables extends Migration
 
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from featured_hour_translations where locale = ?', ['en']);
+
             foreach ($rows as $cols) {
                 DB::update(
                     'update featured_hours set '
@@ -195,6 +199,7 @@ class DropTranslationTables extends Migration
 
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from fee_age_translations where locale = ?', ['en']);
+
             foreach ($rows as $cols) {
                 DB::update(
                     'update fee_ages set '
@@ -215,6 +220,7 @@ class DropTranslationTables extends Migration
 
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from fee_category_translations where locale = ?', ['en']);
+
             foreach ($rows as $cols) {
                 DB::update(
                     'update fee_categories set '
@@ -236,6 +242,7 @@ class DropTranslationTables extends Migration
 
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from location_translations where locale = ?', ['en']);
+
             foreach ($rows as $cols) {
                 DB::update(
                     'update locations set '
@@ -255,6 +262,7 @@ class DropTranslationTables extends Migration
 
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from what_to_expect_translations where locale = ?', ['en']);
+
             foreach ($rows as $cols) {
                 DB::update(
                     'update what_to_expects set '

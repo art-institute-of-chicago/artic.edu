@@ -21,6 +21,7 @@ class UpdateEvent
     public function __construct(\App\Models\Event $item)
     {
         $this->item = $item;
+
         if ($item->is_published) {
             $this->urls = [
                 route('events.show', $item, false),

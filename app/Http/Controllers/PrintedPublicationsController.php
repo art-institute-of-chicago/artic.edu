@@ -49,7 +49,6 @@ class PrintedPublicationsController extends BaseScopedController
             'listingItems' => $items,
         ] + $navElements;
 
-
         return view('site.genericPage.index', $view_data);
     }
 

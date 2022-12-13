@@ -68,7 +68,6 @@ class ExperienceRepository extends ModuleRepository
         return parent::order($query, $orders);
     }
 
-
     public function getFurtherReadingTitle($item)
     {
         if ($this->isInMagazine($item) && $item->is_unlisted) {

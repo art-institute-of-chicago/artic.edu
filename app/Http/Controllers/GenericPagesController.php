@@ -39,6 +39,7 @@ class GenericPagesController extends FrontController
         // Add Farharbor JS to "Visit with my Students" page.
         // @see instructions here: https://fareharbor.com/artic/dashboard/settings/embeds/
         $addFareHarborJS = false;
+
         if ($page->id == 126) {
             $addFareHarborJS = true;
         }
@@ -61,8 +62,10 @@ class GenericPagesController extends FrontController
     {
         $idSlug = collect(explode('/', $slug))->last();
         $page = $this->genericPageRepository->forSlug($idSlug);
+
         if (empty($page)) {
             $page = $this->genericPageRepository->getById((int) $idSlug);
+
             if (!$page) {
                 abort(404);
             }

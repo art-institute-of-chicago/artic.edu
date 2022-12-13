@@ -99,7 +99,6 @@ class EventController extends ModuleController
         return $query->paginate(request('offset') ?? $this->perPage ?? 50);
     }
 
-
     protected function indexData($request)
     {
         return [];

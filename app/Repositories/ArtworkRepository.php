@@ -31,6 +31,7 @@ class ArtworkRepository extends BaseApiRepository
 
         if ($iiifMediaId) {
             $iiifMedia = Media::find($iiifMediaId);
+
             if ($iiifMedia) {
                 TileMedia::dispatch($iiifMedia, $fields['force_iiif_regenerate'] ?? false);
             }

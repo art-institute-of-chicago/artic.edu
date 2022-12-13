@@ -123,6 +123,7 @@ class HomeFeature extends AbstractModel
         if (!$image) {
             $image = $this->featureImage;
         }
+
         if (($videoUrl = $this->file('video')) != null) {
             $video = [
                 'src' => $videoUrl,

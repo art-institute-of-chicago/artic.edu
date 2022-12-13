@@ -42,7 +42,6 @@ class AuthorController extends FrontController
             'listingItems' => $items,
         ];
 
-
         return view('site.genericPage.index', $view_data);
     }
 

@@ -49,12 +49,15 @@ class DateHelpers
         if (!is_int($date)) {
             return null;
         }
+
         if ($date < 0) {
             return abs($date) . ' BCE';
         }
+
         if ($date <= 1000) {
             return $date . ' CE';
         }
+
         if ($date == Carbon::now()->year) {
             return 'Present';
         }
@@ -70,6 +73,7 @@ class DateHelpers
             $hour = ($i % 12 ?? 12);
             $ampm = ($i >= 12 ? 'pm' : 'am');
             $mins = $shortlist ? ['00', '30'] : ['00', '15', '30', '45'];
+
             foreach ($mins as $time) {
                 // Save hours on DatetimeInterval format to be added later
                 $hours["PT{$i}H{$time}M"] = ($hour == 0 ? '12' : "{$hour}") . ":{$time}{$ampm}";
@@ -109,6 +113,7 @@ class DateHelpers
     public static function incrementBefore($date)
     {
         $prev = 0;
+
         foreach (static::yearIncrements() as $year) {
             if ($year > $date) {
                 return $prev;

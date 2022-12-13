@@ -124,7 +124,6 @@ class HomeController extends FrontController
         return collect([$this->getLightbox($activeLightboxes->first())]);
     }
 
-
     private function getLightbox($lightbox)
     {
         return [

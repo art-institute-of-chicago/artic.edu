@@ -16,14 +16,12 @@ class PressReleasesController extends BaseScopedController
         'month' => 'byMonth'
     ];
 
-
     public function __construct(PressReleaseRepository $repository)
     {
         $this->repository = $repository;
 
         parent::__construct();
     }
-
 
     protected function beginOfAssociationChain()
     {
@@ -32,7 +30,6 @@ class PressReleasesController extends BaseScopedController
             ->published()
             ->orderBy('publish_start_date', 'desc');
     }
-
 
     public function index()
     {
@@ -54,7 +51,6 @@ class PressReleasesController extends BaseScopedController
         return view('site.genericPage.index', $viewData);
     }
 
-
     public function archive()
     {
         $items = $this->collection()->notUnlisted()->archive()->paginate();
@@ -74,7 +70,6 @@ class PressReleasesController extends BaseScopedController
 
         return view('site.genericPage.index', $viewData);
     }
-
 
     protected function getFilters(array $yearRange = null, array $monthRange = null, $baseRoute = 'about.press')
     {
@@ -125,7 +120,6 @@ class PressReleasesController extends BaseScopedController
         return $filters;
     }
 
-
     protected function getNavElements($title)
     {
         $subNav = [
@@ -153,7 +147,6 @@ class PressReleasesController extends BaseScopedController
         return compact('title', 'subNav', 'nav', 'crumbs');
     }
 
-
     public function show($id)
     {
         $item = $this->repository->getById((int) $id);
@@ -167,6 +160,7 @@ class PressReleasesController extends BaseScopedController
         $this->seo->setTitle($item->meta_title ?? $item->title);
         $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->listing_description);
         $this->seo->setImage($item->imageFront('listing'));
+
         if ($item->is_unlisted) {
             $this->seo->nofollow = true;
             $this->seo->noindex = true;

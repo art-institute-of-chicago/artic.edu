@@ -199,6 +199,7 @@ class Artwork extends BaseApiModel
         if ($value) {
             return $value;
         }
+
         if (!empty($this->alt_style_ids)) {
             return $this->alt_style_ids[0];
         }
@@ -211,6 +212,7 @@ class Artwork extends BaseApiModel
         if ($value) {
             return $value;
         }
+
         if (!empty($this->alt_classification_ids)) {
             return $this->alt_classification_ids[0];
         }
@@ -359,7 +361,6 @@ class Artwork extends BaseApiModel
         }
     }
 
-
     public function scopeAggregationClassification($query)
     {
         $aggs = [
@@ -494,7 +495,7 @@ class Artwork extends BaseApiModel
         $relatedItems = collect([]);
 
         // If this artwork is augmented and its augmented model has custom related items, return those
-        if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), 'getCustomRelatedItems')) {
+        if ($this->hasAugmentedModel() && $this->getAugmentedModel() && method_exists($this->getAugmentedModel(), 'getCustomRelatedItems')) {
             $relatedItems = $this->getAugmentedModel()->getCustomRelatedItems();
         }
 
@@ -567,7 +568,7 @@ class Artwork extends BaseApiModel
             ->byMostSimilar($this->id, get_class($this), true)
             ->getPaginatedModel(13, self::SEARCH_FIELDS)
             ->filter(function ($value, $key) {
-                return ($this->id != $value->id);
+                return $this->id != $value->id;
             })
             ->pluck('id')
             ->all();
