@@ -13,6 +13,7 @@
     @component('components.molecules._m-media')
         @slot('variation', 'o-blocks__block')
         @slot('embed_height', $embed_height)
+
         @slot('item', [
             'type' => 'embed',
             'size' => $block->input('size'),
@@ -30,7 +31,8 @@
                 "credit" => '',
                 "creditUrl" => '',
             ],
-            'caption' => '',
+            'captionTitle' => $block->present()->input('caption_title'),
+            'caption' => $block->present()->input('caption'),
         ])
     @endcomponent
 @elseif ($embed_type == 'url' && $embed_url)
@@ -41,6 +43,8 @@
             'type' => 'embed',
             'size' => $block->input('size'),
             'media' => ['embed' => $embed_code],
+            'captionTitle' => $block->present()->input('caption_title'),
+            'caption' => $block->present()->input('caption'),
         ])
     @endcomponent
 @endif

@@ -72,3 +72,21 @@
     'name' => 'disable_placeholder',
     'label' => 'Disable placeholder element',
 ])
+
+@formField('wysiwyg', [
+    'name' => 'caption_title',
+    'label' => 'Caption title',
+    'toolbarOptions' => [
+        'italic', 'link',
+    ],
+])
+
+@formField('wysiwyg', [
+    'name' => 'caption',
+    'label' => 'Caption',
+    'maxlength' => 300,
+    'note' => 'Max 300 characters',
+    'toolbarOptions' => [
+        'italic', 'link',
+    ],
+])
