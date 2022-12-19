@@ -458,7 +458,8 @@ a.m-media__img:hover object {
   }
 }
 
-.m-media figcaption {
+.m-media figcaption,
+.m-listing--sound figcaption {
   @include tucked-margin-top($f-caption, ('xsmall': 24));
   display: block;
   position: relative;
@@ -466,46 +467,58 @@ a.m-media__img:hover object {
   padding-right: 60px;
 }
 
-.m-media figcaption .f-caption-title {
+.m-media figcaption .f-caption-title,
+.m-listing--sound figcaption .f-caption-title {
   display: block;
 }
 
-.m-media figcaption .f-caption {
+.m-media figcaption .f-caption,
+.m-listing--sound figcaption .f-caption {
   color: $color__text--secondary;
 }
 
 .m-media figcaption .f-caption-title em,
-.m-media figcaption .f-caption em {
+.m-media figcaption .f-caption em,
+.m-listing--sound figcaption .f-caption-title em,
+.m-listing--sound figcaption .f-caption em {
   font-size: inherit;
   line-height: inherit;
 }
 
-.m-media figcaption > br {
+.m-media figcaption > br,
+.m-listing--sound figcaption > br {
   display: none;
 }
 
-.m-media figcaption a {
+.m-media figcaption a,
+.m-listing--sound figcaption a {
   color: $color__link--accent;
 }
 
-.m-media figcaption a:hover {
+.m-media figcaption a:hover,
+.m-listing--sound figcaption a:hover {
   color: $color__link--accent-hover;
 }
 
-.m-media figcaption a:active {
+.m-media figcaption a:active,
+.m-listing--sound figcaption a:active {
   color: $color__link--accent-active;
 }
 
-.m-media figcaption strong a {
+.m-media figcaption strong a,
+.m-listing--sound figcaption strong a {
   color: $color__text;
 }
 
 .m-media figcaption strong a:hover,
-.m-media a.m-media__img:hover + figcaption strong a {
-  @include text-underline(1.05em, $color__text, $color__bg);
+.m-media a.m-media__img:hover + figcaption strong a,
+.m-listing--sound figcaption strong a:hover,
+.m-listing--sound a.m-media__img:hover + figcaption strong a {
+    @include text-underline(1.05em, $color__text, $color__bg);
 }
 
-.m-media figcaption strong a:active {
+.m-media figcaption strong a:active,
+.m-listing--sound figcaption strong a:active  {
   background-image: none;
   color: $color__text;
   text-shadow: 0;
