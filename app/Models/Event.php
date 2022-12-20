@@ -515,17 +515,17 @@ class Event extends AbstractModel
 
     public function setEventTypeAttribute($value)
     {
-        $this->attributes['event_type'] = $value > count(self::$eventTypes) ? null : $value; // 1-based
+        $this->attributes['event_type'] = $value > max(array_keys(self::$eventTypes)) ? null : $value; // 1-based
     }
 
     public function setAudienceAttribute($value)
     {
-        $this->attributes['audience'] = $value > (count(self::$eventAudiences) + 1) ? null : $value; // 1-based
+        $this->attributes['audience'] = $value > max(array_keys(self::$eventAudiences)) ? null : $value; // 1-based
     }
 
     public function setEntranceAttribute($value)
     {
-        $this->attributes['entrance'] = $value > count(self::$eventEntrances) ? null : $value; // 1-based
+        $this->attributes['entrance'] = $value > max(array_keys(self::$eventEntrances)) ? null : $value; // 1-based
     }
 
     public function setAffiliateGroupIdAttribute($value)
