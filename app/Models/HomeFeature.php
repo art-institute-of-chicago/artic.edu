@@ -124,13 +124,13 @@ class HomeFeature extends AbstractModel
             $image = $this->featureImage;
         }
 
-        if (($videoUrl = $this->file('video')) != null) {
-            $video = [
-                'src' => $videoUrl,
-                'poster' => ($image ? $image['src'] : '')
-            ];
-
-            return $video;
-        }
+//        if (($videoUrl = $this->file('video')) != null) {
+//            $video = [
+//                'src' => $videoUrl,
+//                'poster' => ($image ? $image['src'] : '')
+//            ];
+//
+//            return $video;
+//        }
     }
 }
