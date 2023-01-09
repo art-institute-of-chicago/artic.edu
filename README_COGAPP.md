@@ -1,3 +1,13 @@
+# Temporary Cogapp-only instructions
+
+TODO before final merging:
+
+- Delete this file (or merge with README)
+- Delete .ddev folder
+- Delete .env.example.ddev
+- Uncomment final lines of Commented out app/Models/HomeFeature.php
+
+
 ![Art Institute of Chicago](https://raw.githubusercontent.com/Art-Institute-of-Chicago/template/master/aic-logo.gif)
 
 # artic.edu
@@ -23,37 +33,40 @@ Portions of the website rely heavily on our [API](https://api.artic.edu). Check 
 * Node 8.17.0
 * NPM 6.13.0
 * PostgreSQL 11.*
-* Homestead 12.*
 * krpano 1.12.* (for virtual tour blocks)
-
-
+* ddev 1.19 or above (required for local development with Postgres support)
 
 ## Installing
 
-### Homestead
+### ddev
 
-For local development, we run our website in a [Homestead](https://laravel.com/docs/master/homestead) environment which provides all the software required to run the website.
+For local development, you can use [ddev](https://ddev.com/)
 
-* Rename `Homestead.sample.yaml` to `Homestead.yaml`.
-* Update `folders.map` in `Homestead.yaml` with your local path to the website repository.
-* If you have another vagrant machine running at the same IP as the one at the top of `Homestead.yaml`, change it.
-* Run `composer install` to install composer dependencies. This step should typically be done inside the VM, but in order to get the VM running, you may need to install the dependencies from outside the VM.
-* Run `homestead up` to provision your vagrant machine.
-* In case the system didn't update your `/etc/hosts` file automatically:
-    * Add the IP and domain defined at `Homestead.yaml` to your local `/etc/hosts` file.
+* Ensure you have Docker and ddev v.1.19 or above installed on your machine
+* Copy `.env.example.ddev` as `.env` and update with your local settings (if necessary). Keep the IMGIX settings.
+* Run `ddev start`
+* Download the database dump SQL (link provided by AIC)
+* Run `ddev import-db` and follow the prompt to select the file you just downloaded
+* Ensure you have access to this private repo: https://github.com/art-institute-of-chicago/digital-labels-ui
+* Build the frontend:
+```
+nvm use
+npm ci
+npm run build
+```
 
-Once Homestead is set up, then install the website code itself:
+Once ddev is set up, then install the website code itself:
 
-* Run `homestead ssh` to ssh into the VM.
-* `cd` into the project folder in `/home/vagrant/artic.edu`.
-* Run `composer install` inside the VM to ensure dependencies are installed.
-* Copy `.env.example` as `.env` and update with your local settings (if necessary).
-* Run `php artisan key:generate` to generate your application key.
-* Run `php artisan migrate` to migrate the database schema.
+* Run `ddev ssh` to ssh into the VM. Then from inside the VM run:
+* `composer install` to install composer dependencies.
+* `php artisan key:generate` to generate your application key.
 * Run `php artisan twill:superadmin` to create a superadmin user.
 * Build all necessary Twill assets: `php artisan twill:build`
-* Access the frontend at http://{your_dev_domain}.
-* Access the CMS at http://admin.{your_dev_domain}.
+* Access the frontend at https://artic.edu.ddev.site.
+* Access the CMS at https://admin.artic.edu.ddev.site and log in with the superuser credentials
+
+* TODO TR: Document or fix AWS bucket prob
+
 
 ### krpano
 In order to use the virtual tour blocks, you will need to put the `tour.js` file in place from the krpano library. To do so, [download krpano](https://krpano.com/download/). Follow the instructions to install the package, and look for `viewer/krpano.js` among the files. Copy `krpano.js` to the `public/virtual-tours` directory in this project and rename it to `tour.js`.
