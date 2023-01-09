@@ -6,11 +6,11 @@ webserver_type: nginx-fpm
 router_http_port: "8808"
 router_https_port: "443"
 xdebug_enabled: false
-additional_hostnames: []
+additional_hostnames: ["admin.artic.edu"]
 additional_fqdns: []
 database:
   type: postgres
-  version: 14
+  version: 11
 nfs_mount_enabled: false
 mutagen_enabled: false
 use_dns_when_possible: true
