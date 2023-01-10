@@ -5,8 +5,6 @@ TODO before final merging:
 - Delete this file (or merge with README)
 - Delete .ddev folder
 - Delete .env.example.ddev
-- Uncomment final lines of Commented out app/Models/HomeFeature.php
-
 
 ![Art Institute of Chicago](https://raw.githubusercontent.com/Art-Institute-of-Chicago/template/master/aic-logo.gif)
 
@@ -43,7 +41,7 @@ Portions of the website rely heavily on our [API](https://api.artic.edu). Check 
 For local development, you can use [ddev](https://ddev.com/)
 
 * Ensure you have Docker and ddev v.1.19 or above installed on your machine
-* Copy `.env.example.ddev` as `.env` and update with your local settings (if necessary). Keep the IMGIX settings.
+* Copy `.env.example.ddev` as `.env` and overwrite the four S3 settings with the [credentials supplied by AIC](https://tpm.office.cogapp.com/index.php/pwd/view_notes/1038). Update with any local settings (if necessary), but keep the IMGIX and other AWS settings.
 * Run `ddev start`
 * Download the database dump SQL (link provided by AIC)
 * Run `ddev import-db` and follow the prompt to select the file you just downloaded
