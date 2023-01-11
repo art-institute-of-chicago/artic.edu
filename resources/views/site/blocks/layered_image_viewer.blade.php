@@ -13,14 +13,7 @@
                 'srcset' => $image['src'],
                 'width' => $image['width'] ?? 0,
                 'height' => $image['height'] ?? 0,
-                'shareUrl' => '#',
-                'shareTitle' => $block->present()->input('caption'),
-                'downloadUrl' => $image['src'],
-                'downloadName' => '',
-                'credit' => '',
-                'creditUrl' => '',
                 'alt' => $image['alt'],
-                'restrict' => $image['restict'] ?? false,
             ],
         ])
     @endcomponent
