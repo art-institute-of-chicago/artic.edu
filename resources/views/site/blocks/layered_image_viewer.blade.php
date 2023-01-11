@@ -3,7 +3,7 @@
 @endphp
 
 @if (isset($image['src']))
-    @component('components.molecules._m-layered-image-viewer')
+    @component('components.organisms._o-layered-image-viewer')
         @slot('variation', 'o-blocks__block')
         @slot('item', [
             'type' => 'image',
