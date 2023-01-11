@@ -1,8 +1,12 @@
+@foreach ($images as $image)
+
+{{ $image }}
+
 @php
 
-    $type = isset($item['type']) ? $item['type'] : 'image';
-    $size = isset($item['size']) ? $item['size'] : 's';
-    $media = $item['media'];
+    $type = isset($image['type']) ? $image['type'] : 'image';
+    $size = isset($image['size']) ? $image['size'] : 's';
+    $media = $image['media'];
     $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
 
     if (empty($imageSettings) && $size === 's') {
@@ -54,3 +58,5 @@
         @endif
     </div>
 </figure>
+
+@endforeach
