@@ -228,6 +228,7 @@ return [
         'image_slider',
         'mirador_embed',
         'mirador_modal',
-        'vtour_embed'
+        'vtour_embed',
+        'layered_image_viewer'
     ]
 ];
