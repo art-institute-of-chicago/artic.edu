@@ -40,7 +40,7 @@ Portions of the website rely heavily on our [API](https://api.artic.edu). Check 
 
 For local development, you can use [ddev](https://ddev.com/)
 
-* Ensure you have Docker and ddev v.1.19 or above installed on your machine
+* Ensure you have Docker and ddev v1.21.4 or above installed on your machine
 * Copy `.env.example.ddev` as `.env` and overwrite the four S3 settings with the [credentials supplied by AIC](https://tpm.office.cogapp.com/index.php/pwd/view_notes/1038). Update with any local settings (if necessary), but keep the IMGIX and other AWS settings.
 * Run `ddev start`
 * Download the database dump SQL (link provided by AIC)
