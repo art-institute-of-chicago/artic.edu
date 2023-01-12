@@ -1,6 +1,5 @@
-@twillRepeaterTitle('Gallery Item')
-@twillRepeaterTrigger('Add gallery item')
-@twillRepeaterComponent('a17-block-gallery_new_item')
+@twillRepeaterTitle('Image')
+@twillRepeaterTrigger('Add image')
 
 @formField('radios', [
     'name' => 'gallery_item_type',
@@ -28,28 +27,6 @@
         'name' => 'image',
         'label' => 'Image',
         'max' => 1
-    ])
-
-    @formField('wysiwyg', [
-        'name' => 'captionTitle',
-        'label' => 'Caption title',
-        'toolbarOptions' => [
-            'italic', 'link',
-        ],
-    ])
-
-    @formField('wysiwyg', [
-        'name' => 'captionText',
-        'label' => 'Caption text',
-        'toolbarOptions' => [
-            'italic', 'link',
-        ],
-    ])
-
-    @formField('input', [
-        'name' => 'videoUrl',
-        'label' => 'YouTube URL',
-        'note' => 'Provide to show video in modal instead of image',
     ])
 
     @formField('checkbox', [
