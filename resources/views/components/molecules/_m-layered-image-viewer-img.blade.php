@@ -16,7 +16,7 @@
             
         @endphp
 
-        @component('components.molecules._m-media')
+        @component('components.atoms._layered-image-viewer-img')
             @slot('item', $item)
             @slot('imageSettings', $currentImageSettings ?? '')
         @endcomponent
