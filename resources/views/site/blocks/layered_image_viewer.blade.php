@@ -5,7 +5,7 @@
         $mediaItem = [
             'type' => 'image',
             'size' => 'gallery',
-            'fullscreen' => $block->input('disable_gallery_modals') ? false : true,
+            'fullscreen' => $block->input('disable_image_modals') ? false : true,
             'media' => $item->imageAsArray('image', 'desktop'),
         ];
 
