@@ -1,10 +1,6 @@
-
-@foreach ($items as $item)
-    <p>An item</p>
-@endforeach 
-<div class="o-gallery o-gallery--mosaic{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
-    <div class="o-gallery__media o-gallery__media--2-col@small o-gallery__media--2-col@medium o-gallery__media--2-col@large o-gallery__media--2-col@xlarge" data-behavior="pinboard">
-        @component('site.shared._mediaitems')
+<div>
+    <div>
+        @component('components.atoms._liv-img')
             @slot('items', $items)
             @slot('imageSettings', $imageSettings ?? array(
                 'srcset' => array(200,400,600,1000,1500,3000),
