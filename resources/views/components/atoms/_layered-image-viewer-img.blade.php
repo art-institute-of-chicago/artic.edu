@@ -49,8 +49,6 @@
         $mediaBehavior = 'openImageFullScreen';
     }
 
-    $showUrlFullscreen = $item['showUrl'] ?? false && $item['showUrlFullscreen']  ?? false && $item['urlTitle'] ?? null;
-
     global $_allowAdvancedModalFeatures;
 @endphp
 
