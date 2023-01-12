@@ -1,6 +1,6 @@
 <div>
     <div>
-        @component('components.atoms._liv-img')
+        @component('components.molecules._m-liv-img')
             @slot('items', $items)
             @slot('imageSettings', $imageSettings ?? array(
                 'srcset' => array(200,400,600,1000,1500,3000),
