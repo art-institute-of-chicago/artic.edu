@@ -4,7 +4,7 @@
     foreach ($block->childs as $item) {
         $mediaItem = [
             'type' => 'image',
-            'size' => 'gallery',
+            'size' => $block->input('size'),
             'fullscreen' => $block->input('disable_image_modals') ? false : true,
             'media' => $item->imageAsArray('image', 'desktop'),
         ];
