@@ -1,62 +1,49 @@
-@foreach ($images as $image)
-
-{{ $image }}
-
-@php
-
-    $type = isset($image['type']) ? $image['type'] : 'image';
-    $size = isset($image['size']) ? $image['size'] : 's';
-    $media = $image['media'];
-    $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
-
-    if (empty($imageSettings) && $size === 's') {
-        $imageSettings = array(
-            'srcset' => $defaultSrcset,
-            'sizes' => ImageHelpers::aic_imageSizes(array(
-                'xsmall' => '58',
-                'small' => '58',
-                'medium' => '38',
-                'large' => '28',
-                'xlarge' => '28',
-        )));
-    }
-
-    if (empty($imageSettings) && $size === 'm') {
-        $imageSettings = array(
-            'srcset' => $defaultSrcset,
-            'sizes' => ImageHelpers::aic_imageSizes(array(
-                'xsmall' => '58',
-                'small' => '58',
-                'medium' => '58',
-                'large' => '43',
-                'xlarge' => '43',
-        )));
-    }
-
-    if (empty($imageSettings) && $size === 'l') {
-        $imageSettings = array(
-            'srcset' => $defaultSrcset,
-            'sizes' => ImageHelpers::aic_imageSizes(array(
-                'xsmall' => '58',
-                'small' => '58',
-                'medium' => '58',
-                'large' => '58',
-                'xlarge' => '58',
-        )));
-    }
-
-    global $_allowAdvancedModalFeatures;
-@endphp
-
-<figure data-type="{{ $type }}" data-title="{{ $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}" class="m-media m-media--{{ $size }}">
-    <div class="m-media__img" data-behavior="fitText" {!! ($_allowAdvancedModalFeatures ?? false) ? ' data-modal-advanced="true"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
-        @if ($type == 'image')
-            @component('components.atoms._img')
-                @slot('image', $media)
-                @slot('settings', $imageSettings ?? '')
+<div class="o-gallery o-gallery--mosaic{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
+    @if (!empty($title))
+        <h3 id="{{ Str::slug(html_entity_decode($title)) }}" class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
+    @endif
+    @if (!empty($allLink))
+    <p class="o-gallery__all-link f-buttons">
+        @component('components.atoms._arrow-link')
+            @slot('href', $allLink['href'])
+            {{ $allLink['label'] }}
+        @endcomponent
+    </p>
+    @endif
+    @if (!empty($title) && !empty($caption))
+        <div class="o-gallery__caption">
+            @component('components.atoms._hr')
             @endcomponent
-        @endif
+            @component('components.blocks._text')
+                @slot('font','f-caption')
+                @slot('tag', 'div')
+                {!! $caption !!}
+            @endcomponent
+        </div>
+    @endif
+    <div class="o-gallery__media o-gallery__media--2-col@small o-gallery__media--2-col@medium o-gallery__media--2-col@large o-gallery__media--2-col@xlarge" data-behavior="pinboard">
+        @component('site.shared._mediaitems')
+            @slot('items', $items)
+            @slot('imageSettings', $imageSettings ?? array(
+                'srcset' => array(200,400,600,1000,1500,3000),
+                'sizes' => ImageHelpers::aic_imageSizes(array(
+                    'xsmall' => '58',
+                    'small' => '28',
+                    'medium' => '28',
+                    'large' => '28',
+                    'xlarge' => '21',
+                )),
+            ))
+        @endcomponent
     </div>
-</figure>
-
-@endforeach
+    @if (!empty($allLink))
+    <p class="o-gallery__all-link-btn">
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--contrast')
+            @slot('tag', 'a')
+            @slot('href', $allLink['href'])
+            {{ $allLink['label'] }}
+        @endcomponent
+    </p>
+    @endif
+</div>
