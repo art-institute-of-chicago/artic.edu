@@ -15,8 +15,3 @@
     'maxlength' => 40,
 ])
 
-@formField('checkbox', [
-    'name' => 'is_zoomable',
-    'label' => 'Make this image modal zoomable',
-])
-
