@@ -61,7 +61,7 @@
             'artwork', 'hr', 'audio_player', 'tour_stop', 'button', '3d_model',
             'gallery_new', 'vtour_embed',
             'event', 'feature_2x', 'feature_4x', 'list', 'split_block',
-            'grid'
+            'grid', 'layered_image_viewer'
         ])
     ])
 @stop
