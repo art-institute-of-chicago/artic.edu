@@ -22,9 +22,4 @@
     ]
 ])
 
-@formField('checkbox', [
-    'name' => 'disable_image_modals',
-    'label' => 'Disable modals for these images',
-])
-
 @formField('repeater', ['type' => 'layered_image_viewer_img'])
