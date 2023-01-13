@@ -1,5 +1,4 @@
 @php
-
     $type = isset($item['type']) ? $item['type'] : 'image';
     $size = isset($item['size']) ? $item['size'] : 's';
     $media = $item['media'];
