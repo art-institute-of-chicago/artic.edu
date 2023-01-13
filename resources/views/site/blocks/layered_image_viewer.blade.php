@@ -20,7 +20,7 @@
 @endphp
 
 @if (count($items) > 0)
-    @component('components.organisms._o-layered-viewer')
+    @component('components.organisms._o-layered-image-viewer')
         @slot('variation', 'o-blocks__block')
         @slot('items', $items)
         @slot('imageSettings', $imageSettings ?? array(
