@@ -229,6 +229,6 @@ return [
         'mirador_embed',
         'mirador_modal',
         'vtour_embed',
-        'layered_image_viewer'
+        'layered_viewer'
     ]
 ];

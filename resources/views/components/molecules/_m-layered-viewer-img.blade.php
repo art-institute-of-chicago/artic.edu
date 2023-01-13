@@ -13,10 +13,10 @@
             );
 
             $currentImageSettings['srcset'] = ImageHelpers::aic_getSrcsetForImage($item['media'], $item['isPublicDomain'] ?? false);
-            
+
         @endphp
 
-        @component('components.atoms._layered-image-viewer-img')
+        @component('components.atoms._layered-viewer-img')
             @slot('item', $item)
             @slot('imageSettings', $currentImageSettings ?? '')
         @endcomponent
