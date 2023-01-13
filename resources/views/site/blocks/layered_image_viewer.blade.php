@@ -7,6 +7,7 @@
             'size' => $block->input('size'),
             'fullscreen' => $block->input('disable_image_modals') ? false : true,
             'media' => $item->imageAsArray('image', 'desktop'),
+            'label' => $item->input('label'),
         ];
 
         if (($block->input('is_gallery_zoomable') ?? false) || $item->input('is_zoomable')) {

@@ -81,6 +81,11 @@
                     @endcomponent
                 @endif
             </div>
+            <figcaption>
+                @if (isset($item['label']))
+                    <div class="f-caption">{!! $item['label'] !!}</div>
+                @endif
+            </figcaption>
         </figure>
     @endforeach
 @endif
