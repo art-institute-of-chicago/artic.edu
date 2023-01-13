@@ -40,11 +40,11 @@
         $imageSettings = array(
             'srcset' => $defaultSrcset,
             'sizes' => ImageHelpers::aic_imageSizes(array(
-                    'xsmall' => '58',
-                    'small' => '58',
-                    'medium' => '38',
-                    'large' => '28',
-                    'xlarge' => '28',
+                  'xsmall' => '58',
+                  'small' => '58',
+                  'medium' => '38',
+                  'large' => '28',
+                  'xlarge' => '28',
         )));
     }
 
@@ -52,11 +52,11 @@
         $imageSettings = array(
             'srcset' => $defaultSrcset,
             'sizes' => ImageHelpers::aic_imageSizes(array(
-                    'xsmall' => '58',
-                    'small' => '58',
-                    'medium' => '58',
-                    'large' => '43',
-                    'xlarge' => '43',
+                  'xsmall' => '58',
+                  'small' => '58',
+                  'medium' => '58',
+                  'large' => '43',
+                  'xlarge' => '43',
         )));
     }
 
@@ -64,11 +64,11 @@
         $imageSettings = array(
             'srcset' => $defaultSrcset,
             'sizes' => ImageHelpers::aic_imageSizes(array(
-                    'xsmall' => '58',
-                    'small' => '58',
-                    'medium' => '58',
-                    'large' => '58',
-                    'xlarge' => '58',
+                  'xsmall' => '58',
+                  'small' => '58',
+                  'medium' => '58',
+                  'large' => '58',
+                  'xlarge' => '58',
         )));
     }
 
@@ -90,25 +90,25 @@
 
     $mediaBehavior = false;
     if ($fullscreen and $type !== 'embed') {
-        $mediaBehavior = 'openImageFullScreen';
+      $mediaBehavior = 'openImageFullScreen';
     }
     if ($fullscreen and $type == 'module3d') {
-        $mediaBehavior = 'triggerMediaModal';
+      $mediaBehavior = 'triggerMediaModal';
     }
     if ($type == 'module360') {
-        $mediaBehavior = 'triggerMediaModal';
+      $mediaBehavior = 'triggerMediaModal';
     }
     if ($type == 'moduleMirador') {
-        $mediaBehavior = 'triggerMediaModal';
+      $mediaBehavior = 'triggerMediaModal';
     }
     if ($fullscreen and $type == 'embed') {
-        $mediaBehavior = 'triggerMediaModal';
+      $mediaBehavior = 'triggerMediaModal';
     }
     if (!$fullscreen and $type == 'embed') {
-        $mediaBehavior = 'triggerMediaInline';
+      $mediaBehavior = 'triggerMediaInline';
     }
     if (!$fullscreen and $type == 'virtualtour') {
-        $mediaBehavior = 'triggerMediaInline';
+      $mediaBehavior = 'triggerMediaInline';
     }
 
     if ($item['showUrl'] ?? false) {
@@ -279,18 +279,18 @@
 
         @if ($type == 'module360')
         <textarea style="display: none;">@component('components.molecules._m-viewer-360')
-                @slot('type', 'modal')
-                @slot('title', $media['title'] ? $media['title'].' - Modal 360' : 'Modal 360')
-            @endcomponent</textarea>
+            @slot('type', 'modal')
+            @slot('title', $media['title'] ? $media['title'].' - Modal 360' : 'Modal 360')
+          @endcomponent</textarea>
         @endif
 
         @if ($type == 'moduleMirador')
         <textarea style="display: none;">@component('components.molecules._m-viewer-mirador')
-                @slot('type', 'modal')
-                @slot('title', $media['title'] ? $media['title'].' - Modal Mirador' : 'Modal Mirador')
-                @slot('manifest', $manifest)
-                @slot('defaultView', $default_view)
-            @endcomponent</textarea>
+            @slot('type', 'modal')
+            @slot('title', $media['title'] ? $media['title'].' - Modal Mirador' : 'Modal Mirador')
+            @slot('manifest', $manifest)
+            @slot('defaultView', $default_view)
+          @endcomponent</textarea>
         @endif
 
     </div>
