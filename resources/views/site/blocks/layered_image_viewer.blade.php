@@ -6,29 +6,21 @@
     $annotations = [];
 
     foreach ($block->childs as $child) {
-        if ($child['type'] == 'layered_image_viewer_img') {
-            $mediaImage = [
-                'type' => 'image',
-                'size' => $block->input('size'),
-                'media' => $child->imageAsArray('image', 'desktop'),
-                'label' => $child->input('label'),
-            ];
+        $mediaItem = [
+            'type' => 'image',
+            'size' => $block->input('size'),
+            'media' => $child->imageAsArray('image', 'desktop'),
+            'label' => $child->input('label'),
+        ];
 
-            $images[] = $mediaImage;
+        if ($child['type'] == 'layered_image_viewer_img') {
+            $images[] = $mediaItem;
         }
 
         if ($child['type'] == 'layered_image_viewer_annotation') {
-            $mediaAnnotation = [
-                'type' => 'image',
-                'size' => $block->input('size'),
-                'media' => $child->imageAsArray('image', 'desktop'),
-                'label' => $child->input('label'),
-            ];
-
-            $annotations[] = $mediaAnnotation;
+            $annotations[] = $mediaItem;
         }
     }
-
 @endphp
 
 @if (count($images) > 0)
