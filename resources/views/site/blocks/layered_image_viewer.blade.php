@@ -21,6 +21,7 @@
         @slot('variation', 'o-blocks__block')
         @slot('captionTitle', $captionTitle)
         @slot('caption', $caption)
+        @slot('items', $items)
         @slot('imageSettings', $imageSettings ?? array(
                 'srcset' => array(200,400,600,1000,1500,3000),
                 'sizes' => ImageHelpers::aic_imageSizes(array(
