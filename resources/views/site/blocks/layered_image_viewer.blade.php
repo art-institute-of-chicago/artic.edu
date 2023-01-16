@@ -23,7 +23,7 @@
     }
 @endphp
 
-@if (count($images) > 0)
+@if (count($images) > 0 || count($annotations) > 0)
     @component('components.organisms._o-layered-image-viewer')
         @slot('variation', 'o-blocks__block')
         @slot('captionTitle', $captionTitle)
