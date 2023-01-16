@@ -5,14 +5,14 @@
 
 
 @formField('medias', [
-    'name' => 'annotation',
-    'label' => 'Annotation',
+    'name' => 'image',
+    'label' => 'Image',
     'max' => 1
 ])
 
 @formField('input', [
     'name' => 'label',
     'label' => 'Label',
-    'note' => 'Displayed at bottom of image',
+    'note' => 'Displayed at bottom of annotation',
     'maxlength' => 40,
 ])
