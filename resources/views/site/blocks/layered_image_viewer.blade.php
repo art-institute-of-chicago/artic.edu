@@ -2,26 +2,26 @@
     $captionTitle = $block->present()->input('caption_title');
     $caption = $block->present()->input('caption');
 
-    $items = [];
+    $images = [];
 
-    foreach ($block->childs as $item) {
+    foreach ($block->childs as $image) {
         $mediaItem = [
             'type' => 'image',
             'size' => $block->input('size'),
-            'media' => $item->imageAsArray('image', 'desktop'),
-            'label' => $item->input('label'),
+            'media' => $image->imageAsArray('image', 'desktop'),
+            'label' => $image->input('label'),
         ];
 
-        $items[] = $mediaItem;
+        $images[] = $mediaItem;
     }
 @endphp
 
-@if (count($items) > 0)
+@if (count($images) > 0)
     @component('components.organisms._o-layered-image-viewer')
         @slot('variation', 'o-blocks__block')
         @slot('captionTitle', $captionTitle)
         @slot('caption', $caption)
-        @slot('items', $items)
+        @slot('images', $images)
         @slot('imageSettings', $imageSettings ?? array(
                 'srcset' => array(200,400,600,1000,1500,3000),
                 'sizes' => ImageHelpers::aic_imageSizes(array(
