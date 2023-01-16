@@ -5,14 +5,27 @@
     $images = [];
 
     foreach ($block->childs as $image) {
-        $mediaItem = [
+        $mediaImage = [
             'type' => 'image',
             'size' => $block->input('size'),
             'media' => $image->imageAsArray('image', 'desktop'),
             'label' => $image->input('label'),
         ];
 
-        $images[] = $mediaItem;
+        $images[] = $mediaImage;
+    }
+
+    $annotations = [];
+
+    foreach ($block->childs as $annotation['annotation']) {
+        $mediaAnnotation = [
+            'type' => 'image',
+            'size' => $block->input('size'),
+            'media' => $annotation['annotation']->imageAsArray('image', 'desktop'),
+            'label' => $annotation['annotation']->input('label'),
+        ];
+
+        $annotations[] = $mediaAnnotation;
     }
 @endphp
 
@@ -22,6 +35,7 @@
         @slot('captionTitle', $captionTitle)
         @slot('caption', $caption)
         @slot('images', $images)
+        @slot('annotations', $annotations)
         @slot('imageSettings', $imageSettings ?? array(
                 'srcset' => array(200,400,600,1000,1500,3000),
                 'sizes' => ImageHelpers::aic_imageSizes(array(

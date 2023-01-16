@@ -1,5 +1,7 @@
 @twillRepeaterTitle('Annotation')
 @twillRepeaterTrigger('Add annotation')
+@twillRepeaterComponent('a17-block-layered_image_viewer_annotation')
+@twillRepeaterMax('10')
 
 
 @formField('medias', [
