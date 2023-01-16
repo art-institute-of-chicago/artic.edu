@@ -1,9 +1,9 @@
-@if (isset($items) && !empty($items))
-    @foreach ($items as $item)
+@if (isset($images) && !empty($images))
+    @foreach ($images as $image)
         @php
-            $type = isset($item['type']) ? $item['type'] : 'image';
-            $size = isset($item['size']) ? $item['size'] : 's';
-            $media = $item['media'];
+            $type = isset($image['type']) ? $image['type'] : 'image';
+            $size = isset($image['size']) ? $image['size'] : 's';
+            $media = $image['media'];
 
             $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
 
@@ -56,8 +56,8 @@
                 @endif
             </div>
             <figcaption>
-                @if (isset($item['label']))
-                    <div class="f-caption">{!! $item['label'] !!}</div>
+                @if (isset($image['label']))
+                    <div class="f-caption">{!! $image['label'] !!}</div>
                 @endif
             </figcaption>
         </figure>
@@ -67,7 +67,7 @@
 <div>
     @if (isset($captionTitle))
         <div class="{{ isset($caption) ? 'f-caption-title' : 'f-caption' }}"><div>
-            @if(isset($item['urlTitle']) && $item['urlTitle'])
+            @if(isset($image['urlTitle']) && $image['urlTitle'])
                 <a href="">{!! $captionTitle !!}</a>
             @else
                 {!! $captionTitle !!}
