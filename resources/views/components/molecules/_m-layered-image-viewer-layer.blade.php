@@ -53,9 +53,9 @@
             @endcomponent
         @endif
     </div>
-    <figcaption>
-        @if (isset($item['label']))
+    @if (isset($item['label']))
+        <figcaption>
             <div class="f-caption">{!! $item['label'] !!}</div>
-        @endif
-    </figcaption>
+        </figcaption>
+    @endif
 </figure>
