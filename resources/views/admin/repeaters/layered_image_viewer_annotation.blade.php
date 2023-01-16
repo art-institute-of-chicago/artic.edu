@@ -5,7 +5,7 @@
 
 
 @formField('medias', [
-    'name' => 'annotation',
+    'name' => 'image',
     'label' => 'Annotation',
     'max' => 1
 ])
