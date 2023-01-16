@@ -1,0 +1,11 @@
+.o-layered-image-viewer {
+  width: 600px;
+  height: 600px;
+}
+
+.js {
+  .o-layered-image-viewer__images,
+  .o-layered-image-viewer__annotations {
+    display: none;
+  }
+}
