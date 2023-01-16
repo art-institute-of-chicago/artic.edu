@@ -24,6 +24,7 @@ module.exports = function(gulp, data, util, taskName) {
           mirador: scriptsPath + 'mirador.js',
           virtualTour: scriptsPath + 'virtualTour.js',
           blocks3D: scriptsPath + 'blocks3D.js',
+          layeredImageViewer: scriptsPath + 'layeredImageViewer.js',
           collectionSearch: scriptsPath + 'collectionSearch.js',
           videojs: scriptsPath + 'videojs.js',
           recaptcha: scriptsPath + 'recaptcha.js',
