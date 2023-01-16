@@ -1,6 +1,6 @@
 @php
     $type = isset($item['type']) ? $item['type'] : 'image';
-    $size = isset($item['size']) ? $item['size'] : 's';
+    $size = isset($item['size']) ? $item['size'] : 'm';
     $media = $item['media'];
 
     $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
