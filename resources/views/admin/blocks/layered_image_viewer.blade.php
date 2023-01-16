@@ -22,7 +22,4 @@
     ]
 ])
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Image'
-])
+@formField('repeater', ['type' => 'layered_image_viewer_img'])
