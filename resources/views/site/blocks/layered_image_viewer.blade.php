@@ -3,30 +3,32 @@
     $caption = $block->present()->input('caption');
 
     $images = [];
-
-    foreach ($block->childs as $image) {
-        $mediaImage = [
-            'type' => 'image',
-            'size' => $block->input('size'),
-            'media' => $image->imageAsArray('image', 'desktop'),
-            'label' => $image->input('label'),
-        ];
-
-        $images[] = $mediaImage;
-    }
-
     $annotations = [];
 
-    foreach ($block->childs as $annotation) {
-        $mediaAnnotation = [
-            'type' => 'image',
-            'size' => $block->input('size'),
-            'media' => $annotation->imageAsArray('image', 'desktop'),
-            'label' => $annotation->input('label'),
-        ];
+    foreach ($block->childs as $child) {
+        if ($child['type'] == 'layered_image_viewer_img') {
+            $mediaImage = [
+                'type' => 'image',
+                'size' => $block->input('size'),
+                'media' => $child->imageAsArray('image', 'desktop'),
+                'label' => $child->input('label'),
+            ];
 
-        $annotations[] = $mediaAnnotation;
+            $images[] = $mediaImage;
+        }
+
+        if ($child['type'] == 'layered_image_viewer_annotation') {
+            $mediaAnnotation = [
+                'type' => 'image',
+                'size' => $block->input('size'),
+                'media' => $child->imageAsArray('image', 'desktop'),
+                'label' => $child->input('label'),
+            ];
+
+            $annotations[] = $mediaAnnotation;
+        }
     }
+
 @endphp
 
 @if (count($images) > 0)
