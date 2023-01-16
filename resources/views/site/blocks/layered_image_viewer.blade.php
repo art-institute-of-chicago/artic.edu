@@ -1,4 +1,7 @@
 @php
+    $captionTitle = $block->present()->input('caption_title');
+    $caption = $block->present()->input('caption');
+
     $items = [];
 
     foreach ($block->childs as $item) {
@@ -16,7 +19,8 @@
 @if (count($items) > 0)
     @component('components.organisms._o-layered-image-viewer')
         @slot('variation', 'o-blocks__block')
-        @slot('items', $items)
+        @slot('captionTitle', $captionTitle)
+        @slot('caption', $caption)
         @slot('imageSettings', $imageSettings ?? array(
                 'srcset' => array(200,400,600,1000,1500,3000),
                 'sizes' => ImageHelpers::aic_imageSizes(array(
