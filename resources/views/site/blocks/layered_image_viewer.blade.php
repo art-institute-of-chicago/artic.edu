@@ -15,17 +15,15 @@
             ];
 
             $images[] = $mediaImage;
-        }
-
-        if ($child['type'] == 'layered_image_viewer_annotation') {
-            $mediaAnnotation = [
+        } else {
+            $mediaImage = [
                 'type' => 'image',
                 'size' => $block->input('size'),
                 'media' => $child->imageAsArray('image', 'desktop'),
                 'label' => $child->input('label'),
             ];
 
-            $annotations[] = $mediaAnnotation;
+            $annotations[] = $mediaImage;
         }
     }
 
