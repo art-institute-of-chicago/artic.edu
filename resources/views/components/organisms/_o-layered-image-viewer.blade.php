@@ -64,4 +64,20 @@
     @endforeach
 @endif
 
+<!-- figcaption should be inside figure, but that doesn't translate to repeater fields...  -->
+<figcaption>
+    @if (isset($captionTitle))
+        <div class="{{ isset($caption) ? 'f-caption-title' : 'f-caption' }}"><div>
+            @if(isset($item['urlTitle']) && $item['urlTitle'])
+                <a href="">{!! $captionTitle !!}</a>
+            @else
+                {!! $captionTitle !!}
+            @endif
+        </div></div> <br>
+    @endif
+    @if (isset($caption))
+        <div class="f-caption">{!! $caption !!}</div>
+    @endif
+</figcaption>
+
 
