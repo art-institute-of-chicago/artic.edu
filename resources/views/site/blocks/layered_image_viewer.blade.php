@@ -17,12 +17,12 @@
 
     $annotations = [];
 
-    foreach ($block->childs as $annotation['annotation']) {
+    foreach ($block->childs as $annotation) {
         $mediaAnnotation = [
             'type' => 'image',
             'size' => $block->input('size'),
-            'media' => $annotation['annotation']->imageAsArray('image', 'desktop'),
-            'label' => $annotation['annotation']->input('label'),
+            'media' => $annotation->imageAsArray('image', 'desktop'),
+            'label' => $annotation->input('label'),
         ];
 
         $annotations[] = $mediaAnnotation;
