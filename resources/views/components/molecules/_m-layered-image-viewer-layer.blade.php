@@ -65,7 +65,6 @@
             @slot('download', true)
             @slot('ariaLabel','Download image')
         @endcomponent
-
     </div>
     @if (isset($item['label']))
         <figcaption>
