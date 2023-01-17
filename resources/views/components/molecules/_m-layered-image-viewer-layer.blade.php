@@ -44,11 +44,8 @@
     global $_allowAdvancedModalFeatures;
 @endphp
 
-<figure data-type="{{ $type }}" data-title="{{ $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}" class="m-media m-media--{{ $size }} m-media--contain">
+<figure data-type="{{ $type }}" data-title="{{ $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}" class="m-media m-media--{{ $size }}">
     <div class="m-media__img" data-behavior="fitText" {!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
-        @if ($size === 'm' || $size === 'l')
-            <div class="m-media__contain--spacer" style="padding-bottom: {{ min(62.5, intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100) }}%"></div>
-        @endif
         @if ($type == 'image')
             @component('components.atoms._img')
                 @slot('image', $media)
