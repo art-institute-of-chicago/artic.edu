@@ -1,6 +1,6 @@
 .o-layered-image-viewer {
-  width: 600px;
-  height: 600px;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .js {
@@ -8,4 +8,40 @@
   .o-layered-image-viewer__annotations {
     display: none;
   }
+}
+
+.o-layered-image-viewer__placeholder {
+  display: flex;
+  justify-content: center;
+  background-color: lightgray;
+
+  img {
+    display: block;
+    object-fit: contain;
+    max-height: 100vh;
+    width: 100%;
+  }
+}
+
+.o-layered-image-viewer__launch {
+  appearance: none;
+  display: block;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.o-layered-image-viewer__osd-mount {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  opacity: 0;
 }
