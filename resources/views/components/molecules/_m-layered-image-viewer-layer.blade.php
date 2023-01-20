@@ -65,6 +65,17 @@
             @slot('download', true)
             @slot('ariaLabel','Download image')
         @endcomponent
+
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--septenary btn--icon btn--icon-circle-48 m-media__btn-download')
+            @slot('font', '')
+            @slot('icon', 'icon--download--24')
+            @slot('tag', 'a')
+            @slot('href', $media['src'])
+            @slot('download', true)
+            @slot('ariaLabel','Download image')
+        @endcomponent
+
     </div>
     @if (isset($item['label']))
         <figcaption>
