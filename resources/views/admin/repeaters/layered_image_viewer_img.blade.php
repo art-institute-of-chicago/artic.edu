@@ -1,5 +1,7 @@
 @twillRepeaterTitle('Image')
 @twillRepeaterTrigger('Add image')
+@twillRepeaterComponent('a17-block-layered_image_viewer_img')
+@twillRepeaterMax('10')
 
 
 @formField('medias', [
