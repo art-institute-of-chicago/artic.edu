@@ -45,3 +45,12 @@
   z-index: 99999;
   opacity: 0;
 }
+
+.layered-image-viewer-details {
+  background-color: #fff;
+
+  summary {
+    padding: 4px;
+    cursor: pointer;
+  }
+}
