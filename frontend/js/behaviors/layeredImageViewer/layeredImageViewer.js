@@ -435,8 +435,16 @@ class LayeredImageViewer {
     // 2. Add an overlay. This works with imgs/svgs/html
     // There's also OpenSeadragon svgOverlay plugin, which from what I can tell
     // seems to be if you're working with arbitrary SVG code and not really suited to our files.
+
+    // Clone our annotation, otherwise OSD seems to want to move it
+    // (which makes destruction cleanup hard)
+    const cloneEl = this.annotations.element
+      .querySelector(`#layered-image-viewer-${this.id}-annotations-${index}`)
+      .cloneNode();
+    cloneEl.id = `layered-image-viewer-${this.id}-annotations-${index}-clone`;
+
     this.viewer.addOverlay({
-      id: `layered-image-viewer-${this.id}-annotations-${index}`,
+      element: cloneEl,
       location: new OpenSeadragon.Point(0, 0),
       width: 1, // (viewport unit)
       index: index,
@@ -453,7 +461,7 @@ class LayeredImageViewer {
     if (!this.annotations.items[index]) return;
 
     this.viewer.removeOverlay(
-      `layered-image-viewer-${this.id}-annotations-${index}`
+      `layered-image-viewer-${this.id}-annotations-${index}-clone`
     );
   }
 }
