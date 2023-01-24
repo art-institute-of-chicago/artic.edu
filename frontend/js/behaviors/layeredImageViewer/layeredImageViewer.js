@@ -49,28 +49,25 @@ class LayeredImageViewer {
   _processImages(type, imgEls) {
     if (!imgEls.length) return;
 
-    // Store url, alt and title
+    // Store state required for each type
     imgEls.forEach((imgEl, i) => {
-      const url = imgEl.src;
-      let alt = imgEl.alt;
-      let label = 'Unknown';
       const figureEl = imgEl.closest('figure');
+      const itemState = {};
+      itemState.url = imgEl.src;
+      itemState.alt = imgEl.alt;
+      itemState.label = 'Unknown';
 
       // Handle either figcaption or title
       if (imgEl.title) {
-        label = imgEl.title;
+        itemState.label = imgEl.title;
       } else if (figureEl && figureEl.querySelector('figcaption')) {
-        label = figureEl.querySelector('figcaption').innerText;
+        itemState.label = figureEl.querySelector('figcaption').innerText.trim();
       }
 
       // Add ID for internal reference
       imgEl.id = `layered-image-viewer-${this.id}-${type}-${i}`;
 
-      this[type].items = this[type].items.concat({
-        url,
-        alt,
-        label,
-      });
+      this[type].items = this[type].items.concat(itemState);
     });
   }
 
