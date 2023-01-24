@@ -54,16 +54,13 @@ class LayeredImageViewer {
       const url = imgEl.src;
       let alt = imgEl.alt;
       let label = 'Unknown';
-      const nextSiblingEl = imgEl.nextElementSibling;
+      const figureEl = imgEl.closest('figure');
 
       // Handle either figcaption or title
       if (imgEl.title) {
         label = imgEl.title;
-      } else if (
-        nextSiblingEl &&
-        nextSiblingEl.tagName.toLowerCase() === 'figcaption'
-      ) {
-        label = nextSiblingEl.innerText;
+      } else if (figureEl && figureEl.querySelector('figcaption')) {
+        label = figureEl.querySelector('figcaption').innerText;
       }
 
       // Add ID for internal reference
@@ -264,7 +261,7 @@ class LayeredImageViewer {
       // described-by also allows multiple ID's
       this.viewer.canvas.setAttribute(
         'aria-describedby',
-        `layered-image-viewer-${this.id}-image-0`
+        `layered-image-viewer-${this.id}-images-0`
       );
     });
   }
@@ -368,6 +365,93 @@ class LayeredImageViewer {
     this.toolbar.buttons.reset.addEventListener('click', () => {
       this.viewer.viewport.goHome();
     });
+
+    // Control panel for annotations if present
+    this._addAnnotationMenu();
+  }
+
+  /**
+   * Add a menu for toggling annotations
+   * @private
+   * @method
+   */
+  _addAnnotationMenu() {
+    if (!this.annotations.items.length) return;
+
+    // Create template markup
+    const detailsTemplate = document.createElement('template');
+    detailsTemplate.innerHTML = `
+      <details class="layered-image-viewer-details">
+        <summary>Annotations</summary>
+        <div class="layered-image-viewer-details__menu"></div>
+      </details>`;
+    const detailsEl = detailsTemplate.content.firstElementChild;
+    const panelEl = detailsEl.lastElementChild;
+
+    // Build up markup for the annotations panel
+    // Each item becoming a checkbox / label combo
+    const fieldTemplate = document.createElement('template');
+    this.annotations.items.forEach((item, i) => {
+      fieldTemplate.innerHTML = `
+        <div class="layered-image-viewer-details__option">
+          <input id="layered-image-viewer-${this.id}-annotation-cb-${i}" type="checkbox" data-index="${i}" />
+          <label for="layered-image-viewer-${this.id}-annotation-cb-${i}">${item.label}</label>
+        </div>
+        `;
+
+      const rowEl = fieldTemplate.content.firstElementChild;
+
+      // Attach toggle handling
+      rowEl.firstElementChild.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          // Turn overlay on
+          this.activateAnnotation(e.target.dataset.index);
+        } else {
+          this.deactivateAnnotation(e.target.dataset.index);
+        }
+      });
+      // Add completed row to panel
+      panelEl.appendChild(rowEl);
+    });
+
+    // Add menu to toolbar
+    this.toolbar.element.appendChild(detailsEl);
+  }
+
+  /**
+   * Activate an annotation by the internally tracked index
+   * @public
+   * @method
+   * @param {Number} index - Index of annotation to activate. Mirrors the order of the initial HTML
+   */
+  activateAnnotation(index) {
+    if (!this.annotations.items[index]) return;
+
+    // There's two potential ways of doing this AFAIK
+    // 1. Add an image. This doesn't work well with SVG
+    // 2. Add an overlay. This works with imgs/svgs/html
+    // There's also OpenSeadragon svgOverlay plugin, which from what I can tell
+    // seems to be if you're working with arbitrary SVG code and not really suited to our files.
+    this.viewer.addOverlay({
+      id: `layered-image-viewer-${this.id}-annotations-${index}`,
+      location: new OpenSeadragon.Point(0, 0),
+      width: 1, // (viewport unit)
+      index: index,
+    });
+  }
+
+  /**
+   * Deactivate an annotation by the internally tracked index
+   * @public
+   * @method
+   * @param {Number} index - Index of annotation to activate. Mirrors the order of the initial HTML
+   */
+  deactivateAnnotation(index) {
+    if (!this.annotations.items[index]) return;
+
+    this.viewer.removeOverlay(
+      `layered-image-viewer-${this.id}-annotations-${index}`
+    );
   }
 }
 
