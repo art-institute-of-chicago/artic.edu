@@ -1,36 +1,65 @@
-@if (isset($images) && !empty($images))
-    @foreach ($images as $image)
-        @component('components.molecules._m-layered-image-viewer-layer')
-            @slot('item', $image)
-        @endcomponent
-    @endforeach
-@endif
+{{--
+    comment out template code until we have access to uploads
 
-@if (isset($annotations) && !empty($annotations))
-    @foreach ($annotations as $annotation)
-        @component('components.molecules._m-layered-image-viewer-layer')
-            @slot('item', $annotation)
-        @endcomponent
-    @endforeach
-@endif
+    @if (isset($images) && !empty($images))
+        @foreach ($images as $image)
+            @component('components.molecules._m-layered-image-viewer-layer')
+                @slot('item', $image)
+            @endcomponent
+        @endforeach
+    @endif
+
+    @if (isset($annotations) && !empty($annotations))
+        @foreach ($annotations as $annotation)
+            @component('components.molecules._m-layered-image-viewer-layer')
+                @slot('item', $annotation)
+            @endcomponent
+        @endforeach
+    @endif
 
 
-<div>
     @if (isset($captionTitle))
-        <div class="{{ isset($caption) ? 'f-caption-title' : 'f-caption' }}">
-            <div>
-                @if(isset($image['urlTitle']) && $image['urlTitle'])
-                    <a href="">{!! $captionTitle !!}</a>
-                @else
-                    {!! $captionTitle !!}
-                @endif
+        <div>
+            <div class="{{ isset($caption) ? 'f-caption-title' : 'f-caption' }}">
+                <div>
+                    @if(isset($image['urlTitle']) && $image['urlTitle'])
+                        <a href="">{!! $captionTitle !!}</a>
+                    @else
+                        {!! $captionTitle !!}
+                    @endif
+                </div>
             </div>
+            <br>
         </div>
-        <br>
     @endif
     @if (isset($caption))
         <div class="f-caption">{!! $caption !!}</div>
     @endif
+
+
+--}}
+
+{{-- Hard coded viewer --}}
+<div class="o-layered-image-viewer{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="layeredImageViewer">
+    <div class="o-layered-image-viewer__images">
+        <div class="o-layered-image-viewer__image">
+            <figure class="m-media m-media--m m-media--contain">
+                <div class="m-media__img" data-behavior="fitText">
+                    <div class="m-media__contain--spacer" style="padding-bottom: 62.5%"></div>
+                    <img
+                    src="https://res.cloudinary.com/ds4ie2hdu/image/upload/v1673265216/Whistler_1912_141_reg_NRM_adyuz9.jpg"
+                    alt="The scene depicts Whistler's studio. On the left a woman reclines and appears in conversation with a passing Japanese girl holding a fan. To the right is the artist Henri Fantin-Latour looking towards the viewer, holding a palette and brushes in one hand, with a single brush poised in the other."
+                    width="2000"
+                    height="2614"
+                    />
+                </div>
+                <figcaption>
+                    <div class="f-caption">
+                        Normal light
+                    </div>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+    <div class="o-layered-image-viewer__annotations"></div>
 </div>
-
-

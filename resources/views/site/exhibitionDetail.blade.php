@@ -346,6 +346,7 @@
 @endsection
 
 @section('extra_scripts')
+    <script src="{{FrontendHelpers::revAsset('scripts/layeredImageViewer.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/blocks360.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/blocks3D.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/mirador.js')}}"></script>
