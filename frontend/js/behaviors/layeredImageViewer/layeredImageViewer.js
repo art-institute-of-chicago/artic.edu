@@ -184,21 +184,19 @@ class LayeredImageViewer {
    * @method
    */
   _insertPlaceholder() {
-    const placeholderEl = document.createElement('div');
-    const buttonEl = document.createElement('button');
-    const imgEl = document.createElement('img');
-    placeholderEl.classList.add('o-layered-image-viewer__placeholder');
-    buttonEl.classList.add('o-layered-image-viewer__launch');
-    buttonEl.type = 'button';
-    buttonEl.ariaLabel = 'Launch the layered image viewer';
-    buttonEl.id = `layered-image-viewer-${this.id}-launch`;
-    imgEl.src = this.images.items[0].url;
-    imgEl.alt = this.images.items[0].alt;
-    buttonEl.appendChild(imgEl);
-    placeholderEl.appendChild(buttonEl);
+    // Create template HTML
+    const placeholderTemplate = document.createElement('template');
+    placeholderTemplate.innerHTML = `
+      <div class="o-layered-image-viewer__placeholder">
+        <button id="layered-image-viewer-${this.id}-launch" class="o-layered-image-viewer__launch" type="button" aria-label="Launch the layered image viewer">
+          <img src="${this.images.items[0].url}" alt="${this.images.items[0].alt}"/>
+        </button>
+      </div>
+    `;
+    const placeholderEl = placeholderTemplate.content.firstElementChild;
 
     // Clicking placeholder to trigger fullscreen
-    buttonEl.addEventListener('click', () => {
+    placeholderEl.firstElementChild.addEventListener('click', () => {
       this._setFullscreen(true);
     });
 
@@ -214,17 +212,16 @@ class LayeredImageViewer {
   _initViewer() {
     // OSD expects no siblings, by having a mount element
     // the destroy() method will preserve the initial HTML
-    const mountEl = document.createElement('div');
-    this.mountEl = mountEl;
+    this.mountEl = document.createElement('div');
     this.mountEl.classList.add('o-layered-image-viewer__osd-mount');
-    this.element.insertAdjacentElement('beforeend', mountEl);
+    this.element.insertAdjacentElement('beforeend', this.mountEl);
 
     this.mountEl.style.display = 'block';
 
     // Initialise with default buttons / controls removed
     // See: http://openseadragon.github.io/docs/OpenSeadragon.html#.Options
     this.viewer = new OpenSeadragon({
-      element: mountEl,
+      element: this.mountEl,
       crossOriginPolicy: 'Anonymous',
       showSequenceControl: false,
       showHomeControl: false,
@@ -239,7 +236,7 @@ class LayeredImageViewer {
       },
     });
     this.mountEl.style.display = '';
-    mountEl.style.position = 'fixed';
+    this.mountEl.style.position = 'fixed';
 
     // TODO: Remove for production. Useful for debugging
     window.osd = OpenSeadragon;
@@ -329,14 +326,11 @@ class LayeredImageViewer {
     // Add each standard button and register with instance for easy access
     standardControls.forEach((control) => {
       const buttonEl = document.createElement('button');
-      const innerEl = document.createElement('span');
       buttonEl.type = 'button';
       buttonEl.classList.add(
         `o-layered-image-viewer__${LayeredImageViewer.toKebabCase(control)}`
       );
-      innerEl.classList.add('wrap');
-      innerEl.innerText = control;
-      buttonEl.appendChild(innerEl);
+      buttonEl.innerHTML = `<span class="wrap">${control}</span>`;
       this.toolbar.element.appendChild(buttonEl);
       this.toolbar.buttons[LayeredImageViewer.toCamelCase(control)] = buttonEl;
     });
