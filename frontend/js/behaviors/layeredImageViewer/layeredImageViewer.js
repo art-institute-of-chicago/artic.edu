@@ -358,6 +358,14 @@ class LayeredImageViewer {
     // Reset
     this.toolbar.buttons.reset.addEventListener('click', () => {
       this.viewer.viewport.goHome();
+
+      // Deactivate annotations
+      // (Requires events to be dispatched manually to trigger)
+      const changeEvent = new Event('change');
+      this.annotations.items.forEach((annotation) => {
+        annotation.checkboxEl.checked = false;
+        annotation.checkboxEl.dispatchEvent(changeEvent);
+      });
     });
 
     // Control panel for annotations if present
@@ -394,9 +402,10 @@ class LayeredImageViewer {
         `;
 
       const rowEl = fieldTemplate.content.firstElementChild;
+      this.annotations.items[i].checkboxEl = rowEl.firstElementChild;
 
       // Attach toggle handling
-      rowEl.firstElementChild.addEventListener('change', (e) => {
+      this.annotations.items[i].checkboxEl.addEventListener('change', (e) => {
         if (e.target.checked) {
           // Turn overlay on
           this.activateAnnotation(e.target.dataset.index);
