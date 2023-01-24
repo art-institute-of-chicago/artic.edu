@@ -5,7 +5,7 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
  * @class
  * @param {HTMLElement} viewerEl - The element to initialise the viewer into. Contains HTML used for priming the initial state.
  */
- class LayeredImageViewer {
+class LayeredImageViewer {
   constructor(viewerEl) {
     // Check for presence of OSD before proceeding
     if (typeof OpenSeadragon !== 'function') {
@@ -19,7 +19,12 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
       typeof document.fullscreenElement !== 'undefined';
 
     this.id = 0;
-    this.images = [];
+    this.images = {
+      items: [],
+    };
+    this.annotations = {
+      items: [],
+    };
     this.toolbar = {
       buttons: {},
     };
@@ -35,25 +40,23 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
   }
 
   /**
-   * Skim data from the HTML included in the viewerEl and store it on this instance.
-   * @public
+   * Process and store all types of image data in the same way
+   * @private
    * @method
+   * @param {String} type - The label to identify and store data
+   * @param {NodeList} imgEls - The list of items (imgs) to process
    */
-  setInitialState() {
-    const imagesContainerEl = this.element.querySelector(
-      '.o-layered-image-viewer__images'
-    );
-    const imgEls = imagesContainerEl.querySelectorAll('img');
+  _processImages(type, imgEls) {
+    if (!imgEls.length) return;
 
-    // Zero indexed ID inferred from other instances in document
-    this.id = document.querySelectorAll('.o-layered-image-viewer').length - 1;
-
-    // Process each image
+    // Store url, alt and title
     imgEls.forEach((imgEl, i) => {
       const url = imgEl.src;
       let alt = imgEl.alt;
       let label = 'Unknown';
       const nextSiblingEl = imgEl.nextElementSibling;
+
+      // Handle either figcaption or title
       if (imgEl.title) {
         label = imgEl.title;
       } else if (
@@ -64,14 +67,41 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
       }
 
       // Add ID for internal reference
-      imgEl.id = `layered-image-viewer-${this.id}-${i}`;
+      imgEl.id = `layered-image-viewer-${this.id}-${type}-${i}`;
 
-      this.images = this.images.concat({
+      this[type].items = this[type].items.concat({
         url,
         alt,
         label,
       });
     });
+  }
+
+  /**
+   * Skim data from the HTML included in the viewerEl and store it on this instance.
+   * @public
+   * @method
+   */
+  setInitialState() {
+    // Zero indexed ID of the viewer inferred from other instances in document
+    this.id = document.querySelectorAll('.o-layered-image-viewer').length - 1;
+
+    // Store ref to containers container
+    this.images.element = this.element.querySelector(
+      '.o-layered-image-viewer__images'
+    );
+    this.annotations.element = this.element.querySelector(
+      '.o-layered-image-viewer__annotations'
+    );
+
+    // Process each image
+    this._processImages('images', this.images.element.querySelectorAll('img'));
+
+    // Process each annotation
+    this._processImages(
+      'annotations',
+      this.annotations.element.querySelectorAll('img')
+    );
   }
 
   /**
@@ -165,8 +195,8 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
     buttonEl.type = 'button';
     buttonEl.ariaLabel = 'Launch the layered image viewer';
     buttonEl.id = `layered-image-viewer-${this.id}-launch`;
-    imgEl.src = this.images[0].url;
-    imgEl.alt = this.images[0].alt;
+    imgEl.src = this.images.items[0].url;
+    imgEl.alt = this.images.items[0].alt;
     buttonEl.appendChild(imgEl);
     placeholderEl.appendChild(buttonEl);
 
@@ -208,11 +238,16 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
       autoHideControls: false,
       tileSources: {
         type: 'image',
-        url: this.images[0].url, // First image from markup by default
+        url: this.images.items[0].url, // First image from markup by default
       },
     });
     this.mountEl.style.display = '';
     mountEl.style.position = 'fixed';
+
+    // TODO: Remove for production. Useful for debugging
+    window.osd = OpenSeadragon;
+    window.liv = this;
+    window.viewer = this.viewer;
 
     this.viewer.addHandler('open', () => {
       this._addControls();
@@ -221,7 +256,7 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
       this.viewer.canvas.role = 'application';
 
       // Use label to describe the intent, and the current state. This will be announced first.
-      this.viewer.canvas.ariaLabel = `Interacive image viewer. Currently showing '${this.images[0].label}' image.`;
+      this.viewer.canvas.ariaLabel = `Interacive image viewer. Currently showing '${this.images.items[0].label}' image.`;
 
       // Description populated by the alt text.
       // This is supplemental and read second to the label (skipped in some cicrumstances)
@@ -229,7 +264,7 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
       // described-by also allows multiple ID's
       this.viewer.canvas.setAttribute(
         'aria-describedby',
-        `layered-image-viewer-${this.id}-0`
+        `layered-image-viewer-${this.id}-image-0`
       );
     });
   }
