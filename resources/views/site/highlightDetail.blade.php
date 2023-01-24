@@ -140,6 +140,7 @@
 @endsection
 
 @section('extra_scripts')
+    <script src="{{FrontendHelpers::revAsset('scripts/layeredImageViewer.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/blocks3D.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/virtualTour.js')}}"></script>
     <script src="/virtual-tours/tour.js"></script>
