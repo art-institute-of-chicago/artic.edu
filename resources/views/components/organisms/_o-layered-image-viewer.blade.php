@@ -61,5 +61,40 @@
             </figure>
         </div>
     </div>
-    <div class="o-layered-image-viewer__annotations"></div>
+    <div class="o-layered-image-viewer__annotations">
+        <div class="o-layered-image-viewer__annotation">
+          <figure class="m-media m-media--m m-media--contain">
+            <div class="m-media__img" data-behavior="fitText">
+              <div
+                class="m-media__contain--spacer"
+                style="padding-bottom: 62.5%"
+              ></div>
+              <img
+                src="https://res.cloudinary.com/ds4ie2hdu/image/upload/v1674586294/Whistler2_1912_141_NRM_anno-9_mfg79z.svg"
+                alt="Alt text for the first image"
+              />
+            </div>
+            <figcaption>
+              <div class="f-caption">Outline of main characters</div>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="o-layered-image-viewer__annotation">
+          <figure class="m-media m-media--m m-media--contain">
+            <div class="m-media__img" data-behavior="fitText">
+              <div
+                class="m-media__contain--spacer"
+                style="padding-bottom: 62.5%"
+              ></div>
+              <img
+                src="https://res.cloudinary.com/ds4ie2hdu/image/upload/v1674586294/Whistler2_1912_141_IRG_anno-2_wuihg2.svg"
+                alt="Alt text for the second image"
+              />
+            </div>
+            <figcaption>
+              <div class="f-caption">Outline of hidden figure painted over</div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
 </div>
