@@ -21,9 +21,11 @@ class LayeredImageViewer {
     this.id = 0;
     this.images = {
       items: [],
+      active: [], // Set() would've been useful here, but is not compatible with transpiler
     };
     this.annotations = {
       items: [],
+      active: [],
     };
     this.toolbar = {
       buttons: {},
@@ -202,6 +204,33 @@ class LayeredImageViewer {
   }
 
   /**
+   * Reach into the current state and set the aria-label for the viewer
+   * @private
+   * @method
+   */
+  _setMainAriaLabel() {
+    // Get label for each active annotation
+    const annotationLabels = this.annotations.active.map((activeIndex) => {
+      return `'${this.annotations.items[activeIndex].label}'`;
+    });
+
+    // Convert labels array into string
+    const annotationsString =
+      LayeredImageViewer.stringifyList(annotationLabels);
+    const wordAnnotation =
+      annotationLabels.length > 1 ? 'annotations' : 'annotation';
+
+    // Use label to describe the intent, and the current state. This will be announced before description.
+    this.viewer.canvas.ariaLabel = `Interacive image viewer. Currently showing '${
+      this.images.items[0].label
+    }' image${
+      annotationLabels.length
+        ? `, overlayed with ${annotationsString} ${wordAnnotation}`
+        : '.'
+    }`;
+  }
+
+  /**
    * Initialise OpenSeadragon
    * @private
    * @method
@@ -246,8 +275,8 @@ class LayeredImageViewer {
       // Set the role to application to enable arrows while using screenreader
       this.viewer.canvas.role = 'application';
 
-      // Use label to describe the intent, and the current state. This will be announced first.
-      this.viewer.canvas.ariaLabel = `Interacive image viewer. Currently showing '${this.images.items[0].label}' image.`;
+      // Set the descriptive text for the viewer
+      this._setMainAriaLabel();
 
       // Description populated by the alt text.
       // This is supplemental and read second to the label (skipped in some cicrumstances)
@@ -288,6 +317,9 @@ class LayeredImageViewer {
 
   /**
    * Transform string into kebab-case
+   * @public
+   * @static
+   * @method
    * @param {String} string - String to transform
    * @returns {String} - Kebab-case string
    */
@@ -297,6 +329,9 @@ class LayeredImageViewer {
 
   /**
    * Transform string into camelCase
+   * @public
+   * @static
+   * @method
    * @param {String} string - String to transform
    * @returns {String} - camelCase string
    */
@@ -304,6 +339,29 @@ class LayeredImageViewer {
     return string
       .toLowerCase()
       .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+  }
+
+  /**
+   * Transform an array of strings into a sentenace-like string
+   * @public
+   * @static
+   * @method
+   * @param {Array} list - List of strings to serialize
+   * @returns {String} - String of joined array items
+   */
+  static stringifyList(list) {
+    let string = '';
+    if (list.length > 1) {
+      if (list.length === 2) {
+        string = list.join(' and ');
+      } else {
+        // With an Oxford comma
+        string = `${list.slice(0, -1).join(', ')}, and ${list.slice(-1)}`;
+      }
+    } else {
+      string = list.toString();
+    }
+    return string;
   }
 
   /**
@@ -381,7 +439,7 @@ class LayeredImageViewer {
     const detailsTemplate = document.createElement('template');
     detailsTemplate.innerHTML = `
       <details class="layered-image-viewer-details">
-        <summary>Annotations</summary>
+        <summary>Show annotations</summary>
         <div class="layered-image-viewer-details__menu"></div>
       </details>`;
     const detailsEl = detailsTemplate.content.firstElementChild;
@@ -405,10 +463,13 @@ class LayeredImageViewer {
       this.annotations.items[i].checkboxEl.addEventListener('change', (e) => {
         if (e.target.checked) {
           // Turn overlay on
-          this.activateAnnotation(e.target.dataset.index);
+          this.activateAnnotation(parseInt(e.target.dataset.index, 10));
         } else {
-          this.deactivateAnnotation(e.target.dataset.index);
+          // Turn overlay off
+          this.deactivateAnnotation(parseInt(e.target.dataset.index, 10));
         }
+        // Update aria label
+        this._setMainAriaLabel();
       });
       // Add completed row to panel
       panelEl.appendChild(rowEl);
@@ -440,6 +501,9 @@ class LayeredImageViewer {
       .cloneNode();
     cloneEl.id = `layered-image-viewer-${this.id}-annotations-${index}-clone`;
 
+    // Add to active list
+    this.annotations.active.push(index);
+
     this.viewer.addOverlay({
       element: cloneEl,
       location: new OpenSeadragon.Point(0, 0),
@@ -456,6 +520,11 @@ class LayeredImageViewer {
    */
   deactivateAnnotation(index) {
     if (!this.annotations.items[index]) return;
+
+    // Remove from active list
+    this.annotations.active = this.annotations.active.filter(
+      (item) => item !== index
+    );
 
     this.viewer.removeOverlay(
       `layered-image-viewer-${this.id}-annotations-${index}-clone`
