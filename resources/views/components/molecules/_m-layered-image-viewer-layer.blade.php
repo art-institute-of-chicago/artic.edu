@@ -2,6 +2,10 @@
     $type = isset($item['type']) ? $item['type'] : 'image';
     $size = isset($item['size']) ? $item['size'] : 'm';
     $media = $item['media'];
+    $width = $item['media']['width'];
+    $height = $item['media']['height'];
+    $crop_x = $item['media']['crop_x'];
+    $crop_y = $item['media']['crop_y'];
 
     $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
 
@@ -43,7 +47,7 @@
 
     global $_allowAdvancedModalFeatures;
 @endphp
-
+<p>{{ $width }}, {{ $height }}, {{ $crop_x }}, {{ $crop_y }}</p>
 <figure data-type="{{ $type }}" data-title="{{ $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}" class="m-media m-media--{{ $size }} m-media--contain">
     <div class="m-media__img" data-behavior="fitText" {!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
         @if ($size === 'm' || $size === 'l')
