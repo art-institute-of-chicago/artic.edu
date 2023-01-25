@@ -264,11 +264,6 @@ class LayeredImageViewer {
     this.mountEl.style.display = '';
     this.mountEl.style.position = 'fixed';
 
-    // TODO: Remove for production. Useful for debugging
-    window.osd = OpenSeadragon;
-    window.liv = this;
-    window.viewer = this.viewer;
-
     this.viewer.addHandler('open', () => {
       this._addControls();
 
