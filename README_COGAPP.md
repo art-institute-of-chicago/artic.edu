@@ -41,7 +41,7 @@ Portions of the website rely heavily on our [API](https://api.artic.edu). Check 
 For local development, you can use [ddev](https://ddev.com/)
 
 * Ensure you have Docker and ddev v1.21.4 or above installed on your machine
-* Copy `.env.example.ddev` as `.env` and overwrite the four S3 settings with the [credentials supplied by AIC](https://tpm.office.cogapp.com/index.php/pwd/view_notes/1038). Update with any local settings (if necessary), but keep the IMGIX and other AWS settings.
+* Copy `.env.example.ddev` as `.env` and overwrite the four `S3_` and `AWS_` settings with the [credentials supplied by AIC](https://tpm.office.cogapp.com/index.php/pwd/view_notes/1038). Update with any local settings (if necessary), but keep the IMGIX and other AWS settings.
 * Run `ddev start`
 * Download the database dump SQL (link provided by AIC)
 * Run `ddev import-db` and follow the prompt to select the file you just downloaded
@@ -57,7 +57,7 @@ Once ddev is set up, then install the website code itself:
 
 * Run `ddev ssh` to ssh into the VM. Then from inside the VM run:
 * `composer install` to install composer dependencies.
-* `php artisan key:generate` to generate your application key.
+* `php artisan key:generate` to generate your application key (it will add it to `.env`)
 * Run `php artisan twill:superadmin` to create a superadmin user.
 * Build all necessary Twill assets: `php artisan twill:build`
 * Access the frontend at https://artic.edu.ddev.site.
