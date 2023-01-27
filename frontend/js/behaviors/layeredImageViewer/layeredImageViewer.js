@@ -14,10 +14,10 @@ class LayeredImageViewer {
       );
     }
     this.element = viewerEl;
-    this.mountEl = null;
+    this.osdMountEl = null;
     this.browerSupportsFullscreen =
       typeof document.fullscreenElement !== 'undefined';
-
+    this.size = 's';
     this.id = 0;
 
     this.captionTitleEl = null;
@@ -128,7 +128,7 @@ class LayeredImageViewer {
 
       // Perform API request if necessary and bind event listeners
       if (this.browerSupportsFullscreen) {
-        this.mountEl.requestFullscreen();
+        this.osdMountEl.requestFullscreen();
 
         document.addEventListener(
           'fullscreenchange',
@@ -220,18 +220,58 @@ class LayeredImageViewer {
    * @method
    */
   _initViewer() {
-    // OSD expects no siblings, by having a mount element
+    // OSD expects no siblings, keep it an orphan
     // the destroy() method will preserve the initial HTML
-    this.mountEl = document.createElement('div');
-    this.mountEl.classList.add('o-layered-image-viewer__osd-mount');
-    this.element.insertAdjacentElement('beforeend', this.mountEl);
 
-    this.mountEl.style.display = 'block';
+    const mediaTemplate = document.createElement('template');
+    let captionMarkup = '';
+
+    // Markup to be inserted if captionTitle / caption exist
+    if (this.captionEl || this.captionTitleEl) {
+      captionMarkup = `<figcaption>`;
+      if (this.captionTitleEl) {
+        captionMarkup += `
+          <div class="f-caption-title">
+            ${this.captionTitleEl.innerHTML}
+          </div>`;
+      }
+      if (this.captionEl) {
+        captionMarkup += `
+          <div class="f-caption">
+            ${this.captionEl.innerHTML}
+          </div>`;
+      }
+      captionMarkup += `</figcaption>`;
+    }
+
+    // Markup to surround viewer with
+    // Modelled around the media molecule
+    mediaTemplate.innerHTML = `
+      <figure class="m-media m-media--${this.size} m-media--contain o-blocks__block">
+        <div class="m-media__img m-media--layered-image-viewer-embed">
+          <div class="o-layered-image-viewer__osd-mount"></div>
+        </div>
+        ${captionMarkup}
+      </figure>
+    `;
+
+    // Insert into class element
+    this.element.insertAdjacentElement(
+      'beforeend',
+      mediaTemplate.content.firstElementChild
+    );
+
+    // Store reference of OSD element
+    this.osdMountEl = this.element.querySelector(
+      '.o-layered-image-viewer__osd-mount'
+    );
+
+    this.osdMountEl.style.display = 'block';
 
     // Initialise with default buttons / controls removed
     // See: http://openseadragon.github.io/docs/OpenSeadragon.html#.Options
     this.viewer = new OpenSeadragon({
-      element: this.mountEl,
+      element: this.osdMountEl,
       crossOriginPolicy: 'Anonymous',
       showSequenceControl: false,
       showHomeControl: false,
@@ -245,7 +285,7 @@ class LayeredImageViewer {
         url: this.images.items[0].url, // First image from markup by default
       },
     });
-    this.mountEl.style.display = '';
+    this.osdMountEl.style.display = '';
 
     this.viewer.addHandler('open', () => {
       this._addControls();
@@ -275,16 +315,16 @@ class LayeredImageViewer {
    * @param {HTMLElement} viewerEl - Element which was used to initialise the viewer to be destroyed
    */
   static destroy(viewerEl) {
-    const mountEl = viewerEl.querySelector(
+    const osdMountEl = viewerEl.querySelector(
       '.o-layered-image-viewer__osd-mount'
     );
     // Add elements we create here to be cleaned up
     const fabricatedElements = [];
 
-    if (mountEl) {
+    if (osdMountEl) {
       // Destroy OSD and remove elements added by this class
-      OpenSeadragon.getViewer(mountEl).destroy();
-      mountEl.remove();
+      OpenSeadragon.getViewer(osdMountEl).destroy();
+      osdMountEl.closest('figure').remove();
       fabricatedElements.forEach((fabricatedElement) => {
         fabricatedElement.remove();
       });
@@ -511,6 +551,7 @@ class LayeredImageViewer {
     );
   }
 }
+
 
 const layeredImageViewer = function(container) {
   this.init = function() {
