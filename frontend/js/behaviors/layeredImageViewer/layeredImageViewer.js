@@ -17,7 +17,7 @@ class LayeredImageViewer {
     this.osdMountEl = null;
     this.browerSupportsFullscreen =
       typeof document.fullscreenElement !== 'undefined';
-    this.size = 's';
+    this.size = 'm';
     this.id = 0;
 
     this.captionTitleEl = null;
@@ -33,7 +33,7 @@ class LayeredImageViewer {
     this.toolbar = {
       buttons: {},
     };
-    this.isFullScreen = false;
+    this.isFullscreen = false;
 
     // Bind to store referenceable event handler with correct context set explictly
     // Could use arrow functions, but transpiler might interfere
@@ -121,10 +121,8 @@ class LayeredImageViewer {
     if (enter) {
       // Enter fullscreen
       // CSS applied when class is added to html element
-      document.documentElement.classList.add(
-        's-layered-image-viewer-active',
-        's-body-locked'
-      );
+      document.documentElement.classList.add('s-layered-image-viewer-active');
+      this.isFullscreen = true;
 
       // Perform API request if necessary and bind event listeners
       if (this.browerSupportsFullscreen) {
@@ -141,9 +139,9 @@ class LayeredImageViewer {
       // Exit fullscreen
       // Hide viewer by removing class
       document.documentElement.classList.remove(
-        's-layered-image-viewer-active',
-        's-body-locked'
+        's-layered-image-viewer-active'
       );
+      this.isFullscreen = false;
 
       // Remove event listeners
       if (this.browerSupportsFullscreen) {
@@ -287,6 +285,11 @@ class LayeredImageViewer {
     });
     this.osdMountEl.style.display = '';
 
+    // TODO: Remove for production. Useful for debugging
+    window.osd = OpenSeadragon;
+    window.liv = this;
+    window.viewer = this.viewer;
+
     this.viewer.addHandler('open', () => {
       this._addControls();
 
@@ -391,7 +394,7 @@ class LayeredImageViewer {
     // (without really interacting with the OSD API)
     // N.B. Deliberate decision against role=toolbar for now, there is potentially complex behviour to handle if we apply that role
     // More info: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/toolbar_role
-    const standardControls = ['Zoom in', 'Zoom out', 'Reset', 'Fullscreen'];
+    const standardControls = ['Fullscreen', 'Zoom in', 'Zoom out', 'Reset'];
     this.toolbar.element = document.createElement('div');
 
     // Add each standard button and register with instance for easy access
@@ -402,6 +405,12 @@ class LayeredImageViewer {
         `o-layered-image-viewer__${LayeredImageViewer.toKebabCase(control)}`
       );
       buttonEl.innerHTML = `<span class="wrap">${control}</span>`;
+
+      // This seems to be announced anyway, but should probably be live
+      if (control === 'Fullscreen') {
+        buttonEl.ariaLive = 'polite';
+      }
+
       this.toolbar.element.appendChild(buttonEl);
       this.toolbar.buttons[LayeredImageViewer.toCamelCase(control)] = buttonEl;
     });
@@ -435,11 +444,13 @@ class LayeredImageViewer {
     });
 
     // Fullscreen
-    this.toolbar.buttons.fullscreen.addEventListener('click', () => {
-      if (!this.isFullScreen) {
+    this.toolbar.buttons.fullscreen.addEventListener('click', (e) => {
+      if (!this.isFullscreen) {
         this._setFullscreen(true);
+        e.target.innerText = 'Exit';
       } else {
         this._setFullscreen(false);
+        e.target.innerText = 'Fullscreen';
       }
     });
 
