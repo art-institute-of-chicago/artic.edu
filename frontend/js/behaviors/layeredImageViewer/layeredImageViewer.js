@@ -5,7 +5,7 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
  * @class
  * @param {HTMLElement} viewerEl - The element to initialise the viewer into. Contains HTML used for priming the initial state.
  */
- class LayeredImageViewer {
+class LayeredImageViewer {
   constructor(viewerEl) {
     // Check for presence of OSD before proceeding
     if (typeof OpenSeadragon !== 'function') {
@@ -19,7 +19,14 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
       typeof document.fullscreenElement !== 'undefined';
 
     this.id = 0;
-    this.images = [];
+    this.images = {
+      items: [],
+      active: [], // Set() would've been useful here, but is not compatible with transpiler
+    };
+    this.annotations = {
+      items: [],
+      active: [],
+    };
     this.toolbar = {
       buttons: {},
     };
@@ -35,43 +42,62 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
   }
 
   /**
+   * Process and store all types of image data in the same way
+   * @private
+   * @method
+   * @param {String} type - The label to identify and store data
+   * @param {NodeList} imgEls - The list of items (imgs) to process
+   */
+  _processImages(type, imgEls) {
+    if (!imgEls.length) return;
+
+    // Store state required for each type
+    imgEls.forEach((imgEl, i) => {
+      const figureEl = imgEl.closest('figure');
+      const itemState = {};
+      itemState.url = imgEl.src;
+      itemState.alt = imgEl.alt;
+      itemState.label = 'Unknown';
+
+      // Handle either figcaption or title
+      if (imgEl.title) {
+        itemState.label = imgEl.title;
+      } else if (figureEl && figureEl.querySelector('figcaption')) {
+        itemState.label = figureEl.querySelector('figcaption').innerText.trim();
+      }
+
+      // Add ID for internal reference
+      imgEl.id = `layered-image-viewer-${this.id}-${type}-${i}`;
+
+      this[type].items = this[type].items.concat(itemState);
+    });
+  }
+
+  /**
    * Skim data from the HTML included in the viewerEl and store it on this instance.
    * @public
    * @method
    */
   setInitialState() {
-    const imagesContainerEl = this.element.querySelector(
-      '.o-layered-image-viewer__images'
-    );
-    const imgEls = imagesContainerEl.querySelectorAll('img');
-
-    // Zero indexed ID inferred from other instances in document
+    // Zero indexed ID of the viewer inferred from other instances in document
     this.id = document.querySelectorAll('.o-layered-image-viewer').length - 1;
 
+    // Store ref to containers container
+    this.images.element = this.element.querySelector(
+      '.o-layered-image-viewer__images'
+    );
+    this.annotations.element = this.element.querySelector(
+      '.o-layered-image-viewer__annotations'
+    );
+
     // Process each image
-    imgEls.forEach((imgEl, i) => {
-      const url = imgEl.src;
-      let alt = imgEl.alt;
-      let label = 'Unknown';
-      const nextSiblingEl = imgEl.nextElementSibling;
-      if (imgEl.title) {
-        label = imgEl.title;
-      } else if (
-        nextSiblingEl &&
-        nextSiblingEl.tagName.toLowerCase() === 'figcaption'
-      ) {
-        label = nextSiblingEl.innerText;
-      }
+    this._processImages('images', this.images.element.querySelectorAll('img'));
 
-      // Add ID for internal reference
-      imgEl.id = `layered-image-viewer-${this.id}-${i}`;
-
-      this.images = this.images.concat({
-        url,
-        alt,
-        label,
-      });
-    });
+    // Process each annotation
+    this._processImages(
+      'annotations',
+      this.annotations.element.querySelectorAll('img')
+    );
   }
 
   /**
@@ -157,26 +183,51 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
    * @method
    */
   _insertPlaceholder() {
-    const placeholderEl = document.createElement('div');
-    const buttonEl = document.createElement('button');
-    const imgEl = document.createElement('img');
-    placeholderEl.classList.add('o-layered-image-viewer__placeholder');
-    buttonEl.classList.add('o-layered-image-viewer__launch');
-    buttonEl.type = 'button';
-    buttonEl.ariaLabel = 'Launch the layered image viewer';
-    buttonEl.id = `layered-image-viewer-${this.id}-launch`;
-    imgEl.src = this.images[0].url;
-    imgEl.alt = this.images[0].alt;
-    buttonEl.appendChild(imgEl);
-    placeholderEl.appendChild(buttonEl);
+    // Create template HTML
+    const placeholderTemplate = document.createElement('template');
+    placeholderTemplate.innerHTML = `
+      <div class="o-layered-image-viewer__placeholder">
+        <button id="layered-image-viewer-${this.id}-launch" class="o-layered-image-viewer__launch" type="button" aria-label="Launch the layered image viewer">
+          <img src="${this.images.items[0].url}" alt="${this.images.items[0].alt}"/>
+        </button>
+      </div>
+    `;
+    const placeholderEl = placeholderTemplate.content.firstElementChild;
 
     // Clicking placeholder to trigger fullscreen
-    buttonEl.addEventListener('click', () => {
+    placeholderEl.firstElementChild.addEventListener('click', () => {
       this._setFullscreen(true);
     });
 
     // If it was more complex than this I'd probably use inserAdjacentHTML
     this.element.insertAdjacentElement('afterbegin', placeholderEl);
+  }
+
+  /**
+   * Reach into the current state and set the aria-label for the viewer
+   * @private
+   * @method
+   */
+  _setMainAriaLabel() {
+    // Get label for each active annotation
+    const annotationLabels = this.annotations.active.map((activeIndex) => {
+      return `'${this.annotations.items[activeIndex].label}'`;
+    });
+
+    // Convert labels array into string
+    const annotationsString =
+      LayeredImageViewer.stringifyList(annotationLabels);
+    const wordAnnotation =
+      annotationLabels.length > 1 ? 'annotations' : 'annotation';
+
+    // Use label to describe the intent, and the current state. This will be announced before description.
+    this.viewer.canvas.ariaLabel = `Interacive image viewer. Currently showing '${
+      this.images.items[0].label
+    }' image${
+      annotationLabels.length
+        ? `, overlayed with ${annotationsString} ${wordAnnotation}`
+        : '.'
+    }`;
   }
 
   /**
@@ -187,17 +238,16 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
   _initViewer() {
     // OSD expects no siblings, by having a mount element
     // the destroy() method will preserve the initial HTML
-    const mountEl = document.createElement('div');
-    this.mountEl = mountEl;
+    this.mountEl = document.createElement('div');
     this.mountEl.classList.add('o-layered-image-viewer__osd-mount');
-    this.element.insertAdjacentElement('beforeend', mountEl);
+    this.element.insertAdjacentElement('beforeend', this.mountEl);
 
     this.mountEl.style.display = 'block';
 
     // Initialise with default buttons / controls removed
     // See: http://openseadragon.github.io/docs/OpenSeadragon.html#.Options
     this.viewer = new OpenSeadragon({
-      element: mountEl,
+      element: this.mountEl,
       crossOriginPolicy: 'Anonymous',
       showSequenceControl: false,
       showHomeControl: false,
@@ -208,11 +258,11 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
       autoHideControls: false,
       tileSources: {
         type: 'image',
-        url: this.images[0].url, // First image from markup by default
+        url: this.images.items[0].url, // First image from markup by default
       },
     });
     this.mountEl.style.display = '';
-    mountEl.style.position = 'fixed';
+    this.mountEl.style.position = 'fixed';
 
     this.viewer.addHandler('open', () => {
       this._addControls();
@@ -220,8 +270,8 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
       // Set the role to application to enable arrows while using screenreader
       this.viewer.canvas.role = 'application';
 
-      // Use label to describe the intent, and the current state. This will be announced first.
-      this.viewer.canvas.ariaLabel = `Interacive image viewer. Currently showing '${this.images[0].label}' image.`;
+      // Set the descriptive text for the viewer
+      this._setMainAriaLabel();
 
       // Description populated by the alt text.
       // This is supplemental and read second to the label (skipped in some cicrumstances)
@@ -229,7 +279,7 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
       // described-by also allows multiple ID's
       this.viewer.canvas.setAttribute(
         'aria-describedby',
-        `layered-image-viewer-${this.id}-0`
+        `layered-image-viewer-${this.id}-images-0`
       );
     });
   }
@@ -262,6 +312,9 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
 
   /**
    * Transform string into kebab-case
+   * @public
+   * @static
+   * @method
    * @param {String} string - String to transform
    * @returns {String} - Kebab-case string
    */
@@ -271,6 +324,9 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
 
   /**
    * Transform string into camelCase
+   * @public
+   * @static
+   * @method
    * @param {String} string - String to transform
    * @returns {String} - camelCase string
    */
@@ -278,6 +334,29 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
     return string
       .toLowerCase()
       .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+  }
+
+  /**
+   * Transform an array of strings into a sentence-like string
+   * @public
+   * @static
+   * @method
+   * @param {Array} list - List of strings to serialize
+   * @returns {String} - String of joined array items
+   */
+  static stringifyList(list) {
+    let string = '';
+    if (list.length > 1) {
+      if (list.length === 2) {
+        string = list.join(' and ');
+      } else {
+        // With an Oxford comma
+        string = `${list.slice(0, -1).join(', ')}, and ${list.slice(-1)}`;
+      }
+    } else {
+      string = list.toString();
+    }
+    return string;
   }
 
   /**
@@ -297,14 +376,11 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
     // Add each standard button and register with instance for easy access
     standardControls.forEach((control) => {
       const buttonEl = document.createElement('button');
-      const innerEl = document.createElement('span');
       buttonEl.type = 'button';
       buttonEl.classList.add(
         `o-layered-image-viewer__${LayeredImageViewer.toKebabCase(control)}`
       );
-      innerEl.classList.add('wrap');
-      innerEl.innerText = control;
-      buttonEl.appendChild(innerEl);
+      buttonEl.innerHTML = `<span class="wrap">${control}</span>`;
       this.toolbar.element.appendChild(buttonEl);
       this.toolbar.buttons[LayeredImageViewer.toCamelCase(control)] = buttonEl;
     });
@@ -332,7 +408,122 @@ import OpenSeadragon from '../../libs/openseadragon4.min';
     // Reset
     this.toolbar.buttons.reset.addEventListener('click', () => {
       this.viewer.viewport.goHome();
+
+      // Deactivate annotations
+      // (Requires events to be dispatched manually to trigger)
+      const changeEvent = new Event('change');
+      this.annotations.items.forEach((annotation) => {
+        annotation.checkboxEl.checked = false;
+        annotation.checkboxEl.dispatchEvent(changeEvent);
+      });
     });
+
+    // Control panel for annotations if present
+    this._addAnnotationMenu();
+  }
+
+  /**
+   * Add a menu for toggling annotations
+   * @private
+   * @method
+   */
+  _addAnnotationMenu() {
+    if (!this.annotations.items.length) return;
+
+    // Create template markup
+    const detailsTemplate = document.createElement('template');
+    detailsTemplate.innerHTML = `
+      <details class="layered-image-viewer-details">
+        <summary>Show annotations</summary>
+        <div class="layered-image-viewer-details__menu"></div>
+      </details>`;
+    const detailsEl = detailsTemplate.content.firstElementChild;
+    const panelEl = detailsEl.lastElementChild;
+
+    // Build up markup for the annotations panel
+    // Each item becoming a checkbox / label combo
+    const fieldTemplate = document.createElement('template');
+    this.annotations.items.forEach((item, i) => {
+      fieldTemplate.innerHTML = `
+        <div class="layered-image-viewer-details__option">
+          <input id="layered-image-viewer-${this.id}-annotation-cb-${i}" type="checkbox" data-index="${i}" />
+          <label for="layered-image-viewer-${this.id}-annotation-cb-${i}">${item.label}</label>
+        </div>
+        `;
+
+      const rowEl = fieldTemplate.content.firstElementChild;
+      this.annotations.items[i].checkboxEl = rowEl.firstElementChild;
+
+      // Attach toggle handling
+      this.annotations.items[i].checkboxEl.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          // Turn overlay on
+          this.activateAnnotation(parseInt(e.target.dataset.index, 10));
+        } else {
+          // Turn overlay off
+          this.deactivateAnnotation(parseInt(e.target.dataset.index, 10));
+        }
+        // Update aria label
+        this._setMainAriaLabel();
+      });
+      // Add completed row to panel
+      panelEl.appendChild(rowEl);
+    });
+
+    // Add menu to toolbar
+    this.toolbar.element.appendChild(detailsEl);
+  }
+
+  /**
+   * Activate an annotation by the internally tracked index
+   * @public
+   * @method
+   * @param {Number} index - Index of annotation to activate. Mirrors the order of the initial HTML
+   */
+  activateAnnotation(index) {
+    if (!this.annotations.items[index]) return;
+
+    // There's two potential ways of doing this AFAIK
+    // 1. Add an image. This doesn't work well with SVG
+    // 2. Add an overlay. This works with imgs/svgs/html
+    // There's also OpenSeadragon svgOverlay plugin, which from what I can tell
+    // seems to be if you're working with arbitrary SVG code and not really suited to our files.
+
+    // Clone our annotation, otherwise OSD seems to want to move it
+    // (which makes destruction cleanup hard)
+    const cloneEl = this.annotations.element
+      .querySelector(`#layered-image-viewer-${this.id}-annotations-${index}`)
+      .cloneNode();
+    cloneEl.id = `layered-image-viewer-${this.id}-annotations-${index}-clone`;
+
+    // Add to active list
+    this.annotations.active.push(index);
+
+    this.viewer.addOverlay({
+      element: cloneEl,
+      location: new OpenSeadragon.Point(0, 0),
+      width: 1, // (viewport unit)
+      index: index,
+    });
+  }
+
+  /**
+   * Deactivate an annotation by the internally tracked index
+   * @public
+   * @method
+   * @param {Number} index - Index of annotation to activate. Mirrors the order of the initial HTML
+   */
+  deactivateAnnotation(index) {
+    if (!this.annotations.items[index]) return;
+
+    // Remove from active list
+    this.annotations.active = this.annotations.active.filter(
+      (item) => item !== index
+    );
+
+    this.viewer.removeOverlay(
+      `layered-image-viewer-${this.id}-annotations-${index}-clone`
+    );
   }
 }
 
