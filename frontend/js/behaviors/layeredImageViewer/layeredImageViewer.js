@@ -19,6 +19,9 @@ class LayeredImageViewer {
       typeof document.fullscreenElement !== 'undefined';
 
     this.id = 0;
+
+    this.captionTitleEl = null;
+    this.captionEl = null;
     this.images = {
       items: [],
       active: [], // Set() would've been useful here, but is not compatible with transpiler
@@ -87,6 +90,14 @@ class LayeredImageViewer {
     );
     this.annotations.element = this.element.querySelector(
       '.o-layered-image-viewer__annotations'
+    );
+
+    // Get caption and caption title nodes
+    this.captionTitleEl = this.element.querySelector(
+      '.o-layered-image-viewer__caption-title'
+    );
+    this.captionEl = this.element.querySelector(
+      '.o-layered-image-viewer__caption-text'
     );
 
     // Process each image
