@@ -5,8 +5,10 @@ namespace Database\Seeders;
 use App\Models\Page;
 use Illuminate\Database\Seeder;
 
-class HomePageLinkSeeder extends Seeder
+class HomePageSeeder extends Seeder
 {
+    protected $seed = true;
+
     public function run(): void
     {
         $page = Page::forType('Home')->first();
