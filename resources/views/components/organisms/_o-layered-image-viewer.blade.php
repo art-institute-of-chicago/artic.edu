@@ -96,5 +96,13 @@
             </figcaption>
           </figure>
         </div>
+        <div class="o-layered-image-viewer__caption">
+            <div class="o-layered-image-viewer__caption-title">
+            <p>Fig 1.1</p>
+            </div>
+            <div class="o-layered-image-viewer__caption-text">
+            <p>The Artist in His Studio,1865/66, 1895</p>
+            </div>
+        </div>
       </div>
 </div>
