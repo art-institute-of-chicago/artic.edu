@@ -337,7 +337,7 @@ class LayeredImageViewer {
   }
 
   /**
-   * Transform an array of strings into a sentenace-like string
+   * Transform an array of strings into a sentence-like string
    * @public
    * @static
    * @method
