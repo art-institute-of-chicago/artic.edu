@@ -37,7 +37,6 @@ class LayeredImageViewer {
     this.boundExitFullscreenHandler = this._exitFullscreenHandler.bind(this);
 
     this.setInitialState();
-    this._insertPlaceholder();
     this._initViewer();
   }
 
@@ -178,32 +177,6 @@ class LayeredImageViewer {
   }
 
   /**
-   * Insert a thumbnail of the first image to launch the viewer
-   * @private
-   * @method
-   */
-  _insertPlaceholder() {
-    // Create template HTML
-    const placeholderTemplate = document.createElement('template');
-    placeholderTemplate.innerHTML = `
-      <div class="o-layered-image-viewer__placeholder">
-        <button id="layered-image-viewer-${this.id}-launch" class="o-layered-image-viewer__launch" type="button" aria-label="Launch the layered image viewer">
-          <img src="${this.images.items[0].url}" alt="${this.images.items[0].alt}"/>
-        </button>
-      </div>
-    `;
-    const placeholderEl = placeholderTemplate.content.firstElementChild;
-
-    // Clicking placeholder to trigger fullscreen
-    placeholderEl.firstElementChild.addEventListener('click', () => {
-      this._setFullscreen(true);
-    });
-
-    // If it was more complex than this I'd probably use inserAdjacentHTML
-    this.element.insertAdjacentElement('afterbegin', placeholderEl);
-  }
-
-  /**
    * Reach into the current state and set the aria-label for the viewer
    * @private
    * @method
@@ -296,9 +269,7 @@ class LayeredImageViewer {
       '.o-layered-image-viewer__osd-mount'
     );
     // Add elements we create here to be cleaned up
-    const fabricatedElements = viewerEl.querySelectorAll(
-      '.o-layered-image-viewer__placeholder'
-    );
+    const fabricatedElements = [];
 
     if (mountEl) {
       // Destroy OSD and remove elements added by this class
@@ -337,7 +308,7 @@ class LayeredImageViewer {
   }
 
   /**
-   * Transform an array of strings into a sentence-like string
+   * Transform an array of strings into a sentenace-like string
    * @public
    * @static
    * @method
@@ -370,7 +341,7 @@ class LayeredImageViewer {
     // (without really interacting with the OSD API)
     // N.B. Deliberate decision against role=toolbar for now, there is potentially complex behviour to handle if we apply that role
     // More info: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/toolbar_role
-    const standardControls = ['Exit', 'Zoom in', 'Zoom out', 'Reset'];
+    const standardControls = ['Zoom in', 'Zoom out', 'Reset', 'Fullscreen'];
     this.toolbar.element = document.createElement('div');
 
     // Add each standard button and register with instance for easy access
@@ -387,11 +358,6 @@ class LayeredImageViewer {
 
     // Add the completed toolbar to OSD
     this.viewer.controls.topright.appendChild(this.toolbar.element);
-
-    // Exit
-    this.toolbar.buttons.exit.addEventListener('click', () => {
-      this._setFullscreen(false);
-    });
 
     // Zoom In
     this.toolbar.buttons.zoomIn.addEventListener('click', () => {
@@ -416,6 +382,15 @@ class LayeredImageViewer {
         annotation.checkboxEl.checked = false;
         annotation.checkboxEl.dispatchEvent(changeEvent);
       });
+    });
+
+    // Fullscreen
+    this.toolbar.buttons.fullscreen.addEventListener('click', () => {
+      if (!this.isFullScreen) {
+        this._setFullscreen(true);
+      } else {
+        this._setFullscreen(false);
+      }
     });
 
     // Control panel for annotations if present
@@ -526,7 +501,6 @@ class LayeredImageViewer {
     );
   }
 }
-
 
 const layeredImageViewer = function(container) {
   this.init = function() {
