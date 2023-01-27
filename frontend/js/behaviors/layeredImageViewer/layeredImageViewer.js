@@ -235,7 +235,6 @@ class LayeredImageViewer {
       },
     });
     this.mountEl.style.display = '';
-    this.mountEl.style.position = 'fixed';
 
     this.viewer.addHandler('open', () => {
       this._addControls();
