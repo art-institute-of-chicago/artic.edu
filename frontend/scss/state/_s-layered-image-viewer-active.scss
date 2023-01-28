@@ -3,44 +3,25 @@
 Layered image viewer active
 ============================
 
-Shows the image zoom area.
+When fullscreen / using modal on layered image viewer
 
 
 ***/
 
-.s-layered-image-viewer-active {
-  #a17 {
-    @media screen and (min-width: 1280px), screen and (min-height: 1024px) {
-      @supports (not (backdrop-filter: blur(5px))) and
-        (not (-webkit-backdrop-filter: blur(5px))) {
-        filter: blur(5px);
-      }
-    }
+.s-layered-image-viewer-modal-active {
+  body {
+    overflow: hidden;
   }
 
   .o-layered-image-viewer__osd-mount {
-    display: block;
+    background: $color__black--80;
+  }
+
+  .layered-image-viewer-modal {
     top: 0;
     left: 0;
     z-index: 9999;
-    background: $color__black--80;
     animation: reveal 0.3s normal forwards;
     opacity: 1;
-  }
-
-  .g-mask {
-    right: 0;
-    bottom: 0;
-
-    @supports (backdrop-filter: blur(5px)) or
-      (-webkit-backdrop-filter: blur(5px)) {
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
-    }
-
-    @media screen and (min-width: 1280px), screen and (min-height: 1024px) {
-      background-color: rgba($color__black--80, 0.5);
-      opacity: 1;
-    }
   }
 }
