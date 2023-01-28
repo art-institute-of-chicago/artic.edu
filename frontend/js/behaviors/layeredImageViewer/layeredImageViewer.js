@@ -118,11 +118,13 @@ class LayeredImageViewer {
    * @param {Boolean} enter - What the target state should be
    */
   _setFullscreen(enter) {
+    this.isFullscreen = true;
     if (enter) {
       // Enter fullscreen
       // CSS applied when class is added to html element
-      document.documentElement.classList.add('s-layered-image-viewer-active');
-      this.isFullscreen = true;
+      document.documentElement.classList.add(
+        's-layered-image-viewer-modal-active'
+      );
 
       // Perform API request if necessary and bind event listeners
       if (this.browerSupportsFullscreen) {
@@ -133,13 +135,19 @@ class LayeredImageViewer {
           this.boundExitFullscreenHandler
         );
       } else {
+        // Move into dialog el if non-fullscreen
+        this.modalEl.appendChild(this.osdMountEl);
+        this.modalEl.showModal();
+        // refocus after move
+        this.toolbar.buttons.fullscreen.focus();
         document.addEventListener('keydown', this.boundExitFullscreenHandler);
       }
+      this.toolbar.buttons.fullscreen.innerText = 'Exit';
     } else {
       // Exit fullscreen
       // Hide viewer by removing class
       document.documentElement.classList.remove(
-        's-layered-image-viewer-active'
+        's-layered-image-viewer-modal-active'
       );
       this.isFullscreen = false;
 
@@ -153,11 +161,19 @@ class LayeredImageViewer {
           this.boundExitFullscreenHandler
         );
       } else {
+        // For non-fullscreen
+        this.modalEl.close();
+        this.element
+          .querySelector('.m-media--layered-image-viewer-embed')
+          .appendChild(this.osdMountEl);
+        // refocus after move
+        this.toolbar.buttons.fullscreen.focus();
         document.removeEventListener(
           'keydown',
           this.boundExitFullscreenHandler
         );
       }
+      this.toolbar.buttons.fullscreen.innerText = 'Fullscreen';
     }
   }
 
@@ -266,6 +282,16 @@ class LayeredImageViewer {
 
     this.osdMountEl.style.display = 'block';
 
+    // Add modal container if necessary (no fullscreen support)
+    this.modalEl = document.querySelector('#layered-image-viewer-modal');
+    if (!this.modalEl && !this.browerSupportsFullscreen) {
+      // Dialog element has the advantage of handling semantics and focus trap
+      this.modalEl = document.createElement('dialog');
+      this.modalEl.id = 'layered-image-viewer-modal';
+      this.modalEl.classList.add('layered-image-viewer-modal');
+      document.body.appendChild(this.modalEl);
+    }
+
     // Initialise with default buttons / controls removed
     // See: http://openseadragon.github.io/docs/OpenSeadragon.html#.Options
     this.viewer = new OpenSeadragon({
@@ -284,11 +310,6 @@ class LayeredImageViewer {
       },
     });
     this.osdMountEl.style.display = '';
-
-    // TODO: Remove for production. Useful for debugging
-    window.osd = OpenSeadragon;
-    window.liv = this;
-    window.viewer = this.viewer;
 
     this.viewer.addHandler('open', () => {
       this._addControls();
@@ -444,13 +465,11 @@ class LayeredImageViewer {
     });
 
     // Fullscreen
-    this.toolbar.buttons.fullscreen.addEventListener('click', (e) => {
+    this.toolbar.buttons.fullscreen.addEventListener('click', () => {
       if (!this.isFullscreen) {
         this._setFullscreen(true);
-        e.target.innerText = 'Exit';
       } else {
         this._setFullscreen(false);
-        e.target.innerText = 'Fullscreen';
       }
     });
 
