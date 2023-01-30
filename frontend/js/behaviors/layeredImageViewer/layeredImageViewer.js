@@ -14,11 +14,14 @@ class LayeredImageViewer {
       );
     }
     this.element = viewerEl;
-    this.mountEl = null;
+    this.osdMountEl = null;
     this.browerSupportsFullscreen =
       typeof document.fullscreenElement !== 'undefined';
-
+    this.size = 'm';
     this.id = 0;
+
+    this.captionTitleEl = null;
+    this.captionEl = null;
     this.images = {
       items: [],
       active: [], // Set() would've been useful here, but is not compatible with transpiler
@@ -30,14 +33,13 @@ class LayeredImageViewer {
     this.toolbar = {
       buttons: {},
     };
-    this.isFullScreen = false;
+    this.isFullscreen = false;
 
     // Bind to store referenceable event handler with correct context set explictly
     // Could use arrow functions, but transpiler might interfere
     this.boundExitFullscreenHandler = this._exitFullscreenHandler.bind(this);
 
     this.setInitialState();
-    this._insertPlaceholder();
     this._initViewer();
   }
 
@@ -90,6 +92,14 @@ class LayeredImageViewer {
       '.o-layered-image-viewer__annotations'
     );
 
+    // Get caption and caption title nodes
+    this.captionTitleEl = this.element.querySelector(
+      '.o-layered-image-viewer__caption-title'
+    );
+    this.captionEl = this.element.querySelector(
+      '.o-layered-image-viewer__caption-text'
+    );
+
     // Process each image
     this._processImages('images', this.images.element.querySelectorAll('img'));
 
@@ -108,32 +118,38 @@ class LayeredImageViewer {
    * @param {Boolean} enter - What the target state should be
    */
   _setFullscreen(enter) {
+    this.isFullscreen = true;
     if (enter) {
       // Enter fullscreen
       // CSS applied when class is added to html element
       document.documentElement.classList.add(
-        's-layered-image-viewer-active',
-        's-body-locked'
+        's-layered-image-viewer-modal-active'
       );
 
       // Perform API request if necessary and bind event listeners
       if (this.browerSupportsFullscreen) {
-        this.mountEl.requestFullscreen();
+        this.osdMountEl.requestFullscreen();
 
         document.addEventListener(
           'fullscreenchange',
           this.boundExitFullscreenHandler
         );
       } else {
+        // Move into dialog el if non-fullscreen
+        this.modalEl.appendChild(this.osdMountEl);
+        this.modalEl.showModal();
+        // refocus after move
+        this.toolbar.buttons.fullscreen.focus();
         document.addEventListener('keydown', this.boundExitFullscreenHandler);
       }
+      this.toolbar.buttons.fullscreen.innerText = 'Exit';
     } else {
       // Exit fullscreen
       // Hide viewer by removing class
       document.documentElement.classList.remove(
-        's-layered-image-viewer-active',
-        's-body-locked'
+        's-layered-image-viewer-modal-active'
       );
+      this.isFullscreen = false;
 
       // Remove event listeners
       if (this.browerSupportsFullscreen) {
@@ -145,11 +161,19 @@ class LayeredImageViewer {
           this.boundExitFullscreenHandler
         );
       } else {
+        // For non-fullscreen
+        this.modalEl.close();
+        this.element
+          .querySelector('.m-media--layered-image-viewer-embed')
+          .appendChild(this.osdMountEl);
+        // refocus after move
+        this.toolbar.buttons.fullscreen.focus();
         document.removeEventListener(
           'keydown',
           this.boundExitFullscreenHandler
         );
       }
+      this.toolbar.buttons.fullscreen.innerText = 'Fullscreen';
     }
   }
 
@@ -175,32 +199,6 @@ class LayeredImageViewer {
     if (e.type === 'fullscreenchange' && !document.fullscreenElement) {
       this._setFullscreen(false);
     }
-  }
-
-  /**
-   * Insert a thumbnail of the first image to launch the viewer
-   * @private
-   * @method
-   */
-  _insertPlaceholder() {
-    // Create template HTML
-    const placeholderTemplate = document.createElement('template');
-    placeholderTemplate.innerHTML = `
-      <div class="o-layered-image-viewer__placeholder">
-        <button id="layered-image-viewer-${this.id}-launch" class="o-layered-image-viewer__launch" type="button" aria-label="Launch the layered image viewer">
-          <img src="${this.images.items[0].url}" alt="${this.images.items[0].alt}"/>
-        </button>
-      </div>
-    `;
-    const placeholderEl = placeholderTemplate.content.firstElementChild;
-
-    // Clicking placeholder to trigger fullscreen
-    placeholderEl.firstElementChild.addEventListener('click', () => {
-      this._setFullscreen(true);
-    });
-
-    // If it was more complex than this I'd probably use inserAdjacentHTML
-    this.element.insertAdjacentElement('afterbegin', placeholderEl);
   }
 
   /**
@@ -236,18 +234,68 @@ class LayeredImageViewer {
    * @method
    */
   _initViewer() {
-    // OSD expects no siblings, by having a mount element
+    // OSD expects no siblings, keep it an orphan
     // the destroy() method will preserve the initial HTML
-    this.mountEl = document.createElement('div');
-    this.mountEl.classList.add('o-layered-image-viewer__osd-mount');
-    this.element.insertAdjacentElement('beforeend', this.mountEl);
 
-    this.mountEl.style.display = 'block';
+    const mediaTemplate = document.createElement('template');
+    let captionMarkup = '';
+
+    // Markup to be inserted if captionTitle / caption exist
+    if (this.captionEl || this.captionTitleEl) {
+      captionMarkup = `<figcaption>`;
+      if (this.captionTitleEl) {
+        captionMarkup += `
+          <div class="f-caption-title">
+            ${this.captionTitleEl.innerHTML}
+          </div>`;
+      }
+      if (this.captionEl) {
+        captionMarkup += `
+          <div class="f-caption">
+            ${this.captionEl.innerHTML}
+          </div>`;
+      }
+      captionMarkup += `</figcaption>`;
+    }
+
+    // Markup to surround viewer with
+    // Modelled around the media molecule
+    mediaTemplate.innerHTML = `
+      <figure class="m-media m-media--${this.size} m-media--contain o-blocks__block">
+        <div class="m-media__img m-media--layered-image-viewer-embed">
+          <div class="o-layered-image-viewer__osd-mount"></div>
+        </div>
+        ${captionMarkup}
+      </figure>
+    `;
+
+    // Insert into class element
+    this.element.insertAdjacentElement(
+      'beforeend',
+      mediaTemplate.content.firstElementChild
+    );
+
+    // Store reference of OSD element
+    this.osdMountEl = this.element.querySelector(
+      '.o-layered-image-viewer__osd-mount'
+    );
+
+    this.osdMountEl.style.display = 'block';
+
+    // Add modal container if necessary (no fullscreen support)
+    this.modalEl = document.querySelector('#layered-image-viewer-modal');
+    if (!this.modalEl && !this.browerSupportsFullscreen) {
+      // Dialog element has the advantage of handling semantics and focus trap
+      this.modalEl = document.createElement('dialog');
+      this.modalEl.id = 'layered-image-viewer-modal';
+      this.modalEl.classList.add('layered-image-viewer-modal');
+      document.body.appendChild(this.modalEl);
+    }
 
     // Initialise with default buttons / controls removed
     // See: http://openseadragon.github.io/docs/OpenSeadragon.html#.Options
     this.viewer = new OpenSeadragon({
-      element: this.mountEl,
+      element: this.osdMountEl,
       crossOriginPolicy: 'Anonymous',
       showSequenceControl: false,
       showHomeControl: false,
@@ -261,8 +309,7 @@ class LayeredImageViewer {
         url: this.images.items[0].url, // First image from markup by default
       },
     });
-    this.mountEl.style.display = '';
-    this.mountEl.style.position = 'fixed';
+    this.osdMountEl.style.display = '';
 
     this.viewer.addHandler('open', () => {
       this._addControls();
@@ -292,18 +339,16 @@ class LayeredImageViewer {
    * @param {HTMLElement} viewerEl - Element which was used to initialise the viewer to be destroyed
    */
   static destroy(viewerEl) {
-    const mountEl = viewerEl.querySelector(
+    const osdMountEl = viewerEl.querySelector(
       '.o-layered-image-viewer__osd-mount'
     );
     // Add elements we create here to be cleaned up
-    const fabricatedElements = viewerEl.querySelectorAll(
-      '.o-layered-image-viewer__placeholder'
-    );
+    const fabricatedElements = [];
 
-    if (mountEl) {
+    if (osdMountEl) {
       // Destroy OSD and remove elements added by this class
-      OpenSeadragon.getViewer(mountEl).destroy();
-      mountEl.remove();
+      OpenSeadragon.getViewer(osdMountEl).destroy();
+      osdMountEl.closest('figure').remove();
       fabricatedElements.forEach((fabricatedElement) => {
         fabricatedElement.remove();
       });
@@ -337,7 +382,7 @@ class LayeredImageViewer {
   }
 
   /**
-   * Transform an array of strings into a sentence-like string
+   * Transform an array of strings into a sentenace-like string
    * @public
    * @static
    * @method
@@ -370,7 +415,7 @@ class LayeredImageViewer {
     // (without really interacting with the OSD API)
     // N.B. Deliberate decision against role=toolbar for now, there is potentially complex behviour to handle if we apply that role
     // More info: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/toolbar_role
-    const standardControls = ['Exit', 'Zoom in', 'Zoom out', 'Reset'];
+    const standardControls = ['Fullscreen', 'Zoom in', 'Zoom out', 'Reset'];
     this.toolbar.element = document.createElement('div');
 
     // Add each standard button and register with instance for easy access
@@ -381,17 +426,18 @@ class LayeredImageViewer {
         `o-layered-image-viewer__${LayeredImageViewer.toKebabCase(control)}`
       );
       buttonEl.innerHTML = `<span class="wrap">${control}</span>`;
+
+      // This seems to be announced anyway, but should probably be live
+      if (control === 'Fullscreen') {
+        buttonEl.ariaLive = 'polite';
+      }
+
       this.toolbar.element.appendChild(buttonEl);
       this.toolbar.buttons[LayeredImageViewer.toCamelCase(control)] = buttonEl;
     });
 
     // Add the completed toolbar to OSD
     this.viewer.controls.topright.appendChild(this.toolbar.element);
-
-    // Exit
-    this.toolbar.buttons.exit.addEventListener('click', () => {
-      this._setFullscreen(false);
-    });
 
     // Zoom In
     this.toolbar.buttons.zoomIn.addEventListener('click', () => {
@@ -416,6 +462,15 @@ class LayeredImageViewer {
         annotation.checkboxEl.checked = false;
         annotation.checkboxEl.dispatchEvent(changeEvent);
       });
+    });
+
+    // Fullscreen
+    this.toolbar.buttons.fullscreen.addEventListener('click', () => {
+      if (!this.isFullscreen) {
+        this._setFullscreen(true);
+      } else {
+        this._setFullscreen(false);
+      }
     });
 
     // Control panel for annotations if present
