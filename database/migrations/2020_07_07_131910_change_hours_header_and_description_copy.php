@@ -11,7 +11,7 @@ class ChangeHoursHeaderAndDescriptionCopy extends Migration
      */
     public function up()
     {
-        // No-op: moved to MembershipMagazinPageSeeder
+        // No-op: moved to VisitPageSeeder
     }
 
     /**
