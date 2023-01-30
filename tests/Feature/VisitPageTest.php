@@ -79,4 +79,20 @@ class VisitPageTest extends BaseTestCase
         $response->assertSeeText('Learn more');
         $response->assertSee("href='{$this->appUrl}/visit-us-virtually'");
     }
+
+    public function test_what_to_expect_items_are_displayed_in_order()
+    {
+        $response = $this->get('/visit');
+        $response->assertSeeInOrder([
+            'Face coverings will be required for your entire museum visit.',
+            'Maintain a physical distance of six-feet from staff and visitors.',
+            'Advance ticket purchase is required. Members will be required to display digital member card using the Art Institute of Chicago mobile app.',
+            'Anyone feeling unwell should postpone their visit for another time.',
+            'Our checkrooms are currently closed. Pack light, and remember some items are not allowed in the galleries.',
+            'Our amenities are temporarily limited. Service and spaces currently unavailable include restaurants, auditoria, valet service, and the Member Lounge.',
+            'Some galleries may have limited capacity or be temporarily closed.',
+            'Be mindful to abide by directional signage, including designated entrances and exits.',
+            'Special exhibitions may use timed queueing systems. Check in at exhibition entrances to reserve your spot in line.',
+        ]);
+    }
 }
