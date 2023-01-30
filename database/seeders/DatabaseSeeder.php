@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
         HomePageSeeder::class,
         MembershipMagazinePageSeeder::class,
         VisitPageSeeder::class,
+        EmailSeriesSeeder::class,
     ];
 
     public function run(): void

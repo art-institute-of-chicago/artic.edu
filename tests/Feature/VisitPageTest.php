@@ -23,7 +23,7 @@ class VisitPageTest extends BaseTestCase
             "The Art Institute reopens on July 30, and we're so happy to welcome you back to our galleries. Please see below for new hours—including member-only hours—and updated safety policies."
         );
         $response->assertSeeText("Member-Only Hours");
-        $response->assertSee('<p>Monday 10&ndash;11 a.m.<br/>Thursday&ndash;Friday 12-1 p.m.<br/>Saturday&ndash;Sunday 10&ndash;11 a.m.</p>');
+        $response->assertSee('<p>Monday 10&ndash;11 a.m.<br/>Thursday&ndash;Sunday 10-11 a.m.</p>');
     }
 
     public function test_admission_description_is_displayed()
