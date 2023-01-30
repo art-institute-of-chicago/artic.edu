@@ -4,6 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class UpdateWhatToExpectContent extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         if (env('APP_ENV') != 'testing') {
@@ -94,6 +99,11 @@ class UpdateWhatToExpectContent extends Migration
         }
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         $visitPage = \App\Models\Page::where('type', 3)->first();
