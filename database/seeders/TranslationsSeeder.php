@@ -146,6 +146,18 @@ class TranslationsSeeder extends Seeder
             }
         }
 
+        foreach (\App\Models\FeaturedHour::all() as $hour) {
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('featured_hour_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'featured_hour_id' => $hour->id,
+                    'title' => $hour->title,
+                    'copy' => $hour->copy,
+                ]);
+            }
+        }
+
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from featured_hour_translations where locale = ?', ['en']);
 
