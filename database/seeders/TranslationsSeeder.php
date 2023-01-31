@@ -87,6 +87,18 @@ class TranslationsSeeder extends Seeder
             );
         }
 
+        foreach (\App\Models\DiningHour::all() as $diningHour) {
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('dining_hour_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'dining_hour_id' => $diningHour->id,
+                    'name' => $diningHour->name,
+                    'hours' => $diningHour->hours,
+                ]);
+            }
+        }
+
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from dining_hour_translations where locale = ?', ['en']);
 
@@ -100,6 +112,19 @@ class TranslationsSeeder extends Seeder
                         $cols->hours,
                         $cols->dining_hour_id]
                 );
+            }
+        }
+
+        foreach (\App\Models\Family::all() as $family) {
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('family_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'family_id' => $family->id,
+                    'title' => $family->title,
+                    'text' => $family->text,
+                    'link_label' => $family->link_label,
+                ]);
             }
         }
 
