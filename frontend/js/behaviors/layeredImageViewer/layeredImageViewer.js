@@ -57,7 +57,7 @@ class LayeredImageViewer {
     imgEls.forEach((imgEl, i) => {
       const figureEl = imgEl.closest('figure');
       const itemState = {};
-      itemState.url = imgEl.src;
+      itemState.url = imgEl.dataset.viewerSrc;
       itemState.alt = imgEl.alt;
       itemState.label = 'Unknown';
 
@@ -83,6 +83,9 @@ class LayeredImageViewer {
   setInitialState() {
     // Zero indexed ID of the viewer inferred from other instances in document
     this.id = document.querySelectorAll('.o-layered-image-viewer').length - 1;
+
+    // Set the size
+    this.size = this.element.dataset.size || 'm';
 
     // Store ref to containers container
     this.images.element = this.element.querySelector(
