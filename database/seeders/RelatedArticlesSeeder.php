@@ -13,6 +13,7 @@ class RelatedArticlesSeeder extends Seeder
         $artArticles = DB::table('article_article')->select('*')->get();
         $pageArticles = DB::table('article_page')->select('*')->get();
         $pageArtArticles = DB::table('page_art_article')->select('*')->get();
+        $articleArtists = DB::table('article_artist')->select('*')->get();
 
         foreach ($artArticles as $article) {
             DB::table('related')->insert([
@@ -43,6 +44,17 @@ class RelatedArticlesSeeder extends Seeder
                 'related_type' => 'articles',
                 'related_id' => $article->article_id,
                 'browser_name' => 'featured_items',
+                'position' => $article->position,
+            ]);
+        }
+
+        foreach ($articleArtists as $article) {
+            DB::table('related')->insert([
+                'subject_id' => $article->artist_id,
+                'subject_type' => 'artists',
+                'related_type' => 'articles',
+                'related_id' => $article->article_id,
+                'browser_name' => 'related_items',
                 'position' => $article->position,
             ]);
         }
