@@ -227,6 +227,17 @@ class TranslationsSeeder extends Seeder
             }
         }
 
+        foreach (\App\Models\Location::all() as $location) {
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('location_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'location_id' => $location->id,
+                    'name' => $location->name,
+                ]);
+            }
+        }
+
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from location_translations where locale = ?', ['en']);
 
