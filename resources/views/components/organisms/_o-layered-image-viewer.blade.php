@@ -40,11 +40,12 @@
 --}}
 
 {{-- Hard coded viewer --}}
-<div class="o-layered-image-viewer{{ (isset($variation)) ? ' '.$variation : '' }}" data-size="{{ (isset($images[0]['size'])) ? $images[0]['size'] : '' }}" data-behavior="layeredImageViewer">
+<div class="o-layered-image-viewer{{ (isset($variation)) ? ' '.$variation : '' }}" data-size="{{ (isset($images[0]['size'])) ? $images[0]['size'] : 'm' }}" data-behavior="layeredImageViewer">
     {{-- If images --}}
     <div class="o-layered-image-viewer__images">
         {{-- Repeat div for every image (figure inside is just hardcoded copy of what seems to come out of molecule) --}}
         <div class="o-layered-image-viewer__image">
+            <figure class="m-media m-media--{{ (isset($images[0]['size'])) ? $images[0]['size'] : 'm' }} m-media--contain">
                 <div class="m-media__img" data-behavior="fitText">
                     <div class="m-media__contain--spacer" style="padding-bottom: 62.5%"></div>
                     <img
