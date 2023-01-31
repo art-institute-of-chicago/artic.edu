@@ -11,7 +11,8 @@ class RelatedArticlesTest extends BaseTestCase
     {
         $allArticlesCount = DB::table('article_article')->select('*')->count()
             + DB::table('article_page')->select('*')->count()
-            + DB::table('page_art_article')->select('*')->count();
+            + DB::table('page_art_article')->select('*')->count()
+            + DB::table('article_artist')->select('*')->get();
         $this->assertDatabaseCount('related', $allArticlesCount);
     }
 }

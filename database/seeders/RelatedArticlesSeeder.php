@@ -58,5 +58,7 @@ class RelatedArticlesSeeder extends Seeder
                 'position' => $article->position,
             ]);
         }
+
+        DB::table('related')->where('related_type', 'digitalLabels')->delete();
     }
 }
