@@ -174,6 +174,17 @@ class TranslationsSeeder extends Seeder
             }
         }
 
+        foreach (\App\Models\FeeAge::all() as $feeAge) {
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('fee_age_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'fee_age_id' => $feeAge->id,
+                    'title' => $feeAge->title,
+                ]);
+            }
+        }
+
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from fee_age_translations where locale = ?', ['en']);
 
@@ -185,6 +196,18 @@ class TranslationsSeeder extends Seeder
                     [$cols->title,
                         $cols->fee_age_id]
                 );
+            }
+        }
+
+        foreach (\App\Models\FeeCategory::all() as $feeCategory) {
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('fee_category_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'fee_category_id' => $feeCategory->id,
+                    'title' => $feeCategory->title,
+                    'tooltip' => $feeCategory->tooltip,
+                ]);
             }
         }
 
