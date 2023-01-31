@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         EventProgramSeeder::class,
         PublishStartDateSeeder::class,
         RelatedArticlesSeeder::class,
+        MembershipBannerSeeder::class,
     ];
 
     public function run(): void
