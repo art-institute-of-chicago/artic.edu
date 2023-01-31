@@ -31,6 +31,9 @@ class TranslationsSeeder extends Seeder
                 ]);
             }
         }
+
+        DB::update('update page_translations set visit_city_pass_link = (select visit_city_pass_link from pages where pages.id=page_translations.page_id)');
+
         if (env('APP_ENV') != 'testing') {
             // Copy content from the translatable field to the table
             $cols = DB::selectOne('select * from page_translations where page_id = ? and locale = ?', [6, 'en']);
