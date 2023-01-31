@@ -121,6 +121,17 @@ class TranslationsSeeder extends Seeder
             }
         }
 
+        foreach (\App\Models\Faq::all() as $faq) {
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('faq_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'faq_id' => $faq->id,
+                    'title' => $faq->title,
+                ]);
+            }
+        }
+
         if (env('APP_ENV') != 'testing') {
             $rows = DB::select('select * from faq_translations where locale = ?', ['en']);
 
