@@ -11,6 +11,26 @@ class TranslationsSeeder extends Seeder
         // TODO: I'm unsure what to do about this one, since the translation
         // tables won't exist by the time this seeder is running.
         /*
+        $visitPage = \App\Models\Page::where('type', 3)->first();
+
+        if ($visitPage) {
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('page_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'page_id' => $visitPage->id,
+                    'visit_intro' => $visitPage->visit_intro,
+                    'visit_hour_header' => $visitPage->visit_hour_header,
+                    'visit_hour_subheader' => $visitPage->visit_hour_subheader,
+                    'visit_city_pass_title' => $visitPage->visit_city_pass_title,
+                    'visit_city_pass_text' => $visitPage->visit_city_pass_text,
+                    'visit_city_pass_button_label' => $visitPage->visit_city_pass_button_label,
+                    'visit_admission_description' => $visitPage->visit_admission_description,
+                    'visit_buy_tickets_label' => $visitPage->visit_buy_tickets_label,
+                    'visit_become_member_label' => $visitPage->visit_become_member_label,
+                ]);
+            }
+        }
         if (env('APP_ENV') != 'testing') {
             // Copy content from the translatable field to the table
             $cols = DB::selectOne('select * from page_translations where page_id = ? and locale = ?', [6, 'en']);
