@@ -11,6 +11,9 @@ class VanityRedirectSeeder extends Seeder
 {
     public function run(): void
     {
+        // XXX Without the generic pages seeded as well, this won't work as intended. I'm guessing there some vanity
+        // urls that are required to make the app function properly. Can we hardcode them here?
+
         // Get all the Generic Pages that have a redirect in place
         $existingRedirects = GenericPage::published()->whereNotNull('redirect_url')->get();
 
