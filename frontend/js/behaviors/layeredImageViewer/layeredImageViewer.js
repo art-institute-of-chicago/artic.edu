@@ -24,7 +24,10 @@ class LayeredImageViewer {
     this.captionEl = null;
     this.images = {
       items: [],
-      active: {},
+      active: {
+        a: null,
+        b: null,
+      },
     };
     this.annotations = {
       items: [],
@@ -524,22 +527,28 @@ class LayeredImageViewer {
 
         const rowEl = imagesFieldTemplate.content.firstElementChild;
         const rowOptEls = rowEl.querySelectorAll('input');
-
-        // Set default checked state to be for first two images
-        if (i === 0) {
-          // Image 1 = Layer A
-          rowOptEls[0].checked = true;
-          this.images.active.a = 0;
-        }
-        if (i === 1) {
-          // Image 2 = Layer B
-          rowOptEls[1].checked = true;
-          this.images.active.b = 1;
-        }
+        item.controlEls = {
+          a: rowOptEls[0],
+          b: rowOptEls[1],
+        };
 
         imagesWrapperEl.appendChild(rowEl);
+        panelEl.appendChild(imagesWrapperEl);
+
+        // Add event listener to radio buttons
+        // When any button changes:
+        rowOptEls.forEach((optEl) => {
+          optEl.addEventListener('change', (e) => {
+            this._handleControlImageChange(
+              parseInt(e.target.dataset.index, 10),
+              e.target.id.slice(-1)
+            );
+          });
+        });
       });
-      panelEl.appendChild(imagesWrapperEl);
+
+      this.assignImageToLayer(0, 'a');
+      this.assignImageToLayer(1, 'b');
     }
 
     // Output annotations
@@ -589,6 +598,88 @@ class LayeredImageViewer {
 
     // Add menu to toolbar
     this.toolbar.element.appendChild(detailsEl);
+  }
+
+  /**
+   * Handle change events on image controls
+   * @private
+   * @method
+   * @param {Number} index - Integer for target image control
+   * @param {'a'|'b'} layer - Layer to handle change on
+   */
+  _handleControlImageChange(index, layer) {
+    const targetEl = this.images.items[index].controlEls[layer];
+
+    // Move to parent and checked items
+    const allCheckedOptEls = targetEl
+      .closest('.layered-image-viewer-details__images')
+      .querySelectorAll('input:checked');
+
+    // 2 = perform flip on the non-target adjacent
+    // Not null checks because initalise may enter here
+    if (
+      allCheckedOptEls.length === 2 &&
+      this.images.active.a !== null &&
+      this.images.active.b !== null
+    ) {
+      Array.prototype.filter
+        .call(allCheckedOptEls, (item) => {
+          return item !== targetEl;
+        })
+        .forEach((item) => {
+          // flipEl is somehow adjacent, layer === a is next and vice-versa
+          const flipEl =
+            layer !== 'a'
+              ? item.previousElementSibling
+              : item.nextElementSibling;
+
+          // Update DOM
+          item.checked = false;
+          flipEl.checked = true;
+
+          // Update state
+          this.images.active[layer === 'a' ? 'a' : 'b'] = index;
+          this.images.active[layer === 'a' ? 'b' : 'a'] = parseInt(
+            flipEl.dataset.index
+          );
+        });
+    }
+
+    // More than 2 (only 3 should be possible) = unset any in column matching target
+    // Excluding target
+    else if (allCheckedOptEls.length > 2) {
+      Array.prototype.filter
+        .call(allCheckedOptEls, (item) => {
+          return item.id.slice(-1) === layer && item !== targetEl;
+        })
+        .forEach((item) => {
+          // Update DOM
+          item.checked = false;
+
+          // Update state
+          this.images.active[layer] = index;
+        });
+    } else {
+      // Should only trigger when initialising
+      this.images.items[index].controlEls[layer].checked = true;
+      this.images.active[layer] = index;
+    }
+  }
+
+  /**
+   * Set a given image index to a named layer
+   * @public
+   * @method
+   * @param {Number} index - Integer for target image element
+   * @param {'a'|'b'} layer - Layer to assign image to
+   * @returns
+   */
+  assignImageToLayer(index, layer) {
+    if (!this.images.items[index]) return;
+
+    const changeEvent = new Event('change');
+    this.images.items[index].controlEls[layer].checked = true;
+    this.images.items[index].controlEls[layer].dispatchEvent(changeEvent);
   }
 
   /**
