@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 
 class MembershipBannerSeeder extends Seeder
 {
+    // XXX Can we get rid of this seeder and use factories to generate these when needed?
     public function run(): void
     {
         $this->changeRole('membership_banner_image');
