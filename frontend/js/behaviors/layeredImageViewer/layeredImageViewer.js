@@ -605,6 +605,70 @@ class LayeredImageViewer {
   }
 
   /**
+   * Use the URL's for the active images to set appropriate images in OSD
+   * @private
+   * @method
+   */
+  _setWorldItems() {
+    const worldItemCount = this.viewer.world.getItemCount();
+    const worldItems = {
+      a: this.viewer.world.getItemAt(worldItemCount === 1 ? 0 : 1),
+    };
+    const activeItems = {
+      a: this.images.items[this.images.active.a],
+      b: this.images.items[this.images.active.b],
+    };
+
+    // Require 'a' and 'b' to be set
+    if (!activeItems.a || !activeItems.b) return;
+
+    // Set worldItem.b if it exists (after initialisation)
+    if (worldItemCount > 1) {
+      worldItems.b = this.viewer.world.getItemAt(0);
+    }
+
+    if (worldItems['a'].source.url === activeItems['b'].url) {
+      // Detect flip and swap world items
+      this.viewer.world.setItemIndex(this.viewer.world.getItemAt(0), 1);
+    } else {
+      // Loop active items and set images
+      ['a', 'b'].forEach((key) => {
+        // If a / b exists
+        if (worldItems[key]) {
+          if (worldItems[key].source.url !== activeItems[key].url) {
+            // Add new image on top ([2, 1, 0])
+            this.viewer.addSimpleImage({
+              url: activeItems[key].url,
+              index: 2,
+              opacity: 0.999,
+              preload: true,
+              success: () => {
+                // From this point query world directly to get fresh references
+                // Remove the image this replaces
+                this.viewer.world.removeItem(
+                  this.viewer.world.getItemAt(key === 'a' ? 1 : 0)
+                );
+                // Set the new image to 'a' top, or 'b' bottom
+                this.viewer.world.setItemIndex(
+                  this.viewer.world.getItemAt(1),
+                  key === 'a' ? 1 : 0
+                );
+              },
+            });
+          }
+        } else {
+          // Create if necessary (initialisation)
+          this.viewer.addSimpleImage({
+            url: activeItems[key].url,
+            index: key === 'b' ? 0 : 1,
+            opacity: 0.999,
+          });
+        }
+      });
+    }
+  }
+
+  /**
    * Handle change events on image controls
    * @private
    * @method
@@ -621,6 +685,8 @@ class LayeredImageViewer {
 
     // 2 = perform flip on the non-target adjacent
     // Not null checks because initalise may enter here
+    // TODO: Reset causes a bug that also causes entry here
+    // First two could be set in loop instead
     if (
       allCheckedOptEls.length === 2 &&
       this.images.active.a !== null &&
@@ -668,6 +734,8 @@ class LayeredImageViewer {
       this.images.items[index].controlEls[layer].checked = true;
       this.images.active[layer] = index;
     }
+
+    this._setWorldItems();
   }
 
   /**
@@ -716,6 +784,7 @@ class LayeredImageViewer {
       location: new OpenSeadragon.Point(0, 0),
       width: 1, // (viewport unit)
       index: index,
+      opacity: 0.4,
     });
   }
 
