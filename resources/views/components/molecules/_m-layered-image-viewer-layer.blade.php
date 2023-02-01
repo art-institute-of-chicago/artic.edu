@@ -47,29 +47,25 @@
 
     global $_allowAdvancedModalFeatures;
 @endphp
-<p>{{ $width }}, {{ $height }}, {{ $crop_x }}, {{ $crop_y }}</p>
-<figure data-type="{{ $type }}" data-title="{{ $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}" class="m-media m-media--{{ $size }} m-media--contain">
-    <div class="m-media__img" data-behavior="fitText" {!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
-        @if ($type == 'image')
-            @component('components.atoms._img')
-                @slot('image', $media)
-                @slot('settings', $imageSettings ?? '')
-            @endcomponent
-        @endif
 
-        @component('components.atoms._btn')
-            @slot('variation', 'btn--septenary btn--icon btn--icon-circle-48 m-media__btn-download')
-            @slot('font', '')
-            @slot('icon', 'icon--download--24')
-            @slot('tag', 'a')
-            @slot('href', $media['src'])
-            @slot('download', true)
-            @slot('ariaLabel','Download image')
-        @endcomponent
+<figure class="m-media m-media--{{ (isset($images[0]['size'])) ? $images[0]['size'] : 'm' }} m-media--contain">
+    <div class="m-media__img" data-behavior="fitText">
+        <div class="m-media__contain--spacer" style="padding-bottom: 62.5%"></div>
+        <img
+        {{-- Image (small, medium or large) --}}
+        src="{{ $media['src'] }}"
+        alt="The scene depicts Whistler's studio. On the left a woman reclines and appears in conversation with a passing Japanese girl holding a fan. To the right is the artist Henri Fantin-Latour looking towards the viewer, holding a palette and brushes in one hand, with a single brush poised in the other."
+        width="2000"
+        height="2614"
+        {{-- Todo: Important to include this, must be largest size available: --}}
+        data-viewer-src="{{ $media['src'] }}"
+        />
     </div>
     @if (isset($item['label']))
         <figcaption>
-            <div class="f-caption">{!! $item['label'] !!}</div>
+            <div class="f-caption">
+                {!! $item['label'] !!}
+            </div>
         </figcaption>
     @endif
 </figure>
