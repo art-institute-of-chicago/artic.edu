@@ -13,6 +13,7 @@ class MembershipMagazinePageSeeder extends Seeder
         $page->title = 'Member Magazine';
         $page->redirect_url = '/magazine';
         $page->published = true;
+        // XXX The Membership GenericPage needs to be seeded as well
         $parent = GenericPage::where('title', 'Membership')->first();
         $page->parent_id = $parent->id;
         $page->save();
