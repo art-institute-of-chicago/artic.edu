@@ -487,9 +487,61 @@ class LayeredImageViewer {
       }
     });
 
+    // Control for opacity (if more than one image)
+    this._addOpacityControl();
+
     // Control panel for image layer controls if neccessary
     // (overlays present/more than one image)
     this._addImageLayerControlPanel();
+  }
+
+  /**
+   *
+   * @private
+   * @method
+   */
+  _addOpacityControl() {
+    if (this.images.items.length < 2) return;
+
+    const opacityTemplate = document.createElement('template');
+    opacityTemplate.innerHTML = `
+      <div class="o-layered-image-viewer__opacity">
+        <label for="o-layered-image-viewer-${this.id}-opacity-slider">Image layer visibility</label>
+        <div class="o-layered-image-viewer__opacity-field">
+          <input id="o-layered-image-viewer-${this.id}-opacity-slider" list="o-layered-image-viewer-${this.id}-opacity-list" name="opacity" type="range" min="0" max="1" step="0.01" value="0" />
+          <datalist id="o-layered-image-viewer-${this.id}-opacity-list">
+            <option value="0">A</option>
+            <option value="1">B</option>
+          </datalist>
+        </div>
+      </div>
+    `;
+
+    const opacityWrapperEl = opacityTemplate.content.firstElementChild;
+    this.opacitySliderEl = opacityWrapperEl.querySelector('input');
+
+    // Insert control
+    this.toolbar.element.append(opacityWrapperEl);
+
+    // Add event listener for slider
+    this.opacitySliderEl.addEventListener('input', (e) => {
+      // Invert value from slider
+      this.setOpacity(e.target.value);
+    });
+  }
+
+  /**
+   * Set opacity
+   * The closer to 1 this is the more of image A is shown
+   *
+   * @method
+   * @param {Number} opacity - Opacity to set. Should be floating point number rounded to 2 decimal places
+   * @public
+   */
+  setOpacity(opacity) {
+    // Invert value, set slider and update world item
+    this.opacitySliderEl.value = opacity;
+    this.viewer.world.getItemAt(1).setOpacity(1 - opacity);
   }
 
   /**
@@ -633,7 +685,10 @@ class LayeredImageViewer {
 
     if (worldItems['a'].source.url === activeItems['b'].url) {
       // Detect flip and swap world items
+      // Reset / reapply UI opacity to world items
+      this.viewer.world.getItemAt(1).setOpacity(0.999);
       this.viewer.world.setItemIndex(this.viewer.world.getItemAt(0), 1);
+      this.viewer.world.getItemAt(1).setOpacity(1 - this.opacitySliderEl.value);
     } else {
       // Loop active items and set images
       ['a', 'b'].forEach((key) => {
@@ -657,6 +712,9 @@ class LayeredImageViewer {
                   this.viewer.world.getItemAt(1),
                   key === 'a' ? 1 : 0
                 );
+
+                // If layer 'a' changes, reapply to  world item only
+                this.setOpacity(this.opacitySliderEl.value);
               },
             });
           }
@@ -666,6 +724,11 @@ class LayeredImageViewer {
             url: activeItems[key].url,
             index: key === 'b' ? 0 : 1,
             opacity: 0.999,
+            success: () => {
+              // Set initial opacity
+              // The class method updates the UI + world item
+              this.setOpacity(0);
+            },
           });
         }
       });
