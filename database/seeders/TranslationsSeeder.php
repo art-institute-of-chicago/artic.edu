@@ -174,34 +174,6 @@ class TranslationsSeeder extends Seeder
             }
         }
 
-        foreach (\App\Models\FeaturedHour::all() as $hour) {
-            foreach (config('translatable.locales') as $locale) {
-                DB::table('featured_hour_translations')->insert([
-                    'locale' => $locale,
-                    'active' => true,
-                    'featured_hour_id' => $hour->id,
-                    'title' => $hour->title,
-                    'copy' => $hour->copy,
-                ]);
-            }
-        }
-
-        if (env('APP_ENV') != 'testing') {
-            $rows = DB::select('select * from featured_hour_translations where locale = ?', ['en']);
-
-            foreach ($rows as $cols) {
-                DB::update(
-                    'update featured_hours set '
-                    . 'title = ?, '
-                    . 'copy = ? '
-                    . 'where id = ?',
-                    [$cols->title,
-                        $cols->copy,
-                        $cols->featured_hour_id]
-                );
-            }
-        }
-
         foreach (\App\Models\FeeAge::all() as $feeAge) {
             foreach (config('translatable.locales') as $locale) {
                 DB::table('fee_age_translations')->insert([

@@ -25,11 +25,6 @@ class TranslationsTest extends BaseTestCase
         $this->markTestIncomplete('Visit the page(s) that display the FAQs and check translated text is present.');
     }
 
-    public function test_featured_hours_translations()
-    {
-        $this->markTestIncomplete('Visit the page(s) that list featured hours and check translated text is present.');
-    }
-
     public function test_fee_ages_translations()
     {
         $this->markTestIncomplete('Visit the page(s) that list fees by age and check translated text is present.');
