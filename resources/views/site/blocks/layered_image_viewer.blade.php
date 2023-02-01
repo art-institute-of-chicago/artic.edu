@@ -1,6 +1,6 @@
 @php
     $captionTitle = $block->present()->input('caption_title');
-    $caption = $block->present()->input('caption');
+    $captionText = $block->present()->input('caption');
 
     $images = [];
     $annotations = [];
@@ -27,7 +27,7 @@
     @component('components.organisms._o-layered-image-viewer')
         @slot('variation', 'o-blocks__block')
         @slot('captionTitle', $captionTitle)
-        @slot('caption', $caption)
+        @slot('captionText', $captionText)
         @slot('images', $images)
         @slot('annotations', $annotations)
         @slot('imageSettings', $imageSettings ?? array(

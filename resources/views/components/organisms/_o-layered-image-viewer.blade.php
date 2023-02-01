@@ -20,20 +20,16 @@
 
     @if (isset($captionTitle))
         <div>
-            <div class="{{ isset($caption) ? 'f-caption-title' : 'f-caption' }}">
+            <div class="{{ isset($captionTitle) ? 'f-caption-title' : 'f-caption' }}">
                 <div>
-                    @if(isset($image['urlTitle']) && $image['urlTitle'])
-                        <a href="">{!! $captionTitle !!}</a>
-                    @else
-                        {!! $captionTitle !!}
-                    @endif
+                    {!! $captionTitle !!}
                 </div>
             </div>
             <br>
         </div>
     @endif
-    @if (isset($caption))
-        <div class="f-caption">{!! $caption !!}</div>
+    @if (isset($captionText))
+        <div class="f-caption">{!! $captionText !!}</div>
     @endif
 
 
@@ -188,12 +184,16 @@
         </div>
     </div>
     {{-- If caption of caption title --}}
-    <div class="o-layered-image-viewer__caption">
-        <div class="o-layered-image-viewer__caption-title">
-            <p>Fig 1.1</p>
+    @if (isset($captionTitle))
+        <div class="o-layered-image-viewer__caption">
+            <div class="o-layered-image-viewer__caption-title">
+                {!! $captionTitle !!}
+            </div>
+            @if (isset($captionText))
+                <div class="o-layered-image-viewer__caption-text">
+                    {!! $captionText !!}
+                </div>
+            @endif
         </div>
-        <div class="o-layered-image-viewer__caption-text">
-            <p>The Artist in His Studio,1865/66, 1895</p>
-        </div>
-    </div>
+    @endif
 </div>
