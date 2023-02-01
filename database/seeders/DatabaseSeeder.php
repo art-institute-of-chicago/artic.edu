@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
         MembershipMagazinePageSeeder::class,
         VisitPageSeeder::class,
         EmailSeriesSeeder::class,
-        TranslationsSeeder::class,
         EventProgramSeeder::class,
         PublishStartDateSeeder::class,
         RelatedArticlesSeeder::class,
