@@ -42,4 +42,4 @@
 
 @formField('repeater', ['type' => 'layered_image_viewer_img'])
 
-@formField('repeater', ['type' => 'layered_image_viewer_annotation'])
+@formField('repeater', ['type' => 'layered_image_viewer_overlay'])
