@@ -7,8 +7,6 @@ use Illuminate\Database\Seeder;
 
 class HomePageSeeder extends Seeder
 {
-    protected $seed = true;
-
     public function run(): void
     {
         $page = Page::forType('Home')->first();
