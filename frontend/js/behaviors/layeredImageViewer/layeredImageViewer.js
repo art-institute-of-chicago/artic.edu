@@ -468,6 +468,10 @@ class LayeredImageViewer {
         annotation.checkboxEl.checked = false;
         annotation.checkboxEl.dispatchEvent(changeEvent);
       });
+
+      // Reset layers
+      this.assignImageToLayer(0, 'a');
+      this.assignImageToLayer(1, 'b');
     });
 
     // Fullscreen
