@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         VanityRedirectSeeder::class,
         IlluminateTagSeeder::class,
         HighlightSeeder::class,
+        SlideSeeder::class,
     ];
 
     public function run(): void
