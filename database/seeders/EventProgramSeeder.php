@@ -40,7 +40,7 @@ class EventProgramSeeder extends Seeder
 
         'Accessibility',
         'Conservation and Science',
-        'Sustaining Fellows',
+        'Luminary',
         'Gallery Talks',
     ];
 

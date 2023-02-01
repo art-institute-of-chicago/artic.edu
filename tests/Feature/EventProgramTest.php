@@ -11,5 +11,6 @@ class EventProgramTest extends BaseTestCase
     {
         // XXX I'm not sure how useful of a test this is.
         $this->assertDatabaseCount('event_programs', 31);
+        $this->markTestIncomplete("Visit page of event programs and verify events are displayed.");
     }
 }
