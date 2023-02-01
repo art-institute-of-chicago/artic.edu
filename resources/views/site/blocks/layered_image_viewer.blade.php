@@ -30,15 +30,5 @@
         @slot('size', $size)
         @slot('images', $images)
         @slot('annotations', $annotations)
-        @slot('imageSettings', $imageSettings ?? array(
-                'srcset' => array(300,600,800,1200,1600,2000,3000,4500),
-                'sizes' => ImageHelpers::aic_imageSizes(array(
-                    'xsmall' => '58',
-                    'small' => '58',
-                    'medium' => '58',
-                    'large' => '43',
-                    'xlarge' => '43',
-                )),
-            ))
     @endcomponent
 @endif

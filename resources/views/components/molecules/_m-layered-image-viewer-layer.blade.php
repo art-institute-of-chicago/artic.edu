@@ -7,7 +7,7 @@
     $crop_x = $item['media']['crop_x'];
     $crop_y = $item['media']['crop_y'];
 
-    $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
+    $defaultSrcset = array(200,400,600,1000,1500,3000);
 
     if (empty($imageSettings) && $size === 's') {
         $imageSettings = array(
@@ -47,8 +47,6 @@
 
     if (isset($imageSettings)) {
 
-        $infoUrl = $imageSettings['infoUrl'] ?? null;
-
         $imageSettings = ImageHelpers::aic_imageSettings(array(
             'settings' => $imageSettings,
             'image' => $media,
@@ -56,14 +54,6 @@
 
         $srcset = $imageSettings['srcset'];
         $sizes = $imageSettings['sizes'];
-        $src = $imageSettings['lqip'] ?? $imageSettings['src'];
-        if (app('printservice')->isPrintMode()) {
-            $src = $imageSettings['src'];
-        }
-        $width = $imageSettings['width'];
-        $height = $imageSettings['height'];
-        $iiifId = $imageSettings['iiifId'];
-        $restrict = $imageSettings['restrict'] ?? null;
     }
 
     global $_allowAdvancedModalFeatures;
