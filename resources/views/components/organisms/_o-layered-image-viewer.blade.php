@@ -9,10 +9,10 @@
         @endforeach
     @endif
 
-    @if (isset($annotations) && !empty($annotations))
-        @foreach ($annotations as $annotation)
+    @if (isset($overlays) && !empty($overlays))
+        @foreach ($overlays as $overlay)
             @component('components.molecules._m-layered-image-viewer-layer')
-                @slot('item', $annotation)
+                @slot('item', $overlay)
             @endcomponent
         @endforeach
     @endif
@@ -145,10 +145,10 @@
             </figure>
         </div>
     </div>
-    {{-- If annotations --}}
-    <div class="o-layered-image-viewer__annotations">
-        {{-- Repeat div for every annotation --}}
-        <div class="o-layered-image-viewer__annotation">
+    {{-- If overlays --}}
+    <div class="o-layered-image-viewer__overlays">
+        {{-- Repeat div for every overlay --}}
+        <div class="o-layered-image-viewer__overlay">
           <figure class="m-media m-media--m m-media--contain">
             <div class="m-media__img" data-behavior="fitText">
               <div
@@ -167,7 +167,7 @@
             </figcaption>
           </figure>
         </div>
-        <div class="o-layered-image-viewer__annotation">
+        <div class="o-layered-image-viewer__overlay">
           <figure class="m-media m-media--m m-media--contain">
             <div class="m-media__img" data-behavior="fitText">
               <div
