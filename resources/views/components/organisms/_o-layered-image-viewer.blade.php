@@ -1,4 +1,4 @@
-<div class="o-layered-image-viewer{{ (isset($variation)) ? ' '.$variation : '' }}" data-size="{{ (isset($images[0]['size'])) ? $images[0]['size'] : 'm' }}" data-behavior="layeredImageViewer">
+<div class="o-layered-image-viewer{{ (isset($variation)) ? ' '.$variation : '' }}" data-size="{{ (isset($size)) ? $size : 'm' }}" data-behavior="layeredImageViewer">
     @if (isset($images) && !empty($images))
         <div class="o-layered-image-viewer__images">
             @foreach ($images as $image)
@@ -6,6 +6,7 @@
                 <div class="o-layered-image-viewer__image">
                     @component('components.molecules._m-layered-image-viewer-layer')
                         @slot('item', $image)
+                        @slot('size', $size)
                     @endcomponent
                 </div>
             @endforeach
@@ -19,6 +20,7 @@
                 <div class="o-layered-image-viewer__annotation">
                     @component('components.molecules._m-layered-image-viewer-layer')
                         @slot('item', $annotation)
+                        @slot('size', $size)
                     @endcomponent
                 </div>
             @endforeach
