@@ -17,7 +17,7 @@ class LayeredImageViewer {
     this.osdMountEl = null;
     this.browerSupportsFullscreen =
       typeof document.fullscreenElement !== 'undefined';
-    this.size = 'm';
+    this.size = this.element.dataset.size || 'm';
     this.id = 0;
 
     this.captionTitleEl = null;
@@ -85,7 +85,7 @@ class LayeredImageViewer {
     this.id = document.querySelectorAll('.o-layered-image-viewer').length - 1;
 
     // Set the size
-    this.size = this.element.dataset.size || 'm';
+    this.size = this.element.dataset.size;
 
     // Store ref to containers container
     this.images.element = this.element.querySelector(
@@ -476,57 +476,72 @@ class LayeredImageViewer {
       }
     });
 
-    // Control panel for annotations if present
-    this._addAnnotationMenu();
+    // Control panel for image layer controls if neccessary
+    this._addImageLayerControlPanel();
   }
 
   /**
-   * Add a menu for toggling annotations
+   * Add a menu switching layers and toggling annotations
    * @private
    * @method
    */
-  _addAnnotationMenu() {
-    if (!this.annotations.items.length) return;
+  _addImageLayerControlPanel() {
+    // Only show if annotations or multiple images exist
+    if (!this.annotations.items.length && this.images.items.length < 2) return;
 
     // Create template markup
     const detailsTemplate = document.createElement('template');
     detailsTemplate.innerHTML = `
       <details class="layered-image-viewer-details">
-        <summary>Show annotations</summary>
+        <summary>Image layer options</summary>
         <div class="layered-image-viewer-details__menu"></div>
       </details>`;
     const detailsEl = detailsTemplate.content.firstElementChild;
     const panelEl = detailsEl.lastElementChild;
 
-    // Build up markup for the annotations panel
-    // Each item becoming a checkbox / label combo
-    const fieldTemplate = document.createElement('template');
-    this.annotations.items.forEach((item, i) => {
-      fieldTemplate.innerHTML = `
-        <div class="layered-image-viewer-details__option">
-          <input id="layered-image-viewer-${this.id}-annotation-cb-${i}" type="checkbox" data-index="${i}" />
-          <label for="layered-image-viewer-${this.id}-annotation-cb-${i}">${item.label}</label>
-        </div>
-        `;
+    // Output annotations
+    if (this.annotations.items.length) {
+      const annotationsTemplate = document.createElement('template');
+      annotationsTemplate.innerHTML = `
+      <div class="layered-image-viewer-details__annotations">
+      </div>`;
+      const annotationsWrapperEl =
+        annotationsTemplate.content.firstElementChild;
 
-      const rowEl = fieldTemplate.content.firstElementChild;
-      this.annotations.items[i].checkboxEl = rowEl.firstElementChild;
+      // Build up markup for the annotations
+      // Each item becoming a checkbox / label combo
+      const annotationFieldTemplate = document.createElement('template');
+      this.annotations.items.forEach((item, i) => {
+        annotationFieldTemplate.innerHTML = `
+          <div class="layered-image-viewer-details__option">
+            <input id="layered-image-viewer-${this.id}-annotation-cb-${i}" type="checkbox" data-index="${i}" />
+            <label for="layered-image-viewer-${this.id}-annotation-cb-${i}">${item.label}</label>
+          </div>
+          `;
 
-      // Attach toggle handling
-      this.annotations.items[i].checkboxEl.addEventListener('change', (e) => {
-        if (e.target.checked) {
-          // Turn overlay on
-          this.activateAnnotation(parseInt(e.target.dataset.index, 10));
-        } else {
-          // Turn overlay off
-          this.deactivateAnnotation(parseInt(e.target.dataset.index, 10));
-        }
-        // Update aria label
-        this._setMainAriaLabel();
+        const rowEl = annotationFieldTemplate.content.firstElementChild;
+        this.annotations.items[i].checkboxEl = rowEl.firstElementChild;
+
+        // Attach toggle handling
+        this.annotations.items[i].checkboxEl.addEventListener('change', (e) => {
+          if (e.target.checked) {
+            // Turn overlay on
+            this.activateAnnotation(parseInt(e.target.dataset.index, 10));
+          } else {
+            // Turn overlay off
+            this.deactivateAnnotation(parseInt(e.target.dataset.index, 10));
+          }
+          // Update aria label
+          this._setMainAriaLabel();
+        });
+
+        // Add completed row to wrapper
+        annotationsWrapperEl.appendChild(rowEl);
       });
-      // Add completed row to panel
-      panelEl.appendChild(rowEl);
-    });
+
+      // Add wrapper to panel
+      panelEl.appendChild(annotationsWrapperEl);
+    }
 
     // Add menu to toolbar
     this.toolbar.element.appendChild(detailsEl);
