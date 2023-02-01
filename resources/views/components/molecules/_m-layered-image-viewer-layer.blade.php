@@ -85,9 +85,9 @@
                 height="2614"
             @endif
 
-            @if (app('printservice')->isPrintMode() or (isset($imageSettings['lazyload']) and $imageSettings['lazyload'] === false))
-                srcset="{{ $srcset ?? '' }}"
-            @endif
+            srcset="{{ $srcset ?? '' }}"
+
+            sizes="{{ $sizes ?? '' }}"
 
             {{-- Todo: Important to include this, must be largest size available: --}}
             data-viewer-src="{{ $media['src'] }}"
