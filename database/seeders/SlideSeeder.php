@@ -9,6 +9,9 @@ class SlideSeeder extends Seeder
 {
     public function run()
     {
+        // XXX Without these slides already seeded, this update is moot.
+        // Even if slides are necessary to run the app, this seems like good
+        // functionality to test.
         $slides = Slide::where('module_type', 'end')->get();
 
         foreach ($slides as $slide) {
