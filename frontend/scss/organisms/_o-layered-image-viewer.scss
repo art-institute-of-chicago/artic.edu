@@ -6,7 +6,7 @@
 .js {
   .o-layered-image-viewer__caption,
   .o-layered-image-viewer__images,
-  .o-layered-image-viewer__annotations {
+  .o-layered-image-viewer__overlays {
     display: none;
   }
 }
@@ -30,7 +30,7 @@
   width: 100%;
   max-height: 80vh;
   aspect-ratio: 9 / 16;
-  background-image: none;;
+  background-image: none;
 }
 
 // Initial modal state

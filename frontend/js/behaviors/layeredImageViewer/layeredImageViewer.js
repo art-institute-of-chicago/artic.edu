@@ -29,7 +29,7 @@ class LayeredImageViewer {
         b: null,
       },
     };
-    this.annotations = {
+    this.overlays = {
       items: [],
       active: [],
     };
@@ -94,8 +94,8 @@ class LayeredImageViewer {
     this.images.element = this.element.querySelector(
       '.o-layered-image-viewer__images'
     );
-    this.annotations.element = this.element.querySelector(
-      '.o-layered-image-viewer__annotations'
+    this.overlays.element = this.element.querySelector(
+      '.o-layered-image-viewer__overlays'
     );
 
     // Get caption and caption title nodes
@@ -109,10 +109,10 @@ class LayeredImageViewer {
     // Process each image
     this._processImages('images', this.images.element.querySelectorAll('img'));
 
-    // Process each annotation
+    // Process each overlay
     this._processImages(
-      'annotations',
-      this.annotations.element.querySelectorAll('img')
+      'overlays',
+      this.overlays.element.querySelectorAll('img')
     );
   }
 
@@ -213,9 +213,9 @@ class LayeredImageViewer {
    * @method
    */
   _setMainAriaLabel() {
-    // Get label for each active annotation
-    const annotationLabels = this.annotations.active.map((activeIndex) => {
-      return `'${this.annotations.items[activeIndex].label}'`;
+    // Get label for each active overlay
+    const overlayLabels = this.overlays.active.map((activeIndex) => {
+      return `'${this.overlays.items[activeIndex].label}'`;
     });
     // 'b' label will only exist if initialised with multple images
     const imageLabels = [`'${this.images.items[this.images.active.a].label}'`];
@@ -223,19 +223,17 @@ class LayeredImageViewer {
       imageLabels.push(`'${this.images.items[this.images.active.b].label}'`);
 
     // Convert labels array into string
-    const annotationsString =
-      LayeredImageViewer.stringifyList(annotationLabels);
+    const overlaysString = LayeredImageViewer.stringifyList(overlayLabels);
 
     const imagesString = LayeredImageViewer.stringifyList(imageLabels);
 
-    const annotationNoun =
-      annotationLabels.length > 1 ? 'annotations' : 'annotation';
+    const overlayNoun = overlayLabels.length > 1 ? 'overlays' : 'overlay';
     const imageNoun = imageLabels.length > 1 ? 'images' : 'image';
 
     // Use label to describe the intent, and the current state. This will be announced before description.
     this.viewer.canvas.ariaLabel = `Interacive image viewer. Currently showing ${imagesString} ${imageNoun}${
-      annotationLabels.length
-        ? `, overlayed with ${annotationsString} ${annotationNoun}`
+      overlayLabels.length
+        ? `, overlayed with ${overlaysString} ${overlayNoun}`
         : '.'
     }`;
   }
@@ -467,12 +465,12 @@ class LayeredImageViewer {
     this.toolbar.buttons.reset.addEventListener('click', () => {
       this.viewer.viewport.goHome();
 
-      // Deactivate annotations
+      // Deactivate overlays
       // (Requires events to be dispatched manually to trigger)
       const changeEvent = new Event('change');
-      this.annotations.items.forEach((annotation) => {
-        annotation.checkboxEl.checked = false;
-        annotation.checkboxEl.dispatchEvent(changeEvent);
+      this.overlays.items.forEach((overlay) => {
+        overlay.checkboxEl.checked = false;
+        overlay.checkboxEl.dispatchEvent(changeEvent);
       });
 
       // Reset layers
@@ -490,17 +488,18 @@ class LayeredImageViewer {
     });
 
     // Control panel for image layer controls if neccessary
+    // (overlays present/more than one image)
     this._addImageLayerControlPanel();
   }
 
   /**
-   * Add a menu switching layers and toggling annotations
+   * Add a menu switching layers and toggling overlays
    * @private
    * @method
    */
   _addImageLayerControlPanel() {
-    // Only show if annotations or multiple images exist
-    if (!this.annotations.items.length && this.images.items.length < 2) return;
+    // Only show if overlays or multiple images exist
+    if (!this.overlays.items.length && this.images.items.length < 2) return;
 
     // Create template markup
     const detailsTemplate = document.createElement('template');
@@ -561,49 +560,48 @@ class LayeredImageViewer {
       this.assignImageToLayer(1, 'b');
     }
 
-    // Output annotations
-    if (this.annotations.items.length) {
-      const annotationsTemplate = document.createElement('template');
-      annotationsTemplate.innerHTML = `
-      <div class="layered-image-viewer-details__annotations">
-        <h2>Annotations</h2>
+    // Output overlays
+    if (this.overlays.items.length) {
+      const overlaysTemplate = document.createElement('template');
+      overlaysTemplate.innerHTML = `
+      <div class="layered-image-viewer-details__overlays">
+        <h2>Overlays</h2>
       </div>`;
-      const annotationsWrapperEl =
-        annotationsTemplate.content.firstElementChild;
+      const overlaysWrapperEl = overlaysTemplate.content.firstElementChild;
 
-      // Build up markup for the annotations
+      // Build up markup for the overlays
       // Each item becoming a checkbox / label combo
-      const annotationFieldTemplate = document.createElement('template');
-      this.annotations.items.forEach((item, i) => {
-        annotationFieldTemplate.innerHTML = `
+      const overlayFieldTemplate = document.createElement('template');
+      this.overlays.items.forEach((item, i) => {
+        overlayFieldTemplate.innerHTML = `
           <div class="layered-image-viewer-details__option">
-            <input id="layered-image-viewer-${this.id}-annotation-cb-${i}" type="checkbox" data-index="${i}" />
-            <label for="layered-image-viewer-${this.id}-annotation-cb-${i}">${item.label}</label>
+            <input id="layered-image-viewer-${this.id}-overlay-cb-${i}" type="checkbox" data-index="${i}" />
+            <label for="layered-image-viewer-${this.id}-overlay-cb-${i}">${item.label}</label>
           </div>
           `;
 
-        const rowEl = annotationFieldTemplate.content.firstElementChild;
-        this.annotations.items[i].checkboxEl = rowEl.firstElementChild;
+        const rowEl = overlayFieldTemplate.content.firstElementChild;
+        this.overlays.items[i].checkboxEl = rowEl.firstElementChild;
 
         // Attach toggle handling
-        this.annotations.items[i].checkboxEl.addEventListener('change', (e) => {
+        this.overlays.items[i].checkboxEl.addEventListener('change', (e) => {
           if (e.target.checked) {
             // Turn overlay on
-            this.activateAnnotation(parseInt(e.target.dataset.index, 10));
+            this.activateOverlay(parseInt(e.target.dataset.index, 10));
           } else {
             // Turn overlay off
-            this.deactivateAnnotation(parseInt(e.target.dataset.index, 10));
+            this.deactivateOverlay(parseInt(e.target.dataset.index, 10));
           }
           // Update aria label
           this._setMainAriaLabel();
         });
 
         // Add completed row to wrapper
-        annotationsWrapperEl.appendChild(rowEl);
+        overlaysWrapperEl.appendChild(rowEl);
       });
 
       // Add wrapper to panel
-      panelEl.appendChild(annotationsWrapperEl);
+      panelEl.appendChild(overlaysWrapperEl);
     }
 
     // Add menu to toolbar
@@ -766,13 +764,13 @@ class LayeredImageViewer {
   }
 
   /**
-   * Activate an annotation by the internally tracked index
+   * Activate an overlay by the internally tracked index
    * @public
    * @method
-   * @param {Number} index - Index of annotation to activate. Mirrors the order of the initial HTML
+   * @param {Number} index - Index of overlay to activate. Mirrors the order of the initial HTML
    */
-  activateAnnotation(index) {
-    if (!this.annotations.items[index]) return;
+  activateOverlay(index) {
+    if (!this.overlays.items[index]) return;
 
     // There's two potential ways of doing this AFAIK
     // 1. Add an image. This doesn't work well with SVG
@@ -780,15 +778,15 @@ class LayeredImageViewer {
     // There's also OpenSeadragon svgOverlay plugin, which from what I can tell
     // seems to be if you're working with arbitrary SVG code and not really suited to our files.
 
-    // Clone our annotation, otherwise OSD seems to want to move it
+    // Clone our overlay, otherwise OSD seems to want to move it
     // (which makes destruction cleanup hard)
-    const cloneEl = this.annotations.element
-      .querySelector(`#layered-image-viewer-${this.id}-annotations-${index}`)
+    const cloneEl = this.overlays.element
+      .querySelector(`#layered-image-viewer-${this.id}-overlays-${index}`)
       .cloneNode();
-    cloneEl.id = `layered-image-viewer-${this.id}-annotations-${index}-clone`;
+    cloneEl.id = `layered-image-viewer-${this.id}-overlays-${index}-clone`;
 
     // Add to active list
-    this.annotations.active.push(index);
+    this.overlays.active.push(index);
 
     this.viewer.addOverlay({
       element: cloneEl,
@@ -800,33 +798,24 @@ class LayeredImageViewer {
   }
 
   /**
-   * Deactivate an annotation by the internally tracked index
+   * Deactivate an overlay by the internally tracked index
    * @public
    * @method
-   * @param {Number} index - Index of annotation to activate. Mirrors the order of the initial HTML
+   * @param {Number} index - Index of overlay to activate. Mirrors the order of the initial HTML
    */
-  deactivateAnnotation(index) {
-    if (!this.annotations.items[index]) return;
+  deactivateOverlay(index) {
+    if (!this.overlays.items[index]) return;
 
     // Remove from active list
-    this.annotations.active = this.annotations.active.filter(
+    this.overlays.active = this.overlays.active.filter(
       (item) => item !== index
     );
 
     this.viewer.removeOverlay(
-      `layered-image-viewer-${this.id}-annotations-${index}-clone`
+      `layered-image-viewer-${this.id}-overlays-${index}-clone`
     );
   }
 }
 
 
-const layeredImageViewer = function(container) {
-  this.init = function() {
-    new LayeredImageViewer(container);
-  };
-  this.destroy = function() {
-    LayeredImageViewer.destroy(container);
-  };
-};
-
-export default layeredImageViewer;
+export default LayeredImageViewer;
