@@ -7,6 +7,7 @@
                     @component('components.molecules._m-layered-image-viewer-layer')
                         @slot('item', $image)
                         @slot('size', $size)
+                        @slot('layerType', 'image')
                     @endcomponent
                 </div>
             @endforeach
@@ -21,6 +22,7 @@
                     @component('components.molecules._m-layered-image-viewer-layer')
                         @slot('item', $annotation)
                         @slot('size', $size)
+                        @slot('layerType', 'annotation')
                     @endcomponent
                 </div>
             @endforeach

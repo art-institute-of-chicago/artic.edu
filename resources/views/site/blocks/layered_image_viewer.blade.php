@@ -8,7 +8,6 @@
 
     foreach ($block->childs as $child) {
         $mediaItem = [
-            'type' => 'image',
             'media' => $child->imageAsArray('image', 'desktop'),
             'label' => $child->input('label'),
         ];
