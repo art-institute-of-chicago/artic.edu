@@ -1,6 +1,6 @@
 @php
     $type = isset($item['type']) ? $item['type'] : 'image';
-    $size = isset($item['size']) ? $item['size'] : 'm';
+    $size = isset($size) ? $size : 'm';
     $media = $item['media'];
     $width = $item['media']['width'];
     $height = $item['media']['height'];
@@ -48,7 +48,7 @@
     global $_allowAdvancedModalFeatures;
 @endphp
 
-<figure class="m-media m-media--{{ (isset($images[0]['size'])) ? $images[0]['size'] : 'm' }} m-media--contain">
+<figure class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} m-media--contain">
     <div class="m-media__img" data-behavior="fitText">
         <div
             class="m-media__contain--spacer"
