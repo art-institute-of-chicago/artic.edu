@@ -684,9 +684,7 @@ class LayeredImageViewer {
       .querySelectorAll('input:checked');
 
     // 2 = perform flip on the non-target adjacent
-    // Not null checks because initalise may enter here
-    // TODO: Reset causes a bug that also causes entry here
-    // First two could be set in loop instead
+    // not null checks because initalise/assign may enter here and cause unintended flip
     if (
       allCheckedOptEls.length === 2 &&
       this.images.active.a !== null &&
@@ -748,6 +746,9 @@ class LayeredImageViewer {
    */
   assignImageToLayer(index, layer) {
     if (!this.images.items[index]) return;
+
+    // Set active to null to prevent flip operations
+    this.images.active[layer] = null;
 
     const changeEvent = new Event('change');
     this.images.items[index].controlEls[layer].checked = true;
