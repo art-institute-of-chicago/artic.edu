@@ -50,15 +50,19 @@
 
 <figure class="m-media m-media--{{ (isset($images[0]['size'])) ? $images[0]['size'] : 'm' }} m-media--contain">
     <div class="m-media__img" data-behavior="fitText">
-        <div class="m-media__contain--spacer" style="padding-bottom: 62.5%"></div>
+        <div
+            class="m-media__contain--spacer"
+            style="padding-bottom: 62.5%"
+        ></div>
         <img
-        {{-- Image (small, medium or large) --}}
-        src="{{ $media['src'] }}"
-        alt="The scene depicts Whistler's studio. On the left a woman reclines and appears in conversation with a passing Japanese girl holding a fan. To the right is the artist Henri Fantin-Latour looking towards the viewer, holding a palette and brushes in one hand, with a single brush poised in the other."
-        width="2000"
-        height="2614"
-        {{-- Todo: Important to include this, must be largest size available: --}}
-        data-viewer-src="{{ $media['src'] }}"
+            {{-- Image (small, medium or large) --}}
+            src="{{ $media['src'] }}"
+            alt="The scene depicts Whistler's studio. On the left a woman reclines and appears in conversation with a passing Japanese girl holding a fan. To the right is the artist Henri Fantin-Latour looking towards the viewer, holding a palette and brushes in one hand, with a single brush poised in the other."
+            {{-- Width and height only needed for image layers i.e. not annotation layers --}}
+            width="2000"
+            height="2614"
+            {{-- Todo: Important to include this, must be largest size available: --}}
+            data-viewer-src="{{ $media['src'] }}"
         />
     </div>
     @if (isset($item['label']))
