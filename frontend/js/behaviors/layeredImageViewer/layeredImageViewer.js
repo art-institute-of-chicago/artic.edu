@@ -217,19 +217,25 @@ class LayeredImageViewer {
     const annotationLabels = this.annotations.active.map((activeIndex) => {
       return `'${this.annotations.items[activeIndex].label}'`;
     });
+    // 'b' label will only exist if initialised with multple images
+    const imageLabels = [`'${this.images.items[this.images.active.a].label}'`];
+    this.images.active.b &&
+      imageLabels.push(`'${this.images.items[this.images.active.b].label}'`);
 
     // Convert labels array into string
     const annotationsString =
       LayeredImageViewer.stringifyList(annotationLabels);
-    const wordAnnotation =
+
+    const imagesString = LayeredImageViewer.stringifyList(imageLabels);
+
+    const annotationNoun =
       annotationLabels.length > 1 ? 'annotations' : 'annotation';
+    const imageNoun = imageLabels.length > 1 ? 'images' : 'image';
 
     // Use label to describe the intent, and the current state. This will be announced before description.
-    this.viewer.canvas.ariaLabel = `Interacive image viewer. Currently showing '${
-      this.images.items[0].label
-    }' image${
+    this.viewer.canvas.ariaLabel = `Interacive image viewer. Currently showing ${imagesString} ${imageNoun}${
       annotationLabels.length
-        ? `, overlayed with ${annotationsString} ${wordAnnotation}`
+        ? `, overlayed with ${annotationsString} ${annotationNoun}`
         : '.'
     }`;
   }
@@ -733,7 +739,11 @@ class LayeredImageViewer {
       this.images.active[layer] = index;
     }
 
+    // Update images in viewer
     this._setWorldItems();
+
+    // Update aria label
+    this._setMainAriaLabel();
   }
 
   /**
