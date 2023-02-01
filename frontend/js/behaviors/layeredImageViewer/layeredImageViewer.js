@@ -24,7 +24,7 @@ class LayeredImageViewer {
     this.captionEl = null;
     this.images = {
       items: [],
-      active: [], // Set() would've been useful here, but is not compatible with transpiler
+      active: {},
     };
     this.annotations = {
       items: [],
@@ -493,17 +493,61 @@ class LayeredImageViewer {
     const detailsTemplate = document.createElement('template');
     detailsTemplate.innerHTML = `
       <details class="layered-image-viewer-details">
-        <summary>Image layer options</summary>
-        <div class="layered-image-viewer-details__menu"></div>
+      <summary>Image layer options</summary>
+      <div class="layered-image-viewer-details__menu"></div>
       </details>`;
     const detailsEl = detailsTemplate.content.firstElementChild;
     const panelEl = detailsEl.lastElementChild;
+
+    // Output images
+    if (this.images.items.length > 1) {
+      const imagesTemplate = document.createElement('template');
+      imagesTemplate.innerHTML = `
+        <div class="layered-image-viewer-details__images">
+          <h2>Image layers</h2>
+          <p id="layered-image-viewer-${this.id}-image-opt-a">Layer A</p>
+          <p id="layered-image-viewer-${this.id}-image-opt-b">Layer B</p>
+        </div>`;
+      const imagesWrapperEl = imagesTemplate.content.firstElementChild;
+
+      // Build up markup for the images
+      // Each item becoming a radio button / label combo
+      const imagesFieldTemplate = document.createElement('template');
+      this.images.items.forEach((item, i) => {
+        imagesFieldTemplate.innerHTML = `
+            <fieldset class="layered-image-viewer-details__radio-group">
+              <legend>${item.label}</legend>
+              <input id="layered-image-viewer-${this.id}-image-rb-${i}-a" aria-labelledby="layered-image-viewer-${this.id}-image-opt-a" name="layered-image-viewer-${this.id}-image-rb-${i}" type="radio" data-index="${i}" aria-live="polite" />
+              <input id="layered-image-viewer-${this.id}-image-rb-${i}-b" aria-labelledby="layered-image-viewer-${this.id}-image-opt-b" name="layered-image-viewer-${this.id}-image-rb-${i}" type="radio" data-index="${i}" aria-live="polite" />
+            </fieldset>
+            `;
+
+        const rowEl = imagesFieldTemplate.content.firstElementChild;
+        const rowOptEls = rowEl.querySelectorAll('input');
+
+        // Set default checked state to be for first two images
+        if (i === 0) {
+          // Image 1 = Layer A
+          rowOptEls[0].checked = true;
+          this.images.active.a = 0;
+        }
+        if (i === 1) {
+          // Image 2 = Layer B
+          rowOptEls[1].checked = true;
+          this.images.active.b = 1;
+        }
+
+        imagesWrapperEl.appendChild(rowEl);
+      });
+      panelEl.appendChild(imagesWrapperEl);
+    }
 
     // Output annotations
     if (this.annotations.items.length) {
       const annotationsTemplate = document.createElement('template');
       annotationsTemplate.innerHTML = `
       <div class="layered-image-viewer-details__annotations">
+        <h2>Annotations</h2>
       </div>`;
       const annotationsWrapperEl =
         annotationsTemplate.content.firstElementChild;
