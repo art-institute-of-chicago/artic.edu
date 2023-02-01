@@ -48,3 +48,20 @@
   user-select: none;
 }
 
+.o-layered-image-viewer__opacity {
+  padding: 4px;
+  background-color: #fff;
+}
+
+.o-layered-image-viewer__opacity-field {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+
+  option:first-of-type {
+    order: -1;
+  }
+  datalist {
+    display: contents;
+  }
+}
