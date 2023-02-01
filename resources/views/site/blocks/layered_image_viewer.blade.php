@@ -4,7 +4,7 @@
     $size = $block->present()->input('size');
 
     $images = [];
-    $annotations = [];
+    $overlays = [];
 
     foreach ($block->childs as $child) {
         $mediaItem = [
@@ -16,19 +16,19 @@
             $images[] = $mediaItem;
         }
 
-        if ($child['type'] == 'layered_image_viewer_annotation') {
-            $annotations[] = $mediaItem;
+        if ($child['type'] == 'layered_image_viewer_overlay') {
+            $overlays[] = $mediaItem;
         }
     }
 @endphp
 
-@if (count($images) > 0 || count($annotations) > 0)
+@if (count($images) > 0 || count($overlays) > 0)
     @component('components.organisms._o-layered-image-viewer')
         @slot('variation', 'o-blocks__block')
         @slot('captionTitle', $captionTitle)
         @slot('captionText', $captionText)
         @slot('size', $size)
         @slot('images', $images)
-        @slot('annotations', $annotations)
+        @slot('overlays', $overlays)
     @endcomponent
 @endif
