@@ -1,5 +1,5 @@
 @php
-    $type = isset($item['type']) ? $item['type'] : 'image';
+    $layerType = isset($layerType) ? $layerType : 'image';
     $size = isset($size) ? $size : 'm';
     $media = $item['media'];
     $width = $item['media']['width'];
@@ -58,9 +58,12 @@
             {{-- Image (small, medium or large) --}}
             src="{{ $media['src'] }}"
             alt="The scene depicts Whistler's studio. On the left a woman reclines and appears in conversation with a passing Japanese girl holding a fan. To the right is the artist Henri Fantin-Latour looking towards the viewer, holding a palette and brushes in one hand, with a single brush poised in the other."
-            {{-- Width and height only needed for image layers i.e. not annotation layers --}}
-            width="2000"
-            height="2614"
+
+            @if ($layerType == 'image')
+                width="2000"
+                height="2614"
+            @endif
+
             {{-- Todo: Important to include this, must be largest size available: --}}
             data-viewer-src="{{ $media['src'] }}"
         />
