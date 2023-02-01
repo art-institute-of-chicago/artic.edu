@@ -45,6 +45,27 @@
         )));
     }
 
+    if (isset($imageSettings)) {
+
+        $infoUrl = $imageSettings['infoUrl'] ?? null;
+
+        $imageSettings = ImageHelpers::aic_imageSettings(array(
+            'settings' => $imageSettings,
+            'image' => $media,
+        ));
+
+        $srcset = $imageSettings['srcset'];
+        $sizes = $imageSettings['sizes'];
+        $src = $imageSettings['lqip'] ?? $imageSettings['src'];
+        if (app('printservice')->isPrintMode()) {
+            $src = $imageSettings['src'];
+        }
+        $width = $imageSettings['width'];
+        $height = $imageSettings['height'];
+        $iiifId = $imageSettings['iiifId'];
+        $restrict = $imageSettings['restrict'] ?? null;
+    }
+
     global $_allowAdvancedModalFeatures;
 @endphp
 
@@ -62,6 +83,10 @@
             @if ($layerType == 'image')
                 width="2000"
                 height="2614"
+            @endif
+
+            @if (app('printservice')->isPrintMode() or (isset($imageSettings['lazyload']) and $imageSettings['lazyload'] === false))
+                srcset="{{ $srcset ?? '' }}"
             @endif
 
             {{-- Todo: Important to include this, must be largest size available: --}}
