@@ -8,6 +8,7 @@ class VisitPageSeeder extends Seeder
 {
     public function run(): void
     {
+        // XXX Even when pre-seeded with this visit page, this errors out with the same error as PageTableSeeder
         $visitPage = \App\Models\Page::firstOrNew(['type' => 3]);
 
         $visitPage->visit_hour_intro = 'The Art Institute reopens on July 30, and we\'re so happy to welcome you back to our galleries. Please see below for new hours—including member-only hours—and updated safety policies.';
@@ -17,9 +18,9 @@ class VisitPageSeeder extends Seeder
         $visitPage->visit_accessibility_text = 'The Art Institute of Chicago welcomes all visitors and is committed to making its services accessible to everyone. We offer a range of resources for both adults and children with disabilities.';
         $visitPage->visit_accessibility_link_text = 'Learn more about accessibility';
         $visitPage->visit_parking_accessibility_link = '/visit/accessibility/visitors-with-mobility-needs';
+        $visitPage->save();
 
-        $visitPage->families()->delete();
-
+        // XXX All of the following should use firstOrNew or updateOrInsert so that this can be run multiple times in a row
         $family = new \App\Models\Family();
         $family->title = 'Art Institute Mobile App';
         $family->text = 'The Art Institute\'s free app offers the stories behind the art through conversations with artists, experts, and community members. Download it via the App Store or Google Play.';
@@ -52,8 +53,6 @@ class VisitPageSeeder extends Seeder
         $family->position = 3;
         $family->page_id = $visitPage->id;
         $family->save();
-
-        $visitPage->whatToExpects()->delete();
 
         $whatToExpect = new \App\Models\WhatToExpect();
         $whatToExpect->icon_type = 0;
