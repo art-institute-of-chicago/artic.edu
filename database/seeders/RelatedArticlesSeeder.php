@@ -9,6 +9,10 @@ class RelatedArticlesSeeder extends Seeder
 {
     public function run(): void
     {
+        // XXX Without all of the reference tables (article_article, api_relatables, article_event_sidebar, etc) these
+        // insertions won't work. Do these relations need to be present for the app to function? Or can we get rid of
+        // this seeder and use factories to generate relations in the tests that need them?
+
         // WEB-1183: page_article_article missing here
         $artArticles = DB::table('article_article')->select('*')->get();
         $pageArticles = DB::table('article_page')->select('*')->get();
@@ -59,6 +63,9 @@ class RelatedArticlesSeeder extends Seeder
             ]);
         }
 
+        // XXX Possibly mistaken, I think these two belong in the original migration
+        // as it looks like they are defining a dynamic relationship. is that correct
+        // nikhil?
         DB::table('related')->where('related_type', 'digitalLabels')->delete();
 
         DB::table('related')->where('browser_name', 'sidebar_items')->delete();
