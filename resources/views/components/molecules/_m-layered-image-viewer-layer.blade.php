@@ -1,13 +1,17 @@
 @php
-    $type = isset($item['type']) ? $item['type'] : 'image';
-    $size = isset($item['size']) ? $item['size'] : 'm';
+    $layerType = isset($layerType) ? $layerType : 'image';
+    $size = isset($size) ? $size : 'm';
     $media = $item['media'];
+    $alt = $item['media']['alt'];
     $width = $item['media']['width'];
     $height = $item['media']['height'];
     $crop_x = $item['media']['crop_x'];
     $crop_y = $item['media']['crop_y'];
 
-    $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
+    // Set empty $imageSettings, this will be populated based on $size
+    $imageSettings = [];
+
+    $defaultSrcset = array(200,400,600,1000,1500,3000);
 
     if (empty($imageSettings) && $size === 's') {
         $imageSettings = array(
@@ -45,34 +49,50 @@
         )));
     }
 
+    if (isset($imageSettings)) {
+
+        $imageSettings = ImageHelpers::aic_imageSettings(array(
+            'settings' => $imageSettings,
+            'image' => $media,
+        ));
+
+        $srcset = $imageSettings['srcset'];
+        $sizes = $imageSettings['sizes'];
+    }
+
     global $_allowAdvancedModalFeatures;
 @endphp
-<p>{{ $width }}, {{ $height }}, {{ $crop_x }}, {{ $crop_y }}</p>
-<figure data-type="{{ $type }}" data-title="{{ $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}" class="m-media m-media--{{ $size }} m-media--contain">
-    <div class="m-media__img" data-behavior="fitText" {!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
-        @if ($size === 'm' || $size === 'l')
-            <div class="m-media__contain--spacer" style="padding-bottom: {{ min(62.5, intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100) }}%"></div>
-        @endif
-        @if ($type == 'image')
-            @component('components.atoms._img')
-                @slot('image', $media)
-                @slot('settings', $imageSettings ?? '')
-            @endcomponent
-        @endif
 
-        @component('components.atoms._btn')
-            @slot('variation', 'btn--septenary btn--icon btn--icon-circle-48 m-media__btn-download')
-            @slot('font', '')
-            @slot('icon', 'icon--download--24')
-            @slot('tag', 'a')
-            @slot('href', $media['src'])
-            @slot('download', true)
-            @slot('ariaLabel','Download image')
-        @endcomponent
+<figure class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} m-media--contain">
+    <div class="m-media__img" data-behavior="fitText">
+        @if ($size === 'm' || $size === 'l')
+            <div
+                class="m-media__contain--spacer"
+                style="padding-bottom: {{ min(62.5, intval($media['height'] ?? 10) / intval($media['width'] ?? 16) * 100) }}%"
+            ></div>
+        @endif
+        <img
+            src="{{ $media['src'] }}"
+            alt="{{ $alt }}"
+
+            @if ($layerType == 'image')
+                width="{{ $width }}"
+                height="{{ $height }}"
+
+                {{-- srcset only applied to image as overlay will be svg --}}
+                srcset="{{ $srcset ?? '' }}"
+                sizes="{{ $sizes ?? '' }}"
+            @endif
+
+            {{-- Important to include this, must be largest size available: --}}
+            data-viewer-src="{{ $media['src'] }}"
+        />
     </div>
     @if (isset($item['label']))
         <figcaption>
-            <div class="f-caption">{!! $item['label'] !!}</div>
+            <div class="f-caption">
+                {!! $item['label'] !!}
+            </div>
         </figcaption>
     @endif
 </figure>
