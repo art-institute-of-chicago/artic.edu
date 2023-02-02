@@ -2,6 +2,7 @@
     $layerType = isset($layerType) ? $layerType : 'image';
     $size = isset($size) ? $size : 'm';
     $media = $item['media'];
+    $alt = $item['media']['alt'];
     $width = $item['media']['width'];
     $height = $item['media']['height'];
     $crop_x = $item['media']['crop_x'];
@@ -67,7 +68,7 @@
         ></div>
         <img
             src="{{ $media['src'] }}"
-            alt="The scene depicts Whistler's studio. On the left a woman reclines and appears in conversation with a passing Japanese girl holding a fan. To the right is the artist Henri Fantin-Latour looking towards the viewer, holding a palette and brushes in one hand, with a single brush poised in the other."
+            alt="{{ $alt }}"
 
             @if ($layerType == 'image')
                 width="2000"
