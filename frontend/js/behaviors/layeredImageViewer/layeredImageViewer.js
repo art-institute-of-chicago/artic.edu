@@ -576,10 +576,10 @@ class LayeredImageViewer {
     const opacityTemplate = document.createElement('template');
     opacityTemplate.innerHTML = `
       <div class="o-layered-image-viewer__opacity">
-        <label for="o-layered-image-viewer-${this.id}-opacity-slider">Image layer visibility</label>
+        <label class="f-body" for="o-layered-image-viewer-${this.id}-opacity-slider">Slide between views:</label>
         <div class="o-layered-image-viewer__opacity-field">
           <input id="o-layered-image-viewer-${this.id}-opacity-slider" list="o-layered-image-viewer-${this.id}-opacity-list" name="opacity" type="range" min="0" max="1" step="0.01" value="0" />
-          <datalist id="o-layered-image-viewer-${this.id}-opacity-list">
+          <datalist class="f-body" id="o-layered-image-viewer-${this.id}-opacity-list">
             <option value="0">A</option>
             <option value="1">B</option>
           </datalist>
@@ -612,6 +612,9 @@ class LayeredImageViewer {
     // Invert value, set slider and update world item
     this.opacitySliderEl.value = opacity;
     this.viewer.world.getItemAt(1).setOpacity(1 - opacity);
+
+    // Set custom prop for styling
+    this.opacitySliderEl.style.setProperty('--percent', opacity);
   }
 
   /**
@@ -627,8 +630,13 @@ class LayeredImageViewer {
     const detailsTemplate = document.createElement('template');
     detailsTemplate.innerHTML = `
       <details class="layered-image-viewer-details">
-      <summary>Image layer options</summary>
-      <div class="layered-image-viewer-details__menu"></div>
+        <summary class="btn btn--icon-sq btn--septenary">
+          <span class="sr-only">Image layer options</span>
+          <svg class="icon--layers--24" aria-hidden="true">
+            <use xlink:href="#icon--layers--24" />
+          </svg>
+        </summary>
+        <div class="layered-image-viewer-details__menu"></div>
       </details>`;
     const detailsEl = detailsTemplate.content.firstElementChild;
     const panelEl = detailsEl.lastElementChild;
