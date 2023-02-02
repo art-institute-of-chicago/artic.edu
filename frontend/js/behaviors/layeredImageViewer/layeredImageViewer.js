@@ -425,25 +425,50 @@ class LayeredImageViewer {
     // (without really interacting with the OSD API)
     // N.B. Deliberate decision against role=toolbar for now, there is potentially complex behviour to handle if we apply that role
     // More info: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/toolbar_role
-    const standardControls = ['Fullscreen', 'Zoom in', 'Zoom out', 'Reset'];
+    const standardControls = [
+      {
+        label: 'Fullscreen',
+        icon: 'zoom--24',
+      },
+      {
+        label: 'Zoom in',
+        icon: 'zoom-in--24',
+      },
+      {
+        label: 'Zoom out',
+        icon: 'zoom-out--24',
+      },
+      {
+        label: 'Reset',
+        icon: 'reset--24',
+      },
+    ];
     this.toolbar.element = document.createElement('div');
 
     // Add each standard button and register with instance for easy access
+    const buttonTemplate = document.createElement('template');
     standardControls.forEach((control) => {
-      const buttonEl = document.createElement('button');
-      buttonEl.type = 'button';
-      buttonEl.classList.add(
-        `o-layered-image-viewer__${LayeredImageViewer.toKebabCase(control)}`
-      );
-      buttonEl.innerHTML = `<span class="wrap">${control}</span>`;
+      buttonTemplate.innerHTML = `
+        <button class="o-layered-image-viewer__${LayeredImageViewer.toKebabCase(
+          control.label
+        )} btn  btn--septenary btn--icon-sq" type="button" aria-label="${
+        control.label
+      }">
+          <svg class="icon--${control.icon}" aria-hidden="true">
+            <use xlink:href="#icon--${control.icon}" />
+          </svg>
+        </button>
+      `;
+      const buttonEl = buttonTemplate.content.firstElementChild;
 
       // This seems to be announced anyway, but should probably be live
-      if (control === 'Fullscreen') {
+      if (control.label === 'Fullscreen') {
         buttonEl.ariaLive = 'polite';
       }
 
       this.toolbar.element.appendChild(buttonEl);
-      this.toolbar.buttons[LayeredImageViewer.toCamelCase(control)] = buttonEl;
+      this.toolbar.buttons[LayeredImageViewer.toCamelCase(control.label)] =
+        buttonEl;
     });
 
     // Add the completed toolbar to OSD
