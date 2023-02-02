@@ -65,10 +65,12 @@
 
 <figure class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} m-media--contain">
     <div class="m-media__img" data-behavior="fitText">
-        <div
-            class="m-media__contain--spacer"
-            style="padding-bottom: 62.5%"
-        ></div>
+        @if ($size === 'm' || $size === 'l')
+            <div
+                class="m-media__contain--spacer"
+                style="padding-bottom: {{ min(62.5, intval($media['height'] ?? 10) / intval($media['width'] ?? 16) * 100) }}%"
+            ></div>
+        @endif
         <img
             src="{{ $media['src'] }}"
             alt="{{ $alt }}"
