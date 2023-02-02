@@ -100,6 +100,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--journal-logo">
     <use xlink:href="#icon--journal-logo"></use>
   </svg>
+  <svg class="icon--layers--24">
+    <use xlink:href="#icon--layers--24"></use>
+  </svg>
   <svg class="icon--location">
     <use xlink:href="#icon--location"></use>
   </svg>
@@ -195,6 +198,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   </svg>
   <svg class="icon--quote--76">
     <use xlink:href="#icon--quote--76"></use>
+  </svg>
+  <svg class="icon--reset--24">
+    <use xlink:href="#icon--reset--24"></use>
   </svg>
   <svg class="icon--return">
     <use xlink:href="#icon--return"></use>
@@ -419,6 +425,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
   height: 184.4px;
 }
 
+.icon--layers--24 {
+  width: 24px;
+  height: 24px;
+}
+
 .icon--location {
   width: 16px;
   height: 16px;
@@ -577,6 +588,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--quote--76 {
   width: 76px;
   height: 44px;
+}
+
+.icon--reset--24 {
+  width: 24px;
+  height: 24px;
 }
 
 .icon--return {
