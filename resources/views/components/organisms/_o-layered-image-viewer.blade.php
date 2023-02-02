@@ -15,10 +15,10 @@
     @endif
 
     @if (isset($overlays) && !empty($overlays))
-        <div class="o-layered-image-viewer__annotations">
+        <div class="o-layered-image-viewer__overlays">
             @foreach ($overlays as $overlay)
                 {{-- Repeat div for every overlay --}}
-                <div class="o-layered-image-viewer__annotation">
+                <div class="o-layered-image-viewer__overlay">
                     @component('components.molecules._m-layered-image-viewer-layer')
                         @slot('item', $overlay)
                         @slot('size', $size)
