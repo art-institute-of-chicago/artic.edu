@@ -66,20 +66,19 @@
             style="padding-bottom: 62.5%"
         ></div>
         <img
-            {{-- Image (small, medium or large) --}}
             src="{{ $media['src'] }}"
             alt="The scene depicts Whistler's studio. On the left a woman reclines and appears in conversation with a passing Japanese girl holding a fan. To the right is the artist Henri Fantin-Latour looking towards the viewer, holding a palette and brushes in one hand, with a single brush poised in the other."
 
             @if ($layerType == 'image')
                 width="2000"
                 height="2614"
+
+                {{-- srcset only applied to image as overlay will be svg --}}
+                srcset="{{ $srcset ?? '' }}"
+                sizes="{{ $sizes ?? '' }}"
             @endif
 
-            srcset="{{ $srcset ?? '' }}"
-
-            sizes="{{ $sizes ?? '' }}"
-
-            {{-- Todo: Important to include this, must be largest size available: --}}
+            {{-- Important to include this, must be largest size available: --}}
             data-viewer-src="{{ $media['src'] }}"
         />
     </div>
