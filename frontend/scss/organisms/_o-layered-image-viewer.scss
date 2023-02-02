@@ -1,8 +1,16 @@
+// ------ Layered image viewer
+
+// ---- General
 .o-layered-image-viewer {
   -webkit-user-select: none;
   user-select: none;
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
+// -- JS only
 .js {
   .o-layered-image-viewer__caption,
   .o-layered-image-viewer__images,
@@ -11,24 +19,193 @@
   }
 }
 
+// ---- Toolbars
+
+// -- Viewer
+.o-layered-image-viewer__viewer-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+
+  .btn {
+    display: block;
+    margin: 0;
+
+    &:first-child {
+      border-radius: 2px 2px 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 2px 2px;
+    }
+  }
+}
+
+// -- Layers
+.o-layered-image-viewer__layers-toolbar {
+  display: flex;
+  gap: 0.1em;
+  align-items: flex-end;
+
+  .btn {
+    display: block;
+    margin: 0;
+
+    &:first-child {
+      border-radius: 2px 0 0 2px;
+    }
+
+    &:last-child {
+      border-radius: 0 2px 2px 0;
+    }
+  }
+}
+
+// ---- Opacity
+
+.o-layered-image-viewer__opacity {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.4em 1.2em;
+  background-color: $color__white;
+  border-radius: 2px;
+
+  label {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+}
+
+// -- Range styles
+@mixin track() {
+  appearance: none;
+  border-radius: 0;
+  height: 0.2em;
+  background: linear-gradient(var(--track-fill), var(--track-fill)) 0 /
+      var(--pos) no-repeat,
+    $color__black--10;
+}
+
+@mixin thumb() {
+  position: relative;
+  top: -0.7em;
+  appearance: none;
+  box-sizing: border-box;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 0 0 0.1em var(--thumb-border);
+  background: $color__white;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.o-layered-image-viewer__opacity-field {
+  display: flex;
+  gap: 1.6em;
+  margin-left: 1.6em;
+  align-items: center;
+
+  datalist {
+    display: contents;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+  option {
+    display: flex;
+    align-items: center;
+  }
+
+  option:first-of-type {
+    order: -1;
+  }
+
+  // Webkit sets a min-height on range input inner elements that use a datalist
+  input::-webkit-slider-container {
+    min-block-size: 0 !important;
+  }
+
+  input {
+    --track-fill: #{$color__black--42};
+    --thumb-border: #{$color__black--20};
+
+    font-size: 1em;
+    --pos: calc(#{1.6em} + var(--percent, 0) * (100% - #{1.6em}));
+    appearance: none;
+
+    &::-webkit-slider-runnable-track {
+      @include track;
+    }
+    &::-webkit-slider-thumb {
+      @include thumb;
+    }
+
+    &::-moz-range-track {
+      @include track;
+    }
+
+    &::-moz-range-thumb {
+      @include thumb;
+    }
+
+    &:hover {
+      --thumb-border: #{$color__black--42};
+    }
+
+    &:active,
+    &:focus-visible {
+      --track-fill: #{$color__black--80};
+      --thumb-border: #{$color__black--80};
+    }
+  }
+}
+
+.layered-image-viewer-details__menu {
+  position: absolute;
+  bottom: 100%;
+  right: calc(100% - 48px); // button w/h is 48px
+  min-width: 2.5em;
+  background: $color__white;
+}
+
+.layered-image-viewer-details {
+  position: relative;
+  background-color: transparent;
+
+  summary.btn {
+    display: flex;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+
+    svg {
+      margin: 0;
+    }
+  }
+}
+
+// ---- Mouunted element
 .o-layered-image-viewer__osd-mount {
   width: 100%;
   height: 100%;
 }
 
-.layered-image-viewer-details {
-  background-color: #fff;
-
-  summary {
-    padding: 4px;
-    cursor: pointer;
-  }
-}
-
 .m-media--layered-image-viewer-embed {
   height: 100%;
   width: 100%;
-  max-height: 80vh;
+  max-height: clamp(20px, 80vh, 2000px);
   aspect-ratio: 9 / 16;
   background-image: none;
 }
@@ -46,22 +223,4 @@
   opacity: 0;
   -webkit-user-select: none;
   user-select: none;
-}
-
-.o-layered-image-viewer__opacity {
-  padding: 4px;
-  background-color: #fff;
-}
-
-.o-layered-image-viewer__opacity-field {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-
-  option:first-of-type {
-    order: -1;
-  }
-  datalist {
-    display: contents;
-  }
 }
