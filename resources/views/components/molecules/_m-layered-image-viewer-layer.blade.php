@@ -8,6 +8,9 @@
     $crop_x = $item['media']['crop_x'];
     $crop_y = $item['media']['crop_y'];
 
+    // Set empty $imageSettings, this will be populated based on $size
+    $imageSettings = [];
+
     $defaultSrcset = array(200,400,600,1000,1500,3000);
 
     if (empty($imageSettings) && $size === 's') {
