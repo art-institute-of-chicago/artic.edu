@@ -71,8 +71,8 @@
             alt="{{ $alt }}"
 
             @if ($layerType == 'image')
-                width="2000"
-                height="2614"
+                width="{{ $width }}"
+                height="{{ $height }}"
 
                 {{-- srcset only applied to image as overlay will be svg --}}
                 srcset="{{ $srcset ?? '' }}"
