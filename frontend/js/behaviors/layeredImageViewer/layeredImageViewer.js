@@ -883,5 +883,13 @@ class LayeredImageViewer {
   }
 }
 
+const layeredImageViewer = function(container) {
+  this.init = function() {
+    new LayeredImageViewer(container);
+  };
+  this.destroy = function() {
+    LayeredImageViewer.destroy(container);
+  };
+};
 
-export default LayeredImageViewer;
+export default layeredImageViewer;
