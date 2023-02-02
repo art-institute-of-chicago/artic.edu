@@ -34,7 +34,10 @@ class LayeredImageViewer {
       active: [],
     };
     this.toolbar = {
-      buttons: {},
+      viewer: {
+        buttons: {},
+      },
+      layers: {},
     };
     this.isFullscreen = false;
 
@@ -145,10 +148,10 @@ class LayeredImageViewer {
         this.modalEl.appendChild(this.osdMountEl);
         this.modalEl.showModal();
         // refocus after move
-        this.toolbar.buttons.fullscreen.focus();
+        this.toolbar.viewer.buttons.fullscreen.focus();
         document.addEventListener('keydown', this.boundExitFullscreenHandler);
       }
-      this.toolbar.buttons.fullscreen.innerText = 'Exit';
+      this.toolbar.viewer.buttons.fullscreen.ariaLabel = 'Exit';
     } else {
       // Exit fullscreen
       // Hide viewer by removing class
@@ -173,13 +176,13 @@ class LayeredImageViewer {
           .querySelector('.m-media--layered-image-viewer-embed')
           .appendChild(this.osdMountEl);
         // refocus after move
-        this.toolbar.buttons.fullscreen.focus();
+        this.toolbar.viewer.buttons.fullscreen.focus();
         document.removeEventListener(
           'keydown',
           this.boundExitFullscreenHandler
         );
       }
-      this.toolbar.buttons.fullscreen.innerText = 'Fullscreen';
+      this.toolbar.viewer.buttons.fullscreen.ariaLabel = 'Fullscreen';
     }
   }
 
@@ -415,6 +418,31 @@ class LayeredImageViewer {
   }
 
   /**
+   * Create a button element for the viewer
+   *
+   * @private
+   * @method
+   * @param {Object} options - Label and icon to use
+   * @param {Array} classes - Classes to use on the button element
+   * @returns {HTMLButtonElement} - The complete button element
+   */
+  _createIconButton(options, classes) {
+    this.buttonTemplate =
+      this.buttonTemplate || document.createElement('template');
+
+    this.buttonTemplate.innerHTML = `
+      <button class="${classes.join(' ')}" type="button" aria-label="${
+      options.label
+    }">
+        <svg class="${options.icon}" aria-hidden="true">
+          <use xlink:href="#${options.icon}" />
+        </svg>
+    </button>
+    `;
+    return this.buttonTemplate.content.firstElementChild;
+  }
+
+  /**
    * Add custom controls to OpenSeadragon
    * @private
    * @method
@@ -425,69 +453,99 @@ class LayeredImageViewer {
     // (without really interacting with the OSD API)
     // N.B. Deliberate decision against role=toolbar for now, there is potentially complex behviour to handle if we apply that role
     // More info: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/toolbar_role
-    const standardControls = [
+    const viewerControls = [
       {
         label: 'Fullscreen',
-        icon: 'zoom--24',
+        icon: 'icon--zoom--24',
       },
       {
         label: 'Zoom in',
-        icon: 'zoom-in--24',
+        icon: 'icon--zoom-in--24',
       },
       {
         label: 'Zoom out',
-        icon: 'zoom-out--24',
-      },
-      {
-        label: 'Reset',
-        icon: 'reset--24',
+        icon: 'icon--zoom-out--24',
       },
     ];
-    this.toolbar.element = document.createElement('div');
+    this.toolbar.viewer.element = document.createElement('div');
+    this.toolbar.viewer.element.classList.add(
+      'o-layered-image-viewer__viewer-toolbar'
+    );
 
     // Add each standard button and register with instance for easy access
-    const buttonTemplate = document.createElement('template');
-    standardControls.forEach((control) => {
-      buttonTemplate.innerHTML = `
-        <button class="o-layered-image-viewer__${LayeredImageViewer.toKebabCase(
+    const standardButtonClasses = ['btn', 'btn--septenary', 'btn--icon-sq'];
+    viewerControls.forEach((control) => {
+      const buttonClasses = standardButtonClasses.concat(
+        `o-layered-image-viewer__${LayeredImageViewer.toKebabCase(
           control.label
-        )} btn  btn--septenary btn--icon-sq" type="button" aria-label="${
-        control.label
-      }">
-          <svg class="icon--${control.icon}" aria-hidden="true">
-            <use xlink:href="#icon--${control.icon}" />
-          </svg>
-        </button>
-      `;
-      const buttonEl = buttonTemplate.content.firstElementChild;
+        )}`
+      );
+      const buttonEl = this._createIconButton(control, buttonClasses);
 
       // This seems to be announced anyway, but should probably be live
       if (control.label === 'Fullscreen') {
         buttonEl.ariaLive = 'polite';
       }
 
-      this.toolbar.element.appendChild(buttonEl);
-      this.toolbar.buttons[LayeredImageViewer.toCamelCase(control.label)] =
-        buttonEl;
+      this.toolbar.viewer.element.appendChild(buttonEl);
+      this.toolbar.viewer.buttons[
+        LayeredImageViewer.toCamelCase(control.label)
+      ] = buttonEl;
     });
 
     // Add the completed toolbar to OSD
-    this.viewer.controls.topright.appendChild(this.toolbar.element);
+    this.viewer.controls.topright.appendChild(this.toolbar.viewer.element);
 
     // Zoom In
-    this.toolbar.buttons.zoomIn.addEventListener('click', () => {
+    this.toolbar.viewer.buttons.zoomIn.addEventListener('click', () => {
       this.viewer.viewport.zoomBy(this.viewer.zoomPerClick / 1.0);
       this.viewer.viewport.applyConstraints();
     });
 
     // Zoom Out
-    this.toolbar.buttons.zoomOut.addEventListener('click', () => {
+    this.toolbar.viewer.buttons.zoomOut.addEventListener('click', () => {
       this.viewer.viewport.zoomBy(1.0 / this.viewer.zoomPerClick);
       this.viewer.viewport.applyConstraints();
     });
 
+    // Fullscreen
+    this.toolbar.viewer.buttons.fullscreen.addEventListener('click', () => {
+      if (!this.isFullscreen) {
+        this._setFullscreen(true);
+      } else {
+        this._setFullscreen(false);
+      }
+    });
+
+    this.toolbar.layers.element = document.createElement('div');
+    this.toolbar.layers.element.classList.add(
+      'o-layered-image-viewer__layers-toolbar'
+    );
+
+    this.viewer.controls.bottomright.appendChild(this.toolbar.layers.element);
+
+    // Control for opacity (if more than one image)
+    this._addOpacityControl();
+
+    // Control panel for image layer controls if neccessary
+    // (overlays present/more than one image)
+    this._addImageLayerControlPanel();
+
     // Reset
-    this.toolbar.buttons.reset.addEventListener('click', () => {
+    // Add button to layers controls
+    this.toolbar.layers.reset = this._createIconButton(
+      {
+        label: 'Reset',
+        icon: 'icon--reset--24',
+      },
+      standardButtonClasses.concat('o-layered-image-viewer__reset')
+    );
+
+    // Add to toolbar element
+    this.toolbar.layers.element.appendChild(this.toolbar.layers.reset);
+
+    // Bind event hanfling
+    this.toolbar.layers.reset.addEventListener('click', () => {
       this.viewer.viewport.goHome();
 
       // Deactivate overlays
@@ -505,22 +563,6 @@ class LayeredImageViewer {
       // Reset opacity
       this.setOpacity(0);
     });
-
-    // Fullscreen
-    this.toolbar.buttons.fullscreen.addEventListener('click', () => {
-      if (!this.isFullscreen) {
-        this._setFullscreen(true);
-      } else {
-        this._setFullscreen(false);
-      }
-    });
-
-    // Control for opacity (if more than one image)
-    this._addOpacityControl();
-
-    // Control panel for image layer controls if neccessary
-    // (overlays present/more than one image)
-    this._addImageLayerControlPanel();
   }
 
   /**
@@ -549,7 +591,7 @@ class LayeredImageViewer {
     this.opacitySliderEl = opacityWrapperEl.querySelector('input');
 
     // Insert control
-    this.toolbar.element.append(opacityWrapperEl);
+    this.toolbar.layers.element.append(opacityWrapperEl);
 
     // Add event listener for slider
     this.opacitySliderEl.addEventListener('input', (e) => {
@@ -685,7 +727,7 @@ class LayeredImageViewer {
     }
 
     // Add menu to toolbar
-    this.toolbar.element.appendChild(detailsEl);
+    this.toolbar.layers.element.appendChild(detailsEl);
   }
 
   /**
