@@ -10,17 +10,9 @@ class DatabaseSeeder extends Seeder
         PagesTableSeeder::class,
         HoursTableSeeder::class,
         HomePageSeeder::class,
-        MembershipMagazinePageSeeder::class,
         VisitPageSeeder::class,
-        EmailSeriesSeeder::class,
         EventProgramSeeder::class,
-        PublishStartDateSeeder::class,
-        RelatedArticlesSeeder::class,
-        MembershipBannerSeeder::class,
-        VanityRedirectSeeder::class,
         IlluminateTagSeeder::class,
-        HighlightSeeder::class,
-        SlideSeeder::class,
     ];
 
     public function run(): void
