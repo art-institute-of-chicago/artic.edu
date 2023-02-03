@@ -333,6 +333,9 @@ html.s-print body {
     margin: 0;
   }
 
+  .m-article-header__img img.img-hero-mobile {
+    display: none;
+  }
   .m-article-header__text:not(:first-child),
   .o-article__inline-header:not(:first-child) {
     margin-top: 40px;
