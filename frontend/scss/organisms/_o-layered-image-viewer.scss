@@ -65,6 +65,7 @@
   .btn {
     display: block;
     margin: 0;
+    flex: 0 0 auto;
 
     &:first-child {
       border-radius: 0.2em 0 0 0.2em;
@@ -85,6 +86,16 @@
   padding: 0.4em 1.2em;
   background-color: $color__white;
   border-radius: 0.2em;
+
+  label {
+    display: none;
+  }
+
+  @include breakpoint('small+') {
+    label {
+      display: block;
+    }
+  }
 }
 
 // -- Range styles
@@ -118,7 +129,6 @@
 .o-layered-image-viewer__opacity-field {
   display: flex;
   gap: 1.6em;
-  margin-left: 1.6em;
   align-items: center;
 
   datalist {
@@ -151,6 +161,7 @@
     font-size: 1em;
     --pos: calc(#{1.6em} + var(--percent, 0) * (100% - #{1.6em}));
     appearance: none;
+    width: 100%;
 
     &::-webkit-slider-runnable-track {
       @include track;
@@ -177,6 +188,10 @@
       --thumb-border: #{$color__black--80};
     }
   }
+
+  @include breakpoint('small+') {
+    margin-left: 1.6em;
+  }
 }
 
 // ---- Details (Menu button)
@@ -187,8 +202,8 @@
   summary.btn {
     display: flex;
     justify-content: center;
-    width: 4.8em;
-    height: 4.8em;
+    width: 48px;
+    height: 48px;
     cursor: pointer;
 
     svg {
@@ -211,12 +226,17 @@
 .o-layered-image-viewer-details__menu {
   position: absolute;
   bottom: 100%;
-  right: calc(100% - 4.8em); // button w/h is 4.8em
-  min-width: 30em;
+  right: calc(-100% - 0.1em);
+  min-width: min(calc(var(--viewer-width) - 48px), 35em);
   background: $color__white;
   padding: 2.4em;
-  max-height: calc(40em - 4.8em); // TODO: replace this with custom prop
+  max-height: calc(var(--viewer-height) - 9.8em);
   overflow: auto;
+
+  @include breakpoint('small+') {
+    // button w/h is 4.8em
+    right: calc(100% - 4.8em);
+  }
 }
 
 .o-layered-image-viewer__details-rows {
@@ -269,7 +289,9 @@
 .m-media--layered-image-viewer-embed {
   height: 100%;
   width: 100%;
-  max-height: clamp(40em, 80vh, 200em);
+  // a11y: Absolute min height an non-relative
+  max-height: max(32em, 80vh);
+  background-image: none;
 }
 
 // Initial modal state
