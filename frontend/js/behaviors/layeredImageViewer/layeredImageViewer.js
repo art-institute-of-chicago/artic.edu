@@ -1,5 +1,6 @@
 import OpenSeadragon from '../../libs/openseadragon4.min';
 
+
 /**
  * (OpenSeadragon) Layered image viewer
  * @class
@@ -47,6 +48,29 @@ class LayeredImageViewer {
 
     this.setInitialState();
     this._initViewer();
+  }
+
+  /**
+   * Attach resize observer to viewer element
+   * @private
+   * @method
+   */
+  _setViewerResizeObserver() {
+    // Watch for resize on main element
+    this.viewerResizeObserver = new ResizeObserver((entries) => {
+      this.viewer.element.style.setProperty(
+        '--viewer-height',
+        `${entries[0].contentRect.height}px`
+      );
+
+      this.viewer.element.style.setProperty(
+        '--viewer-width',
+        `${entries[0].contentRect.width}px`
+      );
+    });
+
+    // Destroy removing viewer.element should mean no need to detach...
+    this.viewerResizeObserver.observe(this.viewer.element);
   }
 
   /**
@@ -341,6 +365,9 @@ class LayeredImageViewer {
         'aria-describedby',
         `layered-image-viewer-${this.id}-images-0`
       );
+
+      // Add resizeObserver
+      this._setViewerResizeObserver();
     });
   }
 
