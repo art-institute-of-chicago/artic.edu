@@ -629,14 +629,14 @@ class LayeredImageViewer {
     // Create template markup
     const detailsTemplate = document.createElement('template');
     detailsTemplate.innerHTML = `
-      <details class="layered-image-viewer-details">
+      <details class="o-layered-image-viewer-details">
         <summary class="btn btn--icon-sq btn--septenary">
           <span class="sr-only">Image layer options</span>
           <svg class="icon--layers--24" aria-hidden="true">
             <use xlink:href="#icon--layers--24" />
           </svg>
         </summary>
-        <div class="layered-image-viewer-details__menu"></div>
+        <div class="o-layered-image-viewer-details__menu"></div>
       </details>`;
     const detailsEl = detailsTemplate.content.firstElementChild;
     const panelEl = detailsEl.lastElementChild;
@@ -645,10 +645,15 @@ class LayeredImageViewer {
     if (this.images.items.length > 1) {
       const imagesTemplate = document.createElement('template');
       imagesTemplate.innerHTML = `
-        <div class="layered-image-viewer-details__images">
-          <h2>Image layers</h2>
-          <p id="layered-image-viewer-${this.id}-image-opt-a">Layer A</p>
-          <p id="layered-image-viewer-${this.id}-image-opt-b">Layer B</p>
+        <div class="o-layered-image-viewer-details__section layered-image-viewer-details__section--images">
+          <h2 class="o-layered-image-viewer-details__heading f-tag-2">Image layers</h2>
+          <div class="o-layered-image-viewer__details-row o-layered-image-viewer__details-row--radio o-layered-image-viewer__details-row--title">
+            <p class="f-caption">Select two views to compare on screen.</p>
+            <p class="f-tag-2"><span class="sr-only">Layer </span>A</p>
+            <p class="f-tag-2"><span class="sr-only">Layer </span>B</p>
+          </div>
+          <div class="o-layered-image-viewer__details-rows o-layered-image-viewer__details-rows--radio">
+          </div>
         </div>`;
       const imagesWrapperEl = imagesTemplate.content.firstElementChild;
 
@@ -657,11 +662,23 @@ class LayeredImageViewer {
       const imagesFieldTemplate = document.createElement('template');
       this.images.items.forEach((item, i) => {
         imagesFieldTemplate.innerHTML = `
-            <fieldset class="layered-image-viewer-details__radio-group">
-              <legend>${item.label}</legend>
-              <input id="layered-image-viewer-${this.id}-image-rb-${i}-a" aria-labelledby="layered-image-viewer-${this.id}-image-opt-a" name="layered-image-viewer-${this.id}-image-rb-${i}" type="radio" data-index="${i}" aria-live="polite" />
-              <input id="layered-image-viewer-${this.id}-image-rb-${i}-b" aria-labelledby="layered-image-viewer-${this.id}-image-opt-b" name="layered-image-viewer-${this.id}-image-rb-${i}" type="radio" data-index="${i}" aria-live="polite" />
-            </fieldset>
+            <div class="o-layered-image-viewer__details-row o-layered-image-viewer__details-row--radio">
+              <fieldset class="o-layered-image-viewer-details__radio-group">
+                <legend class="f-body">${item.label}</legend>
+                <span class="radio">
+                  <input id="layered-image-viewer-${this.id}-image-rb-${i}-a" name="layered-image-viewer-${this.id}-image-rb-${i}" type="radio" data-index="${i}" aria-live="polite" />
+                  <span>
+                    <label for="layered-image-viewer-${this.id}-image-rb-${i}-a"><span class="sr-only">Layer A</span></label>
+                  </span>
+                </span>
+                <span class="radio">
+                  <input id="layered-image-viewer-${this.id}-image-rb-${i}-b" name="layered-image-viewer-${this.id}-image-rb-${i}" type="radio" data-index="${i}" aria-live="polite" />
+                  <span>
+                  <label for="layered-image-viewer-${this.id}-image-rb-${i}-b"><span class="sr-only">Layer B</span></label>
+                  </span>
+                </span>
+              </fieldset>
+            </div>
             `;
 
         const rowEl = imagesFieldTemplate.content.firstElementChild;
@@ -671,7 +688,7 @@ class LayeredImageViewer {
           b: rowOptEls[1],
         };
 
-        imagesWrapperEl.appendChild(rowEl);
+        imagesWrapperEl.lastElementChild.appendChild(rowEl);
         panelEl.appendChild(imagesWrapperEl);
 
         // Add event listener to radio buttons
@@ -694,8 +711,10 @@ class LayeredImageViewer {
     if (this.overlays.items.length) {
       const overlaysTemplate = document.createElement('template');
       overlaysTemplate.innerHTML = `
-      <div class="layered-image-viewer-details__overlays">
-        <h2>Overlays</h2>
+      <div class="o-layered-image-viewer-details__section layered-image-viewer-details__section--overlays">
+        <h2 class="o-layered-image-viewer-details__heading f-tag-2">Overlays</h2>
+        <div class="o-layered-image-viewer__details-rows o-layered-image-viewer__details-rows--checkbox">
+        </div>
       </div>`;
       const overlaysWrapperEl = overlaysTemplate.content.firstElementChild;
 
@@ -704,14 +723,19 @@ class LayeredImageViewer {
       const overlayFieldTemplate = document.createElement('template');
       this.overlays.items.forEach((item, i) => {
         overlayFieldTemplate.innerHTML = `
-          <div class="layered-image-viewer-details__option">
-            <input id="layered-image-viewer-${this.id}-overlay-cb-${i}" type="checkbox" data-index="${i}" />
-            <label for="layered-image-viewer-${this.id}-overlay-cb-${i}">${item.label}</label>
+          <div class="o-layered-image-viewer__details-row o-layered-image-viewer__details-row--checkbox">
+            <span class="checkbox">
+              <input id="layered-image-viewer-${this.id}-overlay-cb-${i}" type="checkbox" data-index="${i}" />
+              <span class="f-secondary">
+                <label for="layered-image-viewer-${this.id}-overlay-cb-${i}">${item.label}</label>
+              </span>
+            </span>
           </div>
           `;
 
         const rowEl = overlayFieldTemplate.content.firstElementChild;
-        this.overlays.items[i].checkboxEl = rowEl.firstElementChild;
+        this.overlays.items[i].checkboxEl =
+          rowEl.firstElementChild.firstElementChild;
 
         // Attach toggle handling
         this.overlays.items[i].checkboxEl.addEventListener('change', (e) => {
@@ -727,7 +751,7 @@ class LayeredImageViewer {
         });
 
         // Add completed row to wrapper
-        overlaysWrapperEl.appendChild(rowEl);
+        overlaysWrapperEl.lastElementChild.appendChild(rowEl);
       });
 
       // Add wrapper to panel
@@ -825,7 +849,7 @@ class LayeredImageViewer {
 
     // Move to parent and checked items
     const allCheckedOptEls = targetEl
-      .closest('.layered-image-viewer-details__images')
+      .closest('.layered-image-viewer-details__section--images')
       .querySelectorAll('input:checked');
 
     // 2 = perform flip on the non-target adjacent
@@ -843,8 +867,8 @@ class LayeredImageViewer {
           // flipEl is somehow adjacent, layer === a is next and vice-versa
           const flipEl =
             layer !== 'a'
-              ? item.previousElementSibling
-              : item.nextElementSibling;
+              ? item.closest('.radio').previousElementSibling.firstElementChild
+              : item.closest('.radio').nextElementSibling.firstElementChild;
 
           // Update DOM
           item.checked = false;

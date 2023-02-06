@@ -8,6 +8,21 @@
   * {
     box-sizing: border-box;
   }
+
+  span.radio {
+    position: relative;
+    width: 1.6em;
+    height: 1.6em;
+    margin: 0;
+  }
+
+  .f-body,
+  .f-secondary {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
 }
 
 // -- JS only
@@ -25,18 +40,18 @@
 .o-layered-image-viewer__viewer-toolbar {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 0.1em;
 
   .btn {
     display: block;
     margin: 0;
 
     &:first-child {
-      border-radius: 2px 2px 0 0;
+      border-radius: 0.2em 0.2em 0 0;
     }
 
     &:last-child {
-      border-radius: 0 0 2px 2px;
+      border-radius: 0 0 0.2em 0.2em;
     }
   }
 }
@@ -52,11 +67,11 @@
     margin: 0;
 
     &:first-child {
-      border-radius: 2px 0 0 2px;
+      border-radius: 0.2em 0 0 0.2em;
     }
 
     &:last-child {
-      border-radius: 0 2px 2px 0;
+      border-radius: 0 0.2em 0.2em 0;
     }
   }
 }
@@ -66,17 +81,10 @@
 .o-layered-image-viewer__opacity {
   display: flex;
   align-items: center;
-  min-height: 48px;
+  min-height: 4.8em;
   padding: 0.4em 1.2em;
   background-color: $color__white;
-  border-radius: 2px;
-
-  label {
-    &::before,
-    &::after {
-      display: none;
-    }
-  }
+  border-radius: 0.2em;
 }
 
 // -- Range styles
@@ -171,29 +179,85 @@
   }
 }
 
-.layered-image-viewer-details__menu {
-  position: absolute;
-  bottom: 100%;
-  right: calc(100% - 48px); // button w/h is 48px
-  min-width: 2.5em;
-  background: $color__white;
-}
-
-.layered-image-viewer-details {
+// ---- Details (Menu button)
+.o-layered-image-viewer-details {
   position: relative;
   background-color: transparent;
 
   summary.btn {
     display: flex;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 4.8em;
+    height: 4.8em;
     cursor: pointer;
 
     svg {
       margin: 0;
     }
   }
+}
+
+// ---- Menu
+
+.o-layered-image-viewer-details__section
+  + .o-layered-image-viewer-details__section {
+  margin-top: 4em;
+}
+
+.o-layered-image-viewer-details__heading {
+  margin-bottom: 1.2em;
+}
+
+.o-layered-image-viewer-details__menu {
+  position: absolute;
+  bottom: 100%;
+  right: calc(100% - 4.8em); // button w/h is 4.8em
+  min-width: 30em;
+  background: $color__white;
+  padding: 2.4em;
+  max-height: calc(40em - 4.8em); // TODO: replace this with custom prop
+  overflow: auto;
+}
+
+.o-layered-image-viewer__details-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.o-layered-image-viewer__details-row {
+  gap: 2.4em;
+  padding-bottom: 1.2em;
+  border-bottom: 0.1em solid $color__black--5;
+
+  &:first-child {
+    padding-top: 1.2em;
+    border-top: 0.1em solid $color__black--5;
+  }
+}
+
+.o-layered-image-viewer__details-row--radio {
+  display: grid;
+  grid-template-columns: 1fr 1.6em 1.6em;
+  justify-items: center;
+  align-items: center;
+
+  *:first-child {
+    justify-self: self-start;
+  }
+}
+
+.o-layered-image-viewer__details-row--title {
+  align-items: flex-end;
+  border: none;
+
+  .f-caption {
+    color: $color__black--54;
+  }
+}
+
+.o-layered-image-viewer-details__radio-group {
+  display: contents;
 }
 
 // ---- Mouunted element
@@ -205,13 +269,11 @@
 .m-media--layered-image-viewer-embed {
   height: 100%;
   width: 100%;
-  max-height: clamp(20px, 80vh, 2000px);
-  aspect-ratio: 9 / 16;
-  background-image: none;
+  max-height: clamp(40em, 80vh, 200em);
 }
 
 // Initial modal state
-.layered-image-viewer-modal {
+.o-layered-image-viewer-modal {
   position: fixed;
   width: 100vw;
   height: 100vh;
