@@ -554,9 +554,9 @@ class LayeredImageViewer {
     // Control for opacity (if more than one image)
     this._addOpacityControl();
 
-    // Control panel for image layer controls if neccessary
+    // Control menu for image layer controls if neccessary
     // (overlays present/more than one image)
-    this._addImageLayerControlPanel();
+    this._addImageLayerControlMenu();
 
     // Reset
     // Add button to layers controls
@@ -649,7 +649,7 @@ class LayeredImageViewer {
    * @private
    * @method
    */
-  _addImageLayerControlPanel() {
+  _addImageLayerControlMenu() {
     // Only show if overlays or multiple images exist
     if (!this.overlays.items.length && this.images.items.length < 2) return;
 
@@ -666,7 +666,30 @@ class LayeredImageViewer {
         <div class="o-layered-image-viewer-details__menu"></div>
       </details>`;
     const detailsEl = detailsTemplate.content.firstElementChild;
-    const panelEl = detailsEl.lastElementChild;
+
+    // Handle actions that should close menu
+    const closeHandler = (e) => {
+      if (
+        (e.type === 'click' && !e.path.includes(detailsEl)) ||
+        (e.type === 'keydown' && e.key === 'Escape')
+      ) {
+        detailsEl.open = false;
+      }
+    };
+    const menuEl = detailsEl.lastElementChild;
+
+    // Attach / remove listeners to close as menu toggles
+    detailsEl.addEventListener('toggle', () => {
+      if (detailsEl.open) {
+        // Set scroll to top when opening
+        menuEl.scrollTop = 0;
+        this.viewer.element.addEventListener('click', closeHandler, true);
+        this.viewer.element.addEventListener('keydown', closeHandler, true);
+      } else {
+        this.viewer.element.removeEventListener('click', closeHandler);
+        this.viewer.element.removeEventListener('keydown', closeHandler);
+      }
+    });
 
     // Output images
     if (this.images.items.length > 1) {
@@ -716,7 +739,7 @@ class LayeredImageViewer {
         };
 
         imagesWrapperEl.lastElementChild.appendChild(rowEl);
-        panelEl.appendChild(imagesWrapperEl);
+        menuEl.appendChild(imagesWrapperEl);
 
         // Add event listener to radio buttons
         // When any button changes:
@@ -781,8 +804,8 @@ class LayeredImageViewer {
         overlaysWrapperEl.lastElementChild.appendChild(rowEl);
       });
 
-      // Add wrapper to panel
-      panelEl.appendChild(overlaysWrapperEl);
+      // Add wrapper to menu
+      menuEl.appendChild(overlaysWrapperEl);
     }
 
     // Add menu to toolbar
