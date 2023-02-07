@@ -211,6 +211,9 @@
     width: 48px;
     height: 48px;
     cursor: pointer;
+    &::-webkit-details-marker {
+      display: none;
+    }
 
     svg {
       margin: 0;
@@ -293,10 +296,9 @@
 }
 
 .m-media--layered-image-viewer-embed {
-  height: 100%;
   width: 100%;
   // a11y: Absolute min height an non-relative
-  max-height: max(32em, 80vh);
+  height: max(32em, 80vh);
   background-image: none;
 }
 
