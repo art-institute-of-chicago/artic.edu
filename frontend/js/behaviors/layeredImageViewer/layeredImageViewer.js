@@ -605,11 +605,9 @@ class LayeredImageViewer {
       <div class="o-layered-image-viewer__opacity">
         <label class="f-body" for="o-layered-image-viewer-${this.id}-opacity-slider">Slide between views:</label>
         <div class="o-layered-image-viewer__opacity-field">
-          <input id="o-layered-image-viewer-${this.id}-opacity-slider" list="o-layered-image-viewer-${this.id}-opacity-list" name="opacity" type="range" min="0" max="1" step="0.01" value="0" />
-          <datalist class="f-body" id="o-layered-image-viewer-${this.id}-opacity-list">
-            <option value="0">A</option>
-            <option value="1">B</option>
-          </datalist>
+          <span class="f-body o-layered-image-viewer__opacity-marker">A</span>
+          <input id="o-layered-image-viewer-${this.id}-opacity-slider" name="opacity" type="range" min="0" max="1" step="0.01" value="0" />
+          <span class="f-body o-layered-image-viewer__opacity-marker">B</span>
         </div>
       </div>
     `;
