@@ -246,7 +246,7 @@ class LayeredImageViewer {
     });
     // 'b' label will only exist if initialised with multple images
     const imageLabels = [`'${this.images.items[this.images.active.a].label}'`];
-    this.images.active.b &&
+    this.images.active.b !== null &&
       imageLabels.push(`'${this.images.items[this.images.active.b].label}'`);
 
     // Convert labels array into string
