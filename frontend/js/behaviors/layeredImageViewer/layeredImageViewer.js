@@ -1,5 +1,6 @@
 import OpenSeadragon from '../../libs/openseadragon4.min';
 
+
 /**
  * (OpenSeadragon) Layered image viewer
  * @class
@@ -34,7 +35,10 @@ class LayeredImageViewer {
       active: [],
     };
     this.toolbar = {
-      buttons: {},
+      viewer: {
+        buttons: {},
+      },
+      layers: {},
     };
     this.isFullscreen = false;
 
@@ -44,6 +48,29 @@ class LayeredImageViewer {
 
     this.setInitialState();
     this._initViewer();
+  }
+
+  /**
+   * Attach resize observer to viewer element
+   * @private
+   * @method
+   */
+  _setViewerResizeObserver() {
+    // Watch for resize on main element
+    this.viewerResizeObserver = new ResizeObserver((entries) => {
+      this.viewer.element.style.setProperty(
+        '--viewer-height',
+        `${entries[0].contentRect.height}px`
+      );
+
+      this.viewer.element.style.setProperty(
+        '--viewer-width',
+        `${entries[0].contentRect.width}px`
+      );
+    });
+
+    // Destroy removing viewer.element should mean no need to detach...
+    this.viewerResizeObserver.observe(this.viewer.element);
   }
 
   /**
@@ -145,10 +172,10 @@ class LayeredImageViewer {
         this.modalEl.appendChild(this.osdMountEl);
         this.modalEl.showModal();
         // refocus after move
-        this.toolbar.buttons.fullscreen.focus();
+        this.toolbar.viewer.buttons.fullscreen.focus();
         document.addEventListener('keydown', this.boundExitFullscreenHandler);
       }
-      this.toolbar.buttons.fullscreen.innerText = 'Exit';
+      this.toolbar.viewer.buttons.fullscreen.ariaLabel = 'Exit';
     } else {
       // Exit fullscreen
       // Hide viewer by removing class
@@ -173,13 +200,13 @@ class LayeredImageViewer {
           .querySelector('.m-media--layered-image-viewer-embed')
           .appendChild(this.osdMountEl);
         // refocus after move
-        this.toolbar.buttons.fullscreen.focus();
+        this.toolbar.viewer.buttons.fullscreen.focus();
         document.removeEventListener(
           'keydown',
           this.boundExitFullscreenHandler
         );
       }
-      this.toolbar.buttons.fullscreen.innerText = 'Fullscreen';
+      this.toolbar.viewer.buttons.fullscreen.ariaLabel = 'Fullscreen';
     }
   }
 
@@ -219,7 +246,7 @@ class LayeredImageViewer {
     });
     // 'b' label will only exist if initialised with multple images
     const imageLabels = [`'${this.images.items[this.images.active.a].label}'`];
-    this.images.active.b &&
+    this.images.active.b !== null &&
       imageLabels.push(`'${this.images.items[this.images.active.b].label}'`);
 
     // Convert labels array into string
@@ -338,6 +365,9 @@ class LayeredImageViewer {
         'aria-describedby',
         `layered-image-viewer-${this.id}-images-0`
       );
+
+      // Add resizeObserver
+      this._setViewerResizeObserver();
     });
   }
 
@@ -415,6 +445,31 @@ class LayeredImageViewer {
   }
 
   /**
+   * Create a button element for the viewer
+   *
+   * @private
+   * @method
+   * @param {Object} options - Label and icon to use
+   * @param {Array} classes - Classes to use on the button element
+   * @returns {HTMLButtonElement} - The complete button element
+   */
+  _createIconButton(options, classes) {
+    this.buttonTemplate =
+      this.buttonTemplate || document.createElement('template');
+
+    this.buttonTemplate.innerHTML = `
+      <button class="${classes.join(' ')}" type="button" aria-label="${
+      options.label
+    }">
+        <svg class="${options.icon}" aria-hidden="true">
+          <use xlink:href="#${options.icon}" />
+        </svg>
+    </button>
+    `;
+    return this.buttonTemplate.content.firstElementChild;
+  }
+
+  /**
    * Add custom controls to OpenSeadragon
    * @private
    * @method
@@ -425,44 +480,99 @@ class LayeredImageViewer {
     // (without really interacting with the OSD API)
     // N.B. Deliberate decision against role=toolbar for now, there is potentially complex behviour to handle if we apply that role
     // More info: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/toolbar_role
-    const standardControls = ['Fullscreen', 'Zoom in', 'Zoom out', 'Reset'];
-    this.toolbar.element = document.createElement('div');
+    const viewerControls = [
+      {
+        label: 'Fullscreen',
+        icon: 'icon--zoom--24',
+      },
+      {
+        label: 'Zoom in',
+        icon: 'icon--zoom-in--24',
+      },
+      {
+        label: 'Zoom out',
+        icon: 'icon--zoom-out--24',
+      },
+    ];
+    this.toolbar.viewer.element = document.createElement('div');
+    this.toolbar.viewer.element.classList.add(
+      'o-layered-image-viewer__viewer-toolbar'
+    );
 
     // Add each standard button and register with instance for easy access
-    standardControls.forEach((control) => {
-      const buttonEl = document.createElement('button');
-      buttonEl.type = 'button';
-      buttonEl.classList.add(
-        `o-layered-image-viewer__${LayeredImageViewer.toKebabCase(control)}`
+    const standardButtonClasses = ['btn', 'btn--septenary', 'btn--icon-sq'];
+    viewerControls.forEach((control) => {
+      const buttonClasses = standardButtonClasses.concat(
+        `o-layered-image-viewer__${LayeredImageViewer.toKebabCase(
+          control.label
+        )}`
       );
-      buttonEl.innerHTML = `<span class="wrap">${control}</span>`;
+      const buttonEl = this._createIconButton(control, buttonClasses);
 
       // This seems to be announced anyway, but should probably be live
-      if (control === 'Fullscreen') {
+      if (control.label === 'Fullscreen') {
         buttonEl.ariaLive = 'polite';
       }
 
-      this.toolbar.element.appendChild(buttonEl);
-      this.toolbar.buttons[LayeredImageViewer.toCamelCase(control)] = buttonEl;
+      this.toolbar.viewer.element.appendChild(buttonEl);
+      this.toolbar.viewer.buttons[
+        LayeredImageViewer.toCamelCase(control.label)
+      ] = buttonEl;
     });
 
     // Add the completed toolbar to OSD
-    this.viewer.controls.topright.appendChild(this.toolbar.element);
+    this.viewer.controls.topright.appendChild(this.toolbar.viewer.element);
 
     // Zoom In
-    this.toolbar.buttons.zoomIn.addEventListener('click', () => {
+    this.toolbar.viewer.buttons.zoomIn.addEventListener('click', () => {
       this.viewer.viewport.zoomBy(this.viewer.zoomPerClick / 1.0);
       this.viewer.viewport.applyConstraints();
     });
 
     // Zoom Out
-    this.toolbar.buttons.zoomOut.addEventListener('click', () => {
+    this.toolbar.viewer.buttons.zoomOut.addEventListener('click', () => {
       this.viewer.viewport.zoomBy(1.0 / this.viewer.zoomPerClick);
       this.viewer.viewport.applyConstraints();
     });
 
+    // Fullscreen
+    this.toolbar.viewer.buttons.fullscreen.addEventListener('click', () => {
+      if (!this.isFullscreen) {
+        this._setFullscreen(true);
+      } else {
+        this._setFullscreen(false);
+      }
+    });
+
+    this.toolbar.layers.element = document.createElement('div');
+    this.toolbar.layers.element.classList.add(
+      'o-layered-image-viewer__layers-toolbar'
+    );
+
+    this.viewer.controls.bottomright.appendChild(this.toolbar.layers.element);
+
+    // Control for opacity (if more than one image)
+    this._addOpacityControl();
+
+    // Control menu for image layer controls if neccessary
+    // (overlays present/more than one image)
+    this._addImageLayerControlMenu();
+
     // Reset
-    this.toolbar.buttons.reset.addEventListener('click', () => {
+    // Add button to layers controls
+    this.toolbar.layers.reset = this._createIconButton(
+      {
+        label: 'Reset',
+        icon: 'icon--reset--24',
+      },
+      standardButtonClasses.concat('o-layered-image-viewer__reset')
+    );
+
+    // Add to toolbar element
+    this.toolbar.layers.element.appendChild(this.toolbar.layers.reset);
+
+    // Bind event hanfling
+    this.toolbar.layers.reset.addEventListener('click', () => {
       this.viewer.viewport.goHome();
 
       // Deactivate overlays
@@ -480,22 +590,6 @@ class LayeredImageViewer {
       // Reset opacity
       this.setOpacity(0);
     });
-
-    // Fullscreen
-    this.toolbar.buttons.fullscreen.addEventListener('click', () => {
-      if (!this.isFullscreen) {
-        this._setFullscreen(true);
-      } else {
-        this._setFullscreen(false);
-      }
-    });
-
-    // Control for opacity (if more than one image)
-    this._addOpacityControl();
-
-    // Control panel for image layer controls if neccessary
-    // (overlays present/more than one image)
-    this._addImageLayerControlPanel();
   }
 
   /**
@@ -509,13 +603,11 @@ class LayeredImageViewer {
     const opacityTemplate = document.createElement('template');
     opacityTemplate.innerHTML = `
       <div class="o-layered-image-viewer__opacity">
-        <label for="o-layered-image-viewer-${this.id}-opacity-slider">Image layer visibility</label>
+        <label class="f-body" for="o-layered-image-viewer-${this.id}-opacity-slider">Slide between views:</label>
         <div class="o-layered-image-viewer__opacity-field">
-          <input id="o-layered-image-viewer-${this.id}-opacity-slider" list="o-layered-image-viewer-${this.id}-opacity-list" name="opacity" type="range" min="0" max="1" step="0.01" value="0" />
-          <datalist id="o-layered-image-viewer-${this.id}-opacity-list">
-            <option value="0">A</option>
-            <option value="1">B</option>
-          </datalist>
+          <span class="f-body o-layered-image-viewer__opacity-marker">A</span>
+          <input id="o-layered-image-viewer-${this.id}-opacity-slider" name="opacity" type="range" min="0" max="1" step="0.01" value="0" />
+          <span class="f-body o-layered-image-viewer__opacity-marker">B</span>
         </div>
       </div>
     `;
@@ -524,7 +616,7 @@ class LayeredImageViewer {
     this.opacitySliderEl = opacityWrapperEl.querySelector('input');
 
     // Insert control
-    this.toolbar.element.append(opacityWrapperEl);
+    this.toolbar.layers.element.append(opacityWrapperEl);
 
     // Add event listener for slider
     this.opacitySliderEl.addEventListener('input', (e) => {
@@ -545,6 +637,9 @@ class LayeredImageViewer {
     // Invert value, set slider and update world item
     this.opacitySliderEl.value = opacity;
     this.viewer.world.getItemAt(1).setOpacity(1 - opacity);
+
+    // Set custom prop for styling
+    this.opacitySliderEl.style.setProperty('--percent', opacity);
   }
 
   /**
@@ -552,28 +647,61 @@ class LayeredImageViewer {
    * @private
    * @method
    */
-  _addImageLayerControlPanel() {
+  _addImageLayerControlMenu() {
     // Only show if overlays or multiple images exist
     if (!this.overlays.items.length && this.images.items.length < 2) return;
 
     // Create template markup
     const detailsTemplate = document.createElement('template');
     detailsTemplate.innerHTML = `
-      <details class="layered-image-viewer-details">
-      <summary>Image layer options</summary>
-      <div class="layered-image-viewer-details__menu"></div>
+      <details class="o-layered-image-viewer-details">
+        <summary class="btn btn--icon-sq btn--septenary">
+          <span class="sr-only">Image layer options</span>
+          <svg class="icon--layers--24" aria-hidden="true">
+            <use xlink:href="#icon--layers--24" />
+          </svg>
+        </summary>
+        <div class="o-layered-image-viewer-details__menu"></div>
       </details>`;
     const detailsEl = detailsTemplate.content.firstElementChild;
-    const panelEl = detailsEl.lastElementChild;
+
+    // Handle actions that should close menu
+    const closeHandler = (e) => {
+      if (
+        (e.type === 'click' && !detailsEl.contains(e.target)) ||
+        (e.type === 'keydown' && e.key === 'Escape')
+      ) {
+        detailsEl.open = false;
+      }
+    };
+    const menuEl = detailsEl.lastElementChild;
+
+    // Attach / remove listeners to close as menu toggles
+    detailsEl.addEventListener('toggle', () => {
+      if (detailsEl.open) {
+        // Set scroll to top when opening
+        menuEl.scrollTop = 0;
+        this.viewer.element.addEventListener('click', closeHandler, true);
+        this.viewer.element.addEventListener('keydown', closeHandler, true);
+      } else {
+        this.viewer.element.removeEventListener('click', closeHandler);
+        this.viewer.element.removeEventListener('keydown', closeHandler);
+      }
+    });
 
     // Output images
     if (this.images.items.length > 1) {
       const imagesTemplate = document.createElement('template');
       imagesTemplate.innerHTML = `
-        <div class="layered-image-viewer-details__images">
-          <h2>Image layers</h2>
-          <p id="layered-image-viewer-${this.id}-image-opt-a">Layer A</p>
-          <p id="layered-image-viewer-${this.id}-image-opt-b">Layer B</p>
+        <div class="o-layered-image-viewer-details__section layered-image-viewer-details__section--images">
+          <h2 class="o-layered-image-viewer-details__heading f-tag-2">Image layers</h2>
+          <div class="o-layered-image-viewer__details-row o-layered-image-viewer__details-row--radio o-layered-image-viewer__details-row--title">
+            <p class="f-caption">Select two views to compare on screen.</p>
+            <p class="f-tag-2"><span class="sr-only">Layer </span>A</p>
+            <p class="f-tag-2"><span class="sr-only">Layer </span>B</p>
+          </div>
+          <div class="o-layered-image-viewer__details-rows o-layered-image-viewer__details-rows--radio">
+          </div>
         </div>`;
       const imagesWrapperEl = imagesTemplate.content.firstElementChild;
 
@@ -582,11 +710,23 @@ class LayeredImageViewer {
       const imagesFieldTemplate = document.createElement('template');
       this.images.items.forEach((item, i) => {
         imagesFieldTemplate.innerHTML = `
-            <fieldset class="layered-image-viewer-details__radio-group">
-              <legend>${item.label}</legend>
-              <input id="layered-image-viewer-${this.id}-image-rb-${i}-a" aria-labelledby="layered-image-viewer-${this.id}-image-opt-a" name="layered-image-viewer-${this.id}-image-rb-${i}" type="radio" data-index="${i}" aria-live="polite" />
-              <input id="layered-image-viewer-${this.id}-image-rb-${i}-b" aria-labelledby="layered-image-viewer-${this.id}-image-opt-b" name="layered-image-viewer-${this.id}-image-rb-${i}" type="radio" data-index="${i}" aria-live="polite" />
-            </fieldset>
+            <div class="o-layered-image-viewer__details-row o-layered-image-viewer__details-row--radio">
+              <fieldset class="o-layered-image-viewer-details__radio-group">
+                <legend class="f-body">${item.label}</legend>
+                <span class="radio">
+                  <input id="layered-image-viewer-${this.id}-image-rb-${i}-a" name="layered-image-viewer-${this.id}-image-rb-${i}" type="radio" data-index="${i}" aria-live="polite" />
+                  <span>
+                    <label for="layered-image-viewer-${this.id}-image-rb-${i}-a"><span class="sr-only">Layer A</span></label>
+                  </span>
+                </span>
+                <span class="radio">
+                  <input id="layered-image-viewer-${this.id}-image-rb-${i}-b" name="layered-image-viewer-${this.id}-image-rb-${i}" type="radio" data-index="${i}" aria-live="polite" />
+                  <span>
+                  <label for="layered-image-viewer-${this.id}-image-rb-${i}-b"><span class="sr-only">Layer B</span></label>
+                  </span>
+                </span>
+              </fieldset>
+            </div>
             `;
 
         const rowEl = imagesFieldTemplate.content.firstElementChild;
@@ -596,8 +736,8 @@ class LayeredImageViewer {
           b: rowOptEls[1],
         };
 
-        imagesWrapperEl.appendChild(rowEl);
-        panelEl.appendChild(imagesWrapperEl);
+        imagesWrapperEl.lastElementChild.appendChild(rowEl);
+        menuEl.appendChild(imagesWrapperEl);
 
         // Add event listener to radio buttons
         // When any button changes:
@@ -619,8 +759,10 @@ class LayeredImageViewer {
     if (this.overlays.items.length) {
       const overlaysTemplate = document.createElement('template');
       overlaysTemplate.innerHTML = `
-      <div class="layered-image-viewer-details__overlays">
-        <h2>Overlays</h2>
+      <div class="o-layered-image-viewer-details__section layered-image-viewer-details__section--overlays">
+        <h2 class="o-layered-image-viewer-details__heading f-tag-2">Overlays</h2>
+        <div class="o-layered-image-viewer__details-rows o-layered-image-viewer__details-rows--checkbox">
+        </div>
       </div>`;
       const overlaysWrapperEl = overlaysTemplate.content.firstElementChild;
 
@@ -629,14 +771,19 @@ class LayeredImageViewer {
       const overlayFieldTemplate = document.createElement('template');
       this.overlays.items.forEach((item, i) => {
         overlayFieldTemplate.innerHTML = `
-          <div class="layered-image-viewer-details__option">
-            <input id="layered-image-viewer-${this.id}-overlay-cb-${i}" type="checkbox" data-index="${i}" />
-            <label for="layered-image-viewer-${this.id}-overlay-cb-${i}">${item.label}</label>
+          <div class="o-layered-image-viewer__details-row o-layered-image-viewer__details-row--checkbox">
+            <span class="checkbox">
+              <input id="layered-image-viewer-${this.id}-overlay-cb-${i}" type="checkbox" data-index="${i}" />
+              <span class="f-secondary">
+                <label for="layered-image-viewer-${this.id}-overlay-cb-${i}">${item.label}</label>
+              </span>
+            </span>
           </div>
           `;
 
         const rowEl = overlayFieldTemplate.content.firstElementChild;
-        this.overlays.items[i].checkboxEl = rowEl.firstElementChild;
+        this.overlays.items[i].checkboxEl =
+          rowEl.firstElementChild.firstElementChild;
 
         // Attach toggle handling
         this.overlays.items[i].checkboxEl.addEventListener('change', (e) => {
@@ -652,15 +799,15 @@ class LayeredImageViewer {
         });
 
         // Add completed row to wrapper
-        overlaysWrapperEl.appendChild(rowEl);
+        overlaysWrapperEl.lastElementChild.appendChild(rowEl);
       });
 
-      // Add wrapper to panel
-      panelEl.appendChild(overlaysWrapperEl);
+      // Add wrapper to menu
+      menuEl.appendChild(overlaysWrapperEl);
     }
 
     // Add menu to toolbar
-    this.toolbar.element.appendChild(detailsEl);
+    this.toolbar.layers.element.appendChild(detailsEl);
   }
 
   /**
@@ -750,7 +897,7 @@ class LayeredImageViewer {
 
     // Move to parent and checked items
     const allCheckedOptEls = targetEl
-      .closest('.layered-image-viewer-details__images')
+      .closest('.layered-image-viewer-details__section--images')
       .querySelectorAll('input:checked');
 
     // 2 = perform flip on the non-target adjacent
@@ -768,8 +915,8 @@ class LayeredImageViewer {
           // flipEl is somehow adjacent, layer === a is next and vice-versa
           const flipEl =
             layer !== 'a'
-              ? item.previousElementSibling
-              : item.nextElementSibling;
+              ? item.closest('.radio').previousElementSibling.firstElementChild
+              : item.closest('.radio').nextElementSibling.firstElementChild;
 
           // Update DOM
           item.checked = false;
