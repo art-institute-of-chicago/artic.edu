@@ -670,7 +670,7 @@ class LayeredImageViewer {
     // Handle actions that should close menu
     const closeHandler = (e) => {
       if (
-        (e.type === 'click' && !e.path.includes(detailsEl)) ||
+        (e.type === 'click' && !detailsEl.contains(e.target)) ||
         (e.type === 'keydown' && e.key === 'Escape')
       ) {
         detailsEl.open = false;
