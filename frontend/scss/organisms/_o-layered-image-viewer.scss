@@ -131,29 +131,6 @@
   gap: 1.6em;
   align-items: center;
 
-  datalist {
-    display: contents;
-
-    &::before,
-    &::after {
-      display: none;
-    }
-  }
-
-  option {
-    display: flex;
-    align-items: center;
-  }
-
-  option:first-of-type {
-    order: -1;
-  }
-
-  // Webkit sets a min-height on range input inner elements that use a datalist
-  input::-webkit-slider-container {
-    min-block-size: 0 !important;
-  }
-
   input {
     --track-fill: #{$color__black--42};
     --thumb-border: #{$color__black--20};
