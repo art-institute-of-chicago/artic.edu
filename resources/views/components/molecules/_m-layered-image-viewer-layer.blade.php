@@ -7,6 +7,7 @@
     $height = $item['media']['height'];
     $crop_x = $item['media']['crop_x'];
     $crop_y = $item['media']['crop_y'];
+    $startingView = $item['starting_view'] ? $item['starting_view'] : false;
 
     // Set empty $imageSettings, this will be populated based on $size
     $imageSettings = [];
