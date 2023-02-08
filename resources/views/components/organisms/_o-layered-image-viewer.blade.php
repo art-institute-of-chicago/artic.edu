@@ -1,4 +1,4 @@
-<div class="o-layered-image-viewer{{ (isset($variation)) ? ' '.$variation : '' }}" data-size="{{ (isset($size)) ? $size : 'm' }}" data-behavior="layeredImageViewer">
+<div class="o-layered-image-viewer{{ (isset($variation)) ? ' '.$variation : '' }}" data-size="{{ (isset($size)) ? $size : 'm' }}" {!! isset($cropRegion) ? 'data-crop-region="' . $cropRegion . '"' : '' !!} data-behavior="layeredImageViewer">
     @if (isset($images) && !empty($images))
         <div class="o-layered-image-viewer__images o-blocks__block">
             @foreach ($images as $image)
