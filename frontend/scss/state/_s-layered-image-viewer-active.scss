@@ -9,6 +9,7 @@ When fullscreen / using modal on layered image viewer
 ***/
 
 .s-layered-image-viewer-modal-active {
+  &,
   body {
     overflow: hidden;
   }
