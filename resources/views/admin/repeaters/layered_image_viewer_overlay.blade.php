@@ -16,3 +16,8 @@
     'note' => 'Displayed at bottom of overlay',
     'maxlength' => 40,
 ])
+
+@formField('checkbox', [
+    'name' => 'starting_view',
+    'label' => 'Show this overlay in starting view',
+])
