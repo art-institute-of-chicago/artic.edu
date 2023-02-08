@@ -19,11 +19,11 @@ Portions of the website rely heavily on our [API](https://api.artic.edu). Check 
 
 ## Requirements
 
-* PHP 7.3
+* PHP 8.1
 * Node 8.17.0
 * NPM 6.13.0
-* PostgreSQL 11.*
-* Homestead 12.*
+* PostgreSQL 15
+* Homestead stable `release` branch
 * krpano 1.12.* (for virtual tour blocks)
 
 
@@ -38,14 +38,15 @@ For local development, we run our website in a [Homestead](https://laravel.com/d
 * Update `folders.map` in `Homestead.yaml` with your local path to the website repository.
 * If you have another vagrant machine running at the same IP as the one at the top of `Homestead.yaml`, change it.
 * Run `composer install` to install composer dependencies. This step should typically be done inside the VM, but in order to get the VM running, you may need to install the dependencies from outside the VM.
-* Run `homestead up` to provision your vagrant machine.
+* Run `vagrant up` to provision your vagrant machine.
 * In case the system didn't update your `/etc/hosts` file automatically:
   * Add the IP and domain defined at `Homestead.yaml` to your local `/etc/hosts` file.
 
 Once Homestead is set up, then install the website code itself:
 
-* Run `homestead ssh` to ssh into the VM.
-* `cd` into the project folder in `/home/vagrant/artic.edu`.
+* Run `vagrant ssh` to ssh into the VM.
+* `cd` into the website project directory that you mapped in your `Homestead.yaml`.
+* Set the PHP version for the VM shell by running `php81`.
 * Run `composer install` inside the VM to ensure dependencies are installed.
 * Copy `.env.example` as `.env` and update with your local settings (if necessary).
 * Run `php artisan key:generate` to generate your application key.
@@ -61,6 +62,8 @@ In order to use the virtual tour blocks, you will need to put the `tour.js` file
 ## Developing
 
 ### Frontend
+
+__Note:__ `npm` commands must be run on the host machine, *not* from inside the VM.
 
 There are NPM packages required by the frontend of the website. To install them initially run:
 
@@ -124,12 +127,19 @@ We've developed detailed descriptions of a few key aspects of our website codeba
 ## Testing
 
 The website unit tests are configured to run with its own PostgreSQL database out of the box,
-see [.env.testing](.env.testing). You'll need to create a database `testing` in your local
-DB environment and run the following before you run any tests:
+see [.env.testing](.env.testing). You'll need to create a database `homestead_testing` in your local
+DB environment. To access the `psql` console, run:
+```
+php artisan db
+```
 
+Then inside the console, you can create the testing database with the query:
 ```
-php artisan migrate:fresh --env=testing
+CREATE DATABASE homestead_testing;
 ```
+
+__Tip:__ To quit the Postgres console type `\q`.
+
 
 ## Contributing
 
