@@ -74,6 +74,28 @@ class LayeredImageViewer {
   }
 
   /**
+   * Take the view back to its (editor defined) starting position
+   * @private
+   * @method
+   */
+  _setCropRegion() {
+    if (!this.cropRegion) return;
+
+    const cropRegion = this.viewer.world
+      .getItemAt(0)
+      .imageToViewportRectangle(
+        this.cropRegion.x,
+        this.cropRegion.y,
+        this.cropRegion.width,
+        this.cropRegion.height
+      );
+
+    // For now this has to be set with the immediately flag, see:
+    // https://github.com/openseadragon/openseadragon/issues/2292
+    this.viewer.viewport.fitBoundsWithConstraints(cropRegion, true);
+  }
+
+  /**
    * Process and store all types of image data in the same way
    * @private
    * @method
@@ -132,6 +154,13 @@ class LayeredImageViewer {
     this.captionEl = this.element.querySelector(
       '.o-layered-image-viewer__caption-text'
     );
+
+    // Extract initial crop / zoom if set
+    if (this.element.dataset.cropRegion) {
+      this.cropRegion = JSON.parse(
+        this.element.dataset.cropRegion.replace(/&quot;/g, '"')
+      );
+    }
 
     // Process each image
     this._processImages('images', this.images.element.querySelectorAll('img'));
@@ -350,6 +379,9 @@ class LayeredImageViewer {
 
     this.viewer.addHandler('open', () => {
       this._addControls();
+
+      // Set the start position if predefined
+      this._setCropRegion();
 
       // Set the role to application to enable arrows while using screenreader
       this.viewer.canvas.role = 'application';
@@ -571,9 +603,14 @@ class LayeredImageViewer {
     // Add to toolbar element
     this.toolbar.layers.element.appendChild(this.toolbar.layers.reset);
 
-    // Bind event hanfling
+    // Bind event handling
     this.toolbar.layers.reset.addEventListener('click', () => {
-      this.viewer.viewport.goHome();
+      // Set the viewer position to its initial state
+      if (this.cropRegion) {
+        this._setCropRegion();
+      } else {
+        this.viewer.viewport.goHome();
+      }
 
       // Deactivate overlays
       // (Requires events to be dispatched manually to trigger)
@@ -963,7 +1000,6 @@ class LayeredImageViewer {
    * @method
    * @param {Number} index - Integer for target image element
    * @param {'a'|'b'} layer - Layer to assign image to
-   * @returns
    */
   assignImageToLayer(index, layer) {
     if (!this.images.items[index]) return;
