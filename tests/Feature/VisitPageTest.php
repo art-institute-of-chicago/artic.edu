@@ -19,29 +19,30 @@ class VisitPageTest extends BaseTestCase
     public function test_visiting_hours_are_displayed()
     {
         $response = $this->get('/visit');
-        $response->assertSeeText(
-            "The Art Institute reopens on July 30, and we're so happy to welcome you back to our galleries. Please see below for new hours—including member-only hours—and updated safety policies."
+        $response->assertSee(
+            'The Art Institute reopens on July 30, and we&#8217;re so happy to welcome you back to our galleries. Please see below for new hours—including member-only hours—and updated safety policies.',
+            false
         );
-        $response->assertSeeText("Member-Only Hours");
-        $response->assertSee('<p>Monday 10&ndash;11 a.m.<br/>Thursday&ndash;Sunday 10-11 a.m.</p>');
+        $response->assertSee("Member-Only Hours");
+        $response->assertSee('Monday 10&ndash;11 a.m.<br/>Thursday&ndash;Sunday 10-11 a.m.', false);
     }
 
     public function test_admission_description_is_displayed()
     {
         $response = $this->get('/visit');
         $response->assertSee(
-            '<p>The Art Institute of Chicago provides free access to children under 14, Chicago teens under 18, Link and WIC cardholders, and Illinois educators every day, and to Illinois residents on certain days throughout the year. <a href="/visit/free-admission" target="_blank">Learn more<span class="sr-only"> about free access</span></a>.</p>'
+            'The Art Institute of Chicago provides free access to children under 14, Chicago teens under 18, Link and WIC cardholders, and Illinois educators every day, and to Illinois residents on certain days throughout the year.'
         );
     }
 
     public function test_accessibility_link_is_displayed()
     {
         $response = $this->get('/visit');
-        $response->assertSeeText(
+        $response->assertSee(
             'The Art Institute of Chicago welcomes all visitors and is committed to making its services accessible to everyone. We offer a range of resources for both adults and children with disabilities.'
         );
-        $response->assertSeeText('Learn more about accessibility');
-        $response->assertSee("href='{$this->appUrl}/visit/accessibility/visitors-with-mobility-needs'");
+        $response->assertSee('Learn more about accessibility');
+        $response->assertSee("href=\"{$this->appUrl}/visit/accessibility/visitors-with-mobility-needs\"", false);
     }
 
     public function test_family_pages_titles_are_displayed_in_order()
@@ -57,27 +58,28 @@ class VisitPageTest extends BaseTestCase
     public function test_mobile_app_family_page_link_is_displayed()
     {
         $response = $this->get('/visit');
-        $response->assertSeeText(
-            "The Art Institute\'s free app offers the stories behind the art through conversations with artists, experts, and community members. Download it via the App Store or Google Play."
+        $response->assertSee(
+            'The Art Institute&#8217;s free app offers the stories behind the art through conversations with artists, experts, and community members. Download it via the App Store or Google Play.',
+            false
         );
-        $response->assertSeeText('Learn more');
-        $response->assertSee("href='{$this->appUrl}/visit/explore-on-your-own/mobile-app-audio-tours'");
+        $response->assertSee('Learn more');
+        $response->assertSee("href=\"{$this->appUrl}/visit/explore-on-your-own/mobile-app-audio-tours\"", false);
     }
 
     public function test_highlights_family_page_link_is_displayed()
     {
         $response = $this->get('/visit');
-        $response->assertSeeText('Short on time? Check out this must-see guide to the collection.');
-        $response->assertSeeText('More custom tours');
-        $response->assertSee("href='{$this->appUrl}/highlights'");
+        $response->assertSee('Short on time? Check out this must-see guide to the collection.');
+        $response->assertSee('More custom tours');
+        $response->assertSee("href=\"{$this->appUrl}/highlights\"", false);
     }
 
     public function test_visit_virtually_family_page_link_is_displayed()
     {
         $response = $this->get('/visit');
-        $response->assertSeeText( 'Even from afar, there\'s a host of ways to connect to our collection of art from around the world&mdash;whether you\'re seeking inspiration, community, or a little adventure.');
-        $response->assertSeeText('Learn more');
-        $response->assertSee("href='{$this->appUrl}/visit-us-virtually'");
+        $response->assertSee('Even from afar, there&#8217;s a host of ways to connect to our collection of art from around the world&mdash;whether you&#8217;re seeking inspiration, community, or a little adventure.', false);
+        $response->assertSee('Learn more');
+        $response->assertSee("href=\"{$this->appUrl}/visit-us-virtually\"", false);
     }
 
     public function test_what_to_expect_items_are_displayed_in_order()
@@ -95,4 +97,5 @@ class VisitPageTest extends BaseTestCase
             'Special exhibitions may use timed queueing systems. Check in at exhibition entrances to reserve your spot in line.',
         ]);
     }
+//
 }

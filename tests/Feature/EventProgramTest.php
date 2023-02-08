@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
-use App\Models\EventProgram;
 
 class EventProgramTest extends BaseTestCase
 {
