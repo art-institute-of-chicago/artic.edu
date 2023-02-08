@@ -6,14 +6,19 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public $seeders = [
+        PagesTableSeeder::class,
+        HoursTableSeeder::class,
+        HomePageSeeder::class,
+        VisitPageSeeder::class,
+        EventProgramSeeder::class,
+        IlluminateTagSeeder::class,
+    ];
+
+    public function run(): void
     {
-        $this->call(PagesTableSeeder::class);
-        $this->call(HoursTableSeeder::class);
+        foreach ($this->seeders as $seeder) {
+            $this->call($seeder);
+        }
     }
 }

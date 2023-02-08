@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-use Carbon\Carbon;
 
 class AddPublishDatesToArticlesEventsSelections extends Migration
 {
@@ -23,8 +22,6 @@ class AddPublishDatesToArticlesEventsSelections extends Migration
                 $table->timestamp('publish_start_date')->nullable()->after('published');
                 $table->timestamp('publish_end_date')->nullable()->after('publish_start_date');
             });
-
-            DB::table($tableName)->where('published', 1)->update(['publish_start_date' => Carbon::now()]);
         }
     }
 

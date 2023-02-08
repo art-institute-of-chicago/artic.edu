@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+namespace Database\Seeders;
 
 use App\Models\EventProgram;
+use Illuminate\Database\Seeder;
 
-class AddEventProgramsData extends Migration
+class EventProgramSeeder extends Seeder
 {
     private $programs = [
         'Artist’s Studio',
@@ -39,27 +40,16 @@ class AddEventProgramsData extends Migration
 
         'Accessibility',
         'Conservation and Science',
-        'Sustaining Fellows',
+        'Luminary',
         'Gallery Talks',
     ];
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function run(): void
     {
-        // No-op: moved to EventProgramSeeder
-    }
+        foreach ($this->programs as $item) {
+            $program = EventProgram::firstOrNew(['name' => $item]);
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        // No-op
+            $program->save();
+        }
     }
 }

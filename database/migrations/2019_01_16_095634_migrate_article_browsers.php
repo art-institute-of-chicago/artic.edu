@@ -11,43 +11,7 @@ class MigrateArticleBrowsers extends Migration
      */
     public function up()
     {
-        // WEB-1183: page_article_article missing here
-        $artArticles = DB::table('article_article')->select('*')->get();
-        $pageArticles = DB::table('article_page')->select('*')->get();
-        $pageArtArticles = DB::table('page_art_article')->select('*')->get();
-
-        foreach ($artArticles as $article) {
-            DB::table('related')->insert([
-                'subject_id' => $article->article_id,
-                'subject_type' => 'articles',
-                'related_type' => 'articles',
-                'related_id' => $article->related_article_id,
-                'browser_name' => 'further_reading_items',
-                'position' => $article->position,
-            ]);
-        }
-
-        foreach ($pageArticles as $article) {
-            DB::table('related')->insert([
-                'subject_id' => $article->page_id,
-                'subject_type' => 'App\Models\Page',
-                'related_type' => 'articles',
-                'related_id' => $article->article_id,
-                'browser_name' => 'featured_items',
-                'position' => $article->position,
-            ]);
-        }
-
-        foreach ($pageArtArticles as $article) {
-            DB::table('related')->insert([
-                'subject_id' => $article->page_id,
-                'subject_type' => 'App\Models\Page',
-                'related_type' => 'articles',
-                'related_id' => $article->article_id,
-                'browser_name' => 'featured_items',
-                'position' => $article->position,
-            ]);
-        }
+        // No-op: moved to RelatedArticleSeeder
     }
 
     /**
@@ -57,6 +21,6 @@ class MigrateArticleBrowsers extends Migration
      */
     public function down()
     {
-
+        // No-op
     }
 }

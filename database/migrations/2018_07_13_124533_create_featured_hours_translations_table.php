@@ -19,18 +19,6 @@ class CreateFeaturedHoursTranslationsTable extends Migration
             $table->text('copy')->nullable();
         });
 
-        foreach (\App\Models\FeaturedHour::all() as $hour) {
-            foreach (config('translatable.locales') as $locale) {
-                DB::table('featured_hour_translations')->insert([
-                    'locale' => $locale,
-                    'active' => true,
-                    'featured_hour_id' => $hour->id,
-                    'title' => $hour->title,
-                    'copy' => $hour->copy,
-                ]);
-            }
-        }
-
         Schema::table('featured_hours', function (Blueprint $table) {
             $table->dropColumn(['title', 'copy']);
         });

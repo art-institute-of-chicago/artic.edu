@@ -2,8 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-use Cartalyst\Tags\IlluminateTag;
-
 class AddRestrictDownloadTag extends Migration
 {
     /**
@@ -13,11 +11,7 @@ class AddRestrictDownloadTag extends Migration
      */
     public function up()
     {
-        $tag = new IlluminateTag();
-        $tag->name = 'Restrict Download';
-        $tag->slug = 'restrict-download';
-        $tag->namespace = 'media';
-        $tag->save();
+        // No-op: moved to IlluminateTagSeeder
     }
 
     /**
@@ -27,7 +21,6 @@ class AddRestrictDownloadTag extends Migration
      */
     public function down()
     {
-        $tag = IlluminateTag::where('slug', 'restrict-download')->first();
-        $tag->delete();
+        // No-op
     }
 }

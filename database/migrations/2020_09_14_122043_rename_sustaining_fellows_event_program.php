@@ -12,9 +12,7 @@ class RenameSustainingFellowsEventProgram extends Migration
      */
     public function up()
     {
-        $program = EventProgram::where('name', 'Sustaining Fellows')->first();
-        $program->name = 'Luminary';
-        $program->save();
+        // No-op: moved to EventProgramSeeder
     }
 
     /**
@@ -24,8 +22,6 @@ class RenameSustainingFellowsEventProgram extends Migration
      */
     public function down()
     {
-        $program = EventProgram::where('name', 'Luminary')->first();
-        $program->name = 'Sustaining Fellows';
-        $program->save();
+        // No-op
     }
 }
