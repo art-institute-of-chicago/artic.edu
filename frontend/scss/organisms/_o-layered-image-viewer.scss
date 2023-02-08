@@ -270,14 +270,8 @@
 // ---- Mouunted element
 .o-layered-image-viewer__osd-mount {
   width: 100%;
-  height: 100%;
-}
-
-.m-media--layered-image-viewer-embed {
-  width: 100%;
   // a11y: Absolute min height as non-viewport relative
   height: max(32em, 80vh);
-  background-image: none;
 }
 
 // Initial modal state
