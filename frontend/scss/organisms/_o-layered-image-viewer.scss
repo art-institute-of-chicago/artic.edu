@@ -274,7 +274,7 @@
 
 .m-media--layered-image-viewer-embed {
   width: 100%;
-  // a11y: Absolute min height an non-relative
+  // a11y: Absolute min height as non-viewport relative
   height: max(32em, 80vh);
   background-image: none;
 }
