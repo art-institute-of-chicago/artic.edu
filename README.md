@@ -165,7 +165,8 @@ git commit -m "Meaningful commit message"
 
 If your branch is out of sync after commit, for example:
 ```bash
-Your branch is ahead of 'origin/feature/good-short-description' by X commits and behind 'origin/feature/good-short-description' by X commits.
+Your branch and 'origin/feature/good-short-description' have diverged,
+and have X and X different commits each, respectively.
 ```
 You should try resetting and rebasing your branch:
 ```bash
