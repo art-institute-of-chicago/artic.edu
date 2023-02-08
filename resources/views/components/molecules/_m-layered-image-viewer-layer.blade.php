@@ -94,6 +94,13 @@
             <div class="f-caption">
                 {!! $item['label'] !!}
             </div>
+
+            {{-- This code is to demo that the new variable is working, and will be removed in the future --}}
+            @if ($startingView)
+                <p>true</p>
+            @else
+                <p>false</p>
+            @endif
         </figcaption>
     @endif
 </figure>
