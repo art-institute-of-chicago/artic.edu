@@ -127,18 +127,10 @@ We've developed detailed descriptions of a few key aspects of our website codeba
 ## Testing
 
 The website unit tests are configured to run with its own PostgreSQL database out of the box,
-see [.env.testing](.env.testing). You'll need to create a database `homestead_testing` in your local
-DB environment. To access the `psql` console, run:
+see [.env.testing](.env.testing). To run the test suite:
+```bash
+php artisan test
 ```
-php artisan db
-```
-
-Then inside the console, you can create the testing database with the query:
-```
-CREATE DATABASE homestead_testing;
-```
-
-__Tip:__ To quit the Postgres console type `\q`.
 
 
 ## Contributing
