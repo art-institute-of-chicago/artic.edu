@@ -85,7 +85,7 @@
             @endif
 
             {{-- Important to include this, must be largest size available: --}}
-            data-viewer-src="{{ $media['src'] }}"
+            data-viewer-src="{{ $media['full_src'] }}"
         />
     </div>
     @if (isset($item['label']))
