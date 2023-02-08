@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Migrations\Migration;
 
 class CleanupRealtedTable extends Migration
@@ -12,7 +11,7 @@ class CleanupRealtedTable extends Migration
      */
     public function up()
     {
-        DB::table('related')->where('related_type', 'digitalLabels')->delete();
+        // No-op: moved to RelatedArticleSeeder
     }
 
     /**
@@ -22,6 +21,6 @@ class CleanupRealtedTable extends Migration
      */
     public function down()
     {
-
+        // No-op
     }
 }

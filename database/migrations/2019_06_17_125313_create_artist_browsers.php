@@ -13,19 +13,6 @@ class CreateArtistBrowsers extends Migration
      */
     public function up()
     {
-        $articleArtists = DB::table('article_artist')->select('*')->get();
-
-        foreach ($articleArtists as $article) {
-            DB::table('related')->insert([
-                'subject_id' => $article->artist_id,
-                'subject_type' => 'artists',
-                'related_type' => 'articles',
-                'related_id' => $article->article_id,
-                'browser_name' => 'related_items',
-                'position' => $article->position,
-            ]);
-        }
-
         Schema::dropIfExists('article_artist');
     }
 

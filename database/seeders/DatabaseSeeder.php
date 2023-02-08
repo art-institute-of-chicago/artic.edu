@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        $this->call(PagesTableSeeder::class);
-        $this->call(HoursTableSeeder::class);
+        foreach ($this->seeders as $seeder) {
+            $this->call($seeder);
+        }
     }
 }
