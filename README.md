@@ -137,6 +137,7 @@ php artisan test
 
 We welcome your contributions. Please fork this repository and make your changes in a separate branch. To better understand how we organize our code, please review our [version control guidelines](https://docs.google.com/document/d/1B-27HBUc6LDYHwvxp3ILUcPTo67VFIGwo5Hiq4J9Jjw).
 
+### Starting a new feature branch
 ```bash
 # Clone the repo to your computer
 git clone git@github.com:your-github-account/website.git
@@ -149,10 +150,38 @@ cd website
 # Start a feature branch
 git checkout -b feature/good-short-description
 
-# ... make some changes, commit your code
+# ... make some changes
+```
 
+### Commiting your changes
+```bash
+# Make sure you're working off of the latest commit on the branch
+git fetch
+git pull
+
+# Commit your changes with a meaningful commit message
+git commit -m "Meaningful commit message"
+```
+
+If your branch is out of sync after commit, for example:
+```bash
+Your branch is ahead of 'origin/feature/good-short-description' by X commits and behind 'origin/feature/good-short-description' by X commits.
+```
+You should try resetting and rebasing your branch:
+```bash
+# Reset your feature branch
+git reset HEAD~
+
+# Get your local branch back in sync
+git rebase
+
+# ... recommit your code
+```
+
+### Contributing your code
+```bash
 # Push your branch to GitHub
-git push origin feature/good-short-description
+git push --set-upstream origin feature/good-short-description
 ```
 
 Then on github.com, create a Pull Request to merge your changes into our `develop` branch.
