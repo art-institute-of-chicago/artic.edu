@@ -295,6 +295,12 @@
 
 }
 
+.m-media--layered-image-viewer-embed {
+  .m-media__img {
+    background-image: none;
+  }
+}
+
 .m-media__img img,
 .m-media__img > svg:not([class*=icon--]) {
   display: block;
@@ -302,7 +308,7 @@
   height: auto;
   margin: 0 auto;
 
-  .m-media--s.o-blocks__block & {
+  .m-media--s.o-blocks__block:not(.m-media--layered-image-viewer-embed) & {
     width: auto;
     max-width: 100%;
     max-height: 80vh;
