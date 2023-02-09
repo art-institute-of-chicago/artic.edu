@@ -109,7 +109,7 @@ class GeneratePdfs extends Command
 
         $pdfFileName = 'download-' . $route . '-' . $model->id . '.pdf';
         $pdfPath = storage_path('app/' . $pdfFileName);
-        $prince->convert_string_to_file($html, $pdfPath);
+        $prince->convertStringToFile($html, $pdfPath);
 
         if (config('aic.pdf_s3_enabled')) {
             // Stream the file to S3; be sure to set `AWS_BUCKET` in `.env` and otherwise configure credentials
