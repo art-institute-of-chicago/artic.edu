@@ -12,6 +12,7 @@ class DigitalPublicationSectionController extends ModuleController
 
     protected $moduleName = 'digitalPublications.sections';
     protected $modelName = 'DigitalPublicationSection';
+    protected $previewView = 'site.digitalPublicationSectionDetail';
 
     protected $permalinkBase = 'digital-publications/';
 
