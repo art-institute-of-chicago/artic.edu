@@ -325,7 +325,7 @@ class LayeredImageViewer {
       // Dialog element has the advantage of handling semantics and focus trap
       this.modalEl = document.createElement('dialog');
       this.modalEl.id = 'layered-image-viewer-modal';
-      this.modalEl.classList.add('layered-image-viewer-modal');
+      this.modalEl.classList.add('o-layered-image-viewer__modal');
       document.body.appendChild(this.modalEl);
     }
 
