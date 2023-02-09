@@ -11,10 +11,6 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/art-institute-of-chicago/prince-php-wrapper.git"
-        },
-        {
-            "type": "vcs",
             "url": "https://github.com/axsweet/FuelSDK-PHP.git"
         },
         {
@@ -62,7 +58,7 @@
         "spatie/laravel-feed": "^3.1",
         "spatie/laravel-sitemap": "^5.9",
         "vendor/package-patches": "^1.0",
-        "yeslogic/prince-php-wrapper": "dev-master"
+        "yeslogic/prince-php-wrapper": "^1.5"
     },
     "require-dev": {
         "brianium/paratest": "^6.6",

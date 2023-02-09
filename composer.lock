@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "455a54f18a69a720a78667a34404411b",
+    "content-hash": "fe0c1f0639eaaeeec3dad77d92fd248a",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -10905,51 +10905,43 @@
         },
         {
             "name": "yeslogic/prince-php-wrapper",
-            "version": "dev-master",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/art-institute-of-chicago/prince-php-wrapper.git",
-                "reference": "d6199b1dd0aef6b72db466a6d20275f5fa35369f"
+                "url": "https://github.com/yeslogic/prince-php-wrapper.git",
+                "reference": "fd7b974e1251d1fbcdc30a261897d5ccb3fd5447"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/art-institute-of-chicago/prince-php-wrapper/zipball/d6199b1dd0aef6b72db466a6d20275f5fa35369f",
-                "reference": "d6199b1dd0aef6b72db466a6d20275f5fa35369f",
+                "url": "https://api.github.com/repos/yeslogic/prince-php-wrapper/zipball/fd7b974e1251d1fbcdc30a261897d5ccb3fd5447",
+                "reference": "fd7b974e1251d1fbcdc30a261897d5ccb3fd5447",
                 "shasum": ""
             },
-            "default-branch": true,
+            "require": {
+                "php": ">=5.3.0"
+            },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Prince\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT License"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Håkon Wium Lie",
-                    "email": ""
-                },
-                {
                     "name": "Michael Day",
                     "email": "mikeday@yeslogic.com"
-                },
-                {
-                    "name": "Xuehong Liu",
-                    "email": ""
-                },
-                {
-                    "name": "Cong Liu",
-                    "email": ""
                 }
             ],
             "description": "PHP wrapper class for Prince HTML to PDF formatter",
             "support": {
-                "source": "https://github.com/art-institute-of-chicago/prince-php-wrapper/tree/master"
+                "issues": "https://github.com/yeslogic/prince-php-wrapper/issues",
+                "source": "https://github.com/yeslogic/prince-php-wrapper/tree/1.5.0"
             },
-            "time": "2020-03-23T19:22:36+00:00"
+            "time": "2023-02-09T02:22:09+00:00"
         }
     ],
     "packages-dev": [
@@ -14657,13 +14649,12 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "aic/data-hub-foundation": 20,
-        "salesforce-mc/fuel-sdk-php": 20,
-        "yeslogic/prince-php-wrapper": 20
+        "salesforce-mc/fuel-sdk-php": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.1"
+        "php": "^8.1"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
