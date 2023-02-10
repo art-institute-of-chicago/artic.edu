@@ -622,7 +622,7 @@ class LayeredImageViewer {
     // Add button to layers controls
     this.toolbar.layers.reset = this._createIconButton(
       {
-        label: 'Reset',
+        label: 'Reset to initial state',
         icon: 'icon--reset--24',
       },
       standardButtonClasses.concat('o-layered-image-viewer__reset')
