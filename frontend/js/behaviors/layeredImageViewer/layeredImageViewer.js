@@ -197,7 +197,7 @@ class LayeredImageViewer {
         // For non-fullscreen
         this.modalEl.close();
         this.element
-          .querySelector('.m-media__img')
+          .querySelector('.o-layered-image-viewer__osd')
           .appendChild(this.osdMountEl);
         // refocus after move
         this.toolbar.viewer.buttons.fullscreen.focus();
@@ -298,7 +298,7 @@ class LayeredImageViewer {
     // Markup to surround viewer with
     // Modelled around the media molecule
     mediaTemplate.innerHTML = `
-      <figure class="m-media m-media--${this.size} m-media--layered-image-viewer-embed m-media--contain o-blocks__block">
+      <figure class="o-layered-image-viewer__osd m-media m-media--${this.size} m-media--layered-image-viewer-embed m-media--contain o-blocks__block">
         <div class="m-media__img">
           <div class="o-layered-image-viewer__osd-mount"></div>
         </div>
