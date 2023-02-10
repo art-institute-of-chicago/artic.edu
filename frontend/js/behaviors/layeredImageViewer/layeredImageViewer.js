@@ -298,7 +298,7 @@ class LayeredImageViewer {
     const imageNoun = imageLabels.length > 1 ? 'images' : 'image';
 
     // Use label to describe the intent, and the current state. This will be announced before description.
-    this.viewer.canvas.ariaLabel = `Interacive image viewer. Currently showing ${imagesString} ${imageNoun}${
+    this.viewer.canvas.ariaLabel = `Interactive image viewer. Currently showing ${imagesString} ${imageNoun}${
       overlayLabels.length
         ? `, overlayed with ${overlaysString} ${overlayNoun}`
         : '.'
