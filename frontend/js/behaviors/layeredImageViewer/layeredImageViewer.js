@@ -671,7 +671,7 @@ class LayeredImageViewer {
         <label class="f-body" for="o-layered-image-viewer-${this.id}-opacity-slider">Slide between views:</label>
         <div class="o-layered-image-viewer__opacity-field">
           <span class="f-body o-layered-image-viewer__opacity-marker">A</span>
-          <input id="o-layered-image-viewer-${this.id}-opacity-slider" name="opacity" type="range" min="0" max="1" step="0.01" value="0" data-layered-viewer-interaction="slider" />
+          <input id="o-layered-image-viewer-${this.id}-opacity-slider" name="opacity" type="range" min="0" max="100" step="1" value="0" data-layered-viewer-interaction="slider" />
           <span class="f-body o-layered-image-viewer__opacity-marker">B</span>
         </div>
       </div>
@@ -695,13 +695,13 @@ class LayeredImageViewer {
    * The closer to 1 this is the more of image A is shown
    *
    * @method
-   * @param {Number} opacity - Opacity to set. Should be floating point number rounded to 2 decimal places
+   * @param {Number} opacity - Opacity to set. Should be integer between 0 and 100
    * @public
    */
   setOpacity(opacity) {
     // Invert value, set slider and update world item
     this.opacitySliderEl.value = opacity;
-    this.viewer.world.getItemAt(1).setOpacity(1 - opacity);
+    this.viewer.world.getItemAt(1).setOpacity((100 - opacity) / 100);
 
     // Set custom prop for styling
     this.opacitySliderEl.style.setProperty('--percent', opacity);
@@ -900,7 +900,7 @@ class LayeredImageViewer {
       // Reset / reapply UI opacity to world items
       this.viewer.world.getItemAt(1).setOpacity(0.999);
       this.viewer.world.setItemIndex(this.viewer.world.getItemAt(0), 1);
-      this.viewer.world.getItemAt(1).setOpacity(1 - this.opacitySliderEl.value);
+      this.viewer.world.getItemAt(1).setOpacity(1 - this.opacitySliderEl.value / 100);
     } else {
       // Loop active items and set images
       ['a', 'b'].forEach((key) => {
@@ -926,7 +926,7 @@ class LayeredImageViewer {
                 );
 
                 // If layer 'a' changes, reapply to  world item only
-                this.setOpacity(this.opacitySliderEl.value);
+                this.setOpacity(this.opacitySliderEl.value / 100);
               },
             });
           }
