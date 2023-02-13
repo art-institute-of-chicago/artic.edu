@@ -283,6 +283,7 @@ class LayeredImageViewer {
     const overlayLabels = this.overlays.active.map((activeIndex) => {
       return `'${this.overlays.items[activeIndex].label}'`;
     });
+
     // 'b' label will only exist if initialised with multple images
     const imageLabels = [`'${this.images.items[this.images.active.a].label}'`];
     this.images.active.b !== null &&
@@ -389,6 +390,10 @@ class LayeredImageViewer {
 
     this.viewer.addHandler('open', () => {
       this._addControls();
+
+      // Assign initial active image layers
+      this.assignImageToLayer(0, 'a');
+      this.assignImageToLayer(1, 'b');
 
       // Set the start position if predefined
       this._setCropRegion();
@@ -805,9 +810,6 @@ class LayeredImageViewer {
           });
         });
       });
-
-      this.assignImageToLayer(0, 'a');
-      this.assignImageToLayer(1, 'b');
     }
 
     // Output overlays
@@ -1022,12 +1024,19 @@ class LayeredImageViewer {
   assignImageToLayer(index, layer) {
     if (!this.images.items[index]) return;
 
-    // Set active to null to prevent flip operations
-    this.images.active[layer] = null;
+    // Control elements only present for multiple images
+    if (this.images.items.length > 1) {
+      // Set active to null to prevent flip operations
+      this.images.active[layer] = null;
 
-    const changeEvent = new Event('change');
-    this.images.items[index].controlEls[layer].checked = true;
-    this.images.items[index].controlEls[layer].dispatchEvent(changeEvent);
+      const changeEvent = new Event('change');
+      this.images.items[index].controlEls[layer].checked = true;
+      this.images.items[index].controlEls[layer].dispatchEvent(changeEvent);
+    } else {
+      // Manually set layer for single image
+      this.images.active[layer] = index;
+    }
+
   }
 
   /**
