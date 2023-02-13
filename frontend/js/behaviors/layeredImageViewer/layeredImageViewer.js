@@ -509,15 +509,17 @@ class LayeredImageViewer {
    * @returns {HTMLButtonElement} - The complete button element
    */
   _createIconButton(options, classes) {
+    const {label, icon, interaction } = options;
+
     this.buttonTemplate =
       this.buttonTemplate || document.createElement('template');
 
     this.buttonTemplate.innerHTML = `
       <button class="${classes.join(' ')}" type="button" aria-label="${
-      options.label
-    }">
-        <svg class="${options.icon}" aria-hidden="true">
-          <use xlink:href="#${options.icon}" />
+      label
+    }" data-layered-viewer-interaction="${interaction}">
+        <svg class="${icon}" aria-hidden="true">
+          <use xlink:href="#${icon}" />
         </svg>
     </button>
     `;
@@ -539,14 +541,17 @@ class LayeredImageViewer {
       {
         label: 'Fullscreen',
         icon: 'icon--zoom--24',
+        interaction: 'modal',
       },
       {
         label: 'Zoom in',
         icon: 'icon--zoom-in--24',
+        interaction: 'zoom',
       },
       {
         label: 'Zoom out',
         icon: 'icon--zoom-out--24',
+        interaction: 'zoom'
       },
     ];
     this.toolbar.viewer.element = document.createElement('div');
@@ -666,7 +671,7 @@ class LayeredImageViewer {
         <label class="f-body" for="o-layered-image-viewer-${this.id}-opacity-slider">Slide between views:</label>
         <div class="o-layered-image-viewer__opacity-field">
           <span class="f-body o-layered-image-viewer__opacity-marker">A</span>
-          <input id="o-layered-image-viewer-${this.id}-opacity-slider" name="opacity" type="range" min="0" max="1" step="0.01" value="0" />
+          <input id="o-layered-image-viewer-${this.id}-opacity-slider" name="opacity" type="range" min="0" max="1" step="0.01" value="0" data-layered-viewer-interaction="slider" />
           <span class="f-body o-layered-image-viewer__opacity-marker">B</span>
         </div>
       </div>
@@ -715,7 +720,7 @@ class LayeredImageViewer {
     const detailsTemplate = document.createElement('template');
     detailsTemplate.innerHTML = `
       <details class="o-layered-image-viewer-details">
-        <summary class="btn btn--icon-sq btn--septenary">
+        <summary class="btn btn--icon-sq btn--septenary" data-layered-viewer-interaction="layers">
           <span class="sr-only">Image layer options</span>
           <svg class="icon--layers--24" aria-hidden="true">
             <use xlink:href="#icon--layers--24" />
