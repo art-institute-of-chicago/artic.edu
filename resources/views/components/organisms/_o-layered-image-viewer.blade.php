@@ -2,14 +2,11 @@
     @if (isset($images) && !empty($images))
         <div class="o-layered-image-viewer__images o-blocks__block">
             @foreach ($images as $image)
-                {{-- Repeat div for every image (figure inside is just hardcoded copy of what seems to come out of molecule) --}}
-                <div class="o-layered-image-viewer__image o-blocks__block">
-                    @component('components.molecules._m-layered-image-viewer-layer')
-                        @slot('item', $image)
-                        @slot('size', $size)
-                        @slot('layerType', 'image')
-                    @endcomponent
-                </div>
+                @component('components.molecules._m-layered-image-viewer-layer')
+                    @slot('item', $image)
+                    @slot('size', $size)
+                    @slot('layerType', 'image')
+                @endcomponent
             @endforeach
         </div>
     @endif
@@ -17,14 +14,11 @@
     @if (isset($overlays) && !empty($overlays))
         <div class="o-layered-image-viewer__overlays o-blocks__block">
             @foreach ($overlays as $overlay)
-                {{-- Repeat div for every overlay --}}
-                <div class="o-layered-image-viewer__overlay o-blocks__block">
-                    @component('components.molecules._m-layered-image-viewer-layer')
-                        @slot('item', $overlay)
-                        @slot('size', $size)
-                        @slot('layerType', 'overlay')
-                    @endcomponent
-                </div>
+                @component('components.molecules._m-layered-image-viewer-layer')
+                    @slot('item', $overlay)
+                    @slot('size', $size)
+                    @slot('layerType', 'overlay')
+                @endcomponent
             @endforeach
         </div>
     @endif
