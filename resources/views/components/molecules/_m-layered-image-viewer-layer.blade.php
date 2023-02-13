@@ -64,7 +64,7 @@
     global $_allowAdvancedModalFeatures;
 @endphp
 
-<div class="o-layered-image-viewer__{{ $layerType }} o-blocks__block">
+<div class="o-layered-image-viewer__{{ $layerType }} o-blocks__block" {{ $layerType == 'overlay' && $startingView ? 'data-active-overlay' : '' }}>
     <figure class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} m-media--layered-image-viewer-embed m-media--contain">
         <div class="m-media__img" data-behavior="fitText">
             @if ($size === 'm' || $size === 'l')
