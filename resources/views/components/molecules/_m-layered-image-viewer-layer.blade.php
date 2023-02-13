@@ -64,43 +64,38 @@
     global $_allowAdvancedModalFeatures;
 @endphp
 
-<figure class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} m-media--layered-image-viewer-embed m-media--contain">
-    <div class="m-media__img" data-behavior="fitText">
-        @if ($size === 'm' || $size === 'l')
-            <div
-                class="m-media__contain--spacer"
-                style="padding-bottom: {{ min(62.5, intval($media['height'] ?? 10) / intval($media['width'] ?? 16) * 100) }}%"
-            ></div>
+<div class="o-layered-image-viewer__{{ $layerType }} o-blocks__block">
+    <figure class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} m-media--layered-image-viewer-embed m-media--contain">
+        <div class="m-media__img" data-behavior="fitText">
+            @if ($size === 'm' || $size === 'l')
+                <div
+                    class="m-media__contain--spacer"
+                    style="padding-bottom: {{ min(62.5, intval($media['height'] ?? 10) / intval($media['width'] ?? 16) * 100) }}%"
+                ></div>
+            @endif
+            <img
+                src="{{ $media['src'] }}"
+                alt="{{ $alt }}"
+
+                @if ($layerType == 'image')
+                    width="{{ $width }}"
+                    height="{{ $height }}"
+
+                    {{-- srcset only applied to image as overlay will be svg --}}
+                    srcset="{{ $srcset ?? '' }}"
+                    sizes="{{ $sizes ?? '' }}"
+                @endif
+
+                {{-- Important to include this, must be largest size available: --}}
+                data-viewer-src="{{ $media['full_src'] }}"
+            />
+        </div>
+        @if (isset($item['label']))
+            <figcaption>
+                <div class="f-caption">
+                    {!! $item['label'] !!}
+                </div>
+            </figcaption>
         @endif
-        <img
-            src="{{ $media['src'] }}"
-            alt="{{ $alt }}"
-
-            @if ($layerType == 'image')
-                width="{{ $width }}"
-                height="{{ $height }}"
-
-                {{-- srcset only applied to image as overlay will be svg --}}
-                srcset="{{ $srcset ?? '' }}"
-                sizes="{{ $sizes ?? '' }}"
-            @endif
-
-            {{-- Important to include this, must be largest size available: --}}
-            data-viewer-src="{{ $media['full_src'] }}"
-        />
-    </div>
-    @if (isset($item['label']))
-        <figcaption>
-            <div class="f-caption">
-                {!! $item['label'] !!}
-            </div>
-
-            {{-- This code is to demo that the new variable is working, and will be removed in the future --}}
-            @if ($startingView)
-                <p>true</p>
-            @else
-                <p>false</p>
-            @endif
-        </figcaption>
-    @endif
-</figure>
+    </figure>
+</div>
