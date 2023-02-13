@@ -7,22 +7,22 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class IssueArticleFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = IssueArticle::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'published' => true,
+            'title' => $this->faker->words(5, true),
         ];
+    }
+
+    public function published(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'published' => 'true',
+                'publish_start_date' => now(),
+            ];
+        });
     }
 }
