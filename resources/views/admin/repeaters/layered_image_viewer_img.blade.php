@@ -17,8 +17,3 @@
     'maxlength' => 40,
 ])
 
-@formField('checkbox', [
-    'name' => 'starting_view',
-    'label' => 'Show this image in starting view',
-])
-
