@@ -322,8 +322,9 @@ html.s-print body {
   }
 
   .m-article-header__img {
-    width: 66%;
+    height: 100%;
     margin: 0 auto 0 0;
+    width: 66%;
   }
 
   .m-article-header__img img {
@@ -494,10 +495,11 @@ html.s-print body {
 
   .m-article-header--feature .m-article-header__text,
   .m-article-header--journal-article .m-article-header__text {
-    position: relative;
-    padding: 0;
-    min-height: auto;
     margin-top: .25in;
+    margin-left: 0;
+    min-height: auto;
+    padding: 0;
+    position: relative;
     width: 66%;
   }
 
@@ -529,6 +531,10 @@ html.s-print body {
     &::before {
       background-color: $color__white;
       border-bottom: 0px;
+    }
+
+    .icon--menu--24 {
+      display: none;
     }
   }
 }
