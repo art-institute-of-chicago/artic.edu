@@ -27,7 +27,7 @@
         $mediaItem = [
             'media' => $child->imageAsArray('image', 'desktop'),
             'label' => $child->input('label'),
-            'starting_view' => $child->checkbox('starting_view'),
+            'starting_view' => $child->checkbox('starting_view') ? $child->checkbox('starting_view') : false,
         ];
 
         // Append full source for viewer
