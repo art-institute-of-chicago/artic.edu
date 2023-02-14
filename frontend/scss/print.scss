@@ -522,4 +522,13 @@ html.s-print body {
     margin: .25in 0;
     margin-left: 0;
   }
+
+  .m-sidebar-toggle {
+    background-color: $color__white;
+
+    &::before {
+      background-color: $color__white;
+      border-bottom: 0px;
+    }
+  }
 }
