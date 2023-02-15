@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
-use A17\Twill\Models\Model;
+use App\Models\AbstractModel;
 use App\Models\DigitalPublicationSection;
-use App\Models\IssueArticle;
 use Illuminate\Console\Command;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Http;
@@ -33,7 +32,6 @@ class GeneratePdfs extends Command
      * Array of models to generate PDFs for. Format is `route => model class`
      */
     protected static array $models = [
-        'issue-articles.show' => IssueArticle::class,
         'collection.publications.digital-publications-sections.show' => DigitalPublicationSection::class,
     ];
 
@@ -123,7 +121,7 @@ class GeneratePdfs extends Command
         $this->info("Generated PDF for {$class} with ID {$model->id}");
     }
 
-    public static function pdfFileName(Model $model): string
+    public static function pdfFileName(AbstractModel $model): string
     {
         $route = self::route($model);
         return 'download-' . $route . '-' . $model->id . '.pdf';
