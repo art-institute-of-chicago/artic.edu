@@ -11,6 +11,13 @@ html.s-print body {
   width: auto;
 }
 
+@page {
+  @bottom-right {
+    content: counter(page);
+    font-size: 10pt;
+  }
+}
+
 .s-print #a17 {
   * {
     background: transparent;
