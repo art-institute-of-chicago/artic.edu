@@ -173,13 +173,17 @@ class LayeredImageViewer {
     }
 
     // Process each image
-    this._processImages('images', this.images.element.querySelectorAll('img'));
+    if (this.images.element) {
+      this._processImages('images', this.images.element.querySelectorAll('img'));
+    }
 
     // Process each overlay
-    this._processImages(
-      'overlays',
-      this.overlays.element.querySelectorAll('img')
-    );
+    if (this.overlays.element) {
+      this._processImages(
+        'overlays',
+        this.overlays.element.querySelectorAll('img')
+      );
+    }
   }
 
   /**
