@@ -12,10 +12,11 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DigitalPublication extends AbstractModel
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable, HasRelated;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable, HasRelated, HasFactory;
 
     protected $fillable = [
         'listing_description',
