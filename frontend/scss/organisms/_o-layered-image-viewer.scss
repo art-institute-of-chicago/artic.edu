@@ -268,6 +268,12 @@
 }
 
 // ---- Mouunted element
+.o-layered-image-viewer__osd {
+  .m-media__img {
+    display: flex;
+  }
+}
+
 .o-layered-image-viewer__osd-mount {
   width: 100%;
   // a11y: need min-height that doesn't allow buttons to overlap
