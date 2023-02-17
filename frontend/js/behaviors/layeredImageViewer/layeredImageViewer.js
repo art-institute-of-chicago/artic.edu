@@ -19,6 +19,7 @@ class LayeredImageViewer {
     this.browerSupportsFullscreen =
       typeof document.fullscreenElement !== 'undefined';
     this.size = this.element.dataset.size || 'm';
+    this.aspect = 1;
     this.id = 0;
 
     this.captionTitleEl = null;
@@ -128,6 +129,11 @@ class LayeredImageViewer {
         if (typeof overlayEl.dataset.activeOverlay !== 'undefined') {
           this.overlays.default.push(i);
         }
+      }
+
+      // Use the first image to skim the aspect ratio
+      if (type === 'images' && i === 0) {
+        this.aspect = imgEl.height / imgEl.width;
       }
 
       // Add ID for internal reference
@@ -361,6 +367,9 @@ class LayeredImageViewer {
       '.o-layered-image-viewer__osd-mount'
     );
 
+    // Apect ratio for styling
+    this.osdMountEl.style.setProperty('--viewer-aspect', this.aspect);
+
     this.osdMountEl.style.display = 'block';
 
     // Add modal container if necessary (no fullscreen support)
@@ -390,6 +399,7 @@ class LayeredImageViewer {
         url: this.images.items[0].url, // First image from markup by default
       },
     });
+
     this.osdMountEl.style.display = '';
 
     this.viewer.addHandler('open', () => {
