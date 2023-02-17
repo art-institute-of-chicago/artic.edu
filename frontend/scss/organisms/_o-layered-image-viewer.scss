@@ -270,8 +270,14 @@
 // ---- Mouunted element
 .o-layered-image-viewer__osd-mount {
   width: 100%;
-  // a11y: Absolute min height as non-viewport relative
-  height: max(32em, 80vh);
+  // a11y: need min-height that doesn't allow buttons to overlap
+  min-height: 32em;
+  max-height: 80vh;
+  aspect-ratio: 1 / var(--viewer-aspect);
+
+  @supports not (aspect-ratio: 1) {
+    height: 80vh;
+  }
 }
 
 // Initial modal state
