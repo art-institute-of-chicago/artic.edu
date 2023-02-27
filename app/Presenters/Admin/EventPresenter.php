@@ -43,7 +43,7 @@ class EventPresenter extends BasePresenter
 
     public function ticketStatus()
     {
-        if ($this->nextOcurrence == null) {
+        if ($this->nextOccurrence == null) {
             return null;
         }
 
@@ -89,32 +89,32 @@ class EventPresenter extends BasePresenter
 
     }
 
-    public function formattedNextOcurrence()
+    public function formattedNextOccurrence()
     {
         if (!empty($this->entity->forced_date)) {
             return $this->entity->forced_date;
         }
 
-            if ($next = $this->entity->nextOcurrenceExclusive) {
+            if ($next = $this->entity->nextOccurrenceExclusive) {
                 return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
             }
 
-            if ($last = $this->entity->lastOcurrence) {
+            if ($last = $this->entity->lastOccurrence) {
                 return '<time datetime="' . $last->date->format('c') . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format('c') . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
             }
 
     }
 
-    public function nextOcurrenceDate()
+    public function nextOccurrenceDate()
     {
-        if ($next = $this->entity->nextOcurrence) {
+        if ($next = $this->entity->nextOccurrence) {
             return $this->formatDate($next->date);
         }
     }
 
-    public function nextOcurrenceTime()
+    public function nextOccurrenceTime()
     {
-        if ($next = $this->entity->nextOcurrence) {
+        if ($next = $this->entity->nextOccurrence) {
             return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
         }
     }

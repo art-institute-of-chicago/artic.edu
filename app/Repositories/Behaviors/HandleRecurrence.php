@@ -11,7 +11,7 @@ trait HandleRecurrence
         // Delete all EventMeta elements
         $object->eventMetas()->delete();
 
-        // Create dates in all ocurrences
+        // Create dates in all occurrences
         foreach ($rules as $occurrence) {
             $date = clone $occurrence;
 
