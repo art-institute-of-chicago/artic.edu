@@ -53,7 +53,7 @@ class EventTest extends BaseTestCase
             'date_end' => now()->subDay(),
         ]);
         $event->eventMetas()->save($pastEvent);
-        $this->assertNull($event->nextOccurrence, "The next occurence cannot have already ended");
+        $this->assertNull($event->nextOccurrence, "The next occurrence cannot have already ended");
 
         $futureEvent = EventMeta::factory()->create([
             'event_id' => $event->id,
@@ -61,6 +61,6 @@ class EventTest extends BaseTestCase
             'date_end' => now()->addDay(),
         ]);
         $event->eventMetas()->save($futureEvent);
-        $this->assertNotNull($event->nextOccurrence,  "The next occurence must end in the future");
+        $this->assertNotNull($event->nextOccurrence,  "The next occurrence must end in the future");
     }
 }
