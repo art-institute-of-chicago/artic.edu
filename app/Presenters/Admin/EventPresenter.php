@@ -74,7 +74,7 @@ class EventPresenter extends BasePresenter
 
     protected function formatDate($date)
     {
-        return '<time datetime="' . $date->format('c') . '" itemprop="startDate">' . $date->format('M j, Y') . '</time>';
+        return '<time datetime="' . $date->format('c') . '" itemprop="startDate">' . $date->format('l, F j') . '</time>';
     }
 
     public function formattedBlockDate()

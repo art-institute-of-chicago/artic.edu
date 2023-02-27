@@ -10,9 +10,15 @@ use App\Models\EventProgram;
 
 class EventTest extends BaseTestCase
 {
+    protected $seed = true;
 
-    /** @test */
-    public function it_loads_events_by_program()
+    public function test_event_page_displays_events()
+    {
+        $response = $this->get('/events');
+        $response->assertSee(Event::get()->pluck('title_display')->all());
+    }
+
+    public function test_event_page_loads_events_by_program()
     {
         $eventProgram = EventProgram::factory()->create();
         $events = Event::factory()->count(2)->create()->each(function ($event) use ($eventProgram) {
@@ -21,37 +27,32 @@ class EventTest extends BaseTestCase
             $event->save();
         });
 
-        /*
-         * Coming back to running unit tests with PHPUnit and this request failes due to
-         * `General error: 1 RIGHT and FULL OUTER JOINs are not currently supported`
-         * in SQLite.
-         */
-        $this->assertTrue(true);
-        // $response = $this->get('/events', [], ['program' => $eventProgram->id]);
+        $response = $this->get("/events?program=$eventProgram->id");
 
-        // $response->assertStatus(200);
+        $response->assertStatus(200);
 
-        // // See two events
-        // foreach ($events as $event) {
-        //     $response->assertSee($event->title);
-        // }
+        // See two events
+        foreach ($events as $event) {
+            $response->assertSee($event->title);
+        }
 
-        // // See results title
-        // $response->assertSee($eventProgram->name);
+        // See results title
+        $response->assertSee($eventProgram->name);
     }
 
-    /**
-     * Visit the given URI with a GET request.
-     *
-     * @param  string  $uri
-     * @return \Illuminate\Testing\TestResponse
-     * @see \Illuminate\Foundation\Testing\Concerns\MakesHttpRequests
-     */
-    public function get($uri, array $headers = [], $parameters = [])
+    public function test_next_occurrence()
     {
-        $server = $this->transformHeadersToServerVars($headers);
-        $cookies = $this->prepareCookiesForRequest();
+        $eventProgram = EventProgram::factory()->create();
+        $event = Event::factory()->create();
+        $event->programs()->attach($eventProgram->id);
+        $this->assertNull($event->nextOccurrence);
 
-        return $this->call('GET', $uri, $parameters, $cookies, [], $server);
+        $eventMeta = EventMeta::factory()->create([
+            'event_id' => $event->id,
+            'date' => now(),
+            'date_end' => now()->addDay(),
+        ]);
+        $event->eventMetas()->save($eventMeta);
+        $this->assertNotNull($event->nextOccurrence);
     }
 }

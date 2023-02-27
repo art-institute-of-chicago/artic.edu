@@ -9,9 +9,10 @@ class DatabaseSeeder extends Seeder
     public $seeders = [
         PagesTableSeeder::class,
         HoursTableSeeder::class,
+        EventProgramSeeder::class,
+        EventSeeder::class,
         HomePageSeeder::class,
         VisitPageSeeder::class,
-        EventProgramSeeder::class,
         IlluminateTagSeeder::class,
     ];
 
