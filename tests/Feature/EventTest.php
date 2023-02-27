@@ -45,14 +45,22 @@ class EventTest extends BaseTestCase
         $eventProgram = EventProgram::factory()->create();
         $event = Event::factory()->create();
         $event->programs()->attach($eventProgram->id);
-        $this->assertNull($event->nextOccurrence);
+        $this->assertNull($event->nextOccurrence, "Events must have associated event metas with date data");
 
-        $eventMeta = EventMeta::factory()->create([
+        $pastEvent = EventMeta::factory()->create([
+            'event_id' => $event->id,
+            'date' => now(),
+            'date_end' => now()->subDay(),
+        ]);
+        $event->eventMetas()->save($pastEvent);
+        $this->assertNull($event->nextOccurrence, "The next occurence cannot have already ended");
+
+        $futureEvent = EventMeta::factory()->create([
             'event_id' => $event->id,
             'date' => now(),
             'date_end' => now()->addDay(),
         ]);
-        $event->eventMetas()->save($eventMeta);
-        $this->assertNotNull($event->nextOccurrence);
+        $event->eventMetas()->save($futureEvent);
+        $this->assertNotNull($event->nextOccurrence,  "The next occurence must end in the future");
     }
 }
