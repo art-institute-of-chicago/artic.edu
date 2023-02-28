@@ -12,7 +12,7 @@
     @slot('headerType', $item->present()->headerType)
     @slot('title', $item->present()->title)
     @slot('title_display', $item->present()->title_display)
-    @slot('formattedDate', $item->present()->formattedNextOcurrence)
+    @slot('formattedDate', $item->present()->formattedNextOccurrence)
     @slot('type', $item->is_member_exclusive ? 'Member Exclusive' : ($item->audience === \App\Models\Event::LUMINARY ? 'Luminary' : $item->present()->type))
     @slot('img', $item->imageAsArray('hero'))
     @slot('imgMobile', $item->imageAsArray('mobile_hero'))

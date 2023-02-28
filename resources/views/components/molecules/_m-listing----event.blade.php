@@ -58,15 +58,15 @@
                 @else
                     @if (isset($variation) && strrpos($variation, '--sidebar') > -1)
                         @component('components.atoms._date')
-                            {!! $item->present()->nextOcurrenceDate !!} | {!! $item->present()->nextOcurrenceTime !!}
+                            {!! $item->present()->nextOccurrenceDate !!} | {!! $item->present()->nextOccurrenceTime !!}
                         @endcomponent
                     @else
                         @component('components.atoms._date')
-                            {!! $item->present()->nextOcurrenceDate !!}
+                            {!! $item->present()->nextOccurrenceDate !!}
                         @endcomponent
                         <br>
                         @component('components.atoms._date')
-                            {!! $item->present()->nextOcurrenceTime !!}
+                            {!! $item->present()->nextOccurrenceTime !!}
                         @endcomponent
                     @endif
                 @endif

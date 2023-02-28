@@ -343,7 +343,7 @@ class Event extends AbstractModel
         $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
 
         if ($ticketedEvent) {
-            $date = $this->nextOcurrence->date ?? $this->lastOcurrence->date ?? null;
+            $date = $this->nextOccurrence->date ?? $this->lastOccurrence->date ?? null;
 
             return 'https://sales.artic.edu/Events/Event/' . $ticketedEvent->id . ($date ? '?date=' . $date->format('n/j/Y') : '');
         }
@@ -570,17 +570,17 @@ class Event extends AbstractModel
         return $this->belongsToMany(\App\Models\Event::class, 'event_event', 'event_id', 'related_event_id')->withPivot('position')->orderBy('position');
     }
 
-    public function getNextOcurrenceExclusiveAttribute()
+    public function getNextOccurrenceExclusiveAttribute()
     {
         return $this->eventMetas()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->first();
     }
 
-    public function getNextOcurrenceAttribute()
+    public function getNextOccurrenceAttribute()
     {
         return $this->eventMetas()->where('date_end', '>=', Carbon::now())->orderBy('date', 'ASC')->first();
     }
 
-    public function getLastOcurrenceAttribute()
+    public function getLastOccurrenceAttribute()
     {
         return $this->eventMetas()->orderBy('date', 'DESC')->first();
     }

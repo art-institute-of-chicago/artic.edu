@@ -51,9 +51,9 @@
             <span class="m-listing__meta-bottom">
                 @component('components.atoms._date')
                     @if (isset($showDateWithTime) && $showDateWithTime)
-                        {!! $item->present()->formattedNextOcurrence !!}
+                        {!! $item->present()->formattedNextOccurrence !!}
                     @else
-                        {!! $item->present()->nextOcurrenceTime !!}
+                        {!! $item->present()->nextOccurrenceTime !!}
                     @endif
                 @endcomponent
 
