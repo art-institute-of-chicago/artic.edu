@@ -11,6 +11,11 @@ Role: Director of Engineering
 GitHub: [nikhiltri](https://github.com/nikhiltri)  
 Twitter: [@nikhiltri](https://twitter.com/nikhiltri)
 
+### Zach Garwood
+Role: Web Developer
+GitHub: [zachgarwood](https://github.com/zachgarwood)
+GitLab: [zachgarwood](https://gitlab.com/zachgarwood)
+
 ### Illya Moskvin
 Role: Senior Web Developer  
 GitHub: [IllyaMoskvin](https://github.com/IllyaMoskvin)  
