@@ -6,8 +6,19 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class SearchTermRequest extends Request
 {
-    public function rules()
+    public function rulesForCreate()
     {
-        return [];
+        return [
+            'name' => 'required',
+            'direct_url' => 'required'
+        ];
+    }
+
+    public function rulesForUpdate()
+    {
+        return [
+            'name' => 'required',
+            'direct_url' => 'required'
+        ];
     }
 }

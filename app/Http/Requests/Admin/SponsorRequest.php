@@ -6,12 +6,16 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class SponsorRequest extends Request
 {
-    public function rules()
+    public function rulesForCreate()
     {
-        $rules = [
-            'title' => 'required',
+        return [
+            'name' => 'required'
         ];
-
-        return $rules;
+    }
+    public function rulesForUpdate()
+    {
+        return [
+            'name' => 'required',
+        ];
     }
 }
