@@ -8,17 +8,14 @@ class InteractiveFeatureRequest extends Request
 {
     public function rulesForCreate()
     {
-        $rules = [
+        return [
+            'title' => 'required'
         ];
-
-        return $rules;
     }
-
     public function rulesForUpdate()
     {
-        $rules = [
+        return [
+            'title' => 'required',
         ];
-
-        return $rules;
     }
 }

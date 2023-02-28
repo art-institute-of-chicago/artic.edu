@@ -17,6 +17,7 @@ class VideoRequest extends Request
     {
         return [
             'title' => 'required',
+            'list_description' => 'max:255'
         ];
     }
 }

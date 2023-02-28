@@ -10,6 +10,7 @@ class HighlightRequest extends Request
     {
         return [
             'title' => 'required',
+            'short_copy' => 'required'
         ];
     }
 }

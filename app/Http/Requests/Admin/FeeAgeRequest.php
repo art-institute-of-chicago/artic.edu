@@ -8,6 +8,8 @@ class FeeAgeRequest extends Request
 {
     public function rules()
     {
-        return [];
+        return [
+            'title' => 'required'
+        ];
     }
 }

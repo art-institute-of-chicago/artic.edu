@@ -8,11 +8,15 @@ class ExhibitionPressRoomRequest extends Request
 {
     public function rulesForCreate()
     {
-        return [];
+        return [
+            'title' => 'required'
+        ];
     }
 
     public function rulesForUpdate()
     {
-        return [];
+        return [
+            'title' => 'required'
+        ];
     }
 }

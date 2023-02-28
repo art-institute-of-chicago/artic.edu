@@ -8,11 +8,15 @@ class EventProgramRequest extends Request
 {
     public function rulesForCreate()
     {
-        return [];
+        return [
+            'name' => 'required'
+        ];
     }
 
     public function rulesForUpdate()
     {
-        return [];
+        return [
+            'name' => 'required'
+        ];
     }
 }

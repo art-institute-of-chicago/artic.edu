@@ -16,6 +16,8 @@ class ArticleRequest extends Request
         return [
             'date' => 'required',
             'heading' => 'max:255',
+            'list_description' => 'max:255',
+            'citations' => 'max:255'
         ];
     }
 }
