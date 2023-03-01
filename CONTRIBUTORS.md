@@ -18,7 +18,7 @@ GitLab: [zachgarwood](https://gitlab.com/zachgarwood)
 
 ### Trevin Alonzo
 Role: Web Developer
-Github: [web-dev-trev]https://github.com/web-dev-trev
+Github: [web-dev-trev](https://github.com/web-dev-trev)
 
 ### Illya Moskvin
 Role: Senior Web Developer  
