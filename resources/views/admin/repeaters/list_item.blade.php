@@ -26,7 +26,7 @@
     'label' => 'Description',
     'rows' => 4,
     'toolbarOptions' => [
-        'italic', 'link'
+        'italic',
     ],
 ])
 
