@@ -1,6 +1,6 @@
 @formField('input', [
     'name' => 'title',
-    'label' => 'Ttle',
+    'label' => 'Title',
     'required' => true
 ])
 @formField('input', [
