@@ -8,11 +8,17 @@ class HourRequest extends Request
 {
     public function rulesForCreate()
     {
-        return [];
+        return [
+            'title' => 'required',
+            'validFrom' => 'required'
+        ];
     }
 
     public function rulesForUpdate()
     {
-        return [];
+        return [
+            'title' => 'required',
+            'validFrom' => 'required'
+        ];
     }
 }

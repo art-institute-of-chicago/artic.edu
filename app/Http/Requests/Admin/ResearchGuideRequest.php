@@ -17,6 +17,8 @@ class ResearchGuideRequest extends Request
     {
         return [
             'title' => 'required',
+            'listing_description' => 'max:255',
+            'short_description' => 'max:255'
         ];
     }
 }
