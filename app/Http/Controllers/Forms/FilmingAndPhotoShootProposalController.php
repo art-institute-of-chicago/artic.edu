@@ -51,7 +51,7 @@ class FilmingAndPhotoShootProposalController extends FormController
                     'type' => 'email',
                     'variation' => null,
                     'id' => 'email',
-                    'placeholder' => '',
+                    'placeholder' => 'your@email.com',
                     'textCount' => false,
                     'value' => old('email'),
                     'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
