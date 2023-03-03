@@ -6,10 +6,19 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class HighlightRequest extends Request
 {
-    public function rules()
+    public function rulesForCreate()
     {
         return [
             'title' => 'required',
+            'short_copy' => 'required'
+        ];
+    }
+
+    public function rulesForUpdate()
+    {
+        return [
+            'title' => 'required',
+            'short_copy' => 'required'
         ];
     }
 }

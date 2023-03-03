@@ -6,8 +6,17 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class FeeAgeRequest extends Request
 {
-    public function rules()
+    public function rulesForCreate()
     {
-        return [];
+        return [
+            'title' => 'required'
+        ];
+    }
+
+    public function rulesForUpdate()
+    {
+        return [
+            'title' => 'required'
+        ];
     }
 }

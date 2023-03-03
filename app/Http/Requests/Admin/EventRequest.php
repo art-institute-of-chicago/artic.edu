@@ -37,10 +37,13 @@ class EventRequest extends Request
             return true;
         });
     }
-
     public function rulesForCreate()
     {
-        return [];
+        $rules = [
+            'title' => 'required',
+        ];
+
+        return $rules;
     }
 
     public function rulesForUpdate()
