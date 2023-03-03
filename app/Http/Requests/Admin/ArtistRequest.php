@@ -6,13 +6,18 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class ArtistRequest extends Request
 {
-    public function rules()
+    public function rulesForCreate()
     {
-        $rules = [
+        return [
+            'title' => 'required',
+        ];
+    }
+
+    public function rulesForUpdate()
+    {
+        return [
             'title' => 'required',
             'datahub_id' => 'required',
         ];
-
-        return $rules;
     }
 }

@@ -6,7 +6,12 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class HourRequest extends Request
 {
-    public function rules()
+    public function rulesForCreate()
+    {
+        return [];
+    }
+
+    public function rulesForUpdate()
     {
         return [];
     }
