@@ -32,6 +32,7 @@ class EducatorAdmissionController extends FormController
                     'variation' => null,
                     'id' => 'name',
                     'placeholder' => '',
+                    'autocomplete' => 'name',
                     'textCount' => false,
                     'value' => old('name'),
                     'error' => (!empty($errors) && $errors->first('name')) ? $errors->first('name') : null,
