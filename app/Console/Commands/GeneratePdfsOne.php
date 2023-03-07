@@ -2,8 +2,6 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-
 class GeneratePdfsOne extends GeneratePdfs
 {
     /**
@@ -31,7 +29,12 @@ class GeneratePdfsOne extends GeneratePdfs
             $model = $modelClass::published()->find($id);
 
             if ($model) {
-                $this->generatePdf($model);
+                try {
+                    $this->generatePdf($model);
+                } catch (\Exception $exception) {
+                    $this->error($exception->getMessage());
+                    return 1;
+                }
 
                 $this->call('cache:invalidate-cloudfront', [
                     'urls' => [

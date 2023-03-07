@@ -6,8 +6,19 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class HourRequest extends Request
 {
-    public function rules()
+    public function rulesForCreate()
     {
-        return [];
+        return [
+            'title' => 'required',
+            'validFrom' => 'required'
+        ];
+    }
+
+    public function rulesForUpdate()
+    {
+        return [
+            'title' => 'required',
+            'validFrom' => 'required'
+        ];
     }
 }

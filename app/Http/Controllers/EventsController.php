@@ -214,7 +214,7 @@ class EventsController extends FrontController
     {
         return [
             'type' => 'event',
-            'date' => ($next = $item->nextOcurrence)
+            'date' => ($next = $item->nextOccurrence)
                 ? $next->date->toDateString()
                 : null,
             'time' => ($next)

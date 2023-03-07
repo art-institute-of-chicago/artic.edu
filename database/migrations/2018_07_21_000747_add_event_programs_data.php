@@ -50,11 +50,7 @@ class AddEventProgramsData extends Migration
      */
     public function up()
     {
-        foreach ($this->programs as $item) {
-            $program = EventProgram::firstOrNew(['name' => $item]);
-
-            $program->save();
-        }
+        // No-op: moved to EventProgramSeeder
     }
 
     /**
@@ -64,12 +60,6 @@ class AddEventProgramsData extends Migration
      */
     public function down()
     {
-        foreach ($this->programs as $item) {
-            $program = EventProgram::where('name', $item)->first();
-
-            if ($program) {
-                $program->delete();
-            }
-        }
+        // No-op
     }
 }

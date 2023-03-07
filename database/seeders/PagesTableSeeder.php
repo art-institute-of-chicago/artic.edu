@@ -16,6 +16,7 @@ class PagesTableSeeder extends Seeder
                 'title' => $name
             ]);
 
+            Page::reguard();
             $page->save();
         }
     }

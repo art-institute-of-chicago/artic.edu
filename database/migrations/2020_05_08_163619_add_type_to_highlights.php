@@ -16,8 +16,6 @@ class AddTypeToHighlights extends Migration
         Schema::table('selections', function (Blueprint $table) {
             $table->integer('highlight_type')->default(0);
         });
-
-        DB::table('selections')->update(['highlight_type' => 0]);
     }
 
     /**

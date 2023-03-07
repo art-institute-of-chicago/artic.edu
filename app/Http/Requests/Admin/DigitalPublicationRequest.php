@@ -8,11 +8,18 @@ class DigitalPublicationRequest extends Request
 {
     public function rulesForCreate()
     {
-        return [];
+        return [
+            'title' => 'required'
+        ];
     }
 
     public function rulesForUpdate()
     {
-        return [];
+        return [
+            'title' => 'required',
+            'listing_description' => 'max:255',
+            'short_description' => 'max:255',
+            'bgcolor' => 'nullable|regex:/^#[0-9a-fA-F]{6}/'
+        ];
     }
 }

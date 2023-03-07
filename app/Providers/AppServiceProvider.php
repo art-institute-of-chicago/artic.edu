@@ -153,6 +153,14 @@ class AppServiceProvider extends ServiceProvider
 
     private function composeTemplatesViews()
     {
+        if (!\Schema::hasTable('hours')) {
+            /*
+            If the project is being initialized or not all of the migrations
+            have been run yet, the `hours` table may not exist, so skip this
+            function.
+            */
+            return;
+        }
         $hour = app()->environment() === 'testing' ? null : Hour::today()->first();
 
         // WEB-2269: Consider moving some of this to a config?

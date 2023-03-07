@@ -6,8 +6,17 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class CategoryTermRequest extends Request
 {
-    public function rules()
+    public function rulesForCreate()
     {
-        return [];
+        return [
+            'name' => 'required',
+        ];
+    }
+
+    public function rulesForUpdate()
+    {
+        return [
+            'name' => 'required'
+        ];
     }
 }

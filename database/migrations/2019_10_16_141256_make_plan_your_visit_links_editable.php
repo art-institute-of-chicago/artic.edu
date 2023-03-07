@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-use App\Models\Page;
-
 class MakePlanYourVisitLinksEditable extends Migration
 {
     /**
@@ -24,15 +22,6 @@ class MakePlanYourVisitLinksEditable extends Migration
             $table->text('home_plan_your_visit_link_3_url')->nullable();
             $table->dropColumn(['home_plan_your_visit_link_text', 'home_plan_your_visit_link_url']);
         });
-
-        if (env('APP_ENV') != 'testing') {
-            $page = Page::forType('Home')->first();
-            $page->home_plan_your_visit_link_1_text = 'Hours and admission fees';
-            $page->home_plan_your_visit_link_1_url = '/visit#hours';
-            $page->home_plan_your_visit_link_2_text = 'Directions and parking';
-            $page->home_plan_your_visit_link_2_url = '/visit#directions';
-            $page->save();
-        }
     }
 
     /**

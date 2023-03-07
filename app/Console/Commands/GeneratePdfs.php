@@ -2,16 +2,18 @@
 
 namespace App\Console\Commands;
 
+use App\Models\AbstractModel;
+use App\Models\DigitalPublicationSection;
 use Illuminate\Console\Command;
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-
-use App\Models\IssueArticle;
-use App\Models\DigitalPublicationSection;
 use Prince\Prince;
 
 class GeneratePdfs extends Command
 {
+    const STORAGE_PATH = '/pdf/static/';
+
     /**
      * The name and signature of the console command.
      *
@@ -28,11 +30,8 @@ class GeneratePdfs extends Command
 
     /**
      * Array of models to generate PDFs for. Format is `route => model class`
-     *
-     * @var array
      */
-    protected $models = [
-        'issue-articles.show' => IssueArticle::class,
+    protected static array $models = [
         'collection.publications.digital-publications-sections.show' => DigitalPublicationSection::class,
     ];
 
@@ -41,11 +40,16 @@ class GeneratePdfs extends Command
      */
     public function handle()
     {
-        foreach ($this->models as $route => $modelClass) {
+        foreach (self::$models as $route => $modelClass) {
             $models = $modelClass::published()->get();
 
             foreach ($models as $model) {
-                $this->generatePdf($model, $route);
+                try {
+                    $this->generatePdf($model, $route);
+                } catch (\Exception $exception) {
+                    $this->error($exception->getMessage());
+                    return 1;
+                }
             }
 
             $urls = $models->pluck('pdf_download_path')->all();
@@ -61,7 +65,7 @@ class GeneratePdfs extends Command
     protected function generatePdf($model, $route = null)
     {
         if (empty($route)) {
-            $route = array_search(get_class($model), $this->models);
+            $route = self::route($model);
         }
 
         if (empty($route)) {
@@ -84,13 +88,6 @@ class GeneratePdfs extends Command
             ], false);
         }
 
-        // Check that the prince command exists
-        $commandCheck = 'command -v ' . config('aic.prince_command');
-
-        if (!shell_exec($commandCheck)) {
-            throw new \Exception('Could not found prince command line command.');
-        }
-
         $baseUrl = config('aic.protocol') . '://' . config('app.url');
         $fullUrl = $baseUrl . $path;
 
@@ -105,20 +102,38 @@ class GeneratePdfs extends Command
         }
 
         set_time_limit(0);
-        $html = file_get_contents($fullUrl . '?print=true');
+        $html = Http::get($fullUrl, ['print' => true])->body();
 
-        $pdfFileName = 'download-' . $route . '-' . $model->id . '.pdf';
+        $pdfFileName = self::pdfFileName($model);
         $pdfPath = storage_path('app/' . $pdfFileName);
-        $prince->convert_string_to_file($html, $pdfPath);
+        $prince->convertStringToFile($html, $pdfPath);
 
         if (config('aic.pdf_s3_enabled')) {
             // Stream the file to S3; be sure to set `AWS_BUCKET` in `.env` and otherwise configure credentials
-            Storage::disk('pdf_s3')->putFileAs('/pdf/static', new File($pdfPath), $pdfFileName, 'public');
+            Storage::disk('pdf_s3')->putFileAs(self::STORAGE_PATH, new File($pdfPath), $pdfFileName, 'public');
         }
 
-        if ($model->pdf_download_path != '/pdf/static/' . $pdfFileName) {
-            $model->pdf_download_path = '/pdf/static/' . $pdfFileName;
+        if ($model->pdf_download_path != self::pdfDownloadPath($pdfFileName)) {
+            $model->pdf_download_path = self::pdfDownloadPath($pdfFileName);
             $model->save();
         }
+        $class = class_basename($model);
+        $this->info("Generated PDF for {$class} with ID {$model->id}");
+    }
+
+    public static function pdfFileName(AbstractModel $model): string
+    {
+        $route = self::route($model);
+        return 'download-' . $route . '-' . $model->id . '.pdf';
+    }
+
+    public static function pdfDownloadPath($pdfFileName): string
+    {
+        return self::STORAGE_PATH . $pdfFileName;
+    }
+
+    public static function route($model): string
+    {
+        return array_search(get_class($model), self::$models);
     }
 }

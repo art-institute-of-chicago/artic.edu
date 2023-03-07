@@ -29,9 +29,9 @@ class EventController extends ModuleController
             'title' => 'Title',
             'field' => 'title',
         ],
-        'formattedNextOcurrence' => [
+        'formattedNextOccurrence' => [
             'title' => 'Event Date',
-            'field' => 'formattedNextOcurrence',
+            'field' => 'formattedNextOccurrence',
             'present' => true,
             'sort' => true,
         ]
@@ -60,7 +60,7 @@ class EventController extends ModuleController
         // Mitigate Twill bug with regards to `_page_offset` local storage
         if (!isset($sortKey)) {
             request()->merge([
-                'sortKey' => 'formattedNextOcurrence',
+                'sortKey' => 'formattedNextOccurrence',
                 'sortDir' => 'desc',
             ]);
         }
@@ -75,7 +75,7 @@ class EventController extends ModuleController
             ]);
         }
 
-        if (request('sortKey') !== 'formattedNextOcurrence') {
+        if (request('sortKey') !== 'formattedNextOccurrence') {
             return parent::getIndexItems($scopes, $forcePagination);
         }
 
