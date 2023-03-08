@@ -325,6 +325,7 @@
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('placeholder', $block['placeholder'] ?? null)
+                    @slot('autocomplete', $block['autocomplete'] ?? null)
                     @slot('textCount', $block['textCount'] ?? false)
                     @slot('value', $block['value'] ?? null)
                     @slot('error', $block['error'] ?? null)
