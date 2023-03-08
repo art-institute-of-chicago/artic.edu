@@ -8,7 +8,7 @@
             <span class="m-aside-newsletter__field">
                 <label for="email{{ $rand }}" class="f-secondary">Email address</label>
                 {{ csrf_field() }}
-                <input type="email" name="email" id="email{{ $rand }}" class="f-secondary" placeholder="{{ $placeholder ?? 'your@email.com' }}">
+                <input type="email" name="email" id="email{{ $rand }}" class="f-secondary" placeholder="{{ $placeholder ?? 'your@email.com' }}" autocomplete="email">
                 <button type="submit" class="{{ $btnFont ?? 'f-buttons' }} m-aside-newsletter__btn--submit" data-gtm-event-category="subscribe" data-gtm-event="email">Subscribe</button>
             </span>
 
