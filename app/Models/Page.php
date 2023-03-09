@@ -232,6 +232,7 @@ class Page extends AbstractModel
         7 => 'Floor Icon',
         8 => 'Virtual Queue',
         9 => 'Proof of Vaccination',
+        10 => 'Dining'
     ];
 
     public function scopeForType($query, $type)
