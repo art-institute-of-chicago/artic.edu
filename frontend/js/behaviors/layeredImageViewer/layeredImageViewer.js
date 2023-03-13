@@ -149,8 +149,8 @@ class LayeredImageViewer {
    * @method
    */
   setInitialState() {
-    // Zero indexed ID of the viewer inferred from other instances in document
-    this.id = document.querySelectorAll('.o-layered-image-viewer').length - 1;
+    // Zero indexed ID of the viewer inferred from other initialised viewers document
+    this.id = document.querySelectorAll('.o-layered-image-viewer__osd').length - 1;
 
     // Set the size
     this.size = this.element.dataset.size;
