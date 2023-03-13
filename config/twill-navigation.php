@@ -209,6 +209,10 @@ $nav = [
                 'title' => 'Generic Pages',
                 'module' => true,
             ],
+            'pages' => [
+                'title' => 'Landing Pages',
+                'module' => true,
+            ],
             'pressReleases' => [
                 'title' => 'Press Releases',
                 'module' => true,

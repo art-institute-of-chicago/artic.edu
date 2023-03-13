@@ -176,11 +176,6 @@ class PageController extends ModuleController
         return view('admin.pages.form', $fields);
     }
 
-    protected function getRoutePrefix()
-    {
-        return null;
-    }
-
     protected function moduleHas($behavior)
     {
         return $behavior === 'revisions' ? false : parent::moduleHas($behavior);
