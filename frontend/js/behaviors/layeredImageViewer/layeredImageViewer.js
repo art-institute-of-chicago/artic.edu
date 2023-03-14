@@ -733,14 +733,20 @@ class LayeredImageViewer {
     // Create template markup
     const detailsTemplate = document.createElement('template');
     detailsTemplate.innerHTML = `
-      <details class="o-layered-image-viewer-details">
+      <details id="o-layered-image-viewer-${this.id}-details" class="o-layered-image-viewer-details">
         <summary class="btn btn--icon-sq btn--septenary" data-layered-viewer-interaction="layers">
           <span class="sr-only">Image layer options</span>
           <svg class="icon--layers--24" aria-hidden="true">
             <use xlink:href="#icon--layers--24" />
           </svg>
         </summary>
-        <div class="o-layered-image-viewer-details__menu"></div>
+        <div class="o-layered-image-viewer-details__menu">
+          <button id="o-layered-image-viewer-${this.id}-details__close" class="btn btn--icon btn--quinary o-layered-image-viewer-details__close" aria-label="Close menu" aria-controls="o-layered-image-viewer-${this.id}-details">
+            <svg class="icon--close--24" aria-hidden="true">
+              <use xlink:href="#icon--close--24" />
+            </svg>
+          </button>
+        </div>
       </details>`;
     const detailsEl = detailsTemplate.content.firstElementChild;
 
@@ -753,6 +759,11 @@ class LayeredImageViewer {
         detailsEl.open = false;
       }
     };
+    detailsEl
+      .querySelector(`#o-layered-image-viewer-${this.id}-details__close`)
+      .addEventListener('click', (e) => {
+        e.target.closest('details').querySelector('summary').click()
+      });
     const menuEl = detailsEl.lastElementChild;
 
     // Attach / remove listeners to close as menu toggles
