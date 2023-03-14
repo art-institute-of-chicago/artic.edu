@@ -760,9 +760,16 @@ class LayeredImageViewer {
       if (detailsEl.open) {
         // Set scroll to top when opening
         menuEl.scrollTop = 0;
+
+        // Disable click to zoom
+        this.viewer.gestureSettingsMouse.clickToZoom = false;
+
         this.viewer.element.addEventListener('click', closeHandler, true);
         this.viewer.element.addEventListener('keydown', closeHandler, true);
       } else {
+        // Re-enable click to zoom
+        this.viewer.gestureSettingsMouse.clickToZoom = true;
+
         this.viewer.element.removeEventListener('click', closeHandler);
         this.viewer.element.removeEventListener('keydown', closeHandler);
       }
