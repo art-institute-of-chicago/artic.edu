@@ -15,7 +15,7 @@ class SponsorRequest extends Request
     public function rulesForUpdate()
     {
         return [
-            'title' => 'required',
+            'title' => 'required'
         ];
     }
 }
