@@ -217,7 +217,7 @@
   right: calc(-100% - 0.1em);
   min-width: min(calc(var(--viewer-width) - 48px), 35em);
   background: $color__white;
-  padding: 2.4em;
+  padding: 5.4em 2.4em 2.4em;
   max-height: calc(var(--viewer-height) - 9.8em);
   overflow: auto;
 
@@ -226,6 +226,14 @@
     right: calc(100% - 4.8em);
   }
 }
+
+.o-layered-image-viewer-details__close {
+  position: absolute;
+  top: 0.8em;
+  right: 0.8em;
+  border-radius: 0.2em;
+}
+
 
 .o-layered-image-viewer__details-rows {
   display: flex;
