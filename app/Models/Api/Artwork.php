@@ -13,6 +13,7 @@ use App\Models\Behaviors\HasFeaturedRelated;
 use App\Helpers\DateHelpers;
 use App\Helpers\ImageHelpers;
 use App\Helpers\StringHelpers;
+use Database\Factories\Api\HasApiFactory;
 
 class Artwork extends BaseApiModel
 {
@@ -27,6 +28,8 @@ class Artwork extends BaseApiModel
         getFeaturedRelatedGtmAttributes as traitGetFeaturedRelatedGtmAttributes;
         getCustomRelatedItems as traitGetCustomRelatedItems;
     }
+
+    use HasApiFactory;
 
     protected $showDefaultRelatedItems = true;
 
