@@ -9,13 +9,13 @@ class SponsorRequest extends Request
     public function rulesForCreate()
     {
         return [
-            'name' => 'required'
+            'title' => 'required'
         ];
     }
     public function rulesForUpdate()
     {
         return [
-            'name' => 'required',
+            'title' => 'required',
         ];
     }
 }
