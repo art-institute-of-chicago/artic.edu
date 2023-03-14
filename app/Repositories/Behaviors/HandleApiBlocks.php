@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Behaviors;
 
-use ImageService;
+use DamsImageService;
 use Illuminate\Support\Str;
 use App\Helpers\UrlHelpers;
 
@@ -37,7 +37,7 @@ trait HandleApiBlocks
                         if (((
                             !isset($data['thumbnail'])
                         ) || (
-                            isset($data['thumbnail']) && $data['thumbnail'] === ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100])
+                            isset($data['thumbnail']) && $data['thumbnail'] === DamsImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100])
                         )) && (
                             classHasTrait($relatedElement, \App\Models\Behaviors\HasMediasApi::class)
                         )) {
