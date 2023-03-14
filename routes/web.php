@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Intervention\HttpAuth\Authenticator;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticlesPublicationsController;
 use App\Http\Controllers\ArtistController;
@@ -223,8 +224,16 @@ Route::feeds();
 
 // Generic Page w/ httpauth
 Route::middleware(['httpauth'])->get('/press/art-institute-images', function () {
-    return App::make(App\Http\Controllers\GenericPagesController::class)->show('/press/art-institute-images');
+   return App::make(App\Http\Controllers\GenericPagesController::class)->show('press/art-institute-images');
 })->name('about.press.art-institute-images');
+
+// Route::get('/press/art-institute-images', function() {
+//     return app()->make(App\Http\Controllers\GenericPagesController::class)->show('/press/art-institute-images');
+// })->middleware('httpauth')->name('about.press.art-institute-images');
+
+// Route::get('/press/art-institute-images', function () {
+//     Authenticator::make()->withCredentials('press', 'press')->secure();
+// })->name('about.press.art-institute-images');
 
 // Generic Page
 Route::get('{any}', [GenericPagesController::class, 'show'])->where('any', '.*')->name('genericPages.show');

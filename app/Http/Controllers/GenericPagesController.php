@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\GenericPageRepository;
+use Intervention\HttpAuth\Laravel\Facades\HttpAuth;
 
 class GenericPagesController extends FrontController
 {
@@ -26,7 +27,7 @@ class GenericPagesController extends FrontController
 
         // Add basic http protection if selected.
         if ($page->http_protected) {
-            \Httpauth::secure();
+            Httpauth::secure();
         }
 
         $crumbs = $page->present()->breadCrumb($page);

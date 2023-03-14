@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe0c1f0639eaaeeec3dad77d92fd248a",
+    "content-hash": "18c2c48bbbba3c0b51b32f935e3989ca",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -2273,36 +2273,26 @@
         },
         {
             "name": "intervention/httpauth",
-            "version": "3.0.3",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/httpauth.git",
-                "reference": "7742aa013e1a72f94379cb6623286f06fa1ea5f7"
+                "reference": "29ff208380557d3f00d30435128ec439b749e4a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/httpauth/zipball/7742aa013e1a72f94379cb6623286f06fa1ea5f7",
-                "reference": "7742aa013e1a72f94379cb6623286f06fa1ea5f7",
+                "url": "https://api.github.com/repos/Intervention/httpauth/zipball/29ff208380557d3f00d30435128ec439b749e4a3",
+                "reference": "29ff208380557d3f00d30435128ec439b749e4a3",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.3|^8.0"
+                "php": "^8.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^0.12.11",
+                "phpstan/phpstan": "^1",
                 "phpunit/phpunit": "^9.0"
             },
             "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Intervention\\HttpAuth\\Laravel\\HttpAuthServiceProvider"
-                    ],
-                    "aliases": {
-                        "HttpAuth": "Intervention\\HttpAuth\\Laravel\\Facades\\HttpAuth"
-                    }
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Intervention\\HttpAuth\\": "src/"
@@ -2315,22 +2305,21 @@
             "authors": [
                 {
                     "name": "Oliver Vogel",
-                    "email": "oliver@olivervogel.com",
-                    "homepage": "https://olivervogel.com/"
+                    "email": "oliver@intervention.io",
+                    "homepage": "https://intervention.io/"
                 }
             ],
-            "description": "HTTP authentication (Basic & Digest) including ServiceProviders for easy Laravel integration",
+            "description": "HTTP Authentication Management for PHP",
             "homepage": "https://github.com/Intervention/httpauth",
             "keywords": [
                 "Authentication",
-                "http",
-                "laravel"
+                "http"
             ],
             "support": {
                 "issues": "https://github.com/Intervention/httpauth/issues",
-                "source": "https://github.com/Intervention/httpauth/tree/3.0.3"
+                "source": "https://github.com/Intervention/httpauth/tree/4.0.0"
             },
-            "time": "2021-01-22T15:08:35+00:00"
+            "time": "2022-05-18T14:56:17+00:00"
         },
         {
             "name": "intervention/image",
