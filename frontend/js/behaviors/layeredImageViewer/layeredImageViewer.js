@@ -14,7 +14,12 @@ class LayeredImageViewer {
         'Error: OpenSeadragon is required to run the layered image viewer'
       );
     }
+
+    // Prevent possibility of double init
+    if (viewerEl.layeredImageViewer) return;
+
     this.element = viewerEl;
+    this.element.layeredImageViewer = this;
     this.osdMountEl = null;
     this.browerSupportsFullscreen =
       typeof document.fullscreenElement !== 'undefined';
@@ -226,7 +231,6 @@ class LayeredImageViewer {
       );
     });
 
-    // Destroy removing viewer.element should mean no need to detach...
     this.viewerResizeObserver.observe(this.viewer.element);
   }
 
@@ -614,20 +618,28 @@ class LayeredImageViewer {
    * @param {HTMLElement} viewerEl - Element which was used to initialise the viewer to be destroyed
    */
   static destroy(viewerEl) {
-    const osdMountEl = viewerEl.querySelector(
-      '.o-layered-image-viewer__osd-mount'
-    );
-    // Add elements we create here to be cleaned up
-    const fabricatedElements = [];
+    // Qualifying elements should have a layeredImageViewer stored inside
+    const instance = viewerEl.layeredImageViewer
 
-    if (osdMountEl) {
-      // Destroy OSD and remove elements added by this class
-      OpenSeadragon.getViewer(osdMountEl).destroy();
-      osdMountEl.closest('figure').remove();
-      fabricatedElements.forEach((fabricatedElement) => {
-        fabricatedElement.remove();
-      });
-    }
+    if (!instance) return;
+
+    // Stop observers
+    instance.viewerResizeObserver.disconnect();
+
+    // Destroy OSD and remove elements added by this class
+    instance.viewer.destroy();
+    viewerEl.querySelector('.o-layered-image-viewer__osd').remove();
+
+    // Cull events added outside the scope of the viewer
+    ['click', 'touchend'].forEach((event) => {
+      document.body.removeEventListener(
+        event,
+        instance.boundHandleExternalClick,
+        true
+      );
+    });
+
+    delete viewerEl.layeredImageViewer;
   }
 
   /**
