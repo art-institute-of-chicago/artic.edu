@@ -14,7 +14,7 @@
     'name' => 'label',
     'label' => 'Label',
     'note' => 'Displayed at bottom of overlay',
-    'maxlength' => 40,
+    'maxlength' => 82,
 ])
 
 @formField('checkbox', [
