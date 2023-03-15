@@ -14,6 +14,6 @@
     'name' => 'label',
     'label' => 'Label',
     'note' => 'Displayed at bottom of image',
-    'maxlength' => 40,
+    'maxlength' => 82,
 ])
 
