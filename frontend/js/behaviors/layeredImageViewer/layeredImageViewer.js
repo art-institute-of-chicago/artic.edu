@@ -393,7 +393,10 @@ class LayeredImageViewer {
       showFullPageControl: false,
       visibilityRatio: 0.3,
       homeFillsViewer: false,
-      autoHideControls: false,
+      autoHideControls: true,
+      showNavigator: true,
+      navigatorPosition: 'TOP_LEFT',
+      navigatorAutoFade: true,
       tileSources: {
         type: 'image',
         url: this.images.items[0].url, // First image from markup by default
