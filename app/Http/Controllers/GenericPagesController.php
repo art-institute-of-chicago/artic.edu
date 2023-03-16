@@ -36,7 +36,6 @@ class GenericPagesController extends FrontController
     
                 if ($username === $configuredUsername && $password === $configuredPassword) {
                     $authenticationHasPassed = true;
-                    #redirect
                 }
             }
     
