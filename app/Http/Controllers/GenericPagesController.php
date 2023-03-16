@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\GenericPageRepository;
+use Illuminate\Http\Request;
 
 class GenericPagesController extends FrontController
 {
@@ -15,18 +16,38 @@ class GenericPagesController extends FrontController
         parent::__construct();
     }
 
-    public function show($slug)
-    {
+    public function show($slug, Request $request)
+    {   
         $page = $this->getPage($slug);
+
+        if ($slug === 'press/art-institute-images') {
+            header('WWW-Authenticate: Basic realm="My Realm"');
+            $configuredUsername = config('aic.http_username');
+            $configuredPassword = config('aic.http_password');
+
+            if (empty($configuredUsername) || empty($configuredPassword)) {
+                return abort(500, 'Basic authentication not configured.');
+            }
+            $authenticationHasPassed = false;
+
+            if ($request->header('PHP_AUTH_USER', null) && $request->header('PHP_AUTH_PW', null)) {
+                $username = $request->header('PHP_AUTH_USER');
+                $password = $request->header('PHP_AUTH_PW');
+    
+                if ($username === $configuredUsername && $password === $configuredPassword) {
+                    $authenticationHasPassed = true;
+                    #redirect
+                }
+            }
+    
+            if ($authenticationHasPassed === false) {
+                return response()->make('Invalid credentials.', 401, ['WWW-Authenticate' => 'Basic']);
+            }
+        }
 
         // Redirect the user if "Redirect URL" is defined
         if ($page->redirect_url) {
             return redirect($page->redirect_url);
-        }
-
-        // Add basic http protection if selected.
-        if ($page->http_protected) {
-            \Httpauth::secure();
         }
 
         $crumbs = $page->present()->breadCrumb($page);
