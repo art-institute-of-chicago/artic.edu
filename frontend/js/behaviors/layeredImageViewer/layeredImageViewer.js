@@ -130,10 +130,16 @@ class LayeredImageViewer {
    * Handle click / tap interaction within the viewer area
    * @private
    * @method
+   * @param {Event} e The event object
    */
-  _handleClickInteraction() {
-    this.interaction = true;
-    this.viewer.innerTracker.setTracking(true);
+  _handleClickInteraction(e) {
+    // Menu opening specifically disables clickToZoom
+    // ::: Exclude clicks inside menu from counting
+    // as internal and activating clickToZoom
+    if (!this.toolbar.layers.controls.menu.contains(e.target)) {
+      this.interaction = true;
+      this.viewer.innerTracker.setTracking(true);
+    }
   }
 
   /**
@@ -927,6 +933,10 @@ class LayeredImageViewer {
         </div>
       </details>`;
     const detailsEl = detailsTemplate.content.firstElementChild;
+    this.toolbar.layers.controls = {
+      element: detailsEl,
+      menu: detailsEl.querySelector('.o-layered-image-viewer-details__menu'),
+    };
 
     // Handle actions that should close menu
     const closeHandler = (e) => {
