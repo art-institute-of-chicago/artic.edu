@@ -10,10 +10,6 @@ class BaseController extends AbstractController
      * @param int $limit
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    protected function paginateTrashed($limit)
-    {
-        return ($this->model)::onlyTrashed()->paginate($limit);
-    }
 
     /**
      * API-331: Remove unpublished items from the API

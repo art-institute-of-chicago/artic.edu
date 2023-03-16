@@ -29,7 +29,7 @@ class AuthorPresenter extends BasePresenter
     {
         $writings = [];
 
-        foreach (['articles', 'highlights', 'experiences', 'issueArticles'] as $relation) {
+        foreach (['highlights', 'experiences'] as $relation) {
             if ($this->{$relation}) {
                 $writings[] =
                     $this->{$relation}
