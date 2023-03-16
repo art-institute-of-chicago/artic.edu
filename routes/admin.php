@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DigitalPublicationSectionController;
 use App\Http\Controllers\Admin\ExhibitionController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\IssueArticleController;
 use App\Http\Controllers\Admin\PageController;
 
 Route::module('pages');
@@ -68,6 +69,12 @@ Route::group(['prefix' => 'collection'], function () {
     });
 
     Route::module('authors');
+
+    Route::module('issues');
+    Route::module('issues.articles');
+
+    // PUB-127: Browser for nested modules must be implemented manually
+    Route::get('issuesFoo/{issue}/articles/browser', [IssueArticleController::class, 'browser'])->name('collection.issues.articles.subbrowser');
 
     Route::module('categoryTerms');
     Route::get('categoryTerms/augment/{datahub_id}', [CategoryTermController::class, 'augment'])->name('collection.categoryTerms.augment');
