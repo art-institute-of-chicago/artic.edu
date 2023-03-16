@@ -363,6 +363,7 @@ class ArtworkPresenter extends BasePresenter
 
         $details = array_merge($details, $this->formatDetailBlocks([
             'Medium' => [$this->entity->medium_display, 'material'],
+            'Edition' => [$this->entity->edition],
             'Inscriptions' => [$this->entity->inscriptions],
             'Dimensions' => [$this->entity->dimensions, 'size'],
             'Credit Line' => [$this->entity->credit_line],
@@ -453,13 +454,15 @@ class ArtworkPresenter extends BasePresenter
             ];
         }
 
-        if ($this->entity->multimediaResources && $this->entity->multimediaResources->isNotEmpty()) {
-            $resultsByType = $this->entity->multimediaResources->groupBy('api_model')->sortKeys();
+        $multimediaResources = $this->entity->multimediaResources;
+        if ($multimediaResources && $multimediaResources->isNotEmpty()) {
+            $resultsByType = $multimediaResources->groupBy('api_model')->sortKeys();
             $content[] = $this->buildMultimediaBlocks($resultsByType, 'Multimedia');
         }
 
-        if ($this->entity->educationalResources && $this->entity->educationalResources->isNotEmpty()) {
-            $resultsByType = $this->entity->educationalResources->groupBy('api_model')->sort();
+        $educationalResources = $this->entity->educationalResources;
+        if ($educationalResources && $educationalResources->isNotEmpty()) {
+            $resultsByType = $educationalResources->groupBy('api_model')->sort();
             $content[] = $this->buildMultimediaBlocks($resultsByType, 'Educational Resources');
         }
 
