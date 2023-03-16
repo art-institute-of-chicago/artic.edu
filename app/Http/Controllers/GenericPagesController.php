@@ -21,7 +21,6 @@ class GenericPagesController extends FrontController
         $page = $this->getPage($slug);
 
         if ($slug === 'press/art-institute-images') {
-            header('WWW-Authenticate: Basic realm="My Realm"');
             $configuredUsername = config('aic.http_username');
             $configuredPassword = config('aic.http_password');
 
