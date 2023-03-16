@@ -20,6 +20,8 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HighlightsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InteractiveFeatureExperiencesController;
+use App\Http\Controllers\IssueController;
+use App\Http\Controllers\IssueArticleController;
 use App\Http\Controllers\MagazineIssueController;
 use App\Http\Controllers\MiradorController;
 use App\Http\Controllers\PressReleasesController;
@@ -112,6 +114,16 @@ Route::get('/articles_publications', [ArticlesPublicationsController::class, 'in
 // Articles routes
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
 Route::get('/articles/{id}/{slug?}', [ArticleController::class, 'show'])->name('articles.show');
+
+// Journal routes
+Route::get('/artinstitutereview', [IssueController::class, 'latest'])->name('issues.latest');
+Route::get('/artinstitutereview/issues/{issueNumber}/{slug?}', [IssueController::class, 'show'])->name('issues.show');
+Route::get('/artinstitutereview/articles/{id}/{slug?}', [IssueArticleController::class, 'show'])->name('issue-articles.show');
+
+// PUB-148: Redirect legacy journal URLs via cannonical functionality
+Route::get('/journal', [IssueController::class, 'latest'])->name('alt-issues.latest');
+Route::get('/journal/issues/{issueNumber}/{slug?}', [IssueController::class, 'show'])->name('alt-issues.show');
+Route::get('/journal/articles/{id}/{slug?}', [IssueArticleController::class, 'show'])->name('alt-issue-articles.show');
 
 // Magazine issue routes
 Route::get('/magazine/issues/{id}/{slug?}', [MagazineIssueController::class, 'show'])->name('magazine-issues.show');
