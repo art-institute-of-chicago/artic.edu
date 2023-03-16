@@ -172,7 +172,7 @@ class LayeredImageViewer {
     this.viewer.canvas.style.touchAction = value ? 'none' : 'manipulation';
 
     // Release internal event tracking in OSD
-    this.viewer[this.interaction ? 'removeHandler' : 'addHandler'](
+    this.viewer.addHandler(
       'canvas-scroll',
       this.boundOsdEnableDefault
     );
