@@ -27,8 +27,8 @@ class ArtworkTest extends BaseTestCase
         $artwork = Artwork::factory()->make();
         $this->addMockApiResponses($this->mockApiModelReponse($artwork));
 
-        $response = $this->get("/artworks/{$artwork->id}/");
-        $response->assertRedirect("/artworks/{$artwork->id}/{$artwork->titleSlug}/");
+        $response = $this->get("/artworks/{$artwork->id}");
+        $response->assertRedirect("/artworks/{$artwork->id}/{$artwork->titleSlug}");
     }
 
     public function test_artwork_show_displays_edition()
@@ -41,7 +41,7 @@ class ArtworkTest extends BaseTestCase
             $this->mockApiSearchResponse(), // Search for educational resources
         ]);
 
-        $response = $this->get("/artworks/{$artwork->id}/{$artwork->titleSlug}/");
+        $response = $this->get("/artworks/{$artwork->id}/{$artwork->titleSlug}");
         $response->assertStatus(200);
         $response->assertSee('Edition');
         $response->assertSee($artwork->edition);
@@ -57,7 +57,7 @@ class ArtworkTest extends BaseTestCase
             $this->mockApiSearchResponse(), // Search for educational resources
         ]);
 
-        $response = $this->get("/artworks/{$artwork->id}/{$artwork->titleSlug}/");
+        $response = $this->get("/artworks/{$artwork->id}/{$artwork->titleSlug}");
         $response->assertSee('Discover More');
         $this->assertApiRequestReceived('GET', "/api/v1/artworks/{$artwork->id}");
         $this->assertApiRequestReceived('POST', '/api/v1/msearch');
