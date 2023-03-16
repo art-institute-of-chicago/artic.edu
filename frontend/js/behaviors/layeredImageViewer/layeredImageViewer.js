@@ -77,7 +77,9 @@ class LayeredImageViewer {
       viewer: {
         buttons: {},
       },
-      layers: {},
+      layers: {
+        controls: {}
+      },
     };
     this.isFullscreen = false;
 
@@ -136,10 +138,12 @@ class LayeredImageViewer {
     // Menu opening specifically disables clickToZoom
     // ::: Exclude clicks inside menu from counting
     // as internal and activating clickToZoom
-    if (!this.toolbar.layers.controls.menu.contains(e.target)) {
-      this.interaction = true;
-      this.viewer.innerTracker.setTracking(true);
-    }
+    if (
+      this.toolbar.layers.controls.menu &&
+      this.toolbar.layers.controls.menu.contains(e.target)
+    ) return;
+    this.interaction = true;
+    this.viewer.innerTracker.setTracking(true);
   }
 
   /**
