@@ -6,6 +6,8 @@ return [
     'iiif_s3_endpoint' => env('IIIF_S3_ENDPOINT'),
     'sales_site_url' => env('SALES_SITE_URL', 'https://sales.artic.edu'),
     'vtour_bucket' => env('AWS_VTOUR_BUCKET'),
+    'http_username' => env('HTTPAUTH_USER'),
+    'http_password' => env('HTTPAUTH_PASS'),
 
     // ART-48: For "Research Center"; see Departments filter
     'department_archive_title' => env('DEPARTMENT_ARCHIVE_TITLE', 'AIC Archives'),
