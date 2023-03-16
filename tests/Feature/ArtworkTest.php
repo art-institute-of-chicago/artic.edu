@@ -43,6 +43,8 @@ class ArtworkTest extends BaseTestCase
 
         $response = $this->get("/artworks/{$artwork->id}/{$artwork->titleSlug}");
         $response->assertStatus(200);
+        $response->assertSee('Title');
+        $response->assertSee($artwork->title);
         $response->assertSee('Edition');
         $response->assertSee($artwork->edition);
     }
