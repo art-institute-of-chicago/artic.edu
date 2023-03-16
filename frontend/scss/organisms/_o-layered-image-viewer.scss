@@ -25,6 +25,8 @@
   }
 }
 
+
+
 // -- JS only
 .js {
   .o-layered-image-viewer__caption,
@@ -293,6 +295,12 @@
   @supports not (aspect-ratio: 1) {
     height: 80vh;
   }
+
+  // Overlays should be non-interactive
+  .openseadragon-canvas img {
+    pointer-events: none;
+  }
+
 }
 
 // Initial modal state
