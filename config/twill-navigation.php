@@ -202,6 +202,10 @@ $nav = [
                 'title' => 'Authors',
                 'module' => true,
             ],
+            'issues' => [
+                'title' => 'Issues',
+                'module' => true,
+            ]
         ]
     ],
     'generic' => [
