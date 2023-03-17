@@ -38,7 +38,7 @@ class GenericPagesController extends FrontController
                 }
             }
     
-            if ($authenticationHasPassed === false) {
+            if (!$authenticationHasPassed) {
                 return response()->make('Invalid credentials.', 401, ['WWW-Authenticate' => 'Basic']);
             }
         }
