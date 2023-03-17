@@ -55,11 +55,6 @@ class Author extends AbstractModel
         return $this->morphedByMany('App\Models\Experience', 'authorable');
     }
 
-    public function issueArticle()
-    {
-        return $this->morphedByMany('App\Models\IssueArticle', 'authorable');
-    }
-
     public function scopeOrdered($query)
     {
         if ($this->isFillable('title')) {
