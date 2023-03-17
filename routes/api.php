@@ -19,8 +19,6 @@ use App\Http\Controllers\API\GeotargetController;
 use App\Http\Controllers\API\HighlightsController;
 use App\Http\Controllers\API\HoursController;
 use App\Http\Controllers\API\InteractiveFeaturesController;
-use App\Http\Controllers\API\IssuesController;
-use App\Http\Controllers\API\IssueArticlesController;
 use App\Http\Controllers\API\LocationsController;
 use App\Http\Controllers\API\PressReleasesController;
 use App\Http\Controllers\API\PrintedPublicationsController;
@@ -191,12 +189,4 @@ Route::group(['prefix' => 'v1'], function () {
     Route::options('seamless-images/{id}', [SeamlessImagesController::class, 'byFile']);
     Route::get('seamless-images/{id}', [SeamlessImagesController::class, 'byFile']);
 
-    /**
-     * Journal issues and articles --------------------------------------------------------------------
-     */
-    Route::get('issues', [IssuesController::class, 'index']);
-    Route::get('issues/{id}', [IssuesController::class, 'show']);
-
-    Route::get('issue-articles', [IssueArticlesController::class, 'index']);
-    Route::get('issue-articles/{id}', [IssueArticlesController::class, 'show']);
 });
