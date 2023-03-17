@@ -26,6 +26,22 @@
             @slot('features', $features ?? null)
         @endcomponent
 
+        @if (!empty($journalFeatureHero) && $journalFeatures->count() > 0)
+            @component('site.articles_publications._articleFeature')
+                @slot('featureHero', $journalFeatureHero ?? null)
+                @slot('features', $journalFeatures ?? null)
+                @slot('title', 'Art Institute Review')
+                @slot('showTopBorder', true)
+                @slot('resourceName', 'journal articles')
+                @slot('gtmEventPrefix', 'journal')
+                @slot('browseAllLink', [
+                    'label' => 'Browse the latest issue',
+                    'href' => route('issues.latest'),
+                    'gtmAttributes' => 'data-gtm-event="browse-all-articles" data-gtm-event-category="nav-link"',
+                ])
+            @endcomponent
+        @endif
+
         @if(sizeof($experiences['items']) > 0)
             @component('site.articles_publications._interactiveFeature')
                 @slot('experiences', $experiences['items'] ?? null)
