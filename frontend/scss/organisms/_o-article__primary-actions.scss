@@ -180,9 +180,7 @@
 
 // Styles shared by all publication sidebars:
 .o-article__primary-actions--digital-publication,
-.o-article__primary-actions--magazine-issue,
-.o-article__primary-actions--journal-article,
-.o-article__primary-actions--journal-issue {
+.o-article__primary-actions--magazine-issue {
   padding-top: initial;
   margin-top: 0;
 
@@ -190,8 +188,7 @@
     @include breakpoint('#{$name}') {
       .m-search-bar,
       hr,
-      .hr--no-archive ~ .m-article-actions, // PUB-128
-      .m-article-actions--journal__issues {
+      .hr--no-archive ~ .m-article-actions { // PUB-128
         margin-top: #{map-get((
           xsmall: 24,
           small: 24,
@@ -295,55 +292,6 @@
   }
 }
 
-// Styles specific to journal issues:
-.o-article__primary-actions--journal-issue {
-  .o-sticky-sidebar__sticker {
-    padding-top: 30px;
-  }
-
-  .m-article-actions--publication__logo {
-    .icon--journal-logo {
-      height: 92px;
-      width: 120px;
-    }
-  }
-
-  .m-search-bar {
-    input[type=text] {
-      height: 42px;
-    }
-
-    .m-search-bar__submit,
-    .m-search-bar__clear {
-      width: 42px;
-      height: 42px;
-    }
-  }
-}
-
-
-// Styles specific to journal articles:
-.o-article__primary-actions--journal-article {
-  @extend %o-article__primary-actions--toggleable;
-
-  padding-top: 0;
-  margin-top: 0;
-
-  .o-sticky-sidebar__sticker {
-    padding-top: 30px;
-  }
-
-  .m-article-actions--publication__logo {
-    a {
-      color: $color__black--90;
-    }
-
-    .icon--journal-logo {
-      height: 92px;
-      width: 120px;
-    }
-  }
-
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       .m-article-actions--journal__issues {
@@ -357,4 +305,3 @@
       }
     }
   }
-}
