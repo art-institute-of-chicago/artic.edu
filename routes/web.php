@@ -209,10 +209,5 @@ Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesC
 // Feed routes
 Route::feeds();
 
-// Generic Page w/ httpauth
-Route::middleware(['httpauth'])->get('/press/art-institute-images', function () {
-    return App::make(App\Http\Controllers\GenericPagesController::class)->show('/press/art-institute-images');
-})->name('about.press.art-institute-images');
-
 // Generic Page
 Route::get('{any}', [GenericPagesController::class, 'show'])->where('any', '.*')->name('genericPages.show');
