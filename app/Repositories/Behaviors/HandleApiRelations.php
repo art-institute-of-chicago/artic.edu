@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Behaviors;
 
-use ImageService;
+use DamsImageService;
 use App\Models\ApiRelation;
 use App\Helpers\UrlHelpers;
 use A17\Twill\Models\RelatedItem;
@@ -117,7 +117,7 @@ trait HandleApiRelations
                     $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'augment', [$apiElement->id]);
                 }
 
-                $data['thumbnail'] = ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100]);
+                $data['thumbnail'] = DamsImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100]);
             }
 
             return [

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\GenericPageRepository;
-use App\Helpers\FrontendHelpers;
 use Illuminate\Http\Request;
 class GenericPagesController extends FrontController
 {

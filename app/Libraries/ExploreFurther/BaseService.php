@@ -138,7 +138,7 @@ class BaseService
 
         if ($active) {
             if ($parameters->get('ef-most-similar_ids')) {
-                $query->byMostSimilar($this->resource->id, get_class($this->resource));
+                $query->byMostSimilar($this->resource);
             } else {
                 $years = explode('|', $parameters->get('ef-date_ids'));
 
@@ -191,7 +191,7 @@ class BaseService
 
                     break;
                 case 'most-similar':
-                    $query->byMostSimilar($this->resource->id, get_class($this->resource));
+                    $query->byMostSimilar($this->resource);
 
                     break;
             }

@@ -37,7 +37,7 @@ $showNewHours = Carbon::now()->gt($newHoursStartAt);
           array('label' => __('FAQs'), 'href' => '#faqs'),
           array('label' => __('Accessibility'), 'href' => '#accessibility'),
           array('label' => __('Directions'), 'href' => '#directions'),
-          array('label' => __('Ways to Explore'), 'href' => '#explore'),
+          array('label' => __('Enhance Your Visit'), 'href' => '#explore'),
         ))
     @endcomponent
 
@@ -511,7 +511,7 @@ $showNewHours = Carbon::now()->gt($newHoursStartAt);
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'explore')
-        @lang('Ways to Explore')
+        @lang('Enhance Your Visit')
     @endcomponent
 
     @component('components.atoms._hr')
