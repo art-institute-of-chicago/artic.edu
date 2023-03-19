@@ -20,6 +20,8 @@ class ExhibitionPressRoomController extends FrontController
 
     public function index(Request $request)
     {
+        if ($auth = $this->authorize($request)) return $auth;
+
         $items = ExhibitionPressRoom::published()->ordered()->paginate();
         $title = 'Exhibition Press Room';
 
@@ -50,8 +52,10 @@ class ExhibitionPressRoomController extends FrontController
         return view('site.genericPage.index', $view_data);
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
+        if ($auth = $this->authorize($request)) return $auth;
+
         $item = $this->repository->getById((int) $id);
 
         $canonicalPath = route('about.exhibitionPressRooms.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
