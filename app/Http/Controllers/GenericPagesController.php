@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\GenericPageRepository;
+use App\Helpers\FrontendHelpers;
 use Illuminate\Http\Request;
-
 class GenericPagesController extends FrontController
 {
     protected $genericPageRepository;
@@ -17,32 +17,13 @@ class GenericPagesController extends FrontController
     }
 
     public function show($slug, Request $request)
-    {   
-        $page = $this->getPage($slug);
+    {
 
         if ($slug === 'press/art-institute-images') {
-            $configuredUsername = config('aic.http_username');
-            $configuredPassword = config('aic.http_password');
-
-            if (empty($configuredUsername) || empty($configuredPassword)) {
-                return abort(500, 'Basic authentication not configured.');
-            }
-            $authenticationHasPassed = false;
-
-            if ($request->header('PHP_AUTH_USER', null) && $request->header('PHP_AUTH_PW', null)) {
-                $username = $request->header('PHP_AUTH_USER');
-                $password = $request->header('PHP_AUTH_PW');
-    
-                if ($username === $configuredUsername && $password === $configuredPassword) {
-                    $authenticationHasPassed = true;
-                }
-            }
-    
-            if (!$authenticationHasPassed) {
-                return response()->make('Invalid credentials.', 401, ['WWW-Authenticate' => 'Basic']);
-            }
+            if ($auth = $this->authorize($request)) return $auth;
         }
-
+        
+        $page = $this->getPage($slug);
         // Redirect the user if "Redirect URL" is defined
         if ($page->redirect_url) {
             return redirect($page->redirect_url);
