@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\GenericPageRepository;
-use App\Helpers\FrontendHelpers;
 use Illuminate\Http\Request;
+
 class GenericPagesController extends FrontController
 {
     protected $genericPageRepository;
@@ -22,7 +22,7 @@ class GenericPagesController extends FrontController
         if ($slug === 'press/art-institute-images') {
             if ($auth = $this->authorize($request)) return $auth;
         }
-        
+
         $page = $this->getPage($slug);
         // Redirect the user if "Redirect URL" is defined
         if ($page->redirect_url) {
