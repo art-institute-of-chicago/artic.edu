@@ -6,7 +6,6 @@ use App\Presenters\BasePresenter;
 
 class PagePresenter extends BasePresenter
 {
-    private $featuredJournalIssue;
 
     public function introBlocks()
     {
