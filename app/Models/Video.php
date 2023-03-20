@@ -24,7 +24,10 @@ class Video extends AbstractModel
         'heading',
         'video_url',
         'list_description',
-        'title_display'
+        'title_display',
+        'meta_title',
+        'meta_description',
+        'search_tags'
     ];
 
     protected $dates = [
