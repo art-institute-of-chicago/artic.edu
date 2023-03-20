@@ -188,8 +188,8 @@ Route::get('/press/press-releases', [PressReleasesController::class, 'index'])->
 Route::get('/press/archive', [PressReleasesController::class, 'archive'])->name('about.press.archive');
 Route::get('/press/press-releases/{id}/{slug?}', [PressReleasesController::class, 'show'])->name('about.press.show');
 
-Route::middleware(['httpauth'])->get('/press/exhibition-press-room', [ExhibitionPressRoomController::class, 'index'])->name('about.exhibitionPressRooms');
-Route::middleware(['httpauth'])->get('/press/exhibition-press-room/{id}/{slug?}', [ExhibitionPressRoomController::class, 'show'])->name('about.exhibitionPressRooms.show');
+Route::get('/press/exhibition-press-room', [ExhibitionPressRoomController::class, 'index'])->name('about.exhibitionPressRooms');
+Route::get('/press/exhibition-press-room/{id}/{slug?}', [ExhibitionPressRoomController::class, 'show'])->name('about.exhibitionPressRooms.show');
 
 // Educator admission request
 Route::get('/educators/visit-on-my-own/educator-admission-request', [EducatorAdmissionController::class, 'index'])->name('forms.educator-admission-request');

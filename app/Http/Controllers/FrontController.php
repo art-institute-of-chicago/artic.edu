@@ -62,4 +62,27 @@ class FrontController extends BaseController
             )
         );
     }
+    public function authorize($request) {
+        
+        $configuredUsername = config('aic.http_username');
+        $configuredPassword = config('aic.http_password');
+
+        if (empty($configuredUsername) || empty($configuredPassword)) {
+            return abort(500, 'Basic authentication not configured.');
+        }
+        
+        $authenticationHasPassed = false;
+        $username = $request->header('PHP_AUTH_USER', null);
+        $password = $request->header('PHP_AUTH_PW', null);
+
+        if ($username && $password) {
+            if ($username === $configuredUsername && $password === $configuredPassword) {
+                $authenticationHasPassed = true;
+            }
+        }
+
+        if (!$authenticationHasPassed) {
+            return response()->make('Invalid credentials.', 401, ['WWW-Authenticate' => 'Basic']);
+        }
+    }
 }
