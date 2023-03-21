@@ -1,8 +1,7 @@
 // This file contains styles for both journal issues and magazine issues
 .p-magazineissue-show,
 .p-magazineissue-latest,
-.p-digitalpublications-show,
-.p-issue-show {
+.p-digitalpublications-show {
   @extend %sticky-sidebar;
 
   .o-article__body {
@@ -52,8 +51,7 @@
 
 // Top margin is different for digital publications vs. everything else
 .p-magazineissue-show,
-.p-magazineissue-latest,
-.p-issue-show {
+.p-magazineissue-latest {
   .o-article__body::before {
     @each $name in ('large', 'xlarge') {
       @include breakpoint('#{$name}') {

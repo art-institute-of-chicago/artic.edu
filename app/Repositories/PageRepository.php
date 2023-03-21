@@ -62,9 +62,6 @@ class PageRepository extends ModuleRepository
         // Homepage landing
         'homeVideos',
         'homeHighlights',
-
-        // Articles and Publications landing
-        'featuredJournalArticles',
     ];
 
     protected $apiBrowsers = [
