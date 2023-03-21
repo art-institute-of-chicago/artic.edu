@@ -20,7 +20,7 @@ class AddMetaTitleAndMetaDescriptionToVideos extends Migration
         Schema::table('videos', function (Blueprint $table) {
             $table->dropColumn('meta_title');
             $table->dropColumn('meta_description');
-            $table->text('search_tags')->nullable();
+            $table->dropColumn('search_tags');
         });
     }
 }
