@@ -2,6 +2,7 @@
     'additionalFieldsets' => [
         ['fieldset' => 'content', 'label' => 'Content'],
         ['fieldset' => 'related_to', 'label' => 'Related'],
+        ['fieldset' => 'metadata', 'label' => 'Metadata'],
     ]
 ])
 
