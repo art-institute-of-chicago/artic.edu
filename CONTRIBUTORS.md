@@ -4,19 +4,23 @@
 Contributions to artic.edu may include major feature development, bug fixing, writing documentation, editing, reviewing, idea generation, presentation, product management, and maintenance. We are grateful for every contribution.
 
 ## Art Institute of Chicago team
-> Past and present
+### Current staff
 
 | Name | Role | Contact |
 |---|---|---|
 | nikhil trivedi | Director of Engineering | GitHub: [nikhiltri](https://github.com/nikhiltri), Twitter: [@nikhiltri](https://twitter.com/nikhiltri) |
 | Zach Garwood | Web Developer | GitHub: [zachgarwood](https://github.com/zachgarwood), GitLab: [zachgarwood](https://gitlab.com/zachgarwood) |
 | Trevin Alonzo | Web Developer | Github: [web-dev-trev](https://github.com/web-dev-trev) |
-| Illya Moskvin | Senior Web Developer | GitHub: [IllyaMoskvin](https://github.com/IllyaMoskvin), Twitter: [@IllyaMoskvin](https://twitter.com/IllyaMoskvin) |
 | Josh Andrews | Product Owner | GitHub: [jbandrews](https://github.com/jbandrews), Twitter: [@joshandrews](https://twitter.com/joshandrews) |
-| Kirsten Southwell | Creative Director, Visual Design | Twitter: [@kmsouthwell](https://twitter.com/kmsouthwell) |
 | Michael Neault | AVP & Executive Creative Director, Experience Design | Twitter: [@michael_neault](https://twitter.com/michael_neault) |
-| Tina Shah | Senior Web Developer | GitHub: [surreal8](https://github.com/surreal8), Twitter: [@tshah](https://twitter.com/tshah) |
 | Mike Bingaman | Systems Administrator | GitHub: [bingaman](https://github.com/bingaman), Twitter: [@bingaman](https://twitter.com/bingaman) |
+
+### Former staff
+| Name | Role | Contact |
+|---|---|---|
+| Illya Moskvin | Senior Web Developer | GitHub: [IllyaMoskvin](https://github.com/IllyaMoskvin), Twitter: [@IllyaMoskvin](https://twitter.com/IllyaMoskvin) |
+| Tina Shah | Senior Web Developer | GitHub: [surreal8](https://github.com/surreal8), Twitter: [@tshah](https://twitter.com/tshah) |
+| Kirsten Southwell | Creative Director, Visual Design | Twitter: [@kmsouthwell](https://twitter.com/kmsouthwell) |
 | Mark Dascoli | Integration Technologist | GitHub: [markdascoli](https://github.com/markdascoli), Twitter: [@markdascoli](https://twitter.com/markdascoli) |
 
 ## Initial development and interactive features by AREA 17
