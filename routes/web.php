@@ -28,6 +28,7 @@ use App\Http\Controllers\PrintedPublicationsController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\ResearchGuidesController;
+use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\VideoController;
@@ -44,6 +45,7 @@ Route::get('/today', [RedirectController::class, 'today'])->name('today');
 Route::get('/target', [HomeController::class, 'target'])->name('target');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 
 // Collection routes
 Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
