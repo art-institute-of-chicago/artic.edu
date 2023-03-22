@@ -14,6 +14,7 @@ Contributions to artic.edu may include major feature development, bug fixing, wr
 | Josh Andrews | Product Owner | GitHub: [jbandrews](https://github.com/jbandrews), Twitter: [@joshandrews](https://twitter.com/joshandrews) |
 | Michael Neault | AVP & Executive Creative Director, Experience Design | Twitter: [@michael_neault](https://twitter.com/michael_neault) |
 | Mike Bingaman | Systems Administrator | GitHub: [bingaman](https://github.com/bingaman), Twitter: [@bingaman](https://twitter.com/bingaman) |
+| Lauren Makholm | Assoc Director of Production and Manager of Digital Initiatives, Print & Digital Publishing | [LinkedIn](https://www.linkedin.com/in/lmakholm/) |
 
 ### Former staff
 | Name | Role | Contact |
@@ -48,6 +49,16 @@ Contributions to artic.edu may include major feature development, bug fixing, wr
 | Powell May | Back End Development | GitHub: [ptouch718](https://github.com/ptouch718), Twitter: [@ptouch718](https://twitter.com/ptouch718) |
 | Chris Hale | Front End Development | GitHub: [chrishale](https://github.com/chrishale), Twitter: [@chrishale](https://twitter.com/chrishale) |
 | Luis Lavena | Back End Development | GitHub: [luislavena](https://github.com/luislavena), Twitter: [@luislavena](https://twitter.com/luislavena) |
+
+## Layered Image Viewer initial development by Cogapp
+> [cogapp.com](http://www.cogapp.com/)
+
+| Name | Role | Contact |
+|---|---|---|
+| Jon White | Senior Front-End Developer, he/him | Site: [cogapp.com/team/jon-white](https://www.cogapp.com/team/jon-white) |
+| Tristin Roddis | Technical Director, he/him | Site: [cogapp.com/team/tristan-roddis](https://www.cogapp.com/team/tristan-roddis) |
+| Hannah Baker | Developer | Site: [cogapp.com/team/hannah-baker](https://www.cogapp.com/team/hannah-baker) |
+| Louise Cole | Production Director, she/her | Site: [cogapp.com/team/louise-cole](https://www.cogapp.com/team/louise-cole) |
 
 ## Site
 Built with [Twill](https://twill.io).
