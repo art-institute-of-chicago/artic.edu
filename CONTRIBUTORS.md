@@ -21,6 +21,7 @@ Contributions to artic.edu may include major feature development, bug fixing, wr
 | Illya Moskvin | Senior Web Developer | GitHub: [IllyaMoskvin](https://github.com/IllyaMoskvin), Twitter: [@IllyaMoskvin](https://twitter.com/IllyaMoskvin) |
 | Tina Shah | Senior Web Developer | GitHub: [surreal8](https://github.com/surreal8), Twitter: [@tshah](https://twitter.com/tshah) |
 | Kirsten Southwell | Creative Director, Visual Design | Twitter: [@kmsouthwell](https://twitter.com/kmsouthwell) |
+| Marc Choi | Senior Designer, Visual Design | [LinkedIn](https://www.linkedin.com/in/marcchoi/) |
 | Mark Dascoli | Integration Technologist | GitHub: [markdascoli](https://github.com/markdascoli), Twitter: [@markdascoli](https://twitter.com/markdascoli) |
 
 ## Initial development and interactive features by AREA 17
