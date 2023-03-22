@@ -35,7 +35,6 @@ use App\Http\Controllers\VirtualTourController;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\Forms\EducatorAdmissionController;
 use App\Http\Controllers\Forms\EmailSubscriptionsController;
-use App\Http\Controllers\Forms\EventPlanningContactController;
 use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
 
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
@@ -204,7 +203,7 @@ Route::get('e-news', function () {
 // Digital labels
 Route::get('/interactive-features', [InteractiveFeatureExperiencesController::class, 'index'])->name('interactiveFeatures');
 Route::get('/interactive-features/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show');
-Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.showKiosk');
+Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show-kiosk');
 
 // Feed routes
 Route::feeds();
