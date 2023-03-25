@@ -17,7 +17,8 @@ class PressReleaseRequest extends Request
     {
         return [
             'title' => 'required',
-            'listing_description' => 'max:255'
+            'listing_description' => 'max:255',
+            'short_description' => 'max:255'
         ];
     }
 }
