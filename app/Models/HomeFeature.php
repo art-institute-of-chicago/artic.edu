@@ -41,13 +41,24 @@ class HomeFeature extends AbstractModel
         'hero' => [
             'default' => [
                 [
-                    'name' => 'landscape',
+                    'name' => 'default',
                     'ratio' => 16 / 9,
                 ],
+                [
+                    'name' => 'mobile',
+                    'ratio' => 1,
+                ], 
             ],
         ],
+        'mobile_hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1 / 1,
+                ],
+            ]
+        ]
     ];
-
     /**
      * A list of file roles
      */
@@ -102,6 +113,7 @@ class HomeFeature extends AbstractModel
 
         // Assign image and video to the actual item. Fallback to the element image if no image has been selected.
         $item->featureImage = $this->featureImage ?? $item->imageFront('hero');
+        $item->featureImageMobile = $this->featureImageMobile ?? $item->imageFront('mobile_hero');
         $item->videoFront = $this->videoFront($item->featureImage);
 
         // Generalize the article tag
@@ -115,6 +127,11 @@ class HomeFeature extends AbstractModel
     public function getFeatureImageAttribute()
     {
         return $this->imageFront('hero');
+    }
+
+    public function getFeatureImageMobileAttribute()
+    {
+        return $this->imageFront('mobile_hero');
     }
 
     public function getVideoFrontAttribute()
