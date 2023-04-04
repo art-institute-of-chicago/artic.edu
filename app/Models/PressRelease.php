@@ -68,7 +68,6 @@ class PressRelease extends AbstractModel
     /**
      * A list of file roles
      */
-    public $filesParams = ['attachment'];
 
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
