@@ -4,7 +4,8 @@ namespace App\Libraries;
 
 use A17\Twill\Services\MediaLibrary\ImageServiceDefaults;
 use A17\Twill\Services\MediaLibrary\ImageServiceInterface;
-use Cache;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 use App\Helpers\StringHelpers;
 
 class DamsImageService implements ImageServiceInterface
@@ -85,28 +86,61 @@ class DamsImageService implements ImageServiceInterface
         return $this->base_url . $this->version . '/' . $id . '/' . $size . '/' . $dimensions . '/0/default.jpg';
     }
 
-    public function getUrlWithCrop($id, array $cropParams, array $params = [])
+    public function getUrlWithCrop($id, array $crop_params, array $params = [])
     {
+        return $this->getRawUrl($id);
     }
 
+    /**
+     * @param string $id
+     * @param array $cropParams
+     * @param int $width
+     * @param int $height
+     * @param array $params
+     * @return string
+     */
     public function getUrlWithFocalCrop($id, array $cropParams, $width, $height, array $params = [])
     {
+        return $this->getRawUrl($id);
     }
 
+    /**
+     * @param string $id
+     * @param array $params
+     * @return string
+     */
     public function getLQIPUrl($id, array $params = [])
     {
+        return $this->getRawUrl($id);
     }
 
+    /**
+     * @param string $id
+     * @param array $params
+     * @return string
+     */
     public function getSocialUrl($id, array $params = [])
     {
+        return $this->getRawUrl($id);
     }
 
+    /**
+     * @param string $id
+     * @param array $params
+     * @return string
+     */
     public function getCmsUrl($id, array $params = [])
     {
+        return $this->getRawUrl($id);
     }
 
+    /**
+     * @param string $id
+     * @return string
+     */
     public function getRawUrl($id)
     {
+        return Storage::disk(config('twill.media_library.disk'))->url($id);
     }
 
     public function getInfo($object, $imageField = 'image_id')
