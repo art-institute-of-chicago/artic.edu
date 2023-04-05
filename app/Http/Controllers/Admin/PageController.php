@@ -69,6 +69,7 @@ class PageController extends ModuleController
         return view('admin.pages.form', $fields);
     }
 
+    // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public function articles_publications(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Articles and Publications'), 500, self::MISSING_CMS_PAGE_MESSAGE);

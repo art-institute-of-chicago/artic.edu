@@ -325,7 +325,7 @@ class Page extends AbstractModel
         return $this->hasMany(Location::class)->orderBy('position');
     }
 
-    public function dining_hours()
+    public function dining_hours() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         return $this->hasMany(DiningHour::class)->orderBy('position');
     }
@@ -340,7 +340,7 @@ class Page extends AbstractModel
         return $this->hasMany(Family::class)->orderBy('position');
     }
 
-    public function featured_hours()
+    public function featured_hours() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         return $this->hasMany(FeaturedHour::class)->orderBy('position');
     }

@@ -165,7 +165,7 @@ class Slide extends AbstractModel implements Sortable
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'end_bg_experience_image');
     }
 
-    public function ExperienceModal()
+    public function experienceModal()
     {
         return $this->morphMany('App\Models\ExperienceModal', 'modalble')->where('modalble_repeater_name', 'experience_modal');
     }

@@ -100,7 +100,7 @@ class ReportAltText extends Command
      * @param  array $data the array of data
      * @return string       CSV text
      */
-    private function str_putcsv($data)
+    private function str_putcsv($data) // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         // Don't create a file, attempt to use memory instead
         $fh = fopen('php://temp', 'rw');
