@@ -29,15 +29,13 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
             <li>
                 @if ($paginator->onFirstPage())
                     <span class="f-buttons">
-                        <svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg>
                         <span>Previous</span>
+                        <svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg>
                     </span>
                 @else
                     <a href="{{ $paginator->previousPageUrl() }}" class="f-buttons"{!! (isset($ajaxScrollTarget) and $ajaxScrollTarget) ? ' data-ajax-scroll-target="'.$ajaxScrollTarget.'"' : '' !!}>
-                        <span class="f-buttons">
-                            <svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg>
-                            <span>Previous</span>
-                        </span>
+                        <span>Previous</span>
+                        <svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg>
                     </a>
                 @endif
             </li>
