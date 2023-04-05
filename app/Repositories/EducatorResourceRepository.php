@@ -7,8 +7,9 @@ use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
-use App\Models\EducatorResource;
 use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Models\EducatorResource;
+use App\Models\Api\Search;
 
 class EducatorResourceRepository extends ModuleRepository
 {
@@ -41,5 +42,14 @@ class EducatorResourceRepository extends ModuleRepository
             'nav' => [],
             'page' => $item,
         ];
+    }
+
+    public function searchApi($string, $perPage = null, $page = null, $columns = [])
+    {
+        $search = Search::query()->search($string)->published()->resources(['educator-resources']);
+
+        $results = $search->getSearch($perPage, $columns, null, $page);
+
+        return $results;
     }
 }
