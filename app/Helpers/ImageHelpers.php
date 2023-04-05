@@ -63,7 +63,7 @@ class ImageHelpers
     {
         $sourceType = 'imgix';
 
-        $src = DamsImageService::getUrlWithCrop($imageObject->uuid, $cropParams);
+        $src = \ImageService::getUrlWithCrop($imageObject->uuid, $cropParams);
 
         $credit = '';
         $creditUrl = '';
@@ -371,7 +371,7 @@ class ImageHelpers
                 }
 
                 if (empty($settings['crop'])) {
-                    $settings['crop'] = 'faces,edges,entropy';
+                    $settings['crop'] = 'faces,center';
                 }
             }
 
@@ -411,7 +411,7 @@ class ImageHelpers
             }
 
             if (empty($settings['crop'])) {
-                $imgixSettings['crop'] = 'faces,edges,entropy';
+                $imgixSettings['crop'] = 'faces,center';
             } else {
                 $imgixSettings['crop'] = $settings['crop'];
             }
