@@ -8,7 +8,8 @@ trait Handle3DModel
 {
     private function handle3DModel($object, $fields, $fieldName = 'aic_3d_model')
     {
-        if (!empty($fields["{$fieldName}[model_url]"])
+        if (
+            !empty($fields["{$fieldName}[model_url]"])
             && !empty($fields["{$fieldName}[model_id]"])
             && !empty($fields["{$fieldName}[camera_position]"])
             && !empty($fields["{$fieldName}[camera_target]"])
@@ -39,9 +40,11 @@ trait Handle3DModel
     private function getFormFieldsFor3DModel($object, $fields, $fieldName = 'aic_3d_model')
     {
         // Render the 3d model field in repeater block
-        if ($object instanceof \App\Models\Slide &&
-        $object->secondaryExperienceModal->first() &&
-        $model3d = $object->secondaryExperienceModal->first()->model3d) {
+        if (
+            $object instanceof \App\Models\Slide &&
+            $object->secondaryExperienceModal->first() &&
+            $model3d = $object->secondaryExperienceModal->first()->model3d
+        ) {
             $secondaryExperienceModal = $object->secondaryExperienceModal->first();
             $aic3dFields = ['model_url', 'model_id', 'model_caption_title', 'model_caption', 'camera_position', 'guided_tour', 'camera_target', 'annotation_list', 'hide_annotation', 'hide_annotation_title'];
 

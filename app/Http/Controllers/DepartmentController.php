@@ -6,7 +6,7 @@ use App\Repositories\Api\DepartmentRepository;
 
 class DepartmentController extends FrontController
 {
-    const ARTWORKS_PER_PAGE = 24;
+    public const ARTWORKS_PER_PAGE = 24;
 
     protected $repository;
 

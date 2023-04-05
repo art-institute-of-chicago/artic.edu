@@ -13,7 +13,7 @@ class ExhibitionsController extends FrontController
     protected $apiRepository;
     protected $eventRepository;
 
-    const RELATED_EVENTS_PER_PAGE = 3;
+    public const RELATED_EVENTS_PER_PAGE = 3;
 
     public function __construct(ExhibitionRepository $repository, EventRepository $eventRepository)
     {
@@ -58,8 +58,7 @@ class ExhibitionsController extends FrontController
         if ($upcoming) {
             $featured = $page->apiModels('exhibitionsUpcoming', 'Exhibition');
             $featured = $featured->filter($isUpcomingFilter);
-        }
-        else {
+        } else {
             $featured = $page->apiModels('exhibitionsExhibitions', 'Exhibition');
             $featured = $featured->filter($isCurrentFilter);
         }

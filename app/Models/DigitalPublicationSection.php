@@ -6,18 +6,23 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
-
 use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasBlocks;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DigitalPublicationSection extends AbstractModel implements Sortable
 {
-    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, HasAuthors, Transformable,
-        HasFactory;
+    use HasSlug;
+    use HasRevisions;
+    use HasPosition;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasBlocks;
+    use HasAuthors;
+    use Transformable;
+    use HasFactory;
 
     protected $presenter = 'App\Presenters\Admin\DigitalPublicationSectionPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationSectionPresenter';
@@ -80,9 +85,9 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
         ],
     ];
 
-    const ABOUT = 'about';
-    const TEXT = 'text';
-    const WORK = 'work';
+    public const ABOUT = 'about';
+    public const TEXT = 'text';
+    public const WORK = 'work';
 
     public static $types = [
         self::ABOUT => 'About',

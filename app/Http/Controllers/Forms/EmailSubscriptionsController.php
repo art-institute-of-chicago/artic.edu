@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Forms;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
 use App\Http\Requests\Form\EmailSubscriptionsRequest;
-
 use App\Libraries\ExactTargetService;
-
 use App\Models\ExactTargetList;
 use App\Models\Form\EmailSubscriptions;
 

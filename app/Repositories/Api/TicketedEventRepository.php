@@ -7,7 +7,7 @@ use App\Models\Api\Search;
 
 class TicketedEventRepository extends BaseApiRepository
 {
-    const TICKETED_EVENTS_PER_PAGE = 20;
+    public const TICKETED_EVENTS_PER_PAGE = 20;
 
     public function __construct(TicketedEvent $model)
     {

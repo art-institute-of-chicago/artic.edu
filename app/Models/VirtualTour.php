@@ -12,7 +12,14 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class VirtualTour extends AbstractModel
 {
-    use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasPosition, HasFiles, HasBlocks, Transformable;
+    use HasSlug;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasRevisions;
+    use HasPosition;
+    use HasFiles;
+    use HasBlocks;
+    use Transformable;
 
     protected $presenter = 'App\Presenters\Admin\VirtualTourPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\VirtualTourPresenter';

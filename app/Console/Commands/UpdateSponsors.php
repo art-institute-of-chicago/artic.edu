@@ -4,9 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Exhibition;
 use App\Models\Sponsor;
-
 use A17\Twill\Repositories\BlockRepository;
-
 use Illuminate\Console\Command;
 
 class UpdateSponsors extends Command
@@ -22,7 +20,6 @@ class UpdateSponsors extends Command
 
         // Remove all existing sponsors, including soft-deleted ones
         Sponsor::withTrashed()->where('id', '!=', 26)->get()->each(function ($sponsor) use ($blockRepository) {
-
             // Delete all the blocks - deleting the sponsor doesn't cascade changes
             $blockRepository->bulkDelete($sponsor->blocks()->pluck('id')->toArray());
 

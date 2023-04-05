@@ -24,7 +24,7 @@ class BaseScopedController extends FrontController
     /**
      * Default elements per page
      */
-    const PER_PAGE = 20;
+    public const PER_PAGE = 20;
 
     /**
      * Define here the set of rules to apply scopes
@@ -136,11 +136,10 @@ class BaseScopedController extends FrontController
             return true;
         }
 
-            foreach ($this->scopes as $parameter => $scope) {
-                if (request()->input($parameter) != null) {
-                    return true;
-                }
+        foreach ($this->scopes as $parameter => $scope) {
+            if (request()->input($parameter) != null) {
+                return true;
             }
-
+        }
     }
 }

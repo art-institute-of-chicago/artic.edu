@@ -5,7 +5,6 @@ namespace App\Models\Api;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Models\Behaviors\HasMediasApi;
 use App\Helpers\ImageHelpers;
-
 use Illuminate\Support\Str;
 
 class Asset extends BaseApiModel
@@ -123,8 +122,8 @@ class Asset extends BaseApiModel
 
                 break;
 
-            // All other cases were deprecated.
-            // If needed to add another embed type start here.
+                // All other cases were deprecated.
+                // If needed to add another embed type start here.
         }
     }
 
@@ -134,16 +133,15 @@ class Asset extends BaseApiModel
             case 'sounds':
                 return 'audio';
 
-            break;
+                break;
             case 'videos':
                 return 'video';
 
-            break;
+                break;
             default:
                 return 'new-window';
 
-            break;
-
+                break;
         }
     }
 

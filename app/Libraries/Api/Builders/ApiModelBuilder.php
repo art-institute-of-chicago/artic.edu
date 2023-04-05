@@ -9,7 +9,6 @@ use App\Helpers\CollectionHelpers;
 
 class ApiModelBuilder
 {
-
     /**
      * The base query builder instance.
      *
@@ -549,8 +548,7 @@ class ApiModelBuilder
             return $this->getSearch($perPage, $columns, $pageName, $page);
         }
 
-            return $this->getPaginated($perPage, $columns, $pageName, $page);
-
+        return $this->getPaginated($perPage, $columns, $pageName, $page);
     }
 
     protected function paginator($items, $total, $perPage, $currentPage, $options)
@@ -598,8 +596,7 @@ class ApiModelBuilder
             return $this->customEndpoint;
         }
 
-            return $this->performSearch ? 'search' : 'collection';
-
+        return $this->performSearch ? 'search' : 'collection';
     }
 
     /**

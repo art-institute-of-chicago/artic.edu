@@ -6,7 +6,6 @@ use DamsImageService;
 
 trait HasMediasApi
 {
-
     /**
      * You have to define roles and crop on the API model.
      *
@@ -38,12 +37,11 @@ trait HasMediasApi
                 return $image;
             }
 
-                if (!empty($this->{$this->getImageField($role, 'default')})) {
-                    $image = DamsImageService::getImage($this, $this->getImageField($role, 'default'));
+            if (!empty($this->{$this->getImageField($role, 'default')})) {
+                $image = DamsImageService::getImage($this, $this->getImageField($role, 'default'));
 
-                    return $image;
-                }
-
+                return $image;
+            }
         }
 
         // If nothing has been returned on the API side, check for an augmented model
@@ -69,8 +67,7 @@ trait HasMediasApi
             return $this->mediasParams[$role][$crop]['field'];
         }
 
-            return 'image_id';
-
+        return 'image_id';
     }
 
     protected function getWidth($role, $crop, $image)
@@ -79,8 +76,7 @@ trait HasMediasApi
             return $this->mediasParams[$role][$crop]['width'];
         }
 
-            return $image['width'] ?? '';
-
+        return $image['width'] ?? '';
     }
 
     protected function getHeight($role, $crop, $image)
@@ -89,7 +85,6 @@ trait HasMediasApi
             return $this->mediasParams[$role][$crop]['height'];
         }
 
-            return $image['height'] ?? '';
-
+        return $image['height'] ?? '';
     }
 }

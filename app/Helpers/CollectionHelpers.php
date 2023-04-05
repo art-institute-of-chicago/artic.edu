@@ -4,7 +4,6 @@ namespace App\Helpers;
 
 class CollectionHelpers
 {
-
     /**
      * Create a collection from the given value.
      *

@@ -21,8 +21,7 @@ class ApiCollection extends \Illuminate\Support\Collection
                 return $this->metadata->get($name);
             }
 
-                return $this->metadata;
-
+            return $this->metadata;
         }
     }
 

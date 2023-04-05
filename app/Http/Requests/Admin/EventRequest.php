@@ -5,7 +5,6 @@ namespace App\Http\Requests\Admin;
 use App\Models\Event;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
-
 use A17\Twill\Http\Requests\Admin\Request;
 
 class EventRequest extends Request

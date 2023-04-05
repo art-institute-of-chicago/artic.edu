@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Repositories\PrintedPublicationRepository;
 use App\Models\CatalogCategory;
 use App\Helpers\NavHelpers;

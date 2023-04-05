@@ -7,7 +7,8 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class Lightbox extends AbstractModel
 {
-    use HasMedias, HasMediasEloquent;
+    use HasMedias;
+    use HasMediasEloquent;
 
     protected $fillable = [
         'published',
@@ -58,14 +59,14 @@ class Lightbox extends AbstractModel
     protected $presenter = 'App\Presenters\Admin\LightboxPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\LightboxPresenter';
 
-    const GEOTARGET_ALL = 1;
-    const GEOTARGET_LOCAL = 2;
-    const GEOTARGET_NOT_LOCAL = 3;
+    public const GEOTARGET_ALL = 1;
+    public const GEOTARGET_LOCAL = 2;
+    public const GEOTARGET_NOT_LOCAL = 3;
 
-    const VARIATION_DEFAULT = 1;
-    const VARIATION_TICKETING = 2;
-    const VARIATION_EMAIL = 3;
-    const VARIATION_NEWSLETTER = 4;
+    public const VARIATION_DEFAULT = 1;
+    public const VARIATION_TICKETING = 2;
+    public const VARIATION_EMAIL = 3;
+    public const VARIATION_NEWSLETTER = 4;
 
     public function getVariationClassAttribute()
     {

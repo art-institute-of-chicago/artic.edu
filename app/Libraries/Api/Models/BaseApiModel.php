@@ -25,7 +25,10 @@ use JsonSerializable;
 
 abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, UrlRoutable
 {
-    use HasApiCalls, HasAugmentedModel, HasRelationships, HasPresenter;
+    use HasApiCalls;
+    use HasAugmentedModel;
+    use HasRelationships;
+    use HasPresenter;
 
     protected $attributes = [];
 
@@ -520,8 +523,10 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         // the values to their appropriate type. If the attribute has a mutator we
         // will not perform the cast on those attributes to avoid any confusion.
         foreach ($this->casts as $key => $value) {
-            if (!array_key_exists($key, $attributes) ||
-                in_array($key, $mutatedAttributes)) {
+            if (
+                !array_key_exists($key, $attributes) ||
+                in_array($key, $mutatedAttributes)
+            ) {
                 continue;
             }
 
@@ -589,8 +594,10 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function getAttribute($key)
     {
-        if (array_key_exists($key, $this->attributes) ||
-            $this->hasGetMutator($key)) {
+        if (
+            array_key_exists($key, $this->attributes) ||
+            $this->hasGetMutator($key)
+        ) {
             return $this->getAttributeValue($key);
         }
 
@@ -937,8 +944,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
             return $models;
         }
 
-            return new BaseCollection($models);
-
+        return new BaseCollection($models);
     }
 
     /**
@@ -1052,7 +1058,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
     public function getTable()
     {
-
     }
 
     /**
@@ -1077,7 +1082,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
     public function resolveChildRouteBinding($childType, $value, $field)
     {
-
     }
 
     public function getKeyName()

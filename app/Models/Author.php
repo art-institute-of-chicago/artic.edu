@@ -9,7 +9,10 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class Author extends AbstractModel
 {
-    use HasSlug, HasMedias, HasRevisions, HasMediasEloquent;
+    use HasSlug;
+    use HasMedias;
+    use HasRevisions;
+    use HasMediasEloquent;
 
     protected $fillable = [
         'published',

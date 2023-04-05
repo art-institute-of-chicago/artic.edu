@@ -18,8 +18,18 @@ use Spatie\Feed\FeedItem;
 
 class Article extends AbstractModel implements Feedable
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations,
-        HasFeaturedRelated, HasUnlisted, HasAuthors, HasFactory;
+    use HasSlug;
+    use HasRevisions;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasBlocks;
+    use Transformable;
+    use HasRelated;
+    use HasApiRelations;
+    use HasFeaturedRelated;
+    use HasUnlisted;
+    use HasAuthors;
+    use HasFactory;
 
     protected $presenter = 'App\Presenters\Admin\ArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
@@ -58,8 +68,8 @@ class Article extends AbstractModel implements Feedable
         'title',
     ];
 
-    const BASIC = 0;
-    const LARGE = 1;
+    public const BASIC = 0;
+    public const LARGE = 1;
 
     public static $articleLayouts = [
         self::BASIC => 'Basic',

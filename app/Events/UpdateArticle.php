@@ -8,7 +8,9 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 
 class UpdateArticle
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public $item;
     public $urls = [];

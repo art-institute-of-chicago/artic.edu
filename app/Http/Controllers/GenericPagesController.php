@@ -18,9 +18,10 @@ class GenericPagesController extends FrontController
 
     public function show($slug, Request $request)
     {
-
         if ($slug === 'press/art-institute-images') {
-            if ($auth = $this->authorize($request)) return $auth;
+            if ($auth = $this->authorize($request)) {
+                return $auth;
+            }
         }
 
         $page = $this->getPage($slug);

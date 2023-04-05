@@ -11,7 +11,13 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class Mirador extends AbstractModel
 {
-    use HasSlug, HasMedias, HasMediasEloquent, HasRevisions, HasFiles, HasBlocks, Transformable;
+    use HasSlug;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasRevisions;
+    use HasFiles;
+    use HasBlocks;
+    use Transformable;
 
     protected $presenter = 'App\Presenters\Admin\MiradorPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\MiradorPresenter';
@@ -39,8 +45,8 @@ class Mirador extends AbstractModel
 
     public $filesParams = ['upload_manifest_file'];
 
-    const SINGLE_VIEW = 'single';
-    const BOOK_VIEW = 'book';
+    public const SINGLE_VIEW = 'single';
+    public const BOOK_VIEW = 'book';
 
     public static $viewTypes = [
         self::SINGLE_VIEW => 'single',

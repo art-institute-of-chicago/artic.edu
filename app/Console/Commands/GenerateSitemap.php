@@ -8,15 +8,11 @@ use App\Models\Exhibition;
 use App\Models\PrintedPublication;
 use App\Models\DigitalPublication;
 use App\Models\GenericPage;
-
 use App\Repositories\GenericPageRepository;
-
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
-
 use Symfony\Component\DomCrawler\Link;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
-
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 

@@ -11,7 +11,11 @@ use App\Models\PrintedPublication;
 
 class PrintedPublicationRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
+    use HandleBlocks;
+    use HandleSlugs;
+    use HandleMedias;
+    use HandleFiles;
+    use HandleRevisions;
 
     public function __construct(PrintedPublication $model)
     {
