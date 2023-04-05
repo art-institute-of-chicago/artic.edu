@@ -96,7 +96,7 @@ Route::get('/search/pages', [SearchController::class, 'pages'])->name('search.pa
 Route::get('/search/publications', [SearchController::class, 'publications'])->name('search.publications');
 Route::get('/search/artworks', [SearchController::class, 'artworks'])->name('search.artworks');
 Route::get('/search/press-releases', [SearchController::class, 'pressReleases'])->name('search.press-releases');
-Route::get('/search/research-guides', [SearchController::class, 'researchGuides'])->name('search.research-guides');
+Route::get('/search/educator-resources', [SearchController::class, 'educatorResources'])->name('search.educator-resources');
 Route::get('/search/exhibitions', [SearchController::class, 'exhibitions'])->name('search.exhibitions');
 Route::get('/search/interactive-features', [SearchController::class, 'interactiveFeatures'])->name('search.interactive-features');
 Route::get('/search/highlights', [SearchController::class, 'highlights'])->name('search.highlights');
