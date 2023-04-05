@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Forms;
 
 use Illuminate\Support\Facades\Mail;
-
 use App\Http\Requests\Form\RyersonClassVisitRequest;
-
 use App\Models\Form\RyersonClassVisit;
-
 use App\Mail\FormRyersonClassVisit;
 
 class RyersonClassVisitController extends FormController

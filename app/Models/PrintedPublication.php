@@ -12,7 +12,14 @@ use App\Models\Behaviors\HasRelated;
 
 class PrintedPublication extends AbstractModel
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable, HasRelated;
+    use HasBlocks;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasMediasEloquent;
+    use Transformable;
+    use HasRelated;
 
     protected $fillable = [
         'listing_description',

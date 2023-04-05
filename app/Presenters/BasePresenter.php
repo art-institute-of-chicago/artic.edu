@@ -6,7 +6,6 @@ use App\Libraries\SmartyPants;
 
 abstract class BasePresenter
 {
-
     /**
      * This is to store the original model instance
      */

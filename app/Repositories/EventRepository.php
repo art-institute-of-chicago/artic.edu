@@ -214,7 +214,7 @@ class EventRepository extends ModuleRepository
                 case 'weekend':
                     $query->weekend();
 
-                break;
+                    break;
                 default:
                     if ($audience || $type) {
                         $query->sixMonths();
@@ -222,7 +222,7 @@ class EventRepository extends ModuleRepository
                         $query->default();
                     }
 
-                break;
+                    break;
             }
         }
 

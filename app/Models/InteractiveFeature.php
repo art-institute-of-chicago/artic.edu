@@ -12,7 +12,14 @@ use App\Models\Behaviors\HasRelated;
 
 class InteractiveFeature extends AbstractModel
 {
-    use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiRelations, Transformable, HasRelated;
+    use HasRevisions;
+    use HasSlug;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasBlocks;
+    use HasApiRelations;
+    use Transformable;
+    use HasRelated;
 
     //protected $apiModel = 'App\Models\Api\DigitalLabel';
 

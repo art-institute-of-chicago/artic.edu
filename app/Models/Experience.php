@@ -17,7 +17,15 @@ use App\Helpers\ImageHelpers;
 
 class Experience extends AbstractModel implements Sortable
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, Transformable, HasUnlisted, HasAuthors;
+    use HasBlocks;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasPosition;
+    use Transformable;
+    use HasUnlisted;
+    use HasAuthors;
 
     protected $presenter = 'App\Presenters\Admin\ExperiencePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ExperiencePresenter';
@@ -131,11 +139,10 @@ class Experience extends AbstractModel implements Sortable
         if ($this->hasImage('thumbnail')) {
             return $this->image('thumbnail');
         }
-            $attract_slide = $this->slides()->where('module_type', 'attract')->first();
-            $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
+        $attract_slide = $this->slides()->where('module_type', 'attract')->first();
+        $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
 
-            return $attract_image ? $attract_image->cmsImage('experience_image', 'default', $params) : '';
-
+        return $attract_image ? $attract_image->cmsImage('experience_image', 'default', $params) : '';
     }
 
     public function slides()

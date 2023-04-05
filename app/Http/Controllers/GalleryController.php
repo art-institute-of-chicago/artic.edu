@@ -6,7 +6,7 @@ use App\Repositories\Api\GalleryRepository;
 
 class GalleryController extends FrontController
 {
-    const ARTWORKS_PER_PAGE = 50;
+    public const ARTWORKS_PER_PAGE = 50;
 
     protected $repository;
 

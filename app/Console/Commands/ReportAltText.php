@@ -160,9 +160,11 @@ class ReportAltText extends Command
         }
 
         // Alter slugs
-        if (\App\Models\Artist::class == get_class($item)
+        if (
+            \App\Models\Artist::class == get_class($item)
             || \App\Models\Department::class == get_class($item)
-            || \App\Models\Exhibition::class == get_class($item)) {
+            || \App\Models\Exhibition::class == get_class($item)
+        ) {
             $slug = $item->datahub_id . '/' . $item->getApiModelFilled()->titleSlug;
         }
 
@@ -230,8 +232,10 @@ class ReportAltText extends Command
             }
         }
 
-        if (\A17\Twill\Models\Block::class == get_class($item)
-            || \App\Models\Lightbox::class == get_class($item)) {
+        if (
+            \A17\Twill\Models\Block::class == get_class($item)
+            || \App\Models\Lightbox::class == get_class($item)
+        ) {
             return '';
         }
 

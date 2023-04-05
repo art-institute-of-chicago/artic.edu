@@ -3,13 +3,13 @@
 namespace App\Repositories;
 
 use A17\Twill\Repositories\Behaviors\HandleMedias;
-
 use App\Models\HomeArtist;
 use App\Repositories\Behaviors\HandleApiRelations;
 
 class HomeArtistRepository extends ModuleRepository
 {
-    use HandleMedias, HandleApiRelations;
+    use HandleMedias;
+    use HandleApiRelations;
 
     protected $apiBrowsers = [
         'artists' => [

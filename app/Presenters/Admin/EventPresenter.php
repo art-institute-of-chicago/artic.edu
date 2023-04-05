@@ -3,10 +3,8 @@
 namespace App\Presenters\Admin;
 
 use Carbon\Carbon;
-
 use App\Presenters\BasePresenter;
 use App\Helpers\ImageHelpers;
-
 use Illuminate\Support\Str;
 
 class EventPresenter extends BasePresenter
@@ -82,11 +80,10 @@ class EventPresenter extends BasePresenter
         if (!empty($this->entity->forced_date)) {
             return $this->entity->forced_date;
         }
-            // EventRepository::getEventsFiltered() adds this from `event_metas`
-            if (isset($this->entity->date)) {
-                return $this->formatDate($this->entity->date);
-            }
-
+        // EventRepository::getEventsFiltered() adds this from `event_metas`
+        if (isset($this->entity->date)) {
+            return $this->formatDate($this->entity->date);
+        }
     }
 
     public function formattedNextOccurrence()
@@ -95,14 +92,13 @@ class EventPresenter extends BasePresenter
             return $this->entity->forced_date;
         }
 
-            if ($next = $this->entity->nextOccurrenceExclusive) {
-                return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
-            }
+        if ($next = $this->entity->nextOccurrenceExclusive) {
+            return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
+        }
 
-            if ($last = $this->entity->lastOccurrence) {
-                return '<time datetime="' . $last->date->format('c') . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format('c') . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
-            }
-
+        if ($last = $this->entity->lastOccurrence) {
+            return '<time datetime="' . $last->date->format('c') . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format('c') . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
+        }
     }
 
     public function nextOccurrenceDate()

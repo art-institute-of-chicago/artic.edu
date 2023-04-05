@@ -3,10 +3,8 @@
 namespace App\Console\Commands\Events;
 
 use App\Models\Event;
-
 use League\Csv\Writer;
 use Illuminate\Support\Facades\Storage;
-
 use Aic\Hub\Foundation\AbstractCommand as BaseCommand;
 
 class EventExport extends BaseCommand

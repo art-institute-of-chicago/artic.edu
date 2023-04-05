@@ -102,7 +102,7 @@ class AppServiceProvider extends ServiceProvider
     public function registerClosureService()
     {
         $this->app->singleton('closureservice', function ($app) {
-            return new class() {
+            return new class () {
                 private $checkedForClosure = false;
 
                 private $cachedClosure;
@@ -123,7 +123,7 @@ class AppServiceProvider extends ServiceProvider
     public function registerPrintService()
     {
         $this->app->singleton('printservice', function ($app) {
-            return new class() {
+            return new class () {
                 private $isPrintMode;
 
                 public function __construct()

@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Forms;
 
 use Illuminate\Support\Facades\Mail;
-
 use App\Http\Requests\Form\EducatorAdmissionRequest;
-
 use App\Models\Form\EducatorAdmission;
-
 use App\Mail\FormEducatorAdmission;
 
 class EducatorAdmissionController extends FormController

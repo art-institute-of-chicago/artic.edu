@@ -7,7 +7,8 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class DiningHour extends AbstractModel
 {
-    use HasMedias, HasMediasEloquent;
+    use HasMedias;
+    use HasMediasEloquent;
 
     protected $fillable = [
         'published',

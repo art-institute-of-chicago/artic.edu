@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Models\EmailSeries;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-
 use Illuminate\Console\Command;
 
 class UpdateEmailSeries extends Command

@@ -154,7 +154,7 @@ trait HandleApiRelations
                                 $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
                             }
                         }
-                            // WEB-1187: Add augment route here!
+                        // WEB-1187: Add augment route here!
 
                         return [
                             'id' => $apiElement->id,

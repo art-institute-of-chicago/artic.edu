@@ -7,12 +7,11 @@ use App\Libraries\Search\Filters\DateRange;
 use App\Libraries\Search\Filters\BooleanFilter;
 use App\Libraries\Search\Filters\ColorFilter;
 use App\Models\Api\Search;
-
 use Illuminate\Support\Str;
 
 class CollectionService
 {
-    const API_SEARCH_CACHE_TTL = 3600;
+    public const API_SEARCH_CACHE_TTL = 3600;
 
     protected $chain;
 

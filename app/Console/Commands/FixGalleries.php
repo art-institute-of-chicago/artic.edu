@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\Vendor\Block;
-
 use Illuminate\Console\Command;
 
 class FixGalleries extends Command

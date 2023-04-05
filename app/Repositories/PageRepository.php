@@ -12,7 +12,12 @@ use App\Repositories\Behaviors\HandleApiRelations;
 
 class PageRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleFiles, HandleApiRelations, HandleTranslations;
+    use HandleSlugs;
+    use HandleRevisions;
+    use HandleMedias;
+    use HandleFiles;
+    use HandleApiRelations;
+    use HandleTranslations;
 
     protected $browsers = [
         // Homepage landing

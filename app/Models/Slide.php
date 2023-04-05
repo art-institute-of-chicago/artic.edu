@@ -13,7 +13,12 @@ use App\Models\Behaviors\HasMedias;
 
 class Slide extends AbstractModel implements Sortable
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition;
+    use HasBlocks;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasPosition;
 
     protected $fillable = [
         'published',

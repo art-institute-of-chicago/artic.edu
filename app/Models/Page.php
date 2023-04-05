@@ -13,7 +13,14 @@ use App\Models\Behaviors\HasRelated;
 
 class Page extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable, HasRelated;
+    use HasSlug;
+    use HasRevisions;
+    use HasMedias;
+    use HasFiles;
+    use HasMediasEloquent;
+    use HasApiRelations;
+    use Transformable;
+    use HasRelated;
 
     protected $presenter = 'App\Presenters\Admin\PagePresenter';
 

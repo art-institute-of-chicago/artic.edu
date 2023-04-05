@@ -11,7 +11,7 @@ use App\Libraries\ExploreFurther\ArtworkService as ExploreFurther;
 
 class ArtworkController extends BaseScopedController
 {
-    const PER_PAGE = 20;
+    public const PER_PAGE = 20;
 
     protected $artworkRepository;
 

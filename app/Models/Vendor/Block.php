@@ -9,10 +9,11 @@ use App\Models\SeamlessImage;
 
 class Block extends BaseModel
 {
-    use LintsAttributes, HasMedias;
+    use LintsAttributes;
+    use HasMedias;
 
-    const GALLERY_ITEM_TYPE_CUSTOM = 'custom';
-    const GALLERY_ITEM_TYPE_ARTWORK = 'artwork';
+    public const GALLERY_ITEM_TYPE_CUSTOM = 'custom';
+    public const GALLERY_ITEM_TYPE_ARTWORK = 'artwork';
 
     public function setAttribute($key, $value)
     {
