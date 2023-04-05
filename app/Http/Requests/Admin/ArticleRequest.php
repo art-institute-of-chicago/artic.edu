@@ -17,7 +17,8 @@ class ArticleRequest extends Request
             'date' => 'required',
             'heading' => 'max:255',
             'list_description' => 'max:255',
-            'citations' => 'max:255'
+            'citations' => 'max:255',
+            'hero_caption' => 'max:255'
         ];
     }
 }
