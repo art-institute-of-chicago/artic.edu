@@ -27,7 +27,6 @@ use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\PrintedPublicationsController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\ResearchController;
-use App\Http\Controllers\ResearchGuidesController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SubscribeController;
