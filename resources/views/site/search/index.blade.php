@@ -31,7 +31,7 @@
     @endcomponent
 @endif
 
-@if (empty($featuredResults) && empty($artists) && empty($researchGuides) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles) && empty($interactiveFeatures) && empty($highlights))
+@if (empty($featuredResults) && empty($artists) && empty($educatorResources) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles) && empty($interactiveFeatures) && empty($highlights))
     @component('components.molecules._m-no-results')
     @endcomponent
 @endif
@@ -703,11 +703,10 @@
     @endif
 @endif
 
-{{-- WEB-448: This includes both Research Guides and Educator Resources. --}}
-@if (isset($researchGuides) && $researchGuides->getMetadata('pagination')->total > 0)
+@if (isset($educatorResources) && $educatorResources->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $researchGuides->getMetadata('pagination')->total. ' '. Str::plural('resource', $researchGuides->getMetadata('pagination')->total), 'href' => route('search.research-guides', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $educatorResources->getMetadata('pagination')->total. ' '. Str::plural('resource', $educatorResources->getMetadata('pagination')->total), 'href' => route('search.research-guides', ['q' => request('q')]))))
         @endunless
 
         Resources
@@ -721,7 +720,7 @@
           @slot('cols_medium','3')
           @slot('cols_large','4')
           @slot('cols_xlarge','4')
-          @foreach ($researchGuides as $item)
+          @foreach ($educatorResources as $item)
               @component('components.molecules._m-listing----generic')
                   @slot('item', $item)
                   @slot('hideImage', true)
@@ -740,7 +739,7 @@
             @slot('cols_large','4')
             @slot('cols_xlarge','4')
 
-            @foreach ($researchGuides as $item)
+            @foreach ($educatorResources as $item)
                 @component('components.molecules._m-listing----generic')
                     @slot('item', $item)
                     @slot('hideImage', true)
