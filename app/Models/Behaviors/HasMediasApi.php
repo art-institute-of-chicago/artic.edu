@@ -60,7 +60,7 @@ trait HasMediasApi
             return $image['src'];
         }
 
-        return DamsImageService::getTransparentFallbackUrl($params);
+        return ImageService::getTransparentFallbackUrl($params);
     }
 
     protected function getImageField($role, $crop)
