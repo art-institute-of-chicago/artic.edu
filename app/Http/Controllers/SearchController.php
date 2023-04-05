@@ -80,7 +80,7 @@ class SearchController extends BaseScopedController
         $this->pagesRepository = $pages;
         $this->educatorResourceRepository = $educatorResources;
         $this->pressRepository = $press;
-        $this->interactiveFeatureRespository = $interactiveFeature;
+        $this->interactiveFeatureRepository = $interactiveFeature;
         $this->highlightRepository = $highlight;
 
         parent::__construct();
@@ -115,7 +115,7 @@ class SearchController extends BaseScopedController
         $pages = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_PAGES);
         $educatorResources = $this->educatorResourceRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
         $press = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
-        $interactiveFeatures = $this->interactiveFeatureRespository->search(request('q'))->paginate(self::ALL_PER_PAGE_INTERACTIVEFEATURES);
+        $interactiveFeatures = $this->interactiveFeatureRepository->search(request('q'))->paginate(self::ALL_PER_PAGE_INTERACTIVEFEATURES);
         $highlights = $this->highlightRepository->searchApi(request('q'), self::ALL_PER_PAGE_HIGHLIGHTS);
 
         return view('site.search.index', [
@@ -264,7 +264,7 @@ class SearchController extends BaseScopedController
         $this->seo->setTitle('Search');
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $interactiveFeatures = $this->interactiveFeatureRespository->search(request('q'))->paginate(self::INTERACTIVEFEATURES_PER_PAGE);
+        $interactiveFeatures = $this->interactiveFeatureRepository->search(request('q'))->paginate(self::INTERACTIVEFEATURES_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'interactive-features');
 
