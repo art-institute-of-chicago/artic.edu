@@ -20,7 +20,6 @@ class DigitalPublication extends AbstractModel
 
     protected $fillable = [
         'listing_description',
-        'short_description',
         'hero_caption',
         'title',
         'title_display',
