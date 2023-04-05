@@ -371,7 +371,7 @@ class ImageHelpers
                 }
 
                 if (empty($settings['crop'])) {
-                    $settings['crop'] = 'faces, center';
+                    $settings['crop'] = 'faces,center';
                 }
             }
 
@@ -411,7 +411,7 @@ class ImageHelpers
             }
 
             if (empty($settings['crop'])) {
-                $imgixSettings['crop'] = 'faces, center';
+                $imgixSettings['crop'] = 'faces,center';
             } else {
                 $imgixSettings['crop'] = $settings['crop'];
             }
