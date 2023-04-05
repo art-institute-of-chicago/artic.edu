@@ -18,7 +18,6 @@ class DigitalPublicationRequest extends Request
         return [
             'title' => 'required',
             'listing_description' => 'max:255',
-            'short_description' => 'max:255',
             'bgcolor' => 'nullable|regex:/^#[0-9a-fA-F]{6}/'
         ];
     }
