@@ -10,11 +10,12 @@ class ShortcodeService
     // Regex101 reference: https://regex101.com/r/sZ7wP0
     public const ATTRIBUTE_REGEXP = "/(?<name>\\S+)=[\"']?(?P<value>(?:.(?![\"']?\\s+(?:\\S+)=|[>\"']))+.)[\"']?/u";
 
-    public static function parse_ref($text)
+    public static function parse_ref($text) // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         return self::parse_text_with_regexp($text, self::REF_REGEXP);
     }
 
+    // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     private static function parse_text_with_regexp($text, $regexp)
     {
         preg_match_all($regexp, $text, $matches, PREG_SET_ORDER);
@@ -37,7 +38,7 @@ class ShortcodeService
         return $shortcodes;
     }
 
-    private static function parse_attrs($attrs)
+    private static function parse_attrs($attrs) // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         preg_match_all(self::ATTRIBUTE_REGEXP, $attrs, $matches, PREG_SET_ORDER);
         $attributes = [];
