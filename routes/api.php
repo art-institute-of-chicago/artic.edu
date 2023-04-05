@@ -143,12 +143,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('pressreleases/{id}', [PressReleasesController::class, 'show']);
 
     /**
-     * Research guides ------------------------------------------------------
-     */
-    Route::get('researchguides', [ResearchGuidesController::class, 'index']);
-    Route::get('researchguides/{id}', [ResearchGuidesController::class, 'show']);
-
-    /**
      * Educator resources ------------------------------------------------------
      */
     Route::get('educatorresources', [EducatorResourcesController::class, 'index']);
