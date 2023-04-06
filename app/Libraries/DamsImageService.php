@@ -86,59 +86,32 @@ class DamsImageService implements ImageServiceInterface
         return $this->base_url . $this->version . '/' . $id . '/' . $size . '/' . $dimensions . '/0/default.jpg';
     }
 
-    public function getUrlWithCrop($id, array $crop_params, array $params = [])
+    public function getUrlWithCrop(string $id, array $crop_params, array $params = [])
     {
         return $this->getRawUrl($id);
     }
 
-    /**
-     * @param string $id
-     * @param array $cropParams
-     * @param int $width
-     * @param int $height
-     * @param array $params
-     * @return string
-     */
-    public function getUrlWithFocalCrop($id, array $cropParams, $width, $height, array $params = [])
+    public function getUrlWithFocalCrop(string $id, array $cropParams, int $width, int $height, array $params = [])
     {
         return $this->getRawUrl($id);
     }
 
-    /**
-     * @param string $id
-     * @param array $params
-     * @return string
-     */
-    public function getLQIPUrl($id, array $params = [])
+    public function getLQIPUrl(string $id, array $params = [])
     {
         return $this->getRawUrl($id);
     }
 
-    /**
-     * @param string $id
-     * @param array $params
-     * @return string
-     */
-    public function getSocialUrl($id, array $params = [])
+    public function getSocialUrl(string $id, array $params = [])
     {
         return $this->getRawUrl($id);
     }
 
-    /**
-     * @param string $id
-     * @param array $params
-     * @return string
-     */
-    public function getCmsUrl($id, array $params = [])
+    public function getCmsUrl(string $id, array $params = [])
     {
         return $this->getRawUrl($id);
     }
 
-    /**
-     * @param string $id
-     * @return string
-     */
-    public function getRawUrl($id)
+    public function getRawUrl(string $id)
     {
         return Storage::disk(config('twill.media_library.disk'))->url($id);
     }
