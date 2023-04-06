@@ -22,7 +22,6 @@ use App\Http\Controllers\API\InteractiveFeaturesController;
 use App\Http\Controllers\API\LocationsController;
 use App\Http\Controllers\API\PressReleasesController;
 use App\Http\Controllers\API\PrintedPublicationsController;
-use App\Http\Controllers\API\ResearchGuidesController;
 use App\Http\Controllers\API\SponsorsController;
 use App\Http\Controllers\API\StaticPagesController;
 use App\Http\Controllers\API\TagsController;
