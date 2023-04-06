@@ -44,10 +44,12 @@ trait HasFeaturedRelated
         if (!$this->selectedFeaturedRelateds) {
             $relatedItems = $this->getCustomRelatedItems();
 
-            if (($this->showDefaultRelatedItems ?? false) && $relatedItems->count() < 1) {
-                $relatedItems = $this->getDefaultRelatedItems($relatedItems);
-                $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
-                $this->sidebarContainsDefaultRelated = true;
+            if (config('aic.show_default_related_items')) {
+                if (($this->showDefaultRelatedItems ?? false) && $relatedItems->count() < 1) {
+                    $relatedItems = $this->getDefaultRelatedItems($relatedItems);
+                    $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
+                    $this->sidebarContainsDefaultRelated = true;
+                }
             }
 
             $this->selectedFeaturedRelateds = $this->getLabeledRelatedItems($relatedItems);

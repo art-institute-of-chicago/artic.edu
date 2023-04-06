@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
-use DamsImageService;
+use ImageService;
 
 class ImageHelpers
 {
@@ -63,7 +63,7 @@ class ImageHelpers
     {
         $sourceType = 'imgix';
 
-        $src = DamsImageService::getUrlWithCrop($imageObject->uuid, $cropParams);
+        $src = ImageService::getUrlWithCrop($imageObject->uuid, $cropParams);
 
         $credit = '';
         $creditUrl = '';
