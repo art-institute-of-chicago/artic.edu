@@ -51,6 +51,7 @@ class ArtworkTest extends BaseTestCase
 
     public function test_artwork_show_retrieves_related_media()
     {
+        $this->markTestSkipped("We're hiding related content entirely using the SHOW_DEFAULT_RELATED_ITEMS feature flag");
         $artwork = Artwork::factory()->make();
         $this->addMockApiResponses([
             $this->mockApiModelReponse($artwork),
