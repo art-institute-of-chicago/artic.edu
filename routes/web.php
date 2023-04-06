@@ -27,7 +27,6 @@ use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\PrintedPublicationsController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\ResearchController;
-use App\Http\Controllers\ResearchGuidesController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SubscribeController;
@@ -72,10 +71,6 @@ Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPubli
 // Collection Research
 Route::get('/collection/research_resources', [ResearchController::class, 'index'])->name('collection.research_resources');
 
-// Collection Resources - Research Guides
-Route::get('/collection/resources/research-guides', [ResearchGuidesController::class, 'index'])->name('collection.resources.research-guides');
-Route::get('/collection/resources/research-guides/{id}', [ResearchGuidesController::class, 'show'])->name('collection.resources.research-guides.show');
-
 // Collection Resources Educator Resources
 Route::get('/learn-with-us/educators/tools-for-my-classroom/resource-finder', [EducatorResourcesController::class, 'index'])->name('collection.resources.educator-resources');
 Route::get('/collection/resources/educator-resources/{id}', [EducatorResourcesController::class, 'show'])->name('collection.resources.educator-resources.show');
@@ -96,7 +91,7 @@ Route::get('/search/pages', [SearchController::class, 'pages'])->name('search.pa
 Route::get('/search/publications', [SearchController::class, 'publications'])->name('search.publications');
 Route::get('/search/artworks', [SearchController::class, 'artworks'])->name('search.artworks');
 Route::get('/search/press-releases', [SearchController::class, 'pressReleases'])->name('search.press-releases');
-Route::get('/search/research-guides', [SearchController::class, 'researchGuides'])->name('search.research-guides');
+Route::get('/search/educator-resources', [SearchController::class, 'educatorResources'])->name('search.educator-resources');
 Route::get('/search/exhibitions', [SearchController::class, 'exhibitions'])->name('search.exhibitions');
 Route::get('/search/interactive-features', [SearchController::class, 'interactiveFeatures'])->name('search.interactive-features');
 Route::get('/search/highlights', [SearchController::class, 'highlights'])->name('search.highlights');
