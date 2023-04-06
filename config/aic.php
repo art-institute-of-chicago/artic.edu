@@ -31,4 +31,5 @@ return [
     'show_artist_gender' => (bool) env('SHOW_ARTIST_GENDER', false),
     'show_hours_in_footer' => (bool) env('SHOW_HOURS_IN_FOOTER', false),
     'disable_captcha' => (bool) env('DISABLE_CAPTCHA', false),
+    'show_default_related_items' => (bool) env('SHOW_DEFAULT_RELATED_ITEMS', true),
 ];
