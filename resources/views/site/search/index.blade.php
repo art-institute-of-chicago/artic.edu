@@ -706,7 +706,7 @@
 @if (isset($educatorResources) && $educatorResources->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $educatorResources->getMetadata('pagination')->total. ' '. Str::plural('resource', $educatorResources->getMetadata('pagination')->total), 'href' => route('search.research-guides', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $educatorResources->getMetadata('pagination')->total. ' '. Str::plural('resource', $educatorResources->getMetadata('pagination')->total), 'href' => route('search.educator-resources', ['q' => request('q')]))))
         @endunless
 
         Resources
