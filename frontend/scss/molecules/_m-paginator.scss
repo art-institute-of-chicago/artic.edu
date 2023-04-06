@@ -120,8 +120,9 @@ m-paginator
   color: $color__text--disabled;
 }
 
-.m-paginator__prev-next a span,
-.m-paginator__prev-next span span {
+.m-paginator__prev-next .f-buttons > a > span,
+.m-paginator__prev-next .f-buttons > span
+{
   display: none;
 
   @include breakpoint('medium+') {
@@ -135,9 +136,8 @@ m-paginator
   }
 }
 
-.m-paginator__prev-next svg:first-child {
+.m-paginator__prev-next li:last-child svg {
   transform: rotate(180deg);
-  transform-origin: 8px 8px;
 }
 
 
