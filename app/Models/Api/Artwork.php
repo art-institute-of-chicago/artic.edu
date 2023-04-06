@@ -27,6 +27,7 @@ class Artwork extends BaseApiModel
     }
 
     use HasApiFactory;
+
     public const RELATED_MULTIMEDIA = 100;
     public const EXTRA_IMAGES_LIMIT = 9;
 
