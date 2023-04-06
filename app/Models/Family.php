@@ -7,7 +7,8 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class Family extends AbstractModel
 {
-    use HasMedias, HasMediasEloquent;
+    use HasMedias;
+    use HasMediasEloquent;
 
     protected $fillable = [
         'published',

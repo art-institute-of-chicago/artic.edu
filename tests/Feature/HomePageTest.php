@@ -58,7 +58,7 @@ class HomePageTest extends BaseTestCase
         $forcedFormattedDates = Event::whereNotNull('forced_date')->get()->pluck('forced_date')->all();
         $response->assertSee($forcedFormattedDates, 'Home page displays forced formatted dates as they are');
 
-        $dynamicallyFormattedDates = Event::whereNull('forced_date')->get()->map(function($event) {
+        $dynamicallyFormattedDates = Event::whereNull('forced_date')->get()->map(function ($event) {
             return $event->nextOccurrence->date->format('l, F j');  // [weekday], [month] [day of month]
         })->all();
         $response->assertSee($dynamicallyFormattedDates, 'Home page displays dynamically formatted dates');

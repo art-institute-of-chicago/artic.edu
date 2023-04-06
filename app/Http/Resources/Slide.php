@@ -166,10 +166,9 @@ class Slide extends JsonResource
                 ];
             }
 
-                return [
+            return [
 
-                ];
-
+            ];
         } else {
             $src = '';
         }
@@ -231,10 +230,9 @@ class Slide extends JsonResource
             ];
         }
 
-            return [
+        return [
 
-            ];
-
+        ];
     }
 
     protected function getEndAttributes()

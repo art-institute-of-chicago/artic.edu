@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
-
 use App\Models\Event;
 use App\Models\EventMeta;
 use App\Models\EventProgram;
@@ -61,6 +60,6 @@ class EventTest extends BaseTestCase
             'date_end' => now()->addDay(),
         ]);
         $event->eventMetas()->save($futureEvent);
-        $this->assertNotNull($event->nextOccurrence,  "The next occurrence must end in the future");
+        $this->assertNotNull($event->nextOccurrence, "The next occurrence must end in the future");
     }
 }

@@ -8,7 +8,9 @@ use App\Helpers\StringHelpers;
 
 class Gallery extends AbstractModel
 {
-    use HasApiModel, Transformable, HasMedias;
+    use HasApiModel;
+    use Transformable;
+    use HasMedias;
 
     protected $apiModel = 'App\Models\Api\Gallery';
 

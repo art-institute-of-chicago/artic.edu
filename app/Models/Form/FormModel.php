@@ -3,7 +3,6 @@
 namespace App\Models\Form;
 
 use Illuminate\Database\Eloquent\Model;
-
 use Carbon\Carbon;
 
 class FormModel extends Model

@@ -162,7 +162,7 @@ class ArtistRepository extends BaseApiRepository
             ->items();
 
 
-        $items = array_filter($items, function($value) {
+        $items = array_filter($items, function ($value) {
             if ($value->hasAugmentedModel() && $value->getAugmentedModel()) {
                 return $value->getAugmentedModel()->published;
             }

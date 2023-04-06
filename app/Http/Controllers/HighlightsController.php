@@ -7,7 +7,7 @@ use App\Libraries\ExploreFurther\HighlightService as ExploreFurther;
 
 class HighlightsController extends FrontController
 {
-    const HIGHLIGHTS_PER_PAGE = 12;
+    public const HIGHLIGHTS_PER_PAGE = 12;
     protected $repository;
 
     public function __construct(HighlightRepository $repository)

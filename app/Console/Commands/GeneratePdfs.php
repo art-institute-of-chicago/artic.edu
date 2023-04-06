@@ -12,7 +12,7 @@ use Prince\Prince;
 
 class GeneratePdfs extends Command
 {
-    const STORAGE_PATH = '/pdf/static/';
+    public const STORAGE_PATH = '/pdf/static/';
 
     /**
      * The name and signature of the console command.

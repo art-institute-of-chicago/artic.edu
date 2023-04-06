@@ -7,7 +7,7 @@ use App\Libraries\Search\CollectionService;
 
 class CollectionController extends BaseScopedController
 {
-    const PER_PAGE = 50;
+    public const PER_PAGE = 50;
 
     protected $apiRepository;
     protected $searchRepository;
@@ -39,11 +39,13 @@ class CollectionController extends BaseScopedController
     public function index()
     {
         // WEB-1287: Redirect some common boolean filters
-        if (in_array(strtolower(request('q')), [
+        if (
+            in_array(strtolower(request('q')), [
             'cc0',
             'public domain',
             'creative commons',
-        ])) {
+            ])
+        ) {
             return redirect(route('collection', ['is_public_domain' => 1]));
         }
 
@@ -164,14 +166,13 @@ class CollectionController extends BaseScopedController
             return true;
         }
 
-            if ($count == 1) {
-                // If there's only one selected filter, check if it has more than one active element
-                $input = request()->input();
+        if ($count == 1) {
+            // If there's only one selected filter, check if it has more than one active element
+            $input = request()->input();
 
-                if (count(explode(';', array_shift($input))) > 1) {
-                    return true;
-                }
+            if (count(explode(';', array_shift($input))) > 1) {
+                return true;
             }
-
+        }
     }
 }

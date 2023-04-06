@@ -4,7 +4,6 @@ namespace App\Helpers;
 
 class StringHelpers
 {
-
     /**
      * Get Unicode slug
      * @see HasSlug::getUtf8Slug()
@@ -249,11 +248,13 @@ class StringHelpers
     public static function rightTrim($string, $needle)
     {
         if (is_string($string)) {
-            while ((
-                strlen($string) >= strlen($needle)
-            ) && (
-                strpos($string, $needle, strlen($string) - strlen($needle)) !== false
-            )) {
+            while (
+                (
+                    strlen($string) >= strlen($needle)
+                ) && (
+                    strpos($string, $needle, strlen($string) - strlen($needle)) !== false
+                )
+            ) {
                 $string = substr($string, 0, -strlen($needle));
             }
         }

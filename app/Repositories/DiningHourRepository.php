@@ -8,7 +8,8 @@ use App\Models\DiningHour;
 
 class DiningHourRepository extends ModuleRepository
 {
-    use HandleMedias, HandleTranslations;
+    use HandleMedias;
+    use HandleTranslations;
 
     public function __construct(DiningHour $model)
     {

@@ -8,7 +8,6 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\EducatorResource;
-
 use App\Repositories\Behaviors\HandleApiBlocks;
 
 class EducatorResourceRepository extends ModuleRepository

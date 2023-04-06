@@ -34,7 +34,7 @@ class AuthorPresenter extends BasePresenter
                 $writings[] =
                     $this->{$relation}
                         ->map(function ($element) use ($relation) {
-                            return $this->_prepWriting($element, $relation);
+                            return $this->prepWriting($element, $relation);
                         });
             }
         }
@@ -42,7 +42,7 @@ class AuthorPresenter extends BasePresenter
         return $this->writingsCache = collect($writings)->flatten(1)->filter()->sortByDesc('date');
     }
 
-    private function _prepWriting($element, $type = 'article')
+    private function prepWriting($element, $type = 'article')
     {
         $element->date = $element->date ?? $element->publish_start_date ?? $element->updated_at;
         $element->writingType = $type;

@@ -9,7 +9,7 @@ class FeeCategoryRequest extends Request
     public function rulesForCreate()
     {
         return [
-            'title' => 'required', 
+            'title' => 'required',
             'tooltip' => 'required'
         ];
     }
@@ -17,7 +17,7 @@ class FeeCategoryRequest extends Request
     public function rulesForUpdate()
     {
         return [
-            'title' => 'required', 
+            'title' => 'required',
             'tooltip' => 'required',
         ];
     }

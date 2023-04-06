@@ -53,7 +53,7 @@ class MigrateOSCIPublicationOne extends Command
         $webPub->is_dsc_stub = false;
         $webPub->save();
 
-        foreach ($apiPub->sections as $apiSection){
+        foreach ($apiPub->sections as $apiSection) {
             $webSection = new DigitalPublicationSection();
             $webSection->title = $apiSection->title;
             $webSection->published = false;

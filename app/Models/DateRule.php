@@ -69,26 +69,34 @@ class DateRule extends AbstractModel
     public function getRuleType()
     {
         switch ($this->type) {
-            case 0:return 'recurrent';
-            case 1:return 'include';
-            case 2:return 'exclude';
+            case 0:
+                return 'recurrent';
+            case 1:
+                return 'include';
+            case 2:
+                return 'exclude';
         }
     }
 
     public function getMonthlyRepeatType()
     {
         switch ($this->monthly_repeat_pattern) {
-            case 0:return 'numeral';
-            case 1:return 'first_day';
+            case 0:
+                return 'numeral';
+            case 1:
+                return 'first_day';
         }
     }
 
     public function getRecurringType()
     {
         switch ($this->recurring_type) {
-            case 0:return 'DAILY';
-            case 1:return 'WEEKLY';
-            case 2:return 'MONTHLY';
+            case 0:
+                return 'DAILY';
+            case 1:
+                return 'WEEKLY';
+            case 2:
+                return 'MONTHLY';
         }
     }
 

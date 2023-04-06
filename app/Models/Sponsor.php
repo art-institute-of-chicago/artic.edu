@@ -6,7 +6,8 @@ use App\Models\Behaviors\HasBlocks;
 
 class Sponsor extends AbstractModel
 {
-    use HasBlocks, Transformable;
+    use HasBlocks;
+    use Transformable;
 
     protected $fillable = [
         'published',

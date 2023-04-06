@@ -11,7 +11,10 @@ use App\Models\Experience;
 
 class InteractiveFeatureRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks;
+    use HandleSlugs;
+    use HandleRevisions;
+    use HandleMedias;
+    use HandleBlocks;
 
     public function __construct(InteractiveFeature $model)
     {

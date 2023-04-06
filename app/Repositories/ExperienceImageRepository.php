@@ -11,7 +11,10 @@ use App\Models\ExperienceImage;
 
 class ExperienceImageRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleMedias, HandleFiles, HandleRevisions;
+    use HandleBlocks;
+    use HandleMedias;
+    use HandleFiles;
+    use HandleRevisions;
 
     public function __construct(ExperienceImage $model)
     {

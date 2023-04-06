@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Cookie;
 
 class RecentlyViewedService
 {
-    const THEMES_PER_CATEGORY = 3;
+    public const THEMES_PER_CATEGORY = 3;
 
     /**
      * Add a new item to the recently viewed collection
@@ -98,7 +98,6 @@ class RecentlyViewedService
 
         // If we have recently viewed elements
         if (!empty($ids)) {
-
             // Let's aggregate on them to get better suggestions
             $tags = Search::query()
                 ->forceEndpoint('search')

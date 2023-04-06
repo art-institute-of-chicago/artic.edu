@@ -9,7 +9,9 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class Offer extends AbstractModel implements Sortable
 {
-    use HasMedias, HasMediasEloquent, HasPosition;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasPosition;
 
     protected $fillable = [
         'published',

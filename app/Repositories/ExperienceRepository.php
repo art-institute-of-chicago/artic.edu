@@ -15,7 +15,14 @@ use App\Repositories\Behaviors\HandleAuthors;
 
 class ExperienceRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleExperienceModule, HandleMagazine, HandleAuthors;
+    use HandleBlocks;
+    use HandleSlugs;
+    use HandleMedias;
+    use HandleFiles;
+    use HandleRevisions;
+    use HandleExperienceModule;
+    use HandleMagazine;
+    use HandleAuthors;
 
     protected $morphType = 'experiences';
 

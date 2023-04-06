@@ -6,14 +6,14 @@ class MagazineIssuePresenter extends GenericPresenter
 {
     protected $linkIndex = 1;
 
-    public function hero_text()
+    public function hero_text() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         $p = "{<\s*a\s*(.*?)>(.*?)</a>}i";
 
         return preg_replace_callback($p, [$this, 'hero_text_callback'], $this->entity->hero_text);
     }
 
-    private function hero_text_callback($matches)
+    private function hero_text_callback($matches) // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         $gtmEvent = $matches[2]; // Link text
         preg_match("{href=\"([a-zA-Z0-9\/\:\?\#\-\_\.]+)\"}i", $matches[1], $urlMatches);

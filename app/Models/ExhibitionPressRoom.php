@@ -11,7 +11,12 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class ExhibitionPressRoom extends AbstractModel
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent;
+    use HasBlocks;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasMediasEloquent;
 
     protected $fillable = [
         'listing_description',

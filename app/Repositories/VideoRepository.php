@@ -11,7 +11,11 @@ use App\Models\Video;
 
 class VideoRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
+    use HandleBlocks;
+    use HandleSlugs;
+    use HandleMedias;
+    use HandleFiles;
+    use HandleRevisions;
 
     protected $relatedBrowsers = [
         'related_videos' => [

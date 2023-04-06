@@ -13,7 +13,14 @@ use App\Models\Behaviors\HasRelated;
 
 class Page extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable, HasRelated;
+    use HasSlug;
+    use HasRevisions;
+    use HasMedias;
+    use HasFiles;
+    use HasMediasEloquent;
+    use HasApiRelations;
+    use Transformable;
+    use HasRelated;
 
     protected $presenter = 'App\Presenters\Admin\PagePresenter';
 
@@ -318,7 +325,7 @@ class Page extends AbstractModel
         return $this->hasMany(Location::class)->orderBy('position');
     }
 
-    public function dining_hours()
+    public function dining_hours() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         return $this->hasMany(DiningHour::class)->orderBy('position');
     }
@@ -333,7 +340,7 @@ class Page extends AbstractModel
         return $this->hasMany(Family::class)->orderBy('position');
     }
 
-    public function featured_hours()
+    public function featured_hours() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         return $this->hasMany(FeaturedHour::class)->orderBy('position');
     }

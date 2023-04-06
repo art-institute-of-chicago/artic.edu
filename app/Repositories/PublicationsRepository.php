@@ -26,10 +26,7 @@ class PublicationsRepository
 
             if ($pub) {
                 $pub->addSearchSection($section);
-            }
-
-            // If the section represents a pub we haven't found, retrieve it
-            else {
+            } else { // If the section represents a pub we haven't found, retrieve it
                 $pub = DigitalPublication::find($section->generic_page_id ?? $section->publication_id ?? $section->digital_publication_id);
 
                 if ($pub) {

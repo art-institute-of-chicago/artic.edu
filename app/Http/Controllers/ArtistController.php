@@ -7,7 +7,7 @@ use App\Libraries\ExploreFurther\BaseService as ExploreArtists;
 
 class ArtistController extends FrontController
 {
-    const ARTWORKS_PER_PAGE = 12;
+    public const ARTWORKS_PER_PAGE = 12;
 
     protected $repository;
 

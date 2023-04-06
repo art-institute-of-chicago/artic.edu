@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\Lightbox;
-
 use Carbon\Carbon;
 
 class HomeController extends FrontController

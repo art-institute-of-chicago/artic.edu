@@ -9,7 +9,9 @@ use App\Models\Author;
 
 class AuthorRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleMedias, HandleRevisions;
+    use HandleSlugs;
+    use HandleMedias;
+    use HandleRevisions;
 
     public function __construct(Author $model)
     {

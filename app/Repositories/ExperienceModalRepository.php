@@ -12,7 +12,12 @@ use App\Repositories\Behaviors\Handle3DModel;
 
 class ExperienceModalRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleMedias, HandleFiles, HandleRevisions, HandleExperienceModule, Handle3DModel;
+    use HandleBlocks;
+    use HandleMedias;
+    use HandleFiles;
+    use HandleRevisions;
+    use HandleExperienceModule;
+    use Handle3DModel;
 
     public function __construct(ExperienceModal $model)
     {

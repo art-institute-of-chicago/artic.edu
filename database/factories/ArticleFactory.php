@@ -33,7 +33,7 @@ class ArticleFactory extends Factory
             'published' => $this->faker->boolean(),
             'subtype' => ucfirst($this->faker->word()),
             'title' => ucfirst($this->faker->words(5, true)),
-            'title_display' => '<i>' . ucfirst($this->faker->words(5, true)). '</i>',
+            'title_display' => '<i>' . ucfirst($this->faker->words(5, true)) . '</i>',
         ];
     }
 

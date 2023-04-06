@@ -14,7 +14,6 @@ class InvalidationListener
      */
     public function __construct()
     {
-
     }
 
     /**

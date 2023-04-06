@@ -16,7 +16,16 @@ use Illuminate\Support\Str;
 
 class Exhibition extends AbstractModel
 {
-    use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiModel, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
+    use HasRevisions;
+    use HasSlug;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasBlocks;
+    use HasApiModel;
+    use Transformable;
+    use HasRelated;
+    use HasApiRelations;
+    use HasFeaturedRelated;
 
     protected $apiModel = 'App\Models\Api\Exhibition';
 
@@ -25,13 +34,13 @@ class Exhibition extends AbstractModel
         'deleted' => \App\Events\UpdateExhibition::class,
     ];
 
-    const BASIC = 0;
-    const LARGE = 1;
-    const SPECIAL = 2;
+    public const BASIC = 0;
+    public const LARGE = 1;
+    public const SPECIAL = 2;
 
-    const OPEN = 'Open';
-    const CLOSED = 'Closed';
-    const ONGOING = 'Ongoing';
+    public const OPEN = 'Open';
+    public const CLOSED = 'Closed';
+    public const ONGOING = 'Ongoing';
 
     protected $fillable = [
         'published',
@@ -290,7 +299,6 @@ class Exhibition extends AbstractModel
 
     public function getIsFeaturedAttribute()
     {
-
         // @see ExhibitionsController::index and relations on Page model
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 

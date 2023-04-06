@@ -51,5 +51,4 @@ class CreatePageTranslationsTable extends Migration
             $table->string('visit_become_member_label')->nullable();
         });
     }
-
 }
