@@ -10,7 +10,11 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class HomeFeature extends AbstractModel
 {
-    use HasMedias, HasBlocks, HasApiRelations, HasMediasEloquent, HasFiles;
+    use HasMedias;
+    use HasBlocks;
+    use HasApiRelations;
+    use HasMediasEloquent;
+    use HasFiles;
 
     protected $fillable = [
         'title',

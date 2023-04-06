@@ -3,7 +3,6 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
-
 use Carbon\Carbon;
 
 class TicketedEvent extends BaseApiModel

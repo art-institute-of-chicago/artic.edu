@@ -10,7 +10,8 @@ use Tests\MockApi;
 
 class ArtworkTest extends BaseTestCase
 {
-    use MockApi, WithFaker;
+    use MockApi;
+    use WithFaker;
 
     protected $seed = true;
 

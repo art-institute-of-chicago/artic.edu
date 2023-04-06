@@ -11,7 +11,13 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class ResearchGuide extends AbstractModel
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
+    use HasBlocks;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasMediasEloquent;
+    use Transformable;
 
     protected $fillable = [
         'listing_description',

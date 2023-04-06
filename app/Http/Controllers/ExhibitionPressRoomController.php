@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Repositories\ExhibitionPressRoomRepository;
 use App\Models\ExhibitionPressRoom;
 
@@ -20,7 +19,9 @@ class ExhibitionPressRoomController extends FrontController
 
     public function index(Request $request)
     {
-        if ($auth = $this->authorize($request)) return $auth;
+        if ($auth = $this->authorize($request)) {
+            return $auth;
+        }
 
         $items = ExhibitionPressRoom::published()->ordered()->paginate();
         $title = 'Exhibition Press Room';
@@ -54,7 +55,9 @@ class ExhibitionPressRoomController extends FrontController
 
     public function show($id, Request $request)
     {
-        if ($auth = $this->authorize($request)) return $auth;
+        if ($auth = $this->authorize($request)) {
+            return $auth;
+        }
 
         $item = $this->repository->getById((int) $id);
 

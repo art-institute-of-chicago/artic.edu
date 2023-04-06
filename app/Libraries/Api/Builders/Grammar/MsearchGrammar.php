@@ -6,7 +6,6 @@ use App\Libraries\Api\Builders\ApiQueryBuilder;
 
 class MsearchGrammar extends SearchGrammar
 {
-
     /**
      * Compile the components necessary for a select clause.
      *

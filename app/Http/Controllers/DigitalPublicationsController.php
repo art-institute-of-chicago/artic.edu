@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\DigitalPublication;
 use App\Repositories\DigitalPublicationRepository;
 use App\Helpers\NavHelpers;

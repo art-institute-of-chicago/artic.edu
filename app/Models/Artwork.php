@@ -12,7 +12,13 @@ use App\Helpers\StringHelpers;
 
 class Artwork extends AbstractModel
 {
-    use HasApiModel, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated, HasMedias, HasFiles;
+    use HasApiModel;
+    use Transformable;
+    use HasRelated;
+    use HasApiRelations;
+    use HasFeaturedRelated;
+    use HasMedias;
+    use HasFiles;
 
     protected $apiModel = 'App\Models\Api\Artwork';
 
@@ -130,7 +136,7 @@ class Artwork extends AbstractModel
                             ->exists()
                         // || $this->model3d()->exists()
                         // || (bool) $this->default_manifest_url
-;
+                    ;
                 },
             ],
         ];

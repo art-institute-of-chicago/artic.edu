@@ -39,6 +39,5 @@ class RenameYoutubeColumnsOnDigitalLabel extends Migration
      */
     public function down()
     {
-
     }
 }

@@ -11,7 +11,11 @@ use App\Models\Behaviors\HasMedias;
 
 class ExperienceModal extends AbstractModel implements Sortable
 {
-    use HasBlocks, HasMedias, HasFiles, HasRevisions, HasPosition;
+    use HasBlocks;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasPosition;
 
     protected $fillable = [
         'published',

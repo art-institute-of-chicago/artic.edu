@@ -15,7 +15,6 @@ namespace App\Helpers;
  */
 class FrontendHelpers
 {
-
     /**
      * @param string $file
      * @return string

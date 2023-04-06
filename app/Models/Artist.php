@@ -12,7 +12,13 @@ use App\Helpers\StringHelpers;
 
 class Artist extends AbstractModel
 {
-    use HasSlug, HasApiModel, HasApiRelations, HasMedias, HasMediasEloquent, Transformable, HasRelated;
+    use HasSlug;
+    use HasApiModel;
+    use HasApiRelations;
+    use HasMedias;
+    use HasMediasEloquent;
+    use Transformable;
+    use HasRelated;
 
     protected $apiModel = 'App\Models\Api\Artist';
 

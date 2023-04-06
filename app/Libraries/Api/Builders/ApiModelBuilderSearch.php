@@ -8,7 +8,6 @@ use App\Helpers\CollectionHelpers;
 
 class ApiModelBuilderSearch extends ApiModelBuilder
 {
-
     /**
      * Defines a map of [types => API class, ...]
      *

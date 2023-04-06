@@ -46,13 +46,12 @@ trait HasRelationships
             return;
         }
 
-            return $this->newHasMany(
-                $queryInstance,
-                $this,
-                $localKey,
-                $limit
-            );
-
+        return $this->newHasMany(
+            $queryInstance,
+            $this,
+            $localKey,
+            $limit
+        );
     }
 
     /**
@@ -83,10 +82,9 @@ trait HasRelationships
             return $this->relations[$key];
         }
 
-            if (method_exists($this, $key)) {
-                return $this->getRelationshipFromMethod($key);
-            }
-
+        if (method_exists($this, $key)) {
+            return $this->getRelationshipFromMethod($key);
+        }
     }
 
     protected function getRelationshipFromMethod($method)

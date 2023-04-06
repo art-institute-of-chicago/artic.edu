@@ -17,7 +17,18 @@ use Kalnoy\Nestedset\NodeTrait;
 
 class GenericPage extends AbstractModel implements Sortable
 {
-    use HasMediasEloquent, HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
+    use HasMediasEloquent;
+    use HasBlocks;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasPosition;
+    use NodeTrait;
+    use Transformable;
+    use HasRelated;
+    use HasApiRelations;
+    use HasFeaturedRelated;
 
     protected $fillable = [
         'short_description',

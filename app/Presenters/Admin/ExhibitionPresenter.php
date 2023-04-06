@@ -109,8 +109,7 @@ class ExhibitionPresenter extends BasePresenter
             return new Carbon($this->entity->aic_start_at);
         }
 
-            return '';
-
+        return '';
     }
 
     public function endAt()
@@ -123,8 +122,7 @@ class ExhibitionPresenter extends BasePresenter
             return new Carbon($this->entity->aic_end_at);
         }
 
-            return '';
-
+        return '';
     }
 
     public function itemprops()
@@ -277,11 +275,13 @@ class ExhibitionPresenter extends BasePresenter
 
     public function addInjectAttributes($variation = null)
     {
-        if ((
-            date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 18
-        ) && (
-            Carbon::now()->between($this->entity->dateStart, $this->dateEnd)
-        )) {
+        if (
+            (
+                date('w') != 2 && date('w') != 3 && date('H') >= 10 && date('H') < 18
+            ) && (
+                Carbon::now()->between($this->entity->dateStart, $this->dateEnd)
+            )
+        ) {
             $injectUrl = route('exhibitions.waitTime', [
                 'id' => $this->entity->id,
                 'slug' => $this->entity->getSlug(),

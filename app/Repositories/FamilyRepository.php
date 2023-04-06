@@ -8,7 +8,8 @@ use App\Models\Family;
 
 class FamilyRepository extends ModuleRepository
 {
-    use HandleTranslations, HandleMedias;
+    use HandleTranslations;
+    use HandleMedias;
 
     public function __construct(Family $model)
     {

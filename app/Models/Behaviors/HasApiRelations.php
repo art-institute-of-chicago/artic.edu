@@ -23,18 +23,17 @@ trait HasApiRelations
         if (empty($ids)) {
             return collect();
         }
-            // Load real the real models from the API
-            $results = $modelClass::query()->ttl($ttl)->ids($ids)->get();
+        // Load real the real models from the API
+        $results = $modelClass::query()->ttl($ttl)->ids($ids)->get();
 
-            // Sort them by the original ids listing (coming from our CMS position attribute)
-            $sorted = $results->sortBy(function ($model, $key) use ($ids) {
-                return collect($ids)->search(function ($id, $key) use ($model) {
-                    return $id == $model->id;
-                });
+        // Sort them by the original ids listing (coming from our CMS position attribute)
+        $sorted = $results->sortBy(function ($model, $key) use ($ids) {
+            return collect($ids)->search(function ($id, $key) use ($model) {
+                return $id == $model->id;
             });
+        });
 
-            return $sorted;
-
+        return $sorted;
     }
 
     public function getRelatedWithApiModels($browser_name, $apiModelsDefinitions, $typeUsesApi)

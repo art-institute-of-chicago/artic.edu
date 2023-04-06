@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class EventProgram extends AbstractModel
 {
-    use Transformable, HasFactory;
+    use Transformable;
+    use HasFactory;
 
     protected $fillable = [
         'name',

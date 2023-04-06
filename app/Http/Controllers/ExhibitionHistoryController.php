@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Repositories\Api\ExhibitionRepository;
 use App\Libraries\Search\ExhibitionHistoryService;
-
 use App\Models\Api\Exhibition;
 use App\Models\Page;
 
 class ExhibitionHistoryController extends FrontController
 {
-    const PER_PAGE = 20;
+    public const PER_PAGE = 20;
     protected $apiRepository;
 
     public function __construct(ExhibitionRepository $repository)

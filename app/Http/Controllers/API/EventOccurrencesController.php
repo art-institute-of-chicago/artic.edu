@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Repositories\EventRepository;
-
 use Carbon\Carbon;
-
 use Illuminate\Http\Request;
 
 class EventOccurrencesController extends BaseController

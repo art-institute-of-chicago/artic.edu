@@ -7,7 +7,6 @@ use App\Models\Exhibition;
 use App\Models\Api\Exhibition as ApiExhibition;
 use App\Repositories\ExhibitionRepository as AugmentedRepository;
 use App\Repositories\Api\ExhibitionRepository as ApiRepository;
-
 use Illuminate\Console\Command;
 
 class MigrateExhibitions extends Command

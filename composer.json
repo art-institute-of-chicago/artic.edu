@@ -64,7 +64,6 @@
         "brianium/paratest": "^6.6",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
-        "friendsofphp/php-cs-fixer": "^3.0",
         "itsgoingd/clockwork": "^4.0",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
@@ -99,8 +98,11 @@
             "@php artisan key:generate --ansi"
         ],
         "lint": [
-            "php-cs-fixer fix --diff --config vendor/aic/data-hub-foundation/.php-cs-fixer.dist.php",
-            "DIR='vendor/aic/data-hub-foundation' && [ -L ${DIR} ] && [ -d ${DIR} ] && cd ${DIR} && php-cs-fixer fix --diff --config .php-cs-fixer.dist.php || true"
+            "phpcs --standard=vendor/aic/data-hub-foundation/phpcs.dist.xml --warning-severity=0 ."
+        ],
+        "format": [
+            "phpcbf --standard=vendor/aic/data-hub-foundation/phpcs.dist.xml . || true",
+            "php-cs-fixer fix --diff --config vendor/aic/data-hub-foundation/.php-cs-fixer.dist.php || true"
         ],
         "test": [
             "Composer\\Config::disableProcessTimeout",
@@ -117,7 +119,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "netresearch/composer-patches-plugin": true
+            "netresearch/composer-patches-plugin": true,
+            "php-http/discovery": true
         }
     }
 }

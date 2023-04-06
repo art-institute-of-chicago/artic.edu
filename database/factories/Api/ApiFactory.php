@@ -94,20 +94,21 @@ abstract class ApiFactory
     /**
      * Create a new factory instance.
      */
-    public function __construct(?int $count = null,
-                                ?Collection $states = null,
-                                ?Collection $has = null,
-                                ?Collection $for = null,
-                                ?Collection $afterMaking = null,
-                                ?Collection $afterCreating = null,
-                                ?string $connection = null)
-    {
+    public function __construct(
+        ?int $count = null,
+        ?Collection $states = null,
+        ?Collection $has = null,
+        ?Collection $for = null,
+        ?Collection $afterMaking = null,
+        ?Collection $afterCreating = null,
+        ?string $connection = null
+    ) {
         $this->count = $count;
-        $this->states = $states ?: new Collection;
-        $this->has = $has ?: new Collection;
-        $this->for = $for ?: new Collection;
-        $this->afterMaking = $afterMaking ?: new Collection;
-        $this->afterCreating = $afterCreating ?: new Collection;
+        $this->states = $states ?: new Collection();
+        $this->has = $has ?: new Collection();
+        $this->for = $for ?: new Collection();
+        $this->afterMaking = $afterMaking ?: new Collection();
+        $this->afterCreating = $afterCreating ?: new Collection();
         $this->connection = $connection;
         $this->faker = $this->withFaker();
     }
@@ -122,7 +123,7 @@ abstract class ApiFactory
      */
     public static function new(callable|array $attributes = []): static
     {
-        return (new static)->state($attributes)->configure();
+        return (new static())->state($attributes)->configure();
     }
 
     /**
@@ -404,7 +405,8 @@ abstract class ApiFactory
     {
         return $this->newInstance([
             'has' => $this->has->concat([new Relationship(
-                $factory, $relationship ?: $this->guessRelationship($factory->modelName())
+                $factory,
+                $relationship ?: $this->guessRelationship($factory->modelName())
             )]),
         ]);
     }
@@ -426,8 +428,7 @@ abstract class ApiFactory
         ApiFactory|Collection|ApiModel $factory,
         callable|array $pivot = [],
         ?string $relationship = null,
-    ): static
-    {
+    ): static {
         return $this->newInstance([
             'has' => $this->has->concat([new BelongsToManyRelationship(
                 $factory,
@@ -543,16 +544,18 @@ abstract class ApiFactory
     {
         $resolver = static::$modelNameResolver ?: function (self $factory) {
             $namespacedFactoryBasename = Str::replaceLast(
-                'Factory', '', Str::replaceFirst(static::$namespace, '', get_class($factory))
+                'Factory',
+                '',
+                Str::replaceFirst(static::$namespace, '', get_class($factory))
             );
 
             $factoryBasename = Str::replaceLast('Factory', '', class_basename($factory));
 
             $appNamespace = static::appNamespace();
 
-            return class_exists($appNamespace.'Models\\Api\\'.$namespacedFactoryBasename)
-                        ? $appNamespace.'Models\\Api\\'.$namespacedFactoryBasename
-                        : $appNamespace.$factoryBasename;
+            return class_exists($appNamespace . 'Models\\Api\\' . $namespacedFactoryBasename)
+                        ? $appNamespace . 'Models\\Api\\' . $namespacedFactoryBasename
+                        : $appNamespace . $factoryBasename;
         };
 
         return $this->model ?: $resolver($this);
@@ -608,11 +611,11 @@ abstract class ApiFactory
         $resolver = static::$factoryNameResolver ?: function (string $modelName) {
             $appNamespace = static::appNamespace();
 
-            $modelName = Str::startsWith($modelName, $appNamespace.'Models\\Api\\')
-                ? Str::after($modelName, $appNamespace.'Models\\Api\\')
+            $modelName = Str::startsWith($modelName, $appNamespace . 'Models\\Api\\')
+                ? Str::after($modelName, $appNamespace . 'Models\\Api\\')
                 : Str::after($modelName, $appNamespace);
 
-            return static::$namespace.$modelName.'Factory';
+            return static::$namespace . $modelName . 'Factory';
         };
 
         return $resolver($modelName);

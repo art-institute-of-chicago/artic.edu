@@ -6,7 +6,7 @@ use App\Models\Api\Search;
 
 class SearchRepository extends BaseApiRepository
 {
-    const ALL = 100;
+    public const ALL = 100;
 
     public function __construct(Search $model)
     {

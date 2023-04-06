@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Api\Artwork;
 use App\Models\Api\Search as GeneralSearch;
-
 use App\Repositories\Api\ArtworkRepository;
 use App\Repositories\Api\ArtistRepository;
 use App\Repositories\Api\SearchRepository;
@@ -17,35 +16,32 @@ use App\Repositories\PressReleaseRepository;
 use App\Repositories\ResearchGuideRepository;
 use App\Repositories\InteractiveFeatureRepository;
 use App\Repositories\HighlightRepository;
-
 use App\Libraries\Search\CollectionService;
-
 use App\Helpers\QueryHelpers;
-
 use Illuminate\Support\Str;
 
 class SearchController extends BaseScopedController
 {
-    const ALL_PER_PAGE = 5;
-    const ALL_PER_PAGE_ARTWORKS = 8;
-    const ALL_PER_PAGE_EXHIBITIONS = 4;
-    const ALL_PER_PAGE_EVENTS = 4;
-    const ALL_PER_PAGE_PAGES = 3;
-    const ALL_PER_PAGE_ARTICLES = 4;
-    const ALL_PER_PAGE_PUBLICATIONS = 4;
-    const ALL_PER_PAGE_INTERACTIVEFEATURES = 4;
-    const ALL_PER_PAGE_HIGHLIGHTS = 4;
+    public const ALL_PER_PAGE = 5;
+    public const ALL_PER_PAGE_ARTWORKS = 8;
+    public const ALL_PER_PAGE_EXHIBITIONS = 4;
+    public const ALL_PER_PAGE_EVENTS = 4;
+    public const ALL_PER_PAGE_PAGES = 3;
+    public const ALL_PER_PAGE_ARTICLES = 4;
+    public const ALL_PER_PAGE_PUBLICATIONS = 4;
+    public const ALL_PER_PAGE_INTERACTIVEFEATURES = 4;
+    public const ALL_PER_PAGE_HIGHLIGHTS = 4;
 
-    const ARTWORKS_PER_PAGE = 20;
-    const PAGES_PER_PAGE = 20;
-    const EXHIBITIONS_PER_PAGE = 20;
-    const INTERACTIVEFEATURES_PER_PAGE = 20;
-    const HIGHLIGHTS_PER_PAGE = 20;
-    const ARTICLES_PER_PAGE = 20;
-    const EVENTS_PER_PAGE = 20;
-    const PUBLICATIONS_PER_PAGE = 20;
-    const ARTISTS_PER_PAGE = 30;
-    const AUTOCOMPLETE_PER_PAGE = 10;
+    public const ARTWORKS_PER_PAGE = 20;
+    public const PAGES_PER_PAGE = 20;
+    public const EXHIBITIONS_PER_PAGE = 20;
+    public const INTERACTIVEFEATURES_PER_PAGE = 20;
+    public const HIGHLIGHTS_PER_PAGE = 20;
+    public const ARTICLES_PER_PAGE = 20;
+    public const EVENTS_PER_PAGE = 20;
+    public const PUBLICATIONS_PER_PAGE = 20;
+    public const ARTISTS_PER_PAGE = 30;
+    public const AUTOCOMPLETE_PER_PAGE = 10;
 
     protected $artworksRepository;
     protected $artistsRepository;
@@ -193,7 +189,7 @@ class SearchController extends BaseScopedController
                     $item->section = 'Highlights';
 
                     break;
-                }
+            }
 
             $item->text = $item->title;
         }

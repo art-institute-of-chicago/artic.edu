@@ -18,7 +18,18 @@ use App\Models\Behaviors\HasUnlisted;
 
 class Highlight extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated, HasUnlisted, HasAuthors;
+    use HasSlug;
+    use HasRevisions;
+    use HasPosition;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasBlocks;
+    use Transformable;
+    use HasRelated;
+    use HasApiRelations;
+    use HasFeaturedRelated;
+    use HasUnlisted;
+    use HasAuthors;
 
     protected $presenterAdmin = 'App\Presenters\Admin\HighlightPresenter';
     protected $presenter = 'App\Presenters\Admin\HighlightPresenter';
@@ -44,8 +55,8 @@ class Highlight extends AbstractModel
         'title',
     ];
 
-    const NORMAL = 0;
-    const AUDIO_TOUR = 1;
+    public const NORMAL = 0;
+    public const AUDIO_TOUR = 1;
 
     public static $highlightTypes = [
         self::NORMAL => 'Normal',

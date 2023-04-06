@@ -122,8 +122,7 @@ class AicGrammar
             return ['q' => $text];
         }
 
-            return [];
-
+        return [];
     }
 
     protected function compileSearchParameters($query, array $elasticParameters)

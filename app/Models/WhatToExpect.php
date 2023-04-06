@@ -9,7 +9,8 @@ use A17\Twill\Models\Model;
 
 class WhatToExpect extends Model implements Sortable
 {
-    use HasRevisions, HasPosition;
+    use HasRevisions;
+    use HasPosition;
 
     protected $fillable = [
         'published',

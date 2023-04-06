@@ -18,10 +18,10 @@ class MagazineItem extends Model
     /**
      * Aside from custom, these should also be defined in config('twill.block_editor.browser_route_prefixes')
      */
-    const ITEM_TYPE_CUSTOM = 'custom';
-    const ITEM_TYPE_ARTICLE = 'articles';
-    const ITEM_TYPE_HIGHLIGHT = 'highlights';
-    const ITEM_TYPE_EXPERIENCE = 'experiences';
+    public const ITEM_TYPE_CUSTOM = 'custom';
+    public const ITEM_TYPE_ARTICLE = 'articles';
+    public const ITEM_TYPE_HIGHLIGHT = 'highlights';
+    public const ITEM_TYPE_EXPERIENCE = 'experiences';
 
     public static function getClassFromType($itemType)
     {

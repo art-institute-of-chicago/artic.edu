@@ -9,7 +9,8 @@ use App\Repositories\Behaviors\HandleApiRelations;
 
 class DepartmentRepository extends BaseApiRepository
 {
-    use HandleMedias, HandleApiRelations;
+    use HandleMedias;
+    use HandleApiRelations;
 
     protected $apiBrowsers = [
         'customRelatedArtworks' => [

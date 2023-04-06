@@ -61,8 +61,7 @@ class BaseApiController extends ModuleController
             return parent::getRepository();
         }
 
-            return $this->getApiRepository();
-
+        return $this->getApiRepository();
     }
 
     protected function getBrowserTableData($items)

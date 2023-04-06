@@ -30,7 +30,7 @@ class Exhibition extends BaseApiModel
     /**
      * Fields used when performing a search so we avoid a double call retrieving the complete entities
      */
-    const SEARCH_FIELDS = ['id', 'title', 'status', 'aic_start_at', 'aic_end_at', 'is_boosted', 'thumbnail', 'short_description', 'gallery_title', 'gallery_id', 'image_id', 'api_model'];
+    public const SEARCH_FIELDS = ['id', 'title', 'status', 'aic_start_at', 'aic_end_at', 'is_boosted', 'thumbnail', 'short_description', 'gallery_title', 'gallery_id', 'image_id', 'api_model'];
 
     /**
      * Generates the id-slug type of URL
@@ -45,7 +45,8 @@ class Exhibition extends BaseApiModel
         return 'exhibition';
     }
 
-    private function commonStatusChecks() {
+    private function commonStatusChecks()
+    {
         // If the start and end dates are overriden, don't consider this exhibition as closed
         if ($this->date_display_override) {
             return false;
@@ -198,13 +199,15 @@ class Exhibition extends BaseApiModel
             return $this->header_copy;
         }
 
-        if ((
-            $augmentedModel && $paragraph = $augmentedModel->blocks()->where('type', '=', 'paragraph')->first()
-        ) && (
-            !empty($paragraph) && $paragraph = $paragraph->content['paragraph']
-        ) && (
-            !empty($paragraph) && $paragraph = strip_tags($paragraph)
-        )) {
+        if (
+            (
+                $augmentedModel && $paragraph = $augmentedModel->blocks()->where('type', '=', 'paragraph')->first()
+            ) && (
+                !empty($paragraph) && $paragraph = $paragraph->content['paragraph']
+            ) && (
+                !empty($paragraph) && $paragraph = strip_tags($paragraph)
+            )
+        ) {
             return $paragraph;
         }
 

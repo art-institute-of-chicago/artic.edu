@@ -42,7 +42,6 @@ class ExactTargetService
      */
     public function subscribe($alsoRemove = true)
     {
-
         $auth_url = config('exact-target.client.baseAuthUrl');
         $clientId = config('exact-target.client.clientid');
         $clientSecret = config('exact-target.client.clientsecret');
@@ -134,8 +133,10 @@ class ExactTargetService
             $error = $response->results[0]->ErrorMessage ?? '';
             $status = $response->results[0]->StatusMessage ?? '';
 
-            if (Str::startsWith($error, 'Violation of PRIMARY KEY constraint')
-                || Str::startsWith($status, 'The subscriber is already on the list')) {
+            if (
+                Str::startsWith($error, 'Violation of PRIMARY KEY constraint')
+                || Str::startsWith($status, 'The subscriber is already on the list')
+            ) {
                 // Email has been previously subscribed, so proceed
             } else {
                 return $response;

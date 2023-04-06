@@ -4,7 +4,6 @@ namespace App\Helpers;
 
 class BlockHelpers
 {
-
     /**
      * Sorts a list of blocks by the order in which they are set in the config.
      */

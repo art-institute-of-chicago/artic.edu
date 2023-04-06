@@ -8,7 +8,8 @@ use App\Models\WhatToExpect;
 
 class WhatToExpectRepository extends ModuleRepository
 {
-    use HandleTranslations, HandleRevisions;
+    use HandleTranslations;
+    use HandleRevisions;
 
     public function __construct(WhatToExpect $model)
     {

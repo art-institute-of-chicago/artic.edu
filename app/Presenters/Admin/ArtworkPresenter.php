@@ -472,12 +472,11 @@ class ArtworkPresenter extends BasePresenter
             return [];
         }
 
-            return [
-                'type' => 'accordion',
-                'content' => $content,
-                'titleFont' => 'f-module-title-2'
-            ];
-
+        return [
+            'type' => 'accordion',
+            'content' => $content,
+            'titleFont' => 'f-module-title-2'
+        ];
     }
 
     protected function formatDescriptionBlocks($elements)

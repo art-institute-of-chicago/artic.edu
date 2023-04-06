@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\Event;
-
 use Illuminate\Console\Command;
 
 class UpdateCredits extends Command

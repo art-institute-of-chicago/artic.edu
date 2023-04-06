@@ -10,7 +10,7 @@ use App\Helpers\StringHelpers;
 
 class ArticleController extends FrontController
 {
-    const ARTICLES_PER_PAGE = 12;
+    public const ARTICLES_PER_PAGE = 12;
     protected $repository;
 
     public function __construct(ArticleRepository $repository)
