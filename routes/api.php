@@ -22,7 +22,6 @@ use App\Http\Controllers\API\InteractiveFeaturesController;
 use App\Http\Controllers\API\LocationsController;
 use App\Http\Controllers\API\PressReleasesController;
 use App\Http\Controllers\API\PrintedPublicationsController;
-use App\Http\Controllers\API\ResearchGuidesController;
 use App\Http\Controllers\API\SponsorsController;
 use App\Http\Controllers\API\StaticPagesController;
 use App\Http\Controllers\API\TagsController;
@@ -141,12 +140,6 @@ Route::group(['prefix' => 'v1'], function () {
      */
     Route::get('pressreleases', [PressReleasesController::class, 'index']);
     Route::get('pressreleases/{id}', [PressReleasesController::class, 'show']);
-
-    /**
-     * Research guides ------------------------------------------------------
-     */
-    Route::get('researchguides', [ResearchGuidesController::class, 'index']);
-    Route::get('researchguides/{id}', [ResearchGuidesController::class, 'show']);
 
     /**
      * Educator resources ------------------------------------------------------

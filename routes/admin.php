@@ -74,7 +74,6 @@ Route::group(['prefix' => 'collection'], function () {
 
     Route::group(['prefix' => 'research_resources'], function () {
         Route::get('landing', [PageController::class, 'research'])->name('collection.research_resources.landing');
-        Route::module('researchGuides');
         Route::module('educatorResources');
     });
 

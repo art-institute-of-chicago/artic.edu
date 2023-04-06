@@ -35,7 +35,6 @@ class ReportAltText extends Command
             \App\Models\Page::class,
             \App\Models\PressRelease::class,
             \App\Models\PrintedPublication::class,
-            \App\Models\ResearchGuide::class,
             \App\Models\Highlight::class,
             \App\Models\Video::class,
             \A17\Twill\Models\Block::class,
