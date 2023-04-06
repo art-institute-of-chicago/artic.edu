@@ -153,6 +153,34 @@ git checkout -b feature/good-short-description
 # ... make some changes
 ```
 
+### Formatting your code
+
+We use the [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+tool to ensure that all of our code is consistently formatted. Before checking
+in any changes, we recommend running the `lint` script:
+```bash
+composer lint
+```
+
+Additional arguments can be passed to PHP CodeSniffer. For example, if you wanted
+to view the full lint report instead of the default summary:
+```bash
+composer lint -- --report=full
+```
+
+Some linting errors can be automattically addressed by PHP CodeSniffer itself and
+a second tool,
+[PHP Coding Standard Fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer).
+If the lint script returns a list of errors, we recommend running the `format`
+script:
+```bash
+composer format
+```
+
+These two tools are fairly comprehensive, but are not able to address every
+linting error. You may need to manually make some formatting changes to your
+code in order to pass the lint check.
+
 ### Commiting your changes
 ```bash
 # Make sure you're working off of the latest commit on the branch
