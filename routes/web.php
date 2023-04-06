@@ -71,10 +71,6 @@ Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPubli
 // Collection Research
 Route::get('/collection/research_resources', [ResearchController::class, 'index'])->name('collection.research_resources');
 
-// Collection Resources - Research Guides
-Route::get('/collection/resources/research-guides', [ResearchGuidesController::class, 'index'])->name('collection.resources.research-guides');
-Route::get('/collection/resources/research-guides/{id}', [ResearchGuidesController::class, 'show'])->name('collection.resources.research-guides.show');
-
 // Collection Resources Educator Resources
 Route::get('/learn-with-us/educators/tools-for-my-classroom/resource-finder', [EducatorResourcesController::class, 'index'])->name('collection.resources.educator-resources');
 Route::get('/collection/resources/educator-resources/{id}', [EducatorResourcesController::class, 'show'])->name('collection.resources.educator-resources.show');
