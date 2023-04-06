@@ -54,7 +54,7 @@ class HomeFeature extends AbstractModel
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 1 / 1,
+                    'ratio' => 1,
                 ],
             ]
         ]
