@@ -2,8 +2,18 @@
 
 @section('contentFields')
     @formField('medias', [
-        'label' => 'Hero',
+        'with_multiple' => false,
+        'no_crop' => false,
+        'label' => 'Hero image',
         'name' => 'hero',
+        'note' => 'Minimum image width 3000px'
+    ])
+
+    @formField('medias', [
+        'with_multiple' => false,
+        'no_crop' => false,
+        'label' => 'Mobile Hero Image',
+        'name' => 'mobile_hero',
         'note' => 'Minimum image width 3000px'
     ])
 

@@ -3,6 +3,7 @@
         @slot('tag', $tag ?? null)
         @slot('item', $item->enclosedItem())
         @slot('image', $item->enclosedItem()->featureImage)
+        @slot('imageMobile', $item->enclosedItem()->featureImageMobile)
         @slot('variation', $isHero ? 'm-listing--hero' : 'm-listing--feature')
         @slot('titleFont', $isHero ? 'f-display-1' : 'f-list-4')
         @slot('imageSettings', array(
@@ -16,6 +17,7 @@
         @slot('tag', $tag ?? null)
         @slot('item', $item)
         @slot('image', $item->featureImage)
+        @slot('imageMobile', $item->featureImageMobile)
         @slot('variation', $isHero ? 'm-listing--hero' : 'm-listing--feature')
         @slot('titleFont', $isHero ? 'f-display-1' : 'f-list-4')
         @slot('imageSettings', array(
