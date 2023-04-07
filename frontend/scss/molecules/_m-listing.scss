@@ -190,6 +190,20 @@
   object-fit: cover;
 }
 
+.m-listing__img .img-hero-desktop {
+  display: none;
+  @include breakpoint('small+') {
+    display: block;
+  }
+}
+
+.m-listing__img .img-hero-mobile {
+  display: block;
+  @include breakpoint('small+') {
+    display: none;
+  }
+}
+
 .m-listing__img--contain img,
 .m-listing__img--contain video {
   object-fit: contain;
