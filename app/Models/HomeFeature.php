@@ -44,10 +44,6 @@ class HomeFeature extends AbstractModel
                     'name' => 'default',
                     'ratio' => 16 / 9,
                 ],
-                [
-                    'name' => 'mobile',
-                    'ratio' => 1,
-                ], 
             ],
         ],
         'mobile_hero' => [
