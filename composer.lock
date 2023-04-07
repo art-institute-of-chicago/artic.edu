@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/art-institute-of-chicago/data-hub-foundation.git",
-                "reference": "57b25416b056ec594db5f71077eeeb8d647729a3"
+                "reference": "290ef8e57acf76684e3f38af7edc4b5c97e2159b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/art-institute-of-chicago/data-hub-foundation/zipball/57b25416b056ec594db5f71077eeeb8d647729a3",
-                "reference": "57b25416b056ec594db5f71077eeeb8d647729a3",
+                "url": "https://api.github.com/repos/art-institute-of-chicago/data-hub-foundation/zipball/290ef8e57acf76684e3f38af7edc4b5c97e2159b",
+                "reference": "290ef8e57acf76684e3f38af7edc4b5c97e2159b",
                 "shasum": ""
             },
             "require": {
@@ -58,8 +58,12 @@
                 }
             },
             "scripts": {
+                "format": [
+                    "phpcbf --standard=vendor/aic/data-hub-foundation/phpcs.dist.xml . || true",
+                    "php-cs-fixer fix --diff --config vendor/aic/data-hub-foundation/.php-cs-fixer.dist.php || true"
+                ],
                 "lint": [
-                    "php-cs-fixer fix --diff --config .php-cs-fixer.dist.php"
+                    "phpcs --standard=vendor/aic/data-hub-foundation/phpcs.dist.xml --warning-severity=0 ."
                 ]
             },
             "license": [
@@ -77,10 +81,10 @@
             ],
             "description": "Shared components for our data hub services.",
             "support": {
-                "source": "https://github.com/art-institute-of-chicago/data-hub-foundation/tree/develop",
+                "source": "https://github.com/art-institute-of-chicago/data-hub-foundation/tree/laravel-8-support",
                 "issues": "https://github.com/art-institute-of-chicago/data-hub-foundation/issues"
             },
-            "time": "2023-04-05T19:40:53+00:00"
+            "time": "2023-04-06T21:54:52+00:00"
         },
         {
             "name": "area17/twill",
@@ -371,16 +375,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.263.4",
+            "version": "3.263.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "08e2f243243a9fcdd8909d596e46f81d8c72cb60"
+                "reference": "8fc1ca5b34e6197b0d7bebbd66d2889695c8d1ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/08e2f243243a9fcdd8909d596e46f81d8c72cb60",
-                "reference": "08e2f243243a9fcdd8909d596e46f81d8c72cb60",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8fc1ca5b34e6197b0d7bebbd66d2889695c8d1ef",
+                "reference": "8fc1ca5b34e6197b0d7bebbd66d2889695c8d1ef",
                 "shasum": ""
             },
             "require": {
@@ -459,9 +463,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.263.4"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.263.5"
             },
-            "time": "2023-04-05T18:21:54+00:00"
+            "time": "2023-04-06T18:22:35+00:00"
         },
         {
             "name": "brick/math",
@@ -2001,16 +2005,16 @@
         },
         {
             "name": "google/apiclient",
-            "version": "v2.13.1",
+            "version": "v2.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client.git",
-                "reference": "895749dd4f14c349ca0b4aad020ff973f961e519"
+                "reference": "53c3168fd1836ec21d28a768f78a8c0e44046ec4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/895749dd4f14c349ca0b4aad020ff973f961e519",
-                "reference": "895749dd4f14c349ca0b4aad020ff973f961e519",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/53c3168fd1836ec21d28a768f78a8c0e44046ec4",
+                "reference": "53c3168fd1836ec21d28a768f78a8c0e44046ec4",
                 "shasum": ""
             },
             "require": {
@@ -2065,9 +2069,9 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client/issues",
-                "source": "https://github.com/googleapis/google-api-php-client/tree/v2.13.1"
+                "source": "https://github.com/googleapis/google-api-php-client/tree/v2.13.2"
             },
-            "time": "2023-03-13T20:38:21+00:00"
+            "time": "2023-04-06T14:59:47+00:00"
         },
         {
             "name": "google/apiclient-services",

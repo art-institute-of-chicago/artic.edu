@@ -98,11 +98,12 @@
             "@php artisan key:generate --ansi"
         ],
         "lint": [
-            "phpcs --standard=vendor/aic/data-hub-foundation/phpcs.dist.xml --warning-severity=0 ."
+            "@putenv COMPOSER=vendor/aic/data-hub-foundation/composer.json",
+            "@composer lint"
         ],
         "format": [
-            "phpcbf --standard=vendor/aic/data-hub-foundation/phpcs.dist.xml . || true",
-            "php-cs-fixer fix --diff --config vendor/aic/data-hub-foundation/.php-cs-fixer.dist.php || true"
+            "@putenv COMPOSER=vendor/aic/data-hub-foundation/composer.json",
+            "@composer format"
         ],
         "test": [
             "Composer\\Config::disableProcessTimeout",
