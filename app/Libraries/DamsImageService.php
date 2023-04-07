@@ -86,32 +86,32 @@ class DamsImageService implements ImageServiceInterface
         return $this->base_url . $this->version . '/' . $id . '/' . $size . '/' . $dimensions . '/0/default.jpg';
     }
 
-    public function getUrlWithCrop(string $id, array $crop_params, array $params = [])
+    public function getUrlWithCrop($id, array $crop_params, array $params = [])
     {
         return $this->getRawUrl($id);
     }
 
-    public function getUrlWithFocalCrop(string $id, array $cropParams, int $width, int $height, array $params = [])
+    public function getUrlWithFocalCrop($id, array $cropParams, $width, $height, array $params = [])
     {
         return $this->getRawUrl($id);
     }
 
-    public function getLQIPUrl(string $id, array $params = [])
+    public function getLQIPUrl($id, array $params = [])
     {
         return $this->getRawUrl($id);
     }
 
-    public function getSocialUrl(string $id, array $params = [])
+    public function getSocialUrl($id, array $params = [])
     {
         return $this->getRawUrl($id);
     }
 
-    public function getCmsUrl(string $id, array $params = [])
+    public function getCmsUrl($id, array $params = [])
     {
         return $this->getRawUrl($id);
     }
 
-    public function getRawUrl(string $id)
+    public function getRawUrl($id)
     {
         return Storage::disk(config('twill.media_library.disk'))->url($id);
     }
