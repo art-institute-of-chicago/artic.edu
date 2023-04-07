@@ -10,16 +10,23 @@
         @if (!isset($hideImage) or (isset($hideImage) && !($hideImage)))
             <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront) ? ' m-listing__img--video' : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-blur-img' : '' }}>
                 @if (isset($image) || $item->imageFront('hero'))
-                    @component('components.atoms._img')
-                        @slot('image', $image ?? $item->imageFront('hero'))
-                        @slot('settings', $imageSettings ?? '')
-                        @slot('class', 'img-hero-desktop')
-                    @endcomponent
-                    @component('components.atoms._img')
-                        @slot('image', $imageMobile ?? $item->imageFront('mobile_hero') ?? $item->imageFront('hero'))
-                        @slot('settings', $imageSettings ?? '')
-                        @slot('class', 'img-hero-mobile')
-                    @endcomponent
+                    @if (isset($isHero) && $isHero)
+                        @component('components.atoms._img')
+                            @slot('image', $image ?? $item->imageFront('hero'))
+                            @slot('settings', $imageSettings ?? '')
+                            @slot('class', 'img-hero-desktop')
+                        @endcomponent
+                        @component('components.atoms._img')
+                            @slot('image', $imageMobile ?? $item->imageFront('mobile_hero') ?? $item->imageFront('hero'))
+                            @slot('settings', $imageSettings ?? '')
+                            @slot('class', 'img-hero-mobile')
+                        @endcomponent
+                    @else 
+                        @component('components.atoms._img')
+                            @slot('image', $image ?? $item->imageFront('hero'))
+                            @slot('settings', $imageSettings ?? '')
+                        @endcomponent
+                    @endif
                     @component('components.molecules._m-listing-video')
                         @slot('item', $item)
                         @slot('image', $image ?? null)
