@@ -2,16 +2,16 @@
     <a href="{!! route('highlights.show', $item) !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @if (!isset($hideImage) || (isset($hideImage) && !($hideImage)))
             <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : ' m-listing__img--square' }}">
-                @if ($item->imageFront('hero') ?? $item->images[0] ?? false)
+                @if ($image ?? $item->imageFront('hero') ?? $item->images[0] ?? false)
                     @component('components.atoms._img')
-                        @slot('image', $item->imageFront('hero') ?? $item->images[0])
+                        @slot('image', $image ?? $item->imageFront('hero') ?? $item->images[0])
                         @slot('class', 'img-hero-desktop')
                         @slot('settings', !isset($imageSettings) ? null : array_merge($imageSettings, [
                             'ratio' => '1:1', // TODO: Verify $imgVariation usage?
                         ]))
                     @endcomponent
                     @component('components.atoms._img')
-                        @slot('image', $item->imageFront('mobile_hero') ?? $item->imageFront('hero') ?? $item->images[0])
+                        @slot('image', $imageMobile ?? $item->imageFront('mobile_hero') ?? $item->imageFront('hero') ?? $item->images[0])
                         @slot('class', 'img-hero-mobile')
                         @slot('settings', !isset($imageSettings) ? null : array_merge($imageSettings, [
                             'ratio' => '1:1', // TODO: Verify $imgVariation usage?
