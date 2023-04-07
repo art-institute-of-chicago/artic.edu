@@ -9,7 +9,7 @@
                         @slot('class', 'img-hero-desktop')
                     @endcomponent
                     @component('components.atoms._img')
-                        @slot('image', $imageMobile ?? $item->imageFront('mobile_hero'))
+                        @slot('image', $imageMobile ?? $item->imageFront('mobile_hero') ?? $item->imageFront('hero'))
                         @slot('settings', $imageSettings ?? '')
                         @slot('class', 'img-hero-mobile')
                     @endcomponent
