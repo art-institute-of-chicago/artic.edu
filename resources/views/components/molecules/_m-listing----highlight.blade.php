@@ -12,7 +12,7 @@
                             ]))
                         @endcomponent
                         @component('components.atoms._img')
-                            @slot('image', $imageMobile ?? $item->imageFront('mobile_hero') ?? $item->imageFront('hero') ?? $item->images[0])
+                            @slot('image', $imageMobile ?? $item->imageFront('mobile_hero') ?? $image ?? $item->imageFront('hero') ?? $item->images[0])
                             @slot('class', 'img-hero-mobile')
                             @slot('settings', !isset($imageSettings) ? null : array_merge($imageSettings, [
                                 'ratio' => '1:1', // TODO: Verify $imgVariation usage?
