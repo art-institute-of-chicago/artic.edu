@@ -283,9 +283,10 @@ html.s-print body {
   }
 
   .m-media {
+    break-inside: avoid;
     margin: 20px 0 0;
-    padding: 0;
     overflow: hidden;
+    padding: 0;
   }
 
   .m-media .m-media__img {
