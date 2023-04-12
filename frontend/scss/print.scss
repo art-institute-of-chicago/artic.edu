@@ -223,6 +223,11 @@ html.s-print body {
     }
   }
 
+  .o-article__body,
+  .o-gallery {
+    width: 100%;
+  }
+
   .o-article--editorial .o-blocks > p:not([class*=f-]),
   .o-article--editorial .o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
   .o-article--editorial .o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
@@ -278,16 +283,35 @@ html.s-print body {
   }
 
   .m-media {
+    break-inside: avoid;
     margin: 20px 0 0;
-    padding: 0;
     overflow: hidden;
+    padding: 0;
+  }
+
+  .m-media.m-media--gallery,
+  .m-media.m-media--l {
+    & .m-media__img {
+      width: 50%;
+    }
+    & figcaption {
+      max-width: 50%;
+    }
+  }
+
+  .m-media.m-media--s {
+    & .m-media__img {
+      width: 25%;
+    }
+    & figcaption {
+      max-width: 75%;
+    }
   }
 
   .m-media .m-media__img {
-    position: relative;
-    width: 25%;
     float: left;
     overflow: hidden;
+    position: relative;
   }
 
   .m-media .m-media__img.m-media__img--video {
@@ -297,9 +321,10 @@ html.s-print body {
 
   .m-media .m-media__img img {
     display: block;
-    width: 100%;
     height: auto;
     margin: 0;
+    max-height: 50vw;
+    width: 100%;
   }
 
   .m-media .m-media__img video,
@@ -315,10 +340,9 @@ html.s-print body {
   }
 
   .m-media figcaption {
-    width: 75%;
     float: left;
-    padding-right: 50px;
     padding-left: 28px;
+    padding-right: 50px;
   }
 
   .o-article__meta .m-link-list,
@@ -331,7 +355,7 @@ html.s-print body {
   .m-article-header__img {
     height: 100%;
     margin: 0 auto 0 0;
-    width: 66%;
+    width: 100%;
   }
 
   .m-article-header__img img {
