@@ -223,6 +223,11 @@ html.s-print body {
     }
   }
 
+  .o-article__body,
+  .o-gallery {
+    width: 100%;
+  }
+
   .o-article--editorial .o-blocks > p:not([class*=f-]),
   .o-article--editorial .o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
   .o-article--editorial .o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
