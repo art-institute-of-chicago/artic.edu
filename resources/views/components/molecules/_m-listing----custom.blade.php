@@ -9,7 +9,7 @@
     <a href="{!! $item->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront()) ? ' m-listing__img--video' : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront()) ? ' data-blur-img' : '' }}>
             @if (isset($image) || $item->imageFront('hero'))
-                @if (isset($isHero) && $isHero)
+                @if ($isHero ?? false)
                     @component('components.atoms._img')
                         @slot('image', $image ?? $item->imageFront('hero'))
                         @slot('settings', $imageSettings ?? '')
