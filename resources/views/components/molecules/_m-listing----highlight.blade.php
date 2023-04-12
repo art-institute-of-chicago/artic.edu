@@ -3,7 +3,7 @@
         @if (!isset($hideImage) || (isset($hideImage) && !($hideImage)))
             <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : ' m-listing__img--square' }}">
                 @if ($image ?? $item->imageFront('hero') ?? $item->images[0] ?? false)
-                    @if (isset($isHero) && $isHero)
+                    @if ($isHero ?? false)
                         @component('components.atoms._img')
                             @slot('image', $image ?? $item->imageFront('hero') ?? $item->images[0])
                             @slot('class', 'img-hero-desktop')
