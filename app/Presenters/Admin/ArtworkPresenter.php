@@ -544,8 +544,6 @@ class ArtworkPresenter extends BasePresenter
         ];
 
         if ($this->entity->image_id) {
-            $itemprops['thumbnailUrl'] = DamsImageService::getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
-            $itemprops['image'] = DamsImageService::getBaseUrl() . '2/' . $this->entity->image_id;
             $dams = new DamsImageService();
             $itemprops['thumbnailUrl'] = $dams->getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
             $itemprops['image'] = $dams->getBaseUrl() . '2/' . $this->entity->image_id;
