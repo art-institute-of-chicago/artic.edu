@@ -7,7 +7,7 @@ use App\Helpers\StringHelpers;
 use App\Helpers\DateHelpers;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use DamsImageService;
+use App\Libraries\DamsImageService;
 use DOMDocument;
 
 /**
