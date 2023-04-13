@@ -31,7 +31,7 @@ class FormEducatorAdmission extends FormMailable
      */
     public function build()
     {
-        return $this->from('erc@artic.edu')
+        return $this->from('k12educators@artic.edu')
             ->markdown('emails.forms.educatorAdmission');
     }
 }
