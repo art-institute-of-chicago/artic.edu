@@ -79,7 +79,7 @@ const infoButtonTrigger = function(container) {
   }
 
   function _clicksOutside(event) {
-    if (infoOpen) {
+    if (infoOpen && !infoButtonInfo.contains(document.activeElement)) {
       event.preventDefault();
       event.stopPropagation();
       _closeInfoButtonInfo();
