@@ -351,15 +351,18 @@ class ArtworkPresenter extends BasePresenter
         } else {
             if (!empty($this->entity->date_block)) {
                 $details[] = [
-                    'key' => '<span id="h-date-disclaimer">Date</span>&nbsp;'
-                    . '<button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" data-breakpoints="none">'
-                    . '    <svg class="icon--info"><use xlink:href="#icon--info" /></svg>'
-                    . '</button>'
-                    . '<span class="info-button-info s-hidden" id="info-button-info-date-disclaimer" data-behavior="infoButtonInfo">'
-                    . '    <span class="f-caption">'
-                    . '        Dates are not always precisely known, but the Art Institute strives to present this information as consistently and legibly as possible. Dates may be represented as a range that spans decades, centuries, dynasties, or periods and may include qualifiers such as c. (circa) or BCE.'
-                    . '    </span>'
-                    . '</span>',
+                    'key' =>
+                    <<<VALUE
+                        <span id="h-date-disclaimer">Date</span>&nbsp;
+                        <button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" data-breakpoints="none">
+                        <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
+                        </button>
+                        <span class="info-button-info s-hidden" id="info-button-info-date-disclaimer" data-behavior="infoButtonInfo">
+                        <span class="f-caption">
+                                Dates are not always precisely known, but the Art Institute strives to present this information as consistently and legibly as possible. Dates may be represented as a range that spans decades, centuries, dynasties, or periods and may include qualifiers such as c. (circa) or BCE.
+                            </span>
+                        </span>
+                    VALUE,
                     'itemprop' => 'dateCreated',
                     'links' => [[
                         'label' => join(' ', [($this->entity->date_qualifier_title ?? ''), $this->entity->date_block]), // @see getDateBlockAttribute
@@ -381,16 +384,18 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->is_public_domain) {
             $details = array_merge($details, $this->formatDetailBlocks([
-                '<span id="h-iiif-manifest">IIIF Manifest</span>&nbsp;'
-                    . '<button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" data-breakpoints="none">'
-                    . '    <svg class="icon--info"><use xlink:href="#icon--info" /></svg>'
-                    . '</button>'
-                    . '<span class="info-button-info s-hidden" id="info-button-info-iiif-manifest" data-behavior="infoButtonInfo">'
-                    . '    <span class="f-caption">'
-                    . '        The International Image Interoperability Framework (IIIF) represents a set of open standards that enables rich access to digital media from libraries, archives, museums, and other cultural institutions around the world.<br/><br/>'
-                    . '        <a href="/open-access/open-access-images">Learn more</a>.'
-                    . '    </span>'
-                    . '</span>' => [$this->getIiifManifestUrl()],
+                <<<VALUE
+                    <span id="h-iiif-manifest">IIIF Manifest</span>&nbsp;
+                    <button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" data-breakpoints="none">'
+                        <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
+                    </button>
+                    <span class="info-button-info s-hidden" id="info-button-info-iiif-manifest" data-behavior="infoButtonInfo">'
+                        <span class="f-caption">
+                            The International Image Interoperability Framework (IIIF) represents a set of open standards that enables rich access to digital media from libraries, archives, museums, and other cultural institutions around the world.<br/><br/>
+                        <a href="/open-access/open-access-images">Learn more</a>.
+                        </span>
+                    </span>
+                VALUE => [$this->getIiifManifestUrl()],
             ]));
         }
 
