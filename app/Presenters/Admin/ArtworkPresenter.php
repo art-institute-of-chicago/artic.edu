@@ -386,10 +386,10 @@ class ArtworkPresenter extends BasePresenter
             $details = array_merge($details, $this->formatDetailBlocks([
                 <<<VALUE
                     <span id="h-iiif-manifest">IIIF Manifest</span>&nbsp;
-                    <button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" data-breakpoints="none">'
+                    <button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" data-breakpoints="none">
                         <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
                     </button>
-                    <span class="info-button-info s-hidden" id="info-button-info-iiif-manifest" data-behavior="infoButtonInfo">'
+                    <span class="info-button-info s-hidden" id="info-button-info-iiif-manifest" data-behavior="infoButtonInfo">
                         <span class="f-caption">
                             The International Image Interoperability Framework (IIIF) represents a set of open standards that enables rich access to digital media from libraries, archives, museums, and other cultural institutions around the world.<br/><br/>
                         <a href="/open-access/open-access-images">Learn more</a>.
@@ -546,6 +546,9 @@ class ArtworkPresenter extends BasePresenter
         if ($this->entity->image_id) {
             $itemprops['thumbnailUrl'] = DamsImageService::getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
             $itemprops['image'] = DamsImageService::getBaseUrl() . '2/' . $this->entity->image_id;
+            $dams = new DamsImageService();
+            $itemprops['thumbnailUrl'] = $dams->getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
+            $itemprops['image'] = $dams->getBaseUrl() . '2/' . $this->entity->image_id;
         }
 
         return $itemprops;
