@@ -1,0 +1,319 @@
+// ------ Layered image viewer
+
+// ---- General
+.o-layered-image-viewer {
+  -webkit-user-select: none;
+  user-select: none;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  span.radio {
+    position: relative;
+    width: 1.6em;
+    height: 1.6em;
+    margin: 0;
+  }
+
+  .f-body,
+  .f-secondary {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+}
+
+
+
+// -- JS only
+.js {
+  .o-layered-image-viewer__caption,
+  .o-layered-image-viewer__images,
+  .o-layered-image-viewer__overlays {
+    display: none;
+  }
+}
+
+// ---- Toolbars
+
+// -- Viewer
+.o-layered-image-viewer__viewer-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+
+  .btn {
+    display: block;
+    margin: 0;
+
+    &:first-child {
+      border-radius: 0.2em 0.2em 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 0.2em 0.2em;
+    }
+  }
+}
+
+// -- Layers
+.o-layered-image-viewer__layers-toolbar {
+  display: flex;
+  gap: 0.1em;
+  align-items: flex-end;
+
+  & > *:first-child {
+    border-top-left-radius: 0.2em;
+    border-bottom-left-radius: 0.2em;
+  }
+
+  & > *:last-child {
+    border-top-right-radius: 0.2em;
+    border-bottom-right-radius: 0.2em;
+  }
+
+  & > .btn {
+    display: block;
+    margin: 0;
+    flex: 0 0 auto;
+  }
+}
+
+// ---- Opacity
+
+.o-layered-image-viewer__opacity {
+  display: flex;
+  align-items: center;
+  min-height: 4.8em;
+  padding: 0.4em 1.2em;
+  background-color: $color__white;
+
+  label {
+    display: none;
+  }
+
+  @include breakpoint('small+') {
+    label {
+      display: block;
+    }
+  }
+}
+
+// -- Range styles
+@mixin track() {
+  appearance: none;
+  border-radius: 0;
+  height: 0.2em;
+  background: linear-gradient(var(--track-fill), var(--track-fill)) 0 /
+      var(--pos) no-repeat,
+    $color__black--10;
+}
+
+@mixin thumb() {
+  position: relative;
+  top: -0.7em;
+  appearance: none;
+  box-sizing: border-box;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 0 0 0.1em var(--thumb-border);
+  background: $color__white;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.o-layered-image-viewer__opacity-field {
+  display: flex;
+  gap: 1.6em;
+  align-items: center;
+
+  input {
+    --track-fill: #{$color__black--42};
+    --thumb-border: #{$color__black--20};
+
+    font-size: 1em;
+    --pos: calc(#{1.6em} + var(--percent, 0) * (100% - #{1.6em}));
+    appearance: none;
+    width: 100%;
+
+    &::-webkit-slider-runnable-track {
+      @include track;
+    }
+    &::-webkit-slider-thumb {
+      @include thumb;
+    }
+
+    &::-moz-range-track {
+      @include track;
+    }
+
+    &::-moz-range-thumb {
+      @include thumb;
+    }
+
+    &:hover {
+      --thumb-border: #{$color__black--42};
+    }
+
+    &:active,
+    &:focus-visible {
+      --track-fill: #{$color__black--80};
+      --thumb-border: #{$color__black--80};
+    }
+  }
+
+  @include breakpoint('small+') {
+    margin-left: 1.6em;
+  }
+}
+
+// ---- Details (Menu button)
+.o-layered-image-viewer-details {
+  position: relative;
+  background-color: transparent;
+
+  &[open] {
+    summary {
+      background: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  summary {
+    display: flex;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: none;
+    cursor: pointer;
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    svg {
+      margin: 0;
+    }
+  }
+}
+
+// ---- Menu
+
+.o-layered-image-viewer-details__section
+  + .o-layered-image-viewer-details__section {
+  margin-top: 4em;
+}
+
+.o-layered-image-viewer-details__heading {
+  margin-bottom: 1.2em;
+  padding-right: 2.4em;
+}
+
+.o-layered-image-viewer-details__menu {
+  position: absolute;
+  bottom: 100%;
+  right: calc(-100% - 0.1em);
+  min-width: min(calc(var(--viewer-width) - 48px), 35em);
+  background: $color__white;
+  padding: 2.4em;
+  max-height: calc(var(--viewer-height) - 9.8em);
+  overflow: auto;
+
+  @include breakpoint('small+') {
+    // button w/h is 4.8em
+    right: calc(100% - 4.8em);
+  }
+}
+
+.o-layered-image-viewer-details__close {
+  position: absolute;
+  top: 0.8em;
+  right: 0.8em;
+}
+
+
+.o-layered-image-viewer__details-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.o-layered-image-viewer__details-row {
+  gap: 2.4em;
+  padding-bottom: 1.2em;
+  border-bottom: 0.1em solid $color__black--5;
+
+  &:first-child {
+    padding-top: 1.2em;
+    border-top: 0.1em solid $color__black--5;
+  }
+}
+
+.o-layered-image-viewer__details-row--radio {
+  display: grid;
+  grid-template-columns: 1fr 1.6em 1.6em;
+  justify-items: center;
+  align-items: center;
+
+  *:first-child {
+    justify-self: self-start;
+  }
+}
+
+.o-layered-image-viewer__details-row--title {
+  align-items: flex-end;
+  border: none;
+
+  .f-caption {
+    color: $color__black--54;
+  }
+}
+
+.o-layered-image-viewer-details__radio-group {
+  display: contents;
+}
+
+// ---- Mouunted element
+.o-layered-image-viewer__osd {
+  .m-media__img {
+    display: flex;
+  }
+}
+
+.o-layered-image-viewer__osd-mount {
+  width: 100%;
+  // a11y: need min-height that doesn't allow buttons to overlap
+  min-height: 32em;
+  max-height: 80vh;
+  aspect-ratio: 1 / var(--viewer-aspect);
+
+  @supports not (aspect-ratio: 1) {
+    height: 80vh;
+  }
+
+  // Overlays should be non-interactive
+  .openseadragon-canvas img {
+    pointer-events: none;
+  }
+
+}
+
+// Initial modal state
+.o-layered-image-viewer__modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  opacity: 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
