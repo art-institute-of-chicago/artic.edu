@@ -175,6 +175,14 @@ html.s-print body {
   }
 
   .o-blocks {
+    & > h2 {
+      font-size: 2em;
+      margin-top: 2em;
+    }
+    & > h3 {
+      font-size: 1.5em;
+      margin-top: 1.5em;
+    }
     & > h5,
     & > p,
     & > ul,
