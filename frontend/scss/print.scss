@@ -298,21 +298,13 @@ html.s-print body {
   }
 
   .m-media.m-media--gallery,
-  .m-media.m-media--l {
+  .m-media.m-media--l,
+  .m-media.m-media--s {
     & .m-media__img {
       width: 50%;
     }
     & figcaption {
       max-width: 50%;
-    }
-  }
-
-  .m-media.m-media--s {
-    & .m-media__img {
-      width: 25%;
-    }
-    & figcaption {
-      max-width: 75%;
     }
   }
 
@@ -332,6 +324,7 @@ html.s-print body {
     height: auto;
     margin: 0;
     max-height: 50vw;
+    max-width: 50vw;
     width: 100%;
   }
 
