@@ -346,7 +346,7 @@
             'label' => 'Program URLs',
             'type' => 'textarea',
             'rows' => $item->programs->count(),
-            'disabled' => 'true',
+            'readonly' => 'true',
         ])
     </a17-fieldset>
 
