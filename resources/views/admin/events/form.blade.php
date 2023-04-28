@@ -110,7 +110,7 @@
         @formField('input', [
             'name' => 'buy_tickets_link',
             'label' => 'Button link preview',
-            'disabled' => 'true',
+            'readonly' => 'true',
             'note' => 'Save and refresh the page to see the link preview',
         ])
 
