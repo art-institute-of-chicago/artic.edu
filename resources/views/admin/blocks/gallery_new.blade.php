@@ -4,19 +4,24 @@
 {{-- WEB-1251: Inline contents partial for shared gallery block --}}
 @include('admin.partials.gallery-shared')
 
-@formField('input', [
+@formField('wysiwyg', [
     'name' => 'title',
     'label' => 'Title',
-    'maxlength' => 60
+    'maxlength' => 60,
+    'toolbarOptions' => [
+        'italic', 'link',
+    ],
 ])
 
-@formField('input', [
-    'type' => 'textarea',
+@formField('wysiwyg', [
     'name' => 'description',
     'label' => 'Description',
     'rows' => 4,
     'maxlength' => 500,
     'note' => 'Will be hidden if title is empty',
+    'toolbarOptions' => [
+        'italic', 'link',
+    ],
 ])
 
 @formField('checkbox', [
