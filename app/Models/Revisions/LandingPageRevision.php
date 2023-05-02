@@ -8,7 +8,7 @@ class LandingPageRevision extends Revision
 {
     protected $table = 'landing_page_revisions';
 
-    protected $touches = ['landing_page'];
+    protected $touches = ['landingPage'];
 
     public function landingPage()
     {
