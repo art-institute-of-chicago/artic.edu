@@ -13,7 +13,7 @@ class EventTest extends BaseTestCase
 
     public function test_event_page_displays_events()
     {
-        $response = $this->get('/events');
+        $response = $this->get(route('events'));
         $response->assertSee(Event::get()->pluck('title_display')->all());
     }
 
@@ -26,7 +26,7 @@ class EventTest extends BaseTestCase
             $event->save();
         });
 
-        $response = $this->get("/events?program=$eventProgram->id");
+        $response = $this->get(route('events', ['program' => $eventProgram->id]));
 
         $response->assertStatus(200);
 
