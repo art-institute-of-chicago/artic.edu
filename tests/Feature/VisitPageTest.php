@@ -18,7 +18,7 @@ class VisitPageTest extends BaseTestCase
 
     public function test_visiting_hours_are_displayed()
     {
-        $response = $this->get('/visit');
+        $response = $this->get(route('visit'));
         $response->assertSee(
             'The Art Institute reopens on July 30, and we&#8217;re so happy to welcome you back to our galleries. Please see below for new hours—including member-only hours—and updated safety policies.',
             false
@@ -29,7 +29,7 @@ class VisitPageTest extends BaseTestCase
 
     public function test_admission_description_is_displayed()
     {
-        $response = $this->get('/visit');
+        $response = $this->get(route('visit'));
         $response->assertSee(
             'The Art Institute of Chicago provides free access to children under 14, Chicago teens under 18, Link and WIC cardholders, and Illinois educators every day, and to Illinois residents on certain days throughout the year.'
         );
@@ -37,7 +37,7 @@ class VisitPageTest extends BaseTestCase
 
     public function test_accessibility_link_is_displayed()
     {
-        $response = $this->get('/visit');
+        $response = $this->get(route('visit'));
         $response->assertSee(
             'The Art Institute of Chicago welcomes all visitors and is committed to making its services accessible to everyone. We offer a range of resources for both adults and children with disabilities.'
         );
@@ -47,7 +47,7 @@ class VisitPageTest extends BaseTestCase
 
     public function test_family_pages_titles_are_displayed_in_order()
     {
-        $response = $this->get('/visit');
+        $response = $this->get(route('visit'));
         $response->assertSeeInOrder([
             'Art Institute Mobile App',
             'What to See in an Hour',
@@ -57,7 +57,7 @@ class VisitPageTest extends BaseTestCase
 
     public function test_mobile_app_family_page_link_is_displayed()
     {
-        $response = $this->get('/visit');
+        $response = $this->get(route('visit'));
         $response->assertSee(
             'The Art Institute&#8217;s free app offers the stories behind the art through conversations with artists, experts, and community members. Download it via the App Store or Google Play.',
             false
@@ -68,7 +68,7 @@ class VisitPageTest extends BaseTestCase
 
     public function test_highlights_family_page_link_is_displayed()
     {
-        $response = $this->get('/visit');
+        $response = $this->get(route('visit'));
         $response->assertSee('Short on time? Check out this must-see guide to the collection.');
         $response->assertSee('More custom tours');
         $response->assertSee("href=\"{$this->appUrl}/highlights\"", false);
@@ -76,7 +76,7 @@ class VisitPageTest extends BaseTestCase
 
     public function test_visit_virtually_family_page_link_is_displayed()
     {
-        $response = $this->get('/visit');
+        $response = $this->get(route('visit'));
         $response->assertSee('Even from afar, there&#8217;s a host of ways to connect to our collection of art from around the world&mdash;whether you&#8217;re seeking inspiration, community, or a little adventure.', false);
         $response->assertSee('Learn more');
         $response->assertSee("href=\"{$this->appUrl}/visit-us-virtually\"", false);
@@ -84,7 +84,7 @@ class VisitPageTest extends BaseTestCase
 
     public function test_what_to_expect_items_are_displayed_in_order()
     {
-        $response = $this->get('/visit');
+        $response = $this->get(route('visit'));
         $response->assertSeeInOrder([
             'Face coverings will be required for your entire museum visit.',
             'Maintain a physical distance of six-feet from staff and visitors.',
@@ -97,5 +97,4 @@ class VisitPageTest extends BaseTestCase
             'Special exhibitions may use timed queueing systems. Check in at exhibition entrances to reserve your spot in line.',
         ]);
     }
-//
 }
