@@ -10,7 +10,7 @@ class LandingPageRevision extends Revision
 
     protected $touches = ['landing_page'];
 
-    public function landing_page()
+    public function landingPage()
     {
         return $this->belongsTo('App\Models\LandingPage');
     }

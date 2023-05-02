@@ -8,7 +8,7 @@ use Session;
 
 class LandingPageController extends ModuleController
 {
-    const MISSING_CMS_PAGE_MESSAGE = "CMS home page doesn't exist, make sure to migrate the database and seed it first (php artisan migrate & php artisan db:seed)";
+    public const MISSING_CMS_PAGE_MESSAGE = "CMS home page doesn't exist, make sure to migrate the database and seed it first (php artisan migrate & php artisan db:seed)";
 
     protected $moduleName = 'landingPages';
 
