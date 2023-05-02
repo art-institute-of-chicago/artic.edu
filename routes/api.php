@@ -19,6 +19,7 @@ use App\Http\Controllers\API\GeotargetController;
 use App\Http\Controllers\API\HighlightsController;
 use App\Http\Controllers\API\HoursController;
 use App\Http\Controllers\API\InteractiveFeaturesController;
+use App\Http\Controllers\API\LandingPagesController;
 use App\Http\Controllers\API\LocationsController;
 use App\Http\Controllers\API\PressReleasesController;
 use App\Http\Controllers\API\PrintedPublicationsController;
@@ -128,6 +129,12 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('emailseries', [EmailSeriesController::class, 'index']);
 
     Route::get('emailseries/{id}', [EmailSeriesController::class, 'show']);
+
+    /**
+     * Landing pages ------------------------------------------------------
+     */
+    Route::get('landingpages', [LandingPagesController::class, 'index']);
+    Route::get('landingpages/{id}', [LandingPagesController::class, 'show']);
 
     /**
      * Generic pages ------------------------------------------------------
