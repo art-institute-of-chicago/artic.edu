@@ -128,7 +128,7 @@ class LandingPageRepository extends ModuleRepository
     ];
 
     public function __construct(LandingPage $model)
-    {   
+    {
         $this->model = $model;
     }
 
