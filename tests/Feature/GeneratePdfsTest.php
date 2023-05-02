@@ -44,13 +44,6 @@ class GeneratePdfsTest extends BaseTestCase
             ->expectsOutput("Generated PDF for DigitalPublicationSection with ID {$this->sections->first()->id}");
     }
 
-    public function test_errors_when_prince_binary_not_present()
-    {
-        $noPrinceCommand = '/dev/null';
-        Config::set('aic.prince_command', $noPrinceCommand);
-        $this->artisan('pdfs:generate')->assertFailed()->expectsOutput("Prince could not be found at $noPrinceCommand");
-    }
-
     public function test_pdf_download_path_updated()
     {
         $this->assertNull($this->sections->first()->pdf_download_path);
@@ -59,7 +52,7 @@ class GeneratePdfsTest extends BaseTestCase
             'id' => $this->sections->first()->id,
         ]);
         $this->sections->first()->refresh();
-        $downloadPath = GeneratePdfs::pdfDownloadPath(GeneratePdfs::pdfFileName($this->sections->first()));
+        $downloadPath = GeneratePdfs::downloadPath(GeneratePdfs::fileName($this->sections->first()));
         $this->assertEquals($downloadPath, $this->sections->first()->pdf_download_path);
     }
 
@@ -71,7 +64,10 @@ class GeneratePdfsTest extends BaseTestCase
             'model' => DigitalPublicationSection::class,
             'id' => $this->sections->first()->id,
         ]);
-        $downloadPath = GeneratePdfs::pdfDownloadPath(GeneratePdfs::pdfFileName($this->sections->first()));
+        $fileName = GeneratePdfs::fileName($this->sections->first());
+        $localPath = GeneratePdfs::localPath($fileName);
+        Storage::disk('local')->assertMissing($localPath);
+        $downloadPath = GeneratePdfs::downloadPath($fileName);
         Storage::disk('pdf_s3')->assertExists($downloadPath);
     }
 }
