@@ -202,9 +202,13 @@ $nav = [
     ],
     'generic' => [
         'title' => 'Pages',
-        'route' => 'admin.generic.genericPages.index',
+        'route' => 'admin.generic.landingPages.index',
 
         'primary_navigation' => [
+            'landingPages' => [
+                'title' => 'Landing Pages',
+                'module' => true,
+            ],
             'genericPages' => [
                 'title' => 'Generic Pages',
                 'module' => true,
@@ -235,6 +239,10 @@ $nav = [
             ],
             'searchTerms' => [
                 'title' => 'Search Terms',
+                'module' => true,
+            ],
+            'landingPageCategories' => [
+                'title' => 'Landing Page Categories',
                 'module' => true,
             ],
             'pageCategories' => [
