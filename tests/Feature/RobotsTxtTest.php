@@ -9,14 +9,14 @@ class RobotsTxtTest extends BaseTestCase
 {
     public function test_robots_txt_loads()
     {
-        $response = $this->get('/robots.txt');
+        $response = $this->get(route('robots-txt'));
         $response->assertStatus(200);
     }
 
     public function test_blocks_all_traffic_when_not_production()
     {
         Config::set('app.env', 'testing');
-        $response = $this->get('/robots.txt');
+        $response = $this->get(route('robots-txt'));
         $this->assertEquals("User-agent: *\nDisallow: /", $response->getContent());
     }
 
@@ -25,7 +25,7 @@ class RobotsTxtTest extends BaseTestCase
         Config::set('app.env', 'production');
         Config::set('app.debug', false);
         Config::set('app.url', 'www.example.com');
-        $response = $this->get('/robots.txt');
+        $response = $this->get(route('robots-txt'));
         $this->assertEquals("User-agent: *\nDisallow: /", $response->getContent());
     }
 
@@ -34,7 +34,7 @@ class RobotsTxtTest extends BaseTestCase
         Config::set('app.env', 'production');
         Config::set('app.debug', false);
         Config::set('app.url', 'localhost');
-        $response = $this->get('/robots.txt');
+        $response = $this->get(route('robots-txt'));
         $this->assertNotEquals("User-agent: *\nDisallow: /", $response->getContent());
     }
 }
