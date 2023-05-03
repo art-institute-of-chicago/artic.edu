@@ -32,7 +32,7 @@ class EducatorResourcesController extends BaseScopedController
 
     public function index(Request $request)
     {
-        $items = $this->collection()->paginate();
+        $items = $this->collection()->orderByDate()->paginate();
 
         $title = 'Educator Resources';
 
