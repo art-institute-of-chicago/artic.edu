@@ -9,9 +9,12 @@
     'max' => '1'
 ])
 
-@formField('input', [
+@formField('wysiwyg', [
     'name' => 'title',
-    'label' => 'Title'
+    'label' => 'Title',
+    'toolbarOptions' => [
+        'italic',
+    ],
 ])
 
 @formField('input', [
@@ -20,11 +23,14 @@
     'note' => 'Displayed in smaller font above title',
 ])
 
-@formField('input', [
+@formField('wysiwyg', [
     'type' => 'textarea',
     'name' => 'description',
     'label' => 'Description',
-    'rows' => 4
+    'rows' => 4,
+    'toolbarOptions' => [
+        'italic',
+    ],
 ])
 
 @formField('input', [
