@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Forms;
 
 use Illuminate\Support\Facades\Mail;
-
 use App\Http\Requests\Form\FilmingProposalRequest;
-
 use App\Models\Form\FilmingProposal;
-
 use App\Mail\FormFilmingProposal;
 
 class FilmingAndPhotoShootProposalController extends FormController

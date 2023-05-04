@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Hour extends AbstractModel
 {
-    use Transformable, HasFactory;
+    use Transformable;
+    use HasFactory;
 
     protected $presenter = 'App\Presenters\HoursPresenter';
     protected $presenterAdmin = 'App\Presenters\HoursPresenter';

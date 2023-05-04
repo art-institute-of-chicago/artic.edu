@@ -6,7 +6,8 @@ use A17\Twill\Models\Behaviors\HasSlug;
 
 class SiteTag extends AbstractModel
 {
-    use HasSlug, Transformable;
+    use HasSlug;
+    use Transformable;
 
     protected $fillable = [
         'name',

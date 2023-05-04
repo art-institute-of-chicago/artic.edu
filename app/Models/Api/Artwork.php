@@ -13,12 +13,10 @@ use App\Models\Behaviors\HasFeaturedRelated;
 use App\Helpers\DateHelpers;
 use App\Helpers\ImageHelpers;
 use App\Helpers\StringHelpers;
+use Database\Factories\Api\HasApiFactory;
 
 class Artwork extends BaseApiModel
 {
-    const RELATED_MULTIMEDIA = 100;
-    const EXTRA_IMAGES_LIMIT = 9;
-
     use HasMediasApi {
         imageFront as traitImageFront;
     }
@@ -27,6 +25,11 @@ class Artwork extends BaseApiModel
         getFeaturedRelatedGtmAttributes as traitGetFeaturedRelatedGtmAttributes;
         getCustomRelatedItems as traitGetCustomRelatedItems;
     }
+
+    use HasApiFactory;
+
+    public const RELATED_MULTIMEDIA = 100;
+    public const EXTRA_IMAGES_LIMIT = 9;
 
     protected $showDefaultRelatedItems = true;
 
@@ -54,7 +57,7 @@ class Artwork extends BaseApiModel
     /**
      * Fields used when performing a search so we avoid a double call retrieving the complete entities
      */
-    const SEARCH_FIELDS = [
+    public const SEARCH_FIELDS = [
         'id',
         'title',
         'date_display',
@@ -301,8 +304,8 @@ class Artwork extends BaseApiModel
         })
             ->prepend($main)
             ->reject(function ($name) {
-            return empty($name);
-        });
+                return empty($name);
+            });
     }
 
     public function categories()
@@ -565,7 +568,7 @@ class Artwork extends BaseApiModel
         return Search::query()
             ->resources(['artworks'])
             ->forceEndpoint('search')
-            ->byMostSimilar($this->id, get_class($this), true)
+            ->byMostSimilar($this, true)
             ->getPaginatedModel(13, self::SEARCH_FIELDS)
             ->filter(function ($value, $key) {
                 return $this->id != $value->id;

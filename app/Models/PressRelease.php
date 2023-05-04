@@ -14,7 +14,14 @@ use DB;
 
 class PressRelease extends AbstractModel
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable, HasUnlisted;
+    use HasBlocks;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasMediasEloquent;
+    use Transformable;
+    use HasUnlisted;
 
     protected $fillable = [
         'short_description',
@@ -68,7 +75,6 @@ class PressRelease extends AbstractModel
     /**
      * A list of file roles
      */
-    public $filesParams = ['attachment'];
 
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';

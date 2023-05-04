@@ -4,7 +4,6 @@ namespace App\Models;
 
 trait Transformable
 {
-
     /**
      * Turn this model object into a generic array.
      *

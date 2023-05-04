@@ -8,7 +8,7 @@ class Departments extends BaseFilteredList
     protected $entity = \App\Models\Api\Department::class;
 
     // ART-48, WEB-1831: Combine library and archives into one filter
-    const RESEARCH_TITLE = 'Research Center';
+    public const RESEARCH_TITLE = 'Research Center';
 
     private string $archiveTitle;
     private string $libraryTitle;

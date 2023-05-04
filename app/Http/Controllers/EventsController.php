@@ -14,7 +14,7 @@ class EventsController extends FrontController
     protected $repository;
     protected $moduleName = 'events';
 
-    const PER_PAGE = 10;
+    public const PER_PAGE = 10;
 
     public function __construct(EventRepository $repository)
     {

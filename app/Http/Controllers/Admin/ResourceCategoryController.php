@@ -12,6 +12,7 @@ class ResourceCategoryController extends ModuleController
         'publish' => false,
         'editInModal' => true,
         'permalink' => false,
+        'reorder' => true
     ];
 
     protected $titleColumnKey = 'name';

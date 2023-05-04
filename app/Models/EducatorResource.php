@@ -12,7 +12,14 @@ use App\Models\Behaviors\HasRelated;
 
 class EducatorResource extends AbstractModel
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable, HasRelated;
+    use HasBlocks;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasMediasEloquent;
+    use Transformable;
+    use HasRelated;
 
     protected $fillable = [
         'listing_description',
@@ -100,6 +107,10 @@ class EducatorResource extends AbstractModel
         return $query->whereIn('id', $ids);
     }
 
+    public function scopeOrderByDate($query)
+    {
+        return $query->orderBy('publish_start_date', 'DESC');
+    }
     public function scopeByCategory($query, $category = null)
     {
         if (empty($category)) {

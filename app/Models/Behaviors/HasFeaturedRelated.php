@@ -9,7 +9,6 @@ use App\Models\Api\Exhibition;
 use App\Models\Experience;
 use App\Models\DigitalPublication;
 use App\Models\Video;
-
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 
@@ -44,10 +43,12 @@ trait HasFeaturedRelated
         if (!$this->selectedFeaturedRelateds) {
             $relatedItems = $this->getCustomRelatedItems();
 
-            if (($this->showDefaultRelatedItems ?? false) && $relatedItems->count() < 1) {
-                $relatedItems = $this->getDefaultRelatedItems($relatedItems);
-                $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
-                $this->sidebarContainsDefaultRelated = true;
+            if (config('aic.show_default_related_items')) {
+                if (($this->showDefaultRelatedItems ?? false) && $relatedItems->count() < 1) {
+                    $relatedItems = $this->getDefaultRelatedItems($relatedItems);
+                    $relatedItems = $relatedItems->slice(0, $this->getTargetItemCount());
+                    $this->sidebarContainsDefaultRelated = true;
+                }
             }
 
             $this->selectedFeaturedRelateds = $this->getLabeledRelatedItems($relatedItems);

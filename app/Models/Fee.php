@@ -20,12 +20,12 @@ class Fee extends AbstractModel
      */
     public $checkboxes = [];
 
-    public function fee_age()
+    public function fee_age() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         return $this->belongsTo('App\Models\FeeAge');
     }
 
-    public function fee_category()
+    public function fee_category() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         return $this->belongsTo('App\Models\FeeCategory');
     }

@@ -12,7 +12,14 @@ use App\Models\Behaviors\HasRelated;
 
 class Video extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasRelated, HasBlocks, Transformable;
+    use HasSlug;
+    use HasRevisions;
+    use HasMedias;
+    use HasFiles;
+    use HasMediasEloquent;
+    use HasRelated;
+    use HasBlocks;
+    use Transformable;
 
     protected $presenter = 'App\Presenters\Admin\VideoPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\VideoPresenter';
@@ -24,7 +31,10 @@ class Video extends AbstractModel
         'heading',
         'video_url',
         'list_description',
-        'title_display'
+        'title_display',
+        'meta_title',
+        'meta_description',
+        'search_tags'
     ];
 
     protected $dates = [

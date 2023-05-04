@@ -16,10 +16,9 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('input', [
+    @formField('color', [
         'name' => 'bgcolor',
         'label' => 'Hero background color',
-        'note' => 'Use a color hex code like #b50938'
     ])
 
     @formField('wysiwyg', [
@@ -37,6 +36,7 @@
         'name' => 'listing_description',
         'label' => 'Listing description',
         'note' => 'Max 255 characters',
+        'maxlength' => 255,
         'toolbarOptions' => [
             'italic'
         ],

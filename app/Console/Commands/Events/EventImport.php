@@ -5,10 +5,8 @@ namespace App\Console\Commands\Events;
 use App\Models\Event;
 use App\Models\ApiRelation;
 use App\Models\Api\TicketedEvent;
-
 use League\Csv\Reader;
 use Illuminate\Support\Facades\Storage;
-
 use Aic\Hub\Foundation\AbstractCommand as BaseCommand;
 
 class EventImport extends BaseCommand

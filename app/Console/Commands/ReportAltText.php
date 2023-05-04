@@ -35,7 +35,6 @@ class ReportAltText extends Command
             \App\Models\Page::class,
             \App\Models\PressRelease::class,
             \App\Models\PrintedPublication::class,
-            \App\Models\ResearchGuide::class,
             \App\Models\Highlight::class,
             \App\Models\Video::class,
             \A17\Twill\Models\Block::class,
@@ -100,7 +99,7 @@ class ReportAltText extends Command
      * @param  array $data the array of data
      * @return string       CSV text
      */
-    private function str_putcsv($data)
+    private function str_putcsv($data) // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         // Don't create a file, attempt to use memory instead
         $fh = fopen('php://temp', 'rw');
@@ -160,9 +159,11 @@ class ReportAltText extends Command
         }
 
         // Alter slugs
-        if (\App\Models\Artist::class == get_class($item)
+        if (
+            \App\Models\Artist::class == get_class($item)
             || \App\Models\Department::class == get_class($item)
-            || \App\Models\Exhibition::class == get_class($item)) {
+            || \App\Models\Exhibition::class == get_class($item)
+        ) {
             $slug = $item->datahub_id . '/' . $item->getApiModelFilled()->titleSlug;
         }
 
@@ -230,8 +231,10 @@ class ReportAltText extends Command
             }
         }
 
-        if (\A17\Twill\Models\Block::class == get_class($item)
-            || \App\Models\Lightbox::class == get_class($item)) {
+        if (
+            \A17\Twill\Models\Block::class == get_class($item)
+            || \App\Models\Lightbox::class == get_class($item)
+        ) {
             return '';
         }
 

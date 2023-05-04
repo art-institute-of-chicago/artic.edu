@@ -8,7 +8,6 @@ use ImageService;
 
 class ImageHelpers
 {
-
     /**
      * Get the UUID of a media library asset
      * `uuid` represents the full S3 path, but we only want the UUID
@@ -299,16 +298,15 @@ class ImageHelpers
                 ];
             }
 
-                return [
-                    'srcset' => $stringSrcset,
-                    'src' => $originalSrc,
-                    'sizes' => $stringSizes,
-                    'width' => $stringWidth,
-                    'height' => $stringHeight,
-                    'lqip' => $lqip,
-                    'iiifId' => $iiifId,
-                ];
-
+            return [
+                'srcset' => $stringSrcset,
+                'src' => $originalSrc,
+                'sizes' => $stringSizes,
+                'width' => $stringWidth,
+                'height' => $stringHeight,
+                'lqip' => $lqip,
+                'iiifId' => $iiifId,
+            ];
         }
 
         // Assign the sizes
@@ -371,7 +369,7 @@ class ImageHelpers
                 }
 
                 if (empty($settings['crop'])) {
-                    $settings['crop'] = 'faces,edges,entropy';
+                    $settings['crop'] = 'faces,center';
                 }
             }
 
@@ -411,7 +409,7 @@ class ImageHelpers
             }
 
             if (empty($settings['crop'])) {
-                $imgixSettings['crop'] = 'faces,edges,entropy';
+                $imgixSettings['crop'] = 'faces,center';
             } else {
                 $imgixSettings['crop'] = $settings['crop'];
             }
@@ -436,13 +434,13 @@ class ImageHelpers
                 if ($stringSrcset) {
                     $stringSrcset .= ', ';
                 }
-            $imgixSettings['w'] = $size;
+                $imgixSettings['w'] = $size;
 
-            if ($height && $height !== 'auto') {
-                $imgixSettings['h'] = round(($height / $width) * $size);
-            }
-            $imgixSettingsString = http_build_query($imgixSettings);
-            $stringSrcset .= $base . $imgixSettingsString . ' ' . $size . 'w';
+                if ($height && $height !== 'auto') {
+                    $imgixSettings['h'] = round(($height / $width) * $size);
+                }
+                $imgixSettingsString = http_build_query($imgixSettings);
+                $stringSrcset .= $base . $imgixSettingsString . ' ' . $size . 'w';
             }
 
             // Get data-pin-media for pinterest
@@ -470,7 +468,6 @@ class ImageHelpers
         }
 
         if ($sourceType === 'dams') {
-
             // IIIF doesn't have many image processing features..
             // http://iiif.io/api/image/2.1/#region
             // /{region}/{size}/{rotation}/{quality}.{format}
@@ -529,7 +526,7 @@ class ImageHelpers
                 if (!empty($stringSrcset)) {
                     $stringSrcset .= ', ';
                 }
-            $stringSrcset .= $base . '/' . $resizeVal . '/' . $size . ',/0/default.jpg ' . $size . 'w';
+                $stringSrcset .= $base . '/' . $resizeVal . '/' . $size . ',/0/default.jpg ' . $size . 'w';
             }
 
             // Get data-pin-media for pinterest
@@ -620,7 +617,7 @@ class ImageHelpers
                     $thisSize = round(($totalCSScolumns * (100 / ($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2) . 'vw';
                 }
             }
-        $sizes .= ($name === 'xlarge' ? '' : ', ') . $point . ' ' . $thisSize;
+            $sizes .= ($name === 'xlarge' ? '' : ', ') . $point . ' ' . $thisSize;
         }
 
         return $sizes;

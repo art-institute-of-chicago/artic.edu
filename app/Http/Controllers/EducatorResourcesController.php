@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Repositories\EducatorResourceRepository;
 use App\Models\ResourceCategory;
 
@@ -33,7 +32,7 @@ class EducatorResourcesController extends BaseScopedController
 
     public function index(Request $request)
     {
-        $items = $this->collection()->paginate();
+        $items = $this->collection()->orderByDate()->paginate();
 
         $title = 'Educator Resources';
 

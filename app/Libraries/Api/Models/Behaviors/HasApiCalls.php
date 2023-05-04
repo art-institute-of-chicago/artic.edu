@@ -8,7 +8,6 @@ use App\Libraries\Api\Builders\ApiQueryBuilder;
 
 trait HasApiCalls
 {
-
     /**
      * The array of default scopes on the model.
      *

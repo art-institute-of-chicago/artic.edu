@@ -4,48 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Models\Api\Artwork;
 use App\Models\Api\Search as GeneralSearch;
-
 use App\Repositories\Api\ArtworkRepository;
 use App\Repositories\Api\ArtistRepository;
 use App\Repositories\Api\SearchRepository;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\ArticleRepository;
+use App\Repositories\EducatorResourceRepository;
 use App\Repositories\PublicationsRepository;
 use App\Repositories\EventRepository;
 use App\Repositories\GenericPageRepository;
 use App\Repositories\PressReleaseRepository;
-use App\Repositories\ResearchGuideRepository;
 use App\Repositories\InteractiveFeatureRepository;
 use App\Repositories\HighlightRepository;
-
 use App\Libraries\Search\CollectionService;
-
 use App\Helpers\QueryHelpers;
-
 use Illuminate\Support\Str;
 
 class SearchController extends BaseScopedController
 {
-    const ALL_PER_PAGE = 5;
-    const ALL_PER_PAGE_ARTWORKS = 8;
-    const ALL_PER_PAGE_EXHIBITIONS = 4;
-    const ALL_PER_PAGE_EVENTS = 4;
-    const ALL_PER_PAGE_PAGES = 3;
-    const ALL_PER_PAGE_ARTICLES = 4;
-    const ALL_PER_PAGE_PUBLICATIONS = 4;
-    const ALL_PER_PAGE_INTERACTIVEFEATURES = 4;
-    const ALL_PER_PAGE_HIGHLIGHTS = 4;
+    public const ALL_PER_PAGE = 5;
+    public const ALL_PER_PAGE_ARTWORKS = 8;
+    public const ALL_PER_PAGE_EXHIBITIONS = 4;
+    public const ALL_PER_PAGE_EVENTS = 4;
+    public const ALL_PER_PAGE_PAGES = 3;
+    public const ALL_PER_PAGE_ARTICLES = 4;
+    public const ALL_PER_PAGE_PUBLICATIONS = 4;
+    public const ALL_PER_PAGE_INTERACTIVEFEATURES = 4;
+    public const ALL_PER_PAGE_HIGHLIGHTS = 4;
 
-    const ARTWORKS_PER_PAGE = 20;
-    const PAGES_PER_PAGE = 20;
-    const EXHIBITIONS_PER_PAGE = 20;
-    const INTERACTIVEFEATURES_PER_PAGE = 20;
-    const HIGHLIGHTS_PER_PAGE = 20;
-    const ARTICLES_PER_PAGE = 20;
-    const EVENTS_PER_PAGE = 20;
-    const PUBLICATIONS_PER_PAGE = 20;
-    const ARTISTS_PER_PAGE = 30;
-    const AUTOCOMPLETE_PER_PAGE = 10;
+    public const ARTWORKS_PER_PAGE = 20;
+    public const PAGES_PER_PAGE = 20;
+    public const EXHIBITIONS_PER_PAGE = 20;
+    public const INTERACTIVEFEATURES_PER_PAGE = 20;
+    public const HIGHLIGHTS_PER_PAGE = 20;
+    public const ARTICLES_PER_PAGE = 20;
+    public const EVENTS_PER_PAGE = 20;
+    public const PUBLICATIONS_PER_PAGE = 20;
+    public const ARTISTS_PER_PAGE = 30;
+    public const AUTOCOMPLETE_PER_PAGE = 10;
 
     protected $artworksRepository;
     protected $artistsRepository;
@@ -55,7 +51,7 @@ class SearchController extends BaseScopedController
     protected $eventsRepository;
     protected $publicationsRepository;
     protected $pagesRepository;
-    protected $researchGuideRepository;
+    protected $educatorResourceRepository;
     protected $pressRepository;
     protected $interactiveFeatureRepository;
     protected $highlightRepository;
@@ -69,7 +65,7 @@ class SearchController extends BaseScopedController
         PublicationsRepository $publications,
         EventRepository $events,
         GenericPageRepository $pages,
-        ResearchGuideRepository $researchGuide,
+        EducatorResourceRepository $educatorResources,
         PressReleaseRepository $press,
         InteractiveFeatureRepository $interactiveFeature,
         HighlightRepository $highlight
@@ -82,9 +78,9 @@ class SearchController extends BaseScopedController
         $this->eventsRepository = $events;
         $this->publicationsRepository = $publications;
         $this->pagesRepository = $pages;
-        $this->researchGuideRepository = $researchGuide;
+        $this->educatorResourceRepository = $educatorResources;
         $this->pressRepository = $press;
-        $this->interactiveFeatureRespository = $interactiveFeature;
+        $this->interactiveFeatureRepository = $interactiveFeature;
         $this->highlightRepository = $highlight;
 
         parent::__construct();
@@ -117,9 +113,9 @@ class SearchController extends BaseScopedController
         $exhibitions = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
         $events = $this->eventsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
         $pages = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_PAGES);
-        $guides = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $educatorResources = $this->educatorResourceRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
         $press = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
-        $interactiveFeatures = $this->interactiveFeatureRespository->search(request('q'))->paginate(self::ALL_PER_PAGE_INTERACTIVEFEATURES);
+        $interactiveFeatures = $this->interactiveFeatureRepository->search(request('q'))->paginate(self::ALL_PER_PAGE_INTERACTIVEFEATURES);
         $highlights = $this->highlightRepository->searchApi(request('q'), self::ALL_PER_PAGE_HIGHLIGHTS);
 
         return view('site.search.index', [
@@ -134,7 +130,7 @@ class SearchController extends BaseScopedController
             'highlights' => $highlights,
             'publications' => $publications,
             'pressReleases' => $press,
-            'researchGuides' => $guides,
+            'educatorResources' => $educatorResources,
             'allResultsView' => false,
             'searchResultsTypeLinks' => $links
         ]);
@@ -193,7 +189,7 @@ class SearchController extends BaseScopedController
                     $item->section = 'Highlights';
 
                     break;
-                }
+            }
 
             $item->text = $item->title;
         }
@@ -268,7 +264,7 @@ class SearchController extends BaseScopedController
         $this->seo->setTitle('Search');
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $interactiveFeatures = $this->interactiveFeatureRespository->search(request('q'))->paginate(self::INTERACTIVEFEATURES_PER_PAGE);
+        $interactiveFeatures = $this->interactiveFeatureRepository->search(request('q'))->paginate(self::INTERACTIVEFEATURES_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'interactive-features');
 
@@ -359,17 +355,17 @@ class SearchController extends BaseScopedController
         ]);
     }
 
-    public function researchGuides()
+    public function educatorResources()
     {
         $this->seo->setTitle('Search');
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $guides = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $educatorResources = $this->educatorResourceRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
 
-        $links = $this->buildSearchLinks($general, 'research-guides');
+        $links = $this->buildSearchLinks($general, 'educator-resources');
 
         return view('site.search.index', [
-            'researchGuides' => $guides,
+            'educatorResources' => $educatorResources,
             'allResultsView' => true,
             'searchResultsTypeLinks' => $links,
         ]);
@@ -447,8 +443,8 @@ class SearchController extends BaseScopedController
             array_push($links, $this->buildLabel('Publications', QueryHelpers::extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
 
-        if (QueryHelpers::extractAggregation($aggregations, ['research-guides', 'educator-resources'])) {
-            array_push($links, $this->buildLabel('Resources', QueryHelpers::extractAggregation($aggregations, ['research-guides', 'educator-resources']), route('search.research-guides', ['q' => request('q')]), $active == 'research-guides'));
+        if (QueryHelpers::extractAggregation($aggregations, 'educator-resources')) {
+            array_push($links, $this->buildLabel('Resources', QueryHelpers::extractAggregation($aggregations, 'educator-resources'), route('search.educator-resources', ['q' => request('q')]), $active == 'educator-resources'));
         }
 
         if (QueryHelpers::extractAggregation($aggregations, 'press-releases')) {

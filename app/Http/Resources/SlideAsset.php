@@ -47,7 +47,6 @@ class SlideAsset extends JsonResource
             ];
         }
 
-            return [];
-
+        return [];
     }
 }

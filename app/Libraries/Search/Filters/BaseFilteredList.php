@@ -28,9 +28,11 @@ class BaseFilteredList
 
         // WEB-1035: If there's no item with a requested id in buckets, prepend it
         foreach ($inputs as $input) {
-            if (!$this->buckets->contains(function ($item) use ($input) {
-                return $item->key === $input;
-            })) {
+            if (
+                !$this->buckets->contains(function ($item) use ($input) {
+                    return $item->key === $input;
+                })
+            ) {
                 $this->buckets->prepend((object) [
                     'key' => $input,
                     'doc_count' => 'N/A',

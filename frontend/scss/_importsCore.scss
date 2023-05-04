@@ -117,6 +117,7 @@
 @import 'organisms/o-publication-footer';
 @import 'organisms/o-article__primary-actions';
 @import 'organisms/o-hours';
+@import 'organisms/o-layered-image-viewer';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */
 
@@ -177,3 +178,4 @@
 @import 'state/s-sticky-filters';
 @import 'state/s-closer-look-scroll-blocked';
 @import 'state/s-closer-look-footer-stuck';
+@import 'state/s-layered-image-viewer-active';

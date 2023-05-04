@@ -11,7 +11,12 @@ use App\Helpers\StringHelpers;
 
 class Department extends AbstractModel
 {
-    use HasApiModel, Transformable, HasMedias, HasApiRelations, HasMediasEloquent, HasRelated;
+    use HasApiModel;
+    use Transformable;
+    use HasMedias;
+    use HasApiRelations;
+    use HasMediasEloquent;
+    use HasRelated;
 
     protected $apiModel = 'App\Models\Api\Department';
 

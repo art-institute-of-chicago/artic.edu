@@ -9,7 +9,11 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class CategoryTerm extends AbstractModel
 {
-    use HasApiModel, Transformable, HasMedias, HasMediasEloquent, HasApiRelations;
+    use HasApiModel;
+    use Transformable;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasApiRelations;
 
     protected $apiModel = 'App\Models\Api\CategoryTerm';
 

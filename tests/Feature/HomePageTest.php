@@ -15,14 +15,14 @@ class HomePageTest extends BaseTestCase
 
     public function test_home_page_loads()
     {
-        $response = $this->get('/');
+        $response = $this->get(route('home'));
         $response->assertStatus(200);
     }
 
     public function test_visit_page_links_appear_on_home_page()
     {
         $appUrl = config('APP_URL');
-        $response = $this->get('/');
+        $response = $this->get(route('home'));
         $response->assertSee('Hours and admission fees');
         $response->assertSee("href=\"{$appUrl}/visit#hours\"", false);
         $response->assertSee('Directions and parking');
@@ -31,7 +31,7 @@ class HomePageTest extends BaseTestCase
 
     public function test_events_section_appears_on_home_page()
     {
-        $response = $this->get('/');
+        $response = $this->get(route('home'));
         $response->assertSee('Events');
         $response->assertSee('See upcoming events');
     }
@@ -47,18 +47,18 @@ class HomePageTest extends BaseTestCase
         $this->assertDatabaseCount('events', 5);
 
         $events = Event::get();
-        $response = $this->get('/');
+        $response = $this->get(route('home'));
         $response->assertSee($events->take(4)->pluck('title_display')->all(), 'Home page displays first four events');
         $response->assertDontSee($events->last()->title_display, 'Home page displays only the first four events');
     }
 
     public function test_events_times_appear_on_home_page()
     {
-        $response = $this->get('/');
+        $response = $this->get(route('home'));
         $forcedFormattedDates = Event::whereNotNull('forced_date')->get()->pluck('forced_date')->all();
         $response->assertSee($forcedFormattedDates, 'Home page displays forced formatted dates as they are');
 
-        $dynamicallyFormattedDates = Event::whereNull('forced_date')->get()->map(function($event) {
+        $dynamicallyFormattedDates = Event::whereNull('forced_date')->get()->map(function ($event) {
             return $event->nextOccurrence->date->format('l, F j');  // [weekday], [month] [day of month]
         })->all();
         $response->assertSee($dynamicallyFormattedDates, 'Home page displays dynamically formatted dates');

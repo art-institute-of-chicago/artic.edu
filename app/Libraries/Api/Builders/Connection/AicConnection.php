@@ -133,8 +133,7 @@ class AicConnection implements ApiConnectionInterface
             return $response;
         }
 
-            return $this->client->request($verb, $endpoint, $options);
-
+        return $this->client->request($verb, $endpoint, $options);
     }
 
     /**

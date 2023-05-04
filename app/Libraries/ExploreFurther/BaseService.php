@@ -3,9 +3,7 @@
 namespace App\Libraries\ExploreFurther;
 
 use App\Models\Api\Search;
-
 use Illuminate\Support\Str;
-
 use App\Helpers\DateHelpers;
 
 /**
@@ -17,13 +15,13 @@ use App\Helpers\DateHelpers;
 
 class BaseService
 {
-    const MAX_TAGS = 3;
-    const PER_PAGE_EXPLORE_FURTHER = 13;
+    public const MAX_TAGS = 3;
+    public const PER_PAGE_EXPLORE_FURTHER = 13;
 
     /**
      * Array with valid filters for the Explore Further section.
      */
-    const VALID_FILTERS = [
+    public const VALID_FILTERS = [
         'ef-classification_ids',
         'ef-artist_ids',
         'ef-style_ids',
@@ -138,7 +136,7 @@ class BaseService
 
         if ($active) {
             if ($parameters->get('ef-most-similar_ids')) {
-                $query->byMostSimilar($this->resource->id, get_class($this->resource));
+                $query->byMostSimilar($this->resource);
             } else {
                 $years = explode('|', $parameters->get('ef-date_ids'));
 
@@ -191,7 +189,7 @@ class BaseService
 
                     break;
                 case 'most-similar':
-                    $query->byMostSimilar($this->resource->id, get_class($this->resource));
+                    $query->byMostSimilar($this->resource);
 
                     break;
             }

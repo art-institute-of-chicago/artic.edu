@@ -13,7 +13,13 @@ use App\Repositories\Behaviors\Handle3DModel;
 
 class SlideRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleExperienceModule, Handle3DModel;
+    use HandleBlocks;
+    use HandleSlugs;
+    use HandleMedias;
+    use HandleFiles;
+    use HandleRevisions;
+    use HandleExperienceModule;
+    use Handle3DModel;
 
     public function __construct(Slide $model)
     {

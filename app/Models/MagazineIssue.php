@@ -4,7 +4,6 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasRevisions;
-
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
@@ -12,7 +11,12 @@ use App\Models\Behaviors\HasRelated;
 
 class MagazineIssue extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasBlocks, HasMedias, HasMediasEloquent, HasRelated;
+    use HasSlug;
+    use HasRevisions;
+    use HasBlocks;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasRelated;
 
     protected $presenter = 'App\Presenters\Admin\MagazineIssuePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\MagazineIssuePresenter';

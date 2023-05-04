@@ -21,18 +21,6 @@ class NavHelpers
             ],
         ];
 
-        $journalPage = GenericPage::forSlug('journal')->published()->first();
-
-        if (isset($journalPage)) {
-            $journalPageUrl = $journalPage->url;
-
-            array_push($subNav, [
-                'label' => $journalPage->present()->title,
-                'href' => $journalPageUrl,
-                'active' => request()->path() == ltrim($journalPageUrl, '/'),
-            ]);
-        }
-
         $nav = [
             ['label' => 'Collection', 'href' => route('collection'), 'links' => $subNav]
         ];

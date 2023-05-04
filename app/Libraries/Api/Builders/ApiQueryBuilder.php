@@ -11,7 +11,6 @@ use App\Helpers\CollectionHelpers;
 
 class ApiQueryBuilder
 {
-
     /**
      * All of the available clause operators.
      *
@@ -171,8 +170,7 @@ class ApiQueryBuilder
             return $this;
         }
 
-            throw new \Exception('whereIn function has been defined only for IDS at the API Query Builder');
-
+        throw new \Exception('whereIn function has been defined only for IDS at the API Query Builder');
     }
 
     /**
@@ -470,8 +468,7 @@ class ApiQueryBuilder
                 return $results->body;
             }
 
-                return $results;
-
+            return $results;
         }
 
         $this->columns = $original;

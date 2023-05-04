@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
-
 use App\Models\Event;
 use App\Models\EventMeta;
 use App\Models\EventProgram;
@@ -14,7 +13,7 @@ class EventTest extends BaseTestCase
 
     public function test_event_page_displays_events()
     {
-        $response = $this->get('/events');
+        $response = $this->get(route('events'));
         $response->assertSee(Event::get()->pluck('title_display')->all());
     }
 
@@ -27,7 +26,7 @@ class EventTest extends BaseTestCase
             $event->save();
         });
 
-        $response = $this->get("/events?program=$eventProgram->id");
+        $response = $this->get(route('events', ['program' => $eventProgram->id]));
 
         $response->assertStatus(200);
 
@@ -61,6 +60,6 @@ class EventTest extends BaseTestCase
             'date_end' => now()->addDay(),
         ]);
         $event->eventMetas()->save($futureEvent);
-        $this->assertNotNull($event->nextOccurrence,  "The next occurrence must end in the future");
+        $this->assertNotNull($event->nextOccurrence, "The next occurrence must end in the future");
     }
 }

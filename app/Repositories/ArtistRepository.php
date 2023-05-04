@@ -9,7 +9,8 @@ use App\Repositories\Api\BaseApiRepository;
 
 class ArtistRepository extends BaseApiRepository
 {
-    use HandleSlugs, HandleMedias;
+    use HandleSlugs;
+    use HandleMedias;
 
     public function __construct(Artist $model)
     {

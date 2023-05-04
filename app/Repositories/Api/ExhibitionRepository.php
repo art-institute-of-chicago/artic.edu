@@ -4,12 +4,11 @@ namespace App\Repositories\Api;
 
 use App\Models\Api\Exhibition;
 use App\Repositories\EventRepository;
-
 use App\Models\Api\Search;
 
 class ExhibitionRepository extends BaseApiRepository
 {
-    const RELATED_EVENTS_PER_PAGE = 3;
+    public const RELATED_EVENTS_PER_PAGE = 3;
 
     public function __construct(Exhibition $model)
     {

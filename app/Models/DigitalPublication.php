@@ -4,7 +4,6 @@ namespace App\Models;
 
 use PDO;
 use Illuminate\Support\Facades\DB;
-
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -16,11 +15,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DigitalPublication extends AbstractModel
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable, HasRelated, HasFactory;
+    use HasBlocks;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasMediasEloquent;
+    use Transformable;
+    use HasRelated;
+    use HasFactory;
 
     protected $fillable = [
         'listing_description',
-        'short_description',
         'hero_caption',
         'title',
         'title_display',

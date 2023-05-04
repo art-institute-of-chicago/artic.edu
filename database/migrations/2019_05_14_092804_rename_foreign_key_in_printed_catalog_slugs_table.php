@@ -30,7 +30,6 @@ class RenameForeignKeyInPrintedCatalogSlugsTable extends Migration
     public function down()
     {
         Schema::table('printed_catalog_slugs', function (Blueprint $table) {
-
         });
     }
 }

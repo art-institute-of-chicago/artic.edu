@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Helpers;
 
 use A17\Twill\Http\Controllers\Front\Helpers\Seo as BaseSeo;
 use Illuminate\Support\Str;
-
 use App\Helpers\ImageHelpers;
 
 class Seo extends BaseSeo

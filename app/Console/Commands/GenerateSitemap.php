@@ -8,15 +8,11 @@ use App\Models\Exhibition;
 use App\Models\PrintedPublication;
 use App\Models\DigitalPublication;
 use App\Models\GenericPage;
-
 use App\Repositories\GenericPageRepository;
-
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
-
 use Symfony\Component\DomCrawler\Link;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
-
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -84,7 +80,6 @@ class GenerateSitemap extends Command
         $this->addRoute($sitemap, 'collection.publications.printed-publications', 0.6);
         $this->addRoute($sitemap, 'collection.publications.digital-publications', 0.6);
         $this->addRoute($sitemap, 'collection.research_resources');
-        $this->addRoute($sitemap, 'collection.resources.research-guides');
         $this->addRoute($sitemap, 'collection.resources.educator-resources');
     }
 

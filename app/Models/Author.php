@@ -9,7 +9,10 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class Author extends AbstractModel
 {
-    use HasSlug, HasMedias, HasRevisions, HasMediasEloquent;
+    use HasSlug;
+    use HasMedias;
+    use HasRevisions;
+    use HasMediasEloquent;
 
     protected $fillable = [
         'published',
@@ -53,11 +56,6 @@ class Author extends AbstractModel
     public function experiences()
     {
         return $this->morphedByMany('App\Models\Experience', 'authorable');
-    }
-
-    public function issueArticle()
-    {
-        return $this->morphedByMany('App\Models\IssueArticle', 'authorable');
     }
 
     public function scopeOrdered($query)

@@ -12,7 +12,7 @@ use Prince\Prince;
 
 class GeneratePdfs extends Command
 {
-    const STORAGE_PATH = '/pdf/static/';
+    public const BUCKET_PATH = '/pdf/static/';
 
     /**
      * The name and signature of the console command.
@@ -64,37 +64,18 @@ class GeneratePdfs extends Command
 
     protected function generatePdf($model, $route = null)
     {
-        if (empty($route)) {
-            $route = self::route($model);
-        }
-
+        $route = empty($route) ? self::route($model) : $route;
         if (empty($route)) {
             return false;
         }
-
-        $path = null;
-
-        if (get_class($model) == DigitalPublicationSection::class) {
-            $path = route($route, [
-                'pubId' => $model->digitalPublication->id,
-                'pubSlug' => $model->digitalPublication->getSlug(),
-                'id' => $model->id,
-                'slug' => $model->getSlug(),
-            ], false);
-        } else {
-            $path = route($route, [
-                'id' => $model->id,
-                'slug' => $model->getSlug(),
-            ], false);
-        }
-
         $baseUrl = config('aic.protocol') . '://' . config('app.url');
-        $fullUrl = $baseUrl . $path;
+        $fullUrl = $baseUrl . $this->path($model, $route);
 
         // Now, produce the PDF
         $prince = new Prince(config('aic.prince_command'));
         $prince->setBaseURL($baseUrl);
         $prince->setMedia('print');
+        $prince->setFailMissingResources(true);
 
         if (config('app.debug') || config('aic.pdf_debug')) {
             $prince->setVerbose(true);
@@ -103,36 +84,67 @@ class GeneratePdfs extends Command
 
         set_time_limit(0);
         $html = Http::get($fullUrl, ['print' => true])->body();
-
-        $pdfFileName = self::pdfFileName($model);
-        $pdfPath = storage_path('app/' . $pdfFileName);
-        $prince->convertStringToFile($html, $pdfPath);
-
-        if (config('aic.pdf_s3_enabled')) {
-            // Stream the file to S3; be sure to set `AWS_BUCKET` in `.env` and otherwise configure credentials
-            Storage::disk('pdf_s3')->putFileAs(self::STORAGE_PATH, new File($pdfPath), $pdfFileName, 'public');
+        $fileName = self::fileName($model);
+        $class = class_basename($model);
+        if ($prince->convertStringToFile($html, self::localPath($fileName))) {
+            $this->storePdf($fileName);
+        } else {
+            throw new \Exception("Prince was unable to generate a PDF for {$class} with ID {$model->id}");
         }
 
-        if ($model->pdf_download_path != self::pdfDownloadPath($pdfFileName)) {
-            $model->pdf_download_path = self::pdfDownloadPath($pdfFileName);
+        $model->pdf_download_path = self::downloadPath($fileName);
+        if ($model->isDirty('pdf_download_path')) {
             $model->save();
         }
-        $class = class_basename($model);
+
         $this->info("Generated PDF for {$class} with ID {$model->id}");
     }
 
-    public static function pdfFileName(AbstractModel $model): string
+    protected function path($model, $route): string
+    {
+        return route($route, [
+            'pubId' => $model->digitalPublication->id,
+            'pubSlug' => $model->digitalPublication->getSlug(),
+            'id' => $model->id,
+            'slug' => $model->getSlug(),
+        ], false);
+    }
+
+    /**
+     * Stream the file to S3 then remove the local copy. Be sure to set
+     * `AWS_BUCKET` in `.env` and otherwise configure credentials.
+     */
+    protected function storePdf($fileName): void
+    {
+        if (config('aic.pdf_s3_enabled')) {
+            $localPath = self::localPath($fileName);
+            Storage::disk('pdf_s3')->putFileAs(
+                self::BUCKET_PATH,
+                new File($localPath),
+                $fileName,
+                'public'
+            );
+            unlink($localPath);
+        }
+    }
+
+    public static function fileName(AbstractModel $model): string
     {
         $route = self::route($model);
         return 'download-' . $route . '-' . $model->id . '.pdf';
     }
 
-    public static function pdfDownloadPath($pdfFileName): string
+    public static function localPath($fileName): string
     {
-        return self::STORAGE_PATH . $pdfFileName;
+        return storage_path('app/' . $fileName);
     }
 
-    public static function route($model): string
+    public static function downloadPath($fileName): string
+    {
+        return self::BUCKET_PATH . $fileName;
+    }
+
+    protected static function route($model): string
     {
         return array_search(get_class($model), self::$models);
     }

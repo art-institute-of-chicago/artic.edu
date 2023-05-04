@@ -34,13 +34,15 @@ trait HandleApiBlocks
                         }
 
                         // WEB-2271: Refactor me!
-                        if (((
-                            !isset($data['thumbnail'])
-                        ) || (
-                            isset($data['thumbnail']) && $data['thumbnail'] === ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100])
-                        )) && (
-                            classHasTrait($relatedElement, \App\Models\Behaviors\HasMediasApi::class)
-                        )) {
+                        if (
+                            ((
+                                !isset($data['thumbnail'])
+                            ) || (
+                                isset($data['thumbnail']) && $data['thumbnail'] === ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100])
+                            )) && (
+                                classHasTrait($relatedElement, \App\Models\Behaviors\HasMediasApi::class)
+                            )
+                        ) {
                             $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
                         }
                     } else {
@@ -85,7 +87,6 @@ trait HandleApiBlocks
             return app($apiRepo);
         }
 
-            return app(config('twill.namespace') . '\\Repositories\\' . ucfirst($model) . 'Repository');
-
+        return app(config('twill.namespace') . '\\Repositories\\' . ucfirst($model) . 'Repository');
     }
 }

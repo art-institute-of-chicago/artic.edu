@@ -154,10 +154,6 @@ $nav = [
                         'title' => 'Landing',
                         'route' => 'admin.collection.research_resources.landing',
                     ],
-                    'researchGuides' => [
-                        'title' => 'Research Guides',
-                        'module' => true,
-                    ],
                     'educatorResources' => [
                         'title' => 'Educator Resources',
                         'module' => true,
@@ -202,10 +198,6 @@ $nav = [
                 'title' => 'Authors',
                 'module' => true,
             ],
-            'issues' => [
-                'title' => 'Issues',
-                'module' => true,
-            ]
         ]
     ],
     'generic' => [

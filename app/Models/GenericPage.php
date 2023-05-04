@@ -17,7 +17,18 @@ use Kalnoy\Nestedset\NodeTrait;
 
 class GenericPage extends AbstractModel implements Sortable
 {
-    use HasMediasEloquent, HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
+    use HasMediasEloquent;
+    use HasBlocks;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasPosition;
+    use NodeTrait;
+    use Transformable;
+    use HasRelated;
+    use HasApiRelations;
+    use HasFeaturedRelated;
 
     protected $fillable = [
         'short_description',
@@ -53,18 +64,6 @@ class GenericPage extends AbstractModel implements Sortable
 
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
-
-    /**
-     * WEB-1522: Add "publication navigation" to `/journal`.
-     */
-    public function __construct(array $attributes = [])
-    {
-        if (request()->is('journal')) {
-            $this->presenter = $this->presenterAdmin = 'App\Presenters\Admin\JournalPresenter';
-        }
-
-        parent::__construct(...func_get_args());
-    }
 
     /**
      * Required by the HasMedias trait

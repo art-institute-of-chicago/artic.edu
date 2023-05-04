@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddTitleDisplayField extends Migration
 {
-
     // We reviewed this list and chose which items should have italics etc.
     // https://stackoverflow.com/questions/193780/how-to-find-all-the-tables-in-mysql-with-specific-column-names-in-them
     private $tables = [

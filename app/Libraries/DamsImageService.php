@@ -4,7 +4,8 @@ namespace App\Libraries;
 
 use A17\Twill\Services\MediaLibrary\ImageServiceDefaults;
 use A17\Twill\Services\MediaLibrary\ImageServiceInterface;
-use Cache;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 use App\Helpers\StringHelpers;
 
 class DamsImageService implements ImageServiceInterface
@@ -85,28 +86,34 @@ class DamsImageService implements ImageServiceInterface
         return $this->base_url . $this->version . '/' . $id . '/' . $size . '/' . $dimensions . '/0/default.jpg';
     }
 
-    public function getUrlWithCrop($id, array $cropParams, array $params = [])
+    public function getUrlWithCrop($id, array $crop_params, array $params = [])
     {
+        return $this->getRawUrl($id);
     }
 
     public function getUrlWithFocalCrop($id, array $cropParams, $width, $height, array $params = [])
     {
+        return $this->getRawUrl($id);
     }
 
     public function getLQIPUrl($id, array $params = [])
     {
+        return $this->getRawUrl($id);
     }
 
     public function getSocialUrl($id, array $params = [])
     {
+        return $this->getRawUrl($id);
     }
 
     public function getCmsUrl($id, array $params = [])
     {
+        return $this->getRawUrl($id);
     }
 
     public function getRawUrl($id)
     {
+        return Storage::disk(config('twill.media_library.disk'))->url($id);
     }
 
     public function getInfo($object, $imageField = 'image_id')
@@ -132,9 +139,8 @@ class DamsImageService implements ImageServiceInterface
 
             return $info;
         }
-            // Hit the server to get the info if not available
-            return $this->getDimensions($object->{$imageField});
-
+        // Hit the server to get the info if not available
+        return $this->getDimensions($object->{$imageField});
     }
 
     public function getDimensions($id)

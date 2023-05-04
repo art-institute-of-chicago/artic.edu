@@ -11,17 +11,23 @@ use App\Models\Behaviors\HasRecurrentDates;
 use App\Models\Behaviors\HasApiRelations;
 use App\Helpers\QueryHelpers;
 use Carbon\Carbon;
-
 // WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 use PDO;
 
 class Event extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasApiRelations, HasMedias, HasMediasEloquent, HasBlocks, HasRecurrentDates, Transformable, HasFactory;
+    use HasSlug;
+    use HasRevisions;
+    use HasApiRelations;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasBlocks;
+    use HasRecurrentDates;
+    use Transformable;
+    use HasFactory;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
     protected $presenter = 'App\Presenters\Admin\EventPresenter';
@@ -93,16 +99,16 @@ class Event extends AbstractModel
     /**
      * Dropdown does not accept null keys; use big numbers
      */
-    const NULL_OPTION = 42;
-    const NULL_OPTION_AFFILIATE_GROUP = 1024;
-    const NULL_OPTION_EVENT_HOST = 1024;
+    public const NULL_OPTION = 42;
+    public const NULL_OPTION_AFFILIATE_GROUP = 1024;
+    public const NULL_OPTION_EVENT_HOST = 1024;
 
-    const CLASSES_AND_WORKSHOPS = 1;
+    public const CLASSES_AND_WORKSHOPS = 1;
     // const LIVE_ARTS = 2;
-    const SCREENINGS = 3;
-    const SPECIAL_EVENT = 4;
-    const TALKS = 5;
-    const TOUR = 6;
+    public const SCREENINGS = 3;
+    public const SPECIAL_EVENT = 4;
+    public const TALKS = 5;
+    public const TOUR = 6;
     // const COMMUNITIES = 7;
 
     public static $eventTypes = [
@@ -115,13 +121,13 @@ class Event extends AbstractModel
         // self::COMMUNITIES => 'Programs in Communities',
     ];
 
-    const FAMILIES = 1;
-    const MEMBERS = 2;
-    const ADULTS = 3;
-    const TEENS = 4;
-    const RESEARCHERS_SCHOLARS = 5;
-    const TEACHERS = 6;
-    const LUMINARY = 8;
+    public const FAMILIES = 1;
+    public const MEMBERS = 2;
+    public const ADULTS = 3;
+    public const TEENS = 4;
+    public const RESEARCHERS_SCHOLARS = 5;
+    public const TEACHERS = 6;
+    public const LUMINARY = 8;
 
     public static $eventAudiences = [
         self::ADULTS => 'General Public',
@@ -133,22 +139,22 @@ class Event extends AbstractModel
         self::RESEARCHERS_SCHOLARS => 'Researchers/Scholars',
     ];
 
-    const BASIC_LAYOUT = 0;
-    const LARGE_LAYOUT = 1;
+    public const BASIC_LAYOUT = 0;
+    public const LARGE_LAYOUT = 1;
 
     public static $eventLayouts = [
         self::BASIC_LAYOUT => 'Basic',
         self::LARGE_LAYOUT => 'Large Feature',
     ];
 
-    const MICHIGAN_AVE = 1;
-    const MODERN_WING = 2;
-    const COLUMBUS_DRIVE = 3;
-    const NORTH_GARDEN = 4;
-    const PRITZKER_GARDEN = 5;
-    const SOUTH_GARDEN = 6;
-    const OFF_SITE = 7;
-    const WEST_BOX = 8;
+    public const MICHIGAN_AVE = 1;
+    public const MODERN_WING = 2;
+    public const COLUMBUS_DRIVE = 3;
+    public const NORTH_GARDEN = 4;
+    public const PRITZKER_GARDEN = 5;
+    public const SOUTH_GARDEN = 6;
+    public const OFF_SITE = 7;
+    public const WEST_BOX = 8;
 
     public static $eventEntrances = [
         self::MICHIGAN_AVE => 'Michigan Avenue',
@@ -1040,12 +1046,14 @@ class Event extends AbstractModel
                     $emailSeriesPivots = $this->emailSeries->pluck('pivot');
 
                     return $emailSeriesPivots->each(function ($item) use ($eventHostTitle) {
-                        foreach ([
+                        foreach (
+                            [
                             'affiliate_copy',
                             'member_copy',
                             'luminary_copy',
                             'nonmember_copy',
-                        ] as $field) {
+                            ] as $field
+                        ) {
                             if (isset($item->{$field})) {
                                 if (isset($eventHostTitle)) {
                                     $item->{$field} = str_replace(

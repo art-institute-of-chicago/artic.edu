@@ -7,7 +7,7 @@ use App\Helpers\StringHelpers;
 use App\Helpers\DateHelpers;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use DamsImageService;
+use App\Libraries\DamsImageService;
 use DOMDocument;
 
 /**
@@ -351,7 +351,18 @@ class ArtworkPresenter extends BasePresenter
         } else {
             if (!empty($this->entity->date_block)) {
                 $details[] = [
-                    'key' => 'Date',
+                    'key' =>
+                    <<<VALUE
+                        <span id="h-date-disclaimer">Date</span>&nbsp;
+                        <button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" data-breakpoints="none">
+                        <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
+                        </button>
+                        <span class="info-button-info s-hidden" id="info-button-info-date-disclaimer" data-behavior="infoButtonInfo">
+                        <span class="f-caption">
+                                Dates are not always precisely known, but the Art Institute strives to present this information as consistently and legibly as possible. Dates may be represented as a range that spans decades, centuries, dynasties, or periods and may include qualifiers such as c. (circa) or BCE.
+                            </span>
+                        </span>
+                    VALUE,
                     'itemprop' => 'dateCreated',
                     'links' => [[
                         'label' => join(' ', [($this->entity->date_qualifier_title ?? ''), $this->entity->date_block]), // @see getDateBlockAttribute
@@ -363,6 +374,7 @@ class ArtworkPresenter extends BasePresenter
 
         $details = array_merge($details, $this->formatDetailBlocks([
             'Medium' => [$this->entity->medium_display, 'material'],
+            'Edition' => [$this->entity->edition],
             'Inscriptions' => [$this->entity->inscriptions],
             'Dimensions' => [$this->entity->dimensions, 'size'],
             'Credit Line' => [$this->entity->credit_line],
@@ -372,16 +384,18 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->is_public_domain) {
             $details = array_merge($details, $this->formatDetailBlocks([
-                '<span id="h-iiif-manifest">IIIF Manifest</span>&nbsp;'
-                    . '<button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" data-breakpoints="none">'
-                    . '    <svg class="icon--info"><use xlink:href="#icon--info" /></svg>'
-                    . '</button>'
-                    . '<span class="info-button-info s-hidden" id="info-button-info-iiif-manifest" data-behavior="infoButtonInfo">'
-                    . '    <span class="f-caption">'
-                    . '        The International Image Interoperability Framework (IIIF) represents a set of open standards that enables rich access to digital media from libraries, archives, museums, and other cultural institutions around the world.<br/><br/>'
-                    . '        <a href="/open-access/open-access-images">Learn more</a>.'
-                    . '    </span>'
-                    . '</span>' => [$this->getIiifManifestUrl()],
+                <<<VALUE
+                    <span id="h-iiif-manifest">IIIF Manifest</span>&nbsp;
+                    <button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" data-breakpoints="none">
+                        <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
+                    </button>
+                    <span class="info-button-info s-hidden" id="info-button-info-iiif-manifest" data-behavior="infoButtonInfo">
+                        <span class="f-caption">
+                            The International Image Interoperability Framework (IIIF) represents a set of open standards that enables rich access to digital media from libraries, archives, museums, and other cultural institutions around the world.<br/><br/>
+                        <a href="/open-access/open-access-images">Learn more</a>.
+                        </span>
+                    </span>
+                VALUE => [$this->getIiifManifestUrl()],
             ]));
         }
 
@@ -453,13 +467,15 @@ class ArtworkPresenter extends BasePresenter
             ];
         }
 
-        if ($this->entity->multimediaResources && $this->entity->multimediaResources->isNotEmpty()) {
-            $resultsByType = $this->entity->multimediaResources->groupBy('api_model')->sortKeys();
+        $multimediaResources = $this->entity->multimediaResources;
+        if ($multimediaResources && $multimediaResources->isNotEmpty()) {
+            $resultsByType = $multimediaResources->groupBy('api_model')->sortKeys();
             $content[] = $this->buildMultimediaBlocks($resultsByType, 'Multimedia');
         }
 
-        if ($this->entity->educationalResources && $this->entity->educationalResources->isNotEmpty()) {
-            $resultsByType = $this->entity->educationalResources->groupBy('api_model')->sort();
+        $educationalResources = $this->entity->educationalResources;
+        if ($educationalResources && $educationalResources->isNotEmpty()) {
+            $resultsByType = $educationalResources->groupBy('api_model')->sort();
             $content[] = $this->buildMultimediaBlocks($resultsByType, 'Educational Resources');
         }
 
@@ -469,12 +485,11 @@ class ArtworkPresenter extends BasePresenter
             return [];
         }
 
-            return [
-                'type' => 'accordion',
-                'content' => $content,
-                'titleFont' => 'f-module-title-2'
-            ];
-
+        return [
+            'type' => 'accordion',
+            'content' => $content,
+            'titleFont' => 'f-module-title-2'
+        ];
     }
 
     protected function formatDescriptionBlocks($elements)
@@ -529,8 +544,9 @@ class ArtworkPresenter extends BasePresenter
         ];
 
         if ($this->entity->image_id) {
-            $itemprops['thumbnailUrl'] = DamsImageService::getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
-            $itemprops['image'] = DamsImageService::getBaseUrl() . '2/' . $this->entity->image_id;
+            $dams = new DamsImageService();
+            $itemprops['thumbnailUrl'] = $dams->getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
+            $itemprops['image'] = $dams->getBaseUrl() . '2/' . $this->entity->image_id;
         }
 
         return $itemprops;

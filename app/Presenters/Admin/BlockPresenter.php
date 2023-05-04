@@ -3,11 +3,8 @@
 namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
-
 use App\Libraries\SmartyPants;
-
 use Illuminate\Support\Str;
-
 use DomDocument;
 use DOMXpath;
 

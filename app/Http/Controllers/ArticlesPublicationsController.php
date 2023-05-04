@@ -42,8 +42,6 @@ class ArticlesPublicationsController extends FrontController
             ],
             'featureHero' => $featureHero,
             'features' => $articles,
-            'journalFeatureHero' => $page->present()->getFeaturedJournalIssue(),
-            'journalFeatures' => $page->present()->getFeaturedJournalArticles(),
             'digitalPublications' => [
                 'items' => $page->digitalPublications
             ],
