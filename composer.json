@@ -37,7 +37,7 @@
     ],
     "require": {
         "php": "^8.1",
-        "aic/data-hub-foundation": "dev-laravel-8-support",
+        "aic/data-hub-foundation": "dev-main",
         "area17/twill": "2.5.*",
         "eluceo/ical": "2.3.*",
         "erusev/parsedown": "^1.7",
