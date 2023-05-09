@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "119588ca6c44a79b417293f854026604",
+    "content-hash": "6fe384b5da3e14d4c5c4d1d207097449",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
-            "version": "dev-main",
+            "version": "1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/art-institute-of-chicago/data-hub-foundation.git",
@@ -14777,7 +14777,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "aic/data-hub-foundation": 20,
         "salesforce-mc/fuel-sdk-php": 20
     },
     "prefer-stable": false,
