@@ -13,7 +13,7 @@
             ]
         ] : null)
         @if (!empty($gridTitle))
-            {{ $gridTitle }}
+            {!! $gridTitle !!}
         @endif
     @endcomponent
 

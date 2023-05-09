@@ -1,10 +1,13 @@
 @twillBlockTitle('Grid')
 @twillBlockIcon('image')
 
-@formField('input', [
+@formField('wysiwyg', [
     'name' => 'grid_title',
     'label' => 'Title',
-    'maxlength' => 60
+    'maxlength' => 60,
+    'toolbarOptions' => [
+        'italic',
+    ],
 ])
 
 @formField('input', [
