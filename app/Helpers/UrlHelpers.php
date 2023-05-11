@@ -24,15 +24,20 @@ class UrlHelpers
     {
         $url = url();
         $defaultScheme = Request::getScheme();
-        if (app()->environment() !== 'local') $url->forceScheme('https');
+        if (app()->environment() !== 'local') {
+            $url->forceScheme('https');
+        }
         $route = $url->route($routeName);
-        if (app()->environment() !== 'local') $url->forceScheme($defaultScheme);
+        if (app()->environment() !== 'local') {
+            $url->forceScheme($defaultScheme);
+        }
 
         return $route;
     }
 
     /**
      * Whether a module route exists
+     *
      * @see moduleRoute
      */
     public static function moduleRouteExists($moduleName, $prefix, $action)
