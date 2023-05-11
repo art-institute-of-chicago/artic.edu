@@ -24,9 +24,9 @@ class UrlHelpers
     {
         $url = url();
         $defaultScheme = Request::getScheme();
-        $url->forceScheme('https');
+        if (app()->environment() !== 'local') $url->forceScheme('https');
         $route = $url->route($routeName);
-        $url->forceScheme($defaultScheme);
+        if (app()->environment() !== 'local') $url->forceScheme($defaultScheme);
 
         return $route;
     }
