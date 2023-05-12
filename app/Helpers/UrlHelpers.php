@@ -24,11 +24,11 @@ class UrlHelpers
     {
         $url = url();
         $defaultScheme = Request::getScheme();
-        if (app()->environment() !== 'local') {
+        if (app()->environment(['production', 'staging'])) {
             $url->forceScheme('https');
         }
         $route = $url->route($routeName);
-        if (app()->environment() !== 'local') {
+        if (app()->environment(['production', 'staging'])) {
             $url->forceScheme($defaultScheme);
         }
 
