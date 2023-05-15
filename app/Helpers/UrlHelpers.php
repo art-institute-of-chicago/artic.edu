@@ -24,15 +24,20 @@ class UrlHelpers
     {
         $url = url();
         $defaultScheme = Request::getScheme();
-        $url->forceScheme('https');
+        if (app()->environment(['production', 'staging'])) {
+            $url->forceScheme('https');
+        }
         $route = $url->route($routeName);
-        $url->forceScheme($defaultScheme);
+        if (app()->environment(['production', 'staging'])) {
+            $url->forceScheme($defaultScheme);
+        }
 
         return $route;
     }
 
     /**
      * Whether a module route exists
+     *
      * @see moduleRoute
      */
     public static function moduleRouteExists($moduleName, $prefix, $action)
