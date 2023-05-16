@@ -37,7 +37,7 @@
     ],
     "require": {
         "php": "^8.1",
-        "aic/data-hub-foundation": "1.0",
+        "aic/data-hub-foundation": "^1.0",
         "area17/twill": "2.5.*",
         "eluceo/ical": "2.3.*",
         "erusev/parsedown": "^1.7",
