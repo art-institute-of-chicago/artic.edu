@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lightbox;
 use App\Models\LandingPage;
 use App\Repositories\LandingPageRepository;
+use App\Presenters\AdmissionPresenter;
 use Carbon\Carbon;
 
 class LandingPagesController extends FrontController
@@ -20,7 +21,11 @@ class LandingPagesController extends FrontController
     public function show($id, $slug = null)
     {
         $item = $this->landingPageRepository->published()->find((int) $id);
+
         $artIdeasItem = LandingPage::forType('Art and Ideas')->first();
+
+        $feeTitles = (new AdmissionPresenter($page))->feeTitles();
+        $feePrices = (new AdmissionPresenter($page))->feePrices();
 
         if (!$item) {
             abort(404);
