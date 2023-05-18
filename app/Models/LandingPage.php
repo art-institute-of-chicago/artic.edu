@@ -248,7 +248,7 @@ class LandingPage extends AbstractModel
 
     public function scopeForType($query, $type)
     {
-        return $query->where('type', array_flip(self::$types)[$type]);
+        return $query->where('type', array_search($type, $this->types));
     }
 
     public function scopeIds($query, $ids = [])
