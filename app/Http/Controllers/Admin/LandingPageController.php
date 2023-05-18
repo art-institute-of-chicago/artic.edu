@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\LandingPageRepository;
+use App\Models\LandingPageType;
 use Session;
 
 class LandingPageController extends ModuleController
 {
-    public const MISSING_CMS_PAGE_MESSAGE = "CMS home page doesn't exist, make sure to migrate the database and seed it first (php artisan migrate & php artisan db:seed)";
-
     protected $moduleName = 'landingPages';
 
     protected $indexColumns = [
@@ -34,16 +33,30 @@ class LandingPageController extends ModuleController
 
     protected function formData($request)
     {
-        $isVisit = stripos($request->path(), 'visit') !== false ? true : false;
+        $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
+        $typesOptions = $this->getTypesOptions($types);
 
         return [
+            'types' => $types,
+            'typesOptions' => $typesOptions,
             'permalink' => false,
             'publish' => false,
-            'editableTitle' => $isVisit,
-            'translate' => $isVisit,
         ];
     }
+    public function getTypesOptions($types)
+    {
+        $list = [];
 
+        foreach ($types as $value => $label) {
+            $item = [
+                'value' => $value, 'label' => $label
+            ];
+
+            $list[] = $item;
+        }
+
+        return $list;
+    }
     protected function getRoutePrefix()
     {
         return null;
