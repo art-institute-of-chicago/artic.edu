@@ -31,6 +31,13 @@ class LandingPage extends AbstractModel
         'saved' => \App\Events\UpdateLandingPage::class,
     ];
 
+    public function getTypesAttribute()
+    {
+        $typeModel = new LandingPageType();
+        $types = array_values($typeModel->getPageTypes());
+
+        return $types;
+    }
 
     protected $fillable = [
         'published',
