@@ -118,6 +118,7 @@ class LandingPageRepository extends ModuleRepository
         ],
 
         // Visit
+        'menu_items',
         'locations',
         'featured_hours' => [
             'relation' => 'featured_hours'
