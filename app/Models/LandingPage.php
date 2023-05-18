@@ -30,27 +30,6 @@ class LandingPage extends AbstractModel
         'saved' => \App\Events\UpdateLandingPage::class,
     ];
 
-    public const PAGE_TYPE_HOME = 0;
-    public const PAGE_TYPE_EXHIBITIONS_AND_EVENTS = 1;
-    public const PAGE_TYPE_THE_COLLECTION = 2;
-    public const PAGE_TYPE_VISIT = 3;
-    public const PAGE_TYPE_ARTICLES = 4;
-    public const PAGE_TYPE_EXHIBITION_HISTORY = 5;
-    public const PAGE_TYPE_COLLECTION = 6;
-    public const PAGE_TYPE_RESEARCH_LANDING = 7;
-    public const PAGE_TYPE_WRITINGS_LANDING = 8;
-
-    public static $types = [
-        self::PAGE_TYPE_HOME => 'Home',
-        self::PAGE_TYPE_EXHIBITIONS_AND_EVENTS => 'Exhibitions and Events',
-        self::PAGE_TYPE_THE_COLLECTION => 'Art and Ideas',
-        self::PAGE_TYPE_VISIT => 'Visit',
-        self::PAGE_TYPE_ARTICLES => 'Articles',
-        self::PAGE_TYPE_EXHIBITION_HISTORY => 'Exhibition History',
-        self::PAGE_TYPE_COLLECTION => 'Collection',
-        self::PAGE_TYPE_RESEARCH_LANDING => 'Research and Resources',
-        self::PAGE_TYPE_WRITINGS_LANDING => 'Articles and Publications',
-    ];
 
     protected $fillable = [
         'published',
