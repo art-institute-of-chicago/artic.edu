@@ -9,6 +9,7 @@ class FeaturedHour extends AbstractModel
         'position',
         'external_link',
         'page_id',
+        'landing_page_id',
         'title',
         'copy',
     ];
@@ -21,5 +22,10 @@ class FeaturedHour extends AbstractModel
     public function page()
     {
         return $this->belongsTo('App\Models\Page');
+    }
+
+    public function landingPage()
+    {
+        return $this->belongsTo('App\Models\LandingPage');
     }
 }
