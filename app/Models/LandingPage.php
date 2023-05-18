@@ -124,6 +124,11 @@ class LandingPage extends AbstractModel
         'visit_capacity_text',
         'visit_capacity_btn_text_1',
         'visit_capacity_btn_text_2',
+        'visit_nav_buy_tix_label',
+        'visit_nav_buy_tix_link',
+        'visit_hours_intro',
+        'visit_members_intro',
+        'visit_admission_intro',
         'active',
     ];
 
