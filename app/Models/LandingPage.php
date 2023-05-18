@@ -431,6 +431,15 @@ class LandingPage extends AbstractModel
             ],
 
             [
+                'name' => 'page_types',
+                'doc' => 'Page Types',
+                'type' => 'array',
+                'value' => function () {
+                    return $this->types;
+                }
+            ],
+
+            [
                 'name' => 'type',
                 'doc' => 'Type of Page',
                 'type' => 'integer',
