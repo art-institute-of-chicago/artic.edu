@@ -17,6 +17,7 @@ class Admission extends AbstractModel
         'copy',
         'position',
         'page_id',
+        'landing_page_id',
     ];
 
     /**
