@@ -287,4 +287,15 @@ class StringHelpers
                 return implode(', ', $array) . ', and ' . $last;
         }
     }
+
+    public static function pageBlades($page)
+    {
+        $firstWord = strtolower(strtok($page, ' '));
+        if (strpos($page, 'And') !== false) {
+            $firstWord .= '-landing';
+        } elseif ($firstWord === 'art' && strpos($page, 'Ideas') !== false) {
+            $firstWord = 'collection';
+        }
+        return $firstWord;
+    }
 }
