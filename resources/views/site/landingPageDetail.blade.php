@@ -2,28 +2,7 @@
 
 @section('content')
 
-    @switch($item->type)
-        @case(1)
-            @php
-            $pageType = 'home'
-            @endphp
-
-            @break
-        @case(4)
-            @php
-            $pageType = 'visit'
-            @endphp
-
-            @break
-        @case(8)
-            @php
-            $pageType = 'research-landing'
-            @endphp
-
-            @break
-    @endswitch
-
-    @include('site.landingPage._header----'.$pageType)
+    @include('site.landingPage._header----'.$blade)
 
     <div class="o-landingpage__body o-blocks">
 
