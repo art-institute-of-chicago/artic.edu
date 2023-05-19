@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Lightbox;
 use App\Models\LandingPage;
+use App\Models\LandingPageType;
+use App\Helpers\StringHelpers;
 use App\Repositories\LandingPageRepository;
 use App\Presenters\AdmissionPresenter;
 use Carbon\Carbon;
@@ -21,6 +23,7 @@ class LandingPagesController extends FrontController
     public function show($id, $slug = null)
     {
         $item = $this->landingPageRepository->published()->find((int) $id);
+        $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
 
         $artIdeasItem = LandingPage::forType('Art and Ideas')->first();
 
@@ -99,23 +102,30 @@ class LandingPagesController extends FrontController
         $contrastHeader = false;
         $filledLogo = false;
         $title = '';
-        if ($item->type === LandingPage::PAGE_TYPE_HOME) {
-            $this->seo->setTitle("Downtown Chicago's #1 Museum");
-            $this->seo->setDescription("Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
-            $contrastHeader = sizeof($mainFeatures) > 0;
-            $filledLogo = sizeof($mainFeatures) > 0;
-        } elseif ($item->type === LandingPage::PAGE_TYPE_VISIT) {
-            $this->seo->setTitle('Visit a Chicago Landmark');
-            $this->seo->setDescription('Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
-            $this->seo->setImage($item->imageFront('visit_hero') ?? $item->imageFront('visit_mobile'));
-            $contrastHeader = true;
-            $filledLogo = true;
-            $title = __('Visit');
-        } elseif ($item->type === LandingPage::PAGE_TYPE_RESEARCH_LANDING) {
-            $this->seo->setTitle('Research & Resources');
-            $this->seo->setDescription($item->resources_landing_intro);
-            $this->seo->setImage($item->imageFront('research_landing_image'));
-            $title = 'The Collection';
+
+        switch ($item->type) {
+            case (array_search('Home', $types)):
+                $this->seo->setTitle("Downtown Chicago's #1 Museum");
+                $this->seo->setDescription("Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
+                $contrastHeader = sizeof($mainFeatures) > 0;
+                $filledLogo = sizeof($mainFeatures) > 0;
+                break;
+
+            case (array_search('Visit', $types));
+                $this->seo->setTitle('Visit a Chicago Landmark');
+                $this->seo->setDescription('Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
+                $this->seo->setImage($item->imageFront('visit_hero') ?? $item->imageFront('visit_mobile'));
+                $contrastHeader = true;
+                $filledLogo = true;
+                $title = __('Visit');
+                break;
+
+            case (array_search('Research and Resources', $types)):
+                $this->seo->setTitle('Research & Resources');
+                $this->seo->setDescription($item->resources_landing_intro);
+                $this->seo->setImage($item->imageFront('research_landing_image'));
+                $title = 'The Collection';
+                break;
         }
 
         $view_data = [
@@ -123,50 +133,75 @@ class LandingPagesController extends FrontController
             'contrastHeader' => $contrastHeader,
             'filledLogo' => $filledLogo,
             'title' => $title,
-
-            // Home
-            'mainFeatures' => $mainFeatures,
-            'intro' => $item->home_intro,
-            'visit_button_text' => $item->home_visit_button_text ?? 'Visit',
-            'visit_button_url' => $item->home_visit_button_url ?? route('visit'),
-            'plan_your_visit_link_1_text' => $item->home_plan_your_visit_link_1_text,
-            'plan_your_visit_link_1_url' => $item->home_plan_your_visit_link_1_url,
-            'plan_your_visit_link_2_text' => $item->home_plan_your_visit_link_2_text,
-            'plan_your_visit_link_2_url' => $item->home_plan_your_visit_link_2_url,
-            'plan_your_visit_link_3_text' => $item->home_plan_your_visit_link_3_text,
-            'plan_your_visit_link_3_url' => $item->home_plan_your_visit_link_3_url,
-            'cta_module_image' => $item->imageFront('home_cta_module_image'),
-            'cta_module_action_url' => $item->home_cta_module_action_url,
-            'cta_module_header' => $item->home_cta_module_header,
-            'cta_module_button_text' => $item->home_cta_module_button_text,
-            'cta_module_body' => $item->home_cta_module_body,
-            'roadblocks' => $this->getLightboxes(),
-
-            // Visit
-            'primaryNavCurrent' => 'visit',
-            'headerMedia' => $headerMedia,
-            'hours' => $hours,
-            'itemprops' => $itemprops,
-
-            // Research
-            'primaryNavCurrent' => 'collection',
-            'intro' => $artIdeasItem->art_intro,
-            'linksBar' => [
-                [
-                    'href' => route('collection'),
-                    'label' => 'Artworks',
-                ],
-                [
-                    'href' => route('articles_publications'),
-                    'label' => 'Writings',
-                ],
-                [
-                    'href' => route('collection.research_resources'),
-                    'label' => 'Resources',
-                    'active' => true,
-                ],
-            ],
+            'blade' => StringHelpers::pageBlades(array_search($item->type, array_flip($types)))
         ];
+
+        switch ($item->type) {
+            case (array_search('Home', $types)):
+                $view_data = array_merge($view_data, [
+                    'mainFeatures' => $mainFeatures,
+                    'intro' => $item->home_intro,
+                    'visit_button_text' => $item->home_visit_button_text ?? 'Visit',
+                    'visit_button_url' => $item->home_visit_button_url ?? route('visit'),
+                    'plan_your_visit_link_1_text' => $item->home_plan_your_visit_link_1_text,
+                    'plan_your_visit_link_1_url' => $item->home_plan_your_visit_link_1_url,
+                    'plan_your_visit_link_2_text' => $item->home_plan_your_visit_link_2_text,
+                    'plan_your_visit_link_2_url' => $item->home_plan_your_visit_link_2_url,
+                    'plan_your_visit_link_3_text' => $item->home_plan_your_visit_link_3_text,
+                    'plan_your_visit_link_3_url' => $item->home_plan_your_visit_link_3_url,
+                    'cta_module_image' => $item->imageFront('home_cta_module_image'),
+                    'cta_module_action_url' => $item->home_cta_module_action_url,
+                    'cta_module_header' => $item->home_cta_module_header,
+                    'cta_module_button_text' => $item->home_cta_module_button_text,
+                    'cta_module_body' => $item->home_cta_module_body,
+                    'roadblocks' => $this->getLightboxes(),
+                    ]);
+                break;
+
+            case (array_search('Visit', $types)):
+                $view_data = array_merge($view_data, [
+                    'primaryNavCurrent' => 'visit',
+                    'headerMedia' => $headerMedia,
+                    'hours' => $hours,
+                    'itemprops' => $itemprops,
+                    'visit_nav_buy_tix_label' => $item->visit_nav_buy_tix_label,
+                    'visit_nav_buy_tix_link' => $item->visit_nav_buy_tix_link,
+                    'visit_hours_intro'  => $item->visit_hours_intro,
+                    'visit_members_intro' => $item->visit_members_intro,
+                    'visit_admission_intro' => $item->visit_admission_intro,
+                    'visit_map' => $item->imageFront('visit_map'),
+                    'menuItems' => $item->menuItems,
+                    'locations' => $item->locations,
+                    'admission' => [
+                        'titles' => $feeTitles,
+                        'prices' => $feePrices,
+                    ]
+                ]);
+
+                break;
+
+            case (array_search('Research and Resources', $types)):
+                $view_data = array_merge($view_data, [
+                    'primaryNavCurrent' => 'collection',
+                    'intro' => $artIdeasItem->art_intro,
+                    'linksBar' => [
+                        [
+                            'href' => route('collection'),
+                            'label' => 'Artworks',
+                        ],
+                        [
+                            'href' => route('articles_publications'),
+                            'label' => 'Writings',
+                        ],
+                        [
+                            'href' => route('collection.research_resources'),
+                            'label' => 'Resources',
+                            'active' => true,
+                        ],
+                    ],
+                ]);
+                break;
+        }
 
         return view('site.landingPageDetail', $view_data);
     }
