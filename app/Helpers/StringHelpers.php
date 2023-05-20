@@ -288,14 +288,21 @@ class StringHelpers
         }
     }
 
-    public static function pageBlades($page)
+    public static function pageBlades($typeString) // Pass in the type string from $types after matching page->type to index of string in LP $types
     {
-        $firstWord = strtolower(strtok($page, ' '));
-        if (strpos($page, 'And') !== false) {
-            $firstWord .= '-landing';
-        } elseif ($firstWord === 'art' && strpos($page, 'Ideas') !== false) {
-            $firstWord = 'collection';
+        $pageTitle = strtolower($typeString);
+        $words = explode(' ', $pageTitle); // Split into array of words for evaluation of first word
+        $firstWord = $words[0];
+
+        if ($firstWord === 'art' && strpos($pageTitle, 'ideas') !== false) { // If the first word is 'art' and the page title contains 'ideas' (i.e. 'Art & Ideas')
+            $pageString = 'collection-landing'; // Rename the first word to 'collection-landing'
+        } elseif (strpos($pageTitle, 'and') !== false) { // If the page title contains 'and' (i.e. 'Research and Resources')
+            $pageString = $firstWord . '-landing'; // Rename the first word to 'research-landing'
+        } else {
+            $pageString = $firstWord; // Otherwise, just use the first word
         }
-        return $firstWord;
+
+        return $pageString;
     }
+
 }
