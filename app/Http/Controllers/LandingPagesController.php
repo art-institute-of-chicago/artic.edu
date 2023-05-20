@@ -111,14 +111,14 @@ class LandingPagesController extends FrontController
                 $filledLogo = sizeof($mainFeatures) > 0;
                 break;
 
-            case (array_search('Visit', $types));
-                $this->seo->setTitle('Visit a Chicago Landmark');
-                $this->seo->setDescription('Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
-                $this->seo->setImage($item->imageFront('visit_hero') ?? $item->imageFront('visit_mobile'));
-                $contrastHeader = true;
-                $filledLogo = true;
-                $title = __('Visit');
-                break;
+            case (array_search('Visit', $types)):
+            $this->seo->setTitle('Visit a Chicago Landmark');
+            $this->seo->setDescription('Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
+            $this->seo->setImage($item->imageFront('visit_hero') ?? $item->imageFront('visit_mobile'));
+            $contrastHeader = true;
+            $filledLogo = true;
+            $title = __('Visit');
+            break;
 
             case (array_search('Research and Resources', $types)):
                 $this->seo->setTitle('Research & Resources');
