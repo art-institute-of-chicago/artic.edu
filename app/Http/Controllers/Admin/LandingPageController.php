@@ -48,11 +48,7 @@ class LandingPageController extends ModuleController
         $list = [];
 
         foreach ($types as $value => $label) {
-            $item = [
-                'value' => $value, 'label' => $label
-            ];
-
-            $list[] = $item;
+            $list[] = ['value' => $value, 'label' => $label];
         }
 
         return $list;
