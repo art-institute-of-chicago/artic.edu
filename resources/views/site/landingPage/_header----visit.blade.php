@@ -102,6 +102,13 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            <span class="select__select">
+                                <select class="visit-fee-category-select" data-behavior="toggleFee">
+                                    @foreach ($admission['titles'] as $category)
+                                        <option label='{!! $category['title'] !!}' value='{!! array_search($category, $admission['titles']) !!}'>
+                                    @endforeach
+                                </select>
+                            </span>
                         @endif
                     </table>                    
                         <div class="visit-separator"></div>
