@@ -149,7 +149,7 @@
                         <span class="f-secondary">{!! $visit_admission_intro !!}</span>
                         <div class="btn-section">
                             <a href="#" class="btn f-buttons">Buy tickets</a>
-                            <a href="#" class="btn f-buttons">Become a Member</a>
+                            <a href="#" class="btn f-buttons btn--secondary">Become a Member</a>
                         </div>
                     </div>
                 </div>
