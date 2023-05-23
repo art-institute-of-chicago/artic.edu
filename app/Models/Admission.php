@@ -8,6 +8,8 @@ class Admission extends AbstractModel
 {
     use HasPresenter;
 
+    protected $presenter = 'App\Presenters\AdmissionPresenter';
+
     protected $fillable = [
         'published',
         'time_start',
