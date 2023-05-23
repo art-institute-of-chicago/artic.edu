@@ -54,9 +54,7 @@ class LandingPagesController extends FrontController
         }
 
         // Visit
-        $video_url = $item->file('video', 'en');
-
-        if ($video_url) {
+        if ($video_url = $item->file('video', 'en')) {
             $headerImage = $item->imageFront('visit_mobile');
 
             $poster_url = $headerImage['src'] ?? '';
