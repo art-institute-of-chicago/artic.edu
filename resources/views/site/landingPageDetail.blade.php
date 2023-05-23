@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @include('site.landingPage._header----'.$blade)
+    @include('site.landingPage._header----'.$landingPageType)
 
     <div class="o-landingpage__body o-blocks">
 
