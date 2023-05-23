@@ -304,5 +304,4 @@ class StringHelpers
 
         return $pageString;
     }
-
 }
