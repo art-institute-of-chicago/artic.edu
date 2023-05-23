@@ -133,7 +133,7 @@ class LandingPagesController extends FrontController
             'contrastHeader' => $contrastHeader,
             'filledLogo' => $filledLogo,
             'title' => $title,
-            'blade' => StringHelpers::pageBlades(array_search($item->type, array_flip($types)))
+            'landingPageType' => StringHelpers::pageBlades(array_search($item->type, array_flip($types)))
         ];
 
         switch ($item->type) {
