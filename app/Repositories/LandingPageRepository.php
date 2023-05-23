@@ -135,23 +135,23 @@ class LandingPageRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeExhibitions', 'position', 'Exhibition');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeEvents', 'position', 'Event');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'mainHomeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'secondaryHomeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeExhibitions', 'position', 'Exhibition');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeEvents', 'position', 'Event');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeFeatures', 'position', 'HomeFeature');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'mainHomeFeatures', 'position', 'HomeFeature');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'secondaryHomeFeatures', 'position', 'HomeFeature');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
 
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesStudyRoomMore', 'position', 'GenericPage');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRoomMore', 'position', 'GenericPage');
 
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'articles', 'position', 'Article');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'printedPublications', 'position', 'PrintedPublication');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'digitalPublications', 'position', 'DigitalPublication');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'articles', 'position', 'Article');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'printedPublications', 'position', 'PrintedPublication');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'digitalPublications', 'position', 'DigitalPublication');
 
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeArtists', 'position', 'HomeArtist');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeArtists', 'position', 'HomeArtist');
 
         return parent::hydrate($object, $fields);
     }
