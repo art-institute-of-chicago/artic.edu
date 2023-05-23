@@ -6,6 +6,25 @@
 
 .visit {
 
+  .btn:not(.btn--icon) {
+    @include breakpoint('small') {
+      margin-top: 18px;
+      width: 100%;
+    }
+    @include breakpoint('xsmall') {
+      margin-top: 18px;
+      width: 100%;
+    }
+  }
+  .btn+.btn {
+    @include breakpoint('small') {
+      margin-left: 0;
+    }
+    @include breakpoint('xsmall') {
+      margin-left: 0;
+    }
+  }
+
   .o-hours {
     margin-top: 32px;
   }
@@ -24,6 +43,32 @@
     padding-bottom: 18px;
     border-top: 1px solid #CCCCCC ;
     border-bottom: 1px solid #CCCCCC ;
+    @include breakpoint('small') {
+      padding: none;
+      border: none;
+      flex-direction: column;
+      >ul {
+        justify-content: space-between;
+        overflow: scroll;
+        width: 100%;
+        padding: 18px 0;
+        border-top: 1px solid #CCCCCC ;
+        border-bottom: 1px solid #CCCCCC ;
+      }
+    }
+    @include breakpoint('xsmall') {
+      padding: none;
+      border: none;
+      flex-direction: column;
+      >ul {
+        justify-content: space-between;
+        overflow: scroll;
+        width: 100%;
+        padding: 18px 0;
+        border-top: 1px solid #CCCCCC ;
+        border-bottom: 1px solid #CCCCCC ;
+      }
+    }
   }
 
   .menu-links ul {
@@ -46,16 +91,31 @@
     flex-direction: column;
 
     .row:first-child {
-      padding-bottom: 16px;
+      padding-bottom: 18px;
       border-bottom: 1px solid #CCCCCC;
       margin-bottom: 48px;
     }
 
     .row:last-child {
-      margin-top: 16px;
+      margin-top: 18px;
+      @include breakpoint('medium') {
+        margin-top: 32px;
+      }
+      @include breakpoint('small') {
+        margin-top: 32px;
+      }
 
       > .col:first-child {
         border-right: 1px solid #CCCCCC;
+        @include breakpoint('medium') {
+          border-right: none;
+        }
+        @include breakpoint('small') {
+          border-right: none;
+        }
+        @include breakpoint('xsmall') {
+          border-right: none;
+        }
       }
     }
 
@@ -64,13 +124,49 @@
       flex-direction: row;
       align-items: top;
       justify-content: space-between;
+      @include breakpoint('medium') {
+        flex-direction: column;
+      }
+      @include breakpoint('small') {
+        flex-direction: column;
+      }
+      @include breakpoint('xsmall') {
+        flex-direction: column;
+      }
 
       .col:first-child {
         padding-right: 20px;
+        @include breakpoint('medium') {
+          padding-right: 0;
+        }
+        @include breakpoint('small') {
+          padding-right: 0;
+        }
+        @include breakpoint('xsmall') {
+          padding-right: 0;
+        }
       }
 
       .col:nth-child(2) {
         padding-left: 20px;
+        @include breakpoint('medium') {
+          padding-left: 0;
+          padding-top: 50px;
+          margin-top: 32px;
+          border-top: 1px solid #CCCCCC;
+        }
+        @include breakpoint('small') {
+          padding-left: 0;
+          padding-top: 50px;
+          margin-top: 32px;
+          border-top: 1px solid #CCCCCC;
+        }
+        @include breakpoint('xsmall') {
+          padding-left: 0;
+          padding-top: 50px;
+          margin-top: 32px;
+          border-top: 1px solid #CCCCCC;
+        }
 
         .btn-section {
           margin-top: 32px;
@@ -80,9 +176,18 @@
 
     .col {
       width: 50%;
+      @include breakpoint('medium') {
+        width: 100%;
+      }
+      @include breakpoint('small') {
+        width: 100%;
+      }
+      @include breakpoint('xsmall') {
+        width: 100%;
+      }
 
      > hr {
-        margin-bottom: 16px;
+        margin-bottom: 18px;
       }
     }
 
@@ -120,6 +225,10 @@
       padding-bottom: 18px;
       border-bottom: 1px solid #CCCCCC;
       margin-bottom: 18px;
+      @include breakpoint('xsmall') {
+        border-bottom: none;
+        flex-direction: column;
+      }
 
       a {
         color: #b50938;
@@ -130,12 +239,42 @@
         width: 100%;
         object-fit: contain;
       }
-
-      >div {
-        width: 48%;
+      @include breakpoint('xlarge') {
+        >div {
+          width: 48%;
+        }
+      }
+      @include breakpoint('large') {
+        >div {
+          width: 48%;
+        }
+      }
+      @include breakpoint('medium') {
+        >div:first-child {
+          width: 60%
+        }
+        >div:nth-child(2) {
+          width: 35%;
+        }
+      }
+      @include breakpoint('small') {
+        >div:first-child {
+          width: 60%
+        }
+        >div:nth-child(2) {
+          width: 35%;
+        }
+      }
+      @include breakpoint('xsmall') {
+        >div:first-child {
+          width: 100%
+        }
+        >div:nth-child(2) {
+          width: 100%;
+        }
       }
 
-      div:nth-child(2) {
+      >div:nth-child(2) {
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -154,12 +293,24 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    @include breakpoint('xsmall') {
+      flex-direction: column;
+    }
 
       .visit-fee-category {
         height: fit-content;
         width: 45%;
         align-items: center;
         margin: 12px 0 12px 0;
+        @include breakpoint('medium') {
+          width: 48%;
+        }
+        @include breakpoint('small') {
+          width: 48%;
+        }
+        @include breakpoint('xsmall') {
+          display: none;
+        }
 
         svg {
           height: 16px;
@@ -206,10 +357,21 @@
         }
       }
 
+      .visit-fee-category-select, .select__select {
+        width: 100%;
+        display: none;
+        @include breakpoint('xsmall') {
+          display: block;
+        }
+      }
+
       .visit-separator {
         width: 0;
         min-height: 100%;
         border-right: 1px solid #CCCCCC ;
+        @include breakpoint('xsmall') {
+          display: none;
+        }
       }
 
       .visit-fee-price {
@@ -217,6 +379,15 @@
         width: 45%;
         align-items: center;
         margin: 12px 0 12px 0;
+        @include breakpoint('medium') {
+          width: 48%;
+        }
+        @include breakpoint('small') {
+          width: 48%;
+        }
+        @include breakpoint('xsmall') {
+          width: 100%;
+        }
 
         .fee-ages {
           display: none;
@@ -239,6 +410,14 @@
           flex-direction: row;
           justify-content: space-between;
           align-items: baseline;
+          @include breakpoint('small') {
+            width: 95%;
+            margin-right: auto;
+          }
+          @include breakpoint('xsmall') {
+            width: 85%;
+            margin-right: auto;
+          }
 
           span:last-child {
             color: #767676;
@@ -256,5 +435,19 @@
       }
   }
 
+  }
+
+    .o-blocks {
+    .m-media, 
+    .o-gallery,
+    .m-media--m,
+    .m-media--l,
+    .m-table--l,
+    .m-cta-banner,
+    .m-mobile-block,
+    .m-aside-newsletter--wide,
+    .o-grid-block {
+      margin-left: 0 !important;
+    }
   }
 }
