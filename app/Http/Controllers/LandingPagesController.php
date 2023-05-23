@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admission;
 use App\Models\Lightbox;
 use App\Models\LandingPage;
 use App\Models\LandingPageType;
 use App\Helpers\StringHelpers;
 use App\Repositories\LandingPageRepository;
-use App\Presenters\AdmissionPresenter;
 use Carbon\Carbon;
 
 class LandingPagesController extends FrontController
@@ -27,8 +27,10 @@ class LandingPagesController extends FrontController
 
         $artIdeasItem = LandingPage::forType('Art and Ideas')->first();
 
-        $feeTitles = (new AdmissionPresenter($page))->feeTitles();
-        $feePrices = (new AdmissionPresenter($page))->feePrices();
+        $admission = new Admission();
+
+        $feeTitles = $admission->present()->feeTitles();
+        $feePrices = $admission->present()->feePrices();
 
         if (!$item) {
             abort(404);
