@@ -16,18 +16,21 @@
     }
 
     img {
-        width: 100%;
-        padding: 0 25px 0 0;
+        width: 60%;
+        padding: 0 36px 0 0;
         height: auto;
         aspect-ratio: 16/10;
         object-fit: cover;
         @include breakpoint('medium') {
+            width: 100%;
             padding: 0;
         }
         @include breakpoint('small') {
+            width: 100%;
             padding: 0;
         }
         @include breakpoint('xsmall') {
+            width: 100%;
             padding: 0;
         }
     }
