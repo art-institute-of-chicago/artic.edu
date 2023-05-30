@@ -52,6 +52,7 @@ export { default as searchBarBlock } from './searchBarBlock';
 export { default as restrictDownload } from './restrictDownload';
 export { default as fixedOnScroll } from './fixedOnScroll';
 export { default as stickySidebar } from './stickySidebar';
+export { default as toggleFee } from './toggleFee';
 export { default as fitText } from './fitText';
 export { default as magazineHeader } from './magazineHeader';
 export { default as imageSlider } from './imageSlider';

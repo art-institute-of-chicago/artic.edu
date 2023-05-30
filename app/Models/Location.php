@@ -15,6 +15,7 @@ class Location extends AbstractModel
         'zip',
         'position',
         'page_id',
+        'landing_page_id',
         'name',
     ];
 
@@ -23,6 +24,11 @@ class Location extends AbstractModel
     public function page()
     {
         return $this->belongsTo('App\Models\Page');
+    }
+
+    public function landingPage()
+    {
+        return $this->belongsTo('App\Models\LandingPage');
     }
 
     protected function transformMappingInternal()

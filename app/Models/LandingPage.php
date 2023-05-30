@@ -7,50 +7,37 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Admission as Admission;
 use App\Models\Behaviors\HasApiRelations;
-use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use App\Models\Behaviors\HasBlocks;
+use App\Models\LandingPageType;
 
-class Page extends AbstractModel
+class LandingPage extends AbstractModel
 {
     use HasSlug;
     use HasRevisions;
     use HasMedias;
     use HasFiles;
-    use HasBlocks;
     use HasMediasEloquent;
     use HasApiRelations;
     use Transformable;
     use HasRelated;
+    use HasBlocks;
 
-    protected $presenter = 'App\Presenters\Admin\PagePresenter';
+    protected $presenter = 'App\Presenters\Admin\LandingPagePresenter';
 
     protected $dispatchesEvents = [
-        'saved' => \App\Events\UpdatePage::class,
+        'saved' => \App\Events\UpdateLandingPage::class,
     ];
 
-    public const PAGE_TYPE_HOME = 0;
-    public const PAGE_TYPE_EXHIBITIONS_AND_EVENTS = 1;
-    public const PAGE_TYPE_THE_COLLECTION = 2;
-    public const PAGE_TYPE_VISIT = 3;
-    public const PAGE_TYPE_ARTICLES = 4;
-    public const PAGE_TYPE_EXHIBITION_HISTORY = 5;
-    public const PAGE_TYPE_COLLECTION = 6;
-    public const PAGE_TYPE_RESEARCH_LANDING = 7;
-    public const PAGE_TYPE_WRITINGS_LANDING = 8;
+    public function getTypesAttribute()
+    {
+        $typeModel = new LandingPageType();
+        $types = array_values($typeModel->getPageTypes());
 
-    public static $types = [
-        self::PAGE_TYPE_HOME => 'Home',
-        self::PAGE_TYPE_EXHIBITIONS_AND_EVENTS => 'Exhibitions and Events',
-        self::PAGE_TYPE_THE_COLLECTION => 'Art and Ideas', // WEB-2262: now The Collection
-        self::PAGE_TYPE_VISIT => 'Visit',
-        self::PAGE_TYPE_ARTICLES => 'Articles',
-        self::PAGE_TYPE_EXHIBITION_HISTORY => 'Exhibition History',
-        self::PAGE_TYPE_COLLECTION => 'Collection',
-        self::PAGE_TYPE_RESEARCH_LANDING => 'Research and Resources',
-        self::PAGE_TYPE_WRITINGS_LANDING => 'Articles and Publications',
-    ];
+        return $types;
+    }
 
     protected $fillable = [
         'published',
@@ -137,6 +124,11 @@ class Page extends AbstractModel
         'visit_capacity_text',
         'visit_capacity_btn_text_1',
         'visit_capacity_btn_text_2',
+        'visit_nav_buy_tix_label',
+        'visit_nav_buy_tix_link',
+        'visit_hours_intro',
+        'visit_members_intro',
+        'visit_admission_intro',
         'active',
     ];
 
@@ -256,7 +248,7 @@ class Page extends AbstractModel
 
     public function scopeForType($query, $type)
     {
-        return $query->where('type', array_flip(self::$types)[$type]);
+        return $query->where('type', array_search($type, $this->types));
     }
 
     public function scopeIds($query, $ids = [])
@@ -291,7 +283,7 @@ class Page extends AbstractModel
 
     public function homeEvents()
     {
-        return $this->belongsToMany('App\Models\Event', 'page_home_event')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\Event', 'page_home_event', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     /**
@@ -299,17 +291,17 @@ class Page extends AbstractModel
      */
     public function homeFeatures()
     {
-        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_home_feature')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function mainHomeFeatures()
     {
-        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_main_home_feature')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_main_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function secondaryHomeFeatures()
     {
-        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_secondary_home_feature')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_secondary_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function homeShopItems()
@@ -324,54 +316,58 @@ class Page extends AbstractModel
 
     public function admissions()
     {
-        return $this->hasMany(Admission::class)->orderBy('position');
+        return $this->hasMany(Admission::class, 'landing_page_id')->orderBy('position');
     }
 
     public function homeArtists()
     {
-        return $this->hasMany(HomeArtist::class)->orderBy('position');
+        return $this->hasMany(HomeArtist::class, 'landing_page_id')->orderBy('position');
     }
 
     public function locations()
     {
-        return $this->hasMany(Location::class)->orderBy('position');
+        return $this->hasMany(Location::class, 'landing_page_id')->orderBy('position');
     }
 
     public function dining_hours() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
-        return $this->hasMany(DiningHour::class)->orderBy('position');
+        return $this->hasMany(DiningHour::class, 'landing_page_id')->orderBy('position');
     }
 
     public function faqs()
     {
-        return $this->hasMany(Faq::class)->orderBy('position');
+        return $this->hasMany(Faq::class, 'landing_page_id')->orderBy('position');
     }
 
     public function families()
     {
-        return $this->hasMany(Family::class)->orderBy('position');
+        return $this->hasMany(Family::class, 'landing_page_id')->orderBy('position');
     }
 
     public function featured_hours() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
-        return $this->hasMany(FeaturedHour::class)->orderBy('position');
+        return $this->hasMany(FeaturedHour::class, 'landing_page_id')->orderBy('position');
     }
 
     public function whatToExpects()
     {
-        return $this->hasMany(WhatToExpect::class)->orderBy('position');
+        return $this->hasMany(WhatToExpect::class, 'landing_page_id')->orderBy('position');
+    }
+
+    public function menuItems()
+    {
+        return $this->hasMany(MenuItem::class, 'landing_page_id')->orderBy('position');
     }
 
     public function articlesCategories()
     {
-        return $this->belongsToMany('App\Models\Category', 'page_article_category')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\Category', 'page_article_category' . 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function artArticles()
     {
-        return $this->belongsToMany('App\Models\Article', 'page_art_article')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\Article', 'page_art_article', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
-
     public function artCategoryTerms()
     {
         return $this->apiElements()->where('relation', 'artCategoryTerms');
@@ -379,22 +375,22 @@ class Page extends AbstractModel
 
     public function articles()
     {
-        return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\Article', 'article_page', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function digitalPublications()
     {
-        return $this->belongsToMany('App\Models\DigitalPublication')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\DigitalPublication', 'digital_publication_page', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function experiences()
     {
-        return $this->belongsToMany('App\Models\Experience')->withPivot('position')->orderBy('experience_page.position');
+        return $this->belongsToMany('App\Models\Experience', 'experience_page', 'landing_page_id')->withPivot('position')->orderBy('experience_page.position');
     }
 
     public function printedPublications()
     {
-        return $this->belongsToMany('App\Models\PrintedPublication')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\PrintedPublication', 'page_printed_publication', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function visitTourPages()
@@ -404,17 +400,17 @@ class Page extends AbstractModel
 
     public function researchResourcesFeaturePages()
     {
-        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_feature_page')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
+        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_feature_page', 'landing_page_id')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
     }
 
     public function researchResourcesStudyRooms()
     {
-        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_pages')->withPivot('position')->orderBy('research_resource_study_room_pages.position', 'asc');
+        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_pages', 'landing_page_id')->withPivot('position')->orderBy('research_resource_study_room_pages.position', 'asc');
     }
 
     public function researchResourcesStudyRoomMore()
     {
-        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_more_pages')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
+        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_more_pages', 'landing_page_id')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
     }
 
     public static function getIconTypes()
@@ -432,6 +428,15 @@ class Page extends AbstractModel
                 'value' => function () {
                     return $this->published;
                 },
+            ],
+
+            [
+                'name' => 'page_types',
+                'doc' => 'Page Types',
+                'type' => 'array',
+                'value' => function () {
+                    return $this->types;
+                }
             ],
 
             [

@@ -17,6 +17,7 @@ class WhatToExpect extends Model implements Sortable
         'icon_type',
         'position',
         'page_id',
+        'landing_page_id',
         'text',
     ];
 

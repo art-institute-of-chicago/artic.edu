@@ -20,6 +20,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HighlightsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InteractiveFeatureExperiencesController;
+use App\Http\Controllers\LandingPagesController;
 use App\Http\Controllers\MagazineIssueController;
 use App\Http\Controllers\MiradorController;
 use App\Http\Controllers\PageController;
@@ -47,7 +48,8 @@ Route::get('/target', [HomeController::class, 'target'])->name('target');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 
-Route::get('/pages/{id}/{slug?}', [PageController::class, 'show'])->name('pages.show');
+// Landing Page
+Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
 
 // Collection routes
 Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
