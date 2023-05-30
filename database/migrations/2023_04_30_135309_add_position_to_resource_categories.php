@@ -9,11 +9,15 @@ class AddPositionToResourceCategories extends Migration
 {
     public function up()
     {
-        DB::statement('ALTER TABLE resource_categories ADD COLUMN position integer');
+        Schema::table('resource_categories', function (Blueprint $table) {
+            $table->integer('position')->nullable();
+        });
     }
 
     public function down()
     {
-        DB::statment('ALTER TABLE resources_categories DROP COLUMN position');
+        Schema::table('resource_categories', function (Blueprint $table) {
+            $table->dropColumn('position');
+        });
     }
 }
