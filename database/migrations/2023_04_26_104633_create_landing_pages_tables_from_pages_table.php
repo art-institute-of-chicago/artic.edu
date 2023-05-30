@@ -62,39 +62,14 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
 
         // Create column in relational tables to match landing_page_id instead of page_id
 
-        DB::statement('ALTER TABLE featured_hours ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE home_artists ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE locations ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE faqs ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE families ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE what_to_expects ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE dining_hours ADD COLUMN landing_page_id INTEGER');
-
-        // Remove NOT NULL constraint for page_id from tables
-
-        DB::statement('ALTER TABLE featured_hours ALTER COLUMN page_id DROP NOT NULL');
-        DB::statement('ALTER TABLE home_artists ALTER COLUMN page_id DROP NOT NULL');
-        DB::statement('ALTER TABLE locations ALTER COLUMN page_id DROP NOT NULL');
-        DB::statement('ALTER TABLE faqs ALTER COLUMN page_id DROP NOT NULL');
-        DB::statement('ALTER TABLE families ALTER COLUMN page_id DROP NOT NULL');
-        DB::statement('ALTER TABLE what_to_expects ALTER COLUMN page_id DROP NOT NULL');
-        DB::statement('ALTER TABLE dining_hours ALTER COLUMN page_id DROP NOT NULL');
-
-        // Add landing_page_id to reference columns
-
-        DB::statement('ALTER TABLE page_printed_publication ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE page_home_secondary_home_feature ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE page_home_main_home_feature ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE page_home_home_feature ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE page_home_event ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE page_article_category ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE page_art_article ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE article_page ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE experience_page ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE digital_publication_page ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE research_resource_feature_page ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE research_resource_study_room_pages ADD COLUMN landing_page_id INTEGER');
-        DB::statement('ALTER TABLE research_resource_study_room_more_pages ADD COLUMN landing_page_id INTEGER');
+        foreach (['featured_hours', 'home_artists', 'locations', 'faqs', 'families', 'what_to_expects', 'dining_hours',
+                  'page_printed_publication', 'page_home_secondary_home_feature', 'page_home_main_home_feature', 'page_home_home_feature', 'page_home_event',
+                  'page_article_category', 'page_art_article', 'article_page', 'experience_page', 'digital_publication_page',
+                  'research_resource_feature_page', 'research_resource_study_room_pages', 'research_resource_study_room_more_pages'] as $t) {
+            Schema::table($t, function (Blueprint $table) {
+                $table->integer('landing_page_id')->references('id')->on('landing_pages')->nullable();
+            });
+        }
 
         // Truncate stmts to be used when in prod to clear copied data
 
@@ -103,20 +78,6 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
         // Add foreign constraints from landing_page_id to landing_pages(id)
 
         DB::statement('ALTER TABLE landing_pages ADD CONSTRAINT landing_pages_id_unique UNIQUE (id)');
-
-        DB::statement('ALTER TABLE page_printed_publication ADD CONSTRAINT page_printed_publication_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE page_home_secondary_home_feature ADD CONSTRAINT page_home_secondary_home_feature_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE page_home_main_home_feature ADD CONSTRAINT page_home_main_home_feature_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE page_home_home_feature ADD CONSTRAINT page_home_home_feature_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE page_home_event ADD CONSTRAINT page_home_event_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE page_article_category ADD CONSTRAINT page_article_category_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE page_art_article ADD CONSTRAINT page_art_article_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE article_page ADD CONSTRAINT article_page_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE experience_page ADD CONSTRAINT experience_page_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE digital_publication_page ADD CONSTRAINT digital_publication_page_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE research_resource_feature_page ADD CONSTRAINT research_resource_feature_page_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE research_resource_study_room_pages ADD CONSTRAINT research_resource_study_room_pages_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
-        DB::statement('ALTER TABLE research_resource_study_room_more_pages ADD CONSTRAINT research_resource_study_room_more_pages_landing_page_id_foreign FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id)');
 
 
         // Mapped relational tables:
