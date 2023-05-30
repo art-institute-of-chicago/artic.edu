@@ -9,18 +9,6 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
 {
     public function up()
     {
-        // Create landing_pages tables
-
-        DB::statement('CREATE TABLE landing_pages AS TABLE pages');
-        DB::statement('ALTER TABLE landing_pages
-                ADD COLUMN visit_nav_buy_tix_label TEXT,
-                ADD COLUMN visit_nav_buy_tix_link TEXT,
-                ADD COLUMN visit_hours_intro TEXT,
-                ADD COLUMN visit_members_intro TEXT,
-                ADD COLUMN visit_admission_intro TEXT');
-        DB::statement('CREATE SEQUENCE landing_pages_id_seq AS integer');
-        DB::statement("ALTER TABLE landing_pages ALTER COLUMN id SET DEFAULT nextval('landing_pages_id_seq'::regclass)");
-
         Schema::create('landing_page_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('page_type', 255)->unique();
@@ -39,9 +27,22 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
                ('Articles and Publications'),
                ('Stories'),
                ('Custom');");
-        DB::statement("ALTER TABLE landing_pages ADD COLUMN page_type VARCHAR(255) REFERENCES landing_page_types(page_type)");
 
+        // Create landing_pages tables
         // Use existing 'pages' tables for data structure
+        DB::statement('CREATE TABLE landing_pages AS TABLE pages');
+        DB::statement('CREATE SEQUENCE landing_pages_id_seq AS integer');
+        DB::statement("ALTER TABLE landing_pages ALTER COLUMN id SET DEFAULT nextval('landing_pages_id_seq'::regclass)");
+        DB::statement('ALTER TABLE landing_pages ADD CONSTRAINT landing_pages_id_unique UNIQUE (id)');
+        Schema::table('landing_pages', function (Blueprint $table) {
+            $table->text('visit_nav_buy_tix_label')->nullable();
+            $table->text('visit_nav_buy_tix_link')->nullable();
+            $table->text('visit_hours_intro')->nullable();
+            $table->text('visit_members_intro')->nullable();
+            $table->text('visit_admission_intro')->nullable();
+            $table->string('page_type')->references('page_type')->on('landing_page_types')->nullable();
+        });
+        DB::statement('TRUNCATE TABLE landing_pages');
 
         Schema::create('landing_page_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'landing_page');
@@ -70,15 +71,6 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
                 $table->integer('landing_page_id')->references('id')->on('landing_pages')->nullable();
             });
         }
-
-        // Truncate stmts to be used when in prod to clear copied data
-
-        DB::statement('TRUNCATE TABLE landing_pages');
-
-        // Add foreign constraints from landing_page_id to landing_pages(id)
-
-        DB::statement('ALTER TABLE landing_pages ADD CONSTRAINT landing_pages_id_unique UNIQUE (id)');
-
 
         // Mapped relational tables:
         //
