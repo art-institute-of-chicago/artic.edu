@@ -30,15 +30,15 @@ class Page extends AbstractModel
         'saved' => \App\Events\UpdatePage::class,
     ];
 
-    const PAGE_TYPE_HOME = 0;
-    const PAGE_TYPE_EXHIBITIONS_AND_EVENTS = 1;
-    const PAGE_TYPE_THE_COLLECTION = 2;
-    const PAGE_TYPE_VISIT = 3;
-    const PAGE_TYPE_ARTICLES = 4;
-    const PAGE_TYPE_EXHIBITION_HISTORY = 5;
-    const PAGE_TYPE_COLLECTION = 6;
-    const PAGE_TYPE_RESEARCH_LANDING = 7;
-    const PAGE_TYPE_WRITINGS_LANDING = 8;
+    public const PAGE_TYPE_HOME = 0;
+    public const PAGE_TYPE_EXHIBITIONS_AND_EVENTS = 1;
+    public const PAGE_TYPE_THE_COLLECTION = 2;
+    public const PAGE_TYPE_VISIT = 3;
+    public const PAGE_TYPE_ARTICLES = 4;
+    public const PAGE_TYPE_EXHIBITION_HISTORY = 5;
+    public const PAGE_TYPE_COLLECTION = 6;
+    public const PAGE_TYPE_RESEARCH_LANDING = 7;
+    public const PAGE_TYPE_WRITINGS_LANDING = 8;
 
     public static $types = [
         self::PAGE_TYPE_HOME => 'Home',
