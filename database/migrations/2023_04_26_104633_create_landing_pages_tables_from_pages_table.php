@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class CreateLandingPagesTablesFromPagesTable extends Migration
 {
-
     private $tablesToAddLandingPageIdTo = [
         'featured_hours',
         'home_artists',

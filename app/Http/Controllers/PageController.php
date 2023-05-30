@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Lightbox;
 use App\Models\Page;
 use App\Repositories\PageRepository;
-use App\Helpers\StringHelpers;
-
 use Carbon\Carbon;
 
 class PageController extends FrontController
@@ -102,16 +100,14 @@ class PageController extends FrontController
             $this->seo->setDescription("Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
             $contrastHeader = sizeof($mainFeatures) > 0;
             $filledLogo = sizeof($mainFeatures) > 0;
-        }
-        elseif ($item->type === Page::PAGE_TYPE_VISIT) {
+        } elseif ($item->type === Page::PAGE_TYPE_VISIT) {
             $this->seo->setTitle('Visit a Chicago Landmark');
             $this->seo->setDescription('Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
             $this->seo->setImage($item->imageFront('visit_hero') ?? $item->imageFront('visit_mobile'));
             $contrastHeader = true;
             $filledLogo = true;
             $title = __('Visit');
-        }
-        elseif ($item->type === Page::PAGE_TYPE_RESEARCH_LANDING) {
+        } elseif ($item->type === Page::PAGE_TYPE_RESEARCH_LANDING) {
             $this->seo->setTitle('Research & Resources');
             $this->seo->setDescription($item->resources_landing_intro);
             $this->seo->setImage($item->imageFront('research_landing_image'));
