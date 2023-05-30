@@ -7,6 +7,30 @@ use Illuminate\Support\Facades\DB;
 
 class CreateLandingPagesTablesFromPagesTable extends Migration
 {
+
+    private $tablesToAddLandingPageIdTo = [
+        'featured_hours',
+        'home_artists',
+        'locations',
+        'faqs',
+        'families',
+        'what_to_expects',
+        'dining_hours',
+        'page_printed_publication',
+        'page_home_secondary_home_feature',
+        'page_home_main_home_feature',
+        'page_home_home_feature',
+        'page_home_event',
+        'page_article_category',
+        'page_art_article',
+        'article_page',
+        'experience_page',
+        'digital_publication_page',
+        'research_resource_feature_page',
+        'research_resource_study_room_pages',
+        'research_resource_study_room_more_pages'
+    ];
+
     public function up()
     {
         Schema::create('landing_page_types', function (Blueprint $table) {
@@ -62,11 +86,7 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
         });
 
         // Create column in relational tables to match landing_page_id instead of page_id
-
-        foreach (['featured_hours', 'home_artists', 'locations', 'faqs', 'families', 'what_to_expects', 'dining_hours',
-                  'page_printed_publication', 'page_home_secondary_home_feature', 'page_home_main_home_feature', 'page_home_home_feature', 'page_home_event',
-                  'page_article_category', 'page_art_article', 'article_page', 'experience_page', 'digital_publication_page',
-                  'research_resource_feature_page', 'research_resource_study_room_pages', 'research_resource_study_room_more_pages'] as $t) {
+        foreach ($this->tablesToAddLandingPageIdTo as $t) {
             Schema::table($t, function (Blueprint $table) {
                 $table->integer('landing_page_id')->references('id')->on('landing_pages')->nullable();
             });
@@ -94,51 +114,39 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
 
     public function down()
     {
-        DB::statement('ALTER TABLE page_printed_publication DROP CONSTRAINT page_printed_publication_landing_page_id_foreign');
-        DB::statement('ALTER TABLE page_home_secondary_home_feature DROP CONSTRAINT page_home_secondary_home_feature_landing_page_id_foreign');
-        DB::statement('ALTER TABLE page_home_main_home_feature DROP CONSTRAINT page_home_main_home_feature_landing_page_id_foreign');
-        DB::statement('ALTER TABLE page_home_home_feature DROP CONSTRAINT page_home_home_feature_landing_page_id_foreign');
-        DB::statement('ALTER TABLE page_home_event DROP CONSTRAINT page_home_event_landing_page_id_foreign');
-        DB::statement('ALTER TABLE page_article_category DROP CONSTRAINT page_article_category_landing_page_id_foreign');
-        DB::statement('ALTER TABLE page_art_article DROP CONSTRAINT page_art_article_landing_page_id_foreign');
+        Schema::table('page_printed_publication', function (Blueprint $table) {
+            $table->dropForeign('page_printed_publication_landing_page_id_foreign');
+        });
+        Schema::table('page_home_secondary_home_feature', function (Blueprint $table) {
+            $table->dropForeign('page_home_secondary_home_feature_landing_page_id_foreign');
+        });
+        Schema::table('page_home_main_home_feature', function (Blueprint $table) {
+            $table->dropForeign('page_home_main_home_feature_landing_page_id_foreign');
+        });
+        Schema::table('page_home_home_feature', function (Blueprint $table) {
+            $table->dropForeign('page_home_home_feature_landing_page_id_foreign');
+        });
+        Schema::table('page_home_event', function (Blueprint $table) {
+            $table->dropForeign('page_home_event_landing_page_id_foreign');
+        });
+        Schema::table('page_article_category', function (Blueprint $table) {
+            $table->dropForeign('page_article_category_landing_page_id_foreign');
+        });
+        Schema::table('page_art_article', function (Blueprint $table) {
+            $table->dropForeign('page_art_article_landing_page_id_foreign');
+        });
 
-        DB::statement('DROP TABLE IF EXISTS landing_pages');
-        DB::statement('DROP SEQUENCE IF EXISTS landing_pages_id_seq');
+        Schema::dropIfExists('landing_page_revisions');
+        Schema::dropIfExists('landing_page_category_slugs');
+        Schema::dropIfExists('landing_page_categories');
+        Schema::dropIfExists('landing_page_slugs');
+        Schema::dropIfExists('landing_page_types');
+        Schema::dropIfExists('landing_pages');
 
-        DB::statement('DROP TABLE IF EXISTS landing_page_types');
-        DB::statement('DROP SEQUENCE IF EXISTS landing_page_types_id_seq');
-
-        DB::statement('DROP TABLE IF EXISTS landing_page_slugs');
-        DB::statement('DROP SEQUENCE IF EXISTS landing_page_slugs_id_seq');
-
-        DB::statement('DROP TABLE IF EXISTS landing_page_categories');
-        DB::statement('DROP SEQUENCE IF EXISTS landing_page_categories_id_seq');
-
-        DB::statement('DROP TABLE IF EXISTS landing_page_category_slugs');
-        DB::statement('DROP SEQUENCE IF EXISTS landing_page_category_slugs_id_seq');
-
-        DB::statement('DROP TABLE IF EXISTS landing_page_revisions');
-        DB::statement('DROP SEQUENCE IF EXISTS landing_page_revisions_id_seq');
-
-        DB::statement('ALTER TABLE home_artists DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE featured_hours DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE locations DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE faqs DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE families DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE what_to_expects DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE dining_hours DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE page_printed_publication DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE page_home_secondary_home_feature DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE page_home_main_home_feature DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE page_home_home_feature DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE page_home_event DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE page_article_category DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE page_art_article DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE article_page DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE experience_page DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE digital_publication_page DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE research_resource_feature_page DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE research_resource_study_room_pages DROP COLUMN landing_page_id');
-        DB::statement('ALTER TABLE research_resource_study_room_more_pages DROP COLUMN landing_page_id');
+        foreach ($this->tablesToAddLandingPageIdTo as $t) {
+            Schema::table($t, function (Blueprint $table) {
+                $table->dropColumn('landing_page_id');
+            });
+        }
     }
 }
