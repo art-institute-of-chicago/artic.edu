@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 class CreateLandingPagesTablesFromPagesTable extends Migration
@@ -18,14 +20,13 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
                 ADD COLUMN visit_admission_intro TEXT');
         DB::statement('CREATE SEQUENCE landing_pages_id_seq AS integer');
         DB::statement("ALTER TABLE landing_pages ALTER COLUMN id SET DEFAULT nextval('landing_pages_id_seq'::regclass)");
-        DB::statement('CREATE TABLE landing_page_types (
-            id INT NOT NULL PRIMARY KEY,
-            page_type VARCHAR(255) UNIQUE,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )');
-        DB::statement('CREATE SEQUENCE landing_page_types_id_seq AS integer');
-        DB::statement("ALTER TABLE landing_page_types ALTER COLUMN id SET DEFAULT nextval('landing_page_types_id_seq'::regclass)");
+
+        Schema::create('landing_page_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('page_type', 255)->unique();
+            $table->timestamps();
+        });
+
         DB::statement("INSERT INTO landing_page_types (page_type)
         VALUES ('Home'),
                ('Exhibitions and Events'),
@@ -42,23 +43,22 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
 
         // Use existing 'pages' tables for data structure
 
-        DB::statement('CREATE TABLE landing_page_slugs AS TABLE page_slugs');
-        DB::statement('ALTER TABLE landing_page_slugs RENAME COLUMN page_id TO landing_page_id');
-        DB::statement('CREATE SEQUENCE landing_page_slugs_id_seq AS integer');
-        DB::statement("ALTER TABLE landing_page_slugs ALTER COLUMN id SET DEFAULT nextval('landing_page_slugs_id_seq'::regclass)");
+        Schema::create('landing_page_slugs', function (Blueprint $table) {
+            createDefaultSlugsTableFields($table, 'landing_page');
+        });
 
-        DB::statement('CREATE TABLE landing_page_revisions AS TABLE page_revisions');
-        DB::statement('ALTER TABLE landing_page_revisions RENAME COLUMN page_id TO landing_page_id');
-        DB::statement('CREATE SEQUENCE landing_page_revisions_id_seq AS integer');
-        DB::statement("ALTER TABLE landing_page_revisions ALTER COLUMN id SET DEFAULT nextval('landing_page_revisions_id_seq'::regclass)");
+        Schema::create('landing_page_revisions', function (Blueprint $table) {
+            createDefaultRevisionsTableFields($table, 'landing_page');
+        });
 
-        DB::statement('CREATE TABLE landing_page_categories AS TABLE page_categories');
-        DB::statement('CREATE SEQUENCE landing_page_categories_id_seq AS integer');
-        DB::statement("ALTER TABLE landing_page_categories ALTER COLUMN id SET DEFAULT nextval('landing_page_categories_id_seq'::regclass)");
+        Schema::create('landing_page_categories', function (Blueprint $table) {
+            createDefaultTableFields($table, true, false);
+            $table->string('name');
+        });
 
-        DB::statement('CREATE TABLE landing_page_category_slugs AS TABLE page_category_slugs');
-        DB::statement('CREATE SEQUENCE landing_page_category_slugs_id_seq AS integer');
-        DB::statement("ALTER TABLE landing_page_category_slugs ALTER COLUMN id SET DEFAULT nextval('landing_page_category_slugs_id_seq'::regclass)");
+        Schema::create('landing_page_category_slugs', function (Blueprint $table) {
+            createDefaultSlugsTableFields($table, 'landing_page_category');
+        });
 
         // Create column in relational tables to match landing_page_id instead of page_id
 
@@ -99,10 +99,6 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
         // Truncate stmts to be used when in prod to clear copied data
 
         DB::statement('TRUNCATE TABLE landing_pages');
-        DB::statement('TRUNCATE TABLE landing_page_slugs');
-        DB::statement('TRUNCATE TABLE landing_page_revisions');
-        DB::statement('TRUNCATE TABLE landing_page_categories');
-        DB::statement('TRUNCATE TABLE landing_page_category_slugs');
 
         // Add foreign constraints from landing_page_id to landing_pages(id)
 
