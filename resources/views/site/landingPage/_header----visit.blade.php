@@ -10,7 +10,7 @@
     @component('site.shared._schemaItemProps')
       @slot('itemprops',$itemprops ?? null)
     @endcomponent
-    
+
     @component('components.molecules._m-media')
         @slot('item', $headerMedia)
         @slot('tag', 'span')
@@ -44,6 +44,11 @@
                 <hr>
                 <span class="f-secondary">{!! $visit_members_intro !!}</span>
                 <table class="visit-hours">
+                    <caption class="s-hidden">Hours the museum is open each day</caption>
+                    <th class="s-hidden">
+                        <td>Days</td>
+                        <td>Hours</td>
+                    </th>
                     @if (!empty($hour))
                         @foreach ($hour->present()->getHoursTableForHeader() as $item)
                             <tr>
@@ -88,6 +93,10 @@
             <div class="col">
                 <div class="visit-fee">
                     <table class="visit-fee-category">
+                        <caption class="s-hidden">Types of admissions to visit the museum</caption>
+                        <th class="s-hidden">
+                            <td>Category</td>
+                        </th>
                         {{-- get first index and add selected class to it --}}
                         @if (!empty($admission))
                             @foreach ($admission['titles'] as $category)
@@ -110,9 +119,14 @@
                                 </select>
                             </span>
                         @endif
-                    </table>                    
+                    </table>
                         <div class="visit-separator"></div>
                         <table class="visit-fee-price">
+                            <caption class="s-hidden">Admission costs for visits to the museum</caption>
+                            <th class="s-hidden>
+                                <td>Age group</td>
+                                <td>Price</td>
+                            </th>
                             @php $categoryFirst = true; @endphp
                             @foreach ($admission['prices'] as $price => $ageGroup)
                                 @foreach ($ageGroup as $age)
@@ -124,24 +138,24 @@
                                             <tbody class="fee-ages" id="{!! $price !!}">
                                         @endif
                                     @endif
-                        
+
                                     @php
                                         $formattedPrice = ($age[$price] == 0) ? 'Free' : '$' . $age[$price];
                                     @endphp
-                        
+
                                     <tr>
                                         <td>
                                             <span class="f-module-title-1">{{ $age['title'] }}</span>
                                             <span class="f-module-title-1">{!! $formattedPrice !!}</span>
                                         </td>
                                     </tr>
-                        
+
                                     @if ($loop->last)
                                         </tbody>
                                     @endif
                                 @endforeach
                             @endforeach
-                        </table>                        
+                        </table>
                 </div>
             </div>
                 <div class="col">
