@@ -22,6 +22,7 @@ class HomeArtist extends AbstractModel implements Sortable
         'title',
         'position',
         'page_id',
+        'landing_page_id',
     ];
 
     public $checkboxes = [

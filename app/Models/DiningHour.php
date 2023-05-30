@@ -14,6 +14,7 @@ class DiningHour extends AbstractModel
         'published',
         'position',
         'page_id',
+        'landing_page_id',
         'name',
         'hours',
     ];
@@ -23,6 +24,11 @@ class DiningHour extends AbstractModel
     public function page()
     {
         return $this->belongsTo('App\Models\Page');
+    }
+
+    public function landingPage()
+    {
+        return $this->belongsTo('App\Models\LandingPage');
     }
 
     /**

@@ -11,6 +11,10 @@ use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\PageController;
 
+Route::module('pages');
+
+Route::module('landingPages');
+
 Route::group(['prefix' => 'homepage'], function () {
     Route::name('homepage.landing')->get('landing', [PageController::class, 'home']);
     Route::module('homeFeatures');
@@ -100,7 +104,7 @@ Route::group(['prefix' => 'collection'], function () {
 
 Route::group(['prefix' => 'generic'], function () {
     Route::module('genericPages');
-    Route::module('pages');
+    Route::module('landingPages');
     Route::module('pressReleases');
     Route::module('exhibitionPressRooms');
 });

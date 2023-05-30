@@ -202,15 +202,15 @@ $nav = [
     ],
     'generic' => [
         'title' => 'Pages',
-        'route' => 'admin.generic.genericPages.index',
+        'route' => 'admin.generic.landingPages.index',
 
         'primary_navigation' => [
-            'genericPages' => [
-                'title' => 'Generic Pages',
+            'landingPages' => [
+                'title' => 'Landing Pages',
                 'module' => true,
             ],
-            'pages' => [
-                'title' => 'Landing Pages',
+            'genericPages' => [
+                'title' => 'Generic Pages',
                 'module' => true,
             ],
             'pressReleases' => [
