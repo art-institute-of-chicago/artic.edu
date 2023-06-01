@@ -202,7 +202,7 @@ $nav = [
     ],
     'generic' => [
         'title' => 'Pages',
-        'route' => 'admin.generic.landingPages.index',
+        'route' => 'admin.generic.genericPages.index',
 
         'primary_navigation' => [
             'landingPages' => [
