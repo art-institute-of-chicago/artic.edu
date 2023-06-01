@@ -11,6 +11,8 @@ class Faq extends AbstractModel
         'page_id',
         'landing_page_id',
         'title',
+        'question',
+        'answer',
     ];
 
     public $checkboxes = ['published'];
