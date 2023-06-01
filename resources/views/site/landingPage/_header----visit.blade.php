@@ -46,7 +46,7 @@
                 <table class="visit-hours">
                     <caption class="s-hidden">Hours the museum is open each day</caption>
                     <tr class="s-hidden">
-                        <th>
+                        <th scope="row">
                             <td>Days</td>
                             <td>Hours</td>
                         </th>
@@ -54,7 +54,7 @@
                     @if (!empty($hour))
                         @foreach ($hour->present()->getHoursTableForHeader() as $item)
                             <tr>
-                                <th>
+                                <th scope="row">
                                     <span class="f-module-title-1">{{ $item['days'] }}</span>
                                 </th>
                                 <td>
@@ -128,7 +128,7 @@
                         <table class="visit-fee-price">
                             <caption class="s-hidden">Admission costs for visits to the museum</caption>
                             <tr class="s-hidden">
-                                <th>
+                                <th scope="row">
                                     <td>Age group</td>
                                     <td>Price</td>
                                 </th>
