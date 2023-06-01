@@ -231,5 +231,6 @@ return [
         'vtour_embed',
         'layered_image_viewer',
         'showcase',
+        'custom_banner'
     ]
 ];
