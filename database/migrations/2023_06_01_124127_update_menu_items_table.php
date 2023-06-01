@@ -17,6 +17,5 @@ class UpdateMenuItemsTable extends Migration
 
     public function down()
     {
-
     }
 }

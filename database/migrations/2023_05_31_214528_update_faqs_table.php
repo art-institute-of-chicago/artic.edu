@@ -10,7 +10,7 @@ class UpdateFaqsTable extends Migration
     {
         Schema::table('faqs', function (Blueprint $table) {
             $table->text('question')->nullable();
-            $table->text('answer')->nullable();  
+            $table->text('answer')->nullable();
         });
     }
 

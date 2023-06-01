@@ -5,10 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class UpdateLandingPagesTables extends Migration
-
-
 {
-
     private $tablesToAddLandingPageIdTo = [
         'featured_hours',
         'home_artists',
@@ -43,6 +40,5 @@ class UpdateLandingPagesTables extends Migration
 
     public function down()
     {
-        
     }
 }
