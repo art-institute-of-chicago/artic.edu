@@ -42,11 +42,16 @@ class LandingPageController extends ModuleController
         $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
         $typesOptions = $this->getTypesOptions($types);
 
+        $item = $this->repository->getById(request('landingPage') ?? request('id'));
+        $baseUrl = '//' . config('app.url') . '/landingpages/' . $item->id . '/';
+
         return [
             'types' => $types,
             'typesOptions' => $typesOptions,
+            'baseUrl' => $baseUrl,
         ];
     }
+
     public function getTypesOptions($types)
     {
         $list = [];
