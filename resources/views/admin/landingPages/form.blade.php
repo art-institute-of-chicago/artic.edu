@@ -1,4 +1,4 @@
-{{-- 
+{{--
     // Values & Labels for Page Types
     // 1 -> Home
     // 2 -> Exhibitions and Events
@@ -9,7 +9,7 @@
     // 7 -> Art and Ideas
     // 8 -> Research and Resources
     // 9 -> Articles and Publications
-    // 10 -> Custom 
+    // 10 -> Custom
 --}}
 
 @extends('twill::layouts.form')
