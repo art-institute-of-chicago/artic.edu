@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasFiles;
+use A17\Twill\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Admission as Admission;
@@ -13,10 +15,11 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\LandingPageType;
 
-class LandingPage extends AbstractModel
+class LandingPage extends AbstractModel implements Sortable
 {
     use HasSlug;
     use HasRevisions;
+    use HasPosition;
     use HasMedias;
     use HasFiles;
     use HasMediasEloquent;
