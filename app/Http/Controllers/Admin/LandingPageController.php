@@ -45,8 +45,6 @@ class LandingPageController extends ModuleController
         return [
             'types' => $types,
             'typesOptions' => $typesOptions,
-            'permalink' => false,
-            'publish' => false,
         ];
     }
     public function getTypesOptions($types)
@@ -62,10 +60,5 @@ class LandingPageController extends ModuleController
     protected function getRoutePrefix()
     {
         return null;
-    }
-
-    protected function moduleHas($behavior)
-    {
-        return $behavior === 'revisions' ? false : parent::moduleHas($behavior);
     }
 }
