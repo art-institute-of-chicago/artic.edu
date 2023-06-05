@@ -19,7 +19,7 @@
     @formField('select', [
         'name' => 'type',
         'label' => 'Page type',
-        'default' => null,
+        'default' => 11,
         'inline' => true,
         'options' => $typesOptions,
     ])
