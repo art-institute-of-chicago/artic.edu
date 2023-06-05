@@ -28,7 +28,13 @@ class LandingPageController extends ModuleController
 
     protected function indexData($request)
     {
-        return [];
+        $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
+        $typesOptions = $this->getTypesOptions($types);
+
+        return [
+            'types' => $types,
+            'typesOptions' => $typesOptions,
+        ];
     }
 
     protected function formData($request)
