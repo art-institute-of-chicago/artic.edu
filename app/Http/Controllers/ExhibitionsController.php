@@ -87,8 +87,9 @@ class ExhibitionsController extends FrontController
             ->findOrFail((int) $id);
 
         // If the exhibition has not started or not ended, check if its augmented model is published before showing
+        // WEB-2499: If the start and end dates are not set, err on the side of publishing the exhibition
         // WEB-1796: Consider adding a global `getPublishedAttribute` method that checks preview mode status?
-        if (!config('aic.is_preview_mode') && !$item->published && (Carbon::now()->lt($item->dateStart) || Carbon::now()->lt($item->dateEnd))) {
+        if (!config('aic.is_preview_mode') && !$item->published && ((isset($item->dateStart) && Carbon::now()->lt($item->dateStart)) || (isset($item->dateEnd) && Carbon::now()->lt($item->dateEnd)))) {
             abort(404);
         }
 
