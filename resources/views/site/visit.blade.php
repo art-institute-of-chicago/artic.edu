@@ -409,7 +409,7 @@ $showNewHours = Carbon::now()->gt($newHoursStartAt);
 
     @component('components.molecules._m-link-list')
         @slot('screenreaderTitle', 'Example questions')
-        @slot('links', $faq['questions'])
+        @slot('links', $faq->questions())
     @endcomponent
 
     @component('components.molecules._m-links-bar')
