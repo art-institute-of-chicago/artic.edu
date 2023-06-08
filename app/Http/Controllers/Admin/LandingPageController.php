@@ -28,7 +28,13 @@ class LandingPageController extends ModuleController
 
     protected function indexData($request)
     {
-        return [];
+        $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
+        $typesOptions = $this->getTypesOptions($types);
+
+        return [
+            'types' => $types,
+            'typesOptions' => $typesOptions,
+        ];
     }
 
     protected function formData($request)
@@ -36,13 +42,15 @@ class LandingPageController extends ModuleController
         $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
         $typesOptions = $this->getTypesOptions($types);
 
+        $baseUrl = route('landingPages.show', ['id' => request('landingPage') ?? request('id')]) . "/";
+
         return [
             'types' => $types,
             'typesOptions' => $typesOptions,
-            'permalink' => false,
-            'publish' => false,
+            'baseUrl' => $baseUrl,
         ];
     }
+
     public function getTypesOptions($types)
     {
         $list = [];
@@ -56,10 +64,5 @@ class LandingPageController extends ModuleController
     protected function getRoutePrefix()
     {
         return null;
-    }
-
-    protected function moduleHas($behavior)
-    {
-        return $behavior === 'revisions' ? false : parent::moduleHas($behavior);
     }
 }
