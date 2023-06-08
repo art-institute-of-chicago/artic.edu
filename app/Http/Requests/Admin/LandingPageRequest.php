@@ -8,11 +8,15 @@ class LandingPageRequest extends Request
 {
     public function rulesForCreate()
     {
-        return [];
+        return [
+            'type' => 'required'
+        ];
     }
 
     public function rulesForUpdate()
     {
-        return [];
+        return [
+            'type' => 'required'
+        ];
     }
 }
