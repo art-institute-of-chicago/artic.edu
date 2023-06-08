@@ -93,15 +93,6 @@ class LandingPagesController extends FrontController
             'intro' => $item->visit_hour_intro
         ];
 
-        $faqs = [];
-
-        foreach ($item->faqs as $faq) {
-            array_push($faqs, [
-                'question' => $faq->question,
-                'answer' => $faq->answer,
-            ]);
-        }
-
         $itemprops = [
             'name' => 'Art Institute of Chicago',
             'telephone' => '+13124433600',
@@ -187,7 +178,7 @@ class LandingPagesController extends FrontController
                     ],
                     'accesibility_link' => $item->visit_faq_accessibility_link,
                     'more_link' => $item->visit_faq_more_link,
-                    'faqs' => $faqs,
+                    'faqs' => $item->faqs->all()
                 ]);
 
                 break;
