@@ -1,17 +1,3 @@
-{{--
-    // Values & Labels for Page Types
-    // 1 -> Home
-    // 2 -> Exhibitions and Events
-    // 3 -> Collection
-    // 4 -> Visit
-    // 5 -> Articles
-    // 6 -> Exhibition History
-    // 7 -> Art and Ideas
-    // 8 -> Research and Resources
-    // 9 -> Articles and Publications
-    // 10 -> Custom
---}}
-
 @extends('twill::layouts.form')
 
 @section('contentFields')
@@ -30,7 +16,7 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'type',
-    'fieldValues' => 1, //Home
+    'fieldValues' => array_search('Home', $types),
     'renderForBlocks' => false
 ])
     @formField('input', [
@@ -104,7 +90,7 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'type',
-    'fieldValues' => 4, // Visit
+    'fieldValues' => array_search('Visit', $types),
     'renderForBlocks' => false
 ])
 
@@ -195,7 +181,7 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'type',
-    'fieldValues' => 8, // Research and Resources
+    'fieldValues' => array_search('Research and Resources', $types),
     'renderForBlocks' => false
 ])
     @formField('input', [
@@ -255,15 +241,11 @@
 
 </a17-fieldset>
 
-<a17-fieldset title="FAQs" id="faq">
-    @formField('input', [
-        'name' => 'visit_faq_accessibility_link',
-        'label' => 'Accessibility information link'
-    ])
-    @formField('input', [
-        'name' => 'visit_faq_more_link',
-        'label' => "More FAQs and guidelines link"
-    ])
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'type',
+    'fieldValues' => array_search('Visit', $types), // Visit
+    'renderForBlocks' => false
+])
 
     @formField('repeater', ['type' => 'faqs'])
 </a17-fieldset>
