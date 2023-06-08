@@ -131,7 +131,6 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
             $table->text('visit_members_intro')->nullable();
             $table->text('visit_admission_intro')->nullable();
             $table->string('page_type')->references('page_type')->on('landing_page_types')->nullable();
-
         });
 
         Schema::create('landing_page_slugs', function (Blueprint $table) {
