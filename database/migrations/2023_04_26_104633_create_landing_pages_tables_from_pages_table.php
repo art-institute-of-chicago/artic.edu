@@ -53,11 +53,78 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
 
         // Create landing_pages tables
         // Use existing 'pages' tables for data structure
-        DB::statement('CREATE TABLE landing_pages AS TABLE pages');
-        DB::statement('CREATE SEQUENCE landing_pages_id_seq AS integer');
-        DB::statement("ALTER TABLE landing_pages ALTER COLUMN id SET DEFAULT nextval('landing_pages_id_seq'::regclass)");
-        DB::statement('ALTER TABLE landing_pages ADD CONSTRAINT landing_pages_id_unique UNIQUE (id)');
-        Schema::table('landing_pages', function (Blueprint $table) {
+        Schema::create('landing_pages', function (Blueprint $table) {
+            createDefaultTableFields($table, true, true, true);
+            $table->integer('position')->unsigned()->index();
+            $table->string('title');
+            $table->integer('type')->unsigned();
+            $table->unique('type');
+            $table->text('home_intro')->nullable();
+            $table->text('exhibition_intro')->nullable();
+            $table->text('art_intro')->nullable();
+            $table->string('exhibition_history_sub_heading')->nullable();
+            $table->text('exhibition_history_intro_copy')->nullable();
+            $table->text('exhibition_history_popup_copy')->nullable();
+            $table->text('home_cta_module_action_url')->nullable();
+            $table->text('home_cta_module_header')->nullable();
+            $table->text('home_cta_module_body')->nullable();
+            $table->string('home_cta_module_button_text')->nullable();
+            $table->string('visit_transportation_link')->nullable();
+            $table->string('visit_parking_link')->nullable();
+            $table->string('visit_buy_tickets_link')->nullable();
+            $table->string('visit_become_member_link')->nullable();
+            $table->text('visit_faq_accessibility_link')->nullable();
+            $table->text('visit_faq_more_link')->nullable();
+            $table->text('printed_publications_intro')->nullable();
+            $table->text('resources_landing_title')->nullable();
+            $table->text('resources_landing_intro')->nullable();
+            $table->text('visit_dining_link')->nullable();
+            $table->string('home_plan_your_visit_link_1_text')->nullable();
+            $table->text('home_plan_your_visit_link_1_url')->nullable();
+            $table->string('home_plan_your_visit_link_2_text')->nullable();
+            $table->text('home_plan_your_visit_link_2_url')->nullable();
+            $table->string('home_plan_your_visit_link_3_text')->nullable();
+            $table->text('home_plan_your_visit_link_3_url')->nullable();
+            $table->text('home_video_title')->nullable();
+            $table->text('home_video_description')->nullable();
+            $table->integer('home_cta_module_variation')->default(1);
+            $table->text('home_cta_module_form_id')->nullable();
+            $table->text('home_cta_module_form_token')->nullable();
+            $table->text('home_cta_module_form_tlc_source')->nullable();
+            $table->string('visit_parking_accessibility_link')->nullable();
+            $table->text('visit_accessibility_link_url')->nullable();
+            $table->text('visit_cta_module_action_url')->nullable();
+            $table->text('visit_what_to_expect_more_link')->nullable();
+            $table->text('visit_capacity_btn_url_1')->nullable();
+            $table->text('visit_capacity_btn_url_2')->nullable();
+            $table->text('home_visit_button_text')->nullable();
+            $table->text('home_visit_button_url')->nullable();
+            $table->boolean('visit_hide_hours')->nullable();
+            $table->string('visit_intro')->nullable();
+            $table->string('visit_hour_header')->nullable();
+            $table->text('visit_hour_subheader')->nullable();
+            $table->text('visit_hour_intro')->nullable();
+            $table->string('visit_city_pass_title')->nullable();
+            $table->text('visit_city_pass_text')->nullable();
+            $table->string('visit_city_pass_button_label')->nullable();
+            $table->string('visit_city_pass_link')->nullable();
+            $table->text('visit_admission_description')->nullable();
+            $table->string('visit_buy_tickets_label')->nullable();
+            $table->string('visit_become_member_label')->nullable();
+            $table->text('visit_accessibility_text')->nullable();
+            $table->text('visit_accessibility_link_text')->nullable();
+            $table->text('visit_cta_module_header')->nullable();
+            $table->text('visit_cta_module_body')->nullable();
+            $table->text('visit_cta_module_button_text')->nullable();
+            $table->text('visit_what_to_expect_more_text')->nullable();
+            $table->text('visit_capacity_alt')->nullable();
+            $table->text('visit_capacity_heading')->nullable();
+            $table->text('visit_capacity_text')->nullable();
+            $table->text('visit_capacity_btn_text_1')->nullable();
+            $table->text('visit_capacity_btn_text_2')->nullable();
+            $table->text('visit_hour_image_caption')->nullable();
+
+            // Additional landing page builder fields
             $table->text('visit_nav_buy_tix_label')->nullable();
             $table->text('visit_nav_buy_tix_link')->nullable();
             $table->text('visit_hours_intro')->nullable();
@@ -65,7 +132,6 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
             $table->text('visit_admission_intro')->nullable();
             $table->string('page_type')->references('page_type')->on('landing_page_types')->nullable();
         });
-        DB::statement('TRUNCATE TABLE landing_pages');
 
         Schema::create('landing_page_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'landing_page');
@@ -113,39 +179,18 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
 
     public function down()
     {
-        Schema::table('page_printed_publication', function (Blueprint $table) {
-            $table->dropForeign('page_printed_publication_landing_page_id_foreign');
-        });
-        Schema::table('page_home_secondary_home_feature', function (Blueprint $table) {
-            $table->dropForeign('page_home_secondary_home_feature_landing_page_id_foreign');
-        });
-        Schema::table('page_home_main_home_feature', function (Blueprint $table) {
-            $table->dropForeign('page_home_main_home_feature_landing_page_id_foreign');
-        });
-        Schema::table('page_home_home_feature', function (Blueprint $table) {
-            $table->dropForeign('page_home_home_feature_landing_page_id_foreign');
-        });
-        Schema::table('page_home_event', function (Blueprint $table) {
-            $table->dropForeign('page_home_event_landing_page_id_foreign');
-        });
-        Schema::table('page_article_category', function (Blueprint $table) {
-            $table->dropForeign('page_article_category_landing_page_id_foreign');
-        });
-        Schema::table('page_art_article', function (Blueprint $table) {
-            $table->dropForeign('page_art_article_landing_page_id_foreign');
-        });
-
         Schema::dropIfExists('landing_page_revisions');
         Schema::dropIfExists('landing_page_category_slugs');
         Schema::dropIfExists('landing_page_categories');
         Schema::dropIfExists('landing_page_slugs');
-        Schema::dropIfExists('landing_page_types');
-        Schema::dropIfExists('landing_pages');
 
         foreach ($this->tablesToAddLandingPageIdTo as $t) {
             Schema::table($t, function (Blueprint $table) {
                 $table->dropColumn('landing_page_id');
             });
         }
+
+        Schema::dropIfExists('landing_pages');
+        Schema::dropIfExists('landing_page_types');
     }
 }

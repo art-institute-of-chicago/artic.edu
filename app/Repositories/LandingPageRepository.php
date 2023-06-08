@@ -6,7 +6,6 @@ use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
-use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\LandingPage;
 use App\Repositories\Behaviors\HandleApiRelations;
@@ -18,7 +17,6 @@ class LandingPageRepository extends ModuleRepository
     use HandleMedias;
     use HandleFiles;
     use HandleApiRelations;
-    use HandleTranslations;
     use HandleBlocks;
 
     protected $browsers = [
