@@ -14,7 +14,7 @@ class CreateMenuItemsTable extends Migration
             $table->string('position');
             $table->string('link');
             $table->integer('page_id');
-            $table->integer('landing_page_id');
+            $table->foreignId('landing_page_id');
         });
     }
 
