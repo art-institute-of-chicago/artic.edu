@@ -40,19 +40,21 @@
     <div class="info-grid">
         <div class="row">
             <div class="col">
-                <h3 class="title f-module-title-2">Hours</h3>
+                <h3 id="hours" class="title f-module-title-2">Hours</h3>
                 <hr>
                 <span class="f-secondary">{!! $visit_members_intro !!}</span>
                 <table class="visit-hours">
                     <caption class="s-hidden">Hours the museum is open each day</caption>
-                    <th class="s-hidden">
-                        <td>Days</td>
-                        <td>Hours</td>
-                    </th>
+                    <tr class="s-hidden">
+                        <th scope="row">
+                            <td>Days</td>
+                            <td>Hours</td>
+                        </th>
+                    </tr>
                     @if (!empty($hour))
                         @foreach ($hour->present()->getHoursTableForHeader() as $item)
                             <tr>
-                                <th>
+                                <th scope="row">
                                     <span class="f-module-title-1">{{ $item['days'] }}</span>
                                 </th>
                                 <td>
@@ -65,7 +67,7 @@
                 <span class="f-secondary">{!! $visit_hours_intro !!}</span>
             </div>
             <div class="col">
-                <h3 class="title f-module-title-2">Location</h3>
+                <h3 id="location" class="title f-module-title-2">Location</h3>
                 <hr>
                 <div class="visit-location">
                     <div>
@@ -87,16 +89,18 @@
                 <a href="#" class="btn btn--secondary f-buttons">Transit & Parking</a>
             </div>
         </div>
-        <h3 class="title f-module-title-2">Admission</h3>
+        <h3 id="admission" class="title f-module-title-2">Admission</h3>
         <hr>
         <div class="row">
             <div class="col">
                 <div class="visit-fee">
                     <table class="visit-fee-category">
                         <caption class="s-hidden">Types of admissions to visit the museum</caption>
-                        <th class="s-hidden">
-                            <td>Category</td>
-                        </th>
+                        <tr class="s-hidden">
+                            <th class="s-hidden">
+                                <td class="s-hidden">Category</td>
+                            </th>
+                        </tr>
                         {{-- get first index and add selected class to it --}}
                         @if (!empty($admission))
                             @foreach ($admission['titles'] as $category)
@@ -123,10 +127,12 @@
                         <div class="visit-separator"></div>
                         <table class="visit-fee-price">
                             <caption class="s-hidden">Admission costs for visits to the museum</caption>
-                            <th class="s-hidden>
-                                <td>Age group</td>
-                                <td>Price</td>
-                            </th>
+                            <tr class="s-hidden">
+                                <th scope="row">
+                                    <td>Age group</td>
+                                    <td>Price</td>
+                                </th>
+                            </tr>
                             @php $categoryFirst = true; @endphp
                             @foreach ($admission['prices'] as $price => $ageGroup)
                                 @foreach ($ageGroup as $age)
