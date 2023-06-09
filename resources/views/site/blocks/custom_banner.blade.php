@@ -12,7 +12,7 @@
     <div class="content-wrapper">
         <div class="background-wrapper">
             @if($bg_type == 'background_color')
-                <div class="background_color" {{ isset($block->input('bgcolor')) ? 'style="background-color: ' . $block->input('bgcolor') . '"' : '' }}></div>
+                <div class="background_color" {{ $block->input('bgcolor') ? 'style="background-color: ' . $block->input('bgcolor') . '"' : '' }}></div>
             @endif
 
             @if($bg_type == 'background_image')
