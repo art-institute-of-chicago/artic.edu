@@ -11,7 +11,7 @@ class UpdateMenuItemsTable extends Migration
         Schema::table('menu_items', function (Blueprint $table) {
             $table->string('label')->change();
             $table->integer('page_id')->nullable()->change();
-            $table->integer('landing_page_id')->nullable()->change();
+            $table->foreignId('landing_page_id')->nullable()->change();
         });
     }
 
