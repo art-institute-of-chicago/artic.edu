@@ -1,4 +1,4 @@
-@php 
+@php
 
     $bg_type = $block->input('background_type');
     $btn_type = $block->input('button_type');
@@ -12,7 +12,7 @@
     <div class="content-wrapper">
         <div class="background-wrapper">
             @if($bg_type == 'background_color')
-                <div class="background_color" style="background-color: {!! $block->input('bgcolor') !!}"></div>
+                <div class="background_color" {{ isset($block->input('bgcolor')) ? 'style="background-color: ' . $block->input('bgcolor') . '"' : '' }}></div>
             @endif
 
             @if($bg_type == 'background_image')
@@ -44,7 +44,7 @@
                         <a class="google-play" target=”_blank” href='https://play.google.com/store/apps/details?id=edu.artic&hl=en_US&gl=US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src="{{FrontendHelpers::revAsset('images/icon_google-play.png')}}"/></a>
                     </div>
                 @endif
-                
+
                 @if($btn_type == 'custom')
                     @component('components.atoms._btn')
                         @slot('variation', 'primary')
