@@ -434,9 +434,14 @@
       }
     }
 
-    &.s-hidden {
+    .s-hidden {
       display: none;
     }
+  }
+
+  .o-accordion {
+    margin-top: 36px;
+    max-width: 1000px;
   }
 
     .o-blocks {

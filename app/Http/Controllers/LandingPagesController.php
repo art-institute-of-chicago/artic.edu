@@ -175,7 +175,10 @@ class LandingPagesController extends FrontController
                     'admission' => [
                         'titles' => $feeTitles,
                         'prices' => $feePrices,
-                    ]
+                    ],
+                    'accesibility_link' => $item->visit_faq_accessibility_link,
+                    'more_link' => $item->visit_faq_more_link,
+                    'faqs' => $item->faqs->all()
                 ]);
 
                 break;
