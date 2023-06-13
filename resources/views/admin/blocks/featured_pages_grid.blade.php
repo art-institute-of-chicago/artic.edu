@@ -20,6 +20,6 @@
             'value' => moduleRoute('landingPages', 'generic', 'browser', [], false)
         ]
     ],
-    'max' => 12,
+    'max' => 8,
     'label' => 'Featured Pages',
 ])
