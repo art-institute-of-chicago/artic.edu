@@ -9,7 +9,7 @@
         {!! $item->renderBlocks(false, [], []) !!}
 
     </div>
-    <hr/>
+    
     @include('site.landingPage._footer----'.$landingPageType)
 
 @endsection
