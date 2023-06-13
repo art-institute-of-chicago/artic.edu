@@ -96,7 +96,7 @@
 
     <a17-fieldset title="Header" id="visit_header">
         @formField('medias', [
-            'name' => 'visit_hero',
+            'name' => 'hero',
             'label' => 'Hero image',
             'note' => 'Minimum image width 3000px'
         ])
@@ -108,7 +108,7 @@
         ])
 
         @formField('medias', [
-            'name' => 'visit_mobile',
+            'name' => 'mobile_hero',
             'label' => 'Hero image, mobile',
             'note' => 'Minimum image width 2000px'
         ])

@@ -1,6 +1,11 @@
 @twillBlockTitle('Featured Pages Grid')
 @twillBlockIcon('image')
 
+@formField('input', [
+    'name' => 'grid_heading',
+    'label' => 'Heading',
+])
+
 @formField('browser', [
     'routePrefix' => 'generic',
     'moduleName' => 'genericPages',
@@ -15,6 +20,6 @@
             'value' => moduleRoute('landingPages', 'generic', 'browser', [], false)
         ]
     ],
-    'max' => 12,
+    'max' => 8,
     'label' => 'Featured Pages',
 ])

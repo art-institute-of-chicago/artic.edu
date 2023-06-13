@@ -55,7 +55,7 @@ class LandingPagesController extends FrontController
 
         // Visit
         if ($video_url = $item->file('video', 'en')) {
-            $headerImage = $item->imageFront('visit_mobile');
+            $headerImage = $item->imageFront('mobile_hero');
 
             $poster_url = $headerImage['src'] ?? '';
             $video = [
@@ -74,7 +74,7 @@ class LandingPagesController extends FrontController
             $headerMedia = [
                 'type' => 'image',
                 'size' => 'hero',
-                'media' => $item->imageFront('visit_hero'),
+                'media' => $item->imageFront('hero'),
                 'hideCaption' => true,
             ];
         }
@@ -114,7 +114,7 @@ class LandingPagesController extends FrontController
             case (array_search('Visit', $types)):
                 $this->seo->setTitle('Visit a Chicago Landmark');
                 $this->seo->setDescription('Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
-                $this->seo->setImage($item->imageFront('visit_hero') ?? $item->imageFront('visit_mobile'));
+                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
                 $contrastHeader = true;
                 $filledLogo = true;
                 $title = __('Visit');
