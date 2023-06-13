@@ -588,4 +588,9 @@ class LandingPage extends AbstractModel implements Sortable
 
         ];
     }
+
+    public function getUrl($prefix = '')
+    {
+        return $prefix . '/' . $this->slug;
+    }
 }
