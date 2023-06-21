@@ -26,11 +26,17 @@
             @slot('variation', 'showcase-title')
             @slot('title', $title)
         @endcomponent
-        @component('components.atoms._title')
+        @component('components.blocks._text')
             @slot('tag', 'div')
             @slot('font', 'f-secondary')
-            @slot('variation', 'showcase-subtitle')
-            @slot('title', $subtitle)
+            @slot('variation', 'showcase-description')
+            {!! SmartyPants::defaultTransform($description) !!}
+        @endcomponent
+        @component('components.atoms._link')
+            @slot('font', '')
+            @slot('href', $linkUrl)
+            @slot('variation', )
+            {!! SmartyPants::defaultTransform($linkLabel) !!}
         @endcomponent
     </div>
 </div>
