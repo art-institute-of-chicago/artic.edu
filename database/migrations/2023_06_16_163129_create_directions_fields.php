@@ -14,7 +14,7 @@ class CreateDirectionsFields extends Migration
             $table->string('visit_faqs_link')->nullable();
             $table->dropUnique('landing_pages_type_unique');
         });
-        Schema::table('menu_items', function(Blueprint $table) {
+        Schema::table('menu_items', function (Blueprint $table) {
             $table->string('label')->nullable()->change();
             $table->string('link')->nullable()->change();
         });
