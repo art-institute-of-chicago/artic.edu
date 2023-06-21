@@ -38,6 +38,20 @@
     order: 1;
   }
 
+  .img-hero-desktop {
+    display: none;
+    @include breakpoint('small+') {
+      display: block;
+    }
+  }
+  
+  .img-hero-mobile {
+    display: block;
+    @include breakpoint('small+') {
+      display: none;
+    }
+  }
+
   .menu-links {
     display: flex;
     flex-direction: row;
