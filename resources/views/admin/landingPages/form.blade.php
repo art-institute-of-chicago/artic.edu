@@ -135,16 +135,16 @@
 
     <a17-fieldset title="Hours" id="visit_hours">
         @formField('wysiwyg', [
-            'name' => 'visit_hours_intro',
-            'label' => 'Hours Intro',
+            'name' => 'visit_members_intro',
+            'label' => 'Member Intro',
             'toolbarOptions' => [
             'bold', 'italic', 'link'
             ],
         ])
 
         @formField('wysiwyg', [
-            'name' => 'visit_members_intro',
-            'label' => 'Member Intro',
+            'name' => 'visit_hours_intro',
+            'label' => 'Hours Intro',
             'toolbarOptions' => [
             'bold', 'italic', 'link'
             ],
