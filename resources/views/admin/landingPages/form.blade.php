@@ -134,6 +134,7 @@
     </a17-fieldset>
 
     <a17-fieldset title="Hours" id="visit_hours">
+
         @formField('wysiwyg', [
             'name' => 'visit_members_intro',
             'label' => 'Member Intro',
