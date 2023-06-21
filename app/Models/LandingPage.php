@@ -132,6 +132,10 @@ class LandingPage extends AbstractModel implements Sortable
         'visit_hours_intro',
         'visit_members_intro',
         'visit_admission_intro',
+        'visit_parking_link',
+        'visit_parking_label',
+        'visit_faqs_label',
+        'visit_faqs_link',
         'active',
     ];
 
