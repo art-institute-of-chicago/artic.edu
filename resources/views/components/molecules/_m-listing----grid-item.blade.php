@@ -11,7 +11,7 @@
         @else
             <span class="default-img"></span>
         @endif
-        @if (isset($label))
+        @if (isset($label) && $labelPosition == 'overlay')
             <span class="m-listing__img-prompt f-buttons">
                 {{ $label }}
             </span>
@@ -32,6 +32,11 @@
             <br>
             <span class="intro f-secondary">{!! $description !!}</span>
         @endif
+        @if (isset($label) && $labelPosition == 'description')
+        <span class="f-link">
+            {{ $label }} <svg class='icon--arrow'><use xlink:href='#icon--arrow'></use></svg>
+        </span>
+    @endif
     </span>
     @if (isset($url))
         </a>
