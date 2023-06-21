@@ -117,26 +117,6 @@
     'renderForBlocks' => false
 ])
 
-    <a17-fieldset title="Header" id="visit_header">
-        @formField('medias', [
-            'name' => 'hero',
-            'label' => 'Hero image',
-            'note' => 'Minimum image width 3000px'
-        ])
-
-        @formField('files', [
-            'name' => 'video',
-            'label' => 'Hero video',
-            'note' => 'Add an MP4 file'
-        ])
-
-        @formField('medias', [
-            'name' => 'mobile_hero',
-            'label' => 'Hero image, mobile',
-            'note' => 'Minimum image width 2000px'
-        ])
-    </a17-fieldset>
-
     <a17-fieldset title="Navigation Menu" id="visit_nav-menu">
 
         @formField('repeater', ['type' => 'menu_items'])
