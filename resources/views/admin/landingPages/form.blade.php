@@ -29,11 +29,18 @@
     'fieldValues' => array_search('Home', $types),
     'renderForBlocks' => false
 ])
+
+<a17-fieldset title="Header" id="home-header">
+
     @formField('input', [
         'name' => 'home_intro',
         'label' => 'Intro text',
         'type' => 'textarea'
     ])
+
+</a17-fieldset>
+
+<a17-fieldset title="Home Features" id="home-features">
 
     @formField('browser', [
         'routePrefix' => 'homepage',
@@ -52,6 +59,10 @@
         'label' => 'Secondary features',
         'note' => 'Queue up to 5 home features for the two smaller hero areas',
     ])
+
+</a17-fieldset>
+
+<a17-fieldset title="Home Visit" id="home-visit">
 
     @formField('input', [
         'name' => 'home_visit_button_text',
@@ -96,6 +107,8 @@
         'name' => 'home_plan_your_visit_link_3_url',
         'label' => 'Third "Plan your visit" link URL',
     ])
+
+</a17-fieldset>
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
