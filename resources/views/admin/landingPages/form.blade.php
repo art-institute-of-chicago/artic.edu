@@ -2,6 +2,22 @@
 
 @section('contentFields')
 
+    @formField('medias', [
+        'name' => 'hero',
+        'label' => 'Hero image',
+        'note' => 'Minimum image width 3000px'
+    ])
+
+    @formField('files', [
+        'name' => 'video',
+        'label' => 'Hero video',
+        'note' => 'Add an MP4 file'
+    ])
+
+    @formField('medias', [
+        'name' => 'mobile_hero',
+        'label' => 'Hero image, mobile',
+        'note' => 'Minimum image width 2000px'
     ])
 
 @stop
