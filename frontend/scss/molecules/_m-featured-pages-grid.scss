@@ -57,11 +57,13 @@
 
         @include breakpoint('medium') {
             .featured-pages-grid_card:nth-child(1) > .featured-pages-grid_details {
+                border-top: none;
                 padding-top: 0;
                 border-right: 0;
             }
 
             .featured-pages-grid_card:nth-child(2) > .featured-pages-grid_details {
+                border-top: none;
                 padding-top: 0;
                 border-right: 0;
             }
