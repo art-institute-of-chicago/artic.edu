@@ -86,7 +86,9 @@
                         @endforeach
                     </div>
                 </div>
-                <a href="#" class="btn btn--secondary f-buttons">Transit & Parking</a>
+                @if($visit_parking_link && $visit_parking_label)
+                    <a href="{{ $visit_parking_link }}" class="btn btn--secondary f-buttons">{{ $visit_parking_label }}</a>
+                @endif
             </div>
         </div>
         <h3 id="admission" class="title f-module-title-2">Admission</h3>
@@ -175,4 +177,5 @@
                 </div>
             <hr>
         </div>
+        <hr>
     </div>
