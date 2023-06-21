@@ -4,6 +4,8 @@
     $title = $block->input('title');
     $description = $block->input('description');
     $tag = $block->input('tag');
+    $linkLabel = $block->input('link_label');
+    $linkUrl = $block->input('link_url');
 @endphp
 
 <div class="m-showcase-block">
