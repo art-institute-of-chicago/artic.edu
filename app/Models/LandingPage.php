@@ -146,7 +146,7 @@ class LandingPage extends AbstractModel implements Sortable
     public $checkboxes = ['published'];
 
     public $mediasParams = [
-        'visit_hero' => [
+        'hero' => [
             'default' => [
                 [
                     'name' => 'default',
@@ -154,7 +154,7 @@ class LandingPage extends AbstractModel implements Sortable
                 ],
             ],
         ],
-        'visit_mobile' => [
+        'mobile_hero' => [
             'default' => [
                 [
                     'name' => 'default',
