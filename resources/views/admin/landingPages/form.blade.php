@@ -283,8 +283,8 @@
 
     <a17-fieldset title="FAQs" id="faq">
         @formField('input', [
-            'name' => 'visit_faq_accessibility_link',
-            'label' => 'Accessibility information link'
+            'name' => 'visit_faqs_label',
+            'label' => 'More FAQs Label'
         ])
         @formField('input', [
             'name' => 'visit_faq_more_link',
