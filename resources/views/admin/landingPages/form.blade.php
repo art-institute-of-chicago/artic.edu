@@ -199,6 +199,16 @@
         ])
 
         @formField('repeater', ['type' => 'locations', 'max' => 2])
+
+        @formField('input', [
+            'name' => 'visit_parking_label',
+            'label' => 'Parking Button Label'
+        ])
+
+        @formField('input', [
+            'name' => 'visit_parking_link',
+            'label' => 'Parking Button Link'
+        ])
     </a17-fieldset>
 
 @endcomponent
