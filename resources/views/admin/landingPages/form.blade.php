@@ -169,6 +169,26 @@
             'name' => 'visit_admission_intro',
             'label' => 'Admission Intro'
         ])
+
+        @formField('input', [
+            'name' => 'visit_admission_tix_label',
+            'label' => 'Tickets Label'
+        ])
+
+        @formField('input', [
+            'name' => 'visit_admission_tix_link',
+            'label' => 'Tickets Link'
+        ])
+
+        @formField('input', [
+            'name' => 'visit_admission_members_label',
+            'label' => 'Member Label'
+        ])
+
+        @formField('input', [
+            'name' => 'visit_admission_members_link',
+            'label' => 'Member Link'
+        ])
     </a17-fieldset>
 
     <a17-fieldset title="Location" id="visit_hours">
