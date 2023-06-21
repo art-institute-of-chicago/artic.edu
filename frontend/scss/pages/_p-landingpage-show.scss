@@ -456,6 +456,19 @@
     .s-hidden {
       display: none;
     }
+
+    .visit-admission-info {
+      span {
+        br {
+          display: block;
+          margin-top: 40px;
+          content: "";
+        }
+        a {
+          color: #b50938;
+        }
+      }
+    }
   }
 
   .o-accordion {
