@@ -2,7 +2,7 @@
     $image = $block->imageAsArray('image', 'desktop');
 
     $title = $block->input('title');
-    $subtitle = $block->input('subtitle');
+    $description = $block->input('description');
     $tag = $block->input('tag');
 @endphp
 
