@@ -31,6 +31,7 @@
                 @slot('url', $item->input('url'))
                 @slot('image', $item->imageAsArray('image', 'desktop'))
                 @slot('label', $item->input('label'))
+                @slot('labelPosition', $item->input('label_position'))
                 @slot('title', $item->input('title'))
                 @slot('tag', $item->input('tag'))
                 @slot('description', $item->input('description'))
