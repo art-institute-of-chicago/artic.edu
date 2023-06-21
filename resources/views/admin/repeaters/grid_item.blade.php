@@ -33,11 +33,34 @@
     ],
 ])
 
+@component('twill::partials.form.utils._columns')
+@slot('left')
+
 @formField('input', [
     'name' => 'label',
     'label' => 'Label',
-    'note' => 'Displayed at bottom-right of image',
 ])
+@endslot
+
+@slot('right')
+@formField('radios', [
+    'name' => 'label_position',
+    'label' => 'Label position',
+    'note' => '',
+    'inline' => true,
+    'options' => [
+        [
+            'value' => 'overlay',
+            'label' => 'Bottom of image'
+        ],
+        [
+            'value' => 'description',
+            'label' => 'Below description'
+        ]
+    ]
+])
+@endslot
+@endcomponent
 
 @formField('input', [
     'name' => 'url',
