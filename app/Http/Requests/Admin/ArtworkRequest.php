@@ -9,7 +9,6 @@ class ArtworkRequest extends Request
     public function rulesForCreate()
     {
         return [
-            'title' => 'required',
             'artwork_website_url' => 'nullable|url'
         ];
     }
@@ -17,7 +16,6 @@ class ArtworkRequest extends Request
     public function rulesForUpdate()
     {
         return [
-            'title' => 'required',
             'artwork_website_url' => 'nullable|url'
         ];
     }
