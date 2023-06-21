@@ -33,6 +33,11 @@
     padding-top: 32px;
   }
 
+  .m-landing-header > * {
+    flex: 0 0 auto;
+    order: 1;
+  }
+
   .menu-links {
     display: flex;
     flex-direction: row;
