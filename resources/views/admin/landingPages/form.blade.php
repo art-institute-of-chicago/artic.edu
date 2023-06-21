@@ -286,6 +286,12 @@
             'name' => 'visit_faqs_label',
             'label' => 'More FAQs Label'
         ])
+
+        @formField('input', [
+            'name' => 'visit_faqs_link',
+            'label' => 'More FAQs Link'
+        ])
+
         @formField('input', [
             'name' => 'visit_faq_more_link',
             'label' => "More FAQs and guidelines link"
