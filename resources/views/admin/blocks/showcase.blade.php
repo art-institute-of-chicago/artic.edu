@@ -10,21 +10,34 @@
 ])
 
 @formField('input', [
-    'name' => 'title',
-    'label' => 'Title',
+    'name' => 'tag',
+    'label' => 'Tag',
     'maxlength' => 100,
     'required' => true,
 ])
 
 @formField('wysiwyg', [
-    'name' => 'subtitle',
-    'label' => 'Subtitle',
+    'name' => 'title',
+    'label' => 'Title',
+    'maxlength' => 100,
+    'required' => true,
+    'toolbarOptions' => [
+            'italic'
+    ],
+])
+
+@formField('wysiwyg', [
+    'name' => 'description',
+    'label' => 'Description',
     'required' => true,
 ])
 
 @formField('input', [
-    'name' => 'tag',
-    'label' => 'Tag',
-    'maxlength' => 100,
-    'required' => true,
+    'name' => 'link_label',
+    'label' => 'Link label'
+])
+
+@formField('input', [
+    'name' => 'link_url',
+    'label' => 'Link Url'
 ])
