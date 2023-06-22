@@ -85,6 +85,7 @@
         display: flex;
         align-items: center;
         @include breakpoint('xsmall') {
+            padding-top: 10px;
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;

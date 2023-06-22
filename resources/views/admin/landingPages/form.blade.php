@@ -2,12 +2,22 @@
 
 @section('contentFields')
 
-    @formField('select', [
-        'name' => 'type',
-        'label' => 'Page type',
-        'default' => 11,
-        'inline' => true,
-        'options' => $typesOptions,
+    @formField('medias', [
+        'name' => 'hero',
+        'label' => 'Hero image',
+        'note' => 'Minimum image width 3000px'
+    ])
+
+    @formField('files', [
+        'name' => 'video',
+        'label' => 'Hero video',
+        'note' => 'Add an MP4 file'
+    ])
+
+    @formField('medias', [
+        'name' => 'mobile_hero',
+        'label' => 'Hero image, mobile',
+        'note' => 'Minimum image width 2000px'
     ])
 
 @stop
@@ -19,11 +29,18 @@
     'fieldValues' => array_search('Home', $types),
     'renderForBlocks' => false
 ])
+
+<a17-fieldset title="Header" id="home-header">
+
     @formField('input', [
         'name' => 'home_intro',
         'label' => 'Intro text',
         'type' => 'textarea'
     ])
+
+</a17-fieldset>
+
+<a17-fieldset title="Home Features" id="home-features">
 
     @formField('browser', [
         'routePrefix' => 'homepage',
@@ -42,6 +59,10 @@
         'label' => 'Secondary features',
         'note' => 'Queue up to 5 home features for the two smaller hero areas',
     ])
+
+</a17-fieldset>
+
+<a17-fieldset title="Home Visit" id="home-visit">
 
     @formField('input', [
         'name' => 'home_visit_button_text',
@@ -86,6 +107,8 @@
         'name' => 'home_plan_your_visit_link_3_url',
         'label' => 'Third "Plan your visit" link URL',
     ])
+
+</a17-fieldset>
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
@@ -93,26 +116,6 @@
     'fieldValues' => array_search('Visit', $types),
     'renderForBlocks' => false
 ])
-
-    <a17-fieldset title="Header" id="visit_header">
-        @formField('medias', [
-            'name' => 'hero',
-            'label' => 'Hero image',
-            'note' => 'Minimum image width 3000px'
-        ])
-
-        @formField('files', [
-            'name' => 'video',
-            'label' => 'Hero video',
-            'note' => 'Add an MP4 file'
-        ])
-
-        @formField('medias', [
-            'name' => 'mobile_hero',
-            'label' => 'Hero image, mobile',
-            'note' => 'Minimum image width 2000px'
-        ])
-    </a17-fieldset>
 
     <a17-fieldset title="Navigation Menu" id="visit_nav-menu">
 
@@ -131,17 +134,18 @@
     </a17-fieldset>
 
     <a17-fieldset title="Hours" id="visit_hours">
+
         @formField('wysiwyg', [
-            'name' => 'visit_hours_intro',
-            'label' => 'Hours Intro',
+            'name' => 'visit_members_intro',
+            'label' => 'Member Intro',
             'toolbarOptions' => [
             'bold', 'italic', 'link'
             ],
         ])
 
         @formField('wysiwyg', [
-            'name' => 'visit_members_intro',
-            'label' => 'Member Intro',
+            'name' => 'visit_hours_intro',
+            'label' => 'Hours Intro',
             'toolbarOptions' => [
             'bold', 'italic', 'link'
             ],
@@ -165,6 +169,26 @@
             'name' => 'visit_admission_intro',
             'label' => 'Admission Intro'
         ])
+
+        @formField('input', [
+            'name' => 'visit_admission_tix_label',
+            'label' => 'Tickets Label'
+        ])
+
+        @formField('input', [
+            'name' => 'visit_admission_tix_link',
+            'label' => 'Tickets Link'
+        ])
+
+        @formField('input', [
+            'name' => 'visit_admission_members_label',
+            'label' => 'Member Label'
+        ])
+
+        @formField('input', [
+            'name' => 'visit_admission_members_link',
+            'label' => 'Member Link'
+        ])
     </a17-fieldset>
 
     <a17-fieldset title="Location" id="visit_hours">
@@ -175,6 +199,16 @@
         ])
 
         @formField('repeater', ['type' => 'locations', 'max' => 2])
+
+        @formField('input', [
+            'name' => 'visit_parking_label',
+            'label' => 'Parking Button Label'
+        ])
+
+        @formField('input', [
+            'name' => 'visit_parking_link',
+            'label' => 'Parking Button Link'
+        ])
     </a17-fieldset>
 
 @endcomponent
@@ -249,9 +283,15 @@
 
     <a17-fieldset title="FAQs" id="faq">
         @formField('input', [
-            'name' => 'visit_faq_accessibility_link',
-            'label' => 'Accessibility information link'
+            'name' => 'visit_faqs_label',
+            'label' => 'More FAQs Label'
         ])
+
+        @formField('input', [
+            'name' => 'visit_faqs_link',
+            'label' => 'More FAQs Link'
+        ])
+
         @formField('input', [
             'name' => 'visit_faq_more_link',
             'label' => "More FAQs and guidelines link"
