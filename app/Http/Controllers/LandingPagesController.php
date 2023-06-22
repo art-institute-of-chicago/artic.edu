@@ -170,6 +170,10 @@ class LandingPagesController extends FrontController
                     'visit_members_intro' => $item->visit_members_intro,
                     'visit_admission_intro' => $item->visit_admission_intro,
                     'visit_map' => $item->imageFront('visit_map'),
+                    'visit_parking_label' => $item->visit_parking_label,
+                    'visit_parking_link' => $item->visit_parking_link,
+                    'visit_faqs_label' => $item->visit_faqs_label,
+                    'visit_faqs_link' => $item->visit_faqs_link,
                     'menuItems' => $item->menuItems,
                     'locations' => $item->locations,
                     'admission' => [
@@ -177,7 +181,6 @@ class LandingPagesController extends FrontController
                         'prices' => $feePrices,
                     ],
                     'accesibility_link' => $item->visit_faq_accessibility_link,
-                    'more_link' => $item->visit_faq_more_link,
                     'faqs' => $item->faqs->all()
                 ]);
 
