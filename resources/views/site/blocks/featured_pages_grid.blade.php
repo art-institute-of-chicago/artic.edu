@@ -18,9 +18,14 @@
                             @slot('settings', array(
                                 'fit' => 'crop',
                                 'ratio' => '16:9',
-                                'srcset' => array(300),
-                                'sizes' => '300px', 
-                            ))
+                                'srcset' => array(300,600,800,1200,1600),
+                                'sizes' => ImageHelpers::aic_imageSizes(array(
+                                  'xsmall' => 58,
+                                  'small' => 58,
+                                  'medium' => 58,
+                                  'large' => 38,
+                                  'xlarge' => 38,
+                                ))))
                         @endcomponent
                     @else
                         <span class="default-img featured-pages-grid_img"></span>
