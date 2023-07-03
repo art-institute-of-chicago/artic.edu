@@ -20,7 +20,7 @@
                         @endcomponent
                     @else
                         @component('components.atoms._img')
-                            @slot('image', $image ?? $item->imageFront('hero') ?? $item->images[0])
+                            @slot('image', $imageMobile ?? $item->imageFront('mobile_hero') ?? $image ?? $item->imageFront('hero') ?? $item->images[0])
                             @slot('settings', !isset($imageSettings) ? null : array_merge($imageSettings, [
                                 'ratio' => '1:1', // TODO: Verify $imgVariation usage?
                             ]))
