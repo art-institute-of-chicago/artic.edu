@@ -143,7 +143,7 @@
 
     .row:first-child {
       padding-bottom: 18px;
-      border-bottom: 1px solid #e6e6e6;
+      border-bottom: 1px solid $color__rules--primary, ;
       margin-bottom: 50px;
     }
 
@@ -261,7 +261,7 @@
       }
 
       .closed {
-        color: #767676;
+        color: $color__black--54;
       }
     }
 
