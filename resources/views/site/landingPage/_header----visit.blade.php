@@ -18,6 +18,7 @@
             'srcset' => array(300,600,1000,1500,3000),
             'sizes' => '100vw',
         ))
+        @slot('variation', 'm-visit-header')
     @endcomponent
 
     @if (!empty($hour))
