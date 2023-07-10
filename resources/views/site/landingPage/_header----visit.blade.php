@@ -69,12 +69,18 @@
                     </tr>
                     @if (!empty($hour))
                         @foreach ($hour->present()->getHoursTableForHeader() as $item)
+                            @php
+                                $hourClass = '';
+                                if ($item['hours'] === 'Closed') {
+                                    $hourClass = 'closed';
+                                }
+                            @endphp
                             <tr>
                                 <th scope="row">
-                                    <span class="f-module-title-1">{{ $item['days'] }}</span>
+                                    <span class="f-module-title-1 {{$hourClass}}">{{ $item['days'] }}</span>
                                 </th>
                                 <td>
-                                    <span class="f-secondary">{{ $item['hours'] }}</span>
+                                    <span class="f-secondary {{$hourClass}}">{{ $item['hours'] }}</span>
                                 </td>
                             </tr>
                         @endforeach
