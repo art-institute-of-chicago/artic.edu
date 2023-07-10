@@ -22,9 +22,24 @@
     @endcomponent
 
     @if (!empty($hour))
-        @component('components.organisms._o-hours')
-            @slot('hour', $hour)
-        @endcomponent
+    <div class="o-hours f-secondary">
+        <div class="o-hours__clock">
+            <svg class="icon--clock" aria-hidden="true">
+                <use xlink:href="#icon--clock"></use>
+            </svg>
+        </div>
+        <div class="o-hours__text">
+            <span class="o-hours__status o-hours__status--mobile">{{
+                $hour->present()->getStatusHeader(null, true)
+            }}</span>
+            <span class="o-hours__status o-hours__status--desktop">{{
+                $hour->present()->getStatusHeader()
+            }}</span>
+            @if ($hoursHeader = $hour->present()->getHoursHeader())
+                <span class="o-hours__hours">{{ $hoursHeader }}</span>
+            @endif
+        </div>
+    </div>
     @endif
     <h2 class="f-headline">VISIT</h2>
         <div class="menu-links">
