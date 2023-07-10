@@ -6,6 +6,24 @@
 
 .visit {
 
+  .m-title-bar {
+    margin-top: 50px;
+  }
+
+  .o-blocks .hr {
+    margin-top: 40px !important;
+  }
+
+  .select__select select {
+    font-family: "Ideal Sans A","Ideal Sans B",Helvetica,Arial,sans-serif;
+  }
+
+  .m-visit-header {
+    .m-media__img {
+      height: 450px;
+    }
+  }
+
   .btn:not(.btn--icon) {
     @include breakpoint('small') {
       margin-top: 18px;
@@ -60,8 +78,13 @@
     margin-top: 32px;
     padding-top: 18px;
     padding-bottom: 18px;
-    border-top: 1px solid #CCCCCC ;
-    border-bottom: 1px solid #CCCCCC ;
+    border-top: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    @include breakpoint('medium') {
+      .f-buttons {
+        width: auto;
+      }
+    }
     @include breakpoint('small') {
       padding: none;
       border: none;
@@ -103,20 +126,35 @@
     padding-top: 0;
   }
 
+  .menu-links ul li a {
+    color: #333333 !important;
+  }
+
+  .f-buttons {
+    @include breakpoint('xlarge') {
+      width: 225px;
+    }
+    @include breakpoint('large') {
+      width: 225px;
+    }
+    @include breakpoint('medium') {
+      width: 225px;
+    }
+  }
+
   .info-grid {
     margin-top: 50px;
-    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
 
     .row:first-child {
       padding-bottom: 18px;
-      border-bottom: 1px solid #CCCCCC;
-      margin-bottom: 48px;
+      border-bottom: 1px solid #e6e6e6;
+      margin-bottom: 50px;
     }
 
     .row:last-child {
-      margin-top: 18px;
+      margin-top: 32px;
       @include breakpoint('medium') {
         margin-top: 32px;
       }
@@ -170,21 +208,15 @@
         padding-left: 20px;
         @include breakpoint('medium') {
           padding-left: 0;
-          padding-top: 50px;
           margin-top: 32px;
-          border-top: 1px solid #CCCCCC;
         }
         @include breakpoint('small') {
           padding-left: 0;
-          padding-top: 50px;
           margin-top: 32px;
-          border-top: 1px solid #CCCCCC;
         }
         @include breakpoint('xsmall') {
           padding-left: 0;
-          padding-top: 50px;
           margin-top: 32px;
-          border-top: 1px solid #CCCCCC;
         }
 
         .btn-section {
@@ -233,6 +265,10 @@
       tbody >tr:last-child {
         border-bottom: none !important;
       }
+
+      .closed {
+        color: #767676;
+      }
     }
 
     .visit-location {
@@ -242,11 +278,59 @@
       align-items: center;
       justify-content: space-between;
       padding-bottom: 18px;
-      border-bottom: 1px solid #CCCCCC;
       margin-bottom: 18px;
+      @include breakpoint('xlarge') {
+        div > .parking_label{
+          display: block;
+        }
+        > .parking_label{
+          display: none;
+        }
+      }
+      @include breakpoint('large') {
+        div > .parking_label{
+          display: block;
+          width: auto;
+        }
+        > .parking_label{
+          display: none;
+        }
+      }
+      @include breakpoint('medium') {
+        border-bottom: none;
+        margin-bottom: 0;
+        div > .parking_label{
+          width: auto;
+          display: block;
+        }
+        > .parking_label{
+          display: none;
+        }
+      }
+      @include breakpoint('small') {
+        border-bottom: none;
+        margin-bottom: 0;
+        div > .parking_label {
+          display: block;
+        }
+        > .parking_label {
+          display: none;
+        }
+      }
       @include breakpoint('xsmall') {
+        margin-bottom: 0;
         border-bottom: none;
         flex-direction: column;
+        div > .parking_label {
+          display: none;
+        }
+        > .parking_label {
+          display: block;
+        }
+      }
+
+      .parking_label {
+        color: #1a1a1a;
       }
 
       a {
@@ -270,18 +354,18 @@
       }
       @include breakpoint('medium') {
         >div:first-child {
-          width: 60%
+          width: 50%
         }
         >div:nth-child(2) {
-          width: 35%;
+          width: 40%;
         }
       }
       @include breakpoint('small') {
         >div:first-child {
-          width: 60%
+          width: 50%
         }
         >div:nth-child(2) {
-          width: 35%;
+          width: 40%;
         }
       }
       @include breakpoint('xsmall') {
@@ -357,6 +441,8 @@
 
         tr.selected {
           background-color: #F3F3F3;
+          border-top: none;
+          border-bottom: none;
 
           span {
             font-weight: 425;
@@ -366,8 +452,13 @@
         tr {
           padding: 6px;
           border-bottom: 1px solid #CCCCCC ;
+          border-top: 1px solid #CCCCCC ;
           cursor: pointer;
           user-select: none;
+        }
+
+        tbody >tr:nth-child(2) {
+          border-top: none !important;
         }
 
         tbody >tr:last-child {
@@ -477,7 +568,7 @@
   }
 
   .faqs-heading {
-    margin-top: 30px;
+    margin-top: 50px;
     width: 100%;
     display: flex;
     justify-content: space-between;
