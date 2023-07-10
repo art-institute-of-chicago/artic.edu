@@ -18,15 +18,10 @@
         max-width: 1500px;
         display: flex;
         margin: auto;
-        @include breakpoint('medium') {
+        @include breakpoint('medium-') {
             flex-direction: column;
         }
-        @include breakpoint('small') {
-            flex-direction: column;
-            padding: 0;
-        }
-        @include breakpoint('xsmall') {
-            flex-direction: column;
+        @include breakpoint('small-') {
             padding: 0;
         }
     }
