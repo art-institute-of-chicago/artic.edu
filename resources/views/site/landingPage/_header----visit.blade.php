@@ -18,12 +18,28 @@
             'srcset' => array(300,600,1000,1500,3000),
             'sizes' => '100vw',
         ))
+        @slot('variation', 'm-visit-header')
     @endcomponent
 
     @if (!empty($hour))
-        @component('components.organisms._o-hours')
-            @slot('hour', $hour)
-        @endcomponent
+    <div class="o-hours f-secondary">
+        <div class="o-hours__clock">
+            <svg class="icon--clock" aria-hidden="true">
+                <use xlink:href="#icon--clock"></use>
+            </svg>
+        </div>
+        <div class="o-hours__text">
+            <span class="o-hours__status o-hours__status--mobile">{{
+                $hour->present()->getStatusHeader(null, true)
+            }}</span>
+            <span class="o-hours__status o-hours__status--desktop">{{
+                $hour->present()->getStatusHeader()
+            }}</span>
+            @if ($hoursHeader = $hour->present()->getHoursHeader())
+                <span class="o-hours__hours">{{ $hoursHeader }}</span>
+            @endif
+        </div>
+    </div>
     @endif
     <h2 class="f-headline">VISIT</h2>
         <div class="menu-links">
@@ -53,12 +69,18 @@
                     </tr>
                     @if (!empty($hour))
                         @foreach ($hour->present()->getHoursTableForHeader() as $item)
+                            @php
+                                $hourClass = '';
+                                if ($item['hours'] === 'Closed') {
+                                    $hourClass = 'closed';
+                                }
+                            @endphp
                             <tr>
                                 <th scope="row">
-                                    <span class="f-module-title-1">{{ $item['days'] }}</span>
+                                    <span class="f-module-title-1 {{$hourClass}}">{{ $item['days'] }}</span>
                                 </th>
                                 <td>
-                                    <span class="f-secondary">{{ $item['hours'] }}</span>
+                                    <span class="f-secondary {{$hourClass}}">{{ $item['hours'] }}</span>
                                 </td>
                             </tr>
                         @endforeach
@@ -84,11 +106,14 @@
                                 <a class="f-link" href="/visit/directions-and-parking">Get directions&nbsp;<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
                             </div>
                         @endforeach
+                        @if($visit_parking_link && $visit_parking_label)
+                            <a href="{{ $visit_parking_link }}" class="btn btn--secondary f-buttons parking_label">{{ $visit_parking_label }}</a>
+                        @endif
                     </div>
+                    @if($visit_parking_link && $visit_parking_label)
+                        <a href="{{ $visit_parking_link }}" class="btn btn--secondary f-buttons parking_label">{{ $visit_parking_label }}</a>
+                    @endif
                 </div>
-                @if($visit_parking_link && $visit_parking_label)
-                    <a href="{{ $visit_parking_link }}" class="btn btn--secondary f-buttons">{{ $visit_parking_label }}</a>
-                @endif
             </div>
         </div>
         <h3 id="admission" class="title f-module-title-2">Admission</h3>
@@ -175,7 +200,5 @@
                         </div>
                     </div>
                 </div>
-            <hr>
-        </div>
-        <hr>
+            </div>
     </div>
