@@ -6,7 +6,6 @@
         </h3>
     </a>
 </div>
-<hr/>
 <div class="o-accordion" data-behavior="accordion">
     @foreach ($faqs as $faq)
     <h3><button id="{{ StringHelpers::getUtf8Slug($faq->question) }}" class="o-accordion__trigger {{ $titleFont ?? 'f-list-3' }}" tabindex="0"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!} aria-expanded="{{ (isset($item['active']) and $item['active']) ? 'true' : 'false' }}">
