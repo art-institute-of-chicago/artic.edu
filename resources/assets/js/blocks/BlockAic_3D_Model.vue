@@ -1,7 +1,7 @@
 <template>
     <!-- eslint-disable -->
     <div class="block__body">
-        <a17-vselect v-if="sizes" label="Size" :name="fieldName('model_size')" :options='[{&quot;value&quot;:0,&quot;label&quot;:&quot;Small&quot;},{&quot;value&quot;:1,&quot;label&quot;:&quot;Medium&quot;},{&quot;value&quot;:2,&quot;label&quot;:&quot;Large&quot;}]' placeholder="Size" :has-default-store="true" size="large" in-store="inputValue"></a17-vselect>
+        <a17-vselect v-if="sizes" label="Size" :name="fieldName('model_size')" :options='[{&quot;value&quot;:&quot;s&quot;,&quot;label&quot;:&quot;Small&quot;},{&quot;value&quot;:&quot;m&quot;,&quot;label&quot;:&quot;Medium&quot;},{&quot;value&quot;:&quot;l&quot;,&quot;label&quot;:&quot;Large&quot;}]' placeholder="Size" :has-default-store="true" size="large" in-store="inputValue"></a17-vselect>
         <a17-textfield label="Model URL" :name="fieldName('model_url')" type="text" in-store="value"></a17-textfield>
         <a17-vselect v-if="cc0" label="Override CC0" :name="fieldName('cc0_override')" :options='[{&quot;value&quot;:0,&quot;label&quot;:&quot;Not override&quot;},{&quot;value&quot;:1,&quot;label&quot;:&quot;Display CC0&quot;},{&quot;value&quot;:2,&quot;label&quot;:&quot;Not Display CC0&quot;}]' placeholder="Override CC0 rule?" :has-default-store="true" size="large" in-store="inputValue"></a17-vselect>
         <a17-textfield v-if="caption" label="Model Caption Title" :name="fieldName('model_caption_title')" type="text" in-store="value"></a17-textfield>
