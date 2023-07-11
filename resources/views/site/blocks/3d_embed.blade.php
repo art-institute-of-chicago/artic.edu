@@ -39,7 +39,7 @@
 @endphp
 
 @if ($model_url)
-    <div class="m-media m-media--l m-media--3d-embed o-blocks__block">
+    <div class="m-media m-media--{!!$size!!} m-media--3d-embed o-blocks__block">
         @component('components.molecules._m-viewer-3d')
             @slot('type', 'standalone')
             @slot('uid', $model_id)
