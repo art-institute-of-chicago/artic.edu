@@ -3,6 +3,7 @@
     $model_id = $block->input('model_id');
     $model_size = $block->input('model_size');
     $caption = $block->input('model_caption');
+    $caption_title = $block->input('model_caption_title');
     $thumbnail_url = $block->image('image');
     $guided_tour = $block->input('guided_tour');
     switch($block->input('cc0_override')) {
