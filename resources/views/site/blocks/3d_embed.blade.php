@@ -48,10 +48,19 @@
             @slot('annotations', $annotation_list)
             @slot('title', $pageTitle ? $pageTitle.' - Inline 3D' : 'Inline 3D')
         @endcomponent
-        @if ($caption)
-        <div class="m-media--3d-embed__caption">
-            {{ $caption }}
-        </div>
-        @endif
+        @if ($caption | $caption_title)
+            <figcaption>
+                @if ($caption_title)
+                    <div class='f-caption-title'><div>
+                            <p>{!! $caption_title !!}</p>
+                        @endif
+                    </div></div> <br>
+                @endif
+                @if ($caption)
+                    <div class="f-caption">
+                        <p>{!! $caption !!}</p>
+                    </div>
+                @endif
+            </figcaption>
     </div>
 @endif
