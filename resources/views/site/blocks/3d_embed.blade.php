@@ -1,6 +1,7 @@
 @php
     $model_url = $block->input('model_url');
     $model_id = $block->input('model_id');
+    $model_size = $block->input('model_size');
     $caption = $block->input('model_caption');
     $thumbnail_url = $block->image('image');
     $guided_tour = $block->input('guided_tour');
