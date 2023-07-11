@@ -17,29 +17,13 @@
             $cc0 = false;
             break;
     }
-    if (isset($model_size)) {
-        switch ($model_size) {
-            case 0:
-                $size = 's';
-                break;
-            case 1:
-                $size = 'm';
-                break;
-            case 2:
-                $size = 'l';
-                break;
-            default:
-                $size = 'l';
-                break;
-        }
-    }
     $camera_position = $block->input('camera_position');
     $camera_target = $block->input('camera_target');
     $annotation_list = $block->input('annotation_list');
 @endphp
 
 @if ($model_url)
-    <div class="m-media m-media--{!!$size!!} m-media--3d-embed o-blocks__block">
+    <div class="m-media m-media--{!!$model_size!!} m-media--3d-embed o-blocks__block">
         @component('components.molecules._m-viewer-3d')
             @slot('type', 'standalone')
             @slot('uid', $model_id)
