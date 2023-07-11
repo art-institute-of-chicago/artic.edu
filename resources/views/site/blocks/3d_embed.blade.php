@@ -17,6 +17,22 @@
             $cc0 = false;
             break;
     }
+    if (isset($model_size)) {
+        switch ($model_size) {
+            case 0:
+                $size = 's';
+                break;
+            case 1:
+                $size = 'm';
+                break;
+            case 2:
+                $size = 'l';
+                break;
+            default:
+                $size = 'l';
+                break;
+        }
+    }
     $camera_position = $block->input('camera_position');
     $camera_target = $block->input('camera_target');
     $annotation_list = $block->input('annotation_list');
