@@ -126,6 +126,8 @@ class LandingPageRepository extends ModuleRepository
         'what_to_expects',
     ];
 
+    protected $model;
+
     public function __construct(LandingPage $model)
     {
         $this->model = $model;
