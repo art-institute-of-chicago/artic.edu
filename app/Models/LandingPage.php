@@ -420,6 +420,11 @@ class LandingPage extends AbstractModel implements Sortable
         return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_more_pages', 'landing_page_id')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
     }
 
+    public function genericPages()
+    {
+        return $this->belongsToMany('App\Models\GenericPage', 'landing_page_generic_pages', 'landing_page_id')->withPivot('position')->orderBy('landing_page_generic_pages.position', 'asc');
+    }
+
     public static function getIconTypes()
     {
         return collect(self::$iconTypes);
