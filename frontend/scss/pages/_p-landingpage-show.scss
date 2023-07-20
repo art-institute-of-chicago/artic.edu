@@ -10,6 +10,10 @@
     margin-top: 50px;
   }
 
+  .m-title-bar::before {
+    background-color: #CCCCCC;
+  }
+
   .o-blocks .hr {
     margin-top: 40px !important;
   }
@@ -157,7 +161,7 @@
       }
 
       > .col:first-child {
-        border-right: 1px solid #CCCCCC;
+        border-right: 1px solid #e6e6e6;
         @include breakpoint('medium') {
           border-right: none;
         }
@@ -253,7 +257,7 @@
 
       tr {
         padding: 6px;
-        border-bottom: 1px solid #CCCCCC ;
+        border-bottom: 1px solid #e6e6e6 ;
       }
 
       tbody >tr:last-child {
@@ -273,18 +277,14 @@
       justify-content: space-between;
       padding-bottom: 18px;
       margin-bottom: 18px;
-      @include breakpoint('xlarge') {
-        div > .parking_label{
-          display: block;
-        }
-        > .parking_label{
-          display: none;
-        }
+
+      div > .parking_label {
+        margin-top: 16px;
       }
-      @include breakpoint('large') {
+
+      @include breakpoint('large+') {
         div > .parking_label{
           display: block;
-          width: auto;
         }
         > .parking_label{
           display: none;
@@ -439,14 +439,14 @@
           border-bottom: none;
 
           span {
-            font-weight: 425;
+            font-weight: 400;
           }
         }
 
         tr {
           padding: 6px;
-          border-bottom: 1px solid #CCCCCC ;
-          border-top: 1px solid #CCCCCC ;
+          border-bottom: 1px solid #e6e6e6 ;
+          border-top: 1px solid #e6e6e6 ;
           cursor: pointer;
           user-select: none;
         }
@@ -471,7 +471,7 @@
       .visit-separator {
         width: 0;
         min-height: 100%;
-        border-right: 1px solid #CCCCCC ;
+        border-right: 1px solid #e6e6e6;
         @include breakpoint('xsmall') {
           display: none;
         }
@@ -523,13 +523,14 @@
           }
 
           span:last-child {
+            font-weight: 300;
             color: #767676;
           }
         }
 
         tr {
           padding: 6px;
-          border-bottom: 1px solid #CCCCCC ;
+          border-bottom: 1px solid #e6e6e6 ;
         }
 
         tbody >tr:last-child {
