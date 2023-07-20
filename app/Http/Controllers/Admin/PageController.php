@@ -12,31 +12,6 @@ class PageController extends ModuleController
 
     protected $moduleName = 'pages';
 
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'edit_link' => true,
-            'sort' => true,
-            'field' => 'title',
-        ],
-    ];
-
-    protected $indexWith = [];
-
-    protected $formWith = ['revisions'];
-
-    protected $filters = [];
-
-    protected $formWithCount = ['revisions'];
-    protected $defaultOrders = [];
-
-    protected $previewView = 'site.pageDetail';
-
-    protected function indexData($request)
-    {
-        return [];
-    }
-
     protected function formData($request)
     {
         $isVisit = stripos($request->path(), 'visit') !== false ? true : false;
