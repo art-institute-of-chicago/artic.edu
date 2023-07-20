@@ -97,11 +97,6 @@ class GenericPageController extends ModuleController
         ];
     }
 
-    protected function transformIndexItems($items)
-    {
-        return $items->toTree();
-    }
-
     protected function indexItemData($item)
     {
         return $item->children ? [
