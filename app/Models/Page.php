@@ -7,7 +7,6 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Admission as Admission;
 use App\Models\Behaviors\HasApiRelations;
-use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
@@ -18,7 +17,6 @@ class Page extends AbstractModel
     use HasRevisions;
     use HasMedias;
     use HasFiles;
-    use HasBlocks;
     use HasMediasEloquent;
     use HasApiRelations;
     use Transformable;
@@ -30,26 +28,16 @@ class Page extends AbstractModel
         'saved' => \App\Events\UpdatePage::class,
     ];
 
-    public const PAGE_TYPE_HOME = 0;
-    public const PAGE_TYPE_EXHIBITIONS_AND_EVENTS = 1;
-    public const PAGE_TYPE_THE_COLLECTION = 2;
-    public const PAGE_TYPE_VISIT = 3;
-    public const PAGE_TYPE_ARTICLES = 4;
-    public const PAGE_TYPE_EXHIBITION_HISTORY = 5;
-    public const PAGE_TYPE_COLLECTION = 6;
-    public const PAGE_TYPE_RESEARCH_LANDING = 7;
-    public const PAGE_TYPE_WRITINGS_LANDING = 8;
-
     public static $types = [
-        self::PAGE_TYPE_HOME => 'Home',
-        self::PAGE_TYPE_EXHIBITIONS_AND_EVENTS => 'Exhibitions and Events',
-        self::PAGE_TYPE_THE_COLLECTION => 'Art and Ideas', // WEB-2262: now The Collection
-        self::PAGE_TYPE_VISIT => 'Visit',
-        self::PAGE_TYPE_ARTICLES => 'Articles',
-        self::PAGE_TYPE_EXHIBITION_HISTORY => 'Exhibition History',
-        self::PAGE_TYPE_COLLECTION => 'Collection',
-        self::PAGE_TYPE_RESEARCH_LANDING => 'Research and Resources',
-        self::PAGE_TYPE_WRITINGS_LANDING => 'Articles and Publications',
+        0 => 'Home',
+        1 => 'Exhibitions and Events',
+        2 => 'Art and Ideas', // WEB-2262: now The Collection
+        3 => 'Visit',
+        4 => 'Articles',
+        5 => 'Exhibition History',
+        6 => 'Collection',
+        7 => 'Research and Resources',
+        8 => 'Articles and Publications',
     ];
 
     protected $fillable = [
