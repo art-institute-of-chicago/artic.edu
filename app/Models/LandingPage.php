@@ -14,6 +14,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\LandingPageType;
+use Kalnoy\Nestedset\NodeTrait;
 
 class LandingPage extends AbstractModel implements Sortable
 {
@@ -27,6 +28,7 @@ class LandingPage extends AbstractModel implements Sortable
     use Transformable;
     use HasRelated;
     use HasBlocks;
+    use NodeTrait;
 
     protected $presenter = 'App\Presenters\Admin\LandingPagePresenter';
 
