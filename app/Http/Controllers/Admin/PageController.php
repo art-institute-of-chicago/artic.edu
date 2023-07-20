@@ -180,4 +180,9 @@ class PageController extends ModuleController
     {
         return $behavior === 'revisions' ? false : parent::moduleHas($behavior);
     }
+
+    protected function getRoutePrefix()
+    {
+        return null;
+    }
 }
