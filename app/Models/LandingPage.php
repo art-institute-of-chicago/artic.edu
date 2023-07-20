@@ -425,6 +425,11 @@ class LandingPage extends AbstractModel implements Sortable
         return collect(self::$iconTypes);
     }
 
+    public function landingPageSlug()
+    {
+        return $this->hasOne(LandingPageSlug::class, 'slug');
+    }
+
     protected function transformMappingInternal()
     {
         return [
