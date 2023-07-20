@@ -14,6 +14,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\LandingPageType;
+use App\Models\Slugs\LandingPageSlug;
 use Kalnoy\Nestedset\NodeTrait;
 
 class LandingPage extends AbstractModel implements Sortable
