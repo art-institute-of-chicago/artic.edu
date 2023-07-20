@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
@@ -19,7 +18,6 @@ class PageRepository extends ModuleRepository
     use HandleFiles;
     use HandleApiRelations;
     use HandleTranslations;
-    use HandleBlocks;
 
     protected $browsers = [
         // Homepage landing
