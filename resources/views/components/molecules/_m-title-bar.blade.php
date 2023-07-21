@@ -8,9 +8,9 @@
   --      conditional which is not very DRY.
   --}}
 <div class="m-title-bar {{ $variation ?? '' }}"{!! isset($id) ? ' id="'.$id.'"' : '' !!}>
-  <h2 class="title {{ $titleFont ?? 'f-module-title-2' }}" id="{!! isset($id) ? 'h-' .$id : 'h-' .Str::slug($slot) !!}">{{ $slot }}</h2>
+  <h2 class="title {{ $titleFont ?? 'f-module-title-2' }}" id="{!! isset($id) ? $id : StringHelpers::cleanIDString($slot) !!}">{{ $slot }}</h2>
   @if (isset($links) and $links)
-  <{!! count($links) > 1 ? 'ul' : 'span' !!} class="m-title-bar__links" aria-labelledby="{!! isset($id) ? 'h-' .$id : 'h-' .Str::slug($slot) !!}">
+  <{!! count($links) > 1 ? 'ul' : 'span' !!} class="m-title-bar__links" aria-labelledby="{!! isset($id) ? $id : StringHelpers::cleanIDString($slot) !!}">
     @foreach ($links as $link)
     {!! count($links) > 1 ? '<li>' : '<span>' !!}
         @if (isset($link['href']))
