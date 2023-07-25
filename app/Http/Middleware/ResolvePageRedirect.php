@@ -25,7 +25,9 @@ class ResolvePageRedirect
         }
 
         $landingPageModel = LandingPage::published()->join('landing_page_slugs', function ($join) use ($slug) {
-            $join->on('landing_page_slugs.landing_page_id', 'landing_pages.id')->where('landing_page_slugs.slug', $slug);
+            $join->on('landing_page_slugs.landing_page_id', 'landing_pages.id')
+                 ->where('landing_page_slugs.slug', $slug)
+                 ->where('landing_page_slugs.active', true);
         })->first();
 
 
