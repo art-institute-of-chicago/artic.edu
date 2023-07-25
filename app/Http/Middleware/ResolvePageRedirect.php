@@ -35,7 +35,7 @@ class ResolvePageRedirect
 
             // Create a new request here
             $newRequest = Request::create(
-                route('landingPages.show', ['id' => $landingPageModel->id, 'slug' => $slug]),
+                route('landingPages.show', ['id' => $landingPageModel->landing_page_id, 'slug' => $slug]),
                 'GET',
                 [],
                 $request->cookie(),
