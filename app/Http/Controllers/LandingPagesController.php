@@ -42,6 +42,11 @@ class LandingPagesController extends FrontController
             return $canonicalRedirect;
         }
 
+        if ($item->is_unlisted) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
+
         // Home
         $mainHomeFeatures = $item->mainHomeFeatures()->published()->limit(1)->get();
         $secondaryHomeFeatures = $item->secondaryHomeFeatures()->published()->limit(2)->get();
