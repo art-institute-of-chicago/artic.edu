@@ -30,7 +30,6 @@ class ResolvePageRedirect
                  ->where('landing_page_slugs.active', true);
         })->first();
 
-
         if ($landingPageModel) {
             // To satisfy the HTTP protocol we need to generate a response from the controller as if we were going there
 
