@@ -50,26 +50,6 @@ class ResolvePageRedirect
             return $response;
         }
 
-        $genericPageModel = GenericPage::published()->join('generic_page_slugs', function ($join) use ($slug) {
-            $join->on('generic_page_slugs.generic_page_id', 'generic_pages.id')->where('generic_page_slugs.slug', $slug);
-        })->first();
-
-
-        if ($genericPageModel) {
-            $newRequest = Request::create(
-                route('genericPage.show', ['id' => $genericPageModel->id, 'slug' => $slug]),
-                'GET',
-                [],
-                $request->cookie(),
-                [],
-                $request->server()
-            );
-
-            $response = app()->handle($newRequest);
-
-            return $response;
-        }
-
         return $next($request);
     }
 }
