@@ -97,6 +97,15 @@ class GenericPageController extends ModuleController
         ];
     }
 
+    protected function transformIndexItems($items)
+    {
+        // If we're in the browser, don't transform the items
+        if (property_exists($items, 'path')) {
+            return $items;
+        }
+        return $items->toTree();
+    }
+
     protected function indexItemData($item)
     {
         return $item->children ? [
