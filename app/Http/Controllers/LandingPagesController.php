@@ -42,7 +42,7 @@ class LandingPagesController extends FrontController
             return $canonicalRedirect;
         }
 
-        if ($item->is_unlisted) {
+        if (!$item->is_published) {
             $this->seo->nofollow = true;
             $this->seo->noindex = true;
         }
