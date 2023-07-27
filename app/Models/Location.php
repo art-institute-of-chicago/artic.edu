@@ -17,7 +17,7 @@ class Location extends AbstractModel
         'page_id',
         'landing_page_id',
         'name',
-        'directions'
+        'directions_link'
     ];
 
     public $checkboxes = ['published'];

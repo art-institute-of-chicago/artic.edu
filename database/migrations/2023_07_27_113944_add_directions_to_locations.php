@@ -9,14 +9,14 @@ class AddDirectionsToLocations extends Migration
     public function up()
     {
         Schema::table('locations', function (Blueprint $table) {
-            $table->string('directions')->nullable();
+            $table->string('directions_link')->nullable();
         });
     }
 
     public function down()
     {
         Schema::table('locations', function (Blueprint $table) {
-            $table->dropColumn('directions');
+            $table->dropColumn('directions_link');
         });
     }
 }
