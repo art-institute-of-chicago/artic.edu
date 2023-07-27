@@ -49,7 +49,7 @@
                     @component('components.atoms._btn')
                         @slot('variation', 'primary')
                         @slot('tag', 'a')
-                        @slot('href', $block->input('button_link'))
+                        @slot('href', $block->input('button_url'))
                         {!! SmartyPants::defaultTransform($block->input('button_text')) !!}
                     @endcomponent
                 @endif
