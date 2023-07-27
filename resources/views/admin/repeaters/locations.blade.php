@@ -31,4 +31,8 @@
         'name' => 'zip',
         'label' => 'ZIP code',
     ])
+    @formField('input', [
+        'name' => 'directions',
+        'label' => 'Directions Link',
+    ])
 @endcomponent
