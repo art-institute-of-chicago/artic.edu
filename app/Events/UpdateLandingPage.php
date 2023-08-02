@@ -53,7 +53,6 @@ class UpdateLandingPage
                 Artisan::call('cache:invalidate-cloudfront', [
                     'urls' => [$landingPageSlug],
                 ], $commandOutput);
-                dump(Artisan::output());
             }
         }
     }
