@@ -95,8 +95,8 @@
         >.google-play {
             height: 40px !important;
             >img {
-                max-width: 100%;
-                max-height: 100%;
+                width: auto;
+                height: 100%;
             }
         }
 
@@ -108,8 +108,8 @@
                 margin-bottom: 6px;
             }
             >img {
-                max-width: 100%;
-                max-height: 100%;
+                width: auto;
+                height: 100%;
             }
         }
     }
