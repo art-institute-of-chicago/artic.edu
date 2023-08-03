@@ -205,6 +205,10 @@ $nav = [
         'route' => 'admin.generic.genericPages.index',
 
         'primary_navigation' => [
+            'landingPages' => [
+                'title' => 'Landing Pages',
+                'module' => true,
+            ],
             'genericPages' => [
                 'title' => 'Generic Pages',
                 'module' => true,

@@ -8,12 +8,22 @@
             'name' => 'title',
             'field_name' => 'title',
             'label' => 'Title',
-            'required' => true
         ])
         @formField('input', [
             'name' => 'link',
             'field_name' => 'link',
             'label' => 'Link',
-            'required' => true
+        ])
+        @formField('wysiwyg', [
+            'name' => 'question',
+            'field_name' => 'question',
+            'label' => 'Question',
+            'note' => 'For use only in Landing Pages',
+        ])
+        @formField('wysiwyg', [
+            'name' => 'answer',
+            'field_name' => 'answer',
+            'label' => 'Answer',
+            'note' => 'For use only in Landing Pages',
         ])
     </div>

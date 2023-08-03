@@ -2,8 +2,14 @@
 
 namespace App\Models;
 
+use A17\Twill\Models\Behaviors\HasPresenter;
+
 class Admission extends AbstractModel
 {
+    use HasPresenter;
+
+    protected $presenter = 'App\Presenters\AdmissionPresenter';
+
     protected $fillable = [
         'published',
         'time_start',
@@ -13,6 +19,7 @@ class Admission extends AbstractModel
         'copy',
         'position',
         'page_id',
+        'landing_page_id',
     ];
 
     /**

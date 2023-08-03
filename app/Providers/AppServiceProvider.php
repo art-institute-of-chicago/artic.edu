@@ -60,6 +60,8 @@ class AppServiceProvider extends ServiceProvider
             'highlights' => 'App\Models\Highlight',
             'artists' => 'App\Models\Artist',
             'homeFeatures' => 'App\Models\HomeFeature',
+            'landingPages' => 'App\Models\LandingPages',
+            'genericPages' => 'App\Models\GenericPages',
 
             'experiences' => 'App\Models\Experience',
 

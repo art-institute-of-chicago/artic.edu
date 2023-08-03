@@ -9,7 +9,10 @@ class Faq extends AbstractModel
         'position',
         'link',
         'page_id',
+        'landing_page_id',
         'title',
+        'question',
+        'answer',
     ];
 
     public $checkboxes = ['published'];
@@ -17,5 +20,10 @@ class Faq extends AbstractModel
     public function page()
     {
         return $this->belongsTo('App\Models\Page');
+    }
+
+    public function landingPage()
+    {
+        return $this->belongsTo('App\Models\LandingPage');
     }
 }

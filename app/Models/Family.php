@@ -16,6 +16,7 @@ class Family extends AbstractModel
         'external_link',
         'associated_generic_page_link',
         'page_id',
+        'landing_page_id',
         'title',
         'text',
         'link_label',
@@ -26,6 +27,11 @@ class Family extends AbstractModel
     public function page()
     {
         return $this->belongsTo('App\Models\Page');
+    }
+
+    public function landingPage()
+    {
+        return $this->belongsTo('App\Models\LandingPage');
     }
 
     public $mediasParams = [
