@@ -31,28 +31,16 @@ class UpdateLandingPage
         $id = $item->id;
 
         if ($item->is_published) {
-            $this->urls = [
-                route('events', null, false),
-                route('exhibitions', null, false),
-                route('collection', null, false),
-                route('visit', null, false),
-                route('articles', null, false),
-                '/'
-            ];
-
             $landingPageModel = LandingPage::join('landing_page_slugs', function ($join) use ($id) {
                 $join->on('landing_page_slugs.landing_page_id', 'landing_pages.id')
                      ->where('landing_page_slugs.id', $id)
                      ->where('landing_page_slugs.active', true);
             })->first();
 
-            $commandOutput = $this->output;
-
             if ($landingPageModel) {
-                $landingPageSlug = '/' . $landingPageModel->slug;
-                Artisan::call('cache:invalidate-cloudfront', [
-                    'urls' => [$landingPageSlug],
-                ], $commandOutput);
+                $this->urls = [
+                    '/' . $landingPageModel->slug,
+                ];
             }
         }
     }
