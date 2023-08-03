@@ -109,14 +109,14 @@ class LandingPagesController extends FrontController
         $title = '';
 
         switch ($item->type) {
-            case (array_search('Home', $types)):
+            case array_search('Home', $types):
                 $this->seo->setTitle($item->meta_title ?: "Downtown Chicago's #1 Museum");
                 $this->seo->setDescription($item->meta_description ?: "Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
                 $contrastHeader = sizeof($mainFeatures) > 0;
                 $filledLogo = sizeof($mainFeatures) > 0;
                 break;
 
-            case (array_search('Visit', $types)):
+            case array_search('Visit', $types):
                 $this->seo->setTitle($item->meta_title ?: 'Visit a Chicago Landmark');
                 $this->seo->setDescription($item->meta_description ?: 'Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
                 $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
@@ -125,11 +125,18 @@ class LandingPagesController extends FrontController
                 $title = __('Visit');
                 break;
 
-            case (array_search('Research and Resources', $types)):
+            case array_search('Research and Resources', $types):
                 $this->seo->setTitle($item->meta_title ?: 'Research & Resources');
                 $this->seo->setDescription($item->resources_landing_intro);
                 $this->seo->setImage($item->imageFront('research_landing_image'));
                 $title = 'The Collection';
+                break;
+
+            default:
+                $this->seo->setTitle($item->meta_title);
+                $this->seo->setDescription($item->meta_description);
+                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
+                $title = $item->title;
                 break;
         }
 
@@ -142,7 +149,7 @@ class LandingPagesController extends FrontController
         ];
 
         switch ($item->type) {
-            case (array_search('Home', $types)):
+            case array_search('Home', $types):
                 $view_data = array_merge($view_data, [
                     'mainFeatures' => $mainFeatures,
                     'intro' => $item->home_intro,
@@ -163,7 +170,7 @@ class LandingPagesController extends FrontController
                     ]);
                 break;
 
-            case (array_search('Visit', $types)):
+            case array_search('Visit', $types):
                 $view_data = array_merge($view_data, [
                     'primaryNavCurrent' => 'visit',
                     'headerMedia' => $headerMedia,
@@ -191,7 +198,7 @@ class LandingPagesController extends FrontController
 
                 break;
 
-            case (array_search('Research and Resources', $types)):
+            case array_search('Research and Resources', $types):
                 $view_data = array_merge($view_data, [
                     'primaryNavCurrent' => 'collection',
                     'intro' => $artIdeasItem->art_intro,
@@ -211,6 +218,9 @@ class LandingPagesController extends FrontController
                         ],
                     ],
                 ]);
+                break;
+
+            default:
                 break;
         }
 

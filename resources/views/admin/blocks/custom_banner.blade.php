@@ -90,8 +90,8 @@
         'label' => 'Button Text',
         'maxlength' => 100,
         'required' => true,
-    ])  
-    
+    ])
+
     @formField('input', [
         'name' => 'button_url',
         'label' => 'Button URL',

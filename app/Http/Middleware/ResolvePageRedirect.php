@@ -44,10 +44,8 @@ class ResolvePageRedirect
             );
 
             // Send the new request to the controller and capture the response
-            $response = app()->handle($newRequest);
-
             // Return the response as the middleware's response so Clockwork doesn't yell at us for violating req/res
-            return $response;
+            return app()->handle($newRequest);
         }
 
         return $next($request);

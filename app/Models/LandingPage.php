@@ -40,9 +40,7 @@ class LandingPage extends AbstractModel implements Sortable
     public function getTypesAttribute()
     {
         $typeModel = new LandingPageType();
-        $types = array_values($typeModel->getPageTypes());
-
-        return $types;
+        return array_values($typeModel->getPageTypes());
     }
 
     protected $fillable = [
@@ -296,7 +294,7 @@ class LandingPage extends AbstractModel implements Sortable
 
     public function homeEvents()
     {
-        return $this->belongsToMany('App\Models\Event', 'page_home_event', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\Event::class, 'page_home_event', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     /**
@@ -304,17 +302,17 @@ class LandingPage extends AbstractModel implements Sortable
      */
     public function homeFeatures()
     {
-        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\HomeFeature::class, 'page_home_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function mainHomeFeatures()
     {
-        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_main_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\HomeFeature::class, 'page_home_main_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function secondaryHomeFeatures()
     {
-        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_secondary_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\HomeFeature::class, 'page_home_secondary_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function homeShopItems()
@@ -374,12 +372,12 @@ class LandingPage extends AbstractModel implements Sortable
 
     public function articlesCategories()
     {
-        return $this->belongsToMany('App\Models\Category', 'page_article_category' . 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\Category::class, 'page_article_category' . 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function artArticles()
     {
-        return $this->belongsToMany('App\Models\Article', 'page_art_article', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\Article::class, 'page_art_article', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
     public function artCategoryTerms()
     {
@@ -388,47 +386,47 @@ class LandingPage extends AbstractModel implements Sortable
 
     public function articles()
     {
-        return $this->belongsToMany('App\Models\Article', 'article_page', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\Article::class, 'article_page', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function digitalPublications()
     {
-        return $this->belongsToMany('App\Models\DigitalPublication', 'digital_publication_page', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\DigitalPublication::class, 'digital_publication_page', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function experiences()
     {
-        return $this->belongsToMany('App\Models\Experience', 'experience_page', 'landing_page_id')->withPivot('position')->orderBy('experience_page.position');
+        return $this->belongsToMany(\App\Models\Experience::class, 'experience_page', 'landing_page_id')->withPivot('position')->orderBy('experience_page.position');
     }
 
     public function printedPublications()
     {
-        return $this->belongsToMany('App\Models\PrintedPublication', 'page_printed_publication', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\PrintedPublication::class, 'page_printed_publication', 'landing_page_id')->withPivot('position')->orderBy('position');
     }
 
     public function visitTourPages()
     {
-        return $this->belongsToMany('App\Models\GenericPage', 'visit_tour_page')->withPivot('position')->orderBy('visit_tour_page.position', 'asc');
+        return $this->belongsToMany(\App\Models\GenericPage::class, 'visit_tour_page')->withPivot('position')->orderBy('visit_tour_page.position', 'asc');
     }
 
     public function researchResourcesFeaturePages()
     {
-        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_feature_page', 'landing_page_id')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
+        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_feature_page', 'landing_page_id')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
     }
 
     public function researchResourcesStudyRooms()
     {
-        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_pages', 'landing_page_id')->withPivot('position')->orderBy('research_resource_study_room_pages.position', 'asc');
+        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_study_room_pages', 'landing_page_id')->withPivot('position')->orderBy('research_resource_study_room_pages.position', 'asc');
     }
 
     public function researchResourcesStudyRoomMore()
     {
-        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_more_pages', 'landing_page_id')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
+        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_study_room_more_pages', 'landing_page_id')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
     }
 
     public function genericPages()
     {
-        return $this->belongsToMany('App\Models\GenericPage', 'landing_page_generic_pages', 'landing_page_id')->withPivot('position')->orderBy('landing_page_generic_pages.position', 'asc');
+        return $this->belongsToMany(\App\Models\GenericPage::class, 'landing_page_generic_pages', 'landing_page_id')->withPivot('position')->orderBy('landing_page_generic_pages.position', 'asc');
     }
 
     public static function getIconTypes()
