@@ -304,14 +304,4 @@ class StringHelpers
 
         return $pageString;
     }
-
-    public static function cleanIDString($string)
-    {
-
-        $strippedString = strip_tags($string);
-
-        $cleanedString = str_replace(' ', '-', $strippedString);
-
-        return strtolower($cleanedString);
-    }
 }

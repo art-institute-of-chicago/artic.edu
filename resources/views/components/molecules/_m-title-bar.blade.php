@@ -1,3 +1,5 @@
+use Illuminate\Support\Str;
+
 {{-- There are a few things happening here that may be worth refactoring at some point:
   --   1. If there are more than one $links, they will be output in a <ul>. If there is
   --      only one it will be put in a <span>. This is to reduce the redundant list
@@ -8,9 +10,9 @@
   --      conditional which is not very DRY.
   --}}
 <div class="m-title-bar {{ $variation ?? '' }}"{!! isset($id) ? ' id="'.$id.'"' : '' !!}>
-  <h2 class="title {{ $titleFont ?? 'f-module-title-2' }}" id="{!! isset($id) ? $id : StringHelpers::cleanIDString($slot) !!}">{{ $slot }}</h2>
+  <h2 class="title {{ $titleFont ?? 'f-module-title-2' }}" id="{{ isset($id) ? $id : Str::snake($slot) }}">{{ $slot }}</h2>
   @if (isset($links) and $links)
-  <{!! count($links) > 1 ? 'ul' : 'span' !!} class="m-title-bar__links" aria-labelledby="{!! isset($id) ? $id : StringHelpers::cleanIDString($slot) !!}">
+  <{!! count($links) > 1 ? 'ul' : 'span' !!} class="m-title-bar__links" aria-labelledby="{{ isset($id) ? $id : Str::snake($slot) }}">
     @foreach ($links as $link)
     {!! count($links) > 1 ? '<li>' : '<span>' !!}
         @if (isset($link['href']))
