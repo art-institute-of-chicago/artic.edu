@@ -37,12 +37,6 @@ class LandingPage extends AbstractModel implements Sortable
         'saved' => \App\Events\UpdateLandingPage::class,
     ];
 
-    public function getTypesAttribute()
-    {
-        $typeModel = new LandingPageType();
-        return array_values($typeModel->getPageTypes());
-    }
-
     protected $fillable = [
         'published',
         'position',
@@ -256,11 +250,6 @@ class LandingPage extends AbstractModel implements Sortable
         9 => 'Proof of Vaccination',
         10 => 'Dining'
     ];
-
-    public function scopeForType($query, $type)
-    {
-        return $query->where('type', array_search($type, $this->types));
-    }
 
     public function scopeIds($query, $ids = [])
     {

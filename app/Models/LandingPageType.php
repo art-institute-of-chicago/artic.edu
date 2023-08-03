@@ -8,9 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class LandingPageType extends Model
 {
     use HasFactory;
-
-    public function getPageTypes()
-    {
-        return $this->pluck('page_type', 'id')->toArray();
-    }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Admission;
 use App\Models\Lightbox;
-use App\Models\LandingPage;
 use App\Models\LandingPageType;
 use App\Helpers\StringHelpers;
 use App\Repositories\LandingPageRepository;
@@ -24,8 +23,6 @@ class LandingPagesController extends FrontController
     {
         $item = $this->landingPageRepository->published()->find((int) $id);
         $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
-
-        $artIdeasItem = LandingPage::forType('Art and Ideas')->first();
 
         $admission = new Admission();
 
@@ -201,7 +198,7 @@ class LandingPagesController extends FrontController
             case array_search('Research and Resources', $types):
                 $view_data = array_merge($view_data, [
                     'primaryNavCurrent' => 'collection',
-                    'intro' => $artIdeasItem->art_intro,
+                    'intro' => $item->art_intro,
                     'linksBar' => [
                         [
                             'href' => route('collection'),
