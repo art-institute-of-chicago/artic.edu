@@ -164,7 +164,9 @@ trait HandleApiRelations
                         ] + $data;
                     })->values()->toArray();
                 } else {
-                    return $items->map(function ($relatedElement) {
+                    return $items->filter(function ($value) {
+                        return isset($value->related); // Account for deleted content
+                    })->map(function ($relatedElement) {
                         $element = $relatedElement->related;
                         $elementPosition = $relatedElement->position;
 
