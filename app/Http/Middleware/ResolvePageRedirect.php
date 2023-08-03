@@ -24,11 +24,7 @@ class ResolvePageRedirect
             $slug = "home";
         }
 
-        $landingPageModel = LandingPage::published()->join('landing_page_slugs', function ($join) use ($slug) {
-            $join->on('landing_page_slugs.landing_page_id', 'landing_pages.id')
-                 ->where('landing_page_slugs.slug', $slug)
-                 ->where('landing_page_slugs.active', true);
-        })->first();
+        $landingPageModel = LandingPage::published()->bySlug($slug)->first();
 
         if ($landingPageModel) {
             // To satisfy the HTTP protocol we need to generate a response from the controller as if we were going there

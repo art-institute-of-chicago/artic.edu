@@ -28,14 +28,9 @@ class UpdateLandingPage
     public function __construct(LandingPage $item)
     {
         $this->item = $item;
-        $id = $item->id;
 
         if ($item->is_published) {
-            $landingPageModel = LandingPage::join('landing_page_slugs', function ($join) use ($id) {
-                $join->on('landing_page_slugs.landing_page_id', 'landing_pages.id')
-                     ->where('landing_page_slugs.id', $id)
-                     ->where('landing_page_slugs.active', true);
-            })->first();
+            $landingPageModel = LandingPage::byId($item->id)->first();
 
             if ($landingPageModel) {
                 $this->urls = [
