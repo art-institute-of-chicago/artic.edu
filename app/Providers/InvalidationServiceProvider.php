@@ -31,6 +31,9 @@ class InvalidationServiceProvider extends ServiceProvider
         'App\Events\UpdateHighlight' => [
             'App\Listeners\InvalidationListener',
         ],
+        'App\Events\UpdateLandingPage' => [
+            'App\Listeners\InvalidationListener',
+        ],
     ];
 
     /**
