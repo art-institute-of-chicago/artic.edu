@@ -103,7 +103,7 @@
                             <div>
                                 <span class="f-module-title-1">{{ $location->name }}</span>
                                 <span class="f-secondary">{{ $location->street }} {{ $location->address }} {{ $location->state }} {{ $location->zip }}</span>
-                                <a class="f-link" target="_blank" href="{{ $location->directions_link }}">Get directions&nbsp;<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
+                                <a class="f-link" target="_blank" rel="noopener" href="{{ $location->directions_link }}">Get directions&nbsp;<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
                             </div>
                         @endforeach
                         @if($visit_parking_link && $visit_parking_label)
@@ -124,7 +124,7 @@
                     <table class="visit-fee-category">
                         <caption class="s-hidden">Types of admissions to visit the museum</caption>
                         <tr class="s-hidden">
-                            <th class="s-hidden">
+                            <th scope="row" class="s-hidden">
                                 <td class="s-hidden">Category</td>
                             </th>
                         </tr>
