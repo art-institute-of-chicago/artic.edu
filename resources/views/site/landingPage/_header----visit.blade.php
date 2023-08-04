@@ -145,7 +145,7 @@
                             <span class="select__select">
                                 <select class="visit-fee-category-select" data-behavior="toggleFee">
                                     @foreach ($admission['titles'] as $category)
-                                        <option label='{!! $category['title'] !!}' value='{!! array_search($category, $admission['titles']) !!}'>
+                                        <option label='{!! $category['title'] !!}' value='{!! array_search($category, $admission['titles']) !!}'>{!! $category['title'] !!}</option>
                                     @endforeach
                                 </select>
                             </span>
