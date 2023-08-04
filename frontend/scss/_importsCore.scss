@@ -89,6 +89,9 @@
 @import 'molecules/m-sidebar-toggle';
 @import 'molecules/m-info-trigger';
 @import 'molecules/m-status';
+@import 'molecules/m-showcase';
+@import 'molecules/m-custom-banner';
+@import 'molecules/m-featured-pages-grid';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 
@@ -131,6 +134,7 @@
 @import 'pages/p-artwork-show';
 @import 'pages/p-issue-show';
 @import 'pages/p-issuearticle-show';
+@import 'pages/p-landingpage-show';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ sections */
 

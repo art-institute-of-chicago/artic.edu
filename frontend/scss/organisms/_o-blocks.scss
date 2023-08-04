@@ -411,7 +411,7 @@
     }
   }
 
-  .m-media--m .m-media__img {
+  .m-media--m .m-media__img, .m-media--m .m-media--3d-embed {
     @include breakpoint('large+') {
       flex: 0 0 auto;
       width: colspan(28, large);
@@ -495,7 +495,7 @@
     }
   }
 
-  .m-media--m .m-media__img, .m-media--m .m-media--vtour-embed {
+  .m-media--m .m-media__img, .m-media--m .m-media--vtour-embed, .m-media--m .m-media--3d-embed{
     @include breakpoint('large+') {
       flex: 0 0 auto;
       width: colspan(43, large);

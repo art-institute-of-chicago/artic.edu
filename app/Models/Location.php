@@ -15,7 +15,9 @@ class Location extends AbstractModel
         'zip',
         'position',
         'page_id',
+        'landing_page_id',
         'name',
+        'directions_link'
     ];
 
     public $checkboxes = ['published'];
@@ -23,6 +25,11 @@ class Location extends AbstractModel
     public function page()
     {
         return $this->belongsTo('App\Models\Page');
+    }
+
+    public function landingPage()
+    {
+        return $this->belongsTo('App\Models\LandingPage');
     }
 
     protected function transformMappingInternal()

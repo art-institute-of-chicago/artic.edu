@@ -20,6 +20,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HighlightsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InteractiveFeatureExperiencesController;
+use App\Http\Controllers\LandingPagesController;
 use App\Http\Controllers\MagazineIssueController;
 use App\Http\Controllers\MiradorController;
 use App\Http\Controllers\PressReleasesController;
@@ -43,11 +44,15 @@ Route::get('/today', [RedirectController::class, 'today'])->name('today');
 
 Route::get('/target', [HomeController::class, 'target'])->name('target');
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('resolve.page');
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 
+// Landing Page
+Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
+
+
 // Collection routes
-Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
+Route::get('/collection', [CollectionController::class, 'index'])->name('collection')->middleware('resolve.page');
 /*Route::get('/collection/autocomplete', [CollectionController::class, 'autocomplete'])->name('collection.autocomplete');
 Route::get('/collection/autocomplete', function(){
 return redirect('//api.artic.edu/api/v1/autocomplete?q='.request('q'));
@@ -79,7 +84,7 @@ Route::get('/collection/resources/educator-resources/{id}', [EducatorResourcesCo
 Route::post('/subscribe', [SubscribeController::class, 'store'])->name('subscribe');
 
 // Visit routes
-Route::get('/visit', [VisitController::class, 'index'])->name('visit');
+Route::get('/visit', [VisitController::class, 'index'])->name('visit')->middleware('resolve.page');
 
 // Search routes
 Route::get('/search', [SearchController::class, 'index'])->name('search');
@@ -141,7 +146,7 @@ Route::get('exhibitions/history', [ExhibitionHistoryController::class, 'index'])
 Route::get('exhibitions/history/{id}', [ExhibitionHistoryController::class, 'show'])->name('exhibitions.history.show');
 
 // Exhibition routes
-Route::get('/exhibitions', [ExhibitionsController::class, 'index'])->name('exhibitions');
+Route::get('/exhibitions', [ExhibitionsController::class, 'index'])->name('exhibitions')->middleware('resolve.page');
 Route::get('/exhibitions/upcoming', [ExhibitionsController::class, 'upcoming'])->name('exhibitions.upcoming');
 Route::get('/exhibitions/waitTime/{id}/{slug?}/{variation?}', [ExhibitionsController::class, 'waitTime'])->name('exhibitions.waitTime');
 Route::get('/exhibitions/{id}/relatedEvents', [ExhibitionsController::class, 'loadMoreRelatedEvents'])->where('id', '(.*)')->name('exhibitions.loadMoreRelatedEvents');
@@ -206,4 +211,4 @@ Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesC
 Route::feeds();
 
 // Generic Page
-Route::get('{any}', [GenericPagesController::class, 'show'])->where('any', '.*')->name('genericPages.show');
+Route::get('{any}', [GenericPagesController::class, 'show'])->where('any', '.*')->name('genericPages.show')->middleware('resolve.page');
