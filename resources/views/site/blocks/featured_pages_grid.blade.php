@@ -10,7 +10,7 @@
         @endif
         <div class="featured-pages-grid_card">
             <div class="featured-pages-grid_details">
-                <a href="{{ $page->getURL() }}" class="m-listing__link">
+                <a href="{{ $page->getUrlAttribute() }}" class="m-listing__link">
                     @if($page->imageFront('listing') ?? $page->imageFront('hero'))
                         @component('components.atoms._img')
                             @slot('class', 'featured-pages-grid_img')

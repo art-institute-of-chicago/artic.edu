@@ -183,6 +183,10 @@ class LandingPagesController extends FrontController
                     'visit_parking_link' => $item->visit_parking_link,
                     'visit_faqs_label' => $item->visit_faqs_label,
                     'visit_faqs_link' => $item->visit_faqs_link,
+                    'visit_admission_members_link' => $item->visit_admission_members_link,
+                    'visit_admission_members_label' => $item->visit_admission_members_label,
+                    'visit_admission_tix_link' => $item->visit_admission_tix_link,
+                    'visit_admission_tix_label' => $item->visit_admission_tix_label,
                     'menuItems' => $item->menuItems,
                     'locations' => $item->locations,
                     'admission' => [
