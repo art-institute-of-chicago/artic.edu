@@ -195,7 +195,7 @@
                     <div class="visit-admission-info">
                         <span class="f-secondary">{!! $visit_admission_intro !!}</span>
                         <div class="btn-section">
-                            <a href="{{ $visit_admission_tix_link }}" class="btn f-buttons">{!! $visit_admission_tix_link !!}</a>
+                            <a href="{{ $visit_admission_tix_link }}" class="btn f-buttons">{!! $visit_admission_tix_label !!}</a>
                             <a href="{{ $visit_admission_members_link }}" class="btn f-buttons btn--secondary">{!! $visit_admission_members_label !!}</a>
                         </div>
                     </div>
