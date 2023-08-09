@@ -32,7 +32,9 @@ trait HasRelated
         if ($item->{$prefix . '_type'} === 'exhibitions') {
             return;
         }
-
+        if (!$item->{$prefix}) {
+            return;
+        }
         return [
             'id' => $item->{$prefix . '_id'},
             'type' => $item->{$prefix . '_type'},
