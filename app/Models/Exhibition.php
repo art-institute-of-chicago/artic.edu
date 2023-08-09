@@ -29,6 +29,9 @@ class Exhibition extends AbstractModel
 
     protected $apiModel = 'App\Models\Api\Exhibition';
 
+    protected $presenter = 'App\Presenters\Admin\ExhibitionPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
+
     protected $dispatchesEvents = [
         'saved' => \App\Events\UpdateExhibition::class,
         'deleted' => \App\Events\UpdateExhibition::class,
@@ -284,6 +287,14 @@ class Exhibition extends AbstractModel
                 'value' => function () {
                     // WEB-1822, WEB-1830: This causes errors when the API model isn't found, needs more work on several fronts
                     // return trim(html_entity_decode(strip_tags($this->getApiModelFilledCached()->present()->formattedDate()->render())));
+                },
+            ],
+            [
+                'name' => 'position',
+                'doc' => 'Position this exhibition has on the exhibition landing page',
+                'type' => 'integer',
+                'value' => function () {
+                    return $this->present()->position();
                 },
             ],
             [
