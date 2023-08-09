@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Str;
+
 ?>
 
 {{-- There are a few things happening here that may be worth refactoring at some point:
