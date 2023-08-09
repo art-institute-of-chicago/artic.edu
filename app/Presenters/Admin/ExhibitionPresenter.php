@@ -80,7 +80,7 @@ class ExhibitionPresenter extends BasePresenter
             return $item->datahub_id == $this->entity->datahub_id;
         });
 
-        return $featurePos !== false ? $featurePos : ($listingPos !== false ? $listingPos+2 : -1);
+        return $featurePos !== false ? $featurePos : ($listingPos !== false ? $listingPos + 2 : -1);
     }
 
     public function exhibitionType()
