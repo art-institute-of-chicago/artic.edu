@@ -4,6 +4,7 @@ namespace App\Presenters\Admin;
 
 use Carbon\Carbon;
 use App\Presenters\BasePresenter;
+use App\Models\Page;
 use Illuminate\Support\Str;
 
 class ExhibitionPresenter extends BasePresenter
@@ -65,6 +66,21 @@ class ExhibitionPresenter extends BasePresenter
 
                 break;
         }
+    }
+
+    public function position()
+    {
+        $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
+
+        $featurePos = $page->exhibitionsExhibitions->search(function ($item) {
+            return $item->datahub_id == $this->entity->datahub_id;
+        });
+
+        $listingPos = $page->exhibitionsCurrent->search(function ($item) {
+            return $item->datahub_id == $this->entity->datahub_id;
+        });
+
+        return $featurePos !== false ? $featurePos : ($listingPos !== false ? $listingPos+2 : -1);
     }
 
     public function exhibitionType()
