@@ -18,7 +18,7 @@
             "package": {
                 "type": "metapackage",
                 "name": "vendor/package-patches",
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "require": {
                     "netresearch/composer-patches-plugin": "~1.2"
                 },
@@ -28,7 +28,11 @@
                             {
                                 "title": "WEB-2103: Get repository model of API models",
                                 "url": "patches/WEB-2301---get-repository-of-API-models.diff"
-                            }
+                            },
+                            {
+                                "title": "WEB-2638: Backport Node 14 syntax",
+                                "url": "patches/WEB-2638---backport-node-14-syntax.diff"
+                          }
                         ]
                     }
                 }
@@ -38,36 +42,36 @@
     "require": {
         "php": "^8.1",
         "aic/data-hub-foundation": "^1.0",
-        "area17/twill": "2.5.*",
-        "eluceo/ical": "2.3.*",
+        "area17/twill": "2.13.*",
+        "eluceo/ical": "2.0",
         "erusev/parsedown": "^1.7",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/httpauth": "^3.0",
         "kalnoy/nestedset": "^6.0",
-        "laravel/framework": "^8.0",
-        "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5",
-        "league/csv": "^9.7",
+        "laravel/framework": "^9.0",
+        "laravel/sanctum": "^3.0",
+        "laravel/tinker": "^2.0",
+        "league/csv": "^9.0",
         "michelf/php-smartypants": "^1.8",
         "ramsey/uuid": "^4.0",
         "rlanvin/php-rrule": "^2.0",
         "salesforce-mc/fuel-sdk-php": "dev-master",
-        "sentry/sentry-laravel": "^2.9",
-        "spatie/calendar-links": "^1.5",
-        "spatie/laravel-feed": "^3.1",
-        "spatie/laravel-sitemap": "^5.9",
+        "sentry/sentry-laravel": "^3.0",
+        "spatie/calendar-links": "^1.0",
+        "spatie/laravel-feed": "^4.0",
+        "spatie/laravel-sitemap": "^6.0",
         "vendor/package-patches": "^1.0",
         "yeslogic/prince-php-wrapper": "^1.5"
     },
     "require-dev": {
         "brianium/paratest": "^6.6",
-        "facade/ignition": "^2.5",
-        "fakerphp/faker": "^1.9.1",
-        "itsgoingd/clockwork": "^4.0",
-        "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^5.10",
-        "orchestra/testbench": "~3.3|~3.4|~3.5|~3.6|~3.7|~3.8|^4.0|^5.0|^6.0",
+        "spatie/laravel-ignition": "^1.0",
+        "fakerphp/faker": "^1.0",
+        "itsgoingd/clockwork": "^5.0",
+        "laravel/sail": "^1.0",
+        "mockery/mockery": "^1.0",
+        "nunomaduro/collision": "^6.1",
+        "orchestra/testbench": "^6.0|^7.0|^8.0",
         "phpunit/phpunit": "^9.5.8"
     },
     "autoload": {
