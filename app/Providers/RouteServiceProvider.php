@@ -50,5 +50,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->domain($domain)
                 ->group(base_path('routes/web.php'));
         });
+        parent::boot();
     }
 }

@@ -180,6 +180,7 @@ return [
     'manifest_file' => 'twill-manifest.json',
     'vendor_path' => 'vendor/area17/twill',
     'custom_components_resource_path' => 'assets/js/components',
+    'vendor_components_resource_path' => 'assets/vendor/js/components',
     'build_timeout' => 300,
 
     'internal_icons' => [
@@ -207,7 +208,17 @@ return [
         'pt',
         'zh-Hans',
         'ru',
+        'tr',
+        'bs',
+        'ar'
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | When a singleton is not seeded, you can use this flag to automatically seed it.
+    |--------------------------------------------------------------------------
+    */
+    'auto_seed_singletons' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -226,6 +237,10 @@ return [
     'base_repository' => A17\Twill\Repositories\ModuleRepository::class,
 
     'base_controller' => A17\Twill\Http\Controllers\Admin\ModuleController::class,
+
+    'base_nested_controller' => A17\Twill\Http\Controllers\Admin\NestedModuleController::class,
+
+    'base_singleton_controller' => A17\Twill\Http\Controllers\Admin\SingletonModuleController::class,
 
     'base_request' => A17\Twill\Http\Requests\Admin\Request::class,
 
@@ -303,5 +318,20 @@ return [
         'prefix_uuid_with_local_path' => config('twill.file_library.prefix_uuid_with_local_path', false),
         'translated_form_fields' => false,
         'show_file_name' => false,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Wysiwyg options for the caption field.
+        |--------------------------------------------------------------------------
+        */
+        'media_caption_use_wysiwyg' => false,
+        'media_caption_wysiwyg_options' => [
+            'modules' => [
+                'toolbar' => [
+                    'bold',
+                    'italic',
+                ],
+            ],
+        ],
     ]
 ];
