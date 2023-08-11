@@ -80,6 +80,11 @@ class ExhibitionPresenter extends BasePresenter
             return $item->datahub_id == $this->entity->datahub_id;
         });
 
+        // $featurePos represents the first two spots on the exhibition landing page
+        // $listingPos represents the remaining exhibitions listed on the landing page
+        // If the exhibition is the featured position, return its value
+        // If the exhibition is listed below the featured two, bump its index by two and return it
+        // Otherwise, the exhibition is not listed on the exhibition landing page. Return -1.
         return $featurePos !== false ? $featurePos : ($listingPos !== false ? $listingPos + 2 : -1);
     }
 
