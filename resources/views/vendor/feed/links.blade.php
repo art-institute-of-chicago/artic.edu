@@ -1,3 +1,3 @@
-@foreach($feeds as $name => $title)
-    <link rel="alternate" type="application/rss+xml" href="{{ route("feeds.{$name}") }}" title="{{ $title }}">
+@foreach($feeds as $name => $feed)
+    <link rel="alternate" type="{{ \Spatie\Feed\Helpers\FeedContentType::forLink($feed['format'] ?? 'atom') }}" href="{{ route("feeds.{$name}") }}" title="{{ $feed['title'] }}">
 @endforeach
