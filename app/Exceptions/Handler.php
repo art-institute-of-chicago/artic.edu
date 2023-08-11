@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use A17\Twill\Exceptions\Handler as ExceptionHandler;
+use Sentry\Laravel\Integration;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -22,22 +23,10 @@ class Handler extends ExceptionHandler
         \Symfony\Component\Console\Exception\CommandNotFoundException::class,
     ];
 
-    /**
-     * Report or log an exception.
-     *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
-     * @param  \Exception  $exception
-     * @return void
-     *
-     * @throws \Exception
-     */
-    public function report(Throwable $exception)
+    public function register(): void
     {
-        if (app()->bound('sentry') && $this->shouldReport($exception)) {
-            app('sentry')->captureException($exception);
-        }
-
-        parent::report($exception);
+        $this->reportable(function (Throwable $e) {
+            Integration::captureUnhandledException($e);
+        });
     }
 }
