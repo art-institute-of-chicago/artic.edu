@@ -11,8 +11,8 @@ class AddAdmissionTixFieldToLandingPages extends Migration
         Schema::table('landing_pages', function (Blueprint $table) {
             $table->string('visit_admission_members_link')->nullable();
             $table->string('visit_admission_members_label')->nullable();
-            $table->string('visit_admission_tix_link')->nullable(); 
-            $table->string('visit_admission_tix_label')->nullable();      
+            $table->string('visit_admission_tix_link')->nullable();
+            $table->string('visit_admission_tix_label')->nullable();
         });
     }
 
@@ -22,7 +22,7 @@ class AddAdmissionTixFieldToLandingPages extends Migration
             $table->dropColumn('visit_admission_members_link');
             $table->dropColumn('visit_admission_members_label');
             $table->dropColumn('visit_admission_tix_link');
-            $table->dropColumn('visit_admission_tix_label');  
+            $table->dropColumn('visit_admission_tix_label');
         });
     }
 }
