@@ -295,6 +295,15 @@
           @endcomponent</textarea>
         @endif
 
+        @if ($headerVariation === 'cta')
+            <div class="header-cta">
+                <div>
+                    <strong class="title f-display-1 header-cta-title">{!! $item['ctaTitle'] !!}</strong>
+                    <a href="{{ $item['ctaButtonLink'] }}" class="header-cta-button f-buttons btn btn--secondary">{{ $item['ctaButtonLabel'] }}</a>
+                </div>
+            </div>
+        @endif
+        
     </div>
     @if ((!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption'])) and (isset($item['caption']) or isset($item['captionTitle'])))
     <figcaption>
