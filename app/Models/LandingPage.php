@@ -45,6 +45,10 @@ class LandingPage extends AbstractModel implements Sortable
         'meta_title',
         'meta_description',
         'search_tags',
+        'header_variation',
+        'header_cta_button_link',
+        'header_cta_button_label',
+        'header_cta_title',
 
         // Homepage
         'home_intro',
