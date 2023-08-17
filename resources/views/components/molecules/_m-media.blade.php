@@ -18,6 +18,8 @@
     $loop = isset($item['loop']) && $item['loop'];
     $loop_or_once = isset($item['loop_or_once']) ? $item['loop_or_once'] : 'loop';
 
+    $headerVariation = isset($item['style']) ? $item['style'] : 'default';
+
     // WEB-912: For Gallery Items; image module is an array, but gallery item is object?
     if (isset($item['videoUrl']) || (!is_array($item) && !empty($item->present()->input('videoUrl'))))
     {
