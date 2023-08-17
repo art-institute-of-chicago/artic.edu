@@ -207,8 +207,41 @@
   background-position: 50% 50%;
   overflow: hidden;
 
+  &.small {
+    height: 450px !important;
+  }
+
   &.m-media__img--alt-background {
     background-color: $color__white;
+  }
+
+  .header-cta {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    background: rgba(0, 0, 0, 0.2);
+    >div {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-top: 32px;
+      padding: 0 16px;
+    }
+    .header-cta-title {
+      color: #FFFFFF;
+    }
+    .header-cta-button {
+      margin-top: 32px;
+    }
   }
 
   .m-media--m:not(.m-media--contain) &:not(.m-media__img--virtualtour):not(.m-media--360-embed):not(.m-media__img--disable-placeholder)::before,
