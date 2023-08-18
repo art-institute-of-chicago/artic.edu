@@ -242,7 +242,7 @@ class Article extends AbstractModel implements Feedable
 
             curl_close($ch);
 
-            $item = array_merge ($item, [
+            $item = array_merge($item, [
                 'enclosure' => $heroImage ? $heroImage['src'] : null,
                 'enclosureLength' => $length,
                 'enclosureType' => $type,
