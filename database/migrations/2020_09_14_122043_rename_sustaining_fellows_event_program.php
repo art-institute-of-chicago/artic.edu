@@ -3,8 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use App\Models\EventProgram;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
