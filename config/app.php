@@ -215,8 +215,7 @@ return [
         App\Providers\InvalidationServiceProvider::class,
         App\Providers\DebugServiceProvider::class,
 
-        Aic\Hub\Foundation\Providers\ResourceServiceProvider::class,
-        Intervention\HttpAuth\Laravel\HttpauthServiceProvider::class,
+        Aic\Hub\Foundation\Providers\ResourceServiceProvider::class
     ],
 
     /*
@@ -270,8 +269,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-        'Httpauth' => Intervention\HttpAuth\Laravel\Facades\HttpAuth::class,
 
         'DamsImageService' => App\Facades\DamsImageServiceFacade::class,
         'EmbedConverter' => App\Facades\EmbedConverterFacade::class,
