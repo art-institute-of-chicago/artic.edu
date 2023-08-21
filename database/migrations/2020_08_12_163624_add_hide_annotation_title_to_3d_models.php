@@ -11,7 +11,7 @@ class AddHideAnnotationTitleTo3dModels extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('3d_models', function (Blueprint $table) {
             $table->boolean('hide_annotation_title')->default(false);
@@ -23,10 +23,10 @@ class AddHideAnnotationTitleTo3dModels extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('3d_models', function (Blueprint $table) {
             $table->dropColumn('hide_annotation_title');
         });
     }
-}
+};

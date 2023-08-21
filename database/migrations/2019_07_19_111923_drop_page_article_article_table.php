@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropPageArticleArticleTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::dropIfExists('page_article_article');
     }
@@ -21,7 +21,7 @@ class DropPageArticleArticleTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::create('page_article_article', function (Blueprint $table) {
             $table->increments('id');
@@ -32,4 +32,4 @@ class DropPageArticleArticleTable extends Migration
             $table->timestamps();
         });
     }
-}
+};

@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMoreFeaturedContent extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('article_page', function (Blueprint $table) {
             $table->increments('id');
@@ -64,7 +64,7 @@ class AddMoreFeaturedContent extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('article_page');
         Schema::dropIfExists('digital_catalog_page');
@@ -72,4 +72,4 @@ class AddMoreFeaturedContent extends Migration
         Schema::dropIfExists('page_printed_catalog');
         Schema::dropIfExists('page_scholarly_journal');
     }
-}
+};

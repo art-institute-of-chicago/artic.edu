@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCityPassFieldsAndTransportationstoVisit extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->string('visit_city_pass_title')->nullable();
@@ -28,7 +28,7 @@ class AddCityPassFieldsAndTransportationstoVisit extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->dropColumn('visit_city_pass_title');
@@ -39,4 +39,4 @@ class AddCityPassFieldsAndTransportationstoVisit extends Migration
             $table->dropColumn('visit_parking_link');
         });
     }
-}
+};

@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateAdmissionsTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('admissions', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -23,8 +23,8 @@ class CreateAdmissionsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('admissions');
     }
-}
+};

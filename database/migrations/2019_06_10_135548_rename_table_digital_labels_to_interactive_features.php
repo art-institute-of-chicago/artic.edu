@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenameTableDigitalLabelsToInteractiveFeatures extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::rename('digital_labels', 'interactive_features');
         Schema::rename('digital_label_slugs', 'interactive_feature_slugs');
@@ -32,7 +32,7 @@ class RenameTableDigitalLabelsToInteractiveFeatures extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::rename('interactive_features', 'digital_labels');
         Schema::rename('interactive_feature_slugs', 'digital_label_slugs');
@@ -47,4 +47,4 @@ class RenameTableDigitalLabelsToInteractiveFeatures extends Migration
             $table->renameColumn('interactive_feature_id', 'digital_label_id');
         });
     }
-}
+};

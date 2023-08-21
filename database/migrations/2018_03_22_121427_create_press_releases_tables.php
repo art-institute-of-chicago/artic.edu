@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePressReleasesTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('press_releases', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true, true);
@@ -22,10 +22,10 @@ class CreatePressReleasesTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('press_release_revisions');
         Schema::dropIfExists('press_release_slugs');
         Schema::dropIfExists('press_releases');
     }
-}
+};

@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDigitalCatalogsTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('digital_catalogs', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true, true);
@@ -22,10 +22,10 @@ class CreateDigitalCatalogsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('digital_catalog_revisions');
         Schema::dropIfExists('digital_catalog_slugs');
         Schema::dropIfExists('digital_catalogs');
     }
-}
+};

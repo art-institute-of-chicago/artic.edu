@@ -26,7 +26,7 @@ class GeneratePdfsTest extends BaseTestCase
         Http::fake();
     }
 
-    public function test_generate_command_successful()
+    public function test_generate_command_successful(): void
     {
         $this->artisan('pdfs:generate')
             ->assertSuccessful()
@@ -34,7 +34,7 @@ class GeneratePdfsTest extends BaseTestCase
             ->expectsOutput("Generated PDF for DigitalPublicationSection with ID {$this->sections->last()->id}");
     }
 
-    public function test_generate_one_command_successful()
+    public function test_generate_one_command_successful(): void
     {
         $this->artisan('pdfs:generate-one', [
             'model' => DigitalPublicationSection::class,
@@ -44,7 +44,7 @@ class GeneratePdfsTest extends BaseTestCase
             ->expectsOutput("Generated PDF for DigitalPublicationSection with ID {$this->sections->first()->id}");
     }
 
-    public function test_pdf_download_path_updated()
+    public function test_pdf_download_path_updated(): void
     {
         $this->assertNull($this->sections->first()->pdf_download_path);
         $this->artisan('pdfs:generate-one', [
@@ -56,7 +56,7 @@ class GeneratePdfsTest extends BaseTestCase
         $this->assertEquals($downloadPath, $this->sections->first()->pdf_download_path);
     }
 
-    public function test_pdf_uploaded()
+    public function test_pdf_uploaded(): void
     {
         Config::set('aic.pdf_s3_enabled', true);
         Storage::fake('pdf_s3');

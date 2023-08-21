@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateFeeAgesTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('fee_ages', function (Blueprint $table) {
             createDefaultTableFields($table, true, false);
@@ -15,8 +15,8 @@ class CreateFeeAgesTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('fee_ages');
     }
-}
+};

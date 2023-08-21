@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DeleteEventExhibitionTable extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::dropIfExists('event_exhibition');
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::create('event_exhibition', function (Blueprint $table) {
             $table->increments('id');
@@ -22,4 +22,4 @@ class DeleteEventExhibitionTable extends Migration
             $table->timestamps();
         });
     }
-}
+};

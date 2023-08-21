@@ -2,15 +2,15 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeMembershipBannerImageRole extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         // No-op: moved to MembershipBannerSeeder
     }
 
-    public function down()
+    public function down(): void
     {
         // No-op
     }
-}
+};

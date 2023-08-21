@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSubtitleColumn extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('digital_labels', function (Blueprint $table) {
             $table->text('sub_title')->nullable();
@@ -23,10 +23,10 @@ class AddSubtitleColumn extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('digital_labels', function (Blueprint $table) {
             $table->dropColumn('sub_title');
         });
     }
-}
+};

@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLandingToExhibitionEvents extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('exhibitions', function (Blueprint $table) {
             $table->boolean('landing')->default(true)->index();
@@ -26,7 +26,7 @@ class AddLandingToExhibitionEvents extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('exhibitions', function (Blueprint $table) {
             $table->dropColumn('landing');
@@ -35,4 +35,4 @@ class AddLandingToExhibitionEvents extends Migration
             $table->dropColumn('landing');
         });
     }
-}
+};

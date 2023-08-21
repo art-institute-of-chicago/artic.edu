@@ -11,7 +11,7 @@ class AddCaptionTitleTo3dModels extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('3d_models', function (Blueprint $table) {
             $table->string('model_caption_title')->nullable();
@@ -23,10 +23,10 @@ class AddCaptionTitleTo3dModels extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('3d_models', function (Blueprint $table) {
             $table->dropColumn('model_caption_title');
         });
     }
-}
+};

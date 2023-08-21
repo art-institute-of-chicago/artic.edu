@@ -2,14 +2,14 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateMorphMapTypeForExperiences extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         DB::table('mediables')->where('mediable_type', 'interactiveFeatures.experiences')->update(['mediable_type' => 'experiences']);
     }
@@ -19,8 +19,8 @@ class UpdateMorphMapTypeForExperiences extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         DB::table('mediables')->where('mediable_type', 'experiences')->update(['mediable_type' => 'interactiveFeatures.experiences']);
     }
-}
+};

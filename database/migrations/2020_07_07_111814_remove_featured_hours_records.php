@@ -3,14 +3,14 @@
 use Illuminate\Database\Migrations\Migration;
 use App\Models\FeaturedHour;
 
-class RemoveFeaturedHoursRecords extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         // No-op: moved to TranslationSeeder
     }
@@ -20,8 +20,8 @@ class RemoveFeaturedHoursRecords extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         // No-op
     }
-}
+};

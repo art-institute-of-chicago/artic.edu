@@ -11,7 +11,7 @@ class CreateEventEventTable2 extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('event_event', function (Blueprint $table) {
             $table->increments('id');
@@ -33,8 +33,8 @@ class CreateEventEventTable2 extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('event_event');
     }
-}
+};

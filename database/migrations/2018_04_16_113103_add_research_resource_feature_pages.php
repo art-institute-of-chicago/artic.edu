@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddResearchResourceFeaturePages extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('research_resource_feature_page', function (Blueprint $table) {
             $table->increments('id');
@@ -28,8 +28,8 @@ class AddResearchResourceFeaturePages extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('research_resource_feature_page');
     }
-}
+};

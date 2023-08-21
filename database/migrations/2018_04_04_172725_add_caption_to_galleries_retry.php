@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCaptionToGalleriesRetry extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::table('galleries', function (Blueprint $table) {
             $table->text('caption')->nullable();
@@ -18,10 +18,10 @@ class AddCaptionToGalleriesRetry extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('galleries', function (Blueprint $table) {
             $table->dropColumn('caption');
         });
     }
-}
+};

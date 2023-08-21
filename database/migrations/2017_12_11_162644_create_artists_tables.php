@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateArtistsTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('artists', function (Blueprint $table) {
             createDefaultTableFields($table, true, false);
@@ -19,10 +19,10 @@ class CreateArtistsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('artist_slugs');
 
         Schema::dropIfExists('artists');
     }
-}
+};

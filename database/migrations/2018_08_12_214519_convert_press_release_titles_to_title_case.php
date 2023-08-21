@@ -3,14 +3,14 @@
 use Illuminate\Database\Migrations\Migration;
 use App\Models\PressRelease;
 
-class ConvertPressReleaseTitlesToTitleCase extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $all = PressRelease::all();
 
@@ -25,7 +25,7 @@ class ConvertPressReleaseTitlesToTitleCase extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
     }
-}
+};

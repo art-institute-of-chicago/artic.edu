@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPublishDatesToArticlesEventsSelections extends Migration
+return new class extends Migration
 {
     private $tableNames = [
         'articles',
@@ -12,7 +12,7 @@ class AddPublishDatesToArticlesEventsSelections extends Migration
         'selections',
     ];
 
-    public function up()
+    public function up(): void
     {
         $this->down();
 
@@ -24,7 +24,7 @@ class AddPublishDatesToArticlesEventsSelections extends Migration
         }
     }
 
-    public function down()
+    public function down(): void
     {
         foreach ($this->tableNames as $tableName) {
             Schema::table($tableName, function (Blueprint $table) use ($tableName) {
@@ -38,4 +38,4 @@ class AddPublishDatesToArticlesEventsSelections extends Migration
             });
         }
     }
-}
+};

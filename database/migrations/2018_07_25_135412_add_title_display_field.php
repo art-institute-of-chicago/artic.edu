@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTitleDisplayField extends Migration
+return new class extends Migration
 {
     // We reviewed this list and chose which items should have italics etc.
     // https://stackoverflow.com/questions/193780/how-to-find-all-the-tables-in-mysql-with-specific-column-names-in-them
@@ -21,7 +21,7 @@ class AddTitleDisplayField extends Migration
         'selections',
     ];
 
-    public function up()
+    public function up(): void
     {
         foreach ($this->tables as $table) {
             Schema::table($table, function (Blueprint $table) {
@@ -30,7 +30,7 @@ class AddTitleDisplayField extends Migration
         }
     }
 
-    public function down()
+    public function down(): void
     {
         foreach ($this->tables as $table) {
             Schema::table($table, function (Blueprint $table) {
@@ -38,4 +38,4 @@ class AddTitleDisplayField extends Migration
             });
         }
     }
-}
+};

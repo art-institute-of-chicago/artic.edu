@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class UpdateMediablesTable extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::table('mediables', function (Blueprint $table) {
             $table->dropColumn(['crop_x2', 'crop_y2', 'background_position']);
@@ -15,7 +15,7 @@ class UpdateMediablesTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::table('mediables', function (Blueprint $table) {
             $table->integer('crop_x2')->nullable();
@@ -24,4 +24,4 @@ class UpdateMediablesTable extends Migration
             $table->dropColumn('metadatas');
         });
     }
-}
+};

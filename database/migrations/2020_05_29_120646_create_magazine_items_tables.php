@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateMagazineItemsTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('magazine_items', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -27,9 +27,9 @@ class CreateMagazineItemsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('magazine_item_revisions');
         Schema::dropIfExists('magazine_items');
     }
-}
+};

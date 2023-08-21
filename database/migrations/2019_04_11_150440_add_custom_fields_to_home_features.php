@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCustomFieldsToHomeFeatures extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('home_features', function (Blueprint $table) {
             $table->string('tag')->nullable();
@@ -25,7 +25,7 @@ class AddCustomFieldsToHomeFeatures extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('home_features', function (Blueprint $table) {
             $table->dropColumn('tag');
@@ -39,4 +39,4 @@ class AddCustomFieldsToHomeFeatures extends Migration
             $table->dropColumn('url');
         });
     }
-}
+};

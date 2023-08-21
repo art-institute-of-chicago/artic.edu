@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenameStandardMediaTypeOnSlidesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('slides', function (Blueprint $table) {
             $table->dropColumn('standard_media_type');
@@ -25,7 +25,7 @@ class RenameStandardMediaTypeOnSlidesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('slides', function (Blueprint $table) {
             $table->string('standard_media_type')->nullable();
@@ -33,4 +33,4 @@ class RenameStandardMediaTypeOnSlidesTable extends Migration
             $table->dropColumn('fullwidthmedia_standard_media_type');
         });
     }
-}
+};

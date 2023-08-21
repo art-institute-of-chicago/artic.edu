@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RefactorHoursTableAgain extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::table('hours', function (Blueprint $table) {
             $table->boolean('monday_is_closed')->nullable();
@@ -56,7 +56,7 @@ class RefactorHoursTableAgain extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::table('hours', function (Blueprint $table) {
             $table->dropColumn('monday_is_closed')->nullable();
@@ -105,4 +105,4 @@ class RefactorHoursTableAgain extends Migration
             $table->dropColumn('summary')->nullable();
         });
     }
-}
+};

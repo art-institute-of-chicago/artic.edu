@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateFeaturedHoursTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('featured_hours', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -21,8 +21,8 @@ class CreateFeaturedHoursTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('featured_hours');
     }
-}
+};

@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateIssueArticlesTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('issue_articles', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -37,10 +37,10 @@ class CreateIssueArticlesTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('issue_article_revisions');
         Schema::dropIfExists('issue_article_slugs');
         Schema::dropIfExists('issue_articles');
     }
-}
+};

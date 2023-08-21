@@ -11,7 +11,7 @@ class Create3dModelsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('3d_models', function (Blueprint $table) {
             $table->increments('id');
@@ -29,8 +29,8 @@ class Create3dModelsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('3d_models');
     }
-}
+};

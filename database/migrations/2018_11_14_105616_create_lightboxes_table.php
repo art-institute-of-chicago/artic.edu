@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateLightboxesTable extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('lightboxes', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -22,8 +22,8 @@ class CreateLightboxesTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('lightboxes');
     }
-}
+};
