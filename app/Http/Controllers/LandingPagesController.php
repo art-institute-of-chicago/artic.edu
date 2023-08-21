@@ -71,6 +71,10 @@ class LandingPagesController extends FrontController
                 'size' => 'hero',
                 'media' => $video,
                 'hideCaption' => true,
+                'style' => $item->header_variation,
+                'ctaTitle' => $item->header_cta_title,
+                'ctaButtonLabel' => $item->header_cta_button_label,
+                'ctaButtonLink' => $item->header_cta_button_link
             ];
         } else {
             $headerMedia = [
@@ -78,6 +82,10 @@ class LandingPagesController extends FrontController
                 'size' => 'hero',
                 'media' => $item->imageFront('hero'),
                 'hideCaption' => true,
+                'style' => $item->header_variation,
+                'ctaTitle' => $item->header_cta_title,
+                'ctaButtonLabel' => $item->header_cta_button_label,
+                'ctaButtonLink' => $item->header_cta_button_link
             ];
         }
 
@@ -140,6 +148,7 @@ class LandingPagesController extends FrontController
         $view_data = [
             'item' => $item,
             'contrastHeader' => $contrastHeader,
+            'headerMedia' => $headerMedia,
             'filledLogo' => $filledLogo,
             'title' => $title,
             'landingPageType' => StringHelpers::pageBlades(array_search($item->type, array_flip($types)))
@@ -148,8 +157,16 @@ class LandingPagesController extends FrontController
         switch ($item->type) {
             case array_search('Home', $types):
                 $view_data = array_merge($view_data, [
+                    'contrastHeader' => true,
+                    'filledLogo' => true,
+                    'primaryNavCurrent' => 'visit',
+                    'hours' => $hours,
                     'mainFeatures' => $mainFeatures,
-                    'intro' => $item->home_intro,
+                    'home_intro' => $item->home_intro,
+                    'home_location_label' => $item->home_location_label,
+                    'home_location_link' => $item->home_location_link,
+                    'home_buy_tix_label' => $item->home_buy_tix_label,
+                    'home_buy_tix_link' => $item->home_buy_tix_link,
                     'visit_button_text' => $item->home_visit_button_text ?? 'Visit',
                     'visit_button_url' => $item->home_visit_button_url ?? route('visit'),
                     'plan_your_visit_link_1_text' => $item->home_plan_your_visit_link_1_text,
@@ -170,7 +187,6 @@ class LandingPagesController extends FrontController
             case array_search('Visit', $types):
                 $view_data = array_merge($view_data, [
                     'primaryNavCurrent' => 'visit',
-                    'headerMedia' => $headerMedia,
                     'hours' => $hours,
                     'itemprops' => $itemprops,
                     'visit_nav_buy_tix_label' => $item->visit_nav_buy_tix_label,

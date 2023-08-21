@@ -2,6 +2,35 @@
 
 @section('contentFields')
 
+@formField('select', [
+    'name' => 'header_variation',
+    'label' => 'Header Style',
+    'placeholder' => 'Select style of page header',
+    'default' => 'default',
+    'options' => [
+        [
+            'value' => 'default',
+            'label' => 'Default'
+        ],
+        [
+            'value' => 'small',
+            'label' => 'Small Image'
+        ],
+        [
+            'value' => 'cta',
+            'label' => 'Call to action'
+        ],
+    ]
+])
+
+<hr/>
+
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'header_variation',
+    'fieldValues' => ['default', 'small', 'cta'],
+    'renderForBlocks' => false
+])
+
     @formField('medias', [
         'name' => 'hero',
         'label' => 'Hero image',
@@ -20,25 +49,30 @@
         'note' => 'Minimum image width 2000px'
     ])
 
-@stop
-
-@section('fieldsets')
+@endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'type',
-    'fieldValues' => array_search('Home', $types),
+    'fieldName' => 'header_variation',
+    'fieldValues' => 'cta',
     'renderForBlocks' => false
 ])
 
-<a17-fieldset title="Header" id="home-header">
-
     @formField('input', [
-        'name' => 'home_intro',
-        'label' => 'Intro text',
-        'type' => 'textarea'
+        'name' => 'header_cta_title',
+        'label' => 'CTA Title'
     ])
 
-</a17-fieldset>
+    @formField('input', [
+        'name' => 'header_cta_button_label',
+        'label' => 'Button Label'
+    ])
+
+    @formField('input', [
+        'name' => 'header_cta_button_link',
+        'label' => 'Button Link'
+    ])
+
+@endcomponent
 
 <a17-fieldset title="Home Features" id="home-features">
 
@@ -51,64 +85,52 @@
         'note' => 'Queue up to 3 home features for the large hero area',
     ])
 
-    @formField('browser', [
-        'routePrefix' => 'homepage',
-        'max' => 5,
-        'moduleName' => 'homeFeatures',
-        'name' => 'secondaryHomeFeatures',
-        'label' => 'Secondary features',
-        'note' => 'Queue up to 5 home features for the two smaller hero areas',
-    ])
+@endcomponent
 
-</a17-fieldset>
+@stop
 
-<a17-fieldset title="Home Visit" id="home-visit">
+@section('fieldsets')
 
-    @formField('input', [
-        'name' => 'home_visit_button_text',
-        'label' => 'Label for "Visit" button',
-        'note' => 'Defaults to "Visit"',
-    ])
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'type',
+    'fieldValues' => array_search('Home', $types),
+    'renderForBlocks' => false
+])
+
+<a17-fieldset title="Top Section" id="home-top">
 
     @formField('input', [
-        'name' => 'home_visit_button_url',
-        'label' => 'Link for "Visit" button',
-        'note' => 'Defaults to "/visit"',
+        'name' => 'home_intro',
+        'label' => 'Intro text',
+        'type' => 'textarea'
     ])
+
+    @formField('repeater', ['type' => 'social_links'])
 
     <hr/>
 
     @formField('input', [
-        'name' => 'home_plan_your_visit_link_1_text',
-        'label' => 'First "Plan your visit" link text',
+        'name' => 'home_location_label',
+        'label' => 'Location Label'
     ])
 
     @formField('input', [
-        'name' => 'home_plan_your_visit_link_1_url',
-        'label' => 'First "Plan your visit" link URL',
+        'name' => 'home_location_link',
+        'label' => 'Location Link'
     ])
 
     @formField('input', [
-        'name' => 'home_plan_your_visit_link_2_text',
-        'label' => 'Second "Plan your visit" link text',
+        'name' => 'home_buy_tix_label',
+        'label' => 'Tickets Label'
     ])
 
     @formField('input', [
-        'name' => 'home_plan_your_visit_link_2_url',
-        'label' => 'Second "Plan your visit" link URL',
-    ])
-
-    @formField('input', [
-        'name' => 'home_plan_your_visit_link_3_text',
-        'label' => 'Third "Plan your visit" link text',
-    ])
-
-    @formField('input', [
-        'name' => 'home_plan_your_visit_link_3_url',
-        'label' => 'Third "Plan your visit" link URL',
+        'name' => 'home_buy_tix_link',
+        'label' => 'Tickets Link'
     ])
 
 </a17-fieldset>
+
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
