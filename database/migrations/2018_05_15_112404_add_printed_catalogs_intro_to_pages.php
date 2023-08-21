@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPrintedCatalogsIntroToPages extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->text('printed_catalogs_intro')->nullable();
@@ -18,10 +18,10 @@ class AddPrintedCatalogsIntroToPages extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->dropColumn('printed_catalogs_intro');
         });
     }
-}
+};

@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateVirtualToursTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('virtual_tours', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -27,10 +27,10 @@ class CreateVirtualToursTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('virtual_tour_revisions');
         Schema::dropIfExists('virtual_tour_slugs');
         Schema::dropIfExists('virtual_tours');
     }
-}
+};

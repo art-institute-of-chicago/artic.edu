@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateGenericPagesTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('generic_pages', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true, true);
@@ -24,10 +24,10 @@ class CreateGenericPagesTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('generic_page_revisions');
         Schema::dropIfExists('generic_page_slugs');
         Schema::dropIfExists('generic_pages');
     }
-}
+};

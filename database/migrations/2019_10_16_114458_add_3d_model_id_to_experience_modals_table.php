@@ -11,7 +11,7 @@ class Add3dModelIdToExperienceModalsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         // SQLite doesn't support column names that start with numbers,
         // so skip this in our testing environment
@@ -31,10 +31,10 @@ class Add3dModelIdToExperienceModalsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('experience_modals', function (Blueprint $table) {
             $table->dropColumn('3d_model_id');
         });
     }
-}
+};

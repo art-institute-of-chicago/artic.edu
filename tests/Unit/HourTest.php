@@ -118,7 +118,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_before_member_open_hour()
+    public function it_displays_before_member_open_hour(): void
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader());
@@ -126,7 +126,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_before_member_open_hour_on_mobile()
+    public function it_displays_before_member_open_hour_on_mobile(): void
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Today', $this->getStatusHeader(null, true));
@@ -134,7 +134,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_during_member_open_hour()
+    public function it_displays_during_member_open_hour(): void
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 10, 30, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader());
@@ -142,7 +142,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_during_member_open_hour_on_mobile()
+    public function it_displays_during_member_open_hour_on_mobile(): void
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 10, 30, 0, 'America/Chicago'));
         $this->assertEquals('Today', $this->getStatusHeader(null, true));
@@ -150,7 +150,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_during_public_open_hours()
+    public function it_displays_during_public_open_hours(): void
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 12, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader());
@@ -158,7 +158,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_during_public_open_hours_on_mobile()
+    public function it_displays_during_public_open_hours_on_mobile(): void
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 12, 0, 0, 'America/Chicago'));
         $this->assertEquals('Today', $this->getStatusHeader(null, true));
@@ -166,7 +166,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_after_public_close_hour_before_a_closed_day()
+    public function it_displays_after_public_close_hour_before_a_closed_day(): void
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 20, 0, 0, 'America/Chicago'));
         $this->assertEquals('Closed now, next open Thursday.', $this->getStatusHeader());
@@ -174,7 +174,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_after_public_close_hour_before_an_open_day()
+    public function it_displays_after_public_close_hour_before_an_open_day(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 3, 20, 0, 0, 'America/Chicago'));
         $this->assertEquals('Closed now, next open tomorrow.', $this->getStatusHeader());
@@ -182,7 +182,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_a_closed_day_before_a_closed_day()
+    public function it_displays_a_closed_day_before_a_closed_day(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 1, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Closed today, next open Thursday.', $this->getStatusHeader());
@@ -190,7 +190,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_a_closed_day_before_an_open_day()
+    public function it_displays_a_closed_day_before_an_open_day(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Closed today, next open tomorrow.', $this->getStatusHeader());
@@ -198,7 +198,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_when_closed_all_days()
+    public function it_displays_when_closed_all_days(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Closed today.', $this->getStatusHeader($this->hourAllClosed));
@@ -206,7 +206,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_when_all_hours_are_missing()
+    public function it_displays_when_all_hours_are_missing(): void
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
@@ -214,7 +214,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_when_member_hours_are_missing()
+    public function it_displays_when_member_hours_are_missing(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 1, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
@@ -222,7 +222,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_when_public_open_is_missing()
+    public function it_displays_when_public_open_is_missing(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
@@ -230,7 +230,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_when_public_close_is_missing()
+    public function it_displays_when_public_close_is_missing(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 3, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
@@ -238,7 +238,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_with_minutes()
+    public function it_displays_with_minutes(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 4, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
@@ -249,7 +249,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_when_member_hours_are_missing_with_minutes()
+    public function it_displays_when_member_hours_are_missing_with_minutes(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 5, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
@@ -257,7 +257,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_during_public_open_hours_with_minutes()
+    public function it_displays_during_public_open_hours_with_minutes(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 5, 12, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
@@ -265,7 +265,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_when_all_fields_are_missing()
+    public function it_displays_when_all_fields_are_missing(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 6, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Open today', $this->getStatusHeader($this->hourEdgeCases));
@@ -273,7 +273,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_hours_table_for_header()
+    public function it_displays_hours_table_for_header(): void
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals(
@@ -302,7 +302,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_hours_table_for_header_when_closed_all_days()
+    public function it_displays_hours_table_for_header_when_closed_all_days(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals(
@@ -319,7 +319,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_hours_table_for_header_with_edge_cases()
+    public function it_displays_hours_table_for_header_with_edge_cases(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals(
@@ -366,7 +366,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_hours_table_for_visit()
+    public function it_displays_hours_table_for_visit(): void
     {
         $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals(
@@ -395,7 +395,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_hours_table_for_visit_when_closed_all_days()
+    public function it_displays_hours_table_for_visit_when_closed_all_days(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals(
@@ -413,7 +413,7 @@ class HourTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_hours_table_for_visit_with_edge_cases()
+    public function it_displays_hours_table_for_visit_with_edge_cases(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals(

@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenameSendFieldsToOverrideOnEventEmailSeries extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('event_email_series', function (Blueprint $table) {
             $table->renameColumn('send_affiliate', 'override_affiliate');
@@ -32,7 +32,7 @@ class RenameSendFieldsToOverrideOnEventEmailSeries extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('event_email_series', function (Blueprint $table) {
             $table->renameColumn('override_affiliate', 'send_affiliate');
@@ -47,4 +47,4 @@ class RenameSendFieldsToOverrideOnEventEmailSeries extends Migration
             $table->renameColumn('override_nonmember', 'send_nonmember');
         });
     }
-}
+};

@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class DebugServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $this->app->singleton('debug', function ($app) {
             return new class () {

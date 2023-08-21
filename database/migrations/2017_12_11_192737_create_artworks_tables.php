@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateArtworksTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('artworks', function (Blueprint $table) {
             createDefaultTableFields($table, true, false);
@@ -21,9 +21,9 @@ class CreateArtworksTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('artwork_slugs');
         Schema::dropIfExists('artworks');
     }
-}
+};

@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExhibitionRevisionsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('exhibition_revisions', function (Blueprint $table) {
             createDefaultTableFields($table, false, false);
@@ -28,8 +28,8 @@ class CreateExhibitionRevisionsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('exhibition_revisions');
     }
-}
+};

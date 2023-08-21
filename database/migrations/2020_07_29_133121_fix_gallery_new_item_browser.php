@@ -2,14 +2,14 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class FixGalleryNewItemBrowser extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $blocks = \App\Models\Vendor\Block::where('child_key', 'gallery_new_item')->where('content->gallery_item_type', 'artwork')->get();
 
@@ -30,7 +30,7 @@ class FixGalleryNewItemBrowser extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
     }
-}
+};

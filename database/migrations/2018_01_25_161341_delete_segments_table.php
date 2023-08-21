@@ -4,16 +4,16 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DeleteSegmentsTable extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::dropIfExists('segment_slugs');
         Schema::dropIfExists('segmentables');
         Schema::dropIfExists('segments');
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::create('segmentables', function (Blueprint $table) {
             $table->increments('id');
@@ -32,4 +32,4 @@ class DeleteSegmentsTable extends Migration
             createDefaultSlugsTableFields($table, 'segment');
         });
     }
-}
+};

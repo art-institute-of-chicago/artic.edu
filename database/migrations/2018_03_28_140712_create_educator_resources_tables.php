@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateEducatorResourcesTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('educator_resources', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true, true);
@@ -22,10 +22,10 @@ class CreateEducatorResourcesTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('educator_resource_revisions');
         Schema::dropIfExists('educator_resource_slugs');
         Schema::dropIfExists('educator_resources');
     }
-}
+};

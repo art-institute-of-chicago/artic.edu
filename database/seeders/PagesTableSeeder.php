@@ -7,7 +7,7 @@ use App\Models\Page;
 
 class PagesTableSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         foreach (Page::$types as $type => $name) {
             $page = Page::firstOrNew(['type' => $type], [

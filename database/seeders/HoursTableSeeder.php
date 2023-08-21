@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 class HoursTableSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $hours = new \App\Models\Hour();
         $hours->valid_from = Carbon::yesterday();

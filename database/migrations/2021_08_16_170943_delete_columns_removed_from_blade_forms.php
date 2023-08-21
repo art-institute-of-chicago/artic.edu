@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DeleteColumnsRemovedFromBladeForms extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('category_terms', function (Blueprint $table) {
             $table->dropColumn(['local_title', 'local_subtype']);
@@ -31,9 +31,9 @@ class DeleteColumnsRemovedFromBladeForms extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('blade_forms', function (Blueprint $table) {
         });
     }
-}
+};

@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDirectionsFields extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::table('landing_pages', function (Blueprint $table) {
             $table->string('visit_parking_label')->nullable();
@@ -19,10 +19,10 @@ class CreateDirectionsFields extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('visit_parking_label');
         Schema::dropIfExists('visit_faqs_label');
         Schema::dropIfExists('visit_faqs_link');
     }
-}
+};

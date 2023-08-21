@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddArtworkFieldsToDepartments extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('departments', function (Blueprint $table) {
             $table->boolean('should_append_artworks')->default(true)->after('caption');
@@ -24,11 +24,11 @@ class AddArtworkFieldsToDepartments extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('departments', function (Blueprint $table) {
             $table->dropColumn('should_append_artworks');
             $table->dropColumn('max_artworks');
         });
     }
-}
+};

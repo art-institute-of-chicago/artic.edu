@@ -11,7 +11,7 @@ class AddTwill12ColumnsToUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('title', 255)->nullable();
@@ -24,7 +24,7 @@ class AddTwill12ColumnsToUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('title');
@@ -34,4 +34,4 @@ class AddTwill12ColumnsToUsersTable extends Migration
             $table->dropColumn('description');
         });
     }
-}
+};

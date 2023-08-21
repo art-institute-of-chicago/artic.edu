@@ -4,14 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTranslationsToFeesTables extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('fee_age_translations', function (Blueprint $table) {
             createDefaultTranslationsTableFields($table, 'fee_age');
@@ -38,7 +38,7 @@ class AddTranslationsToFeesTables extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('fee_age_translations');
         Schema::dropIfExists('fee_category_translations');
@@ -51,4 +51,4 @@ class AddTranslationsToFeesTables extends Migration
             $table->string('title')->nullable();
         });
     }
-}
+};

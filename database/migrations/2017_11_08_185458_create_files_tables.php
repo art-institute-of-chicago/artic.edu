@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateFilesTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id')->unsigned();
@@ -30,9 +30,9 @@ class CreateFilesTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('fileables');
         Schema::dropIfExists('files');
     }
-}
+};

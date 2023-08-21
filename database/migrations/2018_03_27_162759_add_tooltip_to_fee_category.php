@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTooltipToFeeCategory extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('fee_categories', function (Blueprint $table) {
             $table->string('tooltip')->nullable();
@@ -23,10 +23,10 @@ class AddTooltipToFeeCategory extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('fee_categories', function (Blueprint $table) {
             $table->dropColumn('tooltip');
         });
     }
-}
+};

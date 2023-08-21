@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropJournalTablesNoLongerUsed extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::dropIfExists('journal_article_revisions');
         Schema::dropIfExists('journal_article_slugs');
@@ -29,7 +29,7 @@ class DropJournalTablesNoLongerUsed extends Migration
      * @see CreateJournalIssuesTables::up();
      * @see CreateJournalArticlesTables::up();
      */
-    public function down()
+    public function down(): void
     {
         Schema::create('journal_articles', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -55,4 +55,4 @@ class DropJournalTablesNoLongerUsed extends Migration
             createDefaultRevisionsTableFields($table, 'journal_issue');
         });
     }
-}
+};

@@ -2,14 +2,14 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class FixMorphTypesForArtistRelatedContent extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $this->renameMorphTypes('App\Models\EducatorResource', 'educatorResources');
         $this->renameMorphTypes('App\Models\Video', 'videos');
@@ -21,7 +21,7 @@ class FixMorphTypesForArtistRelatedContent extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         $this->renameMorphTypes('educatorResources', 'App\Models\EducatorResource');
         $this->renameMorphTypes('videos', 'App\Models\Video');
@@ -49,4 +49,4 @@ class FixMorphTypesForArtistRelatedContent extends Migration
         DB::update('update site_tagged set site_taggable_type = ? where site_taggable_type = ?', [$to, $from]);
         DB::update('update tagged set taggable_type = ? where taggable_type = ?', [$to, $from]);
     }
-}
+};

@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateWhatToExpectsTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('what_to_expects', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -26,10 +26,10 @@ class CreateWhatToExpectsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('what_to_expect_revisions');
         Schema::dropIfExists('what_to_expect_translations');
         Schema::dropIfExists('what_to_expects');
     }
-}
+};

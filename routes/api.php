@@ -35,10 +35,10 @@ use App\Http\Controllers\SeamlessImagesController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
 |
- */
+*/
 
 Route::get('/', function () {
     return redirect('/api/v1');

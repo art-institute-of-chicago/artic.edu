@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRevisitedExhibitionFields extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('exhibitions', function (Blueprint $table) {
             $table->string('exhibition_message')->nullable();
@@ -25,7 +25,7 @@ class AddRevisitedExhibitionFields extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('exhibitions', function (Blueprint $table) {
             $table->dropColumn('exhibition_message');
@@ -33,4 +33,4 @@ class AddRevisitedExhibitionFields extends Migration
             $table->dropColumn('cms_exhibition_type');
         });
     }
-}
+};

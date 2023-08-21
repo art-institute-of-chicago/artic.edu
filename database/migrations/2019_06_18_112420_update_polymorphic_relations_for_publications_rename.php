@@ -2,14 +2,14 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class UpdatePolymorphicRelationsForPublicationsRename extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $this->renameMorphTypes('App\Models\DigitalCatalog', 'digitalPublications');
         $this->renameMorphTypes('App\Models\PrintedCatalog', 'printedPublications');
@@ -20,7 +20,7 @@ class UpdatePolymorphicRelationsForPublicationsRename extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         $this->renameMorphTypes('digitalPublications', 'App\Models\DigitalCatalog');
         $this->renameMorphTypes('printedPublications', 'App\Models\PrintedCatalog');
@@ -47,4 +47,4 @@ class UpdatePolymorphicRelationsForPublicationsRename extends Migration
         DB::update('update site_tagged set site_taggable_type = ? where site_taggable_type = ?', [$to, $from]);
         DB::update('update tagged set taggable_type = ? where taggable_type = ?', [$to, $from]);
     }
-}
+};

@@ -5,14 +5,14 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Models\Article;
 
-class AddSubtypeToArticles extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->string('subtype')->nullable();
@@ -34,10 +34,10 @@ class AddSubtypeToArticles extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->dropColumn('subtype');
         });
     }
-}
+};

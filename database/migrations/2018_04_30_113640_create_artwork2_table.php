@@ -11,7 +11,7 @@ class CreateArtwork2Table extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('artworks', function (Blueprint $table) {
             createDefaultTableFields($table, true, false);
@@ -44,7 +44,7 @@ class CreateArtwork2Table extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('artwork_event');
         Schema::dropIfExists('artwork_video');
@@ -52,4 +52,4 @@ class CreateArtwork2Table extends Migration
         Schema::dropIfExists('artwork_exhibition');
         Schema::dropIfExists('artworks');
     }
-}
+};

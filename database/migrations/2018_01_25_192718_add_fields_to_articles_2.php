@@ -11,7 +11,7 @@ class AddFieldsToArticles2 extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('articles', function (Blueprint $table) {
             if (env('APP_ENV') != 'testing') {
@@ -29,7 +29,7 @@ class AddFieldsToArticles2 extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('articles', function (Blueprint $table) {
             if (env('APP_ENV') != 'testing') {
@@ -41,4 +41,4 @@ class AddFieldsToArticles2 extends Migration
             $table->text('copy')->nullable();
         });
     }
-}
+};

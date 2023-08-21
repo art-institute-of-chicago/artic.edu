@@ -11,13 +11,13 @@ class EventTest extends BaseTestCase
 {
     protected $seed = true;
 
-    public function test_event_page_displays_events()
+    public function test_event_page_displays_events(): void
     {
         $response = $this->get(route('events'));
         $response->assertSee(Event::get()->pluck('title_display')->all());
     }
 
-    public function test_event_page_loads_events_by_program()
+    public function test_event_page_loads_events_by_program(): void
     {
         $eventProgram = EventProgram::factory()->create();
         $events = Event::factory()->count(2)->create()->each(function ($event) use ($eventProgram) {
@@ -39,7 +39,7 @@ class EventTest extends BaseTestCase
         $response->assertSee($eventProgram->name);
     }
 
-    public function test_next_occurrence()
+    public function test_next_occurrence(): void
     {
         $eventProgram = EventProgram::factory()->create();
         $event = Event::factory()->create();

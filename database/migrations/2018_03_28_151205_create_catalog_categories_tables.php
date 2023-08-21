@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateCatalogCategoriesTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('catalog_categories', function (Blueprint $table) {
             createDefaultTableFields($table, true, false);
@@ -17,9 +17,9 @@ class CreateCatalogCategoriesTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('catalog_category_slugs');
         Schema::dropIfExists('catalog_categories');
     }
-}
+};

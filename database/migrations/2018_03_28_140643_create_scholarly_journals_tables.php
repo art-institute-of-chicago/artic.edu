@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateScholarlyJournalsTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('scholarly_journals', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true, true);
@@ -22,10 +22,10 @@ class CreateScholarlyJournalsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('scholarly_journal_revisions');
         Schema::dropIfExists('scholarly_journal_slugs');
         Schema::dropIfExists('scholarly_journals');
     }
-}
+};

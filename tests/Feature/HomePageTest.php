@@ -13,13 +13,13 @@ class HomePageTest extends BaseTestCase
     protected $seed = true;
     protected $forceRefresh = true;
 
-    public function test_home_page_loads()
+    public function test_home_page_loads(): void
     {
         $response = $this->get(route('home'));
         $response->assertStatus(200);
     }
 
-    public function test_visit_page_links_appear_on_home_page()
+    public function test_visit_page_links_appear_on_home_page(): void
     {
         $response = $this->get(route('home'));
         $response->assertSee('Hours and admission fees');
@@ -28,14 +28,14 @@ class HomePageTest extends BaseTestCase
         $response->assertSee("href=\"/visit#directions\"", false);
     }
 
-    public function test_events_section_appears_on_home_page()
+    public function test_events_section_appears_on_home_page(): void
     {
         $response = $this->get(route('home'));
         $response->assertSee('Events');
         $response->assertSee('See upcoming events');
     }
 
-    public function test_events_appear_on_home_page()
+    public function test_events_appear_on_home_page(): void
     {
         $fifthEvent = Event::factory()->create();
         $fifthEvent->programs()->attach(EventProgram::factory()->create()->id);
@@ -51,7 +51,7 @@ class HomePageTest extends BaseTestCase
         $response->assertDontSee($events->last()->title_display, 'Home page displays only the first four events');
     }
 
-    public function test_events_times_appear_on_home_page()
+    public function test_events_times_appear_on_home_page(): void
     {
         $response = $this->get(route('home'));
         $forcedFormattedDates = Event::whereNotNull('forced_date')->get()->pluck('forced_date')->all();

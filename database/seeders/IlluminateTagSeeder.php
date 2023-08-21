@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 class IlluminateTagSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $tag = new IlluminateTag();
         $tag->name = 'Restrict Download';
