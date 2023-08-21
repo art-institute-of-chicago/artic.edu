@@ -24,6 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('cache:prune-stale-tags')->hourly();
         $schedule->command('sitemap:generate')->twiceDaily();
         $schedule->command('update:links')->daily();
         $schedule->command('update:cloudfront-ips')->hourly();
