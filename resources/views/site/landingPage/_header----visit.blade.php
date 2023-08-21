@@ -11,14 +11,9 @@
       @slot('itemprops',$itemprops ?? null)
     @endcomponent
 
-    @component('components.molecules._m-media')
-        @slot('item', $headerMedia)
-        @slot('tag', 'span')
-        @slot('imageSettings', array(
-            'srcset' => array(300,600,1000,1500,3000),
-            'sizes' => '100vw',
-        ))
-        @slot('variation', 'm-visit-header')
+    @component('components.organisms._o-header-landing')
+        @slot('headerVariation', $headerVariation)
+        @slot('headerMedia', $headerMedia)
     @endcomponent
 
     @if (!empty($hour))
