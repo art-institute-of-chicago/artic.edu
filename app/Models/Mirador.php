@@ -31,8 +31,8 @@ class Mirador extends AbstractModel
         'default_view',
     ];
 
-    protected $dates = [
-        'date',
+    protected $casts = [
+        'date' => 'date',
     ];
 
     public $slugAttributes = [

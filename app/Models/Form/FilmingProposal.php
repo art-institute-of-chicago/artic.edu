@@ -4,5 +4,9 @@ namespace App\Models\Form;
 
 class FilmingProposal extends FormModel
 {
-    protected $dates = ['preferred_date_1', 'preferred_date_2', 'preferred_date_3'];
+    protected $casts = [
+        'preferred_date_1' => 'date',
+        'preferred_date_2' => 'date',
+        'preferred_date_3' => 'date',
+    ];
 }
