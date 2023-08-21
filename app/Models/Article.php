@@ -231,16 +231,16 @@ class Article extends AbstractModel implements Feedable
         $heroImage = $this->imageFront('hero');
 
         if ($heroImage) {
-            $ch = curl_init($heroImage['src']);
+            $img = curl_init($heroImage['src']);
 
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_HEADER, true);
-            curl_setopt($ch, CURLOPT_NOBODY, true);
+            curl_setopt($img, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($img, CURLOPT_HEADER, true);
+            curl_setopt($img, CURLOPT_NOBODY, true);
 
-            $length = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
-            $type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+            $length = curl_getinfo($img, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+            $type = curl_getinfo($img, CURLINFO_CONTENT_TYPE);
 
-            curl_close($ch);
+            curl_close($img);
 
             $item = array_merge($item, [
                 'enclosure' => $heroImage ? $heroImage['src'] : null,
