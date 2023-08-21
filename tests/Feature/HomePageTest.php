@@ -21,12 +21,11 @@ class HomePageTest extends BaseTestCase
 
     public function test_visit_page_links_appear_on_home_page()
     {
-        $appUrl = config('APP_URL');
         $response = $this->get(route('home'));
         $response->assertSee('Hours and admission fees');
-        $response->assertSee("href=\"{$appUrl}/visit#hours\"", false);
+        $response->assertSee("href=\"/visit#hours\"", false);
         $response->assertSee('Directions and parking');
-        $response->assertSee("href=\"{$appUrl}/visit#directions\"", false);
+        $response->assertSee("href=\"/visit#directions\"", false);
     }
 
     public function test_events_section_appears_on_home_page()
