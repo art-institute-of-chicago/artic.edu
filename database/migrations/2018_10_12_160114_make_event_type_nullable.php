@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MakeEventTypeNullable extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('events', function (Blueprint $table) {
             $table->integer('event_type')->default(null)->nullable()->change();
@@ -23,11 +22,11 @@ class MakeEventTypeNullable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('events', function (Blueprint $table) {
             // This'll fail if there's null data in there, so... it's nullable forever now
             $table->integer('event_type')->default(1)->nullable(false)->change();
         });
     }
-}
+};

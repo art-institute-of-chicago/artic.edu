@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDigitalPublicationSectionsTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('digital_publication_sections', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -35,10 +34,10 @@ class CreateDigitalPublicationSectionsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('digital_publication_section_revisions');
         Schema::dropIfExists('digital_publication_section_slugs');
         Schema::dropIfExists('digital_publication_sections');
     }
-}
+};

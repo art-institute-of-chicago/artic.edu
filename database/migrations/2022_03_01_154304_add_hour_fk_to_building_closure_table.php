@@ -4,19 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddHourFkToBuildingClosureTable extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::table('building_closures', function (Blueprint $table) {
             $table->integer('hour_id')->nullable();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::table('building_closures', function (Blueprint $table) {
             $table->dropColumn('hour_id');
         });
     }
-}
+};

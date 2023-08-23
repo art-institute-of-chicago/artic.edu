@@ -4,9 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAdmissionTixFieldToLandingPages extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::table('landing_pages', function (Blueprint $table) {
             $table->string('visit_admission_members_link')->nullable();
@@ -16,7 +15,7 @@ class AddAdmissionTixFieldToLandingPages extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::table('landing_pages', function (Blueprint $table) {
             $table->dropColumn('visit_admission_members_link');
@@ -25,4 +24,4 @@ class AddAdmissionTixFieldToLandingPages extends Migration
             $table->dropColumn('visit_admission_tix_label');
         });
     }
-}
+};

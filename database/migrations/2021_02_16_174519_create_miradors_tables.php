@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateMiradorsTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('miradors', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -25,10 +24,10 @@ class CreateMiradorsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('mirador_revisions');
         Schema::dropIfExists('mirador_slugs');
         Schema::dropIfExists('miradors');
     }
-}
+};

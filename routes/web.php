@@ -38,6 +38,17 @@ use App\Http\Controllers\Forms\EducatorAdmissionController;
 use App\Http\Controllers\Forms\EmailSubscriptionsController;
 use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 
 Route::get('/today', [RedirectController::class, 'today'])->name('today');

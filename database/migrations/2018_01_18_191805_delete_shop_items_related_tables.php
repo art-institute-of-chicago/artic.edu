@@ -4,15 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DeleteShopItemsRelatedTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::dropIfExists('shop_itemized');
         Schema::dropIfExists('shop_items');
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::create('shop_items', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -31,4 +30,4 @@ class DeleteShopItemsRelatedTables extends Migration
             $table->integer('position')->unsigned();
         });
     }
-}
+};

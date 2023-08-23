@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RemoveScholarlyJournalTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::dropIfExists('scholarly_journal_slugs');
         Schema::dropIfExists('scholarly_journal_revisions');
@@ -14,7 +13,7 @@ class RemoveScholarlyJournalTables extends Migration
         Schema::dropIfExists('scholarly_journals');
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::create('scholarly_journals', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true, true);
@@ -39,4 +38,4 @@ class RemoveScholarlyJournalTables extends Migration
             $table->timestamps();
         });
     }
-}
+};

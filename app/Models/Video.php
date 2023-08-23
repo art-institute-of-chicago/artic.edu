@@ -37,8 +37,8 @@ class Video extends AbstractModel
         'search_tags'
     ];
 
-    protected $dates = [
-        'date',
+    protected $casts = [
+        'date' => 'date',
     ];
 
     protected $appends = [

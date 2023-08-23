@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCollectionFeaturesTable extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('collection_features', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true);
@@ -44,10 +43,10 @@ class CreateCollectionFeaturesTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('collection_feature_selection');
         Schema::dropIfExists('article_collection_feature');
         Schema::dropIfExists('collection_features');
     }
-}
+};

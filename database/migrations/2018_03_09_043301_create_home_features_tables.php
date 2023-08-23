@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateHomeFeaturesTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('home_features', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true);
@@ -29,10 +28,10 @@ class CreateHomeFeaturesTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('event_home_feature');
         Schema::dropIfExists('article_home_feature');
         Schema::dropIfExists('home_features');
     }
-}
+};

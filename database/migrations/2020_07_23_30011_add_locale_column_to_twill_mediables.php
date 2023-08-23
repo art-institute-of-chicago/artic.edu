@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class AddLocaleColumnToTwillMediables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         if (Schema::hasTable('mediables') && !Schema::hasColumn('mediables', 'locale')) {
             Schema::table('mediables', function (Blueprint $table) {
@@ -14,7 +13,7 @@ class AddLocaleColumnToTwillMediables extends Migration
         }
     }
 
-    public function down()
+    public function down(): void
     {
         if (Schema::hasTable('mediables') && Schema::hasColumn('mediables', 'locale')) {
             Schema::table('mediables', function (Blueprint $table) {
@@ -28,4 +27,4 @@ class AddLocaleColumnToTwillMediables extends Migration
     {
         return getLocales()[0] ?? config('app.locale');
     }
-}
+};

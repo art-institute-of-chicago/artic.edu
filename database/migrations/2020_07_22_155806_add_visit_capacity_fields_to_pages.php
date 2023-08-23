@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddVisitCapacityFieldsToPages extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('page_translations', function (Blueprint $table) {
             $table->text('visit_capacity_alt')->nullable();
@@ -32,7 +31,7 @@ class AddVisitCapacityFieldsToPages extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('page_translations', function (Blueprint $table) {
             $table->dropColumn([
@@ -51,4 +50,4 @@ class AddVisitCapacityFieldsToPages extends Migration
             ]);
         });
     }
-}
+};
