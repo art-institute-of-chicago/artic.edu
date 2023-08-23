@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateSegmentsTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('segmentables', function (Blueprint $table) {
             $table->increments('id');
@@ -25,10 +24,10 @@ class CreateSegmentsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('segment_slugs');
         Schema::dropIfExists('segmentables');
         Schema::dropIfExists('segments');
     }
-}
+};

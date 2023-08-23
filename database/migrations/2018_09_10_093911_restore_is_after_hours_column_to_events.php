@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RestoreIsAfterHoursColumnToEvents extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('events', function (Blueprint $table) {
             if (!Schema::hasColumn('events', 'is_after_hours')) {
@@ -25,7 +24,7 @@ class RestoreIsAfterHoursColumnToEvents extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('events', function (Blueprint $table) {
             if (Schema::hasColumn('events', 'is_after_hours')) {
@@ -33,4 +32,4 @@ class RestoreIsAfterHoursColumnToEvents extends Migration
             }
         });
     }
-}
+};

@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenameForeignKeyInPrintedCatalogSlugsTable extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('printed_catalog_slugs', function (Blueprint $table) {
             if (Schema::hasColumn('printed_catalog_slugs', 'printed_publication_id')) {
@@ -27,9 +26,9 @@ class RenameForeignKeyInPrintedCatalogSlugsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('printed_catalog_slugs', function (Blueprint $table) {
         });
     }
-}
+};

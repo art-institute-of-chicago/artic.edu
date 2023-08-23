@@ -4,14 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePageTranslationsTable extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('page_translations', function (Blueprint $table) {
             createDefaultTranslationsTableFields($table, 'page');
@@ -36,7 +35,7 @@ class CreatePageTranslationsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('page_translations');
         Schema::table('pages', function (Blueprint $table) {
@@ -51,4 +50,4 @@ class CreatePageTranslationsTable extends Migration
             $table->string('visit_become_member_label')->nullable();
         });
     }
-}
+};

@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateExperienceImagesTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('experience_images', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -38,11 +37,11 @@ class CreateExperienceImagesTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('experience_image_revisions');
         Schema::dropIfExists('experience_image_translations');
         Schema::dropIfExists('experience_image_slugs');
         Schema::dropIfExists('experience_images');
     }
-}
+};

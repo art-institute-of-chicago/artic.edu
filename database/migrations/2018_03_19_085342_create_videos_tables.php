@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateVideosTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('videos', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -24,10 +23,10 @@ class CreateVideosTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('video_revisions');
         Schema::dropIfExists('video_slugs');
         Schema::dropIfExists('videos');
     }
-}
+};

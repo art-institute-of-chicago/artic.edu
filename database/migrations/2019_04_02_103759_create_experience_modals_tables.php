@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateExperienceModalsTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('experience_modals', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -30,10 +29,10 @@ class CreateExperienceModalsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('experience_modal_revisions');
         Schema::dropIfExists('experience_modal_slugs');
         Schema::dropIfExists('experience_modals');
     }
-}
+};

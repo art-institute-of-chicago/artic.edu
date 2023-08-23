@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateEventProgramsTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('event_programs', function (Blueprint $table) {
             createDefaultTableFields($table, true, false);
@@ -13,8 +12,8 @@ class CreateEventProgramsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('event_programs');
     }
-}
+};

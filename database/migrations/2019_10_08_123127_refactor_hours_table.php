@@ -5,14 +5,13 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Models\Hour;
 
-class RefactorHoursTable extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('hours', function (Blueprint $table) {
             $table->dropColumn(['opening_time', 'closing_time', 'day_of_week', 'closed']);
@@ -41,7 +40,7 @@ class RefactorHoursTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('hours', function (Blueprint $table) {
             $table->dropColumn(['valid_from', 'valid_through', 'title', 'url']);
@@ -54,4 +53,4 @@ class RefactorHoursTable extends Migration
             $table->boolean('closed')->default(false);
         });
     }
-}
+};

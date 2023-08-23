@@ -23,7 +23,7 @@ class PrinceTest extends BaseTestCase
             ->create();
     }
 
-    public function test_errors_when_prince_binary_not_present()
+    public function test_errors_when_prince_binary_not_present(): void
     {
         Http::fake();
         $noPrinceCommand = '/dev/null';
@@ -31,7 +31,7 @@ class PrinceTest extends BaseTestCase
         $this->artisan('pdfs:generate')->assertFailed()->expectsOutput("Prince could not be found at $noPrinceCommand");
     }
 
-    public function test_errors_when_prince_cannot_generate_pdf()
+    public function test_errors_when_prince_cannot_generate_pdf(): void
     {
         Http::fake(['*' => Http::response('<link rel="stylesheet" href="missing resource">')]);
         $id = $this->sections->first()->id;

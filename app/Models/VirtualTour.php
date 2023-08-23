@@ -35,8 +35,8 @@ class VirtualTour extends AbstractModel
         'list_description',
     ];
 
-    protected $dates = [
-        'date',
+    protected $casts = [
+        'date' => 'date',
     ];
 
     public $slugAttributes = [

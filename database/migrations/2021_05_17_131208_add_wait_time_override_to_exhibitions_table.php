@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddWaitTimeOverrideToExhibitionsTable extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('exhibitions', function (Blueprint $table) {
             $table->text('wait_time_override')->nullable();
@@ -23,10 +22,10 @@ class AddWaitTimeOverrideToExhibitionsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('exhibitions', function (Blueprint $table) {
             $table->dropColumn('wait_time_override');
         });
     }
-}
+};

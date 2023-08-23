@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MigrateSidebarRelatedBrowsers extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         // First, we need to fix the `related_unique` key in the `related` table.
         // Looks like Twill added the `browser_name` field to the key.
@@ -46,7 +45,7 @@ class MigrateSidebarRelatedBrowsers extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         // CreateArticleEventSidebarTable
         Schema::create('article_event_sidebar', function (Blueprint $table) {
@@ -184,4 +183,4 @@ class MigrateSidebarRelatedBrowsers extends Migration
             );
         });
     }
-}
+};

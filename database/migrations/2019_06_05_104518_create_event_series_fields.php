@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventSeriesFields extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('events', function (Blueprint $table) {
             // It's tempting to determine this from relationship calls,
@@ -58,7 +57,7 @@ class CreateEventSeriesFields extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('events', function (Blueprint $table) {
             $table->dropColumn('add_to_event_email_series');
@@ -71,4 +70,4 @@ class CreateEventSeriesFields extends Migration
         Schema::dropIfExists('event_email_series');
         Schema::dropIfExists('email_series');
     }
-}
+};

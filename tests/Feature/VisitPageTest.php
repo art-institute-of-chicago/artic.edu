@@ -16,7 +16,7 @@ class VisitPageTest extends BaseTestCase
         $this->appUrl = config('APP_URL');
     }
 
-    public function test_visiting_hours_are_displayed()
+    public function test_visiting_hours_are_displayed(): void
     {
         $response = $this->get(route('visit'));
         $response->assertSee(
@@ -27,7 +27,7 @@ class VisitPageTest extends BaseTestCase
         $response->assertSee('Monday 10&ndash;11 a.m.<br/>Thursday&ndash;Sunday 10-11 a.m.', false);
     }
 
-    public function test_admission_description_is_displayed()
+    public function test_admission_description_is_displayed(): void
     {
         $response = $this->get(route('visit'));
         $response->assertSee(
@@ -35,7 +35,7 @@ class VisitPageTest extends BaseTestCase
         );
     }
 
-    public function test_accessibility_link_is_displayed()
+    public function test_accessibility_link_is_displayed(): void
     {
         $response = $this->get(route('visit'));
         $response->assertSee(
@@ -45,7 +45,7 @@ class VisitPageTest extends BaseTestCase
         $response->assertSee("href=\"{$this->appUrl}/visit/accessibility/visitors-with-mobility-needs\"", false);
     }
 
-    public function test_family_pages_titles_are_displayed_in_order()
+    public function test_family_pages_titles_are_displayed_in_order(): void
     {
         $response = $this->get(route('visit'));
         $response->assertSeeInOrder([
@@ -55,7 +55,7 @@ class VisitPageTest extends BaseTestCase
         ]);
     }
 
-    public function test_mobile_app_family_page_link_is_displayed()
+    public function test_mobile_app_family_page_link_is_displayed(): void
     {
         $response = $this->get(route('visit'));
         $response->assertSee(
@@ -66,7 +66,7 @@ class VisitPageTest extends BaseTestCase
         $response->assertSee("href=\"{$this->appUrl}/visit/explore-on-your-own/mobile-app-audio-tours\"", false);
     }
 
-    public function test_highlights_family_page_link_is_displayed()
+    public function test_highlights_family_page_link_is_displayed(): void
     {
         $response = $this->get(route('visit'));
         $response->assertSee('Short on time? Check out this must-see guide to the collection.');
@@ -74,7 +74,7 @@ class VisitPageTest extends BaseTestCase
         $response->assertSee("href=\"{$this->appUrl}/highlights\"", false);
     }
 
-    public function test_visit_virtually_family_page_link_is_displayed()
+    public function test_visit_virtually_family_page_link_is_displayed(): void
     {
         $response = $this->get(route('visit'));
         $response->assertSee('Even from afar, there&#8217;s a host of ways to connect to our collection of art from around the world&mdash;whether you&#8217;re seeking inspiration, community, or a little adventure.', false);
@@ -82,7 +82,7 @@ class VisitPageTest extends BaseTestCase
         $response->assertSee("href=\"{$this->appUrl}/visit-us-virtually\"", false);
     }
 
-    public function test_what_to_expect_items_are_displayed_in_order()
+    public function test_what_to_expect_items_are_displayed_in_order(): void
     {
         $response = $this->get(route('visit'));
         $response->assertSeeInOrder([

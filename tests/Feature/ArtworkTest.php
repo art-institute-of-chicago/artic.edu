@@ -23,7 +23,7 @@ class ArtworkTest extends BaseTestCase
         Article::factory()->count(6)->published()->visible()->notUnlisted()->create();
     }
 
-    public function test_artwork_show_redirects_to_canonical_url_when_missing_slug()
+    public function test_artwork_show_redirects_to_canonical_url_when_missing_slug(): void
     {
         $artwork = Artwork::factory()->make();
         $this->addMockApiResponses($this->mockApiModelReponse($artwork));
@@ -32,7 +32,7 @@ class ArtworkTest extends BaseTestCase
         $response->assertRedirect(route('artworks.show', ['id' => $artwork->id, 'slug' => $artwork->titleSlug]));
     }
 
-    public function test_artwork_show_displays_edition()
+    public function test_artwork_show_displays_edition(): void
     {
         $artwork = Artwork::factory()->make();
         $this->addMockApiResponses([
@@ -50,7 +50,7 @@ class ArtworkTest extends BaseTestCase
         $response->assertSee($artwork->edition);
     }
 
-    public function test_artwork_show_retrieves_related_media()
+    public function test_artwork_show_retrieves_related_media(): void
     {
         $this->markTestSkipped("We're hiding related content entirely using the SHOW_DEFAULT_RELATED_ITEMS feature flag");
         $artwork = Artwork::factory()->make();

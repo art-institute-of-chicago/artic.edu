@@ -2,14 +2,13 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class MoveOldGalleryBlocksToGalleryNewBlock extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         // Rename gallery_item blocks, and update JSON keys
         $rows = DB::select('select * from blocks where parent_id in (select id from blocks where type=?);', ['gallery']);
@@ -54,7 +53,7 @@ class MoveOldGalleryBlocksToGalleryNewBlock extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
     }
-}
+};

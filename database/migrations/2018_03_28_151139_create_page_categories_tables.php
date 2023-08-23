@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePageCategoriesTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('page_categories', function (Blueprint $table) {
             createDefaultTableFields($table, true, false);
@@ -17,9 +16,9 @@ class CreatePageCategoriesTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('page_category_slugs');
         Schema::dropIfExists('page_categories');
     }
-}
+};

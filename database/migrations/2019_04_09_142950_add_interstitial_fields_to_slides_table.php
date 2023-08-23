@@ -4,14 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddInterstitialFieldsToSlidesTable extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('slides', function (Blueprint $table) {
             $table->string('interstitial_headline')->nullable();
@@ -27,10 +26,10 @@ class AddInterstitialFieldsToSlidesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('slides', function (Blueprint $table) {
             $table->dropColumn(['interstitial_headline', 'body_copy', 'section_title', 'object_title', 'compare_title']);
         });
     }
-}
+};

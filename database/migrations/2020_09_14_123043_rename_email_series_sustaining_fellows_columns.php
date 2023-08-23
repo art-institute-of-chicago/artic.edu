@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenameEmailSeriesSustainingFellowsColumns extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('email_series', function (Blueprint $table) {
             $table->renameColumn('show_sustaining_fellow', 'show_luminary');
@@ -35,7 +34,7 @@ class RenameEmailSeriesSustainingFellowsColumns extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('email_series', function (Blueprint $table) {
             $table->renameColumn('show_luminary', 'show_sustaining_fellow');
@@ -53,4 +52,4 @@ class RenameEmailSeriesSustainingFellowsColumns extends Migration
             $table->renameColumn('override_luminary', 'override_sustaining_fellow');
         });
     }
-}
+};

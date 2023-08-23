@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RecreateEventMetas extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::dropifExists('event_metas');
 
@@ -29,7 +28,7 @@ class RecreateEventMetas extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::create('event_metas', function (Blueprint $table) {
             $table->datetime('date_end')->nullable();
@@ -38,4 +37,4 @@ class RecreateEventMetas extends Migration
             $table->timestamps();
         });
     }
-}
+};

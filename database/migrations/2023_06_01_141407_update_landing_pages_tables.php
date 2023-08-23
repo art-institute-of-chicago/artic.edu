@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateLandingPagesTables extends Migration
-{
+return new class () extends Migration {
     private $tablesToAddLandingPageIdTo = [
         'featured_hours',
         'home_artists',
@@ -28,7 +27,7 @@ class UpdateLandingPagesTables extends Migration
         'research_resource_study_room_pages',
         'research_resource_study_room_more_pages'
     ];
-    public function up()
+    public function up(): void
     {
         foreach ($this->tablesToAddLandingPageIdTo as $t) {
             Schema::table($t, function (Blueprint $table) {
@@ -38,7 +37,7 @@ class UpdateLandingPagesTables extends Migration
         }
     }
 
-    public function down()
+    public function down(): void
     {
     }
-}
+};

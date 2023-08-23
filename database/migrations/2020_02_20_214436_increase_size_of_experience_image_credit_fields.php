@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class IncreaseSizeOfExperienceImageCreditFields extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('experience_images', function (Blueprint $table) {
             $table->text('artist')->change();
@@ -25,7 +24,7 @@ class IncreaseSizeOfExperienceImageCreditFields extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('experience_images', function (Blueprint $table) {
             $table->string('artist')->change();
@@ -33,4 +32,4 @@ class IncreaseSizeOfExperienceImageCreditFields extends Migration
             $table->string('dimensions')->change();
         });
     }
-}
+};

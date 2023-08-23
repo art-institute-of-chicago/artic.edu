@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DeleteSelectionSelectionTable extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::dropIfExists('selection_selection');
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::create('selection_selection', function (Blueprint $table) {
             $table->increments('id');
@@ -26,4 +25,4 @@ class DeleteSelectionSelectionTable extends Migration
             $table->integer('position')->unsigned()->index();
         });
     }
-}
+};

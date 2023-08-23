@@ -4,14 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MoveAttractEndColumnsToSlidesTable extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('experiences', function (Blueprint $table) {
             $table->dropColumn(['attract_title', 'attract_subhead', 'end_credit_subhead', 'end_credit_copy', 'end_headline']);
@@ -32,7 +31,7 @@ class MoveAttractEndColumnsToSlidesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('slides', function (Blueprint $table) {
             $table->dropColumn(['attract_title', 'attract_subhead', 'end_credit_subhead', 'end_credit_copy', 'end_copy', 'end_headline']);
@@ -47,4 +46,4 @@ class MoveAttractEndColumnsToSlidesTable extends Migration
             $table->string('end_headline')->nullable();
         });
     }
-}
+};

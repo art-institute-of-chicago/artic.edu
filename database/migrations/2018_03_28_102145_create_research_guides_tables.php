@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateResearchGuidesTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('research_guides', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true, true);
@@ -22,10 +21,10 @@ class CreateResearchGuidesTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('research_guide_revisions');
         Schema::dropIfExists('research_guide_slugs');
         Schema::dropIfExists('research_guides');
     }
-}
+};

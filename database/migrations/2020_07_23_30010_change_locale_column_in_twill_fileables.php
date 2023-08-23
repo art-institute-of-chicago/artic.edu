@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class ChangeLocaleColumnInTwillFileables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         if (Schema::hasTable('fileables') && Schema::hasColumn('fileables', 'locale')) {
             Schema::table('fileables', function (Blueprint $table) {
@@ -14,7 +13,7 @@ class ChangeLocaleColumnInTwillFileables extends Migration
         }
     }
 
-    public function down()
+    public function down(): void
     {
         if (Schema::hasTable('fileables') && Schema::hasColumn('fileables', 'locale')) {
             Schema::table('fileables', function (Blueprint $table) {
@@ -22,4 +21,4 @@ class ChangeLocaleColumnInTwillFileables extends Migration
             });
         }
     }
-}
+};

@@ -4,5 +4,7 @@ namespace App\Models\Form;
 
 class EducatorAdmission extends FormModel
 {
-    protected $dates = ['visit_date'];
+    protected $casts = [
+        'visit_date' => 'date'
+    ];
 }

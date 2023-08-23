@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DeleteArticleArtistTable extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::dropIfExists('article_artist');
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::create('article_artist', function (Blueprint $table) {
             $table->increments('id');
@@ -21,4 +20,4 @@ class DeleteArticleArtistTable extends Migration
             $table->integer('position')->unsigned()->index();
         });
     }
-}
+};

@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddShowTestFieldsToEmailSeries extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('email_series', function (Blueprint $table) {
             $table->boolean('show_affiliate_test')->default(false)->after('show_nonmember');
@@ -26,7 +25,7 @@ class AddShowTestFieldsToEmailSeries extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('email_series', function (Blueprint $table) {
             $table->dropColumn([
@@ -37,4 +36,4 @@ class AddShowTestFieldsToEmailSeries extends Migration
             ]);
         });
     }
-}
+};

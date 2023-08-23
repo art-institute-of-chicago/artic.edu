@@ -2,14 +2,13 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class FixMorphTypesForDepartmentRelatedContent extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $this->renameMorphTypes('App\Models\Department', 'departments');
     }
@@ -19,7 +18,7 @@ class FixMorphTypesForDepartmentRelatedContent extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         $this->renameMorphTypes('departments', 'App\Models\Department');
     }
@@ -45,4 +44,4 @@ class FixMorphTypesForDepartmentRelatedContent extends Migration
         DB::update('update site_tagged set site_taggable_type = ? where site_taggable_type = ?', [$to, $from]);
         DB::update('update tagged set taggable_type = ? where taggable_type = ?', [$to, $from]);
     }
-}
+};

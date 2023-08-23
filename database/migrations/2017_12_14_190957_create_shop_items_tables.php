@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateShopItemsTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('shop_items', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -25,9 +24,9 @@ class CreateShopItemsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('shop_itemized');
         Schema::dropIfExists('shop_items');
     }
-}
+};

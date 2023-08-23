@@ -5,14 +5,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenameCatalogsToPublications extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $this->dropAllIndexes('digital_catalog_page');
         $this->dropAllIndexes('page_printed_catalog');
@@ -44,7 +43,7 @@ class RenameCatalogsToPublications extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         $this->dropAllIndexes('digital_publication_page');
         $this->dropAllIndexes('page_printed_publication');
@@ -178,4 +177,4 @@ class RenameCatalogsToPublications extends Migration
             );
         });
     }
-}
+};

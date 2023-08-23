@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ModifyEventEventTable extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('event_event', function (Blueprint $table) {
             if (env('APP_ENV') != 'testing') {
@@ -27,7 +26,7 @@ class ModifyEventEventTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('event_event', function (Blueprint $table) {
             $table->dropColumn('datahub_id');
@@ -36,4 +35,4 @@ class ModifyEventEventTable extends Migration
             $table->index(['related_event_id', 'event_id']);
         });
     }
-}
+};

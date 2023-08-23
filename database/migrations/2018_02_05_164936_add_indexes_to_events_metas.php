@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIndexesToEventsMetas extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('event_metas', function (Blueprint $table) {
             $table->index('event_id');
@@ -23,8 +22,8 @@ class AddIndexesToEventsMetas extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         $table->dropIndex('event_id');
     }
-}
+};
