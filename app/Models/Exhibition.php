@@ -313,12 +313,12 @@ class Exhibition extends AbstractModel
         // @see ExhibitionsController::index and relations on Page model
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
-        $featuredIds = $page->apiElements()->whereIn('relation', [
-            'exhibitionsExhibitions',
-            'exhibitionsCurrent',
-            'exhibitionsUpcoming',
-            'exhibitionsUpcomingListing',
-        ])->get(['datahub_id'])->pluck('datahub_id')->all();
+        $featuredIds = $page->present()->upcomingListedExhibitions()
+            ->merge($page->present()->currentListedExhibitions())
+            ->merge($page->present()->upcomingFeaturedExhibitions())
+            ->merge($page->present()->currentFeaturedExhibitions())
+            ->pluck('id')
+            ->all();
 
         return in_array($this->datahub_id, $featuredIds);
     }
