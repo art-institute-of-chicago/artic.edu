@@ -25,4 +25,28 @@ class PagePresenter extends BasePresenter
             'hideCaption' => true
         ];
     }
+
+    public function currentFeaturedExhibitions() {
+        return $this->entity->apiModels('exhibitionsExhibitions', 'Exhibition')->filter(function ($exhibition) {
+            return !$exhibition->is_closed;
+        });
+    }
+
+    public function upcomingFeaturedExhibitions() {
+        return $this->entity->apiModels('exhibitionsUpcoming', 'Exhibition')->filter(function ($exhibition) {
+            return $exhibition->is_upcoming;
+        });
+    }
+
+    public function currentListedExhibitions() {
+        return $this->entity->apiModels('exhibitionsCurrent', 'Exhibition')->filter(function ($exhibition) {
+            return !$exhibition->is_closed;
+        });
+    }
+
+    public function upcomingListedExhibitions() {
+        return $this->entity->apiModels('exhibitionsUpcomingListing', 'Exhibition')->filter(function ($exhibition) {
+            return $exhibition->is_upcoming;
+        });
+    }
 }

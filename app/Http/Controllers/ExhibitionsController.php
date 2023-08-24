@@ -37,31 +37,12 @@ class ExhibitionsController extends FrontController
         $this->seo->setDescription("Now on view—explore the Art Institute's current and upcoming exhibits to plan your visit.");
 
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
-        $isCurrentFilter = function ($exhibition) {
-            return !$exhibition->is_closed;
-        };
-        $isUpcomingFilter = function ($exhibition) {
-            return $exhibition->is_upcoming;
-        };
 
-        if ($upcoming) {
-            $collection = $page->apiModels('exhibitionsUpcomingListing', 'Exhibition');
-            $collection = $collection->filter($isUpcomingFilter);
-        } else {
-            $collection = $page->apiModels('exhibitionsCurrent', 'Exhibition');
-            $collection = $collection->filter($isCurrentFilter);
-        }
+        $collection = $upcoming ? $page->present()->upcomingListedExhibitions() : $page->present()->currentListedExhibitions();
+        $featured = $upcoming ? $page->present()->upcomingFeaturedExhibitions() : $page->present()->currentFeaturedExhibitions();
 
         $events = $this->eventRepository->getEventsFiltered(Carbon::now(), null, null, null, null, null, 3, 1);
         $eventsByDay = $this->eventRepository->groupByDate($events);
-
-        if ($upcoming) {
-            $featured = $page->apiModels('exhibitionsUpcoming', 'Exhibition');
-            $featured = $featured->filter($isUpcomingFilter);
-        } else {
-            $featured = $page->apiModels('exhibitionsExhibitions', 'Exhibition');
-            $featured = $featured->filter($isCurrentFilter);
-        }
 
         return view('site.exhibitions', [
             'page' => $page,
