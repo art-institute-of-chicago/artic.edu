@@ -74,6 +74,12 @@
 
 @endcomponent
 
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'header_variation',
+    'fieldValues' => 'feature',
+    'renderForBlocks' => false
+])
+
 <a17-fieldset title="Home Features" id="home-features">
 
     @formField('browser', [
