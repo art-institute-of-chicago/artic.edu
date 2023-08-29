@@ -12,7 +12,6 @@
     @endcomponent
 
     @component('components.organisms._o-header-landing')
-        @slot('headerVariation', $headerVariation)
         @slot('headerMedia', $headerMedia)
     @endcomponent
 
