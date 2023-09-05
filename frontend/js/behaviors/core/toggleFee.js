@@ -22,15 +22,17 @@ const toggleFee = function(container) {
     }
 
     // Remove "selected" class from all elements with class "fee-ages"
-    const feeAges = document.querySelectorAll('.fee-ages.selected');
+    const feeAges = document.querySelectorAll('.selected');
     feeAges.forEach(element => {
       element.classList.remove('selected');
     });
       
     // Find the element with the matching ID and add the "selected" class
-    const targetElement = document.getElementById(targetAttribute);
-    if (targetElement) {
-      targetElement.classList.add('selected');
+    const targetElements = document.querySelectorAll('[id="'+targetAttribute+'"]');
+    if (targetElements) {
+      targetElements.forEach(element => {
+        element.classList.add('selected');
+      })
     }
   }
     
