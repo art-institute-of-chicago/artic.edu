@@ -6,6 +6,69 @@
 
 .visit {
 
+  .admission-info-button-trigger {
+    display: inline-block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: 0 none;
+    background: transparent;
+    color: $color__text--tertiary;
+    cursor: pointer;
+    vertical-align: text-bottom;
+  
+    &:hover,
+    &:focus:hover {
+      color: $color__text--secondary;
+    }
+  
+    &:active:hover {
+      color: $color__text--tertiary;
+    }
+  }
+
+  .admission-info-button-trigger svg {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+  }
+
+  .admission-info-button-trigger {
+    vertical-align: text-top;
+    margin-top: 2px;
+  }
+
+  .admission-info-button-container {
+    z-index: 2;
+    position: relative;
+  } 
+
+  .admission-info-button-info {
+      left: 20px;
+      opacity: 0;
+      z-index: 10;
+      position: absolute;
+      width: 200px;
+      padding: 8px 16px 16px;
+      background-color: $color__white;
+      box-shadow: $shadow;
+      white-space: initial;
+      transition: opacity .25s;
+
+      @include breakpoint('small+') {
+        width: 250px;
+      }
+  }
+
+  .admission-info-button-info .f-caption {
+    @include tucked-align-top($f-caption);
+  }
+
+  .admission-info-visible {
+    opacity: 1 !important;
+  }
+
   .m-title-bar {
     margin-top: 50px;
   }
@@ -458,6 +521,19 @@
         tbody >tr:last-child {
           border-bottom: none !important;
         }
+      }
+
+      .admission-info-text {
+        width: 100%;
+        display: none;
+        margin-top: 18px;
+        @include breakpoint('small+') {
+          display: none !important;
+        }
+      }
+
+      .admission-info-text.selected {
+        display: block;
       }
 
       .visit-fee-category-select, .select__select {
