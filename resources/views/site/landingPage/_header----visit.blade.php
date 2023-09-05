@@ -138,7 +138,17 @@
                                     <tr id='b-{!! $category['id'] !!}' data-target='{!! array_search($category, $admission['titles']) !!}' data-behavior="toggleFee">
                                 @endif
                                     <td>
-                                        <span class="f-module-title-1">{{$category['title']}}</span><svg><use xlink:href="#icon--info"/></svg>
+                                        <span class="f-module-title-1">{{$category['title']}}</span>
+                                        <span class="admission-info-button-container" data-behavior="showAdmissionTooltip">
+                                            <button data-tooltip-target='t-{!! $category['id'] !!}' class="admission-info-button-trigger" data-behavior="showAdmissionTooltip" aria-label="Info" aria-expanded="false">
+                                                <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
+                                            </button>
+                                            <span class="admission-info-button-info" id='t-{!! $category['id'] !!}' data-behavior="showAdmissionTooltip">
+                                                <span class="f-caption">
+                                                    {{ $category['tooltip'] }}
+                                                </span>
+                                            </span>
+                                        </span>
                                     </td>
                                 </tr>
                             @endforeach
