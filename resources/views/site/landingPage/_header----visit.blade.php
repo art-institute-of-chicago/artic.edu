@@ -170,7 +170,19 @@
                                     <td>Price</td>
                                 </th>
                             </tr>
+                            <hr>
                             @php $categoryFirst = true; @endphp
+                            @foreach ($admission['titles'] as $category)
+                                @if ($loop->first)
+                                    <p id='{!! array_search($category, $admission['titles']) !!}' class="f-secondary admission-info-text selected">
+                                        {{ $category['tooltip'] }}
+                                    </p>
+                                @else
+                                    <p id='{!! array_search($category, $admission['titles']) !!}' class="f-secondary admission-info-text">
+                                        {{ $category['tooltip'] }}
+                                    </p>
+                                @endif
+                            @endforeach
                             @foreach ($admission['prices'] as $price => $ageGroup)
                                 @foreach ($ageGroup as $age)
                                     @if ($loop->first)
