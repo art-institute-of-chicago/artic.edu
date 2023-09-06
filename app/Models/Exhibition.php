@@ -189,7 +189,7 @@ class Exhibition extends AbstractModel
                 'doc' => 'Is this exhibition in the primary or secondary feature listings on the landing page?',
                 'type' => 'boolean',
                 'value' => function () {
-                    return $this->is_featured;
+                    return $this->present()->isFeatured();
                 },
             ],
             [
