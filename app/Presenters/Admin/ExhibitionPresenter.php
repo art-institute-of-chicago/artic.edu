@@ -68,15 +68,33 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
+    public function isFeatured()
+    {
+        $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
+
+        $featurePos = $page->present()->currentFeaturedExhibitions()->search(function ($item) {
+            return $item->datahub_id == $this->entity->datahub_id;
+        });
+
+        $listingPos = $page->present()->currentListedExhibitions()->search(function ($item) {
+            return $item->datahub_id == $this->entity->datahub_id;
+        });
+
+        // $featurePos represents the first two spots on the exhibition landing page
+        // $listingPos represents the remaining exhibitions listed on the landing page
+        // If the exhibition is either if these lists, return true
+        return $featurePos !== false || $listingPos !== false;
+    }
+
     public function position()
     {
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
-        $featurePos = $page->exhibitionsExhibitions->search(function ($item) {
+        $featurePos = $page->present()->currentFeaturedExhibitions()->search(function ($item) {
             return $item->datahub_id == $this->entity->datahub_id;
         });
 
-        $listingPos = $page->exhibitionsCurrent->search(function ($item) {
+        $listingPos = $page->present()->currentListedExhibitions()->search(function ($item) {
             return $item->datahub_id == $this->entity->datahub_id;
         });
 
