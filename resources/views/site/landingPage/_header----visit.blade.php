@@ -167,25 +167,15 @@
                             <hr>
                             @php $categoryFirst = true; @endphp
                             @foreach ($admission['titles'] as $category)
-                                @if ($loop->first)
-                                    <p id='{!! array_search($category, $admission['titles']) !!}' class="f-secondary admission-info-text selected">
-                                        {{ $category['tooltip'] }}
-                                    </p>
-                                @else
-                                    <p id='{!! array_search($category, $admission['titles']) !!}' class="f-secondary admission-info-text">
-                                        {{ $category['tooltip'] }}
-                                    </p>
-                                @endif
+                                <p id='{!! array_search($category, $admission['titles']) !!}' class="f-secondary admission-info-text {{ $loop->first ? 'selected' : '' }}">
+                                    {{ $category['tooltip'] }}
+                                </p>
                             @endforeach
                             @foreach ($admission['prices'] as $price => $ageGroup)
                                 @foreach ($ageGroup as $age)
                                     @if ($loop->first)
-                                        @if ($categoryFirst)
-                                            <tbody class="fee-ages selected" id="{!! $price !!}">
-                                            @php $categoryFirst = false; @endphp
-                                        @else
-                                            <tbody class="fee-ages" id="{!! $price !!}">
-                                        @endif
+                                        <tbody class="fee-ages {{ $categoryFirst ? 'selected' : '' }}" id="{!! $price !!}">
+                                        @php $categoryFirst = false; @endphp
                                     @endif
 
                                     @php
