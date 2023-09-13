@@ -46,6 +46,7 @@ class AdmissionPresenter extends BasePresenter
                     $prices[$category->id][$age->id] = $price;
                 }
             }
+            $prices[$category->id]['description'] = $category->description;
         }
 
         return $prices;
