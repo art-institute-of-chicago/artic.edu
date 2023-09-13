@@ -172,27 +172,40 @@
                                 </p>
                             @endforeach
                             @foreach ($admission['prices'] as $price => $ageGroup)
-                                @foreach ($ageGroup as $age)
-                                    @if ($loop->first)
-                                        <tbody class="fee-ages {{ $categoryFirst ? 'selected' : '' }}" id="{!! $price !!}">
+                                @if ($ageGroup['description'])
+                                    <tbody class="fee-ages {{ $categoryFirst ? 'selected' : '' }}" id="{!! $price !!}">
                                         @php $categoryFirst = false; @endphp
-                                    @endif
+                                        <tr>
+                                            <td>
+                                                {!! $ageGroup['description'] !!}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                @else
+                                    @foreach ($ageGroup as $key => $age)
+                                        @if ($key != 'description')
+                                            @if ($loop->first)
+                                                <tbody class="fee-ages {{ $categoryFirst ? 'selected' : '' }}" id="{!! $price !!}">
+                                                @php $categoryFirst = false; @endphp
+                                            @endif
 
-                                    @php
-                                        $formattedPrice = ($age[$price] == 0) ? 'Free' : '$' . $age[$price];
-                                    @endphp
+                                            @php
+                                                $formattedPrice = ($age[$price] == 0) ? 'Free' : '$' . $age[$price];
+                                            @endphp
 
-                                    <tr>
-                                        <td>
-                                            <span class="f-module-title-1">{{ $age['title'] }}</span>
-                                            <span class="f-module-title-1">{!! $formattedPrice !!}</span>
-                                        </td>
-                                    </tr>
+                                            <tr>
+                                                <td>
+                                                    <span class="f-module-title-1">{{ $age['title'] }}</span>
+                                                    <span class="f-module-title-1">{!! $formattedPrice !!}</span>
+                                                </td>
+                                            </tr>
 
-                                    @if ($loop->last)
-                                        </tbody>
-                                    @endif
-                                @endforeach
+                                            @if ($loop->last)
+                                                </tbody>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endforeach
                         </table>
                 </div>
