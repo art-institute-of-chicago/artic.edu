@@ -159,7 +159,7 @@ class EventsController extends FrontController
         $this->seo->setDescription($item->meta_description ?: $item->short_description ?: $item->list_description);
         $this->seo->setImage($item->imageFront('hero'));
 
-        if (!$item->is_future) {
+        if (!$item->is_future || $item->is_private) {
             $this->seo->nofollow = true;
             $this->seo->noindex = true;
         }
