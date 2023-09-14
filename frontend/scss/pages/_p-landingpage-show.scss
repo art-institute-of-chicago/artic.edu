@@ -17,12 +17,12 @@
     color: $color__text--tertiary;
     cursor: pointer;
     vertical-align: text-bottom;
-  
+
     &:hover,
     &:focus:hover {
       color: $color__text--secondary;
     }
-  
+
     &:active:hover {
       color: $color__text--tertiary;
     }
@@ -42,7 +42,7 @@
   .admission-info-button-container {
     z-index: 2;
     position: relative;
-  } 
+  }
 
   .admission-info-button-info {
       left: 20px;
@@ -129,7 +129,7 @@
       display: block;
     }
   }
-  
+
   .img-hero-mobile {
     display: block;
     @include breakpoint('small+') {
@@ -581,7 +581,7 @@
           width: 50%;
         }
 
-        td{
+        td {
           text-align: right;
           padding: 10px 18px 18px 0;
           width: 100%;
