@@ -612,6 +612,17 @@
         tbody >tr:last-child {
           border-bottom: none !important;
         }
+
+        tbody.admission-description td {
+          text-align: left;
+          display: block;
+          font-weight: 300;
+          color: $color__text--secondary;
+        }
+
+        tbody.admission-description .btn {
+          margin-top: 2em;
+        }
       }
     }
 
