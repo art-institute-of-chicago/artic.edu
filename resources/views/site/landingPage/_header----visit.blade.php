@@ -179,11 +179,13 @@
                             @endforeach
                             @foreach ($admission['prices'] as $price => $ageGroup)
                                 @if ($ageGroup['description'])
-                                    <tbody class="fee-ages {{ $categoryFirst ? 'selected' : '' }}" id="{!! $price !!}">
+                                    <tbody class="fee-ages admission-description {{ $categoryFirst ? 'selected' : '' }}" id="{!! $price !!}">
                                         @php $categoryFirst = false; @endphp
                                         <tr>
                                             <td>
-                                                {!! $ageGroup['description'] !!}
+                                                <span class="f-module-title-1">
+                                                    {!! $ageGroup['description'] !!}
+                                                </span>
 
                                                 <a href="{{ $ageGroup['link_url'] }}" class="btn btn--tertiary btn--w-icon f-buttons">
                                                     {{ $ageGroup['link_label'] }} <svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
