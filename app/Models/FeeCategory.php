@@ -13,6 +13,8 @@ class FeeCategory extends AbstractModel implements Sortable
         'position',
         'title',
         'tooltip',
-        'description'
+        'description',
+        'link_label',
+        'link_url'
     ];
 }

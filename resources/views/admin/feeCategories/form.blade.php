@@ -21,4 +21,14 @@
             'italic', 'link'
         ],
     ])
+
+    @formField('input', [
+        'name' => 'link_label',
+        'label' => 'Link label',
+    ])
+
+    @formField('input', [
+        'name' => 'link_url',
+        'label' => 'Link URL',
+    ])
 @stop

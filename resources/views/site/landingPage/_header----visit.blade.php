@@ -184,12 +184,16 @@
                                         <tr>
                                             <td>
                                                 {!! $ageGroup['description'] !!}
+
+                                                <a href="{{ $ageGroup['link_url'] }}" class="btn btn--tertiary btn--w-icon f-buttons">
+                                                    {{ $ageGroup['link_label'] }} <svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>
                                 @else
                                     @foreach ($ageGroup as $key => $age)
-                                        @if ($key != 'description')
+                                        @if (is_numeric($key))
                                             @if ($loop->first)
                                                 <tbody class="fee-ages {{ $categoryFirst ? 'selected' : '' }}" id="{!! $price !!}">
                                                 @php $categoryFirst = false; @endphp
