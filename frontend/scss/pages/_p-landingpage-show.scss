@@ -74,7 +74,7 @@
   }
 
   .m-title-bar::before {
-    background-color: #CCCCCC;
+    background-color: $color__rules--secondary;
   }
 
   .o-blocks .hr {
@@ -186,7 +186,7 @@
 
   .menu-links li {
     padding-top: 0;
-    color: #333333;
+    color: $color__text;
   }
 
   .menu-links a::before {
@@ -194,7 +194,7 @@
   }
 
   .menu-links ul li a {
-    color: #333333 !important;
+    color: $color__text !important;
   }
 
   .f-buttons {
@@ -387,11 +387,11 @@
       }
 
       .parking_label {
-        color: #1a1a1a;
+        color: $color__text--title;
       }
 
       a {
-        color: #b50938;
+        color: $color__link--accent;
       }
 
       img {
@@ -485,19 +485,19 @@
         td{
           padding: 10px 18px 18px;
           width: 100%;
-          color: #767676;
+          color: $color__text--secondary;
           display: flex;
           flex-direction: row;
           justify-content: space-between;
           align-items: self-end;
 
           span {
-            color: #767676;
+            color: $color__text--secondary;
           }
         }
 
         tr.selected {
-          background-color: #F3F3F3;
+          background-color: $color__black--5;
           border-top: none;
           border-bottom: none;
 
@@ -600,7 +600,7 @@
 
           span:last-child {
             font-weight: 300;
-            color: #767676;
+            color: $color__text--secondary;
           }
         }
 
@@ -627,7 +627,7 @@
           content: "";
         }
         a {
-          color: #b50938;
+          color: $color__text--accent;
         }
       }
     }
