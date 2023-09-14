@@ -13,7 +13,6 @@ class FeeCategoryController extends ModuleController
     protected $indexOptions = [
         'publish' => false,
         'permalink' => false,
-        'editInModal' => true,
         'reorder' => true,
     ];
 
