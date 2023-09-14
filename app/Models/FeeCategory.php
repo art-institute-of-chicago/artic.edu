@@ -12,6 +12,9 @@ class FeeCategory extends AbstractModel implements Sortable
     protected $fillable = [
         'position',
         'title',
-        'tooltip'
+        'tooltip',
+        'description',
+        'link_label',
+        'link_url'
     ];
 }
