@@ -680,4 +680,13 @@ class ImageHelpers
 
         return Str::kebab($icons[$key]);
     }
+    public static function getSocialIcon($url)
+    {
+        $pattern = '/(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9.-]+)\.(com|net|org)/i';
+
+        // Use preg_match to find the domain in the URL
+        if (preg_match($pattern, $url, $matches)) {
+            return $matches[1];
+        }
+    }
 }
