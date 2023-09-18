@@ -107,7 +107,7 @@
 
 <a17-fieldset title="Top Section" id="home-top">
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'home_intro',
         'label' => 'Intro text',
         'type' => 'textarea'
