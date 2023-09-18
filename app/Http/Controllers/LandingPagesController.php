@@ -45,14 +45,14 @@ class LandingPagesController extends FrontController
         }
 
         // Home
-        $mainHomeFeatures = $item->mainHomeFeatures()->published()->limit(1)->get();
-        $secondaryHomeFeatures = $item->secondaryHomeFeatures()->published()->limit(2)->get();
+        $primaryFeatures = $item->primaryFeatures()->published()->limit(1)->get();
+        $secondaryFeatures = $item->secondaryFeatures()->published()->limit(2)->get();
 
-        $mainFeatures = $mainHomeFeatures->concat($secondaryHomeFeatures);
+        $mainFeatures = $primaryFeatures->concat($secondaryFeatures);
 
         // WEB-2254: Finish deprecating `homeFeatures` relationship
         if ($mainFeatures->count() < 1) {
-            $mainFeatures = $item->homeFeatures()->published()->limit(3)->get();
+            $mainFeatures = $item->features()->published()->limit(3)->get();
         }
 
         // Visit
@@ -149,6 +149,7 @@ class LandingPagesController extends FrontController
             'item' => $item,
             'contrastHeader' => $contrastHeader,
             'headerMedia' => $headerMedia,
+            'mainFeatures' => $mainFeatures,
             'filledLogo' => $filledLogo,
             'title' => $title,
             'landingPageType' => StringHelpers::pageBlades(array_search($item->type, array_flip($types)))
@@ -161,7 +162,6 @@ class LandingPagesController extends FrontController
                     'filledLogo' => true,
                     'primaryNavCurrent' => 'visit',
                     'hours' => $hours,
-                    'mainFeatures' => $mainFeatures,
                     'home_intro' => $item->home_intro,
                     'home_location_label' => $item->home_location_label,
                     'home_location_link' => $item->home_location_link,
