@@ -188,6 +188,7 @@ return [
         'image',
         'artwork',
         'split_block',
+        'feature_block',
         'feature_2x',
         'feature_4x',
         'grid',
