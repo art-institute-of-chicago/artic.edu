@@ -21,17 +21,21 @@ class LandingPageRepository extends ModuleRepository
 
     protected $browsers = [
         // Homepage landing
-        'homeEvents' => [
+        'events' => [
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'events',
         ],
-        'mainHomeFeatures' => [
-            'routePrefix' => 'homepage',
-            'moduleName' => 'homeFeatures',
+        'exhibitions' => [
+            'routePrefix' => 'exhibitions_events',
+            'moduleName' => 'exhibitions',
         ],
-        'secondaryHomeFeatures' => [
-            'routePrefix' => 'homepage',
-            'moduleName' => 'homeFeatures',
+        'primaryFeatures' => [
+            'routePrefix' => 'generic',
+            'moduleName' => 'pageFeatures',
+        ],
+        'secondaryFeatures' => [
+            'routePrefix' => 'generic',
+            'moduleName' => 'pageFeatures',
         ],
 
         // Visit
@@ -70,14 +74,14 @@ class LandingPageRepository extends ModuleRepository
 
     protected $apiBrowsers = [
         // Homepage landing
-        'homeExhibitions' => [
+        'exhibitions' => [
             'moduleName' => 'exhibitions',
             'routePrefix' => 'exhibitions_events'
         ],
-        'homeShopItems' => [
+        'shopItems' => [
             'moduleName' => 'shopItems',
         ],
-        'homeArtworks' => [
+        'artworks' => [
             'routePrefix' => 'collection',
             'moduleName' => 'artworks',
         ],
@@ -109,9 +113,10 @@ class LandingPageRepository extends ModuleRepository
     ];
 
     protected $repeaters = [
+        'social_links',
         // Homepage landing
         'artists' => [
-            'relation' => 'homeArtists',
+            'relation' => 'artists',
             'model' => 'HomeArtist'
         ],
 
@@ -135,12 +140,11 @@ class LandingPageRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeExhibitions', 'position', 'Exhibition');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeEvents', 'position', 'Event');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'mainHomeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'secondaryHomeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'exhibitions', 'position', 'Exhibition');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'events', 'position', 'Event');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'primaryFeatures', 'position', 'PageFeature');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'secondaryFeatures', 'position', 'PageFeature');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'shopItems', 'position', 'ShopItem');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
 
@@ -151,7 +155,7 @@ class LandingPageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsToMany($object, $fields, 'printedPublications', 'position', 'PrintedPublication');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'digitalPublications', 'position', 'DigitalPublication');
 
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeArtists', 'position', 'HomeArtist');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'artists', 'position', 'HomeArtist');
 
         return parent::hydrate($object, $fields);
     }
@@ -161,7 +165,8 @@ class LandingPageRepository extends ModuleRepository
         // Art & Ideas
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
-            'experiences' => false
+            'experiences' => false,
+            'exhibitions' => true,
         ]);
 
         parent::afterSave($object, $fields);
@@ -173,7 +178,8 @@ class LandingPageRepository extends ModuleRepository
         // Art & Ideas
         $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [
             'articles' => false,
-            'experiences' => false
+            'experiences' => false,
+            'exhibitions' => true,
         ]);
 
         return $fields;
