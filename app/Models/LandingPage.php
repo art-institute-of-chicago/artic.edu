@@ -294,9 +294,9 @@ class LandingPage extends AbstractModel implements Sortable
         });
     }
 
-    public function homeExhibitions()
+    public function exhibitions()
     {
-        return $this->apiElements()->where('relation', 'homeExhibitions');
+        return $this->apiElements()->where('relation', 'exhibitions');
     }
 
     public function exhibitionsExhibitions()
@@ -319,92 +319,94 @@ class LandingPage extends AbstractModel implements Sortable
         return $this->apiElements()->where('relation', 'exhibitionsUpcomingListing');
     }
 
-    public function homeEvents()
+    public function events()
     {
-        return $this->belongsToMany(\App\Models\Event::class, 'page_home_event', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\Event::class, 'landing_page_event')->withPivot('position')->orderBy('position');
     }
 
-    /**
-     * WEB-2254: Finish deprecating homeFeatures relationship
-     */
-    public function homeFeatures()
+    public function features()
     {
-        return $this->belongsToMany(\App\Models\HomeFeature::class, 'page_home_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('\App\Models\PageFeature', 'landing_page_page_feature')->withPivot('position')->orderBy('position');
     }
 
-    public function mainHomeFeatures()
+    public function primaryFeatures()
     {
-        return $this->belongsToMany(\App\Models\HomeFeature::class, 'page_home_main_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\PageFeature', 'landing_page_primary_page_feature')->withPivot('position')->orderBy('position');
     }
 
-    public function secondaryHomeFeatures()
+    public function secondaryFeatures()
     {
-        return $this->belongsToMany(\App\Models\HomeFeature::class, 'page_home_secondary_home_feature', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\PageFeature', 'landing_page_secondary_page_feature')->withPivot('position')->orderBy('position');
     }
 
-    public function homeShopItems()
+    public function shopItems()
     {
         return $this->apiElements()->where('relation', 'homeShopItems');
     }
 
-    public function homeArtworks()
+    public function artworks()
     {
         return $this->apiElements()->where('relation', 'homeArtworks');
     }
 
     public function admissions()
     {
-        return $this->hasMany(Admission::class, 'landing_page_id')->orderBy('position');
+        return $this->hasMany(Admission::class)->orderBy('position');
     }
 
-    public function homeArtists()
+    public function artists()
     {
-        return $this->hasMany(HomeArtist::class, 'landing_page_id')->orderBy('position');
+        return $this->hasMany(HomeArtist::class)->orderBy('position');
     }
 
     public function locations()
     {
-        return $this->hasMany(Location::class, 'landing_page_id')->orderBy('position');
+        return $this->hasMany(Location::class)->orderBy('position');
     }
 
     public function dining_hours() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
-        return $this->hasMany(DiningHour::class, 'landing_page_id')->orderBy('position');
+        return $this->hasMany(DiningHour::class)->orderBy('position');
     }
 
     public function faqs()
     {
-        return $this->hasMany(Faq::class, 'landing_page_id')->orderBy('position');
+        return $this->hasMany(Faq::class)->orderBy('position');
+    }
+
+    public function socialLinks()
+    {
+        return $this->hasMany(SocialLink::class)->orderBy('position');
     }
 
     public function families()
     {
-        return $this->hasMany(Family::class, 'landing_page_id')->orderBy('position');
+        return $this->hasMany(Family::class)->orderBy('position');
     }
 
     public function featured_hours() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
-        return $this->hasMany(FeaturedHour::class, 'landing_page_id')->orderBy('position');
+        return $this->hasMany(FeaturedHour::class)->orderBy('position');
     }
 
     public function whatToExpects()
     {
-        return $this->hasMany(WhatToExpect::class, 'landing_page_id')->orderBy('position');
+        return $this->hasMany(WhatToExpect::class)->orderBy('position');
     }
 
     public function menuItems()
     {
-        return $this->hasMany(MenuItem::class, 'landing_page_id')->orderBy('position');
+        return $this->hasMany(MenuItem::class)->orderBy('position');
     }
 
     public function articlesCategories()
     {
-        return $this->belongsToMany(\App\Models\Category::class, 'page_article_category' . 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\Category::class, 'landing_page_article_categories')->withPivot('position')->orderBy('position');
     }
 
     public function artArticles()
     {
-        return $this->belongsToMany(\App\Models\Article::class, 'page_art_article', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\Article::class, 'landing_page_art_articles')->withPivot('position')->orderBy('position');
     }
     public function artCategoryTerms()
     {
@@ -413,22 +415,22 @@ class LandingPage extends AbstractModel implements Sortable
 
     public function articles()
     {
-        return $this->belongsToMany(\App\Models\Article::class, 'article_page', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\Article::class, 'article_page')->withPivot('position')->orderBy('position');
     }
 
     public function digitalPublications()
     {
-        return $this->belongsToMany(\App\Models\DigitalPublication::class, 'digital_publication_page', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\DigitalPublication::class, 'digital_publication_page')->withPivot('position')->orderBy('position');
     }
 
     public function experiences()
     {
-        return $this->belongsToMany(\App\Models\Experience::class, 'experience_page', 'landing_page_id')->withPivot('position')->orderBy('experience_page.position');
+        return $this->belongsToMany(\App\Models\Experience::class, 'experience_page')->withPivot('position')->orderBy('experience_page.position');
     }
 
     public function printedPublications()
     {
-        return $this->belongsToMany(\App\Models\PrintedPublication::class, 'page_printed_publication', 'landing_page_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\PrintedPublication::class, 'landing_page_printed_publications')->withPivot('position')->orderBy('position');
     }
 
     public function visitTourPages()
@@ -438,22 +440,22 @@ class LandingPage extends AbstractModel implements Sortable
 
     public function researchResourcesFeaturePages()
     {
-        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_feature_page', 'landing_page_id')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
+        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_feature_page')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
     }
 
     public function researchResourcesStudyRooms()
     {
-        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_study_room_pages', 'landing_page_id')->withPivot('position')->orderBy('research_resource_study_room_pages.position', 'asc');
+        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_study_room_pages')->withPivot('position')->orderBy('research_resource_study_room_pages.position', 'asc');
     }
 
     public function researchResourcesStudyRoomMore()
     {
-        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_study_room_more_pages', 'landing_page_id')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
+        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_study_room_more_pages')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
     }
 
     public function genericPages()
     {
-        return $this->belongsToMany(\App\Models\GenericPage::class, 'landing_page_generic_pages', 'landing_page_id')->withPivot('position')->orderBy('landing_page_generic_pages.position', 'asc');
+        return $this->belongsToMany(\App\Models\GenericPage::class, 'landing_page_generic_pages')->withPivot('position')->orderBy('landing_page_generic_pages.position', 'asc');
     }
 
     public static function getIconTypes()
