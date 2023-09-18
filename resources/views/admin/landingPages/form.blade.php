@@ -20,6 +20,10 @@
             'value' => 'cta',
             'label' => 'Call to action'
         ],
+        [
+            'value' => 'feature',
+            'label' => 'Featured Content'
+        ],
     ]
 ])
 
@@ -79,8 +83,6 @@
     'fieldValues' => 'feature',
     'renderForBlocks' => false
 ])
-
-<a17-fieldset title="Home Features" id="home-features">
 
     @formField('browser', [
         'routePrefix' => 'homepage',
