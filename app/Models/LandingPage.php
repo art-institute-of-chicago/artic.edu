@@ -73,6 +73,11 @@ class LandingPage extends AbstractModel implements Sortable
         'home_video_title',
         'home_video_description',
 
+        'home_location_label',
+        'home_location_link',
+        'home_buy_tix_label',
+        'home_buy_tix_link',
+
         // Exhibition
         'exhibition_intro',
 
