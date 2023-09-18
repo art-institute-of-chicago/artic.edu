@@ -85,10 +85,10 @@
 ])
 
     @formField('browser', [
-        'routePrefix' => 'homepage',
+        'routePrefix' => 'generic',
         'max' => 3,
-        'moduleName' => 'homeFeatures',
-        'name' => 'mainHomeFeatures',
+        'moduleName' => 'pageFeatures',
+        'name' => 'primaryFeatures',
         'label' => 'Main feature',
         'note' => 'Queue up to 3 home features for the large hero area',
     ])
