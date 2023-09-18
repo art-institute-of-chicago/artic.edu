@@ -213,6 +213,10 @@ $nav = [
                 'title' => 'Generic Pages',
                 'module' => true,
             ],
+            'pageFeatures' => [
+                'title' => 'Page Features',
+                'module' => true,
+            ],
             'pressReleases' => [
                 'title' => 'Press Releases',
                 'module' => true,
