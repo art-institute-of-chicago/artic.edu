@@ -150,6 +150,7 @@ class LandingPagesController extends FrontController
             'contrastHeader' => $contrastHeader,
             'headerMedia' => $headerMedia,
             'mainFeatures' => $mainFeatures,
+            'socialLinks' => $item->socialLinks,
             'filledLogo' => $filledLogo,
             'title' => $title,
             'landingPageType' => StringHelpers::pageBlades(array_search($item->type, array_flip($types)))
