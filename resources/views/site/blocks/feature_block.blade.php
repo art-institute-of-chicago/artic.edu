@@ -7,7 +7,7 @@
     $ratio = $block->input('image_ratio');
 
     $feature_type = $block->input('feature_type');
-    $columns = 4;
+    $columns = $block->input('columns');
 
     if ($feature_type === 'custom') {
         $items = $block->getRelated('content_type');
