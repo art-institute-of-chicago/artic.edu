@@ -1,6 +1,5 @@
 const showAdmissionTooltip = function(container) {
 
-    let infoOpen = false;
     let tooltipSized = false;
 
     let targetAttribute = container.getAttribute('data-tooltip-target');
@@ -17,22 +16,20 @@ const showAdmissionTooltip = function(container) {
     }
 
     function hideTooltips() {
-        const tooltips = document.querySelectorAll('.admission-info-button-info.admission-info-visible');
-        if(infoOpen && !container.contains(document.activeElement)){
-            tooltips.forEach(element => {
-                infoOpen = false;
-                element.setAttribute('aria-expanded','false');
-                element.setAttribute('aria-hidden','true');
-                element.classList.remove('admission-info-visible')
-            })
-        }
+        const tooltips = document.querySelectorAll('.admission-info-button-info');
+        tooltips.forEach(element => {
+            element.setAttribute('style', 'display: none');
+            element.setAttribute('aria-expanded','false');
+            element.setAttribute('aria-hidden','true');
+            element.classList.remove('admission-info-visible')
+        })
     }
 
     function showTooltip(targetTooltip) {
         if (targetTooltip) {
-            infoOpen = true;
             targetTooltip.setAttribute('aria-expanded','true');
             targetTooltip.setAttribute('aria-hidden','false');
+            targetTooltip.setAttribute('style', 'display: block');
             targetTooltip.classList.add('admission-info-visible');
         }
     }
@@ -40,9 +37,9 @@ const showAdmissionTooltip = function(container) {
     function sizeToolTips() {
         if (!tooltipSized){
             tooltipSized = true;
-        
+
             const posTooltips = document.querySelectorAll('.admission-info-button-info');
-            
+
             posTooltips.forEach(element => {
             if (element.clientHeight !== undefined) {
                 const newTopValue = -1 * (element.clientHeight) + 'px';
@@ -53,6 +50,7 @@ const showAdmissionTooltip = function(container) {
       }
 
     function _init() {
+        hideTooltips();
         document.addEventListener('click', hideTooltips, false);
         window.addEventListener('resize', sizeToolTips, false);
     }
