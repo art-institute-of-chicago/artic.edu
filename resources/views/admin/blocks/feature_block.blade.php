@@ -27,16 +27,32 @@
     'default' => 'custom',
     'options' => [
         [
-            'label' => 'Custom',
-            'value' => 'custom',
+            'label' => 'Articles',
+            'value' => 'articles',
         ],
         [
-            'label' => 'Event',
-            'value' => 'event',
+            'label' => 'Digital Publications',
+            'value' => 'digital_publications',
         ],
         [
-            'label' => 'Exhibition',
-            'value' => 'exhibition',
+            'label' => 'Exhibitions',
+            'value' => 'exhibitions',
+        ],
+        [
+            'label' => 'Events',
+            'value' => 'events',
+        ],
+        [
+            'label' => 'Interactive Features',
+            'value' => 'experiences',
+        ],
+        [
+            'label' => 'Highlights',
+            'value' => 'highlights',
+        ],
+        [
+            'label' => 'Videos',
+            'value' => 'videos',
         ],
     ]
 ])
@@ -60,13 +76,14 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'feature_type',
-    'fieldValues' => 'custom',
+    'fieldValues' => 'articles',
     'renderForBlocks' => true
 ])
 
     @formField('select', [
         'name' => 'columns',
         'label' => '# of columns',
+        'note' => 'Number of columns selected and items loaded must match',
         'options' => [
             [
                 'label' => '2',
@@ -83,149 +100,69 @@
         ]
     ])
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'columns',
-        'fieldValues' => 2,
-        'renderForBlocks' => true
-    ])
-
     @formField('browser', [
-        'name' => 'content_type',
+        'name' => 'articles',
         'endpoints' => [
                 [
                     'label' => 'Article',
                     'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
-                ],
-                [
-                    'label' => 'Highlight',
-                    'value' => moduleRoute('highlights', 'collection', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Event',
-                    'value' => moduleRoute('events', 'exhibitions_events', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Exhibition',
-                    'value' => moduleRoute('exhibitions', 'exhibitions_events', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Interactive Feature',
-                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Digital Publication',
-                    'value' => moduleRoute('digitalPublications', 'collection.articles_publications', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Video',
-                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser', [], false),
-                ],
-            ],
-        'max' => 2,
-        'label' => 'Featured items',
-    ])
-
-    @endcomponent
-
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'columns',
-        'fieldValues' => 3,
-        'renderForBlocks' => true
-    ])
-
-    @formField('browser', [
-        'name' => 'content_type',
-        'endpoints' => [
-                [
-                    'label' => 'Article',
-                    'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
-                ],
-                [
-                    'label' => 'Highlight',
-                    'value' => moduleRoute('highlights', 'collection', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Event',
-                    'value' => moduleRoute('events', 'exhibitions_events', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Exhibition',
-                    'value' => moduleRoute('exhibitions', 'exhibitions_events', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Interactive Feature',
-                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Digital Publication',
-                    'value' => moduleRoute('digitalPublications', 'collection.articles_publications', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Video',
-                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser', [], false),
-                ],
-            ],
-        'max' => 3,
-        'label' => 'Featured items',
-    ])
-
-    @endcomponent
-
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'columns',
-        'fieldValues' => 4,
-        'renderForBlocks' => true
-    ])
-
-    @formField('browser', [
-        'name' => 'content_type',
-        'endpoints' => [
-                [
-                    'label' => 'Article',
-                    'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
-                ],
-                [
-                    'label' => 'Highlight',
-                    'value' => moduleRoute('highlights', 'collection', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Event',
-                    'value' => moduleRoute('events', 'exhibitions_events', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Exhibition',
-                    'value' => moduleRoute('exhibitions', 'exhibitions_events', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Interactive Feature',
-                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Digital Publication',
-                    'value' => moduleRoute('digitalPublications', 'collection.articles_publications', 'browser', [], false),
-                ],
-                [
-                    'label' => 'Video',
-                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser',[], false),
                 ],
             ],
         'max' => 4,
-        'label' => 'Featured items',
+        'label' => 'Articles',
     ])
-
-    @endcomponent
 
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'feature_type',
-    'fieldValues' => 'event',
+    'fieldValues' => 'digital_publications',
+    'renderForBlocks' => true
+])
+
+    @formField('select', [
+        'name' => 'columns',
+        'label' => '# of columns',
+        'note' => 'Number of columns selected and items loaded must match',
+        'options' => [
+            [
+                'label' => '2',
+                'value' => 2,
+            ],
+            [
+                'label' => '3',
+                'value' => 3,
+            ],
+            [
+                'label' => '4',
+                'value' => 4,
+            ],
+        ]
+    ])
+
+    @formField('browser', [
+        'name' => 'digitalPublications',
+        'endpoints' => [
+                [
+                    'label' => 'Digital Publications',
+                    'value' => moduleRoute('digitalPublications', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
+                ],
+            ],
+        'max' => 4,
+        'label' => 'Digital Publications',
+    ])
+
+@endcomponent
+
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'feature_type',
+    'fieldValues' => 'events',
     'renderForBlocks' => true,
 ])
 
     @formField('checkbox', [
         'name' => 'override_event',
-        'label' => 'Override Events',
+        'label' => 'Customize Events',
         'inline' => true,
     ])
 
@@ -234,6 +171,8 @@
         'fieldValues' => true,
         'renderForBlocks' => true,
     ])
+        <br/>
+        <i>Note: If event date has passed it will not be shown</i>
 
         @formField('browser', [
             'name' => 'events',
@@ -253,13 +192,33 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'feature_type',
-    'fieldValues' => 'exhibition',
+    'fieldValues' => 'exhibitions',
     'renderForBlocks' => true,
 ])
 
+    @formField('select', [
+        'name' => 'columns',
+        'label' => '# of columns',
+        'note' => 'Number of columns selected and items loaded must match',
+        'options' => [
+            [
+                'label' => '2',
+                'value' => 2,
+            ],
+            [
+                'label' => '3',
+                'value' => 3,
+            ],
+            [
+                'label' => '4',
+                'value' => 4,
+            ],
+        ]
+    ])
+
     @formField('checkbox', [
         'name' => 'override_exhibition',
-        'label' => 'Override Exhibitions',
+        'label' => 'Customize Exhibitions',
         'inline' => true,
     ])
 
@@ -278,5 +237,85 @@
         ])
 
     @endcomponent
+
+@endcomponent
+
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'feature_type',
+    'fieldValues' => 'experiences',
+    'renderForBlocks' => true
+])
+
+    @formField('select', [
+        'name' => 'columns',
+        'label' => '# of columns',
+        'note' => 'Number of columns selected and items loaded must match',
+        'options' => [
+            [
+                'label' => '2',
+                'value' => 2,
+            ],
+            [
+                'label' => '3',
+                'value' => 3,
+            ],
+            [
+                'label' => '4',
+                'value' => 4,
+            ],
+        ]
+    ])
+
+    @formField('browser', [
+        'name' => 'experiences',
+        'endpoints' => [
+                [
+                    'label' => 'Experiences',
+                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser', ['is_unlisted' => false]),
+                ],
+        ],
+        'max' => 4,
+        'label' => 'Experiences',
+    ])
+
+@endcomponent
+
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'feature_type',
+    'fieldValues' => 'videos',
+    'renderForBlocks' => true
+])
+
+    @formField('select', [
+        'name' => 'columns',
+        'label' => '# of columns',
+        'note' => 'Number of columns selected and items loaded must match',
+        'options' => [
+            [
+                'label' => '2',
+                'value' => 2,
+            ],
+            [
+                'label' => '3',
+                'value' => 3,
+            ],
+            [
+                'label' => '4',
+                'value' => 4,
+            ],
+        ]
+    ])
+
+    @formField('browser', [
+        'name' => 'videos',
+        'endpoints' => [
+                [
+                    'label' => 'Videos',
+                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
+                ],
+        ],
+        'max' => 4,
+        'label' => 'Videos',
+    ])
 
 @endcomponent
