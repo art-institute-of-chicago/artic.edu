@@ -1,6 +1,5 @@
 const showAdmissionTooltip = function(container) {
 
-    let infoOpen = false;
     let tooltipSized = false;
 
     let targetAttribute = container.getAttribute('data-tooltip-target');
@@ -19,7 +18,6 @@ const showAdmissionTooltip = function(container) {
     function hideTooltips() {
         const tooltips = document.querySelectorAll('.admission-info-button-info');
         tooltips.forEach(element => {
-            infoOpen = false;
             element.setAttribute('style', 'display: none');
             element.setAttribute('aria-expanded','false');
             element.setAttribute('aria-hidden','true');
@@ -29,7 +27,6 @@ const showAdmissionTooltip = function(container) {
 
     function showTooltip(targetTooltip) {
         if (targetTooltip) {
-            infoOpen = true;
             targetTooltip.setAttribute('aria-expanded','true');
             targetTooltip.setAttribute('aria-hidden','false');
             targetTooltip.setAttribute('style', 'display: block');
