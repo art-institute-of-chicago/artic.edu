@@ -9,36 +9,56 @@
     $feature_type = $block->input('feature_type');
     $columns = $block->input('columns');
 
-    if ($feature_type === 'custom') {
-        $items = $block->getRelated('content_type');
-        $columns = $block->input('columns');
-    } elseif ($feature_type === 'event') {
-        if ($block->input('override_event')) {
-            $model = new \App\Models\Event();
-            $items = $block->getRelated('events');
+    switch ($feature_type) {
 
-            foreach ($items as $key => $event) {
-                $eventWithMetas = $event->is_future;
+        case 'articles':
+            $items = $block->getRelated('articles');
+            break;
 
-                if (!$eventWithMetas) {
-                    dump("unset");
-                    unset($items[$key]);
+        case 'digital_publications':
+            $items = $block->getRelated('digitalPublications');
+            break;
+
+        case 'events':
+            if ($block->input('override_event')) {
+                $columns = 4; // event columns are hard set
+                $model = new \App\Models\Event();
+                $items = $block->getRelated('events');
+
+                foreach ($items as $key => $event) {
+                    $eventWithMetas = $event->is_future;
+
+                    if (!$eventWithMetas) {
+                        unset($items[$key]);
+                    }
                 }
+
+            } else {
+                $items = \App\Models\Event::first()->published()->limit(4)->get();
             }
+            break;
 
-        } else {
-            $items = \App\Models\Event::first()->published()->limit(4)->get();
-        }
+        case 'exhibitions':
+            if ($block->input('override_exhibition')) {
+                $exhibitions = $block->browserIds('exhibitions');
+                $items = \App\Models\Exhibition::whereIn('datahub_id', $exhibitions)->orderBy('public_start_date', 'ASC')->get();
 
-    } elseif ($feature_type === 'exhibition') {
-        if ($block->input('override_exhibition')) {
-            $items = $block->relatedItems();
-            dump($items);
-        } else {
-            $items = \App\Models\Exhibition::first()->published()->limit(4)->get();
-            // exhibition date handling logic
-            // order $items from model by date
-        }
+                dump($items);
+                foreach ($items as $key => $item) {
+                    dump($item);
+                }
+            } else {
+                $items = \App\Models\Exhibition::first()->published()->limit(4)->get();
+            }
+            break;
+
+        case 'experiences':
+            $items = $block->getRelated('experiences');
+            break;
+
+        case 'videos':
+            $items = $block->getRelated('videos');
+            break;
     }
 
 @endphp
