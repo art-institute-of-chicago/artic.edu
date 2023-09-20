@@ -321,12 +321,12 @@ class LandingPage extends AbstractModel implements Sortable
 
     public function shopItems()
     {
-        return $this->apiElements()->where('relation', 'homeShopItems');
+        return $this->apiElements()->where('relation', 'landingShopItems');
     }
 
     public function artworks()
     {
-        return $this->apiElements()->where('relation', 'homeArtworks');
+        return $this->apiElements()->where('relation', 'landingArtworks');
     }
 
     public function admissions()
