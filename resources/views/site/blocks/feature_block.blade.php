@@ -64,21 +64,20 @@
 @endphp
 
     
-
-<div class="m-feature-block-heading">
-    @if ($heading)
-        <h2 id="{{ StringHelpers::getUtf8Slug($heading) }}" class="title f-module-title-2">{{ $heading }}</h2>
-    @endif
-    @if ($browseLink && $browseLabel)
-    <a href="{{ $browseLink }}">
-        <h3 class="f-link">{{ $browseLabel }}
-            <svg class='icon--arrow'><use xlink:href='#icon--arrow'></use></svg>
-        </h3>
-    </a>
-    @endif
-</div>
-<hr/>
-@if (isset($items))
+@if (count($items) > 0)
+    <div class="m-feature-block-heading">
+        @if ($heading)
+            <h2 id="{{ StringHelpers::getUtf8Slug($heading) }}" class="title f-module-title-2">{{ $heading }}</h2>
+        @endif
+        @if ($browseLink && $browseLabel)
+        <a href="{{ $browseLink }}">
+            <h3 class="f-link">{{ $browseLabel }}
+                <svg class='icon--arrow'><use xlink:href='#icon--arrow'></use></svg>
+            </h3>
+        </a>
+        @endif
+    </div>
+    <hr/>
     <div class="m-feature-block columns-{{ $columns }}x">
         <ul class="m-feature-block-row column-{{ $columns }}x">
             @foreach($items as $index => $item)
