@@ -57,11 +57,26 @@
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
-            'paragraph', 'image', 'video', 'media_embed',
-            'artwork', 'hr', 'audio_player', 'tour_stop', 'button', '3d_model',
-            'gallery_new', 'vtour_embed',
-            'event', 'feature_2x', 'feature_4x', 'list', 'split_block',
-            'grid', 'quote', 'layered_image_viewer'
+            '3d_model',
+            'artwork',
+            'audio_player',
+            'button',
+            'event',
+            'feature_2x',
+            'feature_4x',
+            'gallery_new',
+            'grid',
+            'hr',
+            'image',
+            'layered_image_viewer',
+            'list',
+            'media_embed',
+            'paragraph',
+            'quote',
+            'split_block',
+            'tour_stop',
+            'video',
+            'vtour_embed'
         ])
     ])
 @stop
