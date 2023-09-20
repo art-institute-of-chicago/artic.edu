@@ -115,7 +115,15 @@
                             @if ($item->publish_start_date)
                                 <span class="date f-secondary">{{ $item->present()->date_display_override }}</span>
                             @endif
-                            <span class="m-feature-block-listing__meta-bottom"></span>
+                            <span class="m-feature-block-listing__meta-bottom">
+                                @component('components.atoms._date')
+                                @if ($item->present()->formattedNextOccurrence) 
+                                    {!! $item->present()->formattedNextOccurrence !!}
+                                @else
+                                    {!! $item->present()->nextOccurrenceTime !!}
+                                @endif
+                            @endcomponent
+                            </span>
                         </span>
                     </a>
                 </li>
