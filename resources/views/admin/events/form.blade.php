@@ -274,11 +274,24 @@
 
         @formField('block_editor', [
             'blocks' => BlockHelpers::getBlocksForEditor([
-                'paragraph', 'image', 'video', 'media_embed', 'quote',
-                'list', 'newsletter_signup_inline', 'timeline', 'link',
-                'artwork', 'hr', 'split_block', 'audio_player', 'tour_stop', 'button',
-                'mobile_app', '3d_model',
+                '3d_model',
+                'artwork',
+                'audio_player',
+                'button',
                 'gallery_new',
+                'hr',
+                'image',
+                'link',
+                'list',
+                'media_embed',
+                'mobile_app',
+                'newsletter_signup_inline',
+                'paragraph',
+                'quote',
+                'split_block',
+                'tour_stop',
+                'timeline',
+                'video'
             ])
         ])
     </a17-fieldset>
