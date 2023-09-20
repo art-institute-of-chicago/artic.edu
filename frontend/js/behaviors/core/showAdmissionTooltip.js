@@ -40,9 +40,9 @@ const showAdmissionTooltip = function(container) {
     function sizeToolTips() {
         if (!tooltipSized){
             tooltipSized = true;
-        
+
             const posTooltips = document.querySelectorAll('.admission-info-button-info');
-            
+
             posTooltips.forEach(element => {
             if (element.clientHeight !== undefined) {
                 const newTopValue = -1 * (element.clientHeight) + 'px';
