@@ -76,6 +76,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--face-coverings">
     <use xlink:href="#icon--face-coverings"></use>
   </svg>
+  <svg class="icon--facebook">
+    <use xlink:href="#icon--facebook"></use>
+  </svg>
   <svg class="icon--filter--24">
     <use xlink:href="#icon--filter--24"></use>
   </svg>
@@ -96,6 +99,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   </svg>
   <svg class="icon--info-i">
     <use xlink:href="#icon--info-i"></use>
+  </svg>
+  <svg class="icon--instagram">
+    <use xlink:href="#icon--instagram"></use>
   </svg>
   <svg class="icon--journal-logo">
     <use xlink:href="#icon--journal-logo"></use>
@@ -217,8 +223,20 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--slideshow--24">
     <use xlink:href="#icon--slideshow--24"></use>
   </svg>
+  <svg class="icon--threads">
+    <use xlink:href="#icon--threads"></use>
+  </svg>
+  <svg class="icon--ticket">
+    <use xlink:href="#icon--ticket"></use>
+  </svg>
+  <svg class="icon--tiktok">
+    <use xlink:href="#icon--tiktok"></use>
+  </svg>
   <svg class="icon--tour3d">
     <use xlink:href="#icon--tour3d"></use>
+  </svg>
+  <svg class="icon--twitter">
+    <use xlink:href="#icon--twitter"></use>
   </svg>
   <svg class="icon--video">
     <use xlink:href="#icon--video"></use>
@@ -237,6 +255,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   </svg>
   <svg class="icon--visit-capacity-2">
     <use xlink:href="#icon--visit-capacity-2"></use>
+  </svg>
+  <svg class="icon--youtube">
+    <use xlink:href="#icon--youtube"></use>
   </svg>
   <svg class="icon--zoom--24">
     <use xlink:href="#icon--zoom--24"></use>
@@ -385,6 +406,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
   height: 200px;
 }
 
+.icon--facebook {
+  width: 23.25px;
+  height: 23.11px;
+}
+
 .icon--filter--24 {
   width: 24px;
   height: 24px;
@@ -418,6 +444,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--info-i {
   width: 16px;
   height: 16px;
+}
+
+.icon--instagram {
+  width: 21px;
+  height: 21px;
 }
 
 .icon--journal-logo {
@@ -620,9 +651,29 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
   height: 24px;
 }
 
+.icon--threads {
+  width: 165.18px;
+  height: 192px;
+}
+
+.icon--ticket {
+  width: 20px;
+  height: 20px;
+}
+
+.icon--tiktok {
+  width: 650.06px;
+  height: 750.04px;
+}
+
 .icon--tour3d {
   width: 24px;
   height: 24px;
+}
+
+.icon--twitter {
+  width: 23.95px;
+  height: 19.45px;
 }
 
 .icon--video {
@@ -653,6 +704,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--visit-capacity-2 {
   width: 385px;
   height: 260px;
+}
+
+.icon--youtube {
+  width: 25.64px;
+  height: 18px;
 }
 
 .icon--zoom--24 {
