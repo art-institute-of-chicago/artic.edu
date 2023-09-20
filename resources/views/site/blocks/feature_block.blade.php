@@ -6,7 +6,6 @@
     $browseLink = $block->input('browse_link');
     $ratio = $block->input('image_ratio');
 
-    // Set feature type from options of 'custom', 'event', 'exhibition'
     $feature_type = $block->input('feature_type');
     $columns = 4;
 
