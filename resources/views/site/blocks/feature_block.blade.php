@@ -106,6 +106,9 @@
                             @if ( $item->type )
                                 <em class="type f-tag">{{ $item->type }}</em>
                             @endif
+                            @if ($item->present()->exhibitionType)
+                                <em class="type f-tag">{{ $item->present()->exhibitionType}}</em>
+                            @endif
                             @if ($item->title)
                                 <strong class="title f-list-3">{{ $item->title }}</strong>
                             @endif
