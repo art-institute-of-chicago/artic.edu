@@ -100,7 +100,7 @@
                                     ))))
                             @endcomponent
                         @else
-                            <span class="default-img m-feature-block-listing__img {{$ratio ?? ''}}"></span>
+                        <span class='default-img m-feature-block-listing__img {{$ratio}} column-{{$columns}}x'></span>
                         @endif
                         <span class="m-feature-block-listing__meta">
                             @if ( $item->type )
