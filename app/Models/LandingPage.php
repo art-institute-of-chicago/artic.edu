@@ -299,26 +299,6 @@ class LandingPage extends AbstractModel implements Sortable
         return $this->apiElements()->where('relation', 'exhibitions');
     }
 
-    public function exhibitionsExhibitions()
-    {
-        return $this->apiElements()->where('relation', 'exhibitionsExhibitions');
-    }
-
-    public function exhibitionsCurrent()
-    {
-        return $this->apiElements()->where('relation', 'exhibitionsCurrent');
-    }
-
-    public function exhibitionsUpcoming()
-    {
-        return $this->apiElements()->where('relation', 'exhibitionsUpcoming');
-    }
-
-    public function exhibitionsUpcomingListing()
-    {
-        return $this->apiElements()->where('relation', 'exhibitionsUpcomingListing');
-    }
-
     public function events()
     {
         return $this->belongsToMany(\App\Models\Event::class, 'landing_page_event')->withPivot('position')->orderBy('position');
