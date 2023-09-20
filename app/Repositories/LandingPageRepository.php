@@ -89,25 +89,6 @@ class LandingPageRepository extends ModuleRepository
             'routePrefix' => 'collection',
             'moduleName' => 'artworks',
         ],
-
-        // Exhibition and events landing
-        'exhibitionsExhibitions' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
-        'exhibitionsCurrent' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
-        'exhibitionsUpcoming' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
-        'exhibitionsUpcomingListing' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
-
         // Collection landing
         'artCategoryTerms' => [
             'moduleName' => 'categoryTerms',
@@ -170,7 +151,6 @@ class LandingPageRepository extends ModuleRepository
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
             'experiences' => false,
-            'exhibitions' => true,
         ]);
 
         parent::afterSave($object, $fields);
@@ -183,7 +163,6 @@ class LandingPageRepository extends ModuleRepository
         $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [
             'articles' => false,
             'experiences' => false,
-            'exhibitions' => true,
         ]);
 
         return $fields;
