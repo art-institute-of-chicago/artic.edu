@@ -33,6 +33,7 @@ Route::group(['prefix' => 'visit'], function () {
     Route::name('visit.fees')->get('fees', [FeeController::class, 'index']);
     Route::name('visit.fees.update')->post('fees', [FeeController::class, 'update']);
     Route::module('virtualTours');
+    Route::module('customToursLandingPageItems');
 });
 
 Route::group(['prefix' => 'exhibitions_events'], function () {
