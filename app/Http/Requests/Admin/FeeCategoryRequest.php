@@ -10,7 +10,6 @@ class FeeCategoryRequest extends Request
     {
         return [
             'title' => 'required',
-            'tooltip' => 'required'
         ];
     }
 
@@ -18,7 +17,6 @@ class FeeCategoryRequest extends Request
     {
         return [
             'title' => 'required',
-            'tooltip' => 'required',
         ];
     }
 }

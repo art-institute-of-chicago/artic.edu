@@ -139,16 +139,18 @@
                                 @endif
                                     <td>
                                         <span class="f-module-title-1">{{$category['title']}}</span>
-                                        <span class="admission-info-button-container" data-behavior="showAdmissionTooltip">
-                                            <button data-tooltip-target='t-{!! $category['id'] !!}' class="admission-info-button-trigger" data-behavior="showAdmissionTooltip" aria-label="Info" aria-expanded="false">
-                                                <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
-                                            </button>
-                                            <span class="admission-info-button-info" id='t-{!! $category['id'] !!}' data-behavior="showAdmissionTooltip">
-                                                <span class="f-caption">
-                                                    {{ $category['tooltip'] }}
-                                                </span>
+                                        @if ($category['tooltip'])
+                                            <span class="admission-info-button-container">
+                                                <button data-tooltip-target='t-{!! $category['id'] !!}' class="admission-info-button-trigger" data-behavior="showAdmissionTooltip" aria-label="Info" aria-expanded="false">
+                                                    <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
+                                                </button>
+                                                <div class="admission-info-button-info" id='t-{!! $category['id'] !!}'>
+                                                    <div class="f-caption">
+                                                        {{ $category['tooltip'] }}
+                                                    </div>
+                                                </div>
                                             </span>
-                                        </span>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
