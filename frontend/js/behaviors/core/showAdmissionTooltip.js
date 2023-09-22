@@ -60,7 +60,7 @@ const showAdmissionTooltip = function(container) {
         sizeToolTips();
         container.addEventListener('click', _handleClicks, false);
         document.addEventListener('click', _clicksOutside, false);
-        window.addEventListener('resize', sizeToolTips), false;
+        window.addEventListener('resize', sizeToolTips, false);
         window.addEventListener('keyup', _escape, false);
     }
 
