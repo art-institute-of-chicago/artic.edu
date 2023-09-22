@@ -49,7 +49,7 @@ const showAdmissionTooltip = function(container) {
     }
 
     function _escape(event) {
-      var isInput = (event.target.tagName === 'INPUT');
+      let isInput = (event.target.tagName === 'INPUT');
       if (event.keyCode === 27 && !isInput) {
         hideTooltips();
       }
