@@ -46,7 +46,6 @@
 
   .admission-info-button-info {
       left: 20px;
-      opacity: 0;
       z-index: 10;
       position: absolute;
       width: 200px;
@@ -55,6 +54,7 @@
       box-shadow: $shadow;
       white-space: initial;
       transition: opacity .25s;
+      display: none;
 
       @include breakpoint('small+') {
         width: 250px;
@@ -63,10 +63,6 @@
 
   .admission-info-button-info .f-caption {
     @include tucked-align-top($f-caption);
-  }
-
-  .admission-info-visible {
-    opacity: 1 !important;
   }
 
   .m-title-bar {
