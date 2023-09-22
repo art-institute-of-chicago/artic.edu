@@ -131,12 +131,10 @@
                         {{-- get first index and add selected class to it --}}
                         @if (!empty($admission))
                             @foreach ($admission['titles'] as $category)
-                                @if ($loop->first)
-                                    <tr id='b-{!! $category['id'] !!}' data-target='{!! array_search($category, $admission['titles']) !!}' class="selected" data-behavior="toggleFee">
-                                @else
+                                @if (!$loop->first)
                                     </tr>
-                                    <tr id='b-{!! $category['id'] !!}' data-target='{!! array_search($category, $admission['titles']) !!}' data-behavior="toggleFee">
                                 @endif
+                                <tr id='b-{!! $category['id'] !!}' data-target='{!! array_search($category, $admission['titles']) !!}' {{ $loop->first ? 'class="selected"' : '' }} data-behavior="toggleFee">
                                     <td>
                                         <span class="f-module-title-1">{{$category['title']}}</span>
                                         @if ($category['tooltip'])
