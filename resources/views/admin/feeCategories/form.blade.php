@@ -9,8 +9,7 @@
 
     @formField('input', [
         'name' => 'tooltip',
-        'label' => 'Tooltip',
-        'required' => true
+        'label' => 'Tooltip'
     ])
 
     @formField('wysiwyg', [
