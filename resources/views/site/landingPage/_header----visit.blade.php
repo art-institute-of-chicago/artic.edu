@@ -125,24 +125,24 @@
                         {{-- get first index and add selected class to it --}}
                         @if (!empty($admission))
                             @foreach ($admission['titles'] as $category)
-                                @if ($loop->first)
-                                    <tr id='b-{!! $category['id'] !!}' data-target='{!! array_search($category, $admission['titles']) !!}' class="selected" data-behavior="toggleFee">
-                                @else
+                                @if (!$loop->first)
                                     </tr>
-                                    <tr id='b-{!! $category['id'] !!}' data-target='{!! array_search($category, $admission['titles']) !!}' data-behavior="toggleFee">
                                 @endif
+                                <tr id='b-{!! $category['id'] !!}' data-target='{!! array_search($category, $admission['titles']) !!}' {{ $loop->first ? 'class="selected"' : '' }} data-behavior="toggleFee">
                                     <td>
                                         <span class="f-module-title-1">{{$category['title']}}</span>
-                                        <span class="admission-info-button-container" data-behavior="showAdmissionTooltip">
-                                            <button data-tooltip-target='t-{!! $category['id'] !!}' class="admission-info-button-trigger" data-behavior="showAdmissionTooltip" aria-label="Info" aria-expanded="false">
-                                                <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
-                                            </button>
-                                            <span class="admission-info-button-info" id='t-{!! $category['id'] !!}' data-behavior="showAdmissionTooltip">
-                                                <span class="f-caption">
-                                                    {{ $category['tooltip'] }}
-                                                </span>
+                                        @if ($category['tooltip'])
+                                            <span class="admission-info-button-container">
+                                                <button data-tooltip-target='t-{!! $category['id'] !!}' class="admission-info-button-trigger" data-behavior="showAdmissionTooltip" aria-label="Info" aria-expanded="false">
+                                                    <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
+                                                </button>
+                                                <div class="admission-info-button-info" id='t-{!! $category['id'] !!}'>
+                                                    <div class="f-caption">
+                                                        {{ $category['tooltip'] }}
+                                                    </div>
+                                                </div>
                                             </span>
-                                        </span>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
