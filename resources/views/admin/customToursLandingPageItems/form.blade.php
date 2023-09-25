@@ -2,8 +2,8 @@
 
 @section('contentFields')
     @formField('input', [
-        'name' => 'description',
-        'label' => 'Description',
-        'maxlength' => 100
+        'name' => 'tour_id',
+        'label' => 'Tour ID',
+        'maxlength' => 25
     ])
 @stop
