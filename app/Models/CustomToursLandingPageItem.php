@@ -9,20 +9,20 @@ use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Model;
 
-class CustomToursLandingPageItem extends Model 
+class CustomToursLandingPageItem extends Model
 {
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions;
 
     protected $fillable = [
         'published',
         'title',
-        'description',
+        'tour_id',
     ];
-    
+
     public $slugAttributes = [
         'title',
     ];
-    
+
     public $mediasParams = [
         'cover' => [
             'default' => [
