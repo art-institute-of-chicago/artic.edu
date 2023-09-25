@@ -16,6 +16,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/.ddev
 
 .studio
 .sass-cache
