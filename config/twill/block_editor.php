@@ -181,7 +181,7 @@ return [
         'articles' => 'collection.articles_publications',
         'experiences' => 'collection.interactive_features',
         'landingPages' => 'generic.landingPages',
-        'genericPages' => 'generic.genericPages',
+        'genericPages' => 'generic.genericPages'
     ],
     'block-order' => [
         'paragraph',
@@ -234,6 +234,7 @@ return [
         'layered_image_viewer',
         'showcase',
         'custom_banner',
-        'featured_pages_grid'
+        'featured_pages_grid',
+        'tours_grid'
     ]
 ];
