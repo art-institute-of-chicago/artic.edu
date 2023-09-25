@@ -180,8 +180,8 @@ return [
         'highlights' => 'collection',
         'articles' => 'collection.articles_publications',
         'experiences' => 'collection.interactive_features',
-        'landingPages' => 'generic',
-        'genericPages' => 'generic',
+        'landingPages' => 'generic.landingPages',
+        'genericPages' => 'generic.genericPages',
         'videos' => 'collection.articles_publications',
     ],
     'block-order' => [
@@ -234,9 +234,20 @@ return [
         'table',
         'threesixty_embed',
         'threesixty_modal',
+        '360_embed',
+        '360_modal',
+        'artists',
+        'image_slider',
+        'mirador_embed',
+        'mirador_modal',
+        'vtour_embed',
+        'layered_image_viewer',
+        'showcase',
+        'custom_banner',
+        'featured_pages_grid',
         'timeline',
         'tour_stop',
+        'tours_grid',
         'video',
-        'vtour_embed'
     ]
 ];
