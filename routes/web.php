@@ -7,6 +7,7 @@ use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ArtworkController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\CustomTourController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DigitalPublicationsController;
 use App\Http\Controllers\DigitalPublicationSectionController;
@@ -217,6 +218,9 @@ Route::get('e-news', function () {
 Route::get('/interactive-features', [InteractiveFeatureExperiencesController::class, 'index'])->name('interactiveFeatures');
 Route::get('/interactive-features/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show');
 Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show-kiosk');
+
+// Test route
+Route::get('/example', [CustomTourController::class, 'index']);
 
 // Feed routes
 Route::feeds();
