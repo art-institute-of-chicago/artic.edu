@@ -7,29 +7,27 @@ use Illuminate\Http\Request;
 
 class CustomTourController extends Controller
 {
-    //
-
-    public function storeDummyTours()
+    public function store(Request $request)
     {
-        // Create a new record
-        $model = new CustomTour;
-        $model->id = '1234';
-        $model->tour_json = [
+        $data = $request->validate([
+            'tour_json.title' => 'required|string',
+            'tour_json.description' => 'required|string',
+            'tour_json.artworks' => 'required|array'
+        ]);
+
+        //handle validation / sanitization / errors
+
+        $tour = new CustomTour;
+        $tour->id =  $request->input('id');;
+        $tour->tour_json = [
             'title' => 'Custom Tour (Source)',
             'description' => 'Custom tour description',
-            'artwork' => 'artwork_url',
+            'artworks' => ['artwork_url_1', 'artwork_url_2'],
         ];
-        $model->save();
+        $tour->save();
 
-        // Create a new record
-        $model = new CustomTour;
-        $model->id = '1235';
-        $model->tour_json = [
-            'title' => 'Another Custom Tour (Source)',
-            'description' => 'Another custom tour description',
-            'artwork' => 'artwork_url',
-        ];
-        $model->save();
+//        return response()->json(['message' => 'Tour created successfully!', 'tour' => $tour], 201);
+        return redirect('/example')->with('success', 'Item created successfully');
     }
 
     public function show()

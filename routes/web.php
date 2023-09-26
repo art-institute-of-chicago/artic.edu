@@ -221,6 +221,7 @@ Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesC
 
 // Test route
 Route::get('/example', [CustomTourController::class, 'show']);
+Route::post('/example', [CustomTourController::class, 'store']);
 
 // Feed routes
 Route::feeds();
