@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = 'ddev';
+    protected $connection = 'tours_db';
 
     public function up(): void
     {
