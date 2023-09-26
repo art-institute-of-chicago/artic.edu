@@ -11,7 +11,11 @@ use A17\Twill\Models\Model;
 
 class CustomToursLandingPageItem extends Model
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions;
+    use HasBlocks;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
 
     protected $fillable = [
         'published',
