@@ -101,7 +101,7 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-        'ddev' => [
+        'tours_db' => [
             'driver' => 'pgsql',
             'host' => env('TOURS_DB_HOST', '127.0.0.1'),
             'port' => env('TOURS_DB_PORT', '3306'),
