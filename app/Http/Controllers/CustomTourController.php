@@ -32,9 +32,9 @@ class CustomTourController extends Controller
         $model->save();
     }
 
-    public function index()
+    public function show()
     {
         $models = CustomTour::all();
-        return view('example', ['models' => $models]);
+        return view('site.example', ['models' => $models]);
     }
 }
