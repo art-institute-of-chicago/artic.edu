@@ -6,5 +6,5 @@
 'moduleName' => 'customToursLandingPageItems',
 'name' => 'customToursLandingPageItems',
 'label' => 'Tours',
-'max' => 4,
+'max' => 6,
 ])
