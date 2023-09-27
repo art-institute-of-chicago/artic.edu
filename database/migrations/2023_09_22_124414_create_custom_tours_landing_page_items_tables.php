@@ -31,4 +31,4 @@ return new class () extends Migration
         Schema::dropIfExists('custom_tours_landing_page_item_slugs');
         Schema::dropIfExists('custom_tours_landing_page_items');
     }
-}
+};
