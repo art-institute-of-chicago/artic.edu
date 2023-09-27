@@ -12,7 +12,7 @@ class CreateCustomToursLandingPageItemsTables extends Migration
             createDefaultTableFields($table);
 
             $table->string('title', 200)->nullable();
-            
+
             $table->text('tour_id')->nullable();
         });
 
