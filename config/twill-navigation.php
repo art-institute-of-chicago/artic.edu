@@ -59,7 +59,7 @@ $nav = [
                 'module' => true,
             ],
             'customToursLandingPageItems' => [
-                'title' => 'Custom Tours (Landing Page Items)',
+                'title' => 'Custom Tours',
                 'module' => true,
             ],
         ]
