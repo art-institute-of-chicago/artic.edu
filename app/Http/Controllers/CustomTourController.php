@@ -10,7 +10,7 @@ class CustomTourController extends Controller
     public function store(Request $request)
     {
         $tour = new CustomTour();
-        $tour->id =  '1243';
+        $tour->id =  $request['id'];
         $tour->tour_json = json_encode([
             'title' => 'Another custom Tour (Source)',
             'description' => 'Another custom tour description',
