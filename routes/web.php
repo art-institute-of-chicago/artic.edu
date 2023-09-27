@@ -219,9 +219,9 @@ Route::get('/interactive-features', [InteractiveFeatureExperiencesController::cl
 Route::get('/interactive-features/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show');
 Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show-kiosk');
 
-// Test route
+// Tour routes
 Route::get('/tours/{id}', [CustomTourController::class, 'show']);
-Route::post('/example', [CustomTourController::class, 'store']);
+Route::post('/api/tour', [CustomTourController::class, 'store']);
 
 // Feed routes
 Route::feeds();
