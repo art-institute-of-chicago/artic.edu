@@ -2,6 +2,6 @@
 
 <form method="POST" action="{{ url('/api/tour') }}">
     @csrf
-    <input type="text" name="id" placeholder="Tour ID">
+{{--    <textarea name="tour_json" row="8"></textarea>--}}
     <input type="submit" value="Submit">
 </form>

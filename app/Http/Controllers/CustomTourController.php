@@ -9,13 +9,21 @@ class CustomTourController extends Controller
 {
     public function store(Request $request)
     {
+//        $data = $request->validate([
+//            'tour_json.title' => 'required|string',
+//            'tour_json.description' => 'required|string',
+//            'tour_json.artworks' => 'required|array'
+//        ]);
+
         $tour = new CustomTour();
-        $tour->id =  $request['id'];
         $tour->tour_json = json_encode([
             'title' => 'Another custom Tour (Source)',
             'description' => 'Another custom tour description',
             'artworks' => ['artwork_url_1', 'artwork_url_2'],
         ]);
+
+//        $tour->tour_json = $request['tour_json'];
+
 
         $tour->save();
 
