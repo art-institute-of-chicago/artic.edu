@@ -28,4 +28,9 @@ class CustomTourController extends Controller
         $tour = CustomTour::find($id);
         return view('site.tour', ['tour' => $tour]);
     }
+
+    public function build()
+    {
+        return view('site.tour-builder');
+    }
 }
