@@ -23,9 +23,9 @@ class CustomTourController extends Controller
       return response()->json(['message' => 'Tour created successfully!', 'tour' => $tour], 201);
     }
 
-    public function show()
+    public function show($id)
     {
-        $tours = CustomTour::all();
-        return view('site.example', ['tours' => $tours]);
+        $tour = CustomTour::find($id);
+        return view('site.tour', ['tour' => $tour]);
     }
 }
