@@ -3,7 +3,6 @@
 @section('contentFields')
     @formField('input', [
         'name' => 'tour_id',
-        'label' => 'Tour ID',
-        'maxlength' => 25
+        'label' => 'Tour ID'
     ])
 @stop
