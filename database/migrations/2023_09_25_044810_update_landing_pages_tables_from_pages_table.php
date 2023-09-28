@@ -8,11 +8,11 @@ return new class () extends Migration
 {
     public function up(): void
     {
-        DB::statement("INSERT INTO landing_page_types (page_type) VALUES ('Tours');");
+        DB::statement("INSERT INTO landing_page_types (page_type) VALUES ('Custom Tours');");
     }
 
     public function down(): void
     {
-        DB::statement("DELETE FROM landing_page_types WHERE page_type = 'Tours';");
+        DB::statement("DELETE FROM landing_page_types WHERE page_type = 'Custom Tours';");
     }
 };
