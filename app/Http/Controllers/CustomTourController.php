@@ -27,9 +27,4 @@ class CustomTourController extends Controller
         $tour_json = json_decode($tour->tour_json, true);
         return view('site.tour', ['tour' => $tour, 'tour_json' => $tour_json]);
     }
-
-    public function build()
-    {
-        return view('site.tour-builder');
-    }
 }
