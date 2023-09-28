@@ -222,7 +222,6 @@ Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesC
 // Tour routes
 Route::get('/tours/builder', [CustomTourController::class, 'build']);
 Route::get('/tours/{id}', [CustomTourController::class, 'show']);
-Route::post('/api/tour', [CustomTourController::class, 'store']);
 
 // Feed routes
 Route::feeds();
