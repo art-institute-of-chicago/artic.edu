@@ -246,6 +246,7 @@ return [
         'custom_banner',
         'featured_pages_grid',
         'timeline',
+        'custom_tours_grid',
         'tour_stop',
         'tours_grid',
         'video',
