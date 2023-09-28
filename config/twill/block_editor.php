@@ -235,6 +235,6 @@ return [
         'showcase',
         'custom_banner',
         'featured_pages_grid',
-        'tours_grid',
+        'custom_tours_grid',
     ]
 ];
