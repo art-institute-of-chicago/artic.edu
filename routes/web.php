@@ -219,7 +219,7 @@ Route::get('/interactive-features', [InteractiveFeatureExperiencesController::cl
 Route::get('/interactive-features/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show');
 Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show-kiosk');
 
-// Tour routes
+// Custom tour routes
 Route::get('/tours/{id}', [CustomTourController::class, 'show']);
 
 // Feed routes
