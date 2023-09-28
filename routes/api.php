@@ -29,6 +29,7 @@ use App\Http\Controllers\API\StaticPagesController;
 use App\Http\Controllers\API\TagsController;
 use App\Http\Controllers\API\VideosController;
 use App\Http\Controllers\SeamlessImagesController;
+use App\Http\Controllers\CustomTourController;
 
 /*
 |--------------------------------------------------------------------------
@@ -195,4 +196,9 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::options('seamless-images/{id}', [SeamlessImagesController::class, 'byFile']);
     Route::get('seamless-images/{id}', [SeamlessImagesController::class, 'byFile']);
+
+    /**
+     * Tours --------------------------------------------------------------------
+     */
+    Route::post('tours', [CustomTourController::class, 'store']);
 });
