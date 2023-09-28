@@ -7,14 +7,6 @@ use Illuminate\Http\Request;
 
 class CustomTourController extends Controller
 {
-    public function store(Request $request)
-    {
-        $data = $request->json()->all();
-        $record = CustomTour::create(['tour_json' => json_encode($data)]);
-
-        return response()->json(['message' => 'Tour created successfully!', 'tour' => $record], 201);
-    }
-
     public function show($id)
     {
         $tour = CustomTour::find($id);
