@@ -1,10 +1,19 @@
-<h1>Custom tour view - {{ $tour_json['title'] }} </h1>
+@extends('layouts.app')
 
-<p>ID: {{ $tour->id }}</p>
+@section('content')
 
-<p>{{ $tour_json['description'] }}</p>
+    <h1>Custom tour view - {{ $tour_json['title'] }} </h1>
 
-@foreach ($tour_json['artworks'] as $artwork)
-    <a href="{{ $artwork['url'] }}">{{ $artwork['title'] }}</a>
-@endforeach
+    <p>ID: {{ $tour->id }}</p>
+
+    <p>{{ $tour_json['description'] }}</p>
+
+    @foreach ($tour_json['artworks'] as $artwork)
+        <a href="{{ $artwork['url'] }}">{{ $artwork['title'] }}</a>
+    @endforeach
+
+@endsection
+
+
+
 
