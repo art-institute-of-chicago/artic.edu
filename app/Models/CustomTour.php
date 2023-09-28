@@ -11,6 +11,5 @@ class CustomTour extends Model
 
     protected $connection = 'tours_db';
 
-    protected $table = 'tours';
     protected $fillable = ['id', 'tour_json', 'timestamp'];
 }
