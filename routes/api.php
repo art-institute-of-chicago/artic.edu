@@ -200,5 +200,6 @@ Route::group(['prefix' => 'v1'], function () {
     /**
      * Tours --------------------------------------------------------------------
      */
+    Route::get('tours/{id}', [CustomTourController::class, 'show']);
     Route::post('tours', [CustomTourController::class, 'store']);
 });
