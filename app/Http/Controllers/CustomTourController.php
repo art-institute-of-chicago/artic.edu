@@ -11,13 +11,8 @@ class CustomTourController extends Controller
     {
         $data = $request->json()->all();
         $record = CustomTour::create(['tour_json' => json_encode($data)]);
-//        $validated = $request->validate([
-//            'title' => 'required|string',
-//            'description' => 'required|string',
-//            'artworks' => 'required|array'
-//        ]);
 
-      return response()->json(['message' => 'Tour created successfully!', 'tour' => $record], 201);
+        return response()->json(['message' => 'Tour created successfully!', 'tour' => $record], 201);
     }
 
     public function show($id)
