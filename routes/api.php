@@ -29,7 +29,7 @@ use App\Http\Controllers\API\StaticPagesController;
 use App\Http\Controllers\API\TagsController;
 use App\Http\Controllers\API\VideosController;
 use App\Http\Controllers\SeamlessImagesController;
-use App\Http\Controllers\CustomTourController;
+use App\Http\Controllers\API\CustomTourController;
 
 /*
 |--------------------------------------------------------------------------
