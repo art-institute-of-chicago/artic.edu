@@ -9,16 +9,16 @@ class CustomTourController extends FrontController
 {
     public function show($id)
     {
-        $tour = CustomTour::find($id);
+        $tour_item = CustomTour::find($id);
 
-        if (!$tour) {
+        if (!$tour_item) {
             return abort(404);
         }
 
-        $tour_json = json_decode($tour->tour_json, true);
+        $tour = json_decode($tour_item->tour_json, true);
 
-        $this->seo->setTitle($tour_json['title']);
-        $this->seo->setDescription($tour_json['description']);
-        return view('site.tour', ['tour' => $tour, 'tour_json' => $tour_json]);
+        $this->seo->setTitle($tour['title']);
+        $this->seo->setDescription($tour['description']);
+        return view('site.tour', ['id' => $tour_item->id, 'tour' => $tour]);
     }
 }
