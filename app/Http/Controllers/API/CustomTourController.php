@@ -14,18 +14,18 @@ class CustomTourController extends BaseController
 
         $record = CustomTour::create(['tour_json' => json_encode($data)]);
 
-        return response()->json(['message' => 'Tour created successfully!', 'tour' => $record], 201);
+        return response()->json(['message' => 'Custom tour created successfully!', 'custom_tour' => $record], 201);
     }
 
     public function show(Request $request, $id)
     {
-        $tour = CustomTour::find($id);
+        $custom_tour = CustomTour::find($id);
 
-        if (!$tour) {
-            return response()->json(['message' => 'Tour not found'], 404);
+        if (!$custom_tour) {
+            return response()->json(['message' => 'Custom tour not found'], 404);
         }
 
-        $tour_json = json_decode($tour->tour_json, true);
+        $tour_json = json_decode($custom_tour->tour_json, true);
         return response()->json(['tour_json' => $tour_json], 200);
     }
 }

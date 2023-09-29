@@ -198,7 +198,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('seamless-images/{id}', [SeamlessImagesController::class, 'byFile']);
 
     /**
-     * Tours --------------------------------------------------------------------
+     * Custom Tours --------------------------------------------------------------------
      */
     Route::get('tours/{id}', [CustomTourController::class, 'show']);
     Route::post('tours', [CustomTourController::class, 'store']);
