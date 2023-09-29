@@ -2,13 +2,13 @@
 
 @section('content')
 
-    <h1>Custom tour view - {{ $tour_json['title'] }} </h1>
+    <h1>Custom tour view - {{ $tour['title'] }} </h1>
 
-    <p>ID: {{ $tour->id }}</p>
+    <p>ID: {{ $id }}</p>
 
-    <p>{{ $tour_json['description'] }}</p>
+    <p>{{ $tour['description'] }}</p>
 
-    @foreach ($tour_json['artworks'] as $artwork)
+    @foreach ($tour['artworks'] as $artwork)
         <a href="{{ $artwork['url'] }}">{{ $artwork['title'] }}</a>
     @endforeach
 
