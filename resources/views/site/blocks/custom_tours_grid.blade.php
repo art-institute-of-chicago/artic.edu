@@ -1,4 +1,4 @@
-@foreach($block->getRelated('customToursLandingPageItems') as $index => $page)
+@foreach($block->getRelated('customToursItems') as $index => $page)
     <div class="featured-pages-grid_card">
         <div class="featured-pages-grid_details">
             <span>
