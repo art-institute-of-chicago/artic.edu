@@ -3,8 +3,8 @@
 
 @formField('browser', [
     'routePrefix' => 'visit',
-    'moduleName' => 'customToursLandingPageItems',
-    'name' => 'customToursLandingPageItems',
+    'moduleName' => 'customToursItems',
+    'name' => 'customToursItems',
     'label' => 'Custom Tours',
     'max' => -1,
 ])
