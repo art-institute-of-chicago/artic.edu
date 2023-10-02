@@ -5,18 +5,17 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class () extends Migration {
-
     protected $connection;
 
     public function __construct()
     {
         if (env('APP_ENV') !== 'testing') {
             $this->connection = 'tours_db';
-        }
-        else {
+        } else {
             $this->connection = env('DB_CONNECTION');
         }
     }
+
     public function up(): void
     {
         Schema::connection($this->connection)->create('tours', function (Blueprint $table) {
