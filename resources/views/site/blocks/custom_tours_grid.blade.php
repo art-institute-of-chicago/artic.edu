@@ -1,4 +1,7 @@
 @foreach($block->getRelated('customToursItems') as $index => $custom_tour)
+    @php
+        $image = $custom_tour->imageAsArray('teaser_image');
+    @endphp
     <div class="featured-pages-grid_card">
         <div class="featured-pages-grid_details">
             <span>
@@ -7,10 +10,11 @@
                     <svg class='icon--arrow'><use xlink:href='#icon--arrow'></use></svg>
                     {{ $custom_tour->tour_id }}
                 </h3>
-                <p>{{ $custom_tour->teaser_text }}</p>
-                @php
-                    $image = $custom_tour->imageAsArray('teaser_image');
-                @endphp
+
+                @if ($custom_tour->teaser_text)
+                    <p>{{ $custom_tour->teaser_text }}</p>
+                @endif
+
 {{--            Todo: Update the href if the tours url changes    --}}
                 <a href="/tours/{{ $custom_tour->tour_id }}" class="m-listing__link">
                     @if ($image)
