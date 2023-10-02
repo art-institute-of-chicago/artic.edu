@@ -14,9 +14,8 @@
                 @if ($custom_tour->teaser_text)
                     <p>{{ $custom_tour->teaser_text }}</p>
                 @endif
-
-{{--            Todo: Update the href if the tours url changes    --}}
-                <a href="/tours/{{ $custom_tour->tour_id }}" class="m-listing__link">
+                
+                <a href="/custom-tours/{{ $custom_tour->tour_id }}" class="m-listing__link">
                     @if ($image)
                         @component('components.atoms._img')
                             @slot('class', 'featured-pages-grid_img')
