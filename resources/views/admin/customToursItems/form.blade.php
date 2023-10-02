@@ -5,6 +5,7 @@
         'name' => 'tour_id',
         'label' => 'Tour ID'
     ])
+
     @formField('input', [
         'name' => 'teaser_text',
         'label' => 'Teaser Text'
