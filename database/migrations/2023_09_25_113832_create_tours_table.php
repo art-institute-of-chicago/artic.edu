@@ -5,8 +5,18 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class () extends Migration {
-    protected $connection = 'tours_db';
 
+    protected $connection;
+
+    public function __construct()
+    {
+        if (env('APP_ENV') !== 'testing') {
+            $this->connection = 'tours_db';
+        }
+        else {
+            $this->connection = env('DB_CONNECTION');
+        }
+    }
     public function up(): void
     {
         Schema::connection($this->connection)->create('tours', function (Blueprint $table) {
@@ -18,6 +28,6 @@ return new class () extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('tours');
+        Schema::connection($this->connection)->dropIfExists('tours');
     }
 };
