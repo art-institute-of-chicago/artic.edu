@@ -36,12 +36,6 @@ class CustomToursItem extends Model
                     'ratio' => 16 / 9,
                 ],
             ],
-            'special' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 21 / 9,
-                ],
-            ],
         ],
     ];
 }
