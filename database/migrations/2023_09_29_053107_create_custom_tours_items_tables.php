@@ -13,6 +13,8 @@ return new class () extends Migration {
             $table->string('title', 200)->nullable();
 
             $table->text('tour_id')->nullable();
+
+            $table->text('teaser_text')->nullable();
         });
 
         Schema::create('custom_tours_item_slugs', function (Blueprint $table) {
