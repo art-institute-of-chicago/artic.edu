@@ -1,5 +1,7 @@
 @unless (empty($image['src']))
 
+    {{ dd($image) }}
+
 @php
     $highlight = ' ';
 
