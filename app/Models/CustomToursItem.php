@@ -21,6 +21,7 @@ class CustomToursItem extends Model
         'published',
         'title',
         'tour_id',
+        'teaser_text'
     ];
 
     public $slugAttributes = [
@@ -28,31 +29,17 @@ class CustomToursItem extends Model
     ];
 
     public $mediasParams = [
-        'cover' => [
+        'teaser_image' => [
             'default' => [
                 [
                     'name' => 'default',
                     'ratio' => 16 / 9,
                 ],
             ],
-            'mobile' => [
+            'special' => [
                 [
-                    'name' => 'mobile',
-                    'ratio' => 1,
-                ],
-            ],
-            'flexible' => [
-                [
-                    'name' => 'free',
-                    'ratio' => 0,
-                ],
-                [
-                    'name' => 'landscape',
-                    'ratio' => 16 / 9,
-                ],
-                [
-                    'name' => 'portrait',
-                    'ratio' => 3 / 5,
+                    'name' => 'default',
+                    'ratio' => 21 / 9,
                 ],
             ],
         ],
