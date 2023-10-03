@@ -9,7 +9,7 @@ class CustomTour extends Model
 {
     use HasFactory;
 
-    protected $connection = 'tours_db';
+    protected $connection = 'tours';
 
     protected $fillable = ['id', 'tour_json', 'timestamp'];
 }
