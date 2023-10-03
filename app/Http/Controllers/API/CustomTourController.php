@@ -21,7 +21,10 @@ class CustomTourController extends BaseController
             ]
         );
 
-        $record = CustomTour::create(['tour_json' => json_encode($data)]);
+        // Perform basic data sanitization using strip_tags
+        $sanitizedData = $this->sanitizeData($data);
+
+        $record = CustomTour::create(['tour_json' => json_encode($sanitizedData)]);
 
         return response()->json(['message' => 'Custom tour created successfully!', 'custom_tour' => $record], 201);
     }
@@ -36,5 +39,17 @@ class CustomTourController extends BaseController
 
         $tour_json = json_decode($custom_tour->tour_json, true);
         return response()->json(['tour_json' => $tour_json], 200);
+    }
+
+    private function sanitizeData($data)
+    {
+        $sanitizedData = [];
+
+        foreach ($data as $key => $value) {
+            // Use strip_tags to remove HTML and PHP tags
+            $sanitizedData[$key] = strip_tags($value);
+        }
+
+        return $sanitizedData;
     }
 }
