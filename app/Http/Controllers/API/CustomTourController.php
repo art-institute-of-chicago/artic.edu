@@ -10,7 +10,16 @@ class CustomTourController extends BaseController
 {
     public function store(Request $request)
     {
-        $data = $request->json()->all();
+        $data = $request->validate(
+            [
+                'title' => 'required|string',
+                'description' => 'nullable|string',
+                'artworks' => 'required|array',
+                'artworks.*.id' => 'required|integer',
+                'artworks.*.title' => 'required|string',
+                'artworks.*.objectNote' => 'nullable|string',
+            ]
+        );
 
         $record = CustomTour::create(['tour_json' => json_encode($data)]);
 
