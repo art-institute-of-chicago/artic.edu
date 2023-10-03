@@ -10,7 +10,7 @@ return new class () extends Migration {
     public function __construct()
     {
         if (env('APP_ENV') !== 'testing') {
-            $this->connection = 'tours_db';
+            $this->connection = 'tours';
         } else {
             $this->connection = env('DB_CONNECTION');
         }
