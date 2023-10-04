@@ -7,7 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomTour extends Model
 {
-    protected $connection = 'tours';
+    protected $connection;
+
+    public function __construct()
+    {
+        if (env('APP_ENV') !== 'testing') {
+            $this->connection = 'tours';
+        } else {
+            $this->connection = env('DB_CONNECTION');
+        }
+    }
 
     protected $fillable = ['id', 'tour_json', 'timestamp'];
 }
