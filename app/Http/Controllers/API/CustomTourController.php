@@ -48,10 +48,9 @@ class CustomTourController extends BaseController
 
         foreach ($data as $key => $value) {
             if (is_array($value)) {
-                // If the value is an array, recursively sanitize it
                 $sanitizedData[$key] = $this->sanitizeData($value);
             } else {
-                // Use strip_tags to remove HTML and PHP tags only for strings
+                // Use strip_tags on strings only
                 $sanitizedData[$key] = is_string($value) ? strip_tags($value) : $value;
             }
         }
