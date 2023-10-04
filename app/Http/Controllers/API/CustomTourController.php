@@ -17,6 +17,7 @@ class CustomTourController extends BaseController
                 'artworks' => 'required|array',
                 'artworks.*.id' => 'required|integer',
                 'artworks.*.title' => 'required|string',
+                'artworks.*.url' => 'required|string',
                 'artworks.*.objectNote' => 'nullable|string',
             ]
         );
