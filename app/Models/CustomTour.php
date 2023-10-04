@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomTour extends Model
 {
-    use HasFactory;
-
     protected $connection = 'tours';
 
     protected $fillable = ['id', 'tour_json', 'timestamp'];
