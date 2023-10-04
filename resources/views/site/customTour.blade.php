@@ -13,7 +13,7 @@
 
     @foreach ($custom_tour['artworks'] as $artwork)
         <div>
-            <h2>{{ $artwork['title'] }}</h2>
+            <a href="{{ $artwork['url'] }}">{{ $artwork['title'] }}</a>
 
             @if (array_key_exists('objectNote', $artwork))
                 <p>{{ $artwork['objectNote'] }}</p>
