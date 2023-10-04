@@ -9,6 +9,8 @@ class CustomTour extends Model
 {
     protected $connection;
 
+    protected $table = 'tours';
+
     public function __construct()
     {
         if (env('APP_ENV') !== 'testing') {
