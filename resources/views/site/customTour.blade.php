@@ -12,7 +12,7 @@
         <ul>
             @foreach ($custom_tour['artworks'] as $artwork)
                 <li>
-                    <a href="{{ $artwork['url'] }}">{{ $artwork['title'] }}</a>
+                    {{ $artwork['title'] }}
                 </li>
             @endforeach
         </ul>
