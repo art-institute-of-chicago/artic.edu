@@ -18,7 +18,7 @@ return new class () extends Migration {
 
     public function up(): void
     {
-        Schema::create('tours', function (Blueprint $table) {
+        Schema::create('custom_tours', function (Blueprint $table) {
             $table->id();
             $table->json('tour_json');
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class () extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('tours');
+        Schema::dropIfExists('custom_tours');
     }
 };
