@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\Api\CustomTourRequest;
+use App\Http\Requests\API\CustomTourRequest;
 use App\Models\CustomTour;
 use Illuminate\Http\Request;
 
@@ -10,8 +10,10 @@ class CustomTourController extends BaseController
 {
     public function store(CustomTourRequest $request)
     {
+        $validated = $request->validated();
+
         // Perform basic data sanitization using strip_tags
-        $sanitizedData = $this->sanitizeData($request);
+        $sanitizedData = $this->sanitizeData($validated);
 
         $record = CustomTour::create(['tour_json' => json_encode($sanitizedData)]);
 
