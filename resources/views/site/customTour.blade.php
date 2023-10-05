@@ -8,7 +8,7 @@
         <p>ID: {{ $id }}</p>
 
         <p>{{ $custom_tour['description'] }}</p>
-        
+
         <ul>
             @foreach ($custom_tour['artworks'] as $artwork)
                 <li>
