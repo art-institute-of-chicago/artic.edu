@@ -2,28 +2,16 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\CustomTourRequest;
 use App\Models\CustomTour;
 use Illuminate\Http\Request;
 
 class CustomTourController extends BaseController
 {
-    public function store(Request $request)
+    public function store(CustomTourRequest $request)
     {
-        $data = $request->validate(
-            [
-                'title' => 'required|string',
-                'description' => 'nullable|string',
-                'artworks' => 'required|array',
-                'artworks.*.id' => 'required|integer',
-                'artworks.*.title' => 'required|string',
-                'artworks.*.url' => 'required|string',
-                'artworks.*.objectNote' => 'nullable|string',
-            ]
-        );
-
         // Perform basic data sanitization using strip_tags
-        $sanitizedData = $this->sanitizeData($data);
+        $sanitizedData = $this->sanitizeData($request);
 
         $record = CustomTour::create(['tour_json' => json_encode($sanitizedData)]);
 
@@ -42,6 +30,14 @@ class CustomTourController extends BaseController
         return response()->json(['tour_json' => $tour_json], 200);
     }
 
+    /**
+     * Sanitize data received via the API
+     *
+     * This method strips HTML tags from data and returns the sanitized data
+     *
+     * @param object $data
+     * @return object 
+     */
     private function sanitizeData($data)
     {
         $sanitizedData = [];
