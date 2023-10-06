@@ -65,6 +65,11 @@ class PageFeature extends AbstractModel
 
     public $checkboxes = ['published'];
 
+    public function landingPages()
+    {
+        return $this->belongsToMany('\App\Models\LandingPage', 'landing_page_page_feature')->withPivot('position')->orderBy('position');
+    }
+
     public function events()
     {
         return $this->belongsToMany(\App\Models\Event::class, 'event_page_feature', 'page_feature_id', 'event_id')->withPivot('position')->orderBy('position');
