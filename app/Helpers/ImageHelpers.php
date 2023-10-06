@@ -682,11 +682,10 @@ class ImageHelpers
     }
     public static function getSocialIcon($url)
     {
-        $pattern = '/(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9.-]+)\.(com|net|org)/i';
-
-        // Use preg_match to find the domain in the URL
-        if (preg_match($pattern, $url, $matches)) {
-            return $matches[1];
-        }
+        $host = parse_url($url, PHP_URL_HOST);
+        // Split host into sub domain(s), host domain, and top-level domain
+        $domains = explode('.', $host);
+        // The second-to-last domain item is the host domain
+        return $domains[count($domains) - 2];
     }
 }
