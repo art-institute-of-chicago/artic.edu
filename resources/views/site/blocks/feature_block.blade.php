@@ -42,6 +42,7 @@
             if ($block->input('override_exhibition')) {
                 $exhibitions = $block->browserIds('exhibitions');
                 $items = \App\Models\Exhibition::whereIn('datahub_id', $exhibitions)->orderBy('public_start_date', 'ASC')->get();
+
             } else {
                 $items = \App\Models\Exhibition::first()->published()->limit(4)->get();
             }
@@ -57,7 +58,6 @@
 
         default:
             $items = [];
-            
     }
 
 @endphp
@@ -99,7 +99,7 @@
                                     ))))
                             @endcomponent
                         @else
-                        <span class='default-img m-feature-block-listing__img {{$ratio}} column-{{$columns}}x'></span>
+                            <span class='default-img m-feature-block-listing__img {{$ratio}} column-{{$columns}}x'></span>
                         @endif
                         <span class="m-feature-block-listing__meta">
                             @if ( $item->type )
@@ -116,14 +116,14 @@
                             @endif
                             <span class="m-feature-block-listing__meta-bottom">
                                 @component('components.atoms._date')
-                                @if ($item->present()->formattedNextOccurrence) 
-                                    {!! $item->present()->formattedNextOccurrence !!}
-                                @else
-                                    {!! $item->present()->nextOccurrenceTime !!}
-                                @endif
-                            @endcomponent
+                                    @if ($item->present()->formattedNextOccurrence) 
+                                        {!! $item->present()->formattedNextOccurrence !!}
+                                    @else
+                                        {!! $item->present()->nextOccurrenceTime !!}
+                                    @endif
+                                @endcomponent
                             </span>
-
+                        </span>
                     </a>
                 </li>
             @endforeach
