@@ -35,7 +35,7 @@ class CustomTourController extends BaseController
     /**
      * Sanitize data received via the API
      *
-     * This method strips HTML tags from data and returns the sanitized data
+     * This method strips HTML and PHP tags from data and returns the sanitized data
      *
      * @param object $data
      * @return object
