@@ -12,6 +12,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
+
+    .f-link {
+        @include breakpoint('xsmall') {
+            display: none;
+        }
+    }
 }
 
 .m-feature-block {
@@ -94,8 +100,8 @@
 
                 &:nth-child(3) .m-feature-block-listing__img, 
                 &:nth-child(4) .m-feature-block-listing__img {
-                    margin-top: 20px;
                     border-top: 1px solid $color__rules--primary;
+                    padding-top: 20px;
                 }
             }
 
@@ -114,8 +120,8 @@
                 &:nth-child(2) .m-feature-block-listing__img, 
                 &:nth-child(3) .m-feature-block-listing__img, 
                 &:nth-child(4) .m-feature-block-listing__img {
-                    margin-top: 20px;
                     border-top: 1px solid $color__rules--primary;
+                    padding-top: 20px;
                 }
 
                 margin-top: 20px;
@@ -145,8 +151,8 @@
 
                 &:nth-child(3) .m-feature-block-listing__img, 
                 &:nth-child(4) .m-feature-block-listing__img {
-                    margin-top: 20px;
                     border-top: 1px solid $color__rules--primary;
+                    padding-top: 20px;
                 }
             }
 
@@ -165,8 +171,8 @@
                 &:nth-child(2) .m-feature-block-listing__img, 
                 &:nth-child(3) .m-feature-block-listing__img, 
                 &:nth-child(4) .m-feature-block-listing__img {
-                    margin-top: 20px;
                     border-top: 1px solid $color__rules--primary;
+                    padding-top: 20px;
                 }
 
                 margin-top: 20px;
@@ -192,8 +198,8 @@
 
                 &:nth-child(3) .m-feature-block-listing__img, 
                 &:nth-child(4) .m-feature-block-listing__img {
-                    margin-top: 20px;
                     border-top: 1px solid $color__rules--primary;
+                    padding-top: 20px;
                 }
             }
 
@@ -212,8 +218,8 @@
                 &:nth-child(2) .m-feature-block-listing__img, 
                 &:nth-child(3) .m-feature-block-listing__img, 
                 &:nth-child(4) .m-feature-block-listing__img {
-                    margin-top: 20px;
                     border-top: 1px solid $color__rules--primary;
+                    padding-top: 20px;
                 }
 
                 margin-top: 20px;
@@ -249,6 +255,10 @@
             }
             &.column-4x {
 
+            }
+
+            &.default-img {
+                padding: 0 !important;
             }
         }
 
