@@ -97,12 +97,10 @@ class PageFeature extends AbstractModel
 
     public function item()
     {
-        $item = $this->events()->first();
-        $item = $item ?? $this->apiModels('exhibitions', 'Exhibition')->first();
-        $item = $item ?? $this->articles()->first();
-        $item = $item ?? $this->highlights()->first();
-
-        return $item;
+        return $this->events()->first()
+            ?? $this->apiModels('exhibitions', 'Exhibition')->first()
+            ?? $this->articles()->first()
+            ?? $this->highlights->first();
     }
 
     public function enclosedItem()
