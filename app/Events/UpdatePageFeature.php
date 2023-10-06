@@ -24,10 +24,10 @@ class UpdatePageFeature
     {
         $this->item = $item;
 
-        if ($item->is_published) {
-            $this->urls = [
-                '/'
-            ];
+        foreach ($item->landingPages as $landingPage) {
+            if ($landingPage->is_published) {
+                $this->urls[] = $landingPage->slug;
+            }
         }
     }
 }
