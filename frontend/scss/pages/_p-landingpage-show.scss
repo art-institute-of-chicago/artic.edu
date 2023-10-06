@@ -12,7 +12,7 @@
   .m-showcase-block {
     background-color: unset;
   }
-  
+
   .m-home-header {
     .m-media__img {
       height: 675px;
@@ -25,13 +25,13 @@
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 20px;
-    border-bottom: 1px solid #E6E6E6;
+    border-bottom: 1px solid $color__rules--primary;
 
     .home-callout {
       min-width: 65%;
 
       .home-callout-text {
-        color: #949494;
+        color: $color__text--tertiary;
       }
     }
 
@@ -39,7 +39,7 @@
       margin-left: 5%;
       min-width: 30%;
       > div {
-        border-top: 1px solid #E6E6E6;
+        border-top: 1px solid $color__rules--primary;
         padding: 20px 0;
         span {
           font-family: $sans-serif-font--loaded;
@@ -47,8 +47,8 @@
           align-items: center;
           font-size: 17px;
           svg {
-            color: $color__red--100;
-            fill: $color__red--100;
+            color: $color__rules--brand;
+            fill: $color__rules--brand;
             height: 24px;
             width: 24px;
             margin-right: 8px;
@@ -60,11 +60,11 @@
           font-family: $sans-serif-font--loaded;
           font-size: 12px;
           font-weight: 500;
-          color: $color__black--54;
+          color: $color__text--secondary;
           letter-spacing: 1px;
         }
         svg {
-          color: #8E847D;
+          color: $color__link;
           margin-top: 16px;
           margin-right: 16px;
           height: 24px;
@@ -143,7 +143,7 @@
   }
 
   .m-title-bar::before {
-    background-color: $color__rules--secondary;
+    background-color: $color__input-border;
   }
 
   .o-blocks .hr {
@@ -214,8 +214,8 @@
     margin-top: 32px;
     padding-top: 18px;
     padding-bottom: 18px;
-    border-top: 1px solid #CCCCCC;
-    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid $color__input-border;
+    border-bottom: 1px solid $color__input-border;
     @include breakpoint('medium') {
       .f-buttons {
         width: auto;
@@ -230,8 +230,8 @@
         overflow: scroll;
         width: 100%;
         padding: 18px 0;
-        border-top: 1px solid #CCCCCC ;
-        border-bottom: 1px solid #CCCCCC ;
+        border-top: 1px solid $color__input-border ;
+        border-bottom: 1px solid $color__input-border ;
       }
     }
     @include breakpoint('xsmall') {
@@ -243,8 +243,8 @@
         overflow: scroll;
         width: 100%;
         padding: 18px 0;
-        border-top: 1px solid #CCCCCC ;
-        border-bottom: 1px solid #CCCCCC ;
+        border-top: 1px solid $color__input-border ;
+        border-bottom: 1px solid $color__input-border ;
       }
     }
   }
@@ -293,7 +293,7 @@
       }
 
       > .col:first-child {
-        border-right: 1px solid #e6e6e6;
+        border-right: 1px solid $color__rules--primary;
         @include breakpoint('medium') {
           border-right: none;
         }
@@ -389,7 +389,7 @@
 
       tr {
         padding: 6px;
-        border-bottom: 1px solid #e6e6e6 ;
+        border-bottom: 1px solid $color__rules--primary ;
       }
 
       tbody >tr:last-child {
@@ -397,7 +397,7 @@
       }
 
       .closed {
-        color: $color__black--54;
+        color: $color__text--secondary;
       }
     }
 
@@ -457,10 +457,11 @@
 
       .parking_label {
         color: $color__text--title;
+        color: $color__text--title;
       }
 
       a {
-        color: $color__link--accent;
+        color: $color__rules--brand;
       }
 
       img {
@@ -555,6 +556,7 @@
           padding: 10px 18px 18px;
           width: 100%;
           color: $color__text--secondary;
+          color: $color__text--secondary;
           display: flex;
           flex-direction: row;
           justify-content: space-between;
@@ -562,11 +564,12 @@
 
           span {
             color: $color__text--secondary;
+            color: $color__text--secondary;
           }
         }
 
         tr.selected {
-          background-color: $color__black--5;
+          background-color: $color__bg--secondary;
           border-top: none;
           border-bottom: none;
 
@@ -577,8 +580,8 @@
 
         tr {
           padding: 6px;
-          border-bottom: 1px solid #e6e6e6 ;
-          border-top: 1px solid #e6e6e6 ;
+          border-bottom: 1px solid $color__rules--primary ;
+          border-top: 1px solid $color__rules--primary ;
           cursor: pointer;
           user-select: none;
         }
@@ -616,7 +619,7 @@
       .visit-separator {
         width: 0;
         min-height: 100%;
-        border-right: 1px solid #e6e6e6;
+        border-right: 1px solid $color__rules--primary;
         @include breakpoint('xsmall') {
           display: none;
         }
@@ -670,12 +673,13 @@
           span:last-child {
             font-weight: 300;
             color: $color__text--secondary;
+            color: $color__text--secondary;
           }
         }
 
         tr {
           padding: 6px;
-          border-bottom: 1px solid #e6e6e6 ;
+          border-bottom: 1px solid $color__rules--primary ;
         }
 
         tbody >tr:last-child {
@@ -707,7 +711,7 @@
           content: "";
         }
         a {
-          color: $color__text--accent;
+          color: $color__rules--brand;
         }
       }
     }
