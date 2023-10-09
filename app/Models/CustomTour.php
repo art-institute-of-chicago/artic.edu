@@ -11,10 +11,8 @@ class CustomTour extends Model
 
     public function __construct()
     {
-        if (env('APP_ENV') !== 'testing') {
+        if (config('app.env') !== 'testing') {
             $this->connection = 'tours';
-        } else {
-            $this->connection = env('DB_CONNECTION');
         }
     }
 
