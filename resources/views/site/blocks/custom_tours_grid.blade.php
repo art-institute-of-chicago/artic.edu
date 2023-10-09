@@ -2,7 +2,7 @@
 <hr/>
 <div class="featured-pages-grid" data-blur-img>
     <div class="featured-pages-grid_row">
-        @foreach($block->getRelated('customToursItems') as $index => $custom_tour)
+        @foreach($block->getRelated('custom_tours_items') as $index => $custom_tour)
             <div class="featured-pages-grid_card">
                 <div class="featured-pages-grid_details">
                     <a href="/custom-tours/{{ $custom_tour->tour_id }}" class="m-listing__link">
