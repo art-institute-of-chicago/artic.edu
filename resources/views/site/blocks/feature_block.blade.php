@@ -81,7 +81,7 @@
         <ul class="m-feature-block-row column-{{ $columns }}x">
             @foreach($items as $index => $item)
                 <li class="m-feature-block-listing column-{{ $columns }}x">
-                    <a href="{{ $item->getUrlWithoutSlugAttribute() }}" class="m-feature-block-listing_link">
+                    <a href="{{ $item->url_without_slug }}" class="m-feature-block-listing_link">
                         @if($item->imageFront('listing') ?? $item->imageFront('hero'))
                             @component('components.atoms._img')
                             @slot('class', 'm-feature-block-listing__img ' . ($ratio ?? '') . ' column-' . $columns . 'x')
