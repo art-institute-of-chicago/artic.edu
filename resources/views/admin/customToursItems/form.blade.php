@@ -6,9 +6,12 @@
         'label' => 'Tour ID'
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'teaser_text',
-        'label' => 'Teaser Text'
+        'label' => 'Teaser Text',
+        'toolbarOptions' => [
+            'italic',
+        ],
     ])
 
     @formField('medias', [
