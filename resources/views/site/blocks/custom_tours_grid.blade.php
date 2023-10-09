@@ -5,7 +5,7 @@
         @foreach($block->getRelated('custom_tours_items') as $index => $custom_tour)
             <div class="featured-pages-grid_card">
                 <div class="featured-pages-grid_details">
-                    <a href="/custom-tours/{{ $custom_tour->tour_id }}" class="m-listing__link">
+                    <a href="{{ route('custom-tours.show', $custom_tour->tour_id) }}" class="m-listing__link">
                         @if($custom_tour->imageAsArray('teaser_image'))
                             @component('components.atoms._img')
                                 @slot('class', 'featured-pages-grid_img')
