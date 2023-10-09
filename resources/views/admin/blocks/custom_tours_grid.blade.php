@@ -2,8 +2,8 @@
 @twillBlockIcon('image')
 
 @formField('input', [
-'name' => 'custom_tours_grid_heading',
-'label' => 'Heading',
+    'name' => 'custom_tours_grid_heading',
+    'label' => 'Heading',
 ])
 
 @formField('browser', [
