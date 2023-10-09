@@ -22,14 +22,15 @@ class CustomTourController extends BaseController
 
     public function show(Request $request, $id)
     {
-        $custom_tour = CustomTour::find($id);
+        $customTour = CustomTour::find($id);
 
-        if (!$custom_tour) {
+        if (!$customTour) {
             return response()->json(['message' => 'Custom tour not found'], 404);
         }
 
-        $tour_json = json_decode($custom_tour->tour_json, true);
-        return response()->json(['tour_json' => $tour_json], 200);
+        $tourJson = json_decode($customTour->tourJson, true);
+
+        return response()->json(['tour_json' => $tourJson], 200);
     }
 
     /**

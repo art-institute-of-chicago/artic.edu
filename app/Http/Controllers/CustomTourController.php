@@ -9,23 +9,23 @@ class CustomTourController extends FrontController
 {
     public function show($id)
     {
-        $custom_tour_item = CustomTour::find($id);
+        $customTourItem = CustomTour::find($id);
 
-        if (!$custom_tour_item) {
+        if (!$customTourItem) {
             return abort(404);
         }
 
-        $custom_tour = json_decode($custom_tour_item->tour_json, true);
+        $customTour = json_decode($customTourItem->tour_json, true);
 
-        $this->seo->setTitle($custom_tour['title']);
+        $this->seo->setTitle($customTour['title']);
 
-        if (array_key_exists('description', $custom_tour)) {
-            $this->seo->setDescription($custom_tour['description']);
+        if (array_key_exists('description', $customTour)) {
+            $this->seo->setDescription($customTour['description']);
         }
 
         $this->seo->nofollow = true;
         $this->seo->noindex = true;
 
-        return view('site.customTour', ['id' => $custom_tour_item->id, 'custom_tour' => $custom_tour]);
+        return view('site.customTour', ['id' => $customTourItem->id, 'custom_tour' => $customTour]);
     }
 }
