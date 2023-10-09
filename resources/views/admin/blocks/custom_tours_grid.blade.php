@@ -1,9 +1,12 @@
 @twillBlockTitle('Custom Tours Grid')
 @twillBlockIcon('image')
 
-@formField('input', [
+@formField('wysiwyg', [
     'name' => 'custom_tours_grid_heading',
     'label' => 'Heading',
+    'toolbarOptions' => [
+    'italic'
+    ],
 ])
 
 @formField('browser', [
