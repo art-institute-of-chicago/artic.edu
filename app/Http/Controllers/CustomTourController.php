@@ -18,7 +18,10 @@ class CustomTourController extends FrontController
         $custom_tour = json_decode($custom_tour_item->tour_json, true);
 
         $this->seo->setTitle($custom_tour['title']);
-        $this->seo->setDescription($custom_tour['description']);
+
+        if (array_key_exists('description', $custom_tour)) {
+            $this->seo->setDescription($custom_tour['description']);
+        }
 
         $this->seo->nofollow = true;
         $this->seo->noindex = true;
