@@ -5,7 +5,7 @@
     'name' => 'custom_tours_grid_heading',
     'label' => 'Heading',
     'toolbarOptions' => [
-    'italic'
+        'italic'
     ],
 ])
 
