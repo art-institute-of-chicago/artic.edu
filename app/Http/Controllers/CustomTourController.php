@@ -19,6 +19,10 @@ class CustomTourController extends FrontController
 
         $this->seo->setTitle($custom_tour['title']);
         $this->seo->setDescription($custom_tour['description']);
+
+        $this->seo->nofollow = true;
+        $this->seo->noindex = true;
+
         return view('site.customTour', ['id' => $custom_tour_item->id, 'custom_tour' => $custom_tour]);
     }
 }
