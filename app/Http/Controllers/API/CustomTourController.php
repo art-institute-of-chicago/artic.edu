@@ -37,10 +37,8 @@ class CustomTourController extends BaseController
      *
      * This method strips HTML and PHP tags from data and returns the sanitized data
      *
-     * @param object $data
-     * @return object
      */
-    private function sanitizeData($data)
+    private function sanitizeData(object $data): object
     {
         $sanitizedData = [];
 
