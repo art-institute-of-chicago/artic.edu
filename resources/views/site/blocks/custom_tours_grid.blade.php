@@ -1,4 +1,4 @@
-<h2 id="{{ StringHelpers::getUtf8Slug($block->input('custom_tours_grid_heading')) }}" class="title f-module-title-2">{{ $block->input('custom_tours_grid_heading') }}</h2>
+<h2 id="{{ StringHelpers::getUtf8Slug($block->input('custom_tours_grid_heading')) }}" class="title f-module-title-2">{!! $block->input('custom_tours_grid_heading') !!}</h2>
 <hr/>
 <div class="featured-pages-grid" data-blur-img>
     <div class="featured-pages-grid_row">
