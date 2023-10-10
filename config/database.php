@@ -101,6 +101,18 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+        'tours' => [
+            'driver' => 'pgsql',
+            'host' => env('TOURS_DB_HOST', '127.0.0.1'),
+            'port' => env('TOURS_DB_PORT', '3306'),
+            'database' => env('TOURS_DB_DATABASE', 'forge'),
+            'username' => env('TOURS_DB_USERNAME', 'forge'),
+            'password' => env('TOURS_DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+        ],
 
     ],
 

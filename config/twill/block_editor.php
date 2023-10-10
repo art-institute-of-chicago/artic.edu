@@ -234,6 +234,7 @@ return [
         'layered_image_viewer',
         'showcase',
         'custom_banner',
-        'featured_pages_grid'
+        'featured_pages_grid',
+        'custom_tours_grid',
     ]
 ];
