@@ -1,15 +1,18 @@
 @twillBlockTitle('Custom Tours Grid')
 @twillBlockIcon('image')
 
-@formField('input', [
-'name' => 'custom_tours_grid_heading',
-'label' => 'Heading',
+@formField('wysiwyg', [
+    'name' => 'custom_tours_grid_heading',
+    'label' => 'Heading',
+    'toolbarOptions' => [
+        'italic'
+    ],
 ])
 
 @formField('browser', [
     'routePrefix' => 'visit',
     'moduleName' => 'customToursItems',
-    'name' => 'customToursItems',
+    'name' => 'custom_tours_items',
     'label' => 'Custom Tours',
     'max' => -1,
 ])
