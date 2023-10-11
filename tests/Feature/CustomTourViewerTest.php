@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Artisan;
 
 class CustomTourViewerTest extends BaseTestCase
 {
-
     protected $seed = true;
 
     /**
@@ -19,9 +18,9 @@ class CustomTourViewerTest extends BaseTestCase
      */
     public function test_custom_tour_title_renders(): void
     {
-         $randomCustomTour = CustomTour::inRandomOrder()->first();
+        $randomCustomTour = CustomTour::inRandomOrder()->first();
 
-         $id = $randomCustomTour ? $randomCustomTour->id : null;
+        $id = $randomCustomTour ? $randomCustomTour->id : null;
 
         $response = $this->get(route('custom-tours.show', $id));
 
