@@ -28,4 +28,9 @@ class CustomTourController extends FrontController
 
         return view('site.customTour', ['id' => $customTourItem->id, 'custom_tour' => $customTour]);
     }
+
+    public function showCustomTourBuilder()
+    {
+        return view('site.customTourBuilder');
+    }
 }
