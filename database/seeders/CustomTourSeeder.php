@@ -9,7 +9,7 @@ class CustomTourSeeder extends Seeder
 {
     public function run(): void
     {
-        // Custom Tour
+        // First Custom Tour
         $tourJson = [
             "title" => "My custom tour title",
             "description" => "My custom tour description",
@@ -31,7 +31,7 @@ class CustomTourSeeder extends Seeder
         $customTour->tour_json = json_encode($tourJson);
         $customTour->save();
 
-        // Another Custom Tour
+        // Second Custom Tour
         $tourJson = [
             "title" => "Another custom tour title",
             "description" => "Another custom tour description",
