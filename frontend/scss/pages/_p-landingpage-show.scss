@@ -457,7 +457,6 @@
 
       .parking_label {
         color: $color__text--title;
-        color: $color__text--title;
       }
 
       a {
@@ -556,14 +555,12 @@
           padding: 10px 18px 18px;
           width: 100%;
           color: $color__text--secondary;
-          color: $color__text--secondary;
           display: flex;
           flex-direction: row;
           justify-content: space-between;
           align-items: self-end;
 
           span {
-            color: $color__text--secondary;
             color: $color__text--secondary;
           }
         }
@@ -672,7 +669,6 @@
 
           span:last-child {
             font-weight: 300;
-            color: $color__text--secondary;
             color: $color__text--secondary;
           }
         }
