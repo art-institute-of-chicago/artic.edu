@@ -17,12 +17,12 @@ class CustomTourSeeder extends Seeder
                 [
                     "id" => 656,
                     "title" => "Lion (One of a Pair, South Pedestal)",
-                    "objectNote" => "note about the lion",
+                    "objectNote" => "Note about Lion (One of a Pair, South Pedestal)",
                 ],
                 [
                     "id" => 28560,
                     "title" => "The Bedroom",
-                    "objectNote" => "note about the bedroom",
+                    "objectNote" => "Note about The Bedroom",
                 ],
             ],
         ];
@@ -39,17 +39,17 @@ class CustomTourSeeder extends Seeder
                 [
                     "id" => 117266,
                     "title" => "Nightlife",
-                    "objectNote" => "note about the nightlife",
+                    "objectNote" => "Note about Nightlife",
                 ],
                 [
                     "id" => 24306,
                     "title" => "Blue and Green Music",
-                    "objectNote" => "note about the music",
+                    "objectNote" => "Note about Blue and Green Music",
                 ],
                 [
                     "id" => 64818,
                     "title" => "Stacks of Wheat (End of Summer)",
-                    "objectNote" => "note about the wheat",
+                    "objectNote" => "Note about Stacks of Wheat (End of Summer)",
                 ],
             ],
         ];
@@ -66,27 +66,27 @@ class CustomTourSeeder extends Seeder
                 [
                     "id" => 117266,
                     "title" => "Nightlife",
-                    "objectNote" => "note about the nightlife",
+                    "objectNote" => "Note about Nightlife",
                 ],
                 [
                     "id" => 24306,
                     "title" => "Blue and Green Music",
-                    "objectNote" => "note about the music",
+                    "objectNote" => "Note about Blue and Green Music",
                 ],
                 [
                     "id" => 64818,
                     "title" => "Stacks of Wheat (End of Summer)",
-                    "objectNote" => "note about the wheat",
+                    "objectNote" => "Note about Stacks of Wheat (End of Summer)",
                 ],
                 [
                     "id" => 656,
                     "title" => "Lion (One of a Pair, South Pedestal)",
-                    "objectNote" => "note about the lion",
+                    "objectNote" => "Note about Lion (One of a Pair, South Pedestal)",
                 ],
                 [
                     "id" => 28560,
                     "title" => "The Bedroom",
-                    "objectNote" => "note about the bedroom",
+                    "objectNote" => "Note about The Bedroom",
                 ],
             ],
         ];
@@ -103,22 +103,22 @@ class CustomTourSeeder extends Seeder
                 [
                     "id" => 117266,
                     "title" => "Nightlife",
-                    "objectNote" => "note about the nightlife",
+                    "objectNote" => "Note about Nightlife",
                 ],
                 [
                     "id" => 24306,
                     "title" => "Blue and Green Music",
-                    "objectNote" => "note about the music",
+                    "objectNote" => "Note about Blue and Green Music",
                 ],
                 [
                     "id" => 656,
                     "title" => "Lion (One of a Pair, South Pedestal)",
-                    "objectNote" => "note about the lion",
+                    "objectNote" => "Note about Lion (One of a Pair, South Pedestal)",
                 ],
                 [
                     "id" => 28560,
                     "title" => "The Bedroom",
-                    "objectNote" => "note about the bedroom",
+                    "objectNote" => "Note about The Bedroom",
                 ],
             ],
         ];
@@ -135,17 +135,17 @@ class CustomTourSeeder extends Seeder
                 [
                     "id" => 117266,
                     "title" => "Nightlife",
-                    "objectNote" => "note about the nightlife",
+                    "objectNote" => "Note about Nightlife",
                 ],
                 [
                     "id" => 24306,
                     "title" => "Blue and Green Music",
-                    "objectNote" => "note about the music",
+                    "objectNote" => "Note about Blue and Green Music",
                 ],
                 [
                     "id" => 656,
                     "title" => "Lion (One of a Pair, South Pedestal)",
-                    "objectNote" => "note about the lion",
+                    "objectNote" => "Note about Lion (One of a Pair, South Pedestal)",
                 ],
             ],
         ];
