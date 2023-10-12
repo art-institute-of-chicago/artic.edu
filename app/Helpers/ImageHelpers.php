@@ -686,6 +686,6 @@ class ImageHelpers
         // Split host into sub domain(s), host domain, and top-level domain
         $domains = explode('.', $host);
         // The second-to-last domain item is the host domain
-        return $domains[count($domains) - 2];
+        return $domains[count($domains) - 2] ?? null;
     }
 }
