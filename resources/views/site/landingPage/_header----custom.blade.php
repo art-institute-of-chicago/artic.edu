@@ -7,7 +7,7 @@
     @endcomponent
 
     @component('components.organisms._o-header-landing')
-        @slot('headerVariation', $headerVariation)
+        @slot('mainFeatures', $mainFeatures)
         @slot('headerMedia', $headerMedia)
     @endcomponent
 </section>

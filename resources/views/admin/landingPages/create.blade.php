@@ -3,7 +3,7 @@
 @formField('select', [
     'name' => 'type',
     'label' => 'Page type',
-    'default' => 11,
+    'default' => array_search('Custom', $types),
     'inline' => true,
     'options' => $typesOptions,
 ])

@@ -680,4 +680,12 @@ class ImageHelpers
 
         return Str::kebab($icons[$key]);
     }
+    public static function getSocialIcon($url)
+    {
+        $host = parse_url($url, PHP_URL_HOST);
+        // Split host into sub domain(s), host domain, and top-level domain
+        $domains = explode('.', $host);
+        // The second-to-last domain item is the host domain
+        return $domains[count($domains) - 2] ?? null;
+    }
 }

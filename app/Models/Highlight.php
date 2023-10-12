@@ -155,6 +155,12 @@ class Highlight extends AbstractModel
         return route('admin.collection.highlights.edit', $this->id);
     }
 
+    public function getUrlWithoutSlugAttribute()
+    {
+        return join([route('highlights.index'), '/', $this->id, '/']);
+    }
+
+
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');

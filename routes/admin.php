@@ -105,6 +105,7 @@ Route::group(['prefix' => 'collection'], function () {
 Route::group(['prefix' => 'generic'], function () {
     Route::module('genericPages');
     Route::module('landingPages');
+    Route::module('pageFeatures');
     Route::module('pressReleases');
     Route::module('exhibitionPressRooms');
 });

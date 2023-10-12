@@ -13,7 +13,6 @@
     'name' => 'tag',
     'label' => 'Tag',
     'maxlength' => 100,
-    'required' => true,
 ])
 
 @formField('wysiwyg', [
