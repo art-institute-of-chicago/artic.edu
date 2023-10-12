@@ -3,18 +3,15 @@
 namespace Tests\Feature;
 
 use App\Models\CustomTour;
-use Database\Seeders\CustomTourSeeder;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
-use Illuminate\Support\Facades\Artisan;
 
 class CustomTourViewerTest extends BaseTestCase
 {
     protected $seed = true;
 
     /**
-     * A basic feature test example.
+     * A test to check whether a randomly selected custom tour's title renders
+     * on the viewer page.
      */
     public function test_custom_tour_title_renders(): void
     {
@@ -29,6 +26,10 @@ class CustomTourViewerTest extends BaseTestCase
         $response->assertSee($tourJson['title']);
     }
 
+    /**
+     * A test to check whether a randomly selected custom tour's description renders
+     * on the viewer page.
+     */
     public function test_custom_tour_description_renders(): void
     {
         $randomCustomTour = CustomTour::inRandomOrder()->first();
@@ -39,9 +40,15 @@ class CustomTourViewerTest extends BaseTestCase
 
         $tourJson = json_decode($randomCustomTour->tour_json, true);
 
+        $description = $tourJson['description'];
+
         $response->assertSee($tourJson['description']);
     }
 
+    /**
+     * A test to check whether one of a randomly selected custom tour's artwork's title's
+     * renders on the viewer page.
+     */
     public function test_custom_tour_artworks_title_renders(): void
     {
         $randomCustomTour = CustomTour::inRandomOrder()->first();
@@ -52,8 +59,8 @@ class CustomTourViewerTest extends BaseTestCase
 
         $tourJson = json_decode($randomCustomTour->tour_json, true);
 
+        $randomArtwork = array_rand($tourJson['artworks']);
 
-        // Todo: Randomise the artwork id i.e. get the total number of artworks and generate a random number between 0 - length-1
-        $response->assertSee($tourJson['artworks'][0]['title']);
+        $response->assertSee($tourJson['artworks'][$randomArtwork]['title']);
     }
 }
