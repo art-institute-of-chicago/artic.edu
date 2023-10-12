@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\CustomTour;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
 
 class CustomTourSeeder extends Seeder
 {
