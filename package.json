@@ -11,6 +11,7 @@
     "chalk": "^2.2.0",
     "closer-look": "git+ssh://git@github.com/art-institute-of-chicago/digital-labels-ui.git#master",
     "cross-spawn": "^6.0.5",
+    "custom-tour-builder": "git+ssh://git@github.com/art-institute-of-chicago/custom-tours.git#develop",
     "del": "^3.0.0",
     "fitty": "^2.3.0",
     "fs-extra": "^5.0.0",
