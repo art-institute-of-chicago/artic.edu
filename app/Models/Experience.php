@@ -241,6 +241,11 @@ class Experience extends AbstractModel implements Sortable
         return route('admin.collection.interactive_features.experiences.edit', $this->id);
     }
 
+    public function getUrlWithoutSlugAttribute()
+    {
+        return join([route('interactiveFeatures'), '/', $this->id, '/']);
+    }
+
     public $mediasParams = [
         'thumbnail' => [
             'default' => [
