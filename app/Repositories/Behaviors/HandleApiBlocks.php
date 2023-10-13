@@ -120,7 +120,5 @@ trait HandleApiBlocks
         if (class_exists($classRepo)) {
             return app($classRepo);
         }
-
-
     }
 }
