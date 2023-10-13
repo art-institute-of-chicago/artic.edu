@@ -22,6 +22,16 @@
             @slot('articleType', $item->articleType)
         @endcomponent
     @endif
+
+    @if ($item->showAuthorsWithLinks())
+        @component('components.molecules._m-author')
+            @slot('variation', 'm-author---keyline-top')
+            @slot('img', $item->imageFront('author', 'square'));
+            @slot('name', $item->showAuthorsWithLinks() ?? null);
+            @slot('date', $item->date ?? null);
+        @endcomponent
+    @endif
+
   </div>
 
   <div class="o-article__secondary-actions">
