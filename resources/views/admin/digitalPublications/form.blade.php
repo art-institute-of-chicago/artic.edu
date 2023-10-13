@@ -35,8 +35,8 @@
     @formField('wysiwyg', [
         'name' => 'listing_description',
         'label' => 'Listing description',
-        'note' => 'Max 255 characters',
-        'maxlength' => 255,
+        'note' => 'Max 300 characters',
+        'maxlength' => 300,
         'toolbarOptions' => [
             'italic'
         ],
