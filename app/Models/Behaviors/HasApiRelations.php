@@ -88,13 +88,12 @@ trait HasApiRelations
             })->flatten(1)->sortBy('position');
     }
 
-    public function getApiElements($items, $type, $apiModelsDefinitions)
+    public function getApiElements($items, $type, $apiModelsDefinitions, $isDataHubId = false)
     {
         // Get all related id's
         $relatedIds = $items->pluck('related_id')->toArray();
         // Get all datahub id's
-        $datahubIds = \App\Models\ApiRelation::whereIn('id', $relatedIds)->pluck('datahub_id')->toArray();
-
+        $datahubIds = \App\Models\ApiRelation::whereIn($isDataHubId ? 'datahub_id' : 'id', $relatedIds)->pluck('datahub_id')->toArray();
         // Use those to load API records
         $apiModelDefinition = $apiModelsDefinitions[$type];
         $apiModel = $apiModelDefinition['apiModel'];
@@ -102,11 +101,11 @@ trait HasApiRelations
         return $apiModel::query()->ids($datahubIds)->get();
     }
 
-    public function getLocalApiMapping($items, $apiElements)
+    public function getLocalApiMapping($items, $apiElements, $isDataHubId = false)
     {
         // Find locally selected objects
-        return $items->filter(function ($relatedElement) use ($apiElements) {
-            $apiRelationElement = \App\Models\ApiRelation::where('id', $relatedElement->related_id)->first();
+        return $items->filter(function ($relatedElement) use ($apiElements, $isDataHubId) {
+            $apiRelationElement = \App\Models\ApiRelation::where($isDataHubId ? 'datahub_id' : 'id', $relatedElement->related_id)->first();
             $result = $apiElements->where('id', $apiRelationElement->datahub_id)->first();
 
             if ($result) {
