@@ -5,6 +5,7 @@ namespace App\Repositories\Behaviors;
 use ImageService;
 use Illuminate\Support\Str;
 use App\Helpers\UrlHelpers;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 trait HandleApiBlocks
 {
