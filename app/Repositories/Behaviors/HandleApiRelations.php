@@ -72,16 +72,6 @@ trait HandleApiRelations
         $position = 1;
 
         collect($relatedElements)->each(function ($values) use ($relationship, &$position, $object) {
-            // if ($relationship == 'multi_browser' && $values['endpointType'] == 'exhibitions') {
-            //     dd([
-            //         'subject_id' => $object->getKey(),
-            //         'subject_type' => $object->getMorphClass(),
-            //         'related_id' => $values['id'],
-            //         'related_type' => $values['endpointType'],
-            //         'browser_name' => $relationship,
-            //         'position' => $position,
-            //     ]);
-            // }
             RelatedItem::create([
                 'subject_id' => $object->getKey(),
                 'subject_type' => $object->getMorphClass(),
