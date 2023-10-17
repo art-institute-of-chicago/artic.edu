@@ -49,6 +49,7 @@ class CustomTourSeeder extends Seeder
         // Custom Tour - No Description
         $tourJson = [
             "title" => "Custom Tour - No Description",
+            "description" => "",
             "artworks" => [
                 [
                     "id" => 117266,

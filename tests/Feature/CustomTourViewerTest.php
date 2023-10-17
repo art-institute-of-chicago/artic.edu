@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\CustomTour;
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
+use DOMDocument;
 
 class CustomTourViewerTest extends BaseTestCase
 {
@@ -27,7 +28,7 @@ class CustomTourViewerTest extends BaseTestCase
 
     /**
      * A test to check whether "Custom Tour - Complete"'s description renders
-     * on the viewer page.
+     * on the viewer page and that the appropriate markup is present e.g. id="description".
      */
     public function test_custom_tour_description_renders(): void
     {
@@ -38,6 +39,23 @@ class CustomTourViewerTest extends BaseTestCase
         $tourJson = json_decode($customTourComplete->tour_json, true);
 
         $response->assertSee($tourJson['description']);
+
+        $content = $response->getContent();
+
+        $this->assertStringContainsString('id="description"', $content, 'The paragraph with ID "description" should be found.');
+    }
+
+    /**
+     * A test to check whether "Custom Tour - No Description" omits the description markup
+     * on the viewer page e.g. id="description" is not present 
+     */
+    public function test_custom_tour_no_description_markup_renders(): void
+    {
+        $response = $this->get(route('custom-tours.show', 2));
+
+        $content = $response->getContent();
+
+        $this->assertStringNotContainsString('id="description"', $content, 'The paragraph with ID "description" should not be found.');
     }
 
     /**
