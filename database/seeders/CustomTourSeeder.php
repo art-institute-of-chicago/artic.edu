@@ -9,9 +9,9 @@ class CustomTourSeeder extends Seeder
 {
     public function run(): void
     {
-        // Custom Tour - Complete
+        // Custom Tour - Complete Content
         $tourJson = [
-            "title" => "Custom Tour - Complete",
+            "title" => "Custom Tour - Complete Content",
             "description" => "My custom tour description",
             "artworks" => [
                 [
