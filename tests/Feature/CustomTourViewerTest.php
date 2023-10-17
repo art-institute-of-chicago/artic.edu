@@ -16,12 +16,13 @@ class CustomTourViewerTest extends BaseTestCase
      */
     public function test_custom_tour_title_renders(): void
     {
-        // Todo: Find by title, not id
-        $customTourComplete = CustomTour::find(1);
+        $customTour = CustomTour::where('tour_json->title', 'Custom Tour - Complete Content')->first();
 
-        $response = $this->get(route('custom-tours.show', 1));
+        $id = $customTour ? $customTour->id : null;
 
-        $tourJson = json_decode($customTourComplete->tour_json, true);
+        $response = $this->get(route('custom-tours.show', $id));
+
+        $tourJson = json_decode($customTour->tour_json, true);
 
         $response->assertSee($tourJson['title']);
     }
@@ -32,11 +33,13 @@ class CustomTourViewerTest extends BaseTestCase
      */
     public function test_custom_tour_description_renders(): void
     {
-        $customTourComplete = CustomTour::find(1);
+        $customTour = CustomTour::where('tour_json->title', 'Custom Tour - Complete Content')->first();
 
-        $response = $this->get(route('custom-tours.show', 1));
+        $id = $customTour ? $customTour->id : null;
 
-        $tourJson = json_decode($customTourComplete->tour_json, true);
+        $response = $this->get(route('custom-tours.show', $id));
+
+        $tourJson = json_decode($customTour->tour_json, true);
 
         $response->assertSee($tourJson['description']);
 
@@ -51,7 +54,11 @@ class CustomTourViewerTest extends BaseTestCase
      */
     public function test_custom_tour_no_description_markup_renders(): void
     {
-        $response = $this->get(route('custom-tours.show', 2));
+        $customTour = CustomTour::where('tour_json->title', 'Custom Tour - No Description')->first();
+
+        $id = $customTour ? $customTour->id : null;
+
+        $response = $this->get(route('custom-tours.show', $id));
 
         $content = $response->getContent();
 
@@ -64,11 +71,13 @@ class CustomTourViewerTest extends BaseTestCase
      */
     public function test_custom_tour_artworks_title_renders(): void
     {
-        $customTourComplete = CustomTour::find(1);
+        $customTour = CustomTour::where('tour_json->title', 'Custom Tour - Complete Content')->first();
 
-        $response = $this->get(route('custom-tours.show', 1));
+        $id = $customTour ? $customTour->id : null;
 
-        $tourJson = json_decode($customTourComplete->tour_json, true);
+        $response = $this->get(route('custom-tours.show', $id));
+
+        $tourJson = json_decode($customTour->tour_json, true);
 
         foreach ($tourJson['artworks'] as $index => $artwork) {
             $response->assertSee($tourJson['artworks'][$index]['title']);
