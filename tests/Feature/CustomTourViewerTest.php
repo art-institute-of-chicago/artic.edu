@@ -10,57 +10,52 @@ class CustomTourViewerTest extends BaseTestCase
     protected $seed = true;
 
     /**
-     * A test to check whether a randomly selected custom tour's title renders
+     * A test to check whether "Custom Tour - Complete"'s title renders
      * on the viewer page.
      */
     public function test_custom_tour_title_renders(): void
     {
-        $randomCustomTour = CustomTour::inRandomOrder()->first();
+        // Todo: Find by title, not id
+        $customTourComplete = CustomTour::find(1);
 
-        $id = $randomCustomTour ? $randomCustomTour->id : null;
+        $response = $this->get(route('custom-tours.show', 1));
 
-        $response = $this->get(route('custom-tours.show', $id));
-
-        $tourJson = json_decode($randomCustomTour->tour_json, true);
+        $tourJson = json_decode($customTourComplete->tour_json, true);
 
         $response->assertSee($tourJson['title']);
     }
 
     /**
-     * A test to check whether a randomly selected custom tour's description renders
+     * A test to check whether "Custom Tour - Complete"'s description renders
      * on the viewer page.
      */
     public function test_custom_tour_description_renders(): void
     {
-        $randomCustomTour = CustomTour::inRandomOrder()->first();
+        $customTourComplete = CustomTour::find(1);
 
-        $id = $randomCustomTour ? $randomCustomTour->id : null;
+        $response = $this->get(route('custom-tours.show', 1));
 
-        $response = $this->get(route('custom-tours.show', $id));
-
-        $tourJson = json_decode($randomCustomTour->tour_json, true);
-
-        $description = $tourJson['description'];
+        $tourJson = json_decode($customTourComplete->tour_json, true);
 
         $response->assertSee($tourJson['description']);
     }
 
     /**
-     * A test to check whether one of a randomly selected custom tour's artwork's title's
-     * renders on the viewer page.
+     * A test to check whether all of "Custom Tour - Complete"'s artworks' titles
+     * render on the viewer page.
      */
     public function test_custom_tour_artworks_title_renders(): void
     {
-        $randomCustomTour = CustomTour::inRandomOrder()->first();
+        $customTourComplete = CustomTour::find(1);
 
-        $id = $randomCustomTour ? $randomCustomTour->id : null;
+        $response = $this->get(route('custom-tours.show', 1));
 
-        $response = $this->get(route('custom-tours.show', $id));
+        $tourJson = json_decode($customTourComplete->tour_json, true);
 
-        $tourJson = json_decode($randomCustomTour->tour_json, true);
+        foreach ($tourJson['artworks'] as $index => $artwork) {
+            $response->assertSee($tourJson['artworks'][$index]['title']);
+        }
 
-        $randomArtwork = array_rand($tourJson['artworks']);
 
-        $response->assertSee($tourJson['artworks'][$randomArtwork]['title']);
     }
 }
