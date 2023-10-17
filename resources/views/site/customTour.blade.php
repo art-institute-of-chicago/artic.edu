@@ -7,8 +7,8 @@
     <div class="o-blocks">
         <p>ID: {{ $id }}</p>
 
-        @if(array_key_exists('description', $custom_tour))
-            <p>{{ $custom_tour['description'] }}</p>
+        @if(array_key_exists('description', $custom_tour) && $custom_tour['description'])
+            <p id="description">{{ $custom_tour['description'] }}</p>
         @endif
 
         <ul>
