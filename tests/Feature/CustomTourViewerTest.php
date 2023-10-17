@@ -11,8 +11,8 @@ class CustomTourViewerTest extends BaseTestCase
     protected $seed = true;
 
     /**
-     * A test to check whether "Custom Tour - Complete"'s title renders
-     * on the viewer page.
+     * A test to check whether the title renders on the viewer page
+     * for "Custom Tour - Complete Content"
      */
     public function test_custom_tour_title_renders(): void
     {
@@ -28,8 +28,9 @@ class CustomTourViewerTest extends BaseTestCase
     }
 
     /**
-     * A test to check whether "Custom Tour - Complete"'s description renders
-     * on the viewer page and that the appropriate markup is present e.g. id="description".
+     * A test to check whether the description renders on the viewer page
+     * for "Custom Tour - Complete Content", and that the appropriate
+     * markup is present e.g. id="description".
      */
     public function test_custom_tour_description_renders(): void
     {
@@ -49,8 +50,8 @@ class CustomTourViewerTest extends BaseTestCase
     }
 
     /**
-     * A test to check whether the viewer page for "Custom Tour - No Description"
-     * omits the description markup e.g. id="description" is not present
+     * A test to check whether the description markup is omitted on the viewer page
+     * for "Custom Tour - No Description" e.g. id="description" is not present
      */
     public function test_custom_tour_no_extra_markup_renders(): void
     {
@@ -66,8 +67,8 @@ class CustomTourViewerTest extends BaseTestCase
     }
 
     /**
-     * A test to check whether all of "Custom Tour - Complete"'s artworks' titles
-     * render on the viewer page.
+     * A test to check whether all the artworks' titles render on the viewer page for
+     * "Custom Tour - Complete Content"
      */
     public function test_custom_tour_artworks_title_renders(): void
     {
