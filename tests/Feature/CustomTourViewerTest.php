@@ -49,10 +49,10 @@ class CustomTourViewerTest extends BaseTestCase
     }
 
     /**
-     * A test to check whether "Custom Tour - No Description" omits the description markup
-     * on the viewer page e.g. id="description" is not present
+     * A test to check whether the viewer page for "Custom Tour - No Description"
+     * omits the description markup e.g. id="description" is not present
      */
-    public function test_custom_tour_no_description_markup_renders(): void
+    public function test_custom_tour_no_extra_markup_renders(): void
     {
         $customTour = CustomTour::where('tour_json->title', 'Custom Tour - No Description')->first();
 
