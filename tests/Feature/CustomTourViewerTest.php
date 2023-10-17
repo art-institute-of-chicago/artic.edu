@@ -47,7 +47,7 @@ class CustomTourViewerTest extends BaseTestCase
 
     /**
      * A test to check whether "Custom Tour - No Description" omits the description markup
-     * on the viewer page e.g. id="description" is not present 
+     * on the viewer page e.g. id="description" is not present
      */
     public function test_custom_tour_no_description_markup_renders(): void
     {
@@ -73,7 +73,5 @@ class CustomTourViewerTest extends BaseTestCase
         foreach ($tourJson['artworks'] as $index => $artwork) {
             $response->assertSee($tourJson['artworks'][$index]['title']);
         }
-
-
     }
 }
