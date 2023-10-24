@@ -24,22 +24,34 @@
     'type' => 'textarea'
 ])
 
-@formField('input', [
-    'name' => 'primary_button_label',
-    'label' => 'Primary Button Label'
-])
+@component('twill::partials.form.utils._columns')
+    @slot('left')
+        @formField('input', [
+            'name' => 'primary_button_label',
+            'label' => 'Primary Button Label'
+        ])
+    @endslot
 
-@formField('input', [
-    'name' => 'primary_button_link',
-    'label' => 'Primary Button Link'
-])
+    @slot('right')
+        @formField('input', [
+            'name' => 'primary_button_link',
+            'label' => 'Primary Button Link'
+        ])
+    @endslot
+@endcomponent
 
-@formField('input', [
-    'name' => 'secondary_button_label',
-    'label' => 'Secondary Button Label'
-])
+@component('twill::partials.form.utils._columns')
+    @slot('left')
+        @formField('input', [
+            'name' => 'secondary_button_label',
+            'label' => 'Secondary Button Label'
+        ])
+    @endslot
 
-@formField('input', [
-    'name' => 'secondary_button_link',
-    'label' => 'Secondary Button Link'
-])
+    @slot('right')
+        @formField('input', [
+            'name' => 'secondary_button_link',
+            'label' => 'Secondary Button Link'
+        ])
+    @endslot
+@endcomponent
