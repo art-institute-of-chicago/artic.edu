@@ -6,14 +6,6 @@
     'label' => 'Heading'
 ])
 
-{{-- @formField('browser', [
-    'routePrefix' => 'collection',
-    'max' => 20,
-    'moduleName' => 'artworks',
-    'name' => 'landingArtworks',
-    'label' => 'Artworks'
-]) --}}
-
 @formField('browser', [
     'name' => 'artworks',
     'endpoints' => [
