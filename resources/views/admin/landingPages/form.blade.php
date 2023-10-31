@@ -320,6 +320,7 @@
             'quote',
             'showcase',
             'split_block',
+            'stories_block',
             'tour_stop',
             'video',
             'vtour_embed'
