@@ -229,6 +229,7 @@ return [
         'search_bar',
         'showcase',
         'split_block',
+        'stories_block',
         'table',
         'threesixty_embed',
         'threesixty_modal',
