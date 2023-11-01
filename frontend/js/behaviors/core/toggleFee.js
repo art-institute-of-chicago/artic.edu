@@ -1,16 +1,5 @@
 const toggleFee = function(container) {
 
-  if (container.tagName === 'SELECT') {
-    container.addEventListener('change', function() {
-      showFee.call(this);
-    });
-  } else {
-    container.addEventListener('click', function() {
-      showFee.call(this);
-      selectCategoryButton.call(this);
-  });
-  }
-    
   function showFee() {
 
     let targetAttribute;
@@ -26,7 +15,7 @@ const toggleFee = function(container) {
     feeAges.forEach(element => {
       element.classList.remove('selected');
     });
-      
+
     // Find the element with the matching ID and add the "selected" class
     const targetElements = document.querySelectorAll('[id="'+targetAttribute+'"]');
     if (targetElements) {
@@ -35,16 +24,29 @@ const toggleFee = function(container) {
       })
     }
   }
-    
+
   function selectCategoryButton() {
     const categories = document.querySelectorAll('[data-behavior="toggleFee"]');
-        
+
     categories.forEach(element => {
       element.classList.remove('selected');
     });
-    
+
     container.classList.add('selected');
   }
+
+  function _init() {
+    if (container.tagName === 'SELECT') {
+      container.addEventListener('change', showFee, false);
+    } else {
+      container.addEventListener('click', showFee, false);
+      container.addEventListener('click', selectCategoryButton, false);
+    }
+  }
+
+  this.init = function() {
+      _init();
+  };
 }
 
 export default toggleFee;

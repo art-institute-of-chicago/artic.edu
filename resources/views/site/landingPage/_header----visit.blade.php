@@ -131,24 +131,24 @@
                         {{-- get first index and add selected class to it --}}
                         @if (!empty($admission))
                             @foreach ($admission['titles'] as $category)
-                                @if ($loop->first)
-                                    <tr id='b-{!! $category['id'] !!}' data-target='{!! array_search($category, $admission['titles']) !!}' class="selected" data-behavior="toggleFee">
-                                @else
+                                @if (!$loop->first)
                                     </tr>
-                                    <tr id='b-{!! $category['id'] !!}' data-target='{!! array_search($category, $admission['titles']) !!}' data-behavior="toggleFee">
                                 @endif
+                                <tr id='b-{!! $category['id'] !!}' data-target='{!! array_search($category, $admission['titles']) !!}' {{ $loop->first ? 'class="selected"' : '' }} data-behavior="toggleFee">
                                     <td>
                                         <span class="f-module-title-1">{{$category['title']}}</span>
-                                        <span class="admission-info-button-container" data-behavior="showAdmissionTooltip">
-                                            <button data-tooltip-target='t-{!! $category['id'] !!}' class="admission-info-button-trigger" data-behavior="showAdmissionTooltip" aria-label="Info" aria-expanded="false">
-                                                <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
-                                            </button>
-                                            <span class="admission-info-button-info" id='t-{!! $category['id'] !!}' data-behavior="showAdmissionTooltip">
-                                                <span class="f-caption">
-                                                    {{ $category['tooltip'] }}
-                                                </span>
+                                        @if ($category['tooltip'])
+                                            <span class="admission-info-button-container">
+                                                <button data-tooltip-target='t-{!! $category['id'] !!}' class="admission-info-button-trigger" data-behavior="showAdmissionTooltip" aria-label="Info" aria-expanded="false">
+                                                    <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
+                                                </button>
+                                                <div class="admission-info-button-info" id='t-{!! $category['id'] !!}'>
+                                                    <div class="f-caption">
+                                                        {{ $category['tooltip'] }}
+                                                    </div>
+                                                </div>
                                             </span>
-                                        </span>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -173,42 +173,51 @@
                             <hr>
                             @php $categoryFirst = true; @endphp
                             @foreach ($admission['titles'] as $category)
-                                @if ($loop->first)
-                                    <p id='{!! array_search($category, $admission['titles']) !!}' class="f-secondary admission-info-text selected">
-                                        {{ $category['tooltip'] }}
-                                    </p>
-                                @else
-                                    <p id='{!! array_search($category, $admission['titles']) !!}' class="f-secondary admission-info-text">
-                                        {{ $category['tooltip'] }}
-                                    </p>
-                                @endif
+                                <p id='{!! array_search($category, $admission['titles']) !!}' class="f-secondary admission-info-text {{ $loop->first ? 'selected' : '' }}">
+                                    {{ $category['tooltip'] }}
+                                </p>
                             @endforeach
                             @foreach ($admission['prices'] as $price => $ageGroup)
-                                @foreach ($ageGroup as $age)
-                                    @if ($loop->first)
-                                        @if ($categoryFirst)
-                                            <tbody class="fee-ages selected" id="{!! $price !!}">
-                                            @php $categoryFirst = false; @endphp
-                                        @else
-                                            <tbody class="fee-ages" id="{!! $price !!}">
+                                @if ($ageGroup['description'])
+                                    <tbody class="fee-ages admission-description {{ $categoryFirst ? 'selected' : '' }}" id="{!! $price !!}">
+                                        @php $categoryFirst = false; @endphp
+                                        <tr>
+                                            <td>
+                                                <span class="f-module-title-1">
+                                                    {!! $ageGroup['description'] !!}
+                                                </span>
+
+                                                <a href="{{ $ageGroup['link_url'] }}" class="btn btn--tertiary btn--w-icon f-buttons">
+                                                    {{ $ageGroup['link_label'] }} <svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                @else
+                                    @foreach ($ageGroup as $key => $age)
+                                        @if (is_numeric($key))
+                                            @if ($loop->first)
+                                                <tbody class="fee-ages {{ $categoryFirst ? 'selected' : '' }}" id="{!! $price !!}">
+                                                @php $categoryFirst = false; @endphp
+                                            @endif
+
+                                            @php
+                                                $formattedPrice = ($age[$price] == 0) ? 'Free' : '$' . $age[$price];
+                                            @endphp
+
+                                            <tr>
+                                                <td>
+                                                    <span class="f-module-title-1">{{ $age['title'] }}</span>
+                                                    <span class="f-module-title-1">{!! $formattedPrice !!}</span>
+                                                </td>
+                                            </tr>
+
+                                            @if ($loop->last)
+                                                </tbody>
+                                            @endif
                                         @endif
-                                    @endif
-
-                                    @php
-                                        $formattedPrice = ($age[$price] == 0) ? 'Free' : '$' . $age[$price];
-                                    @endphp
-
-                                    <tr>
-                                        <td>
-                                            <span class="f-module-title-1">{{ $age['title'] }}</span>
-                                            <span class="f-module-title-1">{!! $formattedPrice !!}</span>
-                                        </td>
-                                    </tr>
-
-                                    @if ($loop->last)
-                                        </tbody>
-                                    @endif
-                                @endforeach
+                                    @endforeach
+                                @endif
                             @endforeach
                         </table>
                 </div>
