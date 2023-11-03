@@ -66,10 +66,13 @@ trait HandleApiBlocks
                     $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
                 }
 
+                // Try to set the endpoint classname to the local model version of an API model. Otherwise, use the default
+                $endpointType = app($relatedElement->getMorphClass())->getAugmentedModelClass() ?? $relatedElement->getMorphClass();
+
                 return [
                     'id' => $relatedElement->id,
                     'name' => $relatedElement->titleInBrowser ?? $relatedElement->title,
-                        'endpointType' => $relatedElement->getMorphClass(),
+                    'endpointType' => $endpointType,
                 ] + $data;
             })->toArray();
 
