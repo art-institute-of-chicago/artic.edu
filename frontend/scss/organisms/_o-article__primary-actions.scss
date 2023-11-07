@@ -200,8 +200,29 @@
     }
   }
 
+  .m-article-actions--journal__issues {
+    @include breakpoint('medium-'){
+      display: flex;
+      flex-direction: row;
+      overflow-x: scroll;
+    }
+  }
+
+  .m-article-actions--journal__issues::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .m-article-actions--journal__issues::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
   .m-article-actions--journal__issues a {
     margin-bottom: 12px;
+
+    @include breakpoint('medium-') {
+      margin-bottom: 0;
+      margin-right: 12px;
+    }
   }
 
   .m-article-actions--publication__logo {
