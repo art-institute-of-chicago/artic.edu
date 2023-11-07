@@ -29,7 +29,7 @@
     @if (isset($issues) && $issues->count() > 1)
         <hr>
 
-        <ul class="m-article-actions--journal__issues">
+        <ul class="m-article-actions--journal__issues" data-behavior="dragScroll">
             @foreach($issues as $issue)
                 <li>
                     @component('components.atoms._tag')
