@@ -1,0 +1,97 @@
+// ------ Custom tours
+
+.custom-tours {
+  // Override the reset styles for dialog elements
+  dialog {
+    display: revert;
+    margin: revert;
+    border: none;
+    padding: 0;
+    max-width: 680px;
+    background-color: $color__white;
+
+    &::backdrop {
+      background-color: rgb(0,0,0,0.6);
+    }
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: $color__link--accent;
+  }
+}
+
+// ---- Custom tours: Preview
+
+.aic-ct-preview__close-trans {
+  color: $color__link;
+  padding-left: 0;
+  padding-right: 0;
+
+  svg {
+    // Alignment tweaks might not be needed
+    // but doesn't align right for some reason
+    margin-top: 0;
+    vertical-align: middle;
+  }
+}
+
+.aic-ct-preview__header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $color__white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  h2 {
+    @include untuck;
+  }
+}
+
+.aic-ct-preview__padded {
+  padding: 0 16px;
+}
+
+.aic-ct-preview__image {
+  img {
+    margin-bottom: 32px;
+  }
+}
+
+.aic-ct-preview__title {
+  margin-bottom: 12px;
+}
+
+.aic-ct-preview__date {
+  @include untuck;
+}
+
+.aic-ct-preview__details {
+  margin-bottom: 24px;
+}
+
+.aic-ct-preview__links {
+  padding: 24px 0;
+  border-top: 1px solid $color__black--20;
+  border-bottom: 1px solid $color__black--20;
+  margin-bottom: 24px;
+}
+
+.aic-ct-preview__action-button {
+  margin-bottom: 16px;
+}
+
+.aic-ct-preview__description {
+  margin-bottom: 24px;
+}
+
+.aic-ct-preview__description-title {
+  margin-bottom: 12px;
+}
+
