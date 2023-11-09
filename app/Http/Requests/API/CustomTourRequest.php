@@ -14,13 +14,21 @@ class CustomTourRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string',
-            'description' => 'nullable|string',
-            'artworks' => 'required|array',
-            'artworks.*.id' => 'required|integer',
-            'artworks.*.title' => 'required|string',
-            'artworks.*.objectNote' => 'nullable|string',
-            'artworks.*.galleryTitle' => 'nullable|string',
+            'creator_email' => 'required|email',
+            'marketing_opt_in' => 'boolean',
+            'tour_json.title' => 'required|string',
+            'tour_json.description' => 'nullable|string',
+            'tour_json.creatorName' => 'nullable|string',
+            'tour_json.recipientName' => 'nullable|string',
+            'tour_json.artworks' => 'required|array',
+            'tour_json.artworks.*.id' => 'required|integer',
+            'tour_json.artworks.*.imageId' => 'nullable|string',
+            'tour_json.artworks.*.description' => 'nullable|string',
+            'tour_json.artworks.*.galleryTitle' => 'nullable|string',
+            'tour_json.artworks.*.artistTitle' => 'nullable|string',
+            'tour_json.artworks.*.dateDisplay' => 'nullable|string',
+            'tour_json.artworks.*.title' => 'required|string',
+            'tour_json.artworks.*.objectNote' => 'nullable|string',
         ];
     }
 }
