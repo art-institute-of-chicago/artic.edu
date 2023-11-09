@@ -8,8 +8,8 @@ class ArtworkSortingService
     {
         usort($artworks, function ($a, $b) use ($galleryOrder) {
             $defaultPosition = count($galleryOrder);
-            $posA = isset($a['galleryTitle']) ? array_search($a['galleryTitle'], $galleryOrder) : $defaultPosition;
-            $posB = isset($b['galleryTitle']) ? array_search($b['galleryTitle'], $galleryOrder) : $defaultPosition;
+            $posA = isset($a['gallery_title']) ? array_search($a['gallery_title'], $galleryOrder) : $defaultPosition;
+            $posB = isset($b['gallery_title']) ? array_search($b['gallery_title'], $galleryOrder) : $defaultPosition;
 
             return $posA <=> $posB;
         });

@@ -28,7 +28,21 @@ class CustomTourController extends FrontController
         $this->seo->nofollow = true;
         $this->seo->noindex = true;
 
-        return view('site.customTour', ['id' => $customTourItem->id, 'custom_tour' => $customTour]);
+        // Calculate unique galleries and artists
+        $galleryTitles = array_column($customTour['artworks'], 'galleryTitle');
+        $uniqueGalleryTitles = array_unique($galleryTitles);
+        $uniqueGalleriesCount = count($uniqueGalleryTitles);
+
+        $artistNames = array_column($customTour['artworks'], 'artistTitle');
+        $uniqueArtistNames = array_unique($artistNames);
+        $uniqueArtistsCount = count($uniqueArtistNames);
+
+        return view('site.customTour', [
+            'id' => $customTourItem->id,
+            'custom_tour' => $customTour,
+            'unique_galleries_count' => $uniqueGalleriesCount,
+            'unique_artists_count' => $uniqueArtistsCount,
+        ]);
     }
 
     public function showCustomTourBuilder()
