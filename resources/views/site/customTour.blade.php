@@ -17,13 +17,9 @@
 
         <p>{{ count($custom_tour['artworks']) }} artworks, {{ $unique_artists_count }} artists across {{ $unique_galleries_count }} galleries</p>
 
-        @isset($custom_tour['description'])
-            <p id="description"><em>{{ $custom_tour['description'] }}</em>
-                @isset($custom_tour['creatorName'])
-                    <br>— {{ $custom_tour['creatorName'] }}
-                @endisset
-            </p>
-        @endisset
+        @if(array_key_exists('description', $custom_tour) && $custom_tour['description'])
+            <p id="description">{{ $custom_tour['description'] }}</p>
+        @endif
 
         <ul>
             @foreach ($custom_tour['artworks'] as $artwork)
