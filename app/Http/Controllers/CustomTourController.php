@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomTour;
-use Illuminate\Http\Request;
+use App\Libraries\CustomTour\ArtworkSortingService;
 
 class CustomTourController extends FrontController
 {
@@ -16,6 +16,8 @@ class CustomTourController extends FrontController
         }
 
         $customTour = json_decode($customTourItem->tour_json, true);
+
+        ArtworkSortingService::sortArtworksByGallery($customTour['artworks'], config('galleries.order'));
 
         $this->seo->setTitle($customTour['title']);
 
