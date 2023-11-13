@@ -20,6 +20,7 @@ class CustomTourRequest extends FormRequest
             'artworks.*.id' => 'required|integer',
             'artworks.*.title' => 'required|string',
             'artworks.*.objectNote' => 'nullable|string',
+            'artworks.*.galleryTitle' => 'nullable|string',
         ];
     }
 }
