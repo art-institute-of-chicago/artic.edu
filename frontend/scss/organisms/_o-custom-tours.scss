@@ -18,6 +18,9 @@
   img {
     display: block;
     max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
   }
 
   a {
@@ -60,6 +63,7 @@
 
 .aic-ct-preview__image {
   img {
+    max-height: 500px;
     margin-bottom: 32px;
   }
 }
