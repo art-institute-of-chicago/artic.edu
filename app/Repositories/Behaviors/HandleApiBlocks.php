@@ -5,7 +5,6 @@ namespace App\Repositories\Behaviors;
 use ImageService;
 use Illuminate\Support\Str;
 use App\Helpers\UrlHelpers;
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 trait HandleApiBlocks
 {
@@ -66,13 +65,10 @@ trait HandleApiBlocks
                     $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
                 }
 
-                // Try to set the endpoint classname to the local model version of an API model. Otherwise, use the default
-                $endpointType = app($relatedElement->getMorphClass())->getAugmentedModelClass() ?? $relatedElement->getMorphClass();
-
                 return [
                     'id' => $relatedElement->id,
                     'name' => $relatedElement->titleInBrowser ?? $relatedElement->title,
-                    'endpointType' => $endpointType,
+                    'endpointType' => $relatedElement->getMorphClass(),
                 ] + $data;
             })->toArray();
 
@@ -95,10 +91,6 @@ trait HandleApiBlocks
             return app($apiRepo);
         }
 
-        $classRepo = config('twill.namespace') . '\\Repositories\\' . ucfirst($model) . 'Repository';
-
-        if (class_exists($classRepo)) {
-            return app($classRepo);
-        }
+        return app(config('twill.namespace') . '\\Repositories\\' . ucfirst($model) . 'Repository');
     }
 }
