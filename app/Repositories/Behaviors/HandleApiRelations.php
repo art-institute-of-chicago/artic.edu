@@ -4,7 +4,6 @@ namespace App\Repositories\Behaviors;
 
 use ImageService;
 use App\Models\ApiRelation;
-use App\Models\Vendor\Block;
 use App\Helpers\UrlHelpers;
 use A17\Twill\Models\RelatedItem;
 
@@ -70,7 +69,6 @@ trait HandleApiRelations
         ])->delete();
 
         $position = 1;
-
         collect($relatedElements)->each(function ($values) use ($relationship, &$position, $object) {
             RelatedItem::create([
                 'subject_id' => $object->getKey(),
@@ -132,19 +130,20 @@ trait HandleApiRelations
     public function getFormFieldsForMultiBrowserApi($object, $browser_name, $apiModelsDefinitions, $typeUsesApi)
     {
         $results = collect();
+
         $typedFormFields = $object->relatedItems
             ->where('browser_name', $browser_name)
             ->groupBy('related_type')
-            ->map(function ($items, $type) use ($apiModelsDefinitions, $browser_name, $typeUsesApi, $object) {
+            ->map(function ($items, $type) use ($apiModelsDefinitions, $browser_name, $typeUsesApi) {
                 if ($typeUsesApi[$type]) {
-                    $apiElements = $this->getApiElements($items, $type, $apiModelsDefinitions, get_class($object) == Block::class);
-                    $localApiMapping = $this->getLocalApiMapping($items, $apiElements, get_class($object) == Block::class);
+                    $apiElements = $this->getApiElements($items, $type, $apiModelsDefinitions);
+                    $localApiMapping = $this->getLocalApiMapping($items, $apiElements);
                     $apiModelDefinition = $apiModelsDefinitions[$type];
 
-                    return $localApiMapping->map(function ($relatedElement) use ($apiModelDefinition, $apiElements, $object) {
+                    return $localApiMapping->map(function ($relatedElement) use ($apiModelDefinition, $apiElements) {
                         $data = [];
                         // Get the API elements and use them to build the browser elements
-                        $apiRelationElement = \App\Models\ApiRelation::where(get_class($object) == Block::class ? 'datahub_id' : 'id', $relatedElement->related_id)->first();
+                        $apiRelationElement = \App\Models\ApiRelation::where('id', $relatedElement->related_id)->first();
                         $apiElement = $apiElements->where('id', $apiRelationElement->datahub_id)->first();
 
                         // If it contains an augmented model create an edit link
@@ -163,7 +162,7 @@ trait HandleApiRelations
                             'endpointType' => $apiModelDefinition['moduleName'],
                             'position' => $relatedElement->position
                         ] + $data;
-                    })->values();
+                    })->values()->toArray();
                 } else {
                     return $items->filter(function ($value) {
                         return isset($value->related); // Account for deleted content
