@@ -29,11 +29,11 @@ class CustomTourController extends FrontController
         $this->seo->noindex = true;
 
         // Calculate unique galleries and artists
-        $galleryTitles = array_column($customTour['artworks'], 'galleryTitle');
+        $galleryTitles = array_column($customTour['artworks'], 'gallery_title');
         $uniqueGalleryTitles = array_unique($galleryTitles);
         $uniqueGalleriesCount = count($uniqueGalleryTitles);
 
-        $artistNames = array_column($customTour['artworks'], 'artistTitle');
+        $artistNames = array_column($customTour['artworks'], 'artist_title');
         $uniqueArtistNames = array_unique($artistNames);
         $uniqueArtistsCount = count($uniqueArtistNames);
 
