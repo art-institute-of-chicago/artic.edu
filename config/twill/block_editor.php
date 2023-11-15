@@ -182,6 +182,7 @@ return [
         'experiences' => 'collection.interactive_features',
         'landingPages' => 'generic.landingPages',
         'genericPages' => 'generic.genericPages',
+        'videos' => 'collection.articles_publications',
     ],
     'block-order' => [
         '3d_embed',
