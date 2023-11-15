@@ -12,14 +12,14 @@ class CustomTourController extends BaseController
     {
         $validated = $request->validated();
 
-        $tourJsonData = $validated['tour_json'];
+        $tourJsonData = $validated['tourJson'];
 
         // Perform basic data sanitization using strip_tags
         $sanitizedTourJson = $this->sanitizeData($tourJsonData);
 
         $record = CustomTour::create([
-            'creator_email' => $validated['creator_email'],
-            'marketing_opt_in' => $validated['marketing_opt_in'] ?? false,
+            'creator_email' => $validated['creatorEmail'],
+            'marketing_opt_in' => $validated['marketingOptIn'] ?? false,
             'tour_json' => json_encode($sanitizedTourJson)
         ]);
 
@@ -36,7 +36,7 @@ class CustomTourController extends BaseController
 
         $tourJson = json_decode($customTour->tour_json, true);
 
-        return response()->json(['tour_json' => $tourJson], 200);
+        return response()->json(['tourJson' => $tourJson], 200);
     }
 
     /**
