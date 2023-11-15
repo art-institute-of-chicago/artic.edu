@@ -25,20 +25,21 @@
             @foreach ($custom_tour['artworks'] as $artwork)
                 <li>
                     {{ $artwork['title'] }}
-                    @isset($artwork['dateDisplay'])
-                        , {{ $artwork['dateDisplay'] }}
+                    @isset($artwork['display_date'])
+                        , {{ $artwork['display_date'] }}
                     @endisset
                     <ul>
-                        @isset($artwork['artistTitle'])
-                        <li>Artist title: {{ $artwork['artistTitle'] }}</li>
+                        @isset($artwork['artist_title'])
+                        <li>Artist title: {{ $artwork['artist_title'] }}</li>
                         @endisset
-                        @isset($artwork['imageId'])
-                            <li>
-                                <img src="https://www.artic.edu/iiif/2/{{ $artwork['imageId'] }}/full/256,/0/default.jpg" alt="Thumbnail for {{ $artwork['title'] }}">
-                            </li>
+                        @isset($artwork['image_id'])
+                        <li>IIIF thumbnail:
+                            <img src="https://www.artic.edu/iiif/2/{{ $artwork['image_id'] }}/full/256,/0/default.jpg"
+                                alt="{{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : 'Thumbnail for ' . $artwork['title'] }}">
+                        </li>
                         @endisset
-                        @isset($artwork['galleryTitle'])
-                        <li>Gallery title: {{ $artwork['galleryTitle'] }}</li>
+                        @isset($artwork['gallery_title'])
+                        <li>Gallery title: {{ $artwork['gallery_title'] }}</li>
                         @endisset
                         @isset($artwork['objectNote'])
                         <li>Object note: {{ $artwork['objectNote'] }}</li>
