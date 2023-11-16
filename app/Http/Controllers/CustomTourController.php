@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomTour;
-use Illuminate\Http\Request;
+use App\Libraries\CustomTour\ArtworkSortingService;
 
 class CustomTourController extends FrontController
 {
@@ -17,6 +17,8 @@ class CustomTourController extends FrontController
 
         $customTour = json_decode($customTourItem->tour_json, true);
 
+        ArtworkSortingService::sortArtworksByGallery($customTour['artworks'], config('galleries.order'));
+
         $this->seo->setTitle($customTour['title']);
 
         if (array_key_exists('description', $customTour)) {
@@ -26,7 +28,21 @@ class CustomTourController extends FrontController
         $this->seo->nofollow = true;
         $this->seo->noindex = true;
 
-        return view('site.customTour', ['id' => $customTourItem->id, 'custom_tour' => $customTour]);
+        // Calculate unique galleries and artists
+        $galleryTitles = array_column($customTour['artworks'], 'gallery_title');
+        $uniqueGalleryTitles = array_unique($galleryTitles);
+        $uniqueGalleriesCount = count($uniqueGalleryTitles);
+
+        $artistNames = array_column($customTour['artworks'], 'artist_title');
+        $uniqueArtistNames = array_unique($artistNames);
+        $uniqueArtistsCount = count($uniqueArtistNames);
+
+        return view('site.customTour', [
+            'id' => $customTourItem->id,
+            'custom_tour' => $customTour,
+            'unique_galleries_count' => $uniqueGalleriesCount,
+            'unique_artists_count' => $uniqueArtistsCount,
+        ]);
     }
 
     public function showCustomTourBuilder()
