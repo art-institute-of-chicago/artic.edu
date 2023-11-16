@@ -294,10 +294,6 @@ class LandingPage extends AbstractModel implements Sortable
         });
     }
 
-    public function exhibitions()
-    {
-        return $this->apiElements()->where('relation', 'exhibitions');
-    }
 
     public function events()
     {
