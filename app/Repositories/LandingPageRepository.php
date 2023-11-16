@@ -9,6 +9,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\LandingPage;
 use App\Repositories\Behaviors\HandleApiRelations;
+use App\Repositories\Behaviors\HandleApiBlocks;
 
 class LandingPageRepository extends ModuleRepository
 {
@@ -17,7 +18,10 @@ class LandingPageRepository extends ModuleRepository
     use HandleMedias;
     use HandleFiles;
     use HandleApiRelations;
-    use HandleBlocks;
+    use HandleApiBlocks;
+    use HandleBlocks {
+        HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
+    }
 
     protected $browsers = [
         // Homepage landing
