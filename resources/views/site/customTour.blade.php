@@ -35,7 +35,7 @@
                         @isset($artwork['image_id'])
                         <li>IIIF thumbnail:
                             <img src="https://www.artic.edu/iiif/2/{{ $artwork['image_id'] }}/full/256,/0/default.jpg"
-                                alt="{{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : 'Thumbnail for ' . $artwork['title'] }}">
+                                alt="{{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'] }}">
                         </li>
                         @endisset
                         @isset($artwork['gallery_title'])
