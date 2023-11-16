@@ -29,10 +29,6 @@ class LandingPageRepository extends ModuleRepository
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'events',
         ],
-        'exhibitions' => [
-            'routePrefix' => 'exhibitions_events',
-            'moduleName' => 'exhibitions',
-        ],
         'primaryFeatures' => [
             'routePrefix' => 'generic',
             'moduleName' => 'pageFeatures',
@@ -77,11 +73,6 @@ class LandingPageRepository extends ModuleRepository
     ];
 
     protected $apiBrowsers = [
-        // Homepage landing
-        'exhibitions' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
         'shopItems' => [
             'moduleName' => 'shopItems',
         ],
@@ -125,7 +116,6 @@ class LandingPageRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'exhibitions', 'position', 'Exhibition');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'events', 'position', 'Event');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'primaryFeatures', 'position', 'PageFeature');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'secondaryFeatures', 'position', 'PageFeature');
