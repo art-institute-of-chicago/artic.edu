@@ -9,6 +9,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\LandingPage;
 use App\Repositories\Behaviors\HandleApiRelations;
+use App\Repositories\Behaviors\HandleApiBlocks;
 
 class LandingPageRepository extends ModuleRepository
 {
@@ -17,17 +18,16 @@ class LandingPageRepository extends ModuleRepository
     use HandleMedias;
     use HandleFiles;
     use HandleApiRelations;
-    use HandleBlocks;
+    use HandleApiBlocks;
+    use HandleBlocks {
+        HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
+    }
 
     protected $browsers = [
         // Homepage landing
         'events' => [
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'events',
-        ],
-        'exhibitions' => [
-            'routePrefix' => 'exhibitions_events',
-            'moduleName' => 'exhibitions',
         ],
         'primaryFeatures' => [
             'routePrefix' => 'generic',
@@ -73,11 +73,6 @@ class LandingPageRepository extends ModuleRepository
     ];
 
     protected $apiBrowsers = [
-        // Homepage landing
-        'exhibitions' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
         'shopItems' => [
             'moduleName' => 'shopItems',
         ],
@@ -121,7 +116,6 @@ class LandingPageRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'exhibitions', 'position', 'Exhibition');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'events', 'position', 'Event');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'primaryFeatures', 'position', 'PageFeature');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'secondaryFeatures', 'position', 'PageFeature');
