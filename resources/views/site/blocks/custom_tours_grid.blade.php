@@ -1,7 +1,15 @@
-<h2 id="{{ StringHelpers::getUtf8Slug($block->input('custom_tours_grid_heading')) }}" class="title f-headline">
-    {!! $block->input('custom_tours_grid_heading') !!}
-</h2>
-<div class="aic-ct-grid-intro">{!! $block->input('custom_tours_grid_text') !!}</div>
+@if ($block->input('custom_tours_grid_heading'))
+    <h2 id="{{ StringHelpers::getUtf8Slug($block->input('custom_tours_grid_heading')) }}" class="title f-headline">
+        {!! $block->input('custom_tours_grid_heading') !!}
+    </h2>
+@endif
+
+@if ($block->input('custom_tours_grid_text'))
+    <div class="aic-ct-grid-intro">
+        {!! $block->input('custom_tours_grid_text') !!}
+    </div>
+@endif
+
 <div class="aic-ct-grid-container" data-blur-img>
     @foreach($block->getRelated('custom_tours_items') as $index => $custom_tour)
         <div class="aic-ct-grid-card">
@@ -45,12 +53,16 @@
                         </div>
                     </div>
                 @endif
-                <div class="aic-ct-grid-card__text">
-                    {!! $custom_tour->teaser_text !!}
-                </div>
-                <a href="{{ route('custom-tours.show', $custom_tour->tour_id) }}" class="btn btn--secondary f-buttons">
-                    View tour
-                </a>
+                @if ($custom_tour->teaser_text)
+                    <div class="aic-ct-grid-card__text">
+                        {!! $custom_tour->teaser_text !!}
+                    </div>
+                @endif
+                @if ($custom_tour->tour_id)
+                    <a href="{{ route('custom-tours.show', $custom_tour->tour_id) }}" class="btn btn--secondary f-buttons">
+                        View tour
+                    </a>
+                @endif
             </div>
         </div>
     @endforeach
