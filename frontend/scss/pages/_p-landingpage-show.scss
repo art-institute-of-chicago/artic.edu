@@ -102,6 +102,7 @@
       font-size: 22px;
       letter-spacing: 3px;
       font-family: $sans-serif-font--loaded !important;
+      text-transform: uppercase;
     }
 
     .custom-banner-body {
@@ -118,7 +119,7 @@
       &:focus:hover {
         background-color: #ffffff20 !important;
       }
-  
+
       &:active:hover {
         background-color: #ffffff20 !important;
       }
