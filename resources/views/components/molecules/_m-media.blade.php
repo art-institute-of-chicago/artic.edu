@@ -147,10 +147,26 @@
             @if ($showUrlFullscreen)
                 <a href="{!! $item['urlTitle'] !!}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
             @endif
-            @component('components.atoms._img')
-                @slot('image', $media)
-                @slot('settings', $imageSettings ?? '')
-            @endcomponent
+            @if(!empty($item['media']))
+                @component('components.atoms._img')
+                    @slot('image', $media)
+                    @slot('settings', $imageSettings ?? '')
+                @endcomponent
+            @endif
+            @if(!empty($item['hero']))
+                @component('components.atoms._img')
+                    @slot('image', $item['hero'])
+                    @slot('settings', $imageSettings ?? '')
+                    @slot('class', 'm-media__img--hero')
+                @endcomponent
+            @endif
+            @if(!empty($item['mobile_hero']))
+                @component('components.atoms._img')
+                    @slot('image', $item['mobile_hero'])
+                    @slot('settings', $imageSettings ?? '')
+                    @slot('class', 'm-media__img--mobile-hero')
+                @endcomponent
+            @endif
             @if ($showUrlFullscreen)
                 </a>
             @endif

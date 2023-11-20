@@ -280,6 +280,43 @@
 
 @endcomponent
 
+
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'feature_type',
+    'fieldValues' => 'highlights',
+    'renderForBlocks' => true
+])
+
+    @formField('select', [
+        'name' => 'columns',
+        'label' => '# of columns',
+        'note' => 'Number of columns selected and items loaded must match',
+        'options' => [
+            [
+                'label' => '2',
+                'value' => 2,
+            ],
+            [
+                'label' => '3',
+                'value' => 3,
+            ],
+            [
+                'label' => '4',
+                'value' => 4,
+            ],
+        ]
+    ])
+
+    @formField('browser', [
+        'routePrefix' => 'collection',
+        'moduleName' => 'highlights',
+        'name' => 'highlights',
+        'label' => 'Highlight',
+        'max' => 4,
+    ])
+
+@endcomponent
+
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'feature_type',
     'fieldValues' => 'videos',

@@ -7,7 +7,7 @@
     $body = $block->input('body');
 
 @endphp
-<div class="m-custom_banner-block">
+<div class="m-custom-banner-block">
     <span class="hr"></span>
     <div class="content-wrapper">
         <div class="background-wrapper">
