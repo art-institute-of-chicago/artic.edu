@@ -22,7 +22,6 @@
         case 'events':
             $columns = 4; // event columns are hard set
             if ($block->input('override_event')) {
-                $model = new \App\Models\Event();
                 $items = $block->getRelated('events');
 
                 foreach ($items as $key => $event) {
