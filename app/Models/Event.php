@@ -410,6 +410,14 @@ class Event extends AbstractModel
         });
     }
 
+    public function scopeToday($query)
+    {
+        $today = Carbon::today();
+
+        return $query->betweenDates($today, $today->copy()->endOfDay());
+    }
+
+
     public function scopeLanding($query)
     {
         return $query->whereLanding(true);
