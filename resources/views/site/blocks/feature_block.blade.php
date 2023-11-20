@@ -43,7 +43,8 @@
                 $items = \App\Models\Exhibition::whereIn('datahub_id', $exhibitions)->orderBy('public_start_date', 'ASC')->get();
 
             } else {
-                $items = \App\Models\Exhibition::first()->published()->limit(4)->get();
+                $items = \App\Models\Api\Exhibition::query()->current()->orderBy('aic_start_at','desc')->limit(4)->get();
+                $columns = count($items);
             }
             break;
 
