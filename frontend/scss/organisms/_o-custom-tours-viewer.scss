@@ -46,21 +46,34 @@
   .aic-ct-grid-card {
     background-color: $color__white;
 
+    .aic-ct-grid-card__img {
+      aspect-ratio: 16/9;
+      height: auto;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .default-img {
+      padding: 0 !important;
+    }
+
     .aic-ct-grid-card__details {
       width: 100%;
       margin: auto;
       display: inline-block;
+      padding: 16px 20px 24px;
+    }
 
-      .aic-ct-grid-card__img {
-        aspect-ratio: 16/9;
-        height: auto;
-        width: 100%;
-        margin-bottom: 12px;
-      }
+    .aic-ct-grid-card__text {
+      margin-bottom: 24px;
+      font-family: $serif-font--loaded;
+      font-size: 17px;
+      line-height: 1.41;
+      letter-spacing: -0.005rem;
+    }
 
-      .default-img {
-        padding: 0 !important;
-      }
+    .btn {
+      width: 100%;
     }
   }
 }
