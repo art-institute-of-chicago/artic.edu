@@ -86,25 +86,37 @@
             @foreach($items as $index => $item)
                 <li class="m-feature-block-listing column-{{ $columns }}x">
                     <a href="{{ $item->url_without_slug }}" class="m-feature-block-listing_link">
-                        @if($item->imageFront('listing') ?? $item->imageFront('hero'))
-                            @component('components.atoms._img')
-                            @slot('class', 'm-feature-block-listing__img ' . ($ratio ?? '') . ' column-' . $columns . 'x')
-                            @slot('image', $item->imageFront('listing') ?? $item->imageFront('hero'))
-                                @slot('settings', array(
-                                    'fit' => 'crop',
-                                    'ratio' => '16:9',
-                                    'srcset' => array(300,600,800,1200,1600),
-                                    'sizes' => ImageHelpers::aic_imageSizes(array(
-                                        'xsmall' => 58,
-                                        'small' => 58,
-                                        'medium' => 58,
-                                        'large' => 38,
-                                        'xlarge' => 38,
-                                    ))))
-                            @endcomponent
-                        @else
-                            <span class='default-img m-feature-block-listing__img {{$ratio}} column-{{$columns}}x'></span>
-                        @endif
+                        <div class="m-feature-block-listing__img__wrapper">
+                            @if ($item->type === 'highlight')
+                                <span class="m-feature-block-listing__img__overlay">
+                                    <svg class="icon--slideshow--24"><use xlink:href="#icon--slideshow--24"></use></svg>
+                                </span>
+                            @endif
+                            @if ($item->type === 'experience')
+                                <span class="m-feature-block-listing__img__overlay">
+                                    <svg class="icon--closer-look"><use xlink:href="#icon--closer-look"></use></svg>
+                                </span>
+                            @endif
+                            @if($item->imageFront('listing') ?? $item->imageFront('hero'))
+                                @component('components.atoms._img')
+                                @slot('class', 'm-feature-block-listing__img ' . ($ratio ?? '') . ' column-' . $columns . 'x')
+                                @slot('image', $item->imageFront('listing') ?? $item->imageFront('hero'))
+                                    @slot('settings', array(
+                                        'fit' => 'crop',
+                                        'ratio' => '16:9',
+                                        'srcset' => array(300,600,800,1200,1600),
+                                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                                            'xsmall' => 58,
+                                            'small' => 58,
+                                            'medium' => 58,
+                                            'large' => 38,
+                                            'xlarge' => 38,
+                                        ))))
+                                @endcomponent
+                            @else
+                                <span class='default-img m-feature-block-listing__img {{$ratio}} column-{{$columns}}x'></span>
+                            @endif
+                        </div>
                         <span class="m-feature-block-listing__meta">
                             @if ( $item->type )
                                 <em class="type f-tag">{{ $item->type }}</em>
