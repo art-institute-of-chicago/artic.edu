@@ -4,6 +4,19 @@
 
 .aic-ct-landingpage__body {
   background-color: $color__black--5;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    margin-left: -50vw;
+    background-color: inherit;
+    pointer-events: none;
+  }
 }
 
 .aic-ct-grid {
