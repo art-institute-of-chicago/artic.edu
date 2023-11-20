@@ -15,6 +15,7 @@
     @component('components.organisms._o-header-landing')
         @slot('mainFeatures', $mainFeatures)
         @slot('headerMedia', $headerMedia)
+        @slot('variation', 'home')
     @endcomponent
 
     @if (!empty($hour))
