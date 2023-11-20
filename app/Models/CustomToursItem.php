@@ -21,7 +21,8 @@ class CustomToursItem extends Model
         'published',
         'title',
         'tour_id',
-        'teaser_text'
+        'teaser_text',
+        'artwork_count'
     ];
 
     public $slugAttributes = [
