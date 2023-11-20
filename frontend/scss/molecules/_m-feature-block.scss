@@ -37,10 +37,10 @@
         width: 100%;
         height: 33%;
         text-align: right;
-        background: -webkit-gradient(linear,left top,left bottom,from(#262626),to(transparent));
-        background: -webkit-linear-gradient(top,#262626,transparent);
-        background: -o-linear-gradient(top,#262626,transparent);
-        background: linear-gradient(to bottom,#262626,transparent);
+        background: -webkit-gradient(linear,left top,left bottom,from($color__black--85),to(transparent));
+        background: -webkit-linear-gradient(top,$color__black--85,transparent);
+        background: -o-linear-gradient(top,$color__black--85,transparent);
+        background: linear-gradient(to bottom,$color__black--85,transparent);
         padding: 8px 10px
     }
 
