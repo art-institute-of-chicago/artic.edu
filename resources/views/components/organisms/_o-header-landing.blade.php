@@ -6,7 +6,7 @@
             'srcset' => array(300,600,1000,1500,3000),
             'sizes' => '100vw',
         ))
-        @slot('variation', 'm-visit-header')
+        @slot('variation', isset($variation) ? 'm-'.$variation.'-header' : 'm-landing-header')
     @endcomponent
 @else
     @if ($mainFeatures->count() > 0)
