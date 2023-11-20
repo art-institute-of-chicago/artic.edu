@@ -110,9 +110,9 @@
     }
 
     .btn {
-      border-color: #fff !important;
+      border-color: $color__white !important;
       background-color: #ffffff00 !important;
-      color: #fff !important;
+      color: $color__white !important;
 
       &:hover,
       &:focus:hover {
