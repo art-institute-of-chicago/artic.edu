@@ -1,4 +1,4 @@
-.m-custom_banner-block {
+.m-custom-banner-block {
     width: 100%;
     margin-top: 50px;
     
@@ -46,24 +46,27 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-around;
-        padding: 50px;
+        justify-content: space-between;
+        padding: 85px;
         height: 100%;
         width: 100%;
         @include breakpoint('medium') {
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
+            padding: 50px;
         }
         @include breakpoint('small') {
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
+            padding: 50px;
         }
         @include breakpoint('xsmall') {
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
+            padding: 30px;
         }
 
         .custom-banner-title {

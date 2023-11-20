@@ -596,6 +596,22 @@ a.m-media__img:hover object {
   }
 }
 
+.m-media__img--hero {
+  display: block !important;
+  
+  @include breakpoint('xsmall') {
+    display: none !important;
+  }
+}
+
+.m-media__img--mobile-hero {
+    display: none !important;
+    
+    @include breakpoint('xsmall') {
+      display: block !important;
+    }
+}
+
 .m-media--hero img,
 .m-media--hero video {
   @include objectFitFix;
