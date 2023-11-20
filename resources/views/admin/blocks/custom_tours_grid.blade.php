@@ -9,6 +9,14 @@
     ],
 ])
 
+@formField('wysiwyg', [
+    'name' => 'custom_tours_grid_text',
+    'label' => 'Intro Text',
+    'toolbarOptions' => [
+        'italic'
+    ],
+])
+
 @formField('browser', [
     'routePrefix' => 'visit',
     'moduleName' => 'customToursItems',
