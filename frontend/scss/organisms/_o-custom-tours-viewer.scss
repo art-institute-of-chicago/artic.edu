@@ -3,6 +3,8 @@
 // ---- Custom tours: Landing Page
 
 .aic-ct-landingpage__body {
+  padding-top: 32px;
+  padding-bottom: 32px;
   background-color: $color__black--5;
 
   &::before {
@@ -17,9 +19,14 @@
     background-color: inherit;
     pointer-events: none;
   }
+
+  .title {
+    margin-bottom: 20px;
+  }
 }
 
 .aic-ct-grid {
+  margin-top: 32px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -143,6 +150,8 @@
 
   .aic-ct-grid-card {
     width: 25%;
+    margin-bottom: 20px;
+    background-color: $color__white;
 
     @include breakpoint('medium') {
       width: 50%;
