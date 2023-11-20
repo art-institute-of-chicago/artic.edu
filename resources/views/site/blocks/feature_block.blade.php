@@ -52,6 +52,10 @@
             $items = $block->getRelated('experiences');
             break;
 
+        case 'highlights':
+            $items = $block->getRelated('highlights');
+            break;
+
         case 'videos':
             $items = $block->getRelated('videos');
             break;
