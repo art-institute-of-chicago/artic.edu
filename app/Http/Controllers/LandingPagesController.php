@@ -80,7 +80,9 @@ class LandingPagesController extends FrontController
             $headerMedia = [
                 'type' => 'image',
                 'size' => 'hero',
-                'media' => $item->imageFront('hero'),
+                'media' => null,
+                'hero' => $item->imageFront('hero'),
+                'mobile_hero' => $item->imageFront('mobile_hero'),
                 'hideCaption' => true,
                 'style' => $item->header_variation,
                 'ctaTitle' => $item->header_cta_title,
