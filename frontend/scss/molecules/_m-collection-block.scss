@@ -22,7 +22,7 @@
 
         @include breakpoint('small-') {
             flex-direction: column;
-            margin-bottom: 26px;
+            margin-bottom: 24px;
         }
 
         .m-collection-slider-controls {
@@ -70,110 +70,154 @@
         }
     }
 
-    .m-collection-artworks {
+    .m-collection-content {
         display: flex;
-        flex-wrap: wrap;
         flex-direction: column;
-        overflow-x: scroll;
-        overflow-y: hidden;
-        justify-content: space-between;
-        height: 650px;
-        width: 100vw;
-        margin-left: -50px;
-        padding-left: 50px;
 
-        @include breakpoint('small-') {
-            height: 290px;
+        @include breakpoint('medium-') {
+            flex-direction: column-reverse;
         }
 
-        .m-collection-row {
+        @include breakpoint('xsmall') {
+            flex-direction: column;
+        }
+        
+        .m-collection-artworks {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            justify-content: space-between;
+            height: 650px;
+            width: 100vw;
+            margin-left: -50px;
+            padding-left: 50px;
+
+            @include breakpoint('small-') {
+                height: 290px;
+            }
+
+            .m-collection-row {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .m-collection-row {
+                height: 300px;
+
+                @include breakpoint('small-') {
+                    height: 135px;
+                }
+            }
+
+            .m-collection-artwork__item {
+                height: 300px;
+                width: auto;
+
+                @include breakpoint('small-') {
+                    height: 135px;
+                }
+            }
+
+            .m-collection__img img {
+                height: 300px;
+                width: auto;
+                object-fit: contain;
+                margin-right: 40px;
+
+                @include breakpoint('small-') {
+                    margin-right: 20px;
+                    height: 135px;
+                }
+            }
+
+            .m-collection__img--no-bg {
+                background: none;
+            }
+
+            .m-collection__img--no-bg::after {
+                content: none;
+                display: none;
+            }
+        }
+
+        .m-collection-artworks::-webkit-scrollbar {
+            width: 0;
+        }
+
+        .m-collection-artworks::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+
+        .m-collection-bottom {
+            margin-top: 56px;
             display: flex;
             flex-direction: row;
-        }
+            width: 100%;
+            justify-content: space-between;
 
-        .m-collection-row {
-            height: 300px;
+            @include breakpoint('medium-') {
+                margin-top: 0;
+                margin-bottom: 32px;
+            }
 
             @include breakpoint('small-') {
-                height: 135px;
+                flex-direction: column;
+                margin-top: 0;
+                margin-bottom: 32px;
             }
+
+            @include breakpoint('xsmall') {
+                flex-direction: column;
+                margin-top: 24px;
+                margin-bottom: 0;
+            }
+
+            .collection-desc {
+                width: 65%;
+                font-family: $serif-font--loaded;
+                color: $color__black--54;
+                line-height: 28px;
+                font-size: 26px;
+
+                @include breakpoint('small-') {
+                    font-size: 22px;
+                    width: 100%;
+                }
+            }
+
+            .collection-btns {
+                width: 30%;
+
+                @include breakpoint('small-') {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    margin-top: 20px;
+                    width: 100%;
+                }
+
+                @include breakpoint('xsmall') {
+                    flex-direction: column;
+                    margin-top: 0;
+                }
+
+                .btn {
+                    margin: 0 0 20px 0;
+                    width: 100%;
+
+                    @include breakpoint('small-') {
+                        width: 48%;
+                        margin: 0;
+                    }
+
+                    @include breakpoint('xsmall') {
+                        margin-top: 16px;
+                        width: 100%;
+                    }
+                }
+            }   
         }
-
-        .m-collection-artwork__item {
-            height: 300px;
-            width: auto;
-
-            @include breakpoint('small-') {
-                height: 135px;
-            }
-        }
-
-        .m-collection__img img {
-            height: 300px;
-            width: auto;
-            object-fit: contain;
-            margin-right: 40px;
-
-            @include breakpoint('small-') {
-                margin-right: 20px;
-                height: 135px;
-            }
-        }
-
-        .m-collection__img--no-bg {
-            background: none;
-          }
-
-        .m-collection__img--no-bg::after {
-            content: none;
-            display: none;
-          }
-    }
-
-    .m-collection-artworks::-webkit-scrollbar {
-        width: 0;
-    }
-
-    .m-collection-artworks::-webkit-scrollbar-thumb {
-        background: transparent;
-      }
-
-    .m-collection-bottom {
-        margin-top: 56px;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-between;
-
-        @include breakpoint('small-') {
-            flex-direction: column;
-            margin-top: 24px;
-        }
-
-        .collection-desc {
-            width: 65%;
-            font-family: $serif-font--loaded;
-            color: $color__black--54;
-            font-size: 22px;
-
-            @include breakpoint('small-') {
-                font-size: 17px;
-                width: 100%;
-            }
-        }
-
-        .collection-btns {
-            width: 30%;
-
-            @include breakpoint('small-') {
-                margin-top: 20px;
-                width: 100%;
-            }
-
-            .btn {
-                margin: 0 0 20px 0;
-                width: 100%;
-            }
-        }   
     }
 }
