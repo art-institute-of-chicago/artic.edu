@@ -308,15 +308,11 @@
     ])
 
     @formField('browser', [
+        'routePrefix' => 'collection',
+        'moduleName' => 'highlights',
         'name' => 'highlights',
-        'endpoints' => [
-                [
-                    'label' => 'Experiences',
-                    'value' => moduleRoute('highlights', 'collection', 'browser')
-                ],
-        ],
+        'label' => 'Highlight',
         'max' => 4,
-        'label' => 'Highlights',
     ])
 
 @endcomponent
