@@ -23,9 +23,17 @@
   .title {
     margin-bottom: 20px;
   }
+
+  .aic-ct-grid-intro {
+    font-family: $sans-serif-font--loaded;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: 0.01rem;
+  }
 }
 
-.aic-ct-grid {
+.aic-ct-grid-container {
   margin-top: 32px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
