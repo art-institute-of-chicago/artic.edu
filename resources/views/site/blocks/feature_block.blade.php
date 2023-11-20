@@ -33,7 +33,7 @@
                 }
 
             } else {
-                $items = \App\Models\Event::first()->published()->limit(4)->get();
+                $items = \App\Models\Event::today()->future()->published()->notPrivate()->limit(4)->get();
             }
             break;
 
