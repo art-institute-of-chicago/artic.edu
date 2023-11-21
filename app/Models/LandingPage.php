@@ -311,11 +311,6 @@ class LandingPage extends AbstractModel implements Sortable
         return $this->apiElements()->where('relation', 'artCategoryTerms');
     }
 
-    public function digitalPublications()
-    {
-        return $this->belongsToMany(\App\Models\DigitalPublication::class, 'digital_publication_page')->withPivot('position')->orderBy('position');
-    }
-
     public function experiences()
     {
         return $this->belongsToMany(\App\Models\Experience::class, 'experience_page')->withPivot('position')->orderBy('experience_page.position');
