@@ -321,11 +321,6 @@ class LandingPage extends AbstractModel implements Sortable
         return $this->belongsToMany(\App\Models\Experience::class, 'experience_page')->withPivot('position')->orderBy('experience_page.position');
     }
 
-    public function printedPublications()
-    {
-        return $this->belongsToMany(\App\Models\PrintedPublication::class, 'landing_page_printed_publications')->withPivot('position')->orderBy('position');
-    }
-
     public function researchResourcesStudyRooms()
     {
         return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_study_room_pages')->withPivot('position')->orderBy('research_resource_study_room_pages.position', 'asc');
