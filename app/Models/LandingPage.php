@@ -311,11 +311,6 @@ class LandingPage extends AbstractModel implements Sortable
         return $this->apiElements()->where('relation', 'artCategoryTerms');
     }
 
-    public function articles()
-    {
-        return $this->belongsToMany(\App\Models\Article::class, 'article_page')->withPivot('position')->orderBy('position');
-    }
-
     public function digitalPublications()
     {
         return $this->belongsToMany(\App\Models\DigitalPublication::class, 'digital_publication_page')->withPivot('position')->orderBy('position');
@@ -329,11 +324,6 @@ class LandingPage extends AbstractModel implements Sortable
     public function printedPublications()
     {
         return $this->belongsToMany(\App\Models\PrintedPublication::class, 'landing_page_printed_publications')->withPivot('position')->orderBy('position');
-    }
-
-    public function researchResourcesFeaturePages()
-    {
-        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_feature_page')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
     }
 
     public function researchResourcesStudyRooms()
