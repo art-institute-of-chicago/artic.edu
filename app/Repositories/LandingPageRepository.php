@@ -25,16 +25,6 @@ class LandingPageRepository extends ModuleRepository
     }
 
     protected $browsers = [
-        // Homepage landing
-        'primaryFeatures' => [
-            'routePrefix' => 'generic',
-            'moduleName' => 'pageFeatures',
-        ],
-        'secondaryFeatures' => [
-            'routePrefix' => 'generic',
-            'moduleName' => 'pageFeatures',
-        ],
-
         // Visit
         'articles' => [
             'routePrefix' => 'collection.articles_publications'
@@ -113,8 +103,6 @@ class LandingPageRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'primaryFeatures', 'position', 'PageFeature');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'secondaryFeatures', 'position', 'PageFeature');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'shopItems', 'position', 'ShopItem');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
