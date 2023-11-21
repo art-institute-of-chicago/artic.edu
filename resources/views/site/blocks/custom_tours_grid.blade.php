@@ -34,7 +34,9 @@
                     <span class="default-img aic-ct-grid-card__img"></span>
                 @endif
 
-                <h3 class="aic-ct-grid-card__title">{!! $custom_tour->title !!}</h3>
+                <div class="aic-ct-grid-card__overlay">
+                    <h3 class="aic-ct-grid-card__title">{!! $custom_tour->title !!}</h3>
+                </div>
             </div>
 
             <div class="aic-ct-grid-card__details">
