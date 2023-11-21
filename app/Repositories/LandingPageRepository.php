@@ -100,7 +100,6 @@ class LandingPageRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
 
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
