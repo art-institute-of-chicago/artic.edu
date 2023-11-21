@@ -26,9 +26,6 @@ class LandingPageRepository extends ModuleRepository
 
     protected $browsers = [
         // Visit
-        'articles' => [
-            'routePrefix' => 'collection.articles_publications'
-        ],
         'experiences' => [
             'routePrefix' => 'collection.interactive_features'
         ],
@@ -105,7 +102,6 @@ class LandingPageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRoomMore', 'position', 'GenericPage');
 
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'articles', 'position', 'Article');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'printedPublications', 'position', 'PrintedPublication');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'digitalPublications', 'position', 'DigitalPublication');
 
