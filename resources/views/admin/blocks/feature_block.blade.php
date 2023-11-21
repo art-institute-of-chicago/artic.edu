@@ -295,7 +295,7 @@
         'routePrefix' => 'collection',
         'moduleName' => 'highlights',
         'name' => 'highlights',
-        'label' => 'Highlight',
+        'label' => 'Highlights',
         'max' => 4,
     ])
 
