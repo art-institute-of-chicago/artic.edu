@@ -25,11 +25,6 @@ class LandingPageRepository extends ModuleRepository
     }
 
     protected $browsers = [
-        // Visit
-        'experiences' => [
-            'routePrefix' => 'collection.interactive_features'
-        ],
-
         // Research landing
         'researchResourcesFeaturePages' => [
             'routePrefix' => 'generic',
@@ -65,11 +60,6 @@ class LandingPageRepository extends ModuleRepository
 
     protected $repeaters = [
         'social_links',
-        // Homepage landing
-        'artists' => [
-            'relation' => 'artists',
-            'model' => 'HomeArtist'
-        ],
 
         // Visit
         'menu_items',
@@ -95,8 +85,6 @@ class LandingPageRepository extends ModuleRepository
 
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRoomMore', 'position', 'GenericPage');
-
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'artists', 'position', 'HomeArtist');
 
         return parent::hydrate($object, $fields);
     }
