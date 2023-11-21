@@ -1,6 +1,6 @@
 @if ($block->input('custom_tours_grid_heading'))
     <h2 id="{{ StringHelpers::getUtf8Slug($block->input('custom_tours_grid_heading')) }}" class="title f-headline">
-        {!! $block->input('custom_tours_grid_heading') !!}
+        {!! strip_tags($block->input('custom_tours_grid_heading'), '<em>') !!}
     </h2>
 @endif
 
