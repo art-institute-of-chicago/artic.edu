@@ -237,12 +237,6 @@ class LandingPage extends AbstractModel implements Sortable
         });
     }
 
-
-    public function events()
-    {
-        return $this->belongsToMany(\App\Models\Event::class, 'landing_page_event')->withPivot('position')->orderBy('position');
-    }
-
     public function features()
     {
         return $this->belongsToMany('\App\Models\PageFeature', 'landing_page_page_feature')->withPivot('position')->orderBy('position');
