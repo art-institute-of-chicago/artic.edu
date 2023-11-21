@@ -19,15 +19,6 @@
     @endif
     <div class="g-header__inner">
       <nav aria-label="primary">
-        @if (isset($filledLogo) and $filledLogo)
-        <a class="g-header__logo" aria-label="Art Institute of Chicago" href="/">
-          <svg aria-hidden="true">
-            <use xlink:href="#icon--logo--80" />
-            <use xlink:href="#icon--logo--88" />
-            <use xlink:href="#icon--logo--92" />
-          </svg>
-        </a>
-        @else
         <a class="g-header__logo" aria-label="Art Institute of Chicago" href="/">
           <svg aria-hidden="true">
             <use xlink:href="#icon--logo--outline--80" />
@@ -35,7 +26,6 @@
             <use xlink:href="#icon--logo--outline--92" />
           </svg>
         </a>
-        @endif
         <div class="g-header__nav-primary">
           <h2 class="sr-only" id="h-nav-primary-header">Primary Navigation</h2>
           <ul class="f-main-nav" aria-labelledby="h-nav-primary-header">
