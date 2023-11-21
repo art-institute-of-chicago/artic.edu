@@ -60,9 +60,6 @@ class LandingPageRepository extends ModuleRepository
     ];
 
     protected $apiBrowsers = [
-        'shopItems' => [
-            'moduleName' => 'shopItems',
-        ],
         'artworks' => [
             'routePrefix' => 'collection',
             'moduleName' => 'artworks',
@@ -103,7 +100,6 @@ class LandingPageRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'shopItems', 'position', 'ShopItem');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
 
