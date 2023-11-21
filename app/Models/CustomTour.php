@@ -16,5 +16,5 @@ class CustomTour extends Model
         }
     }
 
-    protected $fillable = ['id', 'tour_json', 'timestamp'];
+    protected $fillable = ['id', 'creator_email', 'marketing_opt_in', 'tour_json', 'timestamp'];
 }

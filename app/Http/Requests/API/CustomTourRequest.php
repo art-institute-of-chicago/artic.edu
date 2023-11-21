@@ -14,12 +14,25 @@ class CustomTourRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string',
-            'description' => 'nullable|string',
-            'artworks' => 'required|array',
-            'artworks.*.id' => 'required|integer',
-            'artworks.*.title' => 'required|string',
-            'artworks.*.objectNote' => 'nullable|string',
+            'creatorEmail' => 'required|email',
+            'marketingOptIn' => 'boolean',
+            'tourJson.title' => 'required|string',
+            'tourJson.description' => 'nullable|string',
+            'tourJson.creatorName' => 'nullable|string',
+            'tourJson.recipientName' => 'nullable|string',
+            'tourJson.artworks' => 'required|array',
+            'tourJson.artworks.*.title' => 'required|string',
+            'tourJson.artworks.*.id' => 'required|integer',
+            'tourJson.artworks.*.image_id' => 'nullable|string',
+            'tourJson.artworks.*.description' => 'nullable|string',
+            'tourJson.artworks.*.gallery_title' => 'nullable|string',
+            'tourJson.artworks.*.artist_title' => 'nullable|string',
+            'tourJson.artworks.*.display_date' => 'nullable|string',
+            'tourJson.artworks.*.thumbnail.lqip' => 'nullable|string',
+            'tourJson.artworks.*.thumbnail.width' => 'nullable|integer',
+            'tourJson.artworks.*.thumbnail.height' => 'nullable|integer',
+            'tourJson.artworks.*.thumbnail.alt_text' => 'nullable|string',
+            'tourJson.artworks.*.objectNote' => 'nullable|string',
         ];
     }
 }
