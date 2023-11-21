@@ -10,7 +10,7 @@ class HourRequest extends Request
     {
         return [
             'title' => 'required',
-            'validFrom' => 'required'
+            'valid_from' => 'required'
         ];
     }
 
@@ -18,7 +18,7 @@ class HourRequest extends Request
     {
         return [
             'title' => 'required',
-            'validFrom' => 'required'
+            'valid_from' => 'required'
         ];
     }
 }
