@@ -118,7 +118,7 @@
     ])
 
     @formField('browser', [
-    'routePrefix' => 'generic',
+        'routePrefix' => 'generic',
         'max' => 9,
         'moduleName' => 'genericPages',
         'name' => 'researchResourcesFeaturePages',
@@ -126,7 +126,7 @@
     ])
 
     @formField('browser', [
-    'routePrefix' => 'generic',
+        'routePrefix' => 'generic',
         'max' => 3,
         'moduleName' => 'genericPages',
         'name' => 'researchResourcesStudyRooms',
@@ -134,7 +134,7 @@
     ])
 
     @formField('browser', [
-    'routePrefix' => 'generic',
+        'routePrefix' => 'generic',
         'max' => 1,
         'moduleName' => 'genericPages',
         'name' => 'researchResourcesStudyRoomMore',
