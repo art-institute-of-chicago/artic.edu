@@ -39,11 +39,6 @@ class LandingPageRepository extends ModuleRepository
             'moduleName' => 'genericPages',
         ],
     ];
-    protected $relatedBrowsers = [
-        // Homepage landing
-        'homeVideos',
-        'homeHighlights',
-    ];
 
     protected $apiBrowsers = [
         'artworks' => [
