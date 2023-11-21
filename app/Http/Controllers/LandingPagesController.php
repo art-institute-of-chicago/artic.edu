@@ -112,7 +112,6 @@ class LandingPagesController extends FrontController
         ];
 
         $contrastHeader = false;
-        $filledLogo = false;
         $title = '';
 
         switch ($item->type) {
@@ -120,7 +119,6 @@ class LandingPagesController extends FrontController
                 $this->seo->setTitle($item->meta_title ?: "Downtown Chicago's #1 Museum");
                 $this->seo->setDescription($item->meta_description ?: "Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
                 $contrastHeader = sizeof($mainFeatures) > 0;
-                $filledLogo = sizeof($mainFeatures) > 0;
                 break;
 
             case array_search('Visit', $types):
@@ -128,7 +126,6 @@ class LandingPagesController extends FrontController
                 $this->seo->setDescription($item->meta_description ?: 'Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
                 $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
                 $contrastHeader = true;
-                $filledLogo = true;
                 $title = __('Visit');
                 break;
 
@@ -153,7 +150,7 @@ class LandingPagesController extends FrontController
             'headerMedia' => $headerMedia,
             'mainFeatures' => $mainFeatures,
             'socialLinks' => $item->socialLinks,
-            'filledLogo' => $filledLogo,
+            'filledLogo' => false,
             'title' => $title,
             'landingPageType' => StringHelpers::pageBlades(array_search($item->type, array_flip($types)))
         ];
@@ -162,7 +159,6 @@ class LandingPagesController extends FrontController
             case array_search('Home', $types):
                 $view_data = array_merge($view_data, [
                     'contrastHeader' => true,
-                    'filledLogo' => true,
                     'primaryNavCurrent' => 'visit',
                     'hours' => $hours,
                     'home_intro' => $item->home_intro,
