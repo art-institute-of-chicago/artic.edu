@@ -5,7 +5,7 @@
 @endif
 
 @if ($block->input('custom_tours_grid_text'))
-    <div class="aic-ct-grid-intro">
+    <div class="aic-ct-grid-intro f-body">
         {!! $block->input('custom_tours_grid_text') !!}
     </div>
 @endif
