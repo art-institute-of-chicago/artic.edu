@@ -71,11 +71,12 @@
       margin-top: 20px;
       margin-right: 20px;
       color: $color__white;
-      font-family: $serif-font--loaded;
       font-weight: 300;
-      font-size: 28px;
-      line-height: 1.14;
-      letter-spacing: -0.01em;
+
+      @include breakpoint('small+') {
+        font-size: 28px;
+        line-height: 1.14;
+      }
     }
 
     .aic-ct-grid-card__img {
