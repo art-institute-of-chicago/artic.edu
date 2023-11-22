@@ -215,6 +215,22 @@ class LandingPagesController extends FrontController
 
                 break;
 
+            case array_search('Pre-made Tours', $types):
+                $view_data = array_merge($view_data, [
+                    'tours_create_cta_module_image' => $item->imageFront('tours_create_cta_module_image'),
+                    'tours_create_cta_module_action_url' => $item->tours_create_cta_module_action_url,
+                    'tours_create_cta_module_header' => $item->tours_create_cta_module_header,
+                    'tours_create_cta_module_button_text' => $item->tours_create_cta_module_button_text,
+                    'tours_create_cta_module_body' => $item->tours_create_cta_module_body,
+                    'tours_tickets_cta_module_image' => $item->imageFront('tours_tickets_cta_module_image'),
+                    'tours_tickets_cta_module_action_url' => $item->tours_tickets_cta_module_action_url,
+                    'tours_tickets_cta_module_header' => $item->tours_tickets_cta_module_header,
+                    'tours_tickets_cta_module_button_text' => $item->tours_tickets_cta_module_button_text,
+                    'tours_tickets_cta_module_body' => $item->tours_tickets_cta_module_body,
+                ]);
+
+                break;
+
             case array_search('Research and Resources', $types):
                 $view_data = array_merge($view_data, [
                     'primaryNavCurrent' => 'collection',
