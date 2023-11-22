@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Hour;
+use App\Models\BuildingClosure;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Tests\CreatesApplication;
@@ -18,7 +19,7 @@ class HourTest extends BaseTestCase
     {
         parent::setUp();
 
-        $this->hour = Hour::factory()->make([
+        $this->hour = Hour::factory()->create([
             'monday_is_closed' => false,
             'monday_member_open' => 'PT10H00M',
             'monday_member_close' => 'PT11H00M',
@@ -47,6 +48,13 @@ class HourTest extends BaseTestCase
             'sunday_public_open' => 'PT11H00M',
             'sunday_public_close' => 'PT17H00M',
         ]);
+
+        $this->hour->buildingClosures()->save(BuildingClosure::factory()->create([
+            'date_start' => Carbon::now()->next('Thursday'),
+            'date_end' => Carbon::now()->next('Thursday'),
+            'closure_copy' => 'The museum is closed on Thursday',
+            'type' => 0,
+        ]));
 
         $this->hourAllClosed = Hour::factory()->make([
             'monday_is_closed' => true,
@@ -194,6 +202,14 @@ class HourTest extends BaseTestCase
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
         $this->assertEquals('Closed today, next open tomorrow.', $this->getStatusHeader());
+        $this->assertEquals(null, $this->getHoursHeader());
+    }
+
+    /** @test */
+    public function it_displays_when_thursday_has_an_emergency_closure(): void
+    {
+        $this->travelTo(Carbon::now('America/Chicago')->next('Thursday')->subDays(2));
+        $this->assertEquals('Closed today, next open Friday.', $this->getStatusHeader());
         $this->assertEquals(null, $this->getHoursHeader());
     }
 
