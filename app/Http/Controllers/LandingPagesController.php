@@ -185,8 +185,24 @@ class LandingPagesController extends FrontController
                 ];
                 break;
 
-            case $types->search('Research and Resources'):
-                $viewData = [
+            case $types->search('Pre-made Tours'):
+                $view_data = array_merge($view_data, [
+                    'tours_create_cta_module_image' => $item->imageFront('tours_create_cta_module_image'),
+                    'tours_create_cta_module_action_url' => $item->labels->get('tours_create_cta_module_action_url'),
+                    'tours_create_cta_module_header' => $item->labels->get('tours_create_cta_module_header'),
+                    'tours_create_cta_module_button_text' => $item->labels->get('tours_create_cta_module_button_text'),
+                    'tours_create_cta_module_body' => $item->labels->get('tours_create_cta_module_body'),
+                    'tours_tickets_cta_module_image' => $item->imageFront('tours_tickets_cta_module_image'),
+                    'tours_tickets_cta_module_action_url' => $item->labels->get('tours_tickets_cta_module_action_url'),
+                    'tours_tickets_cta_module_header' => $item->labels->get('tours_tickets_cta_module_header'),
+                    'tours_tickets_cta_module_button_text' => $item->labels->get('tours_tickets_cta_module_button_text'),
+                    'tours_tickets_cta_module_body' => $item->labels->get('tours_tickets_cta_module_body'),
+                ]);
+
+                break;
+
+                case $types->search('Research and Resources'):
+                $view_data = array_merge($view_data, [
                     'primaryNavCurrent' => 'collection',
                     'intro' => $item->labels->get('resources_landing_intro'),
                     'linksBar' => [
