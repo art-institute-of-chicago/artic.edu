@@ -56,7 +56,7 @@
                     </div>
                 @endif
                 @if ($custom_tour->teaser_text)
-                    <div class="aic-ct-grid-card__text">
+                    <div class="aic-ct-grid-card__text f-deck">
                         {!! $custom_tour->teaser_text !!}
                     </div>
                 @endif
