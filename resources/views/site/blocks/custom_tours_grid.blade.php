@@ -42,7 +42,7 @@
             <div class="aic-ct-grid-card__details">
                 @if ($custom_tour->artwork_count)
                     <div class="aic-ct-grid-card__artworks-count">
-                        <svg role="presentation" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 1.5C1.5 1.08579 1.83579 0.75 2.25 0.75H15.75C16.1642 0.75 16.5 1.08579 16.5 1.5V16.5C16.5 16.9142 16.1642 17.25 15.75 17.25H2.25C1.83579 17.25 1.5 16.9142 1.5 16.5V1.5Z" stroke="#7E746D" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M19.5 3.75V19.5C19.5 19.9142 19.1642 20.25 18.75 20.25H4.5" stroke="#7E746D" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M22.5 6.75V22.5C22.5 22.9142 22.1642 23.25 21.75 23.25H7.5" stroke="#7E746D" stroke-linecap="round" stroke-linejoin="round"/>
