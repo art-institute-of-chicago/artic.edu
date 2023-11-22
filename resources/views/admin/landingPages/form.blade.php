@@ -312,16 +312,16 @@
 
         @formField('medias', [
             'label' => 'Image',
-            'name' => 'tours_cta_module_image'
+            'name' => 'home_module_image'
         ])
 
         @formField('input', [
-            'name' => 'tours_cta_module_header',
+            'name' => 'home_module_header',
             'label' => 'Header',
         ])
 
         @formField('wysiwyg', [
-            'name' => 'tours_cta_module_body',
+            'name' => 'home_module_body',
             'label' => 'Body',
             'toolbarOptions' => [
                 'italic'
@@ -329,7 +329,7 @@
         ])
 
         @formField('input', [
-            'name' => 'tours_cta_module_button_text',
+            'name' => 'home_module_button_text',
             'label' => 'Button text',
         ])
 
@@ -364,25 +364,25 @@
         <hr>
 
         @formField('input', [
-            'name' => 'tours_cta_module_action_url',
+            'name' => 'home_module_action_url',
             'label' => 'Action URL',
             'note' => 'e.g. https://join.artic.edu/secure/holiday-annual-fund',
         ])
 
         @formField('input', [
-            'name' => 'tours_cta_module_form_tlc_source',
+            'name' => 'home_module_form_tlc_source',
             'label' => 'Form TLC Source',
             'note' => 'e.g. AIC17137L01',
         ])
 
         @formField('input', [
-            'name' => 'tours_cta_module_form_token',
+            'name' => 'home_module_form_token',
             'label' => 'Form Token',
             'note' => 'e.g. pa5U17siEjW4suerjWEB5LP7sFJYgAwLZYMS6kNTEag',
         ])
 
         @formField('input', [
-            'name' => 'tours_cta_module_form_id',
+            'name' => 'home_module_form_id',
             'label' => 'Form ID',
             'note' => 'e.g. webform_client_form_5111',
         ])
