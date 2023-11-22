@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BuildingClosure extends AbstractModel
 {
     use Transformable;
+    use HasFactory;
 
     protected $presenter = 'App\Presenters\BuildingClosurePresenter';
     protected $presenterAdmin = 'App\Presenters\BuildingClosurePresenter';
@@ -31,6 +33,15 @@ class BuildingClosure extends AbstractModel
     public $checkboxes = ['published'];
 
     public $dates = ['date_start', 'date_end'];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'published' => true,
+    ];
 
     public function scopeToday($query, $type = 0)
     {

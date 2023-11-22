@@ -270,9 +270,10 @@ class HoursPresenter extends BasePresenter
 
     private function isMuseumClosedToday($when)
     {
-        $isClosed = $this->getWhenFields($when)['is_closed'];
+        $isHoursClosed = $this->getWhenFields($when)['is_closed'];
+        $isBuildingClosureClosed = $this->entity->buildingClosures()->where('date_start', '>=', $when)->where('date_end', '<=', $when)->get();
 
-        return $isClosed ?? false;
+        return $isHoursClosed || $isBuildingClosureClosed->isNotEmpty();
     }
 
     private function isBeforePublicOpen($when)
