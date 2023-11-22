@@ -35,7 +35,7 @@
                 @endif
 
                 <div class="aic-ct-grid-card__overlay">
-                    <h3 class="aic-ct-grid-card__title">{!! $custom_tour->title !!}</h3>
+                    <h3 class="aic-ct-grid-card__title f-headline-editorial">{!! $custom_tour->title !!}</h3>
                 </div>
             </div>
 
