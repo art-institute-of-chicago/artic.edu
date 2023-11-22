@@ -38,11 +38,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint('small') {
-    grid-template-columns: 100%;
-  }
-
-  @include breakpoint('xsmall') {
+  @include breakpoint('small-') {
     grid-template-columns: 100%;
   }
 
