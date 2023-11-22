@@ -96,11 +96,14 @@
       padding: 16px 20px 24px;
     }
 
-    .aic-ct-grid-card__artworks-count {
+    .aic-ct-grid-card__artworks-count-container {
       display: flex;
       align-items: center;
       margin-bottom: 16px;
       gap: 8px;
+    }
+
+    .aic-ct-grid-card__artworks-count {
       font-family: $sans-serif-font--loaded;
       font-size: 13px;
       font-weight: 300;
