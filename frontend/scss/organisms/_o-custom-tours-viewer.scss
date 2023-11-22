@@ -110,10 +110,12 @@
 
     .aic-ct-grid-card__text {
       margin-bottom: 24px;
-      font-family: $serif-font--loaded;
+    }
+
+    .f-deck {
+      color: $color__black--80;
       font-size: 17px;
       line-height: 1.41;
-      letter-spacing: -0.005em;
     }
 
     .btn {
