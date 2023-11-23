@@ -13,49 +13,51 @@
 @endphp
 
 @if ($header)
-    <{{ $tag }} class="m-cta-banner{{ isset($image) ? ' m-cta-banner--with-image' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}{{ $pre_made ? ' m-cta-banner--aic-ct' : ''}}{{ !isset($image) && $pre_made ? ' m-cta-banner--aic-ct--no-image' : '' }}"{!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
-        @if ($isBigLink)
-            <a href="{{ $href }}" class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
-        @endif
-            @if (isset($image))
-                <div class="m-cta-banner__img" data-parallax-img>
-                    @component('components.atoms._img')
-                        @slot('image', $image)
-                        @slot('settings', array(
-                            'fit' => 'crop',
-                            'ratio' => '25:4',
-                            'srcset' => array(300,600,1000,1500,2000),
-                            'sizes' => ImageHelpers::aic_imageSizes(array(
-                                  'xsmall' => '58',
-                                  'small' => '58',
-                                  'medium' => '58',
-                                  'large' => '58',
-                                  'xlarge' => '58',
-                            )),
-                        ))
-                    @endcomponent
-                </div>
+    <div class="{{ isset($image) && $pre_made ? 'm-cta-banner--aic-ct--container' : '' }}">
+        <{{ $tag }} class="m-cta-banner{{ isset($image) ? ' m-cta-banner--with-image' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}{{ $pre_made ? ' m-cta-banner--aic-ct' : ''}}{{ isset($image) && $pre_made ? ' m-cta-banner--aic-ct--with-image' : '' }}{{ !isset($image) && $pre_made ? ' m-cta-banner--aic-ct--no-image' : '' }}"{!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
+            @if ($isBigLink)
+                <a href="{{ $href }}" class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
             @endif
-            <div class="m-cta-banner__txt">
-                <div class="m-cta-banner__title{{ $pre_made ? ' f-headline' :  ' f-module-title-2' }}">{!! SmartyPants::defaultTransform($header) !!}</div>
-                @if ($body)
-                    <div class="m-cta-banner__msg{{ $pre_made ? ' f-body' :  ' f-list-2' }}">{!! SmartyPants::defaultTransform($body) !!}</div>
-                @endif
-                @if ($button_text)
-                    <div class="m-cta-banner__action">
-                        @if (!$isBigLink)
-                            <a href="{{ $href }}">
-                        @endif
-
-                        <span class="btn f-buttons{{ (isset($image) && !$pre_made) || (!isset($image) && $pre_made) ? ' btn--contrast' : '' }}">{!! SmartyPants::defaultTransform($button_text) !!}</span>
-                        @if (!$isBigLink)
-                            </a>
-                        @endif
+                @if (isset($image))
+                    <div class="m-cta-banner__img" data-parallax-img>
+                        @component('components.atoms._img')
+                            @slot('image', $image)
+                            @slot('settings', array(
+                                'fit' => 'crop',
+                                'ratio' => '25:4',
+                                'srcset' => array(300,600,1000,1500,2000),
+                                'sizes' => ImageHelpers::aic_imageSizes(array(
+                                      'xsmall' => '58',
+                                      'small' => '58',
+                                      'medium' => '58',
+                                      'large' => '58',
+                                      'xlarge' => '58',
+                                )),
+                            ))
+                        @endcomponent
                     </div>
                 @endif
-            </div>
-        @if ($isBigLink)
-            </a>
-        @endif
-    </{{ $tag }}>
+                <div class="m-cta-banner__txt">
+                    <div class="m-cta-banner__title{{ $pre_made ? ' f-headline' :  ' f-module-title-2' }}">{!! SmartyPants::defaultTransform($header) !!}</div>
+                    @if ($body)
+                        <div class="m-cta-banner__msg{{ $pre_made ? ' f-body' :  ' f-list-2' }}">{!! SmartyPants::defaultTransform($body) !!}</div>
+                    @endif
+                    @if ($button_text)
+                        <div class="m-cta-banner__action">
+                            @if (!$isBigLink)
+                                <a href="{{ $href }}">
+                            @endif
+
+                            <span class="btn f-buttons{{ (isset($image) && !$pre_made) || (!isset($image) && $pre_made) ? ' btn--contrast' : '' }}">{!! SmartyPants::defaultTransform($button_text) !!}</span>
+                            @if (!$isBigLink)
+                                </a>
+                            @endif
+                        </div>
+                    @endif
+                </div>
+            @if ($isBigLink)
+                </a>
+            @endif
+        </{{ $tag }}>
+    </div>
 @endif
