@@ -10,18 +10,18 @@
     max-width: 680px;
     background-color: $color__white;
 
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center top;
+    }
     &::backdrop {
       background-color: rgb(0,0,0,0.6);
     }
   }
 
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    object-position: center top;
-  }
 
   a {
     color: $color__link--accent;
@@ -315,4 +315,16 @@
 .aic-ct-theme-toggle__wrapper {
   display: flex;
   align-items: center;
+}
+
+// ---- Custom tours: Search results
+
+.aic-ct-result__button {
+  display: block;
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
 }
