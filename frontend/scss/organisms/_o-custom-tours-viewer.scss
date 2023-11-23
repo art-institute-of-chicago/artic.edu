@@ -191,6 +191,61 @@
   }
 }
 
+.m-cta-banner--aic-ct--container {
+  @include breakpoint('small-') {
+    position: relative;
+  }
+}
+
+.m-cta-banner--aic-ct--with-image {
+  @include breakpoint('small-') {
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    margin-left: -50vw;
+    background-color: inherit;
+    pointer-events: none;
+
+    .m-cta-banner__img {
+      top: unset;
+      
+      img {
+        position: absolute;
+        z-index: -1;
+        left: unset;
+        width: 100vw;
+        margin-left: -50vw;
+      }
+    }
+  }
+}
+
+.m-cta-banner--aic-ct--with-image {
+  @include breakpoint('small-') {
+    position: relative;
+    overflow: visible;
+    overflow-y: hidden;
+    min-height: 240px;
+    height: fit-content;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 100vw;
+      margin-left: -50vw;
+      background-color: inherit;
+      pointer-events: none;
+    }
+  }
+}
+
 .m-cta-banner--aic-ct--no-image {
   background-color: $color__black;
 
