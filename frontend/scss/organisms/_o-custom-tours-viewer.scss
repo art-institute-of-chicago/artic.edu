@@ -35,6 +35,10 @@
   &.f-body::before {
     padding: 0;
   }
+
+  &.f-body::after {
+    margin-bottom: 0;
+  }
 }
 
 .aic-ct-grid-container {
@@ -80,6 +84,14 @@
     .f-headline-editorial {
       font-weight: 300;
 
+      &::before {
+        padding: 0;
+      }
+
+      &::after {
+        margin-bottom: 0;
+      }
+
       @include breakpoint('small+') {
         font-size: 28px;
         line-height: 1.14;
@@ -107,7 +119,7 @@
     .aic-ct-grid-card__artworks-count-container {
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 16px;
       gap: 8px;
     }
 
@@ -127,6 +139,14 @@
       color: $color__black--80;
       font-size: 17px;
       line-height: 1.41;
+
+      &::before {
+        padding: 0;
+      }
+
+      &::after {
+        margin-bottom: 0;
+      }
     }
 
     .btn {
