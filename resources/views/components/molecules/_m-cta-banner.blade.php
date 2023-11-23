@@ -13,7 +13,7 @@
 @endphp
 
 @if ($header)
-    <{{ $tag }} class="m-cta-banner{{ isset($image) ? ' m-cta-banner--with-image' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}{{ $pre_made ? ' m-cta-banner--aic-ct' : ''}}{{ !isset($image) && !$pre_made ? '' : ' m-cta-banner--aic-ct--no-image' }}"{!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
+    <{{ $tag }} class="m-cta-banner{{ isset($image) ? ' m-cta-banner--with-image' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}{{ $pre_made ? ' m-cta-banner--aic-ct' : ''}}{{ !isset($image) && $pre_made ? ' m-cta-banner--aic-ct--no-image' : '' }}"{!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
         @if ($isBigLink)
             <a href="{{ $href }}" class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @endif
