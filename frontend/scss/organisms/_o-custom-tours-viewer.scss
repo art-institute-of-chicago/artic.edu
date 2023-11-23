@@ -168,8 +168,45 @@
 
 // -- Custom tours: Custom footer
 
+.m-cta-banner--aic-ct {
+  @include breakpoint('small-') {
+    margin-top: 0;
+  }
+}
+
 .m-cta-banner--aic-ct--no-image {
   background-color: $color__black;
+
+  @include breakpoint('small-') {
+    overflow: visible;
+    min-height: 240px;
+    height: fit-content;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 100vw;
+      margin-left: -50vw;
+      background-color: inherit;
+      pointer-events: none;
+    }
+  }
+
+  .m-cta-banner__msg {
+    @include breakpoint('small-') {
+      margin-bottom: 16px;
+    }
+  }
+
+  .m-cta-banner__action {
+    @include breakpoint('small-') {
+      position: unset;
+    }
+  }
 
   .m-cta-banner__title,
   .m-cta-banner__msg {
@@ -177,15 +214,12 @@
   }
 
   .m-cta-banner__txt {
-    left: 20px;
-    right: 20px;
-
-    @include breakpoint('small+') {
-      left: colspan(3, small);
-      right: colspan(3, small);
-    }
+    position: unset;
+    padding-top: 32px;
+    padding-bottom: 32px;
 
     @include breakpoint('medium+') {
+      position: absolute;
       left: colspan(3, medium);
       right: colspan(3, medium);
     }
