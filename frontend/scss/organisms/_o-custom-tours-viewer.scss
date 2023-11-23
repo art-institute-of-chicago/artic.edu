@@ -27,6 +27,14 @@
 
 .aic-ct-grid-intro {
   margin-bottom: 32px;
+
+  &.f-body {
+    margin-top: 0;
+  }
+
+  &.f-body::before {
+    padding: 0;
+  }
 }
 
 .aic-ct-grid-container {
@@ -99,7 +107,7 @@
     .aic-ct-grid-card__artworks-count-container {
       display: flex;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
       gap: 8px;
     }
 
