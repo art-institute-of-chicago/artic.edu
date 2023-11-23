@@ -174,6 +174,11 @@
 // -- Custom tours: Custom footer
 
 .m-cta-banner--aic-ct {
+  @include breakpoint('medium-') {
+    min-height: 240px;
+    height: fit-content;
+  }
+  
   @include breakpoint('small-') {
     margin-top: 0;
   }
@@ -189,11 +194,48 @@
       margin-bottom: 0;
     }
   }
+
+  .m-cta-banner__txt {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    height: fit-content;
+
+    @include breakpoint('medium+') {
+      position: absolute;
+      left: colspan(3, medium);
+      right: colspan(3, medium);
+    }
+
+    @include breakpoint('large+') {
+      left: colspan(3, large);
+      right: colspan(3, large);
+    }
+
+    @include breakpoint('xlarge') {
+      left: colspan(3, xlarge);
+      right: colspan(3, xlarge);
+    }
+  }
+
+  .m-cta-banner__action {
+    @include breakpoint('small-') {
+      position: unset;
+    }
+  }
+
+  .m-cta-banner__msg {
+    @include breakpoint('small-') {
+      margin-bottom: 20px;
+    }
+  }
 }
 
 .m-cta-banner--aic-ct--container {
   @include breakpoint('small-') {
     position: relative;
+    width: 100vw;
+    // Todo: Why is this -5.2%?
+    left: -5.2%;
   }
 }
 
@@ -211,7 +253,7 @@
 
     .m-cta-banner__img {
       top: unset;
-      
+
       img {
         position: absolute;
         z-index: -1;
@@ -219,6 +261,10 @@
         width: 100vw;
         margin-left: -50vw;
       }
+    }
+
+    .m-cta-banner__txt {
+      top: 0;
     }
   }
 }
@@ -228,8 +274,6 @@
     position: relative;
     overflow: visible;
     overflow-y: hidden;
-    min-height: 240px;
-    height: fit-content;
 
     &::before {
       content: "";
@@ -266,45 +310,17 @@
       background-color: inherit;
       pointer-events: none;
     }
-  }
 
-  .m-cta-banner__msg {
-    @include breakpoint('small-') {
-      margin-bottom: 20px;
-    }
-  }
-
-  .m-cta-banner__action {
-    @include breakpoint('small-') {
+    .m-cta-banner__txt {
       position: unset;
     }
   }
 
+
+
   .m-cta-banner__title,
   .m-cta-banner__msg {
     color: $color__white;
-  }
-
-  .m-cta-banner__txt {
-    position: unset;
-    padding-top: 32px;
-    padding-bottom: 32px;
-
-    @include breakpoint('medium+') {
-      position: absolute;
-      left: colspan(3, medium);
-      right: colspan(3, medium);
-    }
-
-    @include breakpoint('large+') {
-      left: colspan(3, large);
-      right: colspan(3, large);
-    }
-
-    @include breakpoint('xlarge') {
-      left: colspan(3, xlarge);
-      right: colspan(3, xlarge);
-    }
   }
 
   .btn--contrast {
