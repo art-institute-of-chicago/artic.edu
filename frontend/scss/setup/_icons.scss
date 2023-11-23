@@ -88,6 +88,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--footer_map_120x92">
     <use xlink:href="#icon--footer_map_120x92"></use>
   </svg>
+  <svg class="icon--image-stack">
+    <use xlink:href="#icon--image-stack"></use>
+  </svg>
   <svg class="icon--info">
     <use xlink:href="#icon--info"></use>
   </svg>
@@ -424,6 +427,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--footer_map_120x92 {
   width: 120px;
   height: 92px;
+}
+
+.icon--image-stack {
+  width: 24px;
+  height: 24px;
 }
 
 .icon--info {
