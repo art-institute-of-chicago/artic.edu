@@ -37,9 +37,9 @@
                 </div>
             @endif
             <div class="m-cta-banner__txt">
-                <div class="m-cta-banner__title f-module-title-2">{!! SmartyPants::defaultTransform($header) !!}</div>
+                <div class="m-cta-banner__title{{ $pre_made ? ' f-headline' :  ' f-module-title-2' }}">{!! SmartyPants::defaultTransform($header) !!}</div>
                 @if ($body)
-                    <div class="m-cta-banner__msg f-list-2">{!! SmartyPants::defaultTransform($body) !!}</div>
+                    <div class="m-cta-banner__msg{{ $pre_made ? ' f-body' :  ' f-list-2' }}">{!! SmartyPants::defaultTransform($body) !!}</div>
                 @endif
                 @if ($button_text)
                     <div class="m-cta-banner__action">

@@ -2,6 +2,19 @@
 
 // ---- Custom tours: Landing page
 
+// -- Custom tours: Custom tours utility fonts
+
+.aic-ct-grid-intro,
+.m-cta-banner__msg {
+  &.f-body::before {
+    padding: 0;
+  }
+
+  &.f-body::after {
+    margin-bottom: 0;
+  }
+}
+
 // -- Custom tours: Custom tours grid
 
 .o-landingpage__body--aic-ct {
@@ -32,14 +45,6 @@
 
   &.f-body {
     margin-top: 0;
-  }
-
-  &.f-body::before {
-    padding: 0;
-  }
-
-  &.f-body::after {
-    margin-bottom: 0;
   }
 }
 
@@ -172,6 +177,18 @@
   @include breakpoint('small-') {
     margin-top: 0;
   }
+
+  .f-headline {
+    margin-bottom: 20px;
+
+    &::before {
+      padding-top: 0;
+    }
+
+    &::after {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .m-cta-banner--aic-ct--no-image {
@@ -198,7 +215,7 @@
 
   .m-cta-banner__msg {
     @include breakpoint('small-') {
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
   }
 
