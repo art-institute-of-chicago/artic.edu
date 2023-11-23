@@ -6,13 +6,14 @@
     $header = $header ?? null;
     $body = $body ?? null;
     $button_text = $button_text ?? null;
+    $pre_made = $pre_made ?? false;
 
     // TODO: Make this an option?
     $isBigLink = isset($image);
 @endphp
 
 @if ($header)
-    <{{ $tag }} class="m-cta-banner{{ isset($image) ? ' m-cta-banner--with-image' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
+    <{{ $tag }} class="m-cta-banner{{ isset($image) ? ' m-cta-banner--with-image' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }} {{isset($pre_made) ? 'm-cta-banner--aic-ct' : ''}}"{!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
         @if ($isBigLink)
             <a href="{{ $href }}" class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @endif
