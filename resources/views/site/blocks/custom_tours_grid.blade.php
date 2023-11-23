@@ -20,7 +20,7 @@
                         @slot('image', $custom_tour->imageAsArray('teaser_image'))
                         @slot('settings', array(
                             'fit' => 'crop',
-                            'ratio' => '16:9',
+                            'ratio' => '67:40',
                             'srcset' => array(300,600,800,1200,1600),
                             'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => 58,
