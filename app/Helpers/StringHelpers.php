@@ -298,6 +298,8 @@ class StringHelpers
             $pageString = 'collection-landing'; // Rename the first word to 'collection-landing'
         } elseif (strpos($pageTitle, 'and') !== false) { // If the page title contains 'and' (i.e. 'Research and Resources')
             $pageString = $firstWord . '-landing'; // Rename the first word to 'research-landing'
+        } elseif ($pageTitle === 'pre-made') {
+            $pageString = 'o-landingpage__body--aic-ct';
         } else {
             $pageString = $firstWord; // Otherwise, just use the first word
         }
