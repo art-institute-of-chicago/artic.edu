@@ -46,7 +46,8 @@
                         @if (!$isBigLink)
                             <a href="{{ $href }}">
                         @endif
-                        <span class="btn f-buttons{{ isset($image) ? ' btn--contrast' : '' }}">{!! SmartyPants::defaultTransform($button_text) !!}</span>
+
+                        <span class="btn f-buttons{{ isset($image) && !$pre_made ? ' btn--contrast' : '' }}">{!! SmartyPants::defaultTransform($button_text) !!}</span>
                         @if (!$isBigLink)
                             </a>
                         @endif

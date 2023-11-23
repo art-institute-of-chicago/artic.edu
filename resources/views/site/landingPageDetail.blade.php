@@ -27,7 +27,7 @@
         @slot('body', $tours_tickets_cta_module_body)
         @slot('button_text', $tours_tickets_cta_module_button_text)
         @slot('gtmAttributes', 'data-gtm-event="'. $tours_tickets_cta_module_button_text . '" data-gtm-event-category="internal-ad-click"')
-        @slot('pre-made', true)
+        @slot('pre_made', true)
     @endcomponent
 
     @include('site.landingPage._footer----'.$landingPageType)
