@@ -277,3 +277,36 @@
     margin-top: 0;
   }
 }
+
+// ---- Custom tours: Themes
+
+// N.b. because of how tag--senary and tag--quaternary are defined and
+// coupled to the close icon and thumbnail we can't use those classes alone
+
+.aic-ct-theme-toggle {
+  .icon--close {
+    color: $color__text--secondary;
+  }
+}
+
+// Borrow just the color styles from tag--quaternary
+.aic-ct-theme-toggle--active {
+  color: $color__white !important;
+  background-color: $color__black--90 !important;
+
+  &:hover,
+  &:focus {
+    color: $color__white !important;
+    background-color: $color__black--80 !important;
+  }
+
+  &:active {
+    color: $color__white !important;
+    background-color: $color__black--90 !important;
+  }
+}
+
+.aic-ct-theme-toggle__wrapper {
+  display: flex;
+  align-items: center;
+}
