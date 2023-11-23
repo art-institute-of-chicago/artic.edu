@@ -168,6 +168,44 @@
 
 // -- Custom tours: Custom footer
 
+.m-cta-banner--aic-ct--no-image {
+  background-color: $color__black;
+
+  .m-cta-banner__title,
+  .m-cta-banner__msg {
+    color: $color__white;
+  }
+
+  .m-cta-banner__txt {
+    left: 20px;
+    right: 20px;
+
+    @include breakpoint('small+') {
+      left: colspan(3, small);
+      right: colspan(3, small);
+    }
+
+    @include breakpoint('medium+') {
+      left: colspan(3, medium);
+      right: colspan(3, medium);
+    }
+
+    @include breakpoint('large+') {
+      left: colspan(3, large);
+      right: colspan(3, large);
+    }
+
+    @include breakpoint('xlarge') {
+      left: colspan(3, xlarge);
+      right: colspan(3, xlarge);
+    }
+  }
+
+  .btn--contrast {
+    border-color: $color__white;
+  }
+}
+
 
 
 
