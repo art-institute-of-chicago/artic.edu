@@ -280,6 +280,12 @@
 
 // ---- Custom tours: Themes
 
+.aic-ct-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 // N.b. because of how tag--senary and tag--quaternary are defined and
 // coupled to the close icon and thumbnail we can't use those classes alone
 
