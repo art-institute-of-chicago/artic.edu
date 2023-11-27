@@ -35,6 +35,10 @@
                                 )),
                             ))
                         @endcomponent
+                        @if ($custom_tours)
+                            <div class="m-cta-banner--aic-ct__overlay">
+                            </div>
+                        @endif
                     </div>
                 @endif
                 <div class="m-cta-banner__txt">
