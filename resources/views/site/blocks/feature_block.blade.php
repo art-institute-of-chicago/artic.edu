@@ -117,7 +117,7 @@
                             @endif
                         </div>
                         <span class="m-feature-block-listing__meta">
-                            @if ($item->type && $item->type !== 'exhibition' && $item->type !== 'experience')
+                            @if ($item->type && $item->type !== 'experience')
                                 <em class="type f-tag">{{ $item->type }}
                                     @if ($item->exclusive)
                                         @component('components.atoms._type')
