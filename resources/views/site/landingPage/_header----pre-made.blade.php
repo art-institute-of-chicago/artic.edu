@@ -10,29 +10,21 @@
         @slot('headerMedia', $headerMedia)
     @endcomponent
 
-{{--    @component('components.molecules._m-media')--}}
-{{--        @slot('item', $headerMedia)--}}
-{{--        @slot('tag', 'span')--}}
-{{--        @slot('imageSettings', array(--}}
-{{--            'srcset' => array(300,600,1000,1500,3000),--}}
-{{--            'sizes' => '100vw',--}}
-{{--        ))--}}
-{{--        @slot('variation', 'm-visit-header')--}}
-{{--    @endcomponent--}}
-
     @if (!empty($hour))
         @component('components.organisms._o-hours')
             @slot('hour', $hour)
         @endcomponent
     @endif
-    <h2 class="f-headline">Custom Tours</h2>
-    <div>
-{{--        {{ $header_custom_tours_text }}--}}
+    <div class="m-title-bar">
+        <h2 class="f-display-2">Custom Tours</h2>
+    </div>
+
+    <div class="f-deck">
         <p>
             Build a museum tour customized with artworks you love. Create a tour for yourself, make one to share with friends and family, or explore tours that we have created—it's an easy way to make an unforgettable museum visit.
         </p>
     </div>
-    <div>
+    <div class="custom-tours-header__btn-container">
         <a href="#" class="btn f-buttons">Create your own</a>
         <a href="#" class="btn btn--secondary f-buttons">Explore tours</a>
     </div>
