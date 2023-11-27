@@ -22,13 +22,15 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('tours_create_cta_module_header');
-        Schema::dropIfExists('tours_create_cta_module_body');
-        Schema::dropIfExists('tours_create_cta_module_button_text');
-        Schema::dropIfExists('tours_create_cta_module_action_url');
-        Schema::dropIfExists('tours_tickets_cta_module_header');
-        Schema::dropIfExists('tours_tickets_cta_module_body');
-        Schema::dropIfExists('tours_tickets_cta_module_button_text');
-        Schema::dropIfExists('tours_tickets_cta_module_action_url');
+        Schema::table('landing_pages', function (Blueprint $table) {
+            $table->dropColumn('tours_create_cta_module_header');
+            $table->dropColumn('tours_create_cta_module_body');
+            $table->dropColumn('tours_create_cta_module_button_text');
+            $table->dropColumn('tours_create_cta_module_action_url');
+            $table->dropColumn('tours_tickets_cta_module_header');
+            $table->dropColumn('tours_tickets_cta_module_body');
+            $table->dropColumn('tours_tickets_cta_module_button_text');
+            $table->dropColumn('tours_tickets_cta_module_action_url');
+        });
     }
 };
