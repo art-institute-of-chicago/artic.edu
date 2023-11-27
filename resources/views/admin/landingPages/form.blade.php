@@ -102,10 +102,12 @@
     'fieldValues' => 'custom_tours',
     'renderForBlocks' => false
 ])
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'header_custom_tours_text',
         'label' => 'Intro Text',
-        'type' => 'textarea'
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('input', [

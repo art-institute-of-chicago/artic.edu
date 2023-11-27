@@ -20,12 +20,10 @@
     </div>
 
     <div class="f-deck">
-        <p>
-            Build a museum tour customized with artworks you love. Create a tour for yourself, make one to share with friends and family, or explore tours that we have created—it's an easy way to make an unforgettable museum visit.
-        </p>
+        {!! $header_custom_tours_text !!}
     </div>
     <div class="custom-tours-header__btn-container">
-        <a href="#" class="btn f-buttons">Create your own</a>
-        <a href="#" class="btn btn--secondary f-buttons">Explore tours</a>
+        <a href="{{ $header_custom_tours_primary_button_link }}" class="btn f-buttons">{{ $header_custom_tours_primary_button_label }}</a>
+        <a href="{{ $header_custom_tours_secondary_button_link }}" class="btn btn--secondary f-buttons">{{ $header_custom_tours_secondary_button_label }}</a>
     </div>
 </section>
