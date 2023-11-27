@@ -20,6 +20,10 @@
             'value' => 'cta',
             'label' => 'Call to action'
         ],
+        [
+            'value' => 'custom_tours',
+            'label' => 'Custom Tours'
+        ],
     ]
 ])
 
@@ -27,7 +31,7 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'header_variation',
-    'fieldValues' => ['default', 'small', 'cta'],
+    'fieldValues' => ['default', 'small', 'cta', 'custom_tours'],
     'renderForBlocks' => false
 ])
 
@@ -89,6 +93,39 @@
         'name' => 'mainHomeFeatures',
         'label' => 'Main feature',
         'note' => 'Queue up to 3 home features for the large hero area',
+    ])
+
+@endcomponent
+
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'header_variation',
+    'fieldValues' => 'custom_tours',
+    'renderForBlocks' => false
+])
+    @formField('input', [
+        'name' => 'header_custom_tours_text',
+        'label' => 'Intro Text',
+        'type' => 'textarea'
+    ])
+
+    @formField('input', [
+        'name' => 'header_custom_tours_primary_button_label',
+        'label' => 'Primary Button Label'
+    ])
+
+    @formField('input', [
+        'name' => 'header_custom_tours_primary_button_link',
+        'label' => 'Primary Button Link'
+    ])
+
+    @formField('input', [
+        'name' => 'header_custom_tours_secondary_button_label',
+        'label' => 'Secondary Button Label'
+    ])
+
+    @formField('input', [
+        'name' => 'header_custom_tours_secondary_button_link',
+        'label' => 'Secondary Button Link'
     ])
 
 @endcomponent
