@@ -6,15 +6,15 @@
     $header = $header ?? null;
     $body = $body ?? null;
     $button_text = $button_text ?? null;
-    $pre_made = $pre_made ?? false;
+    $custom_tours = $custom_tours ?? false;
 
     // TODO: Make this an option?
     $isBigLink = isset($image);
 @endphp
 
 @if ($header)
-    <div class="{{ isset($image) && $pre_made ? 'm-cta-banner--aic-ct--container' : '' }}">
-        <{{ $tag }} class="m-cta-banner{{ isset($image) ? ' m-cta-banner--with-image' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}{{ $pre_made ? ' m-cta-banner--aic-ct' : ''}}{{ isset($image) && $pre_made ? ' m-cta-banner--aic-ct--with-image' : '' }}{{ !isset($image) && $pre_made ? ' m-cta-banner--aic-ct--no-image' : '' }}"{!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
+    <div class="{{ isset($image) && $custom_tours ? 'm-cta-banner--aic-ct--container' : '' }}">
+        <{{ $tag }} class="m-cta-banner{{ isset($image) ? ' m-cta-banner--with-image' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}{{ $custom_tours ? ' m-cta-banner--aic-ct' : ''}}{{ isset($image) && $custom_tours ? ' m-cta-banner--aic-ct--with-image' : '' }}{{ !isset($image) && $custom_tours ? ' m-cta-banner--aic-ct--no-image' : '' }}"{!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
             @if ($isBigLink)
                 <a href="{{ $href }}" class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
             @endif
@@ -38,9 +38,9 @@
                     </div>
                 @endif
                 <div class="m-cta-banner__txt">
-                    <div class="m-cta-banner__title{{ $pre_made ? ' f-headline' :  ' f-module-title-2' }}">{!! SmartyPants::defaultTransform($header) !!}</div>
+                    <div class="m-cta-banner__title{{ $custom_tours ? ' f-headline' :  ' f-module-title-2' }}">{!! SmartyPants::defaultTransform($header) !!}</div>
                     @if ($body)
-                        <div class="m-cta-banner__msg{{ $pre_made ? ' f-body' :  ' f-list-2' }}">{!! SmartyPants::defaultTransform($body) !!}</div>
+                        <div class="m-cta-banner__msg{{ $custom_tours ? ' f-body' :  ' f-list-2' }}">{!! SmartyPants::defaultTransform($body) !!}</div>
                     @endif
                     @if ($button_text)
                         <div class="m-cta-banner__action">
@@ -48,7 +48,7 @@
                                 <a href="{{ $href }}">
                             @endif
 
-                            <span class="btn f-buttons{{ isset($image) && !$pre_made ? ' btn--contrast' : '' }}{{ !isset($image) && $pre_made ? ' btn--quaternary' : '' }}">{!! SmartyPants::defaultTransform($button_text) !!}</span>
+                            <span class="btn f-buttons{{ isset($image) && !$custom_tours ? ' btn--contrast' : '' }}{{ !isset($image) && $custom_tours ? ' btn--quaternary' : '' }}">{!! SmartyPants::defaultTransform($button_text) !!}</span>
                             @if (!$isBigLink)
                                 </a>
                             @endif
