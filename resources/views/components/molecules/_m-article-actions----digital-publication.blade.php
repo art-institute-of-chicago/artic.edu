@@ -51,7 +51,7 @@
                     @slot('variation', 'btn--icon btn--septenary')
                     @slot('font', '')
                     @slot('tag', 'a')
-                    @slot('href', '#h-how-to-cite')
+                    @slot('href', '#how-to-cite')
                     @slot('icon', 'icon--citation--24')
                     @slot('ariaLabel','Show how to cite')
                 @endcomponent
