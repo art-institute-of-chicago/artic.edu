@@ -40,10 +40,10 @@
         case 'exhibitions':
             if ($block->input('override_exhibition')) {
                 $exhibitions = $block->browserIds('exhibitions');
-                $items = \App\Models\Exhibition::whereIn('datahub_id', $exhibitions)->orderBy('public_start_date', 'ASC')->get();
-
+                $items = \App\Models\Api\Exhibition::query()->findMany($exhibitions)->sortBy('aic_start_at');
+                
             } else {
-                $items = \App\Models\Api\Exhibition::query()->current()->orderBy('aic_start_at','desc')->limit(4)->get();
+                $items = \App\Models\Api\Exhibition::query()->current()->orderBy('aic_start_at', 'desc')->limit(4)->get(['id', 'aic_start_at', 'aic_end_at']);
                 $columns = count($items);
             }
             break;
