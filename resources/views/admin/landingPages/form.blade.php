@@ -31,7 +31,7 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'header_variation',
-    'fieldValues' => ['default', 'small', 'cta', 'custom_tours'],
+    'fieldValues' => ['default', 'small', 'cta'],
     'renderForBlocks' => false
 ])
 
@@ -51,6 +51,20 @@
         'name' => 'mobile_hero',
         'label' => 'Hero image, mobile',
         'note' => 'Minimum image width 2000px'
+    ])
+
+@endcomponent
+
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'header_variation',
+    'fieldValues' => 'custom_tours',
+    'renderForBlocks' => false
+])
+
+    @formField('medias', [
+        'name' => 'hero',
+        'label' => 'Hero image',
+        'note' => 'Minimum image width 3000px'
     ])
 
 @endcomponent
