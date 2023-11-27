@@ -20,6 +20,7 @@ Used to allow videos in hero's and hero listings pauseable to top them being dis
 
 .media-play-pause-video {
   display: none;
+  z-index: 20;
 
   @include breakpoint('small+') {
     display: inline-block;
