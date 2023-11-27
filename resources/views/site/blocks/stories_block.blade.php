@@ -48,8 +48,12 @@
                         @else
                             <span class='default-img m-story-listing__img'></span>
                         @endif
-                        @if($item->type)
+                        @if($item->type && $item->type !== 'video' && $item->type !== 'experience')
                             <em class="type f-tag">{{$item->type}}</em>
+                        @elseif($item->video_url)
+                            <em class="type f-tag">Video</em>
+                        @elseif($item->type === 'experience')
+                            <em class="type f-tag">Interactive Feature</em>
                         @endif
                         @if($item->title)
                             <strong class="title f-list-3">{{$item->title}}</strong>
