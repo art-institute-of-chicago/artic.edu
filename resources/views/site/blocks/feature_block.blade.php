@@ -66,7 +66,6 @@
 
 @endphp
 
-    
 @if (count($items) > 0)
     <div class="m-feature-block-heading">
         @if ($heading)
