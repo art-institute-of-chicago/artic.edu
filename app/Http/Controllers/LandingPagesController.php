@@ -189,11 +189,11 @@ class LandingPagesController extends FrontController
 
             case $types->search('Pre-made Tours'):
                 $view_data = array_merge($view_data, [
-                    'header_custom_tours_text' => $item->header_custom_tours_text,
-                    'header_custom_tours_primary_button_label' => $item->header_custom_tours_primary_button_label,
-                    'header_custom_tours_primary_button_link' => $item->header_custom_tours_primary_button_link,
-                    'header_custom_tours_secondary_button_label' => $item->header_custom_tours_secondary_button_label,
-                    'header_custom_tours_secondary_button_link' => $item->header_custom_tours_secondary_button_link,
+                    'header_custom_tours_text' => $item->labels->get('header_custom_tours_text'),
+                    'header_custom_tours_primary_button_label' => $item->labels->get('header_custom_tours_primary_button_label'),
+                    'header_custom_tours_primary_button_link' => $item->labels->get('header_custom_tours_primary_button_link'),
+                    'header_custom_tours_secondary_button_label' => $item->labels->get('header_custom_tours_secondary_button_label'),
+                    'header_custom_tours_secondary_button_link' => $item->labels->get('header_custom_tours_secondary_button_link'),
                     'tours_create_cta_module_image' => $item->imageFront('tours_create_cta_module_image'),
                     'tours_create_cta_module_action_url' => $item->labels->get('tours_create_cta_module_action_url'),
                     'tours_create_cta_module_header' => $item->labels->get('tours_create_cta_module_header'),
