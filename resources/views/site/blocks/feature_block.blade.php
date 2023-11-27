@@ -128,7 +128,7 @@
                                     @else
                                         @component('components.atoms._type')
                                             @slot('font', '')
-                                            {!! $item->present()->exhibitionType !!}
+                                            {!! $item->exhibitionType !!}
                                         @endcomponent
                                     @endif
 
@@ -162,9 +162,8 @@
                                 </em>
                             @elseif( $item->type === 'experience' )
                                 <em class="type f-tag">Interactive Feature</em>
-                            @endif
-                            @if ($item->present()->exhibitionType)
-                                <em class="type f-tag">{{ $item->present()->exhibitionType}}</em>
+                            @elseif( $item->type === 'video')
+                                <em class="type f-tag">Video</em>
                             @endif
                             @if ($item->title)
                                 <strong class="title f-list-3">{{ $item->title }}</strong>
@@ -176,8 +175,10 @@
                                 @component('components.atoms._date')
                                     @if ($item->present()->formattedNextOccurrence) 
                                         {!! $item->present()->formattedNextOccurrence !!}
-                                    @else
+                                    @elseif($item->present()->nextOccurrenceTime)
                                         {!! $item->present()->nextOccurrenceTime !!}
+                                    @else
+                                        {!! $item->present()->formattedDate !!}
                                     @endif
                                 @endcomponent
                             </span>
