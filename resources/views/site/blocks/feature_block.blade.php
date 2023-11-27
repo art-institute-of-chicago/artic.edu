@@ -162,7 +162,7 @@
                                 </em>
                             @elseif( $item->type === 'experience' )
                                 <em class="type f-tag">Interactive Feature</em>
-                            @elseif( $item->type === 'video')
+                            @elseif( $feature_type === 'videos')
                                 <em class="type f-tag">Video</em>
                             @endif
                             @if ($item->title)
