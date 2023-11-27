@@ -102,29 +102,31 @@
     'fieldValues' => 'custom_tours',
     'renderForBlocks' => false
 ])
-    @formField('input', [
-        'name' => 'header_custom_tours_text',
+    @formField('wysiwyg', [
+        'name' => 'labels.header_custom_tours_text',
         'label' => 'Intro Text',
-        'type' => 'textarea'
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('input', [
-        'name' => 'header_custom_tours_primary_button_label',
+        'name' => 'labels.header_custom_tours_primary_button_label',
         'label' => 'Primary Button Label'
     ])
 
     @formField('input', [
-        'name' => 'header_custom_tours_primary_button_link',
+        'name' => 'labels.header_custom_tours_primary_button_link',
         'label' => 'Primary Button Link'
     ])
 
     @formField('input', [
-        'name' => 'header_custom_tours_secondary_button_label',
+        'name' => 'labels.header_custom_tours_secondary_button_label',
         'label' => 'Secondary Button Label'
     ])
 
     @formField('input', [
-        'name' => 'header_custom_tours_secondary_button_link',
+        'name' => 'labels.header_custom_tours_secondary_button_link',
         'label' => 'Secondary Button Link'
     ])
 
