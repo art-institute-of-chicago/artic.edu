@@ -13,7 +13,6 @@ return new class extends Migration
             $table->string('header_custom_tours_primary_button_label')->nullable();
             $table->string('header_custom_tours_primary_button_link')->nullable();
             $table->string('header_custom_tours_secondary_button_label')->nullable();
-            $table->string('header_custom_tours_secondary_button_link')->nullable();
         });
     }
 
@@ -24,7 +23,6 @@ return new class extends Migration
             $table->dropColumn('header_custom_tours_primary_button_label');
             $table->dropColumn('header_custom_tours_primary_button_link');
             $table->dropColumn('header_custom_tours_secondary_button_label');
-            $table->dropColumn('header_custom_tours_secondary_button_link');
         });
     }
 };

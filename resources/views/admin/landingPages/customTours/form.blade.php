@@ -125,11 +125,6 @@
         'label' => 'Secondary Button Label'
     ])
 
-    @formField('input', [
-        'name' => 'labels.header_custom_tours_secondary_button_link',
-        'label' => 'Secondary Button Link'
-    ])
-
 @endcomponent
 
 @stop
