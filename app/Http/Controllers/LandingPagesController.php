@@ -221,7 +221,6 @@ class LandingPagesController extends FrontController
                     'header_custom_tours_primary_button_label' => $item->header_custom_tours_primary_button_label,
                     'header_custom_tours_primary_button_link' => $item->header_custom_tours_primary_button_link,
                     'header_custom_tours_secondary_button_label' => $item->header_custom_tours_secondary_button_label,
-                    'header_custom_tours_secondary_button_link' => $item->header_custom_tours_secondary_button_link,
                     'tours_create_cta_module_image' => $item->imageFront('tours_create_cta_module_image'),
                     'tours_create_cta_module_action_url' => $item->tours_create_cta_module_action_url,
                     'tours_create_cta_module_header' => $item->tours_create_cta_module_header,

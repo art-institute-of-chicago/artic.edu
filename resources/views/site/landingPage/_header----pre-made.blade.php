@@ -25,14 +25,11 @@
         </div>
     @endif
 
-    @if ($header_custom_tours_primary_button_link || $header_custom_tours_secondary_button_link)
-        <div class="custom-tours-header__btn-container">
-            @if ($header_custom_tours_primary_button_link && $header_custom_tours_primary_button_label)
-                <a href="{{ $header_custom_tours_primary_button_link }}" class="btn f-buttons">{{ $header_custom_tours_primary_button_label }}</a>
-            @endif
-            @if ($header_custom_tours_secondary_button_link && $header_custom_tours_secondary_button_label)
-                <a href="{{ $header_custom_tours_secondary_button_link }}" class="btn btn--secondary f-buttons">{{ $header_custom_tours_secondary_button_label }}</a>
-            @endif
-        </div>
-    @endif
+    <div class="custom-tours-header__btn-container">
+        @if ($header_custom_tours_primary_button_link && $header_custom_tours_primary_button_label)
+            <a href="{{ $header_custom_tours_primary_button_link }}" class="btn f-buttons">{{ $header_custom_tours_primary_button_label }}</a>
+        @endif
+        <a href="#aic-ct-landingpage" class="btn btn--secondary f-buttons">{{ $header_custom_tours_secondary_button_label ? $header_custom_tours_secondary_button_label : 'Explore tours' }}</a>
+    </div>
+
 </section>

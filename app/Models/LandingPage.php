@@ -149,7 +149,6 @@ class LandingPage extends AbstractModel implements Sortable
         'header_custom_tours_primary_button_label',
         'header_custom_tours_primary_button_link',
         'header_custom_tours_secondary_button_label',
-        'header_custom_tours_secondary_button_link',
         'tours_create_cta_module_image',
         'tours_create_cta_module_action_url',
         'tours_create_cta_module_header',
