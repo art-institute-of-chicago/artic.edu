@@ -178,7 +178,7 @@
     min-height: 240px;
     height: fit-content;
   }
-  
+
   @include breakpoint('small-') {
     margin-top: 0;
   }
@@ -323,8 +323,14 @@
     color: $color__white;
   }
 
-  .btn--contrast {
+  .btn--quaternary {
     border-color: $color__white;
+    background-color: transparent;
+  }
+  
+  .btn--quaternary:focus:hover,
+  .btn--quaternary:hover {
+    background-color: $color__black--80;
   }
 }
 
