@@ -78,7 +78,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="m-collection-bottom">
+            <div class="m-collection-info">
                 @if($bottom_desc)
                     <div class="collection-desc">
                         {!! $bottom_desc !!}
