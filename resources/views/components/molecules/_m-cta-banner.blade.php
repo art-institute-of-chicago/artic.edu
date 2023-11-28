@@ -14,7 +14,7 @@
 
 @if ($header)
     <div class="{{ isset($image) && $custom_tours ? 'm-cta-banner--aic-ct--container' : '' }}">
-        <{{ $tag }} class="m-cta-banner{{ isset($image) ? ' m-cta-banner--with-image' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}{{ $custom_tours ? ' m-cta-banner--aic-ct' : ''}}{{ isset($image) && $custom_tours ? ' m-cta-banner--aic-ct-with-image' : '' }}{{ !isset($image) && $custom_tours ? ' m-cta-banner--aic-ct--no-image' : '' }}"{!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
+        <{{ $tag }} class="m-cta-banner{{ isset($image) ? ' m-cta-banner--with-image' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}{{ $custom_tours ? ' m-cta-banner--aic-ct' : ''}}{{ isset($image) && $custom_tours ? ' m-cta-banner--aic-ct-with-image' : '' }}{{ !isset($image) && $custom_tours ? ' m-cta-banner--aic-ct-no-image' : '' }}"{!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
             @if ($isBigLink)
                 <a href="{{ $href }}" class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
             @endif
