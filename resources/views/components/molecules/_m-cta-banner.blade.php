@@ -14,7 +14,7 @@
 
 @if ($header)
     <div @class([
-            'm-cta-banner--aic-ct--container' => isset($image) && $custom_tours,
+            'm-cta-banner--aic-ct-container' => isset($image) && $custom_tours,
         ])>
         <{{ $tag }} @class([
                         'm-cta-banner',
