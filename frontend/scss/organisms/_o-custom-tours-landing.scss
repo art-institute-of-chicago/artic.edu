@@ -301,14 +301,19 @@
 
 .m-cta-banner--aic-ct-no-image {
   background-color: $color__black;
+  overflow: visible;
+  min-height: 240px;
+  height: fit-content;
 
-  @include breakpoint('small-') {
-    overflow: visible;
-    min-height: 240px;
-    height: fit-content;
+  .m-cta-banner__txt {
+    position: unset;
+  }
+
+  @include breakpoint('medium+') {
+    overflow: hidden;
 
     .m-cta-banner__txt {
-      position: unset;
+      position: absolute;
     }
   }
 
