@@ -7,6 +7,8 @@
     $body = $body ?? null;
     $button_text = $button_text ?? null;
     $custom_tours = $custom_tours ?? false;
+    $secondary_button_href = $secondary_button_href ?? null;
+    $secondary_button_text = $secondary_button_text ?? null;
 
     // TODO: Make this an option?
     $isBigLink = isset($image);
@@ -84,6 +86,19 @@
                                 {!! SmartyPants::defaultTransform($button_text) !!}
                             </span>
                             @if (!$isBigLink)
+                                </a>
+                            @endif
+
+                            @if (!$isBigLink && $secondary_button_href && $secondary_button_text)
+                                <a href="{{ $secondary_button_href }}">
+                                    <span @class([
+                                        'btn',
+                                        'f-buttons',
+                                        'btn--contrast' => isset($image) && !$custom_tours,
+                                        'btn--quaternary' => !isset($image) && $custom_tours,
+                                    ])>
+                                        {!! SmartyPants::defaultTransform($secondary_button_text) !!}
+                                    </span>
                                 </a>
                             @endif
                         </div>
