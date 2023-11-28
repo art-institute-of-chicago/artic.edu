@@ -1,82 +1,92 @@
 @extends('layouts.app')
 
 @section('content')
-    <img src=""/>
+    <article class="aic-ct-viewer o-article">
+        <img src=""/>
 
-    <h2 class="title f-module-title-2">{!! $custom_tour['title'] !!}</h2>
-    <hr/>
-    <div class="o-blocks">
-        <p>ID: {{ $id }}</p>
+        <h2 class="f-headline-editorial">{!! $custom_tour['title'] !!}</h2>
+        {{-- Todo: Do you need the o-blocks class? --}}
+        <div class="o-blocks aic-ct-viewer__creator-container">
+            @isset($custom_tour['creatorName'])
+                <p class="f-subheading-1">
+                    <span id="creatorName">Tour made by {{ $custom_tour['creatorName'] }}{{ isset($custom_tour['recipientName']) ? ',' : '' }}</span>
+                    @isset($custom_tour['recipientName'])
+                        <span id="recipientName">for {{ $custom_tour['recipientName'] }}</span>
+                    @endisset
+                </p>
+            @endisset
 
-        @isset($custom_tour['creatorName'])
-            <p id="creatorName">Tour made by {{ $custom_tour['creatorName'] }},</p>
-        @endisset
-
-        @isset($custom_tour['recipientName'])
-            <p id="recipientName">for {{ $custom_tour['recipientName'] }}</p>
-        @endisset
-
-        <p>{{ count($custom_tour['artworks']) }} artworks, {{ $unique_artists_count }} artists across {{ $unique_galleries_count }} galleries</p>
-
-        <hr />
-
-        @if(array_key_exists('description', $custom_tour) && $custom_tour['description'])
-            <div class="aic-ct-quote-container">
-                <p id="description" class="f-body-editorial-emphasis">{{ $custom_tour['description'] }}</p>
-                <p class="f-secondary">— Joe</p>
+            <div class="aic-ct-artworks-count-container">
+                <svg aria-hidden="true" class="icon--close"><use xlink:href="#icon--image-stack" /></svg>
+                <div class="f-module-title-1">
+                    <p><strong>{{ count($custom_tour['artworks']) }} artworks</strong> <em>from</em> <strong>{{ $unique_artists_count }} artists</strong> <em>across</em> <strong>{{ $unique_galleries_count }} galleries</strong></p>
+                </div>
             </div>
-        @endif
 
-        @component('components.molecules._m-article-actions')
-        @endcomponent
+            <hr />
 
-{{--        @component('components.molecules._m-cta-banner')--}}
-{{--            @slot('href', 'https://sales.artic.edu/admissions')--}}
-{{--            @slot('header', 'View your tour below or visit us in person.')--}}
-{{--            @slot('button_text', 'Buy tickets')--}}
-{{--            @slot('custom_tours', true)--}}
-{{--        @endcomponent--}}
-        <ul>
-            @foreach ($custom_tour['artworks'] as $artwork)
-                <hr />
-                <li class="aic-ct-list-item">
+            @if(array_key_exists('description', $custom_tour) && $custom_tour['description'])
+                <div class="aic-ct-quote-container">
+                    <p id="description" class="f-body-editorial-emphasis">{{ $custom_tour['description'] }}</p>
+                    <p class="f-secondary">— Joe</p>
+                </div>
+            @endif
 
-                    @isset($artwork['display_date'])
-                        , {{ $artwork['display_date'] }}
-                    @endisset
-                    @isset($artwork['image_id'])
-                        <img src="https://www.artic.edu/iiif/2/{{ $artwork['image_id'] }}/full/256,/0/default.jpg"
-                             alt="{{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'] }}">
-                    @endisset
+            @component('components.molecules._m-article-actions')
+            @endcomponent
+
+            {{--        @component('components.molecules._m-cta-banner')--}}
+            {{--            @slot('href', 'https://sales.artic.edu/admissions')--}}
+            {{--            @slot('header', 'View your tour below or visit us in person.')--}}
+            {{--            @slot('button_text', 'Buy tickets')--}}
+            {{--            @slot('custom_tours', true)--}}
+            {{--        @endcomponent--}}
+            <ul>
+                @foreach ($custom_tour['artworks'] as $artwork)
+                    <hr />
+                    <li class="aic-ct-list-item">
+                        @isset($artwork['image_id'])
+                            <img src="https://www.artic.edu/iiif/2/{{ $artwork['image_id'] }}/full/256,/0/default.jpg"
+                                 alt="{{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'] }}">
+                        @endisset
                         <h2>{{ $artwork['title'] }}</h2>
-                    @isset($artwork['artist_title'])
-                        <p>{{ $artwork['artist_title'] }}</p>
-                    @endisset
-                    @isset($artwork['gallery_title'])
-                        <p>{{ $artwork['gallery_title'] }}</p>
-                    @endisset
-                    @isset($artwork['description'])
-                        <p>{{ $artwork['description'] }}</p>
-                    @endisset
-                    @isset($artwork['objectNote'])
-                        <div class="aic-ct-quote-container">
-                            <p class="f-body-editorial-emphasis">{{ $artwork['objectNote'] }}</p>
-                            <p class="f-secondary">— Joe</p>
-                        </div>
-                    @endisset
+                        @isset($artwork['artist_title'])
+                            <p>
+                                {{ $artwork['artist_title'] }}{{ isset($artwork['display_date']) ? ',' : '' }}
+                                @isset($artwork['display_date'])
+                                    {{ $artwork['display_date'] }}
+                                @endisset
+                            </p>
+                        @endisset
+
+                        @isset($artwork['gallery_title'])
+                            <p>{{ $artwork['gallery_title'] }}</p>
+                        @endisset
+                        @isset($artwork['description'])
+                            <p>{{ $artwork['description'] }}</p>
+                        @endisset
+                        @isset($artwork['objectNote'])
+                            <div class="aic-ct-quote-container">
+                                <p class="f-body-editorial-emphasis">{{ $artwork['objectNote'] }}</p>
+                                <p class="f-secondary">— Joe</p>
+                            </div>
+                        @endisset
                         <a href="https://www.artic.edu/artworks/{{ $artwork['id'] }}" target="_blank" class="external-link f-link">
                             View full artwork page<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
                         </a>
-                </li>
-            @endforeach
-        </ul>
-        <hr />
-        <div class="aic-ct-share-container">
-            <p class="f-headline">Thanks for taking my tour</p>
-            @component('components.molecules._m-article-actions')
-            @endcomponent
+                    </li>
+                @endforeach
+            </ul>
+            <hr />
+            <div class="aic-ct-share-container">
+                <p class="f-headline">Thanks for taking my tour</p>
+                @component('components.molecules._m-article-actions')
+                @endcomponent
+            </div>
         </div>
-    </div>
+
+    </article>
+
 
     {{-- Todo: Put the CTA blocks in a separate file? Use local src and downloadUrl? Update alt text. --}}
     @php

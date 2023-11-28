@@ -2,6 +2,30 @@
 
 // ---- Custom tours: Landing page
 
+.aic-ct-artworks-count-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 8px;
+
+  .f-module-title-1 {
+    font-size: 13px;
+    font-weight: 300;
+
+    &::before {
+      padding: 0;
+    }
+
+    &::after {
+      margin-bottom: 0;
+    }
+
+    @include breakpoint('small+') {
+      font-size: 13px;
+    }
+  }
+}
+
 // -- Custom tours: Custom tours utility fonts
 
 .aic-ct-grid-intro,
@@ -148,30 +172,6 @@
     margin: auto;
     display: inline-block;
     padding: 16px 20px 24px;
-  }
-
-  .aic-ct-grid-card__artworks-count-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px;
-    gap: 8px;
-  }
-
-  .f-module-title-1 {
-    font-size: 13px;
-    font-weight: 300;
-
-    &::before {
-      padding: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
-
-    @include breakpoint('small+') {
-      font-size: 13px;
-    }
   }
 
   .aic-ct-grid-card__text {
@@ -407,6 +407,43 @@
 }
 
 // ---- Custom tours: Viewer page
+
+.aic-ct-viewer {
+
+  hr {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .f-headline-editorial {
+    margin-bottom: 16px;
+    font-size: 38px;
+    line-height: 44px;
+    font-weight: 300;
+  }
+
+  .f-subheading-1 {
+    margin-bottom: 16px;
+    font-weight: 325;
+  }
+
+  .f-headline-editorial,
+  .f-subheading-1 {
+    &::before {
+      padding-top: 0;
+    }
+
+    &::after {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.aic-ct-viewer__creator-container {
+  span {
+    display: block;
+  }
+}
 
 .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-])>li.aic-ct-list-item {
   list-style-type: none;
