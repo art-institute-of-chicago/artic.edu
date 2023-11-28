@@ -20,6 +20,10 @@
             'value' => 'cta',
             'label' => 'Call to action'
         ],
+        [
+            'value' => 'custom_tours',
+            'label' => 'Custom Tours'
+        ],
     ]
 ])
 
@@ -47,6 +51,20 @@
         'name' => 'mobile_hero',
         'label' => 'Hero image, mobile',
         'note' => 'Minimum image width 2000px'
+    ])
+
+@endcomponent
+
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'header_variation',
+    'fieldValues' => 'custom_tours',
+    'renderForBlocks' => false
+])
+
+    @formField('medias', [
+        'name' => 'hero',
+        'label' => 'Hero image',
+        'note' => 'Minimum image width 3000px'
     ])
 
 @endcomponent
@@ -89,6 +107,36 @@
         'name' => 'mainHomeFeatures',
         'label' => 'Main feature',
         'note' => 'Queue up to 3 home features for the large hero area',
+    ])
+
+@endcomponent
+
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'header_variation',
+    'fieldValues' => 'custom_tours',
+    'renderForBlocks' => false
+])
+    @formField('wysiwyg', [
+        'name' => 'labels.header_custom_tours_text',
+        'label' => 'Intro Text',
+        'toolbarOptions' => [
+            'italic'
+        ],
+    ])
+
+    @formField('input', [
+        'name' => 'labels.header_custom_tours_primary_button_label',
+        'label' => 'Primary Button Label'
+    ])
+
+    @formField('input', [
+        'name' => 'labels.header_custom_tours_primary_button_link',
+        'label' => 'Primary Button Link'
+    ])
+
+    @formField('input', [
+        'name' => 'labels.header_custom_tours_secondary_button_label',
+        'label' => 'Secondary Button Label'
     ])
 
 @endcomponent
