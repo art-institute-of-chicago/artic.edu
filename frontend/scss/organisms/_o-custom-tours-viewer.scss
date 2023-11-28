@@ -103,11 +103,11 @@
   grid-template-columns: 100%;
   gap: 20px;
 
-  @include breakpoint('medium') {
+  @include breakpoint('medium+') {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint('large+') {
     grid-template-columns: repeat(4, 1fr);
   }
 }
