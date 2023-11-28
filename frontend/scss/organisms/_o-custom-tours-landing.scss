@@ -259,10 +259,13 @@
 }
 
 .m-cta-banner--aic-ct-container {
-  @include breakpoint('small-') {
-    position: relative;
-    width: 100vw;
-    left: -5.2%;
+  position: relative;
+  width: 100vw;
+  left: -5.2%;
+
+  @include breakpoint('medium+') {
+    width: auto;
+    left: auto;
   }
 }
 
@@ -276,25 +279,37 @@
 }
 
 .m-cta-banner--aic-ct-with-image {
-  @include breakpoint('small-') {
-    position: relative;
-    overflow: visible;
-    overflow-y: hidden;
+  position: relative;
+  overflow: visible;
+  overflow-y: hidden;
+
+  .m-cta-banner__txt {
+    top: 0;
+  }
+
+  .m-cta-banner__img {
+    top: unset;
+
+    img {
+      position: absolute;
+      z-index: -1;
+      left: unset;
+      width: 100vw;
+      margin-left: -50vw;
+    }
+  }
+
+  @include breakpoint('medium+') {
+    overflow: hidden;
 
     .m-cta-banner__img {
-      top: unset;
+      top: -100px;
 
       img {
-        position: absolute;
-        z-index: -1;
-        left: unset;
-        width: 100vw;
-        margin-left: -50vw;
+        position: static;
+        width: 100%;
+        margin-left: 0;
       }
-    }
-
-    .m-cta-banner__txt {
-      top: 0;
     }
   }
 }
