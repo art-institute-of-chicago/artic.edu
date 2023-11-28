@@ -175,6 +175,8 @@
 
 .m-cta-banner--aic-ct {
   margin-top: 0;
+  min-height: 240px;
+  height: fit-content;
 
   // Add full bleed on mobile
   &::before {
@@ -188,16 +190,6 @@
     margin-left: -50vw;
     background-color: inherit;
     pointer-events: none;
-  }
-
-  @include breakpoint('medium-') {
-    min-height: 240px;
-    height: fit-content;
-  }
-
-  @include breakpoint('large+') {
-    //min-height: 240px;
-    //height: fit-content;
   }
 
   @include breakpoint('medium+') {
