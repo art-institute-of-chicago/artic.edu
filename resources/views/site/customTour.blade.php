@@ -86,12 +86,14 @@
         @slot('custom_tours', true)
     @endcomponent
 
-    {{-- Todo: Set $isBigLink to true and add gtmAttributes? --}}
     @component('components.molecules._m-cta-banner')
+        @slot('href', '/custom-tours/builder')
         @slot('header', 'Create your own custom tour')
         @slot('body', 'Ready to build your own tour? Click the "Create tour" button to search available artworks or to see a list of themes that can help get you started.')
         @slot('button_text', 'Create your own tour')
         @slot('custom_tours', true)
+        @slot('secondary_button_href', '/custom-tours')
+        @slot('secondary_button_text', 'View ready-made tours')
     @endcomponent
 @endsection
 
