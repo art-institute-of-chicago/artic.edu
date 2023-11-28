@@ -18,41 +18,64 @@
 
         <p>{{ count($custom_tour['artworks']) }} artworks, {{ $unique_artists_count }} artists across {{ $unique_galleries_count }} galleries</p>
 
+        <hr />
+
         @if(array_key_exists('description', $custom_tour) && $custom_tour['description'])
-            <p id="description">{{ $custom_tour['description'] }}</p>
+            <div class="aic-ct-quote-container">
+                <p id="description" class="f-body-editorial-emphasis">{{ $custom_tour['description'] }}</p>
+                <p class="f-secondary">— Joe</p>
+            </div>
         @endif
 
+        @component('components.molecules._m-article-actions')
+        @endcomponent
+
+{{--        @component('components.molecules._m-cta-banner')--}}
+{{--            @slot('href', 'https://sales.artic.edu/admissions')--}}
+{{--            @slot('header', 'View your tour below or visit us in person.')--}}
+{{--            @slot('button_text', 'Buy tickets')--}}
+{{--            @slot('custom_tours', true)--}}
+{{--        @endcomponent--}}
         <ul>
             @foreach ($custom_tour['artworks'] as $artwork)
-                <li>
-                    {{ $artwork['title'] }}
+                <hr />
+                <li class="aic-ct-list-item">
+
                     @isset($artwork['display_date'])
                         , {{ $artwork['display_date'] }}
                     @endisset
-                    <ul>
-                        @isset($artwork['artist_title'])
-                        <li>Artist title: {{ $artwork['artist_title'] }}</li>
-                        @endisset
-                        @isset($artwork['image_id'])
-                        <li>IIIF thumbnail:
-                            <img src="https://www.artic.edu/iiif/2/{{ $artwork['image_id'] }}/full/256,/0/default.jpg"
-                                alt="{{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'] }}">
-                        </li>
-                        @endisset
-                        @isset($artwork['gallery_title'])
-                        <li>Gallery title: {{ $artwork['gallery_title'] }}</li>
-                        @endisset
-                        @isset($artwork['objectNote'])
-                        <li>Object note: {{ $artwork['objectNote'] }}</li>
-                        @endisset
-                        <li>Object page: <a href="https://www.artic.edu/artworks/{{ $artwork['id'] }}">Link</a></li>
-                        @isset($artwork['description'])
-                            <li>Object description: {{ $artwork['description'] }}</li>
-                        @endisset
-                    </ul>
+                    @isset($artwork['image_id'])
+                        <img src="https://www.artic.edu/iiif/2/{{ $artwork['image_id'] }}/full/256,/0/default.jpg"
+                             alt="{{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'] }}">
+                    @endisset
+                        <h2>{{ $artwork['title'] }}</h2>
+                    @isset($artwork['artist_title'])
+                        <p>{{ $artwork['artist_title'] }}</p>
+                    @endisset
+                    @isset($artwork['gallery_title'])
+                        <p>{{ $artwork['gallery_title'] }}</p>
+                    @endisset
+                    @isset($artwork['description'])
+                        <p>{{ $artwork['description'] }}</p>
+                    @endisset
+                    @isset($artwork['objectNote'])
+                        <div class="aic-ct-quote-container">
+                            <p class="f-body-editorial-emphasis">{{ $artwork['objectNote'] }}</p>
+                            <p class="f-secondary">— Joe</p>
+                        </div>
+                    @endisset
+                        <a href="https://www.artic.edu/artworks/{{ $artwork['id'] }}" target="_blank" class="external-link f-link">
+                            View full artwork page<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
+                        </a>
                 </li>
             @endforeach
         </ul>
+        <hr />
+        <div class="aic-ct-share-container">
+            <p class="f-headline">Thanks for taking my tour</p>
+            @component('components.molecules._m-article-actions')
+            @endcomponent
+        </div>
     </div>
 
     {{-- Todo: Put the CTA blocks in a separate file? Use local src and downloadUrl? Update alt text. --}}
