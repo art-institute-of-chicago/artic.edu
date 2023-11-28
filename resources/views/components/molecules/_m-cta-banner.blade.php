@@ -44,7 +44,7 @@
                 <div class="m-cta-banner__txt">
                     <div class="m-cta-banner__title{{ $custom_tours ? ' f-headline' :  ' f-module-title-2' }}">{!! SmartyPants::defaultTransform($header) !!}</div>
                     @if ($body)
-                        <div class="m-cta-banner__msg{{ $custom_tours ? ' f-body' :  ' f-list-2' }}">{!! SmartyPants::defaultTransform($body) !!}</div>
+                        <div class="m-cta-banner__msg{{ $custom_tours ? ' m-cta-banner__msg--aic-ct f-body' :  ' f-list-2' }}">{!! SmartyPants::defaultTransform($body) !!}</div>
                     @endif
                     @if ($button_text)
                         <div class="m-cta-banner__action">
