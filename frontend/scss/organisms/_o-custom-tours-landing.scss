@@ -174,26 +174,44 @@
 // -- Custom tours: Custom footer
 
 .m-cta-banner--aic-ct {
+  margin-top: 0;
+
+  // Add full bleed on mobile
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    margin-left: -50vw;
+    background-color: inherit;
+    pointer-events: none;
+  }
+
   @include breakpoint('medium-') {
     min-height: 240px;
     height: fit-content;
   }
 
-  @include breakpoint('small-') {
-    margin-top: 0;
+  @include breakpoint('large+') {
+    //min-height: 240px;
+    //height: fit-content;
+  }
 
-    // Add full bleed on mobile
+  @include breakpoint('medium+') {
+    margin-top: 60px;
+
+    // Remove full bleed on larger screens
     &::before {
       content: "";
-      position: absolute;
-      z-index: -1;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 100vw;
-      margin-left: -50vw;
-      background-color: inherit;
-      pointer-events: none;
+      position: static;
+      z-index: auto;
+      width: auto;
+      margin-left: 0;
+      background-color: transparent;
+      pointer-events: auto;
     }
   }
 
