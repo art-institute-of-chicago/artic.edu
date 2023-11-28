@@ -26,8 +26,8 @@
             <hr />
 
             @if(array_key_exists('description', $custom_tour) && $custom_tour['description'])
-                <div class="aic-ct-quote-container">
-                    <p id="description" class="f-body-editorial-emphasis">{{ $custom_tour['description'] }}</p>
+                <div class="aic-ct-quote-container aic-ct-quote-container--large">
+                    <p id="description" class="f-quote">{{ $custom_tour['description'] }}</p>
                     <p class="f-secondary">— Joe</p>
                 </div>
             @endif

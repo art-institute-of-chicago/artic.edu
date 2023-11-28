@@ -409,10 +409,27 @@
 // ---- Custom tours: Viewer page
 
 .aic-ct-viewer {
-
   hr {
     margin-top: 24px;
     margin-bottom: 24px;
+  }
+
+  .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+    margin-top: 0;
+    padding-left: 0;
+
+    &::before {
+      padding-top: 0;
+    }
+
+    &::after {
+      margin-bottom: 0;
+    }
+  }
+
+  .f-quote {
+    font-weight: 300;
+    letter-spacing: 0.015em
   }
 
   .f-headline-editorial {
@@ -428,7 +445,8 @@
   }
 
   .f-headline-editorial,
-  .f-subheading-1 {
+  .f-subheading-1,
+  .f-secondary {
     &::before {
       padding-top: 0;
     }
@@ -436,6 +454,11 @@
     &::after {
       margin-bottom: 0;
     }
+  }
+
+  .m-article-actions {
+    margin-top: 0;
+    margin-bottom: 32px;
   }
 }
 
@@ -455,12 +478,18 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-bottom: 20px;
   padding: 14px;
   background-color: $color__cold-white;
 
   .f-body-editorial-emphasis::before {
     padding: 0;
   }
+}
+
+.aic-ct-quote-container--large {
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 .aic-ct-share-container {
