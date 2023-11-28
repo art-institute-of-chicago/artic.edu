@@ -305,6 +305,172 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'type',
+    'fieldValues' => array_search('Pre-made Tours', $types),
+    'renderForBlocks' => false
+])
+    <a17-fieldset title="Call to Action (Create Tour)" id="create-call-to-action">
+
+        @formField('medias', [
+            'label' => 'Image',
+            'name' => 'tours_create_cta_module_image'
+        ])
+
+        @formField('input', [
+            'name' => 'labels.tours_create_cta_module_header',
+            'label' => 'Header',
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'labels.tours_create_cta_module_body',
+            'label' => 'Body',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        @formField('input', [
+            'name' => 'labels.tours_create_cta_module_button_text',
+            'label' => 'Button text',
+        ])
+
+        @formField('radios', [
+            'name' => 'variation',
+            'label' => 'Variation',
+            'default' => \App\Models\Lightbox::VARIATION_DEFAULT,
+            'inline' => false,
+            'options' => array_merge([
+                [
+                    'value' => \App\Models\Lightbox::VARIATION_DEFAULT,
+                    'label' => 'Default (button)'
+                ],
+                [
+                    'value' => \App\Models\Lightbox::VARIATION_NEWSLETTER,
+                    'label' => 'Newsletter (button + email input)'
+                ],
+                [
+                    'value' => \App\Models\Lightbox::VARIATION_EMAIL,
+                    'label' => 'Email capture (button + email input)'
+                ],
+            ], !config('aic.show_button_and_date_select_lightbox_variation') ? [] : [
+                [
+                'value' => \App\Models\Lightbox::VARIATION_TICKETING,
+                'label' => 'Ticketing (button + date select) (WIP)'
+                ],
+            ]),
+        ])
+
+        <p>If you choose any variation except "Newsletter", you must fill out the "Metadata" fields below. The "Newsletter" variation works like the newsletter signup in our footer.</p>
+
+        <hr>
+
+        @formField('input', [
+            'name' => 'labels.tours_create_cta_module_action_url',
+            'label' => 'Action URL',
+            'note' => 'e.g. https://join.artic.edu/secure/holiday-annual-fund',
+        ])
+
+        @formField('input', [
+            'name' => 'labels.tours_create_cta_module_form_tlc_source',
+            'label' => 'Form TLC Source',
+            'note' => 'e.g. AIC17137L01',
+        ])
+
+        @formField('input', [
+            'name' => 'labels.tours_create_cta_module_form_token',
+            'label' => 'Form Token',
+            'note' => 'e.g. pa5U17siEjW4suerjWEB5LP7sFJYgAwLZYMS6kNTEag',
+        ])
+
+        @formField('input', [
+            'name' => 'labels.tours_create_cta_module_form_id',
+            'label' => 'Form ID',
+            'note' => 'e.g. webform_client_form_5111',
+        ])
+    </a17-fieldset>
+    <a17-fieldset title="Call to Action (Buy Tickets)" id="tickets-call-to-action">
+
+        @formField('medias', [
+            'label' => 'Image',
+            'name' => 'tours_tickets_cta_module_image'
+        ])
+
+        @formField('input', [
+            'name' => 'labels.tours_tickets_cta_module_header',
+            'label' => 'Header',
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'labels.tours_tickets_cta_module_body',
+            'label' => 'Body',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        @formField('input', [
+            'name' => 'labels.tours_tickets_cta_module_button_text',
+            'label' => 'Button text',
+        ])
+
+        @formField('radios', [
+            'name' => 'variation',
+            'label' => 'Variation',
+            'default' => \App\Models\Lightbox::VARIATION_DEFAULT,
+            'inline' => false,
+            'options' => array_merge([
+                [
+                    'value' => \App\Models\Lightbox::VARIATION_DEFAULT,
+                    'label' => 'Default (button)'
+                ],
+                [
+                    'value' => \App\Models\Lightbox::VARIATION_NEWSLETTER,
+                    'label' => 'Newsletter (button + email input)'
+                ],
+                [
+                    'value' => \App\Models\Lightbox::VARIATION_EMAIL,
+                    'label' => 'Email capture (button + email input)'
+                ],
+            ], !config('aic.show_button_and_date_select_lightbox_variation') ? [] : [
+                [
+                'value' => \App\Models\Lightbox::VARIATION_TICKETING,
+                'label' => 'Ticketing (button + date select) (WIP)'
+                ],
+            ]),
+        ])
+
+        <p>If you choose any variation except "Newsletter", you must fill out the "Metadata" fields below. The "Newsletter" variation works like the newsletter signup in our footer.</p>
+
+        <hr>
+
+        @formField('input', [
+            'name' => 'labels.tours_tickets_cta_module_action_url',
+            'label' => 'Action URL',
+            'note' => 'e.g. https://join.artic.edu/secure/holiday-annual-fund',
+        ])
+
+        @formField('input', [
+            'name' => 'labels.tours_tickets_cta_module_form_tlc_source',
+            'label' => 'Form TLC Source',
+            'note' => 'e.g. AIC17137L01',
+        ])
+
+        @formField('input', [
+            'name' => 'labels.tours_tickets_cta_module_form_token',
+            'label' => 'Form Token',
+            'note' => 'e.g. pa5U17siEjW4suerjWEB5LP7sFJYgAwLZYMS6kNTEag',
+        ])
+
+        @formField('input', [
+            'name' => 'labels.tours_tickets_cta_module_form_id',
+            'label' => 'Form ID',
+            'note' => 'e.g. webform_client_form_5111',
+        ])
+    </a17-fieldset>
+@endcomponent
+
+
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'type',
     'fieldValues' => array_search('Visit', $types), // Visit
     'renderForBlocks' => false
 ])
