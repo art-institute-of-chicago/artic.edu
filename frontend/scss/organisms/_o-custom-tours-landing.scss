@@ -182,7 +182,7 @@
   @include breakpoint('small-') {
     margin-top: 0;
 
-    // Add full bleed on mobile 
+    // Add full bleed on mobile
     &::before {
       content: "";
       position: absolute;
