@@ -181,6 +181,20 @@
 
   @include breakpoint('small-') {
     margin-top: 0;
+
+    // Add full bleed on mobile 
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 100vw;
+      margin-left: -50vw;
+      background-color: inherit;
+      pointer-events: none;
+    }
   }
 
   .f-headline {
@@ -253,19 +267,6 @@
     overflow: visible;
     overflow-y: hidden;
 
-    &::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 100vw;
-      margin-left: -50vw;
-      background-color: inherit;
-      pointer-events: none;
-    }
-
     .m-cta-banner__img {
       top: unset;
 
@@ -291,19 +292,6 @@
     overflow: visible;
     min-height: 240px;
     height: fit-content;
-
-    &::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 100vw;
-      margin-left: -50vw;
-      background-color: inherit;
-      pointer-events: none;
-    }
 
     .m-cta-banner__txt {
       position: unset;
