@@ -143,6 +143,18 @@ class LandingPage extends AbstractModel implements Sortable
         'visit_admission_tix_link',
         'visit_admission_tix_label',
         'active',
+
+        // Pre-made Tours
+        'tours_create_cta_module_image',
+        'tours_create_cta_module_action_url',
+        'tours_create_cta_module_header',
+        'tours_create_cta_module_button_text',
+        'tours_create_cta_module_body',
+        'tours_tickets_cta_module_image',
+        'tours_tickets_cta_module_action_url',
+        'tours_tickets_cta_module_header',
+        'tours_tickets_cta_module_button_text',
+        'tours_tickets_cta_module_body',
     ];
 
     public $slugAttributes = [
@@ -235,6 +247,22 @@ class LandingPage extends AbstractModel implements Sortable
                 [
                     'name' => 'default',
                     'ratio' => 40 / 27,
+                ],
+            ],
+        ],
+        'tours_create_cta_module_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 25 / 4,
+                ],
+            ],
+        ],
+        'tours_tickets_cta_module_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 25 / 4,
                 ],
             ],
         ],
