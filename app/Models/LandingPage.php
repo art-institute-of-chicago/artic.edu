@@ -145,6 +145,10 @@ class LandingPage extends AbstractModel implements Sortable
         'active',
 
         // Pre-made Tours
+        'header_custom_tours_text',
+        'header_custom_tours_primary_button_label',
+        'header_custom_tours_primary_button_link',
+        'header_custom_tours_secondary_button_label',
         'tours_create_cta_module_image',
         'tours_create_cta_module_action_url',
         'tours_create_cta_module_header',
