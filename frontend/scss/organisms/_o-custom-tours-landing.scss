@@ -232,14 +232,18 @@
   }
 
   .m-cta-banner__action {
-    @include breakpoint('small-') {
-      position: unset;
+    position: unset;
+
+    @include breakpoint('medium+') {
+      position: absolute;
     }
   }
 
   .m-cta-banner__msg {
-    @include breakpoint('small-') {
-      margin-bottom: 20px;
+    margin-bottom: 20px;
+
+    @include breakpoint('medium+') {
+      margin-bottom: 0;
     }
   }
 }
