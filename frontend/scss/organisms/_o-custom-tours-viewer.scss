@@ -405,3 +405,35 @@
     background-color: $color__black--80;
   }
 }
+
+// ---- Custom tours: Viewer page
+
+.o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-])>li.aic-ct-list-item {
+  list-style-type: none;
+  margin-top: 24px;
+  padding-left: 0;
+}
+
+.aic-ct-quote-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  background-color: $color__cold-white;
+
+  .f-body-editorial-emphasis::before {
+    padding: 0;
+  }
+}
+
+.aic-ct-share-container {
+  padding: 32px 0;
+
+  .f-headline {
+    margin-bottom: 24px;
+  }
+
+  .m-article-actions {
+    margin: 0;
+  }
+}
