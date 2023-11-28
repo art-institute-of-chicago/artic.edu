@@ -287,10 +287,24 @@
 
   .m-cta-banner__action {
     position: unset;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
     @include breakpoint('medium+') {
       position: absolute;
+      width: fit-content;
     }
+  }
+
+  .btn--secondary {
+    border: 1px solid $color__black;
+  }
+
+  .btn--secondary:hover,
+  .btn-secondary:focus:hover {
+    background-color: $color__black--10;
+    border: 1px solid $color__black;
   }
 
   .m-cta-banner__msg {
