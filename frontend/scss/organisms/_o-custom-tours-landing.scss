@@ -50,15 +50,15 @@
 
 .aic-ct-grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 100%;
   gap: 20px;
 
   @include breakpoint('medium') {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint('small-') {
-    grid-template-columns: 100%;
+  @include breakpoint('medium+') {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
