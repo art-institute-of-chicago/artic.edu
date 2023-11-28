@@ -1,6 +1,21 @@
 // ------ Custom tours viewer
 
-// ---- Custom tours: Landing Page
+// ---- Custom tours: Landing page
+
+// -- Custom tours: Custom tours utility fonts
+
+.aic-ct-grid-intro,
+.m-cta-banner__msg--aic-ct {
+  &.f-body::before {
+    padding: 0;
+  }
+
+  &.f-body::after {
+    margin-bottom: 0;
+  }
+}
+
+// -- Custom tours: Custom tours grid
 
 .o-landingpage__body--aic-ct {
   padding-top: 32px;
@@ -31,27 +46,19 @@
   &.f-body {
     margin-top: 0;
   }
-
-  &.f-body::before {
-    padding: 0;
-  }
-
-  &.f-body::after {
-    margin-bottom: 0;
-  }
 }
 
 .aic-ct-grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 100%;
   gap: 20px;
 
   @include breakpoint('medium') {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint('small-') {
-    grid-template-columns: 100%;
+  @include breakpoint('medium+') {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -164,4 +171,179 @@
   }
 }
 
+// -- Custom tours: Custom footer
 
+.m-cta-banner--aic-ct {
+  margin-top: 0;
+  min-height: 240px;
+  height: fit-content;
+
+  // Add full bleed on mobile
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    margin-left: -50vw;
+    background-color: inherit;
+    pointer-events: none;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 60px;
+
+    // Remove full bleed on larger screens
+    &::before {
+      content: "";
+      position: static;
+      z-index: auto;
+      width: auto;
+      margin-left: 0;
+      background-color: transparent;
+      pointer-events: auto;
+    }
+  }
+
+  .f-headline {
+    margin-bottom: 20px;
+
+    &::before {
+      padding-top: 0;
+    }
+
+    &::after {
+      margin-bottom: 0;
+    }
+  }
+
+  .m-cta-banner__txt {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    height: fit-content;
+
+    @include breakpoint('medium+') {
+      position: absolute;
+      left: colspan(3, medium);
+      right: colspan(3, medium);
+    }
+
+    @include breakpoint('large+') {
+      left: colspan(3, large);
+      right: colspan(3, large);
+    }
+
+    @include breakpoint('xlarge') {
+      left: colspan(3, xlarge);
+      right: colspan(3, xlarge);
+    }
+  }
+
+  .m-cta-banner__action {
+    position: unset;
+
+    @include breakpoint('medium+') {
+      position: absolute;
+    }
+  }
+
+  .m-cta-banner__msg {
+    margin-bottom: 20px;
+
+    @include breakpoint('medium+') {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.m-cta-banner--aic-ct-container {
+  position: relative;
+  width: 100vw;
+  left: -5.2%;
+
+  @include breakpoint('medium+') {
+    width: auto;
+    left: auto;
+  }
+}
+
+.m-cta-banner--aic-ct__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0.42) 11.17%, rgba(0, 0, 0, 0.54) 42.05%);
+}
+
+.m-cta-banner--aic-ct-with-image {
+  position: relative;
+  overflow: visible;
+  overflow-y: hidden;
+
+  .m-cta-banner__txt {
+    top: 0;
+  }
+
+  .m-cta-banner__img {
+    top: unset;
+
+    img {
+      position: absolute;
+      z-index: -1;
+      left: unset;
+      width: 100vw;
+      margin-left: -50vw;
+    }
+  }
+
+  @include breakpoint('medium+') {
+    overflow: hidden;
+
+    .m-cta-banner__img {
+      top: -100px;
+
+      img {
+        position: static;
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.m-cta-banner--aic-ct-no-image {
+  background-color: $color__black;
+  overflow: visible;
+  min-height: 240px;
+  height: fit-content;
+
+  .m-cta-banner__txt {
+    position: unset;
+  }
+
+  @include breakpoint('medium+') {
+    overflow: hidden;
+
+    .m-cta-banner__txt {
+      position: absolute;
+    }
+  }
+
+  .m-cta-banner__title,
+  .m-cta-banner__msg {
+    color: $color__white;
+  }
+
+  .btn--quaternary {
+    border-color: $color__white;
+    background-color: transparent;
+  }
+
+  .btn--quaternary:focus:hover,
+  .btn--quaternary:hover {
+    background-color: $color__black--80;
+  }
+}

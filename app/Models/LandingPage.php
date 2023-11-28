@@ -187,6 +187,22 @@ class LandingPage extends AbstractModel implements Sortable
                 ],
             ],
         ],
+        'tours_create_cta_module_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 25 / 4,
+                ],
+            ],
+        ],
+        'tours_tickets_cta_module_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 25 / 4,
+                ],
+            ],
+        ],
     ];
 
     /**
