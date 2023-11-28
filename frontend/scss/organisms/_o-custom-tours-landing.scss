@@ -247,7 +247,7 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0.42) 11.17%, rgba(0, 0, 0, 0.54) 42.05%);
 }
 
-.m-cta-banner--aic-ct--with-image {
+.m-cta-banner--aic-ct-with-image {
   @include breakpoint('small-') {
     position: relative;
     overflow: visible;
