@@ -26,7 +26,7 @@
             <hr />
 
             @if(array_key_exists('description', $custom_tour) && $custom_tour['description'])
-                <div class="aic-ct-quote-container aic-ct-quote-container--large">
+                <div class="aic-ct-viewer__quote-container aic-ct-viewer__quote-container--large">
                     <p id="description" class="f-quote">{{ $custom_tour['description'] }}</p>
                     <p class="f-secondary">— Joe</p>
                 </div>
@@ -49,9 +49,9 @@
                             <img src="https://www.artic.edu/iiif/2/{{ $artwork['image_id'] }}/full/256,/0/default.jpg"
                                  alt="{{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'] }}">
                         @endisset
-                        <h2>{{ $artwork['title'] }}</h2>
+                        <h2 class="f-deck">{{ $artwork['title'] }}</h2>
                         @isset($artwork['artist_title'])
-                            <p>
+                            <p class="f-body">
                                 {{ $artwork['artist_title'] }}{{ isset($artwork['display_date']) ? ',' : '' }}
                                 @isset($artwork['display_date'])
                                     {{ $artwork['display_date'] }}
@@ -60,13 +60,13 @@
                         @endisset
 
                         @isset($artwork['gallery_title'])
-                            <p>{{ $artwork['gallery_title'] }}</p>
+                            <p class="f-tertiary">{{ $artwork['gallery_title'] }}</p>
                         @endisset
                         @isset($artwork['description'])
-                            <p>{{ $artwork['description'] }}</p>
+                            <p class="f-tertiary aic-ct-viewer__description">{{ $artwork['description'] }}</p>
                         @endisset
                         @isset($artwork['objectNote'])
-                            <div class="aic-ct-quote-container">
+                            <div class="aic-ct-viewer__quote-container">
                                 <p class="f-body-editorial-emphasis">{{ $artwork['objectNote'] }}</p>
                                 <p class="f-secondary">— Joe</p>
                             </div>
@@ -78,7 +78,7 @@
                 @endforeach
             </ul>
             <hr />
-            <div class="aic-ct-share-container">
+            <div class="aic-ct-viewer__share-container">
                 <p class="f-headline">Thanks for taking my tour</p>
                 @component('components.molecules._m-article-actions')
                 @endcomponent
