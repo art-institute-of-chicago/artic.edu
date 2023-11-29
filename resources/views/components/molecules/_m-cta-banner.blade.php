@@ -37,7 +37,7 @@
                         @component('components.atoms._img')
                             @slot('image', $image)
                             @slot('settings', array(
-                                'fit' => 'crop',
+                                'fit' => 'fill',
                                 'ratio' => '25:4',
                                 'srcset' => array(300,600,1000,1500,2000),
                                 'sizes' => ImageHelpers::aic_imageSizes(array(

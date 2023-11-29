@@ -26,7 +26,7 @@
             @component('components.atoms._img')
                 @slot('image', $hero_image)
                 @slot('settings', array(
-                    'fit' => 'crop',
+                    'fit' => 'fill',
                     'ratio' => '15:8',
                     'srcset' => array(300,600,1000,1500,2000),
                     'sizes' => ImageHelpers::aic_imageSizes(array(
@@ -83,8 +83,39 @@
                     <hr />
                     <li class="aic-ct-list-item">
                         @isset($artwork['image_id'])
-                            <img src="https://www.artic.edu/iiif/2/{{ $artwork['image_id'] }}/full/256,/0/default.jpg"
-                                 alt="{{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'] }}">
+                            <div class="aic-ct-list-item__artwork-img-container">
+                                {{-- Todo: Use local src and downloadUrl? --}}
+                                @php
+                                    $artwork_image = [
+                                        "sourceType" => "imgix",
+                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/256,/0/default.jpg",
+                                        "shareUrl" => "#",
+                                        "shareTitle" => "",
+                                        "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/256,/0/default.jpg",
+                                        "credit" => "",
+                                        "creditUrl" => "",
+                                        "lqip" => null,
+                                        "alt" => isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'],
+                                        "caption" => null,
+                                        "iiifId" => null,
+                                        "restrict" => false,
+                                    ];
+                                @endphp
+                                @component('components.atoms._img')
+                                    @slot('image', $artwork_image)
+                                    @slot('settings', array(
+                                        'fit' => 'crop',
+                                        'srcset' => array(300,600,1000,1500,2000),
+                                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                                              'xsmall' => '58',
+                                              'small' => '58',
+                                              'medium' => '58',
+                                              'large' => '58',
+                                              'xlarge' => '58',
+                                        )),
+                                    ))
+                                @endcomponent
+                            </div>
                         @endisset
                         <h2 class="f-deck">{{ $artwork['title'] }}</h2>
                         @isset($artwork['artist_title'])
