@@ -447,11 +447,6 @@
   margin-top: 0;
   padding-top: 0;
 
-  @include breakpoint('medium+') {
-    margin-top: 28px;
-    padding-top: 12px;
-  }
-
   @include breakpoint('large+') {
     float: none;
     width: colspan(28, large);
@@ -546,15 +541,25 @@
   width: 100vw;
   margin-left: -5.2%;
 
+  .m-media--hero .m-media__img {
+    height: fit-content;
+  }
+
+  .m-media--hero img {
+    position: static;
+  }
+
   @include breakpoint('medium+') {
     width: auto;
     margin-left: 0;
-  }
 
-  img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 15/8;
+    .m-media--hero .m-media__img {
+      height: 60vh;
+    }
+
+    .m-media--hero img {
+      position: absolute;
+    }
   }
 }
 

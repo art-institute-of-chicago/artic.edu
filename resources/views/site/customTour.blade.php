@@ -2,42 +2,43 @@
 
 @section('content')
     @php
-        $hero_image = [
-            "sourceType" => "imgix",
-            "src" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
-            "width" => 843,
-            "height" => 809,
-            "shareUrl" => "#",
-            "shareTitle" => "",
-            "downloadUrl" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
-            "downloadName" => "default.jpg",
-            "credit" => "",
-            "creditUrl" => "",
-            "lqip" => null,
-            "alt" => "A serene pond filled with floating lily pads and pink water lilies. The surrounding trees can also be seen in the ponds reflection.",
-            "caption" => null,
-            "iiifId" => null,
-            "restrict" => false,
+        $hero_media = [
+            "type" => "image",
+            "size" => "hero",
+            "hideCaption" => true,
+            "style" => "default",
+            "media" => [
+                "sourceType" => "imgix",
+                "src" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
+                "width" => 843,
+                "height" => 809,
+                "shareUrl" => "#",
+                "shareTitle" => "",
+                "downloadUrl" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
+                "downloadName" => "default.jpg",
+                "credit" => "",
+                "creditUrl" => "",
+                "lqip" => null,
+                "alt" => "A serene pond filled with floating lily pads and pink water lilies. The surrounding trees can also be seen in the ponds reflection.",
+                "caption" => null,
+                "iiifId" => null,
+                "restrict" => false,
+            ]
         ];
     @endphp
     <article class="aic-ct-viewer o-article o-article__body">
         <div class="aic-ct-viewer__hero-img-container">
-            @component('components.atoms._img')
-                @slot('image', $hero_image)
-                @slot('settings', array(
-                    'fit' => 'crop',
-                    'ratio' => '15:8',
-                    'srcset' => array(300,600,1000,1500,2000),
-                    'sizes' => ImageHelpers::aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '58',
-                          'medium' => '58',
-                          'large' => '58',
-                          'xlarge' => '58',
-                    )),
+            @component('components.molecules._m-media')
+                @slot('item', $hero_media)
+                @slot('tag', 'span')
+                @slot('imageSettings', array(
+                    'srcset' => array(300,600,1000,1500,3000),
+                    'sizes' => '100vw',
                 ))
+                @slot('variation', 'm-visit-header')
             @endcomponent
         </div>
+
         <h2 class="f-headline-editorial">{!! $custom_tour['title'] !!}</h2>
         <div>
             @isset($custom_tour['creatorName'])
