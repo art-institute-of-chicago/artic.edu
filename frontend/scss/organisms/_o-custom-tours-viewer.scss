@@ -328,6 +328,28 @@
   }
 }
 
+.m-cta-banner--aic-ct-viewer-container {
+  .m-cta-banner--aic-ct-no-image {
+    min-height: 208px;
+
+    .f-headline {
+      margin-bottom: 32px;
+    }
+
+    @include breakpoint('large+') {
+      .m-cta-banner__txt {
+        position: unset;
+        padding: 32px 20px;
+      }
+
+      .m-cta-banner__action {
+        position: unset;
+        width: 100%;
+      }
+    }
+  }
+}
+
 .o-blocks:not(.o-blocks--with-sidebar) .m-cta-banner--aic-ct-viewer-container .m-cta-banner {
   @include breakpoint('medium+') {
     width: 100%;
