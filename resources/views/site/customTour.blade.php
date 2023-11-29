@@ -62,8 +62,10 @@
 
             @if(array_key_exists('description', $custom_tour) && $custom_tour['description'])
                 <div class="aic-ct-viewer__quote-container aic-ct-viewer__quote-container--large">
-                    <p id="description" class="f-quote">{{ $custom_tour['description'] }}</p>
-                    <p class="f-secondary">— Joe</p>
+                    <q id="description" class="f-quote" aria-describedby="quote-name-{{ $custom_tour['creatorName'] }}">
+                        {{ $custom_tour['description'] }}
+                    </q>
+                    <p id="quote-name-{{ $custom_tour['creatorName'] }}" class="f-secondary">— {{ $custom_tour['creatorName'] }}</p>
                     <svg aria-hidden="true" class="icon--quote--48"><use xlink:href="#icon--quote--48" /></svg>
                 </div>
             @endif
@@ -78,6 +80,7 @@
                 @slot('custom_tours', true)
                 @slot('custom_tours_viewer', true)
             @endcomponent
+
             <ul class="aic-ct-artworks-list">
                 @foreach ($custom_tour['artworks'] as $artwork)
                     @if(!$loop->first)
@@ -140,12 +143,17 @@
                         @endisset
                         @isset($artwork['objectNote'])
                             <div class="aic-ct-viewer__quote-container">
-                                <p class="f-body-editorial-emphasis">{{ $artwork['objectNote'] }}</p>
-                                <p class="f-secondary">— Joe</p>
+                                <q class="f-body-editorial-emphasis" aria-describedby="quote-name-{{ $custom_tour['creatorName'] }}">
+                                    "{{ $artwork['objectNote'] }}"
+                                </q>
+                                <p id="quote-name-{{ $custom_tour['creatorName'] }}" class="f-secondary">— {{ $custom_tour['creatorName'] }}</p>
                             </div>
                         @endisset
-                        <a href="https://www.artic.edu/artworks/{{ $artwork['id'] }}" target="_blank" class="external-link f-link">
-                            View full artwork page<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
+                        <a href="https://www.artic.edu/artworks/{{ $artwork['id'] }}"
+                           target="_blank"
+                           class="external-link f-link"
+                           aria-label="View full artwork page for {{ $artwork['title'] }}, link opens in a new window">
+                                View full artwork page<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
                         </a>
                     </li>
                 @endforeach
@@ -157,9 +165,7 @@
                 @endcomponent
             </div>
         </div>
-
     </article>
-
 
     @php
         $cta_image = [
