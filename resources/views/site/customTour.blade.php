@@ -53,7 +53,7 @@
             @endisset
 
             <div class="aic-ct-artworks-count-container">
-                <svg aria-hidden="true" class="icon--close"><use xlink:href="#icon--image-stack" /></svg>
+                <svg aria-hidden="true" class="icon--image-stack"><use xlink:href="#icon--image-stack" /></svg>
                 <div class="f-module-title-1">
                     <p><strong>{{ count($custom_tour['artworks']) }} artworks</strong> <em>from</em> <strong>{{ $unique_artists_count }} artists</strong> <em>across</em> <strong>{{ $unique_galleries_count }} galleries</strong></p>
                 </div>
