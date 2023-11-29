@@ -42,7 +42,7 @@
             <div class="aic-ct-grid-card__details">
                 @if ($custom_tour->artwork_count)
                     <div class="aic-ct-artworks-count-container">
-                        <svg aria-hidden="true" class="icon--close"><use xlink:href="#icon--image-stack" /></svg>
+                        <svg aria-hidden="true" class="icon--image-stack"><use xlink:href="#icon--image-stack" /></svg>
                         <div class="f-module-title-1">
                             {!! $custom_tour->artwork_count !!}
                         </div>
