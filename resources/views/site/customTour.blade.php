@@ -79,7 +79,7 @@
                 @slot('custom_tours', true)
                 @slot('custom_tours_viewer', true)
             @endcomponent
-            <ul>
+            <ul class="aic-ct-artworks-list">
                 @foreach ($custom_tour['artworks'] as $artwork)
                     @if(!$loop->first)
                         <hr />
