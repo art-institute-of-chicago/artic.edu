@@ -496,7 +496,6 @@
   }
 
   .f-tertiary {
-    margin-bottom: 16px;
     color: $color__black--80;
   }
 
@@ -522,6 +521,17 @@
   img {
     width: 100%;
     height: auto;
+  }
+}
+
+.aic-ct-viewer__gallery-container {
+  display: flex;
+  margin-bottom: 16px;
+  align-items: center;
+  gap: 4px;
+
+  .icon--location {
+    color: $color__grey--100;
   }
 }
 

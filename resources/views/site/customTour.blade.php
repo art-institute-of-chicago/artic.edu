@@ -128,7 +128,10 @@
                         @endisset
 
                         @isset($artwork['gallery_title'])
-                            <p class="f-tertiary">{{ $artwork['gallery_title'] }}</p>
+                            <div class="aic-ct-viewer__gallery-container">
+                                <svg aria-hidden="true" class="icon--location"><use xlink:href="#icon--location" /></svg>
+                                <p class="f-tertiary">{{ $artwork['gallery_title'] }}</p>
+                            </div>
                         @endisset
                         @isset($artwork['description'])
                             <p class="f-tertiary aic-ct-viewer__description">{{ $artwork['description'] }}</p>
