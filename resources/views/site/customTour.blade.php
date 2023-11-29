@@ -10,8 +10,8 @@
             "media" => [
                 "sourceType" => "imgix",
                 "src" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
-                "width" => 843,
-                "height" => 809,
+                "width" => 1920,
+                "height" => 1000,
                 "shareUrl" => "#",
                 "shareTitle" => "",
                 "downloadUrl" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
@@ -38,8 +38,7 @@
                 @slot('variation', 'm-visit-header')
             @endcomponent
         </div>
-
-        <h2 class="f-headline-editorial">{!! $custom_tour['title'] !!}</h2>
+        <h1 class="f-headline-editorial">{!! $custom_tour['title'] !!}</h1>
         <div>
             @isset($custom_tour['creatorName'])
                 <div class="aic-ct-viewer__creator-container">
@@ -59,7 +58,7 @@
                 </div>
             </div>
 
-            <hr />
+            <hr>
 
             @if(array_key_exists('description', $custom_tour) && $custom_tour['description'])
                 <div class="aic-ct-viewer__quote-container aic-ct-viewer__quote-container--large">
@@ -82,7 +81,7 @@
             <ul class="aic-ct-artworks-list">
                 @foreach ($custom_tour['artworks'] as $artwork)
                     @if(!$loop->first)
-                        <hr />
+                        <hr>
                     @endif
 
                     <li class="aic-ct-list-item">
@@ -151,7 +150,7 @@
                     </li>
                 @endforeach
             </ul>
-            <hr />
+            <hr>
             <div class="aic-ct-viewer__share-container">
                 <p class="f-headline">Thanks for taking my tour</p>
                 @component('components.molecules._m-article-actions')
