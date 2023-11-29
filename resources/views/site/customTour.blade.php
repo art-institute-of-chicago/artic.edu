@@ -80,7 +80,10 @@
             @endcomponent
             <ul>
                 @foreach ($custom_tour['artworks'] as $artwork)
-                    <hr />
+                    @if(!$loop->first)
+                        <hr />
+                    @endif
+
                     <li class="aic-ct-list-item">
                         @isset($artwork['image_id'])
                             <div class="aic-ct-list-item__artwork-img-container">
