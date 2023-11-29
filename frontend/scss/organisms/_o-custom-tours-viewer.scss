@@ -507,6 +507,13 @@
 
 .aic-ct-viewer__hero-img-container {
   margin-bottom: 32px;
+  width: 100vw;
+  margin-left: -5.2%;
+
+  @include breakpoint('medium+') {
+    width: auto;
+    margin-left: 0;
+  }
 
   img {
     width: 100%;
