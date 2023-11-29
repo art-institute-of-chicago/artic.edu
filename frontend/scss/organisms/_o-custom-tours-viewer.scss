@@ -327,6 +327,14 @@
   }
 }
 
+.o-blocks:not(.o-blocks--with-sidebar) .m-cta-banner--aic-ct-viewer-container .m-cta-banner {
+  @include breakpoint('medium+') {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .m-cta-banner--aic-ct__overlay {
   position: absolute;
   top: 0;

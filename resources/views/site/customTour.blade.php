@@ -35,12 +35,13 @@
             @component('components.molecules._m-article-actions')
             @endcomponent
 
-{{--                    @component('components.molecules._m-cta-banner')--}}
-{{--                        @slot('href', 'https://sales.artic.edu/admissions')--}}
-{{--                        @slot('header', 'View your tour below or visit us in person.')--}}
-{{--                        @slot('button_text', 'Buy tickets')--}}
-{{--                        @slot('custom_tours', true)--}}
-{{--                    @endcomponent--}}
+            @component('components.molecules._m-cta-banner')
+                @slot('href', 'https://sales.artic.edu/admissions')
+                @slot('header', 'View your tour below or visit us in person.')
+                @slot('button_text', 'Buy tickets')
+                @slot('custom_tours', true)
+                @slot('custom_tours_viewer', true)
+            @endcomponent
             <ul>
                 @foreach ($custom_tour['artworks'] as $artwork)
                     <hr />

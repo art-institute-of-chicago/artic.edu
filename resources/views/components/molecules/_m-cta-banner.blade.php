@@ -7,6 +7,7 @@
     $body = $body ?? null;
     $button_text = $button_text ?? null;
     $custom_tours = $custom_tours ?? false;
+    $custom_tours_viewer = $custom_tours_viewer ?? false;
     $secondary_button_href = $secondary_button_href ?? null;
     $secondary_button_text = $secondary_button_text ?? null;
 
@@ -17,6 +18,7 @@
 @if ($header)
     <div @class([
             'm-cta-banner--aic-ct-container' => isset($image) && $custom_tours,
+            'm-cta-banner--aic-ct-viewer-container' => !isset($image) && $custom_tours_viewer,
         ])>
         <{{ $tag }} @class([
                         'm-cta-banner',
@@ -81,7 +83,7 @@
                                 'btn',
                                 'f-buttons',
                                 'btn--contrast' => isset($image) && !$custom_tours,
-                                'btn--quaternary' => !isset($image) && $custom_tours && !$secondary_button_href,
+                                'btn--quaternary' => !isset($image) && $custom_tours && !$secondary_button_href && !$custom_tours_viewer,
                                 'btn--secondary' => !isset($image) && $custom_tours && $secondary_button_href,
                             ])>
                                 {!! SmartyPants::defaultTransform($button_text) !!}
