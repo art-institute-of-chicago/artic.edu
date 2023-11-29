@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- Todo: Use local src and downloadUrl? Update alt text. --}}
+    {{-- Todo: Use local src and downloadUrl? --}}
     @php
         $hero_image = [
             "sourceType" => "imgix",
@@ -15,7 +15,7 @@
             "credit" => "",
             "creditUrl" => "",
             "lqip" => null,
-            "alt" => "",
+            "alt" => "A serene pond filled with floating lily pads and pink water lilies. The surrounding trees can also be seen in the ponds reflection.",
             "caption" => null,
             "iiifId" => null,
             "restrict" => false,
@@ -163,7 +163,7 @@
     </article>
 
 
-    {{-- Todo: Put the CTA blocks in a separate file? Use local src and downloadUrl? Update alt text. --}}
+    {{-- Todo: Use local src and downloadUrl? --}}
     @php
         $cta_image = [
             "sourceType" => "imgix",
@@ -177,7 +177,7 @@
             "credit" => "",
             "creditUrl" => "",
             "lqip" => null,
-            "alt" => "Art Institute Fc 1222 0479",
+            "alt" => "A gallery at the Art Institute of Chicago, where several people can be seen admiring various artworks.",
             "caption" => null,
             "iiifId" => null,
             "restrict" => false,
