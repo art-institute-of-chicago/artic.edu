@@ -503,7 +503,8 @@
   .f-deck,
   .f-body,
   .f-tertiary,
-  .f-link {
+  .f-link,
+  .f-headline {
     &::before {
       padding-top: 0;
     }
