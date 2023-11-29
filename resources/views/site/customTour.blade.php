@@ -1,16 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- Todo: Use local src and downloadUrl? --}}
     @php
         $hero_image = [
             "sourceType" => "imgix",
-            "src" => "https://lakeimagesweb.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/843,/0/default.jpg",
+            "src" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
             "width" => 843,
             "height" => 809,
             "shareUrl" => "#",
             "shareTitle" => "",
-            "downloadUrl" => "https://lakeimagesweb.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/843,/0/default.jpg",
+            "downloadUrl" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
             "downloadName" => "default.jpg",
             "credit" => "",
             "creditUrl" => "",
@@ -26,7 +25,7 @@
             @component('components.atoms._img')
                 @slot('image', $hero_image)
                 @slot('settings', array(
-                    'fit' => 'fill',
+                    'fit' => 'crop',
                     'ratio' => '15:8',
                     'srcset' => array(300,600,1000,1500,2000),
                     'sizes' => ImageHelpers::aic_imageSizes(array(
@@ -88,14 +87,13 @@
                     <li class="aic-ct-list-item">
                         @isset($artwork['image_id'])
                             <div class="aic-ct-list-item__artwork-img-container">
-                                {{-- Todo: Use local src and downloadUrl? --}}
                                 @php
                                     $artwork_image = [
                                         "sourceType" => "imgix",
-                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/256,/0/default.jpg",
+                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/max/0/default.jpg",
                                         "shareUrl" => "#",
                                         "shareTitle" => "",
-                                        "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/256,/0/default.jpg",
+                                        "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/max/0/default.jpg",
                                         "credit" => "",
                                         "creditUrl" => "",
                                         "lqip" => null,
@@ -163,16 +161,15 @@
     </article>
 
 
-    {{-- Todo: Use local src and downloadUrl? --}}
     @php
         $cta_image = [
             "sourceType" => "imgix",
-            "src" => "https://artic-web-test.imgix.net/a1d91c0c-697b-42ef-b2a3-61a6a3a2da60/Art-Institute-FC-1222-0479.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=0%2C1040%2C6238%2C991",
+            "src" => "https://artic-web.imgix.net/a1d91c0c-697b-42ef-b2a3-61a6a3a2da60/Art-Institute-FC-1222-0479.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=0%2C1040%2C6238%2C991",
             "width" => 6238,
             "height" => 991,
             "shareUrl" => "#",
             "shareTitle" => "",
-            "downloadUrl" => "https://artic-web-test.imgix.net/a1d91c0c-697b-42ef-b2a3-61a6a3a2da60/Art-Institute-FC-1222-0479.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=0%2C1040%2C6238%2C991",
+            "downloadUrl" => "https://artic-web.imgix.net/a1d91c0c-697b-42ef-b2a3-61a6a3a2da60/Art-Institute-FC-1222-0479.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=0%2C1040%2C6238%2C991",
             "downloadName" => "Art-Institute-FC-1222-0479.jpg",
             "credit" => "",
             "creditUrl" => "",
