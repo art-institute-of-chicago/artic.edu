@@ -65,6 +65,7 @@
                 <div class="aic-ct-viewer__quote-container aic-ct-viewer__quote-container--large">
                     <p id="description" class="f-quote">{{ $custom_tour['description'] }}</p>
                     <p class="f-secondary">— Joe</p>
+                    <svg aria-hidden="true" class="icon--quote--48"><use xlink:href="#icon--quote--48" /></svg>
                 </div>
             @endif
 
