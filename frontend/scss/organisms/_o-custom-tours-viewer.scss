@@ -599,8 +599,17 @@
 }
 
 .aic-ct-viewer__quote-container--large {
-  gap: 16px;
+  gap: 8px;
   margin-bottom: 24px;
+
+  .f-quote {
+    margin-bottom: 8px;
+  }
+
+  .icon--quote--48 {
+    align-self: end;
+    color: $color__red--100;
+  }
 }
 
 .aic-ct-viewer__share-container {
