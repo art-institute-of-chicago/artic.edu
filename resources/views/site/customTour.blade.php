@@ -62,10 +62,12 @@
 
             @if(array_key_exists('description', $custom_tour) && $custom_tour['description'])
                 <div class="aic-ct-viewer__quote-container aic-ct-viewer__quote-container--large">
-                    <q id="description" class="f-quote" aria-describedby="quote-name-{{ $custom_tour['creatorName'] }}">
+                    <q id="description" class="f-quote" aria-describedby={{ isset($custom_tour['creatorName']) ? 'quote-name-' . $custom_tour['creatorName'] : '' }}>
                         {{ $custom_tour['description'] }}
                     </q>
-                    <p id="quote-name-{{ $custom_tour['creatorName'] }}" class="f-secondary">— {{ $custom_tour['creatorName'] }}</p>
+                    @isset($custom_tour['creatorName'])
+                        <p id="quote-name-{{ $custom_tour['creatorName'] }}" class="f-secondary">— {{ $custom_tour['creatorName'] }}</p>
+                    @endisset
                     <svg aria-hidden="true" class="icon--quote--48"><use xlink:href="#icon--quote--48" /></svg>
                 </div>
             @endif
@@ -143,10 +145,12 @@
                         @endisset
                         @isset($artwork['objectNote'])
                             <div class="aic-ct-viewer__quote-container">
-                                <q class="f-body-editorial-emphasis" aria-describedby="quote-name-{{ $custom_tour['creatorName'] }}">
+                                <q class="f-body-editorial-emphasis" aria-describedby={{ isset($custom_tour['creatorName']) ? 'quote-name-' . $custom_tour['creatorName'] : '' }}>
                                     "{{ $artwork['objectNote'] }}"
                                 </q>
-                                <p id="quote-name-{{ $custom_tour['creatorName'] }}" class="f-secondary">— {{ $custom_tour['creatorName'] }}</p>
+                                @isset($custom_tour['creatorName'])
+                                    <p id="quote-name-{{ $custom_tour['creatorName'] }}" class="f-secondary">— {{ $custom_tour['creatorName'] }}</p>
+                                @endisset
                             </div>
                         @endisset
                         <a href="https://www.artic.edu/artworks/{{ $artwork['id'] }}"
