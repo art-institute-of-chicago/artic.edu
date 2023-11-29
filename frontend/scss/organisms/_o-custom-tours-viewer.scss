@@ -508,16 +508,19 @@
 .aic-ct-viewer__hero-img-container {
   margin-bottom: 32px;
 
-  //@include breakpoint('large+') {
-  //  margin-top: 28px;
-  //  padding-top: 12px;
-  //}
-
   img {
     width: 100%;
     height: auto;
-    object-fit: cover;
     aspect-ratio: 15/8;
+  }
+}
+
+.aic-ct-list-item__artwork-img-container {
+  margin-bottom: 12px;
+  
+  img {
+    width: 100%;
+    height: auto;
   }
 }
 
