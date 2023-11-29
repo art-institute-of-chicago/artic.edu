@@ -1,32 +1,6 @@
 // ------ Custom tours viewer
 
-// ---- Custom tours: Landing page
-
-.aic-ct-artworks-count-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-  gap: 8px;
-
-  .f-module-title-1 {
-    font-size: 13px;
-    font-weight: 300;
-
-    &::before {
-      padding: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
-
-    @include breakpoint('small+') {
-      font-size: 13px;
-    }
-  }
-}
-
-// -- Custom tours: Custom tours utility fonts
+// ---- Custom tours: Custom tours utility fonts
 
 .aic-ct-grid-intro,
 .m-cta-banner__msg--aic-ct {
@@ -52,7 +26,8 @@
 }
 
 .aic-ct-grid-card,
-.custom-tours-header {
+.custom-tours-header,
+.aic-ct-viewer {
   .f-deck {
     &::before {
       padding: 0;
@@ -60,6 +35,85 @@
 
     &::after {
       margin-bottom: 0;
+    }
+  }
+}
+
+.aic-ct-viewer {
+  .f-headline-editorial,
+  .f-subheading-1,
+  .f-secondary,
+  .f-body,
+  .f-tertiary,
+  .f-link,
+  .f-headline,
+  .f-body-editorial-emphasis {
+    &::before {
+      padding-top: 0;
+    }
+
+    &::after {
+      margin-bottom: 0;
+    }
+  }
+
+  .f-quote {
+    font-weight: 300;
+    letter-spacing: 0.015em
+  }
+
+  .f-headline-editorial {
+    margin-bottom: 16px;
+    font-size: 38px;
+    line-height: 44px;
+    font-weight: 300;
+  }
+
+  .f-subheading-1 {
+    margin-bottom: 16px;
+    font-weight: 325;
+  }
+
+  .f-deck {
+    margin-bottom: 4px;
+    color: $color__black--90;
+  }
+
+  .f-body {
+    margin-bottom: 8px;
+  }
+
+  .f-tertiary {
+    color: $color__black--80;
+  }
+
+  .f-link {
+    color: $color__red--100;
+  }
+}
+
+// ---- Custom tours: Landing page
+
+.aic-ct-artworks-count-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 8px;
+
+  .f-module-title-1 {
+    font-size: 13px;
+    font-weight: 300;
+
+    &::before {
+      padding: 0;
+    }
+
+    &::after {
+      margin-bottom: 0;
+    }
+
+    @include breakpoint('small+') {
+      font-size: 13px;
     }
   }
 }
@@ -444,16 +498,19 @@
 // ---- Custom tours: Viewer page
 
 .aic-ct-viewer {
-  margin-top: 0;
-  padding-top: 0;
 
-  @include breakpoint('large+') {
-    float: none;
-    width: colspan(28, large);
-  }
+  &.o-article__body {
+    margin-top: 0;
+    padding-top: 0;
 
-  @include breakpoint('xlarge') {
-    width: colspan(28, xlarge);
+    @include breakpoint('large+') {
+      float: none;
+      width: colspan(28, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(28, xlarge);
+    }
   }
 
   hr {
@@ -465,57 +522,6 @@
   ul {
     margin-top: 0;
     padding-left: 0;
-  }
-
-  .f-quote {
-    font-weight: 300;
-    letter-spacing: 0.015em
-  }
-
-  .f-headline-editorial {
-    margin-bottom: 16px;
-    font-size: 38px;
-    line-height: 44px;
-    font-weight: 300;
-  }
-
-  .f-subheading-1 {
-    margin-bottom: 16px;
-    font-weight: 325;
-  }
-
-  .f-headline-editorial,
-  .f-subheading-1,
-  .f-secondary,
-  .f-deck,
-  .f-body,
-  .f-tertiary,
-  .f-link,
-  .f-headline {
-    &::before {
-      padding-top: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
-  }
-
-  .f-deck {
-    margin-bottom: 4px;
-    color: $color__black--90;
-  }
-
-  .f-body {
-    margin-bottom: 8px;
-  }
-
-  .f-tertiary {
-    color: $color__black--80;
-  }
-
-  .f-link {
-    color: $color__red--100;
   }
 
   .m-article-actions {
@@ -541,12 +547,16 @@
   width: 100vw;
   margin-left: -5.2%;
 
-  .m-media--hero .m-media__img {
-    height: fit-content;
+  .m-media--hero {
+    .m-media__img {
+      height: fit-content;
+    }
   }
 
-  .m-media--hero img {
-    position: static;
+  .m-media--hero {
+    img {
+      position: static;
+    }
   }
 
   @include breakpoint('medium+') {
@@ -607,10 +617,6 @@
   margin-bottom: 20px;
   padding: 14px;
   background-color: $color__cold-white;
-
-  .f-body-editorial-emphasis::before {
-    padding: 0;
-  }
 }
 
 .aic-ct-viewer__quote-container--large {
