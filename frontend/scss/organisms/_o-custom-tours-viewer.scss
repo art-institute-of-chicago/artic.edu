@@ -532,6 +532,18 @@
   }
 }
 
+.aic-ct-artworks-list {
+  hr {
+    width: 100vw;
+    margin-left: -5.2%;
+
+    @include breakpoint('medium+') {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}
+
 .aic-ct-viewer__hero-img-container {
   margin-bottom: 32px;
   width: 100vw;
