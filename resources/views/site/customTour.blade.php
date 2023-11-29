@@ -1,8 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
+    {{-- Todo: Use local src and downloadUrl? Update alt text. --}}
+    @php
+        $hero_image = [
+            "sourceType" => "imgix",
+            "src" => "https://lakeimagesweb.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/843,/0/default.jpg",
+            "width" => 843,
+            "height" => 809,
+            "shareUrl" => "#",
+            "shareTitle" => "",
+            "downloadUrl" => "https://lakeimagesweb.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/843,/0/default.jpg",
+            "downloadName" => "default.jpg",
+            "credit" => "",
+            "creditUrl" => "",
+            "lqip" => null,
+            "alt" => "",
+            "caption" => null,
+            "iiifId" => null,
+            "restrict" => false,
+        ];
+    @endphp
     <article class="aic-ct-viewer o-article o-article__body">
-        <img src=""/>
+        <div class="aic-ct-viewer__hero-img-container">
+            @component('components.atoms._img')
+                @slot('image', $hero_image)
+                @slot('settings', array(
+                    'fit' => 'crop',
+                    'ratio' => '15:8',
+                    'srcset' => array(300,600,1000,1500,2000),
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
+                          'xsmall' => '58',
+                          'small' => '58',
+                          'medium' => '58',
+                          'large' => '58',
+                          'xlarge' => '58',
+                    )),
+                ))
+            @endcomponent
+        </div>
 
         <h2 class="f-headline-editorial">{!! $custom_tour['title'] !!}</h2>
         {{-- Todo: Do you need the o-blocks class? --}}
