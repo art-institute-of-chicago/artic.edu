@@ -409,6 +409,15 @@
 // ---- Custom tours: Viewer page
 
 .aic-ct-viewer {
+  @include breakpoint('large+') {
+    float: none;
+    width: colspan(28, large);
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(28, xlarge);
+  }
+
   hr {
     margin-top: 24px;
     margin-bottom: 24px;
