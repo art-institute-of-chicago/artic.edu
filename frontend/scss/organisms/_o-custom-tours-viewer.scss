@@ -332,6 +332,10 @@
   .m-cta-banner--aic-ct-no-image {
     min-height: 208px;
 
+    @include breakpoint('medium+') {
+      margin-top: 32px;
+    }
+
     .f-headline {
       margin-bottom: 32px;
     }
