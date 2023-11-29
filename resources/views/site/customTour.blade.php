@@ -39,17 +39,17 @@
                 ))
             @endcomponent
         </div>
-
         <h2 class="f-headline-editorial">{!! $custom_tour['title'] !!}</h2>
-        {{-- Todo: Do you need the o-blocks class? --}}
-        <div class="o-blocks aic-ct-viewer__creator-container">
+        <div>
             @isset($custom_tour['creatorName'])
-                <p class="f-subheading-1">
-                    <span id="creatorName">Tour made by {{ $custom_tour['creatorName'] }}{{ isset($custom_tour['recipientName']) ? ',' : '' }}</span>
-                    @isset($custom_tour['recipientName'])
-                        <span id="recipientName">for {{ $custom_tour['recipientName'] }}</span>
-                    @endisset
-                </p>
+                <div class="aic-ct-viewer__creator-container">
+                    <p class="f-subheading-1">
+                        <span id="creatorName">Tour made by {{ $custom_tour['creatorName'] }}{{ isset($custom_tour['recipientName']) ? ',' : '' }}</span>
+                        @isset($custom_tour['recipientName'])
+                            <span id="recipientName">for {{ $custom_tour['recipientName'] }}</span>
+                        @endisset
+                    </p>
+                </div>
             @endisset
 
             <div class="aic-ct-artworks-count-container">

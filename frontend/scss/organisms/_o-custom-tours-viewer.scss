@@ -352,13 +352,13 @@
       }
     }
   }
-}
 
-.o-blocks:not(.o-blocks--with-sidebar) .m-cta-banner--aic-ct-viewer-container .m-cta-banner {
-  @include breakpoint('medium+') {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+  .m-cta-banner {
+    @include breakpoint('medium+') {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 }
 
@@ -467,17 +467,9 @@
     border-color: $color__black--20;
   }
 
-  .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+  ul {
     margin-top: 0;
     padding-left: 0;
-
-    &::before {
-      padding-top: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
   }
 
   .f-quote {
@@ -593,7 +585,7 @@
   }
 }
 
-.o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-])>li.aic-ct-list-item {
+.aic-ct-list-item {
   list-style-type: none;
   margin-top: 24px;
   padding-left: 0;
