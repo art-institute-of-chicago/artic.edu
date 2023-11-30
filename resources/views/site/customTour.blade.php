@@ -82,11 +82,10 @@
 
             <ul class="aic-ct-artworks-list">
                 @foreach ($custom_tour['artworks'] as $artwork)
-                    @if(!$loop->first)
-                        <hr>
-                    @endif
-
                     <li class="aic-ct-list-item">
+                        @if(!$loop->first)
+                            <hr>
+                        @endif
                         @isset($artwork['image_id'])
                             <div class="aic-ct-list-item__artwork-img-container">
                                 @php
