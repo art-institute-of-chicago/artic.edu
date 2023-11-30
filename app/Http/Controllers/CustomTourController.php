@@ -48,6 +48,8 @@ class CustomTourController extends FrontController
 
     public function showCustomTourBuilder()
     {
-        return view('site.customTourBuilder');
+        return view('site.customTourBuilder', [
+            'unstickyHeader' => true
+        ]);
     }
 }
