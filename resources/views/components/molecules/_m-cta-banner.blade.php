@@ -7,6 +7,9 @@
     $body = $body ?? null;
     $button_text = $button_text ?? null;
     $custom_tours = $custom_tours ?? false;
+    $custom_tours_viewer = $custom_tours_viewer ?? false;
+    $secondary_button_href = $secondary_button_href ?? null;
+    $secondary_button_text = $secondary_button_text ?? null;
 
     // TODO: Make this an option?
     $isBigLink = isset($image);
@@ -15,6 +18,7 @@
 @if ($header)
     <div @class([
             'm-cta-banner--aic-ct-container' => isset($image) && $custom_tours,
+            'm-cta-banner--aic-ct-viewer-container' => !isset($image) && $custom_tours_viewer,
         ])>
         <{{ $tag }} @class([
                         'm-cta-banner',
@@ -33,7 +37,7 @@
                         @component('components.atoms._img')
                             @slot('image', $image)
                             @slot('settings', array(
-                                'fit' => 'crop',
+                                'fit' => 'fill',
                                 'ratio' => '25:4',
                                 'srcset' => array(300,600,1000,1500,2000),
                                 'sizes' => ImageHelpers::aic_imageSizes(array(
@@ -79,11 +83,25 @@
                                 'btn',
                                 'f-buttons',
                                 'btn--contrast' => isset($image) && !$custom_tours,
-                                'btn--quaternary' => !isset($image) && $custom_tours,
+                                'btn--quaternary' => !isset($image) && $custom_tours && !$secondary_button_href && !$custom_tours_viewer,
+                                'btn--secondary' => !isset($image) && $custom_tours && $secondary_button_href,
                             ])>
                                 {!! SmartyPants::defaultTransform($button_text) !!}
                             </span>
                             @if (!$isBigLink)
+                                </a>
+                            @endif
+
+                            @if (!$isBigLink && $secondary_button_href && $secondary_button_text)
+                                <a href="{{ $secondary_button_href }}">
+                                    <span @class([
+                                        'btn',
+                                        'f-buttons',
+                                        'btn--contrast' => isset($image) && !$custom_tours,
+                                        'btn--quaternary' => !isset($image) && $custom_tours,
+                                    ])>
+                                        {!! SmartyPants::defaultTransform($secondary_button_text) !!}
+                                    </span>
                                 </a>
                             @endif
                         </div>

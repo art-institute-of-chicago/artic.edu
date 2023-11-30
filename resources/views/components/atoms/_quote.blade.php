@@ -1,3 +1,7 @@
+@php
+    $icon = $icon ?? true;
+@endphp
+
 <blockquote class="quote{{ (isset($variation)) ? ' '.$variation : '' }}">
     <p class="{{ $font ?? 'f-quote' }}">{{ $slot }}</p>
 
@@ -5,9 +9,11 @@
         <cite class="f-secondary">{!! $attribution !!}</cite>
     @endif
 
-    <svg class="quote__icon" aria-hidden="true">
-        <use xlink:href="#icon--quote--48" />
-        <use xlink:href="#icon--quote--68" />
-        <use xlink:href="#icon--quote--76" />
-    </svg>
+    @if ($icon)
+        <svg class="quote__icon" aria-hidden="true">
+            <use xlink:href="#icon--quote--48" />
+            <use xlink:href="#icon--quote--68" />
+            <use xlink:href="#icon--quote--76" />
+        </svg>
+    @endif
 </blockquote>
