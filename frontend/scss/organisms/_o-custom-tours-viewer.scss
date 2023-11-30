@@ -47,7 +47,8 @@
   .f-tertiary,
   .f-link,
   .f-headline,
-  .f-body-editorial-emphasis {
+  .f-body-editorial-emphasis,
+  .f-quote {
     &::before {
       padding-top: 0;
     }
@@ -60,6 +61,10 @@
   .f-quote {
     font-weight: 300;
     letter-spacing: 0.015em
+  }
+
+  .quote .f-quote:first-child {
+    margin-top: 0;
   }
 
   .f-headline-editorial {
@@ -528,6 +533,41 @@
     margin-top: 0;
     margin-bottom: 32px;
   }
+
+  .aic-ct-quote--large {
+    .f-quote {
+      margin-bottom: 16px;
+    }
+  }
+
+  &.o-article .quote.o-blocks__block {
+    padding: 16px 16px 53px;
+
+    &.aic-ct-quote--small {
+      padding-bottom: 16px;
+
+      .f-body-editorial-emphasis {
+        font-weight: 300;
+        letter-spacing: 0;
+      }
+    }
+  }
+
+  .quote__icon {
+    color: $color__red--100;
+  }
+}
+
+.aic-ct-quote--large {
+  margin-bottom: 24px;
+}
+
+.aic-ct-quote--small {
+  margin-bottom: 20px;
+
+  cite {
+    margin-top: 12px;
+  }
 }
 
 .aic-ct-artworks-list {
@@ -608,29 +648,6 @@
   list-style-type: none;
   margin-top: 24px;
   padding-left: 0;
-}
-
-.aic-ct-viewer__quote-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 20px;
-  padding: 14px;
-  background-color: $color__cold-white;
-}
-
-.aic-ct-viewer__quote-container--large {
-  gap: 8px;
-  margin-bottom: 24px;
-
-  .f-quote {
-    margin-bottom: 8px;
-  }
-
-  .icon--quote--48 {
-    align-self: end;
-    color: $color__red--100;
-  }
 }
 
 .aic-ct-viewer__share-container {
