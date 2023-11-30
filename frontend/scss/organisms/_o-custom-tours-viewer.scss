@@ -63,8 +63,10 @@
     letter-spacing: 0.015em
   }
 
-  .quote .f-quote:first-child {
-    margin-top: 0;
+  .quote {
+    .f-quote:first-child {
+      margin-top: 0;
+    }
   }
 
   .f-headline-editorial {
@@ -534,25 +536,6 @@
     margin-bottom: 32px;
   }
 
-  .aic-ct-quote--large {
-    .f-quote {
-      margin-bottom: 16px;
-    }
-  }
-
-  &.o-article .quote.o-blocks__block {
-    padding: 16px 16px 53px;
-
-    &.aic-ct-quote--small {
-      padding-bottom: 16px;
-
-      .f-body-editorial-emphasis {
-        font-weight: 300;
-        letter-spacing: 0;
-      }
-    }
-  }
-
   .quote__icon {
     color: $color__red--100;
   }
@@ -560,13 +543,30 @@
 
 .aic-ct-quote--large {
   margin-bottom: 24px;
+
+  &.quote.o-blocks__block {
+    padding: 16px 16px 53px;
+  }
+
+  .f-quote {
+    margin-bottom: 16px;
+  }
 }
 
 .aic-ct-quote--small {
   margin-bottom: 20px;
 
+  &.quote.o-blocks__block {
+    padding: 16px;
+  }
+
   cite {
     margin-top: 12px;
+  }
+
+  .f-body-editorial-emphasis {
+    font-weight: 300;
+    letter-spacing: 0;
   }
 }
 
