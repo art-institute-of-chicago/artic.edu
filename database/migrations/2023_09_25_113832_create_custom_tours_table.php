@@ -10,7 +10,6 @@ return new class () extends Migration {
     public function __construct()
     {
         $this->connection = 'tours';
-
     }
 
     public function up(): void
