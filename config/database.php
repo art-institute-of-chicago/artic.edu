@@ -110,7 +110,7 @@ return [
             'password' => env('TOURS_DB_PASSWORD', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix' => env('DB_PREFIX', ''),
+            'prefix' => env('TOURS_DB_PREFIX', ''),
             'strict' => false,
         ],
 
