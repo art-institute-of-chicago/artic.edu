@@ -244,14 +244,21 @@
   }
 
   .aic-ct-grid-card__details {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    min-height: 272px;
     margin: auto;
-    display: inline-block;
     padding: 16px 20px 24px;
+
+    @include breakpoint('large+') {
+      min-height: 296px;
+    }
   }
 
   .aic-ct-grid-card__text {
     margin-bottom: 24px;
+    flex: 1;
   }
 
   .f-deck {
@@ -262,6 +269,7 @@
 
   .btn {
     width: 100%;
+    margin-top: auto;
   }
 }
 
