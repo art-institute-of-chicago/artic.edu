@@ -42,11 +42,14 @@ class CustomTourController extends FrontController
             'custom_tour' => $customTour,
             'unique_galleries_count' => $uniqueGalleriesCount,
             'unique_artists_count' => $uniqueArtistsCount,
+            'unstickyHeader' => true,
         ]);
     }
 
     public function showCustomTourBuilder()
     {
-        return view('site.customTourBuilder');
+        return view('site.customTourBuilder', [
+            'unstickyHeader' => true
+        ]);
     }
 }

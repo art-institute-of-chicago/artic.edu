@@ -1,0 +1,279 @@
+// ------ Custom tours
+
+.custom-tours {
+  // Override the reset styles for dialog elements
+  dialog {
+    display: revert;
+    margin: revert;
+    border: none;
+    padding: 0;
+    max-width: 680px;
+    background-color: $color__white;
+
+    &::backdrop {
+      background-color: rgb(0,0,0,0.6);
+    }
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+
+  a {
+    color: $color__link--accent;
+  }
+}
+
+// ---- Custom tours: Preview
+
+.aic-ct-preview__close-trans {
+  color: $color__link;
+  padding-left: 0;
+  padding-right: 0;
+
+  svg {
+    // Alignment tweaks might not be needed
+    // but doesn't align right for some reason
+    margin-top: 0;
+    vertical-align: middle;
+  }
+}
+
+.aic-ct-preview__header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $color__white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  h2 {
+    @include untuck;
+  }
+}
+
+.aic-ct-preview__padded {
+  padding: 0 16px;
+}
+
+.aic-ct-preview__image {
+  img {
+    max-height: 500px;
+    margin-bottom: 32px;
+  }
+}
+
+.aic-ct-preview__title {
+  margin-bottom: 12px;
+}
+
+.aic-ct-preview__date {
+  @include untuck;
+}
+
+.aic-ct-preview__details {
+  margin-bottom: 24px;
+}
+
+.aic-ct-preview__links {
+  padding: 24px 0;
+  border-top: 1px solid $color__black--20;
+  border-bottom: 1px solid $color__black--20;
+  margin-bottom: 24px;
+}
+
+.aic-ct-preview__action-button {
+  margin-bottom: 16px;
+}
+
+.aic-ct-preview__description {
+  margin-bottom: 24px;
+}
+
+.aic-ct-preview__description-title {
+  margin-bottom: 12px;
+}
+
+// ---- Custom tours: Header
+
+.aic-ct-header {
+  @include untuck;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: $color__black;
+  color: $color__white;
+}
+
+.aic-ct-item-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  em {
+    color: $color__black--20
+  }
+}
+
+.aic-ct-item-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  min-width: 24px;
+  aspect-ratio: 1;
+  color: $color__grey--100;
+  background-color: $color__white;
+  font-size: 0.778em;
+  line-height: 1;
+  font-weight: 500;
+
+  @include breakpoint('small+') {
+    min-width:28px;
+  }
+}
+
+.aic-ct-header__button {
+  color: $color__white;
+  padding: 0 !important;
+  font-weight: 400;
+
+  svg {
+    margin-right: 0;
+    margin-left: 9px;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus:hover {
+    color: $color__white
+  }
+}
+
+
+// ---- Custom tours: Footer
+
+.aic-ct-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px;
+  background-color: $color__black;
+  color: $color__white;
+}
+
+.aic-ct-nav {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $color__black--42;
+}
+
+.aic-ct-nav__button {
+  position: relative;
+  padding: 0 !important;
+  white-space: normal;
+  max-width: 180px;
+
+  & + & {
+    margin-left: 0;
+  }
+
+  &:not(:first-child) .aic-ct-nav__number::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: -12px;
+    width: calc(50% - 8px);
+    height: 1px;
+    background: $color__black--42;
+  }
+  &:not(:last-child) .aic-ct-nav__number::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: -12px;
+    width: calc(50% - 8px);
+    height: 1px;
+    background: $color__black--42;
+  }
+}
+
+.aic-ct-nav__button-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $color__white;
+
+  & .aic-ct-nav__number {
+    color: $color__black--20;
+  }
+}
+
+.aic-ct-nav__number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  min-width: 24px;
+  aspect-ratio: 1;
+  margin-bottom: 6px;
+  border: 1px solid $color__grey--100;
+  font-size: 0.875em;
+  line-height: 1;
+}
+
+.aic-ct-nav__title {
+  font-size: 0.875em;
+  line-height: 1.4285;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.aic-ct-nav__tagline {
+  font-size: 0.75em;
+  line-height: 1.5;
+}
+
+.aic-ct-nav__button--active {
+
+  & .aic-ct-nav__title {
+    text-decoration: none;
+  }
+
+  & .aic-ct-nav__number {
+    color: $color__white;
+    background-color: $color__grey--100;
+    box-shadow: 0 0 0 2px $color__grey--100;
+    font-size: 1em;
+  }
+}
+
+.aic-ct-nav__button--done {
+  & .aic-ct-nav__number {
+    background-color: $color__white;
+    color: $color__grey--100;
+  }
+}
+
+.aic-ct-nav__exit {
+  align-self: center;
+  color: $color__black--20 !important;
+  font-weight: 500;
+
+  svg {
+    vertical-align: middle;
+    margin-top: 0;
+  }
+}
