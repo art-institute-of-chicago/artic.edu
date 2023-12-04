@@ -11,9 +11,7 @@ class CustomTour extends Model
 
     public function __construct()
     {
-        if (config('app.env') !== 'testing') {
-            $this->connection = 'tours';
-        }
+        $this->connection = 'tours';
     }
 
     protected $fillable = ['id', 'creator_email', 'marketing_opt_in', 'tour_json', 'timestamp'];
