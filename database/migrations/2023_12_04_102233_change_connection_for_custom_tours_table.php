@@ -9,14 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         if (config('app.env') === 'testing') {
-            DB::statement('ALTER TABLE custom_tours CONNECTION = "tours"');
+            DB::statement('ALTER TABLE public.custom_tours SET SCHEMA tours');
         }
     }
 
     public function down(): void
     {
         if (config('app.env') === 'testing') {
-            DB::statement('ALTER TABLE custom_tours CONNECTION = "pgsql"');
+            DB::statement('ALTER TABLE tours.custom_tours SET SCHEMA public');
         }
     }
 };
