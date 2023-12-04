@@ -26,6 +26,7 @@ class CustomTourRequest extends FormRequest
             'tourJson.artworks.*.image_id' => 'nullable|string',
             'tourJson.artworks.*.description' => 'nullable|string',
             'tourJson.artworks.*.gallery_title' => 'nullable|string',
+            'tourJson.artworks.*.gallery_id' => 'nullable|integer',
             'tourJson.artworks.*.artist_title' => 'nullable|string',
             'tourJson.artworks.*.display_date' => 'nullable|string',
             'tourJson.artworks.*.thumbnail.lqip' => 'nullable|string',

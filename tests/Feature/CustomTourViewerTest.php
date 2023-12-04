@@ -46,7 +46,7 @@ class CustomTourViewerTest extends BaseTestCase
 
         $content = $response->getContent();
 
-        $this->assertStringContainsString('id="description"', $content, 'The paragraph with ID "description" should be found.');
+        $this->assertStringContainsString('class="f-quote"', $content, 'The paragraph with class "f-quote" should be found.');
     }
 
     /**
@@ -63,7 +63,7 @@ class CustomTourViewerTest extends BaseTestCase
 
         $content = $response->getContent();
 
-        $this->assertStringNotContainsString('id="description"', $content, 'The paragraph with ID "description" should not be found.');
+        $this->assertStringNotContainsString('class="f-quote"', $content, 'The paragraph with class "f-quote" should not be found.');
     }
 
     /**
