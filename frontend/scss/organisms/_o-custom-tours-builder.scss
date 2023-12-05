@@ -36,6 +36,12 @@
 
 // ---- Custom tours: Preview
 
+.aic-ct-preview__content {
+  .aic-ct-loader {
+    margin: 32px 0;
+  }
+}
+
 .aic-ct-preview__close-trans {
   color: $color__link;
   padding-left: 0;
@@ -251,6 +257,16 @@
   margin-bottom: 24px;
 }
 
+.aic-ct-search-results {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.aic-ct-search-results__message {
+  align-self: center;
+}
+
 .aic-ct-result__button {
   display: block;
   appearance: none;
@@ -285,6 +301,15 @@
     background-color: $color__red--100;
     color: $color__white;
   }
+}
+
+// ---- Custom tours: Loader
+
+.aic-ct-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 // ---- Custom tours: Footer
