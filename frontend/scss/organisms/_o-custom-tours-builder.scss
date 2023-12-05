@@ -74,6 +74,9 @@
 }
 
 .aic-ct-preview__image {
+  display: flex;
+  justify-content: center;
+
   img {
     max-height: 500px;
     margin-bottom: 32px;
