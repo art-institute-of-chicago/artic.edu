@@ -91,10 +91,10 @@
                                 @php
                                     $artwork_image = [
                                         "sourceType" => "imgix",
-                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/max/0/default.jpg",
+                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/,500/0/default.jpg",
                                         "shareUrl" => "#",
                                         "shareTitle" => "",
-                                        "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/max/0/default.jpg",
+                                        "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/,500/0/default.jpg",
                                         "credit" => "",
                                         "creditUrl" => "",
                                         "lqip" => null,
