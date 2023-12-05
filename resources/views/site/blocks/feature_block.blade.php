@@ -43,7 +43,7 @@
                 $items = \App\Models\Api\Exhibition::query()->findMany($exhibitions)->sortBy('aic_start_at');
                 
             } else {
-                $items = \App\Models\Api\Exhibition::query()->current()->orderBy('aic_start_at', 'desc')->limit(4)->get(['id', 'aic_start_at', 'aic_end_at']);
+                $items = \App\Models\Api\Exhibition::query()->current()->orderBy('aic_start_at', 'desc')->limit(4)->get(['id', 'aic_start_at', 'aic_end_at', 'public_start_date', 'public_end_date']);
                 $columns = count($items);
             }
             break;
@@ -118,7 +118,11 @@
                         </div>
                         <span class="m-feature-block-listing__meta">
                             @if ($item->type && $item->type !== 'experience')
-                                <em class="type f-tag">{{ $item->type }}
+                                @if($item->is_ongoing)
+                                    <em class="type f-tag">Ongoing
+                                @else
+                                    <em class="type f-tag">{{ $item->type }}
+                                @endif
                                     @if ($item->exclusive)
                                         @component('components.atoms._type')
                                             @slot('variation', 'type--membership')
@@ -131,7 +135,6 @@
                                             {!! $item->exhibitionType !!}
                                         @endcomponent
                                     @endif
-
                                     @if ($item->is_closed)
                                         @component('components.atoms._type')
                                             @slot('variation', 'type--limited')
@@ -145,7 +148,7 @@
                                                 @slot('font', '')
                                                 Closing Soon
                                             @endcomponent
-                                        @elseif ($item->is_now_open)
+                                        @elseif ($item->is_now_open && !$item->is_ongoing)
                                             @component('components.atoms._type')
                                                 @slot('variation', 'type--new')
                                                 @slot('font', '')
@@ -173,6 +176,7 @@
                             @endif
                             <span class="m-feature-block-listing__meta-bottom">
                                 @component('components.atoms._date')
+                                @if(!$item->is_ongoing)
                                     @if ($item->present()->formattedNextOccurrence) 
                                         {!! $item->present()->formattedNextOccurrence !!}
                                     @elseif($item->present()->nextOccurrenceTime)
@@ -180,6 +184,7 @@
                                     @else
                                         {!! $item->present()->formattedDate !!}
                                     @endif
+                                @endif
                                 @endcomponent
                             </span>
                         </span>
