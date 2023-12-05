@@ -9,9 +9,7 @@ return new class () extends Migration {
 
     public function __construct()
     {
-        if (config('app.env') !== 'testing') {
-            $this->connection = 'tours';
-        }
+        $this->connection = 'tours';
     }
 
     public function up(): void
