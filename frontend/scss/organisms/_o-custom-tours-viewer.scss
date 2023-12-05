@@ -409,36 +409,16 @@
 }
 
 .m-cta-banner--aic-ct-viewer-container {
-  .m-cta-banner--aic-ct-no-image {
-    min-height: 208px;
-
-    @include breakpoint('medium+') {
-      margin-top: 32px;
-    }
-
-    .f-headline {
-      margin-bottom: 32px;
-    }
-
-    @include breakpoint('large+') {
-      .m-cta-banner__txt {
-        position: unset;
-        padding: 32px 20px;
-      }
-
-      .m-cta-banner__action {
-        position: unset;
-        width: 100%;
-      }
-    }
+  @include breakpoint('large+') {
+    // 90.625vw is the width of <main>, 43.75vw is the width of .aic-ct-viewer
+    margin-left: calc(-90.625vw / 2 + 43.75vw / 2);
+    margin-right: calc(-90.625vw / 2 + 43.75vw / 2);
   }
 
-  .m-cta-banner {
-    @include breakpoint('medium+') {
-      width: 100%;
-      margin-left: 0;
-      margin-right: 0;
-    }
+  @include breakpoint('xlarge') {
+    // 1500px is the width of <main>, 724.1379310345px is the width of .aic-ct-viewer
+    margin-left: calc(-1500px / 2 + 724.1379310345px / 2);
+    margin-right: calc(-1500px / 2 + 724.1379310345px / 2);
   }
 }
 
