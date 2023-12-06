@@ -44,6 +44,7 @@
                 @slot('button_text', 'Buy tickets')
                 @slot('custom_tours', true)
                 @slot('custom_tours_viewer', true)
+                @slot('custom_tours_viewer_completed', true)
             @endcomponent
         @endif
         <div class="aic-ct-viewer__hero-img-container">
@@ -91,18 +92,20 @@
             @component('components.molecules._m-article-actions')
             @endcomponent
 
-            @component('components.molecules._m-cta-banner')
-                @slot('href', 'https://sales.artic.edu/admissions')
-                @slot('header', 'View your tour below or visit us in person.')
-                @slot('button_text', 'Buy tickets')
-                @slot('custom_tours', true)
-                @slot('custom_tours_viewer', true)
-            @endcomponent
+            @if (!$tour_creation_completed)
+                @component('components.molecules._m-cta-banner')
+                    @slot('href', 'https://sales.artic.edu/admissions')
+                    @slot('header', 'View your tour below or visit us in person.')
+                    @slot('button_text', 'Buy tickets')
+                    @slot('custom_tours', true)
+                    @slot('custom_tours_viewer', true)
+                @endcomponent
+            @endif
 
             <ul class="aic-ct-artworks-list">
                 @foreach ($custom_tour['artworks'] as $artwork)
                     <li class="aic-ct-list-item">
-                        @if(!$loop->first)
+                        @if((!$loop->first && !$tour_creation_completed) || $tour_creation_completed)
                             <hr>
                         @endif
                         @isset($artwork['image_id'])

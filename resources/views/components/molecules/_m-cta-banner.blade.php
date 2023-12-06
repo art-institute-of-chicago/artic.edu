@@ -8,6 +8,7 @@
     $button_text = $button_text ?? null;
     $custom_tours = $custom_tours ?? false;
     $custom_tours_viewer = $custom_tours_viewer ?? false;
+    $custom_tours_viewer_completed = $custom_tours_viewer_completed ?? false;
     $secondary_button_href = $secondary_button_href ?? null;
     $secondary_button_text = $secondary_button_text ?? null;
 
@@ -19,6 +20,7 @@
     <div @class([
             'm-cta-banner--aic-ct-container' => isset($image) && $custom_tours,
             'm-cta-banner--aic-ct-viewer-container' => !isset($image) && $custom_tours_viewer,
+            'm-cta-banner--aic-ct-viewer-container-completed' => !isset($image) && $custom_tours_viewer_completed,
         ])>
         <{{ $tag }} @class([
                         'm-cta-banner',
