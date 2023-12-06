@@ -375,6 +375,15 @@
   }
 }
 
+.m-cta-banner--aic-ct-viewer-container-completed {
+  .m-cta-banner--aic-ct {
+    @include breakpoint('medium+') {
+      margin-top: 0;
+      margin-bottom: 60px;
+    }
+  }
+}
+
 .m-cta-banner--aic-ct__overlay {
   position: absolute;
   top: 0;
@@ -493,7 +502,7 @@
 }
 
 .aic-ct-viewer__flash-message {
-  padding: 40px 32px;
+  padding: 40px 32px 8px;
 
   .f-headline {
     margin-bottom: 32px;
