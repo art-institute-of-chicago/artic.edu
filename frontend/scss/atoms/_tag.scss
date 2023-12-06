@@ -246,7 +246,7 @@ a.tag--quinary:active {
   border-bottom-left-radius: 2px;
 }
 
-a.tag--senary
+a.tag--senary,
 button.tag--senary {
   &::before {
     @extend %link-transition;
