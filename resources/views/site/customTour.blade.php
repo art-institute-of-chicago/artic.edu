@@ -26,9 +26,9 @@
             ]
         ];
     @endphp
-    <article class="aic-ct-viewer o-article o-article__body">
-        @if ($tour_creation_completed)
-            <div class="aic-ct-viewer__flash-message">
+    @if ($tour_creation_completed)
+        <div class="aic-ct-flash-message o-article__body">
+            <div class="aic-ct-flash-message__text-container">
                 {{-- Todo: Should this be an h1? There will be two h1's on the page --}}
                 <h1 class="f-headline">Great job! Your tour is complete</h1>
                 <p class="f-body">Your tour has been emailed to you. Here is a link to share with friends.</p>
@@ -46,7 +46,9 @@
                 @slot('custom_tours_viewer', true)
                 @slot('custom_tours_viewer_completed', true)
             @endcomponent
-        @endif
+        </div>
+    @endif
+    <article class="aic-ct-viewer o-article o-article__body">
         <div class="aic-ct-viewer__hero-img-container">
             @component('components.molecules._m-media')
                 @slot('item', $hero_media)
