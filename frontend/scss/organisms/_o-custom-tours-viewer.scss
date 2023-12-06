@@ -32,13 +32,15 @@
 }
 
 .m-cta-banner--aic-ct,
-.aic-ct-viewer {
+.aic-ct-viewer,
+.aic-ct-flash-message {
   .f-headline {
     @include untuck;
   }
 }
 
-.aic-ct-viewer {
+.aic-ct-viewer,
+.aic-ct-flash-message {
   .f-subheading-1,
   .f-secondary,
   .f-body,
@@ -464,6 +466,24 @@
 }
 
 // ---- Custom tours: Viewer page
+.aic-ct-flash-message.o-article__body {
+  @include breakpoint('large+') {
+    float: none;
+    width: colspan(28, large);
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(28, xlarge);
+  }
+}
+
+.aic-ct-viewer,
+.aic-ct-flash-message {
+  .m-article-actions {
+    margin-top: 0;
+    margin-bottom: 32px;
+  }
+}
 
 .aic-ct-viewer {
   &.o-article__body {
@@ -491,17 +511,12 @@
     padding-left: 0;
   }
 
-  .m-article-actions {
-    margin-top: 0;
-    margin-bottom: 32px;
-  }
-
   .quote__icon {
     color: $color__red--100;
   }
 }
 
-.aic-ct-viewer__flash-message {
+.aic-ct-flash-message__text-container {
   padding: 40px 32px 8px;
 
   .f-headline {
