@@ -222,8 +222,9 @@
   margin-bottom: 32px;
 }
 
-// N.b. because of how tag--senary and tag--quaternary are defined and
+// N.b. because of how tag--senary and tag--quaternary are currently defined and
 // coupled to the close icon and thumbnail we can't use those classes alone
+// (senary has the thumbnail but no close icon, quaternary has the close icon but no thumbnail)
 
 .aic-ct-theme-toggle {
   .icon--close {
@@ -283,7 +284,6 @@
 .aic-ct-result--selected {
   .m-listing__img {
     border: 4px solid $color__red--100;
-
   }
 
   &.m-listing--variable-height .m-listing__img img {
