@@ -12,17 +12,16 @@ class HourController extends ModuleController
     protected $titleColumnKey = 'title';
 
     protected $indexColumns = [
-        'type' => [
-            'title' => 'Type',
-            'present' => true,
-            'field' => 'type',
-            'edit_link' => true,
-        ],
         'title' => [
             'title' => 'Title',
             'present' => true,
             'field' => 'title',
             'edit_link' => true,
+        ],
+        'type' => [
+            'title' => 'Type',
+            'present' => true,
+            'field' => 'type',
         ],
         'url' => [
             'title' => 'Link URL',
@@ -58,12 +57,14 @@ class HourController extends ModuleController
     protected function indexData($request)
     {
         return [
-            'fTypeList' => [null => 'All types'] + Hour::$types,
+            'types' => collect(Hour::$types)->sort(),
         ];
     }
 
     protected function formData($request)
     {
-        return [];
+        return [
+            'types' => collect(Hour::$types)->sort(),
+        ];
     }
 }

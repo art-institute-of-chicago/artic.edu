@@ -6,6 +6,13 @@
         'label' => 'Title',
     ])
 
+    @formField('select', [
+        'name' => 'type',
+        'label' => 'Type',
+        'unpack' => true,
+        'options' => $types,
+    ])
+
     @formField('input', [
         'name' => 'url',
         'label' => 'URL',

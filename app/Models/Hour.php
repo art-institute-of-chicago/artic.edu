@@ -63,6 +63,7 @@ class Hour extends AbstractModel
         0 => 'Museum',
         1 => 'Shop',
         2 => 'Library',
+        3 => 'RLC',
     ];
 
     public $dates = [
