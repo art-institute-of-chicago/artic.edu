@@ -50,7 +50,9 @@
                 @endif
                 @if ($custom_tour->teaser_text)
                     <div class="aic-ct-grid-card__text f-deck">
-                        {!! $custom_tour->teaser_text !!}
+                        <p>
+                            {!! $custom_tour->teaser_text !!}
+                        </p>
                     </div>
                 @endif
                 @if ($custom_tour->tour_id)
