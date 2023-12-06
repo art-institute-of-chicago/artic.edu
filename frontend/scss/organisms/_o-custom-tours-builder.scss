@@ -10,25 +10,37 @@
     max-width: 680px;
     background-color: $color__white;
 
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center top;
+    }
     &::backdrop {
       background-color: rgb(0,0,0,0.6);
     }
   }
 
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    object-position: center top;
-  }
 
   a {
     color: $color__link--accent;
   }
+
+  .m-listing__link {
+    // Because we need to apply a border/shadow to the image
+    // and also position an icon relative to the image
+    align-items: center;
+  }
 }
 
 // ---- Custom tours: Preview
+
+.aic-ct-preview__content {
+  .aic-ct-loader {
+    margin: 32px 0;
+  }
+}
 
 .aic-ct-preview__close-trans {
   color: $color__link;
@@ -62,6 +74,9 @@
 }
 
 .aic-ct-preview__image {
+  display: flex;
+  justify-content: center;
+
   img {
     max-height: 500px;
     margin-bottom: 32px;
@@ -122,6 +137,7 @@
 }
 
 .aic-ct-item-count {
+  @include untuck;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,6 +153,11 @@
   @include breakpoint('small+') {
     min-width:28px;
   }
+}
+
+.aic-ct-item-count--body {
+  color: $color__white;
+  background-color: $color__blue--100;
 }
 
 .aic-ct-header__button {
@@ -156,6 +177,143 @@
   }
 }
 
+// ---- Custom tours: Intro
+
+.aic-ct-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 0;
+  margin-bottom: 32px;
+  border-bottom: 1px solid $color__black--35;
+}
+
+// ---- Custom tours: Section header
+
+.aic-ct-section-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid $color__red--120;
+
+
+  h2 {
+    @include untuck;
+  }
+}
+
+// -- Custom tours: Searchbar
+
+.aic-ct-search {
+  padding-bottom: 32px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid $color__black--35
+}
+
+// ---- Custom tours: Themes
+
+.aic-ct-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+// N.b. because of how tag--senary and tag--quaternary are currently defined and
+// coupled to the close icon and thumbnail we can't use those classes alone
+// (senary has the thumbnail but no close icon, quaternary has the close icon but no thumbnail)
+
+.aic-ct-theme-toggle {
+  .icon--close {
+    color: $color__text--secondary;
+  }
+}
+
+// Borrow just the color styles from tag--quaternary
+.aic-ct-theme-toggle--active {
+  color: $color__white !important;
+  background-color: $color__black--90 !important;
+
+  &:hover,
+  &:focus {
+    color: $color__white !important;
+    background-color: $color__black--80 !important;
+  }
+
+  &:active {
+    color: $color__white !important;
+    background-color: $color__black--90 !important;
+  }
+}
+
+.aic-ct-theme-toggle__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+// ---- Custom tours: Search results
+
+.aic-ct-pre-result-text {
+  @include untuck;
+  margin-bottom: 24px;
+}
+
+.aic-ct-search-results {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.aic-ct-search-results__message {
+  align-self: center;
+}
+
+.aic-ct-result__button {
+  display: block;
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.aic-ct-result--selected {
+  .m-listing__img {
+    border: 4px solid $color__red--100;
+  }
+
+  &.m-listing--variable-height .m-listing__img img {
+    // Remove unflattering gap between border and image
+    object-fit: cover;
+  }
+
+  .aic-ct-selected-marker {
+    display: flex;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $color__red--100;
+    color: $color__white;
+  }
+}
+
+// ---- Custom tours: Loader
+
+.aic-ct-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
 
 // ---- Custom tours: Footer
 
