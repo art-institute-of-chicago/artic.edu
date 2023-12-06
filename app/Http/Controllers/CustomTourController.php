@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\CustomTour;
 use App\Libraries\CustomTour\ArtworkSortingService;
 
 class CustomTourController extends FrontController
 {
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $customTourItem = CustomTour::find($id);
 
@@ -40,12 +41,16 @@ class CustomTourController extends FrontController
         $uniqueArtistNames = array_unique($artistNames);
         $uniqueArtistsCount = count($uniqueArtistNames);
 
+        // Variable to check for tourCreationComplete=true in the URL
+        $tourCreationComplete = $request->query('tourCreationComplete') === 'true';
+
         return view('site.customTour', [
             'id' => $customTourItem->id,
             'custom_tour' => $customTour,
             'unique_galleries_count' => $uniqueGalleriesCount,
             'unique_artists_count' => $uniqueArtistsCount,
             'unstickyHeader' => true,
+            'tour_creation_completed' => $tourCreationComplete
         ]);
     }
 

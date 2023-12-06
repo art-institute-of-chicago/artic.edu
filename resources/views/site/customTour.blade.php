@@ -27,17 +27,25 @@
         ];
     @endphp
     <article class="aic-ct-viewer o-article o-article__body">
-        {{-- Todo: Extract flash message into a seperate file --}}
-        <div class="aic-ct-viewer__flash-message">
-            {{-- Todo: Should this be an h1? There will be two h1's on the page --}}
-            <h1 class="f-headline">Great job! Your tour is complete</h1>
-            <p class="f-body">Your tour has been emailed to you. Here is a link to share with friends.</p>
-            <div class="aic-ct-viewer__link-container">
-                <p class="f-subheading-1">{{ preg_replace("(^https?://)", "", url()->current() )}}</p>
+        @if ($tour_creation_completed)
+            <div class="aic-ct-viewer__flash-message">
+                {{-- Todo: Should this be an h1? There will be two h1's on the page --}}
+                <h1 class="f-headline">Great job! Your tour is complete</h1>
+                <p class="f-body">Your tour has been emailed to you. Here is a link to share with friends.</p>
+                <div class="aic-ct-viewer__link-container">
+                    <p class="f-subheading-1">{{ preg_replace("(^https?://)", "", url()->current() )}}</p>
+                </div>
+                @component('components.molecules._m-article-actions')
+                @endcomponent
             </div>
-            @component('components.molecules._m-article-actions')
+            @component('components.molecules._m-cta-banner')
+                @slot('href', 'https://sales.artic.edu/admissions')
+                @slot('header', 'View your tour below or visit us in person.')
+                @slot('button_text', 'Buy tickets')
+                @slot('custom_tours', true)
+                @slot('custom_tours_viewer', true)
             @endcomponent
-        </div>
+        @endif
         <div class="aic-ct-viewer__hero-img-container">
             @component('components.molecules._m-media')
                 @slot('item', $hero_media)
