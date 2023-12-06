@@ -29,7 +29,6 @@
     @if ($tour_creation_completed)
         <div class="aic-ct-flash-message o-article__body">
             <div class="aic-ct-flash-message__text-container">
-                {{-- Todo: Should this be an h1? There will be two h1's on the page --}}
                 <h1 class="f-headline">Great job! Your tour is complete</h1>
                 <p class="f-body">Your tour has been emailed to you. Here is a link to share with friends.</p>
                 <div class="aic-ct-viewer__link-container">
