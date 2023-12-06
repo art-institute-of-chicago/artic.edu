@@ -246,26 +246,36 @@ a.tag--quinary:active {
   border-bottom-left-radius: 2px;
 }
 
-a.tag--senary::before {
-  @extend %link-transition;
-}
-
-a.tag--senary:hover,
-a.tag--senary:focus {
-  background-color: transparent;
-  color: $color__text--secondary;
-
+a.tag--senary,
+button.tag--senary {
   &::before {
-    border-color: $color__text--secondary;
+    @extend %link-transition;
   }
 }
 
-a.tag--senary:active {
-  background-color: transparent;
-  color: $color__text--secondary;
+a.tag--senary,
+button.tag--senary {
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: $color__text--secondary;
 
-  &::before {
-    border-color: $color__rules--secondary;
+    &::before {
+      border-color: $color__text--secondary;
+    }
+  }
+
+}
+
+a.tag--senary,
+button.tag--senary {
+  &:active {
+    background-color: transparent;
+    color: $color__text--secondary;
+
+    &::before {
+      border-color: $color__rules--secondary;
+    }
   }
 }
 
