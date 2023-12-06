@@ -25,6 +25,9 @@ class CustomTourController extends FrontController
             $this->seo->setDescription($customTour['description']);
         }
 
+        $this->seo->image = 'https://' . rtrim(config('app.url'), '/') . '/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1200,799/0/default.jpg';
+        $this->seo->width = 1200;
+        $this->seo->height = 799;
         $this->seo->nofollow = true;
         $this->seo->noindex = true;
 
