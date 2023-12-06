@@ -4,24 +4,14 @@
 
 .aic-ct-grid-intro,
 .m-cta-banner__msg--aic-ct {
-  &.f-body::before {
-    padding: 0;
-  }
-
-  &.f-body::after {
-    margin-bottom: 0;
+  &.f-body {
+    @include untuck;
   }
 }
 
 .custom-tours-header {
   .f-display-2 {
-    &::before {
-      padding: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
   }
 }
 
@@ -29,13 +19,7 @@
 .custom-tours-header,
 .aic-ct-viewer {
   .f-deck {
-    &::before {
-      padding: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
   }
 }
 
@@ -43,27 +27,14 @@
 .aic-ct-viewer {
   .f-headline-editorial {
     font-weight: 300;
-
-    &::before {
-      padding-top: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
   }
 }
 
 .m-cta-banner--aic-ct,
 .aic-ct-viewer {
   .f-headline {
-    &::before {
-      padding-top: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
   }
 }
 
@@ -75,13 +46,7 @@
   .f-link,
   .f-body-editorial-emphasis,
   .f-quote {
-    &::before {
-      padding-top: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
   }
 
   .f-quote {
@@ -135,14 +100,7 @@
   .f-module-title-1 {
     font-size: 13px;
     font-weight: 300;
-
-    &::before {
-      padding: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
 
     @include breakpoint('small+') {
       font-size: 13px;
