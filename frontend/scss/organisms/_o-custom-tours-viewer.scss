@@ -365,6 +365,14 @@
   }
 }
 
+.m-cta-banner--aic-ct-bottom {
+  margin-bottom: -120px;
+
+  @include breakpoint('medium+') {
+    margin-bottom: 0;
+  }
+}
+
 .m-cta-banner--aic-ct-viewer-container {
   @include breakpoint('large+') {
     // 90.625vw is the width of <main>, 43.75vw is the width of .aic-ct-viewer
