@@ -12,6 +12,8 @@ const exploreFurther = function(container) {
     }
 
     function loadExploreFurther(url) {
+        injectContainer.classList.add('s-loading');
+        console.log('loading explore further');
         removeActiveClasses();
         container.parentElement.classList.add('s-active');
 
@@ -22,12 +24,15 @@ const exploreFurther = function(container) {
                 try {
                     var parsed = JSON.parse(data);
                     _inject(parsed.html);
+                    injectContainer.classList.remove('s-loading');
                 } catch (err) {
                     console.log(err);
+                    injectContainer.classList.remove('s-loading');
                 }
             },
             onError: function(data) {
                 console.log(data);
+                injectContainer.classList.remove('s-loading');
             }
         });
     }

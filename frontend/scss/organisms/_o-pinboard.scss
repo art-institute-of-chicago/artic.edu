@@ -7,6 +7,15 @@
   }
 }
 
+.explore-further-injected {
+  opacity: unset;
+
+  &.s-loading {
+    transition: .15s ease-in-out;
+    opacity: .7;
+  }
+}
+
 .explore-further-injected > .o-pinboard {
   transition: .15s ease-in-out;
   opacity: unset;
