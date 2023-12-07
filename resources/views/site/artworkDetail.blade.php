@@ -146,11 +146,13 @@
         @slot('ariaControls', 'explore-further-pinboard')
     @endcomponent
 
-    @if ($exploreFurther && !$exploreFurther->isEmpty() && !$exploreFurtherAllTags)
+    <div class="explore-further-injected"></div>
+
+    {{-- @if ($exploreFurther && !$exploreFurther->isEmpty() && !$exploreFurtherAllTags)
         @component('site.shared._exploreFurther')
             @slot('artworks', $exploreFurther)
         @endcomponent
-    @endif
+    @endif --}}
 
     @if ($exploreFurtherAllTags)
         @component('components.molecules._m-multi-col-list')
