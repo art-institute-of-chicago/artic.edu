@@ -227,6 +227,7 @@
         @slot('custom_tours', true)
         @slot('secondary_button_href', '/custom-tours')
         @slot('secondary_button_text', 'View ready-made tours')
+        @slot('custom_tours_bottom', true)
     @endcomponent
 @endsection
 
