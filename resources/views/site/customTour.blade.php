@@ -26,6 +26,27 @@
             ]
         ];
     @endphp
+    @if ($tour_creation_completed)
+        <div class="aic-ct-flash-message o-article__body">
+            <div class="aic-ct-flash-message__text-container">
+                <h1 class="f-headline">Great job! Your tour is complete</h1>
+                <p class="f-body">Your tour has been emailed to you. Here is a link to share with friends.</p>
+                <div class="aic-ct-viewer__link-container">
+                    <p class="f-subheading-1">{{ preg_replace("(^https?://)", "", url()->current() )}}</p>
+                </div>
+                @component('components.molecules._m-article-actions')
+                @endcomponent
+            </div>
+            @component('components.molecules._m-cta-banner')
+                @slot('href', 'https://sales.artic.edu/admissions')
+                @slot('header', 'View your tour below or visit us in person.')
+                @slot('button_text', 'Buy tickets')
+                @slot('custom_tours', true)
+                @slot('custom_tours_viewer', true)
+                @slot('custom_tours_viewer_completed', true)
+            @endcomponent
+        </div>
+    @endif
     <article class="aic-ct-viewer o-article o-article__body">
         <div class="aic-ct-viewer__hero-img-container">
             @component('components.molecules._m-media')
@@ -72,18 +93,20 @@
             @component('components.molecules._m-article-actions')
             @endcomponent
 
-            @component('components.molecules._m-cta-banner')
-                @slot('href', 'https://sales.artic.edu/admissions')
-                @slot('header', 'View your tour below or visit us in person.')
-                @slot('button_text', 'Buy tickets')
-                @slot('custom_tours', true)
-                @slot('custom_tours_viewer', true)
-            @endcomponent
+            @if (!$tour_creation_completed)
+                @component('components.molecules._m-cta-banner')
+                    @slot('href', 'https://sales.artic.edu/admissions')
+                    @slot('header', 'View your tour below or visit us in person.')
+                    @slot('button_text', 'Buy tickets')
+                    @slot('custom_tours', true)
+                    @slot('custom_tours_viewer', true)
+                @endcomponent
+            @endif
 
             <ul class="aic-ct-artworks-list">
                 @foreach ($custom_tour['artworks'] as $artwork)
                     <li class="aic-ct-list-item">
-                        @if(!$loop->first)
+                        @if((!$loop->first && !$tour_creation_completed) || $tour_creation_completed)
                             <hr>
                         @endif
                         @isset($artwork['image_id'])
@@ -91,10 +114,10 @@
                                 @php
                                     $artwork_image = [
                                         "sourceType" => "imgix",
-                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/max/0/default.jpg",
+                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/,500/0/default.jpg",
                                         "shareUrl" => "#",
                                         "shareTitle" => "",
-                                        "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/max/0/default.jpg",
+                                        "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/,500/0/default.jpg",
                                         "credit" => "",
                                         "creditUrl" => "",
                                         "lqip" => null,
