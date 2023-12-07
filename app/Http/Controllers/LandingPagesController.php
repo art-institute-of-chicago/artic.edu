@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admission;
 use App\Models\Lightbox;
-use App\Models\LandingPageType;
+use App\Models\LandingPage;
 use App\Helpers\StringHelpers;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
@@ -22,7 +22,7 @@ class LandingPagesController extends FrontController
     public function show($id, $slug = null)
     {
         $item = $this->landingPageRepository->published()->find((int) $id);
-        $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
+        $types = collect(LandingPage::TYPES);
 
         $admission = new Admission();
 
@@ -152,11 +152,11 @@ class LandingPagesController extends FrontController
             'socialLinks' => $item->socialLinks,
             'filledLogo' => false,
             'title' => $title,
-            'landingPageType' => StringHelpers::pageBlades(array_search($item->type, array_flip($types)))
+            'landingPageType' => StringHelpers::pageBlades($item->type),
         ];
 
         switch ($item->type) {
-            case array_search('Home', $types):
+            case $types->search('Home'):
                 $view_data = array_merge($view_data, [
                     'contrastHeader' => true,
                     'primaryNavCurrent' => 'visit',
@@ -183,7 +183,7 @@ class LandingPagesController extends FrontController
                     ]);
                 break;
 
-            case array_search('Visit', $types):
+            case $types->search('Visit'):
                 $view_data = array_merge($view_data, [
                     'primaryNavCurrent' => 'visit',
                     'hours' => $hours,
@@ -214,7 +214,7 @@ class LandingPagesController extends FrontController
 
                 break;
 
-            case array_search('Research and Resources', $types):
+            case $types->search('Research and Resources'):
                 $view_data = array_merge($view_data, [
                     'primaryNavCurrent' => 'collection',
                     'intro' => $item->art_intro,

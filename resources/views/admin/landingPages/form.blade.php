@@ -101,7 +101,7 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'type',
-    'fieldValues' => array_search('Home', $types),
+    'fieldValues' => $homeType,
     'renderForBlocks' => false
 ])
 
@@ -143,7 +143,7 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'type',
-    'fieldValues' => array_search('Visit', $types),
+    'fieldValues' => $visitType,
     'renderForBlocks' => false
 ])
 
@@ -245,7 +245,7 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'type',
-    'fieldValues' => array_search('Research and Resources', $types),
+    'fieldValues' => $researchAndResourcesType,
     'renderForBlocks' => false
 ])
     @formField('input', [
@@ -331,7 +331,7 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'type',
-    'fieldValues' => array_search('Visit', $types), // Visit
+    'fieldValues' => $visitType,
     'renderForBlocks' => false
 ])
 
