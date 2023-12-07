@@ -1,38 +1,36 @@
-import { ajaxRequest } from '@area17/a17-helpers';
+import { triggerCustomEvent, ajaxRequest } from '@area17/a17-helpers';
 
-const exploreFurther = function (container) {
-
+const exploreFurther = function(container) {
     let injectContainer = document.getElementsByClassName('explore-further-injected')[0];
 
-    function loadExploreFurther() {
-        console.log('loadExploreFurther');
+    function _inject(content) {
+        injectContainer.innerHTML = content;
+        triggerCustomEvent(document, 'page:updated');
+        if (window.picturefill) {
+            window.picturefill();
+        }
+    }
+
+    function loadExploreFurther(url) {
         removeActiveClasses();
         container.parentElement.classList.add('s-active');
-    
-        let url = container.getAttribute('data-ajax-url-target');
-    
+
         ajaxRequest({
             url: url,
             type: 'GET',
-            onSuccess: function (responseText) {
+            onSuccess: function(data) {
                 try {
-                    const injectData = JSON.parse(responseText);
-                    console.log(injectData);
-    
-                    if (injectData && injectData.html) {
-                        injectContainer.innerHTML = injectData.html;
-                    } else {
-                        console.error("Invalid response format or empty data:", injectData);
-                    }
-                } catch (error) {
-                    console.error("Error parsing JSON:", error);
+                    var parsed = JSON.parse(data);
+                    _inject(parsed.html);
+                } catch (err) {
+                    console.log(err);
                 }
             },
-            onError: function (error) {
-                console.error("Error during ajax request:", error);
+            onError: function(data) {
+                console.log(data);
             }
         });
-    }    
+    }
 
     function removeActiveClasses() {
         let activeContainers = document.querySelectorAll('.s-active');
@@ -42,12 +40,26 @@ const exploreFurther = function (container) {
     }
 
     function _init() {
-        container.addEventListener('click', loadExploreFurther, false);
+        let firstCategory = document.querySelectorAll('[data-ajax-url-target]')[0];
+
+        if (!firstCategory.parentElement.classList.contains('s-active')) {
+            firstCategory.parentElement.classList.add('s-active');
+            loadExploreFurther(firstCategory.getAttribute('data-ajax-url-target'));
+        }
+
+        container.addEventListener('click', function() {
+            let url = container.getAttribute('data-ajax-url-target');
+            loadExploreFurther(url);
+        }, false);
     }
 
-    this.init = function () {
+    this.destroy = function() {
+        A17.Helpers.purgeProperties(this);
+    };
+
+    this.init = function() {
         _init();
     };
-}
+};
 
 export default exploreFurther;
