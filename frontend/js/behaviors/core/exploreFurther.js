@@ -13,7 +13,6 @@ const exploreFurther = function(container) {
 
     function loadExploreFurther(url) {
         injectContainer.classList.add('s-loading');
-        console.log('loading explore further');
         removeActiveClasses();
         container.parentElement.classList.add('s-active');
 
