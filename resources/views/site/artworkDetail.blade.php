@@ -148,12 +148,6 @@
 
     <div class="explore-further-injected"></div>
 
-    {{-- @if ($exploreFurther && !$exploreFurther->isEmpty() && !$exploreFurtherAllTags)
-        @component('site.shared._exploreFurther')
-            @slot('artworks', $exploreFurther)
-        @endcomponent
-    @endif --}}
-
     @if ($exploreFurtherAllTags)
         @component('components.molecules._m-multi-col-list')
             @slot('cols_small','2')
