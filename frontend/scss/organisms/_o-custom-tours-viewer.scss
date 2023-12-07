@@ -447,15 +447,30 @@
   min-height: 240px;
   height: fit-content;
 
-  .m-cta-banner__txt {
-    position: unset;
-  }
-
   @include breakpoint('medium+') {
     overflow: hidden;
+  }
 
-    .m-cta-banner__txt {
+  .m-cta-banner__txt {
+    position: unset;
+
+    @include breakpoint('medium+') {
+      padding-left: 4.6875vw;
+    }
+
+    @include breakpoint('large+') {
       position: absolute;
+      padding-left: 0;
+    }
+  }
+
+  .m-cta-banner__action {
+    @include breakpoint('medium+') {
+      padding-right: 4.6875vw;
+    }
+
+    @include breakpoint('large+') {
+      padding-right: 0;
     }
   }
 
