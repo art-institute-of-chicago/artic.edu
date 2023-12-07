@@ -455,6 +455,7 @@
     position: unset;
 
     @include breakpoint('medium+') {
+      // Padding left to match the left position of .m-cta-banner__txt inside .m-cta-banner--aic-ct
       padding-left: 4.6875vw;
     }
 
@@ -466,6 +467,7 @@
 
   .m-cta-banner__action {
     @include breakpoint('medium+') {
+      // Padding right to match the right position of .m-cta-banner__txt inside .m-cta-banner--aic-ct
       padding-right: 4.6875vw;
     }
 
