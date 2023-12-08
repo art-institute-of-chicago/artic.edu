@@ -115,13 +115,13 @@ class LandingPagesController extends FrontController
         $title = '';
 
         switch ($item->type) {
-            case array_search('Home', $types):
+            case $types->search('Home'):
                 $this->seo->setTitle($item->meta_title ?: "Downtown Chicago's #1 Museum");
                 $this->seo->setDescription($item->meta_description ?: "Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
                 $contrastHeader = sizeof($mainFeatures) > 0;
                 break;
 
-            case array_search('Visit', $types):
+            case $types->search('Visit'):
                 $this->seo->setTitle($item->meta_title ?: 'Visit a Chicago Landmark');
                 $this->seo->setDescription($item->meta_description ?: 'Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
                 $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
@@ -129,7 +129,7 @@ class LandingPagesController extends FrontController
                 $title = __('Visit');
                 break;
 
-            case array_search('Research and Resources', $types):
+            case $types->search('Research and Resources'):
                 $this->seo->setTitle($item->meta_title ?: 'Research & Resources');
                 $this->seo->setDescription($item->resources_landing_intro);
                 $this->seo->setImage($item->imageFront('research_landing_image'));
