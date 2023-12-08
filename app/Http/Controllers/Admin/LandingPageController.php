@@ -19,7 +19,6 @@ class LandingPageController extends ModuleController
         ],
         'type' => [
             'title' => 'Type',
-            'sort' => true,
             'field' => 'type',
         ],
     ];
