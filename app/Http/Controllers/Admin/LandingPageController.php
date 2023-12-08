@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\LandingPage;
-use Session;
 
 class LandingPageController extends ModuleController
 {
@@ -28,6 +27,17 @@ class LandingPageController extends ModuleController
     protected $defaultOrders = [];
 
     protected $previewView = 'site.landingPageDetail';
+
+    /**
+     * Dynamically set the view prefix to include the landing page type.
+     */
+    public function edit($id, $submoduleId = null)
+    {
+        $landingPage = $this->repository->getById($id);
+        $prefix = str($landingPage->type)->camel();
+        $this->viewPrefix = "admin.$this->moduleName.$prefix";
+        return parent::edit($id, $submoduleId);
+    }
 
     protected function indexData($request)
     {

@@ -158,13 +158,6 @@ class LandingPageRepository extends ModuleRepository
         return $fields;
     }
 
-    public function byName($name, $with = [])
-    {
-        $type = array_search($name, $this->model::$types);
-
-        return $this->model->whereType($type)->with($with)->first();
-    }
-
     public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
     {
         if ($relation === 'experiences') {

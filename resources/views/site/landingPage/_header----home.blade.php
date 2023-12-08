@@ -11,7 +11,7 @@
     @component('site.shared._schemaItemProps')
       @slot('itemprops',$itemprops ?? null)
     @endcomponent
-    
+
     @component('components.organisms._o-header-landing')
         @slot('mainFeatures', $mainFeatures)
         @slot('headerMedia', $headerMedia)
@@ -26,23 +26,23 @@
 
     <div class="home-top">
         <div class="home-callout">
-            <span class="title f-headline-editorial home-callout-text">{!! $item->home_intro !!}</span>
+            <span class="title f-headline-editorial home-callout-text">{!! $home_intro !!}</span>
         </div>
-        @if($item->home_location_link || $item->home_location_label || $item->home_buy_tix_link || $item->home_buy_tix_label)
+        @if($home_location_link || $home_location_label || $home_buy_tix_link || $home_buy_tix_label)
             <div class="home-top-info">
-                @if ($item->home_location_link || $item->home_location_label)
+                @if ($home_location_link || $home_location_label)
                     <div>
                         <span class="home-location">
                             <svg><use xlink:href="#icon--location"/></svg>
-                            <a href="{{ $item->home_location_link }}">{{ $item->home_location_label }}</a>
+                            <a href="{{ $home_location_link }}">{{ $home_location_label }}</a>
                         </span>
                     </div>
                 @endif
-                @if ($item->home_buy_tix_link || $item->home_buy_tix_label)
+                @if ($home_buy_tix_link || $home_buy_tix_label)
                     <div>
                         <span class="home-ticket">
                             <svg><use xlink:href="#icon--ticket"/></svg>
-                            <a href="{{ $item->home_buy_tix_link }}">{{ $item->home_buy_tix_label }}</a>
+                            <a href="{{ $home_buy_tix_link }}">{{ $home_buy_tix_label }}</a>
                         </span>
                     </div>
                 @endif
