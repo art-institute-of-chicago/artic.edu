@@ -4,16 +4,17 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasPosition;
-use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use App\Models\Admission as Admission;
+use A17\Twill\Models\Behaviors\Sortable;
+use App\Models\Admission;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
-use App\Models\Behaviors\HasBlocks;
 use App\Models\Slugs\LandingPageSlug;
+use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Kalnoy\Nestedset\NodeTrait;
 
@@ -65,109 +66,21 @@ class LandingPage extends AbstractModel implements Sortable
         'header_cta_button_link',
         'header_cta_button_label',
         'header_cta_title',
-
-        // Homepage
-        'home_intro',
-        'home_visit_button_text',
-        'home_visit_button_url',
-        'home_plan_your_visit_link_1_text',
-        'home_plan_your_visit_link_1_url',
-        'home_plan_your_visit_link_2_text',
-        'home_plan_your_visit_link_2_url',
-        'home_plan_your_visit_link_3_text',
-        'home_plan_your_visit_link_3_url',
-
-        'home_cta_module_action_url',
-        'home_cta_module_image',
-        'home_cta_module_header',
-        'home_cta_module_body',
-        'home_cta_module_button_text',
-        'home_cta_module_variation',
-        'home_cta_module_form_id',
-        'home_cta_module_form_token',
-        'home_cta_module_form_tlc_source',
-
-        'home_video_title',
-        'home_video_description',
-
-        'home_location_label',
-        'home_location_link',
-        'home_buy_tix_label',
-        'home_buy_tix_link',
-
-        // Exhibition
-        'exhibition_intro',
-
-        // Exhibition History
-        'exhibition_history_sub_heading',
-        'exhibition_history_intro_copy',
-        'exhibition_history_popup_copy',
-
-        // Art and Ideas
-        'art_intro',
-
-        // Printed catalogs
-        'printed_publications_intro',
-
-        // Resources Landing page
-        'resources_landing_title',
-        'resources_landing_intro',
-
-        // Visit page
-        'visit_hide_hours',
-        'visit_dining_link',
-        'visit_transportation_link',
-        'visit_parking_link',
-        'visit_buy_tickets_link',
-        'visit_become_member_link',
-        'visit_faq_accessibility_link',
-        'visit_faq_more_link',
-        'visit_accessibility_link_url',
-        'visit_cta_module_action_url',
-        'visit_what_to_expect_more_link',
-        'visit_capacity_btn_url_1',
-        'visit_capacity_btn_url_2',
-        'visit_intro',
-        'visit_hour_header',
-        'visit_hour_subheader',
-        'visit_hour_intro',
-        'visit_hour_image_caption',
-        'visit_city_pass_title',
-        'visit_city_pass_text',
-        'visit_city_pass_button_label',
-        'visit_city_pass_link',
-        'visit_admission_description',
-        'visit_buy_tickets_label',
-        'visit_become_member_label',
-        'visit_accessibility_text',
-        'visit_accessibility_link_text',
-        'visit_cta_module_header',
-        'visit_cta_module_body',
-        'visit_cta_module_button_text',
-        'visit_what_to_expect_more_text',
-        'visit_capacity_alt',
-        'visit_capacity_heading',
-        'visit_capacity_text',
-        'visit_capacity_btn_text_1',
-        'visit_capacity_btn_text_2',
-        'visit_nav_buy_tix_label',
-        'visit_nav_buy_tix_link',
-        'visit_hours_intro',
-        'visit_members_intro',
-        'visit_admission_intro',
-        'visit_parking_link',
-        'visit_parking_label',
-        'visit_faqs_label',
-        'visit_faqs_link',
-        'visit_admission_members_link',
-        'visit_admission_members_label',
-        'visit_admission_tix_link',
-        'visit_admission_tix_label',
+        'hide_hours',
+        'hour_intro',
+        'hour_image_caption',
+        'hour_header',
+        'hour_subheader',
+        'labels',
         'active',
     ];
 
     protected $appends = [
         'type',
+    ];
+
+    public $casts = [
+        'labels' => AsCollection::class,
     ];
 
     public $slugAttributes = [
@@ -181,7 +94,13 @@ class LandingPage extends AbstractModel implements Sortable
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 21 / 9,
+                    'ratio' => 16 / 9,
+                ],
+            ],
+            'square' => [
+                [
+                    'name' => 'square',
+                    'ratio' => 1,
                 ],
             ],
         ],
@@ -225,20 +144,6 @@ class LandingPage extends AbstractModel implements Sortable
                 ],
             ],
         ],
-        'hero' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 16 / 9,
-                ],
-            ],
-            'square' => [
-                [
-                    'name' => 'square',
-                    'ratio' => 1,
-                ],
-            ],
-        ],
         'exhibition_history_intro' => [
             'default' => [
                 [
@@ -269,20 +174,6 @@ class LandingPage extends AbstractModel implements Sortable
      * A list of file roles
      */
     public $filesParams = ['video'];
-
-    public static $iconTypes = [
-        0 => 'Face Coverings',
-        1 => 'Physical Distancing',
-        2 => 'Mobile Ticket',
-        3 => 'Showing Symptoms',
-        4 => 'No Checkroom',
-        5 => 'No Dining',
-        6 => 'Caution',
-        7 => 'Floor Icon',
-        8 => 'Virtual Queue',
-        9 => 'Proof of Vaccination',
-        10 => 'Dining'
-    ];
 
     public function type(): Attribute
     {
@@ -462,11 +353,6 @@ class LandingPage extends AbstractModel implements Sortable
         return $this->belongsToMany(\App\Models\GenericPage::class, 'landing_page_generic_pages')->withPivot('position')->orderBy('landing_page_generic_pages.position', 'asc');
     }
 
-    public static function getIconTypes()
-    {
-        return collect(self::$iconTypes);
-    }
-
     public function landingPageSlug()
     {
         return $this->hasOne(LandingPageSlug::class, 'slug');
@@ -482,6 +368,15 @@ class LandingPage extends AbstractModel implements Sortable
                 'value' => function () {
                     return $this->published;
                 },
+            ],
+
+            [
+                'name' => 'page_types',
+                'doc' => 'Page Types',
+                'type' => 'array',
+                'value' => function () {
+                    return self::TYPES;
+                }
             ],
 
             [
