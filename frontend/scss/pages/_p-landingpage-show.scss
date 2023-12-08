@@ -112,16 +112,16 @@
 
     .btn {
       border-color: $color__white !important;
-      background-color: #ffffff00 !important;
+      background-color: rgba($color__white, 0) !important;
       color: $color__white !important;
 
       &:hover,
       &:focus:hover {
-        background-color: #ffffff20 !important;
+        background-color: rgba($color__white, .2) !important;
       }
 
       &:active:hover {
-        background-color: #ffffff20 !important;
+        background-color: rgba($color__white, .2) !important;
       }
     }
   }
