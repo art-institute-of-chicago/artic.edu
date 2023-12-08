@@ -17,6 +17,11 @@ class LandingPageController extends ModuleController
             'sort' => true,
             'field' => 'title',
         ],
+        'type' => [
+            'title' => 'Type',
+            'sort' => true,
+            'field' => 'type',
+        ],
     ];
 
     protected $indexWith = [];
