@@ -56,9 +56,6 @@ class LandingPageController extends ModuleController
 
         return [
             'defaultType' => $types->search(LandingPage::DEFAULT_TYPE),
-            'homeType' => $types->search('Home'),
-            'researchAndResourcesType' => $types->search('Research and Resources'),
-            'visitType' => $types->search('Visit'),
             'types' => $types->sort(),
             'baseUrl' => $baseUrl,
         ];
