@@ -161,6 +161,8 @@ class LandingPagesController extends FrontController
                     'contrastHeader' => true,
                     'primaryNavCurrent' => 'visit',
                     'hours' => $hours,
+                    'cta_module_image' => $item->imageFront('home_cta_module_image'),
+                    'roadblocks' => $this->getLightboxes(),
                 ];
                 break;
 
