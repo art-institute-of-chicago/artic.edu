@@ -3,13 +3,6 @@
 @section('contentFields')
 
 @formField('select', [
-    'name' => 'type_id',
-    'label' => 'Page type',
-    'default' => $defaultType,
-    'options' => $types,
-])
-
-@formField('select', [
     'name' => 'header_variation',
     'label' => 'Header Style',
     'placeholder' => 'Select style of page header',
