@@ -114,7 +114,7 @@ class LandingPagesController extends FrontController
         $contrastHeader = false;
         $title = '';
 
-        switch ($item->type) {
+        switch ($item->type_id) {
             case $types->search('Home'):
                 $this->seo->setTitle($item->meta_title ?: "Downtown Chicago's #1 Museum");
                 $this->seo->setDescription($item->meta_description ?: "Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
@@ -155,7 +155,7 @@ class LandingPagesController extends FrontController
             'landingPageType' => StringHelpers::pageBlades($item->type),
         ];
 
-        switch ($item->type) {
+        switch ($item->type_id) {
             case $types->search('Home'):
                 $view_data = array_merge($view_data, [
                     'contrastHeader' => true,
