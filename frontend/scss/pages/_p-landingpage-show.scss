@@ -40,6 +40,11 @@
 
       .home-callout-text {
         color: $color__text--tertiary;
+        a {
+          color: $color__rules--brand;
+          text-decoration: underline;
+          text-decoration-thickness: 2px;
+        }
       }
     }
 
