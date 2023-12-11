@@ -629,13 +629,15 @@
 .aic-ct-list-item__artwork-img-container {
   display: flex;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
   margin-bottom: 12px;
-  max-height: 500px;
   background-color: $color__black--5;
 
   img {
     width: auto;
-    object-fit: contain;
+    max-width: 100%;
+    max-height: 700px;
   }
 }
 
