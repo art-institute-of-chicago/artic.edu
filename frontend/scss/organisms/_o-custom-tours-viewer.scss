@@ -460,8 +460,7 @@
     }
 
     @include breakpoint('large+') {
-      position: absolute;
-      padding-left: 0;
+      padding-right: 28vw;
     }
   }
 
@@ -469,10 +468,6 @@
     @include breakpoint('medium+') {
       // Padding right to match the right position of .m-cta-banner__txt inside .m-cta-banner--aic-ct
       padding-right: 4.6875vw;
-    }
-
-    @include breakpoint('large+') {
-      padding-right: 0;
     }
   }
 
