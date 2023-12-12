@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // ------ Custom tours viewer
 
 // ---- Custom tours: Custom tours utility fonts
@@ -357,7 +359,8 @@
 .m-cta-banner--aic-ct-container {
   position: relative;
   width: 100vw;
-  left: -5.2%;
+  // This is to account for the margin on #a17
+  left: -4.6875vw;
 
   @include breakpoint('medium+') {
     width: auto;
@@ -375,15 +378,15 @@
 
 .m-cta-banner--aic-ct-viewer-container {
   @include breakpoint('large+') {
-    // 90.625vw is the width of <main>, 43.75vw is the width of .aic-ct-viewer
-    margin-left: calc(-90.625vw / 2 + 43.75vw / 2);
-    margin-right: calc(-90.625vw / 2 + 43.75vw / 2);
+    // 90.625vw is the width of <main>, colspan(28, large) is the width of .aic-ct-viewer
+    margin-left: math.div(-90.625vw, 2) + math.div(colspan(28, large), 2);
+    margin-right: math.div(-90.625vw, 2) + math.div(colspan(28, large), 2);
   }
 
   @include breakpoint('xlarge') {
-    // 1500px is the width of <main>, 724.1379310345px is the width of .aic-ct-viewer
-    margin-left: calc(-1500px / 2 + 724.1379310345px / 2);
-    margin-right: calc(-1500px / 2 + 724.1379310345px / 2);
+    // 1500px is the width of <main>, colspan(28, xlarge) is the width of .aic-ct-viewer
+    margin-left: math.div(-1500px, 2) + math.div(colspan(28, xlarge), 2);
+    margin-right: math.div(-1500px, 2) + math.div(colspan(28, xlarge), 2);
   }
 }
 
@@ -456,7 +459,7 @@
 
     @include breakpoint('medium+') {
       // Padding left to match the left position of .m-cta-banner__txt inside .m-cta-banner--aic-ct
-      padding-left: 4.6875vw;
+      padding-left: colspan(3, medium);
     }
 
     @include breakpoint('large+') {
@@ -467,7 +470,7 @@
   .m-cta-banner__action {
     @include breakpoint('medium+') {
       // Padding right to match the right position of .m-cta-banner__txt inside .m-cta-banner--aic-ct
-      padding-right: 4.6875vw;
+      padding-right: colspan(3, medium);
     }
   }
 
@@ -581,7 +584,8 @@
 .aic-ct-artworks-list {
   hr {
     width: 100vw;
-    margin-left: -5.2%;
+    // This is to account for the margin on #a17
+    margin-left: -4.6875vw;
 
     @include breakpoint('medium+') {
       width: 100%;
@@ -593,7 +597,8 @@
 .aic-ct-viewer__hero-img-container {
   margin-bottom: 32px;
   width: 100vw;
-  margin-left: -5.2%;
+  // This is to account for the margin on #a17
+  margin-left: -4.6875vw;
 
   .m-media--hero {
     .m-media__img {
@@ -624,13 +629,15 @@
 .aic-ct-list-item__artwork-img-container {
   display: flex;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
   margin-bottom: 12px;
-  max-height: 500px;
   background-color: $color__black--5;
 
   img {
     width: auto;
-    object-fit: contain;
+    max-width: 100%;
+    max-height: 700px;
   }
 }
 
