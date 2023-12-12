@@ -544,8 +544,15 @@
   margin-right: auto;
 }
 
+.aic-ct-tour-item__title,
+.aic-ct-tour-item__artist,
+.aic-ct-tour-item__gallery {
+  @include untuck;
+}
+
 .aic-ct-tour-item__title {
   margin-bottom: 4px;
+  color: $color__black--90;
 }
 
 .aic-ct-tour-item__artist {
@@ -569,6 +576,7 @@
 .aic-ct-tour-item__remove {
   padding-left: 0;
   padding-right: 0;
+  color: $color__grey--100;
 }
 
 
