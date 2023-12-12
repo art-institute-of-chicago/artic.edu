@@ -130,7 +130,7 @@
                                 @component('components.atoms._img')
                                     @slot('image', $artwork_image)
                                     @slot('settings', array(
-                                        'fit' => 'fill',
+                                        'fit' => 'crop',
                                         'srcset' => array(300,600,1000,1500,2000),
                                         'sizes' => ImageHelpers::aic_imageSizes(array(
                                               'xsmall' => '272',
