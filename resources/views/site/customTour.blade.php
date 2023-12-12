@@ -114,10 +114,10 @@
                                 @php
                                     $artwork_image = [
                                         "sourceType" => "imgix",
-                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/,500/0/default.jpg",
+                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/!1087,700/0/default.jpg",
                                         "shareUrl" => "#",
                                         "shareTitle" => "",
-                                        "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/,500/0/default.jpg",
+                                        "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/!1087,700/0/default.jpg",
                                         "credit" => "",
                                         "creditUrl" => "",
                                         "lqip" => null,
@@ -133,11 +133,11 @@
                                         'fit' => 'crop',
                                         'srcset' => array(300,600,1000,1500,2000),
                                         'sizes' => ImageHelpers::aic_imageSizes(array(
-                                              'xsmall' => '58',
-                                              'small' => '58',
-                                              'medium' => '58',
-                                              'large' => '58',
-                                              'xlarge' => '58',
+                                              'xsmall' => '272',
+                                              'small' => '544',
+                                              'medium' => '907',
+                                              'large' => '1087',
+                                              'xlarge' => '725',
                                         )),
                                     ))
                                 @endcomponent
