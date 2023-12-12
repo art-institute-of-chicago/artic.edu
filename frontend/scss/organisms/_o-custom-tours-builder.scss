@@ -590,7 +590,22 @@
   background-color: $color__black--5;
   border-top: 1px solid $color__black--20;
 
+  .f-body {
+    @include untuck;
+  }
+
+  .aic-ct-tour__cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include breakpoint('medium+') {
+      flex-direction: row;
+    }
+  }
+
   .btn {
     margin: 0;
   }
+
 }
