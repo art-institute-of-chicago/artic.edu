@@ -1,25 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @php
-        $hero_media = [
-            "sourceType" => "imgix",
-            "src" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
-            "width" => 1920,
-            "height" => 1000,
-            "shareUrl" => "#",
-            "shareTitle" => "",
-            "downloadUrl" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
-            "downloadName" => "default.jpg",
-            "credit" => "",
-            "creditUrl" => "",
-            "lqip" => null,
-            "alt" => "A serene pond filled with floating lily pads and pink water lilies. The surrounding trees can also be seen in the ponds reflection.",
-            "caption" => null,
-            "iiifId" => null,
-            "restrict" => false,
-        ];
-    @endphp
     @if ($tour_creation_completed)
         <div class="aic-ct-flash-message o-article__body">
             <div class="aic-ct-flash-message__text-container">
@@ -34,6 +15,25 @@
         </div>
     @endif
     <article class="aic-ct-viewer o-article o-article__body">
+        @php
+            $hero_media = [
+                "sourceType" => "imgix",
+                "src" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
+                "width" => 1920,
+                "height" => 1000,
+                "shareUrl" => "#",
+                "shareTitle" => "",
+                "downloadUrl" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
+                "downloadName" => "default.jpg",
+                "credit" => "",
+                "creditUrl" => "",
+                "lqip" => null,
+                "alt" => "A serene pond filled with floating lily pads and pink water lilies. The surrounding trees can also be seen in the ponds reflection.",
+                "caption" => null,
+                "iiifId" => null,
+                "restrict" => false,
+            ];
+        @endphp
         @component('components.molecules._m-article-header')
             @slot('headerType', 'hero')
             @slot('title', $custom_tour['title'])
