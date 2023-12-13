@@ -98,7 +98,7 @@
                                     ];
                                 @endphp
                                 <a href="https://www.artic.edu/artworks/{{ $artwork['id'] }}"
-                                   aria-label="View full artwork page for {{ $artwork['title'] }}: {{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'] }}">
+                                   aria-label="View full artwork page for {{ $artwork['title'] }}{{ isset($artwork['thumbnail']['alt_text']) ? ': ' . $artwork['thumbnail']['alt_text'] : '' }}">
                                     @component('components.atoms._img')
                                         @slot('image', $artwork_image)
                                         @slot('settings', array(
