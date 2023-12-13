@@ -607,5 +607,28 @@
   .btn {
     margin: 0;
   }
+}
 
+// ------ Custom tours: Tour validation
+
+.aic-ct-validation__content,
+.aic-ct-validation__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 724px;
+}
+
+.aic-ct-validation__content {
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  text-align: center;
+}
+
+.aic-ct-validation__actions {
+  .btn {
+    margin: 0;
+  }
 }
