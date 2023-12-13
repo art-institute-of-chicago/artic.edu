@@ -530,6 +530,10 @@
 }
 
 .aic-ct-viewer {
+  .m-article-header {
+    margin-bottom: 28px;
+  }
+
   hr {
     margin-top: 24px;
     margin-bottom: 24px;
@@ -590,38 +594,6 @@
     @include breakpoint('medium+') {
       width: 100%;
       margin-left: 0;
-    }
-  }
-}
-
-.aic-ct-viewer__hero-img-container {
-  margin-bottom: 32px;
-  width: 100vw;
-  // This is to account for the margin on #a17
-  margin-left: -4.6875vw;
-
-  .m-media--hero {
-    .m-media__img {
-      height: fit-content;
-    }
-  }
-
-  .m-media--hero {
-    img {
-      position: static;
-    }
-  }
-
-  @include breakpoint('medium+') {
-    width: auto;
-    margin-left: 0;
-
-    .m-media--hero .m-media__img {
-      height: 60vh;
-    }
-
-    .m-media--hero img {
-      position: absolute;
     }
   }
 }
