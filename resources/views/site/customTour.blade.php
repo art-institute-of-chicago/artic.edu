@@ -91,15 +91,14 @@
                                         "credit" => "",
                                         "creditUrl" => "",
                                         "lqip" => null,
-                                        "alt" => '',
+                                        "alt" => isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'],
                                         "caption" => null,
                                         "iiifId" => null,
                                         "restrict" => false,
                                     ];
                                 @endphp
                                 <a href="https://www.artic.edu/artworks/{{ $artwork['id'] }}"
-                                   aria-label="View full artwork page for {{ $artwork['title'] }}"
-                                   aria-describedby="aic-ct-artwork-alt--{{ $artwork['id'] }}">
+                                   aria-label="View full artwork page for {{ $artwork['title'] }}: {{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'] }}">
                                     @component('components.atoms._img')
                                         @slot('image', $artwork_image)
                                         @slot('settings', array(
@@ -115,9 +114,6 @@
                                         ))
                                     @endcomponent
                                 </a>
-                                <span id="aic-ct-artwork-alt--{{ $artwork['id'] }}" class="sr-only">
-                                    Description of artwork: {{ isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'] }}
-                                </span>
                             </div>
                         @endisset
                         <h2 class="f-deck">{{ $artwork['title'] }}</h2>
