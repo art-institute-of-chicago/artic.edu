@@ -424,8 +424,6 @@
   gap: 12px;
   justify-content: center;
   align-items: flex-start;
-  padding-bottom: 12px;
-  border-bottom: 1px solid $color__black--42;
 }
 
 .aic-ct-nav__button {
@@ -505,8 +503,9 @@
 
   & .aic-ct-nav__number {
     color: $color__white;
-    background-color: $color__grey--100;
-    box-shadow: 0 0 0 2px $color__grey--100;
+    background-color: $color__red--100;
+    box-shadow: 0 0 0 2px $color__red--100;
+    border-color: $color__red--100;
     font-size: 1em;
   }
 }
@@ -515,17 +514,6 @@
   & .aic-ct-nav__number {
     background-color: $color__white;
     color: $color__grey--100;
-  }
-}
-
-.aic-ct-nav__exit {
-  align-self: center;
-  color: $color__black--20 !important;
-  font-weight: 500;
-
-  svg {
-    vertical-align: middle;
-    margin-top: 0;
   }
 }
 
