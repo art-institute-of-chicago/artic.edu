@@ -9,14 +9,14 @@ class LandingPageRequest extends Request
     public function rulesForCreate()
     {
         return [
-            'type' => 'required'
+            'type_id' => 'required'
         ];
     }
 
     public function rulesForUpdate()
     {
         return [
-            'type' => 'required'
+            'type_id' => 'required'
         ];
     }
 }
