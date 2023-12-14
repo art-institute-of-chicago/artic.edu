@@ -176,7 +176,7 @@
   @include untuck;
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
   padding: 12px 20px;
   background-color: $color__black;
@@ -185,8 +185,11 @@
 
 .aic-ct-item-info {
   display: flex;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
+
   em {
     color: $color__black--20
   }
@@ -217,13 +220,13 @@
 }
 
 .aic-ct-header__button {
-  color: $color__white;
+  margin: 0 !important;
   padding: 0 !important;
+  color: $color__white;
   font-weight: 400;
 
   svg {
-    margin-right: 0;
-    margin-left: 9px;
+    margin: 0;
   }
 
   &:hover,
@@ -231,6 +234,33 @@
   &:focus:hover {
     color: $color__white;
   }
+}
+
+.aic-ct-header__button--next {
+  @media (min-width: 400px) {
+    svg {
+      margin-left: 9px;
+    }
+  }
+}
+
+.aic-ct-header__button--back {
+  order: -1;
+
+  svg {
+    margin-right: 3px;
+    rotate: 180deg;
+  }
+
+  @media (min-width: 400px) {
+    svg {
+      margin-right: 9px;
+    }
+  }
+}
+
+.aic-ct-header__button--exit {
+  color: $color__black--20;
 }
 
 // ---- Custom tours: Intro
