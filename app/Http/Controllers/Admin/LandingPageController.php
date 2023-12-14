@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
-use App\Repositories\LandingPageRepository;
-use App\Models\LandingPageType;
+use App\Models\LandingPage;
 use Session;
 
 class LandingPageController extends ModuleController
@@ -18,6 +17,10 @@ class LandingPageController extends ModuleController
             'sort' => true,
             'field' => 'title',
         ],
+        'type' => [
+            'title' => 'Type',
+            'field' => 'type',
+        ],
     ];
 
     protected $indexWith = [];
@@ -28,39 +31,29 @@ class LandingPageController extends ModuleController
 
     protected function indexData($request)
     {
-        $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
-        $typesOptions = $this->getTypesOptions($types);
+        $types = collect(LandingPage::TYPES);
 
         return [
-            'types' => $types,
-            'typesOptions' => $typesOptions,
+            'defaultType' => $types->search(LandingPage::DEFAULT_TYPE),
+            'types' => $types->sort(),
         ];
     }
 
     protected function formData($request)
     {
-        $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
-        $typesOptions = $this->getTypesOptions($types);
-
+        $types = collect(LandingPage::TYPES);
         $baseUrl = '//' . config('app.url') . '/';
 
         return [
-            'types' => $types,
-            'typesOptions' => $typesOptions,
+            'defaultType' => $types->search(LandingPage::DEFAULT_TYPE),
+            'homeType' => $types->search('Home'),
+            'researchAndResourcesType' => $types->search('Research and Resources'),
+            'visitType' => $types->search('Visit'),
+            'types' => $types->sort(),
             'baseUrl' => $baseUrl,
         ];
     }
 
-    public function getTypesOptions($types)
-    {
-        $list = [];
-
-        foreach ($types as $value => $label) {
-            $list[] = ['value' => $value, 'label' => $label];
-        }
-
-        return $list;
-    }
     protected function getRoutePrefix()
     {
         return null;

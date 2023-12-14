@@ -14,6 +14,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Slugs\LandingPageSlug;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Kalnoy\Nestedset\NodeTrait;
 
 class LandingPage extends AbstractModel implements Sortable
@@ -30,6 +31,22 @@ class LandingPage extends AbstractModel implements Sortable
     use HasBlocks;
     use NodeTrait;
 
+    public const DEFAULT_TYPE = 'Custom';
+
+    public const TYPES = [
+        1 => 'Home',
+        2 => 'Exhibitions and Events',
+        3 => 'Collection',
+        4 => 'Visit',
+        5 => 'Articles',
+        6 => 'Exhibition History',
+        7 => 'Art and Ideas',
+        8 => 'Research and Resources',
+        9 => 'Articles and Publications',
+       10 => 'Stories',
+       11 => 'Custom',
+    ];
+
     protected $presenter = 'App\Presenters\Admin\LandingPagePresenter';
 
     protected $dispatchesEvents = [
@@ -39,7 +56,7 @@ class LandingPage extends AbstractModel implements Sortable
     protected $fillable = [
         'published',
         'position',
-        'type',
+        'type_id',
         'title',
         'meta_title',
         'meta_description',
@@ -147,6 +164,10 @@ class LandingPage extends AbstractModel implements Sortable
         'visit_admission_tix_link',
         'visit_admission_tix_label',
         'active',
+    ];
+
+    protected $appends = [
+        'type',
     ];
 
     public $slugAttributes = [
@@ -262,6 +283,13 @@ class LandingPage extends AbstractModel implements Sortable
         9 => 'Proof of Vaccination',
         10 => 'Dining'
     ];
+
+    public function type(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attributes): string => collect(self::TYPES)->get($attributes['type_id']),
+        );
+    }
 
     public function scopeIds($query, $ids = [])
     {
@@ -454,15 +482,6 @@ class LandingPage extends AbstractModel implements Sortable
                 'value' => function () {
                     return $this->published;
                 },
-            ],
-
-            [
-                'name' => 'page_types',
-                'doc' => 'Page Types',
-                'type' => 'array',
-                'value' => function () {
-                    return $this->types;
-                }
             ],
 
             [

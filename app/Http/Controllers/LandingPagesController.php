@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admission;
 use App\Models\Lightbox;
-use App\Models\LandingPageType;
+use App\Models\LandingPage;
 use App\Helpers\StringHelpers;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
@@ -22,7 +22,7 @@ class LandingPagesController extends FrontController
     public function show($id, $slug = null)
     {
         $item = $this->landingPageRepository->published()->find((int) $id);
-        $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
+        $types = collect(LandingPage::TYPES);
 
         $admission = new Admission();
 
@@ -114,14 +114,14 @@ class LandingPagesController extends FrontController
         $contrastHeader = false;
         $title = '';
 
-        switch ($item->type) {
-            case array_search('Home', $types):
+        switch ($item->type_id) {
+            case $types->search('Home'):
                 $this->seo->setTitle($item->meta_title ?: "Downtown Chicago's #1 Museum");
                 $this->seo->setDescription($item->meta_description ?: "Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
                 $contrastHeader = sizeof($mainFeatures) > 0;
                 break;
 
-            case array_search('Visit', $types):
+            case $types->search('Visit'):
                 $this->seo->setTitle($item->meta_title ?: 'Visit a Chicago Landmark');
                 $this->seo->setDescription($item->meta_description ?: 'Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
                 $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
@@ -129,7 +129,7 @@ class LandingPagesController extends FrontController
                 $title = __('Visit');
                 break;
 
-            case array_search('Research and Resources', $types):
+            case $types->search('Research and Resources'):
                 $this->seo->setTitle($item->meta_title ?: 'Research & Resources');
                 $this->seo->setDescription($item->resources_landing_intro);
                 $this->seo->setImage($item->imageFront('research_landing_image'));
@@ -152,11 +152,11 @@ class LandingPagesController extends FrontController
             'socialLinks' => $item->socialLinks,
             'filledLogo' => false,
             'title' => $title,
-            'landingPageType' => StringHelpers::pageBlades(array_search($item->type, array_flip($types)))
+            'landingPageType' => StringHelpers::pageBlades($item->type),
         ];
 
-        switch ($item->type) {
-            case array_search('Home', $types):
+        switch ($item->type_id) {
+            case $types->search('Home'):
                 $view_data = array_merge($view_data, [
                     'contrastHeader' => true,
                     'primaryNavCurrent' => 'visit',
@@ -183,7 +183,7 @@ class LandingPagesController extends FrontController
                     ]);
                 break;
 
-            case array_search('Visit', $types):
+            case $types->search('Visit'):
                 $view_data = array_merge($view_data, [
                     'primaryNavCurrent' => 'visit',
                     'hours' => $hours,
@@ -214,7 +214,7 @@ class LandingPagesController extends FrontController
 
                 break;
 
-            case array_search('Research and Resources', $types):
+            case $types->search('Research and Resources'):
                 $view_data = array_merge($view_data, [
                     'primaryNavCurrent' => 'collection',
                     'intro' => $item->art_intro,

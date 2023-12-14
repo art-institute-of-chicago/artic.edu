@@ -1,9 +1,8 @@
 @include('admin.partials.create')
 
 @formField('select', [
-    'name' => 'type',
+    'name' => 'type_id',
     'label' => 'Page type',
-    'default' => array_search('Custom', $types),
-    'inline' => true,
-    'options' => $typesOptions,
+    'default' => $defaultType,
+    'options' => $types,
 ])
