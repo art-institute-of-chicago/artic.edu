@@ -22,16 +22,61 @@
     }
   }
 
-
-  a {
-    color: $color__link--accent;
-  }
-
   .m-listing__link {
     // Because we need to apply a border/shadow to the image
     // and also position an icon relative to the image
     align-items: center;
   }
+
+  label {
+    font-weight: 400;
+
+    em {
+      font-style: normal;
+      font-weight: 300;
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px $color__white inset;
+  }
+
+  .checkbox {
+    @include untuck;
+
+    label {
+      display: inline-block;
+      color: $color__black--80;
+    }
+
+    input[type=checkbox]:checked + span label::before {
+      background-color: $color__grey--130;
+      border-color: $color__grey--130;
+    }
+
+    input + span {
+      @include untuck;
+    }
+  }
+
+  .input__io-container textarea {
+    padding-right: 100px;
+
+    & + output {
+      top: 16px;
+      transform: none;
+    }
+  }
+}
+
+// ---- Custom tours: General
+
+.aic-ct-padded {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 // ---- Custom tours: Preview
@@ -173,7 +218,7 @@
   &:hover,
   &:focus,
   &:focus:hover {
-    color: $color__white
+    color: $color__white;
   }
 }
 
@@ -183,8 +228,12 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 32px 0;
+  padding: 32px 0 0;
   margin-bottom: 32px;
+}
+
+.aic-ct-intro--keyline {
+  padding-bottom: 32px;
   border-bottom: 1px solid $color__black--35;
 }
 
@@ -433,5 +482,153 @@
   svg {
     vertical-align: middle;
     margin-top: 0;
+  }
+}
+
+// ------ Custom tours: Hero image
+
+.aic-ct-hero {
+  height: 240px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+// ------ Custom tours: Tour metadata
+
+.aic-ct-fieldset {
+  margin-bottom: 24px;
+  &::before {
+    display: none;
+  }
+
+  .m-fieldset__fieldset:first-child {
+    margin-top: 0;
+  }
+}
+
+.input input:invalid,
+.textarea textarea:invalid {
+  border-color: $color__red--100;
+}
+
+// ------ Custom tours: Tour items
+
+.aic-ct-tour__intro {
+  margin-bottom: 32px;
+}
+
+// ------ Custom tours: Tour item
+
+.aic-ct-tour-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-top: 1px solid $color__black--20;
+}
+
+.aic-ct-tour-item__lockup {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 12px;
+}
+
+.aic-ct-tour-item__info {
+  margin-right: auto;
+}
+
+.aic-ct-tour-item__title,
+.aic-ct-tour-item__artist,
+.aic-ct-tour-item__gallery {
+  @include untuck;
+}
+
+.aic-ct-tour-item__title {
+  margin-bottom: 4px;
+  color: $color__black--90;
+}
+
+.aic-ct-tour-item__artist {
+  margin-bottom: 8px;
+}
+
+.aic-ct-tour-item__gallery {
+  svg {
+    margin-right: 2px;
+  }
+}
+
+.aic-ct-tour-item__description {
+  max-width: 724px;
+}
+
+.aic-ct-tour-item__note {
+  width: 100%;
+}
+
+.aic-ct-tour-item__remove {
+  padding-left: 0;
+  padding-right: 0;
+  color: $color__grey--100;
+}
+
+
+// ------ Custom tours: Tour CTA
+
+.aic-ct-tour__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background-color: $color__black--5;
+  border-top: 1px solid $color__black--20;
+
+  .f-body {
+    @include untuck;
+  }
+
+  .aic-ct-tour__cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include breakpoint('medium+') {
+      flex-direction: row;
+    }
+  }
+
+  .btn {
+    margin: 0;
+  }
+}
+
+// ------ Custom tours: Tour validation
+
+.aic-ct-validation__content,
+.aic-ct-validation__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 724px;
+}
+
+.aic-ct-validation__content {
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  text-align: center;
+}
+
+.aic-ct-validation__actions {
+  .btn {
+    margin: 0;
   }
 }
