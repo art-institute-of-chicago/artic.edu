@@ -67,6 +67,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--closer_look">
     <use xlink:href="#icon--closer_look"></use>
   </svg>
+  <svg class="icon--delete">
+    <use xlink:href="#icon--delete"></use>
+  </svg>
   <svg class="icon--dining">
     <use xlink:href="#icon--dining"></use>
   </svg>
@@ -371,6 +374,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--closer_look {
   width: 44px;
   height: 44px;
+}
+
+.icon--delete {
+  width: 16px;
+  height: 17px;
 }
 
 .icon--dining {
