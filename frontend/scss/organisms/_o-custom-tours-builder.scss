@@ -2,7 +2,7 @@
 
 .custom-tours {
   // This is to counteract some of the odd behavior with the a17 container
-  // There's obviously a reason for things being the way they are but I feel like htnl and body
+  // There's obviously a reason for things being the way they are but I feel like html and body
   // should ideally not be doing anything with width: 100vw or centering themselves in the screen using css
   // It's not accounting for the scroll bar in a way that makes sense to me and seems to cause
   // horizontal cut-off of content approx half the width of the scroll bar on each side
@@ -240,6 +240,10 @@
 }
 
 .aic-ct-header__button--next {
+  svg {
+    margin-left: 3px;
+  }
+
   @media (min-width: 400px) {
     svg {
       margin-left: 9px;
