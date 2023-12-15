@@ -60,10 +60,12 @@ class LandingPage extends AbstractModel implements Sortable
         'position',
         'type_id',
         'title',
+        'intro',
         'meta_title',
         'meta_description',
         'search_tags',
         'header_variation',
+        'header_contrast',
         'header_cta_button_link',
         'header_cta_button_label',
         'header_cta_title',
@@ -166,6 +168,20 @@ class LandingPage extends AbstractModel implements Sortable
                 [
                     'name' => 'default',
                     'ratio' => 40 / 27,
+                ],
+            ],
+        ],
+        'rlc_location' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
+                ],
+            ],
+            'mobile' => [
+                [
+                    'name' => 'mobile',
+                    'ratio' => 16 / 9,
                 ],
             ],
         ],
