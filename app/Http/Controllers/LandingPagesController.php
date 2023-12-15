@@ -114,21 +114,18 @@ class LandingPagesController extends FrontController
             'publicAccess' => 'true',
         ];
 
-        $contrastHeader = false;
         $title = '';
 
         switch ($item->type_id) {
             case $types->search('Home'):
                 $this->seo->setTitle($item->meta_title ?: "Downtown Chicago's #1 Museum");
                 $this->seo->setDescription($item->meta_description ?: "Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
-                $contrastHeader = sizeof($mainFeatures) > 0;
                 break;
 
             case $types->search('Visit'):
                 $this->seo->setTitle($item->meta_title ?: 'Visit a Chicago Landmark');
                 $this->seo->setDescription($item->meta_description ?: 'Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
                 $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
-                $contrastHeader = true;
                 $title = __('Visit');
                 break;
 
@@ -142,27 +139,28 @@ class LandingPagesController extends FrontController
             default:
                 $this->seo->setTitle($item->meta_title);
                 $this->seo->setDescription($item->meta_description);
-                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
+                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('mobile_hero'));
                 $title = $item->title;
                 break;
         }
 
         $commonViewData = [
             'item' => $item,
-            'contrastHeader' => $contrastHeader,
+            'contrastHeader' => $item->header_contrast,
             'headerMedia' => $headerMedia,
             'mainFeatures' => $mainFeatures,
             'socialLinks' => $item->socialLinks,
             'filledLogo' => false,
             'title' => $title,
+            'intro' => $item->intro,
             'landingPageType' => StringHelpers::pageBlades($item->type),
         ];
 
         switch ($item->type_id) {
             case $types->search('Home'):
                 $viewData = [
-                    'contrastHeader' => true,
-                    'primaryNavCurrent' => 'visit',
+                    'contrastHeader' => sizeof($mainFeatures) > 0,
+                    'filledLogo' => sizeof($mainFeatures) > 0,
                     'hours' => $hours,
                     'cta_module_image' => $item->imageFront('home_cta_module_image'),
                     'roadblocks' => $this->getLightboxes(),
@@ -208,12 +206,24 @@ class LandingPagesController extends FrontController
                 ];
                 break;
 
+            case $types->search('RLC'):
+                $viewData = [
+                    'hours' => $hours,
+                    'hour' => null,
+                    'location_image' => [
+                        'default' => $item->imageFront('rlc_location'),
+                        'mobile' => $item->imageFront('rlc_location', 'mobile'),
+                    ],
+                ];
+                break;
+
             default:
                 $viewData = array();
                 break;
         }
+        $viewLabels = $item->labels?->toArray() ?? [];
 
-        return view('site.landingPageDetail', array_merge($commonViewData, $viewData, $item->labels->toArray()));
+        return view('site.landingPageDetail', array_merge($commonViewData, $viewData, $viewLabels));
     }
 
     protected function setPageMetaData($item)
