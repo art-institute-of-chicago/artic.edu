@@ -20,7 +20,8 @@ class LandingPageRepository extends ModuleRepository
     use HandleApiRelations;
     use HandleApiBlocks;
     use HandleBlocks {
-        HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
+        HandleApiBlocks::getBlockBrowsers as HandleApiBlocksgetBlockBrowsers;
+        HandleBlocks::getBlockBrowsers as HandleBlocksgetBlockBrowsers;
     }
 
     protected $browsers = [
@@ -181,5 +182,11 @@ class LandingPageRepository extends ModuleRepository
         } else {
             return parent::getFormFieldsForBrowser($object, $relation, $routePrefix, $titleKey, $moduleName);
         }
+    }
+
+    public function getBlockBrowsers($block)
+    {
+        $apiBlocks = $this->HandleApiBlocksgetBlockBrowsers($block);
+        return !empty($apiBlocks) ? $apiBlocks : $this->HandleBlocksgetBlockBrowsers($block);
     }
 }
