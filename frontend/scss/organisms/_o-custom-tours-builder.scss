@@ -1,6 +1,16 @@
 // ------ Custom tours
 
 .custom-tours {
+  // This is to counteract some of the odd behavior with the a17 container
+  // There's obviously a reason for things being the way they are but I feel like html and body
+  // should ideally not be doing anything with width: 100vw or centering themselves in the screen using css
+  // It's not accounting for the scroll bar in a way that makes sense to me and seems to cause
+  // horizontal cut-off of content approx half the width of the scroll bar on each side
+  // This approach is probably fine with sufficient padding
+  // We could consider having a special class than normalizes the body/html styles for custom tours
+  margin-left: -4.6875vw;
+  margin-right: -4.6875vw;
+
   // Override the reset styles for dialog elements
   dialog {
     display: revert;
@@ -10,25 +20,82 @@
     max-width: 680px;
     background-color: $color__white;
 
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center top;
+    }
     &::backdrop {
       background-color: rgb(0,0,0,0.6);
     }
   }
 
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    object-position: center top;
+  .m-listing__link {
+    // Because we need to apply a border/shadow to the image
+    // and also position an icon relative to the image
+    align-items: center;
   }
 
-  a {
-    color: $color__link--accent;
+  label {
+    font-weight: 400;
+
+    em {
+      font-style: normal;
+      font-weight: 300;
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px $color__white inset;
+  }
+
+  .checkbox {
+    @include untuck;
+
+    label {
+      display: inline-block;
+      color: $color__black--80;
+    }
+
+    input[type=checkbox]:checked + span label::before {
+      background-color: $color__grey--130;
+      border-color: $color__grey--130;
+    }
+
+    input + span {
+      @include untuck;
+    }
+  }
+
+  .input__io-container textarea {
+    padding-right: 100px;
+
+    & + output {
+      top: 16px;
+      transform: none;
+    }
   }
 }
 
+// ---- Custom tours: General
+
+.aic-ct__core {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 // ---- Custom tours: Preview
+
+.aic-ct-preview__content {
+  .aic-ct-loader {
+    margin: 32px 0;
+  }
+}
 
 .aic-ct-preview__close-trans {
   color: $color__link;
@@ -57,11 +124,14 @@
   }
 }
 
-.aic-ct-preview__padded {
+.aic-ct-preview__core {
   padding: 0 16px;
 }
 
 .aic-ct-preview__image {
+  display: flex;
+  justify-content: center;
+
   img {
     max-height: 500px;
     margin-bottom: 32px;
@@ -87,10 +157,6 @@
   margin-bottom: 24px;
 }
 
-.aic-ct-preview__action-button {
-  margin-bottom: 16px;
-}
-
 .aic-ct-preview__description {
   margin-bottom: 24px;
 }
@@ -99,29 +165,41 @@
   margin-bottom: 12px;
 }
 
+.aic-ct-preview__learn-more {
+  display: inline-block;
+  margin-top: 24px;
+}
+
 // ---- Custom tours: Header
 
 .aic-ct-header {
   @include untuck;
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
   padding: 12px 20px;
   background-color: $color__black;
   color: $color__white;
+  z-index: 9;
 }
 
 .aic-ct-item-info {
   display: flex;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
+
   em {
     color: $color__black--20
   }
 }
 
 .aic-ct-item-count {
+  @include untuck;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -139,23 +217,201 @@
   }
 }
 
-.aic-ct-header__button {
+.aic-ct-item-count--body {
   color: $color__white;
+  background-color: $color__blue--100;
+}
+
+.aic-ct-header__button {
+  margin: 0 !important;
   padding: 0 !important;
+  color: $color__white;
   font-weight: 400;
 
   svg {
+    margin-left: 0;
     margin-right: 0;
-    margin-left: 9px;
   }
 
   &:hover,
   &:focus,
   &:focus:hover {
-    color: $color__white
+    color: $color__white;
   }
 }
 
+.aic-ct-header__button--next {
+  svg {
+    margin-left: 3px;
+  }
+
+  @media (min-width: 400px) {
+    svg {
+      margin-left: 9px;
+    }
+  }
+}
+
+.aic-ct-header__button--back {
+  order: -1;
+
+  svg {
+    margin-right: 3px;
+    rotate: 180deg;
+  }
+
+  @media (min-width: 400px) {
+    svg {
+      margin-right: 9px;
+    }
+  }
+}
+
+.aic-ct-header__button--exit {
+  color: $color__black--20;
+}
+
+// ---- Custom tours: Intro
+
+.aic-ct-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 32px;
+  margin-bottom: 32px;
+}
+
+.aic-ct-intro--keyline {
+  padding-bottom: 32px;
+  border-bottom: 1px solid $color__black--35;
+}
+
+// ---- Custom tours: Section header
+
+.aic-ct-section-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid $color__red--120;
+
+
+  h2 {
+    @include untuck;
+  }
+}
+
+// -- Custom tours: Searchbar
+
+.aic-ct-search {
+  padding-bottom: 32px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid $color__black--35
+}
+
+// ---- Custom tours: Themes
+
+.aic-ct-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+// N.b. because of how tag--senary and tag--quaternary are currently defined and
+// coupled to the close icon and thumbnail we can't use those classes alone
+// (senary has the thumbnail but no close icon, quaternary has the close icon but no thumbnail)
+
+.aic-ct-theme-toggle {
+  .icon--close {
+    color: $color__text--secondary;
+  }
+}
+
+// Borrow just the color styles from tag--quaternary
+.aic-ct-theme-toggle--active {
+  color: $color__white !important;
+  background-color: $color__black--90 !important;
+
+  &:hover,
+  &:focus {
+    color: $color__white !important;
+    background-color: $color__black--80 !important;
+  }
+
+  &:active {
+    color: $color__white !important;
+    background-color: $color__black--90 !important;
+  }
+}
+
+.aic-ct-theme-toggle__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+// ---- Custom tours: Search results
+
+.aic-ct-pre-result-text {
+  @include untuck;
+  margin-bottom: 24px;
+}
+
+.aic-ct-search-results {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.aic-ct-search-results__message {
+  align-self: center;
+}
+
+.aic-ct-result__button {
+  display: block;
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.aic-ct-result--selected {
+  .m-listing__img {
+    border: 4px solid $color__red--100;
+  }
+
+  &.m-listing--variable-height .m-listing__img img {
+    // Remove unflattering gap between border and image
+    object-fit: cover;
+  }
+
+  .aic-ct-selected-marker {
+    display: flex;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $color__red--100;
+    color: $color__white;
+  }
+}
+
+// ---- Custom tours: Loader
+
+.aic-ct-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
 
 // ---- Custom tours: Footer
 
@@ -173,8 +429,6 @@
   gap: 12px;
   justify-content: center;
   align-items: flex-start;
-  padding-bottom: 12px;
-  border-bottom: 1px solid $color__black--42;
 }
 
 .aic-ct-nav__button {
@@ -254,8 +508,9 @@
 
   & .aic-ct-nav__number {
     color: $color__white;
-    background-color: $color__grey--100;
-    box-shadow: 0 0 0 2px $color__grey--100;
+    background-color: $color__red--100;
+    box-shadow: 0 0 0 2px $color__red--100;
+    border-color: $color__red--100;
     font-size: 1em;
   }
 }
@@ -267,13 +522,154 @@
   }
 }
 
-.aic-ct-nav__exit {
-  align-self: center;
-  color: $color__black--20 !important;
-  font-weight: 500;
+// ------ Custom tours: Hero image
 
-  svg {
-    vertical-align: middle;
+.aic-ct-hero {
+  height: 240px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+// ------ Custom tours: Tour metadata
+
+.aic-ct-fieldset {
+  margin-bottom: 24px;
+  &::before {
+    display: none;
+  }
+
+  .m-fieldset__fieldset:first-child {
     margin-top: 0;
+  }
+}
+
+.input input:invalid,
+.textarea textarea:invalid {
+  border-color: $color__red--100;
+}
+
+// ------ Custom tours: Tour items
+
+.aic-ct-tour__intro {
+  margin-bottom: 32px;
+}
+
+// ------ Custom tours: Tour item
+
+.aic-ct-tour-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-top: 1px solid $color__black--20;
+}
+
+.aic-ct-tour-item__lockup {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 12px;
+}
+
+.aic-ct-tour-item__info {
+  margin-right: auto;
+}
+
+.aic-ct-tour-item__title,
+.aic-ct-tour-item__artist,
+.aic-ct-tour-item__gallery {
+  @include untuck;
+}
+
+.aic-ct-tour-item__title {
+  margin-bottom: 4px;
+  color: $color__black--90;
+}
+
+.aic-ct-tour-item__artist {
+  margin-bottom: 8px;
+}
+
+.aic-ct-tour-item__gallery {
+  svg {
+    margin-right: 2px;
+  }
+}
+
+.aic-ct-tour-item__description {
+  max-width: 724px;
+}
+
+.aic-ct-tour-item__note {
+  width: 100%;
+}
+
+.aic-ct-tour-item__remove {
+  padding-left: 0;
+  padding-right: 0;
+  color: $color__grey--100;
+}
+
+
+// ------ Custom tours: Tour CTA
+
+.aic-ct-tour__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background-color: $color__black--5;
+  border-top: 1px solid $color__black--20;
+
+  .f-body {
+    @include untuck;
+  }
+
+  .aic-ct-tour__cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include breakpoint('medium+') {
+      flex-direction: row;
+    }
+  }
+
+  .btn {
+    margin: 0;
+  }
+}
+
+// ------ Custom tours: Tour validation
+
+.aic-ct-validation__content,
+.aic-ct-validation__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 724px;
+}
+
+.aic-ct-validation__content {
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  text-align: center;
+
+  ul {
+    text-align: left;
+  }
+}
+
+.aic-ct-validation__actions {
+  .btn {
+    margin: 0;
   }
 }
