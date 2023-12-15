@@ -16,4 +16,5 @@
     @slot('button_text', $tours_tickets_cta_module_button_text)
     @slot('gtmAttributes', 'data-gtm-event="'. $tours_tickets_cta_module_button_text . '" data-gtm-event-category="internal-ad-click"')
     @slot('custom_tours', true)
+    @slot('custom_tours_bottom', true)
 @endcomponent

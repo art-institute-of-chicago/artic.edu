@@ -1,49 +1,50 @@
 @extends('layouts.app')
 
 @section('content')
-    @php
-        $hero_media = [
-            "type" => "image",
-            "size" => "hero",
-            "hideCaption" => true,
-            "style" => "default",
-            "media" => [
+    @if ($tour_creation_completed)
+        <div class="aic-ct-flash-message o-article__body">
+            <div class="aic-ct-flash-message__text-container">
+                <h1 class="f-headline">Great job! Your tour is complete</h1>
+                <p class="f-body">Your tour has been emailed to you. Here is a link to share with friends.</p>
+                <div class="aic-ct-viewer__link-container">
+                    <p class="f-subheading-1">{{ preg_replace("(^https?://)", "", url()->current() )}}</p>
+                </div>
+                @component('components.molecules._m-article-actions')
+                @endcomponent
+            </div>
+        </div>
+    @endif
+    <article class="aic-ct-viewer o-article o-article__body">
+        @php
+            $hero_media = [
                 "sourceType" => "imgix",
-                "src" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
+                "src" => "https://artic-web-test.imgix.net/a9a0fefa-2101-456b-9afa-cc34dccaf06d/unnamed1.jpg",
                 "width" => 1920,
                 "height" => 1000,
                 "shareUrl" => "#",
                 "shareTitle" => "",
-                "downloadUrl" => "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1920,1000/0/default.jpg",
+                "downloadUrl" => "https://artic-web-test.imgix.net/a9a0fefa-2101-456b-9afa-cc34dccaf06d/unnamed1.jpg",
                 "downloadName" => "default.jpg",
                 "credit" => "",
                 "creditUrl" => "",
                 "lqip" => null,
-                "alt" => "A serene pond filled with floating lily pads and pink water lilies. The surrounding trees can also be seen in the ponds reflection.",
+                "alt" => "",
                 "caption" => null,
                 "iiifId" => null,
                 "restrict" => false,
-            ]
-        ];
-    @endphp
-    <article class="aic-ct-viewer o-article o-article__body">
-        <div class="aic-ct-viewer__hero-img-container">
-            @component('components.molecules._m-media')
-                @slot('item', $hero_media)
-                @slot('tag', 'span')
-                @slot('imageSettings', array(
-                    'srcset' => array(300,600,1000,1500,3000),
-                    'sizes' => '100vw',
-                ))
-                @slot('variation', 'm-visit-header')
-            @endcomponent
-        </div>
-        <h1 class="f-headline-editorial">{!! $custom_tour['title'] !!}</h1>
+            ];
+        @endphp
+        @component('components.molecules._m-article-header')
+            @slot('headerType', 'hero')
+            @slot('title', $custom_tour['title'])
+            @slot('img', $hero_media)
+            @slot('type', 'Custom Tour')
+        @endcomponent
         <div>
             @isset($custom_tour['creatorName'])
                 <div class="aic-ct-viewer__creator-container">
                     <p class="f-subheading-1">
-                        <span id="creatorName">Tour made by {{ $custom_tour['creatorName'] }}{{ isset($custom_tour['recipientName']) ? ',' : '' }}</span>
+                        <span id="creatorName">Tour made by {{ $custom_tour['creatorName'] }}</span>
                         @isset($custom_tour['recipientName'])
                             <span id="recipientName">for {{ $custom_tour['recipientName'] }}</span>
                         @endisset
@@ -72,18 +73,10 @@
             @component('components.molecules._m-article-actions')
             @endcomponent
 
-            @component('components.molecules._m-cta-banner')
-                @slot('href', 'https://sales.artic.edu/admissions')
-                @slot('header', 'View your tour below or visit us in person.')
-                @slot('button_text', 'Buy tickets')
-                @slot('custom_tours', true)
-                @slot('custom_tours_viewer', true)
-            @endcomponent
-
             <ul class="aic-ct-artworks-list">
                 @foreach ($custom_tour['artworks'] as $artwork)
                     <li class="aic-ct-list-item">
-                        @if(!$loop->first)
+                        @if((!$loop->first && !$tour_creation_completed) || $tour_creation_completed)
                             <hr>
                         @endif
                         @isset($artwork['image_id'])
@@ -91,10 +84,10 @@
                                 @php
                                     $artwork_image = [
                                         "sourceType" => "imgix",
-                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/max/0/default.jpg",
+                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/!1087,700/0/default.jpg",
                                         "shareUrl" => "#",
                                         "shareTitle" => "",
-                                        "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/max/0/default.jpg",
+                                        "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/!1087,700/0/default.jpg",
                                         "credit" => "",
                                         "creditUrl" => "",
                                         "lqip" => null,
@@ -104,20 +97,23 @@
                                         "restrict" => false,
                                     ];
                                 @endphp
-                                @component('components.atoms._img')
-                                    @slot('image', $artwork_image)
-                                    @slot('settings', array(
-                                        'fit' => 'crop',
-                                        'srcset' => array(300,600,1000,1500,2000),
-                                        'sizes' => ImageHelpers::aic_imageSizes(array(
-                                              'xsmall' => '58',
-                                              'small' => '58',
-                                              'medium' => '58',
-                                              'large' => '58',
-                                              'xlarge' => '58',
-                                        )),
-                                    ))
-                                @endcomponent
+                                <a href="{{ config('app.url') }}/artworks/{{ $artwork['id'] }}"
+                                   aria-label="View full artwork page for {{ $artwork['title'] }}{{ isset($artwork['thumbnail']['alt_text']) ? ': ' . $artwork['thumbnail']['alt_text'] : '' }}">
+                                    @component('components.atoms._img')
+                                        @slot('image', $artwork_image)
+                                        @slot('settings', array(
+                                            'fit' => 'crop',
+                                            'srcset' => array(300,600,1000,1500,2000),
+                                            'sizes' => ImageHelpers::aic_imageSizes(array(
+                                                  'xsmall' => '272',
+                                                  'small' => '544',
+                                                  'medium' => '907',
+                                                  'large' => '1087',
+                                                  'xlarge' => '725',
+                                            )),
+                                        ))
+                                    @endcomponent
+                                </a>
                             </div>
                         @endisset
                         <h2 class="f-deck">{{ $artwork['title'] }}</h2>
@@ -148,10 +144,10 @@
                                 "{{ $artwork['objectNote'] }}"
                             @endcomponent
                         @endisset
-                        <a href="https://www.artic.edu/artworks/{{ $artwork['id'] }}"
+                        <a href="{{ config('app.url') }}/artworks/{{ $artwork['id'] }}"
                            target="_blank"
                            class="external-link f-link"
-                           aria-label="View full artwork page for {{ $artwork['title'] }}, link opens in a new window">
+                           aria-hidden="true">
                                 View full artwork page<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
                         </a>
                     </li>
@@ -189,8 +185,7 @@
     @component('components.molecules._m-cta-banner')
         @slot('image', $cta_image)
         @slot('href', 'https://sales.artic.edu/admissions')
-        @slot('header', 'Custom tours are even better in real life')
-        @slot('body', 'Plan a visit and take your tour!')
+        @slot('header', 'Plan a visit to take your tour!')
         @slot('button_text', 'Buy tickets')
         @slot('gtmAttributes', 'data-gtm-event="Buy tickets" data-gtm-event-category="internal-ad-click"')
         @slot('custom_tours', true)
@@ -198,12 +193,13 @@
 
     @component('components.molecules._m-cta-banner')
         @slot('href', '/custom-tours/builder')
-        @slot('header', 'Create your own custom tour')
-        @slot('body', 'Ready to build your own tour? Click the "Create tour" button to search available artworks or to see a list of themes that can help get you started.')
+        @slot('header', 'Ready to build your own tour?')
+        @slot('body', '<p>Design a personalized tour by directly searching artworks or exploring themes that can help you get started.</p>')
         @slot('button_text', 'Create your own tour')
         @slot('custom_tours', true)
         @slot('secondary_button_href', '/custom-tours')
         @slot('secondary_button_text', 'View ready-made tours')
+        @slot('custom_tours_bottom', true)
     @endcomponent
 @endsection
 

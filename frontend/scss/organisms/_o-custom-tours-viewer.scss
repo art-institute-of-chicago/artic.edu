@@ -1,27 +1,19 @@
+@use 'sass:math';
+
 // ------ Custom tours viewer
 
 // ---- Custom tours: Custom tours utility fonts
 
 .aic-ct-grid-intro,
 .m-cta-banner__msg--aic-ct {
-  &.f-body::before {
-    padding: 0;
-  }
-
-  &.f-body::after {
-    margin-bottom: 0;
+  &.f-body {
+    @include untuck;
   }
 }
 
 .custom-tours-header {
   .f-display-2 {
-    &::before {
-      padding: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
   }
 }
 
@@ -29,13 +21,7 @@
 .custom-tours-header,
 .aic-ct-viewer {
   .f-deck {
-    &::before {
-      padding: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
   }
 }
 
@@ -43,31 +29,20 @@
 .aic-ct-viewer {
   .f-headline-editorial {
     font-weight: 300;
-
-    &::before {
-      padding-top: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
   }
 }
 
 .m-cta-banner--aic-ct,
-.aic-ct-viewer {
+.aic-ct-viewer,
+.aic-ct-flash-message {
   .f-headline {
-    &::before {
-      padding-top: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
   }
 }
 
-.aic-ct-viewer {
+.aic-ct-viewer,
+.aic-ct-flash-message {
   .f-subheading-1,
   .f-secondary,
   .f-body,
@@ -75,15 +50,11 @@
   .f-link,
   .f-body-editorial-emphasis,
   .f-quote {
-    &::before {
-      padding-top: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
   }
+}
 
+.aic-ct-viewer {
   .f-quote {
     font-weight: 300;
     letter-spacing: 0.015em;
@@ -102,17 +73,12 @@
   }
 
   .f-subheading-1 {
-    margin-bottom: 16px;
     font-weight: 300;
   }
 
   .f-deck {
     margin-bottom: 4px;
     color: $color__black--90;
-  }
-
-  .f-body {
-    margin-bottom: 8px;
   }
 
   .f-tertiary {
@@ -135,14 +101,7 @@
   .f-module-title-1 {
     font-size: 13px;
     font-weight: 300;
-
-    &::before {
-      padding: 0;
-    }
-
-    &::after {
-      margin-bottom: 0;
-    }
+    @include untuck;
 
     @include breakpoint('small+') {
       font-size: 13px;
@@ -194,6 +153,10 @@
   }
 
   @include breakpoint('large+') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include breakpoint('xlarge') {
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -244,14 +207,21 @@
   }
 
   .aic-ct-grid-card__details {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    min-height: 272px;
     margin: auto;
-    display: inline-block;
     padding: 16px 20px 24px;
+
+    @include breakpoint('large+') {
+      min-height: 296px;
+    }
   }
 
   .aic-ct-grid-card__text {
     margin-bottom: 24px;
+    flex: 1;
   }
 
   .f-deck {
@@ -262,6 +232,7 @@
 
   .btn {
     width: 100%;
+    margin-top: auto;
   }
 }
 
@@ -388,7 +359,8 @@
 .m-cta-banner--aic-ct-container {
   position: relative;
   width: 100vw;
-  left: -5.2%;
+  // This is to account for the margin on #a17
+  left: -4.6875vw;
 
   @include breakpoint('medium+') {
     width: auto;
@@ -396,36 +368,33 @@
   }
 }
 
+.m-cta-banner--aic-ct-bottom {
+  margin-bottom: -120px;
+
+  @include breakpoint('medium+') {
+    margin-bottom: 0;
+  }
+}
+
 .m-cta-banner--aic-ct-viewer-container {
-  .m-cta-banner--aic-ct-no-image {
-    min-height: 208px;
-
-    @include breakpoint('medium+') {
-      margin-top: 32px;
-    }
-
-    .f-headline {
-      margin-bottom: 32px;
-    }
-
-    @include breakpoint('large+') {
-      .m-cta-banner__txt {
-        position: unset;
-        padding: 32px 20px;
-      }
-
-      .m-cta-banner__action {
-        position: unset;
-        width: 100%;
-      }
-    }
+  @include breakpoint('large+') {
+    // 90.625vw is the width of <main>, colspan(28, large) is the width of .aic-ct-viewer
+    margin-left: math.div(-90.625vw, 2) + math.div(colspan(28, large), 2);
+    margin-right: math.div(-90.625vw, 2) + math.div(colspan(28, large), 2);
   }
 
-  .m-cta-banner {
+  @include breakpoint('xlarge') {
+    // 1500px is the width of <main>, colspan(28, xlarge) is the width of .aic-ct-viewer
+    margin-left: math.div(-1500px, 2) + math.div(colspan(28, xlarge), 2);
+    margin-right: math.div(-1500px, 2) + math.div(colspan(28, xlarge), 2);
+  }
+}
+
+.m-cta-banner--aic-ct-viewer-container-completed {
+  .m-cta-banner--aic-ct {
     @include breakpoint('medium+') {
-      width: 100%;
-      margin-left: 0;
-      margin-right: 0;
+      margin-top: 0;
+      margin-bottom: 60px;
     }
   }
 }
@@ -481,15 +450,27 @@
   min-height: 240px;
   height: fit-content;
 
-  .m-cta-banner__txt {
-    position: unset;
-  }
-
   @include breakpoint('medium+') {
     overflow: hidden;
+  }
 
-    .m-cta-banner__txt {
-      position: absolute;
+  .m-cta-banner__txt {
+    position: unset;
+
+    @include breakpoint('medium+') {
+      // Padding left to match the left position of .m-cta-banner__txt inside .m-cta-banner--aic-ct
+      padding-left: colspan(3, medium);
+    }
+
+    @include breakpoint('large+') {
+      padding-right: 28vw;
+    }
+  }
+
+  .m-cta-banner__action {
+    @include breakpoint('medium+') {
+      // Padding right to match the right position of .m-cta-banner__txt inside .m-cta-banner--aic-ct
+      padding-right: colspan(3, medium);
     }
   }
 
@@ -510,8 +491,8 @@
 }
 
 // ---- Custom tours: Viewer page
-
-.aic-ct-viewer {
+.aic-ct-viewer,
+.aic-ct-flash-message {
   &.o-article__body {
     margin-top: 0;
     padding-top: 0;
@@ -526,6 +507,33 @@
     }
   }
 
+  .m-article-actions {
+    margin-top: 0;
+    margin-bottom: 32px;
+  }
+}
+
+.aic-ct-flash-message__text-container {
+  padding: 40px 32px 8px;
+
+  .f-headline {
+    margin-bottom: 32px;
+    font-size: 38px;
+    line-height: 1.16;
+  }
+
+  .f-body {
+    margin-bottom: 16px;
+    font-size: 18px;
+    line-height: 1.56;
+  }
+}
+
+.aic-ct-viewer {
+  .m-article-header {
+    margin-bottom: 28px;
+  }
+
   hr {
     margin-top: 24px;
     margin-bottom: 24px;
@@ -537,14 +545,15 @@
     padding-left: 0;
   }
 
-  .m-article-actions {
-    margin-top: 0;
-    margin-bottom: 32px;
-  }
-
   .quote__icon {
     color: $color__red--100;
   }
+}
+
+.aic-ct-viewer__link-container {
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: $color__black--5;
 }
 
 .aic-ct-quote--large {
@@ -579,7 +588,8 @@
 .aic-ct-artworks-list {
   hr {
     width: 100vw;
-    margin-left: -5.2%;
+    // This is to account for the margin on #a17
+    margin-left: -4.6875vw;
 
     @include breakpoint('medium+') {
       width: 100%;
@@ -588,43 +598,18 @@
   }
 }
 
-.aic-ct-viewer__hero-img-container {
-  margin-bottom: 32px;
-  width: 100vw;
-  margin-left: -5.2%;
-
-  .m-media--hero {
-    .m-media__img {
-      height: fit-content;
-    }
-  }
-
-  .m-media--hero {
-    img {
-      position: static;
-    }
-  }
-
-  @include breakpoint('medium+') {
-    width: auto;
-    margin-left: 0;
-
-    .m-media--hero .m-media__img {
-      height: 60vh;
-    }
-
-    .m-media--hero img {
-      position: absolute;
-    }
-  }
-}
-
 .aic-ct-list-item__artwork-img-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
   margin-bottom: 12px;
+  background-color: $color__black--5;
 
   img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 700px;
   }
 }
 
@@ -648,12 +633,20 @@
   span {
     display: block;
   }
+
+  .f-subheading-1 {
+    margin-bottom: 16px;
+  }
 }
 
 .aic-ct-list-item {
   list-style-type: none;
   margin-top: 24px;
   padding-left: 0;
+
+  .f-body {
+    margin-bottom: 8px;
+  }
 }
 
 .aic-ct-viewer__share-container {
