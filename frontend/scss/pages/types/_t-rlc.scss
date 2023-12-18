@@ -144,6 +144,11 @@
       }
     }
   }
+  .location-information>div{
+    @include breakpoint('xsmall') {
+      margin-top: 20px;
+    }
+  }
   .intro {
     font-size: 17px;
     font-weight: 300;
@@ -165,7 +170,7 @@
       width: 100%;
     }
     @include breakpoint('xsmall') {
-      margin-top: 20px;
+      padding-top: 20px;
     }
   }
 }
