@@ -209,7 +209,6 @@ class LandingPagesController extends FrontController
             case $types->search('RLC'):
                 $viewData = [
                     'hours' => $hours,
-                    'hour' => null,
                     'location_image' => [
                         'default' => $item->imageFront('rlc_location'),
                         'mobile' => $item->imageFront('rlc_location', 'mobile'),
