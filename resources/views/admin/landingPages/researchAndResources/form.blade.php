@@ -99,162 +99,15 @@
 
 @section('fieldsets')
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'type',
-    'fieldValues' => $homeType,
-    'renderForBlocks' => false
-])
-
-<a17-fieldset title="Top Section" id="home-top">
-
-    @formField('wysiwyg', [
-        'name' => 'home_intro',
-        'label' => 'Intro text',
-        'type' => 'textarea'
-    ])
-
-    @formField('repeater', ['type' => 'social_links'])
-
-    <hr/>
+<a17-fieldset title="Research Content" id="research_content">
 
     @formField('input', [
-        'name' => 'home_location_label',
-        'label' => 'Location Label'
-    ])
-
-    @formField('input', [
-        'name' => 'home_location_link',
-        'label' => 'Location Link'
-    ])
-
-    @formField('input', [
-        'name' => 'home_buy_tix_label',
-        'label' => 'Tickets Label'
-    ])
-
-    @formField('input', [
-        'name' => 'home_buy_tix_link',
-        'label' => 'Tickets Link'
-    ])
-
-</a17-fieldset>
-
-@endcomponent
-
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'type',
-    'fieldValues' => $visitType,
-    'renderForBlocks' => false
-])
-
-    <a17-fieldset title="Navigation Menu" id="visit_nav-menu">
-
-        @formField('repeater', ['type' => 'menu_items'])
-
-        @formField('input', [
-            'name' => 'visit_nav_buy_tix_label',
-            'label' => 'Tickets Label'
-        ])
-
-        @formField('input', [
-            'name' => 'visit_nav_buy_tix_link',
-            'label' => 'Tickets Link'
-        ])
-
-    </a17-fieldset>
-
-    <a17-fieldset title="Hours" id="visit_hours">
-
-        @formField('wysiwyg', [
-            'name' => 'visit_members_intro',
-            'label' => 'Member Intro',
-            'toolbarOptions' => [
-            'bold', 'italic', 'link'
-            ],
-        ])
-
-        @formField('wysiwyg', [
-            'name' => 'visit_hours_intro',
-            'label' => 'Hours Intro',
-            'toolbarOptions' => [
-            'bold', 'italic', 'link'
-            ],
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_custom_hours',
-            'label' => 'Override default hours',
-        ])
-
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'is_custom_hours',
-            'fieldValues' => true
-        ])
-            @formField('repeater', ['type' => 'featured_hours'])
-        @endcomponent
-    </a17-fieldset>
-
-    <a17-fieldset title="Admission" id="visit_admission">
-        @formField('wysiwyg', [
-            'name' => 'visit_admission_intro',
-            'label' => 'Admission Intro'
-        ])
-
-        @formField('input', [
-            'name' => 'visit_admission_tix_label',
-            'label' => 'Tickets Label'
-        ])
-
-        @formField('input', [
-            'name' => 'visit_admission_tix_link',
-            'label' => 'Tickets Link'
-        ])
-
-        @formField('input', [
-            'name' => 'visit_admission_members_label',
-            'label' => 'Member Label'
-        ])
-
-        @formField('input', [
-            'name' => 'visit_admission_members_link',
-            'label' => 'Member Link'
-        ])
-    </a17-fieldset>
-
-    <a17-fieldset title="Location" id="visit_hours">
-        @formField('medias', [
-            'name' => 'visit_map',
-            'label' => 'Map Image',
-            'note' => 'Minimum image width 3000px'
-        ])
-
-        @formField('repeater', ['type' => 'locations', 'max' => 2])
-
-        @formField('input', [
-            'name' => 'visit_parking_label',
-            'label' => 'Parking Button Label'
-        ])
-
-        @formField('input', [
-            'name' => 'visit_parking_link',
-            'label' => 'Parking Button Link'
-        ])
-    </a17-fieldset>
-
-@endcomponent
-
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'type',
-    'fieldValues' => $researchAndResourcesType,
-    'renderForBlocks' => false
-])
-    @formField('input', [
-        'name' => 'resources_landing_title',
+        'name' => 'labels.resources_landing_title',
         'label' => 'Title',
     ])
 
     @formField('input', [
-        'name' => 'resources_landing_intro',
+        'name' => 'labels.resources_landing_intro',
         'label' => 'Intro text',
         'type' => 'textarea'
     ])
@@ -287,7 +140,8 @@
         'name' => 'researchResourcesStudyRoomMore',
         'label' => 'Study room more link'
     ])
-@endcomponent
+
+</a17-fieldset>
 
 <a17-fieldset title="Custom Content" id="custom_content">
 
@@ -328,33 +182,6 @@
     ])
 
 </a17-fieldset>
-
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'type',
-    'fieldValues' => $visitType,
-    'renderForBlocks' => false
-])
-
-    <a17-fieldset title="FAQs" id="faq">
-        @formField('input', [
-            'name' => 'visit_faqs_label',
-            'label' => 'More FAQs Label'
-        ])
-
-        @formField('input', [
-            'name' => 'visit_faqs_link',
-            'label' => 'More FAQs Link'
-        ])
-
-        @formField('input', [
-            'name' => 'visit_faq_more_link',
-            'label' => "More FAQs and guidelines link"
-        ])
-
-        @formField('repeater', ['type' => 'faqs'])
-    </a17-fieldset>
-
-@endcomponent
 
 <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
     @formField('input', [

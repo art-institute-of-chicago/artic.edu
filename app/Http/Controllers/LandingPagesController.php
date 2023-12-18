@@ -92,17 +92,17 @@ class LandingPagesController extends FrontController
         }
 
         $hours = [
-            'hide_hours' => $item->visit_hide_hours,
+            'hide_hours' => $item->hide_hours,
             'media' => [
                 'type' => 'image',
                 'size' => 's',
                 'media' => $item->imageFront('visit_featured_hour'),
-                'caption' => $item->visit_hour_image_caption,
+                'caption' => $item->hour_image_caption,
             ],
-            'primary' => $item->visit_hour_header,
-            'secondary' => $item->visit_hour_subheader,
+            'primary' => $item->hour_header,
+            'secondary' => $item->hour_subheader,
             'sections' => $item->featured_hours,
-            'intro' => $item->visit_hour_intro
+            'intro' => $item->hour_intro
         ];
 
         $itemprops = [
@@ -144,7 +144,7 @@ class LandingPagesController extends FrontController
                 break;
         }
 
-        $view_data = [
+        $commonViewData = [
             'item' => $item,
             'contrastHeader' => $contrastHeader,
             'headerMedia' => $headerMedia,
@@ -157,67 +157,36 @@ class LandingPagesController extends FrontController
 
         switch ($item->type_id) {
             case $types->search('Home'):
-                $view_data = array_merge($view_data, [
+                $viewData = [
                     'contrastHeader' => true,
                     'primaryNavCurrent' => 'visit',
                     'hours' => $hours,
-                    'home_intro' => $item->home_intro,
-                    'home_location_label' => $item->home_location_label,
-                    'home_location_link' => $item->home_location_link,
-                    'home_buy_tix_label' => $item->home_buy_tix_label,
-                    'home_buy_tix_link' => $item->home_buy_tix_link,
-                    'visit_button_text' => $item->home_visit_button_text ?? 'Visit',
-                    'visit_button_url' => $item->home_visit_button_url ?? route('visit'),
-                    'plan_your_visit_link_1_text' => $item->home_plan_your_visit_link_1_text,
-                    'plan_your_visit_link_1_url' => $item->home_plan_your_visit_link_1_url,
-                    'plan_your_visit_link_2_text' => $item->home_plan_your_visit_link_2_text,
-                    'plan_your_visit_link_2_url' => $item->home_plan_your_visit_link_2_url,
-                    'plan_your_visit_link_3_text' => $item->home_plan_your_visit_link_3_text,
-                    'plan_your_visit_link_3_url' => $item->home_plan_your_visit_link_3_url,
                     'cta_module_image' => $item->imageFront('home_cta_module_image'),
-                    'cta_module_action_url' => $item->home_cta_module_action_url,
-                    'cta_module_header' => $item->home_cta_module_header,
-                    'cta_module_button_text' => $item->home_cta_module_button_text,
-                    'cta_module_body' => $item->home_cta_module_body,
                     'roadblocks' => $this->getLightboxes(),
-                    ]);
+                ];
                 break;
 
             case $types->search('Visit'):
-                $view_data = array_merge($view_data, [
+                $viewData = [
                     'primaryNavCurrent' => 'visit',
                     'hours' => $hours,
                     'itemprops' => $itemprops,
-                    'visit_nav_buy_tix_label' => $item->visit_nav_buy_tix_label,
-                    'visit_nav_buy_tix_link' => $item->visit_nav_buy_tix_link,
-                    'visit_hours_intro'  => $item->visit_hours_intro,
-                    'visit_members_intro' => $item->visit_members_intro,
-                    'visit_admission_intro' => $item->visit_admission_intro,
                     'visit_map' => $item->imageFront('visit_map'),
-                    'visit_parking_label' => $item->visit_parking_label,
-                    'visit_parking_link' => $item->visit_parking_link,
-                    'visit_faqs_label' => $item->visit_faqs_label,
-                    'visit_faqs_link' => $item->visit_faqs_link,
-                    'visit_admission_members_link' => $item->visit_admission_members_link,
-                    'visit_admission_members_label' => $item->visit_admission_members_label,
-                    'visit_admission_tix_link' => $item->visit_admission_tix_link,
-                    'visit_admission_tix_label' => $item->visit_admission_tix_label,
                     'menuItems' => $item->menuItems,
                     'locations' => $item->locations,
                     'admission' => [
                         'titles' => $feeTitles,
                         'prices' => $feePrices,
                     ],
-                    'accesibility_link' => $item->visit_faq_accessibility_link,
-                    'faqs' => $item->faqs->all()
-                ]);
-
+                    'accesibility_link' => $item->labels->get('visit_faq_accessibility_link'),
+                    'faqs' => $item->faqs->all(),
+                ];
                 break;
 
             case $types->search('Research and Resources'):
-                $view_data = array_merge($view_data, [
+                $viewData = [
                     'primaryNavCurrent' => 'collection',
-                    'intro' => $item->art_intro,
+                    'intro' => $item->labels->get('resources_landing_intro'),
                     'linksBar' => [
                         [
                             'href' => route('collection'),
@@ -233,14 +202,15 @@ class LandingPagesController extends FrontController
                             'active' => true,
                         ],
                     ],
-                ]);
+                ];
                 break;
 
             default:
+                $viewData = array();
                 break;
         }
 
-        return view('site.landingPageDetail', $view_data);
+        return view('site.landingPageDetail', array_merge($commonViewData, $viewData, $item->labels->toArray()));
     }
 
     protected function setPageMetaData($item)
