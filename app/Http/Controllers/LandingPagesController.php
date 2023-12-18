@@ -92,7 +92,7 @@ class LandingPagesController extends FrontController
             ];
         }
 
-        $hourType = $item->type == 'RLC' ? collect(Hour::$types)->search('RLC') : null;
+        $hourType = $item->type == 'RLC' ? collect(Hour::$types)->search('RLC') : 0;
         $hours = [
             'hide_hours' => $item->hide_hours,
             'media' => [
@@ -105,7 +105,7 @@ class LandingPagesController extends FrontController
             'secondary' => $item->hour_subheader,
             'sections' => $item->featured_hours,
             'intro' => $item->hour_intro,
-            'hours' => Hour::today(type: $hourType),
+            'hours' => Hour::today(type: $hourType)->first(),
         ];
 
         $itemprops = [
