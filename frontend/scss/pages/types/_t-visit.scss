@@ -1,0 +1,663 @@
+.visit {
+
+  .admission-info-button-trigger {
+    display: inline-block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: 0 none;
+    background: transparent;
+    color: $color__text--tertiary;
+    cursor: pointer;
+    vertical-align: text-bottom;
+
+    &:hover,
+    &:focus:hover {
+      color: $color__text--secondary;
+    }
+
+    &:active:hover {
+      color: $color__text--tertiary;
+    }
+  }
+
+  .admission-info-button-trigger svg {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+  }
+
+  .admission-info-button-trigger {
+    vertical-align: text-top;
+    margin-top: 2px;
+  }
+
+  .admission-info-button-container {
+    z-index: 2;
+    position: relative;
+  }
+
+  .admission-info-button-info {
+      left: 20px;
+      z-index: 10;
+      position: absolute;
+      width: 200px;
+      padding: 8px 16px 16px;
+      background-color: $color__white;
+      box-shadow: $shadow;
+      white-space: initial;
+      transition: opacity .25s;
+      display: none;
+
+      @include breakpoint('small+') {
+        width: 250px;
+      }
+  }
+
+  .admission-info-button-info .f-caption {
+    @include tucked-align-top($f-caption);
+  }
+
+  .m-title-bar {
+    margin-top: 50px;
+  }
+
+  .m-title-bar::before {
+    background-color: $color__input-border;
+  }
+
+  .o-blocks .hr {
+    margin-top: 40px !important;
+  }
+
+  .select__select select {
+    font-family: $sans-serif-font--loaded;
+  }
+
+  .m-landing-header {
+    .m-media__img {
+      height: 450px;
+    }
+  }
+
+  .btn:not(.btn--icon) {
+    @include breakpoint('small') {
+      margin-top: 18px;
+      width: 100%;
+    }
+    @include breakpoint('xsmall') {
+      margin-top: 18px;
+      width: 100%;
+    }
+  }
+  .btn+.btn {
+    @include breakpoint('small') {
+      margin-left: 0;
+    }
+    @include breakpoint('xsmall') {
+      margin-left: 0;
+    }
+  }
+
+  .o-hours {
+    margin-top: 32px;
+  }
+
+  .f-headline::before {
+    padding-top: 32px;
+  }
+
+  .m-landing-header > * {
+    flex: 0 0 auto;
+    order: 1;
+  }
+
+  .img-hero-desktop {
+    display: none;
+    @include breakpoint('small+') {
+      display: block;
+    }
+  }
+
+  .img-hero-mobile {
+    display: block;
+    @include breakpoint('small+') {
+      display: none;
+    }
+  }
+
+  .menu-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    border-top: 1px solid $color__input-border;
+    border-bottom: 1px solid $color__input-border;
+    @include breakpoint('medium') {
+      .f-buttons {
+        width: auto;
+      }
+    }
+    @include breakpoint('small') {
+      padding: none;
+      border: none;
+      flex-direction: column;
+      >ul {
+        justify-content: space-between;
+        overflow: scroll;
+        width: 100%;
+        padding: 18px 0;
+        border-top: 1px solid $color__input-border ;
+        border-bottom: 1px solid $color__input-border ;
+      }
+    }
+    @include breakpoint('xsmall') {
+      padding: none;
+      border: none;
+      flex-direction: column;
+      >ul {
+        justify-content: space-between;
+        overflow: scroll;
+        width: 100%;
+        padding: 18px 0;
+        border-top: 1px solid $color__input-border ;
+        border-bottom: 1px solid $color__input-border ;
+      }
+    }
+  }
+
+  .menu-links ul {
+    display: flex;
+  }
+
+  .menu-links li {
+    padding-top: 0;
+    color: $color__text;
+  }
+
+  .menu-links a::before {
+    padding-top: 0;
+  }
+
+  .menu-links ul li a {
+    color: $color__text !important;
+  }
+
+  .f-buttons {
+    @include breakpoint('medium+') {
+      width: 225px;
+    }
+  }
+
+  .info-grid {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+
+    .row:first-child {
+      padding-bottom: 18px;
+      border-bottom: 1px solid $color__rules--primary, ;
+      margin-bottom: 50px;
+    }
+
+    .row:last-child {
+      margin-top: 32px;
+      @include breakpoint('medium') {
+        margin-top: 32px;
+      }
+      @include breakpoint('small') {
+        margin-top: 32px;
+      }
+
+      > .col:first-child {
+        border-right: 1px solid $color__rules--primary;
+        @include breakpoint('medium') {
+          border-right: none;
+        }
+        @include breakpoint('small') {
+          border-right: none;
+        }
+        @include breakpoint('xsmall') {
+          border-right: none;
+        }
+      }
+    }
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      align-items: top;
+      justify-content: space-between;
+      @include breakpoint('medium') {
+        flex-direction: column;
+      }
+      @include breakpoint('small') {
+        flex-direction: column;
+      }
+      @include breakpoint('xsmall') {
+        flex-direction: column;
+      }
+
+      .col:first-child {
+        padding-right: 20px;
+        @include breakpoint('medium') {
+          padding-right: 0;
+        }
+        @include breakpoint('small') {
+          padding-right: 0;
+        }
+        @include breakpoint('xsmall') {
+          padding-right: 0;
+        }
+      }
+
+      .col:nth-child(2) {
+        padding-left: 20px;
+        @include breakpoint('medium') {
+          padding-left: 0;
+          margin-top: 32px;
+        }
+        @include breakpoint('small') {
+          padding-left: 0;
+          margin-top: 32px;
+        }
+        @include breakpoint('xsmall') {
+          padding-left: 0;
+          margin-top: 32px;
+        }
+
+        .btn-section {
+          margin-top: 32px;
+        }
+      }
+    }
+
+    .col {
+      width: 50%;
+      @include breakpoint('medium') {
+        width: 100%;
+      }
+      @include breakpoint('small') {
+        width: 100%;
+      }
+      @include breakpoint('xsmall') {
+        width: 100%;
+      }
+
+     > hr {
+        margin-bottom: 18px;
+      }
+    }
+
+    .visit-hours {
+      width: 100%;
+      align-items: center;
+      margin: 12px 0 12px 0;
+
+      th {
+        text-align: left;
+        width: 50%;
+      }
+
+      td{
+        padding: 10px 0 18px;
+        width: 50%;
+      }
+
+      tr {
+        padding: 6px;
+        border-bottom: 1px solid $color__rules--primary ;
+      }
+
+      tbody >tr:last-child {
+        border-bottom: none !important;
+      }
+
+      .closed {
+        color: $color__text--secondary;
+      }
+    }
+
+    .visit-location {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+
+      div > .parking_label {
+        margin-top: 16px;
+      }
+
+      @include breakpoint('large+') {
+        div > .parking_label{
+          display: block;
+        }
+        > .parking_label{
+          display: none;
+        }
+      }
+      @include breakpoint('medium') {
+        border-bottom: none;
+        margin-bottom: 0;
+        div > .parking_label{
+          width: auto;
+          display: block;
+        }
+        > .parking_label{
+          display: none;
+        }
+      }
+      @include breakpoint('small') {
+        border-bottom: none;
+        margin-bottom: 0;
+        div > .parking_label {
+          display: block;
+        }
+        > .parking_label {
+          display: none;
+        }
+      }
+      @include breakpoint('xsmall') {
+        margin-bottom: 0;
+        border-bottom: none;
+        flex-direction: column;
+        div > .parking_label {
+          display: none;
+        }
+        > .parking_label {
+          display: block;
+        }
+      }
+
+      .parking_label {
+        color: $color__text--title;
+      }
+
+      a {
+        color: $color__rules--brand;
+      }
+
+      img {
+        height: auto;
+        width: 100%;
+        object-fit: contain;
+      }
+      @include breakpoint('xlarge') {
+        >div {
+          width: 48%;
+        }
+      }
+      @include breakpoint('large') {
+        >div {
+          width: 48%;
+        }
+      }
+      @include breakpoint('medium') {
+        >div:first-child {
+          width: 50%
+        }
+        >div:nth-child(2) {
+          width: 40%;
+        }
+      }
+      @include breakpoint('small') {
+        >div:first-child {
+          width: 50%
+        }
+        >div:nth-child(2) {
+          width: 40%;
+        }
+      }
+      @include breakpoint('xsmall') {
+        >div:first-child {
+          width: 100%
+        }
+        >div:nth-child(2) {
+          width: 100%;
+        }
+      }
+
+      >div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: auto;
+        margin-bottom: auto;
+
+        div {
+          padding-bottom: 12px;
+        }
+      }
+    }
+
+    .visit-fee {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    @include breakpoint('xsmall') {
+      flex-direction: column;
+    }
+
+      .visit-fee-category {
+        height: fit-content;
+        width: 45%;
+        align-items: center;
+        margin: 12px 0 12px 0;
+        @include breakpoint('medium') {
+          width: 48%;
+        }
+        @include breakpoint('small') {
+          width: 48%;
+        }
+        @include breakpoint('xsmall') {
+          display: none;
+        }
+
+        svg {
+          height: 16px;
+          width: 16px;
+          margin-left: auto;
+        }
+
+        th {
+          text-align: left;
+          width: 50%;
+        }
+
+        td{
+          padding: 10px 18px 18px;
+          width: 100%;
+          color: $color__text--secondary;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: self-end;
+
+          span {
+            color: $color__text--secondary;
+          }
+        }
+
+        tr.selected {
+          background-color: $color__bg--secondary;
+          border-top: none;
+          border-bottom: none;
+
+          span {
+            font-weight: 400;
+          }
+        }
+
+        tr {
+          padding: 6px;
+          border-bottom: 1px solid $color__rules--primary ;
+          border-top: 1px solid $color__rules--primary ;
+          cursor: pointer;
+          user-select: none;
+        }
+
+        tbody >tr:nth-child(2) {
+          border-top: none !important;
+        }
+
+        tbody >tr:last-child {
+          border-bottom: none !important;
+        }
+      }
+
+      .admission-info-text {
+        width: 100%;
+        display: none;
+        margin-top: 18px;
+        @include breakpoint('small+') {
+          display: none !important;
+        }
+      }
+
+      .admission-info-text.selected {
+        display: block;
+      }
+
+      .visit-fee-category-select, .select__select {
+        width: 100%;
+        display: none;
+        @include breakpoint('xsmall') {
+          display: block;
+        }
+      }
+
+      .visit-separator {
+        width: 0;
+        min-height: 100%;
+        border-right: 1px solid $color__rules--primary;
+        @include breakpoint('xsmall') {
+          display: none;
+        }
+      }
+
+      .visit-fee-price {
+        height: fit-content;
+        width: 45%;
+        align-items: center;
+        margin: 12px 0 12px 0;
+        @include breakpoint('medium') {
+          width: 48%;
+        }
+        @include breakpoint('small') {
+          width: 48%;
+        }
+        @include breakpoint('xsmall') {
+          width: 100%;
+        }
+
+        .fee-ages {
+          display: none;
+        }
+
+        .fee-ages.selected {
+          display: table-row-group;
+        }
+
+        th {
+          text-align: left;
+          width: 50%;
+        }
+
+        td {
+          text-align: right;
+          padding: 10px 18px 18px 0;
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: baseline;
+          @include breakpoint('small') {
+            width: 95%;
+            margin-right: auto;
+          }
+          @include breakpoint('xsmall') {
+            width: 85%;
+            margin-right: auto;
+          }
+
+          span:last-child {
+            font-weight: 300;
+            color: $color__text--secondary;
+          }
+        }
+
+        tr {
+          padding: 6px;
+          border-bottom: 1px solid $color__rules--primary ;
+        }
+
+        tbody >tr:last-child {
+          border-bottom: none !important;
+        }
+
+        tbody.admission-description td {
+          text-align: left;
+          display: block;
+          font-weight: 300;
+          color: $color__text--secondary;
+        }
+
+        tbody.admission-description .btn {
+          margin-top: 2em;
+        }
+      }
+    }
+
+    .s-hidden {
+      display: none;
+    }
+
+    .visit-admission-info {
+      span {
+        br {
+          display: block;
+          margin-top: 40px;
+          content: "";
+        }
+        a {
+          color: $color__rules--brand;
+        }
+      }
+    }
+  }
+
+  .o-accordion {
+    margin-top: 36px;
+    max-width: 1000px;
+  }
+
+  .faqs-heading {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+    .o-blocks {
+    .m-media,
+    .o-gallery,
+    .m-media--m,
+    .m-media--l,
+    .m-table--l,
+    .m-cta-banner,
+    .m-mobile-block,
+    .m-aside-newsletter--wide,
+    .o-grid-block {
+      margin-left: 0 !important;
+    }
+  }
+}
