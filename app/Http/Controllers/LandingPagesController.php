@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admission;
+use App\Models\Hour;
 use App\Models\Lightbox;
 use App\Models\LandingPage;
 use App\Helpers\StringHelpers;
@@ -91,6 +92,7 @@ class LandingPagesController extends FrontController
             ];
         }
 
+        $hourType = $item->type == 'RLC' ? collect(Hour::$types)->search('RLC') : 0;
         $hours = [
             'hide_hours' => $item->hide_hours,
             'media' => [
@@ -102,7 +104,8 @@ class LandingPagesController extends FrontController
             'primary' => $item->hour_header,
             'secondary' => $item->hour_subheader,
             'sections' => $item->featured_hours,
-            'intro' => $item->hour_intro
+            'intro' => $item->hour_intro,
+            'hours' => Hour::today(type: $hourType)->first(),
         ];
 
         $itemprops = [
