@@ -45,7 +45,7 @@
                         </th>
                     </tr>
                     @if (!empty($hours['hours']))
-                        @foreach ($hour->present()->getHoursTableForHeader() as $item)
+                        @foreach ($hours['hours']->present()->getHoursTableForHeader() as $item)
                             @php
                                 $hourClass = $item['hours'] === 'Closed' ? 'closed' : '';
                             @endphp
