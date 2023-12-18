@@ -35,6 +35,7 @@ class LandingPage extends AbstractModel implements Sortable
     public const DEFAULT_TYPE = 'Custom';
 
     public const TYPES = [
+        0 => 'RLC',
         1 => 'Home',
         2 => 'Exhibitions and Events',
         3 => 'Collection',
