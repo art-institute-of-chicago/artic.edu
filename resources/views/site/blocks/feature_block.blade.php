@@ -114,8 +114,8 @@
                                 <span class='default-img m-feature-block-listing__img {{$ratio}} column-{{$columns}}x'></span>
                             @endif
                         </div>
-                        <span class="m-feature-block-listing__meta">
-                            @if ($item->type && $item->type !== 'experience')
+                        <span class="m-feature-block-listing__meta {{$item->type ? "l-type-$item->type" : ""}}">
+                            @if ($item->type && $item->type !== 'experience' && $item->type !== 'exhibition' && $item->type !== 'event')
                                 @if($item->is_ongoing)
                                     <em class="type f-tag">Ongoing
                                 @else
