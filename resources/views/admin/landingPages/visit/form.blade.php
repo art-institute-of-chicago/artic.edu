@@ -126,7 +126,7 @@
     ])
 
     @formField('wysiwyg', [
-        'name' => 'labels.visit_hours_intro',
+        'name' => 'hour_intro',
         'label' => 'Hours Intro',
         'toolbarOptions' => [
         'bold', 'italic', 'link'
@@ -235,7 +235,7 @@
 
 <a17-fieldset title="FAQs" id="faq">
     @formField('input', [
-        'name' => 'visit_faqs_label',
+        'name' => 'labels.visit_faqs_label',
         'label' => 'More FAQs Label'
     ])
 
