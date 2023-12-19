@@ -82,7 +82,7 @@
                         @endforeach
                     @endif
                 </table>
-                <span class="f-secondary">{!! $visit_hours_intro !!}</span>
+                <span class="f-secondary">{!! $hours['intro'] !!}</span>
             </div>
             <div class="col">
                 <h3 id="location" class="title f-module-title-2">Location</h3>
