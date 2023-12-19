@@ -180,8 +180,8 @@ return [
         'highlights' => 'collection',
         'articles' => 'collection.articles_publications',
         'experiences' => 'collection.interactive_features',
-        'landingPages' => 'generic.landingPages',
-        'genericPages' => 'generic.genericPages',
+        'landingPages' => 'generic',
+        'genericPages' => 'generic',
         'videos' => 'collection.articles_publications',
     ],
     'block-order' => [
