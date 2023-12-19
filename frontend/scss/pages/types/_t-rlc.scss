@@ -115,7 +115,7 @@
       width: calc(var(--spacing) * 2);
     }
     .semicircle {
-      background-color: #075A71;
+      background-color: $color__rlc__blue_sapphire;
       @include breakpoint('small+') {
         border-top-right-radius: var(--spacing);
         border-bottom-right-radius: var(--spacing);
