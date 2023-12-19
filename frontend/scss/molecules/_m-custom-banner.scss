@@ -81,6 +81,8 @@
         }
 
         .custom-banner-title {
+            line-height: 0;
+            padding-bottom: 9px;
             color: white !important;
             &::before {
                 padding: 0 !important;
