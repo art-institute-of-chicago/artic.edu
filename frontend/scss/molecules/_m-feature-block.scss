@@ -44,6 +44,18 @@
         padding: 8px 10px
     }
 
+    .m-feature-block-listing__label__overlay {
+        display: block;
+        position: relative;
+        margin-top: -40px;
+        top: 58px;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        text-align: right;
+        padding: 8px 10px
+    }
+
     .m-feature-block-row {
         display: flex;
         flex-direction: row;
@@ -89,6 +101,15 @@
             display: flex;
             flex-direction: column;
             min-height: 150px;
+
+            &.l-type-exhibition{
+                min-height: 100px !important;
+            }
+
+            &.l-type-event{
+                min-height: 190px !important;
+            }
+            
             @include breakpoint('small-') {
                 min-height: 124px;
             }
