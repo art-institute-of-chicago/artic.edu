@@ -127,11 +127,6 @@
                                             @slot('font', '')
                                             Member Exclusive
                                         @endcomponent
-                                    @else
-                                        @component('components.atoms._type')
-                                            @slot('font', '')
-                                            {!! $item->exhibitionType !!}
-                                        @endcomponent
                                     @endif
                                     @if ($item->is_closed)
                                         @component('components.atoms._type')
