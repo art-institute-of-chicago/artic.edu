@@ -3,13 +3,21 @@
     margin-top: 50px;
     margin-left: calc(50% - 50vw);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background-color: $color__bg--secondary;
-    padding: 50px;
+    padding: 4.6875vw;
 
     @include breakpoint('small-') {
         margin-left: calc(50% - 50vw);
         padding: 25px;
+    }
+
+    .m-collection-wrapper {
+        max-width: 1500px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
     }
 
     .m-collection-heading {
@@ -31,6 +39,18 @@
 
             @include breakpoint('small-') {
                 margin-top: 20px;
+            }
+
+            .btn+.btn {
+                margin: 0;
+            }
+
+            .btn svg {
+                margin-right: 0;
+            }
+
+            .b-drag-scroll__btn-next {
+                padding-right: 0;
             }
 
             .btn:first-of-type {
@@ -175,8 +195,8 @@
                 width: 65%;
                 font-family: $serif-font--loaded;
                 color: $color__black--54;
-                line-height: 28px;
-                font-size: 30px;
+                line-height: 36px;
+                font-size: 28px;
 
                 @include breakpoint('small-') {
                     font-size: 22px;
