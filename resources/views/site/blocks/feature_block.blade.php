@@ -124,46 +124,7 @@
                         </div>
                         <span class="m-feature-block-listing__meta {{$item->type ? "l-type-$item->type" : ""}}">
                             @if ($item->type && $item->type !== 'experience' && $item->type !== 'exhibition' && $item->type !== 'event')
-                                @if($item->is_ongoing)
-                                    <em class="type f-tag">Ongoing
-                                @else
-                                    <em class="type f-tag">{{ $item->type }}
-                                @endif
-                                    @if ($item->exclusive)
-                                        @component('components.atoms._type')
-                                            @slot('variation', 'type--membership')
-                                            @slot('font', '')
-                                            Member Exclusive
-                                        @endcomponent
-                                    @endif
-                                    @if ($item->is_closed)
-                                        @component('components.atoms._type')
-                                            @slot('variation', 'type--limited')
-                                            @slot('font', '')
-                                            Closed
-                                        @endcomponent
-                                    @else
-                                        @if ($item->is_closing_soon)
-                                            @component('components.atoms._type')
-                                                @slot('variation', 'type--limited')
-                                                @slot('font', '')
-                                                Closing Soon
-                                            @endcomponent
-                                        @elseif ($item->is_now_open && !$item->is_ongoing)
-                                            @component('components.atoms._type')
-                                                @slot('variation', 'type--new')
-                                                @slot('font', '')
-                                                Now Open
-                                            @endcomponent
-                                        @elseif ($item->exclusive)
-                                            @component('components.atoms._type')
-                                                @slot('variation', 'type--membership')
-                                                @slot('font', '')
-                                                Member Exclusive
-                                            @endcomponent
-                                        @endif
-                                    @endif
-                                </em>
+                                <em class="type f-tag">{{ $item->type }}</em>
                             @elseif( $item->type === 'experience' )
                                 <em class="type f-tag">Interactive Feature</em>
                             @elseif( $feature_type === 'videos')
