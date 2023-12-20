@@ -110,6 +110,14 @@
                                             'xlarge' => 38,
                                         ))))
                                 @endcomponent
+                                @if ($item->type === 'exhibition' && $item->is_now_open || $item->is_closing_soon || $item->is_ongoing)
+                                <div class="m-feature-block-listing__label__overlay">
+                                    <span class="{{$item->is_now_open ? 'label-open' : ''}} {{$item->is_closing_soon ? 'label-closing' : ''}}">
+                                        {{$item->is_now_open ? 'Now Open' : ''}}
+                                        {{$item->is_closing_soon ? 'Closing Soon' : ''}}
+                                    </span>
+                                </div>
+                                @endif
                             @else
                                 <span class='default-img m-feature-block-listing__img {{$ratio}} column-{{$columns}}x'></span>
                             @endif
