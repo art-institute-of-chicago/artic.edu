@@ -169,6 +169,20 @@ class LandingPage extends AbstractModel implements Sortable
                 ],
             ],
         ],
+        'rlc_location' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
+                ],
+            ],
+            'mobile' => [
+                [
+                    'name' => 'mobile',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
     ];
 
     /**

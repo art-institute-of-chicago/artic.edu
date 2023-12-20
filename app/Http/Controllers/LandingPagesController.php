@@ -142,7 +142,7 @@ class LandingPagesController extends FrontController
             default:
                 $this->seo->setTitle($item->meta_title);
                 $this->seo->setDescription($item->meta_description);
-                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
+                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('mobile_hero'));
                 $title = $item->title;
                 break;
         }
@@ -161,8 +161,7 @@ class LandingPagesController extends FrontController
         switch ($item->type_id) {
             case $types->search('Home'):
                 $viewData = [
-                    'contrastHeader' => true,
-                    'primaryNavCurrent' => 'visit',
+                    'filledLogo' => sizeof($mainFeatures) > 0,
                     'hours' => $hours,
                     'cta_module_image' => $item->imageFront('home_cta_module_image'),
                     'roadblocks' => $this->getLightboxes(),
@@ -208,12 +207,23 @@ class LandingPagesController extends FrontController
                 ];
                 break;
 
+            case $types->search('RLC'):
+                $viewData = [
+                    'hours' => $hours,
+                    'location_image' => [
+                        'default' => $item->imageFront('rlc_location'),
+                        'mobile' => $item->imageFront('rlc_location', 'mobile'),
+                    ],
+                ];
+                break;
+
             default:
                 $viewData = array();
                 break;
         }
+        $viewLabels = $item->labels?->toArray() ?? [];
 
-        return view('site.landingPageDetail', array_merge($commonViewData, $viewData, $item->labels->toArray()));
+        return view('site.landingPageDetail', array_merge($commonViewData, $viewData, $viewLabels));
     }
 
     protected function setPageMetaData($item)
