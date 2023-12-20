@@ -110,7 +110,7 @@
                                             'xlarge' => 38,
                                         ))))
                                 @endcomponent
-                                @if ($item->type === 'exhibition' && $item->is_now_open || $item->is_closing_soon || $item->is_ongoing)
+                                @if ($item->type === 'exhibition' && ($item->is_now_open || $item->is_closing_soon || $item->is_ongoing))                                
                                 <div class="m-feature-block-listing__label__overlay">
                                     <span class="{{$item->is_now_open ? 'label-open' : ''}} {{$item->is_closing_soon ? 'label-closing' : ''}}">
                                         {{$item->is_now_open ? 'Now Open' : ''}}
