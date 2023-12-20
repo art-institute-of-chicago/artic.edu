@@ -114,6 +114,11 @@
 
         .m-feature-block-listing_link {
             width: 100%;
+            transition: opacity 0.2s ease-in-out;
+
+            &:hover {
+                opacity: 80%;
+            }
         }
 
         .m-feature-block-listing__meta {
