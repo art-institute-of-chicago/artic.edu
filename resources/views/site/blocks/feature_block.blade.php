@@ -96,7 +96,7 @@
                             @endif
                             @if($item->imageFront('listing') ?? $item->imageFront('hero'))
                                 @component('components.atoms._img')
-                                @slot('class', 'm-feature-block-listing__img ' . ($ratio ?? '') . ' column-' . $columns . 'x')
+                                @slot('class', 'm-feature-block-listing__img ' . ' column-' . $columns . 'x')
                                 @slot('image', $item->imageFront('listing') ?? $item->imageFront('hero'))
                                     @slot('settings', array(
                                         'fit' => 'crop',
