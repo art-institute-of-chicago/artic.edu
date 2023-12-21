@@ -83,7 +83,7 @@
             @foreach($items as $index => $item)
                 <li class="m-feature-block-listing column-{{ $columns }}x">
                     <a href="{{ $item->url_without_slug }}" class="m-feature-block-listing_link">
-                        <div class="m-feature-block-listing__img__wrapper">
+                        <div class="m-feature-block-listing__img__wrapper {{$ratio}}">
                             @if ($item->type === 'highlight')
                                 <span class="m-feature-block-listing__img__overlay">
                                     <svg class="icon--slideshow--24"><use xlink:href="#icon--slideshow--24"></use></svg>
@@ -118,7 +118,7 @@
                                 </div>
                                 @endif
                             @else
-                                <span class='default-img m-feature-block-listing__img {{$ratio}} column-{{$columns}}x'></span>
+                                <span class='default-img m-feature-block-listing__img column-{{$columns}}x'></span>
                             @endif
                         </div>
                         <span class="m-feature-block-listing__meta {{$item->type ? "l-type-$item->type" : ""}}">
