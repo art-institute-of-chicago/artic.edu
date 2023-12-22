@@ -10,8 +10,7 @@
     @endcomponent
 
     <h2 class="f-title">{{ $title }}</h2>
-    {{-- TODO uncomment when feature/contrast-header branch is merged in --}}
-    {{-- <p class="f-intro">{{ $intro }}</p> --}}
+    <p class="f-intro">{{ $intro }}</p>
     <div class="o-menu-bar">
         @if(!empty($item->menuItems))
             <ul>

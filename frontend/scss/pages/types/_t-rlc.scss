@@ -130,6 +130,14 @@
     }
   }
   div.location .location-image {
+    @include breakpoint('medium+') {
+      width: 50%;
+    }
+    &>img {
+      height: auto;
+      width: 100%;
+      object-fit: contain;
+    }
     .role-mobile {
       @include breakpoint('medium+') {
         display: none;
@@ -162,6 +170,7 @@
   .visit-button {
     display: flex;
     flex-grow: 1;
+    padding-top: 20px;
     .f-buttons {
       align-self: end;
       color: $color__text--secondary;
