@@ -209,6 +209,9 @@ class LandingPagesController extends FrontController
 
             case $types->search('RLC'):
                 $viewData = [
+                    // TODO remove when feature/contrast-header branch is merged in
+                    'contrastHeader' => true,
+                    'intro' => 'As the museum’s hub for learning and creativity, the Ryan Learning Center creates space for visitors of all ages to enjoy art making and experiential activities.',
                     'hours' => $hours,
                     'location_image' => [
                         'default' => $item->imageFront('rlc_location'),
