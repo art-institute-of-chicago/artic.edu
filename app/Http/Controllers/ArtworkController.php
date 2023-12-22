@@ -147,11 +147,17 @@ class ArtworkController extends BaseScopedController
         }
 
         $exploreFurther = new ExploreFurther($item);
-
-        $view['html'] = view('site.shared._exploreFurther', [
-            'artworks' => $exploreFurther->collection(request()->all()),
-        ])->render();
-
+    
+        if (request()->has('ef-all_ids')) {
+            $view['html'] = view('site.shared._exploreFurtherTags', [
+                'tags' => $exploreFurther->allTags(request()->all()),
+            ])->render();
+        } else {
+            $view['html'] = view('site.shared._exploreFurther', [
+                'artworks' => $exploreFurther->collection(request()->all()),
+            ])->render();
+        }
+    
         return $view;
     }
 
