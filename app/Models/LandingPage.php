@@ -60,6 +60,7 @@ class LandingPage extends AbstractModel implements Sortable
         'position',
         'type_id',
         'title',
+        'intro',
         'meta_title',
         'meta_description',
         'search_tags',
