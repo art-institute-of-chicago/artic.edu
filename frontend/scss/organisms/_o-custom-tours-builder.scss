@@ -155,6 +155,10 @@
   border-top: 1px solid $color__black--20;
   border-bottom: 1px solid $color__black--20;
   margin-bottom: 24px;
+
+  p {
+    @include untuck;
+  }
 }
 
 .aic-ct-preview__description {
