@@ -585,6 +585,11 @@
   margin-right: auto;
 }
 
+.aic-ct-tour-item__image {
+  width: 96px;
+  object-fit: cover;
+}
+
 .aic-ct-tour-item__title,
 .aic-ct-tour-item__artist,
 .aic-ct-tour-item__gallery {
