@@ -213,8 +213,17 @@
   z-index: 9;
 
   @include breakpoint('medium+') {
+    width: 100vw;
+    // This is a little less convential on account of the double translate
+    // But it's needed to work as position sticky cannot use the left
+    translate: 50% 0;
+    transform: translateX(-50%);
     margin-left: -4.6875vw;
-    margin-right: -4.6875vw;
+  }
+
+  @include breakpoint('xlarge') {
+    margin-left: auto;
+    transform: translateX(calc(-100vw + 750px));
   }
 }
 
@@ -457,8 +466,10 @@
   color: $color__white;
 
   @include breakpoint('medium+') {
-    margin-left: -4.6875vw;
-    margin-right: -4.6875vw;
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
