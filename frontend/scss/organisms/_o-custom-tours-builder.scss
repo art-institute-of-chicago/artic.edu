@@ -94,6 +94,14 @@
   }
 }
 
+.s-body-locked--ct {
+  // For supporting native position sticky the builder unsets the body overflow value
+  // When the moodal is open other styles will be effected by this so we need to override it
+  body {
+    overflow: hidden !important;
+  }
+}
+
 // ---- Custom tours: Preview
 
 .aic-ct-preview__content {
