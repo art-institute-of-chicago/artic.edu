@@ -159,7 +159,7 @@ class LandingPagesController extends FrontController
         switch ($item->type_id) {
             case $types->search('Home'):
                 $viewData = [
-                    'contrastHeader' => sizeof($mainFeatures) > 0,
+                    'contrastHeader' => true,
                     'filledLogo' => sizeof($mainFeatures) > 0,
                     'hours' => $hours,
                     'cta_module_image' => $item->imageFront('home_cta_module_image'),
