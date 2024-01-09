@@ -5,13 +5,14 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasApiModel;
+use App\Models\Behaviors\HasAutoRelated;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
-use App\Models\Vendor\Block;
+use App\Models\Behaviors\HasAutoRelated
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
@@ -27,6 +28,7 @@ class Exhibition extends AbstractModel
     use HasRelated;
     use HasApiRelations;
     use HasFeaturedRelated;
+    use HasAutoRelated;
 
     protected $apiModel = 'App\Models\Api\Exhibition';
 
@@ -322,35 +324,5 @@ class Exhibition extends AbstractModel
             ->all();
 
         return in_array($this->datahub_id, $featuredIds);
-    }
-
-    public function related($id)
-    {
-        $modelName = 'exhibitions';
-
-
-        $blockableTypes = [
-            'highlights',
-            'educatorResources',
-            'articles',
-            'videos',
-            'researchGuides',
-            'genericPages',
-            'events',
-            'exhibitions',
-        ];
-
-        $relatedBlockItems = Block::whereIn('blockable_type', $blockableTypes)
-            ->where('content', 'LIKE', '%"browsers"%')
-            ->where('content', 'LIKE', '%' . $modelName . '%')
-            ->where('content', 'LIKE', '%' . $id . '%')
-            ->get();
-
-        $relatedItems = [];
-        foreach ($relatedBlockItems as $relatedBlockItem) {
-            $relatedItems[] = $relatedBlockItem->blockable;
-        }
-
-        return $relatedItems;
     }
 }

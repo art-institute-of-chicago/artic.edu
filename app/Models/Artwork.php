@@ -7,8 +7,8 @@ use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
+use App\Models\Behaviors\HasAutoRelated;
 use App\Models\Behaviors\HasMedias;
-use App\Models\Vendor\Block;
 use App\Helpers\StringHelpers;
 
 class Artwork extends AbstractModel
@@ -18,6 +18,7 @@ class Artwork extends AbstractModel
     use HasRelated;
     use HasApiRelations;
     use HasFeaturedRelated;
+    use HasAutoRelated;
     use HasMedias;
     use HasFiles;
 
@@ -141,35 +142,5 @@ class Artwork extends AbstractModel
                 },
             ],
         ];
-    }
-
-    public function related($id)
-    {
-        $modelName = 'artworks';
-
-
-        $blockableTypes = [
-            'highlights',
-            'educatorResources',
-            'articles',
-            'videos',
-            'researchGuides',
-            'genericPages',
-            'events',
-            'exhibitions',
-        ];
-
-        $relatedBlockItems = Block::whereIn('blockable_type', $blockableTypes)
-            ->where('content', 'LIKE', '%"browsers"%')
-            ->where('content', 'LIKE', '%' . $modelName . '%')
-            ->where('content', 'LIKE', '%' . $id . '%')
-            ->get();
-
-        $relatedItems = [];
-        foreach ($relatedBlockItems as $relatedBlockItem) {
-            $relatedItems[] = $relatedBlockItem->blockable;
-        }
-
-        return $relatedItems;
     }
 }

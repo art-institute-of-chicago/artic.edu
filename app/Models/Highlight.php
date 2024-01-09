@@ -5,7 +5,6 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use App\Models\Vendor\Block;
 use App\Models\Api\Artwork;
 use App\Models\Api\Search;
 use App\Models\Behaviors\HasAuthors;
@@ -14,6 +13,7 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasAutoRelated;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasUnlisted;
 
@@ -28,6 +28,7 @@ class Highlight extends AbstractModel
     use Transformable;
     use HasRelated;
     use HasApiRelations;
+    use HasAutoRelated;
     use HasFeaturedRelated;
     use HasUnlisted;
     use HasAuthors;
@@ -306,34 +307,5 @@ class Highlight extends AbstractModel
                 },
             ],
         ];
-    }
-
-    public function related($id)
-    {
-        $modelName = 'highlights';
-
-        $blockableTypes = [
-            'highlights',
-            'educatorResources',
-            'articles',
-            'videos',
-            'researchGuides',
-            'genericPages',
-            'events',
-            'exhibitions',
-        ];
-
-        $relatedBlockItems = Block::whereIn('blockable_type', $blockableTypes)
-            ->where('content', 'LIKE', '%"browsers"%')
-            ->where('content', 'LIKE', '%' . $modelName . '%')
-            ->where('content', 'LIKE', '%' . $id . '%')
-            ->get();
-
-        $relatedItems = [];
-        foreach ($relatedBlockItems as $relatedBlockItem) {
-            $relatedItems[] = $relatedBlockItem->blockable;
-        }
-
-        return $relatedItems;
     }
 }
