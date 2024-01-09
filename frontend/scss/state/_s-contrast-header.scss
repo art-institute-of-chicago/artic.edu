@@ -89,7 +89,7 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
   &.s-filled-logo {
 
     .g-header__logo {
-      color: $color__link--accent;
+      color: $color__text--title-contrast;
     }
   }
 }
