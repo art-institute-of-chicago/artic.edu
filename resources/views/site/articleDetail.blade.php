@@ -209,8 +209,8 @@
         <ul class="m-inline-list" aria-labelledby="h-topics">
         @foreach ($item->topics as $topic)
             <li class="m-inline-list__item">
-                @if (!empty($topic['href']))
-                    <a class="tag f-tag" href="{{ $topic['href'] }}">{{ $topic['name'] }}</a>
+                @if (!empty($topic['id']))
+                    <a class="tag f-tag" href="{{ route('articles', ['category' => $topic['id']]) }}">{{ $topic['name'] }}</a>
                 @else
                     <span class="tag f-tag">{{ $topic['name'] }}</span>
                 @endif
