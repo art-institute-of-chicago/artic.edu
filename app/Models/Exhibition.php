@@ -328,24 +328,16 @@ class Exhibition extends AbstractModel
     {
         $modelName = 'exhibitions';
 
+
         $blockableTypes = [
-            'landingPages',
-            'pressReleases',
-            'printedPublications',
-            'issueArticles',
-            'digitalPublicationSections',
             'highlights',
-            'magazineIssues',
             'educatorResources',
             'articles',
-            'sponsors',
-            'exhibitionPressRooms',
             'videos',
             'researchGuides',
             'genericPages',
             'events',
             'exhibitions',
-            'digitalPublications',
         ];
 
         $relatedBlockItems = Block::whereIn('blockable_type', $blockableTypes)
