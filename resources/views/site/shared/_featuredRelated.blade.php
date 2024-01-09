@@ -39,8 +39,8 @@
 
 @if (method_exists($item, 'hasFeaturedRelated') && $item->hasFeaturedRelated() || count($autoRelated) > 0)
     <aside class="m-inline-aside{{ (isset($variation)) ? ' '.$variation : '' }}" {!! (isset($behavior)) ? 'data-behavior="'.$behavior.'"' : '' !!}>
-            @component('components.atoms._hr')
-            @endcomponent
+        @component('components.atoms._hr')
+        @endcomponent
         @component('components.blocks._text')
             @slot('font', 'f-module-title-1')
             @slot('tag', 'h4')
