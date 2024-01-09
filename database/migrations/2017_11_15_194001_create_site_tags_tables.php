@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateSiteTagsTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('site_tagged', function (Blueprint $table) {
             $table->increments('id');
@@ -25,10 +24,10 @@ class CreateSiteTagsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('site_tagged');
         Schema::dropIfExists('site_tag_slugs');
         Schema::dropIfExists('site_tags');
     }
-}
+};

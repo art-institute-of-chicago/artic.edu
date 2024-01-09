@@ -17,7 +17,6 @@ class ResolvePageRedirect
      */
     public function handle(Request $request, Closure $next)
     {
-
         $slug = strtolower($request->path());
 
         if ($slug === "/") {

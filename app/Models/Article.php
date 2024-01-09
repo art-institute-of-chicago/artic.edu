@@ -213,37 +213,43 @@ class Article extends AbstractModel implements Feedable
 
     public static function getAllFeedItems()
     {
-        return \App\Models\Article::query()->published()->notUnlisted()->orderBy('date', 'desc')->limit(300)->get();
+        return \App\Models\Article::query()->published()->notUnlisted()->orderBy('date', 'desc')->limit(50)->get();
     }
 
     public function toFeedItem(): FeedItem
     {
-        $heroImage = $this->imageFront('hero');
-
-        $ch = curl_init($heroImage['src']);
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, true);
-        curl_setopt($ch, CURLOPT_NOBODY, true);
-
-        $data = curl_exec($ch);
-        $length = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
-        $type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
-
-        curl_close($ch);
-
-        return FeedItem::create([
+        $item = [
             'id' => $this->id,
             'title' => $this->title,
             'summary' => $this->heading ?? $this->list_description ?? 'Article',
-            'author' => 'AIC',
+            'authorName' => 'Art Institute of Chicago',
             'updated' => $this->date ?? $this->updated_at, // WEB-1278: Display date
             'link' => route('articles.show', $this),
-            'enclosure' => $heroImage['src'],
-            'enclosureLength' => $length,
-            'enclosureType' => $type,
             'category' => $this->categories->first()->name ?? '',
-        ]);
+        ];
+
+        $heroImage = $this->imageFront('hero');
+
+        if ($heroImage) {
+            $img = curl_init($heroImage['src']);
+
+            curl_setopt($img, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($img, CURLOPT_HEADER, true);
+            curl_setopt($img, CURLOPT_NOBODY, true);
+
+            $length = curl_getinfo($img, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+            $type = curl_getinfo($img, CURLINFO_CONTENT_TYPE);
+
+            curl_close($img);
+
+            $item = array_merge($item, [
+                'enclosure' => $heroImage ? $heroImage['src'] : null,
+                'enclosureLength' => $length,
+                'enclosureType' => $type,
+            ]);
+        }
+
+        return FeedItem::create($item);
     }
 
     protected function transformMappingInternal()

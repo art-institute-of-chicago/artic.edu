@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateExhibitionPressRoomsTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('exhibition_press_rooms', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true, true);
@@ -24,10 +23,10 @@ class CreateExhibitionPressRoomsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('exhibition_press_room_revisions');
         Schema::dropIfExists('exhibition_press_room_slugs');
         Schema::dropIfExists('exhibition_press_rooms');
     }
-}
+};

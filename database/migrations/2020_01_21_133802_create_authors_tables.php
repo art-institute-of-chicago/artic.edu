@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateAuthorsTables extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('authors', function (Blueprint $table) {
             createDefaultTableFields($table);
@@ -23,10 +22,10 @@ class CreateAuthorsTables extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('author_revisions');
         Schema::dropIfExists('author_slugs');
         Schema::dropIfExists('authors');
     }
-}
+};

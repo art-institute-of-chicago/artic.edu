@@ -4,6 +4,7 @@ namespace App\Presenters\Admin;
 
 use Carbon\Carbon;
 use App\Presenters\BasePresenter;
+use App\Models\Page;
 use Illuminate\Support\Str;
 
 class ExhibitionPresenter extends BasePresenter
@@ -65,6 +66,44 @@ class ExhibitionPresenter extends BasePresenter
 
                 break;
         }
+    }
+
+    public function isFeatured()
+    {
+        $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
+
+        $featurePos = $page->present()->currentFeaturedExhibitions()->search(function ($item) {
+            return $item->datahub_id == $this->entity->datahub_id;
+        });
+
+        $listingPos = $page->present()->currentListedExhibitions()->search(function ($item) {
+            return $item->datahub_id == $this->entity->datahub_id;
+        });
+
+        // $featurePos represents the first two spots on the exhibition landing page
+        // $listingPos represents the remaining exhibitions listed on the landing page
+        // If the exhibition is either if these lists, return true
+        return $featurePos !== false || $listingPos !== false;
+    }
+
+    public function position()
+    {
+        $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
+
+        $featurePos = $page->present()->currentFeaturedExhibitions()->search(function ($item) {
+            return $item->datahub_id == $this->entity->datahub_id;
+        });
+
+        $listingPos = $page->present()->currentListedExhibitions()->search(function ($item) {
+            return $item->datahub_id == $this->entity->datahub_id;
+        });
+
+        // $featurePos represents the first two spots on the exhibition landing page
+        // $listingPos represents the remaining exhibitions listed on the landing page
+        // If the exhibition is the featured position, return its value
+        // If the exhibition is listed below the featured two, bump its index by two and return it
+        // Otherwise, the exhibition is not listed on the exhibition landing page. Return -1.
+        return $featurePos !== false ? $featurePos : ($listingPos !== false ? $listingPos + 2 : -1);
     }
 
     public function exhibitionType()

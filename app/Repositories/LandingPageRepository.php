@@ -9,6 +9,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\LandingPage;
 use App\Repositories\Behaviors\HandleApiRelations;
+use App\Repositories\Behaviors\HandleApiBlocks;
 
 class LandingPageRepository extends ModuleRepository
 {
@@ -17,21 +18,25 @@ class LandingPageRepository extends ModuleRepository
     use HandleMedias;
     use HandleFiles;
     use HandleApiRelations;
-    use HandleBlocks;
+    use HandleApiBlocks;
+    use HandleBlocks {
+        HandleApiBlocks::getBlockBrowsers as HandleApiBlocksgetBlockBrowsers;
+        HandleBlocks::getBlockBrowsers as HandleBlocksgetBlockBrowsers;
+    }
 
     protected $browsers = [
         // Homepage landing
-        'homeEvents' => [
+        'events' => [
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'events',
         ],
-        'mainHomeFeatures' => [
-            'routePrefix' => 'homepage',
-            'moduleName' => 'homeFeatures',
+        'primaryFeatures' => [
+            'routePrefix' => 'generic',
+            'moduleName' => 'pageFeatures',
         ],
-        'secondaryHomeFeatures' => [
-            'routePrefix' => 'homepage',
-            'moduleName' => 'homeFeatures',
+        'secondaryFeatures' => [
+            'routePrefix' => 'generic',
+            'moduleName' => 'pageFeatures',
         ],
 
         // Visit
@@ -69,37 +74,13 @@ class LandingPageRepository extends ModuleRepository
     ];
 
     protected $apiBrowsers = [
-        // Homepage landing
-        'homeExhibitions' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
-        'homeShopItems' => [
+        'shopItems' => [
             'moduleName' => 'shopItems',
         ],
-        'homeArtworks' => [
+        'artworks' => [
             'routePrefix' => 'collection',
             'moduleName' => 'artworks',
         ],
-
-        // Exhibition and events landing
-        'exhibitionsExhibitions' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
-        'exhibitionsCurrent' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
-        'exhibitionsUpcoming' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
-        'exhibitionsUpcomingListing' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
-
         // Collection landing
         'artCategoryTerms' => [
             'moduleName' => 'categoryTerms',
@@ -109,9 +90,10 @@ class LandingPageRepository extends ModuleRepository
     ];
 
     protected $repeaters = [
+        'social_links',
         // Homepage landing
         'artists' => [
-            'relation' => 'homeArtists',
+            'relation' => 'artists',
             'model' => 'HomeArtist'
         ],
 
@@ -135,12 +117,10 @@ class LandingPageRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeExhibitions', 'position', 'Exhibition');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeEvents', 'position', 'Event');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'mainHomeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'secondaryHomeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'events', 'position', 'Event');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'primaryFeatures', 'position', 'PageFeature');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'secondaryFeatures', 'position', 'PageFeature');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'shopItems', 'position', 'ShopItem');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
 
@@ -151,7 +131,7 @@ class LandingPageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsToMany($object, $fields, 'printedPublications', 'position', 'PrintedPublication');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'digitalPublications', 'position', 'DigitalPublication');
 
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'homeArtists', 'position', 'HomeArtist');
+        $this->hydrateOrderedBelongsToMany($object, $fields, 'artists', 'position', 'HomeArtist');
 
         return parent::hydrate($object, $fields);
     }
@@ -161,7 +141,7 @@ class LandingPageRepository extends ModuleRepository
         // Art & Ideas
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
-            'experiences' => false
+            'experiences' => false,
         ]);
 
         parent::afterSave($object, $fields);
@@ -173,17 +153,10 @@ class LandingPageRepository extends ModuleRepository
         // Art & Ideas
         $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [
             'articles' => false,
-            'experiences' => false
+            'experiences' => false,
         ]);
 
         return $fields;
-    }
-
-    public function byName($name, $with = [])
-    {
-        $type = array_search($name, $this->model::$types);
-
-        return $this->model->whereType($type)->with($with)->first();
     }
 
     public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
@@ -202,5 +175,11 @@ class LandingPageRepository extends ModuleRepository
         } else {
             return parent::getFormFieldsForBrowser($object, $relation, $routePrefix, $titleKey, $moduleName);
         }
+    }
+
+    public function getBlockBrowsers($block)
+    {
+        $apiBlocks = $this->HandleApiBlocksgetBlockBrowsers($block);
+        return !empty($apiBlocks) ? $apiBlocks : $this->HandleBlocksgetBlockBrowsers($block);
     }
 }

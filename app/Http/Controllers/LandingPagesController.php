@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admission;
+use App\Models\Hour;
 use App\Models\Lightbox;
-use App\Models\LandingPageType;
+use App\Models\LandingPage;
 use App\Helpers\StringHelpers;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
@@ -22,7 +23,7 @@ class LandingPagesController extends FrontController
     public function show($id, $slug = null)
     {
         $item = $this->landingPageRepository->published()->find((int) $id);
-        $types = LandingPageType::all()->pluck('page_type', 'id')->toArray();
+        $types = collect(LandingPage::TYPES);
 
         $admission = new Admission();
 
@@ -45,14 +46,14 @@ class LandingPagesController extends FrontController
         }
 
         // Home
-        $mainHomeFeatures = $item->mainHomeFeatures()->published()->limit(1)->get();
-        $secondaryHomeFeatures = $item->secondaryHomeFeatures()->published()->limit(2)->get();
+        $primaryFeatures = $item->primaryFeatures()->published()->limit(1)->get();
+        $secondaryFeatures = $item->secondaryFeatures()->published()->limit(2)->get();
 
-        $mainFeatures = $mainHomeFeatures->concat($secondaryHomeFeatures);
+        $mainFeatures = $primaryFeatures->concat($secondaryFeatures);
 
         // WEB-2254: Finish deprecating `homeFeatures` relationship
         if ($mainFeatures->count() < 1) {
-            $mainFeatures = $item->homeFeatures()->published()->limit(3)->get();
+            $mainFeatures = $item->features()->published()->limit(3)->get();
         }
 
         // Visit
@@ -71,28 +72,40 @@ class LandingPagesController extends FrontController
                 'size' => 'hero',
                 'media' => $video,
                 'hideCaption' => true,
+                'style' => $item->header_variation,
+                'ctaTitle' => $item->header_cta_title,
+                'ctaButtonLabel' => $item->header_cta_button_label,
+                'ctaButtonLink' => $item->header_cta_button_link
             ];
         } else {
             $headerMedia = [
                 'type' => 'image',
                 'size' => 'hero',
-                'media' => $item->imageFront('hero'),
+                'media' => null,
+                'hero' => $item->imageFront('hero'),
+                'mobile_hero' => $item->imageFront('mobile_hero'),
                 'hideCaption' => true,
+                'style' => $item->header_variation,
+                'ctaTitle' => $item->header_cta_title,
+                'ctaButtonLabel' => $item->header_cta_button_label,
+                'ctaButtonLink' => $item->header_cta_button_link
             ];
         }
 
+        $hourType = $item->type == 'RLC' ? collect(Hour::$types)->search('RLC') : 0;
         $hours = [
-            'hide_hours' => $item->visit_hide_hours,
+            'hide_hours' => $item->hide_hours,
             'media' => [
                 'type' => 'image',
                 'size' => 's',
                 'media' => $item->imageFront('visit_featured_hour'),
-                'caption' => $item->visit_hour_image_caption,
+                'caption' => $item->hour_image_caption,
             ],
-            'primary' => $item->visit_hour_header,
-            'secondary' => $item->visit_hour_subheader,
+            'primary' => $item->hour_header,
+            'secondary' => $item->hour_subheader,
             'sections' => $item->featured_hours,
-            'intro' => $item->visit_hour_intro
+            'intro' => $item->hour_intro,
+            'hours' => Hour::today(type: $hourType)->first(),
         ];
 
         $itemprops = [
@@ -101,28 +114,22 @@ class LandingPagesController extends FrontController
             'publicAccess' => 'true',
         ];
 
-        $contrastHeader = false;
-        $filledLogo = false;
         $title = '';
 
-        switch ($item->type) {
-            case array_search('Home', $types):
+        switch ($item->type_id) {
+            case $types->search('Home'):
                 $this->seo->setTitle($item->meta_title ?: "Downtown Chicago's #1 Museum");
                 $this->seo->setDescription($item->meta_description ?: "Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
-                $contrastHeader = sizeof($mainFeatures) > 0;
-                $filledLogo = sizeof($mainFeatures) > 0;
                 break;
 
-            case array_search('Visit', $types):
+            case $types->search('Visit'):
                 $this->seo->setTitle($item->meta_title ?: 'Visit a Chicago Landmark');
                 $this->seo->setDescription($item->meta_description ?: 'Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
                 $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
-                $contrastHeader = true;
-                $filledLogo = true;
                 $title = __('Visit');
                 break;
 
-            case array_search('Research and Resources', $types):
+            case $types->search('Research and Resources'):
                 $this->seo->setTitle($item->meta_title ?: 'Research & Resources');
                 $this->seo->setDescription($item->resources_landing_intro);
                 $this->seo->setImage($item->imageFront('research_landing_image'));
@@ -132,77 +139,56 @@ class LandingPagesController extends FrontController
             default:
                 $this->seo->setTitle($item->meta_title);
                 $this->seo->setDescription($item->meta_description);
-                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
+                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('mobile_hero'));
                 $title = $item->title;
                 break;
         }
 
-        $view_data = [
+        $commonViewData = [
             'item' => $item,
-            'contrastHeader' => $contrastHeader,
-            'filledLogo' => $filledLogo,
+            'contrastHeader' => false,
+            'headerMedia' => $headerMedia,
+            'mainFeatures' => $mainFeatures,
+            'socialLinks' => $item->socialLinks,
+            'filledLogo' => false,
             'title' => $title,
-            'landingPageType' => StringHelpers::pageBlades(array_search($item->type, array_flip($types)))
+            'intro' => $item->intro,
+            'landingPageType' => StringHelpers::pageBlades($item->type),
         ];
 
-        switch ($item->type) {
-            case array_search('Home', $types):
-                $view_data = array_merge($view_data, [
-                    'mainFeatures' => $mainFeatures,
-                    'intro' => $item->home_intro,
-                    'visit_button_text' => $item->home_visit_button_text ?? 'Visit',
-                    'visit_button_url' => $item->home_visit_button_url ?? route('visit'),
-                    'plan_your_visit_link_1_text' => $item->home_plan_your_visit_link_1_text,
-                    'plan_your_visit_link_1_url' => $item->home_plan_your_visit_link_1_url,
-                    'plan_your_visit_link_2_text' => $item->home_plan_your_visit_link_2_text,
-                    'plan_your_visit_link_2_url' => $item->home_plan_your_visit_link_2_url,
-                    'plan_your_visit_link_3_text' => $item->home_plan_your_visit_link_3_text,
-                    'plan_your_visit_link_3_url' => $item->home_plan_your_visit_link_3_url,
+        switch ($item->type_id) {
+            case $types->search('Home'):
+                $viewData = [
+                    'contrastHeader' => true,
+                    'filledLogo' => sizeof($mainFeatures) > 0,
+                    'hours' => $hours,
                     'cta_module_image' => $item->imageFront('home_cta_module_image'),
-                    'cta_module_action_url' => $item->home_cta_module_action_url,
-                    'cta_module_header' => $item->home_cta_module_header,
-                    'cta_module_button_text' => $item->home_cta_module_button_text,
-                    'cta_module_body' => $item->home_cta_module_body,
                     'roadblocks' => $this->getLightboxes(),
-                    ]);
+                ];
                 break;
 
-            case array_search('Visit', $types):
-                $view_data = array_merge($view_data, [
+            case $types->search('Visit'):
+                $viewData = [
+                    'contrastHeader' => true,
                     'primaryNavCurrent' => 'visit',
-                    'headerMedia' => $headerMedia,
                     'hours' => $hours,
                     'itemprops' => $itemprops,
-                    'visit_nav_buy_tix_label' => $item->visit_nav_buy_tix_label,
-                    'visit_nav_buy_tix_link' => $item->visit_nav_buy_tix_link,
-                    'visit_hours_intro'  => $item->visit_hours_intro,
-                    'visit_members_intro' => $item->visit_members_intro,
-                    'visit_admission_intro' => $item->visit_admission_intro,
                     'visit_map' => $item->imageFront('visit_map'),
-                    'visit_parking_label' => $item->visit_parking_label,
-                    'visit_parking_link' => $item->visit_parking_link,
-                    'visit_faqs_label' => $item->visit_faqs_label,
-                    'visit_faqs_link' => $item->visit_faqs_link,
-                    'visit_admission_members_link' => $item->visit_admission_members_link,
-                    'visit_admission_members_label' => $item->visit_admission_members_label,
-                    'visit_admission_tix_link' => $item->visit_admission_tix_link,
-                    'visit_admission_tix_label' => $item->visit_admission_tix_label,
                     'menuItems' => $item->menuItems,
                     'locations' => $item->locations,
                     'admission' => [
                         'titles' => $feeTitles,
                         'prices' => $feePrices,
                     ],
-                    'accesibility_link' => $item->visit_faq_accessibility_link,
-                    'faqs' => $item->faqs->all()
-                ]);
-
+                    'accesibility_link' => $item->labels->get('visit_faq_accessibility_link'),
+                    'faqs' => $item->faqs->all(),
+                ];
                 break;
 
-            case array_search('Research and Resources', $types):
-                $view_data = array_merge($view_data, [
+            case $types->search('Research and Resources'):
+                $viewData = [
                     'primaryNavCurrent' => 'collection',
-                    'intro' => $item->art_intro,
+                    'intro' => $item->labels->get('resources_landing_intro'),
                     'linksBar' => [
                         [
                             'href' => route('collection'),
@@ -218,14 +204,28 @@ class LandingPagesController extends FrontController
                             'active' => true,
                         ],
                     ],
-                ]);
+                ];
+                break;
+
+            case $types->search('RLC'):
+                $viewData = [
+                    'contrastHeader' => true,
+                    'intro' => 'As the museum’s hub for learning and creativity, the Ryan Learning Center creates space for visitors of all ages to enjoy art making and experiential activities.',
+                    'hours' => $hours,
+                    'location_image' => [
+                        'default' => $item->imageFront('rlc_location'),
+                        'mobile' => $item->imageFront('rlc_location', 'mobile'),
+                    ],
+                ];
                 break;
 
             default:
+                $viewData = array();
                 break;
         }
+        $viewLabels = $item->labels?->toArray() ?? [];
 
-        return view('site.landingPageDetail', $view_data);
+        return view('site.landingPageDetail', array_merge($commonViewData, $viewData, $viewLabels));
     }
 
     protected function setPageMetaData($item)

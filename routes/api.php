@@ -21,6 +21,7 @@ use App\Http\Controllers\API\HoursController;
 use App\Http\Controllers\API\InteractiveFeaturesController;
 use App\Http\Controllers\API\LandingPagesController;
 use App\Http\Controllers\API\LocationsController;
+use App\http\Controllers\API\PageFeaturesController;
 use App\Http\Controllers\API\PressReleasesController;
 use App\Http\Controllers\API\PrintedPublicationsController;
 use App\Http\Controllers\API\SponsorsController;
@@ -35,10 +36,10 @@ use App\Http\Controllers\SeamlessImagesController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
 |
- */
+*/
 
 Route::get('/', function () {
     return redirect('/api/v1');
@@ -141,6 +142,12 @@ Route::group(['prefix' => 'v1'], function () {
      */
     Route::get('genericpages', [GenericPagesController::class, 'index']);
     Route::get('genericpages/{id}', [GenericPagesController::class, 'show']);
+
+    /**
+     * Page features ------------------------------------------------------
+     */
+    Route::get('pagefeatures', [PageFeaturesController::class, 'index']);
+    Route::get('pagefeatures/{id}', [PageFeaturesController::class, 'show']);
 
     /**
      * Press releases ------------------------------------------------------

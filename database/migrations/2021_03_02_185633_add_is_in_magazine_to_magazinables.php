@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIsInMagazineToMagazinables extends Migration
-{
+return new class () extends Migration {
     private $tables = [
         'articles',
         'experiences',
@@ -17,7 +16,7 @@ class AddIsInMagazineToMagazinables extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         foreach ($this->tables as $tableName) {
             Schema::table($tableName, function (Blueprint $table) {
@@ -33,7 +32,7 @@ class AddIsInMagazineToMagazinables extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         foreach ($this->tables as $tableName) {
             Schema::table($tableName, function (Blueprint $table) {
@@ -41,4 +40,4 @@ class AddIsInMagazineToMagazinables extends Migration
             });
         }
     }
-}
+};

@@ -37,7 +37,7 @@ class ArticleFactory extends Factory
         ];
     }
 
-    public function configure()
+    public function configure(): Factory
     {
         return $this->afterCreating(function (Article $article) {
             $article->medias()->attach(
@@ -47,7 +47,7 @@ class ArticleFactory extends Factory
         });
     }
 
-    public function published()
+    public function published(): Factory
     {
         return $this->state(function (array $attributes) {
             return [
@@ -56,7 +56,7 @@ class ArticleFactory extends Factory
         });
     }
 
-    public function visible()
+    public function visible(): Factory
     {
         return $this->state(function (array $attributes) {
             return [
@@ -66,7 +66,7 @@ class ArticleFactory extends Factory
         });
     }
 
-    public function notUnlisted()
+    public function notUnlisted(): Factory
     {
         return $this->state(function (array $attributes) {
             return [

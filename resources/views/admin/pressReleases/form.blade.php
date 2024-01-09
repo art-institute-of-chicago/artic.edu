@@ -45,9 +45,19 @@
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
-            'paragraph', 'image', 'video', 'media_embed', 'list',
-            'accordion', 'membership_banner', 'timeline', 'link', 'newsletter_signup_inline',
-            'split_block', 'hr', '3d_model'
+            '3d_model',
+            'accordion',
+            'hr',
+            'image',
+            'link',
+            'list',
+            'media_embed',
+            'membership_banner',
+            'newsletter_signup_inline',
+            'paragraph',
+            'split_block',
+            'timeline',
+            'video'
         ])
     ])
 @stop

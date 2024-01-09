@@ -20,5 +20,6 @@ return [
     'list' => [
     ],
 
-    'capsule_config_prefix' => 'twill.capsule'
+    'capsule_config_prefix' => 'twill.capsule',
+    'capsule_repository_prefix' => env('CAPSULE_REPOSITORY_PREFIX', 'area17')
 ];

@@ -146,22 +146,7 @@
         @slot('ariaControls', 'explore-further-pinboard')
     @endcomponent
 
-    @if ($exploreFurther && !$exploreFurther->isEmpty() && !$exploreFurtherAllTags)
-        @component('site.shared._exploreFurther')
-            @slot('artworks', $exploreFurther)
-        @endcomponent
-    @endif
-
-    @if ($exploreFurtherAllTags)
-        @component('components.molecules._m-multi-col-list')
-            @slot('cols_small','2')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-            @slot('title', 'All tags on this artwork')
-            @slot('items', $exploreFurtherAllTags)
-        @endcomponent
-    @endif
+    <div class="explore-further-injected"></div>
 
     @if ($exploreFurtherCollectionUrl)
         @component('components.molecules._m-links-bar')

@@ -35,8 +35,8 @@
     @formField('wysiwyg', [
         'name' => 'listing_description',
         'label' => 'Listing description',
-        'note' => 'Max 255 characters',
-        'maxlength' => 255,
+        'note' => 'Max 300 characters',
+        'maxlength' => 300,
         'toolbarOptions' => [
             'italic'
         ],
@@ -65,9 +65,19 @@
 
         @formField('block_editor', [
             'blocks' => BlockHelpers::getBlocksForEditor([
-                'paragraph', 'image', 'video', 'media_embed', 'list',
-                'accordion', 'membership_banner', 'timeline', 'link', 'newsletter_signup_inline',
-                'hr', 'split_block', '3d_model'
+                '3d_model',
+                'accordion',
+                'hr',
+                'image',
+                'link',
+                'list',
+                'media_embed',
+                'membership_banner',
+                'newsletter_signup_inline',
+                'paragraph',
+                'split_block',
+                'timeline',
+                'video'
             ])
         ])
     </a17-fieldset>

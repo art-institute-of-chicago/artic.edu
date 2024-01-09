@@ -1,0 +1,121 @@
+.home {
+  .o-hours {
+    margin-top: 24px;
+  }
+  .m-home-header {
+    .m-media__img {
+      height: 675px;
+    }
+  }
+  .home-top {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $color__rules--primary;
+
+    @include breakpoint('small-') {
+      flex-direction: column;
+    }
+
+    .home-callout {
+      min-width: 65%;
+
+      @include breakpoint('small-') {
+        min-width: 100%;
+      }
+
+      .home-callout-text {
+        color: $color__text--tertiary;
+        a {
+          color: $color__rules--brand;
+          text-decoration: underline;
+          text-decoration-thickness: 2px;
+        }
+      }
+    }
+
+    .home-top-info {
+      margin-left: 5%;
+      min-width: 30%;
+
+      @include breakpoint('small-') {
+        margin-left: 0;
+        margin-top: 20px;
+        min-width: 100%;
+      }
+      > div {
+        border-top: 1px solid $color__rules--primary;
+        padding: 20px 0;
+        span {
+          font-family: $sans-serif-font--loaded;
+          display: flex;
+          align-items: center;
+          font-size: 17px;
+          svg {
+            color: $color__rules--brand;
+            fill: $color__rules--brand;
+            height: 24px;
+            width: 24px;
+            margin-right: 8px;
+          }
+        }
+      }
+      div:last-child {
+        span {
+          font-family: $sans-serif-font--loaded;
+          font-size: 12px;
+          font-weight: 500;
+          color: $color__text--secondary;
+          letter-spacing: 1px;
+        }
+        svg {
+          color: $color__link;
+          margin-top: 16px;
+          margin-right: 16px;
+          height: 24px;
+          width: 24px;
+        }
+      }
+    }
+
+
+  }
+  // Custom CSS for home page blocks
+  .m-showcase-block {
+    background-color: unset;
+
+    .showcase-title {
+      margin: 0px !important;
+    }
+  }
+  .m-custom-banner-block {
+    .custom-banner-title {
+      font-size: 22px;
+      letter-spacing: 2px;
+      font-family: $sans-serif-font--loaded !important;
+      text-transform: uppercase;
+    }
+
+    .custom-banner-body {
+      font-size: 24px;
+      font-family: $serif-font--loaded !important;
+    }
+
+    .btn {
+      border-color: $color__white !important;
+      background-color: #ffffff00 !important;
+      color: $color__white !important;
+
+      &:hover,
+      &:focus:hover {
+        background-color: #ffffff20 !important;
+      }
+
+      &:active:hover {
+        background-color: #ffffff20 !important;
+      }
+    }
+  }
+}

@@ -3,14 +3,13 @@
 use Illuminate\Database\Migrations\Migration;
 use App\Models\EventProgram;
 
-class RenameSustainingFellowsEventProgram extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         // No-op: moved to EventProgramSeeder
     }
@@ -20,8 +19,8 @@ class RenameSustainingFellowsEventProgram extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         // No-op
     }
-}
+};

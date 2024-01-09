@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTitleDescriptionMetaToAllModels extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::table('artworks', function (Blueprint $table) {
             $table->string('meta_title')->nullable();
@@ -79,7 +78,7 @@ class AddTitleDescriptionMetaToAllModels extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::table('artworks', function (Blueprint $table) {
             $table->dropColumn('meta_title');
@@ -138,4 +137,4 @@ class AddTitleDescriptionMetaToAllModels extends Migration
             $table->dropColumn('meta_description');
         });
     }
-}
+};

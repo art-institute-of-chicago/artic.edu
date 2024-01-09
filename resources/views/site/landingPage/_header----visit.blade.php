@@ -11,14 +11,10 @@
       @slot('itemprops',$itemprops ?? null)
     @endcomponent
 
-    @component('components.molecules._m-media')
-        @slot('item', $headerMedia)
-        @slot('tag', 'span')
-        @slot('imageSettings', array(
-            'srcset' => array(300,600,1000,1500,3000),
-            'sizes' => '100vw',
-        ))
-        @slot('variation', 'm-visit-header')
+    @component('components.organisms._o-header-landing')
+        @slot('mainFeatures', $mainFeatures)
+        @slot('headerMedia', $headerMedia)
+        @slot('variation', 'visit')
     @endcomponent
 
     @if (!empty($hour))
@@ -86,7 +82,7 @@
                         @endforeach
                     @endif
                 </table>
-                <span class="f-secondary">{!! $visit_hours_intro !!}</span>
+                <span class="f-secondary">{!! $hours['intro'] !!}</span>
             </div>
             <div class="col">
                 <h3 id="location" class="title f-module-title-2">Location</h3>

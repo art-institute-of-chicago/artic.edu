@@ -90,8 +90,11 @@
 @import 'molecules/m-info-trigger';
 @import 'molecules/m-status';
 @import 'molecules/m-showcase';
+@import 'molecules/m-feature-block';
 @import 'molecules/m-custom-banner';
 @import 'molecules/m-featured-pages-grid';
+@import 'molecules/m-collection-block';
+@import 'molecules/m-stories-block';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 
@@ -121,6 +124,8 @@
 @import 'organisms/o-article__primary-actions';
 @import 'organisms/o-hours';
 @import 'organisms/o-layered-image-viewer';
+@import 'organisms/o-menu-bar';
+@import 'organisms/o-info-grid';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */
 

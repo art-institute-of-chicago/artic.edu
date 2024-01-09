@@ -29,6 +29,9 @@ class Exhibition extends AbstractModel
 
     protected $apiModel = 'App\Models\Api\Exhibition';
 
+    protected $presenter = 'App\Presenters\Admin\ExhibitionPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
+
     protected $dispatchesEvents = [
         'saved' => \App\Events\UpdateExhibition::class,
         'deleted' => \App\Events\UpdateExhibition::class,
@@ -186,7 +189,7 @@ class Exhibition extends AbstractModel
                 'doc' => 'Is this exhibition in the primary or secondary feature listings on the landing page?',
                 'type' => 'boolean',
                 'value' => function () {
-                    return $this->is_featured;
+                    return $this->present()->isFeatured();
                 },
             ],
             [
@@ -287,6 +290,14 @@ class Exhibition extends AbstractModel
                 },
             ],
             [
+                'name' => 'position',
+                'doc' => 'Position this exhibition has on the exhibition landing page',
+                'type' => 'integer',
+                'value' => function () {
+                    return $this->present()->position();
+                },
+            ],
+            [
                 'name' => 'related',
                 'doc' => 'Related Content',
                 'type' => 'array',
@@ -302,12 +313,12 @@ class Exhibition extends AbstractModel
         // @see ExhibitionsController::index and relations on Page model
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
-        $featuredIds = $page->apiElements()->whereIn('relation', [
-            'exhibitionsExhibitions',
-            'exhibitionsCurrent',
-            'exhibitionsUpcoming',
-            'exhibitionsUpcomingListing',
-        ])->get(['datahub_id'])->pluck('datahub_id')->all();
+        $featuredIds = $page->present()->upcomingListedExhibitions()
+            ->merge($page->present()->currentListedExhibitions())
+            ->merge($page->present()->upcomingFeaturedExhibitions())
+            ->merge($page->present()->currentFeaturedExhibitions())
+            ->pluck('id')
+            ->all();
 
         return in_array($this->datahub_id, $featuredIds);
     }

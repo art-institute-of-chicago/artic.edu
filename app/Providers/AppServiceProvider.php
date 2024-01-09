@@ -16,10 +16,8 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->hotfixSeoForAdminPreview();
 
@@ -39,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Taken from Front/Controller. Figure out how to make this affect Twill's ModuleController
      */
-    private function hotfixSeoForAdminPreview()
+    private function hotfixSeoForAdminPreview(): void
     {
         $seo = new Seo();
 
@@ -52,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
         \View::share('seo', $seo);
     }
 
-    public function registerMorphMap()
+    public function registerMorphMap(): void
     {
         Relation::morphMap([
             'events' => 'App\Models\Event',
@@ -60,8 +58,8 @@ class AppServiceProvider extends ServiceProvider
             'highlights' => 'App\Models\Highlight',
             'artists' => 'App\Models\Artist',
             'homeFeatures' => 'App\Models\HomeFeature',
-            'landingPages' => 'App\Models\LandingPages',
-            'genericPages' => 'App\Models\GenericPages',
+            'landingPages' => 'App\Models\LandingPage',
+            'genericPages' => 'App\Models\GenericPage',
 
             'experiences' => 'App\Models\Experience',
 
@@ -76,7 +74,7 @@ class AppServiceProvider extends ServiceProvider
         ]);
     }
 
-    public function registerApiClient()
+    public function registerApiClient(): void
     {
         $this->app->singleton('ApiClient', function ($app) {
             return new GuzzleApiConsumer([
@@ -87,21 +85,21 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    public function registerEmbedConverterService()
+    public function registerEmbedConverterService(): void
     {
         $this->app->singleton('embedconverterservice', function ($app) {
             return new EmbedConverterService();
         });
     }
 
-    public function registerDamsImageService()
+    public function registerDamsImageService(): void
     {
         $this->app->singleton('damsimageservice', function ($app) {
             return new DamsImageService();
         });
     }
 
-    public function registerClosureService()
+    public function registerClosureService(): void
     {
         $this->app->singleton('closureservice', function ($app) {
             return new class () {
@@ -122,7 +120,7 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    public function registerPrintService()
+    public function registerPrintService(): void
     {
         $this->app->singleton('printservice', function ($app) {
             return new class () {
@@ -143,10 +141,8 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         config(['aic.version' => trim(file_get_contents(__DIR__ . '/../../VERSION'))]);
     }

@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RecreateArticleSelectionTable extends Migration
-{
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         // Drop table left by mistake
         Schema::dropIfExists('artwork_selection');
@@ -21,8 +20,8 @@ class RecreateArticleSelectionTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('article_selection');
     }
-}
+};

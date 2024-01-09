@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddVideoTitleAndDescriptionToPagesTable extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->text('home_video_title')->nullable();
@@ -24,7 +23,7 @@ class AddVideoTitleAndDescriptionToPagesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->dropColumn('home_video_title');
@@ -34,4 +33,4 @@ class AddVideoTitleAndDescriptionToPagesTable extends Migration
             $table->dropColumn('home_video_description');
         });
     }
-}
+};

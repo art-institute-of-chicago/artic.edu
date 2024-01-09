@@ -50,9 +50,17 @@
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
-            'paragraph', 'quote',
-            'list', 'artwork', 'artworks', 'hr', 'split_block',
-            'membership_banner', 'audio_player', 'tour_stop', 'button', 'mobile_app'
+            'artworks',
+            'audio_player',
+            'button',
+            'hr',
+            'list',
+            'mobile_app',
+            'membership_banner',
+            'paragraph',
+            'quote',
+            'split_block',
+            'tour_stop'
         ])
     ])
 @stop

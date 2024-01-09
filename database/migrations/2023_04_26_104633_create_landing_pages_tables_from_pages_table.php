@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateLandingPagesTablesFromPagesTable extends Migration
-{
+return new class () extends Migration {
     private $tablesToAddLandingPageIdTo = [
         'featured_hours',
         'home_artists',
@@ -30,7 +29,7 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
         'research_resource_study_room_more_pages'
     ];
 
-    public function up()
+    public function up(): void
     {
         Schema::create('landing_page_types', function (Blueprint $table) {
             $table->increments('id');
@@ -177,7 +176,7 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
         // page_art_article
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('landing_page_revisions');
         Schema::dropIfExists('landing_page_category_slugs');
@@ -193,4 +192,4 @@ class CreateLandingPagesTablesFromPagesTable extends Migration
         Schema::dropIfExists('landing_pages');
         Schema::dropIfExists('landing_page_types');
     }
-}
+};

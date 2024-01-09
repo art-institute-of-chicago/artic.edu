@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropCollectionFeatureTables extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::dropIfExists('collection_feature_experience');
         Schema::dropIfExists('page_home_collection_feature');
@@ -25,7 +24,7 @@ class DropCollectionFeatureTables extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::create('collection_features', function (Blueprint $table) {
             createDefaultTableFields($table, true, true, true);
@@ -79,4 +78,4 @@ class DropCollectionFeatureTables extends Migration
             $table->integer('position')->unsigned()->index();
         });
     }
-}
+};

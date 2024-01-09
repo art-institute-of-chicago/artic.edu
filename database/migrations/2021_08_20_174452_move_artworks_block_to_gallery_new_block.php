@@ -2,14 +2,13 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class MoveArtworksBlockToGalleryNewBlock extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         // Move browser artworks in individual gallery_new_items
         $rows = DB::select('select * from blocks where type=?;', ['artworks']);
@@ -55,7 +54,7 @@ class MoveArtworksBlockToGalleryNewBlock extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
     }
-}
+};

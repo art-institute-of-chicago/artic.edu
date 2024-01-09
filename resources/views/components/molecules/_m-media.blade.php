@@ -18,6 +18,8 @@
     $loop = isset($item['loop']) && $item['loop'];
     $loop_or_once = isset($item['loop_or_once']) ? $item['loop_or_once'] : 'loop';
 
+    $headerVariation = isset($item['style']) ? $item['style'] : 'default';
+
     // WEB-912: For Gallery Items; image module is an array, but gallery item is object?
     if (isset($item['videoUrl']) || (!is_array($item) && !empty($item->present()->input('videoUrl'))))
     {
@@ -137,7 +139,7 @@
 @endphp
 
 <{{ $tag ?? 'figure' }} data-type="{{ $type }}" data-title="{{ $item['captionTitle'] ?? $item['caption'] ?? $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ $useContain ? ' m-media--contain' : '' }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
-    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : (($type === 'virtualtour') ? ' m-media__img--virtualtour' : '' )}}{{ $useAltBackground ? ' m-media__img--alt-background' : '' }}{{ $disablePlaceholder ? ' m-media__img--disable-placeholder' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}" data-platform="{!! isset($item['platform']) ? $item['platform'] : '' !!}" {!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! ($_allowAdvancedModalFeatures ?? false) ? ' data-modal-advanced="true"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}{!! !empty($item['credit']) ? ' data-credit="' . $item['credit'] . '"' : '' !!}>
+    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : (($type === 'virtualtour') ? ' m-media__img--virtualtour' : '' )}}{{ $useAltBackground ? ' m-media__img--alt-background' : '' }}{{ $disablePlaceholder ? ' m-media__img--disable-placeholder' : '' }}{{ isset($headerVariation) && $headerVariation === 'small' ? ' small' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}" data-platform="{!! isset($item['platform']) ? $item['platform'] : '' !!}" {!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! ($_allowAdvancedModalFeatures ?? false) ? ' data-modal-advanced="true"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}{!! !empty($item['credit']) ? ' data-credit="' . $item['credit'] . '"' : '' !!}>
         @if ($useContain && !($item['isArtwork'] ?? false) && ($size === 'm' || $size === 'l'))
             <div class="m-media__contain--spacer" style="padding-bottom: {{ min(62.5, intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100) }}%"></div>
         @endif
@@ -145,10 +147,26 @@
             @if ($showUrlFullscreen)
                 <a href="{!! $item['urlTitle'] !!}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
             @endif
-            @component('components.atoms._img')
-                @slot('image', $media)
-                @slot('settings', $imageSettings ?? '')
-            @endcomponent
+            @if(!empty($item['media']))
+                @component('components.atoms._img')
+                    @slot('image', $media)
+                    @slot('settings', $imageSettings ?? '')
+                @endcomponent
+            @endif
+            @if(!empty($item['hero']))
+                @component('components.atoms._img')
+                    @slot('image', $item['hero'])
+                    @slot('settings', $imageSettings ?? '')
+                    @slot('class', 'm-media__img--hero')
+                @endcomponent
+            @endif
+            @if(!empty($item['mobile_hero']))
+                @component('components.atoms._img')
+                    @slot('image', $item['mobile_hero'])
+                    @slot('settings', $imageSettings ?? '')
+                    @slot('class', 'm-media__img--mobile-hero')
+                @endcomponent
+            @endif
             @if ($showUrlFullscreen)
                 </a>
             @endif
@@ -293,6 +311,15 @@
           @endcomponent</textarea>
         @endif
 
+        @if ($headerVariation === 'cta')
+            <div class="header-cta">
+                <div>
+                    <strong class="title f-display-1 header-cta-title">{!! $item['ctaTitle'] !!}</strong>
+                    <a href="{{ $item['ctaButtonLink'] }}" class="header-cta-button f-buttons btn btn--secondary">{{ $item['ctaButtonLabel'] }}</a>
+                </div>
+            </div>
+        @endif
+        
     </div>
     @if ((!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption'])) and (isset($item['caption']) or isset($item['captionTitle'])))
     <figcaption>

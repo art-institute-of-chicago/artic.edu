@@ -1,3 +1,27 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.explore-further-injected {
+  opacity: unset;
+
+  &.s-loading {
+    transition: .15s ease-in-out;
+    opacity: .7;
+  }
+}
+
+.explore-further-injected > .o-pinboard {
+  transition: .15s ease-in-out;
+  opacity: unset;
+  animation: fadeIn .75s ease-in-out;
+}
+
 .o-pinboard {
   position: relative;
   padding-top: 0.02px;
