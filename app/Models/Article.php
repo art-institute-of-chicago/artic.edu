@@ -12,6 +12,7 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasUnlisted;
+use App\Models\Vendor\Block;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
@@ -368,5 +369,43 @@ class Article extends AbstractModel implements Feedable
                 },
             ],
         ];
+    }
+
+    public function related($id)
+    {
+        $modelName = 'articles';
+
+        $blockableTypes = [
+            'landingPages',
+            'pressReleases',
+            'printedPublications',
+            'issueArticles',
+            'digitalPublicationSections',
+            'highlights',
+            'magazineIssues',
+            'educatorResources',
+            'articles',
+            'sponsors',
+            'exhibitionPressRooms',
+            'videos',
+            'researchGuides',
+            'genericPages',
+            'events',
+            'exhibitions',
+            'digitalPublications',
+        ];
+
+        $relatedBlockItems = Block::whereIn('blockable_type', $blockableTypes)
+            ->where('content', 'LIKE', '%"browsers"%')
+            ->where('content', 'LIKE', '%' . $modelName . '%')
+            ->where('content', 'LIKE', '%' . $id . '%')
+            ->get();
+
+        $relatedItems = [];
+        foreach ($relatedBlockItems as $relatedBlockItem) {
+            $relatedItems[] = $relatedBlockItem->blockable;
+        }
+
+        return $relatedItems;
     }
 }

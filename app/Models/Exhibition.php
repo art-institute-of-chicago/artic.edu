@@ -11,6 +11,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
+use App\Models\Vendor\Block;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
@@ -321,5 +322,43 @@ class Exhibition extends AbstractModel
             ->all();
 
         return in_array($this->datahub_id, $featuredIds);
+    }
+
+    public function related($id)
+    {
+        $modelName = 'exhibitions';
+
+        $blockableTypes = [
+            'landingPages',
+            'pressReleases',
+            'printedPublications',
+            'issueArticles',
+            'digitalPublicationSections',
+            'highlights',
+            'magazineIssues',
+            'educatorResources',
+            'articles',
+            'sponsors',
+            'exhibitionPressRooms',
+            'videos',
+            'researchGuides',
+            'genericPages',
+            'events',
+            'exhibitions',
+            'digitalPublications',
+        ];
+
+        $relatedBlockItems = Block::whereIn('blockable_type', $blockableTypes)
+            ->where('content', 'LIKE', '%"browsers"%')
+            ->where('content', 'LIKE', '%' . $modelName . '%')
+            ->where('content', 'LIKE', '%' . $id . '%')
+            ->get();
+
+        $relatedItems = [];
+        foreach ($relatedBlockItems as $relatedBlockItem) {
+            $relatedItems[] = $relatedBlockItem->blockable;
+        }
+
+        return $relatedItems;
     }
 }

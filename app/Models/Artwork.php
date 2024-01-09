@@ -8,6 +8,7 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasMedias;
+use App\Models\Vendor\Block;
 use App\Helpers\StringHelpers;
 
 class Artwork extends AbstractModel
@@ -140,5 +141,43 @@ class Artwork extends AbstractModel
                 },
             ],
         ];
+    }
+
+    public function related($id)
+    {
+        $modelName = 'artworks';
+
+        $blockableTypes = [
+            'landingPages',
+            'pressReleases',
+            'printedPublications',
+            'issueArticles',
+            'digitalPublicationSections',
+            'highlights',
+            'magazineIssues',
+            'educatorResources',
+            'articles',
+            'sponsors',
+            'exhibitionPressRooms',
+            'videos',
+            'researchGuides',
+            'genericPages',
+            'events',
+            'exhibitions',
+            'digitalPublications',
+        ];
+
+        $relatedBlockItems = Block::whereIn('blockable_type', $blockableTypes)
+            ->where('content', 'LIKE', '%"browsers"%')
+            ->where('content', 'LIKE', '%' . $modelName . '%')
+            ->where('content', 'LIKE', '%' . $id . '%')
+            ->get();
+
+        $relatedItems = [];
+        foreach ($relatedBlockItems as $relatedBlockItem) {
+            $relatedItems[] = $relatedBlockItem->blockable;
+        }
+
+        return $relatedItems;
     }
 }
