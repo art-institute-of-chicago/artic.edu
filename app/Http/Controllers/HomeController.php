@@ -33,7 +33,7 @@ class HomeController extends FrontController
 
         $view_data = [
             'contrastHeader' => sizeof($mainFeatures) > 0,
-            'filledLogo' => sizeof($mainFeatures) > 0,
+            'filledLogo' => false,
             'mainFeatures' => $mainFeatures,
             'intro' => $page->home_intro,
             'visit_button_text' => $page->home_visit_button_text ?? 'Visit',
