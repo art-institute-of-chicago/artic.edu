@@ -64,11 +64,17 @@ class AppServiceProvider extends ServiceProvider
             'experiences' => 'App\Models\Experience',
 
             'digitalPublications' => 'App\Models\DigitalPublication',
+            'digitalPublicationSections' => 'App\Models\DigitalPublicationSection',
+            'magazineIssues' => 'App\Models\MagazineIssue',
+            'pressReleases' => 'App\Models\PressRelease',
             'printedPublications' => 'App\Models\PrintedPublication',
+            'researchGuides' => 'App\Models\ResearchGuide',
+            'sponsors' => 'App\Models\Sponsor',
 
             'educatorResources' => 'App\Models\EducatorResource',
             'videos' => 'App\Models\Video',
             'exhibitions' => 'App\Models\Exhibition',
+            'exhibitionPressRooms' => 'App\Models\ExhibitionPressRoom',
             'departments' => 'App\Models\Department',
             'blocks' => 'App\Models\Vendor\Block',
         ]);
