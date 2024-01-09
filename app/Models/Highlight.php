@@ -5,6 +5,7 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
+use App\Models\Vendor\Block;
 use App\Models\Api\Artwork;
 use App\Models\Api\Search;
 use App\Models\Behaviors\HasAuthors;
@@ -305,5 +306,42 @@ class Highlight extends AbstractModel
                 },
             ],
         ];
+    }
+
+    public function related($id)
+    {
+        $modelName = 'highlights';
+
+        $blockableTypes = [
+            'landingPages',
+            'pressReleases',
+            'printedPublications',
+            'issueArticles',
+            'digitalPublicationSections',
+            'highlights',
+            'educatorResources',
+            'articles',
+            'sponsors',
+            'exhibitionPressRooms',
+            'videos',
+            'researchGuides',
+            'genericPages',
+            'events',
+            'exhibitions',
+            'digitalPublications',
+        ];
+
+        $relatedBlockItems = Block::whereIn('blockable_type', $blockableTypes)
+            ->where('content', 'LIKE', '%"browsers"%')
+            ->where('content', 'LIKE', '%' . $modelName . '%')
+            ->where('content', 'LIKE', '%' . $id . '%')
+            ->get();
+
+        $relatedItems = [];
+        foreach ($relatedBlockItems as $relatedBlockItem) {
+            $relatedItems[] = $relatedBlockItem->blockable;
+        }
+
+        return $relatedItems;
     }
 }
