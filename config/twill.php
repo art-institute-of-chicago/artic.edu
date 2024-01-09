@@ -123,7 +123,7 @@ return [
     |
      */
     'users_table' => 'users',
-    'password_resets_table' => 'password_resets',
+    'password_resets_table' => 'password_reset_tokens',
     'users_oauth_table' => 'twill_users_oauth',
     'blocks_table' => 'blocks',
     'features_table' => 'features',
