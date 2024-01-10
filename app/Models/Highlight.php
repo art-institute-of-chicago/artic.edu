@@ -13,6 +13,7 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasAutoRelated;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasUnlisted;
 
@@ -27,6 +28,7 @@ class Highlight extends AbstractModel
     use Transformable;
     use HasRelated;
     use HasApiRelations;
+    use HasAutoRelated;
     use HasFeaturedRelated;
     use HasUnlisted;
     use HasAuthors;

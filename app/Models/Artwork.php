@@ -7,6 +7,7 @@ use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
+use App\Models\Behaviors\HasAutoRelated;
 use App\Models\Behaviors\HasMedias;
 use App\Helpers\StringHelpers;
 
@@ -17,6 +18,7 @@ class Artwork extends AbstractModel
     use HasRelated;
     use HasApiRelations;
     use HasFeaturedRelated;
+    use HasAutoRelated;
     use HasMedias;
     use HasFiles;
 
