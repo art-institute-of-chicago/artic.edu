@@ -38,7 +38,7 @@
             </span>
         @endif
         <div class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
-            <em class="type f-tag">{!! $subtype ?? $item->present()->subtype !!}</em>
+            <em class="type f-tag">{!! $item->subtype ? $item->present()->subtype : $item->type !!}</em>
             <br>
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
