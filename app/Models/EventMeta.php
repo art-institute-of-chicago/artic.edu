@@ -16,7 +16,7 @@ class EventMeta extends Model
     ];
 
     protected $casts = [
-        'date' => 'date',
-        'date_end' => 'date',
+        'date' => 'datetime',
+        'date_end' => 'datetime',
     ];
 }
