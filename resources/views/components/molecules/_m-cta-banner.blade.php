@@ -60,6 +60,9 @@
                     </div>
                 @endif
                 <div class="m-cta-banner__txt">
+                    @if ($custom_tours)
+                        <div class="m-cta-banner__txt--aic-ct-wrapper">
+                    @endif
                     <div @class([
                             'm-cta-banner__title',
                             'f-headline' => $custom_tours,
@@ -77,6 +80,10 @@
                             {!! SmartyPants::defaultTransform($body) !!}
                         </div>
                     @endif
+                    @if ($custom_tours)
+                        </div>
+                    @endif
+
                     @if ($button_text)
                         <div class="m-cta-banner__action">
                             @if (!$isBigLink)

@@ -11,6 +11,11 @@
   margin-left: -4.6875vw;
   margin-right: -4.6875vw;
 
+  @include breakpoint('medium+') {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   // Override the reset styles for dialog elements
   dialog {
     display: revert;
@@ -30,12 +35,7 @@
     &::backdrop {
       background-color: rgb(0,0,0,0.6);
     }
-  }
 
-  .m-listing__link {
-    // Because we need to apply a border/shadow to the image
-    // and also position an icon relative to the image
-    align-items: center;
   }
 
   label {
@@ -87,6 +87,19 @@
 .aic-ct__core {
   padding-left: 20px;
   padding-right: 20px;
+
+  @include breakpoint('medium+') {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.s-body-locked--ct {
+  // For supporting native position sticky the builder unsets the body overflow value
+  // When the moodal is open other styles will be effected by this so we need to override it
+  body {
+    overflow: hidden !important;
+  }
 }
 
 // ---- Custom tours: Preview
@@ -94,19 +107,6 @@
 .aic-ct-preview__content {
   .aic-ct-loader {
     margin: 32px 0;
-  }
-}
-
-.aic-ct-preview__close-trans {
-  color: $color__link;
-  padding-left: 0;
-  padding-right: 0;
-
-  svg {
-    // Alignment tweaks might not be needed
-    // but doesn't align right for some reason
-    margin-top: 0;
-    vertical-align: middle;
   }
 }
 
@@ -119,13 +119,23 @@
   padding-top: 8px;
   padding-bottom: 8px;
 
+
+
   h2 {
     @include untuck;
   }
 }
 
+.aic-ct-preview__close {
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 .aic-ct-preview__core {
-  padding: 0 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .aic-ct-preview__image {
@@ -155,6 +165,10 @@
   border-top: 1px solid $color__black--20;
   border-bottom: 1px solid $color__black--20;
   margin-bottom: 24px;
+
+  p {
+    @include untuck;
+  }
 }
 
 .aic-ct-preview__description {
@@ -170,6 +184,19 @@
   margin-top: 24px;
 }
 
+.aic-ct-preview__close-trans {
+  color: $color__link;
+  padding-left: 0;
+  padding-right: 0;
+
+  svg {
+    // Alignment tweaks might not be needed
+    // but doesn't align right for some reason
+    margin-top: 0;
+    vertical-align: middle;
+  }
+}
+
 // ---- Custom tours: Header
 
 .aic-ct-header {
@@ -181,9 +208,15 @@
   gap: 8px;
   align-items: center;
   padding: 12px 20px;
-  background-color: $color__black;
+  background-color: $color__red--120;
   color: $color__white;
   z-index: 9;
+
+  @include breakpoint('medium+') {
+    width: 100vw;
+    transform: translateX(-50%);
+    margin-left: 50%;
+  }
 }
 
 .aic-ct-item-info {
@@ -286,29 +319,10 @@
   border-bottom: 1px solid $color__black--35;
 }
 
-// ---- Custom tours: Section header
-
-.aic-ct-section-header {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-  padding-bottom: 16px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid $color__red--120;
-
-
-  h2 {
-    @include untuck;
-  }
-}
-
 // -- Custom tours: Searchbar
 
 .aic-ct-search {
-  padding-bottom: 32px;
   margin-bottom: 32px;
-  border-bottom: 1px solid $color__black--35
 }
 
 // ---- Custom tours: Themes
@@ -377,6 +391,7 @@
   padding: 0;
   margin: 0;
   cursor: pointer;
+  text-align: unset;
 }
 
 .aic-ct-result--selected {
@@ -422,6 +437,13 @@
   padding: 16px 20px;
   background-color: $color__black;
   color: $color__white;
+
+  @include breakpoint('medium+') {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .aic-ct-nav {
@@ -579,6 +601,11 @@
 
 .aic-ct-tour-item__info {
   margin-right: auto;
+}
+
+.aic-ct-tour-item__image {
+  width: 96px;
+  object-fit: cover;
 }
 
 .aic-ct-tour-item__title,
