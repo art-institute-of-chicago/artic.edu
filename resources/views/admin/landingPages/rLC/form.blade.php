@@ -152,4 +152,11 @@
             'label' => 'Visit Museum Button Link',
         ])
     </a17-fieldset>
+    <a17-fieldset title="Custom Content" id="custom_content">
+        @formField('block_editor', [
+            'blocks' => [
+                'showcase',
+            ],
+        ])
+    </a17-fieldset>
 @stop
