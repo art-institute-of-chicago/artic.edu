@@ -128,7 +128,6 @@
 
                         @isset($artwork['gallery_title'])
                             <div class="aic-ct-viewer__gallery-container">
-                                <svg aria-hidden="true" class="icon--location"><use xlink:href="#icon--location" /></svg>
                                 <p class="f-tertiary">{{ $artwork['gallery_title'] }}</p>
                             </div>
                         @endisset
