@@ -227,4 +227,29 @@
       }
     }
   }
+  #about-the-r-l-c {
+    background-color: $color__rlc__vermilion;
+    .m-showcase-wrapper {
+      flex-direction: row-reverse;
+      .showcase-header {
+        flex-basis: 100%;
+        order: -1;
+      }
+      @include breakpoint('xsmall') {
+        flex-direction: column-reverse;
+        .showcase-header {
+          flex-basis: fit-content;
+          order: 1;
+        }
+      }
+    }
+    .m-showcase-video {
+      @include breakpoint('small+') {
+        flex: 2;
+      }
+    }
+    .showcase-header, .showcase-title, .showcase-description {
+      color: $color__white;
+    }
+  }
 }
