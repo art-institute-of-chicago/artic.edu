@@ -5,6 +5,7 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasApiModel;
+use App\Models\Behaviors\HasAutoRelated;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
@@ -26,6 +27,7 @@ class Exhibition extends AbstractModel
     use HasRelated;
     use HasApiRelations;
     use HasFeaturedRelated;
+    use HasAutoRelated;
 
     protected $apiModel = 'App\Models\Api\Exhibition';
 

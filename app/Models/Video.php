@@ -96,6 +96,11 @@ class Video extends AbstractModel
         return route('videos.show', ['id' => $this->id, 'slug' => $this->getSlug()], false);
     }
 
+    public function getTypeAttribute()
+    {
+        return 'video';
+    }
+
     protected function transformMappingInternal()
     {
         return [
