@@ -12,7 +12,6 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
-use App\Models\Behaviors\HasAutoRelated
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 

@@ -10,7 +10,6 @@ trait HasAutoRelated
     public function related($id)
     {
         $modelName = Str::plural(Str::lower(class_basename(__CLASS__)));
-        ;
 
         $blockableTypes = [
             'highlights',
