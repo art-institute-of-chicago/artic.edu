@@ -162,7 +162,7 @@
 }
 
 .aic-ct-grid-card {
-  height: fit-content;
+  height: auto;
   background-color: $color__white;
 
   .aic-ct-grid-card__top {
@@ -266,8 +266,8 @@
 
 .m-cta-banner--aic-ct {
   margin-top: 0;
-  min-height: 240px;
-  height: fit-content;
+  height: auto;
+  min-height: 200px;
 
   // Add full bleed on mobile
   &::before {
@@ -305,7 +305,7 @@
   .m-cta-banner__txt {
     padding-top: 32px;
     padding-bottom: 32px;
-    height: fit-content;
+    height: auto;
 
     @include breakpoint('medium+') {
       position: absolute;
@@ -333,7 +333,7 @@
 
     @include breakpoint('medium+') {
       position: absolute;
-      width: fit-content;
+      width: auto;
     }
   }
 
@@ -446,33 +446,39 @@
 
 .m-cta-banner--aic-ct-no-image {
   background-color: $color__black;
+  height: auto;
   overflow: visible;
-  min-height: 240px;
-  height: fit-content;
 
-  @include breakpoint('medium+') {
-    overflow: hidden;
+  .m-cta-banner__txt,
+  .m-cta-banner__action {
+    position: static;
   }
 
   .m-cta-banner__txt {
-    position: unset;
+    min-height: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
 
     @include breakpoint('medium+') {
-      // Padding left to match the left position of .m-cta-banner__txt inside .m-cta-banner--aic-ct
       padding-left: colspan(3, medium);
+      padding-right: colspan(3, medium);
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
     }
 
     @include breakpoint('large+') {
-      padding-right: 28vw;
+      padding-left: colspan(3, large);
+      padding-right: colspan(3, large);
+    }
+
+    @include breakpoint('xlarge') {
+      padding-left: colspan(3, xlarge);
+      padding-right: colspan(3, xlarge);
     }
   }
 
-  .m-cta-banner__action {
-    @include breakpoint('medium+') {
-      // Padding right to match the right position of .m-cta-banner__txt inside .m-cta-banner--aic-ct
-      padding-right: colspan(3, medium);
-    }
-  }
 
   .m-cta-banner__title,
   .m-cta-banner__msg {
