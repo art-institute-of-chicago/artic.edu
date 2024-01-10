@@ -270,69 +270,59 @@
   min-height: 200px;
 
   // Add full bleed on mobile
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 100vw;
-    margin-left: -50vw;
-    background-color: inherit;
-    pointer-events: none;
-  }
+  margin-left: -4.6875vw;
+  margin-right: -4.6875vw;
 
   @include breakpoint('medium+') {
-    margin-top: 60px;
-
-    // Remove full bleed on larger screens
-    &::before {
-      content: "";
-      position: static;
-      z-index: auto;
-      width: auto;
-      margin-left: 0;
-      background-color: transparent;
-      pointer-events: auto;
-    }
+    margin: 60px 0 0;
   }
 
   .f-headline {
     margin-bottom: 20px;
   }
 
+  .m-cta-banner__txt,
+  .m-cta-banner__action {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+  }
+
   .m-cta-banner__txt {
+    min-height: 200px;
     padding-top: 32px;
     padding-bottom: 32px;
-    height: auto;
+    padding-left: 4.6875vw;
+    padding-right: 4.6875vw;
 
     @include breakpoint('medium+') {
-      position: absolute;
-      left: colspan(3, medium);
-      right: colspan(3, medium);
+      padding-left: colspan(3, medium);
+      padding-right: colspan(3, medium);
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
     }
 
     @include breakpoint('large+') {
-      left: colspan(3, large);
-      right: colspan(3, large);
+      padding-left: colspan(3, large);
+      padding-right: colspan(3, large);
     }
 
     @include breakpoint('xlarge') {
-      left: colspan(3, xlarge);
-      right: colspan(3, xlarge);
+      padding-left: colspan(3, xlarge);
+      padding-right: colspan(3, xlarge);
     }
   }
 
   .m-cta-banner__action {
-    position: unset;
     display: flex;
     flex-direction: column;
     gap: 20px;
     min-width: 200px;
 
     @include breakpoint('medium+') {
-      position: absolute;
       width: auto;
     }
   }
@@ -353,18 +343,6 @@
     @include breakpoint('medium+') {
       margin-bottom: 0;
     }
-  }
-}
-
-.m-cta-banner--aic-ct-container {
-  position: relative;
-  width: 100vw;
-  // This is to account for the margin on #a17
-  left: -4.6875vw;
-
-  @include breakpoint('medium+') {
-    width: auto;
-    left: auto;
   }
 }
 
@@ -446,39 +424,7 @@
 
 .m-cta-banner--aic-ct-no-image {
   background-color: $color__black;
-  height: auto;
   overflow: visible;
-
-  .m-cta-banner__txt,
-  .m-cta-banner__action {
-    position: static;
-  }
-
-  .m-cta-banner__txt {
-    min-height: 200px;
-    padding-left: 20px;
-    padding-right: 20px;
-
-    @include breakpoint('medium+') {
-      padding-left: colspan(3, medium);
-      padding-right: colspan(3, medium);
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      gap: 32px;
-    }
-
-    @include breakpoint('large+') {
-      padding-left: colspan(3, large);
-      padding-right: colspan(3, large);
-    }
-
-    @include breakpoint('xlarge') {
-      padding-left: colspan(3, xlarge);
-      padding-right: colspan(3, xlarge);
-    }
-  }
-
 
   .m-cta-banner__title,
   .m-cta-banner__msg {
