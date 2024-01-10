@@ -202,6 +202,7 @@
         padding: 0;
       }
       .m-showcase-block__text-wrapper {
+        margin: 0 auto;
         .showcase-tag {
           font-size: 13px;
           font-weight: 325;
@@ -223,9 +224,6 @@
         .showcase-header {
           flex-basis: fit-content;
         }
-      }
-      .m-showcase-block__text-wrapper {
-        margin: 0 auto;
       }
     }
   }
