@@ -130,7 +130,7 @@
                                 <em class="type f-tag">Video</em>
                             @endif
                             @if ($item->title)
-                                <strong class="title f-list-3">{{ $item->title }}</strong>
+                                <strong class="title f-list-3">{!! $item->present()->title !!}</strong>
                             @endif
                             @if ($item->publish_start_date)
                                 <span class="date f-secondary">{{ $item->present()->date_display_override }}</span>
