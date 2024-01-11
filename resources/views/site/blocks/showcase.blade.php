@@ -1,7 +1,8 @@
 @php
     $header = $block->input('header');
     $mediaType = $block->input('media_type');
-    $media = $block->imageAsArray('image', 'desktop');
+    $image = $block->imageAsArray('image', 'desktop');
+    $video = $block->file('video');
     $title = $block->input('title');
     $description = $block->input('description');
     $tag = $block->input('tag');
@@ -14,19 +15,15 @@
         @if ($header)
             <h3 class="showcase-header">{{ $header }}</h3>
         @endif
-        @if ($landingPageType == 'rlc')
-            @component('components.molecules._m-media')
-                @slot('variation', 'm-showcase-media')
-                @slot('item', [
-                    'type' => $mediaType,
-                    'media' => $media,
-                    'loop' => true,
-                    'loop_or_once' => 'loop',
-                ])
+        @if ($mediaType == 'video')
+            @component('components.atoms._video')
+                @slot('video', ['src' => $video])
+                @slot('controls', true)
+                @slot('class', 'm-showcase-video')
             @endcomponent
         @else
             @component('components.atoms._img')
-                @slot('image', $media)
+                @slot('image', $image)
                 @slot('settings', $imageSettings ?? '')
                 @slot('class', 'm-showcase-image')
             @endcomponent
