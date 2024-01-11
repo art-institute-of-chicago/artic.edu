@@ -56,7 +56,7 @@
                             <em class="type f-tag">Interactive Feature</em>
                         @endif
                         @if($item->title)
-                            <strong class="title f-list-3">{{$item->title}}</strong>
+                            <strong class="title f-list-3">{!! $item->present()->title !!}</strong>
                         @endif
                         @if($loop->first)
                             <span class="intro f-body-editorial">{!! $item->present()->list_description !!}</span>
