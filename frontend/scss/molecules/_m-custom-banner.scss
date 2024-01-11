@@ -1,7 +1,7 @@
 .m-custom-banner-block {
     width: 100%;
     margin-top: 50px;
-    
+
     .content-wrapper {
         position: relative;
         width: 100%;
@@ -81,7 +81,7 @@
         }
 
         .custom-banner-title {
-            line-height: 0;
+            line-height: 28px;
             display: block;
             color: white !important;
             &::before {
@@ -92,6 +92,7 @@
         .custom-banner-body {
             display: block;
             margin-top: 20px;
+            margin-right: 20px;
             color: white !important;
             &::before {
                 padding: 16px 0 0 0 !important;
