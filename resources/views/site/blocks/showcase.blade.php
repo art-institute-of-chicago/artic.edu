@@ -18,6 +18,7 @@
         @if ($mediaType == 'video')
             @component('components.atoms._video')
                 @slot('video', ['src' => $video])
+                @slot('controls', true)
                 @slot('class', 'm-showcase-video')
             @endcomponent
         @else
