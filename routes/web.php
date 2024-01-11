@@ -223,6 +223,8 @@ Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesC
 Route::get('/custom-tours/builder', [CustomTourController::class, 'showCustomTourBuilder']);
 Route::get('/custom-tours/{id}', [CustomTourController::class, 'show'])->name('custom-tours.show');
 
+Route::get('/custom-tours/{id}/pdf-layout', [CustomTourController::class, 'pdfLayout'])->name('custom-tours.pdf-layout');
+
 // Feed routes
 Route::feeds();
 
