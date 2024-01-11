@@ -17,7 +17,7 @@ class ExactTargetList
             'OptStudentTeacherPrograms' => 'K-12 Educator Resources',
             'OptTeenPrograms' => 'Teen Opportunities',
             'OptAcademicEngagement' => 'Research, Publishing, and Conservation',
-            'OptShop' => 'Museum Shop',
+            // 'OptShop' => 'Museum Shop',
         ]);
     }
 }
