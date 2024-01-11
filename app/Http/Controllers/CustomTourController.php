@@ -54,6 +54,36 @@ class CustomTourController extends FrontController
         ]);
     }
 
+    public function pdfLayout(Request $request, $id)
+    {
+        $customTourItem = CustomTour::find($id);
+
+        if (!$customTourItem) {
+            return abort(404);
+        }
+
+        $customTour = json_decode($customTourItem->tour_json, true);
+
+        ArtworkSortingService::sortArtworksByGallery($customTour['artworks'], config('galleries.order'));
+
+        // Calculate unique galleries and artists
+        $galleryTitles = array_column($customTour['artworks'], 'gallery_title');
+        $uniqueGalleryTitles = array_unique($galleryTitles);
+        $uniqueGalleriesCount = count($uniqueGalleryTitles);
+
+        $artistNames = array_column($customTour['artworks'], 'artist_title');
+        $uniqueArtistNames = array_unique($artistNames);
+        $uniqueArtistsCount = count($uniqueArtistNames);
+
+
+        return view('site.customToursPdfLayout', [
+            'id' => $customTourItem->id,
+            'custom_tour' => $customTour,
+            'unique_galleries_count' => $uniqueGalleriesCount,
+            'unique_artists_count' => $uniqueArtistsCount,
+        ]);
+    }
+
     public function showCustomTourBuilder()
     {
         return view('site.customTourBuilder', [

@@ -26,7 +26,7 @@ class GeneratePdfsOne extends GeneratePdfs
         if (!empty($this->argument('model')) && !empty($this->argument('id'))) {
             $modelClass = $this->argument('model');
             $id = $this->argument('id');
-            $model = $modelClass::published()->find($id);
+            $model = $modelClass::find($id);
 
             if ($model) {
                 try {

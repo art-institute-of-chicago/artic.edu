@@ -1,0 +1,19 @@
+@import 'setup/colors';
+@import 'atoms/loader';
+
+html.p-customtour-pdflayout {
+  columns: 2;
+}
+
+table {
+  border-spacing: 24px;
+}
+
+table tr td {
+  vertical-align: top;
+}
+
+table tr td img {
+  width:100%;
+  display: block;
+}
