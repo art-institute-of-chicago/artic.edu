@@ -32,10 +32,6 @@
             ],
         ]
     ])
-    @formField('checkbox', [
-        'name' => 'header_contrast',
-        'label' => 'Header Contrast',
-    ])
     <hr/>
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'header_variation',
