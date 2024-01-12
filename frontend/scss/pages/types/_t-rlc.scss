@@ -209,6 +209,9 @@
     .m-showcase-image, .m-showcase-video, .m-showcase-block__text-wrapper {
       margin: 0;
       padding: 0;
+      @include breakpoint('small+') {
+        width: 100%;
+      }
     }
     .m-showcase-block__text-wrapper {
       .showcase-tag {
