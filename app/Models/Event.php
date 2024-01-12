@@ -94,6 +94,22 @@ class Event extends AbstractModel
     protected $casts = [
         'alt_types' => 'array',
         'alt_audiences' => 'array',
+        'date' => 'date',
+        'date_end' => 'date',
+        'migrated_at' => 'datetime',
+        'publish_start_date' => 'date',
+        'publish_end_date' => 'date',
+        'published' => 'boolean',
+        'is_private' => 'boolean',
+        'is_sales_button_hidden' => 'boolean',
+        'is_after_hours' => 'boolean',
+        'is_ticketed' => 'boolean',
+        'is_free' => 'boolean',
+        'is_rsvp' => 'boolean',
+        'is_member_exclusive' => 'boolean',
+        'is_admission_required' => 'boolean',
+        'is_sold_out' => 'boolean',
+        'is_registration_required' => 'boolean',
     ];
 
     /**
@@ -175,31 +191,6 @@ class Event extends AbstractModel
      * Those fields get auto set to null if not submitted
      */
     public $nullable = [];
-
-    /**
-     * Those fields get auto set to false if not submitted
-     */
-    public $checkboxes = [
-        'published',
-        'is_private',
-        'is_sales_button_hidden',
-        'is_after_hours',
-        'is_ticketed',
-        'is_free',
-        'is_rsvp',
-        'is_member_exclusive',
-        'is_admission_required',
-        'is_sold_out',
-        'is_registration_required'
-    ];
-
-    public $dates = [
-        'date',
-        'date_end',
-        'migrated_at',
-        'publish_start_date',
-        'publish_end_date',
-    ];
 
     public $mediasParams = [
         'hero' => [

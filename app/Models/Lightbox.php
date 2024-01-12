@@ -35,11 +35,6 @@ class Lightbox extends AbstractModel
         'title',
     ];
 
-    public $checkboxes = [
-        'published',
-        'hide_fields',
-    ];
-
     public $mediasParams = [
         'cover' => [
             'default' => [
@@ -54,6 +49,9 @@ class Lightbox extends AbstractModel
     public $casts = [
         'lightbox_start_date' => 'datetime',
         'lightbox_end_date' => 'datetime',
+        'published' => 'boolean',
+        'hide_fields' => 'boolean',
+
     ];
 
     protected $presenter = 'App\Presenters\Admin\LightboxPresenter';

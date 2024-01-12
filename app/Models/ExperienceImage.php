@@ -37,7 +37,7 @@ class ExperienceImage extends AbstractModel implements Sortable
         'imagable_repeater_name',
     ];
 
-    public $checkboxes = [
-        'published',
+    public $casts = [
+        'published' => 'boolean',
     ];
 }

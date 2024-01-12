@@ -20,7 +20,9 @@ class Location extends AbstractModel
         'directions_link'
     ];
 
-    public $checkboxes = ['published'];
+    public $casts = [
+        'published' => 'boolean',
+    ];
 
     public function page()
     {

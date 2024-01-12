@@ -12,7 +12,9 @@ class SocialLink extends AbstractModel
         'landing_page_id',
     ];
 
-    public $checkboxes = ['published'];
+    public $casts = [
+        'published' => 'boolean',
+    ];
 
     public function page()
     {

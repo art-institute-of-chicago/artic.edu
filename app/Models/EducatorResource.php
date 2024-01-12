@@ -38,8 +38,13 @@ class EducatorResource extends AbstractModel
         'title',
     ];
 
-    public $checkboxes = ['published', 'active', 'public'];
-    public $dates = ['publish_start_date', 'publish_end_date'];
+    public $casts = [
+        'published' => 'boolean',
+        'active' => 'boolean',
+        'public' => 'boolean',
+        'publish_start_date' => 'date',
+        'publish_end_date' => 'date'
+    ];
 
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';

@@ -31,8 +31,8 @@ class Department extends AbstractModel
         'max_artworks',
     ];
 
-    public $checkboxes = [
-        'should_append_artworks',
+    public $casts = [
+        'should_append_artworks' => 'boolean',
     ];
 
     public $slugAttributes = [

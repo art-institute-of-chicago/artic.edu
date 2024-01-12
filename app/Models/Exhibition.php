@@ -78,13 +78,12 @@ class Exhibition extends AbstractModel
         'public_end_date' => 'date',
         'member_preview_start_date' => 'date',
         'member_preview_end_date' => 'date',
+        'published' => 'boolean',
     ];
 
     public $slugAttributes = [
         'title',
     ];
-
-    public $checkboxes = ['published'];
 
     public $mediasParams = [
         'hero' => [

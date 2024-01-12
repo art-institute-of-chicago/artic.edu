@@ -15,7 +15,9 @@ class Faq extends AbstractModel
         'answer',
     ];
 
-    public $checkboxes = ['published'];
+    public $casts = [
+        'published' => 'boolean',
+    ];
 
     public function page()
     {
