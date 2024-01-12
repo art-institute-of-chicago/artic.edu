@@ -1,10 +1,18 @@
 @twillBlockTitle('Showcase Multiple')
 @twillBlockIcon('image')
 
-@formField('input', [
-    'name' => 'id',
-    'label' => 'Block ID',
-    'note' => 'Utilized to link to the block',
+@formField('select', [
+    'name' => 'styling',
+    'label' => 'Styling',
+    'required' => true,
+    'unpack' => true,
+    'default' => 'default',
+    'options' => collect([
+        'default' => 'Default',
+        'experience-with-us' => 'Experience with Us',
+        'learn-with-us' => 'Learn with Us',
+        'make-with-us' => 'Make with Us',
+    ]),
 ])
 
 @formField('input', [
