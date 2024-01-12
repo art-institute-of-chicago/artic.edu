@@ -57,10 +57,6 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
         'published' => 'boolean',
     ];
 
-    public $attributes = [
-        'published' => false,
-    ];
-
     public $mediasParams = [
         'hero' => [
             'default' => [

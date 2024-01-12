@@ -23,10 +23,6 @@ class Sponsor extends AbstractModel
         'published' => 'boolean',
     ];
 
-    public $attributes = [
-        'published' => false,
-    ];
-
     protected function transformMappingInternal()
     {
         return [

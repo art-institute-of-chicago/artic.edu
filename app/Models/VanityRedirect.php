@@ -18,8 +18,4 @@ class VanityRedirect extends Model
     public $casts = [
         'published' => 'boolean',
     ];
-
-    public $attributes = [
-        'published' => false,
-    ];
 }

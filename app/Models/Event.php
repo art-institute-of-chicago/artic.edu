@@ -9,10 +9,7 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRecurrentDates;
 use App\Models\Behaviors\HasApiRelations;
-use App\Models\Behaviors\HasFeaturedRelated;
-use App\Models\Behaviors\HasAutoRelated;
 use App\Helpers\QueryHelpers;
-use App\Models\Behaviors\HasRelated;
 use Carbon\Carbon;
 // WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
 use Illuminate\Support\Facades\DB;
@@ -25,9 +22,6 @@ class Event extends AbstractModel
     use HasSlug;
     use HasRevisions;
     use HasApiRelations;
-    use HasAutoRelated;
-    use HasFeaturedRelated;
-    use HasRelated;
     use HasMedias;
     use HasMediasEloquent;
     use HasBlocks;
@@ -116,20 +110,6 @@ class Event extends AbstractModel
         'is_admission_required' => 'boolean',
         'is_sold_out' => 'boolean',
         'is_registration_required' => 'boolean',
-    ];
-
-    public $attributes = [
-        'published' => false,
-        'is_private' => false,
-        'is_sales_button_hidden' => false,
-        'is_after_hours' => false,
-        'is_ticketed' => false,
-        'is_free' => false,
-        'is_rsvp' => false,
-        'is_member_exclusive' => false,
-        'is_admission_required' => false,
-        'is_sold_out' => false,
-        'is_registration_required' => false,
     ];
 
     /**

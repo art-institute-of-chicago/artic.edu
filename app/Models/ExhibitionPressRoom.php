@@ -36,11 +36,6 @@ class ExhibitionPressRoom extends AbstractModel
         'public' => 'boolean',
     ];
 
-    public $attributes = [
-        'published' => false,
-        'public' => false,
-    ];
-
     public $slugAttributes = [
         'title',
     ];

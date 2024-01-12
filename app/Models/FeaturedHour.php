@@ -18,10 +18,6 @@ class FeaturedHour extends AbstractModel
         'published' => 'boolean',
     ];
 
-    public $attributes = [
-        'published' => false,
-    ];
-
     public function page()
     {
         return $this->belongsTo('App\Models\Page');

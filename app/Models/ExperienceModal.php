@@ -51,10 +51,6 @@ class ExperienceModal extends AbstractModel implements Sortable
         'published' => 'boolean',
     ];
 
-    public $attributes = [
-        'published' => false,
-    ];
-
     public function experienceImage()
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'modal_experience_image');

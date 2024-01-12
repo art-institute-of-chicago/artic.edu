@@ -136,10 +136,6 @@ class Page extends AbstractModel
         'published' => 'boolean',
     ];
 
-    public $attributes = [
-        'published' => false,
-    ];
-
     public $mediasParams = [
         'visit_hero' => [
             'default' => [

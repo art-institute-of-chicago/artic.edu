@@ -69,10 +69,6 @@ class Slide extends AbstractModel implements Sortable
         'published' => 'boolean',
     ];
 
-    public $attributes = [
-        'published' => false,
-    ];
-
     protected function getCanDeleteAttribute()
     {
         return $this->module_type != 'attract' && $this->module_type != 'end';

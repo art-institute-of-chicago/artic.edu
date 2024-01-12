@@ -57,14 +57,9 @@ class DigitalPublication extends AbstractModel
         'publish_start_date' => 'date',
         'publish_end_date' => 'date',
         'published' => 'boolean',
+        'active' => 'boolean',
         'public' => 'boolean',
         'is_dsc_stub' => 'boolean',
-    ];
-
-    public $attributes = [
-        'published' => false,
-        'public' => false,
-        'is_dsc_stub' => false,
     ];
 
     public $searchSections = [];

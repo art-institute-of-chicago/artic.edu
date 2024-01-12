@@ -48,14 +48,9 @@ class PressRelease extends AbstractModel
         'publish_end_date' => 'date',
         'migrated_at' => 'datetime',
         'published' => 'boolean',
+        'active' => 'boolean',
         'public' => 'boolean',
         'is_unlisted' => 'boolean',
-    ];
-
-    public $attributes = [
-        'published' => false,
-        'public' => false,
-        'is_unlisted' => false,
     ];
 
     public $mediasParams = [

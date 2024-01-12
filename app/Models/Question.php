@@ -24,8 +24,4 @@ class Question extends AbstractModel implements Sortable
     public $casts = [
         'published' => 'boolean',
     ];
-
-    public $attributes = [
-        'published' => false,
-    ];
 }

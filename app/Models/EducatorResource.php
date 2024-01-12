@@ -46,12 +46,6 @@ class EducatorResource extends AbstractModel
         'publish_end_date' => 'date'
     ];
 
-    public $attributes = [
-        'published' => false,
-        'active' => false,
-        'public' => false,
-    ];
-
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
 

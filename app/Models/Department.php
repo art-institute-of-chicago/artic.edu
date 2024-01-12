@@ -35,10 +35,6 @@ class Department extends AbstractModel
         'should_append_artworks' => 'boolean',
     ];
 
-    public $attributes = [
-        'should_append_artworks' => false,
-    ];
-
     public $slugAttributes = [
         'title',
     ];

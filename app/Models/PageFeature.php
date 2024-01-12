@@ -67,10 +67,6 @@ class PageFeature extends AbstractModel
         'published' => 'boolean',
     ];
 
-    public $attributes = [
-        'published' => false,
-    ];
-
     public function landingPages()
     {
         return $this->belongsToMany('\App\Models\LandingPage', 'landing_page_page_feature')->withPivot('position')->orderBy('position');
