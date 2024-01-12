@@ -278,4 +278,39 @@
       color: $color__white;
     }
   }
+  #make-with-us {
+    background-color: $color__rlc__antique_white;
+    .m-showcase-background {
+      --spacing: calc(100vw);
+      background-color: $color__rlc__atomic_tangerine;
+      border-bottom-left-radius: var(--spacing);
+      border-bottom-right-radius: var(--spacing);
+    }
+    .m-showcase-wrapper {
+      grid-template-columns: 1fr 2fr;
+    }
+    .m-showcase-block__header-wrapper {
+      grid-column-end: 3;
+      grid-column-start: 1;
+    }
+    .m-showcase-image {
+      aspect-ratio: 1;
+      @include breakpoint('xsmall') {
+        grid-column-end: 3;
+        grid-column-start: 1;
+      }
+    }
+    .m-showcase-block__text-wrapper {
+      @include breakpoint('xsmall') {
+        grid-column-end: 3;
+        grid-column-start: 1;
+      }
+    }
+    .showcase-description {
+      color: $color__black--80;
+    }
+    .showcase-link {
+      color: $color__rlc__blue_sapphire;
+    }
+  }
 }
