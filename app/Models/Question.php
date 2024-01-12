@@ -21,8 +21,7 @@ class Question extends AbstractModel implements Sortable
      */
     public $nullable = [];
 
-    /**
-     * Those fields get auto set to false if not submitted
-     */
-    public $checkboxes = ['published'];
+    public $casts = [
+        'published' => 'boolean',
+    ];
 }

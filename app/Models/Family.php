@@ -22,7 +22,9 @@ class Family extends AbstractModel
         'link_label',
     ];
 
-    public $checkboxes = ['published'];
+    public $casts = [
+        'published' => 'boolean',
+    ];
 
     public function page()
     {

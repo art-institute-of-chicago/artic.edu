@@ -25,8 +25,8 @@ class HomeArtist extends AbstractModel implements Sortable
         'landing_page_id',
     ];
 
-    public $checkboxes = [
-        'published'
+    public $casts = [
+        'published' => 'boolean',
     ];
 
     public $mediasParams = [

@@ -33,14 +33,11 @@ class Mirador extends AbstractModel
 
     protected $casts = [
         'date' => 'date',
+        'published' => 'boolean',
     ];
 
     public $slugAttributes = [
         'title',
-    ];
-
-    public $checkboxes = [
-        'published'
     ];
 
     public $filesParams = ['upload_manifest_file'];

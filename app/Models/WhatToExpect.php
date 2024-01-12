@@ -21,10 +21,7 @@ class WhatToExpect extends Model implements Sortable
         'text',
     ];
 
-    /**
-     * Add checkbox fields names here (published toggle is itself a checkbox)
-     */
-    public $checkboxes = [
-        'published'
+    public $casts = [
+        'published' => 'boolean',
     ];
 }

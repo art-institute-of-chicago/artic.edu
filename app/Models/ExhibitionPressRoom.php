@@ -29,8 +29,12 @@ class ExhibitionPressRoom extends AbstractModel
         'public',
     ];
 
-    public $checkboxes = ['published', 'public'];
-    public $dates = ['publish_start_date', 'publish_end_date'];
+    public $casts = [
+        'publish_start_date' => 'date',
+        'publish_end_date' => 'date',
+        'published' => 'boolean',
+        'public' => 'boolean',
+    ];
 
     public $slugAttributes = [
         'title',

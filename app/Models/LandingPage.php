@@ -83,13 +83,12 @@ class LandingPage extends AbstractModel implements Sortable
 
     public $casts = [
         'labels' => AsCollection::class,
+        'published' => 'boolean',
     ];
 
     public $slugAttributes = [
         'title',
     ];
-
-    public $checkboxes = ['published'];
 
     public $mediasParams = [
         'hero' => [

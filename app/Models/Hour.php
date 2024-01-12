@@ -66,23 +66,18 @@ class Hour extends AbstractModel
         3 => 'RLC',
     ];
 
-    public $dates = [
-        'valid_from',
-        'valid_through',
-    ];
+    public $casts = [
+        'valid_from' => 'date',
+        'valid_through' => 'date',
+        'published' => 'boolean',
+        'monday_is_closed' => 'boolean',
+        'tuesday_is_closed' => 'boolean',
+        'wednesday_is_closed' => 'boolean',
+        'thursday_is_closed' => 'boolean',
+        'friday_is_closed' => 'boolean',
+        'saturday_is_closed' => 'boolean',
+        'sunday_is_closed' => 'boolean',
 
-    /**
-     * Those fields get auto set to false if not submitted
-     */
-    public $checkboxes = [
-        'published',
-        'monday_is_closed',
-        'tuesday_is_closed',
-        'wednesday_is_closed',
-        'thursday_is_closed',
-        'friday_is_closed',
-        'saturday_is_closed',
-        'sunday_is_closed',
     ];
 
     public function scopeToday($query, $type = 0)

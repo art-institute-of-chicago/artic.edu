@@ -25,8 +25,8 @@ class Author extends AbstractModel
         'title',
     ];
 
-    public $checkboxes = [
-        'published'
+    public $casts = [
+        'published' => 'boolean',
     ];
 
     protected $presenter = 'App\Presenters\Admin\AuthorPresenter';

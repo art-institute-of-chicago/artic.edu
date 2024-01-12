@@ -65,7 +65,8 @@ class Slide extends AbstractModel implements Sortable
         'seamless_asset' => 'array',
         'seamless_image_asset' => 'array',
         'video_play_settings' => 'array',
-        'split_video_play_settings' => 'array'
+        'split_video_play_settings' => 'array',
+        'published' => 'boolean',
     ];
 
     protected function getCanDeleteAttribute()
@@ -75,10 +76,6 @@ class Slide extends AbstractModel implements Sortable
 
     public $slugAttributes = [
         'title',
-    ];
-
-    public $checkboxes = [
-        'published',
     ];
 
     public $filesParams = ['sequence_file'];

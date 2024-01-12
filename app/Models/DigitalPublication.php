@@ -53,16 +53,13 @@ class DigitalPublication extends AbstractModel
     protected $presenter = 'App\Presenters\Admin\DigitalPublicationPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationPresenter';
 
-    public $checkboxes = [
-        'published',
-        'active',
-        'public',
-        'is_dsc_stub',
-    ];
-
-    public $dates = [
-        'publish_start_date',
-        'publish_end_date',
+    public $casts = [
+        'publish_start_date' => 'date',
+        'publish_end_date' => 'date',
+        'published' => 'boolean',
+        'active' => 'boolean',
+        'public' => 'boolean',
+        'is_dsc_stub' => 'boolean',
     ];
 
     public $searchSections = [];

@@ -39,6 +39,7 @@ class Video extends AbstractModel
 
     protected $casts = [
         'date' => 'date',
+        'published' => 'boolean',
     ];
 
     protected $appends = [
@@ -59,8 +60,6 @@ class Video extends AbstractModel
     public $slugAttributes = [
         'title',
     ];
-
-    public $checkboxes = ['published'];
 
     public function getEmbedAttribute()
     {
