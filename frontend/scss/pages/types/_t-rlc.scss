@@ -179,51 +179,75 @@
       width: 100%;
     }
   }
-  .m-showcase-block {
+  .m-showcase-block, .m-showcase-multiple-block, .m-showcase-background {
     margin-top: 0;
+  }
+  .m-showcase-block, .m-showcase-multiple-block>.m-showcase-background {
     @include breakpoint('small+') {
       padding: 60px;
     }
     .m-showcase-wrapper {
+      gap: 60px;
+      @include breakpoint('xsmall') {
+        gap: 25px;
+      }
+    }
+    .showcase-header {
+      color: $color__black--90;
+      font-family: var(--sans-serif);
+      font-size: 21px;
+      font-weight: 325;
+      text-transform: 'uppercase';
+    }
+    .showcase-intro {
+      font-family: var(--sans-serif);
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 28px;
+      padding-top: 20px;
+    }
+    .m-showcase-image, .m-showcase-video, .m-showcase-block__text-wrapper {
+      margin: 0;
+      padding: 0;
+    }
+    .m-showcase-block__text-wrapper {
+      .showcase-tag {
+        font-size: 13px;
+        font-weight: 325;
+        margin-bottom: 12px;
+      }
+      .showcase-title {
+        font-size: 28px;
+        line-height: 28px;
+        margin-top: 0;
+      }
+      .showcase-description {
+        font-size: 17px;
+        line-height: 28px;
+      }
+    }
+  }
+  .m-showcase-block {
+    .m-showcase-wrapper {
       flex-direction: row;
       flex-wrap: wrap;
-      margin: 0;
-      gap: 60px;
       .showcase-header {
         flex-basis: 100%;
-        font-family: var(--sans-serif);
-        font-size: 21px;
-        font-weight: 325;
-        text-transform: 'uppercase';
       }
       .m-showcase-image, .m-showcase-video, .m-showcase-block__text-wrapper {
-        flex: 1;
-        margin: 0;
-        padding: 0;
-      }
-      .m-showcase-block__text-wrapper {
-        .showcase-tag {
-          font-size: 13px;
-          font-weight: 325;
-          margin-bottom: 12px;
-        }
-        .showcase-title {
-          font-size: 28px;
-          line-height: 36px;
-          margin-top: 0;
-        }
-        .showcase-description {
-          font-size: 17px;
-          line-height: 28px;
-        }
+        flex: 1 1;
       }
       @include breakpoint('xsmall') {
         flex-direction: column;
-        gap: 25px;
         .showcase-header {
           flex-basis: fit-content;
         }
       }
+    }
+  }
+  .m-showcase-multiple-block {
+    .m-showcase-wrapper {
+      display: grid;
     }
   }
   #about-the-r-l-c {
