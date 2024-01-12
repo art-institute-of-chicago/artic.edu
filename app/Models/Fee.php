@@ -15,10 +15,6 @@ class Fee extends AbstractModel
      */
     public $nullable = [];
 
-    /**
-     * Those fields get auto set to false if not submitted
-     */
-    public $checkboxes = [];
 
     public function fee_age() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {

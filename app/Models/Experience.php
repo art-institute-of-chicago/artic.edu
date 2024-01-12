@@ -49,10 +49,10 @@ class Experience extends AbstractModel implements Sortable
         'title',
     ];
 
-    public $checkboxes = [
-        'published',
-        'is_unlisted',
-        'is_in_magazine',
+    public $casts = [
+        'published' => 'boolean',
+        'is_unlisted' => 'boolean',
+        'is_in_magazine' => 'boolean',
     ];
 
     public function getListDescriptionAttribute()

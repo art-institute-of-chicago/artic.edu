@@ -36,18 +36,6 @@ class EmailSeries extends AbstractModel implements Sortable
         'published',
     ];
 
-    public $checkboxes = [
-        'show_affiliate',
-        'show_member',
-        'show_luminary',
-        'show_nonmember',
-        'show_affiliate_test',
-        'show_member_test',
-        'show_luminary_test',
-        'show_nonmember_test',
-        'published',
-    ];
-
     public $casts = [
         'show_affiliate' => 'boolean',
         'show_member' => 'boolean',

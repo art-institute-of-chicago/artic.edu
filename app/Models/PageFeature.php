@@ -63,7 +63,9 @@ class PageFeature extends AbstractModel
      */
     public $filesParams = ['video'];
 
-    public $checkboxes = ['published'];
+    public $casts = [
+        'published' => 'boolean',
+    ];
 
     public function landingPages()
     {

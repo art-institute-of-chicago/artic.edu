@@ -43,9 +43,15 @@ class PressRelease extends AbstractModel
         'title',
     ];
 
-    public $checkboxes = ['published', 'active', 'public', 'is_unlisted'];
-
-    public $dates = ['publish_start_date', 'publish_end_date', 'migrated_at'];
+    public $casts = [
+        'publish_start_date' => 'date',
+        'publish_end_date' => 'date',
+        'migrated_at' => 'datetime',
+        'published' => 'boolean',
+        'active' => 'boolean',
+        'public' => 'boolean',
+        'is_unlisted' => 'boolean',
+    ];
 
     public $mediasParams = [
         'listing' => [

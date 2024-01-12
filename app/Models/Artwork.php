@@ -46,7 +46,9 @@ class Artwork extends AbstractModel
 
     public $filesParams = ['image_sequence_file', 'upload_manifest_file'];
 
-    public $checkboxes = ['default_manifest_url'];
+    public $casts = [
+        'default_manifest_url' => 'boolean',
+    ];
 
     public function getFullTitleAttribute()
     {

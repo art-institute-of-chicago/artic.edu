@@ -41,8 +41,14 @@ class PrintedPublication extends AbstractModel
         'title',
     ];
 
-    public $checkboxes = ['published', 'active', 'public'];
-    public $dates = ['publish_start_date', 'publish_end_date', 'migrated_at'];
+    public $casts = [
+        'publish_start_date' => 'date',
+        'publish_end_date' => 'date',
+        'migrated_at' => 'datetime',
+        'published' => 'boolean',
+        'active' => 'boolean',
+        'public' => 'boolean',
+    ];
 
     protected $presenter = 'App\Presenters\Admin\PrintedPublicationPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\PrintedPublicationPresenter';

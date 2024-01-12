@@ -51,16 +51,18 @@ class GenericPage extends AbstractModel implements Sortable
         'show_hours',
     ];
 
-    public $dates = [
-        'publish_start_date',
-        'publish_end_date',
+    public $casts = [
+        'publish_start_date' => 'date',
+        'publish_end_date' => 'date',
+        'published' => 'boolean',
+        'active' => 'boolean',
+        'is_redirect_url_external' => 'boolean',
+        'http_protected' => 'boolean',
     ];
 
     public $slugAttributes = [
         'title',
     ];
-
-    public $checkboxes = ['published', 'active', 'is_redirect_url_external', 'http_protected'];
 
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';

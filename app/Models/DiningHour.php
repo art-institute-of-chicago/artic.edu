@@ -19,7 +19,9 @@ class DiningHour extends AbstractModel
         'hours',
     ];
 
-    public $checkboxes = ['published'];
+    public $casts = [
+        'published' => 'boolean',
+    ];
 
     public function page()
     {
