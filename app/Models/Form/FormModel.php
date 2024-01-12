@@ -9,11 +9,18 @@ class FormModel extends Model
 {
     public function toMarkdown()
     {
+        $dates = collect($this->casts)
+            ->filter(function ($castType) {
+                return in_array($castType, ['date', 'datetime']);
+            })
+            ->keys()
+            ->all();
+
         $ret = "Field | Value\n";
         $ret .= "--- | ---\n";
 
         foreach ($this->getAttributes() as $key => $value) {
-            if (in_array($key, $this->dates)) {
+            if (in_array($key, $dates)) {
                 $ret .= $key . ' | ' . ($value ? Carbon::parse($value)->toFormattedDateString() : '') . "\n";
             } else {
                 if (is_array($value)) {
