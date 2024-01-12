@@ -1,0 +1,21 @@
+/*
+The remainder of the styling is in the _m-showcase partial, under
+.m-showcase-background
+*/
+.m-showcase-multiple-block {
+  margin-left: calc(50% - 50vw);
+  margin-top: 50px;
+  width: 100vw;
+  .m-showcase-block__header-wrapper {
+    flex-basis: 100%;
+  }
+  ol, ul {
+    padding-inline-start: 40px;
+  }
+  ol>li {
+    list-style-type: decimal;
+  }
+  ul>li {
+    list-style-type: disc;
+  }
+}
