@@ -1,21 +1,6 @@
 // ------ Custom tours
 
 .custom-tours {
-  // This is to counteract some of the odd behavior with the a17 container
-  // There's obviously a reason for things being the way they are but I feel like html and body
-  // should ideally not be doing anything with width: 100vw or centering themselves in the screen using css
-  // It's not accounting for the scroll bar in a way that makes sense to me and seems to cause
-  // horizontal cut-off of content approx half the width of the scroll bar on each side
-  // This approach is probably fine with sufficient padding
-  // We could consider having a special class than normalizes the body/html styles for custom tours
-  margin-left: -4.6875vw;
-  margin-right: -4.6875vw;
-
-  @include breakpoint('medium+') {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
   // Override the reset styles for dialog elements
   dialog {
     display: revert;
@@ -84,13 +69,20 @@
 
 // ---- Custom tours: General
 
-.aic-ct__core {
-  padding-left: 20px;
-  padding-right: 20px;
+.aic-ct-full-bleed {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-  @include breakpoint('medium+') {
-    padding-left: 0;
-    padding-right: 0;
+.aic-ct-full-bleed__core {
+  padding: 0 4.6875vw;
+
+  @include breakpoint('xlarge') {
+    padding: 0;
+    max-width: 1500px;
+    margin: 0 auto;
   }
 }
 
@@ -203,19 +195,19 @@
   @include untuck;
   position: sticky;
   top: 0;
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  align-items: flex-start;
-  padding: 12px 20px;
+  width: 100vw;
+  padding: 20px 0;
+  margin-left: 50%;
+  transform: translateX(-50%);
   background-color: $color__red--120;
   color: $color__white;
   z-index: 9;
 
-  @include breakpoint('medium+') {
-    width: 100vw;
-    transform: translateX(-50%);
-    margin-left: 50%;
+  .aic-ct-header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: flex-start;
   }
 }
 
@@ -224,7 +216,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   // Pull in previous and next buttons on small screens
   margin: 0 -25%;
 }
@@ -468,13 +460,6 @@
   padding: 16px 20px;
   background-color: $color__black;
   color: $color__white;
-
-  @include breakpoint('medium+') {
-    position: relative;
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
-  }
 }
 
 .aic-ct-nav {
@@ -591,9 +576,13 @@
 // ------ Custom tours: Tour metadata
 
 .aic-ct-fieldset {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   &::before {
     display: none;
+  }
+
+  .o-blocks:first-child {
+    margin-top: 0;
   }
 
   .m-fieldset__fieldset:first-child {
@@ -678,12 +667,15 @@
 // ------ Custom tours: Tour CTA
 
 .aic-ct-tour__cta {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 20px;
+  padding: 20px 0;
   background-color: $color__black--5;
   border-top: 1px solid $color__black--20;
+
+  .aic-ct-tour__cta-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
   .f-body {
     @include untuck;
