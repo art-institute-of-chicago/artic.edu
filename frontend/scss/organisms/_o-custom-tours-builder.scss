@@ -206,7 +206,7 @@
   display: flex;
   justify-content: space-between;
   gap: 8px;
-  align-items: center;
+  align-items: flex-start;
   padding: 12px 20px;
   background-color: $color__red--120;
   color: $color__white;
@@ -221,17 +221,20 @@
 
 .aic-ct-item-info {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   gap: 8px;
-
-  em {
-    color: $color__black--20
-  }
+  // Pull in previous and next buttons on small screens
+  margin: 0 -25%;
 }
 
-.aic-ct-item-count {
+.aic-ct-item-info__count {
+  display: flex;
+  gap: 8px;
+}
+
+.aic-ct-item-info__count-num {
   @include untuck;
   display: flex;
   justify-content: center;
@@ -250,10 +253,38 @@
   }
 }
 
-.aic-ct-item-count--body {
-  color: $color__white;
-  background-color: $color__blue--100;
+// ---- Custom tours: Header Slots
+
+.aic-ct-header__slots {
+  display: flex;
+  gap: 8px;
 }
+
+.aic-ct-header__slot {
+
+  .btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    color: inherit;
+    border: 1px dashed transparent;
+
+    &[disabled] {
+      opacity: 0.75;
+    }
+  }
+}
+
+.aic-ct-header__slot--inactive {
+  .btn {
+    border-color: $color__white;
+  }
+}
+
+
+
+
+// ---- Custom tours: Header Buttons
 
 .aic-ct-header__button {
   margin: 0 !important;
