@@ -6,7 +6,7 @@ export default function customTourBuilder(container) {
   this.init = function () {
     ReactDOM.render(
       <CustomTourBuilder
-        initMessage="Custom Tour Builder will render here!"
+        heroImageId="3c27b499-af56-f0d5-93b5-a7f2f1ad5813"
       />,
       container,
       () => {
