@@ -97,7 +97,7 @@
                                         "restrict" => false,
                                     ];
                                 @endphp
-                                <a href="{{ config('app.url') }}/artworks/{{ $artwork['id'] }}"
+                                <a href="{{ config('aic.protocol') }}://{{ rtrim(config('app.url')) }}/artworks/{{ $artwork['id'] }}"
                                    aria-label="View full artwork page for {{ $artwork['title'] }}{{ isset($artwork['thumbnail']['alt_text']) ? ': ' . $artwork['thumbnail']['alt_text'] : '' }}">
                                     @component('components.atoms._img')
                                         @slot('image', $artwork_image)
@@ -143,7 +143,7 @@
                                 "{{ $artwork['objectNote'] }}"
                             @endcomponent
                         @endisset
-                        <a href="{{ config('app.url') }}/artworks/{{ $artwork['id'] }}"
+                        <a href="{{ config('aic.protocol') }}://{{ rtrim(config('app.url')) }}/artworks/{{ $artwork['id'] }}"
                            target="_blank"
                            class="external-link f-link"
                            aria-hidden="true">
