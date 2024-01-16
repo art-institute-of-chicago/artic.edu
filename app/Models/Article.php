@@ -80,17 +80,14 @@ class Article extends AbstractModel implements Feedable
 
     public $nullable = [];
 
-    public $checkboxes = [
-        'published',
-        'is_unlisted',
-        'is_in_magazine',
-    ];
-
-    public $dates = [
-        'date',
-        'migrated_at',
-        'publish_start_date',
-        'publish_end_date'
+    public $casts = [
+        'date' => 'date',
+        'migrated_at' => 'datetime',
+        'publish_start_date' => 'date',
+        'publish_end_date' => 'date',
+        'published' => 'boolean',
+        'is_unlisted' => 'boolean',
+        'is_in_magazine' => 'boolean',
     ];
 
     public $mediasParams = [

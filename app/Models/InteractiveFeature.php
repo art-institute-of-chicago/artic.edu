@@ -58,7 +58,9 @@ class InteractiveFeature extends AbstractModel
     ];
 
     public $type = 'label';
-    public $checkboxes = ['published'];
+    public $casts = [
+        'published' => 'boolean',
+    ];
 
     public function experiences()
     {

@@ -42,14 +42,22 @@ class DateRule extends AbstractModel
         1 => 'Monthly the first day of the week selected as start date (first Monday, first Tuesday... etc)',
     ];
 
-    public $dates = ['start_date', 'end_date'];
+    public $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
+        'monday' => 'boolean',
+        'tuesday' => 'boolean',
+        'wednesday' => 'boolean',
+        'thursday' => 'boolean',
+        'friday' => 'boolean',
+        'saturday' => 'boolean',
+        'sunday' => 'boolean',
+    ];
 
     /**
      * Those fields get auto set to null if not submited
      */
     public $nullable = [];
-
-    public $checkboxes = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
     public static function getRuleTypes()
     {

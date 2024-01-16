@@ -15,7 +15,7 @@ class VanityRedirect extends Model
         'published',
     ];
 
-    public $checkboxes = [
-        'published'
+    public $casts = [
+        'published' => 'boolean',
     ];
 }

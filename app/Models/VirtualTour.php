@@ -37,14 +37,11 @@ class VirtualTour extends AbstractModel
 
     protected $casts = [
         'date' => 'date',
+        'published' => 'boolean',
     ];
 
     public $slugAttributes = [
         'title',
-    ];
-
-    public $checkboxes = [
-        'published'
     ];
 
     public $mediasParams = [
