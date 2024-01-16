@@ -33,10 +33,6 @@ trait HasAutoRelated
             $relatedItems[] = $relatedBlockItem->blockable;
         }
     
-        $relatedItems = collect($relatedItems)->reject(function ($item) {
-            return $item->type === 'event';
-        });
-    
         return $relatedItems;
     }
 }
