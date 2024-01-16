@@ -28,11 +28,6 @@
     // Get auto related items & evaluate if they are featured
     $autoRelated = collect($item->related($item->id))->unique('id');
 
-    // Remove items of type 'event' from auto related items
-    $autoRelated = $autoRelated->reject(function ($relatedItem) {
-        return $relatedItem->type === 'event';
-    });
-
     // Remove featured related items from auto related items
     if ($featuredRelatedIds->isNotEmpty()) {
         $autoRelated = $autoRelated->reject(function ($relatedItem) use ($featuredRelatedIds) {
