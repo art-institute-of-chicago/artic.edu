@@ -145,6 +145,7 @@
 
             .type {
                 margin-top: 8px;
+                line-height: 28px;
 
                 @include breakpoint('xsmall') {
                     font-size: 12px;
@@ -153,8 +154,8 @@
 
             .title {
                 margin-top: 11px;
-                font-size: 19px;
-                line-height: 22px;
+                font-size: 22px;
+                line-height: 26px;
 
 
                 @include breakpoint('xsmall') {
