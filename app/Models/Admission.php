@@ -27,10 +27,8 @@ class Admission extends AbstractModel
      */
     public $nullable = [];
 
-    /**
-     * Those fields get auto set to false if not submitted
-     */
-    public $checkboxes = ['published'];
-
-    public $dates = ['date'];
+    public $casts = [
+        'published' => 'boolean',
+        'date' => 'date',
+    ];
 }

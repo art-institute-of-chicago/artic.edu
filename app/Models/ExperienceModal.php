@@ -45,13 +45,10 @@ class ExperienceModal extends AbstractModel implements Sortable
         'copyright_notice',
     ];
 
-    public $checkboxes = [
-        'published',
-    ];
-
     protected $casts = [
         'video_play_settings' => 'array',
-        'image_sequence_playback' => 'array'
+        'image_sequence_playback' => 'array',
+        'published' => 'boolean',
     ];
 
     public function experienceImage()

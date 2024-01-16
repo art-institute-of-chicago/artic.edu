@@ -51,13 +51,10 @@ class DigitalPublicationSection extends AbstractModel implements Sortable
         'title',
     ];
 
-    public $checkboxes = [
-        'published'
-    ];
-
-    public $dates = [
-        'date',
-        'publish_start_date',
+    public $casts = [
+        'date' => 'date',
+        'publish_start_date' => 'date',
+        'published' => 'boolean',
     ];
 
     public $mediasParams = [

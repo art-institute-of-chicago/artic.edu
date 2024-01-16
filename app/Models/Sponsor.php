@@ -19,10 +19,9 @@ class Sponsor extends AbstractModel
      */
     public $nullable = [];
 
-    /**
-     * Those fields get auto set to false if not submitted
-     */
-    public $checkboxes = ['published'];
+    public $casts = [
+        'published' => 'boolean',
+    ];
 
     protected function transformMappingInternal()
     {

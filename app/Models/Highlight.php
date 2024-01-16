@@ -70,18 +70,12 @@ class Highlight extends AbstractModel
      */
     public $nullable = [];
 
-    /**
-     * Those fields get auto set to false if not submited
-     */
-    public $checkboxes = [
-        'published',
-        'is_unlisted',
-        'is_in_magazine',
-    ];
-
-    public $dates = [
-        'publish_start_date',
-        'publish_end_date',
+    public $casts = [
+        'publish_start_date' => 'date',
+        'publish_end_date' => 'date',
+        'published' => 'boolean',
+        'is_unlisted' => 'boolean',
+        'is_in_magazine' => 'boolean',
     ];
 
     public $mediasParams = [

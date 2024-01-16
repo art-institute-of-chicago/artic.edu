@@ -132,7 +132,9 @@ class Page extends AbstractModel
         'title',
     ];
 
-    public $checkboxes = ['published'];
+    public $casts = [
+        'published' => 'boolean',
+    ];
 
     public $mediasParams = [
         'visit_hero' => [

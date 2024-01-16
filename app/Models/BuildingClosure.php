@@ -30,9 +30,11 @@ class BuildingClosure extends AbstractModel
 
     public $nullable = [];
 
-    public $checkboxes = ['published'];
-
-    public $dates = ['date_start', 'date_end'];
+    public $casts = [
+        'published' => 'boolean',
+        'date_start' => 'date',
+        'date_end' => 'date',
+    ];
 
     /**
      * The model's default values for attributes.
