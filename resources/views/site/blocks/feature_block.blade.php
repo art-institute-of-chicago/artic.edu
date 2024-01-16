@@ -24,13 +24,9 @@
             if ($block->input('override_event')) {
                 $items = $block->getRelated('events');
 
-                foreach ($items as $key => $event) {
-                    $eventWithMetas = $event->is_future;
-
-                    if (!$eventWithMetas) {
-                        unset($items[$key]);
-                    }
-                }
+                $items = $items->filter(function ($event) {
+                    return $event->is_future;
+                })->values()->take(4);
 
             } else {
                 $items = \App\Models\Event::today()->future()->published()->notPrivate()->limit(4)->get();
