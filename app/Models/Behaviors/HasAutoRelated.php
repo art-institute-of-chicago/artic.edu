@@ -10,7 +10,7 @@ trait HasAutoRelated
     public function related($id)
     {
         $modelName = Str::plural(Str::lower(class_basename(__CLASS__)));
-    
+
         $blockableTypes = [
             'highlights',
             'educatorResources',
@@ -21,22 +21,18 @@ trait HasAutoRelated
             'events',
             'exhibitions',
         ];
-    
+
         $relatedBlockItems = Block::whereIn('blockable_type', $blockableTypes)
             ->where('content', 'LIKE', '%"browsers"%')
             ->where('content', 'LIKE', '%' . $modelName . '%')
             ->where('content', 'LIKE', '%' . $id . '%')
             ->get();
-    
+
         $relatedItems = [];
         foreach ($relatedBlockItems as $relatedBlockItem) {
             $relatedItems[] = $relatedBlockItem->blockable;
         }
-    
-        $relatedItems = collect($relatedItems)->reject(function ($item) {
-            return $item->type === 'event';
-        });
-    
+
         return $relatedItems;
     }
 }
