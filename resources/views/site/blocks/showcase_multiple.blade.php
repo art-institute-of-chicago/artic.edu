@@ -3,7 +3,7 @@
     $intro = $block->input('intro');
 @endphp
 
-<div id="{{ $block->input('styling') }}" class="m-showcase-multiple-block">
+<div id="{{ str($block->input('id'))->after('#') }}" class="m-showcase-multiple-block">
     <div class="m-showcase-background">
         <div class="m-showcase-wrapper">
             <div class="m-showcase-block__header-wrapper">
