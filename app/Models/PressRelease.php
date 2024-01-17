@@ -53,6 +53,13 @@ class PressRelease extends AbstractModel
         'is_unlisted' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+        'active' => false,
+        'public' => false,
+        'is_unlisted' => false,
+    ];
+
     public $mediasParams = [
         'listing' => [
             'default' => [

@@ -12,4 +12,11 @@ class EventEmailSeries extends Pivot
         'override_luminary' => 'boolean',
         'override_nonmember' => 'boolean',
     ];
+
+    public $attributes = [
+        'override_affiliate' => false,
+        'override_member' => false,
+        'override_luminary' => false,
+        'override_nonmember' => false,
+    ];
 }

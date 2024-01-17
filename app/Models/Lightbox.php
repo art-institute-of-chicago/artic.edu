@@ -51,7 +51,11 @@ class Lightbox extends AbstractModel
         'lightbox_end_date' => 'datetime',
         'published' => 'boolean',
         'hide_fields' => 'boolean',
+    ];
 
+    public $attributes = [
+        'published' => false,
+        'hide_fields' => false,
     ];
 
     protected $presenter = 'App\Presenters\Admin\LightboxPresenter';

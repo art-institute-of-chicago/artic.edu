@@ -62,6 +62,13 @@ class DigitalPublication extends AbstractModel
         'is_dsc_stub' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+        'active' => false,
+        'public' => false,
+        'is_dsc_stub' => false,
+    ];
+
     public $searchSections = [];
 
     public $mediasParams = [

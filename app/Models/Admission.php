@@ -31,4 +31,8 @@ class Admission extends AbstractModel
         'published' => 'boolean',
         'date' => 'date',
     ];
+
+    public $attributes = [
+        'published' => false,
+    ];
 }
