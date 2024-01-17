@@ -101,10 +101,10 @@ class EmailSubscriptionsController extends FormController
                             : false,
                     ]
                 ),
-                $this->getUnsubscribeBlocks(
-                    'unsubscribeFromShop',
-                    'I no longer wish to receive museum shop emails.'
-                ),
+                // $this->getUnsubscribeBlocks(
+                //     'unsubscribeFromShop',
+                //     'I no longer wish to receive museum shop emails.'
+                // ),
                 $this->getUnsubscribeBlocks(
                     'unsubscribeFromAll',
                     'I no longer wish to receive any Art Institute emails.'
