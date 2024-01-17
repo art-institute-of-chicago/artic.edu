@@ -283,6 +283,9 @@
   padding: 0 !important;
   color: $color__white;
   font-weight: 400;
+  // Set to size of longest text to prevent cosmetic jumps
+  // This may need updating if the text changes
+  flex-basis: 72px;
 
   svg {
     margin-left: 0;
