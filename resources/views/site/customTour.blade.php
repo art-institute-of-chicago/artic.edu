@@ -126,9 +126,11 @@
                             </p>
                         @endisset
 
-                        @isset($artwork['gallery_title'])
+                        @isset($artwork['gallery_title'], $artwork['gallery_level'], $artwork['gallery_location'])
                             <div class="aic-ct-viewer__gallery-container">
-                                <p class="f-tertiary">{{ $artwork['gallery_title'] }}</p>
+                                <p class="f-tertiary">
+                                    {{ $artwork['gallery_title'] }}, {{ $artwork['gallery_level'] }}, {{ $artwork['gallery_location'] }}
+                                </p>
                             </div>
                         @endisset
                         @isset($artwork['description'])
