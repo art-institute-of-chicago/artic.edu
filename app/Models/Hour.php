@@ -77,7 +77,10 @@ class Hour extends AbstractModel
         'friday_is_closed' => 'boolean',
         'saturday_is_closed' => 'boolean',
         'sunday_is_closed' => 'boolean',
+    ];
 
+    public $attributes = [
+        'published' => false,
     ];
 
     public function scopeToday($query, $type = 0)

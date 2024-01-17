@@ -42,6 +42,10 @@ class Video extends AbstractModel
         'published' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+    ];
+
     protected $appends = [
         'embed',
     ];

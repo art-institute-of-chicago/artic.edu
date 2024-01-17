@@ -60,6 +60,10 @@ class GenericPage extends AbstractModel implements Sortable
         'http_protected' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+    ];
+
     public $slugAttributes = [
         'title',
     ];

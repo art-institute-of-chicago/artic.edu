@@ -112,6 +112,10 @@ class Event extends AbstractModel
         'is_registration_required' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+    ];
+
     /**
      * Dropdown does not accept null keys; use big numbers
      */

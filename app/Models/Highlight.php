@@ -78,6 +78,10 @@ class Highlight extends AbstractModel
         'is_in_magazine' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+    ];
+
     public $mediasParams = [
         'hero' => [
             'default' => [

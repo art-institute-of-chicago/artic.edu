@@ -62,6 +62,10 @@ class InteractiveFeature extends AbstractModel
         'published' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+    ];
+
     public function experiences()
     {
         return $this->hasMany('App\Models\Experience', 'interactive_feature_id');

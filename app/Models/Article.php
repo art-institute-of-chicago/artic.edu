@@ -90,6 +90,10 @@ class Article extends AbstractModel implements Feedable
         'is_in_magazine' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+    ];
+
     public $mediasParams = [
         'hero' => [
             'default' => [
