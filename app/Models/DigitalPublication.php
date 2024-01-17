@@ -64,6 +64,9 @@ class DigitalPublication extends AbstractModel
 
     public $attributes = [
         'published' => false,
+        'active' => false,
+        'public' => false,
+        'is_dsc_stub' => false,
     ];
 
     public $searchSections = [];

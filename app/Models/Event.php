@@ -114,6 +114,16 @@ class Event extends AbstractModel
 
     public $attributes = [
         'published' => false,
+        'is_private' => false,
+        'is_sales_button_hidden' => false,
+        'is_after_hours' => false,
+        'is_ticketed' => false,
+        'is_free' => false,
+        'is_rsvp' => false,
+        'is_member_exclusive' => false,
+        'is_admission_required' => false,
+        'is_sold_out' => false,
+        'is_registration_required' => false,
     ];
 
     /**
