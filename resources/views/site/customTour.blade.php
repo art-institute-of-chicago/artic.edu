@@ -97,7 +97,7 @@
                                         "restrict" => false,
                                     ];
                                 @endphp
-                                <a href="{{ config('app.url') }}/artworks/{{ $artwork['id'] }}"
+                                <a href="{{ config('aic.protocol') }}://{{ rtrim(config('app.url')) }}/artworks/{{ $artwork['id'] }}"
                                    aria-label="View full artwork page for {{ $artwork['title'] }}{{ isset($artwork['thumbnail']['alt_text']) ? ': ' . $artwork['thumbnail']['alt_text'] : '' }}">
                                     @component('components.atoms._img')
                                         @slot('image', $artwork_image)
@@ -126,9 +126,11 @@
                             </p>
                         @endisset
 
-                        @isset($artwork['gallery_title'])
+                        @isset($artwork['gallery_title'], $artwork['gallery_level'], $artwork['gallery_location'])
                             <div class="aic-ct-viewer__gallery-container">
-                                <p class="f-tertiary">{{ $artwork['gallery_title'] }}</p>
+                                <p class="f-tertiary">
+                                    {{ $artwork['gallery_title'] }}, {{ $artwork['gallery_level'] }}, {{ $artwork['gallery_location'] }}
+                                </p>
                             </div>
                         @endisset
                         @isset($artwork['description'])
@@ -143,7 +145,7 @@
                                 "{{ $artwork['objectNote'] }}"
                             @endcomponent
                         @endisset
-                        <a href="{{ config('app.url') }}/artworks/{{ $artwork['id'] }}"
+                        <a href="{{ config('aic.protocol') }}://{{ rtrim(config('app.url')) }}/artworks/{{ $artwork['id'] }}"
                            target="_blank"
                            class="external-link f-link"
                            aria-hidden="true">
