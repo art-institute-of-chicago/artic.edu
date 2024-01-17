@@ -86,6 +86,10 @@ class LandingPage extends AbstractModel implements Sortable
         'published' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+    ];
+
     public $slugAttributes = [
         'title',
     ];

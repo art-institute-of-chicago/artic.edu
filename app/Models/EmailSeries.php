@@ -49,14 +49,6 @@ class EmailSeries extends AbstractModel implements Sortable
     ];
 
     public $attributes = [
-        'show_affiliate' => false,
-        'show_member' => false,
-        'show_luminary' => false,
-        'show_nonmember' => false,
-        'show_affiliate_test' => false,
-        'show_member_test' => false,
-        'show_luminary_test' => false,
-        'show_nonmember_test' => false,
         'published' => false,
     ];
 

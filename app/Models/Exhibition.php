@@ -81,6 +81,10 @@ class Exhibition extends AbstractModel
         'published' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+    ];
+
     public $slugAttributes = [
         'title',
     ];

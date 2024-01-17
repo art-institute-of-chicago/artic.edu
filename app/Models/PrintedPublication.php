@@ -50,6 +50,10 @@ class PrintedPublication extends AbstractModel
         'public' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+    ];
+
     protected $presenter = 'App\Presenters\Admin\PrintedPublicationPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\PrintedPublicationPresenter';
 

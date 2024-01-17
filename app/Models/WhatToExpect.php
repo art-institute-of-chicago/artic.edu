@@ -24,4 +24,8 @@ class WhatToExpect extends Model implements Sortable
     public $casts = [
         'published' => 'boolean',
     ];
+
+    public $attributes = [
+        'published' => false,
+    ];
 }

@@ -29,6 +29,10 @@ class Author extends AbstractModel
         'published' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+    ];
+
     protected $presenter = 'App\Presenters\Admin\AuthorPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\AuthorPresenter';
 
