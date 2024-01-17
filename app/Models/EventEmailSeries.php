@@ -18,5 +18,5 @@ class EventEmailSeries extends Pivot
         'override_member' => false,
         'override_luminary' => false,
         'override_nonmember' => false,
-    ];
+    ];  
 }

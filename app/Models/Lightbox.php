@@ -55,6 +55,7 @@ class Lightbox extends AbstractModel
 
     public $attributes = [
         'published' => false,
+        'hide_fields' => false,
     ];
 
     protected $presenter = 'App\Presenters\Admin\LightboxPresenter';

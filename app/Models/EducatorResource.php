@@ -48,6 +48,8 @@ class EducatorResource extends AbstractModel
 
     public $attributes = [
         'published' => false,
+        'active' => false,
+        'public' => false,
     ];
 
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
