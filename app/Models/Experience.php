@@ -55,6 +55,10 @@ class Experience extends AbstractModel implements Sortable
         'is_in_magazine' => 'boolean',
     ];
 
+    public $attributes = [
+        'published' => false,
+    ];
+
     public function getListDescriptionAttribute()
     {
         return $this->listing_description;
