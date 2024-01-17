@@ -57,6 +57,8 @@ class Experience extends AbstractModel implements Sortable
 
     public $attributes = [
         'published' => false,
+        'is_unlisted' => false,
+        'is_in_magazine' => false,
     ];
 
     public function getListDescriptionAttribute()

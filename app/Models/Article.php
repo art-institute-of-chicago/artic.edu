@@ -92,6 +92,8 @@ class Article extends AbstractModel implements Feedable
 
     public $attributes = [
         'published' => false,
+        'is_unlisted' => false,
+        'is_in_magazine' => false,
     ];
 
     public $mediasParams = [

@@ -20,6 +20,11 @@ class EventProgram extends AbstractModel
         'is_event_host' => 'boolean',
     ];
 
+    public $attributes = [
+        'is_affiliate_group' => false,
+        'is_event_host' => false,
+    ];
+
     protected $presenter = 'App\Presenters\Admin\EventProgramPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\EventProgramPresenter';
 
