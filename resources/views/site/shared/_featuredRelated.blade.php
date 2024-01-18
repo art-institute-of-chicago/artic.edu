@@ -40,7 +40,7 @@
     }
 @endphp
 
-@if (method_exists($item, 'hasFeaturedRelated') && $item->has() || count($autoRelated) > 0)
+@if (method_exists($item, 'hasFeaturedRelated') && $item->hasFeaturedRelated() || count($autoRelated) > 0)
     <aside class="m-inline-aside{{ (isset($variation)) ? ' '.$variation : '' }}" {!! (isset($behavior)) ? 'data-behavior="'.$behavior.'"' : '' !!}>
         @component('components.atoms._hr')
         @endcomponent
