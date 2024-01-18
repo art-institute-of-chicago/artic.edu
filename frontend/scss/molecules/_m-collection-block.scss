@@ -167,7 +167,6 @@
         }
 
         .m-collection-info {
-            margin-top: 56px;
             margin-bottom: 56px;
             display: flex;
             flex-direction: row;
@@ -175,7 +174,6 @@
             justify-content: space-between;
 
             @include breakpoint('medium-') {
-                margin-top: 32px;
                 margin-bottom: 32px;
             }
 
