@@ -152,6 +152,7 @@
         @formField('block_editor', [
             'blocks' => [
                 'showcase',
+                'showcase_multiple',
             ],
         ])
     </a17-fieldset>
