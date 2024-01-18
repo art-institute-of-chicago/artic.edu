@@ -24,15 +24,6 @@ return new class () extends Migration {
             $table->string('url')->nullable();
             $table->boolean('published')->default(false);
         });
-
-        Hour::truncate();
-
-        $hour = new Hour();
-        $hour->type = 0;        // Museum
-        $hour->title = 'Open daily 10:30–5:00, Thursdays until 8:00';
-        $hour->url = '/visit';
-        $hour->published = true;
-        $hour->save();
     }
 
     /**
