@@ -20,7 +20,7 @@
 
     // Get featured related items
     $isFeatured = false;
-    $featuredRelated = collect($item->getCustomRelatedItems())->map(function ($featuredRelated) {
+    $featuredRelated = collect($item->getFeaturedRelated())->filter()->map(function ($featuredRelated) {
         return $featuredRelated;
     });
 
