@@ -30,7 +30,7 @@
 
     // Get auto related items & evaluate if they are featured
 
-    $autoRelated = collect($item->related($item->id))->unique('id');
+    $autoRelated = collect($item->related($item->id))->unique('id')->filter();
 
     // Remove featured related items from auto related items
     if ($featuredRelatedIds->isNotEmpty()) {
