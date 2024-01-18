@@ -104,7 +104,6 @@
     @formField('wysiwyg', [
         'name' => 'labels.home_intro',
         'label' => 'Intro text',
-        'type' => 'textarea'
     ])
 
     @formField('repeater', ['type' => 'social_links'])
