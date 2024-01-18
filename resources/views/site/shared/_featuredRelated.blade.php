@@ -20,10 +20,13 @@
 
     // Get featured related items
     $isFeatured = false;
-    $featuredRelated = collect($item->getFeaturedRelated())->map(function ($featuredRelated) {
-        return $featuredRelated['item'];
+    $featuredRelated = collect($item->getCustomRelatedItems())->map(function ($featuredRelated) {
+        return $featuredRelated;
     });
+
     $featuredRelatedIds = $featuredRelated->pluck('id');
+
+    dump($featuredRelated);
 
     // Get auto related items & evaluate if they are featured
 
@@ -32,12 +35,12 @@
     // Remove featured related items from auto related items
     if ($featuredRelatedIds->isNotEmpty()) {
         $autoRelated = $autoRelated->reject(function ($relatedItem) use ($featuredRelatedIds) {
-            return $featuredRelatedIds->contains($relatedItem->id);
+            return $relatedItem !== null && $featuredRelatedIds->contains($relatedItem->id);
         });
     }
 @endphp
 
-@if (method_exists($item, 'hasFeaturedRelated') && $item->hasFeaturedRelated() || count($autoRelated) > 0)
+@if (method_exists($item, 'hasFeaturedRelated') && $item->has() || count($autoRelated) > 0)
     <aside class="m-inline-aside{{ (isset($variation)) ? ' '.$variation : '' }}" {!! (isset($behavior)) ? 'data-behavior="'.$behavior.'"' : '' !!}>
         @component('components.atoms._hr')
         @endcomponent
@@ -47,7 +50,7 @@
             {{ $item->getFeaturedRelatedTitle() }}
         @endcomponent
         @component('components.organisms._o-row-listing')
-            @foreach ($featuredRelated->concat($autoRelated)->take(6) as $related)
+            @foreach ($featuredRelated as $related)
                 @php
                     $isFeatured = $loop->first;
                 @endphp
