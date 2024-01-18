@@ -274,7 +274,11 @@
         flex: 2;
       }
     }
-    .showcase-header, .showcase-title, .showcase-description {
+    .showcase-header,
+    .showcase-tag,
+    .showcase-title,
+    .showcase-description,
+    .showcase-link {
       color: $color__white;
     }
   }
