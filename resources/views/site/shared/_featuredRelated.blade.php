@@ -26,8 +26,6 @@
 
     $featuredRelatedIds = $featuredRelated->pluck('id');
 
-    dump($featuredRelated);
-
     // Get auto related items & evaluate if they are featured
 
     $autoRelated = collect($item->related($item->id))->unique('id')->filter();
