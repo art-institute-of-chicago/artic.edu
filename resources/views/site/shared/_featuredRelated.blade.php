@@ -48,7 +48,7 @@
             {{ $item->getFeaturedRelatedTitle() }}
         @endcomponent
         @component('components.organisms._o-row-listing')
-            @foreach ($featuredRelated as $related)
+            @foreach ($featuredRelated->concat($autoRelated)->take(6) as $related)
                 @php
                     $isFeatured = $loop->first;
                 @endphp
