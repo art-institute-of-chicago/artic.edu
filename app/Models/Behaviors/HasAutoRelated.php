@@ -40,12 +40,12 @@ trait HasAutoRelated
 
         // Get all sidebar items that have this model as a related item
         $editorialTypes = [
-            'articles', 
-            'highlights', 
-            'events', 
-            'exhibitions', 
-            'experiences', 
-            'digitalPublications', 
+            'articles',
+            'highlights',
+            'events',
+            'exhibitions',
+            'experiences',
+            'digitalPublications',
             'videos'
         ];
 
@@ -57,20 +57,20 @@ trait HasAutoRelated
             ->whereIn('subject_type', $editorialTypes)
             ->get();
 
-            foreach ($relatedSidebarItems as $item) {
-                // Resolve the model class
-                $modelClass = Relation::getMorphedModel($item->subject_type) ?? $item->subject_type;
-                $itemId = $item->subject_id;
-            
-                if (class_exists($modelClass)) {
-                    $sidebarItem = app($modelClass)->find($itemId);
-            
-                    if ($sidebarItem) {
-                        $relatedItems[] = $sidebarItem;
-                    }
+        foreach ($relatedSidebarItems as $item) {
+            // Resolve the model class
+            $modelClass = Relation::getMorphedModel($item->subject_type) ?? $item->subject_type;
+            $itemId = $item->subject_id;
+
+            if (class_exists($modelClass)) {
+                $sidebarItem = app($modelClass)->find($itemId);
+
+                if ($sidebarItem) {
+                    $relatedItems[] = $sidebarItem;
                 }
             }
-        
+        }
+
         // Filter out null items
         $relatedItems = array_filter($relatedItems);
 
