@@ -70,6 +70,9 @@ trait HasAutoRelated
                     }
                 }
             }
+        
+        // Filter out null items
+        $relatedItems = array_filter($relatedItems);
 
         // Set types that should be weighted to the top
         $weightedTypes = ['article', 'highlight', 'experience'];
