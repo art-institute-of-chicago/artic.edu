@@ -4,7 +4,7 @@ namespace App\Models\Behaviors;
 
 use App\Models\Vendor\Block;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
+use A17\Twill\Models\RelatedItem;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait HasAutoRelated
@@ -50,8 +50,7 @@ trait HasAutoRelated
         ];
 
         // Set scope to only include sidebar items that can be related to
-        $relatedSidebarItems = DB::table('related')
-            ->where('browser_name', 'sidebar_items')
+        $relatedSidebarItems = RelatedItem::where('browser_name', 'sidebar_items')
             ->where('related_id', $id)
             ->where('related_type', $modelName)
             ->whereIn('subject_type', $editorialTypes)
