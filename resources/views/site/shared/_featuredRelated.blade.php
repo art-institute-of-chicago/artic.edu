@@ -21,7 +21,7 @@
     // Get featured related items
     $isFeatured = false;
     $featuredRelated = collect($item->getFeaturedRelated())->map(function ($featuredRelated) {
-        return $featuredRelated;
+        return $featuredRelated['item'];
     });
 
     $featuredRelatedIds = $featuredRelated->pluck('id');
