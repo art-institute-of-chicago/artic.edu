@@ -32,7 +32,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   <link rel="search" type="application/opensearchdescription+xml" title="Art Institute of Chicago" href="/opensearch.xml">
 
   <!-- Main Favicon -->
-  <link rel="shortcut icon" type="image/png" href="{{FrontendHelpers::revAsset('images/aic-favicon.svg')}}">
+  <link rel="shortcut icon" type="image/png" href="{{FrontendHelpers::revAsset('images/favicon-32.ico')}}">
   <!-- Apple Touch Icons (ipad/iphone standard+retina) -->
   <link rel="apple-touch-icon-precomposed" href="{{FrontendHelpers::revAsset('images/aic-favicon.svg')}}"> <!-- General use iOS/Android icon, auto-downscaled by devices. -->
   <link rel="apple-touch-icon-precomposed" type="image/png" href="{{FrontendHelpers::revAsset('images/aic-favicon.svg')}}" sizes="120x120"> <!-- iPhone retina touch icon -->
