@@ -82,7 +82,7 @@
 @stop
 
 @section('fieldsets')
-    @component('admin.partials.featured-related', ['form_fields' => $form_fields])
+    @component('admin.partials.featured-related', ['form_fields' => $form_fields, 'item' => $item])
         @slot('routePrefix', 'collection')
         @slot('moduleName', 'highlights')
     @endcomponent
