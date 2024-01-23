@@ -72,7 +72,21 @@ class ArtworkController extends BaseApiController
         $item = $this->repository->getById(request('artwork') ?? request('id'));
         $baseUrl = '//' . config('app.url') . '/artworks/' . $item->datahub_id . '/';
 
+        $autoRelated = collect($item->related($item->id))->unique('id')->filter();
+
+        $featuredRelated = collect($item->getFeaturedRelated())->pluck('item');
+        $featuredRelatedIds = $featuredRelated->pluck('id');
+
+        // Remove featured related items from auto related items
+        if ($featuredRelatedIds->isNotEmpty()) {
+            $autoRelated = $autoRelated->reject(function ($relatedItem) use ($featuredRelatedIds) {
+                return ($relatedItem !== null && ($featuredRelatedIds->contains($relatedItem->id) || $featuredRelatedIds->contains($relatedItem->datahub_id)));
+            });
+        }
+        
         return [
+            'autoRelated' => $autoRelated,
+            'featuredRelated' => $featuredRelated,
             'editableTitle' => false,
             'baseUrl' => $baseUrl,
         ];
