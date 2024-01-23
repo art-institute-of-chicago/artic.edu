@@ -9,7 +9,10 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRecurrentDates;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasFeaturedRelated;
+use App\Models\Behaviors\HasAutoRelated;
 use App\Helpers\QueryHelpers;
+use App\Models\Behaviors\HasRelated;
 use Carbon\Carbon;
 // WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
 use Illuminate\Support\Facades\DB;
@@ -22,6 +25,9 @@ class Event extends AbstractModel
     use HasSlug;
     use HasRevisions;
     use HasApiRelations;
+    use HasAutoRelated;
+    use HasFeaturedRelated;
+    use HasRelated;
     use HasMedias;
     use HasMediasEloquent;
     use HasBlocks;
