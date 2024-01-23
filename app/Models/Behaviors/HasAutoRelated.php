@@ -13,7 +13,13 @@ trait HasAutoRelated
     {
         $relatedItems = [];
 
-        $modelName = Str::plural(Str::lower(class_basename(__CLASS__)));
+        // Resolve the model & class
+        $modelName = Str::plural(Str::lower(class_basename(get_class($this))));
+        $modelClass = '\\App\\Models\\' . Str::singular(ucfirst($modelName));
+
+        if(class_exists($modelClass)) {
+            $item = $modelClass::published()->find((int) $id);
+        }
 
         // Set scope to only include blockable types that can be related to
         $blockableTypes = [
@@ -29,10 +35,13 @@ trait HasAutoRelated
 
         // Get all blocks that have this model as a related item
         $relatedBlockItems = Block::whereIn('blockable_type', $blockableTypes)
-            ->where('content', 'LIKE', '%"browsers"%')
-            ->where('content', 'LIKE', '%' . $modelName . '%')
-            ->where('content', 'LIKE', '%' . $id . '%')
-            ->get();
+            ->where('type', Str::singular($modelName))
+            ->get()
+            ->filter(function ($block) use ($modelName, $id, $item) {
+                $content = $block->content;
+                return isset($content['browsers'], $content['browsers'][$modelName]) && 
+                    (in_array($id, $content['browsers'][$modelName]) || in_array($item->datahub_id, $content['browsers'][$modelName]));
+            });
 
         foreach ($relatedBlockItems as $relatedBlockItem) {
             $relatedItems[] = $relatedBlockItem->blockable;
