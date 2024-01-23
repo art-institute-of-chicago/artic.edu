@@ -57,10 +57,27 @@ class HighlightsController extends FrontController
             $this->seo->noindex = true;
         }
 
+        $featuredRelated = collect($item->getFeaturedRelated())->pluck('item');
+
+        $featuredRelatedIds = $featuredRelated->pluck('id');
+    
+        // Get auto related items & evaluate if they are featured
+    
+        $autoRelated = collect($item->related($item->id))->unique('id')->filter();
+    
+        // Remove featured related items from auto related items
+        if ($featuredRelatedIds->isNotEmpty()) {
+            $autoRelated = $autoRelated->reject(function ($relatedItem) use ($featuredRelatedIds) {
+                return ($relatedItem !== null && ($featuredRelatedIds->contains($relatedItem->id) || $featuredRelatedIds->contains($relatedItem->datahub_id)));
+            });
+        }
+
         $artworks = $item->artworks(0);
         $exploreFurther = new ExploreFurther($item, $artworks->getMetadata('aggregations'));
 
         return view('site.highlightDetail', [
+            'autoRelated' => $autoRelated,
+            'featuredRelated' => $featuredRelated,
             'item' => $item,
             'contrastHeader' => $item->present()->contrastHeader,
             'exploreFurtherTags' => $exploreFurther->tags(),
