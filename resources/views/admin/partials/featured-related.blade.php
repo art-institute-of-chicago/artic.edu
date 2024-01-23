@@ -37,6 +37,20 @@
         ],
     ])
 
+    @php
+        $autoRelated = collect($item->related($item->id))->unique('id')->filter();
+
+        $featuredRelated = collect($item->getFeaturedRelated())->pluck('item');
+        $featuredRelatedIds = $featuredRelated->pluck('id');
+
+        // Remove featured related items from auto related items
+        if ($featuredRelatedIds->isNotEmpty()) {
+            $autoRelated = $autoRelated->reject(function ($relatedItem) use ($featuredRelatedIds) {
+                return ($relatedItem !== null && ($featuredRelatedIds->contains($relatedItem->id) || $featuredRelatedIds->contains($relatedItem->datahub_id)));
+            });
+        }
+    @endphp
+
     @if(count($autoRelated) > 0)
         <p>These items are automatically related and will fill the sidebar along with any of the above selected items.</p>
 
