@@ -83,7 +83,7 @@ class ArtworkController extends BaseApiController
                 return ($relatedItem !== null && ($featuredRelatedIds->contains($relatedItem->id) || $featuredRelatedIds->contains($relatedItem->datahub_id)));
             });
         }
-        
+
         return [
             'autoRelated' => $autoRelated,
             'featuredRelated' => $featuredRelated,
