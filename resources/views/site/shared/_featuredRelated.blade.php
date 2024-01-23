@@ -31,7 +31,7 @@
     // Remove featured related items from auto related items
     if ($featuredRelatedIds->isNotEmpty()) {
         $autoRelated = $autoRelated->reject(function ($relatedItem) use ($featuredRelatedIds) {
-            return $relatedItem !== null && $featuredRelatedIds->contains($relatedItem->id);
+            return ($relatedItem !== null && ($featuredRelatedIds->contains($relatedItem->id) || $featuredRelatedIds->contains($relatedItem->datahub_id)));
         });
     }
 @endphp
