@@ -112,7 +112,7 @@
         <p>The page must have a banner image in order to display museum hours.</p>
     </a17-fieldset>
 
-    @component('admin.partials.featured-related', ['form_fields' => $form_fields])
+    @component('admin.partials.featured-related', ['form_fields' => $form_fields, 'item' => $item])
         @slot('routePrefix', 'generic')
         @slot('moduleName', 'genericPages')
     @endcomponent
