@@ -240,7 +240,7 @@
         ])
     </a17-fieldset>
 
-    @component('admin.partials.featured-related', ['form_fields' => $form_fields, 'item' => $item])
+    @component('admin.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
         @slot('routePrefix', 'exhibitions_events')
         @slot('moduleName', 'exhibitions')
     @endcomponent
