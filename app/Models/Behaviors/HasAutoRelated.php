@@ -17,7 +17,7 @@ trait HasAutoRelated
         $modelName = Str::plural(Str::lower(class_basename(get_class($this))));
         $modelClass = '\\App\\Models\\' . Str::singular(ucfirst($modelName));
 
-        if(class_exists($modelClass)) {
+        if (class_exists($modelClass)) {
             $item = $modelClass::published()->find((int) $id);
         }
 
@@ -39,7 +39,7 @@ trait HasAutoRelated
             ->get()
             ->filter(function ($block) use ($modelName, $id, $item) {
                 $content = $block->content;
-                return isset($content['browsers'], $content['browsers'][$modelName]) && 
+                return isset($content['browsers'], $content['browsers'][$modelName]) &&
                     (in_array($id, $content['browsers'][$modelName]) || in_array($item->datahub_id, $content['browsers'][$modelName]));
             });
 

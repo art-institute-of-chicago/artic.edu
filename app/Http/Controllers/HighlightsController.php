@@ -60,11 +60,11 @@ class HighlightsController extends FrontController
         $featuredRelated = collect($item->getFeaturedRelated())->pluck('item');
 
         $featuredRelatedIds = $featuredRelated->pluck('id');
-    
+
         // Get auto related items & evaluate if they are featured
-    
+
         $autoRelated = collect($item->related($item->id))->unique('id')->filter();
-    
+
         // Remove featured related items from auto related items
         if ($featuredRelatedIds->isNotEmpty()) {
             $autoRelated = $autoRelated->reject(function ($relatedItem) use ($featuredRelatedIds) {
