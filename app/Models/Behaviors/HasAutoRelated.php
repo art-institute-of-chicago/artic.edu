@@ -9,17 +9,13 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait HasAutoRelated
 {
-    public function related($id)
+    public function related($item)
     {
         $relatedItems = [];
 
         // Resolve the model & class
-        $modelName = Str::plural(Str::lower(class_basename(get_class($this))));
-        $modelClass = '\\App\\Models\\' . Str::singular(ucfirst($modelName));
-
-        if (class_exists($modelClass)) {
-            $item = $modelClass::published()->find((int) $id);
-        }
+        $modelClass = get_class($item);
+        $modelName = Str::lower(Str::plural(class_basename($modelClass)));
 
         // Set scope to only include blockable types that can be related to
         $blockableTypes = [
@@ -37,10 +33,10 @@ trait HasAutoRelated
         $relatedBlockItems = Block::whereIn('blockable_type', $blockableTypes)
             ->where('type', Str::singular($modelName))
             ->get()
-            ->filter(function ($block) use ($modelName, $id, $item) {
+            ->filter(function ($block) use ($modelName, $item) {
                 $content = $block->content;
                 return isset($content['browsers'], $content['browsers'][$modelName]) &&
-                    (in_array($id, $content['browsers'][$modelName]) || in_array($item->datahub_id, $content['browsers'][$modelName]));
+                    (in_array($item->id, $content['browsers'][$modelName]) || in_array($item->datahub_id, $content['browsers'][$modelName]));
             });
 
         foreach ($relatedBlockItems as $relatedBlockItem) {
@@ -60,7 +56,7 @@ trait HasAutoRelated
 
         // Set scope to only include sidebar items that can be related to
         $relatedSidebarItems = RelatedItem::where('browser_name', 'sidebar_items')
-            ->where('related_id', $id)
+            ->where('related_id', $item->id)
             ->where('related_type', $modelName)
             ->whereIn('subject_type', $editorialTypes)
             ->get();
