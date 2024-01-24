@@ -60,21 +60,9 @@ class ArticleController extends ModuleController
         $item = $this->repository->getById(request('article') ?? request('id'));
         $baseUrl = '//' . config('app.url') . '/articles/' . $item->id . '/';
 
-        $autoRelated = collect($item->related($item->id))->unique('id')->filter();
-
-        $featuredRelated = collect($item->getFeaturedRelated())->pluck('item');
-        $featuredRelatedIds = $featuredRelated->pluck('id');
-
-        // Remove featured related items from auto related items
-        if ($featuredRelatedIds->isNotEmpty()) {
-            $autoRelated = $autoRelated->reject(function ($relatedItem) use ($featuredRelatedIds) {
-                return ($relatedItem !== null && ($featuredRelatedIds->contains($relatedItem->id) || $featuredRelatedIds->contains($relatedItem->datahub_id)));
-            });
-        }
-
         return [
-            'autoRelated' => $autoRelated,
-            'featuredRelated' => $featuredRelated,
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
             'categoriesList' => app(CategoryRepository::class)->listAll('name'),
             'articleLayoutsList' => $this->repository->getArticleLayoutsList(),
             'baseUrl' => $baseUrl,
