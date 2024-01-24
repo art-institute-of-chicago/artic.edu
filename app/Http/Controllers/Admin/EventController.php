@@ -108,18 +108,6 @@ class EventController extends ModuleController
         $item = $this->repository->getById(request('event') ?? request('id'));
         $baseUrl = '//' . config('app.url') . '/events/' . $item->id . '/';
 
-        $autoRelated = collect($item->related($item->id))->unique('id')->filter();
-
-        $featuredRelated = collect($item->getFeaturedRelated())->pluck('item');
-        $featuredRelatedIds = $featuredRelated->pluck('id');
-
-        // Remove featured related items from auto related items
-        if ($featuredRelatedIds->isNotEmpty()) {
-            $autoRelated = $autoRelated->reject(function ($relatedItem) use ($featuredRelatedIds) {
-                return ($relatedItem !== null && ($featuredRelatedIds->contains($relatedItem->id) || $featuredRelatedIds->contains($relatedItem->datahub_id)));
-            });
-        }
-
         return [
             'autoRelated' => $this->getAutoRelated($item),
             'eventTypesList' => $this->repository->getEventTypesList(),
