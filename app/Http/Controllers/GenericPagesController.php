@@ -49,21 +49,6 @@ class GenericPagesController extends FrontController
             $addFareHarborJS = true;
         }
 
-        $featuredRelated = collect($item->getFeaturedRelated())->pluck('item');
-
-        $featuredRelatedIds = $featuredRelated->pluck('id');
-
-        // Get auto related items & evaluate if they are featured
-
-        $autoRelated = collect($item->related($item->id))->unique('id')->filter();
-
-        // Remove featured related items from auto related items
-        if ($featuredRelatedIds->isNotEmpty()) {
-            $autoRelated = $autoRelated->reject(function ($relatedItem) use ($featuredRelatedIds) {
-                return ($relatedItem !== null && ($featuredRelatedIds->contains($relatedItem->id) || $featuredRelatedIds->contains($relatedItem->datahub_id)));
-            });
-        }
-
         return view('site.genericPage.show', [
             'autoRelated' => $this->getAutoRelated($item),
             'featuredRelated' => $this->getFeatureRelated($item),

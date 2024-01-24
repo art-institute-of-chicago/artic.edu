@@ -87,21 +87,6 @@ class ExhibitionsController extends FrontController
         $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE);
         $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
 
-        $featuredRelated = collect($item->getFeaturedRelated())->pluck('item');
-
-        $featuredRelatedIds = $featuredRelated->pluck('id');
-
-        // Get auto related items & evaluate if they are featured
-
-        $autoRelated = collect($item->related($item->id))->unique('id')->filter();
-
-        // Remove featured related items from auto related items
-        if ($featuredRelatedIds->isNotEmpty()) {
-            $autoRelated = $autoRelated->reject(function ($relatedItem) use ($featuredRelatedIds) {
-                return ($relatedItem !== null && ($featuredRelatedIds->contains($relatedItem->id) || $featuredRelatedIds->contains($relatedItem->datahub_id)));
-            });
-        }
-
         return view('site.exhibitionDetail', [
             'autoRelated' => $this->getAutoRelated($item),
             'featuredRelated' => $this->getFeatureRelated($item),
