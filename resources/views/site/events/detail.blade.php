@@ -57,7 +57,6 @@
         @slot('eventName',$item->present()->title)
     @endcomponent
 
-    @dump($item->hasFeaturedRelated())
     @component('site.shared._featuredRelated')
         @slot('item', $item)
         @slot('variation', 'u-show@medium+')
