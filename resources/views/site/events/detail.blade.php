@@ -56,6 +56,13 @@
         @endif
         @slot('eventName',$item->present()->title)
     @endcomponent
+
+    @component('site.shared._featuredRelated')
+        @slot('item', $item)
+        @slot('variation', 'u-show@medium+')
+        @slot('autoRelated', $autoRelated)
+        @slot('featuredRelated', $featuredRelated)
+    @endcomponent
   </div>
 
   @if ($item->description and $item->headerType !== 'super-hero')

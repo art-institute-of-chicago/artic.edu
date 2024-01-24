@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\SiteTagRepository;
 
 class HighlightController extends ModuleController
@@ -61,9 +60,11 @@ class HighlightController extends ModuleController
 
     protected function formData($request)
     {
+        $item = $this->repository->getById(request('highlight') ?? request('id'));
         $baseUrl = '//' . config('app.url') . '/highlights/' . request('highlight') . '/';
 
         return [
+            'autoRelated' => $this->getAutoRelated($item),
             'baseUrl' => $baseUrl,
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
             'highlightTypeList' => $this->repository->getHighlightTypeList(),

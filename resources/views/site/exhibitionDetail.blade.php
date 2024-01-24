@@ -72,6 +72,8 @@
 
     @component('site.shared._featuredRelated')
         @slot('item', $item)
+        @slot('autoRelated', $autoRelated)
+        @slot('featuredRelated', $featuredRelated)
         @slot('variation', 'u-show@medium+')
     @endcomponent
   </div>
@@ -90,6 +92,8 @@
       <div class="o-article__related">
           @component('site.shared._featuredRelated')
               @slot('item', $item)
+              @slot('autoRelated', $autoRelated)
+              @slot('featuredRelated', $featuredRelated)
           @endcomponent
       </div>
   @endif

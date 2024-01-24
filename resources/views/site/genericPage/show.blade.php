@@ -39,6 +39,8 @@
           @if (method_exists($page, 'hasFeaturedRelated') && $page->hasFeaturedRelated())
               @component('site.shared._featuredRelated')
                   @slot('item', $page)
+                  @slot('autoRelated', $autoRelated)
+                  @slot('featuredRelated', $featuredRelated)
                   @slot('variation', 'u-show@medium+')
               @endcomponent
           @endif
@@ -48,7 +50,10 @@
           <div class="o-article__related">
               @component('site.shared._featuredRelated')
                   @slot('item', $page)
+                  @slot('autoRelated', $autoRelated)
+                  @slot('featuredRelated', $featuredRelated)
               @endcomponent
+              
           </div>
       @endif
   @endif

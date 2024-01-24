@@ -88,6 +88,8 @@ class ExhibitionsController extends FrontController
         $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
 
         return view('site.exhibitionDetail', [
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
             'item' => $item,
             'contrastHeader' => $item->present()->contrastHeader,
             'relatedEventsByDay' => $relatedEventsByDay,

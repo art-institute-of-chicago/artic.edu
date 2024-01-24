@@ -165,6 +165,8 @@ class EventsController extends FrontController
         }
 
         return view('site.events.detail', [
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
             'item' => $item,
             'contrastHeader' => $item->present()->contrastHeader,
             'canonicalUrl' => $canonicalPath,

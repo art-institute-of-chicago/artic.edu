@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\PageCategoryRepository;
 
 class GenericPageController extends ModuleController
@@ -83,6 +82,8 @@ class GenericPageController extends ModuleController
         })->toArray();
 
         return [
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
             'parents' => $this->getParents($item->id)->map(function ($parent) {
                 return [
                     'id' => $parent->id,

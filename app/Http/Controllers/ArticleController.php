@@ -143,6 +143,8 @@ class ArticleController extends FrontController
 
         return view('site.articleDetail', [
             'item' => $item,
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
             'contrastHeader' => $item->present()->contrastHeader,
             'furtherReadingTitle' => $this->repository->getFurtherReadingTitle($item) ?? null,
             'furtherReadingItems' => $this->repository->getFurtherReadingItems($item) ?? null,

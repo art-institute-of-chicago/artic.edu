@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\CategoryRepository;
 
 class ArticleController extends ModuleController
@@ -62,6 +61,8 @@ class ArticleController extends ModuleController
         $baseUrl = '//' . config('app.url') . '/articles/' . $item->id . '/';
 
         return [
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
             'categoriesList' => app(CategoryRepository::class)->listAll('name'),
             'articleLayoutsList' => $this->repository->getArticleLayoutsList(),
             'baseUrl' => $baseUrl,

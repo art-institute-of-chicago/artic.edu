@@ -73,6 +73,8 @@ class ArtworkController extends BaseApiController
         $baseUrl = '//' . config('app.url') . '/artworks/' . $item->datahub_id . '/';
 
         return [
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
             'editableTitle' => false,
             'baseUrl' => $baseUrl,
         ];
