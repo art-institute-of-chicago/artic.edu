@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Repositories\DigitalPublicationRepository;
 use App\Http\Controllers\Admin\Behaviors\IsNestedModule;
-use A17\Twill\Http\Controllers\Admin\ModuleController;
 
 class DigitalPublicationSectionController extends ModuleController
 {
