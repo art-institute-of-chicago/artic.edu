@@ -88,7 +88,7 @@ class FrontController extends BaseController
 
     protected function getAutoRelated($item)
     {
-        $autoRelated = collect($item->related($item->id))->unique('id')->filter();
+        $autoRelated = collect($item->related($item))->unique('id')->filter();
 
         $featuredRelated = $this->getFeatureRelated($item);
         $featuredRelatedIds = $featuredRelated->pluck('id');
