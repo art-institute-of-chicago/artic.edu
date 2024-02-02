@@ -1,19 +1,64 @@
 @import 'setup/colors';
 @import 'atoms/loader';
 
-html.p-customtour-pdflayout {
-  columns: 2;
-}
+.p-customtour-pdflayout {
+  @page {
+    size: Letter;
+    margin: 0.375in 0.25in;
+  }
 
-table {
-  border-spacing: 24px;
-}
+  table, th, td {
+    border: 1px solid black;
+  }
 
-table tr td {
-  vertical-align: top;
-}
+  table {
+    width: 8in;
+  }
 
-table tr td img {
-  width:100%;
-  display: block;
+  table tr td {
+    width: 0.4167in;
+    padding: 0.125in;
+    vertical-align: top;
+  }
+
+  .image-container {
+    width: 3.2083in;
+    height: 2.375in;
+    overflow: hidden;
+  }
+
+  table tr td img,
+  table tr td svg {
+    width: 100%;
+    display: block;
+  }
+
+  #a17 {
+    padding-top: 0px;
+    width: auto;
+  }
+
+  svg {
+    color: #000;
+  }
+
+  .f-headline-editorial {
+    font-size: 23pt;
+  }
+
+  .f-body, .f-body em {
+    font-size: 9pt;
+  }
+
+  .f-quote {
+    font-size: 14pt;
+  }
+
+  .f-subheading-3 {
+    font-size: 11pt;
+  }
+
+  .f-quote {
+    font-size: 12pt;
+  }
 }
