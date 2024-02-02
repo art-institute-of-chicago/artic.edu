@@ -5,9 +5,11 @@
 
     $heading = $block->input('heading');
     $body = $block->input('body');
+    $theme = $block->input('theme');
+    $variation = $block->input('variation');
 
 @endphp
-<div class="m-custom-banner-block">
+<div class="m-custom-banner-block {{ $theme ? 'custom-banner--'.$theme : '' }} {{ $variation ? 'custom-banner--variation-'.$variation : '' }}">
     <span class="hr"></span>
     <div class="content-wrapper">
         <div class="background-wrapper">

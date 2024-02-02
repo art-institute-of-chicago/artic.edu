@@ -1,3 +1,24 @@
+{{-- @php
+    $currentUrl = explode('/', request()->url());
+    $type = \App\Models\LandingPage::find(intval($currentUrl[4]))->getType();
+    
+    // Setup code for theming 
+
+    switch ($type) {
+        case 'Home':
+            $themes = ['default'];
+            break;
+        case 'Visit':
+            $themes = ['default'];
+            break;
+        case 'RLC':
+            $themes = ['default'];
+            break;
+        default:
+            $themes = ['default'];
+    }
+@endphp --}}
+
 @twillBlockTitle('Feature Block')
 @twillBlockIcon('image')
 

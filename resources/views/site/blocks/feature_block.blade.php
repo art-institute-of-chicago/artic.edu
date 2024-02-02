@@ -5,6 +5,8 @@
     $browseLabel = $block->input('browse_label');
     $browseLink = $block->input('browse_link');
     $ratio = $block->input('image_ratio');
+    $theme = $block->input('theme');
+    $variation = $block->input('variation');
 
     $feature_type = $block->input('feature_type');
     $columns = $block->input('columns');
@@ -74,7 +76,7 @@
         @endif
     </div>
     <hr/>
-    <div class="m-feature-block columns-{{ $columns }}x">
+    <div class="m-feature-block columns-{{ $columns }}x {{ $theme ? 'feature-block--'.$theme : '' }} {{ $variation ? 'feature-block--variation-'.$variation : '' }}">
         <ul class="m-feature-block-row column-{{ $columns }}x">
             @foreach($items as $index => $item)
                 <li class="m-feature-block-listing column-{{ $columns }}x">
