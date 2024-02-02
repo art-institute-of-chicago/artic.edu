@@ -549,4 +549,9 @@ class LandingPage extends AbstractModel implements Sortable
     {
         return $prefix . '/' . $this->slug;
     }
+
+    public function getType()
+    {
+        return $this->type;
+    }
 }
