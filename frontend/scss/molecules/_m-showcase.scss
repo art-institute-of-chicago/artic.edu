@@ -1,20 +1,18 @@
-.m-showcase-block,
-.m-showcase-background // The showcase background is used in the Showcase Multiple block
-{
-    width: 100vw;
-    margin-top: 50px;
-    margin-left: calc(50% - 50vw);
-    display: flex;
-    flex-direction: row;
-    background-color: $color__bg--secondary;
-    padding: 50px;
+.m-showcase-block, .m-showcase-block.showcase--variation-default, .m-showcase-background { // The showcase background is used in the Showcase Multiple block
+        width: 100vw;
+        margin-top: 50px;
+        margin-left: calc(50% - 50vw);
+        display: flex;
+        flex-direction: row;
+        background-color: $color__bg--secondary;
+        padding: 50px;
 
-    @include breakpoint('small') {
-        padding: 25px;
-    }
-    @include breakpoint('xsmall') {
-        padding: 25px;
-    }
+        @include breakpoint('small') {
+            padding: 25px;
+        }
+        @include breakpoint('xsmall') {
+            padding: 25px;
+        }
 
     .m-showcase-wrapper {
         max-width: 1500px;
@@ -26,7 +24,6 @@
         @include breakpoint('small-') {
             padding: 0;
         }
-    }
 
     img, video {
         width: 65%;
@@ -86,4 +83,295 @@
             font-size: 17px;
         }
     }
+  }
 }
+
+// Override styles per type
+// Naming convention is .m-showcase-block.showcase-{landing-page-type}
+
+.m-showcase-block.showcase--home {
+    background-color: unset !important;
+
+    .showcase-title {
+        margin: 0px !important;
+    }
+}
+
+.m-showcase-block.showcase--multiple {
+    margin-left: calc(50% - 50vw);
+    margin-top: 50px;
+    width: 100vw;
+    padding: 0 !important;
+    .m-showcase-block__header-wrapper {
+      flex-basis: 100%;
+    }
+    ol, ul {
+      padding-inline-start: 40px;
+    }
+    ol>li {
+      list-style-type: decimal;
+    }
+    ul>li {
+      list-style-type: disc;
+    }
+  }
+
+  .m-showcase-block.showcase--multiple, .m-showcase-background {
+    margin-top: 0;
+  }
+  .m-showcase-block.showcase--multiple>.m-showcase-background {
+    @include breakpoint('small+') {
+      padding: 60px;
+    }
+    .m-showcase-wrapper {
+      gap: 60px;
+      @include breakpoint('xsmall') {
+        gap: 25px;
+      }
+    }
+    .showcase-header {
+      color: $color__black--90;
+      font-family: var(--sans-serif);
+      font-size: 21px;
+      font-weight: 325;
+      text-transform: 'uppercase';
+    }
+    .showcase-intro {
+      font-family: var(--sans-serif);
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 28px;
+      padding-top: 20px;
+    }
+    .m-showcase-image, .m-showcase-video, .m-showcase-block__text-wrapper {
+      margin: 0;
+      padding: 0;
+      @include breakpoint('small+') {
+        width: 100%;
+      }
+    }
+    .m-showcase-block__text-wrapper {
+      .showcase-tag {
+        font-size: 13px;
+        font-weight: 325;
+        margin-bottom: 12px;
+      }
+      .showcase-title {
+        font-size: 28px;
+        line-height: 28px;
+        margin-top: 0;
+      }
+      .showcase-description {
+        font-size: 17px;
+        line-height: 28px;
+      }
+    }
+  }
+  .m-showcase-block.showcase--rlc{
+    @include breakpoint('small+') {
+      padding: 60px;
+    }
+    &.showcase--variation-default {
+      .m-showcase-image {
+        padding: 0 !important;
+      }
+    }
+    .m-showcase-wrapper {
+      gap: 60px;
+      @include breakpoint('xsmall') {
+        gap: 25px;
+      }
+    }
+    .showcase-header {
+      color: $color__black--90;
+      font-family: var(--sans-serif);
+      font-size: 21px;
+      font-weight: 325;
+      text-transform: 'uppercase';
+    }
+    .showcase-intro {
+      font-family: var(--sans-serif);
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 28px;
+      padding-top: 20px;
+    }
+    .m-showcase-wrapper {
+      flex-direction: row;
+      flex-wrap: wrap;
+      .showcase-header {
+        flex-basis: 100%;
+      }
+      .m-showcase-image, .m-showcase-video, .m-showcase-block__text-wrapper {
+        flex: 1 1;
+      }
+      @include breakpoint('xsmall') {
+        flex-direction: column;
+        .showcase-header {
+          flex-basis: fit-content;
+        }
+      }
+    }
+    &.showcase--variation-about-the-rlc {
+    background-color: $color__rlc__vermilion;
+    .m-showcase-wrapper {
+      flex-direction: row-reverse;
+      .showcase-header {
+        flex-basis: 100%;
+        order: -1;
+      }
+      @include breakpoint('xsmall') {
+        flex-direction: column-reverse;
+        .showcase-header {
+          flex-basis: fit-content;
+          order: 1;
+        }
+      }
+    }
+    .m-showcase-video {
+      @include breakpoint('small+') {
+        flex: 2;
+      }
+    }
+    .showcase-header,
+    .showcase-tag,
+    .showcase-title,
+    .showcase-description,
+    .showcase-link {
+      color: $color__white !important;
+    }
+  }
+  }
+  .m-showcase-block.showcase--multiple {
+    .m-showcase-wrapper {
+      display: grid;
+    }
+  &.showcase--variation-make-with-us {
+    background-color: $color__rlc__antique_white;
+    .m-showcase-background {
+      --spacing: calc(100vw);
+      background-color: $color__rlc__atomic_tangerine;
+      border-bottom-left-radius: var(--spacing);
+      border-bottom-right-radius: var(--spacing);
+    }
+    .m-showcase-wrapper {
+      grid-template-columns: 1fr 2fr;
+    }
+    .m-showcase-block__header-wrapper {
+      grid-column-end: 3;
+      grid-column-start: 1;
+    }
+    .m-showcase-image {
+      aspect-ratio: 1;
+      @include breakpoint('xsmall') {
+        grid-column-end: 3;
+        grid-column-start: 1;
+      }
+    }
+    .m-showcase-block__text-wrapper {
+      @include breakpoint('xsmall') {
+        grid-column-end: 3;
+        grid-column-start: 1;
+      }
+    }
+    .showcase-description {
+      color: $color__black--80;
+    }
+    .showcase-link {
+      color: $color__rlc__blue_sapphire;
+    }
+  }
+  &.showcase--variation-experience-with-us {
+    color: $color__white;
+    .m-showcase-background {
+      background-image: linear-gradient(45deg, $color__rlc__maastricth_blue 50%, $color__rlc__blue_sapphire 50%);
+    }
+    .m-showcase-wrapper {
+      grid-template-columns: 1fr 1fr;
+    }
+    .showcase-header, .showcase-title, .showcase-description, .showcase-tag {
+      color: $color__white;
+    }
+    .m-showcase-block__header-wrapper {
+      grid-column-end: 3;
+      grid-column-start: 1;
+    }
+    @include breakpoint('small+') {
+      img:nth-of-type(1) {
+        aspect-ratio: 1;
+      }
+      img:nth-of-type(2) {
+        grid-column: 1;
+        grid-row: 3;
+        object-fit: cover;
+      }
+      img:nth-of-type(3) {
+        grid-column: 2;
+        grid-row: 3;
+        object-fit: cover;
+      }
+    }
+    @include breakpoint('xsmall') {
+      .m-showcase-image,
+      .m-showcase-block__text-wrapper {
+        grid-column-end: 3;
+        grid-column-start: 1;
+      }
+    }
+  }
+  &.showcase--variation-learn-with-us {
+    background-color: $color__rlc__antique_white;
+    .m-showcase-background {
+      background-color: inherit;
+    }
+    .m-showcase-wrapper {
+      grid-template-columns: 1fr 1fr;
+    }
+    .m-showcase-block__header-wrapper {
+      grid-column-end: 3;
+      grid-column-start: 1;
+    }
+    .m-showcase-image {
+      aspect-ratio: 1;
+      clip-path: circle();
+      margin: auto;
+      @include breakpoint('small+') {
+        max-width: 75%;
+      }
+    }
+    img:nth-of-type(1) {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    img:nth-of-type(2) {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    img:nth-of-type(3) {
+      grid-column: 1;
+      grid-row: 4;
+    }
+    img:nth-of-type(4) {
+      grid-column: 2;
+      grid-row: 4;
+    }
+    .m-showcase-block__text-wrapper {
+      .showcase-title {
+        text-align: center;
+      }
+      .showcase-description {
+        color: $color__black--80;
+        @include breakpoint('xsmall') {
+          display: none;
+        }
+      }
+      .showcase-link {
+        color: $color__rlc__vermilion;
+        @include breakpoint('xsmall') {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+  
