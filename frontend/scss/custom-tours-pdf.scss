@@ -1,35 +1,62 @@
 @import 'setup/colors';
 @import 'atoms/loader';
 
-.p-customtour-pdflayout {
-  @page {
-    size: Letter;
-    margin: 0.375in 0.25in;
-  }
+@page {
+  size: 11in 8.5in landscape;
+  margin: 0.375in 0.25in;
+}
 
+.p-customtour-pdflayout {
   table, th, td {
     border: 1px solid black;
   }
 
   table {
-    width: 8in;
+    width: 10.5in;
   }
 
   table tr td {
-    width: 0.4167in;
+    width: 0.625in;
     padding: 0.125in;
     vertical-align: top;
   }
 
-  .image-container {
-    width: 3.2083in;
-    height: 2.375in;
+  table tr td.thin {
+    width: 0.375in;
+    padding: 0.125in;
+    vertical-align: top;
+  }
+
+  table tr td.crease {
+    width: 0.25in;
+    padding: 0.125in;
+    vertical-align: top;
+  }
+
+  .artwork-image-container {
+    width: 2.375in;
+    height: 2.6667in;
     overflow: hidden;
   }
 
-  table tr td img,
-  table tr td svg {
+  .heading-image-container {
+    width: 4.75in;
+    height: 2.6667in;
+    overflow: hidden;
+  }
+
+  .on-new-page {
+    break-before: page;
+  }
+
+  table tr td img {
     width: 100%;
+    display: block;
+  }
+
+  table tr td svg {
+    width: 70%;
+    height: 70%;
     display: block;
   }
 
