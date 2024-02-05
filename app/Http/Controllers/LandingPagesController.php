@@ -6,9 +6,9 @@ use App\Models\Admission;
 use App\Models\Hour;
 use App\Models\Lightbox;
 use App\Models\LandingPage;
-use App\Helpers\StringHelpers;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class LandingPagesController extends FrontController
 {
@@ -152,7 +152,7 @@ class LandingPagesController extends FrontController
             'filledLogo' => false,
             'title' => $title,
             'intro' => $item->intro,
-            'landingPageType' => StringHelpers::pageBlades($item->type),
+            'landingPageType' => Str::kebab($item->type),
         ];
 
         $blockHeadings = $item->blocks->pluck('content')->pluck('heading')->filter();
