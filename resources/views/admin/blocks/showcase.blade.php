@@ -35,6 +35,7 @@
     'required' => true,
     'toolbarOptions' => [
         'italic'
+        'italic'
     ],
 ])
 
