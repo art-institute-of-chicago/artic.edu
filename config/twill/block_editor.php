@@ -183,6 +183,7 @@ return [
         'landingPages' => 'generic',
         'genericPages' => 'generic',
         'videos' => 'collection.articles_publications',
+        'customToursItems' => 'visit',
     ],
     'block-order' => [
         '3d_embed',

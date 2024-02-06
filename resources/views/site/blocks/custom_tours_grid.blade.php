@@ -11,7 +11,7 @@
 @endif
 
 <div class="aic-ct-grid-container" data-blur-img>
-    @foreach($block->getRelated('custom_tours_items') as $index => $custom_tour)
+    @foreach($block->getRelated('customToursItems') as $index => $custom_tour)
         <div class="aic-ct-grid-card">
             <div class="aic-ct-grid-card__top">
                 @if($custom_tour->imageAsArray('teaser_image'))
@@ -64,4 +64,3 @@
         </div>
     @endforeach
 </div>
-
