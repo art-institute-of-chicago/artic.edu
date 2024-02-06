@@ -105,7 +105,7 @@ class GeneratePdfs extends Command
     protected function path($model, $route): string
     {
         return route($route, [
-            'pubId' => $model->digitalPublication ? $model->digitalPublication->id : null,
+            'pubId' => $model?->digitalPublication->id,
             'pubSlug' => $model->digitalPublication ? $model->digitalPublication->getSlug() : null,
             'id' => $model->id,
             'slug' => method_exists($model, 'getSlug') ? $model->getSlug() : null,
