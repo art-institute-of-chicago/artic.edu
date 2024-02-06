@@ -215,6 +215,7 @@ class LandingPagesController extends FrontController
                         'default' => $item->imageFront('rlc_location'),
                         'mobile' => $item->imageFront('rlc_location', 'mobile'),
                     ],
+                    'donor_info' => $item->labels->get('donor_info'),
                 ];
                 break;
 
