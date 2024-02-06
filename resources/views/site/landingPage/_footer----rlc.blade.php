@@ -8,7 +8,7 @@
                 {!! $item->labels->get('contact_intro') !!}
             </div>
             <div class="f-contact-blocks">
-                {!! $item->renderNamedBlocks('contact') !!}
+                {!! $item->renderNamedBlocks('contact', data: ['hasWrapper' => true]) !!}
             </div>
         </div>
     </div>
