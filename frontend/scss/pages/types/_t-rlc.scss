@@ -331,11 +331,10 @@
         grid-column-start: 1;
       }
     }
-    .showcase-description {
-      color: $color__black--80;
-    }
+    .showcase-description,
+    .showcase-tag,
     .showcase-link {
-      color: $color__rlc__blue_sapphire;
+      color: $color__black--80;
     }
   }
   #experience-with-us {
