@@ -10,11 +10,7 @@ class CustomTourController extends FrontController
 {
     public function show(Request $request, $id)
     {
-        $customTourItem = CustomTour::find($id);
-
-        if (!$customTourItem) {
-            return abort(404);
-        }
+        $customTourItem = CustomTour::findOrFail($id);
 
         $customTour = json_decode($customTourItem->tour_json, true);
 
