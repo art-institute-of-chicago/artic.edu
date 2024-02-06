@@ -46,7 +46,8 @@ class LandingPage extends AbstractModel implements Sortable
         8 => 'Research and Resources',
         9 => 'Articles and Publications',
        10 => 'Stories',
-       11 => 'Custom',
+       11 => 'My Museum Tours',
+       99 => 'Custom',
     ];
 
     protected $presenter = 'App\Presenters\Admin\LandingPagePresenter';
