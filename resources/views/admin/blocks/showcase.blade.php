@@ -53,7 +53,7 @@
     'maxlength' => 100,
     'required' => true,
     'toolbarOptions' => [
-            'italic'
+        'italic'
     ],
 ])
 
@@ -61,6 +61,15 @@
     'name' => 'description',
     'label' => 'Description',
     'required' => true,
+    'toolbarOptions' => [
+        'bold',
+        'italic',
+        'underline',
+        'link',
+        ['color' => ['#333', '#FFF', '#DE2F1B']],
+        ['list' => 'bullet'],
+        ['list' => 'ordered'],
+    ],
 ])
 
 @formField('input', [
