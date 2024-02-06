@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col">
                 <div class="spacer">
-                    <div class="semicircle">
+                    <div class="semicircle right-hemisphere">
                     </div>
                 </div>
             </div>
