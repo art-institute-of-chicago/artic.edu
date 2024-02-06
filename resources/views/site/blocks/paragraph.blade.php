@@ -81,6 +81,10 @@
     libxml_clear_errors();
     libxml_use_internal_errors($oldInternalErrors);
 @endphp
+@if (isset($hasWrapper) && $hasWrapper)
 <div class="paragraph-wrapper">
     {!! $content !!}
 </div>
+@else
+    {!! $content !!}
+@endif
