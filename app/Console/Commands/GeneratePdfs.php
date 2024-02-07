@@ -105,8 +105,8 @@ class GeneratePdfs extends Command
     protected function path($model, $route): string
     {
         return route($route, [
-            'pubId' => $model?->digitalPublication->id,
-            'pubSlug' => $model->digitalPublication ? $model->digitalPublication->getSlug() : null,
+            'pubId' => $model->digitalPublication?->id,
+            'pubSlug' => $model->digitalPublication?->getSlug(),
             'id' => $model->id,
             'slug' => method_exists($model, 'getSlug') ? $model->getSlug() : null,
         ], false);
@@ -119,11 +119,10 @@ class GeneratePdfs extends Command
     protected function storePdf($fileName): void
     {
         if (config('aic.pdf_s3_enabled')) {
-            $localPath = self::localPath($fileName);
-            Storage::disk('pdf_s3')->putFileAs(
-                self::BUCKET_PATH,
-                new File($localPath),
-                $fileName,
+            $fileContents = Storage::disk('local')->get($fileName);
+            Storage::disk('pdf_s3')->put(
+                self::BUCKET_PATH . $fileName,
+                $fileContents,
                 'public'
             );
             unlink($localPath);
