@@ -1,7 +1,8 @@
 @php
+use Illuminate\Support\Facades\App;
 $print = app('printservice')->isPrintMode();
 $pClass = 'App\Http\Controllers\GenericPagesController';
-if (App:environment() != 'testing') {
+if (!App::environment('testing')) {
     $action = request()->route()->getAction();
     if (is_array($action) && $action['controller']) {
         $pClass = $action['controller'];
