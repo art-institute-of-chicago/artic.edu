@@ -12,7 +12,7 @@ class CustomTourController extends FrontController
     {
         $customTour = CustomTour::findOrFail($id);
 
-        $customTourJson = json_decode($customTour->tour_json, true);
+        $customTourJson = $customTour->tour_json;
 
         ArtworkSortingService::sortArtworksByGallery($customTourJson['artworks'], config('galleries.order'));
 
@@ -54,7 +54,7 @@ class CustomTourController extends FrontController
     {
         $customTour = CustomTour::findOrFail($id);
 
-        $customTourJson = json_decode($customTour->tour_json, true);
+        $customTourJson = $customTour->tour_json;
 
         ArtworkSortingService::sortArtworksByGallery($customTourJson['artworks'], config('galleries.order'));
 
