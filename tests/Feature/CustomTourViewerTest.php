@@ -22,7 +22,7 @@ class CustomTourViewerTest extends BaseTestCase
 
         $response = $this->get(route('custom-tours.show', $id));
 
-        $tourJson = json_decode($customTour->tour_json, true);
+        $tourJson = $customTour->tour_json;
 
         $response->assertSee($tourJson['title']);
     }
@@ -40,7 +40,7 @@ class CustomTourViewerTest extends BaseTestCase
 
         $response = $this->get(route('custom-tours.show', $id));
 
-        $tourJson = json_decode($customTour->tour_json, true);
+        $tourJson = $customTour->tour_json;
 
         $response->assertSee($tourJson['description']);
 
@@ -78,7 +78,7 @@ class CustomTourViewerTest extends BaseTestCase
 
         $response = $this->get(route('custom-tours.show', $id));
 
-        $tourJson = json_decode($customTour->tour_json, true);
+        $tourJson = $customTour->tour_json;
 
         foreach ($tourJson['artworks'] as $index => $artwork) {
             $response->assertSee($tourJson['artworks'][$index]['title']);
