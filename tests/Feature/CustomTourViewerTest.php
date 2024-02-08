@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\CustomTour;
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
-use DOMDocument;
 
 class CustomTourViewerTest extends BaseTestCase
 {
