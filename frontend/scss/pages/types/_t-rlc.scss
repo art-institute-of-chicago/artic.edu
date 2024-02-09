@@ -215,7 +215,7 @@
       padding: 60px;
     }
     .m-showcase-wrapper {
-      gap: 60px;
+      gap: 36px;
       @include breakpoint('xsmall') {
         gap: 15px;
       }
@@ -229,7 +229,6 @@
     }
     .m-showcase-media, .m-showcase-block__text-wrapper {
       margin: 0;
-      padding: 0;
       @include breakpoint('small+') {
         width: 100%;
       }
@@ -248,6 +247,13 @@
       .showcase-description {
         font-size: 17px;
         line-height: 28px;
+      }
+    }
+    .m-showcase-block__header-wrapper,
+    .m-showcase-block__text-wrapper,
+    .m-showcase-media {
+      @include breakpoint('xsmall') {
+        padding-bottom: 21px;
       }
     }
   }
@@ -423,6 +429,7 @@
     .m-showcase-media {
       clip-path: circle();
       margin: auto;
+      padding: 0;
       img {
         aspect-ratio: 1;
       }
