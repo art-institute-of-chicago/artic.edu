@@ -1,6 +1,14 @@
 @php
     $header = $block->input('header');
     $intro = $block->input('intro');
+    $theme = $block->input('theme');
+    $variation = $block->input('variation');
+
+    // In the case of a variation swap for multiple we want to limit the number of items to 3 to fit design
+
+    if ($variation === 'experience-with-us' || $variation === 'make-with-us') {
+        $block->childs = $block->childs->sortBy('sort_order')->take(3);
+    } 
 @endphp
 
 <div id="{{ str($block->input('id'))->after('#') }}" class="m-showcase-multiple-block">
