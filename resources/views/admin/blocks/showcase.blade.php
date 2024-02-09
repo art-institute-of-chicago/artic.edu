@@ -12,7 +12,7 @@
             $mediaTypes = ['image'];
             break;
         case 'RLC':
-            $themes = ['default', 'rlc', 'multiple'];
+            $themes = ['default', 'rlc'];
             $mediaTypes = ['image', 'video'];
             break;
         default:
