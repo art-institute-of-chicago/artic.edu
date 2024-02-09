@@ -280,6 +280,11 @@
       .m-showcase-media {
         margin-top: 0;
         min-width: unset;
+
+        @include breakpoint('xsmall') {
+          min-width: 100%;
+        }
+
         img, video {
           padding: 0;
           width: 100%;
