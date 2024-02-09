@@ -15,4 +15,6 @@ class CustomTour extends Model
     }
 
     protected $fillable = ['id', 'creator_email', 'marketing_opt_in', 'tour_json', 'timestamp'];
+
+    protected $casts = ['tour_json' => 'array'];
 }

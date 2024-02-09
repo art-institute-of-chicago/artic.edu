@@ -34,7 +34,7 @@ class CustomTourController extends BaseController
             return response()->json(['message' => 'Custom tour not found'], 404);
         }
 
-        $tourJson = json_decode($customTour->tour_json, true);
+        $tourJson = $customTour->tour_json;
 
         return response()->json(['tourJson' => $tourJson], 200);
     }
