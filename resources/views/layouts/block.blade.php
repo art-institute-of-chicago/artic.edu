@@ -13,7 +13,7 @@ $pClass = preg_replace('/Controller/i','',$pClass);
 $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 @endphp
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US" class="no-js{{ (isset($contrastHeader) and $contrastHeader) ? ' s-contrast-header' : '' }}{{ (isset($filledLogo) and $filledLogo) ? ' s-filled-logo' : '' }}{{ $print ? ' s-print' : '' }}  {{ !empty($modal) ? 's-modal-active' : '' }}  {{ $pClass }}">
+<html dir="ltr" lang="en-US" class="no-js{{ (isset($contrastHeader) and $contrastHeader) ? ' s-contrast-header' : '' }}{{ (isset($filledLogo) and $filledLogo) ? ' s-filled-logo' : '' }}{{ $print ? ' s-serif-loaded s-sans-serif-loaded s-print' : '' }}  {{ !empty($modal) ? 's-modal-active' : '' }}  {{ $pClass }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />

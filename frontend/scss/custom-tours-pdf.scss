@@ -1,41 +1,74 @@
+$disable-font-loading: true;
+
+@import 'setup/variables';
 @import 'setup/colors';
+@import 'setup/mixins';
+@import 'setup/typography';
 @import 'atoms/loader';
 
 @page {
   size: 11in 8.5in landscape;
-  margin: 0.375in 0.25in;
+  margin: 0.375in;
 }
 
 .p-customtour-pdflayout {
+  table tr td *::before {
+    padding-top: 0px;
+  }
+
+  table tr td *::after {
+    margin-bottom: 0px;
+  }
+
   table, th, td {
     border: 1px solid black;
   }
 
   table {
-    width: 10.5in;
+    width: 10.25in;
   }
 
   table tr td {
     width: 0.625in;
-    padding: 0.125in;
+    padding: 0;
     vertical-align: top;
   }
 
-  table tr td.thin {
-    width: 0.375in;
-    padding: 0.125in;
-    vertical-align: top;
+  table tr td.col1 {
+    width: 1.0764in;
+  }
+
+  table tr td.col2 {
+    width: 1.2917in;
+  }
+
+  table tr td.col3 {
+    width: 2.1528in;
+  }
+
+  table tr td.col4 {
+    width: 2.375in;
+  }
+
+  table tr td.col5 {
+    width: 1.0278in;
+  }
+
+  table tr td.col6 {
+    width: 0.8958in;
+  }
+
+  table tr td.gutter {
+    width: 0.2222in;
   }
 
   table tr td.crease {
-    width: 0.25in;
-    padding: 0.125in;
-    vertical-align: top;
+    width: 0.75in;
   }
 
   .artwork-image-container {
-    width: 2.375in;
-    height: 2.6667in;
+    width: 2.3542in;
+    height: 2.6597in;
     overflow: hidden;
   }
 
@@ -60,6 +93,31 @@
     display: block;
   }
 
+  table tr td.tombstone {
+    height: 0.75in;
+  }
+
+  table tr td.vertical-gutter-short {
+    height: 0.125in;
+  }
+
+  table tr td.vertical-gutter-tall {
+    height: 0.315in;
+  }
+
+  table tr td.short-description {
+    height: 1.81in;
+  }
+
+  table tr td.logos {
+    vertical-align: bottom;
+  }
+
+  table tr td.logos img {
+    vertical-align: bottom;
+    display: inline-block;
+  }
+
   #a17 {
     padding-top: 0px;
     width: auto;
@@ -69,23 +127,61 @@
     color: #000;
   }
 
-  .f-headline-editorial {
-    font-size: 23pt;
+  .t-artwork-title {
+    font-size: 10pt;
+    line-height: 12pt;
   }
 
-  .f-body, .f-body em {
-    font-size: 9pt;
+  .t-artist-title {
+    font-size: 8pt;
+    line-height: 10pt;
   }
 
-  .f-quote {
-    font-size: 14pt;
+  .t-gallery-title {
+    font-size: 8pt;
+    line-height: 9pt;
   }
 
-  .f-subheading-3 {
-    font-size: 11pt;
+  .t-short-description {
+    font-size: 8pt;
+    line-height: 11pt;
   }
 
-  .f-quote {
+  .t-object-note {
     font-size: 12pt;
+    line-height: 15pt;
+  }
+
+  .c-object-note {
+    height: 0.8333in;
+  }
+
+  .t-home-callout-text {
+    font-size: 25pt;
+    line-height: 28pt;
+  }
+
+  .t-made-by {
+    font-size: 12pt;
+    line-height: 14pt;
+  }
+
+  .t-sum,
+  .t-sum em {
+    font-size: 9pt;
+    line-height: 12pt;
+  }
+
+  .t-tour-description {
+    font-size: 18pt;
+    line-height: 21pt;
+  }
+
+  .i-aic {
+    width: 0.625in;
+  }
+
+  .i-bloomberg {
+    width: 1.6655in;
   }
 }
