@@ -378,7 +378,12 @@
     color: $color__white;
     position: relative;
     &::after {
-      --fullwidth: calc(100vw - 5px);
+      @include breakpoint('small+') {
+        --fullwidth: calc(100vw - 5px);
+      }
+      @include breakpoint('xsmall') {
+        --fullwidth: calc(100vw);
+      }
       border-color: transparent $color__rlc__blue_sapphire transparent transparent;
       border-style: solid;
       border-width: 0 var(--fullwidth) var(--fullwidth) 0;
