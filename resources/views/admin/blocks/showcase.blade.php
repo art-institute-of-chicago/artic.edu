@@ -38,33 +38,6 @@
 
 @formConnectedFields([
     'fieldName' => 'theme',
-    'fieldValues' => 'multiple',
-    'renderForBlocks' => true,
-    ])
-
-    @formField('select', [
-        'name' => 'variation',
-        'label' => 'Variation',
-        'default' => 'default',
-        'options' => [
-            [
-                'value' => 'make-with-us',
-                'label' => 'Make with us',
-            ],
-            [
-                'value' => 'experience-with-us',
-                'label' => 'Experience with us',
-            ],
-            [
-                'value' => 'learn-with-us',
-                'label' => 'Learn with us',
-            ],
-        ],
-    ])
-@endcomponent
-
-@formConnectedFields([
-    'fieldName' => 'theme',
     'fieldValues' => 'rlc',
     'renderForBlocks' => true,
     ])
@@ -190,39 +163,3 @@
     @endcomponent
 
 @endif
-
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => 'multiple',
-    'renderForBlocks' => true,
-    ])
-
-    @formField('input', [
-        'name' => 'header',
-        'label' => 'Header',
-        'type' => 'text',
-    ])
-
-    @formField('input', [
-        'name' => 'intro',
-        'label' => 'Intro',
-        'type' => 'text',
-    ])
-
-    @formConnectedFields([
-        'fieldName' => 'variation',
-        'fieldValues' => ['make-with-us', 'experience-with-us'],
-        'renderForBlocks' => true,
-    ])
-        @formField('repeater', ['type' => 'showcase_item', 'max' => 3])
-    @endcomponent
-
-    @formConnectedFields([
-        'fieldName' => 'variation',
-        'fieldValues' => 'learn-with-us',
-        'renderForBlocks' => true,
-    ])
-        @formField('repeater', ['type' => 'showcase_item', 'max' => 4])
-    @endcomponent
-
-@endcomponent
