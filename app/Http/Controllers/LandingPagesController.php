@@ -6,9 +6,9 @@ use App\Models\Admission;
 use App\Models\Hour;
 use App\Models\Lightbox;
 use App\Models\LandingPage;
-use App\Helpers\StringHelpers;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class LandingPagesController extends FrontController
 {
@@ -153,7 +153,7 @@ class LandingPagesController extends FrontController
             'filledLogo' => false,
             'title' => $title,
             'intro' => $item->intro,
-            'landingPageType' => StringHelpers::pageBlades($item->type),
+            'landingPageType' => Str::kebab($item->type),
         ];
 
         switch ($item->type_id) {
@@ -185,8 +185,8 @@ class LandingPagesController extends FrontController
                 ];
                 break;
 
-            case $types->search('Pre-made Tours'):
-                $view_data = array_merge($view_data, [
+            case $types->search('My Museum Tours'):
+                $viewData = [
                     'header_custom_tours_text' => $item->labels->get('header_custom_tours_text'),
                     'header_custom_tours_primary_button_label' => $item->labels->get('header_custom_tours_primary_button_label'),
                     'header_custom_tours_primary_button_link' => $item->labels->get('header_custom_tours_primary_button_link'),
@@ -202,12 +202,11 @@ class LandingPagesController extends FrontController
                     'tours_tickets_cta_module_header' => $item->labels->get('tours_tickets_cta_module_header'),
                     'tours_tickets_cta_module_button_text' => $item->labels->get('tours_tickets_cta_module_button_text'),
                     'tours_tickets_cta_module_body' => $item->labels->get('tours_tickets_cta_module_body'),
-                ]);
-
+                ];
                 break;
 
-                case $types->search('Research and Resources'):
-                $view_data = array_merge($view_data, [
+            case $types->search('Research and Resources'):
+                $viewData = [
                     'primaryNavCurrent' => 'collection',
                     'intro' => $item->labels->get('resources_landing_intro'),
                     'linksBar' => [
