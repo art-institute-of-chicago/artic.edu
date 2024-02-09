@@ -1,7 +1,7 @@
 <div class="faqs-heading">
     <h3 id="faqs" class="title f-module-title-2">FAQs</h3>
-    <a href="{{ $visit_faqs_link }}">
-        <h3 class="f-link">{{ $visit_faqs_label }}
+    <a href="{{ $visit_faqs_link ?? null}}">
+        <h3 class="f-link">{{ $visit_faqs_label ?? null }}
             <svg class='icon--arrow'><use xlink:href='#icon--arrow'></use></svg>
         </h3>
     </a>
