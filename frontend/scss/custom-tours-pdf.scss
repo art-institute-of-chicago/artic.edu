@@ -1,0 +1,91 @@
+@import 'setup/colors';
+@import 'atoms/loader';
+
+@page {
+  size: 11in 8.5in landscape;
+  margin: 0.375in 0.25in;
+}
+
+.p-customtour-pdflayout {
+  table, th, td {
+    border: 1px solid black;
+  }
+
+  table {
+    width: 10.5in;
+  }
+
+  table tr td {
+    width: 0.625in;
+    padding: 0.125in;
+    vertical-align: top;
+  }
+
+  table tr td.thin {
+    width: 0.375in;
+    padding: 0.125in;
+    vertical-align: top;
+  }
+
+  table tr td.crease {
+    width: 0.25in;
+    padding: 0.125in;
+    vertical-align: top;
+  }
+
+  .artwork-image-container {
+    width: 2.375in;
+    height: 2.6667in;
+    overflow: hidden;
+  }
+
+  .heading-image-container {
+    width: 4.75in;
+    height: 2.6667in;
+    overflow: hidden;
+  }
+
+  .on-new-page {
+    break-before: page;
+  }
+
+  table tr td img {
+    width: 100%;
+    display: block;
+  }
+
+  table tr td svg {
+    width: 70%;
+    height: 70%;
+    display: block;
+  }
+
+  #a17 {
+    padding-top: 0px;
+    width: auto;
+  }
+
+  svg {
+    color: #000;
+  }
+
+  .f-headline-editorial {
+    font-size: 23pt;
+  }
+
+  .f-body, .f-body em {
+    font-size: 9pt;
+  }
+
+  .f-quote {
+    font-size: 14pt;
+  }
+
+  .f-subheading-3 {
+    font-size: 11pt;
+  }
+
+  .f-quote {
+    font-size: 12pt;
+  }
+}

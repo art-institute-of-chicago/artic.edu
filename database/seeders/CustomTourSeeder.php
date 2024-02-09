@@ -43,7 +43,7 @@ class CustomTourSeeder extends Seeder
         ];
 
         $customTour = new CustomTour();
-        $customTour->tour_json = json_encode($tourJson);
+        $customTour->tour_json = $tourJson;
         $customTour->save();
 
         // Custom Tour - No Description
@@ -70,7 +70,7 @@ class CustomTourSeeder extends Seeder
         ];
 
         $customTour = new CustomTour();
-        $customTour->tour_json = json_encode($tourJson);
+        $customTour->tour_json = $tourJson;
         $customTour->save();
     }
 }
