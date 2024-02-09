@@ -376,7 +376,11 @@
     .m-showcase-wrapper {
       grid-template-columns: 1fr 1fr;
     }
-    .showcase-header, .showcase-title, .showcase-description, .showcase-tag {
+    .showcase-header,
+    .showcase-title,
+    .showcase-description,
+    .showcase-tag,
+    .showcase-link {
       color: $color__white;
     }
     .m-showcase-block__header-wrapper {
