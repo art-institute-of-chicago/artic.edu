@@ -376,11 +376,26 @@
   }
   #experience-with-us {
     color: $color__white;
+    position: relative;
+    &::after {
+      --fullwidth: calc(100vw - 5px);
+      border-color: transparent $color__rlc__blue_sapphire transparent transparent;
+      border-style: solid;
+      border-width: 0 var(--fullwidth) var(--fullwidth) 0;
+      content: '';
+      height: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 0;
+    }
     .m-showcase-background {
-      background-image: linear-gradient(45deg, $color__rlc__maastricth_blue 50%, $color__rlc__blue_sapphire 50%);
+      background-color: $color__rlc__maastricth_blue;
+      z-index: -1;
     }
     .m-showcase-wrapper {
       grid-template-columns: 1fr 1fr;
+      z-index: 1;
     }
     .showcase-header,
     .showcase-title,
