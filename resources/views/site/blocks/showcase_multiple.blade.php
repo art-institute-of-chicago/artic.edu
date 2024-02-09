@@ -11,8 +11,7 @@
     } 
 @endphp
 
-<div id="{{ str($block->input('id'))->after('#') }}" class="m-showcase-multiple-block">
-    <div class="m-showcase-background">
+<div class="m-showcase-block showcase--multiple {{ $theme ? 'showcase--'.$theme : '' }} {{ $theme === 'default' ? '' : ($variation ? 'showcase--variation-'.$variation : '') }}">    <div class="m-showcase-background">
         <div class="m-showcase-wrapper">
             <div class="m-showcase-block__header-wrapper">
                 @if ($header)
