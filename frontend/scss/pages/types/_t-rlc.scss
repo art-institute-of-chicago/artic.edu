@@ -438,7 +438,7 @@
         aspect-ratio: 1;
       }
       @include breakpoint('small+') {
-        max-width: 75%;
+        max-width: 350px;
       }
     }
     .m-showcase-media:nth-of-type(1) {
