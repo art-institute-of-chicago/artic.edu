@@ -1,6 +1,6 @@
 {{-- @php
     $currentUrl = explode('/', request()->url());
-    $type = \App\Models\LandingPage::find(intval($currentUrl[4]))->getType();
+    $type = \App\Models\LandingPage::find(intval($currentUrl[4]))->type;
     
     // Setup code for theming 
 
