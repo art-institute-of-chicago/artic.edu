@@ -97,7 +97,7 @@
     }
 }
 
-.m-showcase-block.showcase--multiple {
+.m-showcase-block--multiple {
     margin-left: calc(50% - 50vw);
     margin-top: 50px;
     width: 100vw;
@@ -116,10 +116,10 @@
     }
   }
 
-  .m-showcase-block.showcase--multiple, .m-showcase-background {
+  .m-showcase-block--multiple, .m-showcase-background {
     margin-top: 0;
   }
-  .m-showcase-block.showcase--multiple>.m-showcase-background {
+  .m-showcase-block--multiple>.m-showcase-background {
     @include breakpoint('small+') {
       padding: 60px;
     }
@@ -242,7 +242,7 @@
     }
   }
   }
-  .m-showcase-block.showcase--multiple {
+  .m-showcase-block--multiple.showcase--rlc {
     .m-showcase-wrapper {
       display: grid;
     }
