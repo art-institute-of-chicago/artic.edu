@@ -1,6 +1,5 @@
 @php
     use App\Helpers\StringHelpers;
-    use App\Libraries\SmartyPants;
 @endphp
 <link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet">
 <link href="{{FrontendHelpers::revAsset('styles/custom-tours-pdf.css')}}" rel="stylesheet">
@@ -75,7 +74,7 @@
         <tr>
             <td colspan="4" class="c-object-note">
                 @isset($custom_tour['artworks'][4]['objectNote'])
-                    <span class="f-quote t-object-note">{{ SmartyPants::defaultTransform('"' . $custom_tour['artworks'][4]['objectNote'] . '"') }}</span>
+                    <span class="f-quote t-object-note">&#x201C;{{ $custom_tour['artworks'][4]['objectNote'] }}&#x201D;</span>
                 @endisset
             </td>
             <td colspan="5" rowspan="2">
@@ -142,8 +141,8 @@
 
         <tr>
             <td colspan="4" class="c-object-note">
-                @isset($custom_tour['artworks'][4]['objectNote'])
-                    <span class="f-quote t-object-note">{{ SmartyPants::defaultTransform('"' . $custom_tour['artworks'][4]['objectNote'] . '"') }}</span>
+                @isset($custom_tour['artworks'][5]['objectNote'])
+                    <span class="f-quote t-object-note">&#x201C;{{ $custom_tour['artworks'][5]['objectNote'] }}&#x201D;</span>
                 @endisset
             </td>
             <td colspan="5" class="logos">
