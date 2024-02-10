@@ -1,14 +1,14 @@
 @php
     use App\Helpers\StringHelpers;
 @endphp
-<link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet" />
-<link href="{{FrontendHelpers::revAsset('styles/custom-tours-pdf.css')}}" rel="stylesheet" />
+<link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet">
+<link href="{{FrontendHelpers::revAsset('styles/custom-tours-pdf.css')}}" rel="stylesheet">
 
 @extends('layouts.block')
 
 @section('content')
 
-<table border="1">
+<table>
     <thead>
         <tr>
             <td class="col1"></td>
@@ -28,7 +28,7 @@
             <td colspan="2" rowspan="3">
                 @if(isset($custom_tour['artworks'][4]))
                     <div class="artwork-image-container">
-                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][4]['image_id'] }}/full/684,/0/default.jpg"/>
+                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][4]['image_id'] }}/full/684,/0/default.jpg">
                     </div>
                 @endif
             </td>
@@ -47,7 +47,7 @@
             <td class="crease" rowspan="12"></td>
             <td colspan="5" rowspan="3">
                 <div class="heading-image-container">
-                    <img src="https://artic-web-test.imgix.net/a9a0fefa-2101-456b-9afa-cc34dccaf06d/unnamed1.jpg?rect=0%2C65%2C1391%2C783&auto=format%2Ccompress&q=80&fit=crop&crop=faces%2Ccenter&w=1000&h=563"/>
+                    <img src="https://artic-web-test.imgix.net/a9a0fefa-2101-456b-9afa-cc34dccaf06d/unnamed1.jpg?rect=0%2C65%2C1391%2C783&auto=format%2Ccompress&q=80&fit=crop&crop=faces%2Ccenter&w=1000&h=563">
                 </div>
             </td>
         </tr>
@@ -68,6 +68,7 @@
 
         <tr>
             <td colspan="4" class="vertical-gutter-tall"></td>
+            <td colspan="5" class="vertical-gutter-tall"></td>
         </tr>
 
         <tr>
@@ -77,7 +78,7 @@
                 @endisset
             </td>
             <td colspan="5" rowspan="2">
-                <span class="f-headline-editorial t-home-callout-text"><p>{{ $custom_tour['title'] }}</p></span>
+                <span class="f-headline-editorial t-home-callout-text">{{ $custom_tour['title'] }}</span>
             </td>
         </tr>
 
@@ -89,7 +90,7 @@
             <td colspan="2" rowspan="4">
                 @if(isset($custom_tour['artworks'][5]))
                     <div class="artwork-image-container">
-                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][5]['image_id'] }}/full/684,/0/default.jpg"/>
+                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][5]['image_id'] }}/full/684,/0/default.jpg">
                     </div>
                 @endif
             </td>
@@ -111,7 +112,7 @@
         <tr>
             <td colspan="3"><span class="f-headline t-made-by">{{ isset($custom_tour['creatorName']) ? 'Tour made by ' . $custom_tour['creatorName'] . (isset($custom_tour['recipientName']) ? ' for ' . $custom_tour['recipientName'] : '') : ''}}</span></td>
             <td class="gutter"></td>
-            <td><span class="f-body t-sum">{{ count($custom_tour['artworks']) }} artworks</strong><br/><em>from</em> {{ $unique_artists_count }} artists</br><em>across</em> {{ $unique_galleries_count }} galleries</span></td>
+            <td><span class="f-body t-sum">{{ count($custom_tour['artworks']) }} artworks<br><em>from</em> {{ $unique_artists_count }} artists<br><em>across</em> {{ $unique_galleries_count }} galleries</span></td>
         </tr>
 
         <tr>
@@ -134,7 +135,7 @@
         </tr>
 
         <tr>
-            <td colspan="5" class="vertical-gutter-tall"></td>
+            <td colspan="4" class="vertical-gutter-tall"></td>
             <td colspan="5" class="vertical-gutter-tall"></td>
         </tr>
 
@@ -145,7 +146,7 @@
                 @endisset
             </td>
             <td colspan="5" class="logos">
-                <img class="i-aic" src="/dist/images/my_museum_tour--aic.png" width="45"/><img class="i-bloomberg" src="/dist/images/my_museum_tour--bloomberg.png"/>
+                <img class="i-aic" src="/dist/images/my_museum_tour--aic.png" width="45"><img class="i-bloomberg" src="/dist/images/my_museum_tour--bloomberg.png">
             </td>
         </tr>
     </tbody>
