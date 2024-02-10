@@ -1,5 +1,6 @@
 @php
     use App\Helpers\StringHelpers;
+    use App\Libraries\SmartyPants;
 @endphp
 <link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet">
 <link href="{{FrontendHelpers::revAsset('styles/custom-tours-pdf.css')}}" rel="stylesheet">
@@ -74,7 +75,7 @@
         <tr>
             <td colspan="4" class="c-object-note">
                 @isset($custom_tour['artworks'][4]['objectNote'])
-                    <span class="f-quote t-object-note">"{{ $custom_tour['artworks'][4]['objectNote'] }}"</span>
+                    <span class="f-quote t-object-note">{{ SmartyPants::defaultTransform('"' . $custom_tour['artworks'][4]['objectNote'] . '"') }}</span>
                 @endisset
             </td>
             <td colspan="5" rowspan="2">
@@ -142,11 +143,11 @@
         <tr>
             <td colspan="4" class="c-object-note">
                 @isset($custom_tour['artworks'][4]['objectNote'])
-                    <span class="f-quote t-object-note">"{{ $custom_tour['artworks'][4]['objectNote'] }}"</span>
+                    <span class="f-quote t-object-note">{{ SmartyPants::defaultTransform('"' . $custom_tour['artworks'][4]['objectNote'] . '"') }}</span>
                 @endisset
             </td>
             <td colspan="5" class="logos">
-                <img class="i-aic" src="/dist/images/my_museum_tour--aic.png" width="45"><img class="i-bloomberg" src="/dist/images/my_museum_tour--bloomberg.png">
+                <img class="i-aic" src="/dist/images/my_museum_tour--aic.png"><img class="i-bloomberg" src="/dist/images/my_museum_tour--bloomberg.png">
             </td>
         </tr>
     </tbody>
