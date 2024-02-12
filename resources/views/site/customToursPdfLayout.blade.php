@@ -151,4 +151,178 @@
     </tbody>
 </table>
 
+<table class="on-new-page">
+    <thead>
+        <tr>
+            <td class="col1"></td>
+            <td class="gutter"></td>
+            <td class="col2"></td>
+            <td class="crease"></td>
+            <td class="col3"></td>
+            <td class="gutter"></td>
+            <td class="col4"></td>
+            <td class="gutter"></td>
+            <td class="col5"></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="3">
+                @if(isset($custom_tour['artworks'][0]))
+                    <div class="artwork-image-container">
+                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][0]['image_id'] }}/full/684,/0/default.jpg">
+                    </div>
+                @endif
+            </td>
+            <td class="gutter" rowspan="3"></td>
+            <td class="tombstone">
+                @if(isset($custom_tour['artworks'][0]))
+                    <p><span class="f-headline-editorial t-artwork-title">{{ $custom_tour['artworks'][0]['title'] }}</span></p>
+                    @isset($custom_tour['artworks'][0]['artist_title'])
+                        <p><span class="f-body t-artist-title">{{ $custom_tour['artworks'][0]['artist_title'] }}</span></p>
+                    @endisset
+                    @isset($custom_tour['artworks'][0]['gallery_title'])
+                        <p><span class="f-body t-artist-title">{{ $custom_tour['artworks'][0]['gallery_title'] }}</span></p>
+                    @endisset
+                @endif
+            </td>
+            <td class="crease" rowspan="11"></td>
+            <td rowspan="3">
+                @if(isset($custom_tour['artworks'][2]))
+                    <div class="artwork-image-container">
+                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][2]['image_id'] }}/full/684,/0/default.jpg">
+                    </div>
+                @endif
+            </td>
+            <td class="gutter" rowspan="3"></td>
+            <td colspan="3" class="tombstone">
+                @if(isset($custom_tour['artworks'][2]))
+                    <p><span class="f-headline-editorial t-artwork-title">{{ $custom_tour['artworks'][2]['title'] }}</span></p>
+                    @isset($custom_tour['artworks'][2]['artist_title'])
+                        <p><span class="f-body t-artist-title">{{ $custom_tour['artworks'][2]['artist_title'] }}</span></p>
+                    @endisset
+                    @isset($custom_tour['artworks'][2]['gallery_title'])
+                        <p><span class="f-body t-artist-title">{{ $custom_tour['artworks'][2]['gallery_title'] }}</span></p>
+                    @endisset
+                @endif
+            </td>
+        </tr>
+        <tr>
+            <td class="vertical-gutter-short"></td>
+            <td colspan="3" class="vertical-gutter-short"></td>
+        </tr>
+        <tr>
+            <td class="short-description">
+                @if(isset($custom_tour['artworks'][0]))
+                    @isset($custom_tour['artworks'][0]['description'])
+                        <span class="f-body t-short-description">{{ StringHelpers::truncateStr($custom_tour['artworks'][0]['description'], 452) }}</span>
+                    @endisset
+                @endif
+            </td>
+            <td colspan="3" class="short-description">
+                @if(isset($custom_tour['artworks'][2]))
+                    @isset($custom_tour['artworks'][2]['description'])
+                        <span class="f-body t-short-description">{{ StringHelpers::truncateStr($custom_tour['artworks'][2]['description'], 452) }}</span>
+                    @endisset
+                @endif
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="vertical-gutter-tall"></td>
+            <td colspan="5" class="vertical-gutter-tall"></td>
+        </tr>
+        <tr>
+            <td colspan="3" class="c-object-note">
+                @isset($custom_tour['artworks'][0]['objectNote'])
+                    <span class="f-quote t-object-note">&#x201C;{{ $custom_tour['artworks'][0]['objectNote'] }}&#x201D;</span>
+                @endisset
+            </td>
+            <td colspan="5" class="c-object-note">
+                @isset($custom_tour['artworks'][2]['objectNote'])
+                    <span class="f-quote t-object-note">&#x201C;{{ $custom_tour['artworks'][2]['objectNote'] }}&#x201D;</span>
+                @endisset
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="vertical-gutter-tall"></td>
+            <td colspan="5" class="vertical-gutter-tall"></td>
+        </tr>
+        <tr>
+            <td rowspan="3">
+                @if(isset($custom_tour['artworks'][1]))
+                    <div class="artwork-image-container">
+                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][1]['image_id'] }}/full/684,/0/default.jpg">
+                    </div>
+                @endif
+            </td>
+            <td class="gutter" rowspan="3"></td>
+            <td class="tombstone">
+                @if(isset($custom_tour['artworks'][1]))
+                    <p><span class="f-headline-editorial t-artwork-title">{{ $custom_tour['artworks'][1]['title'] }}</span></p>
+                    @isset($custom_tour['artworks'][1]['artist_title'])
+                        <p><span class="f-body t-artist-title">{{ $custom_tour['artworks'][1]['artist_title'] }}</span></p>
+                    @endisset
+                    @isset($custom_tour['artworks'][1]['gallery_title'])
+                        <p><span class="f-body t-artist-title">{{ $custom_tour['artworks'][1]['gallery_title'] }}</span></p>
+                    @endisset
+                @endif
+            </td>
+            <td rowspan="3">
+                @if(isset($custom_tour['artworks'][3]))
+                    <div class="artwork-image-container">
+                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][3]['image_id'] }}/full/684,/0/default.jpg">
+                    </div>
+                @endif
+            </td>
+            <td class="gutter" rowspan="3"></td>
+            <td colspan="3" class="tombstone">
+                @if(isset($custom_tour['artworks'][3]))
+                    <p><span class="f-headline-editorial t-artwork-title">{{ $custom_tour['artworks'][3]['title'] }}</span></p>
+                    @isset($custom_tour['artworks'][3]['artist_title'])
+                        <p><span class="f-body t-artist-title">{{ $custom_tour['artworks'][3]['artist_title'] }}</span></p>
+                    @endisset
+                    @isset($custom_tour['artworks'][3]['gallery_title'])
+                        <p><span class="f-body t-artist-title">{{ $custom_tour['artworks'][3]['gallery_title'] }}</span></p>
+                    @endisset
+                @endif
+            </td>
+        </tr>
+        <tr>
+            <td class="vertical-gutter-short"></td>
+            <td colspan="3" class="vertical-gutter-short"></td>
+        </tr>
+        <tr>
+            <td class="short-description">
+                @if(isset($custom_tour['artworks'][1]))
+                    @isset($custom_tour['artworks'][1]['description'])
+                        <span class="f-body t-short-description">{{ StringHelpers::truncateStr($custom_tour['artworks'][1]['description'], 452) }}</span>
+                    @endisset
+                @endif
+            </td>
+            <td colspan="3" class="short-description">
+                @if(isset($custom_tour['artworks'][3]))
+                    @isset($custom_tour['artworks'][3]['description'])
+                        <span class="f-body t-short-description">{{ StringHelpers::truncateStr($custom_tour['artworks'][3]['description'], 452) }}</span>
+                    @endisset
+                @endif
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="vertical-gutter-tall"></td>
+            <td colspan="5" class="vertical-gutter-tall"></td>
+        </tr>
+        <tr>
+            <td colspan="3" class="c-object-note">
+                @isset($custom_tour['artworks'][1]['objectNote'])
+                    <span class="f-quote t-object-note">&#x201C;{{ $custom_tour['artworks'][1]['objectNote'] }}&#x201D;</span>
+                @endisset
+            </td>
+            <td colspan="5" class="c-object-note">
+                @isset($custom_tour['artworks'][3]['objectNote'])
+                    <span class="f-quote t-object-note">&#x201C;{{ $custom_tour['artworks'][3]['objectNote'] }}&#x201D;</span>
+                @endisset
+            </td>
+        </tr>
+    </tbody>
+</table>
 @endsection
