@@ -60,6 +60,19 @@ $disable-font-loading: true;
 
   table tr td.crease {
     width: 0.75in;
+    position: relative;
+  }
+
+  table tr td.crease::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1px" height="0.334in" fill="%23fff"><rect width="1px" height="0.168in" fill="%23ddd"/></svg>');
+    background-repeat: repeat-y;
+    transform: translateX(-50%);
   }
 
   .artwork-image-container {
@@ -105,6 +118,24 @@ $disable-font-loading: true;
 
   table tr td.vertical-gutter-tall {
     height: 0.2361in;
+  }
+
+  .artwork-divider {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 0.2361in;
+  }
+
+  .artwork-divider::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    transform: translateY(-50%);
   }
 
   table tr td.short-description {

@@ -90,7 +90,7 @@
         </tr>
 
         <tr>
-            <td colspan="3" class="vertical-gutter-tall"></td>
+            <td colspan="3" class="vertical-gutter-tall"><div class="artwork-divider"></div></td>
         </tr>
 
         <tr>
