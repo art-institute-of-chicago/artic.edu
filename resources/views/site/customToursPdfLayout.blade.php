@@ -25,11 +25,19 @@
     <tbody>
         <tr>
             <td rowspan="3">
-                @if(isset($custom_tour['artworks'][4]))
-                    <div class="artwork-image-container">
-                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][4]['image_id'] }}/full/684,/0/default.jpg">
-                    </div>
+                @php
+                    $imageDims = '684,';
+                    $class = '';
+                @endphp
+                @if(isset($custom_tour['artworks'][4]['thumbnail']['width']) && $custom_tour['artworks'][4]['thumbnail']['width'] > $custom_tour['artworks'][4]['thumbnail']['height'])
+                    @php
+                        $imageDims = ',684';
+                        $class = 'landscape';
+                    @endphp
                 @endif
+                <div class="artwork-image-container">
+                    <img class="{{ $class ?: '' }}" src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][4]['image_id'] }}/full/{{ $imageDims }}/0/default.jpg">
+                </div>
             </td>
             <td class="gutter" rowspan="3"></td>
             <td class="tombstone">
