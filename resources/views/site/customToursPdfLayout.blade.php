@@ -12,20 +12,19 @@
     <thead>
         <tr>
             <td class="col1"></td>
-            <td class="col2"></td>
             <td class="gutter"></td>
-            <td class="col3"></td>
+            <td class="col2"></td>
             <td class="crease"></td>
+            <td class="col3"></td>
+            <td class="gutter"></td>
             <td class="col4"></td>
             <td class="gutter"></td>
             <td class="col5"></td>
-            <td class="gutter"></td>
-            <td class="col6"></td>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="2" rowspan="3">
+            <td rowspan="3">
                 @if(isset($custom_tour['artworks'][4]))
                     <div class="artwork-image-container">
                         <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][4]['image_id'] }}/full/684,/0/default.jpg">
@@ -67,12 +66,12 @@
         </tr>
 
         <tr>
-            <td colspan="4" class="vertical-gutter-tall"></td>
+            <td colspan="3" class="vertical-gutter-tall"></td>
             <td colspan="5" class="vertical-gutter-tall"></td>
         </tr>
 
         <tr>
-            <td colspan="4" class="c-object-note">
+            <td colspan="3" class="c-object-note">
                 @isset($custom_tour['artworks'][4]['objectNote'])
                     <span class="f-quote t-object-note">&#x201C;{{ $custom_tour['artworks'][4]['objectNote'] }}&#x201D;</span>
                 @endisset
@@ -83,11 +82,11 @@
         </tr>
 
         <tr>
-            <td colspan="4" class="vertical-gutter-tall"></td>
+            <td colspan="3" class="vertical-gutter-tall"></td>
         </tr>
 
         <tr>
-            <td colspan="2" rowspan="4">
+            <td rowspan="4">
                 @if(isset($custom_tour['artworks'][5]))
                     <div class="artwork-image-container">
                         <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][5]['image_id'] }}/full/684,/0/default.jpg">
@@ -135,12 +134,12 @@
         </tr>
 
         <tr>
-            <td colspan="4" class="vertical-gutter-tall"></td>
+            <td colspan="3" class="vertical-gutter-tall"></td>
             <td colspan="5" class="vertical-gutter-tall"></td>
         </tr>
 
         <tr>
-            <td colspan="4" class="c-object-note">
+            <td colspan="3" class="c-object-note">
                 @isset($custom_tour['artworks'][5]['objectNote'])
                     <span class="f-quote t-object-note">&#x201C;{{ $custom_tour['artworks'][5]['objectNote'] }}&#x201D;</span>
                 @endisset
