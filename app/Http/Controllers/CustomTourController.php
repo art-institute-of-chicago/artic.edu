@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CustomTour;
 use App\Libraries\CustomTour\ArtworkSortingService;
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
+use chillerlan\QRCode\Common\EccLevel;
+use chillerlan\QRCode\Output\QROutputInterface;
 
 class CustomTourController extends FrontController
 {
@@ -74,6 +78,30 @@ class CustomTourController extends FrontController
             'unique_galleries_count' => $uniqueGalleriesCount,
             'unique_artists_count' => $uniqueArtistsCount,
         ]);
+    }
+
+
+    public function qrcode(Request $request, $id)
+    {
+        $customTour = CustomTour::findOrFail($id);
+
+        $baseUrl = config('aic.protocol') . '://' . config('app.url');
+        $fullUrl = $baseUrl . route('custom-tours.show', [ 'id' => $customTour->id ], false);
+
+        $options = new QROptions(
+            [
+              'eccLevel' => EccLevel::L,
+              'outputType' => QROutputInterface::GDIMAGE_PNG,
+              'version' => 5,
+            ]
+        );
+
+        $qrcode = (new QRCode($options))->render($fullUrl);
+
+        $imageData = explode(',', $qrcode)[1];
+        $decodedImageData = base64_decode($imageData);
+        return response($decodedImageData)
+            ->header('Content-Type', 'image/png');
     }
 
     public function showCustomTourBuilder()
