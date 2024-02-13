@@ -319,7 +319,6 @@
                 </div>
             </div>
         @endif
-        
     </div>
     @if ((!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption'])) and (isset($item['caption']) or isset($item['captionTitle'])))
     <figcaption>
@@ -332,7 +331,7 @@
                 @endif
             </div></div> <br>
         @endif
-        @if (isset($item['caption']))
+        @if (isset($item['caption']) && $item['caption'])
             <div class="{{ $fitCaptionTitle ? 'f-fit-text' : '' }} f-caption">{!! $item['caption'] !!}</div>
         @endif
     </figcaption>
