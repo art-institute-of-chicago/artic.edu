@@ -359,6 +359,9 @@
         aspect-ratio: 1;
       }
     }
+    .showcase-description a {
+      color: $color__rlc__blue_sapphire;
+    }
   }
   #make-with-us {
     background-color: $color__rlc__antique_white;
@@ -394,6 +397,9 @@
     .showcase-tag,
     .showcase-link {
       color: $color__black--80;
+    }
+    .showcase-description a {
+      color: $color__rlc__blue_sapphire;
     }
   }
   #experience-with-us {
