@@ -15,11 +15,15 @@
                 @endif
             </div>
             @foreach ($block->childs as $item)
+                @php
+                    $media = $item->imageAsArray('image', 'desktop');
+                @endphp
                 @component('components.molecules._m-media')
                     @slot('variation', 'm-showcase-media')
                     @slot('item', [
                         'type' => $item->input('media_type'),
-                        'media' => $item->imageAsArray('image', 'desktop'),
+                        'media' => $media,
+                        'caption' => $media['caption'],
                         'loop' => true,
                         'loop_or_once' => 'loop',
                     ])
