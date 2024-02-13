@@ -233,6 +233,29 @@
         width: 100%;
       }
     }
+    .m-showcase-media {
+      position: relative;
+      figcaption {
+        @include breakpoint('small+') {
+          bottom: 0;
+        }
+        @include breakpoint('xsmall') {
+          bottom: 20px;
+        }
+        min-height: unset;
+        position: absolute;
+        .f-caption {
+          font-family: var(--sans-serif);
+          font-size: 13px;
+          line-height: 16px;
+          padding: 8px 16px;
+          text-transform: uppercase;
+          &::after {
+            content: unset;
+          }
+        }
+      }
+    }
     .m-showcase-block__text-wrapper {
       .showcase-tag {
         font-size: 13px;
@@ -407,6 +430,10 @@
     .showcase-description,
     .showcase-tag,
     .showcase-link {
+      color: $color__white;
+    }
+    .f-caption {
+      background-color: $color__black;
       color: $color__white;
     }
     .m-showcase-block__header-wrapper {
