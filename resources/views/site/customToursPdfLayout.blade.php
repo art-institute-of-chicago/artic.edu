@@ -35,9 +35,11 @@
                         $class = 'landscape';
                     @endphp
                 @endif
-                <div class="artwork-image-container">
-                    <img class="{{ $class ?: '' }}" src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][4]['image_id'] }}/full/{{ $imageDims }}/0/default.jpg">
-                </div>
+                @if(isset($custom_tour['artworks'][4]))
+                    <div class="artwork-image-container">
+                        <img class="{{ $class ?: '' }}" src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][4]['image_id'] }}/full/{{ $imageDims }}/0/default.jpg">
+                    </div>
+                @endif
             </td>
             <td class="gutter" rowspan="3"></td>
             <td class="tombstone">
@@ -95,9 +97,19 @@
 
         <tr>
             <td rowspan="4">
+                @php
+                    $imageDims = '684,';
+                    $class = '';
+                @endphp
+                @if(isset($custom_tour['artworks'][5]['thumbnail']['width']) && $custom_tour['artworks'][5]['thumbnail']['width'] > $custom_tour['artworks'][5]['thumbnail']['height'])
+                    @php
+                        $imageDims = ',684';
+                        $class = 'landscape';
+                    @endphp
+                @endif
                 @if(isset($custom_tour['artworks'][5]))
                     <div class="artwork-image-container">
-                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][5]['image_id'] }}/full/684,/0/default.jpg">
+                        <img class="{{ $class ?: '' }}" src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][5]['image_id'] }}/full/{{ $imageDims }}/0/default.jpg">
                     </div>
                 @endif
             </td>
@@ -152,8 +164,16 @@
                     <span class="f-quote t-object-note">&#x201C;{{ $custom_tour['artworks'][5]['objectNote'] }}&#x201D;</span>
                 @endisset
             </td>
-            <td colspan="5" class="logos">
+            <td class="logos">
                 <img class="i-aic" src="/dist/images/my_museum_tour--aic.png"><img class="i-bloomberg" src="/dist/images/my_museum_tour--bloomberg.png">
+            </td>
+            <td class="gutter"></td>
+            <td class="logos">
+                <p><span class="f-headline-editorial t-artwork-title">See your full tour here:</span></p>
+            </td>
+            <td class="gutter"></td>
+            <td class="logos">
+                <img class="i-qrcode" src="{{ route('custom-tours.qrcode', [ 'id' => $id ], false); }}">
             </td>
         </tr>
     </tbody>
@@ -176,9 +196,19 @@
     <tbody>
         <tr>
             <td rowspan="3">
+                @php
+                    $imageDims = '684,';
+                    $class = '';
+                @endphp
+                @if(isset($custom_tour['artworks'][0]['thumbnail']['width']) && $custom_tour['artworks'][0]['thumbnail']['width'] > $custom_tour['artworks'][0]['thumbnail']['height'])
+                    @php
+                        $imageDims = ',684';
+                        $class = 'landscape';
+                    @endphp
+                @endif
                 @if(isset($custom_tour['artworks'][0]))
                     <div class="artwork-image-container">
-                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][0]['image_id'] }}/full/684,/0/default.jpg">
+                        <img class="{{ $class ?: '' }}" src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][0]['image_id'] }}/full/{{ $imageDims }}/0/default.jpg">
                     </div>
                 @endif
             </td>
@@ -196,9 +226,19 @@
             </td>
             <td class="crease" rowspan="11"></td>
             <td rowspan="3">
+                @php
+                    $imageDims = '684,';
+                    $class = '';
+                @endphp
+                @if(isset($custom_tour['artworks'][2]['thumbnail']['width']) && $custom_tour['artworks'][2]['thumbnail']['width'] > $custom_tour['artworks'][2]['thumbnail']['height'])
+                    @php
+                        $imageDims = ',684';
+                        $class = 'landscape';
+                    @endphp
+                @endif
                 @if(isset($custom_tour['artworks'][2]))
                     <div class="artwork-image-container">
-                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][2]['image_id'] }}/full/684,/0/default.jpg">
+                        <img class="{{ $class ?: '' }}" src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][2]['image_id'] }}/full/{{ $imageDims }}/0/default.jpg">
                     </div>
                 @endif
             </td>
@@ -257,9 +297,19 @@
         </tr>
         <tr>
             <td rowspan="3">
+                @php
+                    $imageDims = '684,';
+                    $class = '';
+                @endphp
+                @if(isset($custom_tour['artworks'][1]['thumbnail']['width']) && $custom_tour['artworks'][1]['thumbnail']['width'] > $custom_tour['artworks'][1]['thumbnail']['height'])
+                    @php
+                        $imageDims = ',684';
+                        $class = 'landscape';
+                    @endphp
+                @endif
                 @if(isset($custom_tour['artworks'][1]))
                     <div class="artwork-image-container">
-                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][1]['image_id'] }}/full/684,/0/default.jpg">
+                        <img class="{{ $class ?: '' }}" src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][1]['image_id'] }}/full/{{ $imageDims }}/0/default.jpg">
                     </div>
                 @endif
             </td>
@@ -276,9 +326,19 @@
                 @endif
             </td>
             <td rowspan="3">
+                @php
+                    $imageDims = '684,';
+                    $class = '';
+                @endphp
+                @if(isset($custom_tour['artworks'][3]['thumbnail']['width']) && $custom_tour['artworks'][3]['thumbnail']['width'] > $custom_tour['artworks'][3]['thumbnail']['height'])
+                    @php
+                        $imageDims = ',684';
+                        $class = 'landscape';
+                    @endphp
+                @endif
                 @if(isset($custom_tour['artworks'][3]))
                     <div class="artwork-image-container">
-                        <img src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][3]['image_id'] }}/full/684,/0/default.jpg">
+                        <img class="{{ $class ?: '' }}" src="https://www.artic.edu/iiif/2/{{ $custom_tour['artworks'][3]['image_id'] }}/full/{{ $imageDims }}/0/default.jpg">
                     </div>
                 @endif
             </td>
