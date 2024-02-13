@@ -1,4 +1,4 @@
-<h2 id="{{ StringHelpers::getUtf8Slug($block->input('grid_heading')) }}" class="title f-module-title-2">{{ $block->input('grid_heading') }}</h2>
+<h2 id="{{ Str::lower(Str::kebab($block->input('heading'))) }}" class="title f-module-title-2">{{ $block->input('heading') }}</h2>
 <hr/>
 <div class="featured-pages-grid" data-blur-img>
     @foreach($block->getRelated('genericPages') as $index => $page)
