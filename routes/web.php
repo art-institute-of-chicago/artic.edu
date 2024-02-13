@@ -224,6 +224,7 @@ Route::get('/custom-tours/builder', [CustomTourController::class, 'showCustomTou
 Route::get('/custom-tours/{id}', [CustomTourController::class, 'show'])->name('custom-tours.show');
 
 Route::get('/custom-tours/{id}/pdf-layout', [CustomTourController::class, 'pdfLayout'])->name('custom-tours.pdf-layout');
+Route::get('/custom-tours/{id}/qrcode.png', [CustomTourController::class, 'qrcode'])->name('custom-tours.qrcode');
 
 // Feed routes
 Route::feeds();
