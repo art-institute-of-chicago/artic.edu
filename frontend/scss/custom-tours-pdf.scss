@@ -21,7 +21,7 @@ $disable-font-loading: true;
   }
 
   table, th, td {
-    border: 1px solid black;
+    border: 0px solid black;
   }
 
   table {
@@ -39,7 +39,7 @@ $disable-font-loading: true;
   }
 
   table tr td.col2 {
-    width: 2.1528in;
+    width: 2.325in;
   }
 
   table tr td.col3 {
@@ -47,7 +47,7 @@ $disable-font-loading: true;
   }
 
   table tr td.col4 {
-    width: 1.0278in;
+    width: 1.2in;
   }
 
   table tr td.col5 {
@@ -55,11 +55,11 @@ $disable-font-loading: true;
   }
 
   table tr td.gutter {
-    width: 0.2222in;
+    width: 0.2in;
   }
 
   table tr td.crease {
-    width: 0.75in;
+    width: 0.45in;
     position: relative;
   }
 
@@ -82,8 +82,8 @@ $disable-font-loading: true;
   }
 
   .heading-image-container {
-    width: 4.75in;
-    height: 2.6667in;
+    width: 4.95in;
+    height: 2.6579in;
     overflow: hidden;
   }
 
@@ -163,20 +163,23 @@ $disable-font-loading: true;
   .t-artwork-title {
     font-size: 10pt;
     line-height: 12pt;
+    padding-bottom: 0.02in;
   }
 
   .t-artist-title {
     font-size: 8pt;
     line-height: 10pt;
+    padding-bottom: 0.02in;
   }
 
   .t-gallery-title {
     font-size: 8pt;
     line-height: 9pt;
+    padding-bottom: 0;
   }
 
   .t-short-description {
-    font-size: 8pt;
+    font-size: 9pt;
     line-height: 11pt;
   }
 
@@ -186,7 +189,7 @@ $disable-font-loading: true;
   }
 
   .c-object-note {
-    height: 0.8333in;
+    height: 0.8194in;
   }
 
   .t-home-callout-text {
