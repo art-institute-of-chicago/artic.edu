@@ -126,7 +126,7 @@ class GeneratePdfs extends Command
                 $fileName,
                 'public'
             );
-            //unlink($localPath);
+            unlink($localPath);
         }
     }
 
