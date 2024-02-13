@@ -31,7 +31,7 @@
                         <span class="default-img featured-pages-grid_img"></span>
                     @endif
                     <span>
-                        <h3 class="f-list-2">{{ $page->title }}
+                        <h3 class="f-list-2">{{ $page->title_display ?? $page->title }}</h3>
                             <svg class='icon--arrow'><use xlink:href='#icon--arrow'></use></svg>
                         </h3>
                     </span>
