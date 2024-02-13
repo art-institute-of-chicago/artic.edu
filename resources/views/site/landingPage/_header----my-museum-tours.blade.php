@@ -18,7 +18,7 @@
         @endcomponent
     @endif
     <div class="m-title-bar">
-        <h1 class="f-display-2">My Museum Tours</h1>
+        <h1 class="f-display-2">My Museum Tour</h1>
     </div>
 
     @if ($header_custom_tours_text)
