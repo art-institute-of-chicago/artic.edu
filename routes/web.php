@@ -220,11 +220,11 @@ Route::get('/interactive-features/{slug}', [InteractiveFeatureExperiencesControl
 Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show-kiosk');
 
 // Custom tour routes
-Route::get('/custom-tours/builder', [CustomTourController::class, 'showCustomTourBuilder']);
-Route::get('/custom-tours/{id}', [CustomTourController::class, 'show'])->name('custom-tours.show');
+Route::get('/my-museum-tours/builder', [CustomTourController::class, 'showCustomTourBuilder']);
+Route::get('/my-museum-tours/{id}', [CustomTourController::class, 'show'])->name('custom-tours.show');
 
-Route::get('/custom-tours/{id}/pdf-layout', [CustomTourController::class, 'pdfLayout'])->name('custom-tours.pdf-layout');
-Route::get('/custom-tours/{id}/qrcode.png', [CustomTourController::class, 'qrcode'])->name('custom-tours.qrcode');
+Route::get('/my-museum-tours/{id}/pdf-layout', [CustomTourController::class, 'pdfLayout'])->name('custom-tours.pdf-layout');
+Route::get('/my-museum-tours/{id}/qrcode.png', [CustomTourController::class, 'qrcode'])->name('custom-tours.qrcode');
 
 // Feed routes
 Route::feeds();
