@@ -172,6 +172,7 @@ class LandingPagesController extends FrontController
                 $viewData = [
                     'contrastHeader' => true,
                     'primaryNavCurrent' => 'visit',
+                    'subnav' => collect(['hours', 'location', 'admission'])->concat($blockHeadings)->concat(['FAQs'])->all(),
                     'hours' => $hours,
                     'itemprops' => $itemprops,
                     'visit_map' => $item->imageFront('visit_map'),
