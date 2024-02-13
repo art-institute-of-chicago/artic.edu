@@ -2,7 +2,7 @@
 @twillBlockIcon('image')
 
 @formField('input', [
-    'name' => 'grid_heading',
+    'name' => 'heading',
     'label' => 'Heading',
 ])
 

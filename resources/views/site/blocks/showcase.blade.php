@@ -1,5 +1,5 @@
 @php
-    $header = $block->input('header');
+    $heading = $block->input('heading');
     $mediaType = $block->input('media_type');
     $media = $block->imageAsArray('image', 'desktop');
     $title = $block->input('title');
@@ -9,10 +9,10 @@
     $linkUrl = $block->input('link_url');
 @endphp
 
-<div id="{{ str(strip_tags($header))->kebab() }}" class="m-showcase-block">
+<div id="{{ str(strip_tags($heading))->kebab() }}" class="m-showcase-block">
     <div class="m-showcase-wrapper">
-        @if ($header)
-            <h3 class="showcase-header">{{ $header }}</h3>
+        @if ($heading)
+            <h2 id="{{ Str::lower(Str::kebab($heading)) }}" class="showcase-header">{{ $heading }}</h2>
         @endif
         @if ($landingPageType == 'rlc')
             @component('components.molecules._m-media')
