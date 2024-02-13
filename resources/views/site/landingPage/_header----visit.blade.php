@@ -39,16 +39,9 @@
     @endif
     <h2 class="f-headline">VISIT</h2>
         <div class="menu-links">
-            @if(!empty($menuItems))
-                <ul>
-                    @foreach($menuItems as $item)
-                            <li class="m-links-bar__item"><a class="m-links-bar__item-trigger f-link" href={{ $item->link }}>{{ $item->label }}</a></li>
-                    @endforeach
-                </ul>
-            @endif
-                <a href={{ $visit_nav_buy_tix_link }} class="btn f-buttons">{{ $visit_nav_buy_tix_label }}</a>
+            @include('components.molecules._m-auto-subnav', ['subnav' => $subnav])
+            <a href={{ $visit_nav_buy_tix_link }} class="btn f-buttons">{{ $visit_nav_buy_tix_label }}</a>
         </div>
-
     <div class="info-grid">
         <div class="row">
             <div class="col">
