@@ -451,17 +451,16 @@
         grid-column: 1;
         grid-row: 3;
         object-fit: contain;
-        img {
-          aspect-ratio: 1;
+        &:not(:has(~ .m-showcase-media)) {
+          img {
+            aspect-ratio: 1;
+          }
         }
       }
       .m-showcase-media:nth-of-type(3) {
         grid-column: 2;
         grid-row: 3;
         object-fit: contain;
-        img {
-          aspect-ratio: 1;
-        }
       }
     }
     @include breakpoint('xsmall') {
