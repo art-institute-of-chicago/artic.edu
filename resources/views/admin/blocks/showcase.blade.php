@@ -2,8 +2,8 @@
 @twillBlockIcon('image')
 
 @formField('input', [
-    'name' => 'header',
-    'label' => 'Header',
+    'name' => 'heading',
+    'label' => 'Heading',
 ])
 
 @formField('select', [

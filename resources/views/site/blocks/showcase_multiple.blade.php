@@ -1,5 +1,5 @@
 @php
-    $header = $block->input('header');
+    $heading = $block->input('heading');
     $intro = $block->input('intro');
 @endphp
 
@@ -7,8 +7,8 @@
     <div class="m-showcase-background">
         <div class="m-showcase-wrapper">
             <div class="m-showcase-block__header-wrapper">
-                @if ($header)
-                    <h3 class="showcase-header">{{ $header }}</h3>
+                @if ($heading)
+                    <h3 class="showcase-header">{{ $heading }}</h3>
                 @endif
                 @if ($intro)
                     <h4 class="showcase-intro">{{ $intro }}</h4>
