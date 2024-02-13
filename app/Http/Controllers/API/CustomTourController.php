@@ -20,7 +20,7 @@ class CustomTourController extends BaseController
         $record = CustomTour::create([
             'creator_email' => $validated['creatorEmail'],
             'marketing_opt_in' => $validated['marketingOptIn'] ?? false,
-            'tour_json' => json_encode($sanitizedTourJson)
+            'tour_json' => $sanitizedTourJson
         ]);
 
         return response()->json(['message' => 'Custom tour created successfully!', 'custom_tour' => $record], 201);
