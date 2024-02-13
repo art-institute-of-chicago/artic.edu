@@ -47,7 +47,6 @@
         'italic',
         'underline',
         'link',
-        ['color' => ['#333', '#FFF', '#DE2F1B']],
         ['list' => 'bullet'],
         ['list' => 'ordered'],
     ],
