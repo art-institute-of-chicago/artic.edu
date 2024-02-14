@@ -70,6 +70,11 @@ class Artwork extends AbstractModel
         return ['en' => StringHelpers::getUtf8Slug($this->title)];
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.collection.artworks.edit', $this->id);
+    }
+
     public function getAssetLibraryAttribute()
     {
         // Include image sequence

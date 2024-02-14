@@ -12,12 +12,16 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasAutoRelated;
 use App\Models\Behaviors\HasFeaturedRelated;
 use Kalnoy\Nestedset\NodeTrait;
 
 class GenericPage extends AbstractModel implements Sortable
 {
     use HasMediasEloquent;
+    use HasAutoRelated;
+    use HasRelated;
+    use HasFeaturedRelated;
     use HasBlocks;
     use HasSlug;
     use HasMedias;

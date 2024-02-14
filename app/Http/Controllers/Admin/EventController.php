@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\EventProgramRepository;
 
 class EventController extends ModuleController
@@ -110,6 +109,7 @@ class EventController extends ModuleController
         $baseUrl = '//' . config('app.url') . '/events/' . $item->id . '/';
 
         return [
+            'autoRelated' => $this->getAutoRelated($item),
             'eventTypesList' => $this->repository->getEventTypesList(),
             'eventAudiencesList' => $this->repository->getEventAudiencesList(),
             'eventLayoutsList' => $this->repository->getEventLayoutsList(),

@@ -104,6 +104,8 @@
   <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium+">
     @component('site.shared._featuredRelated')
         @slot('item', $item)
+        @slot('autoRelated', $autoRelated)
+        @slot('featuredRelated', $featuredRelated)
         @slot('variation', 'u-show@medium+')
         @slot('behavior', 'relatedSidebar')
     @endcomponent
@@ -114,6 +116,8 @@
       <div class="o-article__related{{ (empty($item->description) or $item->description === '') ? ' o-article__related--no-description' : '' }}">
           @component('site.shared._featuredRelated')
               @slot('item', $item)
+              @slot('autoRelated', $autoRelated)
+              @slot('featuredRelated', $featuredRelated)
           @endcomponent
       </div>
   @endif

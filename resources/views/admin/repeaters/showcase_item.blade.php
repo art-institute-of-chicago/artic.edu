@@ -9,32 +9,13 @@
     'options' => collect(['image' => 'Image', 'video' => 'Video']),
 ])
 
-@formConnectedFields([
-    'fieldName' => 'media_type',
-    'fieldValues' => 'image',
-    'renderForBlocks' => true,
+@formField('medias', [
+    'name' => 'image',
+    'label' => 'Media',
+    'max' => 1,
+    'withVideoUrl' => false,
+    'required' => true,
 ])
-    @formField('medias', [
-        'name' => 'image',
-        'label' => 'Image',
-        'max' => 1,
-        'withVideoUrl' => false,
-        'required' => true,
-    ])
-@endcomponent
-
-@formConnectedFields([
-    'fieldName' => 'media_type',
-    'fieldValues' => 'video',
-    'renderForBlocks' => true,
-])
-    @formField('files', [
-        'name' => 'video',
-        'label' => 'Video',
-        'max' => 1,
-        'required' => true,
-    ])
-@endcomponent
 
 @formField('input', [
     'name' => 'tag',
@@ -59,8 +40,8 @@
     'toolbarOptions' => [
         'bold',
         'italic',
-        'link',
         'underline',
+        'link',
         ['list' => 'bullet'],
         ['list' => 'ordered'],
     ],

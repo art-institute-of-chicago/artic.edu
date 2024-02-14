@@ -56,6 +56,8 @@ class ArtworkController extends BaseScopedController
 
         // Start building data for output to view
         $viewData = [
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
             'item' => $item,
             'model3d' => $item->model3d,
             'contrastHeader' => $item->present()->contrastHeader,

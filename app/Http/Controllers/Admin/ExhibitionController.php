@@ -94,6 +94,7 @@ class ExhibitionController extends BaseApiController
         $baseUrl = '//' . config('app.url') . '/exhibitions/' . $item->datahub_id . '/';
 
         return [
+            'autoRelated' => $this->getAutoRelated($item),
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
             'exhibitionTypesList' => $this->repository->getExhibitionTypesList(),
             'exhibitionStatusesList' => $this->repository->getExhibitionStatusesList(),

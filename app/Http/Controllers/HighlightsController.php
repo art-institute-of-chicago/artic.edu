@@ -61,6 +61,8 @@ class HighlightsController extends FrontController
         $exploreFurther = new ExploreFurther($item, $artworks->getMetadata('aggregations'));
 
         return view('site.highlightDetail', [
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
             'item' => $item,
             'contrastHeader' => $item->present()->contrastHeader,
             'exploreFurtherTags' => $exploreFurther->tags(),

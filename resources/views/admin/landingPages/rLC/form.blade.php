@@ -150,10 +150,47 @@
     </a17-fieldset>
     <a17-fieldset title="Custom Content" id="custom_content">
         @formField('block_editor', [
+            'name' => 'default',
             'blocks' => [
                 'showcase',
                 'showcase_multiple',
             ],
+            'withoutSeparator' => true,
+        ])
+    </a17-fieldset>
+    <a17-fieldset title="Contact" id="contact">
+        @formField('input', [
+            'name' => 'labels.contact_header',
+            'label' => 'Contact Header',
+        ])
+        @formField('wysiwyg', [
+            'name' => 'labels.contact_intro',
+            'label' => 'Contact Intro',
+            'toolbarOptions' => [
+                'bold', 'italic',
+            ],
+        ])
+        @formField('block_editor', [
+            'blocks' => [
+                'newsletter_signup_inline',
+                'paragraph',
+            ],
+            'name' => 'contact',
+            'withoutSeparator' => true,
+        ])
+    </a17-fieldset>
+    <a17-fieldset title="FAQs" id="faq">
+        @formField('repeater', [
+            'type' => 'faqs',
+        ])
+    </a17-fieldset>
+    <a17-fieldset title="Donor Information" id="donor_info">
+        @formField('block_editor', [
+            'blocks' => [
+                'paragraph',
+            ],
+            'name' => 'donor_info',
+            'withoutSeparator' => true,
         ])
     </a17-fieldset>
 @stop

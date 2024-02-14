@@ -32,11 +32,11 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   <link rel="search" type="application/opensearchdescription+xml" title="Art Institute of Chicago" href="/opensearch.xml">
 
   <!-- Main Favicon -->
-  <link rel="shortcut icon" type="image/png" href="{{FrontendHelpers::revAsset('images/favicon-16.png')}}">
+  <link rel="shortcut icon" type="image/png" href="{{FrontendHelpers::revAsset('images/aic-favicon.svg')}}">
   <!-- Apple Touch Icons (ipad/iphone standard+retina) -->
-  <link rel="apple-touch-icon-precomposed" href="{{FrontendHelpers::revAsset('images/favicon-152.png')}}"> <!-- General use iOS/Android icon, auto-downscaled by devices. -->
-  <link rel="apple-touch-icon-precomposed" type="image/png" href="{{FrontendHelpers::revAsset('images/favicon-120.png')}}" sizes="120x120"> <!-- iPhone retina touch icon -->
-  <link rel="apple-touch-icon-precomposed" type="image/png" href="{{FrontendHelpers::revAsset('images/favicon-76.png')}}" sizes="76x76"> <!-- iPad home screen icons -->
+  <link rel="apple-touch-icon-precomposed" href="{{FrontendHelpers::revAsset('images/aic-favicon.svg')}}"> <!-- General use iOS/Android icon, auto-downscaled by devices. -->
+  <link rel="apple-touch-icon-precomposed" type="image/png" href="{{FrontendHelpers::revAsset('images/aic-favicon.svg')}}" sizes="120x120"> <!-- iPhone retina touch icon -->
+  <link rel="apple-touch-icon-precomposed" type="image/png" href="{{FrontendHelpers::revAsset('images/aic-favicon.svg')}}" sizes="76x76"> <!-- iPad home screen icons -->
 
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>

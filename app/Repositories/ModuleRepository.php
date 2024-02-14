@@ -40,14 +40,15 @@ abstract class ModuleRepository extends BaseModuleRepository
     {
         // Remove trailing newlines from fields
         foreach ($fields as $key => $field) {
-            $fields[$key] = StringHelpers::rightTrim($field, '<p><br></p>');
+            $fields[$key] = StringHelpers::rightTrim($field, '<p><br class="softbreak"></p>');
         }
 
         // Remove trailing newlines from block content (for `HasBlocks` only)
         if (isset($fields['blocks'])) {
             foreach ($fields['blocks'] as $blockKey => $block) {
                 foreach ($block['content'] as $contentKey => $content) {
-                    $fields['blocks'][$blockKey]['content'][$contentKey] = StringHelpers::rightTrim($content, '<p><br></p>');
+                    $fields['blocks'][$blockKey]['content'][$contentKey] =
+                        StringHelpers::rightTrim($content, '<p><br class="softbreak"></p>');
                 }
             }
         }

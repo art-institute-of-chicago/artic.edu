@@ -30,6 +30,8 @@ class GenericPagesController extends FrontController
             return redirect($page->redirect_url);
         }
 
+        $item = $this->genericPageRepository->published()->find((int) $page->id);
+
         $crumbs = $page->present()->breadCrumb($page);
         $navigation = $page->present()->navigation();
 
@@ -46,6 +48,8 @@ class GenericPagesController extends FrontController
         }
 
         return view('site.genericPage.show', [
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'nav' => $navigation,
             'intro' => $page->short_description, // WEB-2253: Add different field here to prevent SEO pollution?

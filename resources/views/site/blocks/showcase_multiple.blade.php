@@ -15,18 +15,19 @@
                 @endif
             </div>
             @foreach ($block->childs as $item)
-                @if ($item->input('media_type') == 'video')
-                    @component('components.atoms._video')
-                        @slot('video', ['src' => $item->file('video')])
-                        @slot('controls', true)
-                        @slot('class', 'm-showcase-video')
-                    @endcomponent
-                @else
-                    @component('components.atoms._img')
-                        @slot('image', $item->imageAsArray('image', 'desktop'))
-                        @slot('class', 'm-showcase-image')
-                    @endcomponent
-                @endif
+                @php
+                    $media = $item->imageAsArray('image', 'desktop');
+                @endphp
+                @component('components.molecules._m-media')
+                    @slot('variation', 'm-showcase-media')
+                    @slot('item', [
+                        'type' => $item->input('media_type'),
+                        'media' => $media,
+                        'caption' => $media['caption'],
+                        'loop' => true,
+                        'loop_or_once' => 'loop',
+                    ])
+                @endcomponent
                 <div class="m-showcase-block__text-wrapper">
                     @if ($tag = $item->input('tag'))
                         @component('components.atoms._title')
