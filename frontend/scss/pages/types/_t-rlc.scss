@@ -112,7 +112,6 @@
   }
   .spacer {
     display: inline-block;
-    margin-right: 12px;
     @include breakpoint('small+') {
       --spacing: calc(100vw / 4);
       height: var(--spacing);
