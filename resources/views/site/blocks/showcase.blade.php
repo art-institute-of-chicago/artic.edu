@@ -14,16 +14,24 @@
         @if ($header)
             <h3 class="showcase-header">{{ $header }}</h3>
         @endif
-        @component('components.molecules._m-media')
-            @slot('variation', 'm-showcase-media')
-            @slot('item', [
-                'type' => $mediaType,
-                'media' => $media,
-                'caption' => $media['caption'],
-                'loop' => true,
-                'loop_or_once' => 'loop',
-            ])
-        @endcomponent
+        @if ($landingPageType == 'rlc')
+            @component('components.molecules._m-media')
+                @slot('variation', 'm-showcase-media')
+                @slot('item', [
+                    'type' => $mediaType,
+                    'media' => $media,
+                    'caption' => $media['caption'],
+                    'loop' => true,
+                    'loop_or_once' => 'loop',
+                ])
+            @endcomponent
+        @else
+            @component('components.atoms._img')
+                @slot('image', $media)
+                @slot('settings', $imageSettings ?? '')
+                @slot('class', 'm-showcase-image')
+            @endcomponent
+        @endif
         <div class="m-showcase-block__text-wrapper">
             @if ($tag)
                 @component('components.atoms._title')
