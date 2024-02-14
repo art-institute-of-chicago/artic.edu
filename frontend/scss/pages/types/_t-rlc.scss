@@ -419,13 +419,13 @@
   #experience-with-us {
     color: $color__white;
     position: relative;
+    @include breakpoint('small+') {
+      --fullwidth: calc(100vw - 5px);
+    }
+    @include breakpoint('xsmall') {
+      --fullwidth: calc(100vw);
+    }
     &::after {
-      @include breakpoint('small+') {
-        --fullwidth: calc(100vw - 5px);
-      }
-      @include breakpoint('xsmall') {
-        --fullwidth: calc(100vw);
-      }
       border-color: transparent $color__rlc__blue_sapphire transparent transparent;
       border-style: solid;
       border-width: 0 var(--fullwidth) var(--fullwidth) 0;
@@ -438,7 +438,6 @@
     }
     .m-showcase-background {
       background-color: $color__rlc__maastricth_blue;
-      z-index: -1;
       min-height: var(--fullwidth);
     }
     .m-showcase-wrapper {
