@@ -6,7 +6,7 @@
 
     <div class="o-landingpage__body o-blocks {{StringHelpers::pageBlades($landingPageType)}}">
 
-        {!! $item->renderBlocks(false, [], []) !!}
+        {!! $item->renderBlocks(false, data: ['landingPageType' => $landingPageType]) !!}
 
     </div>
 
