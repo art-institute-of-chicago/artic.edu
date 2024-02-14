@@ -58,7 +58,8 @@
             {!! $donorInfo !!}
         </div>
     @else
-        <hr>
+        @component('components.atoms._hr')
+        @endcomponent
     @endif
     </div>
 </div>
