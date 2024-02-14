@@ -48,6 +48,9 @@
     text-transform: 'uppercase';
   }
   .o-info-grid {
+    @include breakpoint('small+') {
+      margin-top: 32px;
+    }
     @include breakpoint('xsmall') {
       margin-top: 0;
     }
@@ -56,6 +59,7 @@
     border: none;
   }
   .o-info-grid .row {
+    margin-top: 0;
     &.row:first-child {
       @include breakpoint('xsmall') {
         border-bottom: none;
