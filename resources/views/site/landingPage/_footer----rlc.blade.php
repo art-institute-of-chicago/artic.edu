@@ -53,9 +53,13 @@
         </div>
     </div>
     <div class="f-donors m-prefooter-section">
+    @if ($donorInfo = $item->renderNamedBlocks('donor_info'))
         <div class="m-prefooter-section-background">
-            {!! $item->renderNamedBlocks('donor_info') !!}
+            {!! $donorInfo !!}
         </div>
+    @else
+        <hr>
+    @endif
     </div>
 </div>
 <div class="o-landingpage__prefooter o-blocks rlc">
