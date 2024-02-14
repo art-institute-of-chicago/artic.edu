@@ -76,7 +76,7 @@
         $node->setAttribute('id', Str::slug($node->nodeValue));
     }
 
-    $content = $dom->saveHTML($dom);
+    $content = str_replace('<?xml encoding="utf-8" ?>', '', $dom->saveHTML($dom));
 
     libxml_clear_errors();
     libxml_use_internal_errors($oldInternalErrors);
