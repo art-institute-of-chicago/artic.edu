@@ -123,7 +123,9 @@
     display: inline-block;
     @include breakpoint('small+') {
       --spacing: calc(100vw / 4);
+      --max-spacing: 350px;
       height: var(--spacing);
+      max-height: var(--max-spacing);
       width: calc(var(--spacing) / 2);
     }
     @include breakpoint('xsmall') {
@@ -136,8 +138,8 @@
     .semicircle {
       @include breakpoint('small+') {
         height: 100%;
-        max-height: 350px;
-        max-width: 175px;
+        max-height: var(--max-spacing);
+        max-width: calc(var(--max-spacing) / 2);
         &.left-hemisphere {
           border-top-left-radius: var(--spacing);
           border-bottom-left-radius: var(--spacing);
