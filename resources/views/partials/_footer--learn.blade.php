@@ -4,5 +4,5 @@
   <li><a href="{{ $_pages['learn-families'] }}">Families</a></li>
   <li><a href="{{ $_pages['learn-teens'] }}">Teens</a></li>
   <li><a href="{{ $_pages['learn-educators'] }}">Educators</a></li>
-  <li><a href="{{ $_pages['learn-adults'] }}">College and University</a></li>
+  <li><a href="{{ $_pages['learn-rlc'] }}">Ryan Learning Center</a></li>
 </ul>
