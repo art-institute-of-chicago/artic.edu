@@ -74,6 +74,11 @@
       @slot('cols_large','4')
       @slot('cols_xlarge','4')
       @foreach ($articles as $item)
+        @if ($item->type == 'video')
+          @component('components.molecules._m-listing----media')
+            @slot('item', $item)
+          @endcomponent  
+        @else
           @component('components.molecules._m-listing----' . strtolower($item->type) . '-minimal')
             @slot('item', $item)
             @slot('imageSettings', array(
@@ -89,6 +94,7 @@
                 )),
             ))
           @endcomponent
+        @endif
       @endforeach
   @endcomponent
 
