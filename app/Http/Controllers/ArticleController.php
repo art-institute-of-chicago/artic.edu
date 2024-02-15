@@ -6,7 +6,10 @@ use App\Repositories\ArticleRepository;
 use App\Models\Page;
 use App\Models\Article;
 use App\Models\Experience;
+use App\Models\Highlight;
 use App\Helpers\StringHelpers;
+use App\Models\Video;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ArticleController extends FrontController
 {
@@ -39,7 +42,48 @@ class ArticleController extends FrontController
                 ->byCategories(request('category'))
                 ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('date', 'desc')
-                ->paginate(self::ARTICLES_PER_PAGE);
+                ->get()->map(function ($article) {
+                    $article->sort_date = $article->date;
+                    return $article;
+                });
+
+            $highlights = Highlight::published()
+                ->notUnlisted()
+                ->byCategories(request('category'))
+                ->whereNotIn('id', $featuredItems->pluck('id'))
+                ->orderBy('publish_start_date', 'desc')
+                ->get()->map(function ($highlight) {
+                    $highlight->sort_date = $highlight->publish_start_date;
+                    return $highlight;
+                });
+
+            $experiences = Experience::published()
+                ->notUnlisted()
+                ->byCategories(request('category'))
+                ->whereNotIn('id', $featuredItems->pluck('id'))
+                ->orderBy('created_at', 'desc')
+                ->get()->map(function ($experience) {
+                    $experience->sort_date = $experience->created_at;
+                    return $experience;
+                });
+
+            $videos = Video::published()
+                ->byCategories(request('category'))
+                ->whereNotIn('id', $featuredItems->pluck('id'))
+                ->orderBy('date', 'desc')
+                ->get()->map(function ($video) {
+                    $video->sort_date = $video->date;
+                    return $video;
+                });
+
+            $combined = $articles->concat($highlights)->concat($experiences)->concat($videos)->sortByDesc('sort_date');
+
+            $perPage = self::ARTICLES_PER_PAGE;
+            $currentPage = LengthAwarePaginator::resolveCurrentPage();
+            $currentItems = $combined->slice(($currentPage - 1) * $perPage, $perPage)->all();
+            $paginator = new LengthAwarePaginator($currentItems, count($combined), $perPage, $currentPage, ['path' => LengthAwarePaginator::resolveCurrentPath()]);
+
+            $articles = $paginator;
         } else {
             // Retrieve experiences entires
             $articles = Experience::webPublished()->articlePublished()->paginate(self::ARTICLES_PER_PAGE);
