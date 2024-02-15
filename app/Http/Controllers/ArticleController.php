@@ -66,7 +66,7 @@ class ArticleController extends FrontController
                     $experience->sort_date = $experience->created_at;
                     return $experience;
                 });
-            
+
             $videos = Video::published()
                 ->byCategories(request('category'))
                 ->whereNotIn('id', $featuredItems->pluck('id'))
