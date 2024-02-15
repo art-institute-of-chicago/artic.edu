@@ -42,6 +42,7 @@ class HighlightRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
+        $object->categories()->sync($fields['categories'] ?? []);
 
         parent::afterSave($object, $fields);
     }

@@ -95,4 +95,9 @@ class ExperienceRepository extends ModuleRepository
             ->notUnlisted()
             ->paginate(4);
     }
+
+    public function afterSave($object, $fields)
+    {
+        $object->categories()->sync($fields['categories'] ?? []);
+    }
 }
