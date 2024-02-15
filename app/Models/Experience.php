@@ -161,6 +161,22 @@ class Experience extends AbstractModel implements Sortable
         return $this->belongsTo('App\Models\InteractiveFeature');
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category', 'experience_category');
+    }
+
+    public function scopeByCategories($query, $categories = null)
+    {
+        if (empty($categories)) {
+            return $query;
+        }
+
+        return $query->whereHas('categories', function ($query) use ($categories) {
+            $query->whereIn('category_id', is_array($categories) ? $categories : [$categories]);
+        });
+    }
+
     public function getTypeAttribute()
     {
         return 'experience';
