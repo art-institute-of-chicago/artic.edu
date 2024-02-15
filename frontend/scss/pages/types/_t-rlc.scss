@@ -60,9 +60,14 @@
   }
   .o-info-grid .row {
     margin-top: 0;
-    &.row:first-child {
+    &:first-child {
+      @include breakpoint('small+') {
+        margin-bottom: 0;
+        padding-bottom: 60px;
+      }
       @include breakpoint('xsmall') {
         border-bottom: none;
+        padding-bottom: 0;
       }
     }
     &:last-child {
