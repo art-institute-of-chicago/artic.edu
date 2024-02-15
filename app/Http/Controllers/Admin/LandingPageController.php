@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\LandingPagesController;
 use App\Models\LandingPage;
+use App\Repositories\LandingPageRepository;
 
 class LandingPageController extends ModuleController
 {
@@ -63,5 +65,12 @@ class LandingPageController extends ModuleController
     protected function getRoutePrefix()
     {
         return null;
+    }
+
+    protected function previewData($item)
+    {
+        $repository = app(LandingPageRepository::class);
+        $controller = new LandingPagesController($repository);
+        return $controller->viewData($item);
     }
 }

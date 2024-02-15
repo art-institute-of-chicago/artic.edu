@@ -22,23 +22,22 @@ class LandingPagesController extends FrontController
     }
     public function show($id, $slug = null)
     {
-        $item = $this->landingPageRepository->published()->find((int) $id);
+        $item = $this->landingPageRepository->published()->findOrFail((int) $id);
+        $canonicalPath = route('landingPages.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
+            return $canonicalRedirect;
+        }
+        return view('site.landingPageDetail', $this->viewData($item));
+    }
+
+    public function viewData($item)
+    {
         $types = collect(LandingPage::TYPES);
 
         $admission = new Admission();
 
         $feeTitles = $admission->present()->feeTitles();
         $feePrices = $admission->present()->feePrices();
-
-        if (!$item) {
-            abort(404);
-        }
-
-        $canonicalPath = route('landingPages.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
-
-        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
-            return $canonicalRedirect;
-        }
 
         if (!$item->is_published) {
             $this->seo->nofollow = true;
@@ -224,7 +223,7 @@ class LandingPagesController extends FrontController
         }
         $viewLabels = $item->labels?->toArray() ?? [];
 
-        return view('site.landingPageDetail', array_merge($commonViewData, $viewData, $viewLabels));
+        return array_merge($commonViewData, $viewData, $viewLabels);
     }
 
     protected function setPageMetaData($item)
