@@ -18,6 +18,13 @@
         'placeholder' => 'Select some tags',
     ])
 
+    @formField('multi_select', [
+        'name' => 'categories',
+        'label' => 'Categories',
+        'options' => $categoriesList,
+        'placeholder' => 'Select some categories',
+    ])
+
     @formField('input', [
         'name' => 'title_display',
         'label' => 'Title formatting (optional)',
