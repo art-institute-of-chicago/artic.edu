@@ -20,7 +20,6 @@
                 @slot('item', [
                     'type' => $mediaType,
                     'media' => $media,
-                    'caption' => $media['caption'],
                     'loop' => true,
                     'loop_or_once' => 'loop',
                 ])
