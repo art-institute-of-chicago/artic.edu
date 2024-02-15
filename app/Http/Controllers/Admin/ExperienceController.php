@@ -8,6 +8,7 @@ use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\Experience;
 use App\Models\InteractiveFeature;
 use App\Models\Article;
+use App\Repositories\CategoryRepository;
 
 class ExperienceController extends ModuleController
 {
@@ -148,6 +149,7 @@ class ExperienceController extends ModuleController
     protected function formData($request)
     {
         return [
+            'categoriesList' => app(CategoryRepository::class)->listAll('name'),
             'groupingsList' => InteractiveFeature::all()->pluck('title', 'id')
         ];
     }
