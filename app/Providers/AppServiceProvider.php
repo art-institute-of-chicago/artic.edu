@@ -193,6 +193,7 @@ class AppServiceProvider extends ServiceProvider
                     'learn-teens' => '/learn-with-us/teens',
                     'learn-adults' => '/visit/whos-visiting/college-and-university-groups-2',
                     'learn-educators' => '/learn-with-us/educators',
+                    'learn-rlc' => '/ryan-learning-center',
                     'follow-facebook' => 'https://www.facebook.com/artic',
                     'follow-twitter' => 'https://twitter.com/artinstitutechi',
                     'follow-instagram' => 'https://www.instagram.com/artinstitutechi/',
