@@ -160,6 +160,9 @@
   .o-info-grid .semicircle {
     background-color: $color__rlc__blue_sapphire;
   }
+  .o-info-grid>.row>.col>hr {
+    border: none;
+  }
   div.location .location-image {
     @include breakpoint('medium+') {
       width: 50%;
