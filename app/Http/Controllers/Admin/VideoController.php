@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\CategoryRepository;
-
 class VideoController extends ModuleController
+
 {
     protected $moduleName = 'videos';
     protected $previewView = 'site.videoDetail';
