@@ -43,7 +43,7 @@ class GeneratePdfs extends Command
     public function handle()
     {
         foreach (self::$models as $route => $modelClass) {
-            $models = $modelClass::published()->get();
+            $models = method_exists($modelClass, 'published') ? $modelClass::published()->get() : $modelClass::get();
 
             foreach ($models as $model) {
                 try {
