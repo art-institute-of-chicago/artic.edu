@@ -5,7 +5,7 @@
     @slot('body', $tours_create_cta_module_body)
     @slot('button_text', $tours_create_cta_module_button_text)
     @slot('gtmAttributes', 'data-gtm-event="'. $tours_create_cta_module_button_text . '" data-gtm-event-category="internal-ad-click"')
-    @slot('my_musuem_tour', true)
+    @slot('my_museum_tour', true)
 @endcomponent
 
 @component('components.molecules._m-cta-banner')

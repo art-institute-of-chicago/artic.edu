@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 @endif
-                @if ($my_musuem_tour->teaser_text)
+                @if ($my_museum_tour->teaser_text)
                     <div class="aic-ct-grid-card__text f-deck">
                         <p>
                             {!! $my_museum_tour->teaser_text !!}
@@ -56,7 +56,7 @@
                     </div>
                 @endif
                 @if ($my_museum_tour->tour_id)
-                    <a href="{{ route('my-musuem-tour.show', $my_museum_tour->tour_id) }}" class="btn btn--secondary f-buttons">
+                    <a href="{{ route('my-museum-tour.show', $my_museum_tour->tour_id) }}" class="btn btn--secondary f-buttons">
                         View tour
                     </a>
                 @endif
