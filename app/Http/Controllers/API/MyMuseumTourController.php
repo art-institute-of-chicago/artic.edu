@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CustomTourRequest;
-use App\Models\CustomTour;
+use App\Http\Requests\API\MyMuseumTourRequest;
+use App\Models\MyMuseumTour;
 use Illuminate\Http\Request;
 
-class CustomTourController extends BaseController
+class MyMuseumTourController extends BaseController
 {
-    public function store(CustomTourRequest $request)
+    public function store(MyMuseumTourRequest $request)
     {
         $validated = $request->validated();
 
@@ -17,24 +17,24 @@ class CustomTourController extends BaseController
         // Perform basic data sanitization using strip_tags
         $sanitizedTourJson = $this->sanitizeData($tourJsonData);
 
-        $record = CustomTour::create([
+        $record = MyMuseumTour::create([
             'creator_email' => $validated['creatorEmail'],
             'marketing_opt_in' => $validated['marketingOptIn'] ?? false,
             'tour_json' => $sanitizedTourJson
         ]);
 
-        return response()->json(['message' => 'Custom tour created successfully!', 'custom_tour' => $record], 201);
+        return response()->json(['message' => 'My Museum Tour created successfully!', 'my_museum_tour' => $record], 201);
     }
 
     public function show(Request $request, $id)
     {
-        $customTour = CustomTour::find($id);
+        $myMuseumTour = MyMuseumTour::find($id);
 
-        if (!$customTour) {
-            return response()->json(['message' => 'Custom tour not found'], 404);
+        if (!$myMuseumTour) {
+            return response()->json(['message' => 'My Museum Tour not found'], 404);
         }
 
-        $tourJson = $customTour->tour_json;
+        $tourJson = $myMuseumTour->tour_json;
 
         return response()->json(['tourJson' => $tourJson], 200);
     }

@@ -3,27 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CustomTour;
-use App\Libraries\CustomTour\ArtworkSortingService;
+use App\Models\MyMuseumTour;
+use App\Libraries\MyMuseumTour\ArtworkSortingService;
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 use chillerlan\QRCode\Common\EccLevel;
 use chillerlan\QRCode\Output\QROutputInterface;
 
-class CustomTourController extends FrontController
+class MyMuseumTourController extends FrontController
 {
     public function show(Request $request, $id)
     {
-        $customTour = CustomTour::findOrFail($id);
+        $myMuseumTour = MyMuseumTour::findOrFail($id);
 
-        $customTourJson = $customTour->tour_json;
+        $myMuseumTourJson = $myMuseumTour->tour_json;
 
-        ArtworkSortingService::sortArtworksByGallery($customTourJson['artworks'], config('galleries.order'));
+        ArtworkSortingService::sortArtworksByGallery($myMuseumTourJson['artworks'], config('galleries.order'));
 
-        $this->seo->setTitle($customTourJson['title']);
+        $this->seo->setTitle($myMuseumTourJson['title']);
 
-        if (array_key_exists('description', $customTourJson)) {
-            $this->seo->setDescription($customTourJson['description']);
+        if (array_key_exists('description', $myMuseumTourJson)) {
+            $this->seo->setDescription($myMuseumTourJson['description']);
         }
 
         $this->seo->image = 'https://' . rtrim(config('app.url'), '/') . '/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1200,799/0/default.jpg';
@@ -33,20 +33,20 @@ class CustomTourController extends FrontController
         $this->seo->noindex = true;
 
         // Calculate unique galleries and artists
-        $galleryTitles = array_column($customTourJson['artworks'], 'gallery_title');
+        $galleryTitles = array_column($myMuseumTourJson['artworks'], 'gallery_title');
         $uniqueGalleryTitles = array_unique($galleryTitles);
         $uniqueGalleriesCount = count($uniqueGalleryTitles);
 
-        $artistNames = array_column($customTourJson['artworks'], 'artist_title');
+        $artistNames = array_column($myMuseumTourJson['artworks'], 'artist_title');
         $uniqueArtistNames = array_unique($artistNames);
         $uniqueArtistsCount = count($uniqueArtistNames);
 
         // Variable to check for tourCreationComplete=true in the URL
         $tourCreationComplete = $request->query('tourCreationComplete') === 'true';
 
-        return view('site.customTour', [
-            'id' => $customTour->id,
-            'custom_tour' => $customTourJson,
+        return view('site.myMuseumTour', [
+            'id' => $myMuseumTour->id,
+            'my_museum_tour' => $myMuseumTourJson,
             'unique_galleries_count' => $uniqueGalleriesCount,
             'unique_artists_count' => $uniqueArtistsCount,
             'unstickyHeader' => true,
@@ -56,25 +56,25 @@ class CustomTourController extends FrontController
 
     public function pdfLayout(Request $request, $id)
     {
-        $customTour = CustomTour::findOrFail($id);
+        $myMuseumTour = MyMuseumTour::findOrFail($id);
 
-        $customTourJson = $customTour->tour_json;
+        $myMuseumTourJson = $myMuseumTour->tour_json;
 
-        ArtworkSortingService::sortArtworksByGallery($customTourJson['artworks'], config('galleries.order'));
+        ArtworkSortingService::sortArtworksByGallery($myMuseumTourJson['artworks'], config('galleries.order'));
 
         // Calculate unique galleries and artists
-        $galleryTitles = array_column($customTourJson['artworks'], 'gallery_title');
+        $galleryTitles = array_column($myMuseumTourJson['artworks'], 'gallery_title');
         $uniqueGalleryTitles = array_unique($galleryTitles);
         $uniqueGalleriesCount = count($uniqueGalleryTitles);
 
-        $artistNames = array_column($customTourJson['artworks'], 'artist_title');
+        $artistNames = array_column($myMuseumTourJson['artworks'], 'artist_title');
         $uniqueArtistNames = array_unique($artistNames);
         $uniqueArtistsCount = count($uniqueArtistNames);
 
 
-        return view('site.customToursPdfLayout', [
-            'id' => $customTour->id,
-            'custom_tour' => $customTourJson,
+        return view('site.myMuseumToursPdfLayout', [
+            'id' => $myMuseumTour->id,
+            'my_museum_tour' => $myMuseumTourJson,
             'unique_galleries_count' => $uniqueGalleriesCount,
             'unique_artists_count' => $uniqueArtistsCount,
         ]);
@@ -83,10 +83,10 @@ class CustomTourController extends FrontController
 
     public function qrcode(Request $request, $id)
     {
-        $customTour = CustomTour::findOrFail($id);
+        $myMuseumTour = MyMuseumTour::findOrFail($id);
 
         $baseUrl = config('aic.protocol') . '://' . config('app.url');
-        $fullUrl = $baseUrl . route('custom-tours.show', [ 'id' => $customTour->id ], false);
+        $fullUrl = $baseUrl . route('my-museum-tour.show', [ 'id' => $myMuseumTour->id ], false);
 
         $options = new QROptions(
             [
@@ -104,9 +104,9 @@ class CustomTourController extends FrontController
             ->header('Content-Type', 'image/png');
     }
 
-    public function showCustomTourBuilder()
+    public function showMyMuseumTourBuilder()
     {
-        return view('site.customTourBuilder', [
+        return view('site.myMuseumTourBuilder', [
             'unstickyHeader' => true
         ]);
     }

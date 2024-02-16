@@ -187,13 +187,13 @@ class LandingPagesController extends FrontController
                 ];
                 break;
 
-            case $types->search('My Museum Tours'):
+            case $types->search('My Museum Tour'):
                 $viewData = [
-                    'header_custom_tours_text' => $item->labels->get('header_custom_tours_text'),
-                    'header_custom_tours_primary_button_label' => $item->labels->get('header_custom_tours_primary_button_label'),
-                    'header_custom_tours_primary_button_link' => $item->labels->get('header_custom_tours_primary_button_link'),
-                    'header_custom_tours_secondary_button_label' => $item->labels->get('header_custom_tours_secondary_button_label'),
-                    'header_custom_tours_secondary_button_link' => $item->labels->get('header_custom_tours_secondary_button_link'),
+                    'header_my_museum_tour_text' => $item->labels->get('header_my_museum_tour_text'),
+                    'header_my_museum_tour_primary_button_label' => $item->labels->get('header_my_museum_tour_primary_button_label'),
+                    'header_my_museum_tour_primary_button_link' => $item->labels->get('header_my_museum_tour_primary_button_link'),
+                    'header_my_museum_tour_secondary_button_label' => $item->labels->get('header_my_museum_tour_secondary_button_label'),
+                    'header_my_museum_tour_secondary_button_link' => $item->labels->get('header_my_museum_tour_secondary_button_link'),
                     'tours_create_cta_module_image' => $item->imageFront('tours_create_cta_module_image'),
                     'tours_create_cta_module_action_url' => $item->labels->get('tours_create_cta_module_action_url'),
                     'tours_create_cta_module_header' => $item->labels->get('tours_create_cta_module_header'),

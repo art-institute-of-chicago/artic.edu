@@ -7,7 +7,6 @@ use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ArtworkController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CollectionController;
-use App\Http\Controllers\CustomTourController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DigitalPublicationsController;
 use App\Http\Controllers\DigitalPublicationSectionController;
@@ -24,6 +23,7 @@ use App\Http\Controllers\InteractiveFeatureExperiencesController;
 use App\Http\Controllers\LandingPagesController;
 use App\Http\Controllers\MagazineIssueController;
 use App\Http\Controllers\MiradorController;
+use App\Http\Controllers\MyMuseumTourController;
 use App\Http\Controllers\PressReleasesController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\PrintedPublicationsController;
@@ -219,12 +219,12 @@ Route::get('/interactive-features', [InteractiveFeatureExperiencesController::cl
 Route::get('/interactive-features/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show');
 Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show-kiosk');
 
-// Custom tour routes
-Route::get('/my-museum-tours/builder', [CustomTourController::class, 'showCustomTourBuilder']);
-Route::get('/my-museum-tours/{id}', [CustomTourController::class, 'show'])->name('custom-tours.show');
+// My Museum Tour routes
+Route::get('/my-museum-tour/builder', [MyMuseumTourController::class, 'showMyMuseumTourBuilder']);
+Route::get('/my-museum-tour/{id}', [MyMuseumTourController::class, 'show'])->name('my-museum-tour.show');
 
-Route::get('/my-museum-tours/{id}/pdf-layout', [CustomTourController::class, 'pdfLayout'])->name('custom-tours.pdf-layout');
-Route::get('/my-museum-tours/{id}/qrcode.png', [CustomTourController::class, 'qrcode'])->name('custom-tours.qrcode');
+Route::get('/my-museum-tour/{id}/pdf-layout', [MyMuseumTourController::class, 'pdfLayout'])->name('my-museum-tour.pdf-layout');
+Route::get('/my-museum-tour/{id}/qrcode.png', [MyMuseumTourController::class, 'qrcode'])->name('my-museum-tour.qrcode');
 
 // Feed routes
 Route::feeds();

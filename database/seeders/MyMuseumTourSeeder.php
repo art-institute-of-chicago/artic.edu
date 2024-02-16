@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\CustomTour;
+use App\Models\MyMuseumTour;
 use Illuminate\Database\Seeder;
 
-class CustomTourSeeder extends Seeder
+class MyMuseumTourSeeder extends Seeder
 {
     public function run(): void
     {
-        // Custom Tour - Complete Content
+        // My Museum Tour - Complete Content
         $tourJson = [
-            "title" => "Custom Tour - Complete Content",
-            "description" => "My custom tour description",
+            "title" => "My Museum Tour - Complete Content",
+            "description" => "My Museum Tour description",
             "artworks" => [
                 [
                     "id" => 656,
@@ -42,13 +42,13 @@ class CustomTourSeeder extends Seeder
             ],
         ];
 
-        $customTour = new CustomTour();
-        $customTour->tour_json = $tourJson;
-        $customTour->save();
+        $myMuseumTour = new MyMuseumTour();
+        $myMuseumTour->tour_json = $tourJson;
+        $myMuseumTour->save();
 
-        // Custom Tour - No Description
+        // My Museum Tour - No Description
         $tourJson = [
-            "title" => "Custom Tour - No Description",
+            "title" => "My Museum Tour - No Description",
             "description" => "",
             "artworks" => [
                 [
@@ -69,8 +69,8 @@ class CustomTourSeeder extends Seeder
             ],
         ];
 
-        $customTour = new CustomTour();
-        $customTour->tour_json = $tourJson;
-        $customTour->save();
+        $myMuseumTour = new MyMuseumTour();
+        $myMuseumTour->tour_json = $tourJson;
+        $myMuseumTour->save();
     }
 }

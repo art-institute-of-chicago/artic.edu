@@ -1,23 +1,23 @@
-@if ($block->input('custom_tours_grid_heading'))
-    <h2 id="{{ StringHelpers::getUtf8Slug($block->input('custom_tours_grid_heading')) }}" class="title f-headline">
-        {!! strip_tags($block->input('custom_tours_grid_heading'), '<em>') !!}
+@if ($block->input('my_museum_tour_grid_heading'))
+    <h2 id="{{ StringHelpers::getUtf8Slug($block->input('my_museum_tour_grid_heading')) }}" class="title f-headline">
+        {!! strip_tags($block->input('my_museum_tour_grid_heading'), '<em>') !!}
     </h2>
 @endif
 
-@if ($block->input('custom_tours_grid_text'))
+@if ($block->input('my_museum_tour_grid_text'))
     <div class="aic-ct-grid-intro f-body">
-        {!! $block->input('custom_tours_grid_text') !!}
+        {!! $block->input('my_museum_tour_grid_text') !!}
     </div>
 @endif
 
 <div class="aic-ct-grid-container" data-blur-img>
-    @foreach($block->getRelated('customToursItems') as $index => $custom_tour)
+    @foreach($block->getRelated('myMuseumTourItems') as $index => $my_museum_tour)
         <div class="aic-ct-grid-card">
             <div class="aic-ct-grid-card__top">
-                @if($custom_tour->imageAsArray('teaser_image'))
+                @if($my_museum_tour->imageAsArray('teaser_image'))
                     @component('components.atoms._img')
                         @slot('class', 'aic-ct-grid-card__img')
-                        @slot('image', $custom_tour->imageAsArray('teaser_image'))
+                        @slot('image', $my_museum_tour->imageAsArray('teaser_image'))
                         @slot('settings', array(
                             'fit' => 'crop',
                             'ratio' => '67:40',
@@ -35,28 +35,28 @@
                 @endif
 
                 <div class="aic-ct-grid-card__overlay">
-                    <h3 class="aic-ct-grid-card__title f-headline-editorial">{!! $custom_tour->title !!}</h3>
+                    <h3 class="aic-ct-grid-card__title f-headline-editorial">{!! $my_museum_tour->title !!}</h3>
                 </div>
             </div>
 
             <div class="aic-ct-grid-card__details">
-                @if ($custom_tour->artwork_count)
+                @if ($my_museum_tour->artwork_count)
                     <div class="aic-ct-artworks-count-container">
                         <svg aria-hidden="true" class="icon--image-stack"><use xlink:href="#icon--image-stack" /></svg>
                         <div class="f-module-title-1">
-                            {!! $custom_tour->artwork_count !!}
+                            {!! $my_museum_tour->artwork_count !!}
                         </div>
                     </div>
                 @endif
-                @if ($custom_tour->teaser_text)
+                @if ($my_musuem_tour->teaser_text)
                     <div class="aic-ct-grid-card__text f-deck">
                         <p>
-                            {!! $custom_tour->teaser_text !!}
+                            {!! $my_museum_tour->teaser_text !!}
                         </p>
                     </div>
                 @endif
-                @if ($custom_tour->tour_id)
-                    <a href="{{ route('custom-tours.show', $custom_tour->tour_id) }}" class="btn btn--secondary f-buttons">
+                @if ($my_museum_tour->tour_id)
+                    <a href="{{ route('my-musuem-tour.show', $my_museum_tour->tour_id) }}" class="btn btn--secondary f-buttons">
                         View tour
                     </a>
                 @endif
