@@ -102,6 +102,8 @@ trait HasAutoRelated
             return 1;
         });
 
-        return $relatedItems;
+        return collect($relatedItems)->filter(function ($item) {
+            return $item->is_published && ($item->type !== 'event' || ($item->type === 'event' && $item->is_future));
+        });
     }
 }

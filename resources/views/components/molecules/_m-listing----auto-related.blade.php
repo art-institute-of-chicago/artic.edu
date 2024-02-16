@@ -32,7 +32,43 @@
                 </span>
             @endif
             <div class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
-                <em class="type f-tag">{!! $item->subtype ? $item->present()->subtype : $item->type !!}</em>
+                <span class="m-listing__types f-tag">{!! $item->subtype ? $item->present()->subtype : $item->type !!}
+                    @if ($item->exclusive)
+                        @component('components.atoms._type')
+                            @slot('variation', 'type--membership')
+                            @slot('font', '')
+                            Member Exclusive
+                        @endcomponent
+                    @endif
+
+                    @if ($item->isClosed)
+                        @component('components.atoms._type')
+                            @slot('variation', 'type--limited')
+                            @slot('font', '')
+                            Closed
+                        @endcomponent
+                    @else
+                        @if ($item->isClosingSoon)
+                            @component('components.atoms._type')
+                                @slot('variation', 'type--limited')
+                                @slot('font', '')
+                                Closing Soon
+                            @endcomponent
+                        @elseif ($item->isNowOpen)
+                            @component('components.atoms._type')
+                                @slot('variation', 'type--new')
+                                @slot('font', '')
+                                Now Open
+                            @endcomponent
+                        @elseif ($item->exclusive)
+                            @component('components.atoms._type')
+                                @slot('variation', 'type--membership')
+                                @slot('font', '')
+                                Member Exclusive
+                            @endcomponent
+                        @endif
+                    @endif
+                </span>
                 <br>
                 @component('components.atoms._title')
                     @slot('font', $titleFont ?? 'f-list-3')
@@ -44,6 +80,14 @@
                     @if ($item->present()->list_description)
                         <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description !!}</div>
                     @endif
+                @endif
+                @if (!$item->isOngoing)
+                    @component('components.organisms._o-public-dates')
+                        @slot('date', $item->present()->date)
+                        @slot('dateStart', $item->present()->startAt)
+                        @slot('dateEnd', $item->present()->endAt)
+                        @slot('formattedDate', $item->present()->date_display_override)
+                    @endcomponent
                 @endif
             </div>
         </a>
