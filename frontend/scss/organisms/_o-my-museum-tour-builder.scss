@@ -1,6 +1,6 @@
-// ------ Custom tours
+// ------ My Museum Tour
 
-.custom-tours {
+.my-museum-tour {
   // Override the reset styles for dialog elements
   dialog {
     display: revert;
@@ -67,7 +67,7 @@
   }
 }
 
-// ---- Custom tours: General
+// ---- My Museum Tour: General
 
 .aic-ct-full-bleed {
   position: relative;
@@ -94,7 +94,7 @@
   }
 }
 
-// ---- Custom tours: Preview
+// ---- My Museum Tour: Preview
 
 .aic-ct-preview__content {
   .aic-ct-loader {
@@ -189,7 +189,7 @@
   }
 }
 
-// ---- Custom tours: Header
+// ---- My Museum Tour: Header
 
 .aic-ct-header {
   @include untuck;
@@ -245,7 +245,7 @@
   }
 }
 
-// ---- Custom tours: Header Slots
+// ---- My Museum Tour: Header Slots
 
 .aic-ct-header__slots {
   display: flex;
@@ -276,7 +276,7 @@
 
 
 
-// ---- Custom tours: Header Buttons
+// ---- My Museum Tour: Header Buttons
 
 .aic-ct-header__button {
   margin: 0 !important;
@@ -330,7 +330,7 @@
   color: $color__black--20;
 }
 
-// ---- Custom tours: Intro
+// ---- My Museum Tour: Intro
 
 .aic-ct-intro {
   display: flex;
@@ -345,13 +345,13 @@
   border-bottom: 1px solid $color__black--35;
 }
 
-// -- Custom tours: Searchbar
+// -- My Museum Tour: Searchbar
 
 .aic-ct-search {
   margin-bottom: 32px;
 }
 
-// ---- Custom tours: Themes
+// ---- My Museum Tour: Themes
 
 .aic-ct-themes {
   display: flex;
@@ -392,7 +392,7 @@
   align-items: center;
 }
 
-// ---- Custom tours: Search results
+// ---- My Museum Tour: Search results
 
 .aic-ct-pre-result-text {
   @include untuck;
@@ -445,7 +445,7 @@
   }
 }
 
-// ---- Custom tours: Loader
+// ---- My Museum Tour: Loader
 
 .aic-ct-loader {
   display: flex;
@@ -454,7 +454,7 @@
   gap: 8px;
 }
 
-// ---- Custom tours: Footer
+// ---- My Museum Tour: Footer
 
 .aic-ct-footer {
   display: flex;
@@ -563,7 +563,7 @@
   }
 }
 
-// ------ Custom tours: Hero image
+// ------ My Museum Tour: Hero image
 
 .aic-ct-hero {
   height: 240px;
@@ -576,7 +576,7 @@
   }
 }
 
-// ------ Custom tours: Tour metadata
+// ------ My Museum Tour: Tour metadata
 
 .aic-ct-fieldset {
   margin-bottom: 32px;
@@ -598,13 +598,13 @@
   border-color: $color__red--100;
 }
 
-// ------ Custom tours: Tour items
+// ------ My Museum Tour: Tour items
 
 .aic-ct-tour__intro {
   margin-bottom: 32px;
 }
 
-// ------ Custom tours: Tour item
+// ------ My Museum Tour: Tour item
 
 .aic-ct-tour-item {
   display: flex;
@@ -667,7 +667,7 @@
 }
 
 
-// ------ Custom tours: Tour CTA
+// ------ My Museum Tour: Tour CTA
 
 .aic-ct-tour__cta {
   padding: 20px 0;
@@ -699,7 +699,7 @@
   }
 }
 
-// ------ Custom tours: Tour validation
+// ------ My Museum Tour: Tour validation
 
 .aic-ct-validation__content,
 .aic-ct-validation__actions {

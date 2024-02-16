@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         HomePageSeeder::class,
         VisitPageSeeder::class,
         IlluminateTagSeeder::class,
-        CustomTourSeeder::class,
+        MyMuseumTourSeeder::class,
     ];
 
     public function run(): void

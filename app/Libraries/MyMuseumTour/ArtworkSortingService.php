@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libraries\CustomTour;
+namespace App\Libraries\MyMuseumTour;
 
 class ArtworkSortingService
 {

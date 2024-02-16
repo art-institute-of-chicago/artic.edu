@@ -9,7 +9,7 @@ use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Model;
 
-class CustomToursItem extends Model
+class MyMuseumTourItem extends Model
 {
     use HasBlocks;
     use HasSlug;

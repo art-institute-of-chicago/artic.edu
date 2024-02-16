@@ -36,17 +36,17 @@
         @endphp
         @component('components.molecules._m-article-header')
             @slot('headerType', 'hero')
-            @slot('title', $custom_tour['title'])
+            @slot('title', $my_museum_tour['title'])
             @slot('img', $hero_media)
-            @slot('type', 'Custom Tour')
+            @slot('type', 'My Museum Tour')
         @endcomponent
         <div>
-            @isset($custom_tour['creatorName'])
+            @isset($my_museum_tour['creatorName'])
                 <div class="aic-ct-viewer__creator-container">
                     <p class="f-subheading-1">
-                        <span id="creatorName">Tour made by {{ $custom_tour['creatorName'] }}</span>
-                        @isset($custom_tour['recipientName'])
-                            <span id="recipientName">for {{ $custom_tour['recipientName'] }}</span>
+                        <span id="creatorName">Tour made by {{ $my_museum_tour['creatorName'] }}</span>
+                        @isset($my_museum_tour['recipientName'])
+                            <span id="recipientName">for {{ $my_museum_tour['recipientName'] }}</span>
                         @endisset
                     </p>
                 </div>
@@ -55,18 +55,18 @@
             <div class="aic-ct-artworks-count-container">
                 <svg aria-hidden="true" class="icon--image-stack"><use xlink:href="#icon--image-stack" /></svg>
                 <div class="f-module-title-1">
-                    <p><strong>{{ count($custom_tour['artworks']) }} artworks</strong> <em>from</em> <strong>{{ $unique_artists_count }} artists</strong> <em>across</em> <strong>{{ $unique_galleries_count }} galleries</strong></p>
+                    <p><strong>{{ count($my_museum_tour['artworks']) }} artworks</strong> <em>from</em> <strong>{{ $unique_artists_count }} artists</strong> <em>across</em> <strong>{{ $unique_galleries_count }} galleries</strong></p>
                 </div>
             </div>
 
             <hr>
 
-            @if(array_key_exists('description', $custom_tour) && $custom_tour['description'])
+            @if(array_key_exists('description', $my_museum_tour) && $my_museum_tour['description'])
                 @component('components.atoms._quote')
                     @slot('variation', 'quote--editorial o-blocks__block aic-ct-quote--large')
                     @slot('font', 'f-quote')
-                    @slot('attribution', (isset($custom_tour['creatorName'])) ? '— ' . $custom_tour['creatorName'] : '')
-                    {{ $custom_tour['description'] }}
+                    @slot('attribution', (isset($my_museum_tour['creatorName'])) ? '— ' . $my_museum_tour['creatorName'] : '')
+                    {{ $my_museum_tour['description'] }}
                 @endcomponent
             @endif
 
@@ -74,7 +74,7 @@
             @endcomponent
 
             <ul class="aic-ct-artworks-list">
-                @foreach ($custom_tour['artworks'] as $artwork)
+                @foreach ($my_museum_tour['artworks'] as $artwork)
                     <li class="aic-ct-list-item">
                         @if((!$loop->first && !$tour_creation_completed) || $tour_creation_completed)
                             <hr>
@@ -141,7 +141,7 @@
                                 @slot('variation', 'quote--editorial o-blocks__block aic-ct-quote--small')
                                 @slot('font', 'f-body-editorial-emphasis')
                                 @slot('icon', false)
-                                @slot('attribution', (isset($custom_tour['creatorName'])) ? '— ' . $custom_tour['creatorName'] : '')
+                                @slot('attribution', (isset($my_museum_tour['creatorName'])) ? '— ' . $my_museum_tour['creatorName'] : '')
                                 "{{ $artwork['objectNote'] }}"
                             @endcomponent
                         @endisset
@@ -189,19 +189,17 @@
         @slot('header', 'Plan a visit to take your tour!')
         @slot('button_text', 'Buy tickets')
         @slot('gtmAttributes', 'data-gtm-event="Buy tickets" data-gtm-event-category="internal-ad-click"')
-        @slot('custom_tours', true)
+        @slot('my_museum_tour', true)
     @endcomponent
 
     @component('components.molecules._m-cta-banner')
-        @slot('href', '/custom-tours/builder')
+        @slot('href', '/my-museum-tour/builder')
         @slot('header', 'Ready to build your own tour?')
         @slot('body', '<p>Design a personalized tour by directly searching artworks or exploring themes that can help you get started.</p>')
         @slot('button_text', 'Create your own tour')
-        @slot('custom_tours', true)
-        @slot('secondary_button_href', '/custom-tours')
+        @slot('my_museum_tour', true)
+        @slot('secondary_button_href', '/my-museum-tour')
         @slot('secondary_button_text', 'View ready-made tours')
-        @slot('custom_tours_bottom', true)
+        @slot('my_museum_tour_bottom', true)
     @endcomponent
 @endsection
-
-

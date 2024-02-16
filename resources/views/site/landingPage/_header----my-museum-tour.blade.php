@@ -1,4 +1,4 @@
-<section class="custom-tours-header" itemscope itemtype="http://schema.org/TouristAttraction">
+<section class="my-museum-tour-header" itemscope itemtype="http://schema.org/TouristAttraction">
     <link itemprop="additionalType" href="http://schema.org/Museum" aria-hidden="true"/>
     <link itemprop="additionalType" href="http://schema.org/LandmarksOrHistoricalBuildings" aria-hidden="true"/>
     <link itemprop="additionalType" href="http://schema.org/LocalBusiness" aria-hidden="true"/>
@@ -9,7 +9,7 @@
     @component('components.organisms._o-header-landing')
         @slot('mainFeatures', $mainFeatures)
         @slot('headerMedia', $headerMedia)
-        @slot('variation', 'my-museum-tours')
+        @slot('variation', 'my-museum-tour')
     @endcomponent
 
     @if (!empty($hour))
@@ -21,17 +21,17 @@
         <h1 class="f-display-2">My Museum Tour</h1>
     </div>
 
-    @if ($header_custom_tours_text)
+    @if ($header_my_museum_tour_text)
         <div class="f-deck">
-            {!! $header_custom_tours_text !!}
+            {!! $header_my_museum_tour_text !!}
         </div>
     @endif
 
-    <div class="custom-tours-header__btn-container">
-        @if ($header_custom_tours_primary_button_link && $header_custom_tours_primary_button_label)
-            <a href="{{ $header_custom_tours_primary_button_link }}" class="btn f-buttons">{{ $header_custom_tours_primary_button_label }}</a>
+    <div class="my-muusem-tour-header__btn-container">
+        @if ($header_my_museum_tour_primary_button_link && $header_my_museum_tour_primary_button_label)
+            <a href="{{ $header_my_museum_tour_primary_button_link }}" class="btn f-buttons">{{ $header_my_museum_tour_primary_button_label }}</a>
         @endif
-        <a href="#aic-ct-landingpage" class="btn btn--secondary f-buttons">{{ $header_custom_tours_secondary_button_label ? $header_custom_tours_secondary_button_label : 'Explore tours' }}</a>
+        <a href="#aic-ct-landingpage" class="btn btn--secondary f-buttons">{{ $header_my_museum_tour_secondary_button_label ? $header_my_museum_tour_secondary_button_label : 'Explore tours' }}</a>
     </div>
 
 </section>

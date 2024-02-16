@@ -28,7 +28,7 @@ use App\Http\Controllers\API\SponsorsController;
 use App\Http\Controllers\API\StaticPagesController;
 use App\Http\Controllers\API\TagsController;
 use App\Http\Controllers\API\VideosController;
-use App\Http\Controllers\API\CustomTourController;
+use App\Http\Controllers\API\MyMuseumTourController;
 use App\Http\Controllers\SeamlessImagesController;
 
 /*
@@ -198,8 +198,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('seamless-images/{id}', [SeamlessImagesController::class, 'byFile']);
 
     /**
-     * Custom Tours --------------------------------------------------------------------
+     * My Museum Tour --------------------------------------------------------------------
      */
-    Route::get('custom-tours/{id}', [CustomTourController::class, 'show']);
-    Route::post('custom-tours', [CustomTourController::class, 'store']);
+    Route::get('my-museum-tour/{id}', [MyMuseumTourController::class, 'show']);
+    Route::post('my-museum-tour', [MyMuseumTourController::class, 'store']);
 });
