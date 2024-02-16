@@ -1,4 +1,4 @@
-@if ($item->url_without_slug)
+@if ($item->url_without_slug && $item->is_published && ($item->type !== 'event' || ($item->type === 'event' && $item->is_future)))
     <{{ $tag ?? 'li' }} class="m-listing m-listing--article{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}>
         <a href="{{ method_exists($item, 'getUrl') ? $item->getUrl() : $item->url_without_slug }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
             @if ($isFeatured)
