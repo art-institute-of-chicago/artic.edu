@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\MyMuseumTourRequest;
 use App\Models\MyMuseumTour;
+use App\Jobs\GeneratePdf;
 use Illuminate\Http\Request;
 
 class MyMuseumTourController extends BaseController
@@ -22,6 +23,8 @@ class MyMuseumTourController extends BaseController
             'marketing_opt_in' => $validated['marketingOptIn'] ?? false,
             'tour_json' => $sanitizedTourJson
         ]);
+
+        GeneratePdf::dispatch($record);
 
         return response()->json(['message' => 'My Museum Tour created successfully!', 'my_museum_tour' => $record], 201);
     }
