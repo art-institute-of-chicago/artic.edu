@@ -1,8 +1,8 @@
 @use 'sass:math';
 
-// ------ Custom tours viewer
+// ------ My Museum Tour viewer
 
-// ---- Custom tours: Custom tours utility fonts
+// ---- My Museum Tour: My Museum Tour utility fonts
 
 .aic-ct-grid-intro,
 .m-cta-banner__msg--aic-ct {
@@ -11,14 +11,14 @@
   }
 }
 
-.custom-tours-header {
+.my-museum-tour-header {
   .f-display-2 {
     @include untuck;
   }
 }
 
 .aic-ct-grid-card,
-.custom-tours-header,
+.my-museum-tour-header,
 .aic-ct-viewer {
   .f-deck {
     @include untuck;
@@ -90,7 +90,7 @@
   }
 }
 
-// ---- Custom tours: Landing page
+// ---- My Museum Tour: Landing page
 
 .aic-ct-artworks-count-container {
   display: flex;
@@ -109,7 +109,7 @@
   }
 }
 
-// -- Custom tours: Custom tours grid
+// -- My Museum Tour: My Museum Tour grid
 
 .o-landingpage__body--aic-ct {
   position: relative;
@@ -236,9 +236,9 @@
   }
 }
 
-// -- Custom tours: Custom header
+// -- My Museum Tour: My Museum Tour header
 
-.custom-tours-header {
+.my-museum-tour-header {
   padding-bottom: 32px;
 
   .m-title-bar {
@@ -252,7 +252,7 @@
   }
 }
 
-.custom-tours-header__btn-container {
+.my-museum-tour-header__btn-container {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -262,7 +262,7 @@
   }
 }
 
-// -- Custom tours: Custom footer
+// -- My Museum Tour: My Museum Tour footer
 
 .m-cta-banner--aic-ct {
   margin-top: 0;
@@ -442,7 +442,7 @@
   }
 }
 
-// ---- Custom tours: Viewer page
+// ---- My Museum Tour: Viewer page
 .aic-ct-viewer,
 .aic-ct-flash-message {
   &.o-article__body {

@@ -25,8 +25,8 @@
             'label' => 'Featured Content',
         ],
         [
-            'value' => 'custom_tours',
-            'label' => 'Custom Tours'
+            'value' => 'my_museum_tour',
+            'label' => 'My Museum Tour'
         ],
     ]
 ])
@@ -61,7 +61,7 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'header_variation',
-    'fieldValues' => 'custom_tours',
+    'fieldValues' => 'my_museum_tour',
     'renderForBlocks' => false
 ])
 
@@ -117,11 +117,11 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'header_variation',
-    'fieldValues' => 'custom_tours',
+    'fieldValues' => 'my_museum_tour',
     'renderForBlocks' => false
 ])
     @formField('wysiwyg', [
-        'name' => 'labels.header_custom_tours_text',
+        'name' => 'labels.header_my_museum_tour_text',
         'label' => 'Intro Text',
         'toolbarOptions' => [
             'italic'
@@ -129,17 +129,17 @@
     ])
 
     @formField('input', [
-        'name' => 'labels.header_custom_tours_primary_button_label',
+        'name' => 'labels.header_my_museum_tour_primary_button_label',
         'label' => 'Primary Button Label'
     ])
 
     @formField('input', [
-        'name' => 'labels.header_custom_tours_primary_button_link',
+        'name' => 'labels.header_my_museum_tour_primary_button_link',
         'label' => 'Primary Button Link'
     ])
 
     @formField('input', [
-        'name' => 'labels.header_custom_tours_secondary_button_label',
+        'name' => 'labels.header_my_museum_tour_secondary_button_label',
         'label' => 'Secondary Button Label'
     ])
 
@@ -159,7 +159,7 @@
                 '3d_model', '3d_tour', '3d_embed', '360_embed', '360_modal',
                 'gallery_new',
                 'image_slider', 'mirador_embed', 'mirador_modal', 'vtour_embed',
-                'feature_2x', 'feature_4x', 'showcase', 'custom_banner', 'featured_pages_grid', 'custom_tours_grid'
+                'feature_2x', 'feature_4x', 'showcase', 'custom_banner', 'featured_pages_grid', 'my_museum_tour_grid'
             ])
         ])
 

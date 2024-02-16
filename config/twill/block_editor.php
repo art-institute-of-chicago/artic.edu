@@ -183,7 +183,7 @@ return [
         'landingPages' => 'generic',
         'genericPages' => 'generic',
         'videos' => 'collection.articles_publications',
-        'customToursItems' => 'visit',
+        'myMuseumTourItems' => 'visit',
     ],
     'block-order' => [
         '3d_embed',
@@ -200,7 +200,7 @@ return [
         'citation',
         'collection_block',
         'custom_banner',
-        'custom_tours_grid',
+        'my_museum_tour_grid',
         'digital_label',
         'event',
         'events',

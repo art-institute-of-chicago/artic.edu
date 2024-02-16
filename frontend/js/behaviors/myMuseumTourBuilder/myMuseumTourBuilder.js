@@ -1,11 +1,11 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import CustomTourBuilder from 'custom-tour-builder';
+import MyMuseumTourBuilder from 'my-museum-tour-builder';
 
-export default function customTourBuilder(container) {
+export default function myMuseumTourBuilder(container) {
   this.init = function () {
     ReactDOM.render(
-      <CustomTourBuilder
+      <MyMuseumTourBuilder
         heroImageId="3c27b499-af56-f0d5-93b5-a7f2f1ad5813"
       />,
       container,

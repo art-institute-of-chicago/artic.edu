@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\CustomTour;
+use App\Models\MyMuseumTour;
 use App\Models\DigitalPublicationSection;
 use Illuminate\Console\Command;
 use Illuminate\Http\File;
@@ -34,7 +34,7 @@ class GeneratePdfs extends Command
      */
     protected static array $models = [
         'collection.publications.digital-publications-sections.show' => DigitalPublicationSection::class,
-        'custom-tours.pdf-layout' => CustomTour::class,
+        'my-museum-tour.pdf-layout' => MyMuseumTour::class,
     ];
 
     /**

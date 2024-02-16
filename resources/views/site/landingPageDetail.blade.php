@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
     @include('site.landingPage._header----'.$landingPageType)
 
-    <div class="o-landingpage__body o-blocks {{Str::kebab($landingPageType)}} {{ $landingPageType === 'my-museum-tours' ? 'o-landingpage__body--aic-ct' : '' }}" id="{{ $landingPageType === 'my-museum-tours' ? 'aic-ct-landingpage' : '' }}">
+    <div class="o-landingpage__body o-blocks {{Str::kebab($landingPageType)}} {{ $landingPageType === 'my-museum-tour' ? 'o-landingpage__body--aic-ct' : '' }}" id="{{ $landingPageType === 'my-museum-tour' ? 'aic-ct-landingpage' : '' }}">
 
         {!! $item->renderBlocks(false, [], []) !!}
 
