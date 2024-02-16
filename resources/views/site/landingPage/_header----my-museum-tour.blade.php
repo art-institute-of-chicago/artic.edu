@@ -28,10 +28,10 @@
     @endif
 
     <div class="my-muusem-tour-header__btn-container">
-        @if ($header_my_museumm_tour_primary_button_link && $header_my_museum_tour_primary_button_label)
+        @if ($header_my_museum_tour_primary_button_link && $header_my_museum_tour_primary_button_label)
             <a href="{{ $header_my_museum_tour_primary_button_link }}" class="btn f-buttons">{{ $header_my_museum_tour_primary_button_label }}</a>
         @endif
-        <a href="#aic-ct-landingpage" class="btn btn--secondary f-buttons">{{ $header_my_musuem_tour_secondary_button_label ? $header_my_museum_tour_secondary_button_label : 'Explore tours' }}</a>
+        <a href="#aic-ct-landingpage" class="btn btn--secondary f-buttons">{{ $header_my_museum_tour_secondary_button_label ? $header_my_museum_tour_secondary_button_label : 'Explore tours' }}</a>
     </div>
 
 </section>
