@@ -6,10 +6,10 @@
     $header = $header ?? null;
     $body = $body ?? null;
     $button_text = $button_text ?? null;
-    $custom_tours = $custom_tours ?? false;
-    $custom_tours_bottom = $custom_tours_bottom ?? false;
-    $custom_tours_viewer = $custom_tours_viewer ?? false;
-    $custom_tours_viewer_completed = $custom_tours_viewer_completed ?? false;
+    $my_museum_tour = $my_museum_tour ?? false;
+    $my_museum_tour_bottom = $my_museum_tour_bottom ?? false;
+    $my_museum_tour_viewer = $my_museum_tour_viewer ?? false;
+    $my_museum_tour_viewer_completed = $my_museum_tour_viewer_completed ?? false;
     $secondary_button_href = $secondary_button_href ?? null;
     $secondary_button_text = $secondary_button_text ?? null;
 
@@ -19,18 +19,18 @@
 
 @if ($header)
     <div @class([
-            'm-cta-banner--aic-ct-container' => isset($image) && $custom_tours,
-            'm-cta-banner--aic-ct-viewer-container' => !isset($image) && $custom_tours_viewer,
-            'm-cta-banner--aic-ct-viewer-container-completed' => !isset($image) && $custom_tours_viewer_completed,
-            'm-cta-banner--aic-ct-bottom' => $custom_tours_bottom,
+            'm-cta-banner--aic-ct-container' => isset($image) && $my_museum_tour,
+            'm-cta-banner--aic-ct-viewer-container' => !isset($image) && $my_museum_tour_viewer,
+            'm-cta-banner--aic-ct-viewer-container-completed' => !isset($image) && $my_museum_tour_viewer_completed,
+            'm-cta-banner--aic-ct-bottom' => $my_museum_tour_bottom,
         ])>
         <{{ $tag }} @class([
                         'm-cta-banner',
                         'm-cta-banner--with-image' => isset($image),
                         isset($variation) ?? $variation,
-                        'm-cta-banner--aic-ct' => $custom_tours,
-                        'm-cta-banner--aic-ct-with-image' => isset($image) && $custom_tours,
-                        'm-cta-banner--aic-ct-no-image' => !isset($image) && $custom_tours,
+                        'm-cta-banner--aic-ct' => $my_museum_tour,
+                        'm-cta-banner--aic-ct-with-image' => isset($image) && $my_museum_tour,
+                        'm-cta-banner--aic-ct-no-image' => !isset($image) && $my_museum_tour,
                     ])
             {!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
             @if ($isBigLink)
@@ -53,34 +53,34 @@
                                 )),
                             ))
                         @endcomponent
-                        @if ($custom_tours)
+                        @if ($my_museum_tour)
                             <div class="m-cta-banner--aic-ct__overlay">
                             </div>
                         @endif
                     </div>
                 @endif
                 <div class="m-cta-banner__txt">
-                    @if ($custom_tours)
+                    @if ($my_museum_tour)
                         <div class="m-cta-banner__txt--aic-ct-wrapper">
                     @endif
                     <div @class([
                             'm-cta-banner__title',
-                            'f-headline' => $custom_tours,
-                            'f-module-title-2' => !$custom_tours,
+                            'f-headline' => $my_museum_tour,
+                            'f-module-title-2' => !$my_museum_tour,
                         ])>
                             {!! SmartyPants::defaultTransform($header) !!}
                     </div>
                     @if ($body)
                         <div @class([
                             'm-cta-banner__msg',
-                            'm-cta-banner__msg--aic-ct' => $custom_tours,
-                            'f-body' => $custom_tours,
-                            'f-list-2' => !$custom_tours,
+                            'm-cta-banner__msg--aic-ct' => $my_museum_tour,
+                            'f-body' => $my_museum_tour,
+                            'f-list-2' => !$my_museum_tour,
                         ])>
                             {!! SmartyPants::defaultTransform($body) !!}
                         </div>
                     @endif
-                    @if ($custom_tours)
+                    @if ($my_museum_tour)
                         </div>
                     @endif
 
@@ -93,9 +93,9 @@
                             <span @class([
                                 'btn',
                                 'f-buttons',
-                                'btn--contrast' => isset($image) && !$custom_tours,
-                                'btn--quaternary' => !isset($image) && $custom_tours && !$secondary_button_href && !$custom_tours_viewer,
-                                'btn--secondary' => !isset($image) && $custom_tours && $secondary_button_href,
+                                'btn--contrast' => isset($image) && !$my_museum_tour,
+                                'btn--quaternary' => !isset($image) && $my_museum_tour && !$secondary_button_href && !$my_museum_tour_viewer,
+                                'btn--secondary' => !isset($image) && $my_museum_tour && $secondary_button_href,
                             ])>
                                 {!! SmartyPants::defaultTransform($button_text) !!}
                             </span>
@@ -108,8 +108,8 @@
                                     <span @class([
                                         'btn',
                                         'f-buttons',
-                                        'btn--contrast' => isset($image) && !$custom_tours,
-                                        'btn--quaternary' => !isset($image) && $custom_tours,
+                                        'btn--contrast' => isset($image) && !$my_museum_tour,
+                                        'btn--quaternary' => !isset($image) && $my_museum_tour,
                                     ])>
                                         {!! SmartyPants::defaultTransform($secondary_button_text) !!}
                                     </span>

@@ -46,7 +46,7 @@ class LandingPage extends AbstractModel implements Sortable
         8 => 'Research and Resources',
         9 => 'Articles and Publications',
        10 => 'Stories',
-       11 => 'My Museum Tours',
+       11 => 'My Museum Tour',
        99 => 'Custom',
     ];
 
