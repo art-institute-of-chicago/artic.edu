@@ -12,7 +12,7 @@
 <div id="{{ str(strip_tags($heading))->kebab() }}" class="m-showcase-block">
     <div class="m-showcase-wrapper">
         @if ($heading)
-            <h2 id="{{ Str::lower(Str::kebab($heading)) }}" class="showcase-header">{{ $heading }}</h2>
+            <h3 id="{{ Str::lower(Str::kebab($heading)) }}" class="showcase-header">{{ $heading }}</h3>
         @endif
         @if ($landingPageType == 'rlc')
             @component('components.molecules._m-media')
