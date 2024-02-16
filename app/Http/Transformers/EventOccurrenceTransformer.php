@@ -37,7 +37,7 @@ class EventOccurrenceTransformer extends ApiTransformer
         }
 
         $matchingDateRange = $item->all_dates->first(function ($dateRange, $key) use ($item) {
-            return isset($dateRange['date']) && $dateRange['date']->eq($item->date);
+            return isset($dateRange['date']) && $dateRange['date']->isSameDay($item->date);
         });
 
         if ($matchingDateRange && isset($matchingDateRange['date_end'])) {
