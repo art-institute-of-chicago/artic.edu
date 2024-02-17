@@ -101,8 +101,6 @@
 
 <a17-fieldset title="Navigation Menu" id="visit_nav-menu">
 
-    @formField('repeater', ['type' => 'menu_items'])
-
     @formField('input', [
         'name' => 'labels.visit_nav_buy_tix_label',
         'label' => 'Tickets Label'
