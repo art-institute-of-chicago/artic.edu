@@ -155,6 +155,8 @@ class LandingPagesController extends FrontController
             'landingPageType' => StringHelpers::pageBlades($item->type),
         ];
 
+        $blockHeadings = $item->blocks->pluck('content')->pluck('heading')->filter();
+
         switch ($item->type_id) {
             case $types->search('Home'):
                 $viewData = [
@@ -170,6 +172,7 @@ class LandingPagesController extends FrontController
                 $viewData = [
                     'contrastHeader' => true,
                     'primaryNavCurrent' => 'visit',
+                    'subnav' => collect(['hours', 'location', 'admission'])->concat($blockHeadings)->concat(['FAQs'])->all(),
                     'hours' => $hours,
                     'itemprops' => $itemprops,
                     'visit_map' => $item->imageFront('visit_map'),
