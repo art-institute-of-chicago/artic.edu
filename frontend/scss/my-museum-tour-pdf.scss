@@ -113,6 +113,8 @@ $disable-font-loading: true;
     width: auto;
     height: 100%;
     display: block;
+    position: relative;
+    left: -25%;
   }
 
   table tr td svg {
