@@ -50,8 +50,8 @@
 
 
 @formField('input', [
-    'name' => 'heading',
-    'label' => 'Heading',
+    'name' => 'title',
+    'label' => 'Title',
     'maxlength' => 100,
     'required' => true,
 ])
