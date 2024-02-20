@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Behaviors\LintsAttributes;
 use Aic\Hub\Foundation\Models\Concerns\HasByLastModScope;
 use A17\Twill\Models\Model;
+use Carbon\Carbon;
+use DateTimeInterface;
 
 /**
  * This is a place for us to override default Twill model functionality.
@@ -61,5 +63,29 @@ class AbstractModel extends Model
         // $baseUrl is missing protocol, starts with //, and ends with /
         // config('app.url') should have no https://
         return '//' . config('app.url') . '/p/' . encrypt($baseUrl . $this->slug);
+    }
+
+    public function asDateTime($value)
+    {
+        if ($value instanceof Carbon) {
+            return $value;
+        }
+
+        if ($value instanceof DateTimeInterface) {
+            return new Carbon(
+                $value->format('Y-m-d H:i:s.u'),
+                $value->getTimezone()
+            );
+        }
+
+        if (is_numeric($value)) {
+            return Carbon::createFromTimestamp($value);
+        }
+
+        if ($this->isStandardDateFormat($value)) {
+            return Carbon::createFromFormat('Y-m-d', $value)->startOfDay();
+        }
+
+        return new Carbon($value);
     }
 }
