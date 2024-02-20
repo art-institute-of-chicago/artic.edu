@@ -3,7 +3,7 @@
     $bg_type = $block->input('background_type');
     $btn_type = $block->input('button_type');
 
-    $heading = $block->input('heading');
+    $heading = $block->input('title');
     $body = $block->input('body');
 
 @endphp

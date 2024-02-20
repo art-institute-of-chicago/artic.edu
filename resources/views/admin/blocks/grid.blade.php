@@ -2,8 +2,8 @@
 @twillBlockIcon('image')
 
 @formField('wysiwyg', [
-    'name' => 'grid_title',
-    'label' => 'Title',
+    'name' => 'heading',
+    'label' => 'Heading',
     'maxlength' => 60,
     'toolbarOptions' => [
         'italic',
