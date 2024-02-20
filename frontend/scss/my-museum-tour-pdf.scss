@@ -52,11 +52,19 @@ $disable-font-loading: true;
   }
 
   table tr td.col4 {
-    width: 1.2in;
+    width: 1.1in;
   }
 
-  table tr td.col5 {
-    width: 0.8958in;
+  table tr td.col51 {
+    width: 0.1628in;
+  }
+
+  table tr td.col52 {
+    width: 0.1149in;
+  }
+
+  table tr td.col53 {
+    width: 0.6181in;
   }
 
   table tr td.gutter {
@@ -225,6 +233,13 @@ $disable-font-loading: true;
   .t-tour-description {
     font-size: 18pt;
     line-height: 21pt;
+    color: $color__black;
+  }
+
+  .t-qr-caption {
+    font-size: 6pt;
+    line-height: 6pt;
+    float: right;
     color: $color__black;
   }
 
