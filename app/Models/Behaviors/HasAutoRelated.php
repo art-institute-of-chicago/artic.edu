@@ -40,7 +40,11 @@ trait HasAutoRelated
             });
 
         foreach ($relatedBlockItems as $relatedBlockItem) {
-            $relatedItems[] = $relatedBlockItem->blockable;
+            if (method_exists($relatedBlockItem->blockable, "getApiModel") && $relatedBlockItem->blockable->getApiModel()) {
+                $relatedBlockable = $relatedBlockItem->blockable->getApiModelFilledCached();
+            }
+
+            $relatedItems[] = $relatedBlockable ?? $relatedBlockItem->blockable;
         }
 
         // Get all sidebar items that have this model as a related item
@@ -68,6 +72,10 @@ trait HasAutoRelated
 
             if (class_exists($modelClass)) {
                 $sidebarItem = app($modelClass)->find($itemId);
+
+                if (method_exists($sidebarItem, "getApiModel") && $sidebarItem->getApiModel()) {
+                    $sidebarItem = $sidebarItem->getApiModelFilledCached();
+                }
 
                 if ($sidebarItem) {
                     $relatedItems[] = $sidebarItem;
