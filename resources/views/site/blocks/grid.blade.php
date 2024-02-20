@@ -10,6 +10,7 @@
             [
                 'label' => $gridLinkLabel,
                 'href'  => $gridLinkHref,
+                'id' => Str::slug(strip_tags($gridTitle)),
             ]
         ] : null)
         @if (!empty($gridTitle))
