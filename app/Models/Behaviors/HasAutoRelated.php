@@ -40,7 +40,6 @@ trait HasAutoRelated
             });
 
         foreach ($relatedBlockItems as $relatedBlockItem) {
-
             if (method_exists($relatedBlockItem->blockable, "getApiModel") && $relatedBlockItem->blockable->getApiModel()) {
                 $relatedBlockable = $relatedBlockItem->blockable->getApiModelFilledCached();
             }
