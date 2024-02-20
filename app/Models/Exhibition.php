@@ -161,6 +161,11 @@ class Exhibition extends AbstractModel
         return route('admin.exhibitions_events.exhibitions.edit', $this->id);
     }
 
+    public function getTypeAttribute()
+    {
+        return 'exhibition';
+    }
+
     public function events()
     {
         return $this->belongsToMany('App\Models\Event')->withPivot('position')->orderBy('position');
