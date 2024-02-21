@@ -2,14 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\MyMuseumTour;
-use App\Mail\MyMuseumTourConfirmation;
-use Illuminate\Support\Facades\Mail;
-
-use App\Models\AbstractModel;
-use Illuminate\Http\File;
-use Illuminate\Support\Facades\Storage;
-
 class SendConfirmationsOne extends SendConfirmations
 {
     /**
