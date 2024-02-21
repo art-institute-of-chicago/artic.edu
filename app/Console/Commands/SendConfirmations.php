@@ -105,6 +105,19 @@ class SendConfirmations extends Command
             'template_id' => $templateId,
         ];
 
+        if (!\App::environment('local')) {
+            $dynamicContent = array_merge($dynamicContent, [
+                'attachments' => [
+                    [
+                        'content' => base64_encode(file_get_contents($baseUrl . $model->pdf_download_path)),
+                        'type' => 'application/pdf',
+                        'filename' => 'my_museum_tour-' . $model->id . '.pdf',
+                        'disposition' => 'attachment'
+                    ],
+                ],
+            ]);
+        }
+
         $sendgridurl = 'https://api.sendgrid.com/v3/mail/send';
 
         $sendmail = curl_init();
