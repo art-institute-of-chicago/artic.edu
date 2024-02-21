@@ -5,8 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class () extends Migration {
-    protected $connection;
-
     public function __construct()
     {
         $this->connection = 'tours';
@@ -14,11 +12,15 @@ return new class () extends Migration {
 
     public function up(): void
     {
-        Schema::rename('my_museum_tour', 'my_museum_tours');
+        Schema::table('my_museum_tours', function (Blueprint $table) {
+            $table->boolean('confirmation_sent')->default(false);
+        });
     }
 
     public function down(): void
     {
-        Schema::rename('my_museum_tours', 'my_museum_tour');
+        Schema::table('my_museum_tours', function (Blueprint $table) {
+            $table->dropColumn('confirmation_sent');
+        });
     }
 };
