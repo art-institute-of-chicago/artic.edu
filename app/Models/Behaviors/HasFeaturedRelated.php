@@ -85,33 +85,9 @@ trait HasFeaturedRelated
 
     protected function getFilteredRelatedItems($relatedItems)
     {
-        $now = Carbon::now();
-
-        return $relatedItems->filter(function ($relatedItem) use ($now) {
-            // WEB-2265: Verify that we don't need to check if the exhibition is in the future?
-            if (get_class($relatedItem) === \App\Models\Api\Exhibition::class) {
-                return true;
-            }
-
-            if (get_class($relatedItem) === \App\Models\Api\Event::class) {
-                if (!$relatedItem->isFuture) {
-                    return false;
-                }
-            }
-
-            $isPublished = isset($relatedItem->published) && $relatedItem->published;
-            $isVisible = (
-                !$relatedItem->isFillable('publish_start_date') ||
-                !isset($relatedItem->publish_start_date) ||
-                $relatedItem->publish_start_date < $now
-            ) && (
-                !$relatedItem->isFillable('publish_end_date') ||
-                !isset($relatedItem->publish_end_date) ||
-                $relatedItem->publish_end_date > $now
-            );
-
-            return $isPublished && $isVisible;
-        })->values();
+        return collect($relatedItems)->filter(function ($item) {
+            return $item->is_published && ($item->type !== 'event' || ($item->type === 'event' && $item->is_future));
+        });
     }
 
     protected function getRelatedItemHash($relatedItem)
@@ -169,7 +145,6 @@ trait HasFeaturedRelated
             ->random($this->targetItemCount)
             ->values();
     }
-
     private function getLabeledRelatedItems($relatedItems)
     {
         $labeledRelatedItems = [];
