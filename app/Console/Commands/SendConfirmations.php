@@ -77,7 +77,7 @@ class SendConfirmations extends Command
     protected function send($model)
     {
         $to = $model->creator_email;
-        $apiCode = config('sendgrid.apikey');
+        $apiCode = config('sendgrid.api_key');
         $sender = config('sendgrid.email');
         $templateId = config('sendgrid.template_id');
 
@@ -118,7 +118,7 @@ class SendConfirmations extends Command
             ]);
         }
 
-        $sendgridurl = 'https://api.sendgrid.com/v3/mail/send';
+        $sendgridurl = config('sendgrid.api_url');
 
         $sendmail = curl_init();
         curl_setopt($sendmail, CURLOPT_POST, 1);
