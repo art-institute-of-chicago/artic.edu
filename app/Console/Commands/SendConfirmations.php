@@ -51,12 +51,13 @@ class SendConfirmations extends Command
 
         set_time_limit(0);
 
-        $this->send($model);
-        $model->confirmation_sent = true;
-        $model->save();
+        if ($this->send($model)) {
+            $model->confirmation_sent = true;
+            $model->save();
 
-        $class = class_basename($model);
-        $this->info("Confirmation sent for {$class} ID {$model->id}");
+            $class = class_basename($model);
+            $this->info("Confirmation sent for {$class} ID {$model->id}");
+        }
     }
 
     protected function path($model, $route): string
@@ -115,16 +116,22 @@ class SendConfirmations extends Command
 
         $sendgridurl = config('sendgrid.api_url');
 
-        $sendmail = curl_init();
-        curl_setopt($sendmail, CURLOPT_POST, 1);
-        curl_setopt($sendmail, CURLOPT_POSTFIELDS, json_encode($dynamicContent));
-        curl_setopt($sendmail, CURLOPT_URL, $sendgridurl);
-        curl_setopt($sendmail, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($sendmail, CURLOPT_HTTPHEADER, array("Authorization: Bearer $apiCode", "Content-Type: application/json;charset=UTF-8"));
-        curl_setopt($sendmail, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        $createResult = curl_exec($sendmail);
-        curl_close($sendmail);
-        $result = json_decode($createResult);
-        return response()->json(["result" => $result, "message" => "Mail sent successfully"], 200);
+        $request = new \GuzzleHttp\Client();
+
+        $response = $request->post(
+            $sendgridurl,
+            [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $apiCode,
+                    'Content-Type' => 'application/json;charset=UTF-8'
+                ],
+                'json' => $dynamicContent,
+            ],
+        );
+
+        if ($response->getStatusCode() >= 200 && $response->getStatusCode() <= 299) {
+            return true;
+        }
+        return false;
     }
 }
