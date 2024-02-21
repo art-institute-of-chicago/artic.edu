@@ -3,8 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\MyMuseumTour;
-use App\Mail\MyMuseumTourConfirmation;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Console\Command;
 
 class SendConfirmations extends Command
@@ -76,7 +74,8 @@ class SendConfirmations extends Command
         return array_search(get_class($model), self::$models);
     }
 
-    protected function send($model) {
+    protected function send($model)
+    {
         $to = $model->creator_email;
         $apiCode = config('sendgrid.apikey');
         $sender = config('sendgrid.email');
@@ -111,13 +110,13 @@ class SendConfirmations extends Command
         $sendmail = curl_init();
         curl_setopt($sendmail, CURLOPT_POST, 1);
         curl_setopt($sendmail, CURLOPT_POSTFIELDS, json_encode($dynamicContent));
-        curl_setopt($sendmail, CURLOPT_URL,  $sendgridurl);
+        curl_setopt($sendmail, CURLOPT_URL, $sendgridurl);
         curl_setopt($sendmail, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($sendmail, CURLOPT_HTTPHEADER, array("Authorization: Bearer $apiCode", "Content-Type: application/json;charset=UTF-8"));
         curl_setopt($sendmail, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         $createResult = curl_exec($sendmail);
         curl_close($sendmail);
         $result = json_decode($createResult);
-        return response()->json(["result" => $result, "message"=>"Mail sent successfully"], 200);
+        return response()->json(["result" => $result, "message" => "Mail sent successfully"], 200);
     }
 }

@@ -3,8 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use App\Models\LandingPage;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         // Copy relevant columns to labels json column
