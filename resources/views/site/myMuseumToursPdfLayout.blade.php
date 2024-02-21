@@ -280,8 +280,8 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="vertical-gutter-tall"><div class="artwork-divider"></div></td>
-            <td colspan="7" class="vertical-gutter-tall"><div class="artwork-divider"></div></td>
+            <td colspan="3" class="vertical-gutter-tall"></td>
+            <td colspan="7" class="vertical-gutter-tall"></td>
         </tr>
         <tr>
             <td colspan="3" class="c-object-note">
@@ -296,8 +296,8 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="vertical-gutter-tall"></td>
-            <td colspan="7" class="vertical-gutter-tall"></td>
+            <td colspan="3" class="vertical-gutter-tall"><div class="artwork-divider"></div></td>
+            <td colspan="7" class="vertical-gutter-tall"><div class="artwork-divider"></div></td>
         </tr>
         <tr>
             <td rowspan="3">
