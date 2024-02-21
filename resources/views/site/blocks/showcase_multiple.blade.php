@@ -1,6 +1,6 @@
 @php
-    $heading = $block->input('heading');
-    $intro = $block->input('intro');
+    $heading = $block->present()->input('heading');
+    $intro = $block->present()->input('intro');
 @endphp
 
 <div id="{{ str($block->input('id'))->after('#') }}" class="m-showcase-multiple-block">
@@ -8,10 +8,10 @@
         <div class="m-showcase-wrapper">
             <div class="m-showcase-block__header-wrapper">
                 @if ($heading)
-                    <h3 class="showcase-header">{{ $heading }}</h3>
+                    <h3 class="showcase-header">{!!$heading !!}</h3>
                 @endif
                 @if ($intro)
-                    <h4 class="showcase-intro">{{ $intro }}</h4>
+                    <h4 class="showcase-intro">{!! $intro !!}</h4>
                 @endif
             </div>
             @foreach ($block->childs as $item)
@@ -23,7 +23,6 @@
                     @slot('item', [
                         'type' => $item->input('media_type'),
                         'media' => $media,
-                        'caption' => $media['caption'],
                         'loop' => true,
                         'loop_or_once' => 'loop',
                     ])
@@ -37,7 +36,7 @@
                             @slot('title', $tag)
                         @endcomponent
                     @endif
-                    @if ($title = $item->input('title'))
+                    @if ($title = $item->present()->input('title'))
                         @component('components.atoms._title')
                             @slot('tag', 'div')
                             @slot('font', 'f-headline-editorial')
@@ -45,7 +44,7 @@
                             @slot('title', $title)
                         @endcomponent
                     @endif
-                    @if ($description = $item->input('description'))
+                    @if ($description = $item->present()->input('description'))
                         @component('components.blocks._text')
                             @slot('tag', 'div')
                             @slot('font', 'f-secondary')
@@ -54,7 +53,7 @@
                         @endcomponent
                     @endif
                     @php
-                        $linkLabel = $item->input('link_label');
+                        $linkLabel = $item->present()->input('link_label');
                         $linkUrl = $item->input('link_url');
                     @endphp
                     @if ($linkLabel || $linkUrl)
