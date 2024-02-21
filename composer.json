@@ -61,6 +61,7 @@
         "ramsey/uuid": "^4.0",
         "rlanvin/php-rrule": "^2.0",
         "salesforce-mc/fuel-sdk-php": "dev-master",
+        "sendgrid/sendgrid": "^8.1",
         "sentry/sentry-laravel": "^3.0",
         "spatie/calendar-links": "^1.0",
         "spatie/laravel-feed": "^4.0",
