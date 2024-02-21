@@ -37,12 +37,7 @@ class SendConfirmations extends Command
             $models = $modelClass::notSent()->get();
 
             foreach ($models as $model) {
-                try {
-                    $this->sendConfirmation($model, $route);
-                } catch (\Exception $exception) {
-                    $this->error($exception->getMessage());
-                    return 1;
-                }
+                $this->sendConfirmation($model, $route);
             }
         }
     }
