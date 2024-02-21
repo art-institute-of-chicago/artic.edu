@@ -126,7 +126,9 @@ class GeneratePdfs extends Command
                 $fileName,
                 'public'
             );
-            unlink($localPath);
+            if (!\App::environment('local')) {
+                unlink($localPath);
+            }
         }
     }
 

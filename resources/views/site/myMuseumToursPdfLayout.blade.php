@@ -19,7 +19,9 @@
             <td class="gutter"></td>
             <td class="col4"></td>
             <td class="gutter"></td>
-            <td class="col5"></td>
+            <td class="col51"></td>
+            <td class="col52"></td>
+            <td class="col53"></td>
         </tr>
     </thead>
     <tbody>
@@ -54,7 +56,7 @@
                 @endif
             </td>
             <td class="crease" rowspan="12"></td>
-            <td colspan="5" rowspan="3">
+            <td colspan="7" rowspan="3">
                 <div class="heading-image-container">
                     <img src="https://artic-web-test.imgix.net/a9a0fefa-2101-456b-9afa-cc34dccaf06d/unnamed1.jpg?rect=0%2C65%2C1391%2C783&auto=format%2Ccompress&q=80&fit=crop&crop=faces%2Ccenter&w=1000&h=563">
                 </div>
@@ -77,7 +79,7 @@
 
         <tr>
             <td colspan="3" class="vertical-gutter-tall"></td>
-            <td colspan="5" class="vertical-gutter-tall"></td>
+            <td colspan="7" class="vertical-gutter-tall"></td>
         </tr>
 
         <tr>
@@ -86,7 +88,7 @@
                     <span class="f-quote t-object-note">&#x201C;{{ $my_museum_tour['artworks'][4]['objectNote'] }}&#x201D;</span>
                 @endisset
             </td>
-            <td colspan="5" rowspan="2">
+            <td colspan="7" rowspan="2">
                 <span class="f-headline-editorial t-home-callout-text">{{ $my_museum_tour['title'] }}</span>
             </td>
         </tr>
@@ -125,18 +127,18 @@
                     @endisset
                 @endif
             </td>
-            <td colspan="5" class="vertical-gutter-short"></td>
+            <td colspan="7" class="vertical-gutter-short"></td>
         </tr>
 
         <tr>
             <td colspan="3"><span class="f-headline t-made-by">{{ isset($my_museum_tour['creatorName']) ? 'Tour made by ' . $my_museum_tour['creatorName'] . (isset($my_museum_tour['recipientName']) ? ' for ' . $my_museum_tour['recipientName'] : '') : ''}}</span></td>
             <td class="gutter"></td>
-            <td><span class="f-body t-sum">{{ count($my_museum_tour['artworks']) }} artworks<br><em>from</em> {{ $unique_artists_count }} artists<br><em>across</em> {{ $unique_galleries_count }} galleries</span></td>
+            <td colspan="3"><span class="f-body t-sum">{{ count($my_museum_tour['artworks']) }} artworks<br><em>from</em> {{ $unique_artists_count }} artists<br><em>across</em> {{ $unique_galleries_count }} galleries</span></td>
         </tr>
 
         <tr>
             <td class="vertical-gutter-short"></td>
-            <td colspan="5" class="vertical-gutter-short"></td>
+            <td colspan="7" class="vertical-gutter-short"></td>
         </tr>
 
         <tr>
@@ -148,14 +150,14 @@
                 @endif
             </td>
 
-            <td colspan="5">
+            <td colspan="7">
                 <span class="f-quote t-tour-description">{{ $my_museum_tour['description'] ?? null }}</span>
             </td>
         </tr>
 
         <tr>
             <td colspan="3" class="vertical-gutter-tall"></td>
-            <td colspan="5" class="vertical-gutter-tall"></td>
+            <td colspan="7" class="vertical-gutter-tall"></td>
         </tr>
 
         <tr>
@@ -168,10 +170,10 @@
                 <img class="i-aic" src="/dist/images/my_museum_tour--aic.png"><img class="i-bloomberg" src="/dist/images/my_museum_tour--bloomberg.png">
             </td>
             <td class="gutter"></td>
-            <td class="logos">
-                <p><span class="f-headline-editorial t-artwork-title">See your full tour here:</span></p>
+            <td colspan="3" class="logos">
+                <p class="f-body t-qr-caption"><span>See your tour here:</span></p>
             </td>
-            <td class="gutter"></td>
+            <td class="col52"></td>
             <td class="logos">
                 <img class="i-qrcode" src="{{ route('my-museum-tour.qrcode', [ 'id' => $id ], false); }}">
             </td>
@@ -190,7 +192,9 @@
             <td class="gutter"></td>
             <td class="col4"></td>
             <td class="gutter"></td>
-            <td class="col5"></td>
+            <td class="col51"></td>
+            <td class="col52"></td>
+            <td class="col53"></td>
         </tr>
     </thead>
     <tbody>
@@ -243,7 +247,7 @@
                 @endif
             </td>
             <td class="gutter" rowspan="3"></td>
-            <td colspan="3" class="tombstone">
+            <td colspan="5" class="tombstone">
                 @if(isset($my_museum_tour['artworks'][2]))
                     <p><span class="f-headline-editorial t-artwork-title">{{ $my_museum_tour['artworks'][2]['title'] }}</span></p>
                     @isset($my_museum_tour['artworks'][2]['artist_title'])
@@ -257,7 +261,7 @@
         </tr>
         <tr>
             <td class="vertical-gutter-short"></td>
-            <td colspan="3" class="vertical-gutter-short"></td>
+            <td colspan="5" class="vertical-gutter-short"></td>
         </tr>
         <tr>
             <td class="short-description">
@@ -267,7 +271,7 @@
                     @endisset
                 @endif
             </td>
-            <td colspan="3" class="short-description">
+            <td colspan="5" class="short-description">
                 @if(isset($my_museum_tour['artworks'][2]))
                     @isset($my_museum_tour['artworks'][2]['description'])
                         <span class="f-body t-short-description">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][2]['description'], 452) }}</span>
@@ -277,7 +281,7 @@
         </tr>
         <tr>
             <td colspan="3" class="vertical-gutter-tall"></td>
-            <td colspan="5" class="vertical-gutter-tall"></td>
+            <td colspan="7" class="vertical-gutter-tall"></td>
         </tr>
         <tr>
             <td colspan="3" class="c-object-note">
@@ -285,15 +289,15 @@
                     <span class="f-quote t-object-note">&#x201C;{{ $my_museum_tour['artworks'][0]['objectNote'] }}&#x201D;</span>
                 @endisset
             </td>
-            <td colspan="5" class="c-object-note">
+            <td colspan="7" class="c-object-note">
                 @isset($my_museum_tour['artworks'][2]['objectNote'])
                     <span class="f-quote t-object-note">&#x201C;{{ $my_museum_tour['artworks'][2]['objectNote'] }}&#x201D;</span>
                 @endisset
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="vertical-gutter-tall"></td>
-            <td colspan="5" class="vertical-gutter-tall"></td>
+            <td colspan="3" class="vertical-gutter-tall"><div class="artwork-divider"></div></td>
+            <td colspan="7" class="vertical-gutter-tall"><div class="artwork-divider"></div></td>
         </tr>
         <tr>
             <td rowspan="3">
@@ -343,7 +347,7 @@
                 @endif
             </td>
             <td class="gutter" rowspan="3"></td>
-            <td colspan="3" class="tombstone">
+            <td colspan="5" class="tombstone">
                 @if(isset($my_museum_tour['artworks'][3]))
                     <p><span class="f-headline-editorial t-artwork-title">{{ $my_museum_tour['artworks'][3]['title'] }}</span></p>
                     @isset($my_museum_tour['artworks'][3]['artist_title'])
@@ -357,7 +361,7 @@
         </tr>
         <tr>
             <td class="vertical-gutter-short"></td>
-            <td colspan="3" class="vertical-gutter-short"></td>
+            <td colspan="5" class="vertical-gutter-short"></td>
         </tr>
         <tr>
             <td class="short-description">
@@ -367,7 +371,7 @@
                     @endisset
                 @endif
             </td>
-            <td colspan="3" class="short-description">
+            <td colspan="5" class="short-description">
                 @if(isset($my_museum_tour['artworks'][3]))
                     @isset($my_museum_tour['artworks'][3]['description'])
                         <span class="f-body t-short-description">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][3]['description'], 452) }}</span>
@@ -377,7 +381,7 @@
         </tr>
         <tr>
             <td colspan="3" class="vertical-gutter-tall"></td>
-            <td colspan="5" class="vertical-gutter-tall"></td>
+            <td colspan="7" class="vertical-gutter-tall"></td>
         </tr>
         <tr>
             <td colspan="3" class="c-object-note">
@@ -385,7 +389,7 @@
                     <span class="f-quote t-object-note">&#x201C;{{ $my_museum_tour['artworks'][1]['objectNote'] }}&#x201D;</span>
                 @endisset
             </td>
-            <td colspan="5" class="c-object-note">
+            <td colspan="7" class="c-object-note">
                 @isset($my_museum_tour['artworks'][3]['objectNote'])
                     <span class="f-quote t-object-note">&#x201C;{{ $my_museum_tour['artworks'][3]['objectNote'] }}&#x201D;</span>
                 @endisset
