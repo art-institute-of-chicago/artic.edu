@@ -1,18 +1,18 @@
 @php
-    $heading = $block->input('heading');
+    $heading = $block->present()->input('heading');
     $mediaType = $block->input('media_type');
     $media = $block->imageAsArray('image', 'desktop');
-    $title = $block->input('title');
-    $description = $block->input('description');
+    $title = $block->present()->input('title');
+    $description = $block->present()->input('description');
     $tag = $block->input('tag');
-    $linkLabel = $block->input('link_label');
+    $linkLabel = $block->present()->input('link_label');
     $linkUrl = $block->input('link_url');
 @endphp
 
 <div id="{{ str(strip_tags($heading))->kebab() }}" class="m-showcase-block">
     <div class="m-showcase-wrapper">
         @if ($heading)
-            <h3 id="{{ Str::slug(strip_tags($heading)) }}" class="showcase-header">{{ $heading }}</h3>
+            <h3 id="{{ Str::slug(strip_tags($heading)) }}" class="showcase-header">{!! $heading !!}</h3>
         @endif
         @if ($landingPageType == 'rlc')
             @component('components.molecules._m-media')
