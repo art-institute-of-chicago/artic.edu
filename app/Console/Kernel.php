@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('update:links')->daily();
         $schedule->command('update:cloudfront-ips')->hourly();
         $schedule->command('fix:galleries')->everyMinute();
+        $schedule->command('send:confirmations')->everyTwoMinutes()->withoutOverlapping();
     }
 
     /**
