@@ -15,7 +15,7 @@ class EventOccurrenceTransformer extends ApiTransformer
             'image_caption' => $item->hero_caption,
             'is_private' => (bool) $item->is_private,
             'location' => $item->location,
-            'start_at' => $item->date->toIso8601String(),
+            'start_at' => $this->getStartAt($item),
             'end_at' => $this->getEndAt($item),
             'button_text' => $item->present()->buyButtonText(),
             'button_url' => $item->buy_tickets_link,
@@ -42,6 +42,23 @@ class EventOccurrenceTransformer extends ApiTransformer
 
         if ($matchingDateRange && isset($matchingDateRange['date_end'])) {
             return $matchingDateRange['date_end']->toIso8601String();
+        }
+
+        return null;
+    }
+
+    private function getStartAt($item)
+    {
+        if (!isset($item->date)) {
+            return null;
+        }
+
+        $matchingDateRange = $item->all_dates->first(function ($dateRange, $key) use ($item) {
+            return isset($dateRange['date']) && $dateRange['date']->isSameDay($item->date);
+        });
+
+        if ($matchingDateRange && isset($matchingDateRange['date'])) {
+            return $matchingDateRange['date']->toIso8601String();
         }
 
         return null;
