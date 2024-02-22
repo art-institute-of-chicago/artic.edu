@@ -43,7 +43,7 @@ class ArticleController extends FrontController
                 ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('date', 'desc')
                 ->get()->map(function ($article) {
-                    $article->sort_date = $article->date;
+                    $article->sort_date = $article->date ?? $article->created_at;
                     return $article;
                 });
 
@@ -53,7 +53,7 @@ class ArticleController extends FrontController
                 ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('publish_start_date', 'desc')
                 ->get()->map(function ($highlight) {
-                    $highlight->sort_date = $highlight->publish_start_date;
+                    $highlight->sort_date = $highlight->publish_start_date ?? $highlight->created_at;
                     return $highlight;
                 });
 
@@ -72,7 +72,7 @@ class ArticleController extends FrontController
                 ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('date', 'desc')
                 ->get()->map(function ($video) {
-                    $video->sort_date = $video->date;
+                    $video->sort_date = $video->date ?? $video->created_at;
                     return $video;
                 });
 
