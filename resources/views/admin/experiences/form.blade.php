@@ -76,4 +76,11 @@
         'name' => 'is_in_magazine',
         'label' => 'Assume this experience is featured in a magazine issue',
     ])
+
+    @formField('multi_select', [
+        'name' => 'categories',
+        'label' => 'Categories',
+        'options' => $categoriesList,
+        'placeholder' => 'Select some categories',
+    ])
 @stop

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Repositories\SiteTagRepository;
+use App\Repositories\CategoryRepository;
 
 class HighlightController extends ModuleController
 {
@@ -66,6 +67,7 @@ class HighlightController extends ModuleController
         return [
             'autoRelated' => $this->getAutoRelated($item),
             'baseUrl' => $baseUrl,
+            'categoriesList' => app(CategoryRepository::class)->listAll('name'),
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
             'highlightTypeList' => $this->repository->getHighlightTypeList(),
         ];
