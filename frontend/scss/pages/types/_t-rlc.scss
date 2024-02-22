@@ -158,8 +158,14 @@
       }
     }
   }
-  .o-info-grid .semicircle {
-    background-color: $color__rlc__blue_sapphire;
+  .o-info-grid {
+    .spacer {
+      position: relative;
+      top: 57px;
+    }
+    .semicircle {
+      background-color: $color__rlc__blue_sapphire;
+    }
   }
   .o-info-grid>.row>.col>hr {
     border: none;
