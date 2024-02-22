@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\CategoryRepository;
+
 class VideoController extends ModuleController
 {
     protected $moduleName = 'videos';
@@ -43,6 +45,7 @@ class VideoController extends ModuleController
 
         return [
             'baseUrl' => $baseUrl,
+            'categoriesList' => app(CategoryRepository::class)->listAll('name'),
         ];
     }
 

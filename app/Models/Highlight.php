@@ -162,6 +162,21 @@ class Highlight extends AbstractModel
         return join([route('highlights.index'), '/', $this->id, '/']);
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category', 'highlight_category');
+    }
+
+    public function scopeByCategories($query, $categories = null)
+    {
+        if (empty($categories)) {
+            return $query;
+        }
+
+        return $query->whereHas('categories', function ($query) use ($categories) {
+            $query->whereIn('category_id', is_array($categories) ? $categories : [$categories]);
+        });
+    }
 
     public function siteTags()
     {

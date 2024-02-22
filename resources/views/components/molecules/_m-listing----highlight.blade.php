@@ -1,28 +1,28 @@
 <{{ $tag ?? 'li' }} class="m-listing m-listing--highlight{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! route('highlights.show', $item) !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @if (!isset($hideImage) || (isset($hideImage) && !($hideImage)))
-            <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : ' m-listing__img--square' }}">
+            <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : ' m-listing__img' }}">
                 @if ($image ?? $item->imageFront('hero') ?? $item->images[0] ?? false)
                     @if ($isHero ?? false)
                         @component('components.atoms._img')
                             @slot('image', $image ?? $item->imageFront('hero') ?? $item->images[0])
                             @slot('class', 'img-hero-desktop')
                             @slot('settings', !isset($imageSettings) ? null : array_merge($imageSettings, [
-                                'ratio' => '1:1', // TODO: Verify $imgVariation usage?
+                                'ratio' => isset($imgVariation) ? null : ($imageSettings['ratio'] ?? '1:1'),
                             ]))
                         @endcomponent
                         @component('components.atoms._img')
                             @slot('image', $imageMobile ?? $item->imageFront('mobile_hero') ?? $image ?? $item->imageFront('hero') ?? $item->images[0])
                             @slot('class', 'img-hero-mobile')
                             @slot('settings', !isset($imageSettings) ? null : array_merge($imageSettings, [
-                                'ratio' => '1:1', // TODO: Verify $imgVariation usage?
+                                'ratio' => isset($imgVariation) ? null : ($imageSettings['ratio'] ?? '1:1'),
                             ]))
                         @endcomponent
                     @else
                         @component('components.atoms._img')
                             @slot('image', $imageMobile ?? $item->imageFront('mobile_hero') ?? $image ?? $item->imageFront('hero') ?? $item->images[0])
                             @slot('settings', !isset($imageSettings) ? null : array_merge($imageSettings, [
-                                'ratio' => '1:1', // TODO: Verify $imgVariation usage?
+                                'ratio' => isset($imgVariation) ? null : ($imageSettings['ratio'] ?? '1:1'),
                             ]))
                         @endcomponent
                     @endif

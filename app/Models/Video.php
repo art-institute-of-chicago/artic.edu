@@ -65,6 +65,22 @@ class Video extends AbstractModel
         'title',
     ];
 
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category', 'video_category');
+    }
+
+    public function scopeByCategories($query, $categories = null)
+    {
+        if (empty($categories)) {
+            return $query;
+        }
+
+        return $query->whereHas('categories', function ($query) use ($categories) {
+            $query->whereIn('category_id', is_array($categories) ? $categories : [$categories]);
+        });
+    }
+
     public function getEmbedAttribute()
     {
         return \EmbedConverter::convertUrl($this->video_url);

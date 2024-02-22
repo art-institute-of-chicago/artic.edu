@@ -4,18 +4,18 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
 }
 @endphp
 @if (isset($paginator))
-    @if (10000 < ($paginator->currentPage() + 1) * $paginator->perPage())
+    @if (10000 < ($paginator->appends(request()->query())->currentPage() + 1) * $paginator->appends(request()->query())->perPage())
         @component('components.molecules._m-no-results')
             @slot('text', 'Sorry, we cannot show more than 10,000 results.')
         @endcomponent
     @endif
 
-    @if ($paginator->hasPages())
+    @if ($paginator->appends(request()->query())->hasPages())
         <nav class="m-paginator">
           <ul class="m-paginator__prev-next">
             <li>
-                @if ($paginator->hasMorePages())
-                <a href="{{ $paginator->nextPageUrl() }}" class="f-buttons"{!! (isset($ajaxScrollTarget) and $ajaxScrollTarget) ? ' data-ajax-scroll-target="'.$ajaxScrollTarget.'"' : '' !!}>
+                @if ($paginator->appends(request()->query())->hasMorePages())
+                <a href="{{ $paginator->appends(request()->query())->nextPageUrl() }}" class="f-buttons"{!! (isset($ajaxScrollTarget) and $ajaxScrollTarget) ? ' data-ajax-scroll-target="'.$ajaxScrollTarget.'"' : '' !!}>
                     <span>Next</span>
                     <svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg>
                 </a>
@@ -27,13 +27,13 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
                 @endif
             </li>
             <li>
-                @if ($paginator->onFirstPage())
+                @if ($paginator->appends(request()->query())->onFirstPage())
                     <span class="f-buttons">
                         <span>Previous</span>
                         <svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg>
                     </span>
                 @else
-                    <a href="{{ $paginator->previousPageUrl() }}" class="f-buttons"{!! (isset($ajaxScrollTarget) and $ajaxScrollTarget) ? ' data-ajax-scroll-target="'.$ajaxScrollTarget.'"' : '' !!}>
+                    <a href="{{ $paginator->appends(request()->query())->previousPageUrl() }}" class="f-buttons"{!! (isset($ajaxScrollTarget) and $ajaxScrollTarget) ? ' data-ajax-scroll-target="'.$ajaxScrollTarget.'"' : '' !!}>
                         <span>Previous</span>
                         <svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg>
                     </a>
@@ -61,10 +61,14 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
                         @if ($page * $paginator->perPage() > 10000)
                             @continue
                         @endif
+                        @php
+                            $url = $paginator->url($page);
+                            $urlWithQueryParams = app('url')->to($url, [], false);
+                        @endphp
                         @if ($page == $paginator->currentPage())
-                            <li class="s-active"><a href="{{ $url }}" class="f-buttons"{!! (isset($ajaxScrollTarget) and $ajaxScrollTarget) ? ' data-ajax-scroll-target="'.$ajaxScrollTarget.'"' : '' !!}>{{ $page }}</a></li>
+                            <li class="s-active"><a href="{{ $urlWithQueryParams }}" class="f-buttons"{!! (isset($ajaxScrollTarget) and $ajaxScrollTarget) ? ' data-ajax-scroll-target="'.$ajaxScrollTarget.'"' : '' !!}>{{ $page }}</a></li>
                         @else
-                            <li><a href="{{ $url }}" class="f-buttons"{!! (isset($ajaxScrollTarget) and $ajaxScrollTarget) ? ' data-ajax-scroll-target="'.$ajaxScrollTarget.'"' : '' !!}>{{ $page }}</a></li>
+                            <li><a href="{{ $urlWithQueryParams }}" class="f-buttons"{!! (isset($ajaxScrollTarget) and $ajaxScrollTarget) ? ' data-ajax-scroll-target="'.$ajaxScrollTarget.'"' : '' !!}>{{ $page }}</a></li>
                         @endif
                     @endforeach
                 @endif
@@ -75,7 +79,7 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
             @endphp
 
           </ul>
-          <p class="m-paginator__current-page f-buttons">Page {{ $paginator->currentPage() }}</p>
+          <p class="m-paginator__current-page f-buttons">Page {{ $paginator->appends(request()->query())->currentPage() }}</p>
         </nav>
     @endif
 @else
