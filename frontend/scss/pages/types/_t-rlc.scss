@@ -127,6 +127,7 @@
       height: var(--spacing);
       max-height: var(--max-spacing);
       width: calc(var(--spacing) / 2);
+      max-width: calc(var(--max-spacing) / 2);
     }
     @include breakpoint('xsmall') {
       --spacing: calc(100vw / 2);
@@ -564,6 +565,10 @@
         padding: 15px;
       }
     }
+    .m-prefooter-section-wrapper {
+      max-width: 1500px;
+      margin: auto;
+    }
   }
   .f-contact {
     &>.m-prefooter-section-background {
@@ -655,11 +660,13 @@
   }
   .f-faqs {
     &>.m-prefooter-section-background {
-      display: flex;
-      flex-wrap: wrap;
       @include breakpoint('xsmall') {
         padding-top: 0;
       }
+    }
+    .m-prefooter-section-wrapper {
+      display: flex;
+      flex-wrap: wrap;
       .faq-header {
         flex-basis: 100%;
         @include breakpoint('xsmall') {
