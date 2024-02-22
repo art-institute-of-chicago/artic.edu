@@ -18,7 +18,7 @@ class MyMuseumTour extends Model
 
     protected $casts = ['tour_json' => 'array'];
 
-    public function scopeNotSent(Builder $query)
+    public function scopeNotSent($query)
     {
         $query->where('confirmation_sent', false);
         $query->whereNotNull('pdf_download_path');
