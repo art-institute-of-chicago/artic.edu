@@ -103,6 +103,14 @@ class EventController extends ModuleController
         return [];
     }
 
+    protected function previewData($item)
+    {
+        return [
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
+        ];
+    }
+
     protected function formData($request)
     {
         $item = $this->repository->getById(request('event') ?? request('id'));
@@ -110,6 +118,7 @@ class EventController extends ModuleController
 
         return [
             'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
             'eventTypesList' => $this->repository->getEventTypesList(),
             'eventAudiencesList' => $this->repository->getEventAudiencesList(),
             'eventLayoutsList' => $this->repository->getEventLayoutsList(),
