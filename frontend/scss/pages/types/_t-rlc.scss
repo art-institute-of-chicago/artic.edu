@@ -285,6 +285,7 @@
       }
       .showcase-description {
         font-size: 17px;
+        margin-top: 0;
         line-height: 28px;
         a {
           &:link {
@@ -299,6 +300,9 @@
           &:focus:hover, &:hover {
             color: $color__link--hover;
           }
+        }
+        p {
+          @include tucked-margin-top($f-body, ('xsmall': 40, 'small+': 56));
         }
       }
     }
