@@ -159,9 +159,11 @@
     }
   }
   .o-info-grid {
-    .spacer {
-      position: relative;
-      top: 57px;
+    @include breakpoint('small+') {
+      .spacer {
+        position: relative;
+        top: 57px;
+      }
     }
     .semicircle {
       background-color: $color__rlc__blue_sapphire;
