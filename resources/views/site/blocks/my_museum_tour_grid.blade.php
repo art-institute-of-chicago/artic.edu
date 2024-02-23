@@ -13,6 +13,9 @@
 <div class="aic-ct-grid-container" data-blur-img>
     @foreach($block->getRelated('myMuseumTourItems') as $index => $my_museum_tour)
         <div class="aic-ct-grid-card">
+            @if ($my_museum_tour->tour_id)
+                <a href="{{ route('my-museum-tour.show', $my_museum_tour->tour_id) }}">
+            @endif
             <div class="aic-ct-grid-card__top">
                 @if($my_museum_tour->imageAsArray('teaser_image'))
                     @component('components.atoms._img')
@@ -38,6 +41,9 @@
                     <h3 class="aic-ct-grid-card__title f-headline-editorial">{!! $my_museum_tour->title !!}</h3>
                 </div>
             </div>
+            @if ($my_museum_tour->tour_id)
+                </a>
+            @endif
 
             <div class="aic-ct-grid-card__details">
                 @if ($my_museum_tour->artwork_count)
