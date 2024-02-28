@@ -132,4 +132,21 @@
             }
         }
     }
+
+    &.custom-banner-block--stories {
+        &.custom-banner-block--variation-cloud {
+            .button-wrapper {
+                max-width: 60%;
+            }
+            .tag-cloud {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                align-items: center;
+                a {
+                    margin: 6px;
+                }
+            }
+        }
+    }
 }
