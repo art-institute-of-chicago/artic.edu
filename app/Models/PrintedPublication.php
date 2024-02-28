@@ -46,13 +46,11 @@ class PrintedPublication extends AbstractModel
         'publish_end_date' => 'date',
         'migrated_at' => 'datetime',
         'published' => 'boolean',
-        'active' => 'boolean',
         'public' => 'boolean',
     ];
 
     public $attributes = [
         'published' => false,
-        'active' => false,
         'public' => false,
     ];
 
