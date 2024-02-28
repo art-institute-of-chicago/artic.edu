@@ -21,6 +21,7 @@
     'name' => 'tag',
     'label' => 'Tag',
     'maxlength' => 100,
+    'type' => 'text',
 ])
 
 @formField('wysiwyg', [
@@ -49,10 +50,12 @@
 
 @formField('input', [
     'name' => 'link_label',
-    'label' => 'Link Label'
+    'label' => 'Link Label',
+    'type' => 'text',
 ])
 
 @formField('input', [
     'name' => 'link_url',
-    'label' => 'Link Url'
+    'label' => 'Link Url',
+    'type' => 'text',
 ])
