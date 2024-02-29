@@ -62,11 +62,6 @@ class LandingPageController extends ModuleController
         ];
     }
 
-    protected function getRoutePrefix()
-    {
-        return null;
-    }
-
     protected function previewData($item)
     {
         $repository = app(LandingPageRepository::class);
