@@ -1,7 +1,7 @@
 @php
     $currentUrl = explode('/', request()->url());
-    $type = \App\Models\LandingPage::find(intval($currentUrl[4]))->type;
-
+    $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[4]))->type : null;
+    
     switch ($type) {
         case 'RLC':
             $themes = ['rlc'];

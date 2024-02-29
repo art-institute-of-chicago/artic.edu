@@ -1,6 +1,6 @@
 @php
     $currentUrl = explode('/', request()->url());
-    $type = \App\Models\LandingPage::find(intval($currentUrl[4]))->type;
+    $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[4]))->type : null;
     $categoriesList = \App\Models\Category::all()->pluck('name', 'id')->toArray();
 
     switch ($type) {
