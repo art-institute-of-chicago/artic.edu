@@ -6,12 +6,15 @@
         position: relative;
         width: 100%;
         height: 200px;
+
         @include breakpoint('medium') {
             height: 300px;
         }
+
         @include breakpoint('small') {
             height: 300px;
         }
+
         @include breakpoint('xsmall') {
             height: 300px;
         }
@@ -32,7 +35,7 @@
             bottom: 0;
             left: 0;
             background: rgba($color__black, .4);
-          }
+        }
 
         img {
             height: 100%;
@@ -61,18 +64,21 @@
         padding: 85px;
         height: 100%;
         width: 100%;
+
         @include breakpoint('medium') {
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
             padding: 50px;
         }
+
         @include breakpoint('small') {
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
             padding: 50px;
         }
+
         @include breakpoint('xsmall') {
             flex-direction: column;
             justify-content: space-around;
@@ -84,6 +90,7 @@
             line-height: 28px;
             display: block;
             color: white !important;
+
             &::before {
                 padding: 0 !important;
             }
@@ -94,6 +101,7 @@
             margin-top: 20px;
             margin-right: 20px;
             color: white !important;
+
             &::before {
                 padding: 16px 0 0 0 !important;
             }
@@ -104,6 +112,7 @@
         height: auto;
         display: flex;
         align-items: center;
+
         @include breakpoint('xsmall') {
             padding-top: 10px;
             flex-direction: column;
@@ -113,6 +122,7 @@
 
         >.google-play {
             height: 40px !important;
+
             >img {
                 width: auto;
                 height: 100%;
@@ -122,10 +132,12 @@
         >.app-store {
             height: 40px !important;
             margin-right: 12px;
+
             @include breakpoint('xsmall') {
                 margin-right: 0;
                 margin-bottom: 6px;
             }
+
             >img {
                 width: auto;
                 height: 100%;
@@ -138,11 +150,13 @@
             .button-wrapper {
                 max-width: 60%;
             }
+
             .tag-cloud {
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
                 align-items: center;
+
                 a {
                     margin: 6px;
                 }
