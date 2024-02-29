@@ -12,7 +12,7 @@
     $variation = $block->input('variation');
 @endphp
 
-<div class="m-showcase-block {{ $theme ? 'showcase--'.$theme : '' }} {{ $variation ? 'showcase--variation-'.$variation : '' }}">
+<div id="{{ str(strip_tags($heading))->kebab() }}" class="m-showcase-block {{ $theme ? 'showcase--'.$theme : '' }} {{ $variation ? 'showcase--variation-'.$variation : '' }}">
     <div class="m-showcase-wrapper">
         @if ($heading)
             <h3 id="{{ Str::slug(strip_tags($heading)) }}" class="showcase-header">{!! $heading !!}</h3>

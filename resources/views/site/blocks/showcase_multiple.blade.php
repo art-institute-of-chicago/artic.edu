@@ -5,7 +5,7 @@
     $variation = $block->input('variation');
 @endphp
 
-<div class="m-showcase-multiple-block {{ $theme ? 'showcase--'.$theme : '' }} {{ $variation ? 'showcase--variation-'.$variation : '' }}">
+<div id="{{ str(strip_tags($heading))->kebab() }}" class="m-showcase-multiple-block {{ $theme ? 'showcase--'.$theme : '' }} {{ $variation ? 'showcase--variation-'.$variation : '' }}">
     <div class="m-showcase-background">
         <div class="m-showcase-wrapper">
             <div class="m-showcase-block__header-wrapper">
