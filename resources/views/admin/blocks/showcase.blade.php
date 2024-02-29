@@ -7,10 +7,6 @@
             $themes = ['default', 'home'];
             $mediaTypes = ['image'];
             break;
-        case 'Visit':
-            $themes = ['default', 'visit'];
-            $mediaTypes = ['image'];
-            break;
         case 'RLC':
             $themes = ['default', 'rlc'];
             $mediaTypes = ['image', 'video'];
