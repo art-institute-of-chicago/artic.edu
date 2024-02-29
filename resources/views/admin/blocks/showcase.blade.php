@@ -231,12 +231,6 @@
     ])
 
     @formField('input', [
-        'type' => 'text',
-        'name' => 'heading',
-        'label' => 'Heading',
-    ])
-
-    @formField('input', [
         'name' => 'tag',
         'label' => 'Tag',
         'type' => 'text',
