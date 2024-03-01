@@ -260,6 +260,7 @@
       }
     }
     .m-showcase-media {
+      margin: auto;
       position: relative;
       figcaption {
         @include breakpoint('small+') {
