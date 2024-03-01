@@ -3,11 +3,17 @@
     $bg_type = $block->input('background_type');
     $btn_type = $block->input('button_type');
 
+    $categories = collect($block->input('categories'))->take(12);
+    $tags = \App\Models\Category::whereIn('id', $categories)->get();
+
     $heading = $block->input('title');
     $body = $block->input('body');
 
+    $theme = $block->input('theme');
+    $variation = $block->input('variation');
+
 @endphp
-<div class="m-custom-banner-block">
+<div class="m-custom-banner-block {{ $theme ? 'custom-banner-block--'.$theme : '' }} {{ $variation ? 'custom-banner-block--variation-'.$variation : '' }}">
     <span class="hr"></span>
     <div class="content-wrapper">
         <div class="background-wrapper">
@@ -38,13 +44,19 @@
                 @endcomponent
             </div>
             <div class="button-wrapper">
+            @if ($variation == 'cloud')
+                <div class="tag-cloud">
+                    @foreach ($tags as $tag)
+                        <a class="tag f-tag" href="{{ route('articles', ['category' => $tag->id]) }}">{{ $tag->name }}</a>                    
+                    @endforeach
+                </div>
+            @else
                 @if($btn_type == 'mobile_app')
                     <div class="banner-apps">
                         <a class="app-store" target=”_blank” href="https://apps.apple.com/us/app/art-institute-of-chicago-app/id1130366814?itsct=apps_box_badge&amp;itscg=30200"><img src="{{FrontendHelpers::revAsset('images/icon_app-store.svg')}}" alt="Download on the App Store"></a>
                         <a class="google-play" target=”_blank” href='https://play.google.com/store/apps/details?id=edu.artic&hl=en_US&gl=US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src="{{FrontendHelpers::revAsset('images/icon_google-play.svg')}}"/></a>
                     </div>
                 @endif
-
                 @if($btn_type == 'custom')
                     @component('components.atoms._btn')
                         @slot('variation', 'primary')
@@ -54,6 +66,7 @@
                     @endcomponent
                 @endif
             </div>
+            @endif
         </div>
     </div>
 </div>

@@ -1,9 +1,11 @@
 @php
     $heading = $block->present()->input('heading');
     $intro = $block->present()->input('intro');
+    $theme = $block->input('theme');
+    $variation = $block->input('variation');
 @endphp
 
-<div id="{{ str($block->input('id'))->after('#') }}" class="m-showcase-multiple-block">
+<div id="{{ str(strip_tags($heading))->kebab() }}" class="m-showcase-multiple-block {{ $theme ? 'showcase--'.$theme : '' }} {{ $variation ? 'showcase--variation-'.$variation : '' }}">
     <div class="m-showcase-background">
         <div class="m-showcase-wrapper">
             <div class="m-showcase-block__header-wrapper">

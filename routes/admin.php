@@ -13,8 +13,6 @@ use App\Http\Controllers\Admin\PageController;
 
 Route::module('pages');
 
-Route::module('landingPages');
-
 Route::group(['prefix' => 'homepage'], function () {
     Route::name('homepage.landing')->get('landing', [PageController::class, 'home']);
     Route::module('homeFeatures');
