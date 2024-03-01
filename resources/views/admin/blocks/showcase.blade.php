@@ -52,6 +52,12 @@
             ],
         ]
     ])
+
+    @formField('input', [
+        'name' => 'heading',
+        'label' => 'Heading',
+        'type' => 'text',
+    ])
 @endcomponent
 
 @if (count($mediaTypes) > 1)
@@ -115,12 +121,6 @@
     ])
 
         @formField('input', [
-            'type' => 'text',
-            'name' => 'heading',
-            'label' => 'Heading',
-        ])
-
-        @formField('input', [
             'name' => 'tag',
             'label' => 'Tag',
             'type' => 'text',
@@ -167,12 +167,6 @@
         'fieldValues' => 'default',
         'renderForBlocks' => true,
     ])
-
-        @formField('input', [
-            'type' => 'text',
-            'name' => 'heading',
-            'label' => 'Heading',
-        ])
 
         @formField('input', [
             'name' => 'tag',
