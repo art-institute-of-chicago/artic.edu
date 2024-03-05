@@ -106,7 +106,6 @@ class ExactTargetService
         if ($this->wasFormPrefilled || $this->lastName) {
             $deRow->props['LastName'] = $this->lastName;
         }
-        dd($deRow->props);
 
         $deRow->CustomerKey = config('exact-target.customer_key');
         $deRow->Name = config('exact-target.name');
