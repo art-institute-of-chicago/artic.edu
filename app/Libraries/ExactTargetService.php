@@ -80,6 +80,7 @@ class ExactTargetService
         $deRow->authStub = $client;
         $deRow->props = [
             'Email' => $this->email,
+            'OptMuseum' => 'True',
         ];
 
         if ($this->list) {
