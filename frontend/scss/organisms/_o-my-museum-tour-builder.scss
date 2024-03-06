@@ -1,0 +1,728 @@
+// ------ My Museum Tour
+
+.my-museum-tour {
+  // Override the reset styles for dialog elements
+  dialog {
+    display: revert;
+    margin: revert;
+    border: none;
+    padding: 0;
+    max-width: 680px;
+    background-color: $color__white;
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center top;
+    }
+    &::backdrop {
+      background-color: rgb(0,0,0,0.6);
+    }
+
+  }
+
+  label {
+    font-weight: 400;
+
+    em {
+      font-style: normal;
+      font-weight: 300;
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px $color__white inset;
+  }
+
+  .checkbox {
+    @include untuck;
+
+    label {
+      display: inline-block;
+      color: $color__black--80;
+    }
+
+    input[type=checkbox]:checked + span label::before {
+      background-color: $color__grey--130;
+      border-color: $color__grey--130;
+    }
+
+    input + span {
+      @include untuck;
+    }
+  }
+
+  .input__io-container textarea {
+    padding-right: 100px;
+
+    & + output {
+      top: 16px;
+      transform: none;
+    }
+  }
+}
+
+// ---- My Museum Tour: General
+
+.aic-ct-full-bleed {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.aic-ct-full-bleed__core {
+  padding: 0 4.6875vw;
+
+  @include breakpoint('xlarge') {
+    padding: 0;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+}
+
+.s-body-locked--ct {
+  // For supporting native position sticky the builder unsets the body overflow value
+  // When the moodal is open other styles will be effected by this so we need to override it
+  body {
+    overflow: hidden !important;
+  }
+}
+
+// ---- My Museum Tour: Preview
+
+.aic-ct-preview__content {
+  .aic-ct-loader {
+    margin: 32px 0;
+  }
+}
+
+.aic-ct-preview__header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $color__white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+
+
+  h2 {
+    @include untuck;
+  }
+}
+
+.aic-ct-preview__close {
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.aic-ct-preview__core {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.aic-ct-preview__image {
+  display: flex;
+  justify-content: center;
+
+  img {
+    max-height: 500px;
+    margin-bottom: 32px;
+  }
+}
+
+.aic-ct-preview__title {
+  margin-bottom: 12px;
+}
+
+.aic-ct-preview__date {
+  @include untuck;
+}
+
+.aic-ct-preview__details {
+  margin-bottom: 24px;
+}
+
+.aic-ct-preview__links {
+  padding: 24px 0;
+  border-top: 1px solid $color__black--20;
+  border-bottom: 1px solid $color__black--20;
+  margin-bottom: 24px;
+
+  p {
+    @include untuck;
+  }
+}
+
+.aic-ct-preview__description {
+  margin-bottom: 24px;
+}
+
+.aic-ct-preview__description-title {
+  margin-bottom: 12px;
+}
+
+.aic-ct-preview__learn-more {
+  display: inline-block;
+  margin-top: 24px;
+}
+
+.aic-ct-preview__close-trans {
+  color: $color__link;
+  padding-left: 0;
+  padding-right: 0;
+
+  svg {
+    // Alignment tweaks might not be needed
+    // but doesn't align right for some reason
+    margin-top: 0;
+    vertical-align: middle;
+  }
+}
+
+// ---- My Museum Tour: Header
+
+.aic-ct-header {
+  @include untuck;
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  padding: 20px 0;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  background-color: $color__red--120;
+  color: $color__white;
+  z-index: 9;
+
+  .aic-ct-header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}
+
+.aic-ct-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  // Pull in previous and next buttons on small screens
+  margin: 0 -25%;
+}
+
+.aic-ct-item-info__count {
+  display: flex;
+  gap: 8px;
+}
+
+.aic-ct-item-info__count-num {
+  @include untuck;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  min-width: 24px;
+  aspect-ratio: 1;
+  color: $color__grey--100;
+  background-color: $color__white;
+  font-size: 0.778em;
+  line-height: 1;
+  font-weight: 500;
+
+  @include breakpoint('small+') {
+    min-width:28px;
+  }
+}
+
+// ---- My Museum Tour: Header Slots
+
+.aic-ct-header__slots {
+  display: flex;
+  gap: 8px;
+}
+
+.aic-ct-header__slot {
+
+  .btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    color: inherit;
+    border: 1px dashed transparent;
+
+    &[disabled] {
+      opacity: 0.75;
+    }
+  }
+}
+
+.aic-ct-header__slot--inactive {
+  .btn {
+    border-color: $color__white;
+  }
+}
+
+
+
+
+// ---- My Museum Tour: Header Buttons
+
+.aic-ct-header__button {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: $color__white;
+  font-weight: 400;
+  // Set to size of longest text to prevent cosmetic jumps
+  // This may need updating if the text changes
+  flex-basis: 72px;
+
+  svg {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus:hover {
+    color: $color__white;
+  }
+}
+
+.aic-ct-header__button--next {
+  svg {
+    margin-left: 3px;
+  }
+
+  @media (min-width: 400px) {
+    svg {
+      margin-left: 9px;
+    }
+  }
+}
+
+.aic-ct-header__button--back {
+  order: -1;
+
+  svg {
+    margin-right: 3px;
+    rotate: 180deg;
+  }
+
+  @media (min-width: 400px) {
+    svg {
+      margin-right: 9px;
+    }
+  }
+}
+
+.aic-ct-header__button--exit {
+  color: $color__black--20;
+}
+
+// ---- My Museum Tour: Intro
+
+.aic-ct-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 32px;
+  margin-bottom: 32px;
+}
+
+.aic-ct-intro--keyline {
+  padding-bottom: 32px;
+  border-bottom: 1px solid $color__black--35;
+}
+
+// -- My Museum Tour: Searchbar
+
+.aic-ct-search {
+  margin-bottom: 32px;
+}
+
+// ---- My Museum Tour: Themes
+
+.aic-ct-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+// N.b. because of how tag--senary and tag--quaternary are currently defined and
+// coupled to the close icon and thumbnail we can't use those classes alone
+// (senary has the thumbnail but no close icon, quaternary has the close icon but no thumbnail)
+
+.aic-ct-theme-toggle {
+  .icon--close {
+    color: $color__text--secondary;
+  }
+}
+
+// Borrow just the color styles from tag--quaternary
+.aic-ct-theme-toggle--active {
+  color: $color__white !important;
+  background-color: $color__black--90 !important;
+
+  &:hover,
+  &:focus {
+    color: $color__white !important;
+    background-color: $color__black--80 !important;
+  }
+
+  &:active {
+    color: $color__white !important;
+    background-color: $color__black--90 !important;
+  }
+}
+
+.aic-ct-theme-toggle__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+// ---- My Museum Tour: Search results
+
+.aic-ct-pre-result-text {
+  @include untuck;
+  margin-bottom: 24px;
+}
+
+.aic-ct-search-results {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.aic-ct-search-results__message {
+  align-self: center;
+}
+
+.aic-ct-result__button {
+  display: block;
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-align: unset;
+}
+
+.aic-ct-result--selected {
+  .m-listing__img {
+    border: 4px solid $color__red--100;
+  }
+
+  &.m-listing--variable-height .m-listing__img img {
+    // Remove unflattering gap between border and image
+    object-fit: cover;
+  }
+
+  .aic-ct-selected-marker {
+    display: flex;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $color__red--100;
+    color: $color__white;
+  }
+}
+
+// ---- My Museum Tour: Loader
+
+.aic-ct-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+// ---- My Museum Tour: Footer
+
+.aic-ct-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px;
+  background-color: $color__black;
+  color: $color__white;
+}
+
+.aic-ct-nav {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.aic-ct-nav__button {
+  position: relative;
+  padding: 0 !important;
+  white-space: normal;
+  max-width: 180px;
+
+  & + & {
+    margin-left: 0;
+  }
+
+  &:not(:first-child) .aic-ct-nav__number::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: -12px;
+    width: calc(50% - 8px);
+    height: 1px;
+    background: $color__black--42;
+  }
+  &:not(:last-child) .aic-ct-nav__number::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: -12px;
+    width: calc(50% - 8px);
+    height: 1px;
+    background: $color__black--42;
+  }
+}
+
+.aic-ct-nav__button-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $color__white;
+
+  & .aic-ct-nav__number {
+    color: $color__black--20;
+  }
+}
+
+.aic-ct-nav__number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  min-width: 24px;
+  aspect-ratio: 1;
+  margin-bottom: 6px;
+  border: 1px solid $color__grey--100;
+  font-size: 0.875em;
+  line-height: 1;
+}
+
+.aic-ct-nav__title {
+  font-size: 0.875em;
+  line-height: 1.4285;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.aic-ct-nav__tagline {
+  font-size: 0.75em;
+  line-height: 1.5;
+}
+
+.aic-ct-nav__button--active {
+
+  & .aic-ct-nav__title {
+    text-decoration: none;
+  }
+
+  & .aic-ct-nav__number {
+    color: $color__white;
+    background-color: $color__red--100;
+    box-shadow: 0 0 0 2px $color__red--100;
+    border-color: $color__red--100;
+    font-size: 1em;
+  }
+}
+
+.aic-ct-nav__button--done {
+  & .aic-ct-nav__number {
+    background-color: $color__white;
+    color: $color__grey--100;
+  }
+}
+
+// ------ My Museum Tour: Hero image
+
+.aic-ct-hero {
+  height: 240px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+// ------ My Museum Tour: Tour metadata
+
+.aic-ct-fieldset {
+  margin-bottom: 32px;
+  &::before {
+    display: none;
+  }
+
+  .o-blocks:first-child {
+    margin-top: 0;
+  }
+
+  .m-fieldset__fieldset:first-child {
+    margin-top: 0;
+  }
+}
+
+.input input:invalid,
+.textarea textarea:invalid {
+  border-color: $color__red--100;
+}
+
+// ------ My Museum Tour: Tour items
+
+.aic-ct-tour__intro {
+  margin-bottom: 32px;
+}
+
+// ------ My Museum Tour: Tour item
+
+.aic-ct-tour-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-top: 1px solid $color__black--20;
+}
+
+.aic-ct-tour-item__lockup {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 12px;
+}
+
+.aic-ct-tour-item__info {
+  margin-right: auto;
+}
+
+.aic-ct-tour-item__image {
+  width: 96px;
+  object-fit: cover;
+}
+
+.aic-ct-tour-item__title,
+.aic-ct-tour-item__artist,
+.aic-ct-tour-item__gallery {
+  @include untuck;
+}
+
+.aic-ct-tour-item__title {
+  margin-bottom: 4px;
+  color: $color__black--90;
+}
+
+.aic-ct-tour-item__artist {
+  margin-bottom: 8px;
+}
+
+.aic-ct-tour-item__gallery {
+  svg {
+    margin-right: 2px;
+  }
+}
+
+.aic-ct-tour-item__description {
+  max-width: 724px;
+}
+
+.aic-ct-tour-item__note {
+  width: 100%;
+}
+
+.aic-ct-tour-item__remove {
+  padding-left: 0;
+  padding-right: 0;
+  color: $color__grey--100;
+}
+
+
+// ------ My Museum Tour: Tour CTA
+
+.aic-ct-tour__cta {
+  padding: 20px 0;
+  background-color: $color__black--5;
+  border-top: 1px solid $color__black--20;
+
+  .aic-ct-tour__cta-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .f-body {
+    @include untuck;
+  }
+
+  .aic-ct-tour__cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include breakpoint('medium+') {
+      flex-direction: row;
+    }
+  }
+
+  .btn {
+    margin: 0;
+  }
+}
+
+// ------ My Museum Tour: Tour validation
+
+.aic-ct-validation__content,
+.aic-ct-validation__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 724px;
+}
+
+.aic-ct-validation__content {
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  text-align: center;
+
+  ul {
+    text-align: left;
+  }
+}
+
+.aic-ct-validation__actions {
+  .btn {
+    margin: 0;
+  }
+}

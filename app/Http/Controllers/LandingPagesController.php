@@ -6,9 +6,9 @@ use App\Models\Admission;
 use App\Models\Hour;
 use App\Models\Lightbox;
 use App\Models\LandingPage;
-use App\Helpers\StringHelpers;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class LandingPagesController extends FrontController
 {
@@ -152,7 +152,7 @@ class LandingPagesController extends FrontController
             'filledLogo' => false,
             'title' => $title,
             'intro' => $item->intro,
-            'landingPageType' => StringHelpers::pageBlades($item->type),
+            'landingPageType' => Str::kebab($item->type),
         ];
 
         $blockHeadings = $item->blocks->pluck('content')->pluck('heading')->filter();
@@ -184,6 +184,26 @@ class LandingPagesController extends FrontController
                     ],
                     'accesibility_link' => $item->labels->get('visit_faq_accessibility_link'),
                     'faqs' => $item->faqs->all(),
+                ];
+                break;
+
+            case $types->search('My Museum Tour'):
+                $viewData = [
+                    'header_my_museum_tour_text' => $item->labels->get('header_my_museum_tour_text'),
+                    'header_my_museum_tour_primary_button_label' => $item->labels->get('header_my_museum_tour_primary_button_label'),
+                    'header_my_museum_tour_primary_button_link' => $item->labels->get('header_my_museum_tour_primary_button_link'),
+                    'header_my_museum_tour_secondary_button_label' => $item->labels->get('header_my_museum_tour_secondary_button_label'),
+                    'header_my_museum_tour_secondary_button_link' => $item->labels->get('header_my_museum_tour_secondary_button_link'),
+                    'tours_create_cta_module_image' => $item->imageFront('tours_create_cta_module_image'),
+                    'tours_create_cta_module_action_url' => $item->labels->get('tours_create_cta_module_action_url'),
+                    'tours_create_cta_module_header' => $item->labels->get('tours_create_cta_module_header'),
+                    'tours_create_cta_module_button_text' => $item->labels->get('tours_create_cta_module_button_text'),
+                    'tours_create_cta_module_body' => $item->labels->get('tours_create_cta_module_body'),
+                    'tours_tickets_cta_module_image' => $item->imageFront('tours_tickets_cta_module_image'),
+                    'tours_tickets_cta_module_action_url' => $item->labels->get('tours_tickets_cta_module_action_url'),
+                    'tours_tickets_cta_module_header' => $item->labels->get('tours_tickets_cta_module_header'),
+                    'tours_tickets_cta_module_button_text' => $item->labels->get('tours_tickets_cta_module_button_text'),
+                    'tours_tickets_cta_module_body' => $item->labels->get('tours_tickets_cta_module_body'),
                 ];
                 break;
 

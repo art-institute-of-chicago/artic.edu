@@ -1,0 +1,260 @@
+$disable-font-loading: true;
+
+@import 'setup/variables';
+@import 'setup/colors';
+@import 'setup/mixins';
+@import 'setup/typography';
+@import 'atoms/loader';
+
+@page {
+  size: 11in 8.5in landscape;
+  margin: 0.25in 0.375in;
+}
+
+.p-mymuseumtour-pdflayout {
+
+  body {
+    color: $color__black;
+  }
+
+  table tr td *::before {
+    padding-top: 0px;
+  }
+
+  table tr td *::after {
+    margin-bottom: 0px;
+  }
+
+  table, th, td {
+    border: 0px solid black;
+  }
+
+  table {
+    width: 10.25in;
+  }
+
+  table tr td {
+    width: 0.625in;
+    padding: 0;
+    vertical-align: top;
+  }
+
+  table tr td.col1 {
+    width: 2.3681in;
+  }
+
+  table tr td.col2 {
+    width: 2.325in;
+  }
+
+  table tr td.col3 {
+    width: 2.375in;
+  }
+
+  table tr td.col4 {
+    width: 1.1in;
+  }
+
+  table tr td.col51 {
+    width: 0.1628in;
+  }
+
+  table tr td.col52 {
+    width: 0.1149in;
+  }
+
+  table tr td.col53 {
+    width: 0.6181in;
+  }
+
+  table tr td.gutter {
+    width: 0.2in;
+  }
+
+  table tr td.crease {
+    width: 0.45in;
+    position: relative;
+  }
+
+  table tr td.crease::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1px" height="0.334in" fill="%23fff"><rect width="1px" height="0.168in" fill="%23ddd"/></svg>');
+    background-repeat: repeat-y;
+    transform: translateX(-50%);
+  }
+
+  .artwork-image-container {
+    width: 2.3542in;
+    height: 2.6597in;
+    overflow: hidden;
+  }
+
+  .heading-image-container {
+    width: 4.95in;
+    height: 2.6579in;
+    overflow: hidden;
+  }
+
+  .on-new-page {
+    break-before: page;
+  }
+
+  table tr td img {
+    width: 100%;
+    display: block;
+  }
+
+  table tr td img.landscape {
+    width: auto;
+    height: 100%;
+    display: block;
+    position: relative;
+    left: -25%;
+  }
+
+  table tr td svg {
+    width: 70%;
+    height: 70%;
+    display: block;
+  }
+
+  table tr td.tombstone {
+    height: 0.75in;
+  }
+
+  table tr td.vertical-gutter-short {
+    height: 0.125in;
+  }
+
+  table tr td.vertical-gutter-tall {
+    height: 0.2361in;
+  }
+
+  .artwork-divider {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 0.2361in;
+  }
+
+  .artwork-divider::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    transform: translateY(-50%);
+  }
+
+  table tr td.short-description {
+    height: 1.81in;
+  }
+
+  table tr td.logos {
+    vertical-align: bottom;
+  }
+
+  table tr td.logos img {
+    vertical-align: bottom;
+    display: inline-block;
+  }
+
+  #a17 {
+    padding-top: 0px;
+    width: auto;
+  }
+
+  svg {
+    color: #000;
+  }
+
+  .t-artwork-title {
+    font-size: 10pt;
+    line-height: 12pt;
+    padding-bottom: 0.02in;
+    color: $color__black;
+  }
+
+  .t-artist-title {
+    font-size: 8pt;
+    line-height: 10pt;
+    padding-bottom: 0.02in;
+    color: $color__black;
+  }
+
+  .t-gallery-title {
+    font-size: 8pt;
+    line-height: 9pt;
+    padding-bottom: 0;
+    color: $color__black;
+  }
+
+  .t-short-description {
+    font-size: 9pt;
+    line-height: 11pt;
+    color: $color__black;
+  }
+
+  .t-object-note {
+    font-size: 12pt;
+    line-height: 15pt;
+    color: $color__black;
+  }
+
+  .c-object-note {
+    height: 0.8194in;
+    color: $color__black;
+  }
+
+  .t-home-callout-text {
+    font-size: 25pt;
+    line-height: 28pt;
+    color: $color__black;
+  }
+
+  .t-made-by {
+    font-size: 12pt;
+    line-height: 14pt;
+    color: $color__black;
+  }
+
+  .t-sum,
+  .t-sum em {
+    font-size: 9pt;
+    line-height: 12pt;
+    color: $color__black;
+  }
+
+  .t-tour-description {
+    font-size: 18pt;
+    line-height: 21pt;
+    color: $color__black;
+  }
+
+  .t-qr-caption {
+    font-size: 6pt;
+    line-height: 13pt;
+    float: right;
+    color: $color__black;
+  }
+
+  .i-aic {
+    width: 0.625in;
+  }
+
+  .i-bloomberg {
+    width: 1.6655in;
+  }
+
+  .i-qrcode {
+    width: 0.625in;
+    float: right;
+  }
+}

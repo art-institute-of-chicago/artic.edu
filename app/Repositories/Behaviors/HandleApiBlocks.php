@@ -61,7 +61,7 @@ trait HandleApiBlocks
                     }
                 } else {
                     // Load a normal edit
-                    $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'edit', [$relatedElement->id]);
+                    $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . Str::camel($relation)), 'edit', [$relatedElement->id]);
                     $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
                 }
 

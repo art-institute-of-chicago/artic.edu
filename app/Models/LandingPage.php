@@ -46,7 +46,8 @@ class LandingPage extends AbstractModel implements Sortable
         8 => 'Research and Resources',
         9 => 'Articles and Publications',
        10 => 'Stories',
-       11 => 'Custom',
+       11 => 'My Museum Tour',
+       99 => 'Custom',
     ];
 
     protected $presenter = 'App\Presenters\Admin\LandingPagePresenter';
@@ -184,6 +185,22 @@ class LandingPage extends AbstractModel implements Sortable
                 [
                     'name' => 'mobile',
                     'ratio' => 16 / 9,
+                ],
+            ],
+        ],
+        'tours_create_cta_module_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 25 / 4,
+                ],
+            ],
+        ],
+        'tours_tickets_cta_module_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 25 / 4,
                 ],
             ],
         ],

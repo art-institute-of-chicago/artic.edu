@@ -2,12 +2,13 @@
 
 namespace App\Console\Commands;
 
-use App\Models\AbstractModel;
+use App\Models\MyMuseumTour;
 use App\Models\DigitalPublicationSection;
 use Illuminate\Console\Command;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Model;
 use Prince\Prince;
 
 class GeneratePdfs extends Command
@@ -33,6 +34,7 @@ class GeneratePdfs extends Command
      */
     protected static array $models = [
         'collection.publications.digital-publications-sections.show' => DigitalPublicationSection::class,
+        'my-museum-tour.pdf-layout' => MyMuseumTour::class,
     ];
 
     /**
@@ -41,7 +43,7 @@ class GeneratePdfs extends Command
     public function handle()
     {
         foreach (self::$models as $route => $modelClass) {
-            $models = $modelClass::published()->get();
+            $models = method_exists($modelClass, 'published') ? $modelClass::published()->get() : $modelClass::get();
 
             foreach ($models as $model) {
                 try {
@@ -103,10 +105,10 @@ class GeneratePdfs extends Command
     protected function path($model, $route): string
     {
         return route($route, [
-            'pubId' => $model->digitalPublication->id,
-            'pubSlug' => $model->digitalPublication->getSlug(),
+            'pubId' => $model?->digitalPublication?->id,
+            'pubSlug' => $model?->digitalPublication ? $model?->digitalPublication?->getSlug() : null,
             'id' => $model->id,
-            'slug' => $model->getSlug(),
+            'slug' => method_exists($model, 'getSlug') ? $model->getSlug() : null,
         ], false);
     }
 
@@ -124,11 +126,13 @@ class GeneratePdfs extends Command
                 $fileName,
                 'public'
             );
-            unlink($localPath);
+            if (!\App::environment('local')) {
+                unlink($localPath);
+            }
         }
     }
 
-    public static function fileName(AbstractModel $model): string
+    public static function fileName(Model $model): string
     {
         $route = self::route($model);
         return 'download-' . $route . '-' . $model->id . '.pdf';
