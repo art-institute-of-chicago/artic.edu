@@ -206,6 +206,182 @@ class AppServiceProvider extends ServiceProvider
                     'legal-image-licensing' => '/image-licensing',
                     'legal-saic' => 'https://www.saic.edu',
                 ],
+                'primaryNav' => [
+                    [
+                        'name' => 'Visit',
+                        'description' => 'Find all the information you need&mdash;plus helpful tips&mdash;to plan your visit',
+                        'image' => url('/images/navigation-thumbnail-visit.jpg'),
+                        'children' => [
+                            [
+                                'name' => 'Hours',
+                                'url' => route('visit') . '#hours',
+                            ],
+                            [
+                                'name' => 'Admission',
+                                'url' => route('visit') . '#admission',
+                            ],
+                            [
+                                'name' => 'Plan Your Visit',
+                                'url' => route('visit') . '#plan-your-visit',
+                                'children' => [
+                                    [
+                                        'name' => 'Museum map',
+                                        'url' => '/visit/explore-on-your-own/museum-floor-plan',
+                                    ],
+                                    [
+                                        'name' => 'Free daily tours',
+                                        'url' => route('events', ['audience' => 3, 'type' => 6]),
+                                    ],
+                                    [
+                                        'name' => 'What to see in an hour',
+                                        'url' => route('highlights.show', ['id' => 3, 'slug' => 'what-to-see-in-an-hour']),
+                                    ],
+                                    [
+                                        'name' => 'Shopping and dining',
+                                        'url' => '/visit/dining-and-shopping',
+                                    ],
+                                    [
+                                        'name' => 'Accessibility',
+                                        'url' => '/visit/accessibility',
+                                    ],
+                                ],
+                            ],
+                            [
+                                'name' => 'Who&rquo;s Visiting?',
+                                'url' => '',
+                                'children' => [
+                                    [
+                                        'name' => 'First-Time Visitors',
+                                        'url' => '/visit/whos-visiting/first-time-visitors',
+                                    ],
+                                    [
+                                        'name' => 'Families',
+                                        'url' => '/visit/whos-visiting/families-2',
+                                    ],
+                                    [
+                                        'name' => 'Members',
+                                        'url' => '/visit/whos-visiting/members',
+                                    ],
+                                    [
+                                        'name' => 'Teens',
+                                        'url' => '/visit/whos-visiting/teens-2',
+                                    ],
+                                    [
+                                        'name' => 'Educators',
+                                        'url' => '/visit/whos-visiting/educators-2',
+                                    ],
+                                    [
+                                        'name' => 'Group Visits',
+                                        'url' => '/visit/whos-visiting/adult-groups-2',
+                                    ],
+                                ],
+                            ],
+                            [
+                                'name' => 'Mobile App',
+                                'url' => '/visit/explore-on-your-own/mobile-app-audio-tours',
+                            ],
+                            [
+                                'name' => 'Ryan Learning Center',
+                                'url' => '/ryan-learning-center',
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'Exhibitions',
+                        'children' => [
+                            [
+                                'name' => 'Current',
+                                'url' => route('exhibitions'),
+                            ],
+                            [
+                                'name' => 'Upcoming',
+                                'url' => route('exhibitions.upcoming'),
+                            ],
+                            [
+                                'name' => 'Archive',
+                                'url' => route('exhibitions.history'),
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'Art &amp; Artists',
+                        'description' => 'Explore the works in our collection and delve deeper into their stories.',
+                        'image' => url('/images/navigation-thumbnail-art-and-artists.jpg'),
+                        'children' => [
+                            [
+                                'name' => 'Artworks',
+                                'url' => route('collection'),
+                            ],
+                            [
+                                'name' => 'Articles &amp; Videos',
+                                'url' => route('articles_publications'),
+                            ],
+                            [
+                                'name' => 'Research',
+                                'url' => route('collection.research_resources'),
+                                'children' => [
+                                    [
+                                        'name' => 'Library',
+                                        'url' => '/library',
+                                    ],
+                                    [
+                                        'name' => 'Archival Collections',
+                                        'url' => '/archival-collections',
+                                    ],
+                                    [
+                                        'name' => 'Collection Information',
+                                        'url' => '/collection-information',
+                                    ],
+                                    [
+                                        'name' => 'Conservation and Science',
+                                        'url' => '/about-us/departments/conservation-and-science-2',
+                                    ],
+                                ],
+                            ],
+                            [
+                                'name' => 'Publications',
+                                'url' => route('articles_publications'),
+                                'children' => [
+                                    [
+                                        'name' => 'Print Catalogues',
+                                        'url' => route('collection.publications.printed-publications'),
+                                    ],
+                                    [
+                                        'name' => 'Digital Publications',
+                                        'url' => route('collection.publications.digital-publications'),
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'Events',
+                        'description' => 'Join us for a wide range of programs&mdash;there&rquo;s something for visitors of all ages.',
+                        'image' => url('/images/navigation-thumbnail-events.jpg'),
+                        'children' => [
+                            [
+                                'name' => 'Calendar',
+                                'url' => route('events'),
+                            ],
+                            [
+                                'name' => 'Daily Tours',
+                                'url' => route('events', ['type' => 6]),
+                            ],
+                            [
+                                'name' => 'Talks',
+                                'url' => route('events', ['type' => 5]),
+                            ],
+                            [
+                                'name' => 'Art Making',
+                                'url' => route('events', ['type' => 1]),
+                            ],
+                            [
+                                'name' => 'Member Programs',
+                                'url' => route('events', ['audience' => 2]),
+                            ],
+                        ],
+                    ],
+                ],
                 'mobileNav' => [
                     [
                         'name' => 'Visit',
