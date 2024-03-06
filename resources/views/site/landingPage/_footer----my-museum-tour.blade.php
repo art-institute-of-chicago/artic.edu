@@ -18,3 +18,6 @@
     @slot('my_museum_tour', true)
     @slot('my_museum_tour_bottom', true)
 @endcomponent
+
+@component('components.molecules._m-patron-banner')
+@endcomponent
