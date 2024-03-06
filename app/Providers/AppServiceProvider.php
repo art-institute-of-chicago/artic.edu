@@ -225,19 +225,19 @@ class AppServiceProvider extends ServiceProvider
                                 'url' => route('visit') . '#plan-your-visit',
                                 'children' => [
                                     [
-                                        'name' => 'Museum map',
+                                        'name' => 'Museum Map',
                                         'url' => '/visit/explore-on-your-own/museum-floor-plan',
                                     ],
                                     [
-                                        'name' => 'Free daily tours',
+                                        'name' => 'Free Daily Tours',
                                         'url' => route('events', ['audience' => 3, 'type' => 6]),
                                     ],
                                     [
-                                        'name' => 'What to see in an hour',
+                                        'name' => 'What to See in an Hour',
                                         'url' => route('highlights.show', ['id' => 3, 'slug' => 'what-to-see-in-an-hour']),
                                     ],
                                     [
-                                        'name' => 'Shopping and dining',
+                                        'name' => 'Shopping and Dining',
                                         'url' => '/visit/dining-and-shopping',
                                     ],
                                     [
