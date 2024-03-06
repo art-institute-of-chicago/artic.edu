@@ -199,7 +199,7 @@
   padding: 20px 0;
   margin-left: 50%;
   transform: translateX(-50%);
-  background-color: $color__red--120;
+  background-color: $color__teal--my-museum-tour;
   color: $color__white;
   z-index: 9;
 
@@ -422,7 +422,7 @@
 
 .aic-ct-result--selected {
   .m-listing__img {
-    border: 4px solid $color__red--100;
+    border: 4px solid $color__teal--my-museum-tour;
   }
 
   &.m-listing--variable-height .m-listing__img img {
@@ -440,7 +440,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background-color: $color__red--100;
+    background-color: $color__teal--my-museum-tour;
     color: $color__white;
   }
 }
@@ -549,9 +549,9 @@
 
   & .aic-ct-nav__number {
     color: $color__white;
-    background-color: $color__red--100;
-    box-shadow: 0 0 0 2px $color__red--100;
-    border-color: $color__red--100;
+    background-color: $color__teal--my-museum-tour;
+    box-shadow: 0 0 0 2px $color__teal--my-museum-tour;
+    border-color: $color__teal--my-museum-tour;
     font-size: 1em;
   }
 }
