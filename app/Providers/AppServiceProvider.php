@@ -247,7 +247,7 @@ class AppServiceProvider extends ServiceProvider
                                 ],
                             ],
                             [
-                                'name' => 'Who&rquo;s Visiting?',
+                                'name' => 'Who&rsquo;s Visiting?',
                                 'url' => '',
                                 'children' => [
                                     [
@@ -382,68 +382,6 @@ class AppServiceProvider extends ServiceProvider
                         ],
                     ],
                 ],
-                'mobileNav' => [
-                    [
-                        'name' => 'Visit',
-                        'slug' => route('pages.slug', ['slug' => 'visit']),
-                    ],
-                    [
-                        'name' => 'Exhibition &amp; Events',
-                        'children' => [
-                            [
-                                'name' => 'Exhibitions',
-                                'slug' => route('exhibitions'),
-                            ],
-                            [
-                                'name' => 'Events',
-                                'slug' => route('events'),
-                            ],
-                        ],
-                    ],
-                    [
-                        'name' => 'The Collection',
-                        'slug' => route('collection'),
-                        'children' => [
-                            [
-                                'name' => 'Artworks',
-                                'slug' => route('collection'),
-                            ],
-                            [
-                                'name' => 'Writings',
-                                'slug' => route('articles_publications'),
-                            ],
-                            [
-                                'name' => 'Resources',
-                                'slug' => route('collection.research_resources'),
-                            ],
-                        ],
-                    ],
-                    [
-                        'name' => 'Buy Tickets',
-                        'slug' => 'https://sales.artic.edu/admissions',
-                    ],
-                    [
-                        'name' => 'Become A Member',
-                        'slug' => 'https://sales.artic.edu/memberships',
-                    ],
-                    [
-                        'name' => 'Shop',
-                        'slug' => 'https://shop.artic.edu/',
-                    ],
-                    [
-                        'name' => 'About Us',
-                        'slug' => route('pages.slug', 'about-us'),
-                    ],
-                    [
-                        'name' => 'Learn With Us',
-                        'slug' => '/learn-with-us',
-                    ],
-                    [
-                        'name' => 'Support Us',
-                        'slug' => '/support-us',
-                    ],
-                ],
-
             ]);
         });
     }
