@@ -208,21 +208,26 @@ class AppServiceProvider extends ServiceProvider
                 ],
                 'primaryNav' => [
                     [
+                        'name' => 'Buy Tickets',
+                        'class' => 'u-hide@small+',
+                        'url' => 'https://sales.artic.edu/admissions',
+                    ],
+                    [
                         'name' => 'Visit',
                         'description' => 'Find all the information you need&mdash;plus helpful tips&mdash;to plan your visit',
                         'image' => url('/images/navigation-thumbnail-visit.jpg'),
                         'children' => [
                             [
                                 'name' => 'Hours',
-                                'url' => route('visit') . '#hours',
+                                'url' => route('landingPages.slug', 'visit') . '#hours',
                             ],
                             [
                                 'name' => 'Admission',
-                                'url' => route('visit') . '#admission',
+                                'url' => route('landingPages.slug', 'visit') . '#admission',
                             ],
                             [
                                 'name' => 'Plan Your Visit',
-                                'url' => route('visit') . '#plan-your-visit',
+                                'url' => route('landingPages.slug', 'visit') . '#plan-your-visit',
                                 'children' => [
                                     [
                                         'name' => 'Museum Map',
@@ -248,7 +253,7 @@ class AppServiceProvider extends ServiceProvider
                             ],
                             [
                                 'name' => 'Who&rsquo;s Visiting?',
-                                'url' => '',
+                                'url' => route('landingPages.slug', 'visit') . '#who-s-visiting',
                                 'children' => [
                                     [
                                         'name' => 'First-Time Visitors',
@@ -288,6 +293,7 @@ class AppServiceProvider extends ServiceProvider
                     ],
                     [
                         'name' => 'Exhibitions',
+                        'class' => 'u-show@small+',
                         'children' => [
                             [
                                 'name' => 'Current',
@@ -306,6 +312,7 @@ class AppServiceProvider extends ServiceProvider
                     [
                         'name' => 'Art &amp; Artists',
                         'description' => 'Explore the works in our collection and delve deeper into their stories.',
+                        'class' => 'u-show@small+',
                         'image' => url('/images/navigation-thumbnail-art-and-artists.jpg'),
                         'children' => [
                             [
@@ -356,7 +363,8 @@ class AppServiceProvider extends ServiceProvider
                     ],
                     [
                         'name' => 'Events',
-                        'description' => 'Join us for a wide range of programs&mdash;there&rquo;s something for visitors of all ages.',
+                        'description' => 'Join us for a wide range of programs&mdash;there&rsquo;s something for visitors of all ages.',
+                        'class' => 'u-show@small+',
                         'image' => url('/images/navigation-thumbnail-events.jpg'),
                         'children' => [
                             [
