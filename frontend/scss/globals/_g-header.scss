@@ -24,15 +24,15 @@
 .g-header__inner {
   @extend %container;
   position: relative;
-  height: 112px;
+  min-height: 112px;
   border-bottom: 1px solid $color__rules--primary;
 
   @include breakpoint('small+') {
-    height: 128px;
+    min-height: 128px;
   }
 
   @include breakpoint('medium+') {
-    height: 140px;
+    min-height: 140px;
   }
 }
 
@@ -111,7 +111,25 @@
 
 .g-header nav li {
   flex: 0 0 auto;
-  margin-left: 28px;
+  margin-left: 16px;
+  @include breakpoint('medium+') {
+    margin-left: 32px;
+  }
+  img {
+    display: none;
+    position: absolute;
+    right: 100%;
+    top: 100px;
+    width: 25vw;
+  }
+  .description {
+    display: none;
+    position: absolute;
+  }
+  .sub {
+    display: none;
+    position: absolute;
+  }
 }
 
 .g-header__nav-primary {
@@ -120,13 +138,14 @@
   bottom: 13px;
 
   @include breakpoint('small+') {
-    bottom: 20px;
+    top: 88px
   }
 }
 
 .g-header__nav-primary a,
 .g-header__nav-primary button {
   color: $color__text--secondary;
+  transition: color .25s .25s;
 
   @include breakpoint('small+') {
     color: $color__text--title;
@@ -134,7 +153,8 @@
 }
 
 .g-header__nav-primary a:hover {
-  @include text-underline(1.12em, $color__text--title);
+  color: $color__red--100;
+  transition: color .25s .25s;
 }
 
 .g-header__nav-primary a:active {
@@ -164,9 +184,23 @@
   }
 }
 
+.g-header__nav-primary a {
+  .icon--arrow {
+    transform: rotate(90deg);
+    transition: transform .25s .25s;
+  }
+  &:hover .icon--arrow {
+    transform: rotate(-90deg);
+    transition: transform .25s .25s;
+  }
+}
+
 .g-header__nav-primary svg {
   position: relative;
   top: -1px;
+  @include breakpoint('xsmall') {
+    display: none;
+  }
 }
 
 .g-header__nav-secondary {
