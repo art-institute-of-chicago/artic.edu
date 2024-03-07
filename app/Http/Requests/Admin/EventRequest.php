@@ -49,7 +49,7 @@ class EventRequest extends Request
     {
         $rules = [
             'start_time' => 'required',
-            'end_time' => 'required',
+            'end_time' => 'required|after:start_time',
             'short_description' => 'required',
             'list_description' => 'required',
             'event_host_id' => [
