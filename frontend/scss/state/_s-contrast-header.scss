@@ -70,7 +70,7 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
     }
 
     .g-header__nav-primary a:hover {
-      @include text-underline(1.12em, $color__text--title-contrast, transparent);
+      color: $color__red--100;
     }
 
     .g-header__nav-primary .s-current a {
