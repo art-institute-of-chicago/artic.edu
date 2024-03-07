@@ -223,19 +223,6 @@ class LandingPage extends AbstractModel implements Sortable
         return $query->whereIn('id', $ids);
     }
 
-    public function scopeBySlug($query, $slug = null)
-    {
-        if (empty($slug)) {
-            return $query;
-        }
-
-        return $query->join('landing_page_slugs', function ($join) use ($slug) {
-            $join->on('landing_page_slugs.landing_page_id', 'landing_pages.id')
-                 ->where('landing_page_slugs.slug', $slug)
-                 ->where('landing_page_slugs.active', true);
-        });
-    }
-
     public function scopeById($query, $id = null)
     {
         if (empty($id)) {

@@ -28,7 +28,7 @@ class LandingPagesController extends FrontController
 
     public function slug($slug)
     {
-        $item = $this->landingPageRepository->published()->bySlug($slug)->firstOrFail();
+        $item = $this->landingPageRepository->published()->forSlug($slug)->firstOrFail();
         return $this->show($item->id, $slug);
     }
 
