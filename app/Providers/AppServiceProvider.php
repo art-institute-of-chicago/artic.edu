@@ -219,15 +219,15 @@ class AppServiceProvider extends ServiceProvider
                         'children' => [
                             [
                                 'name' => 'Hours',
-                                'url' => route('landingPages.slug', 'visit') . '#hours',
+                                'url' => route('visit') . '#hours',
                             ],
                             [
                                 'name' => 'Admission',
-                                'url' => route('landingPages.slug', 'visit') . '#admission',
+                                'url' => route('visit') . '#admission',
                             ],
                             [
                                 'name' => 'Plan Your Visit',
-                                'url' => route('landingPages.slug', 'visit') . '#plan-your-visit',
+                                'url' => route('visit') . '#plan-your-visit',
                                 'children' => [
                                     [
                                         'name' => 'Museum Map',
@@ -253,7 +253,7 @@ class AppServiceProvider extends ServiceProvider
                             ],
                             [
                                 'name' => 'Who&rsquo;s Visiting?',
-                                'url' => route('landingPages.slug', 'visit') . '#who-s-visiting',
+                                'url' => route('visit') . '#who-s-visiting',
                                 'children' => [
                                     [
                                         'name' => 'First-Time Visitors',
