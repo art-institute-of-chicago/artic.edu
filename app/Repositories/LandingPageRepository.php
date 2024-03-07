@@ -138,10 +138,23 @@ class LandingPageRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        // Art & Ideas
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
             'experiences' => false,
+        ]);
+
+        $this->updateMultiBrowserApiRelated($object, $fields, 'top_stories', [
+            'articles' => false,
+            'highlights' => false,
+            'experiences' => false,
+            'videos' => false,
+        ]);
+
+        $this->updateMultiBrowserApiRelated($object, $fields, 'most_popular_stories', [
+            'articles' => false,
+            'highlights' => false,
+            'experiences' => false,
+            'videos' => false,
         ]);
 
         parent::afterSave($object, $fields);
@@ -154,6 +167,20 @@ class LandingPageRepository extends ModuleRepository
         $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [
             'articles' => false,
             'experiences' => false,
+        ]);
+
+        $fields['browsers']['top_stories'] = $this->getFormFieldsForMultiBrowserApi($object, 'top_stories', [], [
+            'articles' => false,
+            'highlights' => false,
+            'experiences' => false,
+            'videos' => false,
+        ]);
+
+        $fields['browsers']['most_popular_stories'] = $this->getFormFieldsForMultiBrowserApi($object, 'most_popular_stories', [], [
+            'articles' => false,
+            'highlights' => false,
+            'experiences' => false,
+            'videos' => false,
         ]);
 
         return $fields;
