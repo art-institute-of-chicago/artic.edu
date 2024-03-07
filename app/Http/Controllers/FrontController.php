@@ -43,6 +43,9 @@ class FrontController extends BaseController
         if (config('aic.is_preview_mode')) {
             return;
         }
+        if (request()->path() == '/') {
+            return;
+        }
 
         if (!Str::endsWith($canonicalPath, request()->path())) {
             return redirect($canonicalPath, 301);
