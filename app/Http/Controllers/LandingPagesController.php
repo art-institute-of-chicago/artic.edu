@@ -152,7 +152,7 @@ class LandingPagesController extends FrontController
             'filledLogo' => false,
             'title' => $title,
             'intro' => $item->intro,
-            'landingPageType' => Str::kebab($item->type),
+            'landingPageType' => Str::slug($item->type),
         ];
 
         $blockHeadings = $item->blocks->pluck('content')->pluck('heading')->filter();

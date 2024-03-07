@@ -29,6 +29,10 @@
 
         @include breakpoint('small-') {
             padding: 0;
+
+            .showcase-header {
+                margin-top: 50px;
+            }
         }
     }
 
@@ -113,11 +117,6 @@
     &.showcase--rlc {
 
         &.showcase--variation-default {
-            .m-showcase-media {
-                img {
-                    aspect-ratio: 1/1;
-                }
-            }
 
             .showcase-date {
                 margin-top: 28px;
