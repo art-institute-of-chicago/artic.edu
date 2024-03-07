@@ -1,0 +1,35 @@
+.m-patron-banner-container {
+  width: 100%;
+  background-color: $color__black;
+  height: 105px;
+  color: $color__white;
+  padding: 15px 0px;
+  text-align: left;
+  margin-bottom: -120px;
+  margin-top: 120px;
+  @include background-fill;
+
+  .m-patron-banner .m-patron_logo svg {
+    fill: $color__white;
+  }
+}
+
+/*
+
+@include breakpoint('small+') {
+  .m-patron_logo {
+    width: auto;
+    margin-right: 4.6875vw;
+    margin-left: 5.2vw;
+  }
+}
+
+@include breakpoint('xlarge') {
+  .patron_logo {
+    width: 1500px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+*/

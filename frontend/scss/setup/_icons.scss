@@ -28,6 +28,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--audio">
     <use xlink:href="#icon--audio"></use>
   </svg>
+  <svg class="icon--bloomberg">
+    <use xlink:href="#icon--bloomberg"></use>
+  </svg>
   <svg class="icon--calendar">
     <use xlink:href="#icon--calendar"></use>
   </svg>
@@ -330,6 +333,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--audio {
   width: 16px;
   height: 16px;
+}
+
+.icon--bloomberg {
+  width: 300px;
+  height: 77px;
 }
 
 .icon--calendar {
