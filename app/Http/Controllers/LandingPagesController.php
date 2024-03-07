@@ -20,6 +20,13 @@ class LandingPagesController extends FrontController
 
         parent::__construct();
     }
+
+    public function slug($slug)
+    {
+        $item = $this->landingPageRepository->published()->bySlug($slug)->firstOrFail();
+        return $this->show($item->id, $slug);
+    }
+
     public function show($id, $slug = null)
     {
         $item = $this->landingPageRepository->published()->findOrFail((int) $id);

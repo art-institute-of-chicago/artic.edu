@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticlesPublicationsController;
@@ -61,6 +62,9 @@ Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt'
 
 // Landing Page
 Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
+Route::get('/{slug?}', [LandingPagesController::class, 'slug'])
+    ->whereIn('slug', DB::table('landing_page_slugs')->where('active', true)->get()->pluck('slug')->toArray())
+    ->name('landingPages.slug');
 
 
 // Collection routes
