@@ -63,7 +63,7 @@ Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt'
 Route::get('/', [LandingPagesController::class, 'slugHome'])->name('landingPages.slug-home');
 Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
 Route::get('/{slug?}', [LandingPagesController::class, 'slug'])
-    ->whereIn('slug', DB::table('landing_page_slugs')->where('active', true)->get()->pluck('slug')->toArray())
+    ->whereIn('slug', DB::table('landing_page_slugs')->where('active', true)->whereNull('deleted_at')->get()->pluck('slug')->toArray())
     ->name('landingPages.slug');
 
 

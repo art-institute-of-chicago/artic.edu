@@ -232,7 +232,8 @@ class LandingPage extends AbstractModel implements Sortable
         return $query->join('landing_page_slugs', function ($join) use ($id) {
             $join->on('landing_page_slugs.landing_page_id', 'landing_pages.id')
                  ->where('landing_page_slugs.id', $id)
-                 ->where('landing_page_slugs.active', true);
+                 ->where('landing_page_slugs.active', true)
+                 ->whereNull('landing_page_slugs.deleted_at');
         });
     }
 
