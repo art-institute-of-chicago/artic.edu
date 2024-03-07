@@ -40,6 +40,7 @@ use App\Http\Controllers\Forms\EducatorAdmissionController;
 use App\Http\Controllers\Forms\EmailSubscriptionsController;
 use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
 use App\Models\Slugs\LandingPageSlug;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
