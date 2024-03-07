@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticlesPublicationsController;
 use App\Http\Controllers\ArtistController;
@@ -64,7 +64,7 @@ Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt'
 Route::get('/', [LandingPagesController::class, 'slugHome'])->name('landingPages.slug-home');
 Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
 Route::get('/{slug?}', [LandingPagesController::class, 'slug'])
-    ->whereIn('slug', LandingPageSlug::where('active', true)->whereNull('deleted_at')->get()->pluck('slug')->toArray() ?? [])
+    ->whereIn('slug', Schema::hasTable('landing_page_slugs') ? LandingPageSlug::where('active', true)->whereNull('deleted_at')->get()->pluck('slug')->toArray() : [])
     ->name('landingPages.slug');
 
 
