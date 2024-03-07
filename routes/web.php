@@ -39,7 +39,7 @@ use App\Http\Controllers\VisitController;
 use App\Http\Controllers\Forms\EducatorAdmissionController;
 use App\Http\Controllers\Forms\EmailSubscriptionsController;
 use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
-
+use App\Models\Slugs\LandingPageSlug;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,7 +63,7 @@ Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt'
 Route::get('/', [LandingPagesController::class, 'slugHome'])->name('landingPages.slug-home');
 Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
 Route::get('/{slug?}', [LandingPagesController::class, 'slug'])
-    ->whereIn('slug', DB::table('landing_page_slugs')->where('active', true)->whereNull('deleted_at')->get()->pluck('slug')->toArray() ?? [])
+    ->whereIn('slug', LandingPageSlug::where('active', true)->whereNull('deleted_at')->get()->pluck('slug')->toArray() ?? [])
     ->name('landingPages.slug');
 
 
