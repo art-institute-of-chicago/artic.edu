@@ -20,10 +20,25 @@ class LandingPagesController extends FrontController
 
         parent::__construct();
     }
+
+    public function slugHome()
+    {
+        return $this->slug('home');
+    }
+
+    public function slug($slug)
+    {
+        $item = $this->landingPageRepository->published()->forSlug($slug)->firstOrFail();
+        return $this->show($item->id, $slug);
+    }
+
     public function show($id, $slug = null)
     {
         $item = $this->landingPageRepository->published()->findOrFail((int) $id);
-        $canonicalPath = route('landingPages.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+        $canonicalPath = route('landingPages.slug', ['slug' => $item->getSlug()]);
+        if (!$item->getSlug() || $item->getSlug() == 'home') {
+            $canonicalPath = route('landingPages.slug-home');
+        }
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }

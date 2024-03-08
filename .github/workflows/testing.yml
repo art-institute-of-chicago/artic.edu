@@ -37,10 +37,10 @@ jobs:
             # key in the test runner, which is convoluted.
             - name: Remove private NPM package
               run: npm uninstall closer-look --save
-            - name: Generate key
-              run: php artisan key:generate --env=testing
             - name: Migrate database
               run: php artisan migrate --env=testing
+            - name: Generate key
+              run: php artisan key:generate --env=testing
             - name: Build Twill assets
               run: php artisan twill:build --env=testing
             - name: Build Javascript assets
