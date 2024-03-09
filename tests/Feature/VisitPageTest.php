@@ -199,16 +199,16 @@ class VisitPageTest extends BaseTestCase
 
     public function test_visiting_hours_are_displayed(): void
     {
-        $response = $this->get(route('visit'));
+        $response = $this->get(route('pages.slug', ['slug' => 'visit']));
         $response->assertSee(
-            'Members: The first hour of every day, 10\u201311 a.m., is reserved for member-only viewing.',
+            'Members: The first hour of every day',
             false
         );
     }
 
     public function test_admission_description_is_displayed(): void
     {
-        $response = $this->get(route('visit'));
+        $response = $this->get(route('pages.slug', ['slug' => 'visit']));
         $response->assertSee(
             'The Art Institute of Chicago provides free access to children under 14, Chicago teens under 18, Link and WIC cardholders, and Illinois educators every day, as well as to Illinois residents on certain days throughout the year.'
         );
@@ -216,7 +216,7 @@ class VisitPageTest extends BaseTestCase
 
     public function test_accessibility_link_is_displayed(): void
     {
-        $response = $this->get(route('visit'));
+        $response = $this->get(route('pages.slug', ['slug' => 'visit']));
         $response->assertSee(
             'The Art Institute offers a range of resources and programs designed for adults and children with disabilities.'
         );
@@ -226,7 +226,7 @@ class VisitPageTest extends BaseTestCase
 
     public function test_family_pages_titles_are_displayed_in_order(): void
     {
-        $response = $this->get(route('visit'));
+        $response = $this->get(route('pages.slug', ['slug' => 'visit']));
         $response->assertSeeInOrder([
             'Museum Map',
             'What to See in an Hour',

@@ -61,12 +61,8 @@ Route::get('/target', [HomeController::class, 'target'])->name('target');
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 
 // Landing Page
-Route::get('/', [LandingPagesController::class, 'slugHome'])->name('landingPages.slug-home');
+Route::get('/', [LandingPagesController::class, 'slugHome'])->name('home');
 Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
-Route::get('/{slug?}', [LandingPagesController::class, 'slug'])
-    ->whereIn('slug', Schema::hasTable('landing_page_slugs') ? LandingPageSlug::where('active', true)->whereNull('deleted_at')->get()->pluck('slug')->toArray() : [])
-    ->name('landingPages.slug');
-
 
 // Collection routes
 Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
@@ -235,4 +231,4 @@ Route::get('/my-museum-tour/{id}/qrcode.png', [MyMuseumTourController::class, 'q
 Route::feeds();
 
 // Generic Page
-Route::get('{any}', [GenericPagesController::class, 'show'])->where('any', '.*')->name('genericPages.show');
+Route::get('{slug}', [GenericPagesController::class, 'show'])->where('slug', '.*')->name('pages.slug');

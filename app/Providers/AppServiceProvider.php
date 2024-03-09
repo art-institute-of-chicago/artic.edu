@@ -170,9 +170,9 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 'hour' => $hour,
                 '_pages' => [
-                    'visit' => route('visit'),
-                    'hours' => route('visit') . '#hours',
-                    'directions' => route('visit') . '#directions',
+                    'visit' => route('pages.slug', ['slug' => 'visit']),
+                    'hours' => route('pages.slug', ['slug' => 'visit']) . '#hours',
+                    'directions' => route('pages.slug', ['slug' => 'visit']) . '#directions',
                     'buy' => 'https://sales.artic.edu/admissions',
                     'become-a-member' => 'https://sales.artic.edu/memberships',
                     'shop' => 'https://shop.artic.edu/',
@@ -209,7 +209,7 @@ class AppServiceProvider extends ServiceProvider
                 'mobileNav' => [
                     [
                         'name' => 'Visit',
-                        'slug' => route('visit'),
+                        'slug' => route('pages.slug', ['slug' => 'visit']),
                     ],
                     [
                         'name' => 'Exhibition &amp; Events',
@@ -256,7 +256,7 @@ class AppServiceProvider extends ServiceProvider
                     ],
                     [
                         'name' => 'About Us',
-                        'slug' => route('genericPages.show', 'about-us'),
+                        'slug' => route('pages.slug', 'about-us'),
                     ],
                     [
                         'name' => 'Learn With Us',

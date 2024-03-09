@@ -26,7 +26,7 @@ class LandingPagesController extends FrontController
         return $this->slug('home');
     }
 
-    public function slug($slug)
+    public function slug($slug = null)
     {
         $item = $this->landingPageRepository->published()->forSlug($slug)->firstOrFail();
         return $this->show($item->id, $slug);
@@ -35,9 +35,9 @@ class LandingPagesController extends FrontController
     public function show($id, $slug = null)
     {
         $item = $this->landingPageRepository->published()->findOrFail((int) $id);
-        $canonicalPath = route('landingPages.slug', ['slug' => $item->getSlug()]);
+        $canonicalPath = route('pages.slug', ['slug' => $item->getSlug()]);
         if (!$item->getSlug() || $item->getSlug() == 'home') {
-            $canonicalPath = route('landingPages.slug-home');
+            $canonicalPath = route('home');
         }
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
