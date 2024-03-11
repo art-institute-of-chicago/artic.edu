@@ -12,9 +12,10 @@ class GenericPagesController extends FrontController
     protected $genericPageRepository;
     protected $landingPageController;
 
-    public function __construct(GenericPageRepository $genericPageRepository,
-                                LandingPagesController $landingPageController)
-    {
+    public function __construct(
+        GenericPageRepository $genericPageRepository,
+        LandingPagesController $landingPageController
+    ) {
         $this->genericPageRepository = $genericPageRepository;
         $this->landingPageController = $landingPageController;
 
