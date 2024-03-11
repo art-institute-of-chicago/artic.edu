@@ -4,7 +4,6 @@
     <link itemprop="additionalType" href="http://schema.org/LocalBusiness" aria-hidden="true"/>
 
     @component('components.organisms._o-header-landing')
-        @slot('mainFeatures', $mainFeatures)
         @slot('headerMedia', $headerMedia)
         @slot('variation', 'rlc')
     @endcomponent

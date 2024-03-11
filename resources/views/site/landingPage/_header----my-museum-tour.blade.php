@@ -7,7 +7,6 @@
     @endcomponent
 
     @component('components.organisms._o-header-landing')
-        @slot('mainFeatures', $mainFeatures)
         @slot('headerMedia', $headerMedia)
         @slot('variation', 'my-museum-tour')
     @endcomponent
