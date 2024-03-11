@@ -35,7 +35,6 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VirtualTourController;
-use App\Http\Controllers\VisitController;
 use App\Http\Controllers\Forms\EducatorAdmissionController;
 use App\Http\Controllers\Forms\EmailSubscriptionsController;
 use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
@@ -95,9 +94,6 @@ Route::get('/collection/resources/educator-resources/{id}', [EducatorResourcesCo
 
 // Newsletter subscription
 Route::post('/subscribe', [SubscribeController::class, 'store'])->name('subscribe');
-
-// Visit routes
-Route::get('/visit', [VisitController::class, 'index'])->name('visit');
 
 // Search routes
 Route::get('/search', [SearchController::class, 'index'])->name('search');
