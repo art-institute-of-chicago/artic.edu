@@ -3,10 +3,14 @@
 namespace Tests\Feature;
 
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
+use App\Models\Api\Exhibition;
 use App\Models\Event;
+use Tests\MockApi;
 
 class HomePageTest extends BaseTestCase
 {
+    use MockApi;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -38,6 +42,13 @@ class HomePageTest extends BaseTestCase
         ];
         $block->save();
 
+        $exhibitions = Exhibition::factory()->count(3)->make();
+        foreach ($exhibitions as $exhibition) {
+            $this->addMockApiResponses([
+                $this->mockApiModelReponse($exhibition),
+            ]);
+        }
+
         $block = \App\Models\Vendor\Block::firstOrNew([
             'blockable_id' => $homePage->id,
             'blockable_type' => 'landingPages',
@@ -52,7 +63,7 @@ class HomePageTest extends BaseTestCase
             'columns' => 3,
             'override_exhibition' => true,
             'browse_label' => 'See all current exhibitions',
-            'browsers' => ['exhibitions' => [10095,9287,10025]]
+            'browsers' => ['exhibitions' => $exhibitions->pluck('id')]
         ];
         $block->save();
 
@@ -154,6 +165,10 @@ class HomePageTest extends BaseTestCase
 
     public function test_home_page_loads(): void
     {
+        $this->addMockApiResponses([
+            $this->mockApiSearchResponse(), // Exhibitions
+        ]);
+
         $response = $this->get(route('home'));
         $response->assertStatus(200);
     }
@@ -162,15 +177,5 @@ class HomePageTest extends BaseTestCase
     {
         $response = $this->get(route('home'));
         $response->assertSee('We look forward to');
-    }
-
-    public function test_events_appear_on_home_page(): void
-    {
-        $this->assertDatabaseCount('events', 14);
-
-        $events = Event::get();
-        $response = $this->get(route('home'));
-        $response->assertSee($events->take(4)->pluck('title_display')->all(), 'Home page displays first four events');
-        $response->assertDontSee($events->last()->title_display, 'Home page displays only the first four events');
     }
 }

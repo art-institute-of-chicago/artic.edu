@@ -3,6 +3,7 @@
 namespace Database\Factories\Api;
 
 use App\Libraries\Api\Models\BaseApiModel as ApiModel;
+use App\Libraries\Api\Models\ApiCollection;
 use Closure;
 use Faker\Generator as FakerGenerator;
 use Illuminate\Container\Container;
@@ -175,9 +176,9 @@ abstract class ApiFactory
     /**
      * Create a collection of models and persist them to the database.
      */
-    public function createMany(iterable $records): EloquentCollection
+    public function createMany(iterable $records): ApiCollection
     {
-        return new EloquentCollection(
+        return new ApiCollection(
             collect($records)->map(function ($record) {
                 return $this->state($record)->create();
             })
@@ -187,7 +188,7 @@ abstract class ApiFactory
     /**
      * Create a collection of models and persist them to the database.
      */
-    public function createManyQuietly(iterable $records): EloquentCollection
+    public function createManyQuietly(iterable $records): ApiCollection
     {
         return ApiModel::withoutEvents(function () use ($records) {
             return $this->createMany($records);
@@ -197,7 +198,7 @@ abstract class ApiFactory
     /**
      * Create a collection of models and persist them to the database.
      */
-    public function create(array $attributes = [], ?ApiModel $parent = null): EloquentCollection|ApiModel
+    public function create(array $attributes = [], ?ApiModel $parent = null): ApiCollection|ApiModel
     {
         if (! empty($attributes)) {
             return $this->state($attributes)->create([], $parent);
@@ -221,7 +222,7 @@ abstract class ApiFactory
     /**
      * Create a collection of models and persist them to the database.
      */
-    public function createQuietly(array $attributes = [], ?ApiModel $parent = null): EloquentCollection|ApiModel
+    public function createQuietly(array $attributes = [], ?ApiModel $parent = null): ApiCollection|ApiModel
     {
         return ApiModel::withoutEvents(function () use ($attributes, $parent) {
             return $this->create($attributes, $parent);
@@ -269,7 +270,7 @@ abstract class ApiFactory
     /**
      * Create a collection of models.
      */
-    public function make(array $attributes = [], ?ApiModel $parent = null): EloquentCollection|ApiModel
+    public function make(array $attributes = [], ?ApiModel $parent = null): ApiCollection|ApiModel
     {
         if (! empty($attributes)) {
             return $this->state($attributes)->make([], $parent);

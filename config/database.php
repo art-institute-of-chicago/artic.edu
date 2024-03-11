@@ -109,9 +109,10 @@ return [
             'username' => env('TOURS_DB_USERNAME', 'forge'),
             'password' => env('TOURS_DB_PASSWORD', ''),
             'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
             'prefix' => env('TOURS_DB_PREFIX', ''),
-            'strict' => false,
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
         ],
 
     ],
