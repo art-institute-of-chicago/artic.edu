@@ -461,7 +461,7 @@
   flex-direction: column;
   gap: 12px;
   padding: 16px 20px;
-  background-color: $color__black;
+  background-color: $color__teal--my-museum-tour;
   color: $color__white;
 }
 
@@ -490,7 +490,6 @@
     left: -12px;
     width: calc(50% - 8px);
     height: 1px;
-    background: $color__black--42;
   }
   &:not(:last-child) .aic-ct-nav__number::after {
     content: "";
@@ -500,7 +499,6 @@
     right: -12px;
     width: calc(50% - 8px);
     height: 1px;
-    background: $color__black--42;
   }
 }
 
@@ -512,7 +510,7 @@
   color: $color__white;
 
   & .aic-ct-nav__number {
-    color: $color__black--20;
+    color: $color__white;
   }
 }
 
@@ -524,7 +522,7 @@
   min-width: 24px;
   aspect-ratio: 1;
   margin-bottom: 6px;
-  border: 1px solid $color__grey--100;
+  border: 1px solid $color__white;
   font-size: 0.875em;
   line-height: 1;
 }
@@ -548,10 +546,8 @@
   }
 
   & .aic-ct-nav__number {
-    color: $color__white;
-    background-color: $color__teal--my-museum-tour;
-    box-shadow: 0 0 0 2px $color__teal--my-museum-tour;
-    border-color: $color__teal--my-museum-tour;
+    color: $color__black;
+    background-color: $color__white;
     font-size: 1em;
   }
 }
