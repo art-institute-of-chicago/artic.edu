@@ -20,4 +20,5 @@
 @endcomponent
 
 @component('components.molecules._m-patron-banner')
+    @slot('variation', 'm-patron-banner-container----mmt')
 @endcomponent
