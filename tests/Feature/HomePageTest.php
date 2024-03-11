@@ -165,10 +165,6 @@ class HomePageTest extends BaseTestCase
 
     public function test_home_page_loads(): void
     {
-        $this->addMockApiResponses([
-            $this->mockApiSearchResponse(), // Exhibitions
-        ]);
-
         $response = $this->get(route('home'));
         $response->assertStatus(200);
     }
