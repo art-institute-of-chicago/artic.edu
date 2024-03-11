@@ -4,8 +4,8 @@
     @if ($tour_creation_completed)
         <div class="aic-ct-flash-message o-article__body">
             <div class="aic-ct-flash-message__text-container">
-                <h1 class="f-headline">Great job! Your tour is complete</h1>
-                <p class="f-body">Your tour has been emailed to you. Here is a link to share with friends.</p>
+                <h1 class="f-headline">Great job! Your tour is complete.</h1>
+                <p class="f-body">Your tour has been emailed to the address provided. Here is a link to share with friends.</p>
                 <div class="aic-ct-viewer__link-container">
                     <p class="f-subheading-1">{{ preg_replace("(^https?://)", "", url()->current() )}}</p>
                 </div>
@@ -55,7 +55,8 @@
             <div class="aic-ct-artworks-count-container">
                 <svg aria-hidden="true" class="icon--image-stack"><use xlink:href="#icon--image-stack" /></svg>
                 <div class="f-module-title-1">
-                    <p><strong>{{ count($my_museum_tour['artworks']) }} artworks</strong> <em>from</em> <strong>{{ $unique_artists_count }} artists</strong> <em>across</em> <strong>{{ $unique_galleries_count }} galleries</strong></p>
+                    <p><strong>{{ count($my_museum_tour['artworks']) }} {{ Str::plural('artwork', count($my_museum_tour['artworks'])) }} </strong> <em>from</em> <strong>{{ $unique_artists_count }} {{ Str::plural('artist', $unique_artists_count) }} </strong> <em>across</em> <strong>{{ $unique_galleries_count }} {{ Str::plural('gallery', $unique_galleries_count) }}</strong><br/>
+                    The tour will begin from the Michigan Avenue entrance, if you enter from the Modern Wing, begin your tour in reverse order.</p>
                 </div>
             </div>
 
@@ -156,7 +157,7 @@
             </ul>
             <hr>
             <div class="aic-ct-viewer__share-container">
-                <p class="f-headline">Thanks for taking my tour</p>
+                <p class="f-headline">Thanks for taking my tour.</p>
                 @component('components.molecules._m-article-actions')
                 @endcomponent
             </div>
@@ -187,7 +188,8 @@
         @slot('image', $cta_image)
         @slot('href', 'https://sales.artic.edu/admissions')
         @slot('header', 'Plan a visit to take your tour!')
-        @slot('button_text', 'Buy tickets')
+        @slot('button_text', 'Buy Tickets')
+        @slot('body', '<p>The best way to experience your new tour is in the galleries&mdash;with the artworks you&apos;ve chosen.</p>')
         @slot('gtmAttributes', 'data-gtm-event="Buy tickets" data-gtm-event-category="internal-ad-click"')
         @slot('my_museum_tour', true)
     @endcomponent
