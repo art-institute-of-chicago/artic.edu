@@ -19,7 +19,6 @@ use App\Http\Controllers\EventsController;
 use App\Http\Controllers\GenericPagesController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HighlightsController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InteractiveFeatureExperiencesController;
 use App\Http\Controllers\LandingPagesController;
 use App\Http\Controllers\MagazineIssueController;
@@ -54,8 +53,6 @@ use App\Models\Slugs\LandingPageSlug;
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 
 Route::get('/today', [RedirectController::class, 'today'])->name('today');
-
-Route::get('/target', [HomeController::class, 'target'])->name('target');
 
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 

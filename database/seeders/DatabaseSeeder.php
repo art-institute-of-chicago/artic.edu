@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
         HoursTableSeeder::class,
         EventProgramSeeder::class,
         EventSeeder::class,
-        HomePageSeeder::class,
         IlluminateTagSeeder::class,
         MyMuseumTourSeeder::class,
     ];
