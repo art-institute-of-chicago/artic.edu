@@ -242,6 +242,16 @@ class LandingPage extends AbstractModel implements Sortable
         return $this->belongsToMany('\App\Models\PageFeature', 'landing_page_page_feature')->withPivot('position')->orderBy('position');
     }
 
+    public function primaryFeatures()
+    {
+        return $this->belongsToMany('App\Models\PageFeature', 'landing_page_primary_page_feature')->withPivot('position')->orderBy('position');
+    }
+
+    public function secondaryFeatures()
+    {
+        return $this->belongsToMany('App\Models\PageFeature', 'landing_page_secondary_page_feature')->withPivot('position')->orderBy('position');
+    }
+
     public function artworks()
     {
         return $this->apiElements()->where('relation', 'landingArtworks');

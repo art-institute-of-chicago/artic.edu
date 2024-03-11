@@ -59,6 +59,17 @@ class LandingPagesController extends FrontController
             $this->seo->noindex = true;
         }
 
+        // Home
+        $primaryFeatures = $item->primaryFeatures()->published()->limit(1)->get();
+        $secondaryFeatures = $item->secondaryFeatures()->published()->limit(2)->get();
+
+        $mainFeatures = $primaryFeatures->concat($secondaryFeatures);
+
+        // WEB-2254: Finish deprecating `homeFeatures` relationship
+        if ($mainFeatures->count() < 1) {
+            $mainFeatures = $item->features()->published()->limit(3)->get();
+        }
+
         // Visit
         if ($video_url = $item->file('video', 'en')) {
             $headerImage = $item->imageFront('mobile_hero');
