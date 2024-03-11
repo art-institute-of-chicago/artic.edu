@@ -8,12 +8,8 @@
 
 @formField('browser', [
     'name' => 'artworks',
-    'endpoints' => [
-            [
-                'label' => 'Artworks',
-                'value' => moduleRoute('artworks', 'collection', 'browser', [], false)
-            ]
-        ],
+    'routePrefix' => 'collection',
+    'moduleName' => 'artworks',
     'label' => 'Artworks',
     'max' => 20,
 ])

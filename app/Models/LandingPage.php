@@ -237,12 +237,6 @@ class LandingPage extends AbstractModel implements Sortable
         });
     }
 
-
-    public function events()
-    {
-        return $this->belongsToMany(\App\Models\Event::class, 'landing_page_event')->withPivot('position')->orderBy('position');
-    }
-
     public function features()
     {
         return $this->belongsToMany('\App\Models\PageFeature', 'landing_page_page_feature')->withPivot('position')->orderBy('position');
@@ -256,11 +250,6 @@ class LandingPage extends AbstractModel implements Sortable
     public function secondaryFeatures()
     {
         return $this->belongsToMany('App\Models\PageFeature', 'landing_page_secondary_page_feature')->withPivot('position')->orderBy('position');
-    }
-
-    public function shopItems()
-    {
-        return $this->apiElements()->where('relation', 'landingShopItems');
     }
 
     public function artworks()
@@ -332,34 +321,9 @@ class LandingPage extends AbstractModel implements Sortable
         return $this->apiElements()->where('relation', 'artCategoryTerms');
     }
 
-    public function articles()
-    {
-        return $this->belongsToMany(\App\Models\Article::class, 'article_page')->withPivot('position')->orderBy('position');
-    }
-
-    public function digitalPublications()
-    {
-        return $this->belongsToMany(\App\Models\DigitalPublication::class, 'digital_publication_page')->withPivot('position')->orderBy('position');
-    }
-
     public function experiences()
     {
         return $this->belongsToMany(\App\Models\Experience::class, 'experience_page')->withPivot('position')->orderBy('experience_page.position');
-    }
-
-    public function printedPublications()
-    {
-        return $this->belongsToMany(\App\Models\PrintedPublication::class, 'landing_page_printed_publications')->withPivot('position')->orderBy('position');
-    }
-
-    public function visitTourPages()
-    {
-        return $this->belongsToMany(\App\Models\GenericPage::class, 'visit_tour_page')->withPivot('position')->orderBy('visit_tour_page.position', 'asc');
-    }
-
-    public function researchResourcesFeaturePages()
-    {
-        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_feature_page')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
     }
 
     public function researchResourcesStudyRooms()

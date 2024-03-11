@@ -102,12 +102,8 @@
 
     @formField('browser', [
         'name' => 'articles',
-        'endpoints' => [
-                [
-                    'label' => 'Article',
-                    'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
-                ],
-            ],
+        'routePrefix' => 'collection.articles_publications',
+        'moduleName' => 'articles',
         'max' => 4,
         'label' => 'Articles',
     ])
@@ -142,12 +138,8 @@
 
     @formField('browser', [
         'name' => 'digitalPublications',
-        'endpoints' => [
-                [
-                    'label' => 'Digital Publications',
-                    'value' => moduleRoute('digitalPublications', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
-                ],
-            ],
+        'routePrefix' => 'collection.articles_publications',
+        'moduleName' => 'digitalPublications',
         'max' => 4,
         'label' => 'Digital Publications',
     ])
@@ -176,12 +168,8 @@
 
         @formField('browser', [
             'name' => 'events',
-            'endpoints' => [
-                    [
-                        'label' => 'Event',
-                        'value' => moduleRoute('events', 'exhibitions_events', 'browser', [], false)
-                    ]
-                ],
+            'routePrefix' => 'exhibitions_events',
+            'moduleName' => 'events',
             'label' => 'Events',
             'max' => 20,
         ])
@@ -268,12 +256,8 @@
 
     @formField('browser', [
         'name' => 'experiences',
-        'endpoints' => [
-                [
-                    'label' => 'Experiences',
-                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser', ['is_unlisted' => false]),
-                ],
-        ],
+        'routePrefix' => 'collection.interactive_features',
+        'moduleName' => 'experiences',
         'max' => 4,
         'label' => 'Experiences',
     ])
@@ -311,7 +295,7 @@
         'routePrefix' => 'collection',
         'moduleName' => 'highlights',
         'name' => 'highlights',
-        'label' => 'Highlight',
+        'label' => 'Highlights',
         'max' => 4,
     ])
 
@@ -345,12 +329,8 @@
 
     @formField('browser', [
         'name' => 'videos',
-        'endpoints' => [
-                [
-                    'label' => 'Videos',
-                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
-                ],
-        ],
+        'routePrefix' => 'collection.articles_publications',
+        'moduleName' => 'videos',
         'max' => 4,
         'label' => 'Videos',
     ])

@@ -3,15 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\GenericPageRepository;
+use App\Http\Controllers\LandingPagesController;
+use App\Models\Slugs\LandingPageSlug;
 use Illuminate\Http\Request;
 
 class GenericPagesController extends FrontController
 {
     protected $genericPageRepository;
+    protected $landingPageController;
 
-    public function __construct(GenericPageRepository $genericPageRepository)
-    {
+    public function __construct(
+        GenericPageRepository $genericPageRepository,
+        LandingPagesController $landingPageController
+    ) {
         $this->genericPageRepository = $genericPageRepository;
+        $this->landingPageController = $landingPageController;
 
         parent::__construct();
     }
@@ -22,6 +28,11 @@ class GenericPagesController extends FrontController
             if ($auth = $this->authorize($request)) {
                 return $auth;
             }
+        }
+
+        $landingPageSlugs = LandingPageSlug::where('active', true)->whereNull('deleted_at')->get()->pluck('slug')->toArray() ?: ['home'];
+        if (in_array($slug, $landingPageSlugs)) {
+            return $this->landingPageController->slug($slug);
         }
 
         $page = $this->getPage($slug);

@@ -19,7 +19,6 @@ use App\Http\Controllers\EventsController;
 use App\Http\Controllers\GenericPagesController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HighlightsController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InteractiveFeatureExperiencesController;
 use App\Http\Controllers\LandingPagesController;
 use App\Http\Controllers\MagazineIssueController;
@@ -35,7 +34,6 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VirtualTourController;
-use App\Http\Controllers\VisitController;
 use App\Http\Controllers\Forms\EducatorAdmissionController;
 use App\Http\Controllers\Forms\EmailSubscriptionsController;
 use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
@@ -56,17 +54,11 @@ Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 
 Route::get('/today', [RedirectController::class, 'today'])->name('today');
 
-Route::get('/target', [HomeController::class, 'target'])->name('target');
-
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 
 // Landing Page
-Route::get('/', [LandingPagesController::class, 'slugHome'])->name('landingPages.slug-home');
+Route::get('/', [LandingPagesController::class, 'slugHome'])->name('home');
 Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
-Route::get('/{slug?}', [LandingPagesController::class, 'slug'])
-    ->whereIn('slug', Schema::hasTable('landing_page_slugs') ? LandingPageSlug::where('active', true)->whereNull('deleted_at')->get()->pluck('slug')->toArray() : [])
-    ->name('landingPages.slug');
-
 
 // Collection routes
 Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
@@ -99,9 +91,6 @@ Route::get('/collection/resources/educator-resources/{id}', [EducatorResourcesCo
 
 // Newsletter subscription
 Route::post('/subscribe', [SubscribeController::class, 'store'])->name('subscribe');
-
-// Visit routes
-Route::get('/visit', [VisitController::class, 'index'])->name('visit');
 
 // Search routes
 Route::get('/search', [SearchController::class, 'index'])->name('search');
@@ -235,4 +224,4 @@ Route::get('/my-museum-tour/{id}/qrcode.png', [MyMuseumTourController::class, 'q
 Route::feeds();
 
 // Generic Page
-Route::get('{any}', [GenericPagesController::class, 'show'])->where('any', '.*')->name('genericPages.show');
+Route::get('{slug}', [GenericPagesController::class, 'show'])->where('slug', '.*')->name('pages.slug');

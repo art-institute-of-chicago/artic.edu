@@ -31,11 +31,11 @@ class ExhibitionPressRoomController extends FrontController
         ];
 
         $nav = [
-            ['label' => 'Press', 'href' => route('genericPages.show', 'press'), 'links' => $subNav]
+            ['label' => 'Press', 'href' => route('pages.slug', 'press'), 'links' => $subNav]
         ];
 
         $crumbs = [
-            ['label' => 'Press', 'href' => route('genericPages.show', 'press')],
+            ['label' => 'Press', 'href' => route('pages.slug', 'press')],
             ['label' => $title, 'href' => '']
         ];
 
@@ -68,7 +68,7 @@ class ExhibitionPressRoomController extends FrontController
         }
 
         $crumbs = [
-            ['label' => 'Press', 'href' => route('genericPages.show', 'press')],
+            ['label' => 'Press', 'href' => route('pages.slug', 'press')],
             ['label' => 'Exhibition Press Rooms', 'href' => route('about.exhibitionPressRooms')],
             ['label' => $item->title, 'href' => '']
         ];

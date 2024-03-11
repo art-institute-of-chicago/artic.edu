@@ -25,34 +25,6 @@ class LandingPageRepository extends ModuleRepository
     }
 
     protected $browsers = [
-        // Homepage landing
-        'events' => [
-            'routePrefix' => 'exhibitions_events',
-            'moduleName' => 'events',
-        ],
-        'primaryFeatures' => [
-            'routePrefix' => 'generic',
-            'moduleName' => 'pageFeatures',
-        ],
-        'secondaryFeatures' => [
-            'routePrefix' => 'generic',
-            'moduleName' => 'pageFeatures',
-        ],
-
-        // Visit
-        'articles' => [
-            'routePrefix' => 'collection.articles_publications'
-        ],
-        'experiences' => [
-            'routePrefix' => 'collection.interactive_features'
-        ],
-        'printedPublications' => [
-            'routePrefix' => 'collection.articles_publications'
-        ],
-        'digitalPublications' => [
-            'routePrefix' => 'collection.articles_publications'
-        ],
-
         // Research landing
         'researchResourcesFeaturePages' => [
             'routePrefix' => 'generic',
@@ -67,16 +39,8 @@ class LandingPageRepository extends ModuleRepository
             'moduleName' => 'genericPages',
         ],
     ];
-    protected $relatedBrowsers = [
-        // Homepage landing
-        'homeVideos',
-        'homeHighlights',
-    ];
 
     protected $apiBrowsers = [
-        'shopItems' => [
-            'moduleName' => 'shopItems',
-        ],
         'artworks' => [
             'routePrefix' => 'collection',
             'moduleName' => 'artworks',
@@ -91,11 +55,6 @@ class LandingPageRepository extends ModuleRepository
 
     protected $repeaters = [
         'social_links',
-        // Homepage landing
-        'artists' => [
-            'relation' => 'artists',
-            'model' => 'HomeArtist'
-        ],
 
         // Visit
         'menu_items',
@@ -117,21 +76,10 @@ class LandingPageRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'events', 'position', 'Event');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'primaryFeatures', 'position', 'PageFeature');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'secondaryFeatures', 'position', 'PageFeature');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'shopItems', 'position', 'ShopItem');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
 
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRoomMore', 'position', 'GenericPage');
-
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'articles', 'position', 'Article');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'printedPublications', 'position', 'PrintedPublication');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'digitalPublications', 'position', 'DigitalPublication');
-
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'artists', 'position', 'HomeArtist');
 
         return parent::hydrate($object, $fields);
     }
