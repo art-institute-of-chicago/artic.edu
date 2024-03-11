@@ -45,7 +45,7 @@ class MyMuseumTourController extends FrontController
         $tourCreationComplete = $request->query('tourCreationComplete') === 'true';
 
         return view('site.myMuseumTour', [
-            'id' => $myMuseumTour->id,
+            'item' => $myMuseumTour,
             'my_museum_tour' => $myMuseumTourJson,
             'unique_galleries_count' => $uniqueGalleriesCount,
             'unique_artists_count' => $uniqueArtistsCount,

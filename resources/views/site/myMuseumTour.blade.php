@@ -10,6 +10,7 @@
                     <p class="f-subheading-1">{{ preg_replace("(^https?://)", "", url()->current() )}}</p>
                 </div>
                 @component('components.molecules._m-article-actions')
+                    @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
                 @endcomponent
             </div>
         </div>
@@ -71,6 +72,7 @@
             @endif
 
             @component('components.molecules._m-article-actions')
+                @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
             @endcomponent
 
             <ul class="aic-ct-artworks-list">
@@ -158,6 +160,7 @@
             <div class="aic-ct-viewer__share-container">
                 <p class="f-headline">Thanks for taking my tour</p>
                 @component('components.molecules._m-article-actions')
+                    @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
                 @endcomponent
             </div>
         </div>
