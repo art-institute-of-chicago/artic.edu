@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use A17\Twill\Models\Behaviors\HasPresenter;
 
 class MyMuseumTour extends Model
 {
+    use HasPresenter;
+
+    protected $presenter = 'App\Presenters\Admin\DigitalPublicationSectionPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationSectionPresenter';
+
     protected $connection;
 
     public function __construct()
