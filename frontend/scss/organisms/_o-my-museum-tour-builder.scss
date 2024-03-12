@@ -510,7 +510,7 @@
   color: $color__white;
 
   & .aic-ct-nav__number {
-    color: $color__white;
+    color: $color__black--45;;
   }
 }
 
@@ -522,7 +522,7 @@
   min-width: 24px;
   aspect-ratio: 1;
   margin-bottom: 6px;
-  border: 1px solid $color__white;
+  border: 1px solid $color__teal-light--my-museum-tour;
   font-size: 0.875em;
   line-height: 1;
 }
@@ -547,7 +547,7 @@
 
   & .aic-ct-nav__number {
     color: $color__black;
-    background-color: $color__white;
+    background-color: $color__teal-light--my-museum-tour;
     font-size: 1em;
   }
 }
@@ -555,7 +555,7 @@
 .aic-ct-nav__button--done {
   & .aic-ct-nav__number {
     background-color: $color__white;
-    color: $color__grey--100;
+    color: $color__black--45;
   }
 }
 
