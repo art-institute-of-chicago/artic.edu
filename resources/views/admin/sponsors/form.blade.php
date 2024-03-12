@@ -3,8 +3,7 @@
 @section('contentFields')
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
-            'image', 'paragraph',
-            'split_block'
+            'paragraph', 'image', 'split_block'
         ])
     ])
 @stop

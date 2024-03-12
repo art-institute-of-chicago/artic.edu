@@ -52,17 +52,7 @@
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
-            'artworks',
-            'audio_player',
-            'button',
-            'hr',
-            'list',
-            'mobile_app',
-            'membership_banner',
-            'paragraph',
-            'quote',
-            'split_block',
-            'tour_stop'
+            'paragraph', 'hr', 'artwork', 'split_block', 'quote', 'tour_stop', 'list', 'button', 'audio_player', 'membership_banner', 'mobile_app', 'artworks'
         ])
     ])
 @stop

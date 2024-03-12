@@ -92,10 +92,7 @@
 
         @formField('block_editor', [
             'blocks' => BlockHelpers::getBlocksForEditor([
-                'events',
-                'exhibitions',
-                'magazine_call_to_action',
-                'magazine_item',
+                'exhibitions', 'events', 'magazine_item', 'magazine_call_to_action'
             ])
         ])
     </a17-fieldset>
