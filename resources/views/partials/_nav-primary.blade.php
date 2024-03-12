@@ -1,4 +1,4 @@
-<nav tabindex="0" aria-label="primary">
+<nav aria-label="primary">
   <a class="g-header__logo" aria-label="Art Institute of Chicago" href="/">
     <svg aria-hidden="true">
       <use xlink:href="#icon--logo--outline--80" />
