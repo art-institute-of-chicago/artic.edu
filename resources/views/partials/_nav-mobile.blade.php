@@ -5,18 +5,12 @@
         <div class="g-header__inner">
             <a class="g-header__logo" href="/">
               <svg aria-label="Art Institute of Chicago">
-                <use xlink:href="#icon--logo--80" />
-                <use xlink:href="#icon--logo--88" />
-                <use xlink:href="#icon--logo--92" />
+                <use xlink:href="#icon--logo--outline--80" />
+                <use xlink:href="#icon--logo--outline--88" />
+                <use xlink:href="#icon--logo--outline--92" />
               </svg>
             </a>
-            <nav class="g-header__nav-primary">
-              <h2 class="sr-only" id="h-nav-secondary">Secondary Navigation</h2>
-              <ul class="f-secondary" aria-labelledby="h-nav-secondary">
-                <li class='u-hide@small+'><a href="{{ $_pages['buy'] }}">Buy Tickets</a></li>
-                <li><a href="{{ $_pages['visit'] }}">Visit</a></li>
-              </ul>
-            </nav>
+            @include('partials._nav-secondary')
           </div>
         </div>
 
