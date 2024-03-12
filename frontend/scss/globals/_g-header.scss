@@ -6,7 +6,7 @@
   top: 0;
   width: 100vw;
   background-clip: padding-box;
-  background-color: rgba($color__white,.97);
+  background-color: $color__white;
   transition: opacity .2s, transform 0s 0s;
 
   // Mirror html style for alignment
@@ -103,42 +103,34 @@
   }
 }
 
-.g-header nav ul {
-  display: flex;
-  flex-flow: row wrap;
-  margin-top: 0;
-}
-
-.g-header nav li {
-  flex: 0 0 auto;
-  margin-left: 16px;
-  @include breakpoint('medium+') {
-    margin-left: 32px;
-  }
-  img {
-    display: none;
-    position: absolute;
-    right: 100%;
-    top: 100px;
-    width: 25vw;
-  }
-  .description {
-    display: none;
-    position: absolute;
-  }
-  .sub {
-    display: none;
-    position: absolute;
-  }
-}
-
 .g-header__nav-primary {
   position: absolute;
   right: 0;
-  bottom: 13px;
 
+  @include breakpoint('xsmall') {
+    display: none;
+  }
   @include breakpoint('small+') {
-    top: 88px
+    top: 88px;
+  }
+  @include breakpoint('medium+') {
+    top: 92px;
+  }
+}
+
+.g-header__nav-primary,
+.g-header__nav-secondary {
+  &>ul {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 0;
+    &>li {
+      flex: 0 0 auto;
+      margin-left: 16px;
+      @include breakpoint('medium+') {
+        margin-left: 32px;
+      }
+    }
   }
 }
 
@@ -184,7 +176,15 @@
   }
 }
 
-.g-header__nav-primary a {
+.g-header__nav-primary svg {
+  position: relative;
+  top: -1px;
+  @include breakpoint('xsmall') {
+    display: none;
+  }
+}
+
+.g-header__nav-primary .level-1>a {
   .icon--arrow {
     transform: rotate(90deg);
     transition: transform .25s .25s;
@@ -195,28 +195,95 @@
   }
 }
 
-.g-header__nav-primary svg {
-  position: relative;
-  top: -1px;
-  @include breakpoint('xsmall') {
-    display: none;
+.g-header__nav-primary .level-1>.details {
+  background-color: $color__white;
+  box-shadow: 0 4px 20px -20px;
+  display: flex;
+  flex-direction: row;
+  grid-auto-rows: 1fr;
+  left: 0;
+  margin-top: 19px;
+  padding-top: 5px;
+  position: fixed;
+  visibility: collapse;
+  width: 100vw;
+  @include breakpoint('medium-') {
+    margin-top: 15px;
+  }
+  &>a, &>span {
+    background-color: $color__black--5;
+    display: flex;
+    flex-basis: 50vw;
+    @include breakpoint('medium-') {
+      flex-basis: 33vw;
+    }
+  }
+  img {
+    margin-bottom: 32px;
+    margin-left: 4.6875vw;
+    margin-top: 32px;
+    height: 170px;
+    width: 239px;
+    @include breakpoint('medium-') {
+      display: none;
+    }
+  }
+  .description {
+    color: $color__black--54;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 32px;
+    .title {
+      color: $color__black--80;
+      font-size: 24px;
+      line-height: 28px;
+      padding-bottom: .5em;
+      text-transform: uppercase;
+    }
+  }
+  &>ul[role="menu"] {
+    border-right: 1px solid $color__black--20;
+    flex-basis: 25vw;
+    font-size: 16px;
+    line-height: 32px;
+    margin-bottom: 24px;
+    margin-top: 24px;
+    padding-left: 32px;
+    @include breakpoint('medium-') {
+      flex-basis: 33vw;
+    }
+  }
+}
+
+.g-header__nav-primary .level-2 {
+  &>.details {
+    left: 75vw;
+    padding-left: 32px;
+    padding-right: 4.6875vw;
+    position: absolute;
+    top: 24px;
+    visibility: collapse;
+    @include breakpoint('medium-') {
+      left: 67vw;
+    }
   }
 }
 
 .g-header__nav-secondary {
-  display: none;
   position: absolute;
   right: 0;
   top: 20px;
-
-  @include breakpoint('small+') {
-    display: block;
+  @include breakpoint('xsmall') {
+    top: 80px;
   }
 }
 
 .g-header__opening-hours a,
 .g-header__nav-secondary a {
   color: $color__text--secondary;
+  @include breakpoint('xsmall') {
+    color: $color__text--title;
+  }
 }
 
 .g-header__opening-hours a,
