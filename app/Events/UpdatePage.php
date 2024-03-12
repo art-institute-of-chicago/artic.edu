@@ -29,9 +29,7 @@ class UpdatePage
                 route('events', null, false),
                 route('exhibitions', null, false),
                 route('collection', null, false),
-                route('visit', null, false),
                 route('articles', null, false),
-                '/'
             ];
         }
     }

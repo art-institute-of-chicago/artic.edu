@@ -20,6 +20,11 @@
         "scss/mirador-kiosk.scss"
       ]
     },
+    "my-museum-tour-pdf.css": {
+      "files": [
+        "scss/my-museum-tour-pdf.scss"
+      ]
+    },
     "setup.css": {
       "files": [
         "scss/setup.scss"

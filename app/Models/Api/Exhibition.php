@@ -6,12 +6,15 @@ use Illuminate\Support\Carbon;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Helpers\StringHelpers;
+use Database\Factories\Api\HasApiFactory;
 
 class Exhibition extends BaseApiModel
 {
     use HasFeaturedRelated {
         getCustomRelatedItems as traitGetCustomRelatedItems;
     }
+
+    use HasApiFactory;
 
     protected $endpoints = [
         'collection' => '/api/v1/exhibitions',

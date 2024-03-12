@@ -13,8 +13,6 @@ use App\Http\Controllers\Admin\PageController;
 
 Route::module('pages');
 
-Route::module('landingPages');
-
 Route::group(['prefix' => 'homepage'], function () {
     Route::name('homepage.landing')->get('landing', [PageController::class, 'home']);
     Route::module('homeFeatures');
@@ -33,6 +31,7 @@ Route::group(['prefix' => 'visit'], function () {
     Route::name('visit.fees')->get('fees', [FeeController::class, 'index']);
     Route::name('visit.fees.update')->post('fees', [FeeController::class, 'update']);
     Route::module('virtualTours');
+    Route::module('myMuseumTourItems');
 });
 
 Route::group(['prefix' => 'exhibitions_events'], function () {

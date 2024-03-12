@@ -11,9 +11,8 @@ class DatabaseSeeder extends Seeder
         HoursTableSeeder::class,
         EventProgramSeeder::class,
         EventSeeder::class,
-        HomePageSeeder::class,
-        VisitPageSeeder::class,
         IlluminateTagSeeder::class,
+        MyMuseumTourSeeder::class,
     ];
 
     public function run(): void

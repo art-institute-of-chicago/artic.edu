@@ -4,17 +4,20 @@
     $media = $block->imageAsArray('image', 'desktop');
     $title = $block->present()->input('title');
     $description = $block->present()->input('description');
+    $date = $block->present()->input('date');
     $tag = $block->input('tag');
     $linkLabel = $block->present()->input('link_label');
     $linkUrl = $block->input('link_url');
+    $theme = $block->input('theme');
+    $variation = $block->input('variation');
 @endphp
 
-<div id="{{ str(strip_tags($heading))->kebab() }}" class="m-showcase-block">
+<div id="{{ str(strip_tags($heading))->kebab() }}" class="m-showcase-block {{ $theme ? 'showcase--'.$theme : '' }} {{ $variation ? 'showcase--variation-'.$variation : '' }}">
     <div class="m-showcase-wrapper">
         @if ($heading)
             <h3 id="{{ Str::slug(strip_tags($heading)) }}" class="showcase-header">{!! $heading !!}</h3>
         @endif
-        @if ($landingPageType == 'rlc')
+        @if ($theme == 'rlc')
             @component('components.molecules._m-media')
                 @slot('variation', 'm-showcase-media')
                 @slot('item', [
@@ -54,6 +57,14 @@
                     @slot('font', 'f-secondary')
                     @slot('variation', 'showcase-description')
                     {!! SmartyPants::defaultTransform($description) !!}
+                @endcomponent
+            @endif
+            @if ($date && ($theme == 'rlc' && $variation == 'default'))
+                @component('components.blocks._text')
+                    @slot('tag', 'div')
+                    @slot('font', 'f-secondary')
+                    @slot('variation', 'showcase-date')
+                    {!! SmartyPants::defaultTransform($date) !!}
                 @endcomponent
             @endif
             @if ($linkLabel || $linkUrl)

@@ -136,11 +136,11 @@ class PressReleasesController extends BaseScopedController
         ];
 
         $nav = [
-            ['label' => 'Press', 'href' => route('genericPages.show', 'press'), 'links' => $subNav]
+            ['label' => 'Press', 'href' => route('pages.slug', 'press'), 'links' => $subNav]
         ];
 
         $crumbs = [
-            ['label' => 'Press', 'href' => route('genericPages.show', 'press')],
+            ['label' => 'Press', 'href' => route('pages.slug', 'press')],
             ['label' => $title,  'href' => '']
         ];
 
@@ -167,7 +167,7 @@ class PressReleasesController extends BaseScopedController
         }
 
         $crumbs = [
-            ['label' => 'Press', 'href' => route('genericPages.show', 'press')],
+            ['label' => 'Press', 'href' => route('pages.slug', 'press')],
             ['label' => 'Press Releases', 'href' => route('about.press')],
             ['label' => $item->title, 'href' => '']
         ];

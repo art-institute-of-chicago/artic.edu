@@ -119,36 +119,7 @@
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
-            '3d_embed',
-            '3d_model',
-            '3d_tour',
-            '360_embed',
-            '360_modal',
-            'artwork',
-            'audio_player',
-            'button',
-            'citation',
-            'digital_label',
-            'gallery_new',
-            'grid',
-            'hr',
-            'image',
-            'image_slider',
-            'list',
-            'layered_image_viewer',
-            'media_embed',
-            'membership_banner',
-            'mirador_embed',
-            'mirador_modal',
-            'mobile_app',
-            'paragraph',
-            'quote',
-            'split_block',
-            'tour_stop',
-            'video',
-            'vtour_embed',
-            'feature_2x',
-            'feature_4x'
+            'paragraph', 'image', 'hr', 'artwork', 'split_block', 'gallery_new', 'link', 'video', 'quote', 'tour_stop', 'accordion', 'media_embed', 'list', 'grid', 'image_slider', 'button', 'audio_player', '360_embed', 'vtour_embed', 'mirador_embed', '3d_embed', 'feature_2x', 'membership_banner', 'layered_image_viewer', '3d_tour', 'feature_4x', 'citation', 'citation', 'mirador_modal'
         ])
     ])
 

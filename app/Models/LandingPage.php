@@ -46,7 +46,8 @@ class LandingPage extends AbstractModel implements Sortable
         8 => 'Research and Resources',
         9 => 'Articles and Publications',
        10 => 'Stories',
-       11 => 'Custom',
+       11 => 'My Museum Tour',
+       99 => 'Custom',
     ];
 
     protected $presenter = 'App\Presenters\Admin\LandingPagePresenter';
@@ -187,6 +188,22 @@ class LandingPage extends AbstractModel implements Sortable
                 ],
             ],
         ],
+        'tours_create_cta_module_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 25 / 4,
+                ],
+            ],
+        ],
+        'tours_tickets_cta_module_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 25 / 4,
+                ],
+            ],
+        ],
     ];
 
     /**
@@ -206,19 +223,6 @@ class LandingPage extends AbstractModel implements Sortable
         return $query->whereIn('id', $ids);
     }
 
-    public function scopeBySlug($query, $slug = null)
-    {
-        if (empty($slug)) {
-            return $query;
-        }
-
-        return $query->join('landing_page_slugs', function ($join) use ($slug) {
-            $join->on('landing_page_slugs.landing_page_id', 'landing_pages.id')
-                 ->where('landing_page_slugs.slug', $slug)
-                 ->where('landing_page_slugs.active', true);
-        });
-    }
-
     public function scopeById($query, $id = null)
     {
         if (empty($id)) {
@@ -228,14 +232,9 @@ class LandingPage extends AbstractModel implements Sortable
         return $query->join('landing_page_slugs', function ($join) use ($id) {
             $join->on('landing_page_slugs.landing_page_id', 'landing_pages.id')
                  ->where('landing_page_slugs.id', $id)
-                 ->where('landing_page_slugs.active', true);
+                 ->where('landing_page_slugs.active', true)
+                 ->whereNull('landing_page_slugs.deleted_at');
         });
-    }
-
-
-    public function events()
-    {
-        return $this->belongsToMany(\App\Models\Event::class, 'landing_page_event')->withPivot('position')->orderBy('position');
     }
 
     public function features()
@@ -251,11 +250,6 @@ class LandingPage extends AbstractModel implements Sortable
     public function secondaryFeatures()
     {
         return $this->belongsToMany('App\Models\PageFeature', 'landing_page_secondary_page_feature')->withPivot('position')->orderBy('position');
-    }
-
-    public function shopItems()
-    {
-        return $this->apiElements()->where('relation', 'landingShopItems');
     }
 
     public function artworks()
@@ -327,34 +321,9 @@ class LandingPage extends AbstractModel implements Sortable
         return $this->apiElements()->where('relation', 'artCategoryTerms');
     }
 
-    public function articles()
-    {
-        return $this->belongsToMany(\App\Models\Article::class, 'article_page')->withPivot('position')->orderBy('position');
-    }
-
-    public function digitalPublications()
-    {
-        return $this->belongsToMany(\App\Models\DigitalPublication::class, 'digital_publication_page')->withPivot('position')->orderBy('position');
-    }
-
     public function experiences()
     {
         return $this->belongsToMany(\App\Models\Experience::class, 'experience_page')->withPivot('position')->orderBy('experience_page.position');
-    }
-
-    public function printedPublications()
-    {
-        return $this->belongsToMany(\App\Models\PrintedPublication::class, 'landing_page_printed_publications')->withPivot('position')->orderBy('position');
-    }
-
-    public function visitTourPages()
-    {
-        return $this->belongsToMany(\App\Models\GenericPage::class, 'visit_tour_page')->withPivot('position')->orderBy('visit_tour_page.position', 'asc');
-    }
-
-    public function researchResourcesFeaturePages()
-    {
-        return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_feature_page')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
     }
 
     public function researchResourcesStudyRooms()

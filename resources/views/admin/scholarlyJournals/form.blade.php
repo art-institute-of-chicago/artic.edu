@@ -11,7 +11,7 @@
     @formField('medias', [
         'with_multiple' => false,
         'label' => 'Listing image',
-        'name' => 'listing'
+        'name' => 'listing',
         'note' => 'Minimum image width 3000px'
     ])
 
@@ -30,18 +30,7 @@
     ])
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
-            '3d_model',
-            'accordion',
-            'hr',
-            'image',
-            'link',
-            'list',
-            'media_embed',
-            'membership_banner',
-            'newsletter_signup_inline',
-            'paragraph',
-            'timeline',
-            'video'
+            'paragraph', 'image', 'hr', 'link', 'video', 'accordion', 'media_embed', 'list', 'timeline', 'newsletter_signup_inline', 'membership_banner', '3d_model'
         ])
     ])
 @stop

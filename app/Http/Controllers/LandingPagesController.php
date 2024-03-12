@@ -6,9 +6,9 @@ use App\Models\Admission;
 use App\Models\Hour;
 use App\Models\Lightbox;
 use App\Models\LandingPage;
-use App\Helpers\StringHelpers;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class LandingPagesController extends FrontController
 {
@@ -20,10 +20,25 @@ class LandingPagesController extends FrontController
 
         parent::__construct();
     }
+
+    public function slugHome()
+    {
+        return $this->slug('home');
+    }
+
+    public function slug($slug = null)
+    {
+        $item = $this->landingPageRepository->published()->forSlug($slug)->firstOrFail();
+        return $this->show($item->id, $slug);
+    }
+
     public function show($id, $slug = null)
     {
         $item = $this->landingPageRepository->published()->findOrFail((int) $id);
-        $canonicalPath = route('landingPages.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+        $canonicalPath = route('pages.slug', ['slug' => $item->getSlug()]);
+        if (!$item->getSlug() || $item->getSlug() == 'home') {
+            $canonicalPath = route('home');
+        }
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
@@ -147,12 +162,11 @@ class LandingPagesController extends FrontController
             'item' => $item,
             'contrastHeader' => false,
             'headerMedia' => $headerMedia,
-            'mainFeatures' => $mainFeatures,
             'socialLinks' => $item->socialLinks,
             'filledLogo' => false,
             'title' => $title,
             'intro' => $item->intro,
-            'landingPageType' => StringHelpers::pageBlades($item->type),
+            'landingPageType' => Str::slug($item->type),
         ];
 
         $blockHeadings = $item->blocks->pluck('content')->pluck('heading')->filter();
@@ -187,6 +201,26 @@ class LandingPagesController extends FrontController
                 ];
                 break;
 
+            case $types->search('My Museum Tour'):
+                $viewData = [
+                    'header_my_museum_tour_text' => $item->labels->get('header_my_museum_tour_text'),
+                    'header_my_museum_tour_primary_button_label' => $item->labels->get('header_my_museum_tour_primary_button_label'),
+                    'header_my_museum_tour_primary_button_link' => $item->labels->get('header_my_museum_tour_primary_button_link'),
+                    'header_my_museum_tour_secondary_button_label' => $item->labels->get('header_my_museum_tour_secondary_button_label'),
+                    'header_my_museum_tour_secondary_button_link' => $item->labels->get('header_my_museum_tour_secondary_button_link'),
+                    'tours_create_cta_module_image' => $item->imageFront('tours_create_cta_module_image'),
+                    'tours_create_cta_module_action_url' => $item->labels->get('tours_create_cta_module_action_url'),
+                    'tours_create_cta_module_header' => $item->labels->get('tours_create_cta_module_header'),
+                    'tours_create_cta_module_button_text' => $item->labels->get('tours_create_cta_module_button_text'),
+                    'tours_create_cta_module_body' => $item->labels->get('tours_create_cta_module_body'),
+                    'tours_tickets_cta_module_image' => $item->imageFront('tours_tickets_cta_module_image'),
+                    'tours_tickets_cta_module_action_url' => $item->labels->get('tours_tickets_cta_module_action_url'),
+                    'tours_tickets_cta_module_header' => $item->labels->get('tours_tickets_cta_module_header'),
+                    'tours_tickets_cta_module_button_text' => $item->labels->get('tours_tickets_cta_module_button_text'),
+                    'tours_tickets_cta_module_body' => $item->labels->get('tours_tickets_cta_module_body'),
+                ];
+                break;
+
             case $types->search('Research and Resources'):
                 $viewData = [
                     'primaryNavCurrent' => 'collection',
@@ -217,6 +251,13 @@ class LandingPagesController extends FrontController
                         'default' => $item->imageFront('rlc_location'),
                         'mobile' => $item->imageFront('rlc_location', 'mobile'),
                     ],
+                ];
+                break;
+
+            case $types->search('Stories'):
+                $viewData = [
+                    'hours' => $hours,
+                    'subnav' => collect(['Top Stories'])->concat($blockHeadings)->all(),
                 ];
                 break;
 

@@ -15,6 +15,7 @@ use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasAutoRelated;
 use App\Models\Behaviors\HasFeaturedRelated;
 use Kalnoy\Nestedset\NodeTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class GenericPage extends AbstractModel implements Sortable
 {
@@ -33,6 +34,7 @@ class GenericPage extends AbstractModel implements Sortable
     use HasRelated;
     use HasApiRelations;
     use HasFeaturedRelated;
+    use HasFactory;
 
     protected $fillable = [
         'short_description',

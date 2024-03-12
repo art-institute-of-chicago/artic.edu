@@ -12,7 +12,6 @@
     @endcomponent
 
     @component('components.organisms._o-header-landing')
-        @slot('mainFeatures', $mainFeatures)
         @slot('headerMedia', $headerMedia)
         @slot('variation', 'visit')
     @endcomponent
@@ -47,7 +46,7 @@
             <div class="col">
                 <h3 id="hours" class="title f-module-title-2">Hours</h3>
                 <hr>
-                <span class="f-secondary">{!! $visit_members_intro !!}</span>
+                <span class="f-secondary">{!! $visit_members_intro ?? null !!}</span>
                 <table class="visit-hours">
                     <caption class="s-hidden">Hours the museum is open each day</caption>
                     <tr class="s-hidden">
@@ -95,11 +94,11 @@
                                 <a class="f-link" target="_blank" rel="noopener" href="{{ $location->directions_link }}">Get directions&nbsp;<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
                             </div>
                         @endforeach
-                        @if($visit_parking_link && $visit_parking_label)
-                            <a href="{{ $visit_parking_link }}" class="btn btn--secondary f-buttons parking_label">{{ $visit_parking_label }}</a>
+                        @if(isset($visit_parking_link) && $visit_parking_link && isset($visit_parking_label) && $visit_parking_label)
+                            <a href="{{ $visit_parking_link}}" class="btn btn--secondary f-buttons parking_label">{{ $visit_parking_label }}</a>
                         @endif
                     </div>
-                    @if($visit_parking_link && $visit_parking_label)
+                    @if(isset($visit_parking_link) && $visit_parking_link && isset($visit_parking_label) && $visit_parking_label)
                         <a href="{{ $visit_parking_link }}" class="btn btn--secondary f-buttons parking_label">{{ $visit_parking_label }}</a>
                     @endif
                 </div>
@@ -213,9 +212,9 @@
             </div>
                 <div class="col">
                     <div class="visit-admission-info">
-                        <span class="f-secondary">{!! $visit_admission_intro !!}</span>
+                        <span class="f-secondary">{!! $visit_admission_intro ?? null !!}</span>
                         <div class="btn-section">
-                            <a href="{{ $visit_admission_tix_link }}" class="btn f-buttons">{!! $visit_admission_tix_label !!}</a>
+                            <a href="{{ $visit_admission_tix_link ?? null }}" class="btn f-buttons">{!! $visit_admission_tix_label !!}</a>
                             <a href="{{ $visit_admission_members_link }}" class="btn f-buttons btn--secondary">{!! $visit_admission_members_label !!}</a>
                         </div>
                     </div>

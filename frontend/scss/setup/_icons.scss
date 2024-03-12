@@ -28,6 +28,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--audio">
     <use xlink:href="#icon--audio"></use>
   </svg>
+  <svg class="icon--bloomberg">
+    <use xlink:href="#icon--bloomberg"></use>
+  </svg>
   <svg class="icon--calendar">
     <use xlink:href="#icon--calendar"></use>
   </svg>
@@ -67,6 +70,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--closer_look">
     <use xlink:href="#icon--closer_look"></use>
   </svg>
+  <svg class="icon--delete">
+    <use xlink:href="#icon--delete"></use>
+  </svg>
   <svg class="icon--dining">
     <use xlink:href="#icon--dining"></use>
   </svg>
@@ -87,6 +93,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   </svg>
   <svg class="icon--footer_map_120x92">
     <use xlink:href="#icon--footer_map_120x92"></use>
+  </svg>
+  <svg class="icon--image-stack">
+    <use xlink:href="#icon--image-stack"></use>
   </svg>
   <svg class="icon--info">
     <use xlink:href="#icon--info"></use>
@@ -326,6 +335,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
   height: 16px;
 }
 
+.icon--bloomberg {
+  width: 300px;
+  height: 77px;
+}
+
 .icon--calendar {
   width: 16px;
   height: 16px;
@@ -391,6 +405,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
   height: 44px;
 }
 
+.icon--delete {
+  width: 16px;
+  height: 17px;
+}
+
 .icon--dining {
   width: 200px;
   height: 200px;
@@ -424,6 +443,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--footer_map_120x92 {
   width: 120px;
   height: 92px;
+}
+
+.icon--image-stack {
+  width: 24px;
+  height: 24px;
 }
 
 .icon--info {
