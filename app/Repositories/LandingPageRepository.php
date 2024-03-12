@@ -26,18 +26,18 @@ class LandingPageRepository extends ModuleRepository
 
     protected $browsers = [
         // Research landing
-        'researchResourcesFeaturePages' => [
-            'routePrefix' => 'generic',
-            'moduleName' => 'genericPages',
-        ],
-        'researchResourcesStudyRooms' => [
-            'routePrefix' => 'generic',
-            'moduleName' => 'genericPages',
-        ],
-        'researchResourcesStudyRoomMore' => [
-            'routePrefix' => 'generic',
-            'moduleName' => 'genericPages',
-        ],
+        // 'researchResourcesFeaturePages' => [
+        //     'routePrefix' => 'generic',
+        //     'moduleName' => 'genericPages',
+        // ],
+        // 'researchResourcesStudyRooms' => [
+        //     'routePrefix' => 'generic',
+        //     'moduleName' => 'genericPages',
+        // ],
+        // 'researchResourcesStudyRoomMore' => [
+        //     'routePrefix' => 'generic',
+        //     'moduleName' => 'genericPages',
+        // ],
     ];
 
     protected $apiBrowsers = [
@@ -76,10 +76,9 @@ class LandingPageRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
-
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
-        $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRoomMore', 'position', 'GenericPage');
+        // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
+        // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
+        // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRoomMore', 'position', 'GenericPage');
 
         return parent::hydrate($object, $fields);
     }
