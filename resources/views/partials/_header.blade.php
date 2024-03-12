@@ -19,14 +19,7 @@
     @endif
     <div class="g-header__inner">
       @include('partials._nav-primary')
-      <nav class="g-header__nav-secondary" aria-label="secondary">
-        <h2 class="sr-only" id="h-nav-secondary-header">Secondary Navigation</h2>
-        <ul class="f-secondary" aria-labelledby="h-nav-secondary-header">
-          <li><a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event="buy-tickets">Buy Tickets</a></li>
-          <li><a href="{{ $_pages['become-a-member'] }}" data-gtm-event-category="top-nav" data-gtm-event="become-a-member">Become a Member</a></li>
-          <li><a href="{{ $_pages['shop'] }}" target="_blank" data-gtm-event-category="top-nav" data-gtm-event="shop">Shop</a></li>
-        </ul>
-      </nav>
+      @include('partials._nav-secondary')
       <button class="g-header__menu-link f-secondary" data-behavior="openNavMobile" aria-label="Show menu">Menu<svg class="icon--menu--24" aria-hidden="true"><use xlink:href="#icon--menu--24" /></svg></button>
   </div>
 </header>
