@@ -522,7 +522,7 @@
   min-width: 24px;
   aspect-ratio: 1;
   margin-bottom: 6px;
-  border: 1px solid $color__teal-light--my-museum-tour;
+  border: 1px solid $color__white;
   font-size: 0.875em;
   line-height: 1;
 }
@@ -548,6 +548,7 @@
   & .aic-ct-nav__number {
     color: $color__black;
     background-color: $color__teal-light--my-museum-tour;
+    border: 1px solid $color__teal-light--my-museum-tour;
     font-size: 1em;
   }
 }
