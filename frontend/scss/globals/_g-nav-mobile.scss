@@ -301,6 +301,14 @@
   }
 }
 
+.g-nav-mobile .g-header .g-header__nav-secondary a,
+.g-nav-mobile .g-header .g-header__nav-secondary button {
+  &,
+  .s-contrast-header & {
+    color: $color__text--title;
+  }
+}
+
 .g-nav-mobile .g-header .g-header__nav-primary a:hover {
   @include text-underline(1.12em, $color__text--title);
 }
