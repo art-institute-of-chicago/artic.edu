@@ -11,6 +11,7 @@
                 </div>
                 @component('components.molecules._m-article-actions')
                     @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
+                    @slot('hidePrint', true)
                 @endcomponent
             </div>
         </div>
@@ -74,6 +75,7 @@
 
             @component('components.molecules._m-article-actions')
                 @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
+                @slot('hidePrint', true)
             @endcomponent
 
             <ul class="aic-ct-artworks-list">
@@ -162,6 +164,7 @@
                 <p class="f-headline">Thanks for taking my tour.</p>
                 @component('components.molecules._m-article-actions')
                     @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
+                    @slot('hidePrint', true)
                 @endcomponent
             </div>
         </div>
