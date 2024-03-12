@@ -67,6 +67,9 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
     .g-header__menu-link:focus {
       color: rgba($color__text--title-contrast, .7);
       transition: color .25s .25s;
+      @include breakpoint('xsmall') {
+        color: $color__text--title-contrast;
+      }
     }
 
     .g-header__nav-primary a:hover {
