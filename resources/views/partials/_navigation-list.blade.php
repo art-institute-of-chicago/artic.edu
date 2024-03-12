@@ -51,7 +51,7 @@
                     <span>
                 @endif
                 @if($hasImage)
-                    <img src="{{ $item['image'] }}" aria-describedby="{{ $id }}-description">
+                    <img src="{{ $item['image'] }}" aria-describedby="{{ $id }}-description" alt="">
                 @endif
                 @if($hasDescription)
                     <div class="description">
