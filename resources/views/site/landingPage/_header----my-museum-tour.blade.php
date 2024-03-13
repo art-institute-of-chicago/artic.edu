@@ -6,6 +6,21 @@
         @slot('itemprops',$itemprops ?? null)
     @endcomponent
 
+    @if (!$headerMedia['style'] == 'my_museum_tour')
+        @component('components.organisms._o-header-landing')
+            @slot('mainFeatures', $mainFeatures)
+            @slot('headerMedia', $headerMedia)
+            @slot('variation', 'my-museum-tour')
+        @endcomponent
+    @else
+        @component('components.organisms._o-my-museum-tours-landing-header')
+            @slot('header_my_museum_tour_header_image', $header_my_museum_tour_header_image)
+            @slot('header_my_museum_tour_text', $header_my_museum_tour_text)
+            @slot('header_my_museum_tour_primary_button_link', $header_my_museum_tour_primary_button_link)
+            @slot('header_my_museum_tour_primary_button_label', $header_my_museum_tour_primary_button_label)
+            @slot('header_my_museum_tour_secondary_button_link', $header_my_museum_tour_primary_button_link)
+            @slot('header_my_museum_tour_secondary_button_label', $header_my_museum_tour_secondary_button_label)
+            @slot('header_my_museum_tour_icons', $header_my_museum_tour_icons)
     @component('components.organisms._o-header-landing')
         @slot('headerMedia', $headerMedia)
         @slot('variation', 'my-museum-tour')
@@ -16,21 +31,4 @@
             @slot('hour', $hour)
         @endcomponent
     @endif
-    <div class="m-title-bar">
-        <h1 class="f-display-2">My Museum Tour</h1>
-    </div>
-
-    @if ($header_my_museum_tour_text)
-        <div class="f-deck">
-            {!! $header_my_museum_tour_text !!}
-        </div>
-    @endif
-
-    <div class="my-muusem-tour-header__btn-container">
-        @if ($header_my_museum_tour_primary_button_link && $header_my_museum_tour_primary_button_label)
-            <a href="{{ $header_my_museum_tour_primary_button_link }}" class="btn f-buttons">{{ $header_my_museum_tour_primary_button_label }}</a>
-        @endif
-        <a href="#aic-ct-landingpage" class="btn btn--secondary f-buttons">{{ $header_my_museum_tour_secondary_button_label ? $header_my_museum_tour_secondary_button_label : 'Explore tours' }}</a>
-    </div>
-
 </section>
