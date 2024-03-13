@@ -20,7 +20,12 @@
             @slot('header_my_museum_tour_primary_button_label', $header_my_museum_tour_primary_button_label)
             @slot('header_my_museum_tour_secondary_button_link', $header_my_museum_tour_primary_button_link)
             @slot('header_my_museum_tour_secondary_button_label', $header_my_museum_tour_secondary_button_label)
-            @slot('header_my_museum_tour_icons', $header_my_museum_tour_icons)
+            @slot('header_my_museum_tour_icon_choose_title', $header_my_museum_tour_icon_choose_title)
+            @slot('header_my_museum_tour_icon_choose_desc', $header_my_museum_tour_icon_choose_desc)
+            @slot('header_my_museum_tour_icon_personalize_title', $header_my_museum_tour_icon_personalize_title)
+            @slot('header_my_museum_tour_icon_personalize_desc', $header_my_museum_tour_icon_personalize_desc)
+            @slot('header_my_museum_tour_icon_finish_title', $header_my_museum_tour_icon_finish_title)
+            @slot('header_my_museum_tour_icon_finish_desc', $header_my_museum_tour_icon_finish_desc)
         @endcomponent
     @endif
 </section>
