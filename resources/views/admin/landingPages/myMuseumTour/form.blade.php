@@ -151,24 +151,53 @@
         'name' => 'header_my_museum_tour_header_image'
     ])
 
-    @formField('multi_select', [
-        'name' => 'labels.header_my_museum_tour_icons',
-        'label' => 'Toggle Icons',
-        'options' => [
-            [
-                'value' => 'mmt_icon_choose',
-                'label' => 'Choose'
-            ],
-            [
-                'value' => 'mmt_icon_personalize',
-                'label' => 'Personalize'
-            ],
-            [
-                'value' => 'mmt_icon_finish',
-                'label' => 'Finish'
-            ],
-        ]
-    ])
+    @component('twill::partials.form.utils._columns')
+    @slot('left')
+        @formField('input', [
+            'name' => 'labels.header_my_museum_tour_icon_choose_title',
+            'label' => '`Choose` Title'
+        ])
+    @endslot
+
+    @slot('right')
+        @formField('input', [
+            'name' => 'labels.header_my_museum_tour_icon_choose_desc',
+            'label' => '`Choose` Description'
+        ])
+    @endslot
+    @endcomponent
+
+    @component('twill::partials.form.utils._columns')
+    @slot('left')
+        @formField('input', [
+            'name' => 'labels.header_my_museum_tour_icon_personalize_title',
+            'label' => '`Personalize` Title'
+        ])
+    @endslot
+
+    @slot('right')
+        @formField('input', [
+            'name' => 'labels.header_my_museum_tour_icon_personalize_desc',
+            'label' => '`Personalize` Description'
+        ])
+    @endslot
+    @endcomponent
+
+    @component('twill::partials.form.utils._columns')
+    @slot('left')
+        @formField('input', [
+            'name' => 'labels.header_my_museum_tour_icon_finish_title',
+            'label' => '`Finish` Title'
+        ])
+    @endslot
+
+    @slot('right')
+        @formField('input', [
+            'name' => 'labels.header_my_museum_tour_icon_finish_desc',
+            'label' => '`Finish` Description'
+        ])
+    @endslot
+    @endcomponent
 
 @endcomponent
 
