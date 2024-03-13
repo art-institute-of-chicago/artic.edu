@@ -6,9 +6,9 @@
         @slot('itemprops',$itemprops ?? null)
     @endcomponent
 
-    @if (!$headerMedia['style'] == 'my_museum_tour')
+    @if ($headerMedia['style'] !== 'my_museum_tour')
         @component('components.organisms._o-header-landing')
-            @slot('mainFeatures', $mainFeatures)
+            @slot('mainFeatures', $mainFeatures ?? null)
             @slot('headerMedia', $headerMedia)
             @slot('variation', 'my-museum-tour')
         @endcomponent
@@ -21,14 +21,6 @@
             @slot('header_my_museum_tour_secondary_button_link', $header_my_museum_tour_primary_button_link)
             @slot('header_my_museum_tour_secondary_button_label', $header_my_museum_tour_secondary_button_label)
             @slot('header_my_museum_tour_icons', $header_my_museum_tour_icons)
-    @component('components.organisms._o-header-landing')
-        @slot('headerMedia', $headerMedia)
-        @slot('variation', 'my-museum-tour')
-    @endcomponent
-
-    @if (!empty($hour))
-        @component('components.organisms._o-hours')
-            @slot('hour', $hour)
         @endcomponent
     @endif
 </section>
