@@ -124,6 +124,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'end_time' => [
+            'time_greater_than' => 'The end time must be after the start time.',
+        ],
     ],
 
     /*
