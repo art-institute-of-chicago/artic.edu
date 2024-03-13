@@ -18,10 +18,10 @@ class EventRequest extends Request
         Validator::extend('time_greater_than', function ($attribute, $value, $parameters) {
             $startInterval = new DateInterval($this->start_time);
             $endInterval = new DateInterval($value);
-        
+
             $start_time = $startInterval->h * 3600 + $startInterval->i * 60;
             $end_time = $endInterval->h * 3600 + $endInterval->i * 60;
-        
+
             return $end_time > $start_time;
         });
 
