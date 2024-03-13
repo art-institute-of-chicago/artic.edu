@@ -92,14 +92,10 @@ Example usage:
   }
 
   &:hover,
-  &:focus:hover {
-    background-color: $color__link--accent-hover;
-    color: $color__white;
-  }
-
+  &:focus:hover,
   &.s-active,
   &:active:hover {
-    background-color: $color__link--accent-active;
+    background-color: $color__link--accent-hover;
     color: $color__white;
   }
 
@@ -335,12 +331,7 @@ Example usage:
   color: $color__black;
 
   &:hover,
-  &:focus:hover {
-    border-color: transparent;
-    background-color: $color__teal-medium--my-museum-tour;
-    color: $color__black;
-  }
-
+  &:focus:hover,
   &.s-active,
   &:active:hover {
     border-color: transparent;
@@ -355,12 +346,7 @@ Example usage:
   color: $color__text--title;
 
   &:hover,
-  &:focus:hover {
-    border-color: transparent;
-    background-color: transparent;
-    color: $color__text--title;
-  }
-
+  &:focus:hover,
   &.s-active,
   &:active:hover {
     border-color: transparent;
