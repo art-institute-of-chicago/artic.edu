@@ -183,4 +183,11 @@
     background-color: $color__link--accent-hover;
     color: $color__white;
   }
+
+  .m-cta-banner__link:hover .btn--my-museum-tour,
+  .m-cta-banner__link:focus:hover .btn--my-museum-tour {
+    border-color: transparent;
+    background-color: $color__teal-medium--my-museum-tour;
+    color: $color__black;
+  }
 }

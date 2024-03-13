@@ -12,6 +12,7 @@
                 @component('components.molecules._m-article-actions')
                     @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
                     @slot('hidePrint', true)
+                    @slot('btnVariation', 'btn--my-museum-tour')
                 @endcomponent
             </div>
         </div>
@@ -76,6 +77,7 @@
             @component('components.molecules._m-article-actions')
                 @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
                 @slot('hidePrint', true)
+                @slot('btnVariation', 'btn--my-museum-tour')
             @endcomponent
 
             <ul class="aic-ct-artworks-list">
@@ -165,6 +167,7 @@
                 @component('components.molecules._m-article-actions')
                     @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
                     @slot('hidePrint', true)
+                    @slot('btnVariation', 'btn--my-museum-tour')
                 @endcomponent
             </div>
         </div>

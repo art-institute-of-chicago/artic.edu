@@ -329,6 +329,26 @@ Example usage:
   }
 }
 
+.btn--my-museum-tour {
+  border-color: transparent;
+  background-color: $color__teal-light--my-museum-tour;
+  color: $color__black;
+
+  &:hover,
+  &:focus:hover {
+    border-color: transparent;
+    background-color: $color__teal-medium--my-museum-tour;
+    color: $color__black;
+  }
+
+  &.s-active,
+  &:active:hover {
+    border-color: transparent;
+    background-color: $color__teal-medium--my-museum-tour;
+    color: $color__black;
+  }
+}
+
 .btn--transparent {
   border-color: transparent;
   background-color: transparent;
