@@ -203,11 +203,19 @@ class LandingPagesController extends FrontController
 
             case $types->search('My Museum Tour'):
                 $viewData = [
+                    'header_my_museum_tour_icons' => $item->labels->get('header_my_museum_tour_icons'),
+                    'header_my_museum_tour_header_image' => $item->imageFront('header_my_museum_tour_header_image'),
                     'header_my_museum_tour_text' => $item->labels->get('header_my_museum_tour_text'),
                     'header_my_museum_tour_primary_button_label' => $item->labels->get('header_my_museum_tour_primary_button_label'),
                     'header_my_museum_tour_primary_button_link' => $item->labels->get('header_my_museum_tour_primary_button_link'),
                     'header_my_museum_tour_secondary_button_label' => $item->labels->get('header_my_museum_tour_secondary_button_label'),
                     'header_my_museum_tour_secondary_button_link' => $item->labels->get('header_my_museum_tour_secondary_button_link'),
+                    'header_my_museum_tour_icon_choose_title' => $item->labels->get('header_my_museum_tour_icon_choose_title'),
+                    'header_my_museum_tour_icon_choose_desc' => $item->labels->get('header_my_museum_tour_icon_choose_desc'),
+                    'header_my_museum_tour_icon_personalize_title' => $item->labels->get('header_my_museum_tour_icon_choose_title'),
+                    'header_my_museum_tour_icon_personalize_desc' => $item->labels->get('header_my_museum_tour_icon_personalize_desc'),
+                    'header_my_museum_tour_icon_finish_title ' => $item->labels->get('header_my_museum_tour_icon_finish_title'),
+                    'header_my_museum_tour_icon_finish_desc' => $item->labels->get('header_my_museum_tour_icon_finish_desc'),
                     'tours_create_cta_module_image' => $item->imageFront('tours_create_cta_module_image'),
                     'tours_create_cta_module_action_url' => $item->labels->get('tours_create_cta_module_action_url'),
                     'tours_create_cta_module_header' => $item->labels->get('tours_create_cta_module_header'),
