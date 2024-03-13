@@ -61,20 +61,6 @@
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'header_variation',
-    'fieldValues' => 'my_museum_tour',
-    'renderForBlocks' => false
-])
-
-    @formField('medias', [
-        'name' => 'hero',
-        'label' => 'Hero image',
-        'note' => 'Minimum image width 3000px'
-    ])
-
-@endcomponent
-
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'header_variation',
     'fieldValues' => 'cta',
     'renderForBlocks' => false
 ])
@@ -128,19 +114,60 @@
         ],
     ])
 
-    @formField('input', [
-        'name' => 'labels.header_my_museum_tour_primary_button_label',
-        'label' => 'Primary Button Label'
+    @component('twill::partials.form.utils._columns')
+    @slot('left')
+        @formField('input', [
+            'name' => 'labels.header_my_museum_tour_primary_button_label',
+            'label' => 'Primary Button Label'
+        ])
+    @endslot
+
+    @slot('right')
+        @formField('input', [
+            'name' => 'labels.header_my_museum_tour_primary_button_link',
+            'label' => 'Primary Button Link'
+        ])
+    @endslot
+    @endcomponent
+
+    @component('twill::partials.form.utils._columns')
+    @slot('left')
+        @formField('input', [
+            'name' => 'labels.header_my_museum_tour_secondary_button_label',
+            'label' => 'Secondary Button Label'
+        ])
+    @endslot
+
+    @slot('right')
+        @formField('input', [
+            'name' => 'labels.header_my_museum_tour_secondary_button_link',
+            'label' => 'Secondary Button Link'
+        ])
+    @endslot
+    @endcomponent
+
+    @formField('medias', [
+        'label' => 'Hero Image',
+        'name' => 'header_my_museum_tour_header_image'
     ])
 
-    @formField('input', [
-        'name' => 'labels.header_my_museum_tour_primary_button_link',
-        'label' => 'Primary Button Link'
-    ])
-
-    @formField('input', [
-        'name' => 'labels.header_my_museum_tour_secondary_button_label',
-        'label' => 'Secondary Button Label'
+    @formField('multi_select', [
+        'name' => 'labels.header_my_museum_tour_icons',
+        'label' => 'Toggle Icons',
+        'options' => [
+            [
+                'value' => 'mmt_icon_choose',
+                'label' => 'Choose'
+            ],
+            [
+                'value' => 'mmt_icon_personalize',
+                'label' => 'Personalize'
+            ],
+            [
+                'value' => 'mmt_icon_finish',
+                'label' => 'Finish'
+            ],
+        ]
     ])
 
 @endcomponent
