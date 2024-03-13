@@ -94,8 +94,7 @@
                                 'btn',
                                 'f-buttons',
                                 'btn--contrast' => isset($image) && !$my_museum_tour,
-                                'btn--quaternary' => !isset($image) && $my_museum_tour && !$secondary_button_href && !$my_museum_tour_viewer,
-                                'btn--secondary' => !isset($image) && $my_museum_tour && $secondary_button_href,
+                                'btn--my-museum-tour' => $my_museum_tour,
                             ])>
                                 {!! SmartyPants::defaultTransform($button_text) !!}
                             </span>
