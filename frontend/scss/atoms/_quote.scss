@@ -169,45 +169,42 @@ Has a variant for editorial articles:
     bottom: 20px;
   }
 }
-  
-  .o-article .quote.o-blocks__block  {
-    padding: 12px 40px 60px 12px;
-    border-radius: $border-radius;
-    background-color: $color__bg--editorial;
 
-    @include breakpoint('small+') {
-      padding: 16px 40px 80px 20px;
-    }
-  
-    @include breakpoint('medium+') {
-      padding-top: 20px;
-      padding-bottom: 116px;
-    }
+.o-article .quote.o-blocks__block  {
+  padding: 12px 40px 60px 12px;
+  border-radius: $border-radius;
+  background-color: $color__bg--editorial;
+
+  @include breakpoint('small+') {
+    padding: 16px 40px 80px 20px;
   }
 
-  .o-article .quote.o-blocks__block::before {
-    content: none;
-    display: none;
+  @include breakpoint('medium+') {
+    padding-top: 20px;
+    padding-bottom: 116px;
   }
+}
 
-  .o-article .quote.o-blocks__block .f-quote {
-    font-style: italic;
-    color: $color__text--title;
+.o-article .quote.o-blocks__block::before {
+  content: none;
+  display: none;
+}
+
+.o-article .quote.o-blocks__block .f-quote {
+  font-style: italic;
+  color: $color__text--title;
+}
+
+.o-article .quote.o-blocks__block .quote__icon {
+  position: absolute;
+  left: auto;
+  right: 16px;
+  top: auto;
+  bottom: 16px;
+  transform: none;
+
+  @include breakpoint('medium+') {
+    right: 20px;
+    bottom: 20px;
   }
-
-  .o-article .quote.o-blocks__block .quote__icon {
-    position: absolute;
-    left: auto;
-    right: 16px;
-    top: auto;
-    bottom: 16px;
-    transform: none;
-  
-    @include breakpoint('medium+') {
-      right: 20px;
-      bottom: 20px;
-    }
-  }
-
-
-
+}
