@@ -6,6 +6,7 @@
     background-color: $color__teal--my-museum-tour;
     color: $color__white;
     padding: 56px;
+
     @include breakpoint('small-') {
         padding: 14px;
     }
@@ -88,6 +89,7 @@
             object-fit: cover;
             margin-top: 40px;
             margin-bottom: 40px;
+
             @include breakpoint('small-') {
                 height: 200px;
                 margin-top: 20px;
@@ -133,6 +135,7 @@
                         margin-top: 20px;
                         text-transform: uppercase;
                         font-family: $sans-serif-font--loaded;
+
                         @include breakpoint('small-') {
                             margin-top: 0;
                         }
@@ -143,6 +146,7 @@
                         line-height: 20px;
                         margin-top: 20px;
                         font-family: $serif-font--loaded;
+
                         @include breakpoint('small-') {
                             margin-top: 10px;
                         }
