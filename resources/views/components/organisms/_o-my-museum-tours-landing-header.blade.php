@@ -19,38 +19,38 @@
             @slot('settings', $imageSettings ?? '')
             @slot('class', 'my-museum-tour-header-section__img')
         @endcomponent
-        @if ($header_my_museum_tour_icons)
+        @if ($header_my_museum_tour_icon_choose_title || $header_my_museum_tour_icon_choose_desc || $header_my_museum_tour_icon_personalize_title || $header_my_museum_tour_icon_personalize_desc || $header_my_museum_tour_icon_finish_title || $header_my_museum_tour_icon_finish_desc)
         <div class="my-museum-tour-header__icons">
-            @if (in_array('mmt_icon_choose', $header_my_museum_tour_icons))
+            @if ($header_my_museum_tour_icon_choose_title || $header_my_museum_tour_icon_choose_desc)
                 <div>
                     <svg aria-hidden="true" class="icon--choose">
                         <use xlink:href="#icon--choose"></use>
                     </svg>
                     <div>
-                        <h3>Choose your artworks</h3>
-                        <p>Build a tour by adding up to six artworks</p>
+                        <h3>{{$header_my_museum_tour_icon_choose_title}}</h3>
+                        <p>{{$header_my_museum_tour_icon_choose_desc}}</p>
                     </div>
                 </div>
             @endif
-            @if (in_array('mmt_icon_personalize', $header_my_museum_tour_icons))
+            @if ($header_my_museum_tour_icon_personalize_title || $header_my_museum_tour_icon_personalize_desc)
                 <div>
                     <svg aria-hidden="true" class="icon--personalize">
                         <use xlink:href="#icon--personalize"></use>
                     </svg>
                     <div>
-                        <h3>Personalize</h3>
-                        <p>Add a title to your tour and notes to the artworks you picked</p>
+                        <h3>{{$header_my_museum_tour_icon_personalize_title}}</h3>
+                        <p>{{$header_my_museum_tour_icon_personalize_desc}}</p>
                     </div>
                 </div>
             @endif
-            @if (in_array('mmt_icon_finish', $header_my_museum_tour_icons))
+            @if ($header_my_museum_tour_icon_finish_title || $header_my_museum_tour_icon_finish_desc)
                 <div>
                     <svg aria-hidden="true" class="icon--finish">
                         <use xlink:href="#icon--finish"></use>
                     </svg>
                     <div>
-                        <h3>Finish and Share</h3>
-                        <p>View your one-of-a-kind tour on your phone or in print–and get ready to plan a museum visit!</p>
+                        <h3>{{$header_my_museum_tour_icon_finish_title}}</h3>
+                        <p>{{$header_my_museum_tour_icon_finish_desc}}</p>
                     </div>
                 </div>
             @endif
