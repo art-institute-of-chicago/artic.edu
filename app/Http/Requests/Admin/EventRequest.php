@@ -6,6 +6,7 @@ use App\Models\Event;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use A17\Twill\Http\Requests\Admin\Request;
+use DateInterval;
 
 class EventRequest extends Request
 {
@@ -14,6 +15,16 @@ class EventRequest extends Request
      */
     public function __construct()
     {
+        Validator::extend('time_greater_than', function ($attribute, $value, $parameters) {
+            $startInterval = new DateInterval($this->start_time);
+            $endInterval = new DateInterval($value);
+
+            $start_time = $startInterval->h * 3600 + $startInterval->i * 60;
+            $end_time = $endInterval->h * 3600 + $endInterval->i * 60;
+
+            return $end_time > $start_time;
+        });
+
         Validator::extend('emails', function ($attribute, $value, $parameters) {
             $values = array_map('trim', array_filter(explode(',', rtrim($this->test_emails, ','))));
 
@@ -49,7 +60,7 @@ class EventRequest extends Request
     {
         $rules = [
             'start_time' => 'required',
-            'end_time' => 'required|after:start_time',
+            'end_time' => 'required|time_greater_than',
             'short_description' => 'required',
             'list_description' => 'required',
             'event_host_id' => [
