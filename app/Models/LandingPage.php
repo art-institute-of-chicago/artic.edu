@@ -188,6 +188,20 @@ class LandingPage extends AbstractModel implements Sortable
                 ],
             ],
         ],
+        'header_my_museum_tour_header_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
+                ],
+            ],
+            'mobile' => [
+                [
+                    'name' => 'mobile',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
         'tours_create_cta_module_image' => [
             'default' => [
                 [
