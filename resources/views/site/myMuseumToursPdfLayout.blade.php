@@ -58,7 +58,7 @@
             <td class="crease" rowspan="12"></td>
             <td colspan="7" rowspan="3">
                 <div class="heading-image-container">
-                    <img src="https://artic-web-test.imgix.net/a9a0fefa-2101-456b-9afa-cc34dccaf06d/unnamed1.jpg?rect=0%2C65%2C1391%2C783&auto=format%2Ccompress&q=80&fit=crop&crop=faces%2Ccenter&w=1000&h=563">
+                    <img src="https://artic-web.imgix.net/7a9ecbc2-7d8c-41e7-8649-650f1cc5c184/PDFheroimage.png?auto=format%2Ccompress&q=80&fit=crop&crop=faces%2Ccenter&w=1000&h=563">
                 </div>
             </td>
         </tr>
@@ -171,10 +171,10 @@
             </td>
             <td class="gutter"></td>
             <td colspan="3" class="logos">
-                <p class="f-body t-qr-caption"><span>See your tour here:</span></p>
             </td>
             <td class="col52"></td>
             <td class="logos">
+                <p class="f-body t-qr-caption"><span>See your tour here</span></p>
                 <img class="i-qrcode" src="{{ route('my-museum-tour.qrcode', [ 'id' => $id ], false); }}">
             </td>
         </tr>
