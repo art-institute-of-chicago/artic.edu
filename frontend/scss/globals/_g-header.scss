@@ -14,7 +14,16 @@
   margin-left: -50vw;
   left: 50%;
   right: 50%;
+}
 
+.g-header:has([aria-expanded="true"]) ~ main::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: map-get($zindexs, 'stickyFilters');
   @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
@@ -144,11 +153,6 @@
   }
 }
 
-.g-header__nav-primary a:hover {
-  color: $color__red--100;
-  transition: color .25s .25s;
-}
-
 .g-header__nav-primary a:active {
   background-image: none;
   text-shadow: 0;
@@ -184,73 +188,86 @@
   }
 }
 
-.g-header__nav-primary .level-1>a {
-  .icon--arrow {
-    transform: rotate(90deg);
-    transition: transform .25s .25s;
+
+.g-header__nav-primary {
+  [aria-expanded="false"] + .details {
+    visibility: collapse;
   }
-  &:hover .icon--arrow {
-    transform: rotate(-90deg);
-    transition: transform .25s .25s;
+  [aria-expanded="true"] + .details {
+    visibility: visible;
   }
 }
 
-.g-header__nav-primary .level-1>.details {
-  background-color: $color__white;
-  box-shadow: 0 4px 20px -20px;
-  display: flex;
-  flex-direction: row;
-  grid-auto-rows: 1fr;
-  left: 0;
-  margin-top: 19px;
-  padding-top: 5px;
-  position: fixed;
-  visibility: collapse;
-  width: 100vw;
-  @include breakpoint('medium-') {
-    margin-top: 15px;
+.g-header__nav-primary .level-1 {
+  &>a {
+    .icon--arrow {
+      transform: rotate(90deg);
+    }
+    &[aria-expanded="true"] {
+      color: $color__red--100;
+      transition: color .25s .25s;
+      & .icon--arrow {
+        transform: rotate(-90deg);
+        transition: transform .25s .25s;
+      }
+    }
   }
-  &>a, &>span {
-    background-color: $color__black--5;
+  &>.details {
+    background-color: $color__white;
+    box-shadow: 0 4px 20px -20px;
     display: flex;
-    flex-basis: 50vw;
+    flex-direction: row;
+    grid-auto-rows: 1fr;
+    left: 0;
+    margin-top: 19px;
+    padding-top: 5px;
+    position: fixed;
+    width: 100vw;
     @include breakpoint('medium-') {
-      flex-basis: 33vw;
+      margin-top: 15px;
     }
-  }
-  img {
-    margin-bottom: 32px;
-    margin-left: 4.6875vw;
-    margin-top: 32px;
-    height: 170px;
-    width: 239px;
-    @include breakpoint('medium-') {
-      display: none;
+    &>a, &>span {
+      background-color: $color__black--5;
+      display: flex;
+      flex-basis: 50vw;
+      @include breakpoint('medium-') {
+        flex-basis: 33vw;
+      }
     }
-  }
-  .description {
-    color: $color__black--54;
-    font-size: 16px;
-    line-height: 24px;
-    margin: 32px;
-    .title {
-      color: $color__black--80;
-      font-size: 24px;
-      line-height: 28px;
-      padding-bottom: .5em;
-      text-transform: uppercase;
+    img {
+      margin-bottom: 32px;
+      margin-left: 4.6875vw;
+      margin-top: 32px;
+      height: 170px;
+      width: 239px;
+      @include breakpoint('medium-') {
+        display: none;
+      }
     }
-  }
-  &>ul[role="menu"] {
-    border-right: 1px solid $color__black--20;
-    flex-basis: 25vw;
-    font-size: 16px;
-    line-height: 32px;
-    margin-bottom: 24px;
-    margin-top: 24px;
-    padding-left: 32px;
-    @include breakpoint('medium-') {
-      flex-basis: 33vw;
+    .description {
+      color: $color__black--54;
+      font-size: 16px;
+      line-height: 24px;
+      margin: 32px;
+      .title {
+        color: $color__black--80;
+        font-size: 24px;
+        line-height: 28px;
+        padding-bottom: .5em;
+        text-transform: uppercase;
+      }
+    }
+    &>[role="menu"] {
+      border-right: 1px solid $color__black--20;
+      flex-basis: 25vw;
+      font-size: 16px;
+      line-height: 32px;
+      margin-bottom: 24px;
+      margin-top: 24px;
+      padding-left: 32px;
+      @include breakpoint('medium-') {
+        flex-basis: 33vw;
+      }
     }
   }
 }
@@ -262,10 +279,15 @@
     padding-right: 4.6875vw;
     position: absolute;
     top: 24px;
-    visibility: collapse;
     @include breakpoint('medium-') {
       left: 67vw;
     }
+  }
+}
+
+.g-header__nav-primary [role="menu"]:has(>li>a:hover, >li>a:focus, >li>a[aria-expanded="true"]) {
+  &>li>a:not(:hover, :focus, [aria-expanded="true"]) {
+    color: $color__black--30;
   }
 }
 

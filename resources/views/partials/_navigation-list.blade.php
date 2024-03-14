@@ -12,7 +12,7 @@
         $hasDescription = isset($item['description']);
         $hasChildren = isset($item['children']);
     @endphp
-    <li @class(["level-$level", $item['class'] ?? null])>
+    <li @class(["level-$level", $item['class'] ?? null]) role="none">
         <a
             id="{{ $id }}"
             role="menuitem"
