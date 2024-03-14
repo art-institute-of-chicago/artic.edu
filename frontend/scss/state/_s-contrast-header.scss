@@ -27,7 +27,7 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
   &:not(.s-scroll-direction-up),
   &:not(.s-header-hide) {
 
-    .g-header {
+    .g-header:not(:has([aria-expanded="true"])) {
       background-color: rgba($color__white,0);
       transition: background-color .25s .25s, opacity .25s .25s, transform 0s .5s;
 
@@ -36,56 +36,56 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
         backdrop-filter: blur(0);
 
       }
-    }
 
-    .g-header__inner {
-      border-bottom-color: rgba($color__rules--primary, 0);
-      transition: border-bottom-color .25s .25s;
-    }
-
-    .g-header .icon--search--24,
-    .g-header__nav-primary a {
-      color: $color__text--title-contrast;
-      transition: color .25s .25s;
-
-      @include breakpoint('small+') {
-        color: $color__text--title-contrast;
+      .g-header__inner {
+        border-bottom-color: rgba($color__rules--primary, 0);
+        transition: border-bottom-color .25s .25s;
       }
-    }
 
-    .g-header__logo,
-    .g-header__opening-hours,
-    .g-header__opening-hours a,
-    .g-header__menu-link,
-    .g-header__menu-link:active {
-      color: $color__text--title-contrast;
-      transition: color .25s .25s;
-    }
-
-    .g-header__nav-secondary a,
-    .g-header__menu-link:hover,
-    .g-header__menu-link:focus {
-      color: rgba($color__text--title-contrast, .7);
-      transition: color .25s .25s;
-      @include breakpoint('xsmall') {
+      .g-header .icon--search--24,
+      .g-header__nav-primary a {
         color: $color__text--title-contrast;
+        transition: color .25s .25s;
+
+        @include breakpoint('small+') {
+          color: $color__text--title-contrast;
+        }
       }
-    }
 
-    .g-header__nav-primary a:hover {
-      color: $color__red--100;
-    }
+      .g-header__logo,
+      .g-header__opening-hours,
+      .g-header__opening-hours a,
+      .g-header__menu-link,
+      .g-header__menu-link:active {
+        color: $color__text--title-contrast;
+        transition: color .25s .25s;
+      }
 
-    .g-header__nav-primary .s-current a {
-      background: none;
-      text-shadow: none;
-    }
+      .g-header__nav-secondary a,
+      .g-header__menu-link:hover,
+      .g-header__menu-link:focus {
+        color: rgba($color__text--title-contrast, .7);
+        transition: color .25s .25s;
+        @include breakpoint('xsmall') {
+          color: $color__text--title-contrast;
+        }
+      }
 
-    .g-header__opening-hours a:hover,
-    .g-header__nav-secondary a:hover,
-    .g-header__opening-hours a:active,
-    .g-header__nav-secondary a:active {
-      @include text-underline(1.02em, $color__text--title-contrast, transparent);
+      .g-header__nav-primary a:hover {
+        color: $color__red--100;
+      }
+
+      .g-header__nav-primary .s-current a {
+        background: none;
+        text-shadow: none;
+      }
+
+      .g-header__opening-hours a:hover,
+      .g-header__nav-secondary a:hover,
+      .g-header__opening-hours a:active,
+      .g-header__nav-secondary a:active {
+        @include text-underline(1.02em, $color__text--title-contrast, transparent);
+      }
     }
   }
 
