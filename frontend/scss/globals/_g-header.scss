@@ -116,6 +116,13 @@
   position: absolute;
   right: 0;
 
+  [aria-expanded="false"] + .details {
+    visibility: collapse;
+  }
+  [aria-expanded="true"] + .details {
+    visibility: visible;
+  }
+
   @include breakpoint('xsmall') {
     display: none;
   }
@@ -185,16 +192,6 @@
   top: -1px;
   @include breakpoint('xsmall') {
     display: none;
-  }
-}
-
-
-.g-header__nav-primary {
-  [aria-expanded="false"] + .details {
-    visibility: collapse;
-  }
-  [aria-expanded="true"] + .details {
-    visibility: visible;
   }
 }
 
