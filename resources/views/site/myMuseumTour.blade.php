@@ -21,10 +21,10 @@
         @php
             $hero_media = [
                 "sourceType" => "imgix",
-                "src" => "https://artic-web-test.imgix.net/910c336f-93d1-4a75-b27a-9a4081194401/MMTLandingpageheader_desktop.png",
+                "src" => "https://artic-web.imgix.net/367ce4f1-9163-44f4-9151-dadef374c314/MMTLandingpageheader_desktop.png",
                 "shareUrl" => "#",
                 "shareTitle" => "",
-                "downloadUrl" => "https://artic-web-test.imgix.net/910c336f-93d1-4a75-b27a-9a4081194401/MMTLandingpageheader_desktop.png",
+                "downloadUrl" => "https://artic-web.imgix.net/367ce4f1-9163-44f4-9151-dadef374c314/MMTLandingpageheader_desktop.png",
                 "downloadName" => "default.jpg",
                 "credit" => "",
                 "creditUrl" => "",
@@ -37,10 +37,10 @@
 
             $mobile_hero_media = [
                 "sourceType" => "imgix",
-                "src" => "https://artic-web-test.imgix.net/218a93d1-19d0-4eb4-bd44-c1c0124aba99/Landingpageheader_mobile.png",
+                "src" => "https://artic-web.imgix.net/367ce4f1-9163-44f4-9151-dadef374c314/Landingpageheader_mobile.png",
                 "shareUrl" => "#",
                 "shareTitle" => "",
-                "downloadUrl" => "https://artic-web-test.imgix.net/218a93d1-19d0-4eb4-bd44-c1c0124aba99/Landingpageheader_mobile.png",
+                "downloadUrl" => "https://artic-web.imgix.net/367ce4f1-9163-44f4-9151-dadef374c314/Landingpageheader_mobile.png",
                 "downloadName" => "default.jpg",
                 "credit" => "",
                 "creditUrl" => "",
