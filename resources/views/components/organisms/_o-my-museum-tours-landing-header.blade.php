@@ -14,11 +14,20 @@
             @endif
             </div>
         </div>
-        @component('components.atoms._img')
-            @slot('image', $header_my_museum_tour_header_image)
-            @slot('settings', $imageSettings ?? '')
-            @slot('class', 'my-museum-tour-header-section__img')
-        @endcomponent
+        @if ($header_my_museum_tour_header_image)
+            @component('components.atoms._img')
+                @slot('image', $header_my_museum_tour_header_image)
+                @slot('settings', $imageSettings ?? '')
+                @slot('class', 'my-museum-tour-header-section__img')
+            @endcomponent
+        @endif
+        @if ($header_my_museum_tour_header_image_mobile)
+            @component('components.atoms._img')
+                @slot('image', $header_my_museum_tour_header_image_mobile)
+                @slot('settings', $imageSettings ?? '')
+                @slot('class', 'my-museum-tour-header-section__img-mobile')
+            @endcomponent
+        @endif
         @if ($header_my_museum_tour_icon_choose_title || $header_my_museum_tour_icon_choose_desc || $header_my_museum_tour_icon_personalize_title || $header_my_museum_tour_icon_personalize_desc || $header_my_museum_tour_icon_finish_title || $header_my_museum_tour_icon_finish_desc)
         <div class="my-museum-tour-header__icons">
             @if ($header_my_museum_tour_icon_choose_title || $header_my_museum_tour_icon_choose_desc)
