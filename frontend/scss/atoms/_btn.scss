@@ -327,8 +327,8 @@ Example usage:
 
 .btn--my-museum-tour {
   border-color: transparent;
-  background-color: $color__teal-light--my-museum-tour;
-  color: $color__black;
+  background-color: $color__teal--my-museum-tour;
+  color: $color__white;
 
   &:hover,
   &:focus:hover,
@@ -336,7 +336,7 @@ Example usage:
   &:active:hover {
     border-color: transparent;
     background-color: $color__teal-medium--my-museum-tour;
-    color: $color__black;
+    color: $color__white;
   }
 }
 
