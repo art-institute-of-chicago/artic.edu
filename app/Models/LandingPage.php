@@ -192,13 +192,13 @@ class LandingPage extends AbstractModel implements Sortable
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 1,
+                    'ratio' => 16 / 9,
                 ],
             ],
             'mobile' => [
                 [
                     'name' => 'mobile',
-                    'ratio' => 16 / 9,
+                    'ratio' => 1,
                 ],
             ],
         ],
