@@ -88,7 +88,7 @@
             height: auto;
             object-fit: cover;
             margin-top: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 56px;
 
             @include breakpoint('small-') {
                 display: none;
@@ -106,6 +106,10 @@
             @include breakpoint('small-') {
                 display: block;
             }
+        }
+
+        .my-museum-tour-header-section__img-mobile  {
+            margin-bottom: 14px !important;
         }
 
         .my-museum-tour-header__icons {
