@@ -34,7 +34,7 @@
                     ])
             {!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
             @if ($isBigLink)
-                <a href="{{ $href }}" class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
+                <div class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
             @endif
                 @if (isset($image))
                     <div class="m-cta-banner__img" data-parallax-img>
@@ -118,7 +118,7 @@
                     @endif
                 </div>
             @if ($isBigLink)
-                </a>
+                </div>
             @endif
         </{{ $tag }}>
     </div>

@@ -205,6 +205,7 @@ class LandingPagesController extends FrontController
                 $viewData = [
                     'header_my_museum_tour_icons' => $item->labels->get('header_my_museum_tour_icons'),
                     'header_my_museum_tour_header_image' => $item->imageFront('header_my_museum_tour_header_image'),
+                    'header_my_museum_tour_header_image_mobile' => $item->imageFront('header_my_museum_tour_header_image_mobile'),
                     'header_my_museum_tour_text' => $item->labels->get('header_my_museum_tour_text'),
                     'header_my_museum_tour_primary_button_label' => $item->labels->get('header_my_museum_tour_primary_button_label'),
                     'header_my_museum_tour_primary_button_link' => $item->labels->get('header_my_museum_tour_primary_button_link'),
