@@ -192,12 +192,14 @@ class LandingPage extends AbstractModel implements Sortable
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 1,
+                    'ratio' => 2267 / 742,
                 ],
             ],
-            'mobile' => [
+        ],
+        'header_my_museum_tour_header_image_mobile' => [
+            'default' => [
                 [
-                    'name' => 'mobile',
+                    'name' => 'default',
                     'ratio' => 16 / 9,
                 ],
             ],
