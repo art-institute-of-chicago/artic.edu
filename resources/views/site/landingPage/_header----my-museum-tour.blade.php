@@ -14,18 +14,19 @@
         @endcomponent
     @else
         @component('components.organisms._o-my-museum-tours-landing-header')
-            @slot('header_my_museum_tour_header_image', $header_my_museum_tour_header_image)
-            @slot('header_my_museum_tour_text', $header_my_museum_tour_text)
-            @slot('header_my_museum_tour_primary_button_link', $header_my_museum_tour_primary_button_link)
-            @slot('header_my_museum_tour_primary_button_label', $header_my_museum_tour_primary_button_label)
-            @slot('header_my_museum_tour_secondary_button_link', $header_my_museum_tour_primary_button_link)
-            @slot('header_my_museum_tour_secondary_button_label', $header_my_museum_tour_secondary_button_label)
-            @slot('header_my_museum_tour_icon_choose_title', $header_my_museum_tour_icon_choose_title)
-            @slot('header_my_museum_tour_icon_choose_desc', $header_my_museum_tour_icon_choose_desc)
-            @slot('header_my_museum_tour_icon_personalize_title', $header_my_museum_tour_icon_personalize_title)
-            @slot('header_my_museum_tour_icon_personalize_desc', $header_my_museum_tour_icon_personalize_desc)
-            @slot('header_my_museum_tour_icon_finish_title', $header_my_museum_tour_icon_finish_title)
-            @slot('header_my_museum_tour_icon_finish_desc', $header_my_museum_tour_icon_finish_desc)
+            @slot('header_my_museum_tour_header_image', $header_my_museum_tour_header_image ?? null)
+            @slot('header_my_museum_tour_header_image_mobile', $header_my_museum_tour_header_image_mobile ?? null)
+            @slot('header_my_museum_tour_text', $header_my_museum_tour_text ?? null)
+            @slot('header_my_museum_tour_primary_button_link', $header_my_museum_tour_primary_button_link ?? null)
+            @slot('header_my_museum_tour_primary_button_label', $header_my_museum_tour_primary_button_label ?? null)
+            @slot('header_my_museum_tour_secondary_button_link', $header_my_museum_tour_primary_button_link ?? null)
+            @slot('header_my_museum_tour_secondary_button_label', $header_my_museum_tour_secondary_button_label ?? null)
+            @slot('header_my_museum_tour_icon_choose_title', $header_my_museum_tour_icon_choose_title ?? null)
+            @slot('header_my_museum_tour_icon_choose_desc', $header_my_museum_tour_icon_choose_desc ?? null)
+            @slot('header_my_museum_tour_icon_personalize_title', $header_my_museum_tour_icon_personalize_title ?? null)
+            @slot('header_my_museum_tour_icon_personalize_desc', $header_my_museum_tour_icon_personalize_desc ?? null)
+            @slot('header_my_museum_tour_icon_finish_title', $header_my_museum_tour_icon_finish_title ?? null)
+            @slot('header_my_museum_tour_icon_finish_desc', $header_my_museum_tour_icon_finish_desc ?? null)
         @endcomponent
     @endif
 </section>
