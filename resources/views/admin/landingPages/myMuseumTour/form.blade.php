@@ -151,6 +151,11 @@
         'name' => 'header_my_museum_tour_header_image'
     ])
 
+    @formField('medias', [
+        'label' => 'Mobile hero Image',
+        'name' => 'header_my_museum_tour_header_image_mobile'
+    ])
+
     @component('twill::partials.form.utils._columns')
     @slot('left')
         @formField('input', [
