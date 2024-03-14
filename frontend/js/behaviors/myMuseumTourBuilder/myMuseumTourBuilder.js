@@ -6,7 +6,6 @@ export default function myMuseumTourBuilder(container) {
   this.init = function () {
     ReactDOM.render(
       <MyMuseumTourBuilder
-        heroImageId="3c27b499-af56-f0d5-93b5-a7f2f1ad5813"
       />,
       container,
       () => {
