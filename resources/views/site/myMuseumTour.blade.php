@@ -21,12 +21,26 @@
         @php
             $hero_media = [
                 "sourceType" => "imgix",
-                "src" => "https://artic-web-test.imgix.net/a9a0fefa-2101-456b-9afa-cc34dccaf06d/unnamed1.jpg",
-                "width" => 1920,
-                "height" => 1000,
+                "src" => "https://artic-web-test.imgix.net/910c336f-93d1-4a75-b27a-9a4081194401/MMTLandingpageheader_desktop.png",
                 "shareUrl" => "#",
                 "shareTitle" => "",
-                "downloadUrl" => "https://artic-web-test.imgix.net/a9a0fefa-2101-456b-9afa-cc34dccaf06d/unnamed1.jpg",
+                "downloadUrl" => "https://artic-web-test.imgix.net/910c336f-93d1-4a75-b27a-9a4081194401/MMTLandingpageheader_desktop.png",
+                "downloadName" => "default.jpg",
+                "credit" => "",
+                "creditUrl" => "",
+                "lqip" => null,
+                "alt" => "",
+                "caption" => null,
+                "iiifId" => null,
+                "restrict" => false,
+            ];
+
+            $mobile_hero_media = [
+                "sourceType" => "imgix",
+                "src" => "https://artic-web-test.imgix.net/218a93d1-19d0-4eb4-bd44-c1c0124aba99/Landingpageheader_mobile.png",
+                "shareUrl" => "#",
+                "shareTitle" => "",
+                "downloadUrl" => "https://artic-web-test.imgix.net/218a93d1-19d0-4eb4-bd44-c1c0124aba99/Landingpageheader_mobile.png",
                 "downloadName" => "default.jpg",
                 "credit" => "",
                 "creditUrl" => "",
@@ -37,15 +51,45 @@
                 "restrict" => false,
             ];
         @endphp
-        @component('components.molecules._m-article-header')
-            @slot('headerType', 'hero')
-            @slot('title', $my_museum_tour['title'])
-            @slot('img', $hero_media)
-            @slot('type', 'My Museum Tour')
-        @endcomponent
+        <div class="aic-ct-viewer__header ">
+           <div class="aic-ct-viewer__header-wrapper">
+                <h1 class="aic-ct-title">My Museum Tour</h1>
+                @component('components.atoms._img')
+                    @slot('image', $hero_media)
+                    @slot('settings', array(
+                        'fit' => 'crop',
+                        'srcset' => array(300,600,1000,1500,2000),
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                            'xsmall' => '272',
+                            'small' => '544',
+                            'medium' => '907',
+                            'large' => '1087',
+                            'xlarge' => '725',
+                        )),
+                    ))
+                    @slot('class', 'aic-ct-viewer__header-img')
+                @endcomponent
+                @component('components.atoms._img')
+                    @slot('image', $mobile_hero_media)
+                    @slot('settings', array(
+                        'fit' => 'crop',
+                        'srcset' => array(300,600,1000,1500,2000),
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                            'xsmall' => '272',
+                            'small' => '544',
+                            'medium' => '907',
+                            'large' => '1087',
+                            'xlarge' => '725',
+                        )),
+                    ))
+                    @slot('class', 'aic-ct-viewer__header-img-mobile')
+                @endcomponent
+           </div>
+        </div>
         <div>
             @isset($my_museum_tour['creatorName'])
                 <div class="aic-ct-viewer__creator-container">
+                    <h2 class="aic-ct-title">{{$my_museum_tour['title']}}</h2>
                     <p class="f-subheading-1">
                         <span id="creatorName">Tour made by {{ $my_museum_tour['creatorName'] }}</span>
                         @isset($my_museum_tour['recipientName'])
