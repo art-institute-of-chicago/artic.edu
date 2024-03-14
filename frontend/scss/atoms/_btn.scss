@@ -327,6 +327,21 @@ Example usage:
 
 .btn--my-museum-tour {
   border-color: transparent;
+  background-color: $color__teal-light--my-museum-tour;
+  color: $color__black;
+
+  &:hover,
+  &:focus:hover,
+  &.s-active,
+  &:active:hover {
+    border-color: transparent;
+    background-color: $color__teal-medium--my-museum-tour;
+    color: $color__black;
+  }
+}
+
+.btn--my-museum-tour-dark {
+  border-color: transparent;
   background-color: $color__teal--my-museum-tour;
   color: $color__white;
 
