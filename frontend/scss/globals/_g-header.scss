@@ -43,6 +43,10 @@
   @include breakpoint('medium+') {
     min-height: 140px;
   }
+
+  &>nav {
+    min-height: 140px;
+  }
 }
 
 .g-header__logo {
