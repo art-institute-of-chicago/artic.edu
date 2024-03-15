@@ -87,17 +87,17 @@
            </div>
         </div>
         <div>
-            @isset($my_museum_tour['creatorName'])
-                <div class="aic-ct-viewer__creator-container">
-                    <h2 class="aic-ct-title">{{$my_museum_tour['title']}}</h2>
+            <div class="aic-ct-viewer__creator-container">
+                <h2 class="aic-ct-title">{{$my_museum_tour['title']}}</h2>
+                @isset($my_museum_tour['creatorName'])
                     <p class="f-subheading-1">
                         <span id="creatorName">Tour made by {{ $my_museum_tour['creatorName'] }}</span>
                         @isset($my_museum_tour['recipientName'])
                             <span id="recipientName">for {{ $my_museum_tour['recipientName'] }}</span>
                         @endisset
                     </p>
-                </div>
-            @endisset
+                @endisset
+            </div>
 
             <div class="aic-ct-artworks-count-container">
                 <svg aria-hidden="true" class="icon--image-stack"><use xlink:href="#icon--image-stack" /></svg>
