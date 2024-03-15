@@ -1,6 +1,6 @@
 export default function(container) {
     const expandEventTypes = ['mouseenter', 'focus']
-    const collapseEventTypes = ['click', 'scroll']
+    const collapseEventTypes = {'scroll': document, 'mouseleave': container}
     const menuBarQuery = 'ul[role="menubar"]'
     const menuQuery = 'ul[role="menu"]'
     const listItemQuery = 'li[role="none"]'
@@ -22,8 +22,9 @@ export default function(container) {
     function expandHandler() {
         collapseMenu()
         expandAncestors(this)
-        collapseEventTypes.forEach(function(eventType) {
-            document.addEventListener(eventType, collapseHandler)
+        Object.keys(collapseEventTypes).forEach(function(eventType) {
+            collapseEventTypes[eventType].addEventListener(eventType, collapseHandler)
+
         })
     }
 
