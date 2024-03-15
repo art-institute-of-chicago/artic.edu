@@ -19,7 +19,7 @@
             @slot('header_my_museum_tour_text', $header_my_museum_tour_text ?? null)
             @slot('header_my_museum_tour_primary_button_link', $header_my_museum_tour_primary_button_link ?? null)
             @slot('header_my_museum_tour_primary_button_label', $header_my_museum_tour_primary_button_label ?? null)
-            @slot('header_my_museum_tour_secondary_button_link', $header_my_museum_tour_primary_button_link ?? null)
+            @slot('header_my_museum_tour_secondary_button_link', $header_my_museum_tour_secondary_button_link ?? null)
             @slot('header_my_museum_tour_secondary_button_label', $header_my_museum_tour_secondary_button_label ?? null)
             @slot('header_my_museum_tour_icon_choose_title', $header_my_museum_tour_icon_choose_title ?? null)
             @slot('header_my_museum_tour_icon_choose_desc', $header_my_museum_tour_icon_choose_desc ?? null)
