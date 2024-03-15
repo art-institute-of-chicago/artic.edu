@@ -287,4 +287,13 @@ class StringHelpers
                 return implode(', ', $array) . ', and ' . $last;
         }
     }
+
+    public static function stripHTML($string)
+    {
+        $string = strip_tags($string);
+        $string = html_entity_decode($string);
+        $string = preg_replace("/[^a-zA-Z0-9\s]/", "", $string);
+
+        return $string;
+    }
 }
