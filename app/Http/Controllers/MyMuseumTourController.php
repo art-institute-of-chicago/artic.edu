@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use App\Models\MyMuseumTour;
+use App\Repositories\LandingPageRepository;
 use App\Libraries\MyMuseumTour\ArtworkSortingService;
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
@@ -12,6 +14,15 @@ use chillerlan\QRCode\Output\QROutputInterface;
 
 class MyMuseumTourController extends FrontController
 {
+    protected $landingPageRepository;
+
+    public function __construct(LandingPageRepository $landingPageRepository)
+    {
+        $this->landingPageRepository = $landingPageRepository;
+
+        parent::__construct();
+    }
+
     public function show(Request $request, $id)
     {
         $myMuseumTour = MyMuseumTour::findOrFail($id);
@@ -21,14 +32,13 @@ class MyMuseumTourController extends FrontController
         ArtworkSortingService::sortArtworksByGallery($myMuseumTourJson['artworks'], config('galleries.order'));
 
         $this->seo->setTitle($myMuseumTourJson['title']);
+        View::share('globalSuffix', 'My Museum Tour');
 
-        if (array_key_exists('description', $myMuseumTourJson)) {
-            $this->seo->setDescription($myMuseumTourJson['description']);
-        }
+        $this->seo->setDescription('View this one-of-a-kind self-guided tour through The Art Institute of Chicago. Available on mobile or download to print and share with family and friends.');
 
-        $this->seo->image = 'https://' . rtrim(config('app.url'), '/') . '/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/1200,799/0/default.jpg';
-        $this->seo->width = 1200;
-        $this->seo->height = 799;
+        $landingPage = $this->landingPageRepository->published()->forSlug('my-museum-tour')->firstOrFail();
+        $this->seo->setImage($landingPage->imageFront('header_my_museum_tour_header_image') ?? $landingPage->imageFront('header_my_museum_tour_header_image_mobile'));
+
         $this->seo->nofollow = true;
         $this->seo->noindex = true;
 
@@ -106,6 +116,11 @@ class MyMuseumTourController extends FrontController
 
     public function showMyMuseumTourBuilder()
     {
+        $landingPage = $this->landingPageRepository->published()->forSlug('my-museum-tour')->firstOrFail();
+        $this->seo->setImage($landingPage->imageFront('header_my_museum_tour_header_image') ?? $landingPage->imageFront('header_my_museum_tour_header_image_mobile'));
+        $this->seo->setTitle('My Museum Tour');
+        $this->seo->setDescription('Create a unique self-guided museum tour with our easy-to-use platform. Choose from popular tours or build your own with up to six artworks. Add a title and notes then view on your phone or in print.');
+
         return view('site.myMuseumTourBuilder', [
             'unstickyHeader' => true
         ]);
