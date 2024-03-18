@@ -42,6 +42,44 @@ class LandingPagesController extends FrontController
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
+
+        if (!$item->is_published) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
+
+        $types = collect(LandingPage::TYPES);
+        switch ($item->type_id) {
+            case $types->search('Home'):
+                $this->seo->setTitle($item->meta_title ?: $item->title ?: "Downtown Chicago's #1 Museum");
+                $this->seo->setDescription($item->meta_description ?: "Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
+                break;
+
+            case $types->search('Visit'):
+                $this->seo->setTitle($item->meta_title ?: $item->title ?: 'Visit a Chicago Landmark');
+                $this->seo->setDescription($item->meta_description ?: 'Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
+                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
+                break;
+
+            case $types->search('Research and Resources'):
+                $this->seo->setTitle($item->meta_title ?: $item->title ?: 'Research & Resources');
+                $this->seo->setDescription($item->resources_landing_intro);
+                $this->seo->setImage($item->imageFront('research_landing_image'));
+                break;
+
+            case $types->search('My Museum Tour'):
+                $this->seo->setTitle($item->meta_title ?: $item->title);
+                $this->seo->setDescription($item->meta_description);
+                $this->seo->setImage($item->imageFront('header_my_museum_tour_header_image') ?? $item->imageFront('header_my_museum_tour_header_image_mobile'));
+                break;
+
+            default:
+                $this->seo->setTitle($item->meta_title ?: $item->title);
+                $this->seo->setDescription($item->meta_description);
+                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('mobile_hero'));
+                break;
+        }
+
         return view('site.landingPageDetail', $this->viewData($item));
     }
 
@@ -53,11 +91,6 @@ class LandingPagesController extends FrontController
 
         $feeTitles = $admission->present()->feeTitles();
         $feePrices = $admission->present()->feePrices();
-
-        if (!$item->is_published) {
-            $this->seo->nofollow = true;
-            $this->seo->noindex = true;
-        }
 
         // Home
         $primaryFeatures = $item->primaryFeatures()->published()->limit(1)->get();
@@ -131,29 +164,15 @@ class LandingPagesController extends FrontController
         $title = '';
 
         switch ($item->type_id) {
-            case $types->search('Home'):
-                $this->seo->setTitle($item->meta_title ?: $item->title ?: "Downtown Chicago's #1 Museum");
-                $this->seo->setDescription($item->meta_description ?: "Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
-                break;
-
             case $types->search('Visit'):
-                $this->seo->setTitle($item->meta_title ?: $item->title ?: 'Visit a Chicago Landmark');
-                $this->seo->setDescription($item->meta_description ?: 'Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
-                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
                 $title = __('Visit');
                 break;
 
             case $types->search('Research and Resources'):
-                $this->seo->setTitle($item->meta_title ?: $item->title ?: 'Research & Resources');
-                $this->seo->setDescription($item->resources_landing_intro);
-                $this->seo->setImage($item->imageFront('research_landing_image'));
                 $title = 'The Collection';
                 break;
 
             default:
-                $this->seo->setTitle($item->meta_title ?: $item->title);
-                $this->seo->setDescription($item->meta_description);
-                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('mobile_hero'));
                 $title = $item->title;
                 break;
         }
@@ -167,6 +186,7 @@ class LandingPagesController extends FrontController
             'title' => $title,
             'intro' => $item->intro,
             'landingPageType' => Str::slug($item->type),
+            'seo' => $this->seo,
         ];
 
         $blockHeadings = $item->blocks->pluck('content')->pluck('heading')->filter();
