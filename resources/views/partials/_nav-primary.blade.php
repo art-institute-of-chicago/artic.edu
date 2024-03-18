@@ -1,4 +1,4 @@
-<nav aria-label="primary" data-behavior="primaryNavigation">
+<nav class="g-header__nav-primary__container" aria-label="primary" data-behavior="primaryNavigation">
   <a class="g-header__logo" aria-label="Art Institute of Chicago" href="/">
     <svg aria-hidden="true">
       <use xlink:href="#icon--logo--outline--80" />
