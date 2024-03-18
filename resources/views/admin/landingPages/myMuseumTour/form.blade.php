@@ -156,6 +156,11 @@
         'name' => 'header_my_museum_tour_header_image_mobile'
     ])
 
+    @formField('medias', [
+        'label' => 'PDF hero Image',
+        'name' => 'header_my_museum_tour_header_image_pdf'
+    ])
+
     @component('twill::partials.form.utils._columns')
     @slot('left')
         @formField('input', [
