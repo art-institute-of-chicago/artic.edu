@@ -138,6 +138,10 @@
                     margin-top: 30px;
                 }
 
+                svg {
+                    color: $color__white;
+                }
+
                 >div {
                     @include breakpoint('small-') {
                         margin-left: 35px;
