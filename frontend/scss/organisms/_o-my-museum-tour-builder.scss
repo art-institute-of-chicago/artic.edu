@@ -109,9 +109,9 @@
     background-color: $color__teal-light--my-museum-tour;
   }
 
-  .aic-ct-preview__core {
+  .aic-ct-preview__body {
     text-align: center;
-    padding: 0 60px 48px 60px;
+    padding: 48px 60px 48px 60px;
 
     @include breakpoint('small-') {
       padding: 0 52px 48px 52px;
@@ -164,7 +164,7 @@
   padding-left: 16px;
   padding-right: 16px;
 
-  svg {
+  svg.icon--max-artworks {
     width: 143px;
     height: 190px;
     color: #000;
