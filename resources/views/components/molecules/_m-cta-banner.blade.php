@@ -12,9 +12,6 @@
     $my_museum_tour_viewer_completed = $my_museum_tour_viewer_completed ?? false;
     $secondary_button_href = $secondary_button_href ?? null;
     $secondary_button_text = $secondary_button_text ?? null;
-
-    // TODO: Make this an option?
-    $isBigLink = isset($image);
 @endphp
 
 @if ($header)
@@ -33,9 +30,7 @@
                         'm-cta-banner--aic-ct-no-image' => !isset($image) && $my_museum_tour,
                     ])
             {!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
-            @if ($isBigLink)
-                <div class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
-            @endif
+            <div class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
                 @if (isset($image))
                     <div class="m-cta-banner__img" data-parallax-img>
                         @component('components.atoms._img')
@@ -86,23 +81,18 @@
 
                     @if ($button_text)
                         <div class="m-cta-banner__action">
-                            @if (!$isBigLink)
-                                <a href="{{ $href }}">
-                            @endif
+                            <a href="{{ $href }}">
+                                <span @class([
+                                    'btn',
+                                    'f-buttons',
+                                    'btn--contrast' => isset($image) && !$my_museum_tour,
+                                    'btn--my-museum-tour' => $my_museum_tour,
+                                ])>
+                                    {!! SmartyPants::defaultTransform($button_text) !!}
+                                </span>
+                            </a>
 
-                            <span @class([
-                                'btn',
-                                'f-buttons',
-                                'btn--contrast' => isset($image) && !$my_museum_tour,
-                                'btn--my-museum-tour' => $my_museum_tour,
-                            ])>
-                                {!! SmartyPants::defaultTransform($button_text) !!}
-                            </span>
-                            @if (!$isBigLink)
-                                </a>
-                            @endif
-
-                            @if (!$isBigLink && $secondary_button_href && $secondary_button_text)
+                            @if ($secondary_button_href && $secondary_button_text)
                                 <a href="{{ $secondary_button_href }}">
                                     <span @class([
                                         'btn',
@@ -117,9 +107,7 @@
                         </div>
                     @endif
                 </div>
-            @if ($isBigLink)
-                </div>
-            @endif
+            </div>
         </{{ $tag }}>
     </div>
 @endif
