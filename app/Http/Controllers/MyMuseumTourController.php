@@ -54,13 +54,19 @@ class MyMuseumTourController extends FrontController
         // Variable to check for tourCreationComplete=true in the URL
         $tourCreationComplete = $request->query('tourCreationComplete') === 'true';
 
+        $landingPage = $this->landingPageRepository->published()->forSlug('my-museum-tour')->firstOrFail();
+        $hero_media = $landingPage->imageFront('header_my_museum_tour_header_image');
+        $mobile_hero_media = $landingPage->imageFront('header_my_museum_tour_header_image_mobile');
+
         return view('site.myMuseumTour', [
             'item' => $myMuseumTour,
             'my_museum_tour' => $myMuseumTourJson,
             'unique_galleries_count' => $uniqueGalleriesCount,
             'unique_artists_count' => $uniqueArtistsCount,
             'unstickyHeader' => true,
-            'tour_creation_completed' => $tourCreationComplete
+            'tour_creation_completed' => $tourCreationComplete,
+            'hero_media' => $hero_media,
+            'mobile_hero_media' => $mobile_hero_media,
         ]);
     }
 

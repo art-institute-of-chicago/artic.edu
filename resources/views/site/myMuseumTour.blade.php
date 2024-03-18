@@ -18,39 +18,6 @@
         </div>
     @endif
     <article class="aic-ct-viewer o-article o-article__body">
-        @php
-            $hero_media = [
-                "sourceType" => "imgix",
-                "src" => "https://artic-web.imgix.net/367ce4f1-9163-44f4-9151-dadef374c314/MMTLandingpageheader_desktop.png",
-                "shareUrl" => "#",
-                "shareTitle" => "",
-                "downloadUrl" => "https://artic-web.imgix.net/367ce4f1-9163-44f4-9151-dadef374c314/MMTLandingpageheader_desktop.png",
-                "downloadName" => "default.jpg",
-                "credit" => "",
-                "creditUrl" => "",
-                "lqip" => null,
-                "alt" => "",
-                "caption" => null,
-                "iiifId" => null,
-                "restrict" => false,
-            ];
-
-            $mobile_hero_media = [
-                "sourceType" => "imgix",
-                "src" => "https://artic-web.imgix.net/367ce4f1-9163-44f4-9151-dadef374c314/Landingpageheader_mobile.png",
-                "shareUrl" => "#",
-                "shareTitle" => "",
-                "downloadUrl" => "https://artic-web.imgix.net/367ce4f1-9163-44f4-9151-dadef374c314/Landingpageheader_mobile.png",
-                "downloadName" => "default.jpg",
-                "credit" => "",
-                "creditUrl" => "",
-                "lqip" => null,
-                "alt" => "",
-                "caption" => null,
-                "iiifId" => null,
-                "restrict" => false,
-            ];
-        @endphp
         <div class="aic-ct-viewer__header ">
            <div class="aic-ct-viewer__header-wrapper">
                 <h1 class="aic-ct-title">My Museum Tour</h1>
