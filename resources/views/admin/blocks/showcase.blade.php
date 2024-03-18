@@ -94,10 +94,11 @@
         'fieldValues' => 'video',
         'renderForBlocks' => true,
     ])
-        @formField('files', [
-            'name' => 'video',
+        @formField('medias', [
+            'name' => 'image',
             'label' => 'Video',
             'max' => 1,
+            'withVideoUrl' => false,
             'required' => true,
         ])
     @endcomponent
