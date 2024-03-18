@@ -20,6 +20,8 @@ return [
 
     'disable_extra_scripts' => (bool) env('DISABLE_EXTRA_SCRIPTS', false),
 
+    'hide_from_tours' => env('HIDE_FROM_TOURS'),
+
     // Feature flags
     'is_preview_mode' => (bool) env('ALWAYS_PREVIEW_MODE', false),
     'show_design_grids' => (bool) env('SHOW_DESIGN_GRIDS', false),
