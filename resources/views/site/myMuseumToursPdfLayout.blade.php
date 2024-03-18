@@ -58,7 +58,7 @@
             <td class="crease" rowspan="12"></td>
             <td colspan="7" rowspan="3">
                 <div class="heading-image-container">
-                    <img src="https://artic-web.imgix.net/7a9ecbc2-7d8c-41e7-8649-650f1cc5c184/PDFheroimage.png?auto=format%2Ccompress&q=80&fit=crop&crop=faces%2Ccenter&w=1000&h=563">
+                    <img src="{{ $headerImage['src'] ?? 'https://artic-web.imgix.net/7a9ecbc2-7d8c-41e7-8649-650f1cc5c184/PDFheroimage.png?auto=format%2Ccompress&q=80&fit=crop&crop=faces%2Ccenter' }}&w=1000&h=563">
                 </div>
             </td>
         </tr>

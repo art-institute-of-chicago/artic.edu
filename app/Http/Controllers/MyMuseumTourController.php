@@ -81,12 +81,14 @@ class MyMuseumTourController extends FrontController
         $uniqueArtistNames = array_unique($artistNames);
         $uniqueArtistsCount = count($uniqueArtistNames);
 
+        $landingPage = $this->landingPageRepository->published()->forSlug('my-museum-tour')->firstOrFail();
 
         return view('site.myMuseumToursPdfLayout', [
             'id' => $myMuseumTour->id,
             'my_museum_tour' => $myMuseumTourJson,
             'unique_galleries_count' => $uniqueGalleriesCount,
             'unique_artists_count' => $uniqueArtistsCount,
+            'headerImage' => $landingPage->imageFront('header_my_museum_tour_header_image_pdf')
         ]);
     }
 
