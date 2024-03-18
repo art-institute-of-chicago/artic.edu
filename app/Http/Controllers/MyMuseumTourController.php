@@ -116,6 +116,11 @@ class MyMuseumTourController extends FrontController
 
     public function showMyMuseumTourBuilder()
     {
+        $landingPage = $this->landingPageRepository->published()->forSlug('my-museum-tour')->firstOrFail();
+        $this->seo->setImage($landingPage->imageFront('header_my_museum_tour_header_image') ?? $landingPage->imageFront('header_my_museum_tour_header_image_mobile'));
+        $this->seo->setTitle('My Museum Tour');
+        $this->seo->setDescription('Create a unique self-guided museum tour with our easy-to-use platform. Choose from popular tours or build your own with up to six artworks. Add a title and notes then view on your phone or in print.');
+
         return view('site.myMuseumTourBuilder', [
             'unstickyHeader' => true
         ]);
