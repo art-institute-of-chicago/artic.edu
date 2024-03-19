@@ -16,10 +16,12 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Slugs\LandingPageSlug;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kalnoy\Nestedset\NodeTrait;
 
 class LandingPage extends AbstractModel implements Sortable
 {
+    use HasFactory;
     use HasSlug;
     use HasRevisions;
     use HasPosition;
