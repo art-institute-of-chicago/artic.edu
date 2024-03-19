@@ -42,7 +42,7 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
         transition: border-bottom-color .25s .25s;
       }
 
-      .g-header .icon--search--24,
+      .g-header__nav-primary svg,
       .g-header__nav-primary a {
         color: $color__text--title-contrast;
         transition: color .25s .25s;
