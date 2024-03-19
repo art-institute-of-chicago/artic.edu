@@ -42,7 +42,8 @@
                 <div class="g-nav-mobile__subnav">
                   <a href="#" class="g-nav-mobile__back arrow-link arrow-link--back" data-nav-back>
                     <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
-
+                  </a>
+                  <a href="{{ $level_0['url'] }}" class="g-nav-mobile__link">
                     <h3 id="h-nav-mobile-sub-{{ Str::slug($level_0['name']) }}">{!! $level_0['name'] !!}</h3>
                   </a>
 
@@ -62,7 +63,8 @@
                           <div class="g-nav-mobile__subnav">
                             <a href="#" class="g-nav-mobile__back arrow-link arrow-link--back" data-nav-back>
                               <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
-
+                            </a>
+                            <a href="{{ $level_1['url'] }}" class="g-nav-mobile__link">
                               <h4 id="h-nav-mobile-sub-sub-{{ Str::slug($level_1['name']) }}">{!! $level_1['name'] !!}</h4>
                             </a>
 
