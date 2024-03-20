@@ -495,6 +495,9 @@
       padding: 24px;
     }
 
+    @include breakpoint('small+') {
+      margin-bottom: 40px;
+    }
 
     .aic-ct-viewer__header-wrapper {
     width: 100%;
