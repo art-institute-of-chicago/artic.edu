@@ -214,7 +214,7 @@ Route::get('/interactive-features/{slug}', [InteractiveFeatureExperiencesControl
 Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesController::class, 'show'])->name('interactiveFeatures.show-kiosk');
 
 // My Museum Tour routes
-Route::get('/my-museum-tour/builder', [MyMuseumTourController::class, 'showMyMuseumTourBuilder']);
+Route::get('/my-museum-tour/builder', [MyMuseumTourController::class, 'showMyMuseumTourBuilder'])->name('my-museum-tour.builder');
 Route::get('/my-museum-tour/{id}', [MyMuseumTourController::class, 'show'])->name('my-museum-tour.show');
 
 Route::get('/my-museum-tour/{id}/pdf-layout', [MyMuseumTourController::class, 'pdfLayout'])->name('my-museum-tour.pdf-layout');
