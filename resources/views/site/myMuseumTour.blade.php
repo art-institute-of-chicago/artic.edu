@@ -74,8 +74,6 @@
                 </div>
             </div>
 
-            <hr>
-
             @if(array_key_exists('description', $my_museum_tour) && $my_museum_tour['description'])
                 @component('components.atoms._quote')
                     @slot('variation', 'quote--editorial o-blocks__block aic-ct-quote--large')
