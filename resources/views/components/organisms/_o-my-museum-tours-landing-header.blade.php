@@ -29,6 +29,7 @@
             @endcomponent
         @endif
         @if ($header_my_museum_tour_icon_choose_title || $header_my_museum_tour_icon_choose_desc || $header_my_museum_tour_icon_personalize_title || $header_my_museum_tour_icon_personalize_desc || $header_my_museum_tour_icon_finish_title || $header_my_museum_tour_icon_finish_desc)
+        <a href="{{ route('my-museum-tour.builder')}}">
         <div class="my-museum-tour-header__icons">
             @if ($header_my_museum_tour_icon_choose_title || $header_my_museum_tour_icon_choose_desc)
                 <div>
@@ -64,6 +65,7 @@
                 </div>
             @endif
         </div>
+        </a>
         @endif
     </div>
 </div>
