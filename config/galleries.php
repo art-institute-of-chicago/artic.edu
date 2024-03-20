@@ -299,7 +299,7 @@ return [
         2147477218 => [
             "gallery_title" => "Gallery 200",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
@@ -334,7 +334,7 @@ return [
         2147483635 => [
             "gallery_title" => "Gallery 205",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Design Galleries",
+            "gallery_location" => "Arts of Europe: Design Galleries",
         ],
 
 
@@ -355,14 +355,14 @@ return [
         26746 => [
             "gallery_title" => "Gallery 237",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Medieval and Renaissance Galleries",
+            "gallery_location" => "Arts of Europe: Medieval and Renaissance Galleries",
         ],
 
 
         2147480055 => [
             "gallery_title" => "Gallery 236",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Medieval and Renaissance Galleries",
+            "gallery_location" => "Arts of Europe: Medieval and Renaissance Galleries",
         ],
 
 
@@ -376,70 +376,70 @@ return [
         25290 => [
             "gallery_title" => "Gallery 234",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Design Galleries",
+            "gallery_location" => "Arts of Europe: Design Galleries",
         ],
 
 
         25288 => [
             "gallery_title" => "Gallery 233",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Design Galleries",
+            "gallery_location" => "Arts of Europe: Design Galleries",
         ],
 
 
         25287 => [
             "gallery_title" => "Gallery 232",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Design Galleries",
+            "gallery_location" => "Arts of Europe: Design Galleries",
         ],
 
 
         2147483633 => [
             "gallery_title" => "Gallery 206",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483632 => [
             "gallery_title" => "Gallery 207",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483630 => [
             "gallery_title" => "Gallery 208",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483628 => [
             "gallery_title" => "Gallery 209",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483626 => [
             "gallery_title" => "Gallery 211",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483625 => [
             "gallery_title" => "Gallery 212",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483623 => [
             "gallery_title" => "Gallery 213",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
@@ -453,98 +453,98 @@ return [
         2147483619 => [
             "gallery_title" => "Gallery 215",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483618 => [
             "gallery_title" => "Gallery 216",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483616 => [
             "gallery_title" => "Gallery 217",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483614 => [
             "gallery_title" => "Gallery 218",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483613 => [
             "gallery_title" => "Gallery 219",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483611 => [
             "gallery_title" => "Gallery 220",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483609 => [
             "gallery_title" => "Gallery 221",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483607 => [
             "gallery_title" => "Gallery 222",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483606 => [
             "gallery_title" => "Gallery 223",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483604 => [
             "gallery_title" => "Gallery 224",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483603 => [
             "gallery_title" => "Gallery 225",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483601 => [
             "gallery_title" => "Gallery 226",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147483643 => [
             "gallery_title" => "Gallery 201",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
         2147479657 => [
             "gallery_title" => "Gallery 230",
             "gallery_level" => "second level",
-            "gallery_location" => "Arts of Europe => Painting and Sculpture Galleries",
+            "gallery_location" => "Arts of Europe: Painting and Sculpture Galleries",
         ],
 
 
