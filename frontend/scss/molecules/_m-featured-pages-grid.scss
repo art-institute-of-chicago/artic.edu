@@ -10,7 +10,7 @@
 
         @include breakpoint('medium') {
 
-        flex-wrap: wrap;
+            flex-wrap: wrap;
 
             .featured-pages-grid_card:nth-child(1) {
                 padding-left: 0;
@@ -22,10 +22,12 @@
                 padding-right: 0px;
                 border-right: 0;
             }
+
             .featured-pages-grid_card:nth-child(3) {
                 padding-left: 0;
                 padding-right: 20px;
             }
+
             .featured-pages-grid_card:nth-child(4) {
                 padding-left: 20px;
                 padding-right: 0px;
@@ -35,26 +37,28 @@
         @include breakpoint('small') {
 
             flex-wrap: wrap;
-    
-                .featured-pages-grid_card:nth-child(1) {
-                    padding-left: 0;
-                    padding-right: 20px;
-                }
-    
-                .featured-pages-grid_card:nth-child(2) {
-                    padding-left: 20px;
-                    padding-right: 0px;
-                    border-right: 0;
-                }
-                .featured-pages-grid_card:nth-child(3) {
-                    padding-left: 0;
-                    padding-right: 20px;
-                }
-                .featured-pages-grid_card:nth-child(4) {
-                    padding-left: 20px;
-                    padding-right: 0px;
-                }
+
+            .featured-pages-grid_card:nth-child(1) {
+                padding-left: 0;
+                padding-right: 20px;
             }
+
+            .featured-pages-grid_card:nth-child(2) {
+                padding-left: 20px;
+                padding-right: 0px;
+                border-right: 0;
+            }
+
+            .featured-pages-grid_card:nth-child(3) {
+                padding-left: 0;
+                padding-right: 20px;
+            }
+
+            .featured-pages-grid_card:nth-child(4) {
+                padding-left: 20px;
+                padding-right: 0px;
+            }
+        }
 
         @include breakpoint('xsmall') {
             flex-direction: column;
@@ -72,6 +76,7 @@
             border-right: none;
         }
     }
+
     .featured-pages-grid_row:first-child {
         border-top: 1px solid #e6e6e6;
 
@@ -80,13 +85,13 @@
         }
 
         @include breakpoint('medium') {
-            .featured-pages-grid_card:nth-child(1) > .featured-pages-grid_details {
+            .featured-pages-grid_card:nth-child(1)>.featured-pages-grid_details {
                 border-top: none;
                 padding-top: 0;
                 border-right: 0;
             }
 
-            .featured-pages-grid_card:nth-child(2) > .featured-pages-grid_details {
+            .featured-pages-grid_card:nth-child(2)>.featured-pages-grid_details {
                 border-top: none;
                 padding-top: 0;
                 border-right: 0;
@@ -94,13 +99,13 @@
         }
 
         @include breakpoint('small') {
-            .featured-pages-grid_card:nth-child(1) > .featured-pages-grid_details {
+            .featured-pages-grid_card:nth-child(1)>.featured-pages-grid_details {
                 border-top: none;
                 padding-top: 0;
                 border-right: 0;
             }
 
-            .featured-pages-grid_card:nth-child(2) > .featured-pages-grid_details {
+            .featured-pages-grid_card:nth-child(2)>.featured-pages-grid_details {
                 border-top: none;
                 padding-top: 0;
                 border-right: 0;
@@ -130,11 +135,11 @@
                 padding-right: 0;
                 padding-bottom: 20px;
             }
-            
+
             .featured-pages-grid_details {
                 border-top: 1px solid #e6e6e6;
                 padding-top: 20px;
-    
+
                 @include breakpoint('xsmall') {
                     padding-top: 0;
                     border-top: 0;
@@ -187,14 +192,16 @@
             @include breakpoint('medium') {
                 padding-top: 20px;
             }
+
             @include breakpoint('small') {
                 padding-top: 20px;
             }
+
             @include breakpoint('xsmall') {
                 padding-top: 0;
             }
-        
-            
+
+
             .featured-pages-grid_img {
                 aspect-ratio: 16/9;
                 height: auto;
@@ -205,6 +212,7 @@
                     display: none;
                 }
             }
+
             .default-img {
                 padding: 0 !important;
             }
@@ -218,12 +226,15 @@
         @include breakpoint('large') {
             display: none;
         }
+
         @include breakpoint('medium') {
             display: none;
         }
+
         @include breakpoint('small') {
             display: none;
         }
+
         @include breakpoint('xsmall') {
             display: inline-block !important;
         }
