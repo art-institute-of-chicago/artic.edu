@@ -94,9 +94,6 @@
             <ul class="aic-ct-artworks-list">
                 @foreach ($my_museum_tour['artworks'] as $artwork)
                     <li class="aic-ct-list-item">
-                        @if((!$loop->first && !$tour_creation_completed) || $tour_creation_completed)
-                            <hr>
-                        @endif
                         @isset($artwork['image_id'])
                             <div class="aic-ct-list-item__artwork-img-container">
                                 @php
