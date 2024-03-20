@@ -173,5 +173,18 @@
                 }
             }
         }
+
+        a .my-museum-tour-header__icons h3,
+        a:hover .my-museum-tour-header__icons h3,
+        a:focus:hover .my-museum-tour-header__icons h3,
+        a.s-active .my-museum-tour-header__icons h3,
+        a:active:hover .my-museum-tour-header__icons h3,
+        a .my-museum-tour-header__icons p,
+        a:hover .my-museum-tour-header__icons p,
+        a:focus:hover .my-museum-tour-header__icons p,
+        a.s-active .my-museum-tour-header__icons p,
+        a:active:hover .my-museum-tour-header__icons p {
+          color: $color__white;
+        }
     }
 }
