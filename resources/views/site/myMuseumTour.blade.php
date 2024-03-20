@@ -187,7 +187,7 @@
 
 
     @component('components.molecules._m-cta-banner')
-        @slot('image', $tours_create_cta_module_image)
+        @slot('image', $tours_tickets_cta_module_image)
         @slot('href', 'https://sales.artic.edu/admissions')
         @slot('header', 'Plan a visit to take your tour!')
         @slot('button_text', 'Buy Tickets')
@@ -197,7 +197,7 @@
     @endcomponent
 
     @component('components.molecules._m-cta-banner')
-        @slot('image', $tours_tickets_cta_module_image)
+        @slot('image', $tours_create_cta_module_image)
         @slot('href', '/my-museum-tour/builder')
         @slot('header', 'Ready to build your own tour?')
         @slot('body', '<p>Design a personalized tour by directly searching artworks or exploring themes that can help you get started.</p>')
