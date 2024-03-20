@@ -13,6 +13,7 @@
                     @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
                     @slot('hidePrint', true)
                     @slot('btnVariation', 'btn--my-museum-tour-dark')
+                    @slot('shareUrl', route('my-museum-tour.show', ['id' => $item->id]))
                 @endcomponent
             </div>
         </div>
@@ -20,7 +21,7 @@
     <article class="aic-ct-viewer o-article o-article__body">
         <div class="aic-ct-viewer__header ">
            <div class="aic-ct-viewer__header-wrapper">
-                <h1 class="aic-ct-title">My Museum Tour</h1>
+                <a href="{{ route('pages.slug', ['slug' => 'my-museum-tour']) }}"><h1 class="aic-ct-title">My Museum Tour</h1></a>
                 @component('components.atoms._img')
                     @slot('image', $hero_media)
                     @slot('settings', array(
@@ -74,8 +75,6 @@
                 </div>
             </div>
 
-            <hr>
-
             @if(array_key_exists('description', $my_museum_tour) && $my_museum_tour['description'])
                 @component('components.atoms._quote')
                     @slot('variation', 'quote--editorial o-blocks__block aic-ct-quote--large')
@@ -89,6 +88,7 @@
                 @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
                 @slot('hidePrint', true)
                 @slot('btnVariation', 'btn--my-museum-tour-dark')
+                @slot('shareUrl', route('my-museum-tour.show', ['id' => $item->id]))
             @endcomponent
 
             <ul class="aic-ct-artworks-list">
@@ -179,33 +179,15 @@
                     @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
                     @slot('hidePrint', true)
                     @slot('btnVariation', 'btn--my-museum-tour-dark')
+                    @slot('shareUrl', route('my-museum-tour.show', ['id' => $item->id]))
                 @endcomponent
             </div>
         </div>
     </article>
 
-    @php
-        $cta_image = [
-            "sourceType" => "imgix",
-            "src" => "https://artic-web.imgix.net/a1d91c0c-697b-42ef-b2a3-61a6a3a2da60/Art-Institute-FC-1222-0479.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=0%2C1040%2C6238%2C991",
-            "width" => 6238,
-            "height" => 991,
-            "shareUrl" => "#",
-            "shareTitle" => "",
-            "downloadUrl" => "https://artic-web.imgix.net/a1d91c0c-697b-42ef-b2a3-61a6a3a2da60/Art-Institute-FC-1222-0479.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=0%2C1040%2C6238%2C991",
-            "downloadName" => "Art-Institute-FC-1222-0479.jpg",
-            "credit" => "",
-            "creditUrl" => "",
-            "lqip" => null,
-            "alt" => "A gallery at the Art Institute of Chicago, where several people can be seen admiring various artworks.",
-            "caption" => null,
-            "iiifId" => null,
-            "restrict" => false,
-        ];
-    @endphp
 
     @component('components.molecules._m-cta-banner')
-        @slot('image', $cta_image)
+        @slot('image', $tours_tickets_cta_module_image)
         @slot('href', 'https://sales.artic.edu/admissions')
         @slot('header', 'Plan a visit to take your tour!')
         @slot('button_text', 'Buy Tickets')
@@ -215,10 +197,12 @@
     @endcomponent
 
     @component('components.molecules._m-cta-banner')
+        @slot('image', $tours_create_cta_module_image)
         @slot('href', '/my-museum-tour/builder')
         @slot('header', 'Ready to build your own tour?')
         @slot('body', '<p>Design a personalized tour by directly searching artworks or exploring themes that can help you get started.</p>')
         @slot('button_text', 'Create your own tour')
+        @slot('gtmAttributes', 'data-gtm-event="Create your own tour" data-gtm-event-category="internal-ad-click"')
         @slot('my_museum_tour', true)
         @slot('secondary_button_href', '/my-museum-tour')
         @slot('secondary_button_text', 'View ready-made tours')

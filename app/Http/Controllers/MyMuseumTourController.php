@@ -67,6 +67,8 @@ class MyMuseumTourController extends FrontController
             'tour_creation_completed' => $tourCreationComplete,
             'hero_media' => $hero_media,
             'mobile_hero_media' => $mobile_hero_media,
+            'tours_create_cta_module_image' => $landingPage->imageFront('tours_create_cta_module_image'),
+            'tours_tickets_cta_module_image' => $landingPage->imageFront('tours_tickets_cta_module_image'),
         ]);
     }
 

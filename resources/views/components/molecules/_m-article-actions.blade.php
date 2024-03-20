@@ -9,6 +9,7 @@
             @slot('icon', 'icon--share--24')
             @slot('behavior','sharePage')
             @slot('ariaLabel','Share page')
+            @slot('dataAttributes',' data-share-url="' . ($shareUrl ?? '') . '"')
         @endcomponent
     </li>
     @endif
