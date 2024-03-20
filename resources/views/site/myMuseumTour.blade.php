@@ -13,6 +13,7 @@
                     @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
                     @slot('hidePrint', true)
                     @slot('btnVariation', 'btn--my-museum-tour-dark')
+                    @slot('shareUrl', route('my-museum-tour.show', ['id' => $item->id]))
                 @endcomponent
             </div>
         </div>
@@ -87,6 +88,7 @@
                 @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
                 @slot('hidePrint', true)
                 @slot('btnVariation', 'btn--my-museum-tour-dark')
+                @slot('shareUrl', route('my-museum-tour.show', ['id' => $item->id]))
             @endcomponent
 
             <ul class="aic-ct-artworks-list">
@@ -177,6 +179,7 @@
                     @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
                     @slot('hidePrint', true)
                     @slot('btnVariation', 'btn--my-museum-tour-dark')
+                    @slot('shareUrl', route('my-museum-tour.show', ['id' => $item->id]))
                 @endcomponent
             </div>
         </div>
