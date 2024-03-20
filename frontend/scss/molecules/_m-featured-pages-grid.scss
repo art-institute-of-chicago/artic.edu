@@ -216,6 +216,11 @@
             .default-img {
                 padding: 0 !important;
             }
+
+            .featured-pages-grid_meta {
+                display: flex;
+                align-items: end;
+            }
         }
     }
 
