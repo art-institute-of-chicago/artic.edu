@@ -20,7 +20,7 @@
     <article class="aic-ct-viewer o-article o-article__body">
         <div class="aic-ct-viewer__header ">
            <div class="aic-ct-viewer__header-wrapper">
-                <h1 class="aic-ct-title">My Museum Tour</h1>
+                <a href="{{ route('pages.slug', ['slug' => 'my-museum-tour']) }}"><h1 class="aic-ct-title">My Museum Tour</h1></a>
                 @component('components.atoms._img')
                     @slot('image', $hero_media)
                     @slot('settings', array(
