@@ -28,11 +28,10 @@
                         'm-cta-banner--aic-ct' => $my_museum_tour,
                         'm-cta-banner--aic-ct-with-image' => isset($image) && $my_museum_tour,
                         'm-cta-banner--aic-ct-no-image' => !isset($image) && $my_museum_tour,
-                    ])
-            {!! isset($image) ? ' data-behavior="bannerParallax"' : '' !!}>
+                    ])>
             <div class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
                 @if (isset($image))
-                    <div class="m-cta-banner__img" data-parallax-img>
+                    <div class="m-cta-banner__img">
                         @component('components.atoms._img')
                             @slot('image', $image)
                             @slot('settings', array(
