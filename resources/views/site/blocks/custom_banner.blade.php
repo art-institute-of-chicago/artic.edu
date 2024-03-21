@@ -6,6 +6,9 @@
     $categories = collect($block->input('categories'))->take(12);
     $tags = \App\Models\Category::whereIn('id', $categories)->get();
 
+    $link_label = $block->input('link_label');
+    $link_url = $block->input('link_label');
+
     $heading = $block->input('title');
     $body = $block->input('body');
 
@@ -50,6 +53,11 @@
                         <a class="tag f-tag" href="{{ route('articles', ['category' => $tag->id]) }}">{{ $tag->name }}</a>                    
                     @endforeach
                 </div>
+                @if ($link_label && $link_url)
+                    <a class="tag-cloud__link f-tag" href="{{ $link_url }}">{{ $link_label }}
+                        <svg class='icon--arrow'><use xlink:href='#icon--arrow'></use></svg>
+                    </a>
+                @endif
             @else
                 @if($btn_type == 'mobile_app')
                     <div class="banner-apps">

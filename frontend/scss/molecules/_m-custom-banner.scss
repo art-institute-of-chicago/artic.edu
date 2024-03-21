@@ -61,7 +61,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 85px;
+        padding: 0 56px;
         height: 100%;
         width: 100%;
 
@@ -147,8 +147,45 @@
 
     &.custom-banner-block--stories {
         &.custom-banner-block--variation-cloud {
+            .content-wrapper {
+                height: 276px;
+                display: flex;
+            }
+
+            .text-wrapper {
+                align-items: center;
+                height: unset;
+                
+                @include breakpoint('medium-') {
+                    align-items: flex-start;
+                }
+
+                >div:first-child {
+                    align-self: baseline;
+                }
+            }
+
             .button-wrapper {
-                max-width: 60%;
+                max-width: 70%;
+            }
+
+            .custom-banner-title {
+                font-family: $sans-serif-font--loaded;
+                font-size: 21px;
+                font-weight: 400;
+                line-height: 28px;
+                letter-spacing: 0.08em;
+                text-align: left;
+                text-transform: uppercase;
+            }
+
+            .custom-banner-body {
+                font-family: $serif-font--loaded;
+                font-size: 22px;
+                font-weight: 300;
+                line-height: 28px;
+                letter-spacing: -0.005em;
+                text-align: left;
             }
 
             .tag-cloud {
@@ -157,9 +194,35 @@
                 flex-wrap: wrap;
                 align-items: center;
 
-                a {
-                    margin: 6px;
+                @include breakpoint('medium-') {
+                    display: none;
                 }
+
+                .f-tag {
+                    padding: 6px 12px;
+                    margin: 6px;
+                    font-family: $sans-serif-font--loaded;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 16px;
+                    letter-spacing: 0.14em;
+                    color: $color__black;
+                    border: 1px solid $color__black--20;
+                    border-radius: 2px;
+                }
+            }
+
+            .tag-cloud__link {
+                display: block;
+                margin: auto;
+                color: $color__rules--brand;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 300;
+                line-height: 28px;
+                letter-spacing: 0.0001em;
+                text-transform: none;
+                padding-top: 17px;
             }
         }
     }
