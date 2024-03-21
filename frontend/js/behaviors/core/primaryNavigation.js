@@ -7,14 +7,26 @@ export default function(container) {
     const menuItemQuery = 'a[role="menuitem"]'
     const canExpandAttribute = 'aria-haspopup'
     const isExpandedAttribute = 'aria-expanded'
-    const featuredExhibitionData =
-        'https://api.artic.edu/api/v1/exhibitions/search?query[bool][must][][term][is_published]=true&query[bool][must][][range][aic_start_at][lte]=now&query[bool][must][][range][aic_end_at][gte]=now&query[bool][must_not][term][status]=Closed&fields=title,image_url,web_url&sort=position&size=1'
+    const exhibitionApiPath = '/api/v1/exhibitions/search'
+    const featuredExhibitionApiQuery = new URLSearchParams({
+        'fields': 'title,image_url,web_url',
+        'query[bool][must][][range][aic_end_at][gte]': 'now',
+        'query[bool][must][][range][aic_start_at][lte]': 'now',
+        'query[bool][must][][term][is_published]': true,
+        'query[bool][must_not][term][status]': 'Closed',
+        'size': 1,
+        'sort': 'position',
+    })
 
     const menuBar = container.querySelector(menuBarQuery)
     const menuItems = menuBar.querySelectorAll(menuItemQuery)
     const exhibitionsDetails = container.querySelector('.exhibitions .details')
 
     function _init() {
+        const featuredExhibitionData = new URL(
+            `${exhibitionApiPath}?${featuredExhibitionApiQuery.toString()}`,
+            container.dataset.apiUrl
+        )
         fetch(featuredExhibitionData, { cache: 'force-cache' })
             .then(response => response.json())
             .then(exhibitionHandler)
