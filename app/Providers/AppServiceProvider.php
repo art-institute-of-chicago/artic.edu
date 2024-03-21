@@ -210,7 +210,7 @@ class AppServiceProvider extends ServiceProvider
                     [
                         'name' => 'Visit',
                         'description' => 'Find all the information you need&mdash;plus helpful tips&mdash;to plan your visit',
-                        'image' => url('/images/navigation-thumbnail-visit.jpg'),
+                        'image' => 'https://artic-web.imgix.net/b55a24a5-ab1c-453e-9ecd-e30ee5473f6e/navigation-thumbnail-visit.jpg',
                         'url' => route('pages.slug', ['slug' => 'visit']),
                         'children' => [
                             [
@@ -308,7 +308,7 @@ class AppServiceProvider extends ServiceProvider
                     [
                         'name' => 'Art &amp; Artists',
                         'description' => 'Explore the works in our collection and delve deeper into their stories.',
-                        'image' => url('/images/navigation-thumbnail-art-and-artists.jpg'),
+                        'image' => 'https://artic-web.imgix.net/fd36787d-a4f7-480c-8e34-11115a9d240a/navigation-thumbnail-art-and-artists.jpg',
                         'url' => route('collection'),
                         'children' => [
                             [
@@ -360,7 +360,7 @@ class AppServiceProvider extends ServiceProvider
                     [
                         'name' => 'Events',
                         'description' => 'Join us for a wide range of programs&mdash;there&apos;s something for visitors of all ages.',
-                        'image' => url('/images/navigation-thumbnail-events.jpg'),
+                        'image' => 'https://artic-web.imgix.net/d335c986-7075-4753-a84f-9cb11876ac77/navigation-thumbnail-events.jpg',
                         'url' => route('events'),
                         'children' => [
                             [
