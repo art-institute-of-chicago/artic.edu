@@ -23,4 +23,13 @@
       </li>
     </ul>
   </div>
+  <template id="menu-featured-exhibition">
+    <a>
+      <img>
+      <div class="description">
+        <div class="supertitle">Featured Exhibition</div>
+        <div class="title"></div>
+      </div>
+    </a>
+  </template>
 </nav>
