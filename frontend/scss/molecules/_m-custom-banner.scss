@@ -155,7 +155,7 @@
             .text-wrapper {
                 align-items: center;
                 height: unset;
-                
+
                 @include breakpoint('medium-') {
                     align-items: flex-start;
                 }
