@@ -24,7 +24,6 @@ trait HasAutoRelated
             'articles',
             'videos',
             'researchGuides',
-            'genericPages',
             'events',
             'exhibitions',
         ];
