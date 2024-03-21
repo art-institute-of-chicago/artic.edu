@@ -290,6 +290,7 @@ class AppServiceProvider extends ServiceProvider
                     [
                         'name' => 'Exhibitions',
                         'url' => route('exhibitions'),
+                        'class' => 'exhibitions',
                         'children' => [
                             [
                                 'name' => 'Current',
