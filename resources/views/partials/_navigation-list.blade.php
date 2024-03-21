@@ -6,7 +6,7 @@
     @php
         $slug = Str::slug($item['name']);
         $id = "$role-level-$level-$slug";
-        $hasUrl = isset($item['url']);
+        $hasUrl = isset($item['url']) && !empty($item['url']);
         $isCurrentPage = $hasUrl ? (Request::url() == str(url($item['url']))->before('#')) : false;
         $hasImage = isset($item['image']);
         $hasDescription = isset($item['description']);

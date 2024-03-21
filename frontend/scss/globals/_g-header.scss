@@ -273,6 +273,22 @@
   }
 }
 
+.g-header__nav-primary .level-1.exhibitions {
+  &>.details {
+    .supertitle {
+      color: $color__grey--100;
+      font-size: 12px;
+      font-weight: 325;
+      line-height: 16px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .title {
+      text-transform: none;
+    }
+  }
+}
+
 .g-header__nav-primary .level-2 {
   &>.details {
     left: 75vw;
