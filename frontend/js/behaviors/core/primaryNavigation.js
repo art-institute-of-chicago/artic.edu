@@ -42,37 +42,13 @@ export default function(container) {
     function exhibitionHandler(json) {
         let data = json['data'][0]
 
-        const a = document.createElement('a')
-        a.setAttribute('href', data.web_url)
-
-        const img = document.createElement('img')
-        img.setAttribute('src', data.image_url)
-
-        const description = document.createElement('div')
-        description.setAttribute('class', 'description')
-
-        const supertitle = document.createElement('div')
-        supertitle.setAttribute('class', 'supertitle')
-        supertitle.textContent = 'Featured Exhibition'
-
-        const title = document.createElement('div')
-        title.setAttribute('class', 'title')
-        title.textContent = data.title
-
-        const viewAll = document.createElement('p')
-        viewAll.setAttribute('class', 'view-all')
-        viewAll.textContent = 'View all'
-
-        const iconArrow = container.querySelector('svg.icon--arrow').cloneNode(true)
+        const template = container.querySelector('#menu-featured-exhibition').content.cloneNode(true)
+        template.querySelector('a').setAttribute('href', data.web_url)
+        template.querySelector('img').setAttribute('src', data.image_url)
+        template.querySelector('.title').textContent = data.title
 
         exhibitionsDetails.querySelector('a').remove()
-        exhibitionsDetails.prepend(a)
-        a.append(img)
-        a.append(description)
-        description.append(supertitle)
-        description.append(title)
-        description.append(viewAll)
-        viewAll.append(iconArrow)
+        exhibitionsDetails.prepend(template)
     }
 
     function collapseMenu() {
