@@ -80,7 +80,8 @@
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
             'feature_block',
-            'editorial_block'
+            'editorial_block',
+            'custom_banner',
         ])
     ])
 
