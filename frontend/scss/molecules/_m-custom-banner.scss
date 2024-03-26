@@ -146,9 +146,37 @@
     }
 
     &.custom-banner-block--stories {
+
+        .background-wrapper {
+            &::before {
+                background: $color__cold-white;
+            }
+        }
+
         &.custom-banner-block--variation-cloud {
             .button-wrapper {
-                max-width: 60%;
+                max-width: 70%;
+            }
+
+            .custom-banner-title {
+                font-family: $sans-serif-font--loaded;
+                font-size: 21px;
+                font-weight: 400;
+                line-height: 28px;
+                letter-spacing: 0.08em;
+                text-align: left;
+                text-transform: uppercase;
+                color: $color__black--90 !important;
+            }
+
+            .custom-banner-body {
+                font-family: $serif-font--loaded;
+                font-size: 22px;
+                font-weight: 300;
+                line-height: 28px;
+                letter-spacing: -0.005em;
+                text-align: left;
+                color: $color__black--90 !important;
             }
 
             .tag-cloud {

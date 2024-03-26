@@ -52,53 +52,6 @@
         'renderForBlocks' => true,
     ])
 
-        @formField('radios', [
-            'name' => 'background_type',
-            'label' => 'Background Type',
-            'default' => 'mobile_app',
-            'inline' => true,
-            'options' => [
-                [
-                    'value' => 'background_image',
-                    'label' => 'Image'
-                ],
-                [
-                    'value' => 'background_color',
-                    'label' => 'Color'
-                ],
-            ]
-        ])
-
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'background_type',
-            'fieldValues' => 'background_image',
-            'renderForBlocks' => true
-        ])
-
-            @formField('medias', [
-                'name' => 'image',
-                'label' => 'Image',
-                'max' => 1,
-                'withVideoUrl' => false,
-                'required' => true,
-            ])
-
-        @endcomponent
-
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'background_type',
-            'fieldValues' => 'background_color',
-            'renderForBlocks' => true
-        ])
-
-            @formField('color', [
-                'name' => 'bgcolor',
-                'label' => 'Background color',
-                'default' => '#000000'
-            ])
-
-        @endcomponent
-
         @formField('input', [
             'name' => 'title',
             'label' => 'Title',
