@@ -146,6 +146,13 @@
     }
 
     &.custom-banner-block--stories {
+
+        .background-wrapper {
+            &::before {
+                background: $color__cold-white;
+            }
+        }
+
         &.custom-banner-block--variation-cloud {
             .content-wrapper {
                 height: 276px;
@@ -177,6 +184,7 @@
                 letter-spacing: 0.08em;
                 text-align: left;
                 text-transform: uppercase;
+                color: $color__black--90 !important;
             }
 
             .custom-banner-body {
@@ -186,6 +194,7 @@
                 line-height: 28px;
                 letter-spacing: -0.005em;
                 text-align: left;
+                color: $color__black--90 !important;
             }
 
             .tag-cloud {
