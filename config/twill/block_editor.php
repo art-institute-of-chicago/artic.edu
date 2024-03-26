@@ -243,6 +243,7 @@ return [
         'digital_label',
         'magazine_call_to_action',
         'threesixty_modal',
-        '360_modal'
+        '360_modal',
+        'editorial_block',
     ]
 ];
