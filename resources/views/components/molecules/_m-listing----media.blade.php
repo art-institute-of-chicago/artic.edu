@@ -32,6 +32,10 @@
                     <br>
                     <span class="subtitle f-secondary">{{ $item->timeStamp }}</span>
                 @endif
+                @if (isset($item->duration) && (!isset($hideDuration) || !$hideDuration))
+                    <br>
+                    <span class="subtitle f-secondary">{{ $item->duration }}</span>
+                @endif
             @endif
         </span>
         @if ($fullscreen)
