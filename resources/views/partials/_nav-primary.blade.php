@@ -1,4 +1,9 @@
-<nav class="g-header__nav-primary__container" aria-label="primary" data-behavior="primaryNavigation">
+<nav
+  class="g-header__nav-primary__container"
+  aria-label="primary"
+  data-behavior="primaryNavigation"
+  data-api-url="{{ config('api.public_uri') }}"
+>
   <a class="g-header__logo" aria-label="Art Institute of Chicago" href="/">
     <svg aria-hidden="true">
       <use xlink:href="#icon--logo--outline--80" />
@@ -23,4 +28,13 @@
       </li>
     </ul>
   </div>
+  <template id="menu-featured-exhibition">
+    <a>
+      <img aria-describedby="menu-featured-exhibition-title" alt="">
+      <div class="description">
+        <div class="supertitle">Featured Exhibition</div>
+        <div id="menu-featured-exhibition-title" class="title"></div>
+      </div>
+    </a>
+  </template>
 </nav>
