@@ -61,7 +61,7 @@
                     @slot('titleFont', ($loop->first && $hasFeatured) ? 'f-list-3' : 'f-list-1')
                     @slot('imageSettings', $imageSettings ?? null)
                 @endcomponent
-                {!! ($loop->first && $hasFeatured) || $loop->last ? '</div>' : '' !!}                
+                {!! ($loop->first && $hasFeatured) || $loop->last ? '</div>' : '' !!}
             @endforeach
         @else
             @foreach ($videos as $item)
