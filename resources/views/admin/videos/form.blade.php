@@ -18,6 +18,12 @@
         'label' => 'Video URL'
     ])
 
+    @formField('input', [
+        'name' => 'duration',
+        'label' => 'Duration',
+        'note' => 'e.g. 3:45'
+    ])
+
     @formField('medias', [
         'with_multiple' => false,
         'no_crop' => false,
