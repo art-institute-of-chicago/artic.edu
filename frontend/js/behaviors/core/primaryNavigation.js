@@ -10,10 +10,8 @@ export default function(container) {
     const exhibitionApiPath = '/api/v1/exhibitions/search'
     const featuredExhibitionApiQuery = new URLSearchParams({
         'fields': 'title,image_url,web_url',
-        'query[bool][must][][range][aic_end_at][gte]': 'now',
         'query[bool][must][][range][aic_start_at][lte]': 'now',
         'query[bool][must][][term][is_published]': true,
-        'query[bool][must_not][term][status]': 'Closed',
         'size': 1,
         'sort': 'position',
     })
