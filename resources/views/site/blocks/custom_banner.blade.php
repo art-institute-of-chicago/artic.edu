@@ -6,6 +6,9 @@
     $categories = collect($block->input('categories'))->take(12);
     $tags = \App\Models\Category::whereIn('id', $categories)->get();
 
+    $link_label = $block->input('link_label');
+    $link_url = $block->input('link_label');
+
     $heading = $block->input('title');
     $body = $block->input('body');
 

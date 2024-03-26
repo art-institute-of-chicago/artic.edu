@@ -78,6 +78,24 @@
             'placeholder' => 'Add categories to the tag cloud',
         ])
 
+        @component('twill::partials.form.utils._columns')
+        @slot('left')
+            @formField('input', [
+                'name' => 'link_label',
+                'label' => 'Link label',
+                'type' => 'text',
+            ])
+        @endslot
+
+        @slot('right')
+            @formField('input', [
+                'name' => 'link_url',
+                'label' => 'Link URL',
+                'type' => 'text',
+            ])
+        @endslot
+        @endcomponent
+
     @endcomponent
 
 @formConnectedFields([
