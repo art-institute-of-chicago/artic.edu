@@ -206,68 +206,207 @@ class AppServiceProvider extends ServiceProvider
                     'legal-image-licensing' => '/image-licensing',
                     'legal-saic' => 'https://www.saic.edu',
                 ],
-                'mobileNav' => [
+                'primaryNav' => [
                     [
                         'name' => 'Visit',
-                        'slug' => route('pages.slug', ['slug' => 'visit']),
-                    ],
-                    [
-                        'name' => 'Exhibition &amp; Events',
+                        'description' => 'Find all the information you need&mdash;plus helpful tips&mdash;to plan your visit',
+                        'image' => 'https://artic-web.imgix.net/b55a24a5-ab1c-453e-9ecd-e30ee5473f6e/navigation-thumbnail-visit.jpg',
+                        'url' => route('pages.slug', ['slug' => 'visit']),
                         'children' => [
                             [
-                                'name' => 'Exhibitions',
-                                'slug' => route('exhibitions'),
+                                'name' => 'Hours',
+                                'url' => route('pages.slug', ['slug' => 'visit']) . '#hours',
                             ],
                             [
-                                'name' => 'Events',
-                                'slug' => route('events'),
+                                'name' => 'Admission',
+                                'url' => route('pages.slug', ['slug' => 'visit']) . '#admission',
+                            ],
+                            [
+                                'name' => 'Plan Your Visit',
+                                'url' => route('pages.slug', ['slug' => 'visit']) . '#plan-your-visit',
+                                'children' => [
+                                    [
+                                        'name' => 'Museum Map',
+                                        'url' => '/visit/explore-on-your-own/museum-floor-plan',
+                                    ],
+                                    [
+                                        'name' => 'Free Daily Tours',
+                                        'url' => route('events', ['audience' => 3, 'type' => 6]),
+                                    ],
+                                    [
+                                        'name' => 'What to See in an Hour',
+                                        'url' => route('highlights.show', ['id' => 3, 'slug' => 'what-to-see-in-an-hour']),
+                                    ],
+                                    [
+                                        'name' => 'Shopping and Dining',
+                                        'url' => '/visit/dining-and-shopping',
+                                    ],
+                                    [
+                                        'name' => 'Accessibility',
+                                        'url' => '/visit/accessibility',
+                                    ],
+                                ],
+                            ],
+                            [
+                                'name' => 'Who&apos;s Visiting?',
+                                'url' => route('pages.slug', ['slug' => 'visit']) . '#who-s-visiting',
+                                'children' => [
+                                    [
+                                        'name' => 'First-Time Visitors',
+                                        'url' => '/visit/whos-visiting/first-time-visitors',
+                                    ],
+                                    [
+                                        'name' => 'Families',
+                                        'url' => '/visit/whos-visiting/families-2',
+                                    ],
+                                    [
+                                        'name' => 'Members',
+                                        'url' => '/visit/whos-visiting/members',
+                                    ],
+                                    [
+                                        'name' => 'Teens',
+                                        'url' => '/visit/whos-visiting/teens-2',
+                                    ],
+                                    [
+                                        'name' => 'Educators',
+                                        'url' => '/visit/whos-visiting/educators-2',
+                                    ],
+                                    [
+                                        'name' => 'Group Visits',
+                                        'url' => '/visit/whos-visiting/adult-groups-2',
+                                    ],
+                                ],
+                            ],
+                            [
+                                'name' => 'Mobile App',
+                                'url' => '/visit/explore-on-your-own/mobile-app-audio-tours',
+                            ],
+                            [
+                                'name' => 'Ryan Learning Center',
+                                'url' => '/ryan-learning-center',
                             ],
                         ],
                     ],
                     [
-                        'name' => 'The Collection',
-                        'slug' => route('collection'),
+                        'name' => 'Exhibitions',
+                        'url' => route('exhibitions'),
+                        'children' => [
+                            [
+                                'name' => 'Current',
+                                'url' => route('exhibitions'),
+                            ],
+                            [
+                                'name' => 'Upcoming',
+                                'url' => route('exhibitions.upcoming'),
+                            ],
+                            [
+                                'name' => 'Archive',
+                                'url' => route('exhibitions.history'),
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'Art &amp; Artists',
+                        'description' => 'Explore the works in our collection and delve deeper into their stories.',
+                        'image' => 'https://artic-web.imgix.net/fd36787d-a4f7-480c-8e34-11115a9d240a/navigation-thumbnail-art-and-artists.jpg',
+                        'url' => route('collection'),
                         'children' => [
                             [
                                 'name' => 'Artworks',
-                                'slug' => route('collection'),
+                                'url' => route('collection'),
                             ],
                             [
-                                'name' => 'Writings',
-                                'slug' => route('articles_publications'),
+                                'name' => 'Articles &amp; Videos',
+                                'url' => route('articles_publications'),
                             ],
                             [
-                                'name' => 'Resources',
-                                'slug' => route('collection.research_resources'),
+                                'name' => 'Research',
+                                'url' => route('collection.research_resources'),
+                                'children' => [
+                                    [
+                                        'name' => 'Library',
+                                        'url' => '/library',
+                                    ],
+                                    [
+                                        'name' => 'Archival Collections',
+                                        'url' => '/archival-collections',
+                                    ],
+                                    [
+                                        'name' => 'Collection Information',
+                                        'url' => '/collection-information',
+                                    ],
+                                    [
+                                        'name' => 'Conservation and Science',
+                                        'url' => '/about-us/departments/conservation-and-science-2',
+                                    ],
+                                ],
+                            ],
+                            [
+                                'name' => 'Publications',
+                                'url' => route('articles_publications'),
+                                'children' => [
+                                    [
+                                        'name' => 'Print Catalogues',
+                                        'url' => route('collection.publications.printed-publications'),
+                                    ],
+                                    [
+                                        'name' => 'Digital Publications',
+                                        'url' => route('collection.publications.digital-publications'),
+                                    ],
+                                ],
                             ],
                         ],
                     ],
                     [
+                        'name' => 'Events',
+                        'description' => 'Join us for a wide range of programs&mdash;there&apos;s something for visitors of all ages.',
+                        'image' => 'https://artic-web.imgix.net/d335c986-7075-4753-a84f-9cb11876ac77/navigation-thumbnail-events.jpg',
+                        'url' => route('events'),
+                        'children' => [
+                            [
+                                'name' => 'Calendar',
+                                'url' => route('events'),
+                            ],
+                            [
+                                'name' => 'Daily Tours',
+                                'url' => route('events', ['type' => 6]),
+                            ],
+                            [
+                                'name' => 'Talks',
+                                'url' => route('events', ['type' => 5]),
+                            ],
+                            [
+                                'name' => 'Art Making',
+                                'url' => route('events', ['type' => 1]),
+                            ],
+                            [
+                                'name' => 'Member Programs',
+                                'url' => route('events', ['audience' => 2]),
+                            ],
+                        ],
+                    ],
+                ],
+                'secondaryNav' => [
+                    [
                         'name' => 'Buy Tickets',
-                        'slug' => 'https://sales.artic.edu/admissions',
+                        'url' => 'https://sales.artic.edu/admissions',
                     ],
                     [
-                        'name' => 'Become A Member',
-                        'slug' => 'https://sales.artic.edu/memberships',
+                        'name' => 'Become a Member',
+                        'class' => 'u-show@small+',
+                        'url' => 'https://sales.artic.edu/memberships',
                     ],
                     [
                         'name' => 'Shop',
-                        'slug' => 'https://shop.artic.edu/',
+                        'class' => 'u-show@small+',
+                        'url' => 'https://shop.artic.edu/',
                     ],
                     [
-                        'name' => 'About Us',
-                        'slug' => route('pages.slug', 'about-us'),
-                    ],
-                    [
-                        'name' => 'Learn With Us',
-                        'slug' => '/learn-with-us',
-                    ],
-                    [
-                        'name' => 'Support Us',
-                        'slug' => '/support-us',
+                        'name' => 'Visit',
+                        'class' => 'u-hide@small+',
+                        'url' => route('pages.slug', ['slug' => 'visit']),
                     ],
                 ],
-
             ]);
         });
     }
