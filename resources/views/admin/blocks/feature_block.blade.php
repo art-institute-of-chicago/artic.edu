@@ -1,24 +1,109 @@
+@php
+    $currentUrl = explode('/', request()->url());
+    $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
+    $categoriesList = \App\Models\Category::all()->pluck('name', 'id')->toArray();
+
+    switch ($type) {
+        case 'Stories':
+            $themes = ['default', 'stories'];
+            break;
+        default:
+            $themes = ['default'];
+    }
+@endphp
+
 @twillBlockTitle('Feature Block')
 @twillBlockIcon('image')
 
-@formField('input', [
-    'name' => 'feature_heading',
-    'label' => 'Heading',
+@formField('select', [
+    'name' => 'theme',
+    'label' => 'Theme',
+    'default' => 'default',
+    'options' => collect($themes)->map(function($theme) {
+        return [
+            'value' => $theme,
+            'label' => ucfirst($theme),
+        ];
+    })->toArray(),
 ])
 
-@component('twill::partials.form.utils._columns')
-    @slot('left')
+@formConnectedFields([
+    'fieldName' => 'theme',
+    'fieldValues' => 'stories',
+    'renderForBlocks' => true,
+    ])
+
+    @formField('select', [
+        'name' => 'variation',
+        'label' => 'Variation',
+        'options' => [
+            [
+                'value' => 'default',
+                'label' => 'Default',
+            ],
+        ]
+    ])
+
+@endcomponent
+
+@formConnectedFields([
+    'fieldName' => 'theme',
+    'fieldValues' => 'stories',
+    'renderForBlocks' => true,
+    ])
+
+    @formConnectedFields([
+        'fieldName' => 'variation',
+        'fieldValues' => 'default',
+        'renderForBlocks' => true,
+    ])
+
         @formField('input', [
-            'name' => 'browse_label',
-            'label' => 'Browse More Label',
+            'name' => 'heading',
+            'label' => 'Heading',
+            'type' => 'text',
+            'maxlength' => 100,
+            'required' => true,
         ])
-    @endslot
-    @slot('right')
-        @formField('input', [
-            'name' => 'browse_link',
-            'label' => 'Browse More Link',
+
+        @formField('wysiwyg', [
+            'name' => 'body',
+            'label' => 'Body',
+            'required' => true,
+            'type' => 'textarea',
         ])
-    @endslot
+
+    @endcomponent
+
+@endcomponent
+
+@formConnectedFields([
+    'fieldName' => 'theme',
+    'fieldValues' => 'default',
+    'renderForBlocks' => true,
+    ])
+
+    @formField('input', [
+        'name' => 'feature_heading',
+        'label' => 'Heading',
+        'type' => 'text',
+    ])
+
+    @component('twill::partials.form.utils._columns')
+        @slot('left')
+            @formField('input', [
+                'name' => 'browse_label',
+                'label' => 'Browse More Label',
+            ])
+        @endslot
+        @slot('right')
+            @formField('input', [
+                'name' => 'browse_link',
+                'label' => 'Browse More Link',
+            ])
+        @endslot
+    @endcomponent
+
 @endcomponent
 
 @formField('select', [
