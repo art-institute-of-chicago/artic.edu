@@ -12,8 +12,8 @@ export default function(container) {
         'fields': 'title,image_url,web_url',
         'query[bool][must][][range][aic_start_at][lte]': 'now',
         'query[bool][must][][term][is_published]': true,
+        'query[bool][must][][term][position]': 0,
         'size': 1,
-        'sort': 'position',
     })
 
     const menuBar = container.querySelector(menuBarQuery)
