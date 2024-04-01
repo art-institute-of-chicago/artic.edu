@@ -35,9 +35,9 @@ export default function(container) {
         })
     }
 
-    function expandHandler() {
+    function expandHandler(event) {
         collapseMenu()
-        expandAncestors(this)
+        expandAncestors(event.target)
         Object.keys(collapseEventTypes).forEach(function(eventType) {
             collapseEventTypes[eventType].addEventListener(eventType, collapseHandler)
 
@@ -63,7 +63,11 @@ export default function(container) {
 
     function collapseMenu() {
         menuItems.forEach(function (menuItem) {
+            menuItem.classList.remove('collapsing')
             if (menuItem.getAttribute(canExpandAttribute) === 'true') {
+                if (menuItem.getAttribute(isExpandedAttribute) === 'true') {
+                    menuItem.classList.add('collapsing')
+                }
                 menuItem.setAttribute(isExpandedAttribute, 'false')
             }
         })
