@@ -16,10 +16,12 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Slugs\LandingPageSlug;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kalnoy\Nestedset\NodeTrait;
 
 class LandingPage extends AbstractModel implements Sortable
 {
+    use HasFactory;
     use HasSlug;
     use HasRevisions;
     use HasPosition;
@@ -185,6 +187,30 @@ class LandingPage extends AbstractModel implements Sortable
                 [
                     'name' => 'mobile',
                     'ratio' => 16 / 9,
+                ],
+            ],
+        ],
+        'header_my_museum_tour_header_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 2267 / 742,
+                ],
+            ],
+        ],
+        'header_my_museum_tour_header_image_mobile' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
+        'header_my_museum_tour_header_image_pdf' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1389 / 782,
                 ],
             ],
         ],

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\LandingPage;
 use App\Models\MyMuseumTour;
 use Illuminate\Database\Seeder;
 
@@ -72,5 +73,7 @@ class MyMuseumTourSeeder extends Seeder
         $myMuseumTour = new MyMuseumTour();
         $myMuseumTour->tour_json = $tourJson;
         $myMuseumTour->save();
+
+        LandingPage::factory(['title' => 'My Museum Tour'])->create();
     }
 }

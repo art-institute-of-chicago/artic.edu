@@ -4,9 +4,13 @@ import MyMuseumTourBuilder from 'my-museum-tour-builder';
 
 export default function myMuseumTourBuilder(container) {
   this.init = function () {
+    let dataString = container.getAttribute('data-hide-from-tours');
+    const hideFromTours = dataString.length > 0 ? dataString.split(",") : [];
+    console.log(hideFromTours);
+
     ReactDOM.render(
       <MyMuseumTourBuilder
-        heroImageId="3c27b499-af56-f0d5-93b5-a7f2f1ad5813"
+        hideFromTours={hideFromTours}
       />,
       container,
       () => {

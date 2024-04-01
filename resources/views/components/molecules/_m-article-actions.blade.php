@@ -4,11 +4,12 @@
     @if (empty($hideShare))
     <li class="m-article-actions__action">
         @component('components.atoms._btn')
-            @slot('variation', 'btn--icon'.((isset($articleType) and $articleType === 'editorial') ? ' btn--senary' : ''))
+            @slot('variation', 'btn--icon'.((isset($articleType) and $articleType === 'editorial') ? ' btn--senary' : '').((isset($btnVariation)) ? ' '.$btnVariation : ''))
             @slot('font', '')
             @slot('icon', 'icon--share--24')
             @slot('behavior','sharePage')
             @slot('ariaLabel','Share page')
+            @slot('dataAttributes',' data-share-url="' . ($shareUrl ?? '') . '"')
         @endcomponent
     </li>
     @endif
@@ -29,7 +30,7 @@
     @if (isset($pdfDownloadPath))
     <li class="m-article-actions__action">
         @component('components.atoms._btn')
-            @slot('variation', 'btn--icon')
+            @slot('variation', 'btn--icon ' . ((isset($btnVariation)) ? ' '.$btnVariation : ''))
             @slot('font', '')
             @slot('tag', 'a')
             @slot('href', $pdfDownloadPath)

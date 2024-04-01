@@ -78,13 +78,6 @@
     .btn {
       display: block;
       width: 100%;
-
-      .m-cta-banner__link:hover &,
-      .m-cta-banner__link:focus:hover & {
-        border-color: $color__link--accent-hover;
-        background-color: $color__link--accent-hover;
-        color: $color__white;
-      }
     }
   }
 
@@ -177,10 +170,17 @@
     color: $color__text--title-contrast;
   }
 
-  .m-cta-banner__link:hover .btn,
-  .m-cta-banner__link:focus:hover .btn {
+  .m-cta-banner__link .btn:hover,
+  .m-cta-banner__link .btn:focus:hover {
     border-color: $color__link--accent-hover;
     background-color: $color__link--accent-hover;
     color: $color__white;
+  }
+
+  .m-cta-banner__link .btn--my-museum-tour:hover ,
+  .m-cta-banner__link .btn--my-museum-tour:focus:hover {
+    border-color: transparent;
+    background-color: $color__teal-medium--my-museum-tour;
+    color: $color__black;
   }
 }

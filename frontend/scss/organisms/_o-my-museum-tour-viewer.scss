@@ -86,7 +86,7 @@
   }
 
   .f-link {
-    color: $color__red--100;
+    color: $color__teal--my-museum-tour;
   }
 }
 
@@ -95,7 +95,7 @@
 .aic-ct-artworks-count-container {
   display: flex;
   align-items: start;
-  margin-bottom: 16px;
+  margin-bottom: 41px;
   gap: 8px;
 
   .f-module-title-1 {
@@ -239,7 +239,6 @@
 // -- My Museum Tour: My Museum Tour header
 
 .my-museum-tour-header {
-  padding-bottom: 32px;
 
   .m-title-bar {
     margin-top: 12px;
@@ -482,24 +481,62 @@
 }
 
 .aic-ct-viewer {
-  .m-article-header {
-    margin-bottom: 28px;
-  }
+  .aic-ct-viewer__header {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    display: flex;
+    flex-direction: row;
+    background-color: $color__teal--my-museum-tour;
+    color: $color__white;
+    padding: 24px 56px 56px;
+    margin-bottom: 20px;
 
-  hr {
-    margin-top: 24px;
-    margin-bottom: 24px;
-    border-color: $color__black--20;
-  }
+    @include breakpoint('medium-') {
+      padding: 24px;
+    }
 
-  ul {
-    margin-top: 0;
-    padding-left: 0;
-  }
+    @include breakpoint('small+') {
+      margin-bottom: 40px;
+    }
 
-  .quote__icon {
-    color: $color__red--100;
+    .aic-ct-viewer__header-wrapper {
+    width: 100%;
+
+    .aic-ct-title {
+      margin-bottom: 24px;
+      font-size: 56px;
+      line-height: 65px;
+      color: $color__white;
+      font-family: $serif-font--loaded;
+
+      @include breakpoint('medium-') {
+          font-size: 40px;
+          width: 100%;
+      }
+    }
+
+    .aic-ct-viewer__header-img {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint('small-') {
+        display: none;
+      }
+    }
+
+    .aic-ct-viewer__header-img-mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint('small-') {
+        display: block;
+      }
+    }
+
   }
+}
 }
 
 .aic-ct-viewer__link-container {
@@ -510,6 +547,7 @@
 
 .aic-ct-quote--large {
   margin-bottom: 24px;
+  margin-top: -25px;
 
   &.quote.o-blocks__block {
     padding: 16px 16px 53px;
@@ -517,6 +555,10 @@
 
   .f-quote {
     margin-bottom: 16px;
+  }
+
+  .quote__icon {
+    color: $color__teal--my-museum-tour;
   }
 }
 
@@ -584,6 +626,17 @@
 .aic-ct-viewer__creator-container {
   span {
     display: block;
+    font-weight: 400;
+  }
+
+  .aic-ct-title {
+    margin: 16px 0;
+    font-family: $serif-font--loaded;
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 44px;
+    letter-spacing: -0.01em;
+    text-align: left;
   }
 
   .f-subheading-1 {

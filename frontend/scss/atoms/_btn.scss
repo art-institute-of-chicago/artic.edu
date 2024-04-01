@@ -92,14 +92,10 @@ Example usage:
   }
 
   &:hover,
-  &:focus:hover {
-    background-color: $color__link--accent-hover;
-    color: $color__white;
-  }
-
+  &:focus:hover,
   &.s-active,
   &:active:hover {
-    background-color: $color__link--accent-active;
+    background-color: $color__link--accent-hover;
     color: $color__white;
   }
 
@@ -329,18 +325,43 @@ Example usage:
   }
 }
 
+.btn--my-museum-tour {
+  border-color: transparent;
+  background-color: $color__teal-light--my-museum-tour;
+  color: $color__black;
+
+  &:hover,
+  &:focus:hover,
+  &.s-active,
+  &:active:hover {
+    border-color: transparent;
+    background-color: $color__teal-medium--my-museum-tour;
+    color: $color__black;
+  }
+}
+
+.btn--my-museum-tour-dark {
+  border-color: transparent;
+  background-color: $color__teal--my-museum-tour;
+  color: $color__white;
+
+  &:hover,
+  &:focus:hover,
+  &.s-active,
+  &:active:hover {
+    border-color: transparent;
+    background-color: $color__teal-medium--my-museum-tour;
+    color: $color__white;
+  }
+}
+
 .btn--transparent {
   border-color: transparent;
   background-color: transparent;
   color: $color__text--title;
 
   &:hover,
-  &:focus:hover {
-    border-color: transparent;
-    background-color: transparent;
-    color: $color__text--title;
-  }
-
+  &:focus:hover,
   &.s-active,
   &:active:hover {
     border-color: transparent;

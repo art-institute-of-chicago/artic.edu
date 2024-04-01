@@ -239,18 +239,19 @@ $disable-font-loading: true;
   }
 
   .t-qr-caption {
-    font-size: 6pt;
-    line-height: 13pt;
+    font-size: 5.5pt;
+    line-height: 6pt;
     float: right;
     color: $color__black;
   }
 
   .i-aic {
     width: 0.625in;
+    margin-right: 0.165in;
   }
 
   .i-bloomberg {
-    width: 1.6655in;
+    width: 1.395in;
   }
 
   .i-qrcode {
