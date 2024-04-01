@@ -845,14 +845,14 @@ return [
         26772 => [
             "gallery_title" => "Gallery 150",
             "gallery_level" => "first level",
-            "gallery_location" => "Arts of the Greek, Roman and Byantine Worlds Galleries ",
+            "gallery_location" => "Arts of the Greek, Roman and Byzantine Worlds Galleries ",
         ],
 
 
         26773 => [
             "gallery_title" => "Gallery 151",
             "gallery_level" => "first level",
-            "gallery_location" => "Arts of the Greek, Roman and Byantine Worlds Galleries ",
+            "gallery_location" => "Arts of the Greek, Roman and Byzantine Worlds Galleries ",
         ],
 
 
@@ -866,21 +866,21 @@ return [
         26774 => [
             "gallery_title" => "Gallery 152",
             "gallery_level" => "first level",
-            "gallery_location" => "Arts of the Greek, Roman and Byantine Worlds Galleries ",
+            "gallery_location" => "Arts of the Greek, Roman and Byzantine Worlds Galleries ",
         ],
 
 
         26776 => [
             "gallery_title" => "Gallery 153",
             "gallery_level" => "first level",
-            "gallery_location" => "Arts of the Greek, Roman and Byantine Worlds Galleries ",
+            "gallery_location" => "Arts of the Greek, Roman and Byzantine Worlds Galleries ",
         ],
 
 
         26777 => [
             "gallery_title" => "Gallery 154",
             "gallery_level" => "first level",
-            "gallery_location" => "Arts of the Greek, Roman and Byantine Worlds Galleries ",
+            "gallery_location" => "Arts of the Greek, Roman and Byzantine Worlds Galleries ",
         ],
 
 
