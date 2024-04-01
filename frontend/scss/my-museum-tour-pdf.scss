@@ -114,7 +114,8 @@ $disable-font-loading: true;
     height: 100%;
     display: block;
     position: relative;
-    left: -25%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   table tr td svg {
