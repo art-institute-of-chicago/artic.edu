@@ -16,17 +16,25 @@
   right: 50%;
 }
 
-.g-header:has([aria-expanded="true"]) ~ main::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: map-get($zindexs, 'stickyFilters');
-  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+.g-header:has([aria-expanded="true"]) {
+  height: 380px;
+  & ~ main::after {
+    content: '';
+    background-color: rgba($color__white, 60%);
+    transition: background-color .6s linear;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: map-get($zindexs, 'stickyFilters');
+    @supports (backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px)) {
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+    }
+  }
+  .g-header__inner {
+    border-bottom: none !important;
   }
 }
 
@@ -122,9 +130,26 @@
 
   [aria-expanded="false"] + .details {
     visibility: collapse;
+    opacity: 0;
+  }
+  [aria-expanded="false"].collapsing + .details {
+    animation: .3s fade-out;
+    transition: opacity .3s linear, background-color .3s linear;
+    @keyframes fade-out {
+      from {
+        opacity: 1;
+        visibility: visible;
+      }
+      to {
+        opacity: 0;
+        visibility: collapse;
+      }
+    }
   }
   [aria-expanded="true"] + .details {
     visibility: visible;
+    opacity: 1;
+    transition: opacity .6s linear, background-color .6s linear;
   }
 
   @include breakpoint('xsmall') {
@@ -157,7 +182,7 @@
 .g-header__nav-primary a,
 .g-header__nav-primary button {
   color: $color__text--secondary;
-  transition: color .25s .25s;
+  transition: color .6s linear;
 
   @include breakpoint('small+') {
     color: $color__text--title;
@@ -206,22 +231,27 @@
     }
     &[aria-expanded="true"] {
       color: $color__red--100;
-      transition: color .25s .25s;
+      transition: color .6s;
       & .icon--arrow {
         transform: rotate(-90deg);
-        transition: transform .25s .25s;
+        transition: transform .6s;
+      }
+    }
+    &[aria-expanded="false"] {
+      & .icon--arrow {
+        transition: transform .6s;
       }
     }
   }
   &>.details {
-    background-color: $color__white;
+    background-color: rgba($color__white, 0);
     box-shadow: 0 4px 20px -20px;
     display: flex;
     flex-direction: row;
     grid-auto-rows: 1fr;
+    height: 240px;
     left: 0;
     margin-top: 19px;
-    padding-top: 5px;
     position: fixed;
     width: 100vw;
     @include breakpoint('medium-') {
