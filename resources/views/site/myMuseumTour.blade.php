@@ -198,11 +198,11 @@
         @slot('href', '/my-museum-tour/builder')
         @slot('header', 'Ready to build your own tour?')
         @slot('body', '<p>Design a personalized tour by directly searching artworks or exploring themes that can help you get started.</p>')
-        @slot('button_text', 'Create your own tour')
-        @slot('gtmAttributes', 'data-gtm-event="Create your own tour" data-gtm-event-category="internal-ad-click"')
+        @slot('button_text', 'Create Your Own Tour')
+        @slot('gtmAttributes', 'data-gtm-event="Create Your Own Tour" data-gtm-event-category="internal-ad-click"')
         @slot('my_museum_tour', true)
         @slot('secondary_button_href', '/my-museum-tour')
-        @slot('secondary_button_text', 'View ready-made tours')
+        @slot('secondary_button_text', 'View Ready-Made Tours')
         @slot('my_museum_tour_bottom', true)
     @endcomponent
 @endsection
