@@ -172,8 +172,7 @@
             <td class="gutter"></td>
             <td colspan="3" class="logos">
             </td>
-            <td class="col52"></td>
-            <td class="logos">
+            <td colspan="2" class="logos">
                 <p class="f-body t-qr-caption"><span>See your tour here</span></p>
                 <img class="i-qrcode" src="{{ route('my-museum-tour.qrcode', [ 'id' => $id ], false); }}">
             </td>
