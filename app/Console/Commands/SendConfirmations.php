@@ -74,7 +74,8 @@ class SendConfirmations extends Command
     {
         $to = $model->creator_email;
         $apiCode = config('sendgrid.api_key');
-        $sender = config('sendgrid.email');
+        $senderEmail = config('sendgrid.email');
+        $senderName = config('sendgrid.name');
         $templateId = config('sendgrid.template_id');
 
         $baseUrl = config('aic.protocol') . '://' . config('app.url');
@@ -96,7 +97,8 @@ class SendConfirmations extends Command
                 ]
             ],
             'from' => [
-                'email' => $sender
+                'email' => $senderEmail,
+                'name' => $senderName,
             ],
             'template_id' => $templateId,
         ];
