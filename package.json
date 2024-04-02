@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@area17/a17-helpers": "^0.6.7",
+    "@sentry/react": "^7.109.0",
     "@sketchfab/viewer-api": "^1.5.1",
     "asset-builder": "git+https://github.com/bertya/asset-builder.git",
     "buble": "^0.19.8",
