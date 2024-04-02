@@ -435,9 +435,14 @@
 
 // ---- My Museum Tour: Search results
 
-.aic-ct-pre-result-text {
+.aic-ct-pre-result-text,
+.aic-ct-post-result-text {
   @include untuck;
   margin-bottom: 24px;
+}
+
+.aic-ct-post-result-text {
+  margin-top: 24px;
 }
 
 .aic-ct-search-results {
