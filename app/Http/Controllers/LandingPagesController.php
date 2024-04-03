@@ -283,7 +283,7 @@ class LandingPagesController extends FrontController
                 ];
                 break;
 
-            case $types->search('Stories'):
+            case $types->search('Editorial'):
                 $viewData = [
                     'hours' => $hours,
                     'subnav' => collect(['Top Stories'])->concat($blockHeadings)->all(),
