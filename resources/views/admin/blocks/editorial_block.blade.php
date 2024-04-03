@@ -110,19 +110,19 @@
             'endpoints' => [
                 [
                     'label' => 'Article',
-                    'value' => '/collection/articles_publications/articles/browser'
+                    'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_published' => true])
                 ],
                 [
                     'label' => 'Highlight',
-                    'value' => moduleRoute('highlights', 'collection', 'browser')
+                    'value' => moduleRoute('highlights', 'collection', 'browser', ['is_published' => true])
                 ],
                 [
                     'label' => 'Interactive feature',
-                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser')
+                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser', ['is_published' => true])
                 ],
                 [
                     'label' => 'Video',
-                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
+                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser', ['is_published' => true]),
                 ],
             ],
             'max' => 5,
