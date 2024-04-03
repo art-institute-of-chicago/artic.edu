@@ -26,26 +26,27 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
 
   &:not(.s-scroll-direction-up),
   &:not(.s-header-hide) {
-
+    .g-header:has([aria-expanded="true"]) {
+      opacity: 1;
+      transition: background-color .6s linear, opacity .6s linear;
+    }
     .g-header:not(:has([aria-expanded="true"])) {
-      background-color: rgba($color__white,0);
-      transition: background-color .25s .25s, opacity .25s .25s, transform 0s .5s;
+      background-color: rgba($color__white, 0);
+      transition: background-color .3s linear, opacity .3s linear;
 
       @supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0)) {
         -webkit-backdrop-filter: blur(0);
         backdrop-filter: blur(0);
-
       }
 
       .g-header__inner {
-        border-bottom-color: rgba($color__rules--primary, 0);
-        transition: border-bottom-color .25s .25s;
+        border-bottom: none;
       }
 
       .g-header__nav-primary svg,
       .g-header__nav-primary a {
         color: $color__text--title-contrast;
-        transition: color .25s .25s;
+        transition: color .6s linear;
 
         @include breakpoint('small+') {
           color: $color__text--title-contrast;

@@ -7,6 +7,7 @@ export default function(container) {
     const menuItemQuery = 'a[role="menuitem"]'
     const canExpandAttribute = 'aria-haspopup'
     const isExpandedAttribute = 'aria-expanded'
+    const isCollapsingClass = 'collapsing'
     const exhibitionApiPath = '/api/v1/exhibitions/search'
     const featuredExhibitionApiQuery = new URLSearchParams({
         'fields': 'title,image_url,web_url',
@@ -35,9 +36,9 @@ export default function(container) {
         })
     }
 
-    function expandHandler() {
+    function expandHandler(event) {
         collapseMenu()
-        expandAncestors(this)
+        expandAncestors(event.target)
         Object.keys(collapseEventTypes).forEach(function(eventType) {
             collapseEventTypes[eventType].addEventListener(eventType, collapseHandler)
 
@@ -63,7 +64,11 @@ export default function(container) {
 
     function collapseMenu() {
         menuItems.forEach(function (menuItem) {
+            menuItem.classList.remove(isCollapsingClass)
             if (menuItem.getAttribute(canExpandAttribute) === 'true') {
+                if (menuItem.getAttribute(isExpandedAttribute) === 'true') {
+                    menuItem.classList.add(isCollapsingClass)
+                }
                 menuItem.setAttribute(isExpandedAttribute, 'false')
             }
         })
