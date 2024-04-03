@@ -4,8 +4,8 @@
     $categoriesList = \App\Models\Category::all()->pluck('name', 'id')->toArray();
 
     switch ($type) {
-        case 'Stories':
-            $themes = ['default', 'stories'];
+        case 'Editorial':
+            $themes = ['default', 'editorial'];
             break;
         default:
             $themes = ['default'];
@@ -29,7 +29,7 @@
 
 @formConnectedFields([
     'fieldName' => 'theme',
-    'fieldValues' => 'stories',
+    'fieldValues' => 'editorial',
     'renderForBlocks' => true,
     ])
 
@@ -48,7 +48,7 @@
 
 @formConnectedFields([
     'fieldName' => 'theme',
-    'fieldValues' => 'stories',
+    'fieldValues' => 'editorial',
     'renderForBlocks' => true,
     ])
 

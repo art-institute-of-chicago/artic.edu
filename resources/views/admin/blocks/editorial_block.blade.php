@@ -4,7 +4,7 @@
     $categoriesList = \App\Models\Category::all()->pluck('name', 'id')->toArray();
 
     switch ($type) {
-        case 'Stories':
+        case 'Editorial':
             $themes = ['default'];
             break;
         default:
