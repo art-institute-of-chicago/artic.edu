@@ -346,6 +346,7 @@
 
                             .title {
                                 margin-top: 0 !important;
+
                                 &::before {
                                     padding: 0 !important;
                                 }
@@ -505,6 +506,7 @@
 
                     .title {
                         margin-top: 0 !important;
+
                         ::before {
                             padding: 0 !important;
                         }
@@ -610,7 +612,6 @@
                     margin-bottom: 23px;
                     padding-top: 23px;
                     border-top: 1px solid $color__black--20;
-
 
                     .m-listing__link {
                         display: flex;
