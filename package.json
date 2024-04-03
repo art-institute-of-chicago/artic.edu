@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@area17/a17-helpers": "^0.6.7",
+    "@sentry/react": "^7.109.0",
     "@sketchfab/viewer-api": "^1.5.1",
     "asset-builder": "git+https://github.com/bertya/asset-builder.git",
     "buble": "^0.19.8",
@@ -39,7 +40,7 @@
     "lodash": "^4.17.15",
     "minimist": "^1.2.0",
     "mirador": "^3.0.0",
-    "my-museum-tour-builder": "git+https://github.com/art-institute-of-chicago/my-museum-tour.git#semver:^1.11",
+    "my-museum-tour-builder": "git+https://github.com/art-institute-of-chicago/my-museum-tour.git#semver:^1.12",
     "prettier": "^1.7.4",
     "react": "^16.9.0",
     "react-app-polyfill": "^0.2.0",

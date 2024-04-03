@@ -435,9 +435,14 @@
 
 // ---- My Museum Tour: Search results
 
-.aic-ct-pre-result-text {
+.aic-ct-pre-result-text,
+.aic-ct-post-result-text {
   @include untuck;
   margin-bottom: 24px;
+}
+
+.aic-ct-post-result-text {
+  margin-top: 24px;
 }
 
 .aic-ct-search-results {
@@ -508,7 +513,7 @@
 
 .aic-ct-nav {
   display: flex;
-  gap: 12px;
+  gap: 24px;
   justify-content: center;
   align-items: flex-start;
 }
@@ -518,6 +523,10 @@
   padding: 0 !important;
   white-space: normal;
   max-width: 180px;
+
+  @include breakpoint('small+') {
+    min-width: 150px;
+  }
 
   & + & {
     margin-left: 0;

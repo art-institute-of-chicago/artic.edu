@@ -114,7 +114,8 @@ $disable-font-loading: true;
     height: 100%;
     display: block;
     position: relative;
-    left: -25%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   table tr td svg {
@@ -240,18 +241,13 @@ $disable-font-loading: true;
 
   .t-qr-caption {
     font-size: 5.5pt;
-    line-height: 6pt;
+    line-height: 10pt;
     float: right;
     color: $color__black;
   }
 
-  .i-aic {
-    width: 0.625in;
-    margin-right: 0.165in;
-  }
-
-  .i-bloomberg {
-    width: 1.395in;
+  .i-aic-bloomberg {
+    width: 1.889in;
   }
 
   .i-qrcode {

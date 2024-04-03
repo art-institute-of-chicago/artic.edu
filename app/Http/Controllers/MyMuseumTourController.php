@@ -113,6 +113,7 @@ class MyMuseumTourController extends FrontController
               'eccLevel' => EccLevel::L,
               'outputType' => QROutputInterface::GDIMAGE_PNG,
               'version' => 5,
+              'quietzoneSize' => 0,
             ]
         );
 
