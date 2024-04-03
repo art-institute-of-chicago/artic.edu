@@ -37,13 +37,36 @@
                 @endcomponent
                 <br>
                 @if ($isFeatured)
+                    @if (isset($item->authors) && (count($item->authors) > 0) || $item->author_display)
+                        <div class="author f-body-editorial">
+                            @if (count($item->authors) > 0)
+                                <span class="author__name">
+                                    by
+                                    @foreach ($item->authors as $author)
+                                        {!! $loop->last && !$loop->first ? 'and ' : ''!!}{!! $author->title !!}{{!$loop->last ? ', ' : ''}}
+                                    @endforeach
+                                </span>
+                            @else
+                                by ⁠{!! $item->author_display !!}
+                            @endif
+                        </div>
+                    @endif
                     @if ($item->present()->list_description)
                         <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description !!}</div>
                     @endif
                 @endif
-                @if ($item->author_display)
+                @if ((isset($item->authors) && (count($item->authors) > 0) || $item->author_display) && !$isFeatured)
                     <div class="author f-body-editorial">
-                        ⁠—{!! $item->present()->author_display !!}
+                        @if (count($item->authors) > 0)
+                            <span class="author__name">
+                                by
+                                @foreach ($item->authors as $author)
+                                    {!! $loop->last && !$loop->first ? 'and ' : ''!!}{!! $author->title !!}{{!$loop->last ? ', ' : ''}}
+                                @endforeach
+                            </span>
+                        @else
+                            <span class="author__name">by ⁠{!! $item->author_display !!}</span>
+                        @endif
                     </div>
                 @endif
             </div>
