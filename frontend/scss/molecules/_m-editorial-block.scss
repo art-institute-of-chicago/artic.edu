@@ -61,6 +61,7 @@
 
     .editorial-block__list {
         .author {
+            margin-top: 8px !important;
             padding-bottom: 6px;
         }
     }
@@ -68,6 +69,7 @@
     .stories-listing {
         width: 100%;
         list-style: none;
+        height: max-content;
     }
 
     &.editorial-block--variation-feature-5a {
@@ -128,7 +130,7 @@
                 }
 
                 .stories-listing {
-                    height: 100px;
+                    margin-bottom: 12px;
 
                     @include breakpoint('small-') {
                         margin-top: 16px;
@@ -159,7 +161,7 @@
 
                         .m-listing__meta {
                             min-height: unset !important;
-                            max-width: 65%;
+                            width: min-content;
                             margin: 0 !important;
                             display: flex !important;
                             align-items: flex-start !important;
@@ -345,7 +347,7 @@
                             }
 
                             .title {
-                                margin-top: 0 !important;
+                                margin-top: 10px !important;
 
                                 &::before {
                                     padding: 0 !important;
@@ -650,7 +652,7 @@
                 }
 
                 .title {
-                    font-family: $sans-serif-font--loaded;
+                    font-family: $serif-font--loaded;
                     font-size: 24px;
                     font-weight: 300;
                     line-height: 32px;
