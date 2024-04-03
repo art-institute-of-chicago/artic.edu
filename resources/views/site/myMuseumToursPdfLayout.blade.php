@@ -46,7 +46,7 @@
             <td class="gutter" rowspan="3"></td>
             <td class="tombstone">
                 @if(isset($my_museum_tour['artworks'][4]))
-                    <p><span class="f-headline-editorial t-artwork-title">{{ $my_museum_tour['artworks'][4]['title'] }}</span></p>
+                    <p><span class="f-headline-editorial t-artwork-title">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][4]['title'], 65) }}</span></p>
                     @isset($my_museum_tour['artworks'][4]['artist_title'])
                         <p><span class="f-body t-artist-title">{{ $my_museum_tour['artworks'][4]['artist_title'] }}</span></p>
                     @endisset
@@ -118,7 +118,7 @@
             <td class="gutter" rowspan="4"></td>
             <td class="tombstone" rowspan="2">
                 @if(isset($my_museum_tour['artworks'][5]))
-                    <p><span class="f-headline-editorial t-artwork-title">{{ $my_museum_tour['artworks'][5]['title'] }}</span></p>
+                    <p><span class="f-headline-editorial t-artwork-title">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][5]['title'], 65) }}</span></p>
                     @isset($my_museum_tour['artworks'][5]['artist_title'])
                         <p><span class="f-body t-artist-title">{{ $my_museum_tour['artworks'][5]['artist_title'] }}</span></p>
                     @endisset
@@ -218,7 +218,7 @@
             <td class="gutter" rowspan="3"></td>
             <td class="tombstone">
                 @if(isset($my_museum_tour['artworks'][0]))
-                    <p><span class="f-headline-editorial t-artwork-title">{{ $my_museum_tour['artworks'][0]['title'] }}</span></p>
+                    <p><span class="f-headline-editorial t-artwork-title">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][0]['title'], 65) }}</span></p>
                     @isset($my_museum_tour['artworks'][0]['artist_title'])
                         <p><span class="f-body t-artist-title">{{ $my_museum_tour['artworks'][0]['artist_title'] }}</span></p>
                     @endisset
@@ -248,7 +248,7 @@
             <td class="gutter" rowspan="3"></td>
             <td colspan="5" class="tombstone">
                 @if(isset($my_museum_tour['artworks'][2]))
-                    <p><span class="f-headline-editorial t-artwork-title">{{ $my_museum_tour['artworks'][2]['title'] }}</span></p>
+                    <p><span class="f-headline-editorial t-artwork-title">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][2]['title'], 65) }}</span></p>
                     @isset($my_museum_tour['artworks'][2]['artist_title'])
                         <p><span class="f-body t-artist-title">{{ $my_museum_tour['artworks'][2]['artist_title'] }}</span></p>
                     @endisset
@@ -319,7 +319,7 @@
             <td class="gutter" rowspan="3"></td>
             <td class="tombstone">
                 @if(isset($my_museum_tour['artworks'][1]))
-                    <p><span class="f-headline-editorial t-artwork-title">{{ $my_museum_tour['artworks'][1]['title'] }}</span></p>
+                    <p><span class="f-headline-editorial t-artwork-title">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][1]['title'], 65) }}</span></p>
                     @isset($my_museum_tour['artworks'][1]['artist_title'])
                         <p><span class="f-body t-artist-title">{{ $my_museum_tour['artworks'][1]['artist_title'] }}</span></p>
                     @endisset
@@ -348,7 +348,7 @@
             <td class="gutter" rowspan="3"></td>
             <td colspan="5" class="tombstone">
                 @if(isset($my_museum_tour['artworks'][3]))
-                    <p><span class="f-headline-editorial t-artwork-title">{{ $my_museum_tour['artworks'][3]['title'] }}</span></p>
+                    <p><span class="f-headline-editorial t-artwork-title">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][3]['title'], 65) }}</span></p>
                     @isset($my_museum_tour['artworks'][3]['artist_title'])
                         <p><span class="f-body t-artist-title">{{ $my_museum_tour['artworks'][3]['artist_title'] }}</span></p>
                     @endisset
