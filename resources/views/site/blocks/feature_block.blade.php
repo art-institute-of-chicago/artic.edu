@@ -1,7 +1,8 @@
 @php
 
     // Persistent fields from CMS
-    $heading = $block->input('feature_heading');
+    $feature_heading = $block->input('feature_heading');
+    $heading = $block->input('heading');
     $body = $block->input('body') ?? null;
     $browseLabel = $block->input('browse_label');
     $browseLink = $block->input('browse_link');
@@ -70,10 +71,10 @@
 @endphp
 
 @if (count($items) > 0)
-    @if ($theme !== 'stories')
+    @if ($theme !== 'editorial')
         <div class="m-feature-block-heading">
-            @if ($heading)
-                <h2 id="{{ StringHelpers::getUtf8Slug($heading) }}" class="title f-module-title-2">{{ $heading }}</h2>
+            @if ($feature_heading)
+                <h2 class="title f-module-title-2">{{ $feature_heading }}</h2>
             @endif
             @if ($browseLink && $browseLabel)
             <a href="{{ $browseLink }}">
@@ -87,7 +88,7 @@
     @else
         <div class="m-feature-block-editorial__header">
             <div class="editorial-block__heading">
-                <h2>{{ $heading }}</h2>
+                <h2 id="{{ StringHelpers::getUtf8Slug($heading) }}">{{ $heading }}</h2>
                 @if ($variation == 'video')
                 @component('components.atoms._link')
                     @slot('font', 'f-secondary')
