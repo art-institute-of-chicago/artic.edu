@@ -4,7 +4,7 @@
     $categoriesList = \App\Models\Category::all()->pluck('name', 'id')->toArray();
 
     switch ($type) {
-        case 'Stories':
+        case 'Editorial':
             $themes = ['default'];
             break;
         default:
@@ -110,19 +110,19 @@
             'endpoints' => [
                 [
                     'label' => 'Article',
-                    'value' => '/collection/articles_publications/articles/browser'
+                    'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_published' => true])
                 ],
                 [
                     'label' => 'Highlight',
-                    'value' => moduleRoute('highlights', 'collection', 'browser')
+                    'value' => moduleRoute('highlights', 'collection', 'browser', ['is_published' => true])
                 ],
                 [
                     'label' => 'Interactive feature',
-                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser')
+                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser', ['is_published' => true])
                 ],
                 [
                     'label' => 'Video',
-                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
+                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser', ['is_published' => true]),
                 ],
             ],
             'max' => 5,
@@ -136,6 +136,23 @@
         'fieldValues' => 'video',
         'renderForBlocks' => true,
     ])
+
+        @component('twill::partials.form.utils._columns')
+        @slot('left')
+            @formField('input', [
+                'name' => 'browse_label',
+                'label' => 'Browse More Label',
+                'type' => 'text',
+            ])
+        @endslot
+        @slot('right')
+            @formField('input', [
+                'name' => 'browse_link',
+                'label' => 'Browse More Link',
+                'type' => 'text',
+            ])
+        @endslot
+        @endcomponent
 
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
@@ -190,6 +207,23 @@
         'fieldValues' => '4-across',
         'renderForBlocks' => true,
     ])
+
+        @component('twill::partials.form.utils._columns')
+        @slot('left')
+            @formField('input', [
+                'name' => 'browse_label',
+                'label' => 'Browse More Label',
+                'type' => 'text',
+            ])
+        @endslot
+        @slot('right')
+            @formField('input', [
+                'name' => 'browse_link',
+                'label' => 'Browse More Link',
+                'type' => 'text',
+            ])
+        @endslot
+        @endcomponent
 
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',

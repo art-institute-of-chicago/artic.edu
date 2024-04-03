@@ -96,8 +96,8 @@
                 }
 
                 .title {
-                    font-family: $sans-serif-font--loaded;
-                    font-size: 22px;
+                    font-family: $serif-font--loaded;
+                    font-size: 28px;
                     font-weight: 300;
                     line-height: 28px;
                     letter-spacing: -0.005em;
@@ -121,6 +121,10 @@
                     margin-top: 36px;
                     width: 100%;
                     padding-right: 0;
+                }
+
+                .stories-listing:last-of-type {
+                    border-bottom: none !important;
                 }
 
                 .stories-listing {
@@ -223,6 +227,7 @@
                     .m-listing__meta {
                         max-width: 40% !important;
                         padding-left: 38px;
+                        margin-top: 0 !important;
 
                         @include breakpoint('small-') {
                             max-width: 100% !important;
@@ -243,12 +248,11 @@
                             font-weight: 300;
                             line-height: 44px;
                             letter-spacing: -0.01em;
+                            margin-top: 0 !important;
 
                             &::before {
                                 padding: 0 !important;
                             }
-
-                            margin-top: 0 !important;
                         }
 
                         .author {
@@ -271,6 +275,10 @@
                 @include breakpoint('small-') {
                     margin-right: 0;
                     flex-direction: column;
+                }
+
+                .stories-listing:last-of-type {
+                    border-bottom: none !important;
                 }
 
                 .stories-listing {
@@ -322,21 +330,27 @@
                         .m-listing__meta {
                             min-height: unset !important;
                             max-width: 100%;
-                            margin: 0 !important;
                             display: flex !important;
                             align-items: flex-start !important;
                             flex-grow: 1 !important;
+                            margin-top: 0 !important;
+
+                            @include breakpoint('small-') {
+                                width: min-content;
+                                margin-top: 0 !important;
+                            }
 
                             .f-list-1::before {
                                 padding: 0 !important;
                             }
 
                             .title {
+                                margin-top: 0 !important;
+
                                 &::before {
                                     padding: 0 !important;
                                 }
 
-                                margin: 0 !important;
                             }
 
                             .author {
@@ -433,6 +447,12 @@
 
     &.editorial-block--variation-4-across {
 
+        .editorial-block__heading {
+            h2 {
+                font-size: 28px;
+            }
+        }
+
         .editorial-block__content {
             width: 100%;
         }
@@ -486,6 +506,7 @@
 
                     .title {
                         margin-top: 0 !important;
+
                         ::before {
                             padding: 0 !important;
                         }
@@ -515,7 +536,7 @@
     &.editorial-block--variation-video {
         padding-top: 56px;
         border-top: 1px solid $color__black--20;
-        background-color: $color__black--90;
+        background-color: $color__black--85;
         min-width: 100vw;
         margin-top: 50px;
         margin-left: calc(50% - 50vw);
@@ -527,6 +548,7 @@
         }
 
         .editorial-block__header {
+            padding-top: 0 !important;
             border-top: none;
 
             .editorial-block__heading {
@@ -554,6 +576,7 @@
             width: 100%;
 
             .editorial-block__content-wrapper {
+                width: 100%;
                 display: flex;
                 flex-wrap: wrap;
                 margin-right: -40px;
@@ -561,6 +584,7 @@
 
                 @include breakpoint('small-') {
                     flex-direction: column;
+                    margin-bottom: 46px;
                 }
             }
 
@@ -585,6 +609,9 @@
                 @include breakpoint('small-') {
                     width: 100%;
                     padding-right: 0;
+                    margin-bottom: 23px;
+                    padding-top: 23px;
+                    border-top: 1px solid $color__black--20;
 
                     .m-listing__link {
                         display: flex;
@@ -602,6 +629,7 @@
 
                             .title {
                                 margin-top: 0;
+                                font-family: $serif-font--loaded;
 
                                 &::before {
                                     padding: 0;

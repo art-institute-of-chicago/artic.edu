@@ -5,6 +5,9 @@
     $heading = $block->input('heading');
     $body = $block->input('body');
 
+    $browse_link = $block->input('browse_link') ?? null;
+    $browse_label = $block->input('browse_label') ?? null;
+
     $categories = collect($block->input('categories'))->take(12);
     $tags = \App\Models\Category::whereIn('id', $categories)->get();
 
@@ -18,13 +21,13 @@
     <div class="editorial-block__header">
         <div class="editorial-block__heading">
             <h2>{{ $heading }}</h2>
-            @if ($variation == 'video')
-            @component('components.atoms._link')
-                @slot('font', 'f-secondary')
-                @slot('href', route('articles', [], false))
-                @slot('variation', 'editorial-block__link')
-                {!! SmartyPants::defaultTransform('View all videos') !!} <svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>
-            @endcomponent
+            @if ( ($variation == 'video' || $variation == '4-across') && ($browse_link || $browse_label) )
+                @component('components.atoms._link')
+                    @slot('font', 'f-secondary')
+                    @slot('href', $browse_link)
+                    @slot('variation', 'editorial-block__link')
+                    {!! SmartyPants::defaultTransform($browse_label) !!} <svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>
+                @endcomponent
             @endif
         </div>
         <div class="editorial-block__body">

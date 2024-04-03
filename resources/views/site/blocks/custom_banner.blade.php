@@ -7,7 +7,7 @@
     $tags = \App\Models\Category::whereIn('id', $categories)->get();
 
     $link_label = $block->input('link_label');
-    $link_url = $block->input('link_label');
+    $link_url = $block->input('link_url');
 
     $heading = $block->input('title');
     $body = $block->input('body');
