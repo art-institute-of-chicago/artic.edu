@@ -137,6 +137,23 @@
         'renderForBlocks' => true,
     ])
 
+        @component('twill::partials.form.utils._columns')
+        @slot('left')
+            @formField('input', [
+                'name' => 'browse_label',
+                'label' => 'Browse More Label',
+                'type' => 'text',
+            ])
+        @endslot
+        @slot('right')
+            @formField('input', [
+                'name' => 'browse_link',
+                'label' => 'Browse More Link',
+                'type' => 'text',
+            ])
+        @endslot
+        @endcomponent
+
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'articles',
@@ -190,6 +207,23 @@
         'fieldValues' => '4-across',
         'renderForBlocks' => true,
     ])
+
+        @component('twill::partials.form.utils._columns')
+        @slot('left')
+            @formField('input', [
+                'name' => 'browse_label',
+                'label' => 'Browse More Label',
+                'type' => 'text',
+            ])
+        @endslot
+        @slot('right')
+            @formField('input', [
+                'name' => 'browse_link',
+                'label' => 'Browse More Link',
+                'type' => 'text',
+            ])
+        @endslot
+        @endcomponent
 
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
