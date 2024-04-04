@@ -24,7 +24,7 @@
                 'endpoints' => [
                     [
                         'label' => 'Article',
-                        'value' => '/collection/articles_publications/articles/browser'
+                        'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['published' => true]),
                     ],
                     [
                         'label' => 'Highlight',
