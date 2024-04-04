@@ -43,9 +43,11 @@
                   <a href="#" class="g-nav-mobile__back arrow-link arrow-link--back" data-nav-back>
                     <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
                   </a>
-                  <a href="{{ $level_0['url'] }}" class="g-nav-mobile__link">
-                    <h3 id="h-nav-mobile-sub-{{ Str::slug($level_0['name']) }}">{!! $level_0['name'] !!}</h3>
-                  </a>
+                  <h3 id="h-nav-mobile-sub-{{ Str::slug($level_0['name']) }}">
+                    <a href="{{ $level_0['url'] }}" class="g-nav-mobile__link">
+                      {!! $level_0['name'] !!}
+                    </a>
+                  </h3>
 
                   <ul aria-labelledby="h-nav-mobile-sub-{{ Str::slug($level_0['name']) }}">
                     @foreach ($level_0['children'] as $level_1)
@@ -64,9 +66,11 @@
                             <a href="#" class="g-nav-mobile__back arrow-link arrow-link--back" data-nav-back>
                               <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
                             </a>
-                            <a href="{{ $level_1['url'] }}" class="g-nav-mobile__link">
-                              <h4 id="h-nav-mobile-sub-sub-{{ Str::slug($level_1['name']) }}">{!! $level_1['name'] !!}</h4>
-                            </a>
+                            <h4 id="h-nav-mobile-sub-sub-{{ Str::slug($level_1['name']) }}">
+                              <a href="{{ $level_1['url'] }}" class="g-nav-mobile__link">
+                                {!! $level_1['name'] !!}
+                              </a>
+                            </h4>
 
                             <ul aria-labelledby="h-nav-mobile-sub-sub-{{ Str::slug($level_1['name']) }}">
                               @foreach ($level_1['children'] as $level_2)

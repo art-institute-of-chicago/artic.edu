@@ -14,6 +14,7 @@ const anchorLinksScroll = function(container) {
       let target = document.getElementById(hash); // Fails on quotes
       let offsetTarget = getOffset(target).top - 20;
       event.target.blur();
+      triggerCustomEvent(document, 'navMobile:close');
       scrollToY({
         el: document,
         offset: offsetTarget,
