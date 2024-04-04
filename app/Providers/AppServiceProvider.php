@@ -249,7 +249,7 @@ class AppServiceProvider extends ServiceProvider
                             ],
                             [
                                 'name' => 'Who&apos;s Visiting?',
-                                'url' => route('pages.slug', ['slug' => 'visit']) . '#who-s-visiting',
+                                'url' => route('pages.slug', ['slug' => 'visit']) . '#whos-visiting',
                                 'children' => [
                                     [
                                         'name' => 'First-Time Visitors',
