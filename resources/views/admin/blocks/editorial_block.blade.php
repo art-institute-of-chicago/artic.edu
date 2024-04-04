@@ -110,7 +110,7 @@
             'endpoints' => [
                 [
                     'label' => 'Article',
-                    'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_published' => true])
+                    'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['published' => true]),
                 ],
                 [
                     'label' => 'Highlight',
