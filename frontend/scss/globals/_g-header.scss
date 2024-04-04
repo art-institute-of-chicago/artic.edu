@@ -14,15 +14,15 @@
   margin-left: -50vw;
   left: 50%;
   right: 50%;
+}
+
+.g-header:has([aria-expanded="true"]) {
   @include breakpoint('small+') {
     height: 368px;
   }
   @include breakpoint('medium+') {
     height: 380px;
   }
-}
-
-.g-header:has([aria-expanded="true"]) {
   & ~ main::after {
     content: '';
     background-color: rgba($color__white, 60%);
