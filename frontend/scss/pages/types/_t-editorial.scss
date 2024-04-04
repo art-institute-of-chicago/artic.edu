@@ -206,6 +206,15 @@
 
         .stories-listing {
             list-style-type: none;
+
+            .author {
+                font-family: $sans-serif-font--loaded;
+                font-size: 15px;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0.01em;
+                color: $color__black--54;
+            }
         }
     }
 
