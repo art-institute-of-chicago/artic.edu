@@ -272,7 +272,7 @@
 .g-nav-mobile .g-header .g-header__logo {
   &,
   .s-contrast-header & {
-    color: $color__grey--100;
+    color: $color__grey--100 !important;
   }
 }
 
@@ -295,7 +295,7 @@
 .g-nav-mobile .g-header .g-header__nav-secondary button {
   &,
   .s-contrast-header & {
-    color: $color__text--title;
+    color: $color__text--title !important;
   }
 }
 
