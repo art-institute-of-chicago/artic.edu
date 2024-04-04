@@ -14,10 +14,15 @@
   margin-left: -50vw;
   left: 50%;
   right: 50%;
+  @include breakpoint('small+') {
+    height: 368px;
+  }
+  @include breakpoint('medium+') {
+    height: 380px;
+  }
 }
 
 .g-header:has([aria-expanded="true"]) {
-  height: 380px;
   & ~ main::after {
     content: '';
     background-color: rgba($color__white, 60%);
@@ -44,16 +49,13 @@
   min-height: 112px;
   border-bottom: 1px solid $color__rules--primary;
 
-  @include breakpoint('small+') {
-    min-height: 128px;
-  }
-
-  @include breakpoint('medium+') {
-    min-height: 140px;
-  }
-
   .g-header__nav-primary__container {
-    min-height: 140px;
+    @include breakpoint('small+') {
+      min-height: 128px;
+    }
+    @include breakpoint('medium+') {
+      min-height: 140px;
+    }
   }
 }
 
@@ -251,11 +253,11 @@
     grid-auto-rows: 1fr;
     height: 240px;
     left: 0;
-    margin-top: 19px;
+    margin-top: 16px;
     position: fixed;
     width: 100vw;
-    @include breakpoint('medium-') {
-      margin-top: 15px;
+    @include breakpoint('medium+') {
+      margin-top: 20px;
     }
     &>a, &>span {
       background-color: $color__black--5;
@@ -267,7 +269,7 @@
     }
     img {
       margin-bottom: 32px;
-      margin-left: 4.6875vw;
+      margin-left: 4.125vw;
       margin-top: 32px;
       height: 170px;
       width: 239px;
@@ -280,6 +282,9 @@
       font-size: 16px;
       line-height: 24px;
       margin: 32px;
+      @include breakpoint('medium') {
+        margin-left: 4.125vw;
+      }
       .title {
         color: $color__black--80;
         font-size: 24px;
@@ -323,7 +328,7 @@
   &>.details {
     left: 75vw;
     padding-left: 32px;
-    padding-right: 4.6875vw;
+    padding-right: 4.125vw;
     position: absolute;
     top: 24px;
     @include breakpoint('medium-') {
