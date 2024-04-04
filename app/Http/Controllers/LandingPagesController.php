@@ -368,7 +368,7 @@ class LandingPagesController extends FrontController
         ];
     }
 
-    public function getEditorialHeader() 
+    public function getEditorialHeader()
     {
         $hour = Hour::today()->first();
 
