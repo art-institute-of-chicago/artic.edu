@@ -368,6 +368,16 @@ class LandingPagesController extends FrontController
         ];
     }
 
+    public function getEditorialHeader()
+    {
+        $hour = Hour::today()->first();
+
+        $data['date'] = Carbon::now()->format('M d, Y');
+        $data['hours'] = $hour->present()->getTodayStatusWithHours();
+
+        return response()->json($data);
+    }
+
     private function getLightboxGeotarget($value = null)
     {
         switch ($value) {

@@ -21,6 +21,7 @@
         font-weight: 400;
         line-height: 16px;
         border-right: 1px solid $color__black;
+        text-transform: uppercase;
     }
 
     .stories-header__title {
@@ -49,6 +50,7 @@
         font-weight: 400 !important;
         line-height: 16px !important;
         border-left: 1px solid $color__black;
+        text-transform: uppercase;
     }
 
     @include breakpoint('medium-') {

@@ -59,6 +59,7 @@ Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt'
 // Landing Page
 Route::get('/', [LandingPagesController::class, 'slugHome'])->name('home');
 Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
+Route::get('/landingPages/data/getEditorialHeader', [LandingPagesController::class, 'getEditorialHeader'])->name('landingPages.getEditorialHeader');
 
 // Collection routes
 Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
