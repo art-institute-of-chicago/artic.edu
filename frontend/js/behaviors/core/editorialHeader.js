@@ -15,7 +15,7 @@ const editorialHeader = function(container) {
 
     function loadEditorialHeader() {
         ajaxRequest({
-            url: '/landingPages/data/getEditorialHeader',
+            url: '/ajaxData?q=editorialHeader',
             type: 'GET',
             onSuccess: function(data) {
                 try {
