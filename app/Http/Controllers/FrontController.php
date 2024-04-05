@@ -7,6 +7,8 @@ use App\Http\Controllers\Helpers\Seo;
 use A17\Twill\Http\Controllers\Front\Controller as BaseController;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
+use App\Models\Hour;
+use Carbon\Carbon;
 
 class FrontController extends BaseController
 {
