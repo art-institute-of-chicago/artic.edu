@@ -40,7 +40,6 @@ class EducatorResource extends AbstractModel
 
     public $casts = [
         'published' => 'boolean',
-        'active' => 'boolean',
         'public' => 'boolean',
         'publish_start_date' => 'date',
         'publish_end_date' => 'date'
@@ -48,7 +47,6 @@ class EducatorResource extends AbstractModel
 
     public $attributes = [
         'published' => false,
-        'active' => false,
         'public' => false,
     ];
 
