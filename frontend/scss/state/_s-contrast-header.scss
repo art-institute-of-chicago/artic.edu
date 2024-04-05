@@ -23,6 +23,14 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
       padding-top: 0;
     }
   }
+  .g-header {
+    @include breakpoint('small+') {
+      height: 368px;
+    }
+    @include breakpoint('medium+') {
+      height: 380px;
+    }
+  }
 
   &:not(.s-scroll-direction-up),
   &:not(.s-header-hide) {
