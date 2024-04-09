@@ -165,6 +165,15 @@
             }
         }
     }
+    &.showcase--variation-1e3f49 {
+        background-color: $color__japanese-indigo;
+
+        .showcase-description,
+        .showcase-link,
+        .showcase-title {
+            color: $color__white;
+        }
+    }
 }
 
 .m-showcase-multiple-block {
