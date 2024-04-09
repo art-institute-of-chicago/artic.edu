@@ -128,9 +128,23 @@ class FrontController extends BaseController
                 $data['date'] = Carbon::now()->format('M d, Y');
                 $data['hours'] = $hour->present()->getTodayStatusWithHours();
 
-                break;
-        }
+                return response()->json($data);
 
-        return response()->json($data);
+            case 'relatedSidebarItems':
+                $itemId = request()->query('id');
+                $itemType = request()->query('model');
+
+                $item = app($itemType)->query()->find((int) $itemId);
+
+
+                return response(view('site.shared._featuredRelated', [
+                    'item' => $item,
+                    'autoRelated' => $this->getAutoRelated($item),
+                    'featuredRelated' => $this->getFeatureRelated($item),
+                ])->render(), 200, ['Content-Type' => 'text/html']);
+
+            default:
+                return 'Invalid request.';
+        }
     }
 }

@@ -29,43 +29,40 @@
   position: relative;
   flex-flow: column nowrap;
 
+  &#related-sidebar-items,
+  &.hidden {
+    display: none;
+
+    @include breakpoint('small-') {
+      display: block;
+    }
+  }
+
   .o-article__related .m-inline-aside &,
   .o-article__secondary-actions .m-inline-aside &,
-  .f-module-title-1 + & {
+  .f-module-title-1+& {
     margin-top: 36px;
   }
 
   .o-article__related .m-inline-aside &,
   .o-article__secondary-actions .m-inline-aside & {
     .f-list-3 {
-      @include font-styles(generate-font-obj(
-        (
-          font-family: $serif-font,
-          font-family-loaded: $serif-font--loaded,
-          font-loaded-class: $serif-font-loaded-class,
-          settings: (
-            'xsmall': (font-size: 24, line-height: 34, push: 0)
-          )
-        )
-      ));
+      @include font-styles(generate-font-obj((font-family: $serif-font,
+            font-family-loaded: $serif-font--loaded,
+            font-loaded-class: $serif-font-loaded-class,
+            settings: ('xsmall': (font-size: 24, line-height: 34, push: 0)))));
     }
 
     .f-list-1 {
-      @include font-styles(generate-font-obj(
-        (
-          font-family: $serif-font,
-          font-family-loaded: $serif-font--loaded,
-          font-loaded-class: $serif-font-loaded-class,
-          settings: (
-            'xsmall': (font-size: 19, line-height: 28, push: 0)
-          )
-        )
-      ));
+      @include font-styles(generate-font-obj((font-family: $serif-font,
+            font-family-loaded: $serif-font--loaded,
+            font-loaded-class: $serif-font-loaded-class,
+            settings: ('xsmall': (font-size: 19, line-height: 28, push: 0)))));
     }
   }
 
-  .o-article__related .m-inline-aside & + &,
-  .o-article__secondary-actions .m-inline-aside & + & {
+  .o-article__related .m-inline-aside &+&,
+  .o-article__secondary-actions .m-inline-aside &+& {
     &:before {
       content: '';
       border-top: 1px solid $color__rules--primary;
@@ -192,6 +189,7 @@
 
 .m-listing__img .img-hero-desktop {
   display: none;
+
   @include breakpoint('small+') {
     display: block;
   }
@@ -199,6 +197,7 @@
 
 .m-listing__img .img-hero-mobile {
   display: block;
+
   @include breakpoint('small+') {
     display: none;
   }
@@ -312,18 +311,18 @@
 
 .m-listing__link:not(:only-child) .m-listing__meta,
 .m-listing__meta:first-child,
-.m-listing__link + .m-listing__meta,
+.m-listing__link+.m-listing__meta,
 .o-row-listing .m-listing__meta,
 .o-grid-listing.o-blocks__block .m-listing__meta {
   min-height: 0;
 }
 
-.m-listing__meta > * {
+.m-listing__meta>* {
   flex: 0 0 auto;
 }
 
-.m-listing__meta > br,
-.m-listing__meta-bottom > br {
+.m-listing__meta>br,
+.m-listing__meta-bottom>br {
   display: none;
 }
 
@@ -356,8 +355,8 @@
   @include tucked-margin-top($f-tag, ('xsmall': 28, 'medium+': 32, 'large+': 28));
 }
 
-.m-listing__meta .f-secondary + br + .f-tag,
-.m-listing__meta .f-tertiary + br + .f-tag {
+.m-listing__meta .f-secondary+br+.f-tag,
+.m-listing__meta .f-tertiary+br+.f-tag {
   @include tucked-margin-top($f-tag, ('xsmall': 32, 'large+': 36));
 }
 
@@ -386,7 +385,7 @@
 }
 
 .m-listing__meta .f-list-3:first-child,
-.m-listing__meta .date + .f-list-3 {
+.m-listing__meta .date+.f-list-3 {
   @include tucked-margin-top($f-list-3, ('xsmall': 36, 'small+': 40));
 }
 
@@ -451,11 +450,11 @@
   @include tucked-margin-top($f-body, ('xsmall': 48));
 }
 
-.m-listing__meta .f-list-3 + .f-body {
+.m-listing__meta .f-list-3+.f-body {
   @include tucked-margin-top($f-body, ('xsmall': 36, 'small+': 44, 'medium+': 48));
 }
 
-.m-listing__meta .f-list-4 + br + .f-body {
+.m-listing__meta .f-list-4+br+.f-body {
   @include tucked-margin-top($f-body, ('xsmall': 36));
 }
 
@@ -468,18 +467,21 @@
   margin-bottom: 14px;
 }
 
-.m-listing__meta .f-list-1 + br + .f-secondary:not(ul),
-.m-listing__meta .f-list-2 + br + .f-secondary:not(ul),
-.m-listing__meta .f-list-6 + br + .f-secondary:not(ul),
-.m-listing__meta .f-list-7 + br + .f-secondary:not(ul) {
+.m-listing__meta .f-list-1+br+.f-secondary:not(ul),
+.m-listing__meta .f-list-2+br+.f-secondary:not(ul),
+.m-listing__meta .f-list-6+br+.f-secondary:not(ul),
+.m-listing__meta .f-list-7+br+.f-secondary:not(ul) {
   @include tucked-margin-top($f-secondary, ('xsmall': 28));
 }
+
 .m-listing__meta .m-listing__meta-bottom .f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 40));
 }
-.m-listing__meta .f-list-4 + br + .m-listing__meta-bottom .f-secondary {
+
+.m-listing__meta .f-list-4+br+.m-listing__meta-bottom .f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 60, 'small+': 40));
 }
+
 .m-listing__meta span.f-secondary.last-child,
 .m-listing__meta ul.f-secondary:last-child {
   padding-bottom: 20px;
@@ -492,20 +494,21 @@
 .m-listing__meta .f-tertiary {
   @include tucked-margin-top($f-tertiary, ('xsmall': 36, 'small+': 36));
 }
-  .m-listing__meta .f-list-1 + br + .f-tertiary,
-  .m-listing__meta .f-list-2 + br + .f-tertiary,
-  .m-listing__meta .f-list-6 + br + .f-tertiary,
-  .m-listing__meta .f-list-7 + br + .f-tertiary {
-    @include tucked-margin-top($f-tertiary, ('xsmall': 20, 'small+': 28));
 
-    @include breakpoint('xsmall') {
-      padding-bottom: 4px;
-      margin-bottom: -4px; // To not crop letters with descenders
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+.m-listing__meta .f-list-1+br+.f-tertiary,
+.m-listing__meta .f-list-2+br+.f-tertiary,
+.m-listing__meta .f-list-6+br+.f-tertiary,
+.m-listing__meta .f-list-7+br+.f-tertiary {
+  @include tucked-margin-top($f-tertiary, ('xsmall': 20, 'small+': 28));
+
+  @include breakpoint('xsmall') {
+    padding-bottom: 4px;
+    margin-bottom: -4px; // To not crop letters with descenders
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
+}
 
 .m-listing__meta .f-link {
   @include tucked-margin-top($f-secondary, ('xsmall': 28));
@@ -520,25 +523,26 @@
   color: $color__text;
 }
 
-.m-listing__meta .f-secondary + br + .f-secondary:not(ul):not(span):not(.date) {
+.m-listing__meta .f-secondary+br+.f-secondary:not(ul):not(span):not(.date) {
   @include tucked-align-top($f-secondary);
   color: $color__text--tertiary;
 }
 
-.m-listing__meta .f-tertiary + br + .f-tertiary {
+.m-listing__meta .f-tertiary+br+.f-tertiary {
   @include tucked-align-top($f-tertiary);
   color: $color__text--tertiary;
 }
 
-.m-listing__meta .f-list-3 + br + .f-link,
-.m-listing__meta .f-secondary + br + .f-link,
-.m-listing__meta .f-tertiary + br + .f-link {
+.m-listing__meta .f-list-3+br+.f-link,
+.m-listing__meta .f-secondary+br+.f-link,
+.m-listing__meta .f-tertiary+br+.f-link {
   @include tucked-margin-top($f-secondary, ('xsmall': 36));
 }
 
 
-@each $name, $point in $breakpoints {
-  @if ($name != 'xsmall') {
+@each $name,
+$point in $breakpoints {
+  @if ($name !='xsmall') {
     @include breakpoint('#{$name}') {
       .m-listing--row .m-listing__meta .f-headline-editorial:first-child {
         @include tucked-align-top($f-headline-editorial, $name);
@@ -616,21 +620,21 @@
     bottom: 0;
     min-height: 0;
     padding: 20px;
-    background-color: rgba(0,0,0,.25);
+    background-color: rgba(0, 0, 0, .25);
     pointer-events: none;
   }
 
   .m-listing--feature .m-listing__link:hover .m-listing__meta {
-    background-color: rgba(0,0,0,.3);
+    background-color: rgba(0, 0, 0, .3);
   }
 
-  .m-listing--feature .m-listing__meta > *,
+  .m-listing--feature .m-listing__meta>*,
   .m-listing--feature .type,
   .m-listing--feature .title,
   .m-listing--feature .date,
   .m-listing--feature .subtitle,
-  .m-listing--feature .f-secondary + br + .f-secondary,
-  .m-listing--feature .f-tertiary + br + .f-tertiary {
+  .m-listing--feature .f-secondary+br+.f-secondary,
+  .m-listing--feature .f-tertiary+br+.f-tertiary {
     color: $color__text--title-contrast;
   }
 
@@ -669,11 +673,11 @@
   @include tucked-align-top($f-module-title-2);
 }
 
-.m-listing--feature .m-listing__meta .f-secondary + br + .f-secondary {
+.m-listing--feature .m-listing__meta .f-secondary+br+.f-secondary {
   @include tucked-align-top($f-secondary);
 }
 
-.m-listing--feature .m-listing__meta .f-tertiary + br + .f-tertiary {
+.m-listing--feature .m-listing__meta .f-tertiary+br+.f-tertiary {
   @include tucked-align-top($f-tertiary);
 }
 
@@ -725,7 +729,7 @@
   right: 0;
   top: 0;
   background-color: transparent;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,.05) 90%, rgba(0,0,0,0) 100%);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .05) 90%, rgba(0, 0, 0, 0) 100%);
   transition: none;
 }
 
@@ -744,11 +748,13 @@
     display: none;
   }
 }
+
 @supports not (clip-path: inset(0 0 0 0)) {
   .m-listing--hero .m-listing__img[data-blur-img-dupe] {
     display: none;
   }
 }
+
 @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) and (clip-path: inset(0 0 0 0)) and (filter: blur(5px)) {
   .m-listing--hero .m-listing__img[data-blur-img-dupe] {
     position: absolute;
@@ -791,12 +797,12 @@
   }
 
   .m-listing--hero .m-listing__link:hover .m-listing__meta {
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(0, 0, 0, .6);
   }
 }
 
 .m-listing--hero .m-listing__meta {
-  @include opaqueBg(rgba(0,0,0,.4), rgba(0,0,0,.25));
+  @include opaqueBg(rgba(0, 0, 0, .4), rgba(0, 0, 0, .25));
   position: absolute;
   left: 0;
   right: 0;
@@ -831,14 +837,14 @@
   }
 }
 
-.m-listing--hero .m-listing__meta > *,
+.m-listing--hero .m-listing__meta>*,
 .m-listing--hero .type,
 .m-listing--hero .title,
 .m-listing--hero .date,
 .m-listing--hero .subtitle,
 .m-listing--hero .intro,
-.m-listing--hero .f-secondary + br + .f-secondary,
-.m-listing--hero .f-tertiary + br + .f-tertiary {
+.m-listing--hero .f-secondary+br+.f-secondary,
+.m-listing--hero .f-tertiary+br+.f-tertiary {
   color: $color__text--title-contrast;
 }
 
@@ -894,6 +900,7 @@
     border-bottom: 1px solid #6f2562;
   }
 }
+
 .m-listing--hero .m-listing__meta .f-display-1:first-child {
   @include tucked-align-top($f-display-1);
 }
@@ -902,7 +909,7 @@
   @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small+': 56, 'large+': 92));
 }
 
-.m-listing--hero .m-listing__meta .f-secondary + br + .f-secondary {
+.m-listing--hero .m-listing__meta .f-secondary+br+.f-secondary {
   @include tucked-align-top($f-secondary);
 }
 
@@ -910,7 +917,7 @@
   @include tucked-margin-top($f-tertiary, ('xsmall': 40, 'small+': 56, 'large+': 92));
 }
 
-.m-listing--hero .m-listing__meta .f-tertiary + br + .f-tertiary {
+.m-listing--hero .m-listing__meta .f-tertiary+br+.f-tertiary {
   @include tucked-align-top($f-tertiary);
 }
 
@@ -975,7 +982,7 @@
   color: $color__text--secondary;
 }
 
-.m-listing--hero-editorial .m-listing__meta > .f-secondary {
+.m-listing--hero-editorial .m-listing__meta>.f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 44));
   display: none;
 
@@ -984,7 +991,7 @@
   }
 }
 
-.m-listing--hero-editorial .m-listing__meta > .f-tertiary {
+.m-listing--hero-editorial .m-listing__meta>.f-tertiary {
   @include tucked-margin-top($f-tertiary, ('xsmall': 44, 'small+': 44, 'medium+': 48));
   display: none;
 
@@ -1008,12 +1015,12 @@
   }
 }
 
-.m-listing--hero-editorial .m-listing__meta-bottom > * {
+.m-listing--hero-editorial .m-listing__meta-bottom>* {
   flex: 0 0 auto;
   margin-right: 20px;
 }
 
-.m-listing--hero-editorial .m-listing__meta-bottom > br {
+.m-listing--hero-editorial .m-listing__meta-bottom>br {
   display: none;
 }
 
@@ -1056,7 +1063,7 @@
     max-width: 100%;
   }
 
-  & + & {
+  &+& {
     margin-top: 20px;
     padding-top: 16px;
     border-top: 1px solid $color__rules--primary;
@@ -1099,54 +1106,55 @@
     width: colspan(13, xlarge);
   }
 }
-  .m-listing--row.m-listing--secondary .m-listing__img {
 
-    @include breakpoint('small+') {
-      width: colspan(7, small);
-    }
+.m-listing--row.m-listing--secondary .m-listing__img {
 
-    @include breakpoint('medium+') {
-      width: colspan(7, medium);
-    }
-
-    @include breakpoint('large+') {
-      width: colspan(7, large);
-    }
-
-    @include breakpoint('xlarge') {
-      width: colspan(7, xlarge);
-    }
+  @include breakpoint('small+') {
+    width: colspan(7, small);
   }
 
-  .m-listing--row.m-listing--tertiary .m-listing__img {
-
-    @include breakpoint('small+') {
-      width: colspan(7, small);
-    }
-
-    @include breakpoint('medium+') {
-      width: colspan(7, medium);
-    }
-
-    @include breakpoint('large+') {
-      width: colspan(5, large);
-    }
-
-    @include breakpoint('xlarge') {
-      width: colspan(5, xlarge);
-    }
+  @include breakpoint('medium+') {
+    width: colspan(7, medium);
   }
 
-  .m-listing--row.m-listing--generic .m-listing__img {
-
-    @include breakpoint('large+') {
-      width: colspan(10, large);
-    }
-
-    @include breakpoint('xlarge') {
-      width: colspan(10, xlarge);
-    }
+  @include breakpoint('large+') {
+    width: colspan(7, large);
   }
+
+  @include breakpoint('xlarge') {
+    width: colspan(7, xlarge);
+  }
+}
+
+.m-listing--row.m-listing--tertiary .m-listing__img {
+
+  @include breakpoint('small+') {
+    width: colspan(7, small);
+  }
+
+  @include breakpoint('medium+') {
+    width: colspan(7, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(5, large);
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(5, xlarge);
+  }
+}
+
+.m-listing--row.m-listing--generic .m-listing__img {
+
+  @include breakpoint('large+') {
+    width: colspan(10, large);
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(10, xlarge);
+  }
+}
 
 .m-listing--row .m-listing__meta {
 
@@ -1388,7 +1396,7 @@
     padding-top: 23px;
   }
 
-  & + & {
+  &+& {
     margin-top: 20px;
 
     @include breakpoint('large+') {
@@ -1400,7 +1408,7 @@
     }
   }
 
-  .o-row-listing > & {
+  .o-row-listing>& {
     border-top: 1px solid $color__rules--primary;
   }
 
@@ -1413,7 +1421,7 @@
   }
 
   .m-inline-aside .o-row-listing &,
-  .m-inline-aside .o-row-listing & + & {
+  .m-inline-aside .o-row-listing &+& {
     margin-top: 20px;
 
     @include breakpoint('large+') {
@@ -1435,17 +1443,11 @@
   height: auto;
 }
 
-$f-audio-subtitle: generate-font-obj(
-  (
-    font-family: $sans-serif-font,
+$f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
     font-family-loaded: $sans-serif-font--loaded,
     font-loaded-class: $sans-serif-font-loaded-class,
-    settings: (
-      'xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
-      'medium+': (font-size: 14, line-height: 28, push: 0)
-    )
-  )
-);
+    settings: ('xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
+      'medium+': (font-size: 14, line-height: 28, push: 0))));
 
 // Quick aside for artwork detail's sound variant
 .m-listing--inline.m-listing--sound {
@@ -1605,7 +1607,7 @@ $f-audio-subtitle: generate-font-obj(
   @include tucked-margin-top($f-secondary, ('xsmall': 28));
 }
 
-.m-listing--inline .m-listing__meta .f-secondary + br + .f-secondary {
+.m-listing--inline .m-listing__meta .f-secondary+br+.f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 36));
 }
 
@@ -1613,13 +1615,13 @@ $f-audio-subtitle: generate-font-obj(
   @include tucked-margin-top($f-tertiary, ('xsmall': 28));
 }
 
-.m-listing--inline .m-listing__meta .f-tertiary + br + .f-tertiary {
+.m-listing--inline .m-listing__meta .f-tertiary+br+.f-tertiary {
   @include tucked-margin-top($f-tertiary, ('xsmall': 36));
 }
 
 // Variant 'm-listing--inline-feature'
 
-.m-listing--inline-feature + .m-listing--inline-feature {
+.m-listing--inline-feature+.m-listing--inline-feature {
 
   @include breakpoint('large+') {
     padding-top: 35px;
@@ -1753,7 +1755,7 @@ $f-audio-subtitle: generate-font-obj(
 
 // Variant `m-listing--inline` inside `.m-inline-aside`
 
-.m-inline-aside .f-module-title-1 + .o-row-listing .m-listing--inline:first-child {
+.m-inline-aside .f-module-title-1+.o-row-listing .m-listing--inline:first-child {
   padding-top: 0;
   border-top: 0 none;
 
@@ -1842,7 +1844,7 @@ $f-audio-subtitle: generate-font-obj(
   @include tucked-margin-top($f-tag, ('xsmall': 44, 'small+': 52, 'medium+': 60));
 }
 
-.o-feature-plus-4__feature .f-headline-editorial{
+.o-feature-plus-4__feature .f-headline-editorial {
   @include tucked-margin-top($f-headline-editorial, ('xsmall': 40, 'small+': 60, 'medium+': 52, 'large': 60));
 }
 
@@ -1879,7 +1881,8 @@ $f-audio-subtitle: generate-font-obj(
 .m-listing--inline.m-listing--rtl .m-listing__meta .f-secondary {
   margin-top: 0;
 
-  &:before, &:after {
+  &:before,
+  &:after {
     content: none;
   }
 }
@@ -1931,11 +1934,9 @@ $f-audio-subtitle: generate-font-obj(
 
   text-align: right;
 
-  background: linear-gradient(
-    to bottom,
-    $color__black--85,
-    transparent
-  );
+  background: linear-gradient(to bottom,
+      $color__black--85,
+      transparent);
 }
 
 .m-listing__img__overlay {
@@ -2001,7 +2002,9 @@ $f-audio-subtitle: generate-font-obj(
   }
 
   .m-listing__meta {
-    @each $name, $point in $breakpoints {
+
+    @each $name,
+    $point in $breakpoints {
       @include breakpoint('#{$name}') {
         padding-left: colspan(1, #{$name});
         padding-right: colspan(1, #{$name});
@@ -2009,7 +2012,7 @@ $f-audio-subtitle: generate-font-obj(
       }
     }
 
-    > .f-tag {
+    >.f-tag {
       margin-top: 0;
       margin-bottom: 12px;
     }
@@ -2064,54 +2067,62 @@ $f-audio-subtitle: generate-font-obj(
 
       // Redo padding from .m-listing--publication.m-listing__meta
       // Needed for full `padding-bottom` calculation in :after
-      @each $name, $point in $breakpoints {
+      @each $name,
+      $point in $breakpoints {
         @include breakpoint('#{$name}') {
-          margin-left: -#{colspan(1, #{$name})};
-          margin-right: -#{colspan(1, #{$name})};
-
-          .title {
-            padding-left: colspan(1, #{$name});
-            padding-right: colspan(1, #{$name});
-          }
+          margin-left: -#{colspan(1, #{$name})
         }
+
+        ;
+        margin-right: -#{colspan(1, #{$name})
       }
 
-      &:after {
-        content: '';
-        // Typical .m-listing-meta height (160) minus button (50) and tag (40)
-        height: 70px;
-        padding-bottom: 56.25%;
-        box-sizing: content-box;
+      ;
+
+      .title {
+        padding-left: colspan(1, #{$name});
+        padding-right: colspan(1, #{$name});
       }
-    }
-
-    .f-tag {
-      color: $color__white;
-      margin-bottom: 12px;
-    }
-
-    .f-headline {
-      color: $color__white;
-      margin-bottom: 48px;
-    }
-  }
-  .m-listing__meta-bottom {
-    .f-module-title-2 {
-      color: $color__white;
     }
   }
 
-  .btn--magazine {
-    border-color: rgba($color__white, .8);
-    background-color: $color__plum;
+  &:after {
+    content: '';
+    // Typical .m-listing-meta height (160) minus button (50) and tag (40)
+    height: 70px;
+    padding-bottom: 56.25%;
+    box-sizing: content-box;
+  }
+}
+
+.f-tag {
+  color: $color__white;
+  margin-bottom: 12px;
+}
+
+.f-headline {
+  color: $color__white;
+  margin-bottom: 48px;
+}
+}
+
+.m-listing__meta-bottom {
+  .f-module-title-2 {
     color: $color__white;
   }
+}
 
-  a:hover .btn--magazine,
-  a:focus:hover .btn--magazine {
-    background-color: $color__white;
-    color: $color__plum;
-  }
+.btn--magazine {
+  border-color: rgba($color__white, .8);
+  background-color: $color__plum;
+  color: $color__white;
+}
+
+a:hover .btn--magazine,
+a:focus:hover .btn--magazine {
+  background-color: $color__white;
+  color: $color__plum;
+}
 }
 
 .m-listing--publication-call-to-action-light {
@@ -2119,7 +2130,7 @@ $f-audio-subtitle: generate-font-obj(
   border: 1px solid $color__text--type;
 
   .m-listing__meta {
-    > .f-tag {
+    >.f-tag {
       color: $color__plum;
     }
 
@@ -2140,13 +2151,16 @@ $f-audio-subtitle: generate-font-obj(
 }
 
 .m-listing--publication-happenings {
-  @each $name, $point in ('xsmall', 'small', 'medium') {
+
+  @each $name,
+  $point in ('xsmall', 'small', 'medium') {
     @include breakpoint('#{$name}') {
       width: colspan(58, $name) !important;
     }
   }
 
-  @each $name, $point in ('large', 'xlarge') {
+  @each $name,
+  $point in ('large', 'xlarge') {
     @include breakpoint('#{$name}') {
       width: colspan(43, $name) !important;
     }
@@ -2177,7 +2191,8 @@ $f-audio-subtitle: generate-font-obj(
       justify-content: space-between;
       margin-bottom: 24px;
 
-      @each $name, $point in ('small', 'medium', 'large', 'xlarge') {
+      @each $name,
+      $point in ('small', 'medium', 'large', 'xlarge') {
         @include breakpoint('#{$name}') {
           margin-left: -#{colspan(1, $name)};
           margin-right: -#{colspan(1, $name)};
@@ -2191,20 +2206,23 @@ $f-audio-subtitle: generate-font-obj(
           flex-basis: 100%;
         }
 
-        @each $name, $point in ('small', 'medium', 'large', 'xlarge') {
+        @each $name,
+        $point in ('small', 'medium', 'large', 'xlarge') {
           @include breakpoint('#{$name}') {
             margin-left: colspan(1, $name);
             margin-right: colspan(1, $name);
           }
         }
 
-        @each $name, $point in ('small', 'medium') {
+        @each $name,
+        $point in ('small', 'medium') {
           @include breakpoint('#{$name}') {
             width: colspan(26, medium);
           }
         }
 
-        @each $name, $point in ('large', 'xlarge') {
+        @each $name,
+        $point in ('large', 'xlarge') {
           @include breakpoint('#{$name}') {
             width: colspan(18.5, $name);
           }
@@ -2227,32 +2245,41 @@ $f-audio-subtitle: generate-font-obj(
 
 // Variant for Art Institute Review
 .m-listing--journal {
-  .m-listing__meta > .f-tag {
+  .m-listing__meta>.f-tag {
     color: $color__blue;
   }
 }
 
 @include breakpoint('small+') {
+
   // Variant for Digital Publications
   .m-listing--work {
     flex-flow: row-reverse nowrap;
+
     .m-listing__link {
       flex-flow: row-reverse nowrap;
+
       .m-listing__meta,
       .m-listing__img {
         flex: 1 1 50%;
       }
+
       .m-listing__img {
         margin: 20px;
       }
+
       .m-listing__meta {
-        min-height: 344px; /* override media query */
-        padding-top: 25px; /* override media query */
+        min-height: 344px;
+        /* override media query */
+        padding-top: 25px;
+        /* override media query */
       }
+
       .m-listing__meta .title {
         margin-bottom: 24px;
       }
     }
+
     .m-listing__link:only-child {
       flex-grow: 2;
     }
@@ -2261,7 +2288,7 @@ $f-audio-subtitle: generate-font-obj(
 
 // Variant for Member Magazine
 .m-listing--magazine {
-  .m-listing__meta > .f-tag {
+  .m-listing__meta>.f-tag {
     color: $color__plum;
   }
 }
@@ -2269,6 +2296,7 @@ $f-audio-subtitle: generate-font-obj(
 // Variant for author pages
 .m-listing--author {
   border-color: $color__rules--primary;
+
   .m-listing__link:hover,
   .m-listing__link:focus {
     .m-listing__img img {
