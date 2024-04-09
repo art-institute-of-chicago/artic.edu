@@ -110,4 +110,39 @@ class FrontController extends BaseController
     {
         return collect($item->getFeaturedRelated())->pluck('item');
     }
+
+    public function getAjaxData()
+    {
+
+        $request = request()->query('q');
+        $data = [];
+
+        // Add more cases as needed
+
+        switch ($request) {
+            case 'editorialHeader':
+                $hour = Hour::today()->first();
+
+                $data['date'] = Carbon::now()->format('M d, Y');
+                $data['hours'] = $hour->present()->getTodayStatusWithHours();
+
+                return response()->json($data);
+
+            case 'relatedSidebarItems':
+                $itemId = request()->query('id');
+                $itemType = request()->query('model');
+
+                $item = app($itemType)->query()->find((int) $itemId);
+
+
+                return response(view('site.shared._featuredRelated', [
+                    'item' => $item,
+                    'autoRelated' => $this->getAutoRelated($item),
+                    'featuredRelated' => $this->getFeatureRelated($item),
+                ])->render(), 200, ['Content-Type' => 'text/html']);
+
+            default:
+                return 'Invalid request.';
+        }
+    }
 }
