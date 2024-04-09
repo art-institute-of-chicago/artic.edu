@@ -29,6 +29,14 @@
   position: relative;
   flex-flow: column nowrap;
 
+  &#related-sidebar-items,&.hidden {
+    display: none;
+
+    @include breakpoint('small-') {
+      display: block;
+    }
+  }
+
   .o-article__related .m-inline-aside &,
   .o-article__secondary-actions .m-inline-aside &,
   .f-module-title-1 + & {
