@@ -8,7 +8,7 @@ const loadRelatedSidebar = function(container) {
     function requestSidebarData()
     {
         ajaxRequest({
-            url: '/ajaxData?q=relatedSidebarItems&model=' + model + '&id=' + id,
+            url: `/ajaxData?q=relatedSidebarItems&model=${model}&id=${id}`,
             type: 'GET',
             onSuccess: function(data) {
                 try {
