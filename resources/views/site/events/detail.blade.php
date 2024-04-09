@@ -57,11 +57,8 @@
         @slot('eventName',$item->present()->title)
     @endcomponent
 
-    @component('site.shared._featuredRelated')
+    @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
-        @slot('variation', 'u-show@medium+')
-        @slot('autoRelated', $autoRelated)
-        @slot('featuredRelated', $featuredRelated)
     @endcomponent
   </div>
 

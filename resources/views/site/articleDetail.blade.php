@@ -74,11 +74,8 @@
         @endcomponent
     @endif
 
-    @component('site.shared._featuredRelated')
+    @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
-        @slot('variation', 'u-show@medium+')
-        @slot('autoRelated', $autoRelated)
-        @slot('featuredRelated', $featuredRelated)
     @endcomponent
   </div>
 
@@ -121,13 +118,9 @@
 
   {{-- For articles, this shows below body, not float-right --}}
   @if ($item->hasFeaturedRelated())
-      <div class="o-article__related">
-        @component('site.shared._featuredRelated')
-            @slot('item', $item)
-            @slot('autoRelated', $autoRelated)
-            @slot('featuredRelated', $featuredRelated)
-        @endcomponent
-      </div>
+    @component('site.shared._loadRelatedSidebar')
+        @slot('item', $item)
+    @endcomponent
   @endif
 
   <div class="o-article__body o-blocks" itemprop="articleBody">
