@@ -61,3 +61,4 @@ export { default as relatedSidebar } from './relatedSidebar';
 export { default as emailSubscriptions } from './emailSubscriptions';
 export { default as exploreFurther } from './exploreFurther';
 export { default as editorialHeader } from './editorialHeader';
+export { default as loadRelatedSidebar } from './loadRelatedSidebar';
