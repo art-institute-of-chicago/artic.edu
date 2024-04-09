@@ -29,8 +29,6 @@ const loadRelatedSidebar = function(container) {
         const distance = getDistanceBetweenElements(sidebar, gallery);
         const listings = sidebar.querySelectorAll('.m-listing');
 
-        console.log('Listings:', listings);
-
         if (distance < 0) {
             listings.forEach((listing, index) => {
                 if (index !== 0) {
@@ -48,8 +46,6 @@ const loadRelatedSidebar = function(container) {
     
         const distance = rect2top - rect1bottom;
 
-        console.log('Distance between elements:', distance);
-    
         return distance;
     }
 
