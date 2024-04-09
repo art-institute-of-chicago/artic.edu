@@ -70,13 +70,10 @@
         @endcomponent
     @endunless
 
-    @component('site.shared._featuredRelated')
+    @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
-        @slot('autoRelated', $autoRelated)
-        @slot('featuredRelated', $featuredRelated)
-        @slot('variation', 'u-show@medium+')
-    @endcomponent
-  </div>
+    @endcomponent  
+    </div>
 
   @if ($item->header_copy and $item->present()->headerType !== 'super-hero')
   <div class="o-article__intro">
@@ -90,11 +87,9 @@
 
   @if ($item->hasFeaturedRelated())
       <div class="o-article__related">
-          @component('site.shared._featuredRelated')
-              @slot('item', $item)
-              @slot('autoRelated', $autoRelated)
-              @slot('featuredRelated', $featuredRelated)
-          @endcomponent
+        @component('site.shared._loadRelatedSidebar')
+            @slot('item', $item)
+        @endcomponent
       </div>
   @endif
 
