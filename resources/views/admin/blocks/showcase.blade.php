@@ -48,7 +48,7 @@
             ],
             [
                 'value' => '1e3f49',
-                'label' => '#1e3f49',
+                'label' => 'Dark Teal',
             ],
         ]
     ])
