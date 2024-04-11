@@ -254,7 +254,7 @@
     }
     &[aria-expanded="false"] {
       & .icon--arrow {
-        transition: transform .6s;
+        transition: transform .3s;
       }
     }
   }
