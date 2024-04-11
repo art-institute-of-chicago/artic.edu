@@ -389,6 +389,11 @@ class AppServiceProvider extends ServiceProvider
                             ],
                         ],
                     ],
+                    [
+                        'name' => 'Become a Member',
+                        'class' => 'u-hide@small+',
+                        'url' => 'https://sales.artic.edu/memberships',
+                    ],
                 ],
                 'secondaryNav' => [
                     [
