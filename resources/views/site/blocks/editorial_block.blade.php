@@ -72,6 +72,7 @@
                     @slot('item', $item)
                     @slot('fullscreen', true)
                     @slot('variation', 'editorial-block__video')
+                    @slot('playIconSize', '64')
                     @slot('titleFont', 'f-list-1')
                     @slot('hideImage', false)
                     @slot('hideDescription', false)
