@@ -18,7 +18,13 @@
   }
 }
 
+.g-header:not(:has([aria-expanded="true"])) {
+  background-color: rgba($color__white, 0);
+  transition: background-color .3s ease-out;
+}
 .g-header:has([aria-expanded="true"]) {
+  background-color: rgba($color__white, 1);
+  transition: background-color .6s ease-in;
   @include breakpoint('small+') {
     height: 368px;
   }
@@ -132,12 +138,13 @@
   right: 0;
 
   [aria-expanded="false"] + .details {
-    visibility: collapse;
+    background-color: rgba($color__white, 0);
     opacity: 0;
+    visibility: collapse;
   }
   [aria-expanded="false"].collapsing + .details {
     animation: .3s fade-out;
-    transition: opacity .3s linear, background-color .3s linear;
+    transition: background-color .3s ease-out, opacity .3s ease-out;
     @keyframes fade-out {
       from {
         opacity: 1;
@@ -150,9 +157,14 @@
     }
   }
   [aria-expanded="true"] + .details {
-    visibility: visible;
     opacity: 1;
-    transition: opacity .6s linear, background-color .6s linear;
+    visibility: visible;
+    transition: background-color .6s ease-in, opacity .6s ease-in;
+    &>a,
+    &>span {
+      background-color: rgba($color__black--5, 1);
+      transition: background-color .6s ease-in;
+    }
   }
 
   @include breakpoint('xsmall') {
@@ -247,7 +259,6 @@
     }
   }
   &>.details {
-    background-color: rgba($color__white, 0);
     box-shadow: 0 4px 20px -20px;
     display: flex;
     flex-direction: row;
@@ -260,8 +271,8 @@
     @include breakpoint('medium+') {
       margin-top: 20px;
     }
-    &>a, &>span {
-      background-color: $color__black--5;
+    &>a,
+    &>span {
       display: flex;
       flex-basis: 50vw;
       @include breakpoint('medium-') {
