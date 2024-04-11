@@ -45,11 +45,17 @@ class HoursPresenter extends BasePresenter
     }
 
     public function getTodayStatusWithHours($when = null)
-{
+    {
     $when = $when ?? now();
 
-    if ($this->isMuseumClosedToday($when)) {
-        return 'Closed Today';
+        if ($this->isMuseumClosedToday($when)) {
+            return 'Closed Today';
+        }
+
+        $whenFields = $this->getWhenFields($when);
+
+        return 'Open Today ' . $this->getHourDisplay($whenFields['public_open']) . ' - ' .
+        $this->getHourDisplay($whenFields['public_close']);
     }
 
     $whenFields = $this->getWhenFields($when);
