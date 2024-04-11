@@ -292,6 +292,14 @@
         padding-bottom: .5em;
         text-transform: uppercase;
       }
+      .cta {
+        color: $color__red--100;
+        font-size: 17px;
+        line-height: 28px;
+      }
+      p {
+        padding-bottom: 12px;
+      }
     }
     &>[role="menu"] {
       border-right: 1px solid $color__black--20;
