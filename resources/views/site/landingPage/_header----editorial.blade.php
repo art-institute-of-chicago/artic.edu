@@ -43,7 +43,7 @@
                         @slot('isFeatured', $isFeatured)
                         @slot('item', $item)
                         @slot('fullscreen', false)
-                        @slot('titleFont', $isFeatured ? 'f-list-3' : 'f-list-1')
+                        @slot('titleFont', $isFeatured ? 'f-list-4' : 'f-list-1')
                         @slot('hideImage', $loop->index > 0)
                         @slot('hideDescription', $loop->index > 0)
                         @slot('imageSettings', $imageSettings ?? null)
