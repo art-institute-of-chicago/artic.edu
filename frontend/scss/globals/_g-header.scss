@@ -360,6 +360,7 @@
 .g-header__nav-primary [role="menu"]:has(>li>a:hover, >li>a:focus, >li>a[aria-expanded="true"]) {
   &>li>a:not(:hover, :focus, [aria-expanded="true"]) {
     color: $color__black--30;
+    transition: color .3s ease-out;
   }
 }
 
