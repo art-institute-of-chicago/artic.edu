@@ -90,18 +90,6 @@ class ArticleController extends FrontController
             $articles = Experience::webPublished()->articlePublished()->paginate(self::ARTICLES_PER_PAGE);
         }
 
-        // Featured articles are the selected ones if no filters are applied
-        // otherwise those are just the first two from the collection
-        if (empty(request()->get('category', null))) {
-            $featuredArticles = $featuredItems->slice(1, 2) ?? null;
-        } else {
-            $featuredArticles = $articles->getCollection()->slice(0, 2);
-            $newCollection = $articles->slice(2);
-
-            // Replace pagination collection with
-            $articles->setCollection($newCollection);
-        }
-
         // These should be moved away from the controller.
         $categories = [
             [
@@ -142,7 +130,6 @@ class ArticleController extends FrontController
             'heroArticle' => $heroArticle,
             'articles' => $articles,
             'categories' => $categories,
-            'featuredArticles' => $featuredArticles
         ]);
     }
 
