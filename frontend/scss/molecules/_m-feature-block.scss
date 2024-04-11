@@ -92,10 +92,10 @@
         width: 100%;
         height: 33%;
         text-align: right;
-        background: -webkit-gradient(linear,left top,left bottom,from($color__black--85),to(transparent));
-        background: -webkit-linear-gradient(top,$color__black--85,transparent);
-        background: -o-linear-gradient(top,$color__black--85,transparent);
-        background: linear-gradient(to bottom,$color__black--85,transparent);
+        background: -webkit-gradient(linear, left top, left bottom, from($color__black--85), to(transparent));
+        background: -webkit-linear-gradient(top, $color__black--85, transparent);
+        background: -o-linear-gradient(top, $color__black--85, transparent);
+        background: linear-gradient(to bottom, $color__black--85, transparent);
         padding: 8px 10px;
     }
 
@@ -139,12 +139,15 @@
         &.column-1x {
             margin-right: -20px;
         }
+
         &.column-2x {
             margin-right: -40px;
         }
+
         &.column-3x {
             margin-right: -40px;
         }
+
         &.column-4x {
             margin-right: -40px;
         }
@@ -181,11 +184,11 @@
             flex-direction: column;
             min-height: 150px;
 
-            &.l-type-exhibition{
+            &.l-type-exhibition {
                 min-height: 100px !important;
             }
 
-            &.l-type-event{
+            &.l-type-event {
                 min-height: 190px !important;
             }
 
@@ -201,8 +204,10 @@
                 left: 10px;
             }
         }
+
         &.column-2x {
             padding-right: 40px;
+
             @include breakpoint('medium+') {
                 width: 50%;
             }
@@ -229,6 +234,7 @@
                 &:nth-child(1)::after {
                     display: none;
                 }
+
                 &:nth-child(3)::after {
                     display: none;
                 }
@@ -248,8 +254,10 @@
                 left: 20px;
             }
         }
+
         &.column-3x {
             padding-right: 40px;
+
             @include breakpoint('medium+') {
                 width: calc(100%/3);
             }
@@ -280,6 +288,7 @@
                 &:nth-child(1)::after {
                     display: none;
                 }
+
                 &:nth-child(3)::after {
                     display: none;
                 }
@@ -299,8 +308,10 @@
                 left: 20px;
             }
         }
+
         &.column-4x {
             padding-right: 40px;
+
             @include breakpoint('medium+') {
                 width: 25%;
             }
@@ -327,6 +338,7 @@
                 &:nth-child(1)::after {
                     display: none;
                 }
+
                 &:nth-child(3)::after {
                     display: none;
                 }
@@ -356,18 +368,13 @@
             padding-top: 20px;
             object-fit: cover;
 
-            &.column-1x {
+            &.column-1x {}
 
-            }
-            &.column-2x {
+            &.column-2x {}
 
-            }
-            &.column-3x {
+            &.column-3x {}
 
-            }
-            &.column-4x {
-
-            }
+            &.column-4x {}
 
             &.default-img {
                 padding: 0 !important;
@@ -382,6 +389,7 @@
             &.square {
                 padding: 50% !important;
             }
+
             &.landscape {
                 padding: 30% !important;
             }
@@ -407,12 +415,27 @@
         display: none;
     }
 
-    &.feature-block--stories {
+    &.feature-block--editorial {
+        border-bottom: 1px solid $color__black--20;
+
         &.feature-block--variation-default {
             border-top: none;
 
+            .m-feature-block-row {
+                margin-right: -20px;
+            }
+
+            .m-feature-block-listing.column-4x {
+                @include breakpoint('xsmall') {
+                    padding-right: 20px;
+                    width: 50%;
+                    margin-top: 0;
+                }
+            }
+
             .m-feature-block-listing {
                 border-top: none !important;
+
                 &::after {
                     display: none;
                 }
