@@ -69,6 +69,7 @@ class ArticleController extends FrontController
 
             $videos = Video::published()
                 ->byCategories(request('category'))
+                ->where('is_listed', true)
                 ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('date', 'desc')
                 ->get()->map(function ($video) {
