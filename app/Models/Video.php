@@ -35,16 +35,19 @@ class Video extends AbstractModel
         'meta_title',
         'meta_description',
         'search_tags',
-        'duration'
+        'duration',
+        'is_listed',
     ];
 
     protected $casts = [
         'date' => 'date',
         'published' => 'boolean',
+        'is_listed' => 'boolean',
     ];
 
     public $attributes = [
         'published' => false,
+        'is_listed' => false,
     ];
 
     protected $appends = [
