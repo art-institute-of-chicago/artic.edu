@@ -34,6 +34,10 @@
       <div class="description">
         <div class="supertitle">Featured Exhibition</div>
         <div id="menu-featured-exhibition-title" class="title"></div>
+        <p class="cta">
+          Learn more
+          <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+        </p>
       </div>
     </a>
   </template>
