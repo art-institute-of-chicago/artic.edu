@@ -10,6 +10,7 @@
         $isCurrentPage = $hasUrl ? (Request::url() == str(url($item['url']))->before('#')) : false;
         $hasImage = isset($item['image']);
         $hasDescription = isset($item['description']);
+        $hasCta = isset($item['cta']);
         $hasChildren = isset($item['children']);
     @endphp
     <li @class(["level-$level", $item['class'] ?? null]) role="none">
@@ -57,6 +58,12 @@
                     <div class="description">
                         <div class="title">{!! $item['name'] !!}</div>
                         <p id="{{ $id }}-description">{!! $item['description'] !!}</p>
+                        @if($hasCta)
+                            <p class="cta">
+                                {!! $item['cta'] !!}
+                                <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+                            </p>
+                        @endif
                     </div>
                 @endif
                 @if($hasUrl)
