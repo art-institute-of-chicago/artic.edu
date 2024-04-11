@@ -35,12 +35,12 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
   &:not(.s-scroll-direction-up),
   &:not(.s-header-hide) {
     .g-header:has([aria-expanded="true"]) {
-      opacity: 1;
-      transition: background-color .6s linear, opacity .6s linear;
+      background-color: rgba($color__white, 1);
+      transition: background-color .6s ease-in;
     }
     .g-header:not(:has([aria-expanded="true"])) {
       background-color: rgba($color__white, 0);
-      transition: background-color .3s linear, opacity .3s linear;
+      transition: background-color .3s ease-out;
 
       @supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0)) {
         -webkit-backdrop-filter: blur(0);
