@@ -37,6 +37,17 @@
                     <span class="subtitle f-secondary">{{ $item->duration }}</span>
                 @endif
             @endif
+            @if ($item->date)
+                <span class="m-listing__meta-bottom">
+                    <span class="intro f-caption">
+                        @if ($item->date)
+                            @component('components.atoms._date')
+                                {{ $item->date->format('F j, Y') }}
+                            @endcomponent
+                        @endif
+                    </span>
+                </span>
+            @endif
         </span>
         @if ($fullscreen)
             <textarea style="display: none;">{!! is_array($item->embed) ? Arr::first($item->embed) : $item->embed !!}</textarea>

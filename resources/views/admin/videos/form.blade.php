@@ -38,6 +38,11 @@
         'note' => 'When was this video published?',
     ])
 
+    @formField('checkbox', [
+        'name' => 'is_listed',
+        'label' => 'Show this video in listings',
+    ])
+
     @formField('wysiwyg', [
         'name' => 'list_description',
         'label' => 'List description',
