@@ -280,6 +280,7 @@
                         }
 
                         .author {
+                            margin-top: 0 !important;
                             font-family: $sans-serif-font--loaded;
                             font-size: 15px;
                             font-weight: 400;
@@ -672,12 +673,6 @@
                             }
                         }
                     }
-                }
-
-                ::after {
-                    content: '';
-                    display: block;
-                    left: 30px;
                 }
 
                 .type {

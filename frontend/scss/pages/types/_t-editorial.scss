@@ -224,12 +224,12 @@
 
         .stories-top-stories__side {
             order: 1;
-            max-width: 250px;
+            width: 30%;
 
             @include breakpoint('medium-') {
                 display: flex;
                 flex-direction: row;
-                max-width: 100% !important;
+                width: 100% !important;
                 gap: 20px;
             }
 
@@ -267,16 +267,16 @@
 
     .stories-most_popular_stories {
         height: min-content;
-        max-width: 250px;
+        width: 30%;
         background-color: $color__cold-white;
 
         @include breakpoint('medium-') {
-            max-width: 48% !important;
+            width: 48% !important;
         }
 
         @include breakpoint('small-') {
             height: auto;
-            max-width: 100% !important;
+            width: 100% !important;
         }
 
         .stories-most_popular_stories__title {
