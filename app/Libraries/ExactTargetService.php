@@ -42,37 +42,7 @@ class ExactTargetService
      */
     public function subscribe($alsoRemove = true)
     {
-        $auth_url = config('exact-target.client.baseAuthUrl');
-        $clientId = config('exact-target.client.clientid');
-        $clientSecret = config('exact-target.client.clientsecret');
-
-        $api = new \GuzzleHttp\Client();
-
-        $result = $api->request(
-            'POST',
-            $auth_url . '/v2/token',
-            [
-                'json' => [
-                    'client_id' => $clientId,
-                    'client_secret' => $clientSecret,
-                    'grant_type' => 'client_credentials',
-                ]
-            ]
-        );
-
-        $tokenInfo = json_decode($result->getBody()->getContents(), true);
-
-        $client = new ET_Client(
-            true,
-            config('app.debug'),
-            array_merge(
-                config('exact-target.client'),
-                [
-                    'authorizationCode' => $tokenInfo['access_token'],
-                    'scope' => $tokenInfo['scope'],
-                ]
-            )
-        );
+        $client = $this->getEtClient();
 
         // Add the user to a data extension
         $deRow = new ET_DataExtension_Row();
@@ -161,11 +131,7 @@ class ExactTargetService
      */
     public function unsubscribe()
     {
-        $client = new ET_Client(
-            true,
-            config('app.debug'),
-            config('exact-target.client')
-        );
+        $client = $this->getEtClient();
 
         // Delete the user from the data extension
         $deRow = new ET_DataExtension_Row();
@@ -220,7 +186,7 @@ class ExactTargetService
             $allLists
         );
 
-        $deRow->props = array_fill_keys($fields, 'True');
+        $deRow->props = $fields;
 
         // From (e.g. "All Subscribers Master")
         $deRow->Name = config('exact-target.customer_key');
@@ -233,5 +199,40 @@ class ExactTargetService
         ];
 
         return $deRow->get();
+    }
+
+    protected function getEtClient()
+    {
+        $auth_url = config('exact-target.client.baseAuthUrl');
+        $clientId = config('exact-target.client.clientid');
+        $clientSecret = config('exact-target.client.clientsecret');
+
+        $api = new \GuzzleHttp\Client();
+
+        $result = $api->request(
+            'POST',
+            $auth_url . '/v2/token',
+            [
+                'json' => [
+                    'client_id' => $clientId,
+                    'client_secret' => $clientSecret,
+                    'grant_type' => 'client_credentials',
+                ]
+            ]
+        );
+
+        $tokenInfo = json_decode($result->getBody()->getContents(), true);
+
+        return new ET_Client(
+            true,
+            config('app.debug'),
+            array_merge(
+                config('exact-target.client'),
+                [
+                    'authorizationCode' => $tokenInfo['access_token'],
+                    'scope' => $tokenInfo['scope'],
+                ]
+            )
+        );
     }
 }
