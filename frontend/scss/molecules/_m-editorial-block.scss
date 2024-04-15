@@ -263,7 +263,7 @@
                             margin-top: 0 !important;
 
                             @include breakpoint('small-') {
-                                margin-top: 6px !important;
+                                margin-top: 16px !important;
                             }
 
                             &::before {
