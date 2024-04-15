@@ -201,7 +201,8 @@ class ExactTargetService
         return $deRow->get();
     }
 
-    protected function getEtClient() {
+    protected function getEtClient()
+    {
         $auth_url = config('exact-target.client.baseAuthUrl');
         $clientId = config('exact-target.client.clientid');
         $clientSecret = config('exact-target.client.clientsecret');
