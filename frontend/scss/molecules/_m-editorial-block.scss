@@ -264,6 +264,7 @@
 
                             @include breakpoint('small-') {
                                 margin-top: 16px !important;
+                                font-size: 28px;
                             }
 
                             &::before {
