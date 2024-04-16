@@ -144,7 +144,7 @@ class FrontController extends BaseController
                 ])->render(), 200, ['Content-Type' => 'text/html']);
 
             default:
-                return 'Invalid request.';
+                return abort(404);
         }
     }
 }
