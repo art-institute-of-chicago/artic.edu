@@ -29,18 +29,10 @@ class ArticleController extends FrontController
 
         $page = Page::forType('Articles')->first();
 
-        $featuredItems = $page->getRelatedWithApiModels('featured_items', [], [
-            'articles' => false,
-            'experiences' => false
-        ]);
-
-        $heroArticle = $featuredItems->first();
-
         if (request('category') !== 'interactive-features') {
             $articles = Article::published()
                 ->notUnlisted()
                 ->byCategories(request('category'))
-                ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('date', 'desc')
                 ->get()->map(function ($article) {
                     $article->sort_date = $article->date ?? $article->created_at;
@@ -50,7 +42,6 @@ class ArticleController extends FrontController
             $highlights = Highlight::published()
                 ->notUnlisted()
                 ->byCategories(request('category'))
-                ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('publish_start_date', 'desc')
                 ->get()->map(function ($highlight) {
                     $highlight->sort_date = $highlight->publish_start_date ?? $highlight->created_at;
@@ -60,7 +51,6 @@ class ArticleController extends FrontController
             $experiences = Experience::published()
                 ->notUnlisted()
                 ->byCategories(request('category'))
-                ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('created_at', 'desc')
                 ->get()->map(function ($experience) {
                     $experience->sort_date = $experience->created_at;
@@ -70,7 +60,6 @@ class ArticleController extends FrontController
             $videos = Video::published()
                 ->byCategories(request('category'))
                 ->where('is_listed', true)
-                ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('date', 'desc')
                 ->get()->map(function ($video) {
                     $video->sort_date = $video->date ?? $video->created_at;
@@ -127,7 +116,6 @@ class ArticleController extends FrontController
         return view('site.articles', [
             'primaryNavCurrent' => 'collection',
             'page' => $page,
-            'heroArticle' => $heroArticle,
             'articles' => $articles,
             'categories' => $categories,
         ]);
