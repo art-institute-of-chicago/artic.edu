@@ -195,6 +195,19 @@
   color: $color__text--secondary;
 }
 
+.g-nav-mobile__social li > a {
+  &::before {
+    display: inline;
+  }
+}
+
+.g-nav-mobile__social [class*=icon--] {
+  height: 14px;
+  padding-right: 10px;
+  vertical-align: baseline;
+  width: 28px;
+}
+
 .g-footer-nav__expander-trigger.nav-is-open {
   margin-top: -1px; // To cover the bottom border on the previous list item
   border-top: 1px solid $color__rules--secondary;
