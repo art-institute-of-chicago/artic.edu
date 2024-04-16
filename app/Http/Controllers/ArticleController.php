@@ -9,6 +9,7 @@ use App\Models\Experience;
 use App\Models\Highlight;
 use App\Helpers\StringHelpers;
 use App\Models\Video;
+use Illuminate\Support\Str;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ArticleController extends FrontController
@@ -66,12 +67,18 @@ class ArticleController extends FrontController
                     return $video;
                 });
 
-            $combined = $articles->concat($highlights)->concat($experiences)->concat($videos)->sortByDesc('sort_date');
+            $items = $articles->concat($highlights)->concat($experiences)->concat($videos)->sortByDesc('sort_date');
+
+            if (request('type')) {
+                $items = $items->where('type', (Str::singular(request('type'))));
+            }
+
+            $articlesCount = $items->count();
 
             $perPage = self::ARTICLES_PER_PAGE;
             $currentPage = LengthAwarePaginator::resolveCurrentPage();
-            $currentItems = $combined->slice(($currentPage - 1) * $perPage, $perPage)->all();
-            $paginator = new LengthAwarePaginator($currentItems, count($combined), $perPage, $currentPage, ['path' => LengthAwarePaginator::resolveCurrentPath()]);
+            $currentItems = $items->slice(($currentPage - 1) * $perPage, $perPage)->all();
+            $paginator = new LengthAwarePaginator($currentItems, count($items), $perPage, $currentPage, ['path' => LengthAwarePaginator::resolveCurrentPath()]);
 
             $articles = $paginator;
         } else {
@@ -79,11 +86,44 @@ class ArticleController extends FrontController
             $articles = Experience::webPublished()->articlePublished()->paginate(self::ARTICLES_PER_PAGE);
         }
 
+        $types = [
+            [
+                'label' => 'All',
+                'href' => route('articles', ['category' => request()->query('category')]),
+                'active' => empty(request()->all()),
+                'ajaxScrollTarget' => 'listing',
+            ],
+            [
+                'label' => 'Articles',
+                'href' => route('articles', array_merge(['type' => 'articles'], null !== request()->query('category') ? ['category' => request()->query('category')] : [])),
+                'active' => request()->get('type') == 'articles',
+                'ajaxScrollTarget' => 'listing',
+            ],
+            [
+                'label' => 'Highlights',
+                'href' => route('articles', array_merge(['type' => 'highlights'], null !== request()->query('category') ? ['category' => request()->query('category')] : [])),
+                'active' => request()->get('type') == 'highlights',
+                'ajaxScrollTarget' => 'listing',
+            ],
+            [
+                'label' => 'Videos',
+                'href' => route('articles', array_merge(['type' => 'videos'], null !== request()->query('category') ? ['category' => request()->query('category')] : [])),
+                'active' => request()->get('type') == 'videos',
+                'ajaxScrollTarget' => 'listing',
+            ],
+            [
+                'label' => 'Experiences',
+                'href' => route('articles', array_merge(['type' => 'experiences'], null !== request()->query('category') ? ['category' => request()->query('category')] : [])),
+                'active' => request()->get('type') == 'experiences',
+                'ajaxScrollTarget' => 'listing',
+            ]
+        ];
+
         // These should be moved away from the controller.
         $categories = [
             [
                 'label' => 'All',
-                'href' => route('articles'),
+                'href' => route('articles', ['type' => request()->query('type')]),
                 'active' => empty(request()->all()),
                 'ajaxScrollTarget' => 'listing',
             ]
@@ -94,9 +134,10 @@ class ArticleController extends FrontController
                 $categories,
                 [
                     'label' => $category->name,
-                    'href' => route('articles', ['category' => $category->id]),
+                    'href' => route('articles', array_merge(['category' => $category->id], null !== request()->query('type') ? ['type' => request()->query('type')] : [])),
                     'active' => request()->get('category') == $category->id,
                     'ajaxScrollTarget' => 'listing',
+                    'id' => $category->id,
                 ]
             );
         }
@@ -117,7 +158,9 @@ class ArticleController extends FrontController
             'primaryNavCurrent' => 'collection',
             'page' => $page,
             'articles' => $articles,
+            'articlesCount' => $articlesCount,
             'categories' => $categories,
+            'types' => $types,
         ]);
     }
 
