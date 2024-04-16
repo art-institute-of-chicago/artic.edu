@@ -1,4 +1,4 @@
-import { setFocusOnTarget, forEach, triggerCustomEvent, ajaxRequest } from '@area17/a17-helpers';
+import { setFocusOnTarget, forEach, triggerCustomEvent } from '@area17/a17-helpers';
 
 const navMobile = function(container) {
 
@@ -33,9 +33,9 @@ const navMobile = function(container) {
   }
 
   function _openSubNav(e){
-    this.classList.toggle('nav-is-open');
+    this.parentElement.classList.toggle('nav-is-open');
 
-    if(!this.classList.contains('g-footer-nav__expander-trigger')){
+    if(!this.parentElement.classList.contains('g-footer-nav__expander-trigger')){
       navLevel++;
 
       checkLevel();
