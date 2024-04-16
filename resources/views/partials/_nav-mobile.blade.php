@@ -33,7 +33,9 @@
                 {!! $level_0['name'] !!}
 
                 @if (array_key_exists('children', $level_0))
-                  <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+                  <span data-nav-trigger>
+                    <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+                  </span>
                 @endif
               </a>
 
@@ -56,7 +58,9 @@
                           {!! $level_1['name'] !!}
 
                           @if (array_key_exists('children', $level_1))
-                            <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+                            <span data-nav-trigger>
+                              <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+                            </span>
                           @endif
                         </a>
 
@@ -79,7 +83,9 @@
                                     <h5 id="h-nav-mobile-sub-sub-sub-{{ Str::slug($level_2['name']) }}">{!! $level_2['name'] !!}</h5>
 
                                     @if (array_key_exists('children', $level_2))
-                                      <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+                                      <span data-nav-trigger>
+                                        <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+                                      </span>
                                     @endif
                                   </a>
 
