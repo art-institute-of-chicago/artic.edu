@@ -122,15 +122,21 @@
 
           <h4 class="sr-only" id="h-footer-nav-social">Social links</h4>
           <ul class="g-nav-mobile__social" aria-labelledby="h-footer-nav-social">
-            <li><a href="{{ $_pages['follow-facebook'] }}">Facebook</a></li>
-            <li><a href="{{ $_pages['follow-twitter'] }}">Twitter</a></li>
-            <li><a href="{{ $_pages['follow-instagram'] }}">Instagram</a></li>
-            <li><a href="{{ $_pages['follow-youtube'] }}">YouTube</a></li>
+            @foreach(['Facebook', 'Twitter', 'Instagram', 'YouTube'] as $social)
+              <li>
+                <svg aria-hidden="true" class="icon--{{ strtolower($social) }}">
+                  <use xlink:href="#icon--{{ ImageHelpers::getSocialIcon($_pages['follow-' . strtolower($social)]) }}"/>
+                </svg>
+                <a href="{{ $_pages['follow-twitter'] }}">{{ $social }}</a>
+              </li>
+            @endforeach
           </ul>
         </div>
       </nav>
 
-      <button class="g-nav-mobile__close" data-behavior="closeNavMobile" aria-label="Close menu"><svg aria-hidden="true" class="icon--close--24"><use xlink:href="#icon--close--24" /></svg></button>
+      <button class="g-nav-mobile__close" data-behavior="closeNavMobile" aria-label="Close menu">
+        <svg aria-hidden="true" class="icon--close--24"><use xlink:href="#icon--close--24" /></svg>
+      </button>
     </div>
   </div>
 </div>
