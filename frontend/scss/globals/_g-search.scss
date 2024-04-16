@@ -32,9 +32,8 @@ $f-autocomplete: generate-font-obj((
 }
 
 .g-search__scroll {
-  height: 340px;
+  min-height: fit-content;
   overflow: hidden;
-  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   transition: height .25s .25s $bezier--marius-ease;
 }
