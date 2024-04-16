@@ -29,7 +29,7 @@
           {{-- Nav Level 0 --}}
           @foreach ($primaryNav as $level_0)
             <li class="{{ $level_0['class'] ?? '' }}">
-              <a href="{{ $level_0['url'] ?? '#' }}" {{ array_key_exists('children', $level_0) ? 'data-nav-trigger' : '' }}>
+              <a href="{{ $level_0['url'] ?? '#' }}">
                 {!! $level_0['name'] !!}
 
                 @if (array_key_exists('children', $level_0))
@@ -54,7 +54,7 @@
                   <ul aria-labelledby="h-nav-mobile-sub-{{ Str::slug($level_0['name']) }}">
                     @foreach ($level_0['children'] as $level_1)
                       <li class="{{ $level_1['class'] ?? '' }}">
-                        <a href="{{ $level_1['url'] ?? '#' }}" {{ array_key_exists('children', $level_1) ? 'data-nav-trigger' : '' }}>
+                        <a href="{{ $level_1['url'] ?? '#' }}">
                           {!! $level_1['name'] !!}
 
                           @if (array_key_exists('children', $level_1))
@@ -79,7 +79,7 @@
                             <ul aria-labelledby="h-nav-mobile-sub-sub-{{ Str::slug($level_1['name']) }}">
                               @foreach ($level_1['children'] as $level_2)
                                 <li class="{{ $level_2['class'] ?? '' }}">
-                                  <a href="{{ $level_2['url'] ?? '#' }}" {!! array_key_exists('children', $level_2) ? ' class="g-footer-nav__expander-trigger arrow-link arrow-link--down" data-nav-trigger' : '' !!}>
+                                  <a href="{{ $level_2['url'] ?? '#' }}" {!! array_key_exists('children', $level_2) ? ' class="g-footer-nav__expander-trigger arrow-link arrow-link--down"' : '' !!}>
                                     <h5 id="h-nav-mobile-sub-sub-sub-{{ Str::slug($level_2['name']) }}">{!! $level_2['name'] !!}</h5>
 
                                     @if (array_key_exists('children', $level_2))
