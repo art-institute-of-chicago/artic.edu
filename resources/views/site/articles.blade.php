@@ -2,19 +2,50 @@
 
 @section('content')
 
+@php
+  $currentCategory = $page->articlesCategories->where('id', request()->query('category'))->pluck('name')->first();
+  $currentType = request()->query('type') ? ucfirst(request()->query('type')) : null;
+@endphp
+
 <section class="o-articles">
 
     @component('components.molecules._m-title-bar')
         @slot('id','listing')
-        Explore {{ isset($exploreTitle) && $exploreTitle ? $exploreTitle : 'Articles' }}
+        @slot('variation', 'stories-listing')
+        Explore {{ isset($exploreTitle) && $exploreTitle ? $exploreTitle : 'all stories' }}
     @endcomponent
 
+    <div class="stories-header-filters">
+
     @if (isset($categories) && $categories)
-        @component('components.molecules._m-links-bar')
-            @slot('overflow', true)
-            @slot('linksPrimary', $categories)
-        @endcomponent
+      @component('components.atoms._dropdown')
+        @slot('prompt', isset($currentCategory) ? $currentCategory : 'All categories')
+        @slot('ariaTitle', 'Filter by')
+        @slot('options', $categories)
+      @endcomponent
     @endif
+
+    @if (isset($types) && $types)
+      @component('components.atoms._dropdown')
+        @slot('prompt', isset($currentType) ? $currentType : 'All types')
+        @slot('ariaTitle', 'Filter by')
+        @slot('options', $types)
+      @endcomponent
+    @endif
+
+    @if (isset($currentCategory) || isset($currentType))
+      @component('components.atoms._link')
+        @slot('href', route('articles'))
+        @slot('label', 'Reset filters')
+        Clear filters
+      @endcomponent
+    @endif
+
+    </div>
+
+    <br>
+
+    <p class="stories-count">{{ $articlesCount > 0 ? $articlesCount.' items' : '' }}</p>
 
   @component('components.atoms._hr')
   @endcomponent
