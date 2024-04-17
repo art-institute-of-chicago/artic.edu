@@ -18,17 +18,17 @@ return new class () extends Migration {
             $staffPicksId = DB::table('categories')->where('name', 'Staff Picks')->value('id');
         }
 
-        // We have the ID's to map to now let's update the existing content
+        if (isset($themeId) && isset($staffPicksId)) {
+            DB::table('article_category')
+                ->where('category_id', $themeId)
+                ->update(['category_id' => $staffPicksId]);
 
-        DB::table('article_category')
-            ->where('category_id', $themeId)
-            ->update(['category_id' => $staffPicksId]);
+            // Now we can delete the old category
 
-        // Now we can delete the old category
-
-        DB::table('categories')
-            ->where('id', $themeId)
-            ->delete();
+            DB::table('categories')
+                ->where('id', $themeId)
+                ->delete();
+        }
 
         // I don't love this but it is what it is
 
@@ -148,17 +148,18 @@ return new class () extends Migration {
         foreach ($articleCategories as $category) {
             if (DB::table('categories')->where('name', $category['name'])->exists()) {
                 $categoryId = DB::table('categories')->where('name', $category['name'])->value('id');
-            }
 
-            foreach ($category['ids'] as $articleId) {
-                if (
-                    DB::table('article_category')->where('article_id', $articleId)->where('category_id', $categoryId)->doesntExist() &&
-                    DB::table('articles')->where('id', $articleId)->exists()
-                ) {
-                    DB::table('article_category')->insert([
+
+                foreach ($category['ids'] as $articleId) {
+                    if (
+                        DB::table('article_category')->where('article_id', $articleId)->where('category_id', $categoryId)->doesntExist() &&
+                        DB::table('articles')->where('id', $articleId)->exists()
+                    ) {
+                        DB::table('article_category')->insert([
                         'article_id' => $articleId,
                         'category_id' => $categoryId,
-                    ]);
+                        ]);
+                    }
                 }
             }
         }
@@ -168,17 +169,18 @@ return new class () extends Migration {
         foreach ($highlightsCategories as $category) {
             if (DB::table('categories')->where('name', $category['name'])->exists()) {
                 $categoryId = DB::table('categories')->where('name', $category['name'])->value('id');
-            }
 
-            foreach ($category['ids'] as $highlightId) {
-                if (
-                    DB::table('highlight_category')->where('highlight_id', $highlightId)->where('category_id', $categoryId)->doesntExist() &&
-                    DB::table('highlights')->where('id', $highlightId)->exists()
-                ) {
-                    DB::table('highlight_category')->insert([
+
+                foreach ($category['ids'] as $highlightId) {
+                    if (
+                        DB::table('highlight_category')->where('highlight_id', $highlightId)->where('category_id', $categoryId)->doesntExist() &&
+                        DB::table('highlights')->where('id', $highlightId)->exists()
+                    ) {
+                        DB::table('highlight_category')->insert([
                         'highlight_id' => $highlightId,
                         'category_id' => $categoryId,
-                    ]);
+                        ]);
+                    }
                 }
             }
         }
@@ -188,17 +190,18 @@ return new class () extends Migration {
         foreach ($videoCategories as $category) {
             if (DB::table('categories')->where('name', $category['name'])->exists()) {
                 $categoryId = DB::table('categories')->where('name', $category['name'])->value('id');
-            }
 
-            foreach ($category['ids'] as $videoId) {
-                if (
-                    DB::table('video_category')->where('video_id', $videoId)->where('category_id', $categoryId)->doesntExist() &&
-                    DB::table('videos')->where('id', $videoId)->exists()
-                ) {
-                    DB::table('video_category')->insert([
+
+                foreach ($category['ids'] as $videoId) {
+                    if (
+                        DB::table('video_category')->where('video_id', $videoId)->where('category_id', $categoryId)->doesntExist() &&
+                        DB::table('videos')->where('id', $videoId)->exists()
+                    ) {
+                        DB::table('video_category')->insert([
                         'video_id' => $videoId,
                         'category_id' => $categoryId,
-                    ]);
+                        ]);
+                    }
                 }
             }
         }
@@ -218,17 +221,18 @@ return new class () extends Migration {
         foreach ($interactiveFeatureCategories as $category) {
             if (DB::table('categories')->where('name', $category['name'])->exists()) {
                 $categoryId = DB::table('categories')->where('name', $category['name'])->value('id');
-            }
 
-            foreach ($category['ids'] as $experienceId) {
-                if (
-                    DB::table('experience_category')->where('experience_id', $experienceId)->where('category_id', $categoryId)->doesntExist() &&
-                    DB::table('experiences')->where('id', $experienceId)->exists()
-                ) {
-                    DB::table('interactive_feature_category')->insert([
+
+                foreach ($category['ids'] as $experienceId) {
+                    if (
+                        DB::table('experience_category')->where('experience_id', $experienceId)->where('category_id', $categoryId)->doesntExist() &&
+                        DB::table('experiences')->where('id', $experienceId)->exists()
+                    ) {
+                        DB::table('interactive_feature_category')->insert([
                         'interactive_feature_id' => $experienceId,
                         'category_id' => $categoryId,
-                    ]);
+                        ]);
+                    }
                 }
             }
         }
