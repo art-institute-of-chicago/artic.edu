@@ -133,7 +133,7 @@
                 <svg aria-hidden="true" class="icon--{{ strtolower($social) }}">
                   <use xlink:href="#icon--{{ ImageHelpers::getSocialIcon($_pages['follow-' . strtolower($social)]) }}"/>
                 </svg>
-                <a href="{{ $_pages['follow-twitter'] }}">{{ $social }}</a>
+                <a href="{{ $_pages['follow-' . strtolower($social)] }}">{{ $social }}</a>
               </li>
             @endforeach
           </ul>
