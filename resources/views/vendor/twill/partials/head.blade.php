@@ -6,7 +6,7 @@
 <title>{{ config('app.name') }} {{ config('twill.admin_app_title_suffix') }}</title>
 
 {{-- WEB-2788: Use red favicon in CMS --}}
-<link rel="icon" href="favicon-red.ico">
+<link rel="icon" href="{{ asset('favicon-red.ico') }}">
 {{-- WEB-2788: end of change --}}
 
 <!-- Fonts -->
