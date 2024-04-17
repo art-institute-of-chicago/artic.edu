@@ -18,17 +18,17 @@ return new class () extends Migration {
             $staffPicksId = DB::table('categories')->where('name', 'Staff Picks')->value('id');
         }
 
-            // We have the ID's to map to now let's update the existing content
+        // We have the ID's to map to now let's update the existing content
 
-            DB::table('article_category')
-                ->where('category_id', $themeId)
-                ->update(['category_id' => $staffPicksId]);
+        DB::table('article_category')
+            ->where('category_id', $themeId)
+            ->update(['category_id' => $staffPicksId]);
 
-            // Now we can delete the old category
+        // Now we can delete the old category
 
-            DB::table('categories')
-                ->where('id', $themeId)
-                ->delete();
+        DB::table('categories')
+            ->where('id', $themeId)
+            ->delete();
 
         // I don't love this but it is what it is
 
@@ -155,10 +155,10 @@ return new class () extends Migration {
                     DB::table('article_category')->where('article_id', $articleId)->where('category_id', $categoryId)->doesntExist() &&
                     DB::table('articles')->where('id', $articleId)->exists()
                 ) {
-                        DB::table('article_category')->insert([
-                            'article_id' => $articleId,
-                            'category_id' => $categoryId,
-                        ]);
+                    DB::table('article_category')->insert([
+                        'article_id' => $articleId,
+                        'category_id' => $categoryId,
+                    ]);
                 }
             }
         }
@@ -175,10 +175,10 @@ return new class () extends Migration {
                     DB::table('highlight_category')->where('highlight_id', $highlightId)->where('category_id', $categoryId)->doesntExist() &&
                     DB::table('highlights')->where('id', $highlightId)->exists()
                 ) {
-                        DB::table('highlight_category')->insert([
-                            'highlight_id' => $highlightId,
-                            'category_id' => $categoryId,
-                        ]);
+                    DB::table('highlight_category')->insert([
+                        'highlight_id' => $highlightId,
+                        'category_id' => $categoryId,
+                    ]);
                 }
             }
         }
@@ -195,10 +195,10 @@ return new class () extends Migration {
                     DB::table('video_category')->where('video_id', $videoId)->where('category_id', $categoryId)->doesntExist() &&
                     DB::table('videos')->where('id', $videoId)->exists()
                 ) {
-                        DB::table('video_category')->insert([
-                            'video_id' => $videoId,
-                            'category_id' => $categoryId,
-                        ]);
+                    DB::table('video_category')->insert([
+                        'video_id' => $videoId,
+                        'category_id' => $categoryId,
+                    ]);
                 }
             }
         }
@@ -209,7 +209,7 @@ return new class () extends Migration {
             if (DB::table('videos')->where('id', $videoId)->exists()) {
                 DB::table('videos')
                     ->where('id', $videoId)
-                    ->update(['is_listed' => true, 'published' => true]);
+                    ->update(['is_listed' => true]);
             }
         }
 
@@ -225,10 +225,10 @@ return new class () extends Migration {
                     DB::table('experience_category')->where('experience_id', $experienceId)->where('category_id', $categoryId)->doesntExist() &&
                     DB::table('experiences')->where('id', $experienceId)->exists()
                 ) {
-                        DB::table('interactive_feature_category')->insert([
-                            'interactive_feature_id' => $experienceId,
-                            'category_id' => $categoryId,
-                        ]);
+                    DB::table('interactive_feature_category')->insert([
+                        'interactive_feature_id' => $experienceId,
+                        'category_id' => $categoryId,
+                    ]);
                 }
             }
         }
