@@ -6,17 +6,25 @@
   top: 0;
   width: 100vw;
   background-clip: padding-box;
-  background-color: $color__white;
-  transition: opacity .2s, transform 0s 0s;
 
   // Mirror html style for alignment
   margin-right: -50vw;
   margin-left: -50vw;
   left: 50%;
   right: 50%;
+  & ~ main::after {
+    content: '';
+    background-color: rgba($color__white, 0);
+  }
 }
 
+.g-header:not(:has([aria-expanded="true"])) {
+  background-color: rgba($color__white, 0);
+  transition: background-color .3s ease-out;
+}
 .g-header:has([aria-expanded="true"]) {
+  background-color: rgba($color__white, 1);
+  transition: background-color .6s ease-in;
   @include breakpoint('small+') {
     height: 368px;
   }
@@ -24,9 +32,8 @@
     height: 380px;
   }
   & ~ main::after {
-    content: '';
-    background-color: rgba($color__white, 60%);
-    transition: background-color .6s linear;
+    background-color: rgba($color__black--80, 50%);
+    transition: background-color .6s ease-in, backdrop-filter .6s ease-in;
     position: fixed;
     top: 0;
     left: 0;
@@ -131,12 +138,13 @@
   right: 0;
 
   [aria-expanded="false"] + .details {
-    visibility: collapse;
+    background-color: rgba($color__white, 0);
     opacity: 0;
+    visibility: collapse;
   }
   [aria-expanded="false"].collapsing + .details {
     animation: .3s fade-out;
-    transition: opacity .3s linear, background-color .3s linear;
+    transition: background-color .3s ease-out, opacity .3s ease-out;
     @keyframes fade-out {
       from {
         opacity: 1;
@@ -149,9 +157,14 @@
     }
   }
   [aria-expanded="true"] + .details {
-    visibility: visible;
     opacity: 1;
-    transition: opacity .6s linear, background-color .6s linear;
+    visibility: visible;
+    transition: background-color .6s ease-in, opacity .6s ease-in;
+    &>a,
+    &>span {
+      background-color: rgba($color__black--5, 1);
+      transition: background-color .6s ease-in;
+    }
   }
 
   @include breakpoint('xsmall') {
@@ -241,12 +254,11 @@
     }
     &[aria-expanded="false"] {
       & .icon--arrow {
-        transition: transform .6s;
+        transition: transform .3s;
       }
     }
   }
   &>.details {
-    background-color: rgba($color__white, 0);
     box-shadow: 0 4px 20px -20px;
     display: flex;
     flex-direction: row;
@@ -259,8 +271,8 @@
     @include breakpoint('medium+') {
       margin-top: 20px;
     }
-    &>a, &>span {
-      background-color: $color__black--5;
+    &>a,
+    &>span {
       display: flex;
       flex-basis: 50vw;
       @include breakpoint('medium-') {
@@ -291,6 +303,14 @@
         line-height: 28px;
         padding-bottom: .5em;
         text-transform: uppercase;
+      }
+      .cta {
+        color: $color__red--100;
+        font-size: 17px;
+        line-height: 28px;
+      }
+      p {
+        padding-bottom: 12px;
       }
     }
     &>[role="menu"] {
@@ -340,6 +360,7 @@
 .g-header__nav-primary [role="menu"]:has(>li>a:hover, >li>a:focus, >li>a[aria-expanded="true"]) {
   &>li>a:not(:hover, :focus, [aria-expanded="true"]) {
     color: $color__black--30;
+    transition: color .3s ease-out;
   }
 }
 

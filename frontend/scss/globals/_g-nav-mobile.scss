@@ -92,7 +92,6 @@
 .g-nav-mobile__nav li {
   margin-right: - map-get($outer-gutters, 'xsmall');
   margin-left: - map-get($outer-gutters, 'xsmall');
-  padding-right: map-get($outer-gutters, 'xsmall');
   padding-left: map-get($outer-gutters, 'xsmall');
   border-bottom: 1px solid $color__rules--tertiary;
   color: $color__text--title;
@@ -107,11 +106,20 @@
   line-height: 48px;
 }
 
-.g-nav-mobile__nav li > a > .icon--arrow {
+.g-nav-mobile__nav li:has(.g-nav-mobile__subnav) span {
+    border-left: 1px solid $color__black--5;
+    display: inline-block;
+    height: 48px;
+    position: absolute;
+    right: 0;
+    width: 48px;
+}
+
+.g-nav-mobile__nav li > a .icon--arrow {
+  color: $color__grey--100;
   position: absolute;
-  right: 3px;
+  right: 16px;
   top: 16px;
-  transition: transform 0.1s ease-in-out;
 }
 
 .g-nav-mobile__nav .g-nav-mobile__nav--muted {
@@ -193,6 +201,19 @@
 .g-nav-mobile__social li {
   margin-top: 16px;
   color: $color__text--secondary;
+}
+
+.g-nav-mobile__social li > a {
+  &::before {
+    display: inline;
+  }
+}
+
+.g-nav-mobile__social [class*=icon--] {
+  height: 14px;
+  padding-right: 10px;
+  vertical-align: baseline;
+  width: 28px;
 }
 
 .g-footer-nav__expander-trigger.nav-is-open {
