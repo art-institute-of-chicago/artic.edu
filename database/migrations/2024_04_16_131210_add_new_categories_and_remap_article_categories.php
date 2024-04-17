@@ -149,7 +149,6 @@ return new class () extends Migration {
             if (DB::table('categories')->where('name', $category['name'])->exists()) {
                 $categoryId = DB::table('categories')->where('name', $category['name'])->value('id');
 
-
                 foreach ($category['ids'] as $articleId) {
                     if (
                         DB::table('article_category')->where('article_id', $articleId)->where('category_id', $categoryId)->doesntExist() &&
@@ -170,7 +169,6 @@ return new class () extends Migration {
             if (DB::table('categories')->where('name', $category['name'])->exists()) {
                 $categoryId = DB::table('categories')->where('name', $category['name'])->value('id');
 
-
                 foreach ($category['ids'] as $highlightId) {
                     if (
                         DB::table('highlight_category')->where('highlight_id', $highlightId)->where('category_id', $categoryId)->doesntExist() &&
@@ -190,7 +188,6 @@ return new class () extends Migration {
         foreach ($videoCategories as $category) {
             if (DB::table('categories')->where('name', $category['name'])->exists()) {
                 $categoryId = DB::table('categories')->where('name', $category['name'])->value('id');
-
 
                 foreach ($category['ids'] as $videoId) {
                     if (
@@ -221,7 +218,6 @@ return new class () extends Migration {
         foreach ($interactiveFeatureCategories as $category) {
             if (DB::table('categories')->where('name', $category['name'])->exists()) {
                 $categoryId = DB::table('categories')->where('name', $category['name'])->value('id');
-
 
                 foreach ($category['ids'] as $experienceId) {
                     if (
