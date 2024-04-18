@@ -41,6 +41,7 @@
         </a>
         @if(($hasImage && $hasDescription) || $hasChildren)
             <div class="details">
+                <span class="details__container">
                 @if($hasUrl)
                     <a
                         href="{{ $item['url'] }}"
@@ -51,21 +52,23 @@
                 @else
                     <span>
                 @endif
-                @if($hasImage)
-                    <img src="{{ $item['image'] }}" aria-describedby="{{ $id }}-description" alt="">
-                @endif
-                @if($hasDescription)
-                    <div class="description">
-                        <div class="title">{!! $item['name'] !!}</div>
-                        <p id="{{ $id }}-description">{!! $item['description'] !!}</p>
-                        @if($hasCta)
-                            <p class="cta">
-                                {!! $item['cta'] !!}
-                                <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
-                            </p>
-                        @endif
-                    </div>
-                @endif
+                    @if($hasImage)
+                        <img src="{{ $item['image'] }}" aria-describedby="{{ $id }}-description" alt="">
+                    @endif
+                    @if($hasDescription)
+                        <div class="description">
+                            <div class="title">{!! $item['name'] !!}</div>
+                            <p id="{{ $id }}-description">{!! $item['description'] !!}</p>
+                            @if($hasCta)
+                                <p class="cta">
+                                    {!! $item['cta'] !!}
+                                    <svg aria-hidden="true" class="icon--arrow">
+                                        <use xlink:href="#icon--arrow" />
+                                    </svg>
+                                </p>
+                            @endif
+                        </div>
+                    @endif
                 @if($hasUrl)
                     </a>
                 @else
@@ -81,6 +84,7 @@
                         ])
                     </ul>
                 @endif
+                </span>
             </div>
         @endif
     </li>
