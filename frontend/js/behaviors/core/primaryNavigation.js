@@ -21,7 +21,7 @@ export default function(container) {
     const menuBar = container.querySelector(menuBarQuery)
     const menuItems = menuBar.querySelectorAll(menuItemQuery)
     const levelOneMenuItems = menuBar.querySelectorAll(`${levelOneQuery}>${menuItemQuery}`)
-    const exhibitionsDetails = container.querySelector('.exhibitions .details')
+    const exhibitionsDetailsContainer = container.querySelector('.exhibitions .details__container')
 
     function _init() {
         const featuredExhibitionData = new URL(
@@ -65,8 +65,8 @@ export default function(container) {
         template.querySelector('img').setAttribute('src', data.image_url)
         template.querySelector('.title').textContent = data.title
 
-        exhibitionsDetails.querySelector('a').remove()
-        exhibitionsDetails.prepend(template)
+        exhibitionsDetailsContainer.querySelector('a').remove()
+        exhibitionsDetailsContainer.prepend(template)
     }
 
     function collapseMenu() {
