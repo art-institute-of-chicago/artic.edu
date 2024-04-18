@@ -142,19 +142,3 @@
 .m-title-bar__links span {
   color: $color__text--secondary;
 }
-
-.m-title-bar.stories-listing {
-  @include untuck;
-  margin-top: 40px;
-
-  .title {
-    color: $color__black--50;
-    text-transform: unset;
-    font-family: $sans-serif-font--loaded;
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 40px;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-  }
-}
