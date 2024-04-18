@@ -25,10 +25,13 @@
 .g-header:has([aria-expanded="true"]) {
   background-color: rgba($color__white, 1);
   transition: background-color .6s ease-in;
-  @include breakpoint('small+') {
+  @include breakpoint('small') {
     height: 368px;
   }
-  @include breakpoint('medium+') {
+  @include breakpoint('medium') {
+    height: 376px;
+  }
+  @include breakpoint('large+') {
     height: 380px;
   }
   & ~ main::after {
@@ -138,7 +141,7 @@
   right: 0;
 
   [aria-expanded="false"] + .details {
-    background-color: rgba($color__white, 0);
+    background: rgba($color__white, 0);
     opacity: 0;
     visibility: collapse;
   }
@@ -159,12 +162,7 @@
   [aria-expanded="true"] + .details {
     opacity: 1;
     visibility: visible;
-    transition: background-color .6s ease-in, opacity .6s ease-in;
-    &>a,
-    &>span {
-      background-color: rgba($color__black--5, 1);
-      transition: background-color .6s ease-in;
-    }
+    transition: opacity .6s ease-in;
   }
 
   @include breakpoint('xsmall') {
@@ -259,34 +257,48 @@
     }
   }
   &>.details {
-    box-shadow: 0 4px 20px -20px;
-    display: flex;
-    flex-direction: row;
-    grid-auto-rows: 1fr;
+    background: linear-gradient(to right, $color__black--5 33%, transparent 33%);
+    box-shadow: 0 4px 20px -20px rgba($color__black, 15%);
     height: 240px;
-    left: 0;
+    left: -6px;
     margin-top: 16px;
     position: fixed;
     width: 100vw;
-    @include breakpoint('medium+') {
+    @include breakpoint('large+') {
+      background: linear-gradient(to right, $color__black--5 50%, transparent 50%);
       margin-top: 20px;
     }
-    &>a,
-    &>span {
+    &>.details__container {
       display: flex;
-      flex-basis: 50vw;
-      @include breakpoint('medium-') {
-        flex-basis: 33vw;
+      flex-direction: row;
+      margin-left: 4.6875vw;
+      margin-right: 4.6875vw;
+      height: 100%;
+      @include breakpoint('xlarge') {
+        margin-left: auto;
+        margin-right: auto;
+        width: 1500px;
+      }
+    }
+    &>.details__container>a,
+    &>.details__container>span {
+      background-color: $color__black--5;
+      display: flex;
+      flex-basis: 33%;
+      @include breakpoint('large+') {
+        flex-basis: 50%;
       }
     }
     img {
       margin-bottom: 32px;
-      margin-left: 4.125vw;
       margin-top: 32px;
       height: 170px;
       width: 239px;
       @include breakpoint('medium-') {
         display: none;
+      }
+      @include breakpoint('xlarge') {
+        margin-left: 0;
       }
     }
     .description {
@@ -294,8 +306,8 @@
       font-size: 16px;
       line-height: 24px;
       margin: 32px;
-      @include breakpoint('medium') {
-        margin-left: 4.125vw;
+      @include breakpoint('medium-') {
+        margin-left: 0;
       }
       .title {
         color: $color__black--80;
@@ -313,16 +325,16 @@
         padding-bottom: 12px;
       }
     }
-    &>[role="menu"] {
+    &>.details__container>[role="menu"] {
       border-right: 1px solid $color__black--20;
-      flex-basis: 25vw;
+      flex-basis: 25%;
       font-size: 16px;
       line-height: 32px;
       margin-bottom: 24px;
       margin-top: 24px;
       padding-left: 32px;
       @include breakpoint('medium-') {
-        flex-basis: 33vw;
+        flex-basis: 33%;
       }
     }
   }
@@ -346,13 +358,17 @@
 
 .g-header__nav-primary .level-2 {
   &>.details {
-    left: 75vw;
+    left: 67%;
+    margin-left: calc(-4.6875vw / 2);
     padding-left: 32px;
-    padding-right: 4.125vw;
     position: absolute;
     top: 24px;
-    @include breakpoint('medium-') {
-      left: 67vw;
+    @include breakpoint('large') {
+      left: 75%;
+    }
+    @include breakpoint('xlarge') {
+      left: calc(50% + 375px);
+      margin: auto
     }
   }
 }
