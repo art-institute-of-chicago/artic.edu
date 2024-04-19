@@ -93,31 +93,21 @@ class ArticleController extends FrontController
                 'active' => empty(request()->all()),
                 'ajaxScrollTarget' => 'listing',
             ],
-            [
-                'label' => 'Articles',
-                'href' => route('articles', array_merge(['type' => 'articles'], null !== request()->query('category') ? ['category' => request()->query('category')] : [])),
-                'active' => request()->get('type') == 'articles',
-                'ajaxScrollTarget' => 'listing',
-            ],
-            [
-                'label' => 'Highlights',
-                'href' => route('articles', array_merge(['type' => 'highlights'], null !== request()->query('category') ? ['category' => request()->query('category')] : [])),
-                'active' => request()->get('type') == 'highlights',
-                'ajaxScrollTarget' => 'listing',
-            ],
-            [
-                'label' => 'Videos',
-                'href' => route('articles', array_merge(['type' => 'videos'], null !== request()->query('category') ? ['category' => request()->query('category')] : [])),
-                'active' => request()->get('type') == 'videos',
-                'ajaxScrollTarget' => 'listing',
-            ],
-            [
-                'label' => 'Experiences',
-                'href' => route('articles', array_merge(['type' => 'experiences'], null !== request()->query('category') ? ['category' => request()->query('category')] : [])),
-                'active' => request()->get('type') == 'experiences',
-                'ajaxScrollTarget' => 'listing',
-            ]
         ];
+
+        $contentTypes = ['Articles', 'Highlights', 'Videos', 'Experiences'];
+
+        foreach ($contentTypes as $type) {
+            array_push(
+                $types,
+                [
+                'label' => $type,
+                'href' => route('articles', array_merge(['type' => strtolower($type)], null !== request()->query('category') ? ['category' => request()->query('category')] : [])),
+                'active' => request()->get('type') == strtolower($type),
+                'ajaxScrollTarget' => 'listing',
+                ]
+            );
+        }
 
         // These should be moved away from the controller.
         $categories = [
