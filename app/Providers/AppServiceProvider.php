@@ -235,6 +235,10 @@ class AppServiceProvider extends ServiceProvider
                                         'url' => route('events', ['audience' => 3, 'type' => 6]),
                                     ],
                                     [
+                                        'name' => 'My Museum Tour',
+                                        'url' => route('pages.slug', ['slug' => 'my-museum-tour']),
+                                    ],
+                                    [
                                         'name' => 'What to See in an Hour',
                                         'url' => route('highlights.show', ['id' => 3, 'slug' => 'what-to-see-in-an-hour']),
                                     ],
