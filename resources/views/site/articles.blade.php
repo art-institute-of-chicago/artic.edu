@@ -9,12 +9,12 @@
 
 <section class="o-articles">
 
-    @component('components.molecules._m-title-bar')
-        @slot('id','listing')
-        Explore {{ isset($exploreTitle) && $exploreTitle ? $exploreTitle : 'Articles' }}
+    @component('components.molecules._m-header-block')
+      Explore {{ isset($exploreTitle) && $exploreTitle ? $exploreTitle : 'Articles' }}
     @endcomponent
   
-    @component('components.molecules._m-links-bar', ['primaryVariation' => 'm-links-bar--centered@xsmall'])
+    @component('components.molecules._m-links-bar')
+        @slot('variation','m-links-bar--articles')
         @slot('primaryHtml')
             <li class="m-links-bar__item m-links-bar__item--primary">
                 @component('components.atoms._dropdown')
@@ -36,17 +36,16 @@
             </li>
             @if (isset($currentCategory) || isset($currentType))
               <li class="m-links-bar__item m-links-bar__item--primary">
-                <p>
                   <a href="{{ route('articles') }}" class="f-link">Clear all</a>
-                </p>
               </li>
             @endif
-        @endslot
+          @endslot
+          @slot('secondaryHtml')
+              <p class="f-secondary">
+                {{ $articlesCount }} items
+              </p>
+          @endslot
     @endcomponent
-
-    <span class="f-secondary">
-      {{ $articlesCount }} items
-    </span>
 
   @component('components.atoms._hr')
   @endcomponent

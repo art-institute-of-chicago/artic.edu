@@ -633,6 +633,17 @@
   }
 }
 
+// Variant `.m-links-bar--nav-bar`
+
+.m-links-bar--articles {
+  >.m-links-bar__items-secondary {
+    >.f-secondary {
+      align-self: center;
+      @include untuck;
+    }
+  }
+}
+
 
 // Variant `.m-links-bar--nav-bar`
 
