@@ -60,7 +60,7 @@
   padding-top: 23px;
   border-top: 1px solid $color__rules--primary;
 
-  .o-article__inline-header + & {
+  .o-article__inline-header+& {
     margin-top: 0;
   }
 
@@ -88,7 +88,7 @@
     &.o-article__secondary-actions--inline-header {
       margin-top: 40px;
 
-      .o-article__inline-header + & {
+      .o-article__inline-header+& {
         margin-top: 0;
       }
     }
@@ -102,13 +102,13 @@
     &.o-article__secondary-actions--inline-header {
       margin-top: 40px;
 
-      .o-article__inline-header + & {
+      .o-article__inline-header+& {
         margin-top: 0;
       }
     }
 
     &.o-article__secondary-actions--with-description {
-      .o-article__inline-header + & {
+      .o-article__inline-header+& {
         margin-top: 12px;
       }
     }
@@ -120,7 +120,7 @@
   }
 }
 
-.o-article__secondary-actions > .m-article-actions:nth-child(1) {
+.o-article__secondary-actions>.m-article-actions:nth-child(1) {
   @include breakpoint('medium+') {
     margin-top: 8px;
   }
@@ -148,18 +148,18 @@
   }
 
   &:not(.o-article__related--no-description) {
-      @include breakpoint('small') {
-        float: right;
-        clear: right;
-        width: colspan(23, small);
-        margin-top: 36px;
-        margin-bottom: colspan(3, small);
-        margin-left: colspan(3, small);
+    @include breakpoint('small') {
+      float: right;
+      clear: right;
+      width: colspan(23, small);
+      margin-top: 36px;
+      margin-bottom: colspan(3, small);
+      margin-left: colspan(3, small);
 
-        .o-article__inline-header ~ & {
-          margin-top: 8px;
-        }
+      .o-article__inline-header~& {
+        margin-top: 8px;
       }
+    }
   }
 
   &.o-article__related--no-description {
@@ -177,16 +177,20 @@
 .o-article__body.o-article__body--no-description {
   border-top: none;
 
-  &.o-blocks:not(.o-blocks--with-sidebar) > .deflist.o-blocks__block {
-    @each $name, $point in ('medium', 'large', 'xlarge') {
+  &.o-blocks:not(.o-blocks--with-sidebar)>.deflist.o-blocks__block {
+
+    @each $name,
+    $point in ('medium', 'large', 'xlarge') {
       @include breakpoint('#{$name}') {
         margin-top: 0;
       }
     }
   }
 
-  &.o-blocks:not(.o-blocks--with-sidebar) > .deflist.o-blocks__block + .deflist.o-blocks__block {
-    @each $name, $point in ('xsmall', 'small', 'medium') {
+  &.o-blocks:not(.o-blocks--with-sidebar)>.deflist.o-blocks__block+.deflist.o-blocks__block {
+
+    @each $name,
+    $point in ('xsmall', 'small', 'medium') {
       @include breakpoint('#{$name}') {
         margin-top: 20px;
       }
@@ -224,8 +228,10 @@
   }
 }
 
-.o-article__inline-header  {
-  @each $name, $point in ('medium') {
+.o-article__inline-header {
+
+  @each $name,
+  $point in ('medium') {
     @include breakpoint('#{$name}') {
       margin-right: colspan(20, $name);
     }
@@ -239,7 +245,7 @@
   }
 }
 
-.o-article__body + .o-article__intro {
+.o-article__body+.o-article__intro {
   @include breakpoint('large+') {
     padding-top: 0;
     border-top: 0;
@@ -261,7 +267,7 @@
   }
 }
 
-.o-article__inline-header .title.f-headline-editorial + .f-secondary {
+.o-article__inline-header .title.f-headline-editorial+.f-secondary {
   margin-top: 25px;
 }
 
@@ -278,7 +284,7 @@
   background-color: $color__rules--primary;
 }
 
-.m-article-header ~ .o-article__inline-header::before {
+.m-article-header~.o-article__inline-header::before {
   content: '';
   top: 0;
 }
@@ -291,7 +297,7 @@
   color: $color__text--secondary;
 }
 
-.o-article__inline-header .f-headline-editorial + .f-secondary {
+.o-article__inline-header .f-headline-editorial+.f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 68, 'medium+': 80));
 }
 
@@ -311,11 +317,11 @@
     clear: none;
   }
 
-  .o-article__inline-header ~ & {
+  .o-article__inline-header~& {
     margin-top: 8px;
   }
 
-  .o-article__inline-header ~ &.o-article__body--no-description {
+  .o-article__inline-header~&.o-article__body--no-description {
     margin-top: 0;
     padding-top: 0;
   }
@@ -328,11 +334,11 @@
   @include breakpoint('medium+') {
     padding-top: 0;
 
-    .o-article__inline-header ~ & {
+    .o-article__inline-header~& {
       margin-top: 12px;
     }
 
-    .o-article__inline-header ~ &.o-article__body--no-description {
+    .o-article__inline-header~&.o-article__body--no-description {
       margin-top: 0;
     }
   }
@@ -344,7 +350,7 @@
     margin-right: auto;
     margin-left: auto;
 
-    .o-article__intro ~ & {
+    .o-article__intro~& {
       margin-top: 60 - 24px;
     }
   }
@@ -355,7 +361,7 @@
 }
 
 .o-article--video .o-article__body,
-.o-article__secondary-actions ~ .o-article__body {
+.o-article__secondary-actions~.o-article__body {
   @include breakpoint('medium+') {
     float: left;
     width: colspan(38, medium);
@@ -371,7 +377,7 @@
   }
 }
 
-.o-article__body--no-description.o-blocks > .deflist:first-child {
+.o-article__body--no-description.o-blocks>.deflist:first-child {
   margin-top: 0;
 
   .deflist__row:first-child::before {
@@ -379,8 +385,9 @@
     display: none;
   }
 }
+
 @include breakpoint('large+') {
-  .o-article__body--no-description.o-blocks > .deflist.u-hide\@large\+:first-child + .deflist {
+  .o-article__body--no-description.o-blocks>.deflist.u-hide\@large\+:first-child+.deflist {
     margin-top: 0;
 
     .deflist__row:first-child::before {
@@ -424,7 +431,7 @@
     }
   }
 
-  .m-article-header--generic:not(.m-article-header--generic-w-img) ~ .o-article__body {
+  .m-article-header--generic:not(.m-article-header--generic-w-img)~.o-article__body {
     @include breakpoint('large+') {
       padding-top: 4px;
 
@@ -438,10 +445,10 @@
         background-color: $color__rules--primary;
       }
 
-      & > .m-links-bar:first-child,
-      & > .hr:first-child,
-      & > .m-article-actions:first-child,
-      & > .o-blocks__block:first-child {
+      &>.m-links-bar:first-child,
+      &>.hr:first-child,
+      &>.m-article-actions:first-child,
+      &>.o-blocks__block:first-child {
         margin-top: -4px;
       }
     }

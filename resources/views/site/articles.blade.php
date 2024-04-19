@@ -2,19 +2,50 @@
 
 @section('content')
 
+@php
+  $currentCategory = $page->articlesCategories->where('id', request()->query('category'))->pluck('name')->first();
+  $currentType = request()->query('type') ? ucfirst(request()->query('type')) : null;
+@endphp
+
 <section class="o-articles">
 
-    @component('components.molecules._m-title-bar')
-        @slot('id','listing')
-        Explore {{ isset($exploreTitle) && $exploreTitle ? $exploreTitle : 'Articles' }}
+    @component('components.molecules._m-header-block')
+      Explore {{ isset($exploreTitle) && $exploreTitle ? $exploreTitle : 'Articles' }}
     @endcomponent
-
-    @if (isset($categories) && $categories)
-        @component('components.molecules._m-links-bar')
-            @slot('overflow', true)
-            @slot('linksPrimary', $categories)
-        @endcomponent
-    @endif
+  
+    @component('components.molecules._m-links-bar')
+        @slot('variation','m-links-bar--articles')
+        @slot('primaryHtml')
+            <li class="m-links-bar__item m-links-bar__item--primary">
+                @component('components.atoms._dropdown')
+                  @slot('prompt', isset($currentCategory) ? $currentCategory : 'All categories')
+                  @slot('ariaTitle', 'Filter by')
+                  @slot('variation','dropdown--filter f-link')
+                  @slot('font', null)
+                  @slot('options', $categories)
+                @endcomponent
+            </li>
+            <li class="m-links-bar__item m-links-bar__item--primary">
+                @component('components.atoms._dropdown')
+                  @slot('prompt', isset($currentType) ? $currentType : 'All types')
+                  @slot('ariaTitle', 'Filter by')
+                  @slot('variation','dropdown--filter f-link')
+                  @slot('font', null)
+                  @slot('options', $types)
+                @endcomponent
+            </li>
+            @if (isset($currentCategory) || isset($currentType))
+              <li class="m-links-bar__item m-links-bar__item--primary">
+                  <a href="{{ route('articles') }}" class="f-link">Clear all</a>
+              </li>
+            @endif
+          @endslot
+          @slot('secondaryHtml')
+              <p class="f-secondary">
+                {{ $articlesCount }} items
+              </p>
+          @endslot
+    @endcomponent
 
   @component('components.atoms._hr')
   @endcomponent

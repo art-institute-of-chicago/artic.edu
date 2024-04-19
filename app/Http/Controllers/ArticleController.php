@@ -9,6 +9,7 @@ use App\Models\Experience;
 use App\Models\Highlight;
 use App\Helpers\StringHelpers;
 use App\Models\Video;
+use Illuminate\Support\Str;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ArticleController extends FrontController
@@ -29,18 +30,10 @@ class ArticleController extends FrontController
 
         $page = Page::forType('Articles')->first();
 
-        $featuredItems = $page->getRelatedWithApiModels('featured_items', [], [
-            'articles' => false,
-            'experiences' => false
-        ]);
-
-        $heroArticle = $featuredItems->first();
-
         if (request('category') !== 'interactive-features') {
             $articles = Article::published()
                 ->notUnlisted()
                 ->byCategories(request('category'))
-                ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('date', 'desc')
                 ->get()->map(function ($article) {
                     $article->sort_date = $article->date ?? $article->created_at;
@@ -50,7 +43,6 @@ class ArticleController extends FrontController
             $highlights = Highlight::published()
                 ->notUnlisted()
                 ->byCategories(request('category'))
-                ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('publish_start_date', 'desc')
                 ->get()->map(function ($highlight) {
                     $highlight->sort_date = $highlight->publish_start_date ?? $highlight->created_at;
@@ -60,7 +52,6 @@ class ArticleController extends FrontController
             $experiences = Experience::published()
                 ->notUnlisted()
                 ->byCategories(request('category'))
-                ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('created_at', 'desc')
                 ->get()->map(function ($experience) {
                     $experience->sort_date = $experience->created_at;
@@ -70,19 +61,24 @@ class ArticleController extends FrontController
             $videos = Video::published()
                 ->byCategories(request('category'))
                 ->where('is_listed', true)
-                ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('date', 'desc')
                 ->get()->map(function ($video) {
                     $video->sort_date = $video->date ?? $video->created_at;
                     return $video;
                 });
 
-            $combined = $articles->concat($highlights)->concat($experiences)->concat($videos)->sortByDesc('sort_date');
+            $items = $articles->concat($highlights)->concat($experiences)->concat($videos)->sortByDesc('sort_date');
+
+            if (request('type')) {
+                $items = $items->where('type', (Str::singular(request('type'))));
+            }
+
+            $articlesCount = $items->count();
 
             $perPage = self::ARTICLES_PER_PAGE;
             $currentPage = LengthAwarePaginator::resolveCurrentPage();
-            $currentItems = $combined->slice(($currentPage - 1) * $perPage, $perPage)->all();
-            $paginator = new LengthAwarePaginator($currentItems, count($combined), $perPage, $currentPage, ['path' => LengthAwarePaginator::resolveCurrentPath()]);
+            $currentItems = $items->slice(($currentPage - 1) * $perPage, $perPage)->all();
+            $paginator = new LengthAwarePaginator($currentItems, count($items), $perPage, $currentPage, ['path' => LengthAwarePaginator::resolveCurrentPath()]);
 
             $articles = $paginator;
         } else {
@@ -90,11 +86,34 @@ class ArticleController extends FrontController
             $articles = Experience::webPublished()->articlePublished()->paginate(self::ARTICLES_PER_PAGE);
         }
 
+        $types = [
+            [
+                'label' => 'All',
+                'href' => route('articles', ['category' => request()->query('category')]),
+                'active' => empty(request()->all()),
+                'ajaxScrollTarget' => 'listing',
+            ],
+        ];
+
+        $contentTypes = ['Articles', 'Highlights', 'Videos', 'Experiences'];
+
+        foreach ($contentTypes as $type) {
+            array_push(
+                $types,
+                [
+                'label' => $type,
+                'href' => route('articles', array_merge(['type' => strtolower($type)], null !== request()->query('category') ? ['category' => request()->query('category')] : [])),
+                'active' => request()->get('type') == strtolower($type),
+                'ajaxScrollTarget' => 'listing',
+                ]
+            );
+        }
+
         // These should be moved away from the controller.
         $categories = [
             [
                 'label' => 'All',
-                'href' => route('articles'),
+                'href' => route('articles', ['type' => request()->query('type')]),
                 'active' => empty(request()->all()),
                 'ajaxScrollTarget' => 'listing',
             ]
@@ -105,9 +124,10 @@ class ArticleController extends FrontController
                 $categories,
                 [
                     'label' => $category->name,
-                    'href' => route('articles', ['category' => $category->id]),
+                    'href' => route('articles', array_merge(['category' => $category->id], null !== request()->query('type') ? ['type' => request()->query('type')] : [])),
                     'active' => request()->get('category') == $category->id,
                     'ajaxScrollTarget' => 'listing',
+                    'id' => $category->id,
                 ]
             );
         }
@@ -127,9 +147,10 @@ class ArticleController extends FrontController
         return view('site.articles', [
             'primaryNavCurrent' => 'collection',
             'page' => $page,
-            'heroArticle' => $heroArticle,
             'articles' => $articles,
+            'articlesCount' => $articlesCount,
             'categories' => $categories,
+            'types' => $types,
         ]);
     }
 
