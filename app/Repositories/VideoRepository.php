@@ -51,5 +51,7 @@ class VideoRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         $object->categories()->sync($fields['categories'] ?? []);
+
+        parent::afterSave($object, $fields);
     }
 }
