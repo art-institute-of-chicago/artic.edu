@@ -358,7 +358,7 @@ class Page extends AbstractModel
 
     public function articlesCategories()
     {
-        return $this->belongsToMany('App\Models\Category', 'page_article_category')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\Category::class, 'page_article_category')->withPivot('position')->orderBy('position');
     }
 
     public function artArticles()
