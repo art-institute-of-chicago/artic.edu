@@ -3,7 +3,9 @@
 @section('content')
 
 @php
-  $currentCategory = $page->articlesCategories->where('id', request()->query('category'))->pluck('name')->first();
+  $category = new \App\Models\Category;
+
+  $currentCategory = $category->where('id', request()->query('category'))->pluck('name')->first();
   $currentType = request()->query('type') ? ucfirst(request()->query('type')) : null;
 @endphp
 
