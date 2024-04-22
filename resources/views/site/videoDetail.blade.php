@@ -56,28 +56,29 @@
             ]) !!}
         </div>
 
-        @if (count($item->categories) > 0)
-            @component('components.atoms._hr')
-            @endcomponent
-            @component('components.blocks._text')
-                @slot('font', 'f-subheading-1')
-                @slot('tag', 'h4')
-                @slot('id', 'h-topics')
-                Topics
-            @endcomponent
-            <ul class="m-inline-list" aria-labelledby="h-topics">
-            @foreach ($item->categories as $category)
-                <li class="m-inline-list__item">
-                    @if (!empty($category['id']))
-                        <a class="tag f-tag" href="{{ route('articles', ['category' => $category['id']]) }}">{{ $category['name'] }}</a>
-                    @else
-                        <span class="tag f-tag">{{ $category['name'] }}</span>
-                    @endif
-                </li>
-            @endforeach
-            </ul>
-        @endif
     </article>
+
+    @if (count($item->topics) > 0)
+        @component('components.atoms._hr')
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('font', 'f-subheading-1')
+            @slot('tag', 'h4')
+            @slot('id', 'h-topics')
+            Topics
+        @endcomponent
+        <ul class="m-inline-list" aria-labelledby="h-topics">
+        @foreach ($item->topics as $category)
+            <li class="m-inline-list__item">
+                @if (!empty($category['id']))
+                    <a class="tag f-tag" href="{{ route('articles', ['category' => $category['id']]) }}">{{ $category['name'] }}</a>
+                @else
+                    <span class="tag f-tag">{{ $category['name'] }}</span>
+                @endif
+            </li>
+        @endforeach
+        </ul>
+    @endif
 
     @if ($relatedVideos->count() > 0)
         @component('components.molecules._m-title-bar')
