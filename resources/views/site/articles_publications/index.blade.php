@@ -20,18 +20,7 @@
             @slot('overflow', true)
             @slot('linksPrimary', $linksBar)
         @endcomponent
-
-        @component('site.articles_publications._articleFeature')
-            @slot('featureHero', $featureHero ?? null)
-            @slot('features', $features ?? null)
-        @endcomponent
-
-        @if(sizeof($experiences['items']) > 0)
-            @component('site.articles_publications._interactiveFeature')
-                @slot('experiences', $experiences['items'] ?? null)
-            @endcomponent
-        @endif
-
+        
         <section>
             @component('components.molecules._m-title-bar')
                 @slot('links', array(array('label' => 'Browse all digital publications', 'href' => route('collection.publications.digital-publications'))))

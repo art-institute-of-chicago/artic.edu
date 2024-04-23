@@ -19,7 +19,6 @@ class ArticlesPublicationsController extends FrontController
         $featureHero = $articles->shift();
 
         $this->seo->setTitle('Publications');
-        $this->seo->setImage($featureHero->imageFront('hero'));
 
         return view('site.articles_publications.index', [
             'primaryNavCurrent' => 'collection',
@@ -40,8 +39,6 @@ class ArticlesPublicationsController extends FrontController
                     'label' => 'Resources',
                 ],
             ],
-            'featureHero' => $featureHero,
-            'features' => $articles,
             'digitalPublications' => [
                 'items' => $page->digitalPublications
             ],
