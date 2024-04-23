@@ -136,6 +136,13 @@
   }
 }
 
+.s-scroll-direction-up.s-header-hide .g-header {
+    background-color: rgba($color__white, 1);
+    .g-header__nav-primary .level-1>.details {
+      left: 0;
+    }
+}
+
 .g-header__nav-primary {
   position: absolute;
   right: 0;
