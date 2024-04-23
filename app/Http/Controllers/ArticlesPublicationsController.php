@@ -11,13 +11,6 @@ class ArticlesPublicationsController extends FrontController
         $page = Page::forType('Articles and Publications')->first();
         $artIdeasPage = Page::forType('Art and Ideas')->first();
 
-        $articles = $page->getRelatedWithApiModels('featured_items', [], [
-            'articles' => false,
-            'experiences' => false
-        ]) ?? null;
-
-        $featureHero = $articles->shift();
-
         $this->seo->setTitle('Publications');
 
         return view('site.articles_publications.index', [
