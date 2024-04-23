@@ -67,6 +67,7 @@ class PageRepository extends ModuleRepository
         // Homepage landing
         'homeVideos',
         'homeHighlights',
+        'articlesCategories'
     ];
 
     protected $apiBrowsers = [
@@ -106,7 +107,6 @@ class PageRepository extends ModuleRepository
             'moduleName' => 'categoryTerms',
             'routePrefix' => 'collection',
         ],
-
     ];
 
     protected $repeaters = [
@@ -162,6 +162,8 @@ class PageRepository extends ModuleRepository
             'experiences' => false
         ]);
 
+        $this->updateOrderedBelongsTomany($object, $fields, 'articlesCategories', 'position', 'Category');
+
         parent::afterSave($object, $fields);
     }
 
@@ -174,6 +176,8 @@ class PageRepository extends ModuleRepository
             'articles' => false,
             'experiences' => false
         ]);
+
+        $fields['browsers']['articlesCategories'] = $this->getFormFieldsForBrowser($object, 'articlesCategories', 'collection.articles_publications', 'name', 'categories');
 
         return $fields;
     }
