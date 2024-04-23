@@ -42,9 +42,6 @@ class ArticlesPublicationsController extends FrontController
             'digitalPublications' => [
                 'items' => $page->digitalPublications
             ],
-            'experiences' => [
-                'items' => $page->experiences()->notUnlisted()->webPublished()->get(),
-            ],
             'printedPublications' => [
                 'intro' => $page->present()->printed_publications_intro,
                 'items' => $page->printedPublications
