@@ -23,6 +23,7 @@
         
         <section>
             @component('components.molecules._m-title-bar')
+                @slot('variation', 'm-title-bar--no-hr')
                 @slot('links', array(array('label' => 'Browse all digital publications', 'href' => route('collection.publications.digital-publications'))))
                 Digital Publications
             @endcomponent
@@ -87,8 +88,8 @@
 
             @component('components.organisms._o-grid-listing')
                 @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-                @slot('cols_large','4')
-                @slot('cols_xlarge','4')
+                @slot('cols_large','3')
+                @slot('cols_xlarge','3')
                 @foreach ($printedPublications['items'] as $item)
                     @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
