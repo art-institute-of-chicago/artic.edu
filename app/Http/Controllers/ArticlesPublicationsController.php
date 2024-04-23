@@ -31,12 +31,12 @@ class ArticlesPublicationsController extends FrontController
                 ],
                 [
                     'href' => route('articles_publications'),
-                    'label' => 'Writings',
+                    'label' => 'Publications',
                     'active' => true,
                 ],
                 [
                     'href' => route('collection.research_resources'),
-                    'label' => 'Resources',
+                    'label' => 'Research',
                 ],
             ],
             'digitalPublications' => [
