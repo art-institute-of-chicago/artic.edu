@@ -134,8 +134,12 @@ class FrontController extends BaseController
                 $itemId = request()->query('id');
                 $itemType = request()->query('model');
 
-                $item = app($itemType)->query()->find((int) $itemId);
-
+                if (app($itemType)->hasAugmentedModel()) {
+                    $itemType = app($itemType)->getAugmentedModelClass();
+                    $item = $itemType::where('datahub_id', $itemId)->first();
+                } else {
+                    $item = app($itemType)->query()->find((int) $itemId);
+                }
 
                 return response(view('site.shared._featuredRelated', [
                     'item' => $item,
