@@ -1,7 +1,5 @@
 .m-showcase-block,
-.m-showcase-background // The showcase background is used in the Showcase Multiple block
-
-    {
+.m-showcase-background { // The showcase background is used in the Showcase Multiple block
     width: 100vw;
     margin-top: 50px;
     margin-left: calc(50% - 50vw);
@@ -19,13 +17,12 @@
     }
 
     .m-showcase-wrapper {
-        max-width: 1500px;
         display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 36px;
         margin: auto;
-
-        @include breakpoint('medium-') {
-            flex-direction: column;
-        }
+        max-width: 1500px;
 
         @include breakpoint('small-') {
             padding: 0;
@@ -34,51 +31,51 @@
                 margin-top: 50px;
             }
         }
-    }
-
-    img,
-    video {
-        width: 65%;
-        padding: 0 36px 0 0;
-        height: auto;
-        aspect-ratio: 16/10;
-        object-fit: cover;
-
-        @include breakpoint('medium') {
-            width: 100%;
-            padding: 0;
-        }
-
-        @include breakpoint('small') {
-            width: 100%;
-            padding: 0;
-        }
-
         @include breakpoint('xsmall') {
-            width: 100%;
-            padding: 0;
+            flex-direction: column;
+
+            .showcase-header {
+                flex-basis: fit-content;
+            }
+        }
+
+        .showcase-header {
+            flex-basis: 100%;
+        }
+        .m-showcase-media,
+        .m-showcase-block__text-wrapper {
+            flex: 1 1;
+            margin: 0;
+
+            @include breakpoint('small+') {
+                width: 100%;
+            }
+        }
+        .m-showcase-media {
+            margin: auto;
+            min-width: unset;
+            position: relative;
+
+            @include breakpoint('xsmall') {
+                min-width: 100%;
+            }
+
+            img,
+            video {
+                aspect-ratio: 16/10;
+                height: auto;
+                object-fit: cover;
+                padding: 0;
+                width: 100%;
+            }
         }
     }
 
     .m-showcase-block__text-wrapper {
-        width: 60%;
         display: flex;
         flex-direction: column;
-
-        @include breakpoint('medium') {
-            margin-top: 32px;
-            width: 100%;
-        }
-
-        @include breakpoint('small') {
-            margin-top: 32px;
-            width: 100%;
-        }
-
-        @include breakpoint('xsmall') {
-            margin-top: 32px;
-            width: 100%;
-        }
+        margin-top: 32px;
+        width: 100%;
 
         .showcase-tag {
             color: $color__text--type;
@@ -166,6 +163,17 @@
             .showcase-link {
                 color: $color__white;
             }
+        }
+    }
+    &.showcase--default.showcase--variation-1e3f49 {
+        background-color: $color__japanese-indigo;
+
+        .showcase-description,
+        .showcase-header,
+        .showcase-link,
+        .showcase-tag,
+        .showcase-title {
+            color: $color__white;
         }
     }
 }

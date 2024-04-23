@@ -1,12 +1,27 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import MyMuseumTourBuilder from 'my-museum-tour-builder';
+import * as Sentry from "@sentry/react";
 
 export default function myMuseumTourBuilder(container) {
   this.init = function () {
     let dataString = container.getAttribute('data-hide-from-tours');
+    let sentryDsn = container.getAttribute('data-dsn');
     const hideFromTours = dataString.length > 0 ? dataString.split(",") : [];
-    console.log(hideFromTours);
+
+    Sentry.init({
+      dsn: sentryDsn,
+      integrations: [
+        Sentry.browserTracingIntegration(),
+        Sentry.replayIntegration({
+          maskAllText: false,
+          blockAllMedia: false,
+        }),
+      ],
+      tracesSampleRate: 1.0,
+      replaysSessionSampleRate: 0.1,
+      replaysOnErrorSampleRate: 1.0,
+    });
 
     ReactDOM.render(
       <MyMuseumTourBuilder

@@ -34,6 +34,28 @@
 
 @formConnectedFields([
     'fieldName' => 'theme',
+    'fieldValues' => 'default',
+    'renderForBlocks' => true,
+    ])
+
+    @formField('select', [
+        'name' => 'variation',
+        'label' => 'Variation',
+        'options' => [
+            [
+                'value' => 'default',
+                'label' => 'Default',
+            ],
+            [
+                'value' => '1e3f49',
+                'label' => 'Dark Teal',
+            ],
+        ]
+    ])
+@endcomponent
+
+@formConnectedFields([
+    'fieldName' => 'theme',
     'fieldValues' => 'rlc',
     'renderForBlocks' => true,
     ])

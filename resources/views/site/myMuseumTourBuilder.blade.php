@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div data-behavior="myMuseumTourBuilder" data-hide-from-tours="{{ config('aic.hide_from_tours') }}">
+    <div data-behavior="myMuseumTourBuilder" data-hide-from-tours="{{ config('aic.hide_from_tours') }}" data-dsn="{{ config('sentry.dsn') }}">
     </div>
 @endsection
 

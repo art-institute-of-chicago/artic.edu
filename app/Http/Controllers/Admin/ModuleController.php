@@ -6,6 +6,14 @@ use A17\Twill\Http\Controllers\Admin\ModuleController as BaseModuleController;
 
 class ModuleController extends BaseModuleController
 {
+    protected function previewData($item)
+    {
+        return [
+            'autoRelated' => $this->getAutoRelated($item),
+            'featuredRelated' => $this->getFeatureRelated($item),
+        ];
+    }
+
     protected function getAutoRelated($item)
     {
         $autoRelated = collect($item->related($item))->unique('id')->filter();

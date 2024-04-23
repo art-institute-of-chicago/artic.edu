@@ -28,11 +28,13 @@
                 ])
             @endcomponent
         @else
-            @component('components.atoms._img')
-                @slot('image', $media)
-                @slot('settings', $imageSettings ?? '')
-                @slot('class', 'm-showcase-image')
-            @endcomponent
+            <div class="m-showcase-media">
+                @component('components.atoms._img')
+                    @slot('image', $media)
+                    @slot('settings', $imageSettings ?? '')
+                    @slot('class', 'm-showcase-image')
+                @endcomponent
+            </div>
         @endif
         <div class="m-showcase-block__text-wrapper">
             @if ($tag)
