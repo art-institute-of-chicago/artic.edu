@@ -35,7 +35,7 @@ If we're scrolling down, hide the header.
 
 .s-scroll-direction-up.s-header-hide {
   .g-header {
-
+    opacity: 1;
     @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
       -webkit-backdrop-filter: blur(5px);
       backdrop-filter: blur(5px);
