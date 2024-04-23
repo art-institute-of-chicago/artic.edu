@@ -197,6 +197,10 @@ const dropdown = function(container) {
   function _init() {
     document.addEventListener('mediaQueryUpdated', _mediaQueryUpdated, true);
     _mediaQueryUpdated();
+
+    window.addEventListener('popstate', function(event) {
+      location.reload();
+    });
   }
 
   this.destroy = function() {
