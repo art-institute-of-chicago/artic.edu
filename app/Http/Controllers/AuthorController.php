@@ -27,7 +27,7 @@ class AuthorController extends FrontController
         ];
 
         $nav = [
-            ['label' => 'Writings', 'href' => route('articles_publications'), 'links' => $subNav]
+            ['label' => 'Publications', 'href' => route('articles_publications'), 'links' => $subNav]
         ];
 
         $this->seo->setTitle($title);
@@ -69,7 +69,7 @@ class AuthorController extends FrontController
                 'href' => '/collection',
             ],
             [
-                'label' => 'Writings',
+                'label' => 'Publications',
                 'href' => '/articles_publications',
             ],
             [

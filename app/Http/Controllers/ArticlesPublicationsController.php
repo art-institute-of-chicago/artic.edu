@@ -11,15 +11,7 @@ class ArticlesPublicationsController extends FrontController
         $page = Page::forType('Articles and Publications')->first();
         $artIdeasPage = Page::forType('Art and Ideas')->first();
 
-        $articles = $page->getRelatedWithApiModels('featured_items', [], [
-            'articles' => false,
-            'experiences' => false
-        ]) ?? null;
-
-        $featureHero = $articles->shift();
-
         $this->seo->setTitle('Publications');
-        $this->seo->setImage($featureHero->imageFront('hero'));
 
         return view('site.articles_publications.index', [
             'primaryNavCurrent' => 'collection',
@@ -32,21 +24,16 @@ class ArticlesPublicationsController extends FrontController
                 ],
                 [
                     'href' => route('articles_publications'),
-                    'label' => 'Writings',
+                    'label' => 'Publications',
                     'active' => true,
                 ],
                 [
                     'href' => route('collection.research_resources'),
-                    'label' => 'Resources',
+                    'label' => 'Research',
                 ],
             ],
-            'featureHero' => $featureHero,
-            'features' => $articles,
             'digitalPublications' => [
                 'items' => $page->digitalPublications
-            ],
-            'experiences' => [
-                'items' => $page->experiences()->notUnlisted()->webPublished()->get(),
             ],
             'printedPublications' => [
                 'intro' => $page->present()->printed_publications_intro,

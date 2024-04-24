@@ -261,11 +261,11 @@ class LandingPagesController extends FrontController
                         ],
                         [
                             'href' => route('articles_publications'),
-                            'label' => 'Writings',
+                            'label' => 'Publications',
                         ],
                         [
                             'href' => route('collection.research_resources'),
-                            'label' => 'Resources',
+                            'label' => 'Research',
                             'active' => true,
                         ],
                     ],
