@@ -29,11 +29,13 @@ Additional state for if the auto complete has been used.
   }
 
   .g-mask {
-    right: 0;
-    bottom: 0;
     background-color: rgba($color__black--80, 50%);
+    bottom: 0;
+    height: 100vh;
     opacity: 1;
-    transition: background-color .6s ease-in, backdrop-filter .6s ease-in;
+    right: 0;
+    transition: background-color .6s ease-in, backdrop-filter .6s ease-in, opacity .6s ease-in;
+    width: 100vw;
 
     @supports (backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px)) {
       -webkit-backdrop-filter: blur(2px);
