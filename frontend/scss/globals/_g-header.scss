@@ -1,3 +1,16 @@
+#a17:has([aria-expanded="true"]) + .g-mask {
+  background-color: rgba($color__black--80, 50%);
+  bottom: 0;
+  opacity: 1;
+  right: 0;
+  transition: background-color .6s ease-in, backdrop-filter .6s ease-in, opacity .6s ease-in;
+
+  @supports (backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px)) {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+}
+
 .g-header {
   position: fixed;
   z-index: map-get($zindexs, 'header');
@@ -12,10 +25,6 @@
   margin-left: -50vw;
   left: 50%;
   right: 50%;
-  & ~ main::after {
-    content: '';
-    background-color: rgba($color__white, 0);
-  }
 }
 
 .g-header:not(:has([aria-expanded="true"])) {
@@ -23,6 +32,7 @@
   transition: background-color .3s ease-out;
 }
 .g-header:has([aria-expanded="true"]) {
+  z-index: map-get($zindexs, 'header');
   background-color: rgba($color__white, 1);
   transition: background-color .6s ease-in;
   @include breakpoint('small') {
@@ -33,20 +43,6 @@
   }
   @include breakpoint('large+') {
     height: 380px;
-  }
-  & ~ main::after {
-    background-color: rgba($color__black--80, 50%);
-    transition: background-color .6s ease-in, backdrop-filter .6s ease-in;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: map-get($zindexs, 'stickyFilters');
-    @supports (backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px)) {
-      -webkit-backdrop-filter: blur(2px);
-      backdrop-filter: blur(2px);
-    }
   }
   .g-header__inner {
     border-bottom: none !important;
