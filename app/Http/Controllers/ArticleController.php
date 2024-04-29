@@ -132,18 +132,6 @@ class ArticleController extends FrontController
             );
         }
 
-        if (Experience::webPublished()->articlePublished()->count() > 0) {
-            array_push(
-                $categories,
-                [
-                    'label' => 'Interactive Features',
-                    'href' => route('articles', ['category' => 'interactive-features']),
-                    'active' => request()->get('category') == 'interactive-features',
-                    'ajaxScrollTarget' => 'listing',
-                ]
-            );
-        }
-
         return view('site.articles', [
             'primaryNavCurrent' => 'collection',
             'page' => $page,
