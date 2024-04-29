@@ -95,7 +95,7 @@ class ArticleController extends FrontController
             ],
         ];
 
-        $contentTypes = ['Articles', 'Highlights', 'Videos', 'Experiences'];
+        $contentTypes = ['Articles', 'Highlights', 'Videos', 'Interactive Features'];
 
         foreach ($contentTypes as $type) {
             array_push(
