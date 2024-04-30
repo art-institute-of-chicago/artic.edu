@@ -2,6 +2,24 @@
     $currentUrl = explode('/', request()->url());
     $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
     $categoriesList = \App\Models\Category::all()->pluck('name', 'id')->toArray();
+    $endpoints = [
+        [
+            'label' => 'Article',
+            'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['published' => true]),
+        ],
+        [
+            'label' => 'Highlight',
+            'value' => moduleRoute('highlights', 'collection', 'browser', ['is_published' => true])
+        ],
+        [
+            'label' => 'Interactive feature',
+            'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser', ['is_published' => true])
+        ],
+        [
+            'label' => 'Video',
+            'value' => moduleRoute('videos', 'collection.articles_publications', 'browser', ['is_published' => true]),
+        ],
+    ];
 
     switch ($type) {
         case 'Editorial':
@@ -107,24 +125,7 @@
             'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'articles',
             'name' => 'stories',
-            'endpoints' => [
-                [
-                    'label' => 'Article',
-                    'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['published' => true]),
-                ],
-                [
-                    'label' => 'Highlight',
-                    'value' => moduleRoute('highlights', 'collection', 'browser', ['is_published' => true])
-                ],
-                [
-                    'label' => 'Interactive feature',
-                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser', ['is_published' => true])
-                ],
-                [
-                    'label' => 'Video',
-                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser', ['is_published' => true]),
-                ],
-            ],
+            'endpoints' => $endpoints,
             'max' => 5,
             'label' => 'Stories',
         ])
@@ -179,24 +180,7 @@
             'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'articles',
             'name' => 'stories',
-            'endpoints' => [
-                [
-                    'label' => 'Article',
-                    'value' => '/collection/articles_publications/articles/browser'
-                ],
-                [
-                    'label' => 'Highlight',
-                    'value' => moduleRoute('highlights', 'collection', 'browser')
-                ],
-                [
-                    'label' => 'Interactive feature',
-                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser')
-                ],
-                [
-                    'label' => 'Video',
-                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
-                ],
-            ],
+            'endpoints' => $endpoints,
             'max' => 6,
             'label' => 'Stories',
         ])
@@ -229,24 +213,7 @@
             'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'articles',
             'name' => 'stories',
-            'endpoints' => [
-                [
-                    'label' => 'Article',
-                    'value' => '/collection/articles_publications/articles/browser'
-                ],
-                [
-                    'label' => 'Highlight',
-                    'value' => moduleRoute('highlights', 'collection', 'browser')
-                ],
-                [
-                    'label' => 'Interactive feature',
-                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser')
-                ],
-                [
-                    'label' => 'Video',
-                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
-                ],
-            ],
+            'endpoints' => $endpoints,
             'max' => 4,
             'label' => 'Stories',
         ])
