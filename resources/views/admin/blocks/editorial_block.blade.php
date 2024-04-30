@@ -38,12 +38,12 @@
             'label' => 'Variation',
             'options' => [
                 [
-                    'value' => 'feature-5a',
-                    'label' => 'Feature 5 A',
+                    'value' => 'feature-5-side',
+                    'label' => 'Feature 5 Side',
                 ],
                 [
-                    'value' => 'feature-5b',
-                    'label' => 'Feature 5 B',
+                    'value' => 'feature-5-top',
+                    'label' => 'Feature 5 Top',
                 ],
                 [
                     'value' => 'video',
@@ -79,7 +79,7 @@
 
     @formConnectedFields([
         'fieldName' => 'variation',
-        'fieldValues' => ['feature-5a', 'feature-5b', '3-across', '4-across'],
+        'fieldValues' => ['feature-5-side', 'feature-5-top', '3-across', '4-across'],
         'renderForBlocks' => true,
     ])
 
@@ -99,7 +99,7 @@
 
     @formConnectedFields([
         'fieldName' => 'variation',
-        'fieldValues' => ['feature-5a', 'feature-5b'],
+        'fieldValues' => ['feature-5-side', 'feature-5-top'],
         'renderForBlocks' => true,
     ])
 
