@@ -10,10 +10,6 @@
     border-bottom: 2px solid $color__black;
     text-align: center;
 
-    @include breakpoint('medium-') {
-
-    }
-
     .stories-header__date {
         display: flex;
         align-items: center;
