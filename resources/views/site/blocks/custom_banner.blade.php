@@ -47,7 +47,7 @@
                 @endcomponent
             </div>
             <div class="button-wrapper">
-                @if ($variation == 'cloud')
+                @if ($theme =='editorial' && $variation == 'cloud')
                     <div class="tag-cloud">
                         @foreach ($tags as $tag)
                             <a class="tag f-tag" href="{{ route('articles', ['category' => $tag->id]) }}">{{ $tag->name }}</a>                    
