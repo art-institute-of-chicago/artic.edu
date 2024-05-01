@@ -162,7 +162,7 @@
             'endpoints' => [
                 [
                     'label' => 'Video',
-                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
+                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser', ['is_published' => true]),
                 ],
             ],
             'max' => 6,
