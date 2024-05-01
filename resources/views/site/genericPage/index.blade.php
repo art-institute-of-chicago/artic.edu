@@ -25,11 +25,9 @@
         <div class="o-article__secondary-actions">
             @component('components.molecules._m-article-actions')
             @endcomponent
-            @component('site.shared._featuredRelated')
+            @component('site.shared._loadRelatedSidebar')
                 @slot('item', $item)
-                @slot('variation', 'u-show@medium+')
             @endcomponent
-        </div>
 
         @if ($item->hasFeaturedRelated())
             <div class="o-article__related">

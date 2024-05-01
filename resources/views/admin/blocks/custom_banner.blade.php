@@ -4,8 +4,8 @@
     $categoriesList = \App\Models\Category::all()->pluck('name', 'id')->toArray();
 
     switch ($type) {
-        case 'Stories':
-            $themes = ['default', 'stories'];
+        case 'Editorial':
+            $themes = ['default', 'editorial'];
             break;
         default:
             $themes = ['default'];
@@ -29,7 +29,7 @@
 
 @formConnectedFields([
     'fieldName' => 'theme',
-    'fieldValues' => 'stories',
+    'fieldValues' => 'editorial',
     'renderForBlocks' => true,
     ])
 
@@ -51,53 +51,6 @@
         'fieldValues' => 'cloud',
         'renderForBlocks' => true,
     ])
-
-        @formField('radios', [
-            'name' => 'background_type',
-            'label' => 'Background Type',
-            'default' => 'mobile_app',
-            'inline' => true,
-            'options' => [
-                [
-                    'value' => 'background_image',
-                    'label' => 'Image'
-                ],
-                [
-                    'value' => 'background_color',
-                    'label' => 'Color'
-                ],
-            ]
-        ])
-
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'background_type',
-            'fieldValues' => 'background_image',
-            'renderForBlocks' => true
-        ])
-
-            @formField('medias', [
-                'name' => 'image',
-                'label' => 'Image',
-                'max' => 1,
-                'withVideoUrl' => false,
-                'required' => true,
-            ])
-
-        @endcomponent
-
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'background_type',
-            'fieldValues' => 'background_color',
-            'renderForBlocks' => true
-        ])
-
-            @formField('color', [
-                'name' => 'bgcolor',
-                'label' => 'Background color',
-                'default' => '#000000'
-            ])
-
-        @endcomponent
 
         @formField('input', [
             'name' => 'title',
@@ -124,6 +77,24 @@
             })->toArray(),
             'placeholder' => 'Add categories to the tag cloud',
         ])
+
+        @component('twill::partials.form.utils._columns')
+        @slot('left')
+            @formField('input', [
+                'name' => 'link_label',
+                'label' => 'Link label',
+                'type' => 'text',
+            ])
+        @endslot
+
+        @slot('right')
+            @formField('input', [
+                'name' => 'link_url',
+                'label' => 'Link URL',
+                'type' => 'text',
+            ])
+        @endslot
+        @endcomponent
 
     @endcomponent
 

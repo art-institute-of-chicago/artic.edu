@@ -54,7 +54,7 @@ class HoursPresenter extends BasePresenter
 
         $whenFields = $this->getWhenFields($when);
 
-        return 'Open Today <br>' . $this->getHourDisplay($whenFields['public_open']) . ' - ' .
+        return 'Open&nbsp;Today ' . $this->getHourDisplay($whenFields['public_open']) . ' - ' .
         $this->getHourDisplay($whenFields['public_close']);
     }
 

@@ -7,7 +7,7 @@
     margin-top: 56px;
     height: 100px;
     width: 100%;
-    border-bottom: 1px solid $color__black;
+    border-bottom: 2px solid $color__black;
     text-align: center;
 
     .stories-header__date {
@@ -20,7 +20,13 @@
         font-size: 13px;
         font-weight: 400;
         line-height: 16px;
+        letter-spacing: 1px;
         border-right: 1px solid $color__black;
+        text-transform: uppercase;
+
+        @include breakpoint('small-') {
+            border-right: none;
+        }
     }
 
     .stories-header__title {
@@ -28,6 +34,13 @@
         font-size: 38px;
         font-weight: 300;
         line-height: 44px;
+
+        @include breakpoint('small-') {
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 32px;
+            letter-spacing: -0.01em;
+        }
     }
 
     .stories-header__intro {
@@ -36,6 +49,13 @@
         font-weight: 325;
         line-height: 28px;
         color: $color__black--54;
+
+        @include breakpoint('small-') {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 24px;
+            letter-spacing: 0.01em;
+        }
     }
 
     .stories-header__hours {
@@ -48,10 +68,16 @@
         font-size: 13px !important;
         font-weight: 400 !important;
         line-height: 16px !important;
+        letter-spacing: 1px;
         border-left: 1px solid $color__black;
+        text-transform: uppercase;
+
+        @include breakpoint('small-') {
+            font-size: 11px !important;
+        }
     }
 
-    @include breakpoint('small-') {
+    @include breakpoint('medium-') {
         border-bottom: none;
         height: 100% !important;
 
@@ -83,17 +109,38 @@
     padding-bottom: 28px;
     border-bottom: 1px solid $color__black;
     margin-bottom: 40px;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    @include breakpoint('small-') {
+        padding-bottom: 20px;
+    }
 
     ul {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: block;
+        text-align: center;
+        white-space: nowrap;
+        min-width: 100%;
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    .m-links-bar__item>.f-link {
+        color: $color__black--90;
+        font-family: $sans-serif-font--loaded;
+        font-size: 17px;
+        font-weight: 300;
+        line-height: 28px;
+        letter-spacing: 0.01em;
     }
 }
 
 .stories-fixed_header {
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
 
     @include breakpoint('small-') {
         flex-direction: column;
@@ -101,13 +148,22 @@
 
     .stories-top-stories {
         width: 100%;
-        height: 500px;
+        height: fit-content;
         display: flex;
         justify-content: space-between;
+        flex-direction: row;
+
+        @include breakpoint('medium-') {
+            width: 48%;
+            height: auto;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
 
         @include breakpoint('small-') {
-            flex-direction: column;
+            width: 100%;
             height: auto;
+            flex-direction: column;
             flex-wrap: wrap;
         }
 
@@ -115,40 +171,108 @@
             order: 2;
             margin-left: auto;
             margin-right: auto;
-            padding-left: 36px;
-            padding-right: 36px;
+            padding-left: 40px;
+            padding-right: 40px;
             width: 70%;
 
+            @include breakpoint('medium-') {
+                margin: 0;
+                padding: 0;
+                order: 1;
+                width: 100% !important;
+            }
+
             @include breakpoint('small-') {
+                margin: 0;
                 order: 1;
                 width: 100% !important;
                 padding-left: 0;
                 padding-right: 0;
             }
+
+            .m-listing__meta {
+                min-height: unset !important;
+                padding-bottom: 36px;
+
+                .title {
+                    margin-top: 6px !important;
+                }
+
+                .intro {
+                    font-family: $sans-serif-font--loaded;
+                    font-size: 17px;
+                    font-weight: 300;
+                    line-height: 28px;
+                    letter-spacing: 0.01em;
+                }
+
+                .author {
+                    font-family: $sans-serif-font--loaded;
+                    font-size: 15px;
+                    font-weight: 400;
+                    line-height: 20px;
+                    letter-spacing: 0.01em;
+                    margin-top: 0 !important;
+                    color: $color__black--54;
+                }
+            }
         }
 
         .stories-top-stories__side {
             order: 1;
-            max-width: 250px;
+            width: 30%;
+
+            @include breakpoint('medium-') {
+                display: flex;
+                flex-direction: row;
+                width: 100% !important;
+                gap: 20px;
+            }
 
             @include breakpoint('small-') {
                 order: 2;
                 max-width: 100% !important;
+                width: 100% !important;
+                gap: 0;
+                flex-direction: column;
+            }
+
+            .stories-listing {
+                width: 100%;
             }
         }
 
         .stories-listing {
             list-style-type: none;
+
+            .title {
+                margin-top: 6px !important;
+            }
+
+            .author {
+                margin-top: 0 !important;
+                font-family: $sans-serif-font--loaded;
+                font-size: 15px;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0.01em;
+                color: $color__black--54;
+            }
         }
     }
 
     .stories-most_popular_stories {
-        min-height: 100%;
-        max-width: 250px;
+        height: min-content;
+        width: 30%;
         background-color: $color__cold-white;
 
+        @include breakpoint('medium-') {
+            width: 48% !important;
+        }
+
         @include breakpoint('small-') {
-            max-width: 100% !important;
+            height: auto;
+            width: 100% !important;
         }
 
         .stories-most_popular_stories__title {
@@ -160,7 +284,6 @@
             letter-spacing: 1px;
             color: $color__black--3;
             padding: 12px;
-            margin-bottom: 28px;
         }
 
         .stories-most_popular_stories__list {
@@ -168,6 +291,11 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
+            padding-bottom: 28px;
+
+            @include breakpoint('medium-') {
+                padding-bottom: 28px;
+            }
 
             li {
                 min-width: 100%;
@@ -198,12 +326,17 @@
                         font-size: 12px;
                         line-height: 16px;
                         font-weight: 400;
+                        padding-bottom: 5px;
                     }
 
                     .title.f-list-3 {
                         font-size: 16px;
                         line-height: 20px;
                         font-weight: 325;
+
+                        &::before {
+                            padding-top: 10px;
+                        }
                     }
                 }
             }

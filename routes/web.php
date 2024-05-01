@@ -16,6 +16,7 @@ use App\Http\Controllers\ExhibitionsController;
 use App\Http\Controllers\ExhibitionHistoryController;
 use App\Http\Controllers\ExhibitionPressRoomController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\GenericPagesController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HighlightsController;
@@ -55,6 +56,8 @@ Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 Route::get('/today', [RedirectController::class, 'today'])->name('today');
 
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
+
+Route::get('/ajaxData', [FrontController::class, 'getAjaxData']);
 
 // Landing Page
 Route::get('/', [LandingPagesController::class, 'slugHome'])->name('home');

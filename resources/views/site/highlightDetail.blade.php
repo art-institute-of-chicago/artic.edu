@@ -35,21 +35,15 @@
   </div>
 
   <div class="o-article__secondary-actions">
-    @component('site.shared._featuredRelated')
+    @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
-        @slot('variation', 'u-show@medium+')
-        @slot('autoRelated', $autoRelated)
-        @slot('featuredRelated', $featuredRelated)
     @endcomponent
   </div>
 
   @if ($item->hasFeaturedRelated())
     <div class="o-article__related">
-        @component('site.shared._featuredRelated')
+        @component('site.shared._loadRelatedSidebar')
             @slot('item', $item)
-            @slot('variation', 'u-show@medium+')
-            @slot('autoRelated', $autoRelated)
-            @slot('featuredRelated', $featuredRelated)
         @endcomponent
     </div>
   @endif

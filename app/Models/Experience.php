@@ -179,7 +179,7 @@ class Experience extends AbstractModel implements Sortable
 
     public function getTypeAttribute()
     {
-        return 'experience';
+        return 'interactive feature';
     }
 
     public function getKioskOnlyAttribute($value)

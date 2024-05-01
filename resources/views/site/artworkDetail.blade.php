@@ -102,24 +102,18 @@
   </div>
 
   <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium+">
-    @component('site.shared._featuredRelated')
+    @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
-        @slot('autoRelated', $autoRelated)
-        @slot('featuredRelated', $featuredRelated)
-        @slot('variation', 'u-show@medium+')
-        @slot('behavior', 'relatedSidebar')
     @endcomponent
-  </div>
+    </div>
 
   {{-- WEB-2243: Integrate related elements? Could be loaded indirectly from related entities --}}
   @if ($item->hasFeaturedRelated())
       <div class="o-article__related{{ (empty($item->description) or $item->description === '') ? ' o-article__related--no-description' : '' }}">
-          @component('site.shared._featuredRelated')
-              @slot('item', $item)
-              @slot('autoRelated', $autoRelated)
-              @slot('featuredRelated', $featuredRelated)
-          @endcomponent
-      </div>
+        @component('site.shared._loadRelatedSidebar')
+            @slot('item', $item)
+        @endcomponent      
+    </div>
   @endif
 
   <div class="o-article__body{{ (empty($item->description) or $item->description === '') ? ' o-article__body--no-description' : '' }} o-blocks">

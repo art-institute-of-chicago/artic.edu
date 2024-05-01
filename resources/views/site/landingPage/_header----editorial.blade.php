@@ -15,18 +15,14 @@
       @slot('itemprops',$itemprops ?? null)
     @endcomponent
 
-    <div class="stories-header">
-        <div class="stories-header__date">
-            <p>{{ Str::upper($currentDate) }}</p>
+    <div class="stories-header" data-behavior="editorialHeader">
+        <div id="stories-header__date" class="stories-header__date">
         </div>
         <div class="stories-header__heading">
             <h2 class="stories-header__title">Articles & Videos</h2>
             <p class="stories-header__intro">{{ $intro }}</p>
         </div>
-        <div class="stories-header__hours">
-            @if (!empty($hour))
-                <span>{!!Str::upper($hour->present()->getTodayStatusWithHours())!!}</span>
-            @endif
+        <div id="stories-header__hours" class="stories-header__hours">
         </div>
     </div>
 
@@ -47,7 +43,7 @@
                         @slot('isFeatured', $isFeatured)
                         @slot('item', $item)
                         @slot('fullscreen', false)
-                        @slot('titleFont', $isFeatured ? 'f-list-3' : 'f-list-1')
+                        @slot('titleFont', $isFeatured ? 'f-list-4' : 'f-list-1')
                         @slot('hideImage', $loop->index > 0)
                         @slot('hideDescription', $loop->index > 0)
                         @slot('imageSettings', $imageSettings ?? null)

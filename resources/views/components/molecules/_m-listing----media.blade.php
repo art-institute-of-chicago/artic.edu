@@ -18,7 +18,9 @@
                 @else
                     <span class="default-img"></span>
                 @endif
-                <svg class="icon--play--48"><use xlink:href="#icon--play--48"></use></svg>
+                <svg class="icon--play--{!! isset($playIconSize) ? $playIconSize : '48' !!}">
+                    <use xlink:href="#icon--play--{!! isset($playIconSize) ? $playIconSize : '48' !!}"></use>
+                </svg>            
             </span>
         @endif
         <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
@@ -31,6 +33,10 @@
                 @if ($item->timeStamp)
                     <br>
                     <span class="subtitle f-secondary">{{ $item->timeStamp }}</span>
+                @endif
+                @if (isset($item->duration) && (!isset($hideDuration) || !$hideDuration))
+                    <br>
+                    <span class="subtitle f-secondary">{{ $item->duration }}</span>
                 @endif
             @endif
         </span>

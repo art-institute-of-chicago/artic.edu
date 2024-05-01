@@ -34,7 +34,8 @@ class Video extends AbstractModel
         'title_display',
         'meta_title',
         'meta_description',
-        'search_tags'
+        'search_tags',
+        'duration'
     ];
 
     protected $casts = [
