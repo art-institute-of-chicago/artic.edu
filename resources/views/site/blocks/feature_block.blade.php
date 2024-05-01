@@ -94,7 +94,7 @@
                     @slot('font', 'f-secondary')
                     @slot('href', route('articles', [], false))
                     @slot('variation', 'm-feature-block-editorial__link')
-                    'View all videos'<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>
+                    View all videos <svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>
                 @endcomponent
                 @endif
             </div>
@@ -128,7 +128,7 @@
                                 @endif
                                 @if($item->imageFront('listing') ?? $item->imageFront('hero'))
                                     @component('components.atoms._img')
-                                    @slot('class', 'm-feature-block-listing__img column-' . $columns . 'x')                                
+                                    @slot('class', 'm-feature-block-listing__img column-' . $columns . 'x')
                                     @slot('image', $item->imageFront('listing') ?? $item->imageFront('hero'))
                                         @slot('settings', array(
                                             'fit' => 'crop',
@@ -142,7 +142,7 @@
                                                 'xlarge' => 38,
                                             ))))
                                     @endcomponent
-                                    @if ($item->type === 'exhibition' && ($item->is_now_open || $item->is_closing_soon || $item->is_ongoing))                                
+                                    @if ($item->type === 'exhibition' && ($item->is_now_open || $item->is_closing_soon || $item->is_ongoing))
                                     <div class="m-feature-block-listing__label__overlay">
                                         <span class="{{$item->is_now_open ? 'label-open' : ''}} {{$item->is_closing_soon ? 'label-closing' : ''}}">
                                             {{ $item->is_now_open ? 'Now Open' : ($item->is_closing_soon ? 'Closing Soon' : '') }}
@@ -168,7 +168,7 @@
                                 <span class="m-feature-block-listing__meta-bottom">
                                     @component('components.atoms._date')
                                     @if(!$item->is_ongoing)
-                                        @if ($item->present()->formattedNextOccurrence) 
+                                        @if ($item->present()->formattedNextOccurrence)
                                             {!! $item->present()->formattedNextOccurrence !!}
                                         @elseif($item->present()->nextOccurrenceTime)
                                             {!! $item->present()->nextOccurrenceTime !!}

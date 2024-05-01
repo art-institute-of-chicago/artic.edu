@@ -44,7 +44,7 @@
                 @slot('font', 'f-secondary')
                 @slot('href', "https://www.youtube.com/user/ArtInstituteChicago")
                 @slot('variation', 'editorial-block__link')
-                'Browse our YouTube channel'<svg class="icon--new-window"><use xlink:href="#icon--new-window"></use></svg>
+                Browse our YouTube channel <svg class="icon--new-window"><use xlink:href="#icon--new-window"></use></svg>
             @endcomponent
         @endif
     </div>
