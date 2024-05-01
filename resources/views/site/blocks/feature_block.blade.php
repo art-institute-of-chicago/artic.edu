@@ -94,7 +94,7 @@
                     @slot('font', 'f-secondary')
                     @slot('href', route('articles', [], false))
                     @slot('variation', 'm-feature-block-editorial__link')
-                    {!! 'View all videos' !!} <svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>
+                    'View all videos'<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>
                 @endcomponent
                 @endif
             </div>
