@@ -140,13 +140,13 @@ class FrontController extends BaseController
     protected function getRelatedSidebarItemsData()
     {
         $itemId = request()->query('id');
-        $itemType = request()->query('model');
+        $itemModel = app(request()->query('model'));
 
-        if (app($itemType)->hasAugmentedModel()) {
-            $itemType = app($itemType)->getAugmentedModelClass();
-            $item = $itemType::where('datahub_id', $itemId)->first();
+        if ((method_exists($itemModel, 'hasAugmentedModel')) && $itemModel->hasAugmentedModel()) {
+            $itemModel = $itemModel->getAugmentedModelClass();
+            $item = $itemModel::where('datahub_id', $itemId)->first();
         } else {
-            $item = app($itemType)->query()->find((int) $itemId);
+            $item = app($itemModel)->query()->find((int) $itemId);
         }
 
         if (!$item) {
