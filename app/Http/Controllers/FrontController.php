@@ -139,8 +139,13 @@ class FrontController extends BaseController
 
     protected function getRelatedSidebarItemsData()
     {
+        try {
+            $itemModel = app(request()->query('model'));
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Unable to retrieve model'], 400);
+        }
+
         $itemId = request()->query('id');
-        $itemModel = app(request()->query('model'));
 
         if ((method_exists($itemModel, 'hasAugmentedModel')) && $itemModel->hasAugmentedModel()) {
             $itemModel = $itemModel->getAugmentedModelClass();
