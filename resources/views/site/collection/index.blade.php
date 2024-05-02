@@ -191,7 +191,7 @@
         <ul class="o-feature-plus-4__items-1" aria-labelledby="h-featured-plus-1">
         @foreach ($featuredItems as $item)
             @if ($loop->index < 2)
-                @component('components.molecules._m-listing----' . strtolower($item->type) . '-minimal')
+                @component('components.molecules._m-listing----' . Str::slug(strtolower($item->type)) . '-minimal')
                     @slot('item', $item)
                     @slot('imageSettings', array(
                         'fit' => 'crop',

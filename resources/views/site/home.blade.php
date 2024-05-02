@@ -207,7 +207,7 @@
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
         @foreach ($highlights as $k => $item)
-            @component('components.molecules._m-listing----' . strtolower($item->type))
+            @component('components.molecules._m-listing----' . Str::slug(strtolower($item->type)))
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
                 @slot('imageSettings', array(

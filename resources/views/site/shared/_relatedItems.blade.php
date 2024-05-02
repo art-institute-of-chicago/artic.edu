@@ -9,7 +9,7 @@
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
         @foreach ($relatedItems as $item)
-            @component('components.molecules._m-listing----' . strtolower($item->type))
+            @component('components.molecules._m-listing----' . Str::slug(strtolower($item->type)))
                 @slot('item', $item)
                 @slot('subtype', $item->subtype ?? $item->type)
                 @slot('hideDescription', $hideDescription ?? true)
