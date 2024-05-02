@@ -116,7 +116,7 @@ class FrontController extends BaseController
     public function getAjaxData()
     {
         $request = request()->query('q');
-    
+
         switch ($request) {
             case 'editorialHeader':
                 return $this->getEditorialHeaderData();
@@ -126,33 +126,33 @@ class FrontController extends BaseController
                 return response()->json(['error' => 'Invalid request'], 400);
         }
     }
-    
+
     protected function getEditorialHeaderData()
     {
         $hour = Hour::today()->first();
-    
+
         return response()->json([
             'date' => Carbon::now()->format('M d, Y'),
             'hours' => $hour->present()->getTodayStatusWithHours(),
         ]);
     }
-    
+
     protected function getRelatedSidebarItemsData()
     {
         $itemId = request()->query('id');
         $itemType = request()->query('model');
-    
+
         if (app($itemType)->hasAugmentedModel()) {
             $itemType = app($itemType)->getAugmentedModelClass();
             $item = $itemType::where('datahub_id', $itemId)->first();
         } else {
             $item = app($itemType)->query()->find((int) $itemId);
         }
-    
+
         if (!$item) {
             return response()->json(['error' => 'Item not found'], 404);
         }
-    
+
         return response(view('site.shared._featuredRelated', [
             'item' => $item,
             'autoRelated' => $this->getAutoRelated($item),
