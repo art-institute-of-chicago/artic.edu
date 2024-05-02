@@ -46,7 +46,16 @@
                         @slot('titleFont', $isFeatured ? 'f-list-4' : 'f-list-1')
                         @slot('hideImage', $loop->index > 0)
                         @slot('hideDescription', $loop->index > 0)
-                        @slot('imageSettings', $imageSettings ?? null)
+                        @slot('imageSettings', array(
+                            'srcset' => array(300,600,800,1200,1600),
+                            'sizes' => ImageHelpers::aic_imageSizes(array(
+                                  'xsmall' => '58',
+                                  'small' => '58',
+                                  'medium' => '38',
+                                  'large' => '28',
+                                  'xlarge' => '28',
+                            )),
+                        ))
                     @endcomponent
                     {!! $isFeatured || $loop->last ? '</div>' : '' !!}                
                 @endforeach
