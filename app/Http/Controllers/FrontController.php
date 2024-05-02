@@ -151,7 +151,7 @@ class FrontController extends BaseController
             $itemModel = $itemModel->getAugmentedModelClass();
             $item = $itemModel::where('datahub_id', $itemId)->first();
         } else {
-            $item = app($itemModel)->query()->find((int) $itemId);
+            $item = $itemModel->query()->find((int) $itemId);
         }
 
         if (!$item) {
