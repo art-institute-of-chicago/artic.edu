@@ -31,7 +31,7 @@
   <template id="menu-featured-exhibition">
     <a>
       <img aria-describedby="menu-featured-exhibition-title" alt="">
-      <div class="description">
+      <div class="description__container">
         <div class="supertitle">Featured Exhibition</div>
         <div id="menu-featured-exhibition-title" class="title"></div>
         <p class="cta">

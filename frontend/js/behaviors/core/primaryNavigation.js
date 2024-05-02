@@ -9,6 +9,8 @@ export default function(container) {
     const canExpandAttribute = 'aria-haspopup'
     const isExpandedAttribute = 'aria-expanded'
     const isCollapsingClass = 'collapsing'
+    const exhibitionsDetailsContainerQuery = '.exhibitions .details__container'
+    const featuredExhibitionTemplateQuery = '#menu-featured-exhibition'
     const exhibitionApiPath = '/api/v1/exhibitions/search'
     const featuredExhibitionApiQuery = new URLSearchParams({
         'fields': 'title,image_url,web_url',
@@ -21,7 +23,8 @@ export default function(container) {
     const menuBar = container.querySelector(menuBarQuery)
     const menuItems = menuBar.querySelectorAll(menuItemQuery)
     const levelOneMenuItems = menuBar.querySelectorAll(`${levelOneQuery}>${menuItemQuery}`)
-    const exhibitionsDetailsContainer = container.querySelector('.exhibitions .details__container')
+    const exhibitionsDetailsContainer = container.querySelector(exhibitionsDetailsContainerQuery)
+    const featuredExhibitionTemplate = container.querySelector(featuredExhibitionTemplateQuery)
 
     function _init() {
         const featuredExhibitionData = new URL(
@@ -60,7 +63,7 @@ export default function(container) {
     function exhibitionHandler(json) {
         let data = json['data'][0]
 
-        const template = container.querySelector('#menu-featured-exhibition').content.cloneNode(true)
+        const template = featuredExhibitionTemplate.content.cloneNode(true)
         template.querySelector('a').setAttribute('href', data.web_url)
         template.querySelector('img').setAttribute('src', data.image_url)
         template.querySelector('.title').textContent = data.title
