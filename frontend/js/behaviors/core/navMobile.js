@@ -1,16 +1,14 @@
 import { setFocusOnTarget, forEach, triggerCustomEvent } from '@area17/a17-helpers';
 
 const navMobile = function(container) {
+  const openTriggers = container.querySelectorAll('[data-nav-trigger]');
+  const backTriggers = container.querySelectorAll('[data-nav-back]');
+  const isActiveClass = 's-nav-mobile-active';
+  const isExpandedClass = 'js-subnav-open';
+  const currentMenuItemClass = 'nav-is-open';
+  const menuItemDetailsQuery = '.details';
 
-  var openTriggers = container.querySelectorAll('[data-nav-trigger]');
-  var backTriggers = container.querySelectorAll('[data-nav-back]');
-  var isActiveClass = 's-nav-mobile-active';
-  var isExpandedClass = 'js-subnav-open';
-  var currentMenuItemClass = 'nav-is-open';
-  var menuItemDetailsQuery = '.details';
-
-  var navLevel = 0;
-
+  let navLevel = 0;
   let active = false;
 
   function _openNav(e){
