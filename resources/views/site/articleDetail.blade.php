@@ -353,7 +353,7 @@
             @slot('cols_xlarge','4')
             @slot('maintainOrder','false')
             @foreach ($article->exploreFurther['items'] as $item)
-                @component('components.molecules._m-listing----' . Str::slug(strtolower($item->type)))
+                @component('components.molecules._m-listing----' . Str::slug($item->type))
                     @slot('variation', 'o-pinboard__item')
                     @slot('item', $item)
                     @slot('imageSettings', array(

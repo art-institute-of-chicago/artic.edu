@@ -43,7 +43,7 @@
             @slot('cols_large','2')
             @slot('cols_xlarge','2')
             @foreach ($featuredArticles as $item)
-                @component('components.molecules._m-listing----' . Str::slug(strtolower($item->type)))
+                @component('components.molecules._m-listing----' . Str::slug($item->type))
                     @slot('item', $item)
                     @slot('titleFont', 'f-list-4')
                     @slot('captionFont', 'f-secondary')
@@ -79,7 +79,7 @@
             @slot('item', $item)
           @endcomponent  
         @else
-          @component('components.molecules._m-listing----' . Str::slug(strtolower($item->type)) . '-minimal')
+          @component('components.molecules._m-listing----' . Str::slug($item->type) . '-minimal')
             @slot('item', $item)
             @slot('imageSettings', array(
                 'fit' => 'crop',
