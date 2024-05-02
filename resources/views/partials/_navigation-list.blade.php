@@ -36,14 +36,22 @@
         >
             {!! $item['name'] !!}
             @if ($hasChildren)
-                <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+                <svg aria-hidden="true" class="icon--arrow" data-nav-trigger>
+                    <use xlink:href="#icon--arrow" />
+                </svg>
             @endif
         </a>
         @if(($hasImage && $hasDescription) || $hasChildren)
             <div class="details">
+                <a href="#" class="g-nav-mobile__back arrow-link arrow-link--back">
+                    <svg aria-hidden="true" class="icon--arrow" data-nav-back>
+                        <use xlink:href="#icon--arrow" />
+                    </svg>
+                </a>
                 <span class="details__container">
                 @if($hasUrl)
                     <a
+                        class="title-link"
                         href="{{ $item['url'] }}"
                         @if($isCurrentPage)
                             aria-current="page"
@@ -55,20 +63,20 @@
                     @if($hasImage)
                         <img src="{{ $item['image'] }}" aria-describedby="{{ $id }}-description" alt="">
                     @endif
-                    @if($hasDescription)
-                        <div class="description">
-                            <div class="title">{!! $item['name'] !!}</div>
-                            <p id="{{ $id }}-description">{!! $item['description'] !!}</p>
-                            @if($hasCta)
-                                <p class="cta">
-                                    {!! $item['cta'] !!}
-                                    <svg aria-hidden="true" class="icon--arrow">
-                                        <use xlink:href="#icon--arrow" />
-                                    </svg>
-                                </p>
-                            @endif
-                        </div>
-                    @endif
+                    <div class="description__container">
+                        <div class="title">{!! $item['name'] !!}</div>
+                        @if($hasDescription)
+                            <p id="{{ $id }}-description" class="description">{!! $item['description'] !!}</p>
+                        @endif
+                        @if($hasCta)
+                            <p class="cta">
+                                {!! $item['cta'] !!}
+                                <svg aria-hidden="true" class="icon--arrow">
+                                    <use xlink:href="#icon--arrow" />
+                                </svg>
+                            </p>
+                        @endif
+                    </div>
                 @if($hasUrl)
                     </a>
                 @else

@@ -4,8 +4,11 @@ const navMobile = function(container) {
 
   var openTriggers = container.querySelectorAll('[data-nav-trigger]');
   var backTriggers = container.querySelectorAll('[data-nav-back]');
-  var klass = 's-nav-mobile-active';
-  var subnavKlass = 'js-subnav-open';
+  var isActiveClass = 's-nav-mobile-active';
+  var isExpandedClass = 'js-subnav-open';
+  var currentMenuItemClass = 'nav-is-open';
+  var menuItemDetailsQuery = '.details';
+
   var navLevel = 0;
 
   let active = false;
@@ -15,7 +18,7 @@ const navMobile = function(container) {
       breakpoints: 'all'
     });
     window.requestAnimationFrame(function(){
-      document.documentElement.classList.add(klass);
+      document.documentElement.classList.add(isActiveClass);
       setTimeout(function(){ setFocusOnTarget(container); }, 0)
       triggerCustomEvent(document, 'focus:trap', {
         element: container
@@ -27,40 +30,32 @@ const navMobile = function(container) {
   function _closeNav(e){
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
-    document.documentElement.classList.remove(klass);
+    document.documentElement.classList.remove(isActiveClass);
     setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
     active = false;
   }
 
   function _openSubNav(e){
-    this.parentElement.classList.toggle('nav-is-open');
-
-    if(!this.parentElement.classList.contains('g-footer-nav__expander-trigger')){
-      navLevel++;
-
-      checkLevel();
-    }
-
+    this.parentElement.classList.toggle(currentMenuItemClass);
+    navLevel++;
+    checkLevel();
     e.preventDefault();
     e.stopPropagation();
   };
 
   function _goBack(e){
-    this.closest('.g-nav-mobile__subnav').previousElementSibling.classList.remove('nav-is-open');
-
+    this.closest(menuItemDetailsQuery).previousElementSibling.classList.remove(currentMenuItemClass);
     navLevel--;
-
     checkLevel();
-
     e.preventDefault();
     e.stopPropagation();
   }
 
   function checkLevel(){
-    if(navLevel > 0){
-      container.classList.add(subnavKlass);
-    }else{
-      container.classList.remove(subnavKlass);
+    if (navLevel > 0){
+      container.classList.add(isExpandedClass);
+    } else {
+      container.classList.remove(isExpandedClass);
     }
   }
 
