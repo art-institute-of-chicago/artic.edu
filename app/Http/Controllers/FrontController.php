@@ -7,6 +7,8 @@ use App\Http\Controllers\Helpers\Seo;
 use A17\Twill\Http\Controllers\Front\Controller as BaseController;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
+use App\Libraries\AIServices\VectorEmbeddingService as EmbeddingService;
+use Illuminate\Http\Request;
 use App\Models\Hour;
 use Carbon\Carbon;
 
@@ -119,6 +121,15 @@ class FrontController extends BaseController
         }
 
         return collect($item->getFeaturedRelated())->pluck('item');
+    }
+
+    public function embedData(Request $request)
+    {
+        $text = $request->input('data');
+        $embeddingService = new EmbeddingService();
+        $embeddings = $embeddingService->getEmbeddings($text);
+    
+        return response()->json($embeddings);
     }
 
     public function getAjaxData()
