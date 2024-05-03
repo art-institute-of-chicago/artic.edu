@@ -75,7 +75,7 @@
                                     <span class="stories-most_popular_stories__type f-tag">{!! $item->type !!}</span>
                                     @component('components.atoms._title')
                                         @slot('font', $titleFont ?? 'f-list-3')
-                                        @slot('title', Str::limit($item->present()->title, 75, $end='...'))
+                                        @slot('title', $item->present()->title)
                                         @slot('title_display', $item->present()->title_display)
                                     @endcomponent
                                 </div>
