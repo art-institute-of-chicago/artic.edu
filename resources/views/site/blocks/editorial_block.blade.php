@@ -44,7 +44,7 @@
                 @slot('font', 'f-secondary')
                 @slot('href', "https://www.youtube.com/user/ArtInstituteChicago")
                 @slot('variation', 'editorial-block__link')
-                {!! SmartyPants::defaultTransform('Browse our YouTube channel') !!} <svg class="icon--new-window"><use xlink:href="#icon--new-window"></use></svg>
+                Browse our YouTube channel <svg class="icon--new-window"><use xlink:href="#icon--new-window"></use></svg>
             @endcomponent
         @endif
     </div>
@@ -62,7 +62,16 @@
                     @slot('item', $item)
                     @slot('fullscreen', false)
                     @slot('titleFont', ($loop->first && $hasFeatured) ? 'f-list-3' : 'f-list-1')
-                    @slot('imageSettings', $imageSettings ?? null)
+                    @slot('imageSettings', array(
+                        'srcset' => array(300,600,800,1200,1600),
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                              'xsmall' => '58',
+                              'small' => '58',
+                              'medium' => '38',
+                              'large' => '28',
+                              'xlarge' => '28',
+                        )),
+                    ))
                 @endcomponent
                 {!! ($loop->first && $hasFeatured) || $loop->last ? '</div>' : '' !!}
             @endforeach
@@ -77,7 +86,16 @@
                     @slot('hideImage', false)
                     @slot('hideDescription', false)
                     @slot('hideDuration', false)
-                    @slot('imageSettings', $imageSettings ?? null)
+                    @slot('imageSettings', array(
+                        'srcset' => array(300,600,800,1200,1600),
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                              'xsmall' => '58',
+                              'small' => '58',
+                              'medium' => '38',
+                              'large' => '28',
+                              'xlarge' => '28',
+                        )),
+                    ))
                 @endcomponent
             @endforeach
         @endif

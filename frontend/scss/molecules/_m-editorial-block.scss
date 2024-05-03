@@ -72,7 +72,7 @@
         height: max-content;
     }
 
-    &.editorial-block--variation-feature-5a {
+    &.editorial-block--variation-feature-5-side {
         .editorial-block__content {
             width: 100%;
 
@@ -204,7 +204,7 @@
         }
     }
 
-    &.editorial-block--variation-feature-5b {
+    &.editorial-block--variation-feature-5-top {
         .editorial-block__content {
             display: flex;
             flex-direction: column;
@@ -263,8 +263,7 @@
                             margin-top: 0 !important;
 
                             @include breakpoint('small-') {
-                                margin-top: 16px !important;
-                                font-size: 28px;
+                                margin-top: 6px !important;
                             }
 
                             &::before {

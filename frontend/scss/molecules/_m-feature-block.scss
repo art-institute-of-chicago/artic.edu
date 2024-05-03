@@ -416,17 +416,12 @@
     }
 
     &.feature-block--editorial {
-        border-bottom: 1px solid $color__black--20;
 
         &.feature-block--variation-default {
             border-top: none;
 
             .m-feature-block-row {
-                @include breakpoint('small+') {
-                    margin-right: -40px;
-                }
                 margin-right: -20px;
-                margin-bottom: 56px;
             }
 
             .m-feature-block-listing.column-4x {
@@ -439,11 +434,6 @@
 
             .m-feature-block-listing {
                 border-top: none !important;
-
-                .m-feature-block-listing__meta {
-                    min-height: fit-content;
-                    padding-bottom: 20px;
-                }
 
                 &::after {
                     display: none;
