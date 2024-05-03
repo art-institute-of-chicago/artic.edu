@@ -72,10 +72,10 @@
                             <a class="m-listing__link stories-most_popular_stories__listing" href="{{ method_exists($item, 'getUrl') ? $item->getUrl() : $item->url_without_slug }}">
                                 <span class="stories-most_popular_stories__it">{{ $loop->iteration }}</span>
                                 <div class="stories-most_popular_stories__meta">
-                                    <span class="stories-most_popular_stories__type f-tag">{!! $item->subtype ? $item->present()->subtype : $item->type !!}</span>
+                                    <span class="stories-most_popular_stories__type f-tag">{!! $item->type !!}</span>
                                     @component('components.atoms._title')
                                         @slot('font', $titleFont ?? 'f-list-3')
-                                        @slot('title', Str::limit($item->present()->title, 75, $end='...'))
+                                        @slot('title', $item->present()->title)
                                         @slot('title_display', $item->present()->title_display)
                                     @endcomponent
                                 </div>
