@@ -324,7 +324,7 @@ class AppServiceProvider extends ServiceProvider
                             ],
                             [
                                 'name' => 'Articles &amp; Videos',
-                                'url' => route('articles_publications'),
+                                'url' => route('pages.slug', ['slug' => 'articles-and-videos']),
                             ],
                             [
                                 'name' => 'Research',
