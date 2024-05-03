@@ -45,7 +45,10 @@
                                 <span class="author__name">
                                     by
                                     @foreach ($item->authors as $author)
-                                        {!! $loop->last && !$loop->first ? 'and ' : ''!!}{!! $author->title !!}{{!$loop->last ? ', ' : ''}}
+                                    {!! $author->title !!}
+                                    @if (!$loop->last)
+                                        {{ $loop->remaining > 1 ? ', ' : ' and ' }}
+                                    @endif
                                     @endforeach
                                 </span>
                             @endif
