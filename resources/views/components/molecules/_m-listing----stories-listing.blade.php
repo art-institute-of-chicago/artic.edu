@@ -43,14 +43,7 @@
                                 by ⁠{!! $item->author_display !!}
                             @elseif (count($item->authors) > 0)
                                 <span class="author__name">
-                                    by
-                                    @foreach ($item->authors as $author)
-                                    {!! $author->title !!}
-                                    @if (!$loop->last)
-                                        {{ $loop->remaining > 1 ? ', ' : ' and ' }}
-                                    @endif
-                                    @endforeach
-                                </span>
+                                    by {{StringHelpers::summation($item->authors->pluck('title')->all())}}                                </span>
                             @endif
                         </div>
                     @endif
@@ -64,10 +57,7 @@
                             by ⁠{!! $item->author_display !!}
                         @elseif (count($item->authors) > 0)
                             <span class="author__name">
-                                by
-                                @foreach ($item->authors as $author)
-                                    {!! $loop->last && !$loop->first ? 'and ' : ''!!}{!! $author->title !!}{{!$loop->last ? ', ' : ''}}
-                                @endforeach
+                                by {{StringHelpers::summation($item->authors->pluck('title')->all())}}
                             </span>
                         @endif
                     </div>
