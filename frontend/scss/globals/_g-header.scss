@@ -1,4 +1,4 @@
-#a17:has(.g-header [aria-expanded="true"]) + .g-mask {
+#a17:has(.level-1>[aria-expanded="true"]) + .g-mask {
   background-color: rgba($color__black--80, 50%);
   bottom: 0;
   opacity: 1;
