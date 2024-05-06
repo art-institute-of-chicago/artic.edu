@@ -36,9 +36,11 @@
         >
             {!! $item['name'] !!}
             @if ($hasChildren)
-                <svg aria-hidden="true" class="icon--arrow" data-nav-trigger>
-                    <use xlink:href="#icon--arrow" />
-                </svg>
+                <span class="g-nav-expand-icon" data-nav-trigger>
+                    <svg aria-hidden="true" class="icon--arrow">
+                        <use xlink:href="#icon--arrow" />
+                    </svg>
+                </span>
             @endif
         </a>
         @if(($hasImage && $hasDescription) || $hasChildren)
