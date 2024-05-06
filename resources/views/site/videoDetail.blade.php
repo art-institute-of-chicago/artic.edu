@@ -58,7 +58,7 @@
 
     </article>
 
-    @if (count($item->topics) > 0)
+    @if ($item->topics && count($item->topics) > 0)
         @component('components.atoms._hr')
         @endcomponent
         @component('components.blocks._text')
