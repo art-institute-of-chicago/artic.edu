@@ -115,8 +115,7 @@
   line-height: 48px;
 }
 
-.g-nav-mobile__nav li:has(.details)>[role="menuitem"]::before {
-  content: '';
+.g-nav-mobile .g-nav-expand-icon {
   border-left: 1px solid $color__black--5;
   display: inline-block;
   height: 48px;
