@@ -140,21 +140,30 @@
   color: inherit;
 }
 
-.g-nav-mobile__nav .g-nav-mobile__back,
+.g-nav-mobile__nav .g-nav-collapse-icon {
+  position: absolute;
+  height: 56px;
+  width: 56px;
+}
+
+.g-nav-mobile__nav .details__container>a {
+  padding-right: map-get($outer-gutters, 'xsmall');
+  padding-left: map-get($outer-gutters, 'xsmall');
+}
+
+.g-nav-mobile__nav .g-nav-collapse-icon,
 .g-nav-mobile__nav .details__container>a {
   @extend %f-tag-2;
   @include untuck;
   margin-right: - map-get($outer-gutters, 'xsmall');
   margin-left: - map-get($outer-gutters, 'xsmall');
-  padding-right: map-get($outer-gutters, 'xsmall');
-  padding-left: map-get($outer-gutters, 'xsmall');
   background-color: $color__bg--footer;
   color: $color__text--title-contrast;
   line-height: 56px;
   text-align: center;
 }
 
-.g-nav-mobile__nav .g-nav-mobile__back svg {
+.g-nav-mobile__nav .g-nav-collapse-icon svg {
   position: absolute;
   left: 16px;
   top: 20px;

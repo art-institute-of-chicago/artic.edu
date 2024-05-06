@@ -45,8 +45,8 @@
         </a>
         @if(($hasImage && $hasDescription) || $hasChildren)
             <div class="details">
-                <a href="#" class="g-nav-mobile__back arrow-link arrow-link--back">
-                    <svg aria-hidden="true" class="icon--arrow" data-nav-back>
+                <a href="#" class="g-nav-collapse-icon arrow-link arrow-link--back" data-nav-back>
+                    <svg aria-hidden="true" class="icon--arrow">
                         <use xlink:href="#icon--arrow" />
                     </svg>
                 </a>
