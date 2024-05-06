@@ -214,7 +214,7 @@
             'moduleName' => 'articles',
             'name' => 'stories',
             'endpoints' => $endpoints,
-            'max' => 4,
+            'max' => 8,
             'label' => 'Stories',
         ])
     @endcomponent
