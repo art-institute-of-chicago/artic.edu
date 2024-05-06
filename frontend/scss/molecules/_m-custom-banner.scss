@@ -146,6 +146,29 @@
         }
     }
 
+    &.custom-banner-block--default {
+        .custom-banner-body {
+            font-size: 24px;
+            font-family: $serif-font--loaded !important;
+        }
+        
+        .btn {
+            border-color: $color__white !important;
+            background-color: #ffffff00 !important;
+            color: $color__white !important;
+            margin-top: 20px;
+        
+            &:hover,
+            &:focus:hover {
+            background-color: #ffffff20 !important;
+            }
+        
+            &:active:hover {
+            background-color: #ffffff20 !important;
+            }
+        }
+    }
+
     &.custom-banner-block--editorial {
         margin-top: 50px;
         padding-top: 50px;
@@ -237,6 +260,7 @@
                 letter-spacing: 0.0001em;
                 text-transform: none;
                 padding-top: 17px;
+                white-space: nowrap;
             }
         }
     }
