@@ -189,7 +189,20 @@
             }
 
             &.l-type-event {
-                min-height: 190px !important;
+                min-height: 190px;
+                @include breakpoint('small-') {
+                    min-height: 124px;
+                }
+            }
+
+            &.l-type-highlight {
+                min-height: 124px;
+                .m-feature-block-listing__meta-bottom {
+                    display: block;
+                }
+                @include breakpoint('small-') {
+                    min-height: max-content;
+                }
             }
 
             @include breakpoint('small-') {
