@@ -31,7 +31,7 @@ trait HasApiRelations
             return collect($ids)->search(function ($id, $key) use ($model) {
                 return $id == $model->id;
             });
-        });
+        })->values();
 
         return $sorted;
     }
