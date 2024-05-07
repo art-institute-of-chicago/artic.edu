@@ -36,6 +36,9 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   @font-face {font-family: 'Sabon';src: url(https://www.artic.edu/fonts/sabon/3545D5_2_0.woff2) format('woff2');font-weight:normal;font-weight:500;font-style:normal;}
   </style>
   <link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet" />
+  @if ($my_museum_tour)
+    <link href="{{FrontendHelpers::revAsset('styles/my-museum-tour-pdf.css')}}" rel="stylesheet">
+  @endif
 </head>
 
 <body>
