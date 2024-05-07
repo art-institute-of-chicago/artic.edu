@@ -50,11 +50,6 @@ class StaticPagesController extends BaseController
     {
         return [
             [
-                'id' => 1,
-                'title' => 'Visit',
-                'url' => route('visit', [], false),
-            ],
-            [
                 'id' => 2,
                 'title' => 'Events',
                 'url' => route('events', [], false),
