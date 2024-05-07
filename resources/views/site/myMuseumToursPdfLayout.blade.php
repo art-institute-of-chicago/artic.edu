@@ -1,8 +1,6 @@
 @php
     use App\Helpers\StringHelpers;
 @endphp
-<link href="{{FrontendHelpers::revAsset('styles/app.css')}}" rel="stylesheet">
-<link href="{{FrontendHelpers::revAsset('styles/my-museum-tour-pdf.css')}}" rel="stylesheet">
 
 @extends('layouts.block')
 
