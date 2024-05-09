@@ -6,6 +6,13 @@
 AIC Vector Search
 @endcomponent
 
+@component('components.molecules._m-search-bar')
+    @slot('variation', 'm-search-bar--vector')
+    @slot('placeholder', 'Search using semantic search')
+    @slot('value', request('query'))
+    @slot('action', route('semanticSearch'))
+@endcomponent
+
 <p class="title f-list-2">Showing results for <i>'{{$input}}'</i></p>
 @if ($items)
     @component('components.organisms._o-grid-listing')
