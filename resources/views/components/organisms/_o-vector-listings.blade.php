@@ -11,6 +11,8 @@ AIC Vector Search
     @slot('placeholder', 'Search using semantic search')
     @slot('value', request('query'))
     @slot('action', route('semanticSearch'))
+    @slot('name', 'query')
+    @slot('dataAttributes', 'data-url="'. route('semanticSearch').'"')
 @endcomponent
 
 <p class="title f-list-2">Showing results for <i>'{{$input}}'</i></p>
