@@ -15,7 +15,9 @@ AIC Vector Search
     @slot('dataAttributes', 'data-url="'. route('semanticSearch').'"')
 @endcomponent
 
-<p class="title f-list-2">Showing results for <i>'{{$input}}'</i></p>
+@if ($input)
+    <p class="title f-list-2">Showing results for <i>'{{$input}}'</i></p>
+@endif
 @if ($items)
     @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
