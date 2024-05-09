@@ -13,7 +13,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('model_id');
             $table->string('model_type');
-            $table->string('embedding_type');
             $table->vector('embedding', 1536);
             $table->timestamps();
         });
