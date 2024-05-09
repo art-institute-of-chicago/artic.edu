@@ -40,14 +40,14 @@ Artisan::command('embed', function () {
     $modelClass = Str::ucfirst(Str::singular($modelClass));
     $model = "\\App\\Models\\$modelClass";
     $morphedModel = app($model)->getMorphClass();
-    
+
     if (!class_exists($model)) {
         $this->error("The class {$modelClass} does not exist.");
         return;
     }
-    
+
     $id = $this->ask('What is the id of the item?');
-    
+
     // Get the morph map key for the model class
 
     // Get all blocks associated with the model class and ID
@@ -66,17 +66,17 @@ Artisan::command('embed', function () {
     foreach ($blocks as $block) {
         // Get the 'content' field
         $content = $block->content;
-    
+
         // Check if the 'paragraph' property exists in the 'content'
         if (isset($content['paragraph'])) {
             // Get the 'paragraph' property's content
             $paragraphBlock = $content['paragraph'];
-    
+
             // Append the paragraph content to the allParagraphs string
             $textContent .= $paragraphBlock;
         }
     }
-    
+
     // Dump the merged paragraph contents
     $textContent = strip_tags($textContent);
 
@@ -92,7 +92,7 @@ Artisan::command('embed', function () {
         $this->error("The response does not have the expected structure.");
         return;
     }
-    
+
     // Save the embeddings to the Embeddings table
     $embedding = new Embedding();
     $embedding->model_id = $id;

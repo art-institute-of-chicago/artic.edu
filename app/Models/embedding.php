@@ -21,4 +21,3 @@ class Embedding extends Model
         return $this->morphTo();
     }
 }
-

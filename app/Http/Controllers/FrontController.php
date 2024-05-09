@@ -129,7 +129,7 @@ class FrontController extends BaseController
         $text = $request->input('data');
         $embeddingService = new EmbeddingService();
         $embeddings = $embeddingService->getEmbeddings($text);
-    
+
         return response()->json($embeddings);
     }
 
@@ -187,12 +187,12 @@ class FrontController extends BaseController
         return $view;
     }
 
-    public function semanticSearch (Request $request)
+    public function semanticSearch(Request $request)
     {
         $input = $request->input('query');
         $semanticSearchService = new SearchService(new EmbeddingService());
         $results = $semanticSearchService->search($input);
-    
+
         if ($results) {
             return response(view('components.organisms._o-vector-listings', [
                 'items' => $results['items'],

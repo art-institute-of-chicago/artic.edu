@@ -45,7 +45,7 @@ class SemanticSearchService
                 $items[] = $model;
             }
         }
-    
+
         return ['items' => $items, 'input' => $input];
     }
 }
