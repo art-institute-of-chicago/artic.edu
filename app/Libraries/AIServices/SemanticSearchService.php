@@ -18,22 +18,27 @@ class SemanticSearchService
 
     public function search($input)
     {
-        // Get the vector for the input
-        $vectorData = $this->vectorEmbeddingService->getEmbeddings($input);
+        if (!empty($input)) {
+            // Get the vector for the input
+            $vectorData = $this->vectorEmbeddingService->getEmbeddings($input);
 
-        // Check if the vector data is valid and contains an embedding
-        if (!isset($vectorData['data'][0]['embedding'])) {
-            throw new \Exception('Invalid vector data');
+            // Check if the vector data is valid and contains an embedding
+            if (!isset($vectorData['data'][0]['embedding'])) {
+                throw new \Exception('Invalid vector data');
+            }
+
+            $vector = $vectorData['data'][0]['embedding'];
+
+            // Convert the vector to a string and enclose it in square brackets
+            $vectorString = '[' . implode(',', $vector) . ']';
+
+            // Query the Embeddings table for nearest neighbors
+            $query = "SELECT * FROM Embeddings ORDER BY embedding <-> vector('{$vectorString}')";
+            $results = DB::select($query);
+        } else {
+            $query = "SELECT * FROM Embeddings";
+            $results = DB::select($query);
         }
-
-        $vector = $vectorData['data'][0]['embedding'];
-
-        // Convert the vector to a string and enclose it in square brackets
-        $vectorString = '[' . implode(',', $vector) . ']';
-
-        // Query the Embeddings table for nearest neighbors
-        $query = "SELECT * FROM Embeddings ORDER BY embedding <-> vector('{$vectorString}')";
-        $results = DB::select($query);
 
         $items = [];
         foreach ($results as $result) {
