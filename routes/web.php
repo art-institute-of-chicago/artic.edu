@@ -50,6 +50,7 @@ use App\Models\Slugs\LandingPageSlug;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/semanticSearch', [FrontController::class, 'semanticSearch']);
 
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 
