@@ -8,6 +8,7 @@ use A17\Twill\Http\Controllers\Front\Controller as BaseController;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
 use App\Libraries\AIServices\VectorEmbeddingService as EmbeddingService;
+use App\Libraries\AIServices\SemanticSearchService as SearchService;
 use Illuminate\Http\Request;
 use App\Models\Hour;
 use Carbon\Carbon;
@@ -184,5 +185,21 @@ class FrontController extends BaseController
         ])->render();
 
         return $view;
+    }
+
+    public function semanticSearch (Request $request)
+    {
+        $input = $request->input('query');
+        $semanticSearchService = new SearchService(new EmbeddingService());
+        $results = $semanticSearchService->search($input);
+    
+        if ($results) {
+            return response(view('components.organisms._o-vector-listings', [
+                'items' => $results['items'],
+                'input' => $results['input'],
+            ])->render(), 200, ['Content-Type' => 'text/html']);
+        } else {
+            return response()->json(['error' => 'No results found'], 404);
+        }
     }
 }
