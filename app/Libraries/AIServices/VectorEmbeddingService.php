@@ -26,12 +26,8 @@ class VectorEmbeddingService
 
         if ($response->successful()) {
             return $response->json();
+        } else {
+            return response()->json(['error' => $response], 404);
         }
-    
-        Log::error('Error fetching data from Azure', [
-            'status' => $response->status(),
-            'body' => $response->body(),
-        ]);
-        throw new \Exception('Error fetching data from Azure');
     }
 }
