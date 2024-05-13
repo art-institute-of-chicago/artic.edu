@@ -7,18 +7,45 @@
                         @if ($isHero ?? false)
                             @component('components.atoms._img')
                                 @slot('image', $image ?? ($item->imageFront('listing') ?? $item->imageFront('hero') ))
-                                @slot('settings', $imageSettings ?? '')
+                                @slot('settings', $imageSettings ?? array(
+                                'srcset' => array(300,600,800,1200,1600),
+                                'sizes' => ImageHelpers::aic_imageSizes(array(
+                                      'xsmall' => '58',
+                                      'small' => '58',
+                                      'medium' => '38',
+                                      'large' => '28',
+                                      'xlarge' => '28',
+                                    )),
+                                ))
                                 @slot('class', 'img-hero-desktop')
                             @endcomponent
                             @component('components.atoms._img')
                                 @slot('image', $imageMobile ?? $item->imageFront('mobile_hero') ?? $image ?? ($item->imageFront('listing') ?? $item->imageFront('hero') ))
-                                @slot('settings', $imageSettings ?? '')
+                                @slot('settings', $imageSettings ?? array(
+                                'srcset' => array(300,600,800,1200,1600),
+                                'sizes' => ImageHelpers::aic_imageSizes(array(
+                                      'xsmall' => '58',
+                                      'small' => '58',
+                                      'medium' => '38',
+                                      'large' => '28',
+                                      'xlarge' => '28',
+                                    )),
+                                ))
                                 @slot('class', 'img-hero-mobile')
                             @endcomponent
                         @else 
                             @component('components.atoms._img')
                                 @slot('image', $image ?? ($item->imageFront('listing') ?? $item->imageFront('hero') ))
-                                @slot('settings', $imageSettings ?? '')
+                                @slot('settings', $imageSettings ?? array(
+                                'srcset' => array(300,600,800,1200,1600),
+                                'sizes' => ImageHelpers::aic_imageSizes(array(
+                                      'xsmall' => '58',
+                                      'small' => '58',
+                                      'medium' => '38',
+                                      'large' => '28',
+                                      'xlarge' => '28',
+                                    )),
+                                ))
                             @endcomponent
                         @endif
                         @component('components.molecules._m-listing-video')
