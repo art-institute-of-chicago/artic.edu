@@ -392,8 +392,8 @@
 
     .o-pinboard--3-col\@large::before {
       display: block;
-      left: colspan(14, large);
-      width: colspan(15, large);
+      left: colspan(18, large);
+      width: colspan(22, large);
       border-right: 1px solid $color__rules--tertiary;
       border-left: 1px solid $color__rules--tertiary;
       background: transparent;
@@ -412,8 +412,8 @@
 
      .o-pinboard--3-col\@xlarge::before {
        display: block;
-       left: colspan(14, xlarge);
-       width: colspan(15, xlarge);
+       left: colspan(18, xlarge);
+       width: colspan(22, xlarge);
        border-right: 1px solid $color__rules--tertiary;
        border-left: 1px solid $color__rules--tertiary;
        background: transparent;
