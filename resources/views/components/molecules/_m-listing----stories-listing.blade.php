@@ -27,7 +27,13 @@
                 @else
                     <span class="default-img"></span>
                 @endif
-                <span class="m-listing__img__overlay"></span>
+                <span class="m-listing__img__overlay" style="display: block">
+                @if ($item->type == 'video')
+                    <svg class="icon--play--{!! (isset($isFeatured) && $isFeatured) ? '64' : '48' !!}">
+                        <use xlink:href="#icon--play--{!! (isset($isFeatured) && $isFeatured) ? '64' : '48' !!}"></use>
+                    </svg>
+                @endif
+                </span>
             </span>
             <div class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
                 @component('components.atoms._title')
