@@ -52,8 +52,14 @@ const loadRelatedSidebar = function(container) {
     function _inject(data)
     {
         if (sidebar) {
-            sidebar.innerHTML = data;
+            let parsed = JSON.parse(data);
+            sidebar.innerHTML = parsed.html;
             heightAwareSidebar();
+        }
+
+        triggerCustomEvent(document, 'page:updated');
+        if (window.picturefill) {
+            window.picturefill();
         }
     }
 
