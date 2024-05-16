@@ -162,10 +162,12 @@ class FrontController extends BaseController
             return response()->json(['error' => 'Item not found'], 404);
         }
 
-        return response(view('site.shared._featuredRelated', [
+        $view['html'] = view('site.shared._featuredRelated', [
             'item' => $item,
             'autoRelated' => $this->getAutoRelated($item),
             'featuredRelated' => $this->getFeatureRelated($item),
-        ])->render(), 200, ['Content-Type' => 'text/html']);
+        ])->render();
+
+        return $view;
     }
 }
