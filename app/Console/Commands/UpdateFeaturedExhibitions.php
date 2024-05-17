@@ -27,12 +27,11 @@ class UpdateFeaturedExhibitions extends Command
             $exhibitionInstance = Exhibition::query()->find($id);
 
             if ($exhibitionInstance->is_now_open || $exhibitionInstance->is_ongoing) {
-
                 $currentExhibitions->splice(2, 0, [$exhibition]);
                 $exhibition->pivot->relation = 'exhibitionsCurrent';
                 $exhibition->pivot->api_relation_id = $exhibition->id;
                 $exhibition->pivot->save();
-        
+
                 $upcomingFeaturedExhibitions->pull($exhibition->pivot->api_relation_id);
             }
         });
