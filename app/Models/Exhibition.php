@@ -321,7 +321,6 @@ class Exhibition extends AbstractModel
         $featuredIds = $page->present()->upcomingListedExhibitions()
             ->merge($page->present()->currentListedExhibitions())
             ->merge($page->present()->upcomingFeaturedExhibitions())
-            ->merge($page->present()->currentFeaturedExhibitions())
             ->pluck('id')
             ->all();
 
