@@ -46,7 +46,7 @@
         case 'exhibitions':
             if ($block->input('override_exhibition')) {
                 $exhibitions = $block->browserIds('exhibitions');
-                $items = \App\Models\Api\Exhibition::query()->findMany($exhibitions)->sortBy('aic_start_at');
+                $items = \App\Models\Api\Exhibition::query()->findMany($exhibitions);
             } else {
                 $items = \App\Models\Api\Exhibition::query()->current()->orderBy('aic_start_at', 'desc')->limit($columns)->get(['id', 'aic_start_at', 'aic_end_at', 'public_start_date', 'public_end_date']);
             }
