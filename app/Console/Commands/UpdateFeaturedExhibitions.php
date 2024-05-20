@@ -40,8 +40,15 @@ class UpdateFeaturedExhibitions extends Command
         
             return $exhibitionInstance->is_now_open || $exhibitionInstance->is_ongoing;
         });
+        
 
-                $upcomingFeaturedExhibitions->pull($exhibition->pivot->api_relation_id);
+        $currentExhibitions = $currentExhibitions->reject(function ($exhibition) {
+            $id = ApiRelation::find($exhibition->pivot->api_relation_id)->datahub_id;
+            $exhibitionInstance = Exhibition::query()->find($id);
+        
+            if ($exhibitionInstance->is_closed) {
+                ApiRelation::find($exhibition->pivot->api_relation_id)->delete();
+                return true;
             }
             return false;
         });
