@@ -38,8 +38,8 @@ class ExhibitionsController extends FrontController
 
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
-        $collection = $upcoming ? $page->present()->upcomingListedExhibitions() : $page->present()->currentListedExhibitions()->skip(2);
-        $featured = $upcoming ? $page->present()->upcomingFeaturedExhibitions() : $page->present()->currentListedExhibitions()->take(2);
+        $collection = $upcoming ? $page->present()->upcomingListedExhibitions()->skip(2) : $page->present()->currentListedExhibitions()->skip(2);
+        $featured = $upcoming ? $page->present()->upcomingListedExhibitions()->take(2) : $page->present()->currentListedExhibitions()->take(2);
 
         $events = $this->eventRepository->getEventsFiltered(Carbon::now(), null, null, null, null, null, 3, 1);
         $eventsByDay = $this->eventRepository->groupByDate($events);
