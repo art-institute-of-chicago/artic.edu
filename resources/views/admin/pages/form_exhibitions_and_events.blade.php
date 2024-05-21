@@ -22,18 +22,11 @@
     <a17-fieldset id="upcoming" title="Upcoming exhibitions">
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
-            'max' => 8,
+            'max' => 24,
             'moduleName' => 'exhibitions',
             'name' => 'exhibitionsUpcoming',
-            'label' => 'Featured exhibitions - upcoming'
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'max' => 18,
-            'moduleName' => 'exhibitions',
-            'name' => 'exhibitionsUpcomingListing',
-            'label' => 'Secondary features - upcoming'
+            'label' => 'Upcomg exhibitions',
+            'note' => 'Top 2 exhibitions will be featured'
         ])
     </a17-fieldset>
 
