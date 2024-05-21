@@ -18,11 +18,10 @@ class UpdateFeaturedExhibitions extends Command
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
         $currentExhibitions = $page->exhibitionsCurrent->sortBy('pivot.position');
-        $upcomingFeaturedExhibitions = $page->exhibitionsUpcoming->sortBy('pivot.position');
         $upcomingExhibitions = $page->exhibitionsUpcomingListing->sortBy('pivot.position');
 
         // Move the upcoming exhibitions to the current exhibitions list if they are now open
-        $upcomingFeaturedExhibitions->each(function ($exhibition) use (&$currentExhibitions) {
+        $upcomingExhibitions->each(function ($exhibition) use (&$currentExhibitions) {
             $id = ApiRelation::find($exhibition->pivot->api_relation_id)->datahub_id;
             $exhibitionInstance = Exhibition::query()->find($id);
 
@@ -34,7 +33,7 @@ class UpdateFeaturedExhibitions extends Command
             }
         });
 
-        $upcomingFeaturedExhibitions = $upcomingFeaturedExhibitions->reject(function ($exhibition) {
+        $upcomingExhibitions = $upcomingExhibitions->reject(function ($exhibition) {
             $id = ApiRelation::find($exhibition->pivot->api_relation_id)->datahub_id;
             $exhibitionInstance = Exhibition::query()->find($id);
 
