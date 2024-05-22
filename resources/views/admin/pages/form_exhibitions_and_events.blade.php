@@ -24,8 +24,8 @@
             'routePrefix' => 'exhibitions_events',
             'max' => 24,
             'moduleName' => 'exhibitions',
-            'name' => 'exhibitionsUpcoming',
-            'label' => 'Upcomg exhibitions',
+            'name' => 'exhibitionsUpcomingListing',
+            'label' => 'Upcoming exhibitions',
             'note' => 'Top 2 exhibitions will be featured'
         ])
     </a17-fieldset>

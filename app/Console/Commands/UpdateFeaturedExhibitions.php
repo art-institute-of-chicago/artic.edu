@@ -67,7 +67,7 @@ class UpdateFeaturedExhibitions extends Command
 
         $page->update([
             'exhibitionsCurrent' => $currentExhibitions,
-            'exhibitionsUpcoming' => $upcomingExhibitions,
+            'exhibitionsUpcomingListing' => $upcomingExhibitions,
         ]);
     }
 }
