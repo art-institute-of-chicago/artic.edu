@@ -26,6 +26,7 @@ class UpdateFeaturedExhibitions extends Command
             $exhibitionInstance = Exhibition::query()->find($id);
 
             if ($exhibitionInstance->is_now_open || $exhibitionInstance->is_ongoing) {
+                $this->info("Moving {$exhibitionInstance->id}: {$exhibitionInstance->title} to current exhibitions list");
                 $currentExhibitions->splice(2, 0, [$exhibition]);
                 $exhibition->pivot->relation = 'exhibitionsCurrent';
                 $exhibition->pivot->api_relation_id = $exhibition->id;
@@ -37,7 +38,10 @@ class UpdateFeaturedExhibitions extends Command
             $id = ApiRelation::find($exhibition->pivot->api_relation_id)->datahub_id;
             $exhibitionInstance = Exhibition::query()->find($id);
 
-            return $exhibitionInstance->is_now_open || $exhibitionInstance->is_ongoing;
+            if ($ret = $exhibitionInstance->is_now_open || $exhibitionInstance->is_closed || $exhibitionInstance->is_ongoing) {
+                $this->info("Removing {$exhibitionInstance->datahub_id} from upcoming exhibitions list");
+            }
+            return $ret;
         });
 
 
@@ -46,6 +50,7 @@ class UpdateFeaturedExhibitions extends Command
             $exhibitionInstance = Exhibition::query()->find($id);
 
             if ($exhibitionInstance->is_closed) {
+                $this->info("Removing {$exhibitionInstance->id}: {$exhibitionInstance->title} from current exhibitions list");
                 ApiRelation::find($exhibition->pivot->api_relation_id)->delete();
                 return true;
             }
