@@ -52,16 +52,16 @@ class MyMuseumTourController extends BaseController
      * This method strips HTML and PHP tags from data and returns the sanitized data
      *
      */
-    private function sanitizeData(array $data): array
+    private function sanitizeData(array $data, string $parentKey = ''): array
     {
         $sanitizedData = [];
 
         foreach ($data as $key => $value) {
             if (is_array($value)) {
-                $sanitizedData[$key] = $this->sanitizeData($value);
+                $sanitizedData[$key] = $this->sanitizeData($value, $key);
             } else {
-                // Use strip_tags on strings only
-                $sanitizedData[$key] = is_string($value) ? strip_tags($value) : $value;
+                // Use strip_tags on strings only. 'description' with a parentKey that's an integer is the short_description, so don't strip that one
+                $sanitizedData[$key] = is_string($value) && !($key == 'description' && is_numeric($parentKey)) ? strip_tags($value) : $value;
             }
         }
 
