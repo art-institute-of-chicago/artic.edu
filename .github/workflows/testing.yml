@@ -25,7 +25,7 @@ jobs:
             - name: Install Prince
               run: |
                   TEMP_PRINCE="$(mktemp)"
-                  sudo apt-get install gdebi -y
+                  sudo apt-get install gdebi lintian=2.62.0ubuntu2.4 -y
                   wget https://www.princexml.com/download/prince_15.3-1_ubuntu20.04_amd64.deb -O "${TEMP_PRINCE}"
                   sudo gdebi "${TEMP_PRINCE}" --n
             - name: Checkout code
