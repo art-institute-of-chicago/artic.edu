@@ -28,10 +28,8 @@ class ExhibitionsController extends FrontController
     {
         // NOTE: Naming conventions for the CMS browsers might be counterintuitive (for backwards compatibility).
         //
-        // exhibitionsExhibitions: Featured exhibitions
-        // exhibitionsCurrent: Current exhibitions listing
-        // exhibitionsUpcoming: Featured upcoming exhibitions
-        // exhibitionsUpcomingListing: Upcoming exhibitions listing.
+        // exhibitionsCurrent: Current exhibitions listing. First two are featured.
+        // exhibitionsUpcomingListing: Upcoming exhibitions listing. First two are featured.
 
         $this->seo->setTitle('Exhibitions');
         $this->seo->setDescription("Now on view—explore the Art Institute's current and upcoming exhibits to plan your visit.");
