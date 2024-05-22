@@ -2,7 +2,7 @@ name: Testing
 on: [push]
 jobs:
     test:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         steps:
             - name: Install PHP
               uses: shivammathur/setup-php@v2
@@ -25,8 +25,8 @@ jobs:
             - name: Install Prince
               run: |
                   TEMP_PRINCE="$(mktemp)"
-                  sudo apt-get install gdebi lintian -y
-                  wget https://www.princexml.com/download/prince_15.3-1_ubuntu20.04_amd64.deb -O "${TEMP_PRINCE}"
+                  sudo apt-get install gdebi -y
+                  wget https://www.princexml.com/download/prince_15.3-1_ubuntu22.04_amd64.deb -O "${TEMP_PRINCE}"
                   sudo gdebi "${TEMP_PRINCE}" --n
             - name: Checkout code
               uses: actions/checkout@v3
