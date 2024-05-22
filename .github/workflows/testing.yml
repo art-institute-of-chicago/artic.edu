@@ -24,9 +24,8 @@ jobs:
                   port: 5432
             - name: Install Prince
               run: |
-                  sudo apt-get update
                   TEMP_PRINCE="$(mktemp)"
-                  sudo apt-get install gdebi -y
+                  sudo apt-get update; sudo apt-get install gdebi -y
                   wget https://www.princexml.com/download/prince_15.3-1_ubuntu22.04_amd64.deb -O "${TEMP_PRINCE}"
                   sudo gdebi "${TEMP_PRINCE}" --n
             - name: Checkout code
