@@ -85,15 +85,7 @@ class PageRepository extends ModuleRepository
         ],
 
         // Exhibition and events landing
-        'exhibitionsExhibitions' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
         'exhibitionsCurrent' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
-        ],
-        'exhibitionsUpcoming' => [
             'moduleName' => 'exhibitions',
             'routePrefix' => 'exhibitions_events'
         ],

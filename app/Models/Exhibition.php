@@ -318,9 +318,8 @@ class Exhibition extends AbstractModel
         // @see ExhibitionsController::index and relations on Page model
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
-        $featuredIds = $page->present()->upcomingListedExhibitions()
-            ->merge($page->present()->currentListedExhibitions())
-            ->merge($page->present()->upcomingFeaturedExhibitions())
+        $featuredIds = $page->present()->upcomingListedExhibitions()->take(2)
+            ->merge($page->present()->currentListedExhibitions()->take(2))
             ->pluck('id')
             ->all();
 
