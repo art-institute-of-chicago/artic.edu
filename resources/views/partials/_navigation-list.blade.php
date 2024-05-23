@@ -63,7 +63,15 @@
                     <span>
                 @endif
                     @if($hasImage)
-                        <img src="{{ $item['image'] }}" aria-describedby="{{ $id }}-description" alt="">
+                        @component('components.atoms._img')
+                            @slot('image', ['src' => $item['image']])
+                            @slot('class', 'details-image')
+                            @slot('dataAttributes', "aria-describedby='$id-description'")
+                            @slot('settings', [
+                                'srcset' => [240, 480, 960],
+                                'sizes' => '240px',
+                            ])
+                        @endcomponent
                     @endif
                     <div class="description__container">
                         <div class="title">{!! $item['name'] !!}</div>
