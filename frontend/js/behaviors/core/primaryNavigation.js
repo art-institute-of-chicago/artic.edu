@@ -19,6 +19,10 @@ export default function(container) {
         'query[bool][must][][term][position]': 0,
         'size': 1,
     })
+    const featuredExhibitionImageDimensions = new URLSearchParams({
+        'h': 'auto',
+        'w': 240,
+    })
 
     const menuBar = container.querySelector(menuBarQuery)
     const menuItems = menuBar.querySelectorAll(menuItemQuery)
@@ -62,10 +66,11 @@ export default function(container) {
 
     function exhibitionHandler(json) {
         let data = json['data'][0]
+        let image = `${data.image_url}&${featuredExhibitionImageDimensions.toString()}`
 
         const template = featuredExhibitionTemplate.content.cloneNode(true)
         template.querySelector('a').setAttribute('href', data.web_url)
-        template.querySelector('img').setAttribute('src', data.image_url)
+        template.querySelector('img').setAttribute('src', image)
         template.querySelector('.title').textContent = data.title
 
         exhibitionsDetailsContainer.querySelector('a').remove()
