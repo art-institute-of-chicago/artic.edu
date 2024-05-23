@@ -117,12 +117,12 @@
 
             .showcase-date {
                 margin-top: 28px;
-                color: $color__rlc__vermilion;
+                color: $color__rlc__fire_opal;
             }
         }
 
         &.showcase--variation-about-the-rlc {
-            background-color: $color__rlc__vermilion !important;
+            background-color: $color__rlc__fire_opal !important;
 
             .m-showcase-wrapper {
                 flex-direction: row-reverse;
@@ -377,7 +377,7 @@
                 }
 
                 .showcase-link {
-                    color: $color__rlc__vermilion;
+                    color: $color__rlc__fire_opal;
 
                     @include breakpoint('xsmall') {
                         text-align: center;
