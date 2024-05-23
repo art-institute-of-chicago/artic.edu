@@ -34,17 +34,6 @@ class UpdateFeaturedExhibitions extends Command
             }
         });
 
-        $upcomingExhibitions = $upcomingExhibitions->reject(function ($exhibition) {
-            $id = ApiRelation::find($exhibition->pivot->api_relation_id)->datahub_id;
-            $exhibitionInstance = Exhibition::query()->find($id);
-
-            if ($ret = $exhibitionInstance->is_now_open || $exhibitionInstance->is_closed || $exhibitionInstance->is_ongoing) {
-                $this->info("Removing {$exhibitionInstance->datahub_id} from upcoming exhibitions list");
-            }
-            return $ret;
-        });
-
-
         $currentExhibitions = $currentExhibitions->reject(function ($exhibition) {
             $id = ApiRelation::find($exhibition->pivot->api_relation_id)->datahub_id;
             $exhibitionInstance = Exhibition::query()->find($id);
