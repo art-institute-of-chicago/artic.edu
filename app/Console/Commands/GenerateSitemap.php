@@ -67,7 +67,7 @@ class GenerateSitemap extends Command
     private function addHardcodedPages(&$sitemap)
     {
         $this->addRoute($sitemap, 'home', 1.0);
-        $this->addRoute($sitemap, 'visit', 1.0);
+        $this->addUrl($sitemap, route('pages.slug', ['slug' => 'visit']), 1.0);
         $this->addRoute($sitemap, 'events', 0.9);
         $this->addRoute($sitemap, 'collection', 0.9);
         $this->addRoute($sitemap, 'articles_publications');
