@@ -90,7 +90,7 @@ class Asset extends BaseApiModel
         switch ($this->api_model) {
             case 'videos':
                 return '//' . config('app.url') . '/videos/' . $this->id;
-            case 'sections':
+            case 'articles':
             case 'sites':
                 return $this->web_url;
 
@@ -148,7 +148,7 @@ class Asset extends BaseApiModel
     public function scopeMultimediaAssets($query)
     {
         $params = [
-            'resources' => ['images', 'sounds', 'texts', 'videos', 'sections', 'sites']
+            'resources' => ['images', 'sounds', 'texts', 'videos', 'articles', 'sites']
         ];
 
         return $query->rawQuery($params);

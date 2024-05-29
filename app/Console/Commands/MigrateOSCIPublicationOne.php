@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Repositories\Api\PublicationRepository;
 use App\Models\DigitalPublication;
-use App\Models\DigitalPublicationSection;
+use App\Models\DigitalPublicationArticle;
 use App\Models\Vendor\Block;
 
 class MigrateOSCIPublicationOne extends Command
@@ -53,29 +53,29 @@ class MigrateOSCIPublicationOne extends Command
         $webPub->is_dsc_stub = false;
         $webPub->save();
 
-        foreach ($apiPub->sections as $apiSection) {
-            $webSection = new DigitalPublicationSection();
-            $webSection->title = $apiSection->title;
-            $webSection->published = false;
-            $webSection->digital_publication_id = $webPub->id;
-            $webSection->position = $apiSection->weight;
-            $webSection->save();
+        foreach ($apiPub->articles as $apiArticle) {
+            $webArticle = new DigitalPublicationArticle();
+            $webArticle->title = $apiArticle->title;
+            $webArticle->published = false;
+            $webArticle->digital_publication_id = $webPub->id;
+            $webArticle->position = $apiArticle->weight;
+            $webArticle->save();
 
             $block = new Block();
-            $block->blockable_id = $webSection->id;
-            $block->blockable_type = 'App\Models\DigitalPublicationSection';
+            $block->blockable_id = $webArticle->id;
+            $block->blockable_type = 'App\Models\DigitalPublicationArticle';
 
             /* If we decide to break up the text into multiple paragraph blocks, increment
              * the `position` value to keep the order in tact.
              */
             $block->position = 0;
 
-            $block->content = ['paragraph' => str_replace(['<section', '</section'], ['<p', '</p'], $apiSection->content)];
+            $block->content = ['paragraph' => str_replace(['<section', '</section'], ['<p', '</p'], $apiArticle->content)];
             $block->type = 'paragraph';
             $block->save();
-            $webSection->blocks()->save($block);
+            $webArticle->blocks()->save($block);
 
-            $webPub->sections()->save($webSection);
+            $webPub->articles()->save($webArticle);
         }
         $webPub->save();
     }
