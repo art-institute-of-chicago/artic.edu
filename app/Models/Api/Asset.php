@@ -148,7 +148,7 @@ class Asset extends BaseApiModel
     public function scopeMultimediaAssets($query)
     {
         $params = [
-            'resources' => ['images', 'sounds', 'texts', 'videos', 'sections', 'sites']
+            'resources' => ['images', 'sounds', 'texts', 'videos', 'articles', 'sites']
         ];
 
         return $query->rawQuery($params);
