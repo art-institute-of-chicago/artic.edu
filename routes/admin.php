@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\ArtworkController;
 use App\Http\Controllers\Admin\ArtistController;
 use App\Http\Controllers\Admin\CategoryTermController;
 use App\Http\Controllers\Admin\DepartmentController;
-use App\Http\Controllers\Admin\DigitalPublicationSectionController;
+use App\Http\Controllers\Admin\DigitalPublicationArticleController;
 use App\Http\Controllers\Admin\ExhibitionController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -86,10 +86,10 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('videos');
         Route::module('printedPublications');
         Route::module('digitalPublications');
-        Route::module('digitalPublications.sections');
+        Route::module('digitalPublications.articles');
 
         // WEB-1963: Browser for nested modules must be implemented manually
-        Route::get('digitalPublicationsFoo/{digitalPublication}/sections/browser', [DigitalPublicationSectionController::class, 'browser'])->name('collection.articles_publications.digitalPublications.sections.subbrowser');
+        Route::get('digitalPublicationsFoo/{digitalPublication}/articles/browser', [DigitalPublicationArticleController::class, 'browser'])->name('collection.articles_publications.digitalPublications.articles.subbrowser');
     });
 
     Route::module('galleries');
