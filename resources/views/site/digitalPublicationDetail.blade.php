@@ -258,7 +258,7 @@
                             @slot('cols_large','3')
                             @slot('cols_xlarge','3')
                     @endif
-                
+
                     @foreach ($topLevelArticle->children->filter(function($item) {
                         return !$item->suppress_listing;
                     })->sortBy('position') as $item)
@@ -294,14 +294,14 @@
                             @endcomponent
                         @endif
                     @endforeach
-                
+
                     @if ($showAll == true)
                         @endcomponent
                     @endif
-                
+
                 @break
                 @default
-                
+
                     @component('components.organisms._o-grid-listing')
                         @slot('cols_small','2')
                         @slot('cols_medium','3')
@@ -336,7 +336,7 @@
                             @endif
                         @endforeach
                     @endcomponent
-                
+
                 @endswitch
             @endif
         @endforeach

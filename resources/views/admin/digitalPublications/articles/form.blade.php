@@ -46,7 +46,7 @@
                 'label' => 'Hide title in listing view',
             ])
         @endslot
-        
+
         @slot('right')
             @formField('checkbox', [
                 'name' => 'suppress_listing',
