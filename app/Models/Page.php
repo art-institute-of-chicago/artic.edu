@@ -263,19 +263,9 @@ class Page extends AbstractModel
         return $this->apiElements()->where('relation', 'homeExhibitions');
     }
 
-    public function exhibitionsExhibitions()
-    {
-        return $this->apiElements()->where('relation', 'exhibitionsExhibitions');
-    }
-
     public function exhibitionsCurrent()
     {
         return $this->apiElements()->where('relation', 'exhibitionsCurrent');
-    }
-
-    public function exhibitionsUpcoming()
-    {
-        return $this->apiElements()->where('relation', 'exhibitionsUpcoming');
     }
 
     public function exhibitionsUpcomingListing()

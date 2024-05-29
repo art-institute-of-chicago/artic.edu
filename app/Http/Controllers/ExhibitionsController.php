@@ -28,18 +28,16 @@ class ExhibitionsController extends FrontController
     {
         // NOTE: Naming conventions for the CMS browsers might be counterintuitive (for backwards compatibility).
         //
-        // exhibitionsExhibitions: Featured exhibitions
-        // exhibitionsCurrent: Current exhibitions listing
-        // exhibitionsUpcoming: Featured upcoming exhibitions
-        // exhibitionsUpcomingListing: Upcoming exhibitions listing.
+        // exhibitionsCurrent: Current exhibitions listing. First two are featured.
+        // exhibitionsUpcomingListing: Upcoming exhibitions listing. First two are featured.
 
         $this->seo->setTitle('Exhibitions');
         $this->seo->setDescription("Now on view—explore the Art Institute's current and upcoming exhibits to plan your visit.");
 
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
-        $collection = $upcoming ? $page->present()->upcomingListedExhibitions() : $page->present()->currentListedExhibitions();
-        $featured = $upcoming ? $page->present()->upcomingFeaturedExhibitions() : $page->present()->currentFeaturedExhibitions();
+        $collection = $upcoming ? $page->present()->upcomingListedExhibitions()->skip(2) : $page->present()->currentListedExhibitions()->skip(2);
+        $featured = $upcoming ? $page->present()->upcomingListedExhibitions()->take(2) : $page->present()->currentListedExhibitions()->take(2);
 
         $events = $this->eventRepository->getEventsFiltered(Carbon::now(), null, null, null, null, null, 3, 1);
         $eventsByDay = $this->eventRepository->groupByDate($events);
