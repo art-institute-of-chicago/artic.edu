@@ -7,6 +7,7 @@ if (env('APP_ENV') != 'testing') {
         $pClass = $action['controller'];
     }
 }
+$pClass = preg_replace('/App\\\\Http\\\\Controllers\\\\Admin\\\\/i','p-',$pClass);
 $pClass = preg_replace('/App\\\\Http\\\\Controllers\\\\/i','p-',$pClass);
 $pClass = preg_replace('/Controller/i','',$pClass);
 $pClass = strtolower(preg_replace('/@/i','-',$pClass));
