@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\DigitalPublicationSectionRepository;
+use App\Repositories\DigitalPublicationArticleRepository;
 
-class DigitalPublicationSectionController extends FrontController
+class DigitalPublicationArticleController extends FrontController
 {
     protected $repository;
 
-    public function __construct(DigitalPublicationSectionRepository $repository)
+    public function __construct(DigitalPublicationArticleRepository $repository)
     {
         $this->repository = $repository;
 
@@ -45,7 +45,7 @@ class DigitalPublicationSectionController extends FrontController
             $this->seo->citationOnlineDate = $item->date->toDateString();
         }
 
-        return view('site.digitalPublicationSectionDetail', [
+        return view('site.digitalPublicationArticleDetail', [
             'item' => $item,
             'contrastHeader' => false,
             'borderlessHeader' => false,

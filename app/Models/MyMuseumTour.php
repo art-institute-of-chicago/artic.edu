@@ -9,8 +9,8 @@ class MyMuseumTour extends Model
 {
     use HasPresenter;
 
-    protected $presenter = 'App\Presenters\Admin\DigitalPublicationSectionPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationSectionPresenter';
+    protected $presenter = 'App\Presenters\Admin\DigitalPublicationArticlePresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationArticlePresenter';
 
     protected $connection;
 
