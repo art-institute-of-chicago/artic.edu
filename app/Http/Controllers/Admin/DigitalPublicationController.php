@@ -16,7 +16,7 @@ class DigitalPublicationController extends ModuleController
         ],
         'type' => [
             'title' => 'Is DSC stub?',
-            'field' => 'isDscStub',
+            'field' => 'is_dsc_stub',
             'sort' => true,
             'present' => true,
         ],
