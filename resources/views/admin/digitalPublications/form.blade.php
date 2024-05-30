@@ -53,9 +53,10 @@
         'note' => 'Minimum image width 2000px',
     ])
 
-    @formField('color', [
+    @formField('select', [
         'name' => 'bgcolor',
         'label' => 'Hero background color',
+        'options' => $heroBackgroundColors,
     ])
 
     @formField('wysiwyg', [
