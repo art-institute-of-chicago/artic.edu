@@ -85,7 +85,7 @@
             ))
             @endcomponent  
           @else
-            @component('components.molecules._m-listing----' . Str::slug(strtolower($item->type)) . '-minimal')
+            @component('components.molecules._m-listing----' . Str::slug($item->type) . '-minimal')
               @slot('item', $item)
               @slot('imageSettings', array(
                   'fit' => 'crop',
