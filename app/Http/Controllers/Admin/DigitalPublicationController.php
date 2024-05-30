@@ -26,9 +26,21 @@ class DigitalPublicationController extends ModuleController
     {
         $item = $this->repository->getById(request('digitalPublication') ?? request('id'));
         $baseUrl = '//' . config('app.url') . '/digital-publications/' . $item->id . '/';
+        $heroBackgroundColors = collect([
+            '#282829',
+            '#422E22',
+            '#284725',
+            '#1E3F49',
+            '#1C2454',
+            '#35295A',
+            '#711F2A',
+            '#983820',
+            '#E19E26',
+        ])->mapWithKeys(fn ($hexColor) => [$hexColor => $hexColor]);
 
         return [
             'baseUrl' => $baseUrl,
+            'heroBackgroundColors' => $heroBackgroundColors,
         ];
     }
 
