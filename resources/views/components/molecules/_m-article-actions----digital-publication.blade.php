@@ -11,14 +11,14 @@
     </div>
 
     @php
-        $sectionsForSidebar = $digitalPublication->present()->sectionsForSidebar($currentSection ?? null);
+        $articlesForSidebar = $digitalPublication->present()->articlesForSidebar($currentArticle ?? null);
     @endphp
 
-    @if (!empty($sectionsForSidebar))
+    @if (!empty($articlesForSidebar))
         @component('components.organisms._o-accordion')
             @slot('variation', 'o-accordion--publication-sidebar')
             @slot('titleFont', 'f-tag-2')
-            @slot('items', $sectionsForSidebar)
+            @slot('items', $articlesForSidebar)
         @endcomponent
     @endif
 

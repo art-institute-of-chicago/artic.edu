@@ -10,13 +10,13 @@
     <div class="o-article__primary-actions o-article__primary-actions--digital-publication">
         @component('components.molecules._m-article-actions----digital-publication')
             @slot('digitalPublication', $item->digitalPublication)
-            @slot('currentSection', $item)
+            @slot('currentArticle', $item)
             @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
             @slot('citeAs', $item->cite_as)
         @endcomponent
     </div>
 
-    @if ($item->type == \App\Models\DigitalPublicationSection::TEXT)
+    @if ($item->type == \App\Models\DigitalPublicationArticle::TEXT)
         @component('components.molecules._m-article-header----journal-article')
             @slot('title', $item->present()->title)
             @slot('title_display', $item->present()->title_display)
@@ -45,8 +45,8 @@
     </div>
     @endif
 
-    <div class="o-article__body o-blocks o-blocks--with-sidebar {{ $item->type != \App\Models\DigitalPublicationSection::TEXT ? "o-article__body--no-top-border" : "" }}">
-        @if ($item->type == \App\Models\DigitalPublicationSection::TEXT)
+    <div class="o-article__body o-blocks o-blocks--with-sidebar {{ $item->type != \App\Models\DigitalPublicationArticle::TEXT ? "o-article__body--no-top-border" : "" }}">
+        @if ($item->type == \App\Models\DigitalPublicationArticle::TEXT)
             @if ($item->showAuthorsWithLinks())
                 @component('components.blocks._text')
                     @slot('font', 'f-tag-2')
@@ -58,7 +58,7 @@
         @endif
 
         @php
-        if ($item->type == \App\Models\DigitalPublicationSection::TEXT) {
+        if ($item->type == \App\Models\DigitalPublicationArticle::TEXT) {
             global $_collectedReferences;
             $_collectedReferences = [];
 

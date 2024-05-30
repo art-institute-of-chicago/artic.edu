@@ -70,7 +70,7 @@ class DigitalPublication extends AbstractModel
         'toggle_autorelated' => false,
     ];
 
-    public $searchSections = [];
+    public $searchArticles = [];
 
     public $mediasParams = [
         'listing' => [
@@ -158,19 +158,19 @@ class DigitalPublication extends AbstractModel
         ));
     }
 
-    public function searchSections()
+    public function searchArticles()
     {
-        return $this->searchSections;
+        return $this->searchArticles;
     }
 
-    public function addSearchSection($section)
+    public function addSearchArticle($article)
     {
-        return $this->searchSections[] = $section;
+        return $this->searchArticles[] = $article;
     }
 
-    public function sections()
+    public function articles()
     {
-        return $this->hasMany('App\Models\DigitalPublicationSection', 'digital_publication_id');
+        return $this->hasMany('App\Models\DigitalPublicationArticle', 'digital_publication_id');
     }
 
     protected function transformMappingInternal()
