@@ -114,6 +114,10 @@ class FrontController extends BaseController
 
     protected function getFeatureRelated($item)
     {
+        if (!$item) {
+            return collect([]);
+        }
+
         return collect($item->getFeaturedRelated())->pluck('item');
     }
 
