@@ -2,20 +2,20 @@
 
 namespace App\Presenters\Admin;
 
-use App\Models\DigitalPublicationSection;
+use App\Models\DigitalPublicationArticle;
 use App\Presenters\BasePresenter;
 
-class DigitalPublicationSectionPresenter extends BasePresenter
+class DigitalPublicationArticlePresenter extends BasePresenter
 {
     public function getCanonicalUrl()
     {
-        return $this->getSectionUrl($this->entity->digitalPublication);
+        return $this->getArticleUrl($this->entity->digitalPublication);
     }
 
     public function type()
     {
         if ($this->entity->type) {
-            return DigitalPublicationSection::$types[$this->entity->type];
+            return DigitalPublicationArticle::$types[$this->entity->type];
         }
     }
 
@@ -28,22 +28,22 @@ class DigitalPublicationSectionPresenter extends BasePresenter
         return config('aic.pdf_s3_endpoint') . $this->entity->pdf_download_path;
     }
 
-    public function getSectionUrl($digitalPublication, $section = null)
+    public function getArticleUrl($digitalPublication, $article = null)
     {
-        $section = $section ?? $this->entity;
+        $article = $article ?? $this->entity;
 
-        return route('collection.publications.digital-publications-sections.show', [
+        return route('collection.publications.digital-publications-articles.show', [
             'pubId' => $digitalPublication->id,
             'pubSlug' => $digitalPublication->slug,
-            'id' => $section->id,
-            'slug' => $section->slug,
+            'id' => $article->id,
+            'slug' => $article->slug,
         ]);
     }
 
     /**
      * PUB-163: Use for cards, not for sidebar.
      */
-    public function getSectionType()
+    public function getArticleType()
     {
         return $this->entity->type_display;
     }

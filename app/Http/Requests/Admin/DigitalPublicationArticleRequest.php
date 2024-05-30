@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use A17\Twill\Http\Requests\Admin\Request;
 
-class DigitalPublicationSectionRequest extends Request
+class DigitalPublicationArticleRequest extends Request
 {
     public function rulesForCreate()
     {
