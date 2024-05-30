@@ -1,12 +1,42 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    <br /><strong><a href="{{ url('/collection/articles_publications/digitalPublications/' . $item->id . '/articles') }}">{{ $item->articles->count() }} Articles</a></strong>
+    {{-- TODO: add links to groupings when the index page is created --}}
+    <ul>
+        <li>
+            <a>About</a>
+        </li>
+        <li>
+            <a>Contributions</a>
+        </li>
+        <li>
+            <a>Works</a>
+        </li>
+        <li>
+            <a>etc</a>
+        </li>
+        <li class="see-all">
+            <a href="{{ url('/collection/articles_publications/digitalPublications/' . $item->digital_publication_id . '/articles') }}">
+                See all
+            </a>
+        </li>
+    </ul>
 
-    @formField('input', [
-        'name' => 'title_display',
-        'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+    @formField('wysiwyg', [
+        'name' => 'header_title_display',
+        'label' => 'Title lockup for header',
+        'note' => 'Use Shift+Enter to add linebreak instead of starting a new paragraph',
+        'toolbarOptions' => [
+            'italic',
+        ],
+    ])
+
+    @formField('wysiwyg', [
+        'name' => 'header_subtitle_display',
+        'label' => 'Subtitle lockup for header',
+        'toolbarOptions' => [
+            'italic',
+        ],
     ])
 
     @formField('medias', [
@@ -14,6 +44,13 @@
         'label' => 'Hero image',
         'name' => 'listing',
         'note' => 'Minimum image width 3000px'
+    ])
+
+    @formField('medias', [
+        'with_multiple' => false,
+        'label' => 'Hero image, mobile',
+        'name' => 'mobile_listing',
+        'note' => 'Minimum image width 2000px',
     ])
 
     @formField('color', [
@@ -35,14 +72,11 @@
     @formField('wysiwyg', [
         'name' => 'listing_description',
         'label' => 'Listing description',
-        'note' => 'Max 300 characters',
         'maxlength' => 300,
         'toolbarOptions' => [
-            'italic'
+            'italic',
         ],
     ])
-
-    <hr>
 
     @formField('checkbox', [
         'name' => 'is_dsc_stub',
@@ -51,63 +85,53 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="fields_for_dsc_stub" title="DSC Stub Fields">
-        <p style="margin-bottom: -20px">This content is only shown when the page is a DSC stub.</p>
-
-        <hr>
-
-        @formField('medias', [
-            'with_multiple' => false,
-            'label' => 'Banner image',
-            'name' => 'banner',
-            'note' => 'Minimum image width 3000px'
+    @formConnectedFields([
+        'fieldName' => 'is_dsc_stub',
+        'fieldValues' => true,
+    ])
+        @formFieldset([
+            'id' => 'fields_for_dsc_stub',
+            'title' => 'DSC Stub Fields',
         ])
+            <p style="margin-bottom: -20px">This content is only shown when the page is a DSC stub.</p>
+            <hr>
 
-        @formField('block_editor', [
-            'blocks' => BlockHelpers::getBlocksForEditor([
-                'paragraph', 'image', 'hr', 'split_block', 'link', 'video', 'accordion', 'media_embed', 'list', 'timeline', 'newsletter_signup_inline', 'membership_banner', '3d_model'])
-        ])
-    </a17-fieldset>
+            @formField('medias', [
+                'with_multiple' => false,
+                'label' => 'Banner image',
+                'name' => 'banner',
+                'note' => 'Minimum image width 3000px'
+            ])
 
-    <a17-fieldset id="fields_for_dsc_stub" title="Publication Fields">
-        <p style="margin-bottom: -20px">These fields are shown for full-fledged publications.</p>
+            @formField('block_editor', [
+                'blocks' => BlockHelpers::getBlocksForEditor([
+                    '3d_model',
+                    'accordion',
+                    'hr',
+                    'image',
+                    'link',
+                    'list',
+                    'media_embed',
+                    'membership_banner',
+                    'newsletter_signup_inline',
+                    'paragraph',
+                    'split_block',
+                    'timeline',
+                    'video',
+                ]),
+            ])
+        @endformFieldset
+    @endformConnectedFields
 
-        <hr>
-
-        @formField('wysiwyg', [
-            'name' => 'header_title_display',
-            'label' => 'Title lockup for header',
-            'note' => 'Use Shift+Enter to add linebreak instead of starting a new paragraph',
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
-
-        @formField('wysiwyg', [
-            'name' => 'header_subtitle_display',
-            'label' => 'Subtitle lockup for header',
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
-
-        <hr>
-
-        @formField('wysiwyg', [
-            'name' => 'sidebar_title_display',
-            'label' => 'Title lockup for sidebar',
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
-
-        <hr>
-
+    @formFieldset([
+        'id' => 'fields_for_full_publication',
+        'title' => 'Publication Fields',
+    ])
         @formField('wysiwyg', [
             'name' => 'welcome_note_display',
             'label' => 'Welcome note text',
             'toolbarOptions' => [
-                'italic'
+                'italic',
             ],
         ])
 
@@ -120,13 +144,11 @@
             'max' => 1,
         ])
 
-        <hr>
-
         @formField('wysiwyg', [
             'name' => 'sponsor_display',
             'label' => 'Sponsors',
             'toolbarOptions' => [
-                'italic'
+                'italic',
             ],
         ])
 
@@ -134,10 +156,10 @@
             'name' => 'cite_as',
             'label' => 'How to Cite',
             'toolbarOptions' => [
-                'italic'
+                'italic',
             ],
         ])
-    </a17-fieldset>
+    @endformConnectedFields
 
     @include('admin.partials.related')
 
