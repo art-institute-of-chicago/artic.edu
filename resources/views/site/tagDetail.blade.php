@@ -77,7 +77,7 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @foreach ($relatedItems as $item)
-            @component('components.molecules._m-listing----' . (strtolower($item->type ?? 'article')))
+            @component('components.molecules._m-listing----' . (Str::slug($item->type ?? 'article')))
                 @slot('item', $item)
                 @slot('hideImage', false)
                 @slot('imageSettings', array(
