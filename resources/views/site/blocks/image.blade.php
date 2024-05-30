@@ -6,11 +6,13 @@
 
     $isModal = $block->input('is_modal') ?? false;
     $isZoomable = $isModal && $block->input('is_zoomable') ?? false;
+
+    $theme = $block->input('theme') !== 'default' ? $block->input('theme') : null;
 @endphp
 
 @if (isset($image['src']))
     @component('components.molecules._m-media')
-        @slot('variation', 'o-blocks__block')
+        @slot('variation', 'o-blocks__block' . ($theme ? ' image-block--' . $theme : ''))
         @slot('item', [
             'type' => 'image',
             'size' => $block->input('size'),

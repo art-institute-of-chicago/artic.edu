@@ -1,5 +1,6 @@
 @php
     $ids = $block->browserIds('artworks');
+    $theme = $block->input('theme') === 'default' ? null : $block->input('theme');
 
     if (!empty($ids)) {
         $artwork = \App\Models\Api\Artwork::query()->ids($ids)->get()->first();
@@ -51,7 +52,7 @@
 @endphp
 @if(isset($artworkItem))
     @component('components.molecules._m-media')
-        @slot('variation', 'o-blocks__block')
+        @slot('variation', 'o-blocks__block' . ($theme ? ' artwork-block--' . $theme : ''))
         @slot('item', $artworkItem)
     @endcomponent
 @endif
