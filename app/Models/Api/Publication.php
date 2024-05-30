@@ -12,8 +12,8 @@ class Publication extends BaseApiModel
         'search' => '/api/v1/publications/search'
     ];
 
-    public function articles()
+    public function sections()
     {
-        return $this->hasMany(\App\Models\Api\Section::class, 'article_ids');
+        return $this->hasMany(\App\Models\Api\Section::class, 'section_ids');
     }
 }

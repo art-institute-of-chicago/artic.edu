@@ -4,8 +4,8 @@
     'keepAlive' => true,
 ])
     @formField('wysiwyg', [
-        'name' => 'article_title',
-        'label' => 'Article Title',
+        'name' => 'section_title',
+        'label' => 'Section Title',
         'maxlength' => 150,
     ])
 

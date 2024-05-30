@@ -14,7 +14,7 @@ class PublicationsRepository
         $results = $search->getSearch($perPage, $columns, null, $page);
 
         // Now find matching `articles` and add them to the catalogs
-        $searchArticles = Search::query()->search($string)->resources(['articles', 'digital-publication-articles']);
+        $searchArticles = Search::query()->search($string)->resources(['sections', 'digital-publication-articles']);
         $resultsArticles = $searchArticles->getSearch(50, $columns, null, $page);
 
         foreach ($resultsArticles as $article) {
