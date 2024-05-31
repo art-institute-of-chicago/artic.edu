@@ -10,7 +10,7 @@
     @formField('date_picker', [
         'name' => 'date',
         'label' => 'Display date',
-        'optional' => false,
+        'required' => true,
         'withTime' => false,
         'note' => 'Required',
     ])
@@ -28,7 +28,7 @@
         'no_crop' => false,
         'label' => 'Mobile hero image',
         'name' => 'mobile_hero',
-        'note' => 'Minimum image width 3000px'
+        'note' => 'Minimum image width 2000px'
     ])
 
     @formField('select', [
@@ -51,16 +51,7 @@
         'maxlength' => 255,
         'note' => 'Max 255 characters. Will be used on the main landing, search, and social media.',
         'toolbarOptions' => [
-            'italic'
-        ],
-    ])
-
-    @formField('wysiwyg', [
-        'name' => 'heading',
-        'label' => 'Heading',
-        'note' => 'Only intended for Works sections.',
-        'toolbarOptions' => [
-            'italic'
+            'italic',
         ],
     ])
 
@@ -81,7 +72,7 @@
         'name' => 'cite_as',
         'label' => 'How to Cite',
         'toolbarOptions' => [
-            'italic'
+            'italic',
         ],
     ])
 
@@ -89,13 +80,40 @@
         'name' => 'references',
         'label' => 'References',
         'toolbarOptions' => [
-            'italic', 'link', 'list-ordered', 'list-unordered'
+            'italic', 'link', 'list-ordered', 'list-unordered',
         ],
     ])
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
-            'paragraph', 'image', 'hr', 'artwork', 'split_block', 'gallery_new', 'video', 'quote', 'tour_stop', 'media_embed', 'list', 'image_slider', 'button', 'table', 'audio_player', '360_embed', 'mirador_embed', '3d_embed', 'membership_banner', 'layered_image_viewer', '3d_tour', '3d_model', 'citation', 'links-bar', 'mobile_app', 'mirador_modal', 'digital_label', '360_modal'
+            '360_embed',
+            '360_modal',
+            '3d_embed',
+            '3d_model',
+            '3d_tour',
+            'artwork',
+            'audio_player',
+            'button',
+            'citation',
+            'digital_label',
+            'gallery_new',
+            'hr',
+            'image',
+            'image_slider',
+            'layered_image_viewer',
+            'links-bar',
+            'list',
+            'media_embed',
+            'membership_banner',
+            'mirador_embed',
+            'mirador_modal',
+            'mobile_app',
+            'paragraph',
+            'quote',
+            'split_block',
+            'table',
+            'tour_stop',
+            'video',
         ])
     ])
 @stop
@@ -103,5 +121,4 @@
 @section('fieldsets')
 
     @include('admin.partials.meta')
-
 @stop
