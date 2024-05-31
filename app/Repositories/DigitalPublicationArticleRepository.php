@@ -7,6 +7,7 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\ModuleRepository;
+use App\Enums\DigitalPublicationArticleType;
 use App\Jobs\GeneratePdf;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Api\Search;
@@ -24,9 +25,10 @@ class DigitalPublicationArticleRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getTypesList()
+    public function getTypes()
     {
-        return collect($this->model::$types);
+        return collect(DigitalPublicationArticleType::cases())
+            ->mapWithKeys(fn ($type) => [$type->value => $type->name]);
     }
 
     public function afterSave($object, $fields)

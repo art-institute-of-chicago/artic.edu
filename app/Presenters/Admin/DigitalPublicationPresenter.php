@@ -2,7 +2,7 @@
 
 namespace App\Presenters\Admin;
 
-use App\Models\DigitalPublicationArticle;
+use App\Enums\DigitalPublicationArticleType;
 use App\Presenters\BasePresenter;
 
 class DigitalPublicationPresenter extends BasePresenter
@@ -72,23 +72,26 @@ class DigitalPublicationPresenter extends BasePresenter
     public function articlesForSidebar($currentArticle = null)
     {
         if (!$this->articlesForSidebar) {
-            foreach (array_keys(DigitalPublicationArticle::$types) as $type) {
-                if (!$this->hasArticles($type)) {
+            foreach (DigitalPublicationArticleType::cases() as $type) {
+                if (!$this->hasArticles($type->value)) {
                     continue;
                 }
 
                 $this->articlesForSidebar[] = [
-                    'title' => DigitalPublicationArticle::$types[$type],
+                    'title' => $type->name,
                     'active' => !isset($currentArticle) || $currentArticle->type === $type,
                     'blocks' => [
                         [
                             'type' => 'link-list',
                             'links' => $this
-                                ->getArticles($type)
+                                ->getArticles($type->value)
                                 ->map(function ($article) use ($currentArticle) {
+                                    $sublabel = $article->type === DigitalPublicationArticleType::Contributions
+                                        ? $article->showAuthors()
+                                        : null;
                                     return [
                                         'label' => $article->title_display ?? $article->title,
-                                        'sublabel' => $article->type === DigitalPublicationArticle::TEXT ? $article->showAuthors() : null,
+                                        'sublabel' => $sublabel,
                                         'href' => $article->present()->getArticleUrl($this->entity),
                                         'active' => isset($currentArticle) && $article->id === $currentArticle->id,
                                     ];

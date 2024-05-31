@@ -68,7 +68,7 @@ class DigitalPublicationArticleController extends ModuleController
         $baseUrl = '//' . config('app.url') . '/' . $this->permalinkBase . $digPub->id . '/' . $digPub->getSlug() . '/' . $item->id . '/';
 
         return [
-            'typesList' => $this->repository->getTypesList(),
+            'types' => $this->repository->getTypes(),
             'baseUrl' => $baseUrl,
             'breadcrumb' => [
                 [
