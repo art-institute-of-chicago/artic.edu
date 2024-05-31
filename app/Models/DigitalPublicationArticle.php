@@ -43,7 +43,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         'pdf_download_path',
         'cite_as',
         'references',
-        'type_display',
+        'label',
         'grouping_description',
         'meta_title',
         'meta_description',
