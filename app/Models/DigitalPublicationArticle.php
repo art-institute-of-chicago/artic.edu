@@ -44,6 +44,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         'cite_as',
         'references',
         'type_display',
+        'grouping_description',
         'meta_title',
         'meta_description',
     ];
@@ -79,6 +80,22 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
             ],
         ],
         'mobile_hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
+        'grouping_hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
+        'grouping_mobile_hero' => [
             'default' => [
                 [
                     'name' => 'default',
