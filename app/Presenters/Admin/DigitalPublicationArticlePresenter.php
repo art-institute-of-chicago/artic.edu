@@ -2,7 +2,6 @@
 
 namespace App\Presenters\Admin;
 
-use App\Models\DigitalPublicationArticle;
 use App\Presenters\BasePresenter;
 
 class DigitalPublicationArticlePresenter extends BasePresenter
@@ -14,9 +13,7 @@ class DigitalPublicationArticlePresenter extends BasePresenter
 
     public function type()
     {
-        if ($this->entity->type) {
-            return DigitalPublicationArticle::$types[$this->entity->type];
-        }
+        return $this->entity->type->name;
     }
 
     public function pdfDownloadPath()
