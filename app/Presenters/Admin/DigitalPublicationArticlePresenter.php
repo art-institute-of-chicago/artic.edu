@@ -37,14 +37,6 @@ class DigitalPublicationArticlePresenter extends BasePresenter
         ]);
     }
 
-    /**
-     * PUB-163: Use for cards, not for sidebar.
-     */
-    public function getArticleType()
-    {
-        return $this->entity->type_display;
-    }
-
     public function references()
     {
         if (empty($this->entity->references)) {
