@@ -119,6 +119,42 @@
 @stop
 
 @section('fieldsets')
+    @formConnectedFields([
+        'fieldName' => 'type',
+        'fieldValues' => 'grouping',
+        'renderForBlocks' => false,
+    ])
+        @formFieldset([
+            'id' => 'fields-for-type-grouping',
+            'title' => 'Grouping fields',
+        ])
+            @formField('wysiwyg', [
+                'name' => 'grouping_description',
+                'label' => 'Description',
+                'maxlength' => 255,
+                'note' => 'Max 255 characters',
+                'toolbarOptions' => [
+                    'italic', 'link',
+                ],
+            ])
+
+            @formField('medias', [
+                'with_multiple' => false,
+                'no_crop' => false,
+                'label' => 'Hero image',
+                'name' => 'grouping_hero',
+                'note' => 'Minimum image width 3000px'
+            ])
+
+            @formField('medias', [
+                'with_multiple' => false,
+                'no_crop' => false,
+                'label' => 'Mobile hero image',
+                'name' => 'grouping_mobile_hero',
+                'note' => 'Minimum image width 2000px'
+            ])
+        @endformFieldset
+    @endformConnectedFields
 
     @include('admin.partials.meta')
 @stop
