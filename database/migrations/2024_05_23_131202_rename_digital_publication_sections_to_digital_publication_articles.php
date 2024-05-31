@@ -18,9 +18,24 @@ return new class () extends Migration {
             $table->dropForeign('digital_publication_section_revisions_digital_publication_secti');
         });
 
-        Schema::table('digital_publication_section_slugs', function (Blueprint $table) {
-            $table->dropForeign('fk_digital_publication_section_slugs_digital_publication_sectio');
-        });
+        $foreignKeys = DB::select("
+            SELECT
+                conname AS constraint_name
+            FROM
+                pg_constraint
+            WHERE
+                conrelid = 'digital_publication_section_slugs'::regclass
+                AND contype = 'f';
+        ");
+
+        // Drop each foreign key constraint
+        foreach ($foreignKeys as $foreignKey) {
+            DB::statement("
+                ALTER TABLE digital_publication_section_slugs
+                DROP CONSTRAINT IF EXISTS {$foreignKey->constraint_name};
+            ");
+        }
+
 
         // Rename the sections table to articles
         Schema::rename('digital_publication_sections', 'digital_publication_articles');
