@@ -1,7 +1,7 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    <br /><strong><a href="{{ url('/collection/articles_publications/digitalPublications/' . $item->id . '/articles') }}">{{ $item->articles->count() }} Articles</a></strong>
+    <br /><strong><a href="{{ url('/collection/articles_publications/digitalPublications/' . $item->id . '/sections') }}">{{ $item->sections->count() }} Sections</a></strong>
 
     @formField('input', [
         'name' => 'title_display',
@@ -114,7 +114,7 @@
         @formField('browser', [
             'name' => 'welcome_note_section',
             'label' => 'Welcome note section',
-            'endpoint' => route('admin.collection.articles_publications.digitalPublications.articles.subbrowser',[
+            'endpoint' => route('admin.collection.articles_publications.digitalPublications.sections.subbrowser',[
                 'digitalPublication' => $item->id,
             ]),
             'max' => 1,

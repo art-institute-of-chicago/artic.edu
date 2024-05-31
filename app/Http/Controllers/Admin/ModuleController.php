@@ -16,10 +16,6 @@ class ModuleController extends BaseModuleController
 
     protected function getAutoRelated($item)
     {
-        if (!method_exists($item, 'related')) {
-            return [];
-        }
-
         $autoRelated = collect($item->related($item))->unique('id')->filter();
 
         $featuredRelated = $this->getFeatureRelated($item);
@@ -37,10 +33,6 @@ class ModuleController extends BaseModuleController
 
     protected function getFeatureRelated($item)
     {
-        if (!method_exists($item, 'getFeaturedRelated')) {
-            return [];
-        }
-
         return collect($item->getFeaturedRelated())->pluck('item');
     }
 }

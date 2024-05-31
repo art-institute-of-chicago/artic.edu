@@ -8,18 +8,18 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Jobs\GeneratePdf;
-use App\Models\DigitalPublicationArticle;
+use App\Models\DigitalPublicationSection;
 use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleAuthors;
 
-class DigitalPublicationArticleRepository extends ModuleRepository
+class DigitalPublicationSectionRepository extends ModuleRepository
 {
     use HandleSlugs, HandleMedias, HandleRevisions, HandleBlocks, HandleApiBlocks, HandleAuthors {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
-    public function __construct(DigitalPublicationArticle $model)
+    public function __construct(DigitalPublicationSection $model)
     {
         $this->model = $model;
     }
@@ -37,7 +37,7 @@ class DigitalPublicationArticleRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null)
     {
-        $search = Search::query()->search($string)->published()->resources(['digital-publication-articles']);
+        $search = Search::query()->search($string)->published()->resources(['digital-publication-sections']);
         $results = $search->getSearch($perPage);
 
         return $results;

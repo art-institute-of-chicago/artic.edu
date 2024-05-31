@@ -41,7 +41,7 @@
 
     @formField('input', [
         'name' => 'type_display',
-        'label' => 'Article label',
+        'label' => 'Section label',
         'note' => 'Used in the "eyebrow" of cards on the publication page',
     ])
 

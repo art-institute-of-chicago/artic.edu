@@ -10,7 +10,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DigitalPublicationsController;
-use App\Http\Controllers\DigitalPublicationArticleController;
+use App\Http\Controllers\DigitalPublicationSectionController;
 use App\Http\Controllers\EducatorResourcesController;
 use App\Http\Controllers\ExhibitionsController;
 use App\Http\Controllers\ExhibitionHistoryController;
@@ -83,7 +83,7 @@ Route::get('/print-publications/{id}/{slug?}', [PrintedPublicationsController::c
 // Collection Publications Digital Publications
 Route::get('/digital-publications', [DigitalPublicationsController::class, 'index'])->name('collection.publications.digital-publications');
 Route::get('/digital-publications/{id}/{slug?}', [DigitalPublicationsController::class, 'show'])->name('collection.publications.digital-publications.show');
-Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPublicationArticleController::class, 'show'])->name('collection.publications.digital-publications-articles.show');
+Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPublicationSectionController::class, 'show'])->name('collection.publications.digital-publications-sections.show');
 
 // Collection Research
 Route::get('/collection/research_resources', [ResearchController::class, 'index'])->name('collection.research_resources');

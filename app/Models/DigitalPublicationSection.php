@@ -12,7 +12,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasBlocks;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class DigitalPublicationArticle extends AbstractModel implements Sortable
+class DigitalPublicationSection extends AbstractModel implements Sortable
 {
     use HasSlug;
     use HasRevisions;
@@ -24,8 +24,8 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
     use Transformable;
     use HasFactory;
 
-    protected $presenter = 'App\Presenters\Admin\DigitalPublicationArticlePresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationArticlePresenter';
+    protected $presenter = 'App\Presenters\Admin\DigitalPublicationSectionPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationSectionPresenter';
 
     protected $fillable = [
         'published',
@@ -197,7 +197,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
             ],
             [
                 'name' => 'type',
-                'doc' => 'Type of Article',
+                'doc' => 'Type of Section',
                 'type' => 'string',
                 'value' => function () {
                     return $this->type;

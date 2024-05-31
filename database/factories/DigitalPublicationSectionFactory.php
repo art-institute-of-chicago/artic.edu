@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\DigitalPublicationArticle;
+use App\Models\DigitalPublicationSection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DigitalPublicationArticleFactory extends Factory
+class DigitalPublicationSectionFactory extends Factory
 {
-    protected $model = DigitalPublicationArticle::class;
+    protected $model = DigitalPublicationSection::class;
 
     public function definition(): array
     {

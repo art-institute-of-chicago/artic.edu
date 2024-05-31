@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
             'experiences' => 'App\Models\Experience',
 
             'digitalPublications' => 'App\Models\DigitalPublication',
-            'digitalPublicationArticles' => 'App\Models\DigitalPublicationArticle',
+            'digitalPublicationSections' => 'App\Models\DigitalPublicationSection',
             'magazineIssues' => 'App\Models\MagazineIssue',
             'pressReleases' => 'App\Models\PressRelease',
             'printedPublications' => 'App\Models\PrintedPublication',

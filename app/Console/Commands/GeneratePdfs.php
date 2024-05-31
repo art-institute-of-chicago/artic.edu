@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\MyMuseumTour;
-use App\Models\DigitalPublicationArticle;
+use App\Models\DigitalPublicationSection;
 use Illuminate\Console\Command;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Http;
@@ -33,7 +33,7 @@ class GeneratePdfs extends Command
      * Array of models to generate PDFs for. Format is `route => model class`
      */
     protected static array $models = [
-        'collection.publications.digital-publications-articles.show' => DigitalPublicationArticle::class,
+        'collection.publications.digital-publications-sections.show' => DigitalPublicationSection::class,
         'my-museum-tour.pdf-layout' => MyMuseumTour::class,
     ];
 

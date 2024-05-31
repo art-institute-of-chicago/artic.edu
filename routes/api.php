@@ -6,7 +6,7 @@ use App\Http\Controllers\API\ArtworksController;
 use App\Http\Controllers\API\ArtistsController;
 use App\Http\Controllers\API\BuildingClosuresController;
 use App\Http\Controllers\API\DigitalPublicationsController;
-use App\Http\Controllers\API\DigitalPublicationArticlesController;
+use App\Http\Controllers\API\DigitalPublicationSectionsController;
 use App\Http\Controllers\API\EducatorResourcesController;
 use App\Http\Controllers\API\EmailSeriesController;
 use App\Http\Controllers\API\EventsController;
@@ -169,10 +169,10 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('digitalpublications/{id}', [DigitalPublicationsController::class, 'show']);
 
     /**
-     * Digital publication articles ------------------------------------------------------
+     * Digital publication sections ------------------------------------------------------
      */
-    Route::get('digitalpublicationarticles', [DigitalPublicationArticlesController::class, 'index']);
-    Route::get('digitalpublicationarticles/{id}', [DigitalPublicationArticlesController::class, 'show']);
+    Route::get('digitalpublicationsections', [DigitalPublicationSectionsController::class, 'index']);
+    Route::get('digitalpublicationsections/{id}', [DigitalPublicationSectionsController::class, 'show']);
 
     /**
      * Printed publications ------------------------------------------------------

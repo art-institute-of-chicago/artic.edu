@@ -1,5 +1,5 @@
 @php
-    use App\Models\DigitalPublicationArticle;
+    use App\Models\DigitalPublicationSection;
 @endphp
 
 @extends('layouts.app')
@@ -36,16 +36,16 @@
             <div class="o-issue__intro">
                 @component('components.organisms._o-editors-note----publication')
                     @slot('description', $item->welcome_note_display)
-                    @slot('articleLink', $welcomeNote->present()->getArticleUrl($item))
+                    @slot('articleLink', $welcomeNote->present()->getSectionUrl($item))
                 @endcomponent
             </div>
         @endif
 
-        @if ($item->present()->hasArticles(DigitalPublicationArticle::TEXT))
+        @if ($item->present()->hasSections(DigitalPublicationSection::TEXT))
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--compact m-title-bar--light',
             ])
-                {{ DigitalPublicationArticle::$types[DigitalPublicationArticle::TEXT] }}
+                {{ DigitalPublicationSection::$types[DigitalPublicationSection::TEXT] }}
             @endcomponent
 
             @component('components.organisms._o-grid-listing')
@@ -55,16 +55,16 @@
                 @slot('cols_medium','2')
                 @slot('cols_large','2')
                 @slot('cols_xlarge','2')
-                @foreach ($item->present()->getArticles(DigitalPublicationArticle::TEXT) as $article)
+                @foreach ($item->present()->getSections(DigitalPublicationSection::TEXT) as $section)
                     @component('components.molecules._m-listing----publication')
                         @slot('variation', 'm-listing--journal')
-                        @slot('href', $article->present()->getArticleUrl($item))
-                        @slot('image', $article->imageFront('hero'))
-                        @slot('type', $article->present()->getArticleType())
-                        @slot('title', $article->present()->title)
-                        @slot('title_display', $article->present()->title_display)
-                        @slot('list_description', $article->present()->list_description)
-                        @slot('author_display', $article->showAuthors())
+                        @slot('href', $section->present()->getSectionUrl($item))
+                        @slot('image', $section->imageFront('hero'))
+                        @slot('type', $section->present()->getSectionType())
+                        @slot('title', $section->present()->title)
+                        @slot('title_display', $section->present()->title_display)
+                        @slot('list_description', $section->present()->list_description)
+                        @slot('author_display', $section->showAuthors())
                         @slot('imageSettings', array(
                             'fit' => 'crop',
                             'ratio' => '16:9',
@@ -82,26 +82,26 @@
             @endcomponent
         @endif
 
-        @if ($item->present()->hasArticles(DigitalPublicationArticle::WORK))
+        @if ($item->present()->hasSections(DigitalPublicationSection::WORK))
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--compact m-title-bar--light',
             ])
-                {{ DigitalPublicationArticle::$types[DigitalPublicationArticle::WORK] }}
+                {{ DigitalPublicationSection::$types[DigitalPublicationSection::WORK] }}
             @endcomponent
 
             @component('components.organisms._o-grid-listing')
                 @slot('variation', 'o-grid-listing--journal')
 
-                @foreach ($item->present()->getArticles(DigitalPublicationArticle::WORK) as $article)
+                @foreach ($item->present()->getSections(DigitalPublicationSection::WORK) as $section)
                     @component('components.molecules._m-listing----publication')
                         @slot('variation', 'm-listing--work')
-                        @slot('href', $article->present()->getArticleUrl($item))
-                        @slot('image', $article->imageFront('hero'))
-                        @slot('type', $article->present()->getArticleType())
-                        @slot('title', $article->present()->title)
-                        @slot('title_display', $article->present()->title_display)
-                        @slot('list_description', $article->present()->list_description)
-                        @slot('author_display', $article->showAuthors())
+                        @slot('href', $section->present()->getSectionUrl($item))
+                        @slot('image', $section->imageFront('hero'))
+                        @slot('type', $section->present()->getSectionType())
+                        @slot('title', $section->present()->title)
+                        @slot('title_display', $section->present()->title_display)
+                        @slot('list_description', $section->present()->list_description)
+                        @slot('author_display', $section->showAuthors())
                         @slot('imageSettings', array(
                             'fit' => 'crop',
                             'ratio' => '16:9',

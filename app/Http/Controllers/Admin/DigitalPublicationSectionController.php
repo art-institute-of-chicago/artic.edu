@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Repositories\DigitalPublicationRepository;
 use App\Http\Controllers\Admin\Behaviors\IsNestedModule;
 
-class DigitalPublicationArticleController extends ModuleController
+class DigitalPublicationSectionController extends ModuleController
 {
     use IsNestedModule;
 
-    protected $moduleName = 'digitalPublications.articles';
-    protected $modelName = 'DigitalPublicationArticle';
-    protected $previewView = 'site.digitalPublicationArticleDetail';
+    protected $moduleName = 'digitalPublications.sections';
+    protected $modelName = 'DigitalPublicationSection';
+    protected $previewView = 'site.digitalPublicationSectionDetail';
 
     protected $permalinkBase = 'digital-publications/';
 
@@ -55,7 +55,7 @@ class DigitalPublicationArticleController extends ModuleController
                     'url' => moduleRoute('digitalPublications', 'collection.articles_publications', 'edit', [$digPub->id]),
                 ],
                 [
-                    'label' => 'Articles',
+                    'label' => 'Sections',
                 ],
             ],
         ];
@@ -63,7 +63,7 @@ class DigitalPublicationArticleController extends ModuleController
 
     protected function formData($request)
     {
-        $item = $this->repository->getById(request('article') ?? request('id'));
+        $item = $this->repository->getById(request('section') ?? request('id'));
         $digPub = app(DigitalPublicationRepository::class)->getById(request('digitalPublication'));
         $baseUrl = '//' . config('app.url') . '/' . $this->permalinkBase . $digPub->id . '/' . $digPub->getSlug() . '/' . $item->id . '/';
 
@@ -80,8 +80,8 @@ class DigitalPublicationArticleController extends ModuleController
                     'url' => moduleRoute('digitalPublications', 'collection.articles_publications', 'edit', [$digPub->id]),
                 ],
                 [
-                    'label' => 'Articles',
-                    'url' => moduleRoute('digitalPublications.articles', 'collection.articles_publications', 'index', [$request->route('digitalPublication')]),
+                    'label' => 'Sections',
+                    'url' => moduleRoute('digitalPublications.sections', 'collection.articles_publications', 'index', [$request->route('digitalPublication')]),
                 ],
                 [
                     'label' => $digPub->title,

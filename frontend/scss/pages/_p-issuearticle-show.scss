@@ -1,8 +1,6 @@
 .p-issuearticle-show,
-.p-issuearticle-preview,
-.p-digitalpublicationarticle-show,
-.p-digitalpublicationarticle-preview {
-    @extend %sticky-sidebar;
+.p-digitalpublicationsection-show {
+  @extend %sticky-sidebar;
 
   @each $name in ('xsmall', 'small', 'medium') {
     @include breakpoint('#{$name}') {
@@ -205,9 +203,8 @@ Digital Publications
 
 Styling related specifically to digital publications
 ***/
-.p-digitalpublicationarticle-show,
-.p-digitalpublicationarticle-preview {
-    .o-blocks {
+.p-digitalpublicationsection-show {
+  .o-blocks {
     .author-links {
       a {
         color: $color__link--accent;

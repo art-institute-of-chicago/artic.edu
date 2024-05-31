@@ -2,7 +2,7 @@
 
 namespace App\Presenters\Admin;
 
-use App\Models\DigitalPublicationArticle;
+use App\Models\DigitalPublicationSection;
 use App\Presenters\BasePresenter;
 
 class DigitalPublicationPresenter extends BasePresenter
@@ -10,14 +10,14 @@ class DigitalPublicationPresenter extends BasePresenter
     /**
      * Formatted specifically for `_o-accordion`.
      */
-    private $articlesForSidebar = [];
+    private $sectionsForSidebar = [];
 
     /**
-     * This is an associative array, keyed by article type.
-     * It will also have an `all` key, containing all articles.
+     * This is an associative array, keyed by section type.
+     * It will also have an `all` key, containing all sections.
      * This is done to reduce the number of DB queries.
      */
-    private $articles = [];
+    private $sections = [];
 
     public function getCanonicalUrl()
     {
@@ -34,34 +34,34 @@ class DigitalPublicationPresenter extends BasePresenter
         }
     }
 
-    public function hasArticles($type = null)
+    public function hasSections($type = null)
     {
-        return $this->getArticles($type)->count() > 0;
+        return $this->getSections($type)->count() > 0;
     }
 
-    public function getArticles($type = null)
+    public function getSections($type = null)
     {
-        if (!isset($this->articles['all'])) {
-            $this->articles['all'] = $this->entity
-                ->articles()
+        if (!isset($this->sections['all'])) {
+            $this->sections['all'] = $this->entity
+                ->sections()
                 ->published()
                 ->ordered()
                 ->get();
         }
 
         if (!isset($type)) {
-            return $this->articles['all'];
+            return $this->sections['all'];
         }
 
-        if (!isset($this->articles[$type])) {
-            $this->articles[$type] = $this->articles['all']
-                ->filter(function ($article) use ($type) {
-                    return $article->type === $type;
+        if (!isset($this->sections[$type])) {
+            $this->sections[$type] = $this->sections['all']
+                ->filter(function ($section) use ($type) {
+                    return $section->type === $type;
                 })
                 ->values();
         }
 
-        return $this->articles[$type];
+        return $this->sections[$type];
     }
 
     protected function isDscStub()
@@ -69,28 +69,28 @@ class DigitalPublicationPresenter extends BasePresenter
         return $this->entity->is_dsc_stub ? 'Yes' : 'No';
     }
 
-    public function articlesForSidebar($currentArticle = null)
+    public function sectionsForSidebar($currentSection = null)
     {
-        if (!$this->articlesForSidebar) {
-            foreach (array_keys(DigitalPublicationArticle::$types) as $type) {
-                if (!$this->hasArticles($type)) {
+        if (!$this->sectionsForSidebar) {
+            foreach (array_keys(DigitalPublicationSection::$types) as $type) {
+                if (!$this->hasSections($type)) {
                     continue;
                 }
 
-                $this->articlesForSidebar[] = [
-                    'title' => DigitalPublicationArticle::$types[$type],
-                    'active' => !isset($currentArticle) || $currentArticle->type === $type,
+                $this->sectionsForSidebar[] = [
+                    'title' => DigitalPublicationSection::$types[$type],
+                    'active' => !isset($currentSection) || $currentSection->type === $type,
                     'blocks' => [
                         [
                             'type' => 'link-list',
                             'links' => $this
-                                ->getArticles($type)
-                                ->map(function ($article) use ($currentArticle) {
+                                ->getSections($type)
+                                ->map(function ($section) use ($currentSection) {
                                     return [
-                                        'label' => $article->title_display ?? $article->title,
-                                        'sublabel' => $article->type === DigitalPublicationArticle::TEXT ? $article->showAuthors() : null,
-                                        'href' => $article->present()->getArticleUrl($this->entity),
-                                        'active' => isset($currentArticle) && $article->id === $currentArticle->id,
+                                        'label' => $section->title_display ?? $section->title,
+                                        'sublabel' => $section->type === DigitalPublicationSection::TEXT ? $section->showAuthors() : null,
+                                        'href' => $section->present()->getSectionUrl($this->entity),
+                                        'active' => isset($currentSection) && $section->id === $currentSection->id,
                                     ];
                                 }),
                         ],
@@ -99,7 +99,7 @@ class DigitalPublicationPresenter extends BasePresenter
             }
         }
 
-        return $this->articlesForSidebar;
+        return $this->sectionsForSidebar;
     }
 
     public function headerTitle()
@@ -119,8 +119,8 @@ class DigitalPublicationPresenter extends BasePresenter
             $return .= $this->entity->welcome_note_display;
             $return .= '<p>';
 
-            foreach ($this->entity->articles as $article) {
-                $return .= $article->title . '<br/>';
+            foreach ($this->entity->sections as $section) {
+                $return .= $section->title . '<br/>';
             }
             $return .= '</p>';
 
