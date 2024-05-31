@@ -36,7 +36,7 @@
         'label' => 'Type',
         'placeholder' => 'Select a type',
         'default' => 'text',
-        'options' => $typesList,
+        'options' => $types,
     ])
 
     @formField('input', [

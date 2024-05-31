@@ -6,6 +6,7 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
+use App\Enums\DigitalPublicationArticleType;
 use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
@@ -55,6 +56,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         'date' => 'date',
         'publish_start_date' => 'date',
         'published' => 'boolean',
+        'type' => DigitalPublicationArticleType::class,
     ];
 
     public $attributes = [
@@ -84,16 +86,6 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
                 ],
             ],
         ],
-    ];
-
-    public const ABOUT = 'about';
-    public const TEXT = 'text';
-    public const WORK = 'work';
-
-    public static $types = [
-        self::ABOUT => 'About',
-        self::TEXT => 'Contributions',
-        self::WORK => 'Works',
     ];
 
     public function scopePublished($query)
@@ -200,7 +192,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
                 'doc' => 'Type of Article',
                 'type' => 'string',
                 'value' => function () {
-                    return $this->type;
+                    return $this->present()->type;
                 },
             ],
             [
