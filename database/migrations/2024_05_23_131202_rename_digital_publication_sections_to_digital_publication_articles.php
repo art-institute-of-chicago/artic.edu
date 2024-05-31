@@ -19,7 +19,7 @@ return new class () extends Migration {
         });
 
         Schema::table('digital_publication_section_slugs', function (Blueprint $table) {
-            $table->dropForeign('fk_digital_publication_section_slugs_digital_publication_sectio');
+            $table->dropForeign('digital_publication_section_slugs_digital_publication_section_i');
         });
 
         // Rename the sections table to articles
