@@ -37,7 +37,6 @@
     }
 </style>
 
-
 @section('contentFields')
     @formField('input', [
         'name' => 'title_display',
