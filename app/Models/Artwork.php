@@ -31,6 +31,7 @@ class Artwork extends AbstractModel
         'default_manifest_url',
         'default_view',
         'artwork_website_url',
+        'toggle_autorelated',
     ];
 
     public $mediasParams = [
@@ -48,6 +49,12 @@ class Artwork extends AbstractModel
 
     public $casts = [
         'default_manifest_url' => 'boolean',
+        'toggle_autorelated' => 'boolean',
+    ];
+
+    public $attributes = [
+        'default_manifest_url' => false,
+        'toggle_autorelated' => false,
     ];
 
     public function getFullTitleAttribute()

@@ -42,7 +42,8 @@ class Experience extends AbstractModel implements Sortable
         'show_on_articles',
         'is_unlisted',
         'is_in_magazine',
-        'author_display'
+        'author_display',
+        'toggle_autorelated',
     ];
 
     public $slugAttributes = [
@@ -53,12 +54,14 @@ class Experience extends AbstractModel implements Sortable
         'published' => 'boolean',
         'is_unlisted' => 'boolean',
         'is_in_magazine' => 'boolean',
+        'toggle_autorelated' => 'boolean',
     ];
 
     public $attributes = [
         'published' => false,
         'is_unlisted' => false,
         'is_in_magazine' => false,
+        'toggle_autorelated' => false,
     ];
 
     public function getListDescriptionAttribute()
