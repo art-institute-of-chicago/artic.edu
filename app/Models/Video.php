@@ -37,17 +37,20 @@ class Video extends AbstractModel
         'search_tags',
         'duration',
         'is_listed',
+        'toggle_autorelated',
     ];
 
     protected $casts = [
         'date' => 'date',
         'published' => 'boolean',
         'is_listed' => 'boolean',
+        'toggle_autorelated' => 'boolean',
     ];
 
     public $attributes = [
         'published' => false,
         'is_listed' => false,
+        'toggle_autorelated' => false,
     ];
 
     protected $appends = [

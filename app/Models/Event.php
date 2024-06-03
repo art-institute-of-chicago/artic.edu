@@ -95,6 +95,7 @@ class Event extends AbstractModel
         'test_emails',
         'publish_start_date',
         'publish_end_date',
+        'toggle_autorelated',
     ];
 
     protected $casts = [
@@ -116,6 +117,7 @@ class Event extends AbstractModel
         'is_admission_required' => 'boolean',
         'is_sold_out' => 'boolean',
         'is_registration_required' => 'boolean',
+        'toggle_autorelated' => 'boolean',
     ];
 
     public $attributes = [
@@ -130,6 +132,7 @@ class Event extends AbstractModel
         'is_admission_required' => false,
         'is_sold_out' => false,
         'is_registration_required' => false,
+        'toggle_autorelated' => false,
     ];
 
     /**

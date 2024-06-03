@@ -71,6 +71,7 @@ class Exhibition extends AbstractModel
         'product_section_title_link_label',
         'product_section_title_link_href',
         'wait_time_override',
+        'toggle_autorelated',
     ];
 
     protected $casts = [
@@ -79,10 +80,12 @@ class Exhibition extends AbstractModel
         'member_preview_start_date' => 'date',
         'member_preview_end_date' => 'date',
         'published' => 'boolean',
+        'toggle_autorelated' => 'boolean',
     ];
 
     public $attributes = [
         'published' => false,
+        'toggle_autorelated' => false,
     ];
 
     public $slugAttributes = [
