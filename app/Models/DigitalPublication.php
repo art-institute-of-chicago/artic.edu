@@ -44,6 +44,7 @@ class DigitalPublication extends AbstractModel
         'header_subtitle_display',
         'sidebar_title_display',
         'bgcolor',
+        'toggle_autorelated',
     ];
 
     public $slugAttributes = [
@@ -59,12 +60,14 @@ class DigitalPublication extends AbstractModel
         'published' => 'boolean',
         'public' => 'boolean',
         'is_dsc_stub' => 'boolean',
+        'toggle_autorelated' => 'boolean',
     ];
 
     public $attributes = [
         'published' => false,
         'public' => false,
         'is_dsc_stub' => false,
+        'toggle_autorelated' => false,
     ];
 
     public $searchSections = [];
