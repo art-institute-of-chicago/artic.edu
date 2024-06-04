@@ -298,9 +298,9 @@
     }
   }
   .singleselector__color-label {
+    border: 10px solid lightgrey;
     float: right;
     height: 52px;
     width: 52px;
-    vertical-align: middle;
   }
 </style>
