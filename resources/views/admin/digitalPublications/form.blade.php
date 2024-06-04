@@ -27,14 +27,16 @@
         </ul>
     @endformFieldset
 @stop
-<style>
-    #digital-publication-links li {
-        margin-top: 1em;
-    }
-    #digital-publication-links li.see-all{
-        font-weight: bold;
-    }
-</style>
+@push('extra_css')
+    <style>
+        #digital-publication-links li {
+            margin-top: 1em;
+        }
+        #digital-publication-links li.see-all {
+            font-weight: bold;
+        }
+    </style>
+@endPush
 
 @section('contentFields')
     @formField('wysiwyg', [
