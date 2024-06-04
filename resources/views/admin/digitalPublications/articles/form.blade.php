@@ -28,14 +28,16 @@
         </ul>
     @endformFieldset
 @stop
-<style>
-    #digital-publication-article-links li {
-        margin-top: 1em;
-    }
-    #digital-publication-article-links li.see-all{
-        font-weight: bold;
-    }
-</style>
+@push('extra_css')
+    <style>
+        #digital-publication-article-links li {
+            margin-top: 1em;
+        }
+        #digital-publication-article-links li.see-all {
+            font-weight: bold;
+        }
+    </style>
+@endPush
 
 @section('contentFields')
     @formField('input', [
