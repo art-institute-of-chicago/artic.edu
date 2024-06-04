@@ -85,7 +85,7 @@ class DigitalPublicationArticleController extends ModuleController
                     'url' => moduleRoute('digitalPublications.articles', 'collection.articles_publications', 'index', [$request->route('digitalPublication')]),
                 ],
                 [
-                    'label' => $digPub->title,
+                    'label' => $item->title,
                 ],
             ],
         ];
