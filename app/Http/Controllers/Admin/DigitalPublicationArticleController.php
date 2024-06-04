@@ -45,6 +45,7 @@ class DigitalPublicationArticleController extends ModuleController
         $digPub = app(DigitalPublicationRepository::class)->getById(request('digitalPublication'));
 
         return [
+            'types' => $this->repository->getTypes(),
             'breadcrumb' => [
                 [
                     'label' => 'Digital Publication',
