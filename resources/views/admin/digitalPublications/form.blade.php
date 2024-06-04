@@ -20,7 +20,7 @@
                 <a>etc</a>
             </li>
             <li class="see-all">
-                <a href="{{ url('/collection/articles_publications/digitalPublications/' . $item->digital_publication_id . '/articles') }}">
+                <a href="{{ url('/collection/articles_publications/digitalPublications/' . $item->id . '/articles') }}">
                     See all
                 </a>
             </li>
