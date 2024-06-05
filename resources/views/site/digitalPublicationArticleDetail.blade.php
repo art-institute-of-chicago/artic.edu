@@ -1,3 +1,7 @@
+@php
+    use App\Enums\DigitalPublicationArticleType;
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -16,7 +20,7 @@
         @endcomponent
     </div>
 
-    @if ($item->type == \App\Enums\DigitalPublicationArticleType::Contributions)
+    @if ($item->type == DigitalPublicationArticleType::Contributions)
         @component('components.molecules._m-article-header----journal-article')
             @slot('title', $item->present()->title)
             @slot('title_display', $item->present()->title_display)
@@ -45,8 +49,8 @@
     </div>
     @endif
 
-    <div class="o-article__body o-blocks o-blocks--with-sidebar {{ $item->type != \App\Enums\DigitalPublicationArticleType::Contributions ? "o-article__body--no-top-border" : "" }}">
-        @if ($item->type == \App\Enums\DigitalPublicationArticleType::Contributions)
+    <div class="o-article__body o-blocks o-blocks--with-sidebar {{ $item->type != DigitalPublicationArticleType::Contributions ? "o-article__body--no-top-border" : "" }}">
+        @if ($item->type == DigitalPublicationArticleType::Contributions)
             @if ($item->showAuthorsWithLinks())
                 @component('components.blocks._text')
                     @slot('font', 'f-tag-2')
@@ -58,7 +62,7 @@
         @endif
 
         @php
-        if ($item->type == \App\Enums\DigitalPublicationArticleType::Contributions) {
+        if ($item->type == DigitalPublicationArticleType::Contributions) {
             global $_collectedReferences;
             $_collectedReferences = [];
 
