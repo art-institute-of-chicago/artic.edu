@@ -1,0 +1,14 @@
+.m-tombstone-block {
+    margin-top: 40px;
+
+    .title {
+        font-size: 24px;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+
+    .short-description {
+        color: $color__black;
+        margin-top: 20px;
+    }
+}
