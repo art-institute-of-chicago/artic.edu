@@ -245,5 +245,6 @@ return [
         'threesixty_modal',
         '360_modal',
         'editorial_block',
+        'tombstone',
     ]
 ];

@@ -151,6 +151,7 @@
             'quote',
             'split_block',
             'table',
+            'tombstone',
             'tour_stop',
             'video',
         ])
