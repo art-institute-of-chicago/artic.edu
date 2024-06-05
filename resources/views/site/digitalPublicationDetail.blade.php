@@ -1,5 +1,5 @@
 @php
-    use App\Models\DigitalPublicationArticle;
+    use App\Enums\DigitalPublicationArticleType;
 @endphp
 
 @extends('layouts.app')
@@ -41,11 +41,11 @@
             </div>
         @endif
 
-        @if ($item->present()->hasArticles(DigitalPublicationArticle::TEXT))
+        @if ($item->present()->hasArticles(DigitalPublicationArticleType::Contributions->value))
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--compact m-title-bar--light',
             ])
-                {{ DigitalPublicationArticle::$types[DigitalPublicationArticle::TEXT] }}
+                {{ DigitalPublicationArticleType::Contributions->name }}
             @endcomponent
 
             @component('components.organisms._o-grid-listing')
@@ -55,7 +55,7 @@
                 @slot('cols_medium','2')
                 @slot('cols_large','2')
                 @slot('cols_xlarge','2')
-                @foreach ($item->present()->getArticles(DigitalPublicationArticle::TEXT) as $article)
+                @foreach ($item->present()->getArticles(DigitalPublicationArticleType::Contributions->value) as $article)
                     @component('components.molecules._m-listing----publication')
                         @slot('variation', 'm-listing--journal')
                         @slot('href', $article->present()->getArticleUrl($item))
@@ -82,17 +82,17 @@
             @endcomponent
         @endif
 
-        @if ($item->present()->hasArticles(DigitalPublicationArticle::WORK))
+        @if ($item->present()->hasArticles(DigitalPublicationArticleType::Works->value))
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--compact m-title-bar--light',
             ])
-                {{ DigitalPublicationArticle::$types[DigitalPublicationArticle::WORK] }}
+                {{ DigitalPublicationArticleType::Works->name }}
             @endcomponent
 
             @component('components.organisms._o-grid-listing')
                 @slot('variation', 'o-grid-listing--journal')
 
-                @foreach ($item->present()->getArticles(DigitalPublicationArticle::WORK) as $article)
+                @foreach ($item->present()->getArticles(DigitalPublicationArticleType::Works->value) as $article)
                     @component('components.molecules._m-listing----publication')
                         @slot('variation', 'm-listing--work')
                         @slot('href', $article->present()->getArticleUrl($item))
