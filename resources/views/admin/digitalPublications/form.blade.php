@@ -2,16 +2,20 @@
 
 @push('extra_css')
     <style>
-        #digital-publication-links li {
-            margin-top: 1em;
-        }
-        #digital-publication-links li.see-all {
+        #content .articles-index-link {
             font-weight: bold;
+            margin-top: 1em;
         }
     </style>
 @endPush
 
 @section('contentFields')
+    <div class="articles-index-link">
+        <a href="{{ route('admin.collection.articles_publications.digitalPublications.articles.index', [$item->id]) }}">
+            {{ $item->articles->count() }} articles
+        </a>
+    </div>
+
     @formField('wysiwyg', [
         'name' => 'header_title_display',
         'label' => 'Title lockup for header',
