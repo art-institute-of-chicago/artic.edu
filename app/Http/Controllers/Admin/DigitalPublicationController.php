@@ -20,6 +20,10 @@ class DigitalPublicationController extends ModuleController
             'sort' => true,
             'present' => true,
         ],
+        'articles' => [
+            'title' => 'Articles',
+            'nested' => 'articles',
+        ],
     ];
 
     protected function formData($request)
