@@ -1,32 +1,5 @@
 @extends('twill::layouts.form')
 
-@section('sideFieldsets')
-    @formFieldset([
-        'id' => 'digital-publication-links',
-        'title' => 'Links',
-    ])
-        {{-- TODO: add links to groupings when the index page is created --}}
-        <ul>
-            <li>
-                <a>About</a>
-            </li>
-            <li>
-                <a>Contributions</a>
-            </li>
-            <li>
-                <a>Works</a>
-            </li>
-            <li>
-                <a>etc</a>
-            </li>
-            <li class="see-all">
-                <a href="{{ url('/collection/articles_publications/digitalPublications/' . $item->id . '/articles') }}">
-                    See all
-                </a>
-            </li>
-        </ul>
-    @endformFieldset
-@stop
 @push('extra_css')
     <style>
         #digital-publication-links li {
