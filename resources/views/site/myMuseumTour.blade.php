@@ -149,7 +149,7 @@
                             </div>
                         @endisset
                         @isset($artwork['description'])
-                            <p class="f-tertiary aic-ct-viewer__description">{!! $artwork['description'] !!}</p>
+                            <div class="f-tertiary aic-ct-viewer__description">{!! $artwork['description'] !!}</div>
                         @endisset
                         @isset($artwork['objectNote'])
                             @component('components.atoms._quote')
