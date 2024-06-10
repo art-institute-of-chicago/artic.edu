@@ -35,7 +35,7 @@ class Seo extends BaseSeo
             if ($settings['srcset']) {
                 $this->image = Str::before($settings['srcset'], ' ');
                 $this->width = $maxWidth;
-                $this->height = floor(($maxWidth / $settings['width']) * $settings['height']);
+                $this->height = floor(($maxWidth / (float)$settings['width']) * (float)$settings['height']);
             }
         }
     }
