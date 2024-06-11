@@ -56,7 +56,7 @@ class DigitalPublicationPresenter extends BasePresenter
         if (!isset($this->articles[$type])) {
             $this->articles[$type] = $this->articles['all']
                 ->filter(function ($article) use ($type) {
-                    return $article->type === $type;
+                    return $article->type->value === $type;
                 })
                 ->values();
         }
