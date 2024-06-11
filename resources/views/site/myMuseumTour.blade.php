@@ -71,7 +71,7 @@
                 <svg aria-hidden="true" class="icon--image-stack"><use xlink:href="#icon--image-stack" /></svg>
                 <div class="f-module-title-1">
                     <p><strong>{{ count($my_museum_tour['artworks']) }} {{ Str::plural('artwork', count($my_museum_tour['artworks'])) }} </strong> <em>from</em> <strong>{{ $unique_artists_count }} {{ Str::plural('artist', $unique_artists_count) }} </strong> <em>across</em> <strong>{{ $unique_galleries_count }} {{ Str::plural('gallery', $unique_galleries_count) }}</strong><br/>
-                    The tour will begin from the Michigan Avenue entrance, if you enter from the Modern Wing, begin your tour in reverse order.</p>
+                        The tour is ordered to begin from the Michigan Avenue entrance. If you are starting in the Modern Wing, simply do your tour in reverse order.</p>
                 </div>
             </div>
 
