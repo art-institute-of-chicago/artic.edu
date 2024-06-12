@@ -13,7 +13,7 @@
 @endcomponent
 
 @component('components.molecules._m-intro-block')
-    {{ $page->present()->exhibition_intro }}
+    {!! $page->present()->exhibition_intro !!}
 @endcomponent
 
 @component('components.molecules._m-links-bar')
