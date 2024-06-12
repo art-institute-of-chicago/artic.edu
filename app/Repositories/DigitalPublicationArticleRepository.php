@@ -31,6 +31,24 @@ class DigitalPublicationArticleRepository extends ModuleRepository
             ->mapWithKeys(fn ($type) => [$type->value => $type->name]);
     }
 
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+        return ['article_type' => $fields['type']];
+    }
+
+    public function prepareFieldsBeforeCreate($fields)
+    {
+        $fields['type'] = $fields['article_type'];
+        return parent::prepareFieldsBeforeCreate($fields);
+    }
+
+    public function beforeSave($object, $fields)
+    {
+        parent::beforeSave($object, $fields);
+        $object->type = $fields['article_type'];
+    }
+
     public function afterSave($object, $fields)
     {
         parent::afterSave($object, $fields);
