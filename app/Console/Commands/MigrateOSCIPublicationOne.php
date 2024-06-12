@@ -8,6 +8,22 @@ use App\Models\DigitalPublication;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Vendor\Block;
 
+/**
+ * MigrationDB 
+ * 
+ * Wrapper around the migration db -- basically just an open()-er?
+ * 
+ * TODO: construct() should take a migration filename string
+ */
+class MigrationDB extends \SQLite3 {
+
+    function __construct()
+    {
+        $this->open('migration.sqlite3');
+    }
+
+}
+
 class MigrateOSCIPublicationOne extends Command
 {
     /**
@@ -22,18 +38,20 @@ class MigrateOSCIPublicationOne extends Command
      *
      * @var string
      */
-    protected $description = 'Migrate an OSCI publication to a website DigitalPublication';
+    protected $description = 'Migrate an OSCI publication from a migration file to a website DigitalPublication';
 
-    protected $repository;
+    protected $db;
 
     /**
      * Create a new command instance.
      *
      * @return void
+     * 
+     * TODO: This should take.. a migration filename?
      */
-    public function __construct(PublicationRepository $repository)
+    public function __construct()
     {
-        $this->repository = $repository;
+        $this->db = new MigrationDB();
         parent::__construct();
     }
 
@@ -46,37 +64,84 @@ class MigrateOSCIPublicationOne extends Command
     {
         $pubId = $this->argument('id');
 
-        $apiPub = $this->repository->getById($pubId);
+        // NB!: For each of these types in the admin UI it's impossible to validate the save without setting a date!
+
+        $pubQuery = $this->db->prepare("SELECT json_extract(publications.data,'$._title') as title FROM publications LEFT JOIN tocs ON tocs.package=publications.pub_id WHERE pub_id=:id");
+        $pubQuery->bindValue(':id',$pubId);
+
+        $result = $pubQuery->execute();
+        $pub = $result->fetchArray();
+
+        // var_dump($pub);
+
+        // TODO: Handle italics / etc in the title
+        // TODO: Set any other publication level metadata (date?)
+
+        // $apiPub = $this->repository->getById($pubId);
+        // echo $pub['title'];
         $webPub = new DigitalPublication();
-        $webPub->title = 'Migrated ' . date('M j, Y') . ' | ' . $apiPub->title;
+        $webPub->title = 'Migrated ' . date('M j, Y') . ' | ' . $pub["title"];
         $webPub->published = false;
         $webPub->is_dsc_stub = false;
         $webPub->save();
 
-        foreach ($apiPub->articles as $apiArticle) {
+        $webPubId = $webPub->id;
+
+        $textsQuery = $this->db->prepare("SELECT coalesce(json_extract(data,'$._title'),'FIXME') as title,text_id FROM texts WHERE package=:pubId and text_id NOT LIKE '%ncxtoc%'");
+        $textsQuery->bindValue(':pubId',$pubId);
+
+        $textResult = $textsQuery->execute();
+        $text = $textResult->fetchArray();
+
+        while ($text) {
+            // echo $text['title'] . $webPubId;
+            
             $webArticle = new DigitalPublicationArticle();
-            $webArticle->title = $apiArticle->title;
+            $webArticle->type = "about";
+            $webArticle->title = $text['title'];
             $webArticle->published = false;
-            $webArticle->digital_publication_id = $webPub->id;
-            $webArticle->position = $apiArticle->weight;
+            $webArticle->digital_publication_id = $webPubId;
+            $webArticle->updated_at = date('M j, Y');
+            $webArticle->created_at = date('M j, Y');
+
+            // TODO
+            $webArticle->position = 0; 
+
             $webArticle->save();
 
-            $block = new Block();
-            $block->blockable_id = $webArticle->id;
-            $block->blockable_type = 'App\Models\DigitalPublicationArticle';
+            $blocksQuery = $this->db->prepare("SELECT json_extract(sects.value,'$.html') as html from texts,json_each(texts.data,'$.sections') as sects where texts.text_id=:textId");
+            $blocksQuery->bindValue(':textId',$text['text_id']);
 
-            /* If we decide to break up the text into multiple paragraph blocks, increment
-             * the `position` value to keep the order in tact.
-             */
-            $block->position = 0;
+            $blocksResult = $blocksQuery->execute();
 
-            $block->content = ['paragraph' => str_replace(['<section', '</section'], ['<p', '</p'], $apiArticle->content)];
-            $block->type = 'paragraph';
-            $block->save();
-            $webArticle->blocks()->save($block);
+            $blk = $blocksResult->fetchArray();
+
+            while ($blk) {
+                // echo 'sup';
+                // echo $blk['html'];  
+                // TODO: .. and for each text's block, do this dance..
+                $block = new Block();
+                $block->blockable_id = $webArticle->id;
+                $block->blockable_type = 'App\Models\DigitalPublicationArticle';
+
+                // TODO
+                $block->position = 0;
+
+                $block->content = [ 'paragraph' => $blk['html'] ];
+                $block->type = 'paragraph';
+                $block->save();
+
+                $webArticle->blocks()->save($block);
+
+                $blk = $blocksResult->fetchArray();
+            }
 
             $webPub->articles()->save($webArticle);
+
+            $text = $textResult->fetchArray();
+
         }
+    
         $webPub->save();
     }
 }
