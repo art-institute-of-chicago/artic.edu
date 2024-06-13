@@ -109,7 +109,7 @@ class MigrateOSCIPublicationOne extends Command
 
             $webArticle->save();
 
-            $blocksQuery = $this->db->prepare("SELECT json_extract(sects.value,'$.html') as html from texts,json_each(texts.data,'$.sections') as sects where texts.text_id=:textId");
+            $blocksQuery = $this->db->prepare("SELECT json_extract(blk.value,'$.html') as html, json_extract(blk.value,'$.blockType') as type, json_extract(blk.value,'$.fallback_url') as figure_url from texts,json_each(texts.data,'$.sections') as sects,json_each(sects.value,'$.blocks') as blk where texts.text_id=:textId");
             $blocksQuery->bindValue(':textId',$text['text_id']);
 
             $blocksResult = $blocksQuery->execute();
@@ -127,7 +127,12 @@ class MigrateOSCIPublicationOne extends Command
                 // TODO
                 $block->position = 0;
 
-                $block->content = [ 'paragraph' => $blk['html'] ];
+                if ($block['type'] == 'figure') {
+                    $block->content = [ 'paragraph' => '<figure><img src="'. $block['figure_url'] . '" alt /></figure>' ];
+                } else {
+                    $block->content = [ 'paragraph' => $blk['html'] ];
+                }
+
                 $block->type = 'paragraph';
                 $block->save();
 
