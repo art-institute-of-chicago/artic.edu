@@ -116,15 +116,20 @@ class MigrateOSCIPublicationOne extends Command
 
             $blk = $blocksResult->fetchArray();
 
+            $order = 0;
+
             while ($blk) {
 
                 $block = new Block();
                 $block->blockable_id = $webArticle->id;
                 $block->blockable_type = 'App\Models\DigitalPublicationArticle';
 
-                $block->position = $blk['position'];
+                $block->position = $order;
+
+                // TODO: Adapt Trevin's spec image code here
                 if ($blk['type'] == 'figure') {
                     
+                    // $figText = '<span>'.$blk['figure_url'].'</span>';
                     $figText = '<figure><img src="'. $blk['figure_url'] . '" alt /><figcaption>'.$blk['figure_capt'].'</figcaption></figure>';
 
                     $block->content = [ 'paragraph' => $figText ];
@@ -138,6 +143,7 @@ class MigrateOSCIPublicationOne extends Command
                 $webArticle->blocks()->save($block);
 
                 $blk = $blocksResult->fetchArray();
+                $order += 1;
             }
 
             $webPub->articles()->save($webArticle);
