@@ -109,7 +109,7 @@ class MigrateOSCIPublicationOne extends Command
 
             $webArticle->save();
 
-            $blocksQuery = $this->db->prepare("SELECT json_extract(blk.value,'$.html') as html, json_extract(blk.value,'$.blockType') as type, json_extract(blk.value,'$.fallback_url') as figure_url from texts,json_each(texts.data,'$.sections') as sects,json_each(sects.value,'$.blocks') as blk where texts.text_id=:textId");
+            $blocksQuery = $this->db->prepare("SELECT json_extract(blk.value,'$.html') as html, blk.id as position, json_extract(blk.value,'$.blockType') as type, json_extract(blk.value,'$.fallback_url') as figure_url from texts,json_each(texts.data,'$.sections') as sects,json_each(sects.value,'$.blocks') as blk where texts.text_id=:textId");
             $blocksQuery->bindValue(':textId',$text['text_id']);
 
             $blocksResult = $blocksQuery->execute();
@@ -117,15 +117,12 @@ class MigrateOSCIPublicationOne extends Command
             $blk = $blocksResult->fetchArray();
 
             while ($blk) {
-                // echo 'sup';
-                // echo $blk['html'];  
-                // TODO: .. and for each text's block, do this dance..
+
                 $block = new Block();
                 $block->blockable_id = $webArticle->id;
                 $block->blockable_type = 'App\Models\DigitalPublicationArticle';
 
-                // TODO
-                $block->position = 0;
+                $block->position = $blk['position'];
 
                 if ($block['type'] == 'figure') {
                     $block->content = [ 'paragraph' => '<figure><img src="'. $block['figure_url'] . '" alt /></figure>' ];
