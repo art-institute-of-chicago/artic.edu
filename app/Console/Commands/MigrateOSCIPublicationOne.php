@@ -109,7 +109,7 @@ class MigrateOSCIPublicationOne extends Command
 
             $webArticle->save();
 
-            $blocksQuery = $this->db->prepare("SELECT json_extract(blk.value,'$.html') as html, blk.id as position, json_extract(blk.value,'$.blockType') as type, json_extract(blk.value,'$.fallback_url') as figure_url from texts,json_each(texts.data,'$.sections') as sects,json_each(sects.value,'$.blocks') as blk where texts.text_id=:textId");
+            $blocksQuery = $this->db->prepare("SELECT json_extract(blk.value,'$.html') as html, blk.id as position, json_extract(blk.value,'$.blockType') as type, json_extract(blk.value,'$.fallback_url') as figure_url, coalesce(json_extract(blk.value,'$.caption_html'),'') as figure_capt from texts, json_each(texts.data,'$.sections') as sects,json_each(sects.value,'$.blocks') as blk where texts.text_id=:textId");
             $blocksQuery->bindValue(':textId',$text['text_id']);
 
             $blocksResult = $blocksQuery->execute();
@@ -123,9 +123,11 @@ class MigrateOSCIPublicationOne extends Command
                 $block->blockable_type = 'App\Models\DigitalPublicationArticle';
 
                 $block->position = $blk['position'];
+                if ($blk['type'] == 'figure') {
+                    
+                    $figText = '<figure><img src="'. $blk['figure_url'] . '" alt /><figcaption>'.$blk['figure_capt'].'</figcaption></figure>';
 
-                if ($block['type'] == 'figure') {
-                    $block->content = [ 'paragraph' => '<figure><img src="'. $block['figure_url'] . '" alt /></figure>' ];
+                    $block->content = [ 'paragraph' => $figText ];
                 } else {
                     $block->content = [ 'paragraph' => $blk['html'] ];
                 }
