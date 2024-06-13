@@ -32,7 +32,7 @@
     ])
 
     @formField('select', [
-        'name' => 'article_type', // Cannot be named `type`
+        'name' => 'type',
         'label' => 'Type',
         'placeholder' => 'Select a type',
         'default' => 'text',
@@ -121,7 +121,7 @@
 
 @section('fieldsets')
     @formConnectedFields([
-        'fieldName' => 'article_type',
+        'fieldName' => 'type',
         'fieldValues' => 'grouping',
         'renderForBlocks' => false,
     ])

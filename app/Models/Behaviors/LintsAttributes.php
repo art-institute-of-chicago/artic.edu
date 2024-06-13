@@ -6,6 +6,9 @@ trait LintsAttributes
 {
     protected function lintValue($value)
     {
+        if ($value instanceof \UnitEnum) {
+            return $value;
+        }
         if (is_object($value)) {
             foreach ($value as $key => $subvalue) {
                 $value->{$key} = $this->lintValue($subvalue);
