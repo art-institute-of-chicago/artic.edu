@@ -72,13 +72,9 @@ class MigrateOSCIPublicationOne extends Command
         $result = $pubQuery->execute();
         $pub = $result->fetchArray();
 
-        // var_dump($pub);
-
         // TODO: Handle italics / etc in the title
         // TODO: Set any other publication level metadata (date?)
 
-        // $apiPub = $this->repository->getById($pubId);
-        // echo $pub['title'];
         $webPub = new DigitalPublication();
         $webPub->title = 'Migrated ' . date('M j, Y') . ' | ' . $pub["title"];
         $webPub->published = false;
@@ -94,22 +90,25 @@ class MigrateOSCIPublicationOne extends Command
         $text = $textResult->fetchArray();
 
         while ($text) {
-            // echo $text['title'] . $webPubId;
             
             $webArticle = new DigitalPublicationArticle();
-            $webArticle->type = "about";
+            $webArticle->type = "text";
             $webArticle->title = $text['title'];
             $webArticle->published = false;
             $webArticle->digital_publication_id = $webPubId;
+            $webArticle->date = date('M j, Y');
             $webArticle->updated_at = date('M j, Y');
             $webArticle->created_at = date('M j, Y');
 
-            // TODO
+            // TODO: Join toc position via json_tree against toc data
             $webArticle->position = 0; 
 
             $webArticle->save();
 
+            // TODO: Use a multiline string!! Also this can be moved outside the while
+
             $blocksQuery = $this->db->prepare("SELECT json_extract(blk.value,'$.html') as html, blk.id as position, json_extract(blk.value,'$.blockType') as type, json_extract(blk.value,'$.fallback_url') as figure_url, coalesce(json_extract(blk.value,'$.caption_html'),'') as figure_capt from texts, json_each(texts.data,'$.sections') as sects,json_each(sects.value,'$.blocks') as blk where texts.text_id=:textId");
+
             $blocksQuery->bindValue(':textId',$text['text_id']);
 
             $blocksResult = $blocksQuery->execute();
@@ -146,6 +145,7 @@ class MigrateOSCIPublicationOne extends Command
                 $order += 1;
             }
 
+            $webArticle->save();
             $webPub->articles()->save($webArticle);
 
             $text = $textResult->fetchArray();
