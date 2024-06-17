@@ -1,5 +1,18 @@
+@php
+    $currentUrl = explode('/', request()->url());
+    $type = $currentUrl[5] ?? null;
+@endphp
+
 @twillBlockTitle('Artwork')
 @twillBlockIcon('image')
+
+@if ($type === 'digitalPublications')
+    @formField('checkbox', [
+        'name' => 'hide_figure_number',
+        'label' => 'Hide figure number',
+        'default' => false,
+    ])
+@endif
 
 @formField('select', [
     'name' => 'size',
