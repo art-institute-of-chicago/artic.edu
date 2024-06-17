@@ -1,8 +1,21 @@
+@php
+    $currentUrl = explode('/', request()->url());
+    $type = $currentUrl[5] ?? null;
+@endphp
+
 @twillBlockTitle('Gallery')
 @twillBlockIcon('image')
 
 {{-- WEB-1251: Inline contents partial for shared gallery block --}}
 @include('admin.partials.gallery-shared')
+
+@if ($type === 'digitalPublications')
+    @formField('checkbox', [
+        'name' => 'hide_figure_number',
+        'label' => 'Hide figure number',
+        'default' => false,
+    ])
+@endif
 
 @formField('wysiwyg', [
     'name' => 'title',
