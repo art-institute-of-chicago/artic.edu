@@ -91,6 +91,7 @@
             '3d_embed',
             '3d_model',
             '3d_tour',
+            'ranged_accordion',
             'artwork',
             'audio_player',
             'button',
