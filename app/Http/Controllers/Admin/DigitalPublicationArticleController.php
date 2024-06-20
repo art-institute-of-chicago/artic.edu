@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use A17\Twill\Http\Controllers\Admin\NestedModuleController;
 use App\Repositories\DigitalPublicationRepository;
 use App\Http\Controllers\Admin\Behaviors\IsNestedModule;
 
-class DigitalPublicationArticleController extends ModuleController
+class DigitalPublicationArticleController extends NestedModuleController
 {
     use IsNestedModule;
 
@@ -44,8 +45,17 @@ class DigitalPublicationArticleController extends ModuleController
     {
         $digPub = app(DigitalPublicationRepository::class)->getById(request('digitalPublication'));
 
+        $articlesList = $this->repository->withDepth()->defaultOrder()->get()->filter(function ($article) {
+            return $article->depth < 3;
+        })->pluck('title', 'id');
+
+        $articlesList = $articlesList->prepend('None', '');
+
         return [
+            'nested' => true,
+            'nestedDepth' => 3,
             'types' => $this->repository->getTypes(),
+            'articles' => $articlesList,
             'breadcrumb' => [
                 [
                     'label' => 'Digital Publication',
@@ -62,11 +72,42 @@ class DigitalPublicationArticleController extends ModuleController
         ];
     }
 
+    protected function transformIndexItems($items)
+    {
+        // If we're in the browser, don't transform the items
+        if (property_exists($items, 'path')) {
+            return $items;
+        }
+        return $items->toTree();
+    }
+
+    protected function indexItemData($item)
+    {
+        return $item->children ? [
+            'children' => $this->getIndexTableData($item->children),
+        ] : [];
+    }
+
+    private function getParents($exceptPage = null)
+    {
+        return $this->repository->whereNotIn('id', is_null($exceptPage) ? [] : [$exceptPage])->withDepth()->defaultOrder()->orderBy('position')->get()->filter(function ($page) {
+            return $page->depth < 3;
+        })->values();
+    }
+
     protected function formData($request)
     {
         $item = $this->repository->getById(request('article') ?? request('id'));
         $digPub = app(DigitalPublicationRepository::class)->getById(request('digitalPublication'));
         $baseUrl = '//' . config('app.url') . '/' . $this->permalinkBase . $digPub->id . '/' . $digPub->getSlug() . '/' . $item->id . '/';
+
+        $ancestors = $item->ancestors()->defaultOrder()->get();
+
+        $baseUrl = '//' . config('app.url') . '/';
+
+        foreach ($ancestors as $ancestor) {
+            $baseUrl = $baseUrl . $ancestor->slug . '/';
+        }
 
         return [
             'types' => $this->repository->getTypes(),
@@ -88,6 +129,22 @@ class DigitalPublicationArticleController extends ModuleController
                     'label' => $item->title,
                 ],
             ],
+            'parents' => $this->getParents($item->id)->map(function ($parent) {
+                return [
+                    'id' => $parent->id,
+                    'name' => $parent->title,
+                    'edit' => $this->getModuleRoute($parent->id, 'edit'),
+                ];
+            }),
         ];
+    }
+
+    protected function form($id, $item = null)
+    {
+        $item = $this->repository->getById($id, $this->formWith, $this->formWithCount);
+
+        $this->permalinkBase = $item->ancestorsSlug;
+
+        return parent::form($id, $item);
     }
 }
