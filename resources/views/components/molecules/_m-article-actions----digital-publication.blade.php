@@ -11,11 +11,11 @@
     </div>
 
     @php
-        $articlesForSidebar = $digitalPublication->present()->articlesForSidebar($currentArticle ?? null);
+        $articlesForSidebar = $digitalPublication->present()->nestedArticlesForSidebar($digitalPublication);
     @endphp
 
     @if (!empty($articlesForSidebar))
-        @component('components.organisms._o-accordion')
+        @component('components.organisms._o-table-of-contents')
             @slot('variation', 'o-accordion--publication-sidebar')
             @slot('titleFont', 'f-tag-2')
             @slot('items', $articlesForSidebar)
