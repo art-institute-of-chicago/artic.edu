@@ -39,7 +39,8 @@ class DigitalPublicationArticleRepository extends ModuleRepository
         GeneratePdf::dispatch($object);
     }
 
-    public function setNewOrder($ids) {
+    public function setNewOrder($ids)
+    {
         ReorderNestedModuleItems::dispatch($this->model, $ids)
         ->onQueue($this->reorderNestedModuleItemsJobQueue);
     }
