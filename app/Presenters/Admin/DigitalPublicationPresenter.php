@@ -105,6 +105,37 @@ class DigitalPublicationPresenter extends BasePresenter
         return $this->articlesForSidebar;
     }
 
+    public function nestedArticlesForSidebar() {
+        // Root articles will have no parent_id so let's start building from there
+        
+        $articles = $this->entity->articles()->published()->ordered()->whereNull('parent_id')->get();
+    
+        return $this->buildNestedArticlesArray($articles);
+    }
+    
+    private function buildNestedArticlesArray($articles) {
+        $articlesList = [];
+    
+        foreach ($articles as $article) {
+            // Build the article array for use on the FE
+
+            $articleArray = [
+                'title' => $article->title,
+                'url' => $article->present()->getArticleUrl($this->entity),
+            ];
+
+            // Recursively build nested articles since children can have children
+    
+            if ($article->children) {
+                $articleArray['items'] = $this->buildNestedArticlesArray($article->children);
+            }
+    
+            $articlesList[] = $articleArray;
+        }
+    
+        return $articlesList;
+    }
+
     public function headerTitle()
     {
         return $this->entity->header_title_display ?? $this->entity->title_display;
