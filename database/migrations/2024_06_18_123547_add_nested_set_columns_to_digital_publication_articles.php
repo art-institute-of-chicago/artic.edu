@@ -27,7 +27,6 @@ return new class () extends Migration {
             $lft = 1;
 
             foreach ($articles as $article) {
-
                 $article->_lft = $lft++;
                 $article->_rgt = $lft++;
 
