@@ -35,9 +35,8 @@ Artisan::command('embed', function () {
     $this->info('|               |');
     $this->info('|        A I C  |');
     $this->info(' --------------- ');
+    $modelClass = $this->ask('What is the model class?');
 
-    $modelClass = $this->ask('What is the item\'s model?');
-    $modelClass = Str::ucfirst(Str::singular($modelClass));
     $model = "\\App\\Models\\$modelClass";
     $morphedModel = app($model)->getMorphClass();
 
@@ -46,61 +45,90 @@ Artisan::command('embed', function () {
         return;
     }
 
-    $id = $this->ask('What is the id of the item?');
+    $allIds = $this->confirm('Do you want to process all IDs in the model?');
+    $overwrite = $this->confirm('Do you want to overwrite all embeddings?');
 
-    // Get the morph map key for the model class
-
-    // Get all blocks associated with the model class and ID
-    $blocks = Block::where('blockable_type', $morphedModel)
-        ->where('blockable_id', $id)
-        ->orderBy('position')
-        ->get();
-
-    if ($blocks->isEmpty()) {
-        $this->error("No blocks associated with class {$modelClass} and id {$id} were found.");
-        return;
-    }
-
-    $textContent = "";
-
-    foreach ($blocks as $block) {
-        // Get the 'content' field
-        $content = $block->content;
-
-        // Check if the 'paragraph' property exists in the 'content'
-        if (isset($content['paragraph'])) {
-            // Get the 'paragraph' property's content
-            $paragraphBlock = $content['paragraph'];
-
-            // Append the paragraph content to the allParagraphs string
-            $textContent .= $paragraphBlock;
-        }
-    }
-
-    // Dump the merged paragraph contents
-    $textContent = strip_tags($textContent);
-
-    // Add the model data to the data array
-    $embeddingService = new EmbeddingService();
-    $response = $embeddingService->getEmbeddings($textContent);
-
-    // Check if the response has the expected structure
-    if (isset($response['data'][0]['embedding'])) {
-        $embeddingsData = $response['data'][0]['embedding'];
-        $embeddings = new Vector($embeddingsData);
+    if ($allIds) {
+        $ids = $model::pluck('id');
     } else {
-        $this->error("The response does not have the expected structure.");
-        return;
+        $ids = [$this->ask('What is the id of the item?')];
     }
 
-    // Save the embeddings to the Embeddings table
-    $embedding = new Embedding();
-    $embedding->model_id = $id;
-    $embedding->model_type = $morphedModel;
-    $embedding->embedding = $embeddings;
-    $embedding->save();
+    foreach ($ids as $id) {
+        $textContent = "";
 
-    $this->info("Embedding has been run on {$modelClass} with id {$id}.");
+        $modelInstance = $model::find($id);
+
+        if (!$modelInstance) {
+            $this->error("No instance of {$modelClass} with id {$id} was found.");
+            continue;
+        } else {
+            // Get the 'title' and 'list_description' properties
+            $type = $modelInstance->type ? $modelInstance->subtype : '';
+            $title = $modelInstance->title;
+            $listDescription = $modelInstance->list_description ?? '';
+            $short_description = $modelInstance->short_description ?? '';
+            $short_intro_copy = $modelInstance->short_intro_copy ?? '';
+            $hero_image_caption = $modelInstance->hero_image_caption ?? '';
+            $textContent .= 'Content Type: ' .$type . ' Title: ' . $title . ' Description: ' . $listDescription. ' Short Description: ' . $short_description . ' Intro Copy: ' . $short_intro_copy . ' Image Caption: ' . $hero_image_caption;
+        }
+
+        $existingEmbedding = Embedding::where('model_type', $morphedModel)
+        ->where('model_id', $id)
+        ->first();
+
+        if (!$overwrite && $existingEmbedding) {
+            $this->info("An embedding already exists for model_type {$morphedModel} and model_id {$id}.");
+            continue;
+        }
+        // Get all blocks associated with the model class and ID
+        $blocks = Block::where('blockable_type', $morphedModel)
+            ->where('blockable_id', $id)
+            ->orderBy('position')
+            ->get();
+
+        if ($blocks->isEmpty()) {
+            $this->error("No blocks associated with class {$modelClass} and id {$id} were found.");
+            continue;
+        }
+
+        foreach ($blocks as $block) {
+            // Get the 'content' field
+            $content = $block->content;
+
+            // Check if the 'paragraph' property exists in the 'content'
+            if (isset($content['paragraph'])) {
+                // Get the 'paragraph' property's content
+                $paragraphBlock = $content['paragraph'];
+
+                // Append the paragraph content to the allParagraphs string
+                $textContent .= $paragraphBlock;
+            }
+        }
+
+        // Dump the merged paragraph contents
+        $textContent = strip_tags($textContent);
+
+        // Add the model data to the data array
+        $embeddingService = new EmbeddingService();
+        $response = $embeddingService->getEmbeddings($textContent);
+
+        if (isset($response['data'][0]['embedding'])) {
+            $embeddingsData = $response['data'][0]['embedding'];
+            $embeddings = new Vector($embeddingsData);
+
+        } else {
+            $this->error("The response does not have the expected structure.");
+            continue;
+        }
+
+        Embedding::updateOrCreate(
+            ['model_type' => $morphedModel, 'model_id' => $id], // Conditions to match
+            ['embedding' => $embeddings] // Data to update or create with
+        );
+    
+        $this->info("Embedding has been run on {$modelClass} with id {$id}.");
+    }
 });
 
 Artisan::command('search', function () {
