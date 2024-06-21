@@ -32,8 +32,8 @@ class ExhibitionPresenter extends BasePresenter
         $hasEnd = $this->aic_end_at !== null;
 
         // These default gracefully to `now` if the attrs are empty
-        $start = $this->entity->asDateTime($this->aic_start_at);
-        $end = $this->entity->asDateTime($this->aic_end_at);
+        $start = $this->aic_start_at;
+        $end = $this->aic_end_at;
 
         if ($hasStart) {
             $date .= $start->format('m d Y');
