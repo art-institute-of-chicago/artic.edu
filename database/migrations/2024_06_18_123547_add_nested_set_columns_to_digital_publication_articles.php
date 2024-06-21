@@ -27,15 +27,12 @@ return new class () extends Migration {
             $lft = 1;
 
             foreach ($articles as $article) {
-                // Set the left and right values for this article
-                $article->_lft = $lft;
-                $article->_rgt = $lft + 1;
+
+                $article->_lft = $lft++;
+                $article->_rgt = $lft++;
 
                 // Save the article
                 $article->save();
-
-                // Increment the left value for the next article
-                $lft += 2;
             }
         }
     }
