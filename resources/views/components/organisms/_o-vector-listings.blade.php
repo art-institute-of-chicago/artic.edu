@@ -3,12 +3,12 @@
 @section('content')
 
 @component('components.molecules._m-header-block')
-AIC Vector Search
+AIC Semantic Search
 @endcomponent
 
 @component('components.molecules._m-search-bar')
     @slot('variation', 'm-search-bar--vector')
-    @slot('placeholder', 'Search using semantic search')
+    @slot('placeholder', 'Search using natural language')
     @slot('value', request('query'))
     @slot('action', route('semanticSearch'))
     @slot('name', 'query')
@@ -26,7 +26,7 @@ AIC Vector Search
     @slot('cols_large','4')
     @slot('cols_xlarge','4')
     @foreach ($items as $item)
-        @component('components.molecules._m-listing----'.$item->type)
+        @component('components.molecules._m-listing----'.$item->type ?? $item->subType)
             @slot('item', $item)
             @slot('imageSettings', array(
                 'fit' => 'crop',
@@ -43,5 +43,14 @@ AIC Vector Search
         @endcomponent
     @endforeach
     @endcomponent
+@elseif ($items->isEmpty())
+    <div class="m-no-results">
+    @component('components.atoms._title')
+        @slot('tag','h2')
+        @slot('font', 'f-list-3')
+        {!! $text ?? 'Sorry, we couldn’t find any results matching your criteria.' !!}
+    @endcomponent
+    </div>
 @endif
+
 @endsection
