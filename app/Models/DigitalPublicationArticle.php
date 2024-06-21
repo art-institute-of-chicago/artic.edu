@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use A17\Twill\Models\Behaviors\HasNesting;
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DigitalPublicationArticle extends AbstractModel implements Sortable
 {
+    use HasNesting;
     use HasSlug;
     use HasRevisions;
     use HasPosition;
@@ -62,6 +64,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
 
     public $attributes = [
         'published' => false,
+        'type' => 'entry'
     ];
 
     public $mediasParams = [
@@ -169,7 +172,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
                 'doc' => 'Slug',
                 'type' => 'string',
                 'value' => function () {
-                    return $this->getSlug();
+                    return $this->slug();
                 }
             ],
             [
