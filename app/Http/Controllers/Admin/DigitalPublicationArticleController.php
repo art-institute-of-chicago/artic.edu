@@ -51,9 +51,9 @@ class DigitalPublicationArticleController extends NestedModuleController
 
         $articlesList = $articlesList->prepend('None', '');
 
-        return [
-            'nested' => true,
-            'nestedDepth' => 3,
+        return array_merge(
+            parent::indexData($request),
+            [
             'types' => $this->repository->getTypes(),
             'articles' => $articlesList,
             'breadcrumb' => [
@@ -68,8 +68,9 @@ class DigitalPublicationArticleController extends NestedModuleController
                 [
                     'label' => 'Articles',
                 ],
-            ],
-        ];
+            ]
+            ]
+        );
     }
 
     protected function transformIndexItems($items)
@@ -78,14 +79,7 @@ class DigitalPublicationArticleController extends NestedModuleController
         if (property_exists($items, 'path')) {
             return $items;
         }
-        return $items->toTree();
-    }
-
-    protected function indexItemData($item)
-    {
-        return $item->children ? [
-            'children' => $this->getIndexTableData($item->children),
-        ] : [];
+        return parent::transformIndexItems($items);
     }
 
     private function getParents($exceptPage = null)
