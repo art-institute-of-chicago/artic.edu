@@ -39,12 +39,6 @@ class DigitalPublicationArticleRepository extends ModuleRepository
         GeneratePdf::dispatch($object);
     }
 
-    public function setNewOrder($ids)
-    {
-        ReorderNestedModuleItems::dispatch($this->model, $ids)
-        ->onQueue($this->reorderNestedModuleItemsJobQueue);
-    }
-
     public function searchApi($string, $perPage = null)
     {
         $search = Search::query()->search($string)->published()->resources(['digital-publication-articles']);
