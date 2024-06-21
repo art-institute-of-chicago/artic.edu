@@ -47,6 +47,8 @@ class Exhibition extends AbstractModel
     public const CLOSED = 'Closed';
     public const ONGOING = 'Ongoing';
 
+    protected $dates = ['aic_start_at', 'aic_end_at'];
+
     protected $fillable = [
         'published',
         'content',
@@ -162,6 +164,11 @@ class Exhibition extends AbstractModel
     public function getAdminEditUrlAttribute()
     {
         return route('admin.exhibitions_events.exhibitions.edit', $this->id);
+    }
+
+    public function getTypeAttribute()
+    {
+        return 'exhibition';
     }
 
     public function events()
