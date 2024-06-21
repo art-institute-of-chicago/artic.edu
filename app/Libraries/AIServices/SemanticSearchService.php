@@ -33,24 +33,21 @@ class SemanticSearchService
             $vectorString = '[' . implode(',', $vector) . ']';
 
             // Query the Embeddings table for nearest neighbors
-            $query = "SELECT * FROM Embeddings ORDER BY embedding <-> vector('{$vectorString}')";
+            $query = "SELECT * FROM Embeddings ORDER BY embedding <-> vector('{$vectorString}') LIMIT 30";
             $results = DB::select($query);
         } else {
-            $query = "SELECT * FROM Embeddings";
+            $query = "SELECT * FROM Embeddings LIMIT 30";
             $results = DB::select($query);
         }
 
-        $items = [];
-        foreach ($results as $result) {
+        $items = collect($results)->map(function ($result) {
             $morphedClass = $result->model_type;
             $modelClass = Relation::getMorphedModel($morphedClass);
             $modelId = $result->model_id;
-            $model = $modelClass::find($modelId);
-            if ($model) {
-                $items[] = $model;
-            }
-        }
-
+            $item = $modelClass::find($modelId);
+            return $item && $item->published && !$item->is_unlisted ? $item  : null;
+        })->filter()->take(20)->values();
+        
         return ['items' => $items, 'input' => $input];
     }
 }
