@@ -84,7 +84,7 @@ class DigitalPublicationArticleController extends NestedModuleController
 
     private function getParents($exceptPage = null)
     {
-        return $this->repository->whereNotIn('id', is_null($exceptPage) ? [] : [$exceptPage])->withDepth()->defaultOrder()->orderBy('position')->get()->filter(function ($page) {
+        return array_filter($this->repository->whereNotIn('id', is_null($exceptPage) ? [] : [$exceptPage])->withDepth()->defaultOrder()->orderBy('position')->get()->toArray(), function ($page) {
             return $page->depth < 3;
         })->values();
     }
