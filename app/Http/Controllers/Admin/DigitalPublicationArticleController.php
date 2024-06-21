@@ -100,7 +100,7 @@ class DigitalPublicationArticleController extends NestedModuleController
         $baseUrl = '//' . config('app.url') . '/';
 
         foreach ($ancestors as $ancestor) {
-            $baseUrl = $baseUrl . $ancestor->slug . '/';
+            $baseUrl = $baseUrl . url($ancestor->slug);
         }
 
         return [
