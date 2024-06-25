@@ -53,6 +53,9 @@ class MigrateOSCIPublicationOne extends Command
 
         $texts = DB::connection('osci_migration')->select("SELECT coalesce(json_extract(data,'$._title'),'FIXME') as title,text_id FROM texts WHERE package=:pubId and text_id NOT LIKE '%ncxtoc%'", ['pubId' => $pubId]);
 
+        // Initialize the left value
+        $lft = 1;
+
         foreach ($texts as $text) {
 
             $webArticle = new DigitalPublicationArticle();
@@ -63,6 +66,8 @@ class MigrateOSCIPublicationOne extends Command
             $webArticle->date = date('M j, Y');
             $webArticle->updated_at = date('M j, Y');
             $webArticle->created_at = date('M j, Y');
+            $webArticle->_lft = $lft++;
+            $webArticle->_rgt = $lft++;
 
             // TODO: Join toc position via json_tree against toc data
             $webArticle->position = 0;
