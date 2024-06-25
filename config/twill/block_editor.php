@@ -246,5 +246,6 @@ return [
         '360_modal',
         'editorial_block',
         'tombstone',
+        'ranged_accordion',
     ]
 ];
