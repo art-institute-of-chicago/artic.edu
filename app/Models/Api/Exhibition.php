@@ -148,10 +148,10 @@ class Exhibition extends BaseApiModel
         }
     }
 
-    public function getIsNowOpenAttribute()
+    public function getIsNowOpenAttribute($ignoreDateDisplayOverride = false)
     {
         // If the start and end dates are overriden, don't consider this exhibition as now open
-        if ($this->date_display_override) {
+        if ($this->date_display_override && !$ignoreDateDisplayOverride) {
             return false;
         }
         // If there's an active closure, don't show "NOW OPEN" text
