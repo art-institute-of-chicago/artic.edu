@@ -79,8 +79,50 @@
     font-family: $sans-serif-font--loaded;
   }
 
+  @include breakpoint('xsmall') {
+    &.is-sidebar-overlay:not(.s-header-hide) .o-article>.o-article__primary-actions {
+      .o-accordion--publication-sidebar {
+        display: block;
+      }
+    }
+
+    &:not(.is-sidebar-overlay) .o-article>.o-article__primary-actions {
+      .o-sticky-sidebar__sticker {
+        padding-top: 24px;
+        padding-bottom: 24px;
+
+        .m-article-actions--publication__logo {
+          margin-bottom: 0;
+        }
+      }
+      .o-accordion--publication-sidebar {
+        display: none;
+      }
+    }
+  }
+
   .o-article {
     padding-bottom: 0;
+
+    @include breakpoint('xsmall') {
+      display: flex;
+      flex-direction: column;
+
+      &>.o-article__primary-actions {
+        display: block;
+        order: 1;
+      }
+      &>.m-sidebar-toggle {
+        order: 2;
+      }
+      &>.o-article__secondary-actions,
+      &>.o-article__secondary-actions--empty {
+        order: 3;
+      }
+      &>.o-article__body {
+        order: 4;
+      }
+    }
   }
 
   .o-article__intro {
