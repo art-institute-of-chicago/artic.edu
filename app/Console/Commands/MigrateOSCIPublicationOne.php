@@ -57,7 +57,6 @@ class MigrateOSCIPublicationOne extends Command
         $lft = 1;
 
         foreach ($texts as $text) {
-
             $webArticle = new DigitalPublicationArticle();
             $webArticle->type = "text";
             $webArticle->title = $text->title;
@@ -81,7 +80,6 @@ class MigrateOSCIPublicationOne extends Command
             $order = 0;
 
             foreach ($blocks as $blk) {
-
                 $block = new Block();
                 $block->blockable_id = $webArticle->id;
                 $block->blockable_type = 'App\Models\DigitalPublicationArticle';
@@ -90,9 +88,8 @@ class MigrateOSCIPublicationOne extends Command
 
                 // TODO: Adapt Trevin's spec image code here
                 if ($blk->type == 'figure') {
-
                     // $figText = '<span>'.$blk['figure_url'].'</span>';
-                    $figText = '<figure><img src="'. $blk->figure_url . '" alt /><figcaption>'.$blk->figure_capt.'</figcaption></figure>';
+                    $figText = '<figure><img src="' . $blk->figure_url . '" alt /><figcaption>' . $blk->figure_capt . '</figcaption></figure>';
 
                     $block->content = [ 'paragraph' => $figText ];
                 } else {
