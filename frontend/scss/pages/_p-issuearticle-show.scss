@@ -175,6 +175,11 @@
     margin-bottom: 50px;
   }
 
+  .m-media.o-blocks__block .m-media__img img {
+    margin-left: 0;
+    max-height: 450px;
+  }
+
   .m-media--l, .m-media--m {
     clear: right;
   }
@@ -182,7 +187,11 @@
   .m-title-bar > .f-list-3 {
     @include untuck();
 
+    font-family: $sans-serif-font--loaded;
+    font-size: 24px;
+    font-weight: 400;
     padding: 28px 0;
+    text-transform: uppercase;
   }
 
   .o-blocks--bibliographic .f-secondary {
@@ -236,6 +245,14 @@ Styling related specifically to digital publications
   .o-article__body.o-blocks > ol,
   .o-article__body.o-blocks > ul {
     @extend .list;
+  }
+
+  .o-article__body.o-blocks {
+    & > h2, h3, h4 {
+      font-family: $serif-font--loaded;
+      font-size: 24px;
+      text-transform: none;
+    }
   }
 
   .m-article-header--generic-no-breadcrumb .m-article-header__text {
