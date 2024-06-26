@@ -28,7 +28,7 @@ class UpdateFeaturedExhibitions extends Command
             $id = ApiRelation::find($exhibition->pivot->api_relation_id)->datahub_id;
             $exhibitionInstance = Exhibition::query()->find($id);
 
-            if ($exhibitionInstance->getIsNowOpenAttribute($ignoreDateDisplayOverride = true) || $exhibitionInstance->is_ongoing) {
+            if ($exhibitionInstance->getIsNowOpenAttribute(ignoreDateDisplayOverride: true) || $exhibitionInstance->is_ongoing) {
                 $this->info("Moving {$exhibitionInstance->id}: {$exhibitionInstance->title} to current exhibitions list");
                 $currentExhibitions->splice(2, 0, [$exhibition]);
                 $exhibition->pivot->relation = 'exhibitionsCurrent';
