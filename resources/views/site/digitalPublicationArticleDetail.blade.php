@@ -20,22 +20,27 @@
         @endcomponent
     </div>
 
-    @if ($item->type == DigitalPublicationArticleType::Contributions)
-        @component('components.molecules._m-article-header----journal-article')
-            @slot('title', $item->present()->title)
-            @slot('title_display', $item->present()->title_display)
-            @slot('img', $item->imageFront('hero'))
-            @slot('imgMobile', $item->imageFront('mobile_hero'))
-        @endcomponent
-    @else
-        @component('components.molecules._m-article-header')
-            @slot('headerType', 'generic')
-            @slot('title', $item->present()->title)
-            @slot('title_display', $item->present()->title_display ?? null) {{-- WEB-2244: Populate this? --}}
-        @endcomponent
-    @endif
+    @switch ($item->type)
+        @case (DigitalPublicationArticleType::Contributions)
+            @component('components.molecules._m-article-header----journal-article')
+                @slot('title', $item->present()->title)
+                @slot('title_display', $item->present()->title_display)
+                @slot('img', $item->imageFront('hero'))
+                @slot('imgMobile', $item->imageFront('mobile_hero'))
+            @endcomponent
+            @break
+        @case (DigitalPublicationArticleType::Entry)
+            {{-- The Entry type does not display a header --}}
+            @break
+        @default
+            @component('components.molecules._m-article-header')
+                @slot('headerType', 'generic')
+                @slot('title', $item->present()->title)
+                @slot('title_display', $item->present()->title_display ?? null) {{-- WEB-2244: Populate this? --}}
+            @endcomponent
+    @endswitch
 
-    <div class="o-article__secondary-actions">
+    <div class="o-article__secondary-actions o-article__secondary-actions--empty">
         {{-- Intentionally left blank for layout --}}
     </div>
 
@@ -49,25 +54,31 @@
     </div>
     @endif
 
-    <div class="o-article__body o-blocks o-blocks--with-sidebar {{ $item->type != DigitalPublicationArticleType::Contributions ? "o-article__body--no-top-border" : "" }}">
-        @if ($item->type == DigitalPublicationArticleType::Contributions)
-            @if ($item->showAuthorsWithLinks())
-                @component('components.blocks._text')
-                    @slot('font', 'f-tag-2')
-                    @slot('variation', 'author-links')
-                    @slot('tag', 'div')
-                    {!! $item->showAuthorsWithLinks() !!}
-                @endcomponent
-            @endif
-        @endif
+    <div class="o-article__body o-blocks o-blocks--with-sidebar">
+        @switch ($item->type)
+            @case (DigitalPublicationArticleType::Contributions)
+            @case (DigitalPublicationArticleType::Entry)
+                @if ($item->showAuthorsWithLinks())
+                    @component('components.blocks._text')
+                        @slot('font', 'f-tag-2')
+                        @slot('variation', 'author-links')
+                        @slot('tag', 'div')
+                        {!! $item->showAuthorsWithLinks() !!}
+                    @endcomponent
+                @endif
+                @break
+        @endswitch
 
         @php
-        if ($item->type == DigitalPublicationArticleType::Contributions) {
-            global $_collectedReferences;
-            $_collectedReferences = [];
+        switch ($item->type) {
+            case DigitalPublicationArticleType::Contributions:
+            case DigitalPublicationArticleType::Entry:
+                global $_collectedReferences;
+                $_collectedReferences = [];
 
-            global $_paragraphCount;
-            $_paragraphCount = 0;
+                global $_paragraphCount;
+                $_paragraphCount = 0;
+                break;
         }
 
         global $_allowAdvancedModalFeatures;
