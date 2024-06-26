@@ -151,5 +151,34 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         bottom: 0;
       }
     }
+
+    .m-sidebar-toggle {
+      display: none;
+    }
+  }
+
+  @include breakpoint('xsmall') {
+    .m-sidebar-toggle--publication__logo {
+      margin-bottom: 40px;
+      white-space: nowrap;
+
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.is-sidebar-fixed.s-header-hide:not(.s-scroll-direction-up) {
+      .m-sidebar-toggle {
+        opacity: 1;
+        position: fixed;
+        top: 0;
+        z-index: map-get($zindexs, 'header');
+        &::before {
+          left: 0;
+          margin-left: -4.6875vw;
+          margin-right: -4.6875vw;
+        }
+      }
+    }
   }
 }
