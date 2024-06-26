@@ -14,6 +14,7 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasUnlisted;
 use App\Helpers\ImageHelpers;
+use App\Helpers\StringHelpers;
 
 class Experience extends AbstractModel implements Sortable
 {
@@ -269,6 +270,11 @@ class Experience extends AbstractModel implements Sortable
     public function getUrlWithoutSlugAttribute()
     {
         return join([route('interactiveFeatures'), '/', $this->id, '/']);
+    }
+
+    public function getTitleSlugAttribute()
+    {
+        return StringHelpers::getUtf8Slug($this->title);
     }
 
     public $mediasParams = [
