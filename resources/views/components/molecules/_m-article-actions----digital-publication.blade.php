@@ -21,48 +21,6 @@
             @slot('items', $articlesForSidebar)
         @endcomponent
     @endif
-
-    <h2 class="sr-only" id="h-article-actions">Page Actions</h2>
-    <ul class="m-article-actions" aria-labelledby="h-article-actions">
-        <li class="m-article-actions__action">
-            @component('components.atoms._btn')
-                @slot('variation', 'btn--icon btn--senary')
-                @slot('font', '')
-                @slot('icon', 'icon--share--24')
-                @slot('behavior','sharePage')
-                @slot('ariaLabel','Share page')
-            @endcomponent
-        </li>
-        @if (isset($pdfDownloadPath))
-            <li class="m-article-actions__action">
-                @component('components.atoms._btn')
-                    @slot('variation', 'btn--icon')
-                    @slot('font', '')
-                    @slot('tag', 'a')
-                    @slot('href', $pdfDownloadPath)
-                    @slot('icon', 'icon--download--24')
-                    @slot('ariaLabel','Download PDF')
-                @endcomponent
-            </li>
-        @endif
-        @if (isset($citeAs))
-            <li class="m-article-actions__action">
-                @component('components.atoms._btn')
-                    @slot('variation', 'btn--icon btn--septenary')
-                    @slot('font', '')
-                    @slot('tag', 'a')
-                    @slot('href', '#how-to-cite')
-                    @slot('icon', 'icon--citation--24')
-                    @slot('ariaLabel','Show how to cite')
-                @endcomponent
-            </li>
-        @endif
-    </ul>
-
-    <div>
-        <hr>
-        <a href="{!! route('collection.publications.digital-publications') !!}" class="f-link">More Digital Publications<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
-    </div>
 </div>
 
 <div class="o-sticky-sidebar__placeholder"></div>
