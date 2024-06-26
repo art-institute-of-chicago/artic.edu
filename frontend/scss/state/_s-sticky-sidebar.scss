@@ -76,6 +76,12 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         clear: both;
       }
     }
+
+    @include breakpoint('xsmall') {
+      .o-sticky-sidebar__sticker {
+        width: 100vw;
+      }
+    }
   }
 
   @include breakpoint('large+') {
