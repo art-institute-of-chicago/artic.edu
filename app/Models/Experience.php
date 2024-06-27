@@ -277,11 +277,6 @@ class Experience extends AbstractModel implements Sortable
         return StringHelpers::getUtf8Slug($this->title);
     }
 
-    public function getTitleSlugAttribute()
-    {
-        return StringHelpers::getUtf8Slug($this->title);
-    }
-
     public $mediasParams = [
         'thumbnail' => [
             'default' => [
