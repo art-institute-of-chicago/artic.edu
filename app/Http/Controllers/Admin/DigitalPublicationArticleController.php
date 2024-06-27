@@ -95,14 +95,6 @@ class DigitalPublicationArticleController extends NestedModuleController
         $digPub = app(DigitalPublicationRepository::class)->getById(request('digitalPublication'));
         $baseUrl = '//' . config('app.url') . '/' . $this->permalinkBase . $digPub->id . '/' . $digPub->getSlug() . '/' . $item->id . '/';
 
-        $ancestors = $item->ancestors()->defaultOrder()->get();
-
-        $baseUrl = '//' . config('app.url') . '/';
-
-        foreach ($ancestors as $ancestor) {
-            $baseUrl = $baseUrl . url($ancestor->slug);
-        }
-
         return [
             'types' => $this->repository->getTypes(),
             'baseUrl' => $baseUrl,
@@ -131,14 +123,5 @@ class DigitalPublicationArticleController extends NestedModuleController
                 ];
             }),
         ];
-    }
-
-    protected function form($id, $item = null)
-    {
-        $item = $this->repository->getById($id, $this->formWith, $this->formWithCount);
-
-        $this->permalinkBase = $item->ancestorsSlug;
-
-        return parent::form($id, $item);
     }
 }
