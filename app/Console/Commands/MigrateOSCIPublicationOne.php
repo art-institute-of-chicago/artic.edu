@@ -40,13 +40,13 @@ class MigrateOSCIPublicationOne extends Command
                 // TODO: if $figure->html_content_src set embed_type => url and url => html_content_src
 
                 $block->type = 'media_embed';
-                $block->content = json_encode([
+                $block->content = [
                     "size" => "m",
                     "embed_type" => "html",
                     "embed_code" => $figure->html_content,
                     "embed_height" => "400px",
                     "disable_placeholder" => true
-                ]);
+                ];
 
                 $block->save();
 
@@ -57,7 +57,7 @@ class MigrateOSCIPublicationOne extends Command
             case 'iip_asset':
 
                 $block->type = 'image';
-                $block->content = json_encode([
+                $block->content = [
                   "is_modal" => false,
                   "is_zoomable" => false,
                   "size" => "m",
@@ -65,7 +65,7 @@ class MigrateOSCIPublicationOne extends Command
                   "use_alt_background" => true,
                   "image_link" => null,
                   "caption" => $figure->caption_html
-                ]);
+                ];
 
                 // Media uploads and relations
                 $imagePath = 'test.jpeg';
@@ -83,7 +83,7 @@ class MigrateOSCIPublicationOne extends Command
 
                 $mediaId = $media->id;
 
-                $block->medias()->attach($mediaId, ['role' => 'default','metadatas' => '{"caption":null,"altText":null,"video":null}']);
+                $block->medias()->attach($mediaId, ['role' => 'default','crop' => 'default', 'metadatas' => '{"caption":null,"altText":null,"video":null}']);
 
                 $block->save();
 
