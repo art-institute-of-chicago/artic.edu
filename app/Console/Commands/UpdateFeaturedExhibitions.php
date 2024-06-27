@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use App\Models\ApiRelation;
 use App\Models\Api\Exhibition;
 use App\Models\Page;
+use Illuminate\Support\Facades\Mail;
 
 class UpdateFeaturedExhibitions extends Command
 {
@@ -15,32 +16,39 @@ class UpdateFeaturedExhibitions extends Command
 
     public function handle()
     {
+        $updatedExhibitions = [];
+
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
         $currentExhibitions = $page->exhibitionsCurrent->sortBy('pivot.position');
         $upcomingExhibitions = $page->exhibitionsUpcomingListing->sortBy('pivot.position');
 
         // Move the upcoming exhibitions to the current exhibitions list if they are now open
-        $upcomingExhibitions->each(function ($exhibition) use (&$currentExhibitions) {
+        $upcomingExhibitions->each(function ($exhibition) use (&$currentExhibitions, &$updatedExhibitions) {
             $id = ApiRelation::find($exhibition->pivot->api_relation_id)->datahub_id;
             $exhibitionInstance = Exhibition::query()->find($id);
 
-            if ($exhibitionInstance->is_now_open || $exhibitionInstance->is_ongoing) {
+            if ($exhibitionInstance->getIsNowOpenAttribute(ignoreDateDisplayOverride: true) || $exhibitionInstance->is_ongoing) {
                 $this->info("Moving {$exhibitionInstance->id}: {$exhibitionInstance->title} to current exhibitions list");
                 $currentExhibitions->splice(2, 0, [$exhibition]);
                 $exhibition->pivot->relation = 'exhibitionsCurrent';
                 $exhibition->pivot->api_relation_id = $exhibition->id;
                 $exhibition->pivot->save();
+
+                $updatedExhibitions[] = ['title' => $exhibitionInstance->title, 'status' => 'Opened'];
             }
         });
 
-        $currentExhibitions = $currentExhibitions->reject(function ($exhibition) {
+        $currentExhibitions = $currentExhibitions->reject(function ($exhibition) use (&$updatedExhibitions) {
             $id = ApiRelation::find($exhibition->pivot->api_relation_id)->datahub_id;
             $exhibitionInstance = Exhibition::query()->find($id);
 
             if ($exhibitionInstance->is_closed) {
                 $this->info("Removing {$exhibitionInstance->id}: {$exhibitionInstance->title} from current exhibitions list");
                 ApiRelation::find($exhibition->pivot->api_relation_id)->delete();
+
+                $updatedExhibitions[] = ['title' => $exhibitionInstance->title, 'status' => 'Closed'];
+
                 return true;
             }
             return false;
@@ -63,5 +71,24 @@ class UpdateFeaturedExhibitions extends Command
             'exhibitionsCurrent' => $currentExhibitions,
             'exhibitionsUpcomingListing' => $upcomingExhibitions,
         ]);
+
+        if (count($updatedExhibitions) === 0) {
+            $this->info('No exhibitions were updated');
+            return;
+        }
+
+        $emailContent = "Updated exhibitions:\n\n" . implode("\n", array_map(function ($exhibition) {
+            return "{$exhibition['title']} - {$exhibition['status']}";
+        }, $updatedExhibitions));
+
+        $emailContent .= "\n\n" . shell_exec('php artisan inspire');
+
+        Mail::raw($emailContent, function ($message) {
+            $recipients = explode(',', env('EXHIBITION_UPDATE_RECIPIENTS'));
+            foreach ($recipients as $recipient) {
+                $message->to($recipient);
+            }
+            $message->subject('Exhibition Updates');
+        });
     }
 }
