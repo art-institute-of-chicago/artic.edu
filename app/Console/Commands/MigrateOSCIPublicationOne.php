@@ -4,11 +4,14 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use App\Repositories\Api\PublicationRepository;
 use App\Models\DigitalPublication;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Vendor\Block;
+use A17\Twill\Models\Media;
 
 class MigrateOSCIPublicationOne extends Command
 {
@@ -25,6 +28,107 @@ class MigrateOSCIPublicationOne extends Command
      * @var string
      */
     protected $description = 'Migrate an OSCI publication from a migration file to a website DigitalPublication';
+
+    /**
+     * configure $block (a Block model) with $data
+     *
+     */
+    private function configureFigBlock($figure,$block)
+    {
+        switch ($figure->figure_type) {
+            case 'html_figure':
+                // TODO: if $figure->html_content_src set embed_type => url and url => html_content_src
+
+                $block->type = 'media_embed';
+                $block->content = json_encode([
+                    "size" => "m",
+                    "embed_type" => "html",
+                    "embed_code" => $figure->html_content,
+                    "embed_height" => "400px",
+                    "disable_placeholder" => true
+                ]);
+
+                $block->save();
+
+                break;
+
+            // TODO: if layered_image instantiate a layered image block 
+            case 'layered_image':
+            case 'iip_asset':
+
+                $block->type = 'image';
+                $block->content = json_encode([
+                  "is_modal" => false,
+                  "is_zoomable" => false,
+                  "size" => "m",
+                  "use_contain" => true,
+                  "use_alt_background" => true,
+                  "image_link" => null,
+                  "caption" => $figure->caption_html
+                ]);
+
+                // Media uploads and relations
+                $imagePath = 'test.jpeg';
+                $imageUuid = (string) Str::uuid();
+                $imageFilename = Str::random(10) . '.jpg';
+                $imageName = $imageUuid . '/' . $imageFilename;
+
+                Storage::disk('s3')->put($imageName, file_get_contents($imagePath));
+
+                $media = new Media(['uuid'=>$imageName,'width'=>2246,'height'=>1469, 'filename'=>$imageFilename]);
+
+                $media->alt_text = 'Alt text for the image';
+                $media->caption = $figure->caption_html;
+                $media->save();
+
+                $mediaId = $media->id;
+
+                $block->medias()->attach($mediaId, ['role' => 'default','metadatas' => '{"caption":null,"altText":null,"video":null}']);
+
+                $block->save();
+
+                break;
+
+            case '360_slider':
+                // TODO: set block-type for 360
+                $block->type = 'paragraph';
+                $block->content = [ "paragraph" => "360!!" ];
+                $block->save();
+                break;
+
+
+            case 'rti_viewer':
+                // TODO: set block-type for media embed with some placeholder text
+                $block->type = 'paragraph';
+                $block->content = [ "paragraph" => "RTI!!" ];
+                $block->save();
+                break;
+            
+        }
+    }
+
+    /**
+     * configure $block (a Block model) with $data
+     *
+     * NB: "figure" here can be many different block types
+     */
+    private function configureBlock($data,$block)
+    {
+
+        switch ($data->type) {
+            case 'figure':
+                $this->configureFigBlock($data,$block);
+                $blockId = $block->id;
+
+                break;
+            default:
+                $block->content = [ 'paragraph' => $data->html ];
+                $block->type = 'paragraph';
+                break;
+        }
+
+
+    }
 
     /**
      * Execute the console command.
@@ -51,12 +155,25 @@ class MigrateOSCIPublicationOne extends Command
 
         $webPubId = $webPub->id;
 
-        $texts = DB::connection('osci_migration')->select("SELECT coalesce(json_extract(data,'$._title'),'FIXME') as title,text_id FROM texts WHERE package=:pubId and text_id NOT LIKE '%ncxtoc%'", ['pubId' => $pubId]);
+        $texts = DB::connection('osci_migration')->select("SELECT coalesce(json_extract(data,'$._title'),'FIXME') as title,text_id FROM texts WHERE package=:pubId", ['pubId' => $pubId]);
 
         // Initialize the left value
         $lft = 1;
 
+        $blockQuery = "SELECT json_extract(blk.value,'$.html') AS html," .
+                          "blk.id AS position," . 
+                          "json_extract(blk.value,'$.blockType') AS type," . 
+                          "json_extract(blk.value,'$.figure_type') AS figure_type," . 
+                          "json_extract(blk.value,'$.html_content') AS html_content," . 
+                          "json_extract(blk.value,'$.html_content_src') AS html_content_src," . 
+                          "coalesce(json_extract(blk.value,'$.caption_html'),'') AS caption_html " . 
+                          "FROM texts," . 
+                          "json_each(texts.data,'$.sections') AS sects," . 
+                          "json_each(sects.value,'$.blocks') AS blk " .
+                          "WHERE texts.text_id=:textId";
+
         foreach ($texts as $text) {
+
             $webArticle = new DigitalPublicationArticle();
             $webArticle->type = "text";
             $webArticle->title = $text->title;
@@ -73,31 +190,19 @@ class MigrateOSCIPublicationOne extends Command
 
             $webArticle->save();
 
-            // TODO: Use a multiline string!! Also this can be moved outside the while
-
-            $blocks = DB::connection('osci_migration')->select("SELECT json_extract(blk.value,'$.html') as html, blk.id as position, json_extract(blk.value,'$.blockType') as type, json_extract(blk.value,'$.fallback_url') as figure_url, coalesce(json_extract(blk.value,'$.caption_html'),'') as figure_capt from texts, json_each(texts.data,'$.sections') as sects,json_each(sects.value,'$.blocks') as blk where texts.text_id=:textId", ['textId' => $text->text_id]);
+            $blocks = DB::connection('osci_migration')->select($blockQuery, ['textId' => $text->text_id]);
 
             $order = 0;
 
             foreach ($blocks as $blk) {
+
                 $block = new Block();
                 $block->blockable_id = $webArticle->id;
                 $block->blockable_type = 'App\Models\DigitalPublicationArticle';
 
                 $block->position = $order;
 
-                // TODO: Adapt Trevin's spec image code here
-                if ($blk->type == 'figure') {
-                    // $figText = '<span>'.$blk['figure_url'].'</span>';
-                    $figText = '<figure><img src="' . $blk->figure_url . '" alt /><figcaption>' . $blk->figure_capt . '</figcaption></figure>';
-
-                    $block->content = [ 'paragraph' => $figText ];
-                } else {
-                    $block->content = [ 'paragraph' => $blk->html ];
-                }
-
-                $block->type = 'paragraph';
-                $block->save();
+                $this->configureBlock($blk,$block);
 
                 $webArticle->blocks()->save($block);
 
