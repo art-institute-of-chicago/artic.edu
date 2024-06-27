@@ -33,7 +33,7 @@ class MigrateOSCIPublicationOne extends Command
      * configure $block (a Block model) with $data
      *
      */
-    private function configureFigBlock($figure,$block)
+    private function configureFigBlock($figure, $block)
     {
         switch ($figure->figure_type) {
             case 'html_figure':
@@ -52,20 +52,11 @@ class MigrateOSCIPublicationOne extends Command
 
                 break;
 
-            // TODO: if layered_image instantiate a layered image block 
+            // TODO: if layered_image instantiate a layered image block
             case 'layered_image':
             case 'iip_asset':
-
                 $block->type = 'image';
-                $block->content = [
-                  "is_modal" => false,
-                  "is_zoomable" => false,
-                  "size" => "m",
-                  "use_contain" => true,
-                  "use_alt_background" => true,
-                  "image_link" => null,
-                  "caption" => $figure->caption_html
-                ];
+
 
                 // Media uploads and relations
                 $imagePath = 'test.jpeg';
@@ -75,13 +66,29 @@ class MigrateOSCIPublicationOne extends Command
 
                 Storage::disk('s3')->put($imageName, file_get_contents($imagePath));
 
-                $media = new Media(['uuid'=>$imageName,'width'=>2246,'height'=>1469, 'filename'=>$imageFilename]);
+                $media = new Media([
+                            'uuid' => $imageName,
+                            'width' => 2246,
+                            'height' => 1469,
+                            'filename' => $imageFilename
+                        ]);
 
                 $media->alt_text = 'Alt text for the image';
                 $media->caption = $figure->caption_html;
                 $media->save();
 
                 $mediaId = $media->id;
+
+                $block->content = [
+                  "is_modal" => false,
+                  "is_zoomable" => false,
+                  "size" => "m",
+                  "use_contain" => true,
+                  "use_alt_background" => true,
+                  "image_link" => null,
+                  "image" => $mediaId,
+                  "caption" => $figure->caption_html
+                ];
 
                 $block->medias()->attach($mediaId, ['role' => 'default','crop' => 'default', 'metadatas' => '{"caption":null,"altText":null,"video":null}']);
 
@@ -103,7 +110,6 @@ class MigrateOSCIPublicationOne extends Command
                 $block->content = [ "paragraph" => "RTI!!" ];
                 $block->save();
                 break;
-            
         }
     }
 
@@ -112,12 +118,11 @@ class MigrateOSCIPublicationOne extends Command
      *
      * NB: "figure" here can be many different block types
      */
-    private function configureBlock($data,$block)
+    private function configureBlock($data, $block)
     {
-
         switch ($data->type) {
             case 'figure':
-                $this->configureFigBlock($data,$block);
+                $this->configureFigBlock($data, $block);
                 $blockId = $block->id;
 
                 break;
@@ -126,8 +131,6 @@ class MigrateOSCIPublicationOne extends Command
                 $block->type = 'paragraph';
                 break;
         }
-
-
     }
 
     /**
@@ -161,19 +164,18 @@ class MigrateOSCIPublicationOne extends Command
         $lft = 1;
 
         $blockQuery = "SELECT json_extract(blk.value,'$.html') AS html," .
-                          "blk.id AS position," . 
-                          "json_extract(blk.value,'$.blockType') AS type," . 
-                          "json_extract(blk.value,'$.figure_type') AS figure_type," . 
-                          "json_extract(blk.value,'$.html_content') AS html_content," . 
-                          "json_extract(blk.value,'$.html_content_src') AS html_content_src," . 
-                          "coalesce(json_extract(blk.value,'$.caption_html'),'') AS caption_html " . 
-                          "FROM texts," . 
-                          "json_each(texts.data,'$.sections') AS sects," . 
+                          "blk.id AS position," .
+                          "json_extract(blk.value,'$.blockType') AS type," .
+                          "json_extract(blk.value,'$.figure_type') AS figure_type," .
+                          "json_extract(blk.value,'$.html_content') AS html_content," .
+                          "json_extract(blk.value,'$.html_content_src') AS html_content_src," .
+                          "coalesce(json_extract(blk.value,'$.caption_html'),'') AS caption_html " .
+                          "FROM texts," .
+                          "json_each(texts.data,'$.sections') AS sects," .
                           "json_each(sects.value,'$.blocks') AS blk " .
                           "WHERE texts.text_id=:textId";
 
         foreach ($texts as $text) {
-
             $webArticle = new DigitalPublicationArticle();
             $webArticle->type = "text";
             $webArticle->title = $text->title;
@@ -195,14 +197,13 @@ class MigrateOSCIPublicationOne extends Command
             $order = 0;
 
             foreach ($blocks as $blk) {
-
                 $block = new Block();
                 $block->blockable_id = $webArticle->id;
                 $block->blockable_type = 'App\Models\DigitalPublicationArticle';
 
                 $block->position = $order;
 
-                $this->configureBlock($blk,$block);
+                $this->configureBlock($blk, $block);
 
                 $webArticle->blocks()->save($block);
 
