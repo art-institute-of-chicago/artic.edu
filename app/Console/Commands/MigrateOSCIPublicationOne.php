@@ -37,16 +37,26 @@ class MigrateOSCIPublicationOne extends Command
     {
         switch ($figure->figure_type) {
             case 'html_figure':
-                // TODO: if $figure->html_content_src set embed_type => url and url => html_content_src
-
                 $block->type = 'media_embed';
-                $block->content = [
-                    "size" => "m",
-                    "embed_type" => "html",
-                    "embed_code" => $figure->html_content,
-                    "embed_height" => "400px",
-                    "disable_placeholder" => true
-                ];
+
+                if (isset($figure->html_content_src)) {
+                    $block->content = [
+                        "size" => "m",
+                        "embed_type" => "url",
+                        "embed_url" => $figure->html_content_src,
+                        "embed_height" => "400px",
+                        "disable_placeholder" => true
+                    ];
+
+                } else {
+                    $block->content = [
+                        "size" => "m",
+                        "embed_type" => "html",
+                        "embed_code" => $figure->html_content,
+                        "embed_height" => "400px",
+                        "disable_placeholder" => true
+                    ];                    
+                }
 
                 $block->save();
 
@@ -56,7 +66,6 @@ class MigrateOSCIPublicationOne extends Command
             case 'layered_image':
             case 'iip_asset':
                 $block->type = 'image';
-
 
                 // Media uploads and relations
                 $imagePath = 'test.jpeg';
@@ -70,14 +79,13 @@ class MigrateOSCIPublicationOne extends Command
                             'uuid' => $imageName,
                             'width' => 2246,
                             'height' => 1469,
-                            'filename' => $imageFilename
+                            'filename' => $imageFilename,
+                            'locale' => 'en'
                         ]);
 
                 $media->alt_text = 'Alt text for the image';
                 $media->caption = $figure->caption_html;
                 $media->save();
-
-                $mediaId = $media->id;
 
                 $block->content = [
                   "is_modal" => false,
@@ -86,28 +94,43 @@ class MigrateOSCIPublicationOne extends Command
                   "use_contain" => true,
                   "use_alt_background" => true,
                   "image_link" => null,
-                  "image" => $mediaId,
+                  "hide_figure_number" => false,
                   "caption" => $figure->caption_html
                 ];
-
-                $block->medias()->attach($mediaId, ['role' => 'default','crop' => 'default', 'metadatas' => '{"caption":null,"altText":null,"video":null}']);
-
+                
+                $block->medias()->save($media, [
+                    'metadatas' => '{"caption":null,"altText":null,"video":null}',
+                    'role' => 'default',
+                    'crop' => 'default',
+                    'ratio' => 0,
+                    'crop_x' => 0,
+                    'crop_y' => 0,
+                    'crop_w' => 2246,
+                    'crop_h' => 1469
+                ]);
                 $block->save();
-
+                // $block->medias()->sync([]);
+                // var_dump($block);
                 break;
 
             case '360_slider':
-                // TODO: set block-type for 360
-                $block->type = 'paragraph';
-                $block->content = [ "paragraph" => "360!!" ];
+                $block->type = '360_embed';
+                $block->content = [ 
+                    "size" => "m",
+                    "caption" => $figure->caption_html
+                ];
+
+                // TODO: Attach media
                 $block->save();
                 break;
 
-
             case 'rti_viewer':
-                // TODO: set block-type for media embed with some placeholder text
-                $block->type = 'paragraph';
-                $block->content = [ "paragraph" => "RTI!!" ];
+                // TODO: insert reader_url, figure # for this text + figure
+                $block->type = 'video';
+                $block->content = [ 
+                    "caption" => $figure->caption_html
+                ];
+
                 $block->save();
                 break;
         }
@@ -123,8 +146,6 @@ class MigrateOSCIPublicationOne extends Command
         switch ($data->type) {
             case 'figure':
                 $this->configureFigBlock($data, $block);
-                $blockId = $block->id;
-
                 break;
             default:
                 $block->content = [ 'paragraph' => $data->html ];
