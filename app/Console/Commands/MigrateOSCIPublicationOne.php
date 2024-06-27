@@ -62,8 +62,25 @@ class MigrateOSCIPublicationOne extends Command
 
                 break;
 
-            // TODO: if layered_image instantiate a layered image block
             case 'layered_image':
+                $block->type = 'layered_image_viewer';
+
+                // TODO: Instantiate the layers using fig_layer data, attaching each using fig_layer.data to get titles + layer # / order
+                $block->content = [
+                  "is_modal" => false,
+                  "is_zoomable" => false,
+                  "size" => "m",
+                  "use_contain" => true,
+                  "use_alt_background" => true,
+                  "image_link" => null,
+                  "hide_figure_number" => false,
+                  "caption" => $figure->caption_html,
+                  "alt_text" => ""
+                ];
+
+                $block->save();
+                break;
+
             case 'iip_asset':
                 $block->type = 'image';
 
@@ -87,6 +104,18 @@ class MigrateOSCIPublicationOne extends Command
                 $media->caption = $figure->caption_html;
                 $media->save();
 
+                $block->medias()->attach($media->id, [
+                    'locale' => 'en',
+                    'media_id' => $media->id,
+                    'metadatas' => '{"caption":null,"captionTitle": null, "altText":null,"video":null}',
+                    'role' => 'image',
+                    'crop' => 'desktop',
+                    'crop_x' => 0,
+                    'crop_y' => 0,
+                    'crop_w' => 2246,
+                    'crop_h' => 1469
+                ]);
+
                 $block->content = [
                   "is_modal" => false,
                   "is_zoomable" => false,
@@ -95,19 +124,10 @@ class MigrateOSCIPublicationOne extends Command
                   "use_alt_background" => true,
                   "image_link" => null,
                   "hide_figure_number" => false,
-                  "caption" => $figure->caption_html
+                  "caption" => $figure->caption_html,
+                  "alt_text" => ""
                 ];
-                
-                $block->medias()->save($media, [
-                    'metadatas' => '{"caption":null,"altText":null,"video":null}',
-                    'role' => 'default',
-                    'crop' => 'default',
-                    'ratio' => 0,
-                    'crop_x' => 0,
-                    'crop_y' => 0,
-                    'crop_w' => 2246,
-                    'crop_h' => 1469
-                ]);
+
                 $block->save();
                 // $block->medias()->sync([]);
                 // var_dump($block);
