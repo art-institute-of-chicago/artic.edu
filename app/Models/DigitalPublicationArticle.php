@@ -172,7 +172,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
                 'doc' => 'Slug',
                 'type' => 'string',
                 'value' => function () {
-                    return $this->slug();
+                    return $this->getSlug();
                 }
             ],
             [
