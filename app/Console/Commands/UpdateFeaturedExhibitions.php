@@ -7,6 +7,7 @@ use App\Models\ApiRelation;
 use App\Models\Api\Exhibition;
 use App\Models\Page;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Artisan;
 
 class UpdateFeaturedExhibitions extends Command
 {
@@ -81,7 +82,7 @@ class UpdateFeaturedExhibitions extends Command
             return "{$exhibition['title']} - {$exhibition['status']}";
         }, $updatedExhibitions));
 
-        $emailContent .= "\n\n" . shell_exec('php artisan inspire');
+        $emailContent .= "\n\n" . Artisan::call('inspire');
 
         Mail::raw($emailContent, function ($message) {
             $recipients = explode(',', env('EXHIBITION_UPDATE_RECIPIENTS'));
