@@ -8,6 +8,7 @@ return [
     'vtour_bucket' => env('AWS_VTOUR_BUCKET'),
     'http_username' => env('HTTP_USERNAME'),
     'http_password' => env('HTTP_PASSWORD'),
+    'exhibition_update_recipients' => env('EXHIBITION_UPDATE_RECIPIENTS'),
 
     // ART-48: For "Research Center"; see Departments filter
     'department_archive_title' => env('DEPARTMENT_ARCHIVE_TITLE', 'AIC Archives'),
