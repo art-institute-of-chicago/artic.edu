@@ -54,6 +54,8 @@ class DigitalPublicationArticleController extends NestedModuleController
         return array_merge(
             parent::indexData($request),
             [
+            'nested' => true,
+            'nestedDepth' => 2,
             'types' => $this->repository->getTypes(),
             'articles' => $articlesList,
             'breadcrumb' => [
