@@ -84,12 +84,17 @@ class UpdateFeaturedExhibitions extends Command
 
         $emailContent .= "\n\n" . Artisan::call('inspire');
 
-        Mail::raw($emailContent, function ($message) {
-            $recipients = explode(',', env('EXHIBITION_UPDATE_RECIPIENTS'));
-            foreach ($recipients as $recipient) {
-                $message->to($recipient);
-            }
-            $message->subject('Exhibition Updates');
-        });
+        if (!config('exhibition_update_recipients')) {
+            $this->info('No recipients configured for exhibition updates');
+            return;
+        } else {
+            Mail::raw($emailContent, function ($message) {
+                $recipients = explode(',', config('exhibition_update_recipients'));
+                foreach ($recipients as $recipient) {
+                    $message->to($recipient);
+                }
+                $message->subject('Exhibition Updates');
+            });
+        }
     }
 }
