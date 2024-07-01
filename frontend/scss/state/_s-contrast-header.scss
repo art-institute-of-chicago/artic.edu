@@ -29,12 +29,21 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
     .g-header {
       @include breakpoint('small') {
         height: 368px;
+        &:has(.m-notification--header) {
+          height: 416px;
+        }
       }
       @include breakpoint('medium') {
         height: 376px;
+        &:has(.m-notification--header) {
+          height: 424px;
+        }
       }
       @include breakpoint('large+') {
         height: 380px;
+        &:has(.m-notification--header) {
+          height: 428px;
+        }
       }
     }
     .g-header:has([aria-expanded="true"]) {

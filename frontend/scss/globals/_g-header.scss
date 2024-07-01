@@ -37,12 +37,21 @@
   transition: background-color .6s ease-in;
   @include breakpoint('small') {
     height: 368px;
+    &:has(.m-notification--header) {
+      height: 416px;
+    }
   }
   @include breakpoint('medium') {
     height: 376px;
+    &:has(.m-notification--header) {
+      height: 424px;
+    }
   }
   @include breakpoint('large+') {
     height: 380px;
+    &:has(.m-notification--header) {
+      height: 428px;
+    }
   }
   .g-header__inner {
     border-bottom: none !important;
