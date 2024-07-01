@@ -217,6 +217,10 @@
     margin-bottom: 50px;
   }
 
+  .m-media.o-blocks__block .m-media__img {
+    width: fit-content;
+  }
+
   .m-media.o-blocks__block .m-media__img img {
     margin-left: 0;
     max-height: 450px;
