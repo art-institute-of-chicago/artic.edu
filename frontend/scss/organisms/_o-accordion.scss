@@ -364,6 +364,12 @@ h3 {
 
   h3 {
     padding: 1px 0 0 0;
+
+    &:last-child {
+      .o-accordion__trigger.f-tag-2 {
+        border-bottom: none;
+      }
+    }
   }
 
   .o-accordion__trigger {
