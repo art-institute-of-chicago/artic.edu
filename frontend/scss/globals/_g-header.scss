@@ -35,6 +35,18 @@
   z-index: map-get($zindexs, 'header');
   background-color: rgba($color__white, 1);
   transition: background-color .6s ease-in;
+
+  &:has(.m-notification--header) {
+    @include breakpoint('small') {
+      height: 416px !important;
+    }
+    @include breakpoint('medium') {
+      height: 424px !important;
+    }
+    @include breakpoint('large+') {
+      height: 428px !important;
+    }
+  }
   @include breakpoint('small') {
     height: 368px;
   }
