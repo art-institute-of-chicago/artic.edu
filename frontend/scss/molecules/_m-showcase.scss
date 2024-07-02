@@ -164,6 +164,54 @@
                 color: $color__black--90;
             }
         }
+        &.showcase--variation-rlc-secondary {
+            background-color: $color__rlc__myrtle_green !important;
+
+            .m-showcase-wrapper {
+                flex-direction: row-reverse;
+
+                .showcase-header {
+                    flex-basis: 100%;
+                    order: -1;
+                }
+
+                @include breakpoint('xsmall') {
+                    flex-direction: column-reverse;
+
+                    .showcase-header {
+                        flex-basis: fit-content;
+                        order: 1;
+                    }
+                }
+            }
+
+            .m-showcase-media {
+                .m-media__img {
+                    background-color: inherit;
+
+                    img {
+                        aspect-ratio: 1;
+                    }
+                }
+
+                @include breakpoint('small+') {
+                    flex: 2;
+                }
+            }
+
+            .showcase-header,
+            .showcase-tag,
+            .showcase-title,
+            .showcase-description {
+                color: $color__white;
+            }
+            .showcase-link {
+                color: $color__rlc__sunglow;
+                &:hover {
+                    color: $color__white;
+                }
+            }
+        }
     }
     &.showcase--default.showcase--variation-1e3f49 {
         background-color: $color__japanese-indigo;
