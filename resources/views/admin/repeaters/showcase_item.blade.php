@@ -48,14 +48,19 @@
     ],
 ])
 
-@formField('input', [
-    'name' => 'link_label',
-    'label' => 'Link Label',
-    'type' => 'text',
-])
-
-@formField('input', [
-    'name' => 'link_url',
-    'label' => 'Link Url',
-    'type' => 'text',
-])
+@component('twill::partials.form.utils._columns')
+    @slot('left')
+        @formField('input', [
+            'name' => 'link_label',
+            'label' => 'Link Label',
+            'type' => 'text',
+        ])
+    @endslot
+    @slot('right')
+        @formField('input', [
+            'name' => 'link_url',
+            'label' => 'Link Url',
+            'type' => 'text',
+        ])
+    @endslot
+@endcomponent
