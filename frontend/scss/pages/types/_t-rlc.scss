@@ -133,12 +133,13 @@
   .spacer {
     display: inline-block;
     @include breakpoint('small+') {
-      --spacing: calc(100vw / 4);
-      --max-spacing: 350px;
+      --spacing: calc(100vw / 2);
+      --max-spacing: 650px;
       height: var(--spacing);
+      margin-top: 50px;
       max-height: var(--max-spacing);
-      width: calc(var(--spacing) / 2);
       max-width: calc(var(--max-spacing) / 2);
+      width: calc(var(--spacing) / 2);
     }
     @include breakpoint('xsmall') {
       --spacing: calc(100vw / 2);
