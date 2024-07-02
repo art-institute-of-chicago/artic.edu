@@ -84,13 +84,27 @@ class MigrateOSCIPublicationOne extends Command
             case 'iip_asset':
                 $block->type = 'image';
 
+
                 // Media uploads and relations
-                $imagePath = 'test.jpeg';
+                $imagePath = isset($figure->static_url) ? $figure->static_url : $figure->fallback_url ;
                 $imageUuid = (string) Str::uuid();
                 $imageFilename = Str::random(10) . '.jpg';
                 $imageName = $imageUuid . '/' . $imageFilename;
 
                 Storage::disk('s3')->put($imageName, file_get_contents($imagePath));
+                $block->content = [
+                  "is_modal" => false,
+                  "is_zoomable" => false,
+                  "size" => "m",
+                  "use_contain" => true,
+                  "use_alt_background" => true,
+                  "image_link" => null,
+                  "hide_figure_number" => false,
+                  "caption" => $figure->caption_html,
+                  "alt_text" => ""
+                ];
+
+                $block->save();
 
                 $media = new Media([
                             'uuid' => $imageName,
@@ -116,21 +130,7 @@ class MigrateOSCIPublicationOne extends Command
                     'crop_h' => 1469
                 ]);
 
-                $block->content = [
-                  "is_modal" => false,
-                  "is_zoomable" => false,
-                  "size" => "m",
-                  "use_contain" => true,
-                  "use_alt_background" => true,
-                  "image_link" => null,
-                  "hide_figure_number" => false,
-                  "caption" => $figure->caption_html,
-                  "alt_text" => ""
-                ];
-
                 $block->save();
-                // $block->medias()->sync([]);
-                // var_dump($block);
                 break;
 
             case '360_slider':
@@ -208,6 +208,8 @@ class MigrateOSCIPublicationOne extends Command
                           "blk.id AS position," .
                           "json_extract(blk.value,'$.blockType') AS type," .
                           "json_extract(blk.value,'$.figure_type') AS figure_type," .
+                          "json_extract(blk.value,'$.static_url') AS static_url," .
+                          "json_extract(blk.value,'$.fallback_url') AS fallback_url," .
                           "json_extract(blk.value,'$.html_content') AS html_content," .
                           "json_extract(blk.value,'$.html_content_src') AS html_content_src," .
                           "coalesce(json_extract(blk.value,'$.caption_html'),'') AS caption_html " .
