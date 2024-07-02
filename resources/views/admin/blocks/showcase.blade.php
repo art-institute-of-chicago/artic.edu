@@ -139,142 +139,48 @@
     ])
 @endif
 
-@if ($type == 'RLC')
+@formField('input', [
+    'name' => 'tag',
+    'label' => 'Tag',
+    'type' => 'text',
+    'maxlength' => 100,
+])
 
-    @formConnectedFields([
-        'fieldName' => 'variation',
-        'fieldValues' => 'about-the-rlc',
-        'renderForBlocks' => true,
-    ])
+@formField('wysiwyg', [
+    'name' => 'title',
+    'label' => 'Title',
+    'maxlength' => 100,
+    'required' => true,
+    'toolbarOptions' => [
+            'italic'
+    ],
+])
 
-        @formField('input', [
-            'name' => 'tag',
-            'label' => 'Tag',
-            'type' => 'text',
-            'maxlength' => 100,
-        ])
+@formField('wysiwyg', [
+    'name' => 'description',
+    'label' => 'Description',
+    'required' => true,
+])
 
-        @formField('wysiwyg', [
-            'name' => 'title',
-            'label' => 'Title',
-            'maxlength' => 100,
-            'required' => true,
-            'toolbarOptions' => [
-                    'italic'
-            ],
-        ])
-
-        @formField('wysiwyg', [
-            'name' => 'description',
-            'label' => 'Description',
-            'required' => true,
-        ])
-
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            @formField('input', [
-                'name' => 'link_label',
-                'label' => 'Link Label',
-                'type' => 'text',
-            ])
-        @endslot
-        @slot('right')
-            @formField('input', [
-                'name' => 'link_url',
-                'label' => 'Link Url',
-                'type' => 'text',
-            ])
-        @endslot
-        @endcomponent
-
-    @endcomponent
-
+@formConnectedFields([
+    'fieldName' => 'theme',
+    'fieldValues' => 'rlc',
+    'renderForBlocks' => true,
+])
     @formConnectedFields([
         'fieldName' => 'variation',
         'fieldValues' => 'default',
         'renderForBlocks' => true,
     ])
-
-        @formField('input', [
-            'name' => 'tag',
-            'label' => 'Tag',
-            'type' => 'text',
-            'maxlength' => 100,
-        ])
-
-        @formField('wysiwyg', [
-            'name' => 'title',
-            'label' => 'Title',
-            'maxlength' => 100,
-            'required' => true,
-            'toolbarOptions' => [
-                    'italic'
-            ],
-        ])
-
-        @formField('wysiwyg', [
-            'name' => 'description',
-            'label' => 'Description',
-            'required' => true,
-        ])
-
         @formField('input', [
             'name' => 'date',
             'label' => 'Date',
             'type' => 'text',
         ])
-
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            @formField('input', [
-                'name' => 'link_label',
-                'label' => 'Link Label',
-                'type' => 'text',
-            ])
-        @endslot
-        @slot('right')
-            @formField('input', [
-                'name' => 'link_url',
-                'label' => 'Link Url',
-                'type' => 'text',
-            ])
-        @endslot
-        @endcomponent
-
     @endcomponent
+@endcomponent
 
-@endif
-
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => ['default', 'home'],
-    'renderForBlocks' => true,
-    ])
-
-    @formField('input', [
-        'name' => 'tag',
-        'label' => 'Tag',
-        'type' => 'text',
-        'maxlength' => 100,
-    ])
-
-    @formField('wysiwyg', [
-        'name' => 'title',
-        'label' => 'Title',
-        'maxlength' => 100,
-        'required' => true,
-        'toolbarOptions' => [
-                'italic'
-        ],
-    ])
-
-    @formField('wysiwyg', [
-        'name' => 'description',
-        'label' => 'Description',
-        'required' => true,
-    ])
-
-    @component('twill::partials.form.utils._columns')
+@component('twill::partials.form.utils._columns')
     @slot('left')
         @formField('input', [
             'name' => 'link_label',
@@ -289,6 +195,4 @@
             'type' => 'text',
         ])
     @endslot
-    @endcomponent
-
 @endcomponent
