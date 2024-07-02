@@ -72,6 +72,10 @@
                 'value' => 'about-the-rlc',
                 'label' => 'About the RLC',
             ],
+            [
+                'value' => 'rlc-secondary',
+                'label' => 'RLC secondary (teal)',
+            ],
         ]
     ])
 
