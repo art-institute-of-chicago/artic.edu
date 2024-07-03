@@ -133,10 +133,9 @@
   .spacer {
     display: inline-block;
     @include breakpoint('small+') {
-      --spacing: calc(100vw / 2);
-      --max-spacing: 650px;
+      --spacing: calc(100vw / 4);
+      --max-spacing: 350px;
       height: var(--spacing);
-      margin-top: 50px;
       max-height: var(--max-spacing);
       max-width: calc(var(--max-spacing) / 2);
       width: calc(var(--spacing) / 2);
@@ -497,6 +496,17 @@
     }
     .o-accordion__trigger.f-list-3 {
       border: none;
+    }
+    @include breakpoint('small+') {
+      .spacer {
+        --spacing: calc(100vw / 2);
+        --max-spacing: 650px;
+        height: var(--spacing);
+        margin-top: 50px;
+        max-height: var(--max-spacing);
+        max-width: calc(var(--max-spacing));
+        width: calc(var(--spacing) / 2);
+      }
     }
     .semicircle {
       background-color: $color__rlc__fire_opal;
