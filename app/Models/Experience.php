@@ -269,7 +269,7 @@ class Experience extends AbstractModel implements Sortable
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('interactiveFeatures'), '/', $this->id, '/']);
+        return join([route('interactiveFeatures'), '/']);
     }
 
     public function getTitleSlugAttribute()
