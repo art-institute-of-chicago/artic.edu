@@ -271,6 +271,11 @@ class Experience extends AbstractModel implements Sortable
         return join([route('interactiveFeatures'), '/']);
     }
 
+    public function getTitleSlugAttribute()
+    {
+        return StringHelpers::getUtf8Slug($this->title);
+    }
+
     public $mediasParams = [
         'thumbnail' => [
             'default' => [
