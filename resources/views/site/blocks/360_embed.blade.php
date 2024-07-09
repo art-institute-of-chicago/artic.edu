@@ -1,4 +1,4 @@
-@if (isset($image_sequence_file) && $image_sequence_file != null)
+@if ($block->assetLibrary)
 
     @php
         $image_sequence_file = $block->assetLibrary;
