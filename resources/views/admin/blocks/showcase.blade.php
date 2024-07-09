@@ -167,17 +167,11 @@
     'fieldValues' => 'rlc',
     'renderForBlocks' => true,
 ])
-    @formConnectedFields([
-        'fieldName' => 'variation',
-        'fieldValues' => 'default',
-        'renderForBlocks' => true,
+    @formField('input', [
+        'name' => 'date',
+        'label' => 'Date',
+        'type' => 'text',
     ])
-        @formField('input', [
-            'name' => 'date',
-            'label' => 'Date',
-            'type' => 'text',
-        ])
-    @endcomponent
 @endcomponent
 
 @component('twill::partials.form.utils._columns')
