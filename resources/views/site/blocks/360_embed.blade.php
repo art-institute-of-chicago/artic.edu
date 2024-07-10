@@ -1,13 +1,13 @@
-@php
-    $image_sequence_file = $block->assetLibrary;
-    $sequence_id = $image_sequence_file['id'];
-    $alt_text = $block->input('alt_text');
-    $caption_title = $block->input('caption_title');
-    $caption = $block->input('caption');
-    $size = $block->input('size');
-@endphp
+@if ($block->assetLibrary)
 
-@if ($image_sequence_file)
+    @php
+        $image_sequence_file = $block->assetLibrary;
+        $sequence_id = $image_sequence_file['id'];
+        $alt_text = $block->input('alt_text');
+        $caption_title = $block->input('caption_title');
+        $caption = $block->input('caption');
+        $size = $block->input('size');
+    @endphp
 
     <div class="m-media m-media--{{ $size ?? 's' }} m-media--contain o-blocks__block">
         <script type="application/json" id="assetLibrary-{!!$sequence_id!!}">
