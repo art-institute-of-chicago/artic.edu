@@ -61,7 +61,7 @@
                     {!! SmartyPants::defaultTransform($description) !!}
                 @endcomponent
             @endif
-            @if ($date && ($theme == 'rlc' && $variation == 'default'))
+            @if ($date && ($theme == 'rlc'))
                 @component('components.blocks._text')
                     @slot('tag', 'div')
                     @slot('font', 'f-secondary')
