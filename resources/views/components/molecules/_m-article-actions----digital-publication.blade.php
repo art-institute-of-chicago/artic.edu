@@ -11,14 +11,14 @@
     </div>
 
     @php
-        $articlesForSidebar = $digitalPublication->present()->nestedArticlesForSidebar($digitalPublication);
+        $topLevelArticles = $digitalPublication->present()->topLevelArticles();
     @endphp
 
-    @if (!empty($articlesForSidebar))
+    @if (!empty($topLevelArticles))
         @component('components.organisms._o-table-of-contents')
             @slot('variation', 'o-accordion--publication-sidebar')
             @slot('titleFont', 'f-tag-2')
-            @slot('items', $articlesForSidebar)
+            @slot('items', $topLevelArticles)
         @endcomponent
     @endif
 </div>
