@@ -174,7 +174,7 @@ class EducatorAdmissionController extends FormController
 
         array_push($blocks, [
             'type' => 'text',
-            'content' => '<p>Free admission to the Art Institute of Chicago is available to current Illinois educators, including pre-K–12 teachers, teaching artists working in schools, and homeschool parents. Educators can register here to receive a voucher for a complimentary ticket to the museum. This voucher must be presented at one of the museum’s admission counters with a valid educator ID.</p>'
+            'content' => '<p>Free admission to the Art Institute of Chicago is available to current Illinois educators, including pre-K–12 teachers, teaching artists working in schools, and homeschool parents. Educators can register here to receive a voucher for <strong>one</strong> complimentary ticket to the museum. This voucher must be presented at one of the museum’s admission counters with a valid educator ID. To schedule a visit for a K–12 student group, please register <a href="https://www.artic.edu/visit/whos-visiting/k-12-student-groups">here</a>.</p>'
             . '<p>Museum hours are subject to change. Please review the museum\'s current <a href="/visit"> hours of operation</a> before reserving your free admission.</p>'
             . '<p>A complimentary ticket will not be granted without one of the following forms of acceptable identification:</p>'
             . '<p>Pre-K–12 teachers'
