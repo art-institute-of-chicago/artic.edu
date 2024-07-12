@@ -13,6 +13,7 @@ use App\Models\DigitalPublicationArticle;
 use App\Models\Vendor\Block;
 use A17\Twill\Models\Media;
 
+
 class MigrateOSCIPublicationOne extends Command
 {
     /**
@@ -29,19 +30,34 @@ class MigrateOSCIPublicationOne extends Command
      */
     protected $description = 'Migrate an OSCI publication from a migration file to a website DigitalPublication';
 
+    /**
+     * mediaFactory
+     * 
+     * Fetches asset for this figure layer and registers it as Media, 
+     * applying caption and using OSCI's fallback URL
+     *  
+     * @param imageData - JSON of image data for this layer
+     * @param caption_html - HTML of caption data
+     * @param fallback_url - Fallback image to use for this layer
+     * 
+     */
     private function mediaFactory($imageData, $caption_html, $fallback_url)
     {
-
         // Media uploads and relations
         $imageUrl = isset($imageData->static_url) ? $imageData->static_url : $fallback_url ;
 
+        // TODO: Load JPEG-converted PTIFF URL from this from db's `assets` table
+        // TODO: Load 360-zip URL from this from db's `assets` table
+
+        // Construct the UUID for this asset and preserve filename info
         $imageUuid = (string) Str::uuid();
         $imageUrlPath = parse_url($imageUrl, PHP_URL_PATH);
-        $imageExt = pathinfo($imageUrlPath, PATHINFO_EXTENSION);
-        $imageFilename = Str::random(10) . $imageExt;
+        $imageFilename = pathinfo($imageUrlPath, PATHINFO_FILENAME);
+        $imageFilename = Str::random(10) . '-' . sanitizeFilename($imageFilename);
 
         $imageName = $imageUuid . '/' . $imageFilename;
 
+        // TODO: Catch error and retry-while
         $ctx = stream_context_create(array(
                 'http' =>
                     array(
@@ -49,14 +65,14 @@ class MigrateOSCIPublicationOne extends Command
                     )
                 ));
         $imageContent = file_get_contents($imageUrl, false, $ctx);
+        [$width, $height] = getimagesizefromstring($imageContent);
 
         Storage::disk('s3')->put($imageName, $imageContent);
 
-        // TODO: Use the CMS's onboard h/w helpers
         $media = new Media([
                     'uuid' => $imageName,
-                    'width' => $imageData->width,
-                    'height' => $imageData->height,
+                    'width' => $width,
+                    'height' => $height,
                     'filename' => $imageFilename,
                     'locale' => 'en'
                 ]);
@@ -76,7 +92,6 @@ class MigrateOSCIPublicationOne extends Command
 
         $layers = isset($figure->layers_data) ? json_decode($figure->layers_data) : [];
 
-        // TODO: if html_figure and html_content_src, that's a video block bby
         switch (true) {
             // Non-video embeds (HTML, mostly) become media_embed
             case $figure->figure_type === 'html_figure' && !isset($figure->html_content_src):
@@ -107,7 +122,6 @@ class MigrateOSCIPublicationOne extends Command
                 break;
 
             // OSCI's layered_image with only one layer should just be an image
-            // TODO: Move IIP handling to a func and handle iip_asset in this `case`
             case 'layered_image' && count($layers) === 1:
                 $block->type = 'image';
                 $block->content = [
@@ -135,8 +149,8 @@ class MigrateOSCIPublicationOne extends Command
                     'crop' => 'desktop',
                     'crop_x' => 0,
                     'crop_y' => 0,
-                    'crop_w' => $imageData->width,
-                    'crop_h' => $imageData->height
+                    'crop_w' => $media->width,
+                    'crop_h' => $media->height
                 ]);
 
                 $block->save();
@@ -163,8 +177,10 @@ class MigrateOSCIPublicationOne extends Command
                     $layerBlock = new Block();
                     $layerBlock->blockable_id = $block->blockable_id;
                     $layerBlock->blockable_type =  'digitalPublicationArticles';
-                    $layerBlock->position = 1; // TODO: order
+                    $layerBlock->position = 1;
                     $layerBlock->parent_id = $block->id;
+
+                    // TODO: Use $figure->$options->baseLayerPreset and $figure->$options->annotationPreset to determine the order and kind of this layer
 
                     // OSCI doesn't expose overlay vs image data so parse the URL filename
                     $imageUrl = isset($imageData->static_url) ? $imageData->static_url : $figure->fallback_url ;
@@ -199,8 +215,8 @@ class MigrateOSCIPublicationOne extends Command
                         'crop' => 'desktop',
                         'crop_x' => 0,
                         'crop_y' => 0,
-                        'crop_w' => $imageData->width,
-                        'crop_h' => $imageData->height
+                        'crop_w' => $media->width,
+                        'crop_h' => $media->height
                     ]);
                     $layerBlock->save();
 
@@ -212,7 +228,6 @@ class MigrateOSCIPublicationOne extends Command
                 break;
 
             case 'iip_asset':
-                // TODO: Properly handle the IIP asset (finally!)
                 $block->type = 'image';
                 $block->content = [
                   "is_modal" => false,
@@ -241,8 +256,8 @@ class MigrateOSCIPublicationOne extends Command
                     'crop' => 'desktop',
                     'crop_x' => 0,
                     'crop_y' => 0,
-                    'crop_w' => $imageData->width,
-                    'crop_h' => $imageData->height
+                    'crop_w' => $media->width,
+                    'crop_h' => $media->height
                 ]);
 
                 $block->save();
@@ -255,7 +270,7 @@ class MigrateOSCIPublicationOne extends Command
                     "caption" => $figure->caption_html
                 ];
 
-                // TODO: Attach media
+                // TODO: use this->mediaFactory to fetch + attach 360 zip
                 $block->save();
                 break;
 
