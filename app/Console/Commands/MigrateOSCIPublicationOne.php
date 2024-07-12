@@ -13,7 +13,6 @@ use App\Models\DigitalPublicationArticle;
 use App\Models\Vendor\Block;
 use A17\Twill\Models\Media;
 
-
 class MigrateOSCIPublicationOne extends Command
 {
     /**
@@ -90,7 +89,7 @@ class MigrateOSCIPublicationOne extends Command
     private function configureFigBlock($figure, $block)
     {
 
-        $layers = isset($figure->layers_data) ? json_decode($figure->layers_data) : [];
+        $layers = isset($figure->layers_data) ? json_decode($figure->layers_data, true) : [];
 
         switch (true) {
             // Non-video embeds (HTML, mostly) become media_embed
@@ -166,42 +165,43 @@ class MigrateOSCIPublicationOne extends Command
 
                 $block->save();
 
+                $figure_opts = json_decode($figure->figure_opts, true);
+
+                $imageLayerIds = $figure_opts->baseLayerPreset ?? [];
+                $overlayLayerIds = $figure_opts->annotationPreset ?? [];
+
                 foreach ($layers as $imageData) {
                     // Each layer (image or overview) is a child block of the layered image viewer block, so:
                     // - Create media record + move the asset (if not moved already)
                     // - Configure a layer block for this layer (image or overview)
                     // - Attach it to the layer viewer block
 
+                    $layer_id = $imageData;
+
                     $media = $this->mediaFactory($imageData, $figure->caption_html, $figure->fallback_url);
 
                     $layerBlock = new Block();
                     $layerBlock->blockable_id = $block->blockable_id;
                     $layerBlock->blockable_type =  'digitalPublicationArticles';
-                    $layerBlock->position = 1;
                     $layerBlock->parent_id = $block->id;
 
-                    // TODO: Use $figure->$options->baseLayerPreset and $figure->$options->annotationPreset to determine the order and kind of this layer
-
-                    // OSCI doesn't expose overlay vs image data so parse the URL filename
-                    $imageUrl = isset($imageData->static_url) ? $imageData->static_url : $figure->fallback_url ;
-                    $imageUrlPath = parse_url($imageUrl, PHP_URL_PATH);
-                    $imageExt = pathinfo($imageUrlPath, PATHINFO_EXTENSION);
-
-                    switch ($imageExt) {
-                        case 'svg':
-                            $layerBlock->child_key = 'layered_image_viewer_overlay';
-                            $layerBlock->type = 'layered_image_viewer_overlay';
-                            break;
-
-                        default:
-                            $layerBlock->child_key = 'layered_image_viewer_img';
-                            $layerBlock->type = 'layered_image_viewer_img';
-                            break;
+                    // Configure this as an image or overlay and set position
+                    if (in_array($imageData['layer_id'], $imageLayerIds)) {
+                        $layerBlock->position = array_search($imageData['layer_id'], $imageLayerIds) + 1;
+                        $layerBlock->child_key = 'layered_image_viewer_img';
+                        $layerBlock->type = 'layered_image_viewer_img';
+                    } else if (in_array($imageData['layer_id'], $overlayLayerIds)) {
+                        $layerBlock->position = array_search($imageData['layer_id'], $overlayLayerIds) + 1;
+                        $layerBlock->child_key = 'layered_image_viewer_overlay';
+                        $layerBlock->type = 'layered_image_viewer_overlay';
+                    } else {
+                        $layerBlock->position = 1;
+                        $layerBlock->child_key = 'layered_image_viewer_img';
+                        $layerBlock->type = 'layered_image_viewer_img';
                     }
 
-
                     $layerBlock->content = [
-                      "label" => $imageData->title
+                      "label" => $imageData['title']
                     ];
 
                     $layerBlock->save();
@@ -316,7 +316,7 @@ class MigrateOSCIPublicationOne extends Command
         // NB!: For each of these types in the admin UI it's impossible to validate the save without setting a date!
 
         // Fetch this publication's title by its package name (eg, `caillebotte`)
-        // TODO: Handle italics / etc in the title
+        // TODO: webPub->header_title_display = italicized OSCI title
         // TODO: Set publication date metadata
 
         $pubs = DB::connection('osci_migration')->select("SELECT json_extract(publications.data,'$._title') as title FROM publications LEFT JOIN tocs ON tocs.package=publications.pub_id WHERE pub_id=:id", ['id' => $pubId]);
@@ -341,8 +341,9 @@ class MigrateOSCIPublicationOne extends Command
 
         // TODO: Add `toc_position`, `toc_parent` via json_tree against toc data
         $blockQuery = <<<EOT
-WITH layers (layers_url,layers_data) AS (
+WITH layers (layers_url,figure_opts,layers_data) AS (
     SELECT json_extract(figure_layers.data,'$._asset_url') AS layers_url,
+            coalesce(json_extract(figure_layers.data,'$.options'),'{}') AS figure_opts,
         json_group_array(
             json_object(
                 'layer_id',json_extract(layers.value,'$._layer_id'),
@@ -367,6 +368,7 @@ SELECT json_extract(blk.value,'$.html') AS html,
                   json_extract(blk.value,'$.html_content_src') AS html_content_src,
                   coalesce(json_extract(blk.value,'$.caption_html'),'') AS caption_html,
                   layers.layers_url AS layers_url,
+                  layers.figure_opts AS figure_opts,
                   layers.layers_data AS layers_data
                   FROM texts,
                   json_each(texts.data,'$.sections') AS sects,
