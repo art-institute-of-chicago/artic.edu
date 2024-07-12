@@ -32,14 +32,14 @@ class MigrateOSCIPublicationOne extends Command
 
     /**
      * mediaFactory
-     * 
-     * Fetches asset for this figure layer and registers it as Media, 
+     *
+     * Fetches asset for this figure layer and registers it as Media,
      * applying caption and using OSCI's fallback URL
-     *  
+     *
      * @param imageData - JSON of image data for this layer
      * @param caption_html - HTML of caption data
      * @param fallback_url - Fallback image to use for this layer
-     * 
+     *
      */
     private function mediaFactory($imageData, $caption_html, $fallback_url)
     {
@@ -97,7 +97,7 @@ class MigrateOSCIPublicationOne extends Command
             case $figure->figure_type === 'html_figure' && !isset($figure->html_content_src):
                 $block->type = 'media_embed';
                 $block->content = [
-                    "size" => "m",
+                    "size" => "s",
                     "embed_type" => "html",
                     "embed_code" => $figure->html_content,
                     "embed_height" => "400px",
@@ -113,7 +113,7 @@ class MigrateOSCIPublicationOne extends Command
                 $block->type = 'video';
 
                 $block->content = [
-                    "size" => "m",
+                    "size" => "s",
                     "media_type" => "youtube",
                     "url" => $figure->html_content_src
                 ];
@@ -127,7 +127,7 @@ class MigrateOSCIPublicationOne extends Command
                 $block->content = [
                   "is_modal" => false,
                   "is_zoomable" => false,
-                  "size" => "m",
+                  "size" => "s",
                   "use_contain" => true,
                   "use_alt_background" => true,
                   "image_link" => null,
@@ -160,7 +160,7 @@ class MigrateOSCIPublicationOne extends Command
                 $block->type = 'layered_image_viewer';
                 $block->editor_name = 'default';
                 $block->content = [
-                  "size" => "m",
+                  "size" => "s",
                   "caption" => $figure->caption_html,
                 ];
 
@@ -232,7 +232,7 @@ class MigrateOSCIPublicationOne extends Command
                 $block->content = [
                   "is_modal" => false,
                   "is_zoomable" => false,
-                  "size" => "m",
+                  "size" => "s",
                   "use_contain" => true,
                   "use_alt_background" => true,
                   "image_link" => null,
@@ -266,7 +266,7 @@ class MigrateOSCIPublicationOne extends Command
             case '360_slider':
                 $block->type = '360_embed';
                 $block->content = [
-                    "size" => "m",
+                    "size" => "s",
                     "caption" => $figure->caption_html
                 ];
 
