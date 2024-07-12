@@ -38,6 +38,16 @@ class DigitalPublicationsController extends BaseScopedController
 
     public function show($id)
     {
+        return $this->showDetail($id);
+    }
+
+    public function showListing($id)
+    {
+        return $this->showDetail($id, true);
+    }
+
+    private function showDetail($id, $showAll = false)
+    {
         $item = $this->repository->published()->find((int) $id);
 
         if (empty($item)) {
@@ -48,7 +58,7 @@ class DigitalPublicationsController extends BaseScopedController
             abort(404);
         }
 
-        $canonicalPath = $item->present()->getCanonicalUrl();
+        $canonicalPath = $item->present()->getCanonicalUrl() . ($showAll ? '/content' : '');
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
@@ -69,6 +79,7 @@ class DigitalPublicationsController extends BaseScopedController
             'unstickyHeader' => true,
             'canonicalUrl' => $canonicalPath,
             'welcomeNote' => $this->repository->getWelcomeNote($item),
+            'showAll' => $showAll,
         ]);
     }
 
