@@ -45,18 +45,18 @@
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--compact m-title-bar--light',
             ])
-                @slot('links', $topLevelArticle->children->count() > 0 ? ([['label' => 'Browse all '. $topLevelArticle->children->count(). ' '. $topLevelArticle->title, 'href' => route('collection.publications.digital-publications.showListing', ['id' => $item->id, 'slug' => $item->getSlug()]) . '#' . Str::kebab($topLevelArticle->title)]]) : '')
+                @slot('links', $topLevelArticle->children->count() > 0  && !$showAll ? ([['label' => 'Browse all '. $topLevelArticle->children->count(). ' '. $topLevelArticle->title, 'href' => route('collection.publications.digital-publications.showListing', ['id' => $item->id, 'slug' => $item->getSlug()]) . '#' . Str::kebab($topLevelArticle->title)]]) : '')
                 {!! $topLevelArticle->title !!}
             @endcomponent
 
             @component('components.organisms._o-grid-listing')
-                @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+                @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
                 @slot('cols_medium','3')
                 @slot('cols_large','4')
                 @slot('cols_xlarge','4')
 
                 @foreach ($topLevelArticle->children as $article)
-                    @if ($loop->iteration <= 3)
+                    @if ($loop->iteration <= 3 || $showAll == true)
                         @component('components.molecules._m-listing----article')
                             @slot('imgVariation','')
                             @slot('item', $article)
@@ -75,6 +75,29 @@
                                 )),
                             ))
                         @endcomponent
+
+
+                        {{-- @component('components.molecules._m-listing----grid-item')
+                            @slot('url', route('collection.publications.digital-publications-articles.show', ['pubId' => $item->id, 'pubSlug' => $item->getSlug(), 'id' => $article->id, 'slug' => $article->getSlug()]))
+                            @slot('image', $article->imageAsArray('image', 'desktop'))
+                            @slot('label', 'hello fix me')
+                            @slot('labelPosition', 'description')
+                            @slot('title', $article->title)
+                            @slot('tag', 'tag tag tag')
+                            @slot('description', $article->grouping_description ?? $article->list_description)
+                            @slot('imageSettings', array(
+                                'fit' => 'crop',
+                                'ratio' => '16:9',
+                                'srcset' => array(200,400,600),
+                                'sizes' => ImageHelpers::aic_imageSizes(array(
+                                    'xsmall' => '216px',
+                                    'small' => '216px',
+                                    'medium' => '18',
+                                    'large' => '13',
+                                    'xlarge' => '13',
+                                )),
+                            ))
+                        @endcomponent --}}
                     @endif
                 @endforeach
             @endcomponent
