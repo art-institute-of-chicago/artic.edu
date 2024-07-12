@@ -8,11 +8,6 @@ use App\Presenters\BasePresenter;
 class DigitalPublicationPresenter extends BasePresenter
 {
     /**
-     * Formatted specifically for `_o-accordion`.
-     */
-    private $articlesForSidebar = [];
-
-    /**
      * This is an associative array, keyed by article type.
      * It will also have an `all` key, containing all articles.
      * This is done to reduce the number of DB queries.
@@ -69,73 +64,9 @@ class DigitalPublicationPresenter extends BasePresenter
         return $this->entity->is_dsc_stub ? 'Yes' : 'No';
     }
 
-    public function articlesForSidebar($currentArticle = null)
+    public function topLevelArticles()
     {
-        if (!$this->articlesForSidebar) {
-            foreach (DigitalPublicationArticleType::cases() as $type) {
-                if (!$this->hasArticles($type->value)) {
-                    continue;
-                }
-
-                $this->articlesForSidebar[] = [
-                    'title' => $type->name,
-                    'active' => !isset($currentArticle) || $currentArticle->type === $type,
-                    'blocks' => [
-                        [
-                            'type' => 'link-list',
-                            'links' => $this
-                                ->getArticles($type->value)
-                                ->map(function ($article) use ($currentArticle) {
-                                    $sublabel = $article->type === DigitalPublicationArticleType::Contributions
-                                        ? $article->showAuthors()
-                                        : null;
-                                    return [
-                                        'label' => $article->title_display ?? $article->title,
-                                        'sublabel' => $sublabel,
-                                        'href' => $article->present()->getArticleUrl($this->entity),
-                                        'active' => isset($currentArticle) && $article->id === $currentArticle->id,
-                                    ];
-                                }),
-                        ],
-                    ],
-                ];
-            }
-        }
-
-        return $this->articlesForSidebar;
-    }
-
-    public function nestedArticlesForSidebar()
-    {
-        // Root articles will have no parent_id so let's start building from there
-
-        $articles = $this->entity->articles()->published()->ordered()->whereNull('parent_id')->get();
-
-        return $this->buildNestedArticlesArray($articles);
-    }
-
-    private function buildNestedArticlesArray($articles)
-    {
-        $articlesList = [];
-
-        foreach ($articles as $article) {
-            // Build the article array for use on the FE
-
-            $articleArray = [
-                'title' => $article->title,
-                'url' => $article->present()->getArticleUrl($this->entity),
-            ];
-
-            // Recursively build nested articles since children can have children
-
-            if ($article->children) {
-                $articleArray['items'] = $this->buildNestedArticlesArray($article->children);
-            }
-
-            $articlesList[] = $articleArray;
-        }
-
-        return $articlesList;
+        return $this->entity->articles()->published()->ordered()->whereNull('parent_id')->get();
     }
 
     public function headerTitle()
