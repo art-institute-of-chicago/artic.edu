@@ -45,7 +45,7 @@
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--compact m-title-bar--light',
             ])
-                @slot('links', $topLevelArticle->children->count() > 0  && !$showAll ? ([['label' => 'Browse all '. $topLevelArticle->children->count(). ' '. $topLevelArticle->title, 'href' => route('collection.publications.digital-publications.showListing', ['id' => $item->id, 'slug' => $item->getSlug()]) . '#' . Str::kebab($topLevelArticle->title)]]) : '')
+                @slot('links', $topLevelArticle->present()->getBrowseMoreLink($showAll))
                 {!! $topLevelArticle->title !!}
             @endcomponent
 
