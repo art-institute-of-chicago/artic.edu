@@ -1,7 +1,8 @@
 // This file contains styles for both journal issues and magazine issues
 .p-magazineissue-show,
 .p-magazineissue-latest,
-.p-digitalpublications-show {
+.p-digitalpublications-show,
+.p-digitalpublications-showlisting {
   @extend %sticky-sidebar;
 
   .o-article__body {
@@ -62,7 +63,8 @@
   }
 }
 
-.p-digitalpublications-show {
+.p-digitalpublications-show,
+.p-digitalpublications-showlisting {
   .o-article__body {
     margin-top: 40px;
   }

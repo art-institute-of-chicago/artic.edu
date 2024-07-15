@@ -45,17 +45,18 @@
             @component('components.molecules._m-title-bar', [
                 'variation' => 'm-title-bar--compact m-title-bar--light',
             ])
+                @slot('links', $topLevelArticle->present()->getBrowseMoreLink($showAll))
                 {!! $topLevelArticle->title !!}
             @endcomponent
 
             @component('components.organisms._o-grid-listing')
-                @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+                @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
                 @slot('cols_medium','3')
                 @slot('cols_large','4')
                 @slot('cols_xlarge','4')
 
                 @foreach ($topLevelArticle->children as $article)
-                    @if ($loop->iteration <= 3)
+                    @if ($loop->iteration <= 3 || $showAll == true)
                         @component('components.molecules._m-listing----article')
                             @slot('imgVariation','')
                             @slot('item', $article)
