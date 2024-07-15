@@ -75,29 +75,6 @@
                                 )),
                             ))
                         @endcomponent
-
-
-                        {{-- @component('components.molecules._m-listing----grid-item')
-                            @slot('url', route('collection.publications.digital-publications-articles.show', ['pubId' => $item->id, 'pubSlug' => $item->getSlug(), 'id' => $article->id, 'slug' => $article->getSlug()]))
-                            @slot('image', $article->imageAsArray('image', 'desktop'))
-                            @slot('label', 'hello fix me')
-                            @slot('labelPosition', 'description')
-                            @slot('title', $article->title)
-                            @slot('tag', 'tag tag tag')
-                            @slot('description', $article->grouping_description ?? $article->list_description)
-                            @slot('imageSettings', array(
-                                'fit' => 'crop',
-                                'ratio' => '16:9',
-                                'srcset' => array(200,400,600),
-                                'sizes' => ImageHelpers::aic_imageSizes(array(
-                                    'xsmall' => '216px',
-                                    'small' => '216px',
-                                    'medium' => '18',
-                                    'large' => '13',
-                                    'xlarge' => '13',
-                                )),
-                            ))
-                        @endcomponent --}}
                     @endif
                 @endforeach
             @endcomponent
