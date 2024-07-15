@@ -2,6 +2,7 @@
 
 namespace App\Presenters\Admin;
 
+use Illuminate\Support\Str;
 use App\Presenters\BasePresenter;
 
 class DigitalPublicationArticlePresenter extends BasePresenter
@@ -35,6 +36,25 @@ class DigitalPublicationArticlePresenter extends BasePresenter
             'id' => $article->id,
             'slug' => $article->slug,
         ]);
+    }
+
+    public function getBrowseMoreLink($showAll = false)
+    {
+        if ($this->entity->children->count() > 0  && !$showAll) {
+            return [
+                [
+                    'label' => 'Browse all ' . $this->entity->children->count() . ' ' . $this->entity->title,
+                    'href' => route(
+                        'collection.publications.digital-publications.showListing',
+                        [
+                            'id' => $this->entity->digitalPublication->id,
+                            'slug' => $this->entity->digitalPublication->getSlug()
+                        ]
+                    ) . '#' . Str::kebab($this->entity->title)
+                ]
+            ];
+        }
+        return '';
     }
 
     public function references()
