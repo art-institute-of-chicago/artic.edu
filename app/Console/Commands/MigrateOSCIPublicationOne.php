@@ -397,6 +397,9 @@ EOT;
 
             $order = 0;
 
+            $heroMedia = false;
+            $heroMediaArray = [];
+
             foreach ($blocks as $blk) {
                 $block = new Block();
                 $block->blockable_id = $webArticle->id;
@@ -406,12 +409,34 @@ EOT;
 
                 $this->configureBlock($blk, $block);
 
+                // If this is the first image block, save the image to add as the article hero image later
+                if ($block->type == 'image' && !$heroMedia) {
+                    $heroMedia = $block->medias->first();
+                    if ($heroMedia) {
+                        $heroMediaArray['locale'] = 'en';
+                        $heroMediaArray['role'] = 'hero';
+                        $heroMediaArray['media_id'] = $heroMedia->pivot->media_id;
+                        $heroMediaArray['metadatas'] = $heroMedia->pivot->metadatas;
+                        $heroMediaArray['crop'] = 'default';
+                        $heroMediaArray['crop_x'] = $heroMedia->pivot->crop_x;
+                        $heroMediaArray['crop_y'] = $heroMedia->pivot->crop_y;
+                        $heroMediaArray['crop_w'] = $heroMedia->pivot->crop_w;
+                        $heroMediaArray['crop_h'] = $heroMedia->pivot->crop_h;
+                    }
+                }
                 $webArticle->blocks()->save($block);
 
                 $order += 1;
             }
 
             $webArticle->save();
+
+            // If we grabbed an image to use for the hero, save it
+            if ($heroMedia) {
+                $webArticle->medias()->attach($heroMedia->id, $heroMediaArray);
+                $webArticle->save();
+            }
+
             $webPub->articles()->save($webArticle);
         }
 
