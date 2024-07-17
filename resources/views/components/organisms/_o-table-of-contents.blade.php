@@ -20,7 +20,7 @@
         @if (count($item->children) > 0)
             <div id="panel_{{ StringHelpers::getUtf8Slug($item->title) }}" class="o-accordion__panel" aria-labelledby="{{ StringHelpers::getUtf8Slug($item->title) }}" aria-hidden="{{ (isset($item->active) and $item->active) ? 'false' : 'true' }}">
                 {{-- In the same tune of the build nested articles we can just recursively call the same component to build the table of contents. --}}
-                @include('components.organisms._o-table-of-contents', ['items' => $item->children])
+                @include('components.organisms._o-table-of-contents', ['items' => $item->children->sortBy('position')])
             </div>
         @endif
     @endforeach
