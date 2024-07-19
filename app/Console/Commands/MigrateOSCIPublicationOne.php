@@ -44,9 +44,10 @@ class MigrateOSCIPublicationOne extends Command
     {
         $imageUrl;
         switch ($imageData["type"]) {
-            case "iip":
-                $imageUrl = $imageData["image_url_stem"] . '?fif=' . $imageData["image_ident"] . '&cvt=jpeg' ;
-                break;
+            // TODO: Use s3 URLs instead
+            // case "iip":
+            //     $imageUrl = $imageData["image_url_stem"] . '?fif=' . $imageData["image_ident"] . '&cvt=jpeg' ;
+            //     break;
 
             case "image":
                 $imageUrl = $imageData["static_url"];
