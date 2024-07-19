@@ -5,7 +5,7 @@
 
 @endphp
 
-<div class="o-accordion{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="accordion">
+<div class="o-accordion{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="rangedAccordion">
     @if ($type === 'start')
     <h3><button id="{{ StringHelpers::getUtf8Slug($title) }}" class="o-accordion__trigger {{ $titleFont ?? 'f-list-3' }}" tabindex="0">
         {!! $title !!}
