@@ -42,8 +42,25 @@ class MigrateOSCIPublicationOne extends Command
      */
     private function mediaFactory($imageData, $caption_html, $fallback_url)
     {
-        // Media uploads and relations
-        $imageUrl = isset($imageData->static_url) ? $imageData->static_url : $fallback_url ;
+        $imageUrl;
+        switch ($imageData["type"]) {
+            case "iip":
+                $imageUrl = $imageData["image_url_stem"] . '?fif=' . $imageData["image_ident"] . '&cvt=jpeg' ;
+                break;
+
+            case "image":
+                $imageUrl = $imageData["static_url"];
+                break;
+
+            case "svg":
+                $imageUrl = $imageData["svg_path"];
+                break;
+
+            default:
+                $imageUrl = $fallback_url;
+                break;
+
+        }
 
         // TODO: Load JPEG-converted PTIFF URL from this from db's `assets` table
         // TODO: Load 360-zip URL from this from db's `assets` table
@@ -63,8 +80,24 @@ class MigrateOSCIPublicationOne extends Command
                         'timeout' => 120,
                     )
                 ));
-        $imageContent = file_get_contents($imageUrl, false, $ctx);
-        [$width, $height] = getimagesizefromstring($imageContent);
+
+        // FIXME: Wrap this try/catch in a while loop and retry N times if it's connex refused or timeout
+        // $fetched = false;
+        // $retries = 0;
+
+        try {
+            $imageContent = file_get_contents($imageUrl, false, $ctx);
+        } catch (Exception $e) {
+            var_dump($e);
+            exit(1);
+        }
+
+        if ($imageData['type'] == 'svg') {
+            $width = $imageData['width'];
+            $height = $imageData['height'];
+        } else {
+            [$width, $height] = getimagesizefromstring($imageContent);        
+        }
 
         Storage::disk('s3')->put($imageName, $imageContent);
 
@@ -167,11 +200,11 @@ class MigrateOSCIPublicationOne extends Command
 
                 $figure_opts = json_decode($figure->figure_opts, true);
 
-                $imageLayerIds = $figure_opts->baseLayerPreset ?? [];
-                $overlayLayerIds = $figure_opts->annotationPreset ?? [];
+                $imageLayerIds = $figure_opts['baseLayerPreset'] ?? [];
+                $overlayLayerIds = $figure_opts['annotationPreset'] ?? [];
 
                 foreach ($layers as $imageData) {
-                    // Each layer (image or overview) is a child block of the layered image viewer block, so:
+                    // Each layer (image or overlay) is a child block of the layered image viewer block, so:
                     // - Create media record + move the asset (if not moved already)
                     // - Configure a layer block for this layer (image or overview)
                     // - Attach it to the layer viewer block
@@ -186,19 +219,15 @@ class MigrateOSCIPublicationOne extends Command
                     $layerBlock->parent_id = $block->id;
 
                     // Configure this as an image or overlay and set position
-                    if (in_array($imageData['layer_id'], $imageLayerIds)) {
-                        $layerBlock->position = array_search($imageData['layer_id'], $imageLayerIds) + 1;
-                        $layerBlock->child_key = 'layered_image_viewer_img';
-                        $layerBlock->type = 'layered_image_viewer_img';
-                    } else if (in_array($imageData['layer_id'], $overlayLayerIds)) {
-                        $layerBlock->position = array_search($imageData['layer_id'], $overlayLayerIds) + 1;
+                    if($imageData['type'] == 'svg') {
                         $layerBlock->child_key = 'layered_image_viewer_overlay';
                         $layerBlock->type = 'layered_image_viewer_overlay';
                     } else {
-                        $layerBlock->position = 1;
                         $layerBlock->child_key = 'layered_image_viewer_img';
                         $layerBlock->type = 'layered_image_viewer_img';
                     }
+
+                    $layerBlock->position = $imageData['layer_num'];
 
                     $layerBlock->content = [
                       "label" => $imageData['title']
@@ -346,8 +375,11 @@ WITH layers (layers_url,figure_opts,layers_data) AS (
             coalesce(json_extract(figure_layers.data,'$.options'),'{}') AS figure_opts,
         json_group_array(
             json_object(
+                'type',json_extract(layers.value,'$._type'),
                 'layer_id',json_extract(layers.value,'$._layer_id'),
+                'layer_num',json_extract(layers.value,'$._layer_num'),
                 'static_url',json_extract(layers.value,'$._static_url'),
+                'svg_path',json_extract(layers.value,'$._svg_path'),
                 'image_ident',json_extract(layers.value,'$._image_ident'),
                 'image_url_stem',json_extract(layers.value,'$._image_url_stem'),
                 'title',coalesce(json_extract(layers.value,'$._title'),''),
