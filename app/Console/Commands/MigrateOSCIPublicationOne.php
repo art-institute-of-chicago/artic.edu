@@ -59,7 +59,6 @@ class MigrateOSCIPublicationOne extends Command
             default:
                 $imageUrl = $fallback_url;
                 break;
-
         }
 
         // TODO: Load JPEG-converted PTIFF URL from this from db's `assets` table
@@ -87,7 +86,7 @@ class MigrateOSCIPublicationOne extends Command
 
         try {
             $imageContent = file_get_contents($imageUrl, false, $ctx);
-        } catch (Exception $e) {
+        } catch (ErrorException $e) {
             var_dump($e);
             exit(1);
         }
@@ -96,7 +95,7 @@ class MigrateOSCIPublicationOne extends Command
             $width = $imageData['width'];
             $height = $imageData['height'];
         } else {
-            [$width, $height] = getimagesizefromstring($imageContent);        
+            [$width, $height] = getimagesizefromstring($imageContent);
         }
 
         Storage::disk('s3')->put($imageName, $imageContent);
@@ -219,7 +218,7 @@ class MigrateOSCIPublicationOne extends Command
                     $layerBlock->parent_id = $block->id;
 
                     // Configure this as an image or overlay and set position
-                    if($imageData['type'] == 'svg') {
+                    if ($imageData['type'] == 'svg') {
                         $layerBlock->child_key = 'layered_image_viewer_overlay';
                         $layerBlock->type = 'layered_image_viewer_overlay';
                     } else {
