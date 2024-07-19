@@ -73,28 +73,30 @@ class MigrateOSCIPublicationOne extends Command
 
         $imageName = $imageUuid . '/' . $imageFilename;
 
-        // TODO: Catch error and retry-while
-        $ctx = stream_context_create(array(
-                'http' =>
-                    array(
-                        'timeout' => 120,
-                    )
-                ));
+        $http_ctx = stream_context_create(array(
+                        'http' => [
+                            'timeout' => 120,
+                            'ignore_errors' => true,
+                        ]
+                    ));
 
-        // FIXME: Wrap this try/catch in a while loop and retry N times if it's connex refused or timeout
-        // $fetched = false;
-        // $retries = 0;
+        $imageContent = false;
+        $retries = 0;
 
-        try {
-            $imageContent = file_get_contents($imageUrl, false, $ctx);
-        } catch (ErrorException $e) {
-            var_dump($e);
-            exit(1);
+        while (!$imageContent && $retries < 5) {
+            $imageContent = file_get_contents($imageUrl, false, $http_ctx);
+            $retries++;
+            usleep(20);
+        }
+
+        if (!$imageContent) {
+            echo "Error could not fetch {$imageUrl} after {$retries} attempts! This media won't be migrated";
+            return null;
         }
 
         if ($imageData['type'] == 'svg') {
-            $width = $imageData['width'];
-            $height = $imageData['height'];
+            $width = ceil($imageData['width']);
+            $height = ceil($imageData['height']);
         } else {
             [$width, $height] = getimagesizefromstring($imageContent);
         }
@@ -170,7 +172,11 @@ class MigrateOSCIPublicationOne extends Command
                 $block->save();
 
                 $imageData = Arr::first($layers);
+
                 $media = $this->mediaFactory($imageData, $figure->caption_html, $figure->fallback_url);
+                if ($media === null) {
+                    break;
+                }
 
                 // TODO: Use converted crop params
                 $block->medias()->attach($media->id, [
@@ -211,14 +217,13 @@ class MigrateOSCIPublicationOne extends Command
 
                     $layer_id = $imageData;
 
-                    $media = $this->mediaFactory($imageData, $figure->caption_html, $figure->fallback_url);
-
                     $layerBlock = new Block();
                     $layerBlock->blockable_id = $block->blockable_id;
                     $layerBlock->blockable_type =  'digitalPublicationArticles';
                     $layerBlock->parent_id = $block->id;
 
                     // Configure this as an image or overlay and set position
+                    // TODO: Check the extension as PNGs appear to be overlays as well
                     if ($imageData['type'] == 'svg') {
                         $layerBlock->child_key = 'layered_image_viewer_overlay';
                         $layerBlock->type = 'layered_image_viewer_overlay';
@@ -235,19 +240,22 @@ class MigrateOSCIPublicationOne extends Command
 
                     $layerBlock->save();
 
-                    // TODO: Use converted crop params
-                    $layerBlock->medias()->attach($media->id, [
-                        'locale' => 'en',
-                        'media_id' => $media->id,
-                        'metadatas' => '{"caption":null,"captionTitle": null, "altText":null,"video":null}',
-                        'role' => 'image',
-                        'crop' => 'desktop',
-                        'crop_x' => 0,
-                        'crop_y' => 0,
-                        'crop_w' => $media->width,
-                        'crop_h' => $media->height
-                    ]);
-                    $layerBlock->save();
+                    $media = $this->mediaFactory($imageData, $figure->caption_html, $figure->fallback_url);
+                    if ($media !== null) {
+                        // TODO: Use converted crop params
+                        $layerBlock->medias()->attach($media->id, [
+                            'locale' => 'en',
+                            'media_id' => $media->id,
+                            'metadatas' => '{"caption":null,"captionTitle": null, "altText":null,"video":null}',
+                            'role' => 'image',
+                            'crop' => 'desktop',
+                            'crop_x' => 0,
+                            'crop_y' => 0,
+                            'crop_w' => $media->width,
+                            'crop_h' => $media->height
+                        ]);
+                        $layerBlock->save();
+                    }
 
                     $block->children()->save($layerBlock);
                     $block->save();
@@ -275,6 +283,9 @@ class MigrateOSCIPublicationOne extends Command
                 $imageData = Arr::first($layers);
 
                 $media = $this->mediaFactory($imageData, $figure->caption_html, $figure->fallback_url);
+                if ($media === null) {
+                    break;
+                }
 
                 // TODO: Use converted crop params
                 $block->medias()->attach($media->id, [
