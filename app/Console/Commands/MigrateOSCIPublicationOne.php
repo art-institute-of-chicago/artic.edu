@@ -378,11 +378,17 @@ class MigrateOSCIPublicationOne extends Command
         $pubs = DB::connection('osci_migration')->select("SELECT json_extract(publications.data,'$._title') as title FROM publications LEFT JOIN tocs ON tocs.package=publications.pub_id WHERE pub_id=:id", ['id' => $pubId]);
         $pub = Arr::first($pubs);
 
+        if (!$pub) {
+            $this->error('No publication with the ID: ' . $pubId);
+            return;
+        }
+
         $webPub = new DigitalPublication();
         $webPub->title = 'Migrated ' . date('M j, Y') . ' | ' . $pub->title;
         $webPub->published = false;
         $webPub->is_dsc_stub = false;
         $webPub->save();
+        $this->comment('Starting ' . $pub->title . '...');
 
         $webPubId = $webPub->id;
 
@@ -497,8 +503,10 @@ EOT;
             }
 
             $webPub->articles()->save($webArticle);
+            $this->info($pub->title . ': ' . $webArticle->title);
         }
 
         $webPub->save();
+        $this->comment('...' . $pub->title . ' done!');
     }
 }
