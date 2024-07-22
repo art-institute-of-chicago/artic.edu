@@ -51,11 +51,14 @@ const stickySidebar = function(container){
   let logo = document.querySelector('.m-article-actions--publication__logo');
 
   let scrollTop;
+  let contentHeight;
 
   let windowHeight;
   let containerTop;
   let containerBottom;
   let containerHeight;
+
+  let navContainer;
 
   const sidebarOverlayState = 'is-sidebar-overlay';
   let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
@@ -72,24 +75,21 @@ const stickySidebar = function(container){
   function update() {
     scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
-    if (scrollTop < containerTop) {
-      if (!isLogoAnimated) {
-        top();
-      } else {
-        if (scrollTop < grabTop) {
-          top();
-        } else {
-          grab();
-        }
-      }
-    } else {
-      containerHeight = container.offsetHeight;
-      containerBottom = getOffsetTop(article) + document.body.scrollTop + article.offsetHeight;
+    contentHeight = container.closest('article').offsetHeight;
+    containerHeight = container.offsetHeight;
+    containerBottom = getOffsetTop(article) + document.body.scrollTop + article.offsetHeight;
 
-      if (scrollTop + containerHeight > containerBottom) {
+    navContainer = document.querySelector('.g-header');
+
+    if (scrollTop < containerTop) {
+      top();
+      container.style.marginTop = '0px';
+    } else {
+      if (scrollTop + containerHeight > article.offsetHeight) {
         bottom();
       } else {
         sticky();
+        document.documentElement.classList.contains('s-scroll-direction-up') ? container.style.marginTop = navContainer.offsetHeight + 'px' : container.style.marginTop = '0px';
       }
     }
   }
