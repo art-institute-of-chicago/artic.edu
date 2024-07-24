@@ -12,20 +12,11 @@ const stickySidebar = function(container){
     return offsetTop;
   }
 
-  const outerHeight = element => {
-    var height = element.offsetHeight;
-    var style = getComputedStyle(element);
-
-    height += parseInt(style.marginTop) + parseInt(style.marginBottom);
-    return height;
-  }
-
   const setState = targetState => {
     let classList = document.documentElement.classList;
 
     [
       'is-sidebar-top',
-      'is-sidebar-grabbed',
       'is-sidebar-fixed',
       'is-sidebar-bottom',
     ].forEach(state => {
@@ -54,8 +45,9 @@ const stickySidebar = function(container){
 
   let windowHeight;
   let containerTop;
-  let containerBottom;
   let containerHeight;
+
+  let navContainer;
 
   const sidebarOverlayState = 'is-sidebar-overlay';
   let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
@@ -65,31 +57,22 @@ const stickySidebar = function(container){
 
   let currentState;
 
-  // Null if absent, empty string if present
-  let isLogoAnimated = container.getAttribute('data-sticky-animated-logo') !== null;
-  let grabTop;
-
   function update() {
     scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
-    if (scrollTop < containerTop) {
-      if (!isLogoAnimated) {
-        top();
-      } else {
-        if (scrollTop < grabTop) {
-          top();
-        } else {
-          grab();
-        }
-      }
-    } else {
-      containerHeight = container.offsetHeight;
-      containerBottom = getOffsetTop(article) + document.body.scrollTop + article.offsetHeight;
+    containerHeight = container.offsetHeight;
 
-      if (scrollTop + containerHeight > containerBottom) {
+    navContainer = document.querySelector('.g-header');
+
+    if (scrollTop < containerTop) {
+      top();
+      container.style.marginTop = '0px';
+    } else {
+      if (scrollTop + containerHeight > article.offsetHeight) {
         bottom();
       } else {
         sticky();
+        (document.documentElement.classList.contains('s-scroll-direction-up') && !document.documentElement.classList.contains('s-unsticky-header')) ? container.style.marginTop = navContainer.offsetHeight + 'px' : container.style.marginTop = '0px';
       }
     }
   }
@@ -97,11 +80,6 @@ const stickySidebar = function(container){
   function top() {
     resetScroll();
     setState('is-sidebar-top');
-  }
-
-  function grab() {
-    resetScroll();
-    setState('is-sidebar-grabbed');
   }
 
   function sticky() {
@@ -122,7 +100,6 @@ const stickySidebar = function(container){
     containerTop = getOffsetTop(container) + document.body.scrollTop;
 
     logo.setAttribute('style', 'display: block');
-    grabTop = containerTop - outerHeight(logo);
     logo.removeAttribute('style');
 
     handleScroll();
