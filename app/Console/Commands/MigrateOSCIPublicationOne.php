@@ -48,15 +48,17 @@ class MigrateOSCIPublicationOne extends Command
         switch ($imageData["type"]) {
             case "iip":
                 $img_ident = trim($imageData["image_ident"], '/');
+                $img_key = preg_replace('/\.ptif$/', '.jpg', $img_ident);
 
                 $bucket = config('aic.osci_s3_bucket');
-                $img_key = preg_replace('/\.ptif$/', '.jpg', $img_ident);
                 $imageUrl = "s3://{$bucket}/{$img_key}";
 
-                if (Storage::disk('osci_s3')->fileExists($img_key)) {
-                    $imageContent = Storage::disk('osci_s3')->get($img_key);
+                if (!Storage::disk('osci_s3')->fileExists($img_key)) {
+                    echo "Error -- could not fetch {$imageUrl}. Has `migrate:osci-media` been run for this publication? Skipping this media\n";
+                    return null;
                 }
 
+                $imageContent = Storage::disk('osci_s3')->get($img_key);
                 break;
 
             case "image":
@@ -91,7 +93,13 @@ class MigrateOSCIPublicationOne extends Command
 
         $retries = 0;
         while (!$imageContent && $retries < 5) {
-            $imageContent = file_get_contents($imageUrl, false, $http_ctx);
+            try {
+                $imageContent = file_get_contents($imageUrl, false, $http_ctx);                
+            } catch (ErrorException $e) {
+                echo "Caught error {$e} fetching {$imageUrl}, retrying.\n";
+                pass;
+            }
+
             $retries++;
             usleep(20);
         }
@@ -125,205 +133,201 @@ class MigrateOSCIPublicationOne extends Command
         $media->save();
 
         return $media;
-    }
-    /**
-     * configure $block (a Block model) with $data
-     *
-     */
-    private function configureFigBlock($figure, $block)
-    {
+    }   
 
+    private function configureImageFigure($block, $data, $layers)
+    {
+        $block->type = 'image';
+        $block->content = [
+          "is_modal" => false,
+          "is_zoomable" => false,
+          "size" => "s",
+          "use_contain" => true,
+          "use_alt_background" => true,
+          "image_link" => null,
+          "hide_figure_number" => false,
+          "caption" => $data->caption_html,
+          "alt_text" => ""
+        ];
+
+        $block->save();
+
+        $imageData = Arr::first($layers);
+        $media = $this->mediaFactory($imageData, $data->caption_html, $data->fallback_url);
+
+        if ($media === null) {
+            return;
+        }
+
+        // TODO: Use converted crop params
+        $block->medias()->attach($media->id, [
+            'locale' => 'en',
+            'media_id' => $media->id,
+            'metadatas' => '{"caption":null,"captionTitle": null, "altText":null,"video":null}',
+            'role' => 'image',
+            'crop' => 'desktop',
+            'crop_x' => 0,
+            'crop_y' => 0,
+            'crop_w' => $media->width,
+            'crop_h' => $media->height
+        ]);
+
+        $block->save();
+    }
+
+    private function configureVideoFigure($block, $data)
+    {
+        $block->type = 'video';
+        $block->content = [
+            "size" => "s",
+            "media_type" => "youtube",
+            "url" => $data->html_content_src
+        ];
+
+        $block->save();
+    }
+
+    private function configureHTMLFigure($block, $data) 
+    {
+        $block->type = 'media_embed';
+        $block->content = [
+            "size" => "s",
+            "embed_type" => "html",
+            "embed_code" => $data->html_content,
+            "embed_height" => "400px",
+            "disable_placeholder" => true,
+            "caption" => $data->caption_html
+        ];
+
+        $block->save();
+    }
+
+    // Attaches a new image layer based on `data`
+    private function createAttachImageLayer($block, $figure_data, $layer_data)
+    {
+        // Each layer (image or overlay) is a child block of the layered image viewer block, so:
+        // - Create media record + move the asset (if not moved already)
+        // - Configure a layer block for this layer (image or overview)
+        // - Attach it to the layer viewer block
+
+        $layerBlock = new Block();
+        $layerBlock->blockable_id = $block->blockable_id;
+        $layerBlock->blockable_type =  'digitalPublicationArticles';
+        $layerBlock->parent_id = $block->id;
+
+        // Configure this as an image or overlay and set position
+        // TODO: Check the extension as PNGs appear to be overlays as well
+        if ($layer_data['type'] == 'svg') {
+            $layerBlock->child_key = 'layered_image_viewer_overlay';
+            $layerBlock->type = 'layered_image_viewer_overlay';
+        } else {
+            $layerBlock->child_key = 'layered_image_viewer_img';
+            $layerBlock->type = 'layered_image_viewer_img';
+        }
+
+        $layerBlock->position = $layer_data['layer_num'];
+        $layerBlock->content = [
+          "label" => $layer_data['title']
+        ];
+
+        $layerBlock->save();
+
+        $media = $this->mediaFactory($layer_data, $figure_data->caption_html, $figure_data->fallback_url);
+        if ($media !== null) {
+            // TODO: Use converted crop params
+            $layerBlock->medias()->attach($media->id, [
+                'locale' => 'en',
+                'media_id' => $media->id,
+                'metadatas' => '{"caption":null,"captionTitle": null, "altText":null,"video":null}',
+                'role' => 'image',
+                'crop' => 'desktop',
+                'crop_x' => 0,
+                'crop_y' => 0,
+                'crop_w' => $media->width,
+                'crop_h' => $media->height
+            ]);
+
+            $layerBlock->save();
+        }
+
+        $block->children()->save($layerBlock);
+        $block->save();
+    }
+
+    private function configureLayeredImageFigure($block, $data, $layers)
+    {
+        $block->type = 'layered_image_viewer';
+        $block->editor_name = 'default';
+        $block->content = [
+          "size" => "s",
+          "caption" => $data->caption_html,
+        ];
+
+        $block->save();
+
+        $figure_opts = json_decode($data->figure_opts, true);
+        $imageLayerIds = $figure_opts['baseLayerPreset'] ?? [];
+        $overlayLayerIds = $figure_opts['annotationPreset'] ?? [];
+
+        foreach ($layers as $layerData) {
+            $this->createAttachImageLayer($block, $data, $layerData);
+        }
+        $block->save();
+    }
+
+    private function configure360EmbedFigure($block, $data)
+    {
+        $block->type = '360_embed';
+        $block->content = [
+            "size" => "s",
+            "caption" => $data->caption_html
+        ];
+
+        // TODO: use this->mediaFactory to fetch + attach 360 zip
+        $block->save();
+    }
+
+    /**
+     * configures $block (a Block model) with $figure
+     *
+     **/
+    private function configureFigureBlock($block, $figure)
+    {
         $layers = isset($figure->layers_data) ? json_decode($figure->layers_data, true) : [];
 
+        // Type-sense the figure and apply the appropriate CMS block type -- each just returns early
         switch (true) {
             // Non-video embeds (HTML, mostly) become media_embed
-            case $figure->figure_type === 'html_figure' && !isset($figure->html_content_src):
-                $block->type = 'media_embed';
-                $block->content = [
-                    "size" => "s",
-                    "embed_type" => "html",
-                    "embed_code" => $figure->html_content,
-                    "embed_height" => "400px",
-                    "disable_placeholder" => true,
-                    "caption" => $figure->caption_html
-                ];
-                $block->save();
-
-                break;
+            case ($figure->figure_type === 'html_figure' && !isset($figure->html_content_src)):
+                $this->configureHTMLFigure($block, $figure);
+                return;
 
             // HTML embeds with a src are videos
-            case $figure->figure_type === 'html_figure' && isset($figure->html_content_src):
-                $block->type = 'video';
+            case ($figure->figure_type === 'html_figure' && isset($figure->html_content_src)):
+                $this->configureVideoFigure($block, $figure);
+                return;
 
-                $block->content = [
-                    "size" => "s",
-                    "media_type" => "youtube",
-                    "url" => $figure->html_content_src
-                ];
-                $block->save();
+            // OSCI's layered_image with only one layer should just be an image            
+            case ($figure->figure_type === 'layered_image' && count($layers) === 1):
+                $this->configureImageFigure($block, $figure, $layers);
+                return;
 
-                break;
+            // Layered images are just that
+            case ($figure->figure_type === 'layered_image'):
+                $this->configureLayeredImageFigure($block, $figure, $layers);
+                return;
 
-            // OSCI's layered_image with only one layer should just be an image
-            case 'layered_image' && count($layers) === 1:
-                $block->type = 'image';
-                $block->content = [
-                  "is_modal" => false,
-                  "is_zoomable" => false,
-                  "size" => "s",
-                  "use_contain" => true,
-                  "use_alt_background" => true,
-                  "image_link" => null,
-                  "hide_figure_number" => false,
-                  "caption" => $figure->caption_html,
-                  "alt_text" => ""
-                ];
-                $block->save();
+            // IIP Asset images are also images
+            case ($figure->figure_type === 'iip_asset'):
+                $this->configureImageFigure($block, $figure, $layers);
+                return;
 
-                $imageData = Arr::first($layers);
+            case ($figure->figure_type === '360_slider'):
+                $this->configure360EmbedFigure($block, $figure);
+                return;
 
-                $media = $this->mediaFactory($imageData, $figure->caption_html, $figure->fallback_url);
-                if ($media === null) {
-                    break;
-                }
-
-                // TODO: Use converted crop params
-                $block->medias()->attach($media->id, [
-                    'locale' => 'en',
-                    'media_id' => $media->id,
-                    'metadatas' => '{"caption":null,"captionTitle": null, "altText":null,"video":null}',
-                    'role' => 'image',
-                    'crop' => 'desktop',
-                    'crop_x' => 0,
-                    'crop_y' => 0,
-                    'crop_w' => $media->width,
-                    'crop_h' => $media->height
-                ]);
-
-                $block->save();
-                break;
-
-            case 'layered_image':
-                $block->type = 'layered_image_viewer';
-                $block->editor_name = 'default';
-                $block->content = [
-                  "size" => "s",
-                  "caption" => $figure->caption_html,
-                ];
-
-                $block->save();
-
-                $figure_opts = json_decode($figure->figure_opts, true);
-
-                $imageLayerIds = $figure_opts['baseLayerPreset'] ?? [];
-                $overlayLayerIds = $figure_opts['annotationPreset'] ?? [];
-
-                foreach ($layers as $imageData) {
-                    // Each layer (image or overlay) is a child block of the layered image viewer block, so:
-                    // - Create media record + move the asset (if not moved already)
-                    // - Configure a layer block for this layer (image or overview)
-                    // - Attach it to the layer viewer block
-
-                    $layer_id = $imageData;
-
-                    $layerBlock = new Block();
-                    $layerBlock->blockable_id = $block->blockable_id;
-                    $layerBlock->blockable_type =  'digitalPublicationArticles';
-                    $layerBlock->parent_id = $block->id;
-
-                    // Configure this as an image or overlay and set position
-                    // TODO: Check the extension as PNGs appear to be overlays as well
-                    if ($imageData['type'] == 'svg') {
-                        $layerBlock->child_key = 'layered_image_viewer_overlay';
-                        $layerBlock->type = 'layered_image_viewer_overlay';
-                    } else {
-                        $layerBlock->child_key = 'layered_image_viewer_img';
-                        $layerBlock->type = 'layered_image_viewer_img';
-                    }
-
-                    $layerBlock->position = $imageData['layer_num'];
-
-                    $layerBlock->content = [
-                      "label" => $imageData['title']
-                    ];
-
-                    $layerBlock->save();
-
-                    $media = $this->mediaFactory($imageData, $figure->caption_html, $figure->fallback_url);
-                    if ($media !== null) {
-                        // TODO: Use converted crop params
-                        $layerBlock->medias()->attach($media->id, [
-                            'locale' => 'en',
-                            'media_id' => $media->id,
-                            'metadatas' => '{"caption":null,"captionTitle": null, "altText":null,"video":null}',
-                            'role' => 'image',
-                            'crop' => 'desktop',
-                            'crop_x' => 0,
-                            'crop_y' => 0,
-                            'crop_w' => $media->width,
-                            'crop_h' => $media->height
-                        ]);
-                        $layerBlock->save();
-                    }
-
-                    $block->children()->save($layerBlock);
-                    $block->save();
-                }
-
-                $block->save();
-                break;
-
-            case 'iip_asset':
-                $block->type = 'image';
-                $block->content = [
-                  "is_modal" => false,
-                  "is_zoomable" => false,
-                  "size" => "s",
-                  "use_contain" => true,
-                  "use_alt_background" => true,
-                  "image_link" => null,
-                  "hide_figure_number" => false,
-                  "caption" => $figure->caption_html,
-                  "alt_text" => ""
-                ];
-
-                $block->save();
-
-                $imageData = Arr::first($layers);
-
-                $media = $this->mediaFactory($imageData, $figure->caption_html, $figure->fallback_url);
-                if ($media === null) {
-                    break;
-                }
-
-                // TODO: Use converted crop params
-                $block->medias()->attach($media->id, [
-                    'locale' => 'en',
-                    'media_id' => $media->id,
-                    'metadatas' => '{"caption":null,"captionTitle": null, "altText":null,"video":null}',
-                    'role' => 'image',
-                    'crop' => 'desktop',
-                    'crop_x' => 0,
-                    'crop_y' => 0,
-                    'crop_w' => $media->width,
-                    'crop_h' => $media->height
-                ]);
-
-                $block->save();
-                break;
-
-            case '360_slider':
-                $block->type = '360_embed';
-                $block->content = [
-                    "size" => "s",
-                    "caption" => $figure->caption_html
-                ];
-
-                // TODO: use this->mediaFactory to fetch + attach 360 zip
-                $block->save();
-                break;
-
-            case 'rti_viewer':
+            // RTI_Viewers will need other handling, so leave a placeholder..
+            case ($figure->figure_type === 'rti_viewer'):
                 // TODO: insert reader_url, figure # for this text + figure
                 $block->type = 'video';
                 $block->content = [
@@ -331,7 +335,10 @@ class MigrateOSCIPublicationOne extends Command
                 ];
 
                 $block->save();
-                break;
+                return;
+
+            default:
+                return;
         }
     }
 
@@ -344,7 +351,7 @@ class MigrateOSCIPublicationOne extends Command
     {
         switch ($data->type) {
             case 'figure':
-                $this->configureFigBlock($data, $block);
+                $this->configureFigureBlock($block, $data);
                 break;
             default:
                 $block->content = [ 'paragraph' => $data->html ];
