@@ -48,9 +48,10 @@ class MigrateOSCIPublicationOne extends Command
         switch ($imageData["type"]) {
             case "iip":
                 $img_ident = trim($imageData["image_ident"], '/');
-                $img_key = preg_replace('/\.ptif$/', '.jpg', $img_ident);
 
-                $imageUrl = 's3://osci-web-images.artic.edu/{$img_key}';
+                $bucket = config('aic.osci_s3_bucket');
+                $img_key = preg_replace('/\.ptif$/', '.jpg', $img_ident);
+                $imageUrl = "s3://{$bucket}/{$img_key}";
 
                 if (Storage::disk('osci_s3')->fileExists($img_key)) {
                     $imageContent = Storage::disk('osci_s3')->get($img_key);
