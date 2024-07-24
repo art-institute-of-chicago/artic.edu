@@ -43,11 +43,20 @@ class MigrateOSCIPublicationOne extends Command
     private function mediaFactory($imageData, $caption_html, $fallback_url)
     {
         $imageUrl;
+        $imageContent = false;
+
         switch ($imageData["type"]) {
-            // TODO: Use s3 URLs instead
-            // case "iip":
-            //     $imageUrl = $imageData["image_url_stem"] . '?fif=' . $imageData["image_ident"] . '&cvt=jpeg' ;
-            //     break;
+            case "iip":
+                $img_ident = trim($imageData["image_ident"], '/');
+                $img_key = preg_replace('/\.ptif$/', '.jpg', $img_ident);
+
+                $imageUrl = 's3://osci-web-images.artic.edu/{$img_key}';
+
+                if (Storage::disk('osci_s3')->fileExists($img_key)) {
+                    $imageContent = Storage::disk('osci_s3')->get($img_key);
+                }
+
+                break;
 
             case "image":
                 $imageUrl = $imageData["static_url"];
@@ -62,8 +71,7 @@ class MigrateOSCIPublicationOne extends Command
                 break;
         }
 
-        // TODO: Load JPEG-converted PTIFF URL from this from db's `assets` table
-        // TODO: Load 360-zip URL from this from db's `assets` table
+        // TODO: Load 360-zip URL from this from disk('osci_s3')
 
         // Construct the UUID for this asset and preserve filename info
         $imageUuid = (string) Str::uuid();
@@ -80,9 +88,7 @@ class MigrateOSCIPublicationOne extends Command
                         ]
                     ));
 
-        $imageContent = false;
         $retries = 0;
-
         while (!$imageContent && $retries < 5) {
             $imageContent = file_get_contents($imageUrl, false, $http_ctx);
             $retries++;
@@ -95,6 +101,8 @@ class MigrateOSCIPublicationOne extends Command
         }
 
         if ($imageData['type'] == 'svg') {
+            // TODO: Apply converted PNGs from S3?
+            // Manually apply h/w for SVGs
             $width = ceil($imageData['width']);
             $height = ceil($imageData['height']);
         } else {
@@ -394,8 +402,8 @@ WITH layers (layers_url,figure_opts,layers_data) AS (
                 'image_ident',json_extract(layers.value,'$._image_ident'),
                 'image_url_stem',json_extract(layers.value,'$._image_url_stem'),
                 'title',coalesce(json_extract(layers.value,'$._title'),''),
-                'height', json_extract(layers.value,'$._height'),
-                'width', json_extract(layers.value,'$._width')
+                'height', coalesce(json_extract(layers.value,'$._height'),100),
+                'width', coalesce(json_extract(layers.value,'$._width'),100)
             )
         ) AS layers_data
     FROM figure_layers,
