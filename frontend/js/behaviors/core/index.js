@@ -63,3 +63,4 @@ export { default as exploreFurther } from './exploreFurther';
 export { default as primaryNavigation } from './primaryNavigation';
 export { default as editorialHeader } from './editorialHeader';
 export { default as loadRelatedSidebar } from './loadRelatedSidebar';
+export { default as rangedAccordion } from './rangedAccordion';
