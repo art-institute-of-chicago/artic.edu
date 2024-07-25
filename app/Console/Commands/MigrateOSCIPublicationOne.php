@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use App\Models\DigitalPublication;
@@ -41,7 +43,7 @@ class MigrateOSCIPublicationOne extends Command
      */
     private function mediaFactory($imageData, $caption_html, $fallback_url)
     {
-        $imageUrl;
+        $imageUrl = "";
         $imageContent = false;
 
         switch ($imageData["type"]) {
@@ -91,19 +93,30 @@ class MigrateOSCIPublicationOne extends Command
                     ));
 
         $retries = 0;
-        while (!$imageContent && $retries < 5) {
+        while ($imageContent === false && $retries < 5 ) {
+            // Fetch the URL, retrying if it's not a 404
             try {
-                $imageContent = file_get_contents($imageUrl, false, $http_ctx);
-            } catch (ErrorException $e) {
-                echo "Caught error {$e} fetching {$imageUrl}, retrying.\n";
-                pass;
+                $resp = Http::get($imageUrl);
+            } catch (ConnectionException $e) {
+                $retries++;
+                usleep(20);
+                continue;
             }
 
-            $retries++;
-            usleep(20);
+            if ($resp->notFound()) {
+                break;
+            }
+
+            if ($resp->serverError()) {
+                $retries++;
+                usleep(20);
+                continue;
+            }
+
+            $imageContent = $resp->body();
         }
 
-        if (!$imageContent) {
+        if ($imageContent === false || $imageContent === "") {
             echo "Error could not fetch {$imageUrl} after {$retries} attempts! This media won't be migrated";
             return null;
         }
@@ -216,7 +229,8 @@ class MigrateOSCIPublicationOne extends Command
 
         // Configure this as an image or overlay and set position
         // TODO: Check the extension as PNGs appear to be overlays as well
-        if ($layer_data['type'] == 'svg') {
+
+        if ($layer_data['type'] == 'svg' || pathinfo($layer_data['static_url'], PATHINFO_EXTENSION) === 'png') {
             $layerBlock->child_key = 'layered_image_viewer_overlay';
             $layerBlock->type = 'layered_image_viewer_overlay';
         } else {
