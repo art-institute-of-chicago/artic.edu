@@ -16,7 +16,7 @@ class MigrateOSCIPublicationMediaOne extends Command
      *
      * @var string
      */
-    protected $signature = 'migrate:osci-media-one {id : Publication ID} {--move-assets}';
+    protected $signature = 'migrate:osci-media-one {id : Publication ID}';
 
     /**
      * The console command description.

@@ -221,7 +221,6 @@ class MigrateOSCIPublicationOne extends Command
         $layerBlock->parent_id = $block->id;
 
         // Configure this as an image or overlay and set position
-        // TODO: Check the extension as PNGs appear to be overlays as well
 
         if ($layer_data['type'] == 'svg' || pathinfo($layer_data['static_url'], PATHINFO_EXTENSION) === 'png') {
             $layerBlock->child_key = 'layered_image_viewer_overlay';
@@ -304,36 +303,39 @@ class MigrateOSCIPublicationOne extends Command
         // Type-sense the figure and apply the appropriate CMS block type -- each just returns early
         switch (true) {
             // Non-video embeds (HTML, mostly) become media_embed
-            case ($figure->figure_type === 'html_figure' && !isset($figure->html_content_src)):
+            case $figure->figure_type === 'html_figure' 
+                    && !isset($figure->html_content_src):
                 $this->configureHTMLFigure($block, $figure);
                 return;
 
             // HTML embeds with a src are videos
-            case ($figure->figure_type === 'html_figure' && isset($figure->html_content_src)):
+            case $figure->figure_type === 'html_figure' 
+                    && isset($figure->html_content_src):
                 $this->configureVideoFigure($block, $figure);
                 return;
 
             // OSCI's layered_image with only one layer should just be an image
-            case ($figure->figure_type === 'layered_image' && count($layers) === 1):
+            case $figure->figure_type === 'layered_image' 
+                    && count($layers) === 1:
                 $this->configureImageFigure($block, $figure, $layers);
                 return;
 
             // Layered images are just that
-            case ($figure->figure_type === 'layered_image'):
+            case $figure->figure_type === 'layered_image':
                 $this->configureLayeredImageFigure($block, $figure, $layers);
                 return;
 
             // IIP Asset images are also images
-            case ($figure->figure_type === 'iip_asset'):
+            case $figure->figure_type === 'iip_asset':
                 $this->configureImageFigure($block, $figure, $layers);
                 return;
 
-            case ($figure->figure_type === '360_slider'):
+            case $figure->figure_type === '360_slider':
                 $this->configure360EmbedFigure($block, $figure);
                 return;
 
             // RTI_Viewers will need other handling, so leave a placeholder..
-            case ($figure->figure_type === 'rti_viewer'):
+            case $figure->figure_type === 'rti_viewer':
                 // TODO: insert reader_url, figure # for this text + figure
                 $block->type = 'video';
                 $block->content = [
