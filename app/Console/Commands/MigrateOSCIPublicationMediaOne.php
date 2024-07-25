@@ -6,8 +6,6 @@ use Imagick;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 $PTIF_LAYER_MAX = 10000;
 

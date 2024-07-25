@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use App\Repositories\Api\PublicationRepository;
 use App\Models\DigitalPublication;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Vendor\Block;
