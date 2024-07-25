@@ -4,6 +4,9 @@ const rangedAccordion = function(container) {
 
     function _toggleAccordion() {
 
+        // Get scroll position to maintain screen position on toggle
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
         // Get the trigger element
         let trigger = container.querySelector('.o-accordion__trigger');
 
@@ -22,7 +25,7 @@ const rangedAccordion = function(container) {
 
         // On close scroll to the top of the accordion
         const offset = getOffset(container.querySelector('#' + trigger.id));
-        window.scrollTo(0, offset.top);
+        window.scrollTo(0, scrollTop);
     };
 
     function _init() {
