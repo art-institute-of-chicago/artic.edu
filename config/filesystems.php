@@ -74,6 +74,16 @@ return [
             'endpoint' => env('PDF_S3_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
+
+        'osci_s3' => [
+            'driver' => 's3',
+            'key' => env('S3_KEY'),
+            'secret' => env('S3_SECRET'),
+            'region' => env('OSCI_S3_REGION', env('S3_REGION')),
+            'bucket' => env('OSCI_S3_BUCKET'),
+            'endpoint' => env('OSCI_S3_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+        ],
     ],
 
     /*
