@@ -18,7 +18,7 @@ const rangedAccordion = function(container) {
         trigger.setAttribute('aria-expanded', !isExpanded);
 
         // Toggle the height of the panel
-        panel.style.height = isExpanded ? '0' : 'max-content';
+        panel.style.height = isExpanded ? '0px' : panel.scrollHeight + 'px';
 
         // Toggle the active class on the trigger
         trigger.classList.toggle('is-active');
