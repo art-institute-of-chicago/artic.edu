@@ -85,15 +85,8 @@ class MigrateOSCIPublicationOne extends Command
 
         $imageName = $imageUuid . '/' . $imageFilename;
 
-        $http_ctx = stream_context_create(array(
-                        'http' => [
-                            'timeout' => 120,
-                            'ignore_errors' => true,
-                        ]
-                    ));
-
         $retries = 0;
-        while ($imageContent === false && $retries < 5 ) {
+        while ($imageContent === false && $retries < 5) {
             // Fetch the URL, retrying if it's not a 404
             try {
                 $resp = Http::get($imageUrl);
