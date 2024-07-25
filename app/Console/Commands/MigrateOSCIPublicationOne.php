@@ -20,7 +20,7 @@ class MigrateOSCIPublicationOne extends Command
      *
      * @var string
      */
-    protected $signature = 'migrate:osci-publication {id : Publication ID}';
+    protected $signature = 'migrate:osci-publication-one {id : Publication ID}';
 
     /**
      * The console command description.
@@ -94,7 +94,7 @@ class MigrateOSCIPublicationOne extends Command
         $retries = 0;
         while (!$imageContent && $retries < 5) {
             try {
-                $imageContent = file_get_contents($imageUrl, false, $http_ctx);                
+                $imageContent = file_get_contents($imageUrl, false, $http_ctx);
             } catch (ErrorException $e) {
                 echo "Caught error {$e} fetching {$imageUrl}, retrying.\n";
                 pass;
@@ -133,7 +133,7 @@ class MigrateOSCIPublicationOne extends Command
         $media->save();
 
         return $media;
-    }   
+    }
 
     private function configureImageFigure($block, $data, $layers)
     {
@@ -187,7 +187,7 @@ class MigrateOSCIPublicationOne extends Command
         $block->save();
     }
 
-    private function configureHTMLFigure($block, $data) 
+    private function configureHTMLFigure($block, $data)
     {
         $block->type = 'media_embed';
         $block->content = [
@@ -307,7 +307,7 @@ class MigrateOSCIPublicationOne extends Command
                 $this->configureVideoFigure($block, $figure);
                 return;
 
-            // OSCI's layered_image with only one layer should just be an image            
+            // OSCI's layered_image with only one layer should just be an image
             case ($figure->figure_type === 'layered_image' && count($layers) === 1):
                 $this->configureImageFigure($block, $figure, $layers);
                 return;

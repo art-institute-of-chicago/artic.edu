@@ -4,21 +4,21 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class MigrateOSCIPublicationMedia extends Command
+class MigrateOSCIPublication extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'migrate:osci-media';
+    protected $signature = 'migrate:osci-publication';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Migrate all OSCI publications\' IIP and 360º media from OSCI servers to S3';
+    protected $description = 'Migrate all OSCI publications from a migration file to website DigitalPublications';
 
     protected $publications = [
         'albright',
@@ -47,7 +47,7 @@ class MigrateOSCIPublicationMedia extends Command
     public function handle()
     {
         foreach ($this->publications as $pub) {
-            $this->call('migrate:osci-media-one', ['id' => $pub]);
+            $this->call('migrate:osci-publication-one', ['id' => $pub]);
         }
     }
 }
