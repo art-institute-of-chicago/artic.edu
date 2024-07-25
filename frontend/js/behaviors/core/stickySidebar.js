@@ -187,6 +187,14 @@ const stickySidebar = function(container){
 
     window.addEventListener('hashchange', _hideSidebar, false);
 
+    if (article) {
+      const resizeObserver = new ResizeObserver(() => {
+        update();
+      });
+  
+      resizeObserver.observe(article);
+    }
+
     handleResize();
     handleScroll();
   }
