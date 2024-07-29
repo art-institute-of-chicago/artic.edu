@@ -31,7 +31,7 @@
         @endcomponent
     @endif
 
-    @if ($item->showAuthorsWithLinks())
+    @if ($item->showAuthorsWithLinks() || $item->date)
         @component('components.molecules._m-author')
             @slot('variation', 'm-author---keyline-top')
             @slot('editorial', ($item->articleType === 'editorial'))
