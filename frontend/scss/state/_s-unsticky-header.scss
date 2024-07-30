@@ -12,6 +12,21 @@ For those times when you just don't want the navigation to get in the way of the
     padding-top: 0;
     .g-header {
       position: relative;
+      .g-header__inner {
+        border-bottom: 0;
+      }
+      &:has(a[role="menuitem"][aria-expanded="true"]) {
+        position: fixed;
+
+        & ~ main#content {
+          @include breakpoint('small+') {
+            padding-top: 128px;
+          }
+          @include breakpoint('medium+') {
+            padding-top: 140px;
+          }
+        }
+      }
     }
 
     .top-link {
