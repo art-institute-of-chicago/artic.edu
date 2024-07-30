@@ -37,5 +37,25 @@ For those times when you just don't want the navigation to get in the way of the
 
   &.s-contrast-header #a17 .g-header {
     position: absolute;
+    @include breakpoint('small+') {
+      height: 128px;
+    }
+    @include breakpoint('medium+') {
+      height: 140px;
+    }
+    &:hover {
+      position: fixed;
+      &:has(a[role="menuitem"][aria-expanded="true"]) {
+        @include breakpoint('small') {
+          height: 368px;
+        }
+        @include breakpoint('medium') {
+          height: 376px;
+        }
+        @include breakpoint('large+') {
+          height: 380px;
+        }
+      }
+    }
   }
 }
