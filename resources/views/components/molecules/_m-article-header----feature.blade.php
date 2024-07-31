@@ -1,11 +1,15 @@
 @if ($bgcolor ?? false)
     <style>
+        .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__text,
         .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__text::before {
             background-color: {{ $bgcolor }};
         }
     </style>
 @endif
-<{{ $tag ?? 'header' }} class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
+<{{ $tag ?? 'header' }}
+    class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}"
+    data-behavior="blurMyBackground stickyDigitalPublicationHeader"
+>
     <div class="m-article-header__img"{{ (isset($variation) && $variation != 'm-article-header--digital-publication') ? ' data-blur-img' : '' }}>
         @if ($img)
             @component('components.atoms._img')
@@ -83,3 +87,7 @@
         @endif
     @endif
 </{{ $tag ?? 'header' }}>
+
+@if (($variation ?? '') == 'm-article-header--digital-publication')
+    <div class="m-article-header__spacer"></div>
+@endif
