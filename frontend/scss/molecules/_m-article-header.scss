@@ -1099,33 +1099,25 @@
   }
 
   .title {
-    margin-top: 20px;
+    margin-top: 26px;
   }
 
   .subtitle {
-    text-align: right;
     color: $color__text--title-contrast;
-
-    margin-top: 75px;
-    margin-bottom: 24px;
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 26px;
+    margin-top: 26px;
+    text-align: left;
   }
 
   @include breakpoint('small') {
     .m-article-header__img {
       height: 300px;
     }
-
-    .title {
-      margin-top: 36px;
-    }
-
-    .subtitle {
-      margin-top: 100px;
-      margin-bottom: 36px;
-    }
   }
 
-  @include breakpoint('medium') {
+  @include breakpoint('medium+') {
     .m-article-header__text {
       padding-right: 0;
     }
@@ -1135,20 +1127,34 @@
     }
 
     .title {
-      margin-top: 40px;
+      margin-top: 35px;
     }
 
     .subtitle {
-      margin-top: 100px;
-      margin-bottom: 44px;
+      margin-bottom: 35px;
+      margin-top: 35px;
     }
   }
 
   @include breakpoint('large+') {
     flex-flow: row-reverse nowrap;
 
+    .s-sticky-digital-publication-header & {
+      position: fixed;
+      top: 0;
+      width: 100%;
+
+      .subtitle {
+        display: none;
+      }
+
+      .m-article-header__img {
+        height: 180px;
+      }
+    }
+
     .m-article-header__text {
-      flex: 0 0 38%;
+      flex: 0 0 colspan(14, 'large');
       padding-right: initial;
       padding-left: initial;
     }
@@ -1157,19 +1163,22 @@
       left: auto;
       margin-left: auto;
 
-      flex: 0 0 62%;
+      flex: 0 0 colspan(50, 'large');
       height: 75vh;
       right: 50%;
       margin-right: -50vw;
     }
+  }
 
-    .title {
-      margin-top: 50px;
+  @include breakpoint('xlarge') {
+    .m-article-header__text {
+      max-width: colspan(14, xlarge);
+      z-index: 1;
     }
-
-    .subtitle {
-      margin-top: 100px;
-      margin-bottom: 60px;
+    .m-article-header__text::before {
+      left: -50%;
+      margin-left: 0;
+      max-width: colspan(14, xlarge);
     }
   }
 }
@@ -1589,4 +1598,13 @@ a.m-article-header__img-credit {
 .m-article-header__img-thumbs button:hover + img,
 .m-article-header__img-thumbs button[disabled] + img {
   outline: 1px solid $color__black--54;
+}
+
+.m-article-header__spacer {
+  display: none;
+  .s-sticky-digital-publication-header & {
+    display: block;
+    height: 220px;
+    width: 100vw;
+  }
 }
