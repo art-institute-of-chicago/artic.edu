@@ -1602,9 +1602,9 @@ a.m-article-header__img-credit {
 
 .m-article-header__spacer {
   display: none;
-  .s-sticky-digital-publication-header:not(.s-scroll-direction-up) & {
+  .s-sticky-digital-publication-header & {
     display: block;
-    height: 75vh;
+    height: 220px;
     width: 100vw;
   }
 }
