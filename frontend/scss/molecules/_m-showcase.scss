@@ -1,7 +1,8 @@
-.m-showcase-block,
+.m-showcase-block, .m-showcase,
 .m-showcase-background { // The showcase background is used in the Showcase Multiple block
     width: 100vw;
     margin-top: 50px;
+    margin-bottom: 30px;
     margin-left: calc(50% - 50vw);
     display: flex;
     flex-direction: row;
@@ -102,7 +103,25 @@
     }
 }
 
-.m-showcase-block {
+.m-showcase-block, .m-showcase {
+    &.showcase--digital-publication {
+        width: 100%;
+        margin-left: 0 !important;
+        padding: 0;
+
+        background-color: unset !important;
+
+        .showcase-title {
+            margin-top: 12px !important;
+        }
+
+        .showcase-description {
+            * {
+            color: $color__black !important;
+            }
+        }
+    }
+
     &.showcase--home {
         background-color: unset !important;
 
