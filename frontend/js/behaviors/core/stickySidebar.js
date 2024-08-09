@@ -48,7 +48,6 @@ const stickySidebar = function(container){
   let containerHeight;
 
   let navContainer;
-  let stickyHeader;
 
   const sidebarOverlayState = 'is-sidebar-overlay';
   let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
@@ -65,7 +64,6 @@ const stickySidebar = function(container){
 
     article = document.querySelector('.o-article');
     navContainer = document.querySelector('.g-header');
-    stickyHeader = document.querySelector('.m-article-header--digital-publication');
     containerTop = getOffsetTop(container) + document.body.scrollTop;
 
     if (scrollTop < containerTop) {
