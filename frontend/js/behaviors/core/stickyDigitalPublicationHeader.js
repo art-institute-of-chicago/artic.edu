@@ -1,4 +1,5 @@
 const stickyDigitalPublicationHeader = function(container) {
+  const HEADER_HEIGHT = 180; // in px
   const HEADER_STICKY = 's-sticky-digital-publication-header';
   const HEADER_UNSTICKY = 's-unsticky-digital-publication-header';
 
@@ -42,8 +43,9 @@ const stickyDigitalPublicationHeader = function(container) {
 
   function update() {
     let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    let containerHeight = container.offsetHeight;
 
-    if (scrollTop < containerTop) {
+    if (scrollTop < (containerTop + containerHeight - HEADER_HEIGHT)) {
       setState(HEADER_UNSTICKY);
     } else {
       setState(HEADER_STICKY);
