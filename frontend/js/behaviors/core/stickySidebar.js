@@ -38,7 +38,7 @@ const stickySidebar = function(container){
     }
   }
 
-  let article = document.querySelector('.o-article');
+  let article;
   let logo = document.querySelector('.m-article-actions--publication__logo');
 
   let scrollTop;
@@ -48,6 +48,7 @@ const stickySidebar = function(container){
   let containerHeight;
 
   let navContainer;
+  let stickyHeader;
 
   const sidebarOverlayState = 'is-sidebar-overlay';
   let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
@@ -62,7 +63,10 @@ const stickySidebar = function(container){
 
     containerHeight = container.offsetHeight;
 
+    article = document.querySelector('.o-article');
     navContainer = document.querySelector('.g-header');
+    stickyHeader = document.querySelector('.m-article-header--digital-publication');
+    containerTop = getOffsetTop(container) + document.body.scrollTop;
 
     if (scrollTop < containerTop) {
       top();
