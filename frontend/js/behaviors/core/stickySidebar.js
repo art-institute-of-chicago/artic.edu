@@ -38,7 +38,7 @@ const stickySidebar = function(container){
     }
   }
 
-  let article = document.querySelector('.o-article');
+  let article;
   let logo = document.querySelector('.m-article-actions--publication__logo');
 
   let scrollTop;
@@ -62,7 +62,9 @@ const stickySidebar = function(container){
 
     containerHeight = container.offsetHeight;
 
+    article = document.querySelector('.o-article');
     navContainer = document.querySelector('.g-header');
+    containerTop = getOffsetTop(container) + document.body.scrollTop;
 
     if (scrollTop < containerTop) {
       top();
