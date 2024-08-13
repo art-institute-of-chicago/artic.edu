@@ -52,7 +52,7 @@
             @switch($topLevelArticle->listing_display)
 
                 @case('feature')
-                    @foreach ($topLevelArticle->children as $item)
+                    @foreach ($topLevelArticle->children->sortBy('position') as $item)
                         @if ($loop->iteration <= 4 || $showAll == true)
                             @if($loop->first && $showAll == false)
                                 @component('components.molecules._m-showcase')
@@ -121,7 +121,7 @@
                         @slot('cols_large','3')
                         @slot('cols_xlarge','3')
 
-                        @foreach ($topLevelArticle->children as $item)
+                        @foreach ($topLevelArticle->children->sortBy('position') as $item)
                             @if ($loop->iteration <= 3 || $showAll == true)
                             @component('components.molecules._m-listing----digital-publication-article')
                                 @slot('href', $item->present()->url)
@@ -157,7 +157,7 @@
                         @slot('cols_large','4')
                         @slot('cols_xlarge','4')
 
-                        @foreach ($topLevelArticle->children as $item)
+                        @foreach ($topLevelArticle->children->sortBy('position') as $item)
                             @if ($loop->iteration <= 8 || $showAll == true)
                                 @component('components.molecules._m-listing----digital-publication-article-entry')
                                     @slot('href', $item->present()->url)
@@ -192,7 +192,7 @@
                         @slot('cols_large','3')
                         @slot('cols_xlarge','3')
 
-                        @foreach ($topLevelArticle->children as $item)
+                        @foreach ($topLevelArticle->children->sortBy('position') as $item)
                             @component('components.molecules._m-listing----cover')
                                 @slot('variation', 'm-listing--cover--digital-publication')
                                 @slot('href', $item->present()->url)
@@ -208,7 +208,7 @@
                     @component('components.organisms._o-grid-listing')
                         @slot('cols_small','1')
 
-                        @foreach ($topLevelArticle->children as $item)
+                        @foreach ($topLevelArticle->children->sortBy('position') as $item)
                             @if ($loop->iteration <= 3 || $showAll == true)
                                 @component('components.molecules._m-listing----digital-publication-article')
                                     @slot('variation', 'm-listing--seventy-thirty')
@@ -246,7 +246,7 @@
                         @slot('cols_xlarge','3')
                 @endif
             
-                @foreach($topLevelArticle->children as $item)
+                @foreach($topLevelArticle->children->sortBy('position') as $item)
                     @if ($showAll !== true)
                         @component('components.molecules._m-digipub-title-bar', [
                             'variation' => 'm-title-bar--compact m-title-bar--no-hr',
@@ -293,7 +293,7 @@
                     @slot('cols_large','3')
                     @slot('cols_xlarge','3')
 
-                    @foreach ($topLevelArticle->children as $item)
+                    @foreach ($topLevelArticle->children->sortBy('position') as $item)
                         @if ($loop->iteration <= 3 || $showAll == true)
                         @component('components.molecules._m-listing----digital-publication-article')
                             @slot('href', $item->present()->url)
