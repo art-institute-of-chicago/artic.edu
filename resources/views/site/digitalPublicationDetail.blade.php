@@ -285,6 +285,40 @@
                 @endif
             
             @break
+            @default
+            
+                @component('components.organisms._o-grid-listing')
+                    @slot('cols_small','2')
+                    @slot('cols_medium','3')
+                    @slot('cols_large','3')
+                    @slot('cols_xlarge','3')
+
+                    @foreach ($topLevelArticle->children as $item)
+                        @if ($loop->iteration <= 3 || $showAll == true)
+                        @component('components.molecules._m-listing----digital-publication-article')
+                            @slot('href', $item->present()->url)
+                            @slot('image', $item->imageFront('hero'))
+                            @slot('type', $item->present()->type)
+                            @slot('title', $item->present()->title)
+                            @slot('title_display', $item->present()->title_display)
+                            @slot('list_description', $item->present()->list_description)
+                            @slot('author_display', $item->showAuthors())
+                            @slot('imageSettings', array(
+                                'fit' => 'crop',
+                                'ratio' => '16:9',
+                                'srcset' => array(200,400,600),
+                                'sizes' => ImageHelpers::aic_imageSizes(array(
+                                    'xsmall' => '216px',
+                                    'small' => '216px',
+                                    'medium' => '18',
+                                    'large' => '13',
+                                    'xlarge' => '13',
+                                )),
+                            ))
+                        @endcomponent
+                        @endif
+                    @endforeach
+                @endcomponent
             
             @endswitch
         @endforeach
