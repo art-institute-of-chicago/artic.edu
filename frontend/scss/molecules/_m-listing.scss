@@ -2245,6 +2245,17 @@ a:focus:hover .btn--magazine {
       margin-top: 12px;
     }
   }
+
+  &.m-listing--title-only {
+    .m-listing__meta {
+      >:not(.title) {
+        display: none;
+      }
+    }
+    .link {
+      display: none
+    };
+  }
 }
 
 .m-listing--digital-publication-article-entry {
