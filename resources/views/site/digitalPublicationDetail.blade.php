@@ -78,7 +78,7 @@
                                     ))
                                 @endcomponent
                             @else
-                                @if($loop->first || ($loop->iteration == 2 && $showAll == false)) 
+                                @if($loop->first || ($loop->iteration == 2 && $showAll == false))
                                     @component('components.organisms._o-grid-listing')
                                         @slot('cols_small','2')
                                         @slot('cols_medium','3')
