@@ -57,13 +57,13 @@
                             @if($loop->first && $showAll == false)
                                 @component('components.molecules._m-showcase')
                                     @slot('variation', 'showcase--digital-publication')
-                                    @slot('tag', $topLevelArticle->present()->type)
-                                    @slot('title', $topLevelArticle->present()->title_display ?? $topLevelArticle->present()->title)
-                                    @slot('author_display', $topLevelArticle->showAuthors())
-                                    @slot('description', $topLevelArticle->present()->list_description)
-                                    @slot('linkLabel', 'Read full ' . Str::singular(Str::lower($topLevelArticle->present()->type)))
-                                    @slot('linkUrl', $topLevelArticle->present()->url)
-                                    @slot('image', $topLevelArticle->imageFront('hero'))
+                                    @slot('tag', $item->present()->type)
+                                    @slot('title', $item->present()->title_display ?? $topLevelArticle->present()->title)
+                                    @slot('author_display', $item->showAuthors())
+                                    @slot('description', $item->present()->list_description)
+                                    @slot('linkLabel', 'Read full ' . Str::singular(Str::lower($item->present()->type)))
+                                    @slot('linkUrl', $item->present()->url)
+                                    @slot('image', $item->imageFront('hero'))
                                     @slot('imageSettings', array(
                                         'fit' => 'crop',
                                         'ratio' => '16:9',
