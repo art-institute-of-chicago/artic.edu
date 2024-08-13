@@ -237,21 +237,55 @@
 
                     @endcomponent
                 @break
-                    @case('simple_list')
-                        @foreach($topLevelArticle->children as $item)
-                            @component('components.molecules._m-title-bar', [
-                                'variation' => 'm-title-bar--compact m-title-bar--no-hr',
-                            ])
-                                @slot('links', [
-                                    [
-                                        'label' => 'View all ' . $item->present()->type,
-                                        'href'  => $item->present()->url,
-                                    ]
-                                ])
-                                {!! $item->present()->type !!}
-                            @endcomponent
-                        @endforeach
-                @break
+                @case('simple_list')
+                @if ($showAll == true)
+                    @component('components.organisms._o-grid-listing')
+                        @slot('cols_small','2')
+                        @slot('cols_medium','3')
+                        @slot('cols_large','3')
+                        @slot('cols_xlarge','3')
+                @endif
+            
+                @foreach($topLevelArticle->children as $item)
+                    @if ($showAll !== true)
+                        @component('components.molecules._m-digipub-title-bar', [
+                            'variation' => 'm-title-bar--compact m-title-bar--no-hr',
+                        ])
+                            @slot('item', $item)
+                            {!! $item->present()->type !!}
+                        @endcomponent
+                    @else
+                        @component('components.molecules._m-listing----digital-publication-article')
+                            @slot('variation', 'm-listing--title-only')
+                            @slot('href', $item->present()->url)
+                            @slot('image', $item->imageFront('hero'))
+                            @slot('type', $item->present()->type)
+                            @slot('title', $item->present()->title)
+                            @slot('title_display', $item->present()->title_display)
+                            @slot('list_description', $item->present()->list_description)
+                            @slot('author_display', $item->showAuthors())
+                            @slot('imageSettings', array(
+                                'fit' => 'crop',
+                                'ratio' => '16:9',
+                                'srcset' => array(200,400,600),
+                                'sizes' => ImageHelpers::aic_imageSizes(array(
+                                    'xsmall' => '216px',
+                                    'small' => '216px',
+                                    'medium' => '18',
+                                    'large' => '13',
+                                    'xlarge' => '13',
+                                )),
+                            ))
+                        @endcomponent
+                    @endif
+                @endforeach
+            
+                @if ($showAll == true)
+                    @endcomponent
+                @endif
+            
+            @break
+            
             @endswitch
         @endforeach
 
