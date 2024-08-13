@@ -49,19 +49,221 @@
                 {!! $topLevelArticle->title !!}
             @endcomponent
 
-            @component('components.organisms._o-grid-listing')
-                @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
-                @slot('cols_medium','3')
-                @slot('cols_large','4')
-                @slot('cols_xlarge','4')
+            @switch($topLevelArticle->listing_display)
 
-                @foreach ($topLevelArticle->children as $article)
-                    @if ($loop->iteration <= 3 || $showAll == true)
-                        @component('components.molecules._m-listing----article')
-                            @slot('imgVariation','')
-                            @slot('item', $article)
-                            @slot('module', 'collection.publications.digital-publications-articles')
-                            @slot('routeParameters', ['pubId' => $item->id, 'pubSlug' => $item->getSlug(), 'id' => $article->id])
+                @case('feature')
+                    @foreach ($topLevelArticle->children as $item)
+                        @if ($loop->iteration <= 4 || $showAll == true)
+                            @if($loop->first && $showAll == false)
+                                @component('components.molecules._m-showcase')
+                                    @slot('variation', 'showcase--digital-publication')
+                                    @slot('tag', $topLevelArticle->present()->type)
+                                    @slot('title', $topLevelArticle->present()->title_display ?? $topLevelArticle->present()->title)
+                                    @slot('author_display', $topLevelArticle->showAuthors())
+                                    @slot('description', $topLevelArticle->present()->list_description)
+                                    @slot('linkLabel', 'Read full ' . Str::singular(Str::lower($topLevelArticle->present()->type)))
+                                    @slot('linkUrl', $topLevelArticle->present()->url)
+                                    @slot('image', $topLevelArticle->imageFront('hero'))
+                                    @slot('imageSettings', array(
+                                        'fit' => 'crop',
+                                        'ratio' => '16:9',
+                                        'srcset' => array(200,400,600),
+                                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                                            'xsmall' => '216px',
+                                            'small' => '216px',
+                                            'medium' => '18',
+                                            'large' => '13',
+                                            'xlarge' => '13',
+                                        )),
+                                    ))
+                                @endcomponent
+                            @else
+                                @if($loop->first || ($loop->iteration == 2 && $showAll == false))
+                                    @component('components.organisms._o-grid-listing')
+                                        @slot('cols_small','2')
+                                        @slot('cols_medium','3')
+                                        @slot('cols_large','3')
+                                        @slot('cols_xlarge','3')
+                                @endif
+                                    @component('components.molecules._m-listing----digital-publication-article')
+                                        @slot('href', $item->present()->url)
+                                        @slot('image', $item->imageFront('hero'))
+                                        @slot('type', $item->present()->type)
+                                        @slot('title', $item->present()->title)
+                                        @slot('title_display', $item->present()->title_display)
+                                        @slot('list_description', $item->present()->list_description)
+                                        @slot('author_display', $item->showAuthors())
+                                        @slot('imageSettings', array(
+                                            'fit' => 'crop',
+                                            'ratio' => '16:9',
+                                            'srcset' => array(200,400,600),
+                                            'sizes' => ImageHelpers::aic_imageSizes(array(
+                                                'xsmall' => '216px',
+                                                'small' => '216px',
+                                                'medium' => '18',
+                                                'large' => '13',
+                                                'xlarge' => '13',
+                                            )),
+                                        ))
+                                    @endcomponent
+                                @if($loop->last || ($loop->iteration == 4 && $showAll == false))
+                                    @endcomponent
+                                @endif
+                            @endif
+                        @endif
+                    @endforeach
+                @break
+
+                @case('3-across')
+                    @component('components.organisms._o-grid-listing')
+                        @slot('cols_small','2')
+                        @slot('cols_medium','3')
+                        @slot('cols_large','3')
+                        @slot('cols_xlarge','3')
+
+                        @foreach ($topLevelArticle->children as $item)
+                            @if ($loop->iteration <= 3 || $showAll == true)
+                            @component('components.molecules._m-listing----digital-publication-article')
+                                @slot('href', $item->present()->url)
+                                @slot('image', $item->imageFront('hero'))
+                                @slot('type', $item->present()->type)
+                                @slot('title', $item->present()->title)
+                                @slot('title_display', $item->present()->title_display)
+                                @slot('list_description', $item->present()->list_description)
+                                @slot('author_display', $item->showAuthors())
+                                @slot('imageSettings', array(
+                                    'fit' => 'crop',
+                                    'ratio' => '16:9',
+                                    'srcset' => array(200,400,600),
+                                    'sizes' => ImageHelpers::aic_imageSizes(array(
+                                        'xsmall' => '216px',
+                                        'small' => '216px',
+                                        'medium' => '18',
+                                        'large' => '13',
+                                        'xlarge' => '13',
+                                    )),
+                                ))
+                            @endcomponent
+                            @endif
+                        @endforeach
+                    @endcomponent
+                @break
+
+                @case('entries')
+                    @component('components.organisms._o-grid-listing')
+                        @slot('cols_xsmall','2')
+                        @slot('cols_small','2')
+                        @slot('cols_medium','4')
+                        @slot('cols_large','4')
+                        @slot('cols_xlarge','4')
+
+                        @foreach ($topLevelArticle->children as $item)
+                            @if ($loop->iteration <= 8 || $showAll == true)
+                                @component('components.molecules._m-listing----digital-publication-article-entry')
+                                    @slot('href', $item->present()->url)
+                                    @slot('image', $item->imageFront('hero'))
+                                    @slot('title', $item->present()->title)
+                                    @slot('title_display', $item->present()->title_display)
+                                    @slot('label', $item->present()->label)
+                                    @slot('imageSettings', array(
+                                        'fit' => 'crop',
+                                        'ratio' => '16:9',
+                                        'srcset' => array(200,400,600),
+                                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                                            'xsmall' => '216px',
+                                            'small' => '216px',
+                                            'medium' => '18',
+                                            'large' => '13',
+                                            'xlarge' => '13',
+                                        )),
+                                    ))
+                                @endcomponent
+                            @endif
+                        @endforeach
+
+                    @endcomponent
+                @break
+
+                @case('group_entries')
+                    @component('components.organisms._o-grid-listing')
+                        @slot('cols_xsmall','1')
+                        @slot('cols_small','1')
+                        @slot('cols_medium','3')
+                        @slot('cols_large','3')
+                        @slot('cols_xlarge','3')
+
+                        @foreach ($topLevelArticle->children as $item)
+                            @component('components.molecules._m-listing----cover')
+                                @slot('variation', 'm-listing--cover--digital-publication')
+                                @slot('href', $item->present()->url)
+                                @slot('image', $item->imageFront('hero'))
+                                @slot('title', $item->present()->label)
+                            @endcomponent
+                        @endforeach
+
+                    @endcomponent
+                @break
+
+                @case('list')
+                    @component('components.organisms._o-grid-listing')
+                        @slot('cols_small','1')
+
+                        @foreach ($topLevelArticle->children as $item)
+                            @if ($loop->iteration <= 3 || $showAll == true)
+                                @component('components.molecules._m-listing----digital-publication-article')
+                                    @slot('variation', 'm-listing--seventy-thirty')
+                                    @slot('href', $item->present()->url)
+                                    @slot('image', $item->imageFront('hero'))
+                                    @slot('type', $item->present()->type)
+                                    @slot('title', $item->present()->title)
+                                    @slot('title_display', $item->present()->title_display)
+                                    @slot('list_description', $item->present()->list_description)
+                                    @slot('author_display', $item->showAuthors())
+                                    @slot('imageSettings', array(
+                                        'fit' => 'crop',
+                                        'ratio' => '16:9',
+                                        'srcset' => array(200,400,600),
+                                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                                            'xsmall' => '216px',
+                                            'small' => '216px',
+                                            'medium' => '18',
+                                            'large' => '13',
+                                            'xlarge' => '13',
+                                        )),
+                                    ))
+                                @endcomponent
+                            @endif
+                        @endforeach
+
+                    @endcomponent
+                @break
+                @case('simple_list')
+                @if ($showAll == true)
+                    @component('components.organisms._o-grid-listing')
+                        @slot('cols_small','2')
+                        @slot('cols_medium','3')
+                        @slot('cols_large','3')
+                        @slot('cols_xlarge','3')
+                @endif
+            
+                @foreach($topLevelArticle->children as $item)
+                    @if ($showAll !== true)
+                        @component('components.molecules._m-digipub-title-bar', [
+                            'variation' => 'm-title-bar--compact m-title-bar--no-hr',
+                        ])
+                            @slot('item', $item)
+                            {!! $item->present()->type !!}
+                        @endcomponent
+                    @else
+                        @component('components.molecules._m-listing----digital-publication-article')
+                            @slot('variation', 'm-listing--title-only')
+                            @slot('href', $item->present()->url)
+                            @slot('image', $item->imageFront('hero'))
+                            @slot('type', $item->present()->type)
+                            @slot('title', $item->present()->title)
+                            @slot('title_display', $item->present()->title_display)
+                            @slot('list_description', $item->present()->list_description)
+                            @slot('author_display', $item->showAuthors())
                             @slot('imageSettings', array(
                                 'fit' => 'crop',
                                 'ratio' => '16:9',
@@ -77,7 +279,14 @@
                         @endcomponent
                     @endif
                 @endforeach
-            @endcomponent
+            
+                @if ($showAll == true)
+                    @endcomponent
+                @endif
+            
+            @break
+            
+            @endswitch
         @endforeach
 
         @if (isset($item->sponsor_display))

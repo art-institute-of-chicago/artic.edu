@@ -64,6 +64,41 @@
       margin-top: 72px;
     }
   }
+
+  &.m-digipub-title-bar {
+    margin-top: 14px !important;
+  
+    > .f-link {
+      width: 100%;
+      display: flex;
+      flex-direction: row !important;
+      justify-content: space-between;
+  
+      &:hover,
+      &:focus:hover {
+        > .title {
+          text-decoration: none !important;
+          color: initial !important;
+        }
+      }
+  
+      &.has-link:hover,
+      &.has-link:focus:hover {
+        > .title {
+          text-decoration: inherit !important;
+          color: inherit !important;
+        }
+      }
+  
+      @include breakpoint('medium-') {
+        flex-direction: column !important;
+      }
+    }
+
+    &.m-title-bar::before {
+      display: none !important;
+    }
+  }
 }
 
 .m-title-bar::before {
