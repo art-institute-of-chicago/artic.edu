@@ -121,10 +121,10 @@ class Slide extends JsonResource
         $this->media = $this->interstitialExperienceImage;
 
         return [
-            'title' => $this->article_title,
+            'title' => $this->section_title,
             'copy' => $this->body_copy,
             '__option_body_copy' => !empty($this->body_copy),
-            '__option_article_title' => !empty($this->article_title),
+            '__option_section_title' => !empty($this->section_title),
             '__option_background_image' => count($this->interstitialExperienceImage) > 0,
             '__option_headline' => !empty($this->interstitial_headline),
         ];
