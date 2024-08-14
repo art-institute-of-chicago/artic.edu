@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import mirador from 'mirador/dist/es/src/index';
+import mirador from 'mirador/dist/mirador.min';
 import aicZoomButtonsPlugin from '../../libs/mirador/aicZoomButtonsPlugin';
 import aicNavigationButtonsPlugin from '../../libs/mirador/aicNavigationButtonsPlugin';
 import aicRemoveNavPlugin from '../../libs/mirador/aicRemoveNavPlugin';
