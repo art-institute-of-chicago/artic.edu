@@ -2,7 +2,7 @@
     @foreach ($items as $item)
         @if (count($item->children) > 0)
             <h3>
-                <button id="toc-{{ StringHelpers::getUtf8Slug($item->title) }}" class="o-accordion__trigger {{ $titleFont ?? 'f-list-3' }}" tabindex="0"{!! (isset($item->gtmAttributes)) ? ' '.$item->gtmAttributes.'' : '' !!} aria-expanded="{{ (isset($item->active) and $item->active) ? 'true' : 'false' }}">
+                <button id="toc-{{ StringHelpers::getUtf8Slug($item->title) }}" class="o-accordion__trigger {{ $titleFont ?? 'f-list-3' }}" tabindex="0"{!! (isset($item->gtmAttributes)) ? ' '.$item->gtmAttributes.'' : '' !!} aria-expanded="true">
                     {!! $item->title !!}
                     <span class="o-accordion__trigger-icon">
                         <svg class="icon--plus
@@ -12,7 +12,7 @@
                 </button>
             </h3>
             @foreach ($item->children as $child)
-                <div id="panel_{{ StringHelpers::getUtf8Slug($item->title) }}" class="o-accordion__panel" aria-labelledby="{{ StringHelpers::getUtf8Slug($item->title) }}" aria-hidden="{{ (isset($item->active) and $item->active) ? 'false' : 'true' }}">
+                <div id="panel_{{ StringHelpers::getUtf8Slug($item->title) }}" class="o-accordion__panel" aria-labelledby="{{ StringHelpers::getUtf8Slug($item->title) }}" aria-hidden="false">
                     @include('components.organisms._o-table-of-contents', ['items' => $item->children->sortBy('position')])
                 </div>
             @endforeach
