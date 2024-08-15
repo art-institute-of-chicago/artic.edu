@@ -403,8 +403,14 @@ h3 {
     padding-bottom: 20px;
     border-bottom: 1px solid $color__rules--primary;
 
-    .m-link-list__item:first-child::after {
+    &.m-link-list__item:first-of-type::after {
       content: none;
+    }
+
+    .m-link-list__trigger {
+      &::before {
+        padding-top: 25px !important;
+      }
     }
 
     &.o-blocks>:last-child {
@@ -416,7 +422,7 @@ h3 {
     }
 
     a.m-link-list__trigger.f-secondary {
-      color: $color__black--90;
+      color: $color__black--54;
 
       &:hover,
       &:focus:hover,
@@ -426,7 +432,7 @@ h3 {
     }
 
     &.m-link-list__item::after {
-      margin-top: 7px !important;
+      margin-top: 15px !important;
     }
 
     .m-link-list__item.s-active {
