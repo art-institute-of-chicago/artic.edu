@@ -411,6 +411,10 @@ h3 {
       &::before {
         padding-top: 25px !important;
       }
+      &.active {
+        font-weight: 400;
+        color: $color__black--90 !important;
+      }
     }
 
     &.o-blocks>:last-child {
