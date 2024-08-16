@@ -32,7 +32,7 @@
             </div>
         @else
             <span class="m-link-list__item o-accordion__panel-content">
-                <a class="m-link-list__trigger f-secondary {{ $item->url === request()->url() ? 'active' : '' }}" href="{{ $item->url }}"{!! (isset($item->gtmAttributes)) ? ' '.$item->gtmAttributes.'' : '' !!}>
+                <a class="m-link-list__trigger f-secondary {{ isset($currentArticle) && $item->id === $currentArticle->id ? 'active' : '' }}" href="{{ $item->url }}"{!! (isset($item->gtmAttributes)) ? ' '.$item->gtmAttributes.'' : '' !!}>
                     <span class="m-link-list__label">{!! $item->title !!}</span>
                 </a>
             </span>
