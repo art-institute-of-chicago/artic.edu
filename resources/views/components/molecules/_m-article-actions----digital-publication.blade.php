@@ -19,6 +19,7 @@
             @slot('variation', 'o-accordion--publication-sidebar')
             @slot('titleFont', 'f-tag-2')
             @slot('items', $topLevelArticles)
+            @slot('currentArticle', $currentArticle ?? null)
         @endcomponent
     @endif
 </div>
