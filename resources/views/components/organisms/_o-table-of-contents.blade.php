@@ -1,20 +1,26 @@
 <div class="o-accordion{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="accordion">
     @foreach ($items as $item)
         @php
-            $isArticleInTree = function ($items) use (&$isArticleInTree, $currentArticle) {
-                foreach ($items as $childItem) {
-                    if ($childItem->id === $currentArticle->id) {
-                        return true;
+            if (isset($currentArticle)) {
+                $isArticleInTree = function ($items) use (&$isArticleInTree, $currentArticle) {
+                    foreach ($items as $childItem) {
+                        if ($childItem->id === $currentArticle->id) {
+                            return true;
+                        }
+                        if (count($childItem->children) > 0 && $isArticleInTree($childItem->children)) {
+                            return true;
+                        }
                     }
-                    if (count($childItem->children) > 0 && $isArticleInTree($childItem->children)) {
-                        return true;
-                    }
-                }
-                return false;
-            };
+                    return false;
+                };
 
-            $isInTree = $isArticleInTree($item->children);
-            $isExpanded = isset($currentArticle) && ($currentArticle->parent === $item || $isInTree);
+                $isInTree = $isArticleInTree($item->children);
+                $isExpanded = $currentArticle->parent === $item || $isInTree;
+            } else {
+                $isExpanded = true;
+            }
+
+            $isActive = isset($currentArticle) && $item->id === $currentArticle->id;
         @endphp
 
         @if (count($item->children) > 0)
@@ -32,7 +38,7 @@
             </div>
         @else
             <span class="m-link-list__item o-accordion__panel-content">
-                <a class="m-link-list__trigger f-secondary {{ isset($currentArticle) && $item->id === $currentArticle->id ? 'active' : '' }}" href="{{ $item->url }}"{!! (isset($item->gtmAttributes)) ? ' '.$item->gtmAttributes.'' : '' !!}>
+                <a class="m-link-list__trigger f-secondary {{ $isActive ? 'active' : '' }}" href="{{ $item->url }}"{!! (isset($item->gtmAttributes)) ? ' '.$item->gtmAttributes.'' : '' !!}>
                     <span class="m-link-list__label">{!! $item->title !!}</span>
                 </a>
             </span>
