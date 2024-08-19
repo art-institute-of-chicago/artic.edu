@@ -115,6 +115,15 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'osci_migration' => [
+            'driver' => 'sqlite',
+            'database' => storage_path('app/migration.sqlite3'),
+            'prefix' => '',
+            'foreign_key_constraints' => true,
+        ],
+
+
+
     ],
 
     /*

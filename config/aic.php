@@ -19,6 +19,10 @@ return [
     'pdf_s3_endpoint' => env('PDF_S3_ENDPOINT'),
     'pdf_debug' => (bool) env('PDF_DEBUG', false),
 
+    'osci_s3_bucket' => env('OSCI_S3_BUCKET'),
+    'osci_s3_endpoint' => env('OSCI_S3_ENDPOINT'),
+    'osci_s3_regiont' => env('OSCI_S3_REGION'),
+
     'disable_extra_scripts' => (bool) env('DISABLE_EXTRA_SCRIPTS', false),
 
     'hide_from_tours' => env('HIDE_FROM_TOURS'),
