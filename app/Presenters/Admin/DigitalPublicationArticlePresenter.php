@@ -74,4 +74,17 @@ class DigitalPublicationArticlePresenter extends BasePresenter
 
         return $this->addCssClass($this->entity->cite_as, 'f-secondary');
     }
+
+    public function isArticleInTree($items)
+    {
+        foreach ($items as $childItem) {
+            if ($childItem->id === $this->entity->id) {
+                return true;
+            }
+            if (count($childItem->children) > 0 && $this->isArticleInTree($childItem->children)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
