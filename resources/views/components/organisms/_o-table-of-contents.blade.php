@@ -2,7 +2,7 @@
     @foreach ($items as $item)
         @php
             if (isset($currentArticle)) {
-                $isExpanded = $currentArticle->parent === $item || $item->present()->isArticleInTree($item->children, $currentArticle);
+                $isExpanded = $currentArticle->parent === $item || $currentArticle->present()->isArticleInTree($item->children);
             } else {
                 $isExpanded = true;
             }
