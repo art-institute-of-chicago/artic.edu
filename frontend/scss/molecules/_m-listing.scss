@@ -2183,7 +2183,7 @@ a:focus:hover .btn--magazine {
     width: colspan(design-cols-to-colspan(3), xlarge) !important;
   }
 
-  .m-listing__link:hover + .title {
+  a:hover .title {
     color: rgba($color__white, .8) !important;
   }
 
@@ -2210,6 +2210,7 @@ a:focus:hover .btn--magazine {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     color: $color__white;
     height: 100%;
     width: 100%;
