@@ -35,17 +35,22 @@ const stickyDigitalPublicationHeader = function(container) {
   };
 
   let currentState;
-  let containerTop = getOffsetTop(container) + document.body.scrollTop;
+  let containerTop;
+  let scrollTop;
 
   function handleScroll() {
     window.requestAnimationFrame(update);
   }
 
-  function update() {
-    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    let containerHeight = container.offsetHeight;
+  function handleResize() {
+    containerTop = getOffsetTop(container) + container.offsetHeight;
+    handleScroll();
+  }
 
-    if (scrollTop < (containerTop + containerHeight - HEADER_HEIGHT)) {
+  function update() {
+    scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+    if (scrollTop < (containerTop - HEADER_HEIGHT)) {
       setState(HEADER_UNSTICKY);
     } else {
       setState(HEADER_STICKY);
@@ -53,8 +58,10 @@ const stickyDigitalPublicationHeader = function(container) {
   }
 
   function _init() {
+    window.addEventListener('resized', handleResize);
     window.addEventListener('scroll', handleScroll);
-    setState(HEADER_STICKY);
+    setState(HEADER_UNSTICKY);
+    handleResize();
     resetScroll();
     handleScroll();
   }

@@ -48,6 +48,7 @@ const stickySidebar = function(container){
   let containerHeight;
 
   let navContainer;
+  let stickyHeaderContainer;
 
   const sidebarOverlayState = 'is-sidebar-overlay';
   let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
@@ -65,8 +66,9 @@ const stickySidebar = function(container){
     article = document.querySelector('.o-article');
     navContainer = document.querySelector('.g-header');
     containerTop = getOffsetTop(container) + document.body.scrollTop;
+    stickyHeaderContainer = document.querySelector('.m-article-header');
 
-    if (scrollTop < containerTop) {
+    if (scrollTop < containerTop - (document.documentElement.classList.contains('s-sticky-digital-publication-header') ? stickyHeaderContainer.offsetHeight : 0)) {
       top();
       container.style.marginTop = '0px';
     } else {
@@ -74,7 +76,7 @@ const stickySidebar = function(container){
         bottom();
       } else {
         sticky();
-        (document.documentElement.classList.contains('s-scroll-direction-up') && !document.documentElement.classList.contains('s-unsticky-header')) ? container.style.marginTop = navContainer.offsetHeight + 'px' : container.style.marginTop = '0px';
+        container.style.marginTop = ((!document.documentElement.classList.contains('s-unsticky-header') ? navContainer.clientHeight : 0) + (!document.documentElement.classList.contains('s-unsticky-digital-publication-header') ? stickyHeaderContainer.clientHeight : 0)) + 'px';
       }
     }
   }
