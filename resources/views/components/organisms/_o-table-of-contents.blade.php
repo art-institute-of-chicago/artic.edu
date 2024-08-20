@@ -2,24 +2,10 @@
     @foreach ($items as $item)
         @php
             if (isset($currentArticle)) {
-                $isArticleInTree = function ($items) use (&$isArticleInTree, $currentArticle) {
-                    foreach ($items as $childItem) {
-                        if ($childItem->id === $currentArticle->id) {
-                            return true;
-                        }
-                        if (count($childItem->children) > 0 && $isArticleInTree($childItem->children)) {
-                            return true;
-                        }
-                    }
-                    return false;
-                };
-
-                $isInTree = $isArticleInTree($item->children);
-                $isExpanded = $currentArticle->parent === $item || $isInTree;
+                $isExpanded = $currentArticle->parent === $item || $item->present()->isArticleInTree($item->children, $currentArticle);
             } else {
                 $isExpanded = true;
             }
-
             $isActive = isset($currentArticle) && $item->id === $currentArticle->id;
         @endphp
 
