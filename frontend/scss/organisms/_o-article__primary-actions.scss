@@ -269,6 +269,12 @@
     margin-bottom: 40px;
     white-space: nowrap;
 
+    @include breakpoint('large+') {
+      .p-digitalpublications-show & {
+        display: none !important;
+      }
+    }
+
     @include font-styles-untuck(generate-font-obj(
       (
         font-family: $serif-font,
