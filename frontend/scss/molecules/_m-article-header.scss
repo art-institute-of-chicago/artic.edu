@@ -1099,6 +1099,8 @@
   }
 
   .title {
+    font-size: 28px;
+    line-height: 34px;
     margin-top: 26px;
   }
 
@@ -1135,14 +1137,61 @@
       margin-top: 35px;
     }
   }
+  @include breakpoint('medium-') {
+    .s-sticky-digital-publication-header &~.m-sidebar-toggle {
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      z-index: map-get($zindexs, 'header');
+
+      &::before {
+        left: 0;
+        width: 150vw;
+      }
+    }
+  }
 
   @include breakpoint('large+') {
     flex-flow: row-reverse nowrap;
 
+    .title {
+      opacity: 1;
+    }
+
+    .subtitle {
+      opacity: 1;
+    }
+
+    .s-shrinking-digital-publication-header.s-scroll-direction-down & {
+      .title {
+        opacity: 0;
+        transition: opacity 1s;
+      }
+
+      .subtitle {
+        opacity: 0;
+        transition: opacity 1s;
+      }
+    }
+
+    .s-min-height-digital-publication-header & {
+      .title {
+        opacity: 1;
+        transition: opacity 2s;
+      }
+    }
+
+    .s-min-height-digital-publication-header &,
     .s-sticky-digital-publication-header & {
       position: fixed;
       top: 0;
       width: 100%;
+      z-index: map-get($zindexs, 'header');
+
+      .title {
+        margin-bottom: auto;
+        margin-top: auto;
+      }
 
       .subtitle {
         display: none;
@@ -1176,9 +1225,12 @@
       z-index: 1;
     }
     .m-article-header__text::before {
-      left: -100%;
+      left: -50%;
       margin-left: 0;
       max-width: colspan(14, xlarge);
+    }
+    .m-article-header__img {
+      flex: 0 0 auto;
     }
   }
 }
@@ -1600,11 +1652,14 @@ a.m-article-header__img-credit {
   outline: 1px solid $color__black--54;
 }
 
-.m-article-header__spacer {
-  display: none;
-  .s-sticky-digital-publication-header:not(.s-scroll-direction-up) & {
-    display: block;
-    height: 75vh;
-    width: 100vw;
+@include breakpoint('large+') {
+  .m-article-header__spacer {
+    display: none;
+    .s-min-height-digital-publication-header.s-scroll-direction-down &,
+    .s-sticky-digital-publication-header.s-scroll-direction-down & {
+      display: block;
+      height: 75vh;
+      width: 100vw;
+    }
   }
 }

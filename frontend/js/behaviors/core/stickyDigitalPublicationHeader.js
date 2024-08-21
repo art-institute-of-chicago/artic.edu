@@ -1,7 +1,8 @@
 const stickyDigitalPublicationHeader = function(container) {
-  const HEADER_HEIGHT = 180; // in px
-  const HEADER_STICKY = 's-sticky-digital-publication-header';
-  const HEADER_UNSTICKY = 's-unsticky-digital-publication-header';
+  const MIN_CONTAINER_HEIGHT = 180; // in px
+  const HEADER_IS_STICKY = 's-sticky-digital-publication-header';
+  const HEADER_IS_SHRINKING = 's-shrinking-digital-publication-header';
+  const HEADER_AT_MIN_HEIGHT = 's-min-height-digital-publication-header';
 
   const getOffsetTop = element => {
     let offsetTop = 0;
@@ -14,7 +15,7 @@ const stickyDigitalPublicationHeader = function(container) {
 
   const setState = targetState => {
     let classList = document.documentElement.classList;
-    let possibleStates = [HEADER_STICKY, HEADER_UNSTICKY];
+    let possibleStates = [HEADER_IS_STICKY,  HEADER_IS_SHRINKING, HEADER_AT_MIN_HEIGHT];
     possibleStates.forEach(state => {
       if (state !== targetState && classList.contains(state)) {
         classList.remove(state);
@@ -29,13 +30,13 @@ const stickyDigitalPublicationHeader = function(container) {
   };
 
   const resetScroll = () => {
-    if (currentState == HEADER_STICKY) {
+    if (currentState == HEADER_IS_STICKY) {
       container.scrollTo(0, 0);
     }
   };
 
   let currentState;
-  let containerTop;
+  let containerOffsetHeight;
   let scrollTop;
 
   function handleScroll() {
@@ -43,24 +44,36 @@ const stickyDigitalPublicationHeader = function(container) {
   }
 
   function handleResize() {
-    containerTop = getOffsetTop(container) + container.offsetHeight;
+    containerOffsetHeight = getOffsetTop(container) + container.offsetHeight;
     handleScroll();
   }
 
   function update() {
+    let navContainerHeight = document.querySelector('.g-header').clientHeight;
     scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
-    if (scrollTop < (containerTop - HEADER_HEIGHT)) {
-      setState(HEADER_UNSTICKY);
+    if (scrollTop < navContainerHeight) {
+      // If user has not scrolled past nav container to the digital publication
+      // header, unset state
+      setState(null);
+    } else if (scrollTop < (containerOffsetHeight - MIN_CONTAINER_HEIGHT)) {
+      // If user has not scrolled to the container's minimum height, header is
+      // "shrinking down to the minimum size"
+      setState(HEADER_IS_SHRINKING);
+    } else if (scrollTop < containerOffsetHeight) {
+      // If user has not scrolled to the container offset height, display the
+      // header at its mininum height
+      setState(HEADER_AT_MIN_HEIGHT);
     } else {
-      setState(HEADER_STICKY);
+      // As user continues to scroll down the page, keep the header stuck to the
+      // top of the page
+      setState(HEADER_IS_STICKY);
     }
   }
 
   function _init() {
     window.addEventListener('resized', handleResize);
     window.addEventListener('scroll', handleScroll);
-    setState(HEADER_UNSTICKY);
     handleResize();
     resetScroll();
     handleScroll();
