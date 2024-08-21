@@ -207,7 +207,7 @@
                             @component('components.molecules._m-title-bar', [
                                 'variation' => 'm-title-bar--compact m-title-bar--light',
                             ])
-                                @slot('links', (!in_array(count($topLevelArticle->children), [0, 4, 8])) ? $topLevelArticle->present()->getBrowseMoreLink($showAll) : [])
+                                @slot('links', (count($topLevelArticle->children) > 4 && count($topLevelArticle->children) != 8) ? $topLevelArticle->present()->getBrowseMoreLink($showAll) : [])
                             {!! $topLevelArticle->title !!}
                             @endcomponent
                         @endif
