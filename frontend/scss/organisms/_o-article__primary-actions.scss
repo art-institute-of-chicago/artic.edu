@@ -270,7 +270,8 @@
     white-space: nowrap;
 
     @include breakpoint('large+') {
-      .p-digitalpublications-show & {
+      .p-digitalpublications-show &,
+      .p-digitalpublications-showlisting & {
         display: none !important;
       }
     }
