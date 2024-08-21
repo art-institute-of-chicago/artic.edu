@@ -1221,16 +1221,18 @@
 
   @include breakpoint('xlarge') {
     .m-article-header__text {
-      max-width: colspan(14, xlarge);
+      max-width: colspan(14, 'xlarge');
       z-index: 1;
     }
     .m-article-header__text::before {
-      left: -50%;
+      left: -300%;
       margin-left: 0;
-      max-width: colspan(14, xlarge);
+      max-width: colspan(50, 'xlarge');
     }
     .m-article-header__img {
-      flex: 0 0 auto;
+      height: 75vh;
+      right: 50%;
+      margin-right: -50vw;
     }
   }
 }
