@@ -37,6 +37,7 @@ const stickyDigitalPublicationHeader = function(container) {
   let currentState;
   let containerOffsetHeight;
   let scrollTop;
+  let navContainerHeight;
 
   function handleScroll() {
     window.requestAnimationFrame(update);
@@ -44,11 +45,11 @@ const stickyDigitalPublicationHeader = function(container) {
 
   function handleResize() {
     containerOffsetHeight = getOffsetTop(container) + container.offsetHeight;
+    navContainerHeight = document.querySelector('.g-header').clientHeight;
     handleScroll();
   }
 
   function update() {
-    let navContainerHeight = document.querySelector('.g-header').clientHeight;
     scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
     if (scrollTop < navContainerHeight) {
