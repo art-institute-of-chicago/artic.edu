@@ -266,8 +266,32 @@
   }
 
   .m-article-actions--publication__logo {
+    height: 110px;
     margin-bottom: 40px;
     white-space: nowrap;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $color__black--50;
+      z-index: -1;
+      height: 150px;
+      width: 600px;
+      margin-left: calc(-600px + 50%);
+      @each $name in ('large', 'xlarge') {
+        @include breakpoint('#{$name}') {
+          width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2));
+          padding-right: calc(#{colspan(1, '#{$name}')} * 2);
+          margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
+          margin-right: colspan(2, #{$name});
+        }
+      }
+
+    }
 
     @include breakpoint('large+') {
       .p-digitalpublications-show &,
