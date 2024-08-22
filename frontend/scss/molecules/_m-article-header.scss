@@ -1138,15 +1138,20 @@
     }
   }
   @include breakpoint('medium-') {
-    .s-sticky-digital-publication-header &~.m-sidebar-toggle {
-      position: fixed;
-      top: 0;
-      width: 100vw;
-      z-index: map-get($zindexs, 'header');
+    .s-sticky-digital-publication-header {
+      &~.m-sidebar-toggle {
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: map-get($zindexs, 'header');
 
-      &::before {
-        left: 0;
-        width: 150vw;
+        &::before {
+          left: 0;
+          width: 150vw;
+        }
+      }
+      .m-article-header__spacer {
+        min-height: 54px;
       }
     }
   }
