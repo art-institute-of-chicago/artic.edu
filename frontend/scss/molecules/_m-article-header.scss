@@ -1184,14 +1184,6 @@
       }
     }
 
-    .s-min-height-digital-publication-header & {
-      .title {
-        opacity: 1;
-        transition: opacity 2s;
-      }
-    }
-
-    .s-min-height-digital-publication-header &,
     .s-sticky-digital-publication-header & {
       position: fixed;
       top: 0;
@@ -1201,6 +1193,8 @@
       .title {
         margin-bottom: auto;
         margin-top: auto;
+        opacity: 1;
+        transition: opacity 2s;
       }
 
       .subtitle {
@@ -1672,8 +1666,7 @@ a.m-article-header__img-credit {
 @include breakpoint('large+') {
   .m-article-header__spacer {
     display: none;
-    .s-min-height-digital-publication-header.s-scroll-direction-down &,
-    .s-sticky-digital-publication-header.s-scroll-direction-down & {
+    .s-sticky-digital-publication-header & {
       display: block;
       height: 75vh;
       width: 100vw;
