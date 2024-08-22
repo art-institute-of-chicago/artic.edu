@@ -2,7 +2,6 @@ const stickyDigitalPublicationHeader = function(container) {
   const MIN_CONTAINER_HEIGHT = 180; // in px
   const HEADER_IS_STICKY = 's-sticky-digital-publication-header';
   const HEADER_IS_SHRINKING = 's-shrinking-digital-publication-header';
-  const HEADER_AT_MIN_HEIGHT = 's-min-height-digital-publication-header';
 
   const getOffsetTop = element => {
     let offsetTop = 0;
@@ -15,7 +14,7 @@ const stickyDigitalPublicationHeader = function(container) {
 
   const setState = targetState => {
     let classList = document.documentElement.classList;
-    let possibleStates = [HEADER_IS_STICKY,  HEADER_IS_SHRINKING, HEADER_AT_MIN_HEIGHT];
+    let possibleStates = [HEADER_IS_STICKY,  HEADER_IS_SHRINKING];
     possibleStates.forEach(state => {
       if (state !== targetState && classList.contains(state)) {
         classList.remove(state);
@@ -60,10 +59,6 @@ const stickyDigitalPublicationHeader = function(container) {
       // If user has not scrolled to the container's minimum height, header is
       // "shrinking down to the minimum size"
       setState(HEADER_IS_SHRINKING);
-    } else if (scrollTop < containerOffsetHeight) {
-      // If user has not scrolled to the container offset height, display the
-      // header at its mininum height
-      setState(HEADER_AT_MIN_HEIGHT);
     } else {
       // As user continues to scroll down the page, keep the header stuck to the
       // top of the page
