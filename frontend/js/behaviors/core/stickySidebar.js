@@ -75,7 +75,7 @@ const stickySidebar = function(container){
         bottom();
       } else {
         sticky();
-        container.style.marginTop = ((!document.documentElement.classList.contains('s-unsticky-header') ? navContainer.clientHeight : 0) + (!document.documentElement.classList.contains('s-unsticky-digital-publication-header') ? stickyHeaderContainer.clientHeight : 0)) + 'px';
+        container.style.marginTop = (document.documentElement.classList.contains('p-digitalpublicationarticle-show') ? 0 : (!document.documentElement.classList.contains('s-unsticky-header') ? navContainer.clientHeight : 0) + (!document.documentElement.classList.contains('s-unsticky-digital-publication-header') ? stickyHeaderContainer.clientHeight : 0)) + 'px';
       }
     }
   }
