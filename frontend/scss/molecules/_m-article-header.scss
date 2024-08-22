@@ -1163,14 +1163,19 @@
     }
 
     .s-shrinking-digital-publication-header.s-scroll-direction-down & {
+      .m-article-header__img img {
+        opacity: 0;
+        transition: opacity 2s;
+      }
+
       .title {
         opacity: 0;
-        transition: opacity 1s;
+        transition: opacity 2s;
       }
 
       .subtitle {
         opacity: 0;
-        transition: opacity 1s;
+        transition: opacity 2s;
       }
     }
 
@@ -1198,7 +1203,13 @@
       }
 
       .m-article-header__img {
+        flex: 0 0 auto;
         height: 180px;
+
+        img {
+          opacity: 1;
+          transition: opacity 2s;
+        }
       }
     }
 
@@ -1216,6 +1227,10 @@
       height: 75vh;
       right: 50%;
       margin-right: -50vw;
+
+      &::before {
+        z-index: -1;
+      }
     }
   }
 
@@ -1228,11 +1243,6 @@
       left: -300%;
       margin-left: 0;
       max-width: colspan(50, 'xlarge');
-    }
-    .m-article-header__img {
-      height: 75vh;
-      right: 50%;
-      margin-right: -50vw;
     }
   }
 }
