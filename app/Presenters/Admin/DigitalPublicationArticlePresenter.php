@@ -61,17 +61,13 @@ class DigitalPublicationArticlePresenter extends BasePresenter
 
     public function countAllChildren($entity)
     {
-        $count = 0;
-        foreach ($entity->children as $child) {
-            if ($child->type !== DigitalPublicationArticleType::Grouping) {
-                $count += 1;
-            }
+        $descendants = $entity->descendants;
 
-            if ($child->children && $child->children->count() > 0) {
-                $count += $this->countAllChildren($child);
-            }
-        }
-        return $count;
+        $filteredDescendants = $descendants->filter(function ($descendant) {
+            return $descendant->type !== DigitalPublicationArticleType::Grouping;
+        });
+
+        return $filteredDescendants->count();
     }
 
     public function references()
