@@ -46,7 +46,7 @@
   left: 0;
   right: 0;
   top: 0;
-  height: 1px;
+  height: 0px;
   background-color: $color__rules--primary;
 }
 
@@ -313,6 +313,27 @@
 
     a:hover {
       text-decoration: underline;
+    }
+  }
+
+  .m-article-header__text::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    height: 150px;
+    width: 600px;
+    margin-left: calc(-600px + 50%);
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2));
+        padding-right: calc(#{colspan(1, '#{$name}')} * 2);
+        margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
+        margin-right: colspan(2, #{$name});
+      }
     }
   }
 
