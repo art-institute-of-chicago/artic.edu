@@ -4,6 +4,7 @@ namespace App\Presenters\Admin;
 
 use Illuminate\Support\Str;
 use App\Presenters\BasePresenter;
+use App\Enums\DigitalPublicationArticleType;
 
 class DigitalPublicationArticlePresenter extends BasePresenter
 {
@@ -40,10 +41,11 @@ class DigitalPublicationArticlePresenter extends BasePresenter
 
     public function getBrowseMoreLink($showAll = false)
     {
-        if ($this->entity->children->count() > 0  && !$showAll) {
+        if ($this->entity->children->count() > 0 && !$showAll) {
+            $totalChildrenCount = $this->countAllChildren($this->entity);
             return [
                 [
-                    'label' => 'Browse all ' . $this->entity->children->count() . ' ' . $this->entity->title,
+                    'label' => 'Browse all ' . $totalChildrenCount . ' ' . $this->entity->title,
                     'href' => route(
                         'collection.publications.digital-publications.showListing',
                         [
@@ -55,6 +57,17 @@ class DigitalPublicationArticlePresenter extends BasePresenter
             ];
         }
         return '';
+    }
+
+    public function countAllChildren($entity)
+    {
+        $descendants = $entity->descendants;
+
+        $filteredDescendants = $descendants->filter(function ($descendant) {
+            return $descendant->type !== DigitalPublicationArticleType::Grouping;
+        });
+
+        return $filteredDescendants->count();
     }
 
     public function references()
