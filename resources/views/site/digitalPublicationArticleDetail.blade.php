@@ -9,6 +9,7 @@
 @if ($bgcolor ?? false)
     <style>
         .m-article-header--digital-publication-article ~ .m-article-header__text::before,
+        .m-article-actions--publication__logo,
         .m-article-actions--publication__logo::before {
             background-color: {{ $bgcolor }};
         }
@@ -50,7 +51,7 @@
         {{-- Intentionally left blank for layout --}}
     </div>
 
-    <div class="m-article-header__text">
+    <div class="m-article-header__text u-show@large+">
         @component('components.atoms._title')
             @slot('tag', 'h1')
             @slot('font', 'f-headline-editorial')

@@ -1,3 +1,12 @@
+@if ($bgcolor ?? false)
+    <style>
+        .m-article-header--digital-publication-article ~ .m-article-header__text::before,
+        .m-article-actions--publication__logo:: {
+            background-color: {{ $bgcolor }};
+        }
+    </style>
+@endif
+
 <header class="m-article-header m-article-header--feature m-article-header--digital-publication-article">
     <div class="m-article-header__img">
         @if ($img)
@@ -18,5 +27,8 @@
                 ))
             @endcomponent
         @endif
+    </div>
+    <div class="m-article-actions--publication__logo u-show@medium-">
+        {!! $title_display ?? $title !!}
     </div>
 </header>
