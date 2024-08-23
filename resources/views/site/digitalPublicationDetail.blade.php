@@ -258,35 +258,85 @@
                             @component('components.molecules._m-title-bar', [
                                 'variation' => 'm-title-bar--compact m-title-bar--light',
                             ])
-                            @slot('links', (count($topLevelArticle->children) > 9) ? $topLevelArticle->present()->getBrowseMoreLink($showAll) : [])
+                            @slot('links', $topLevelArticle->present()->getBrowseMoreLink($showAll))
                             {!! $topLevelArticle->title !!}
                             @endcomponent
                         @endif
+                        </br>
 
                         {{-- Listing Component --}}
                         @if (!$topLevelArticle->suppress_listing)
-                            @component('components.organisms._o-grid-listing')
-                                @slot('cols_xsmall','1')
-                                @slot('cols_small','1')
-                                @slot('cols_medium','3')
-                                @slot('cols_large','3')
-                                @slot('cols_xlarge','3')
 
-                                @foreach ($topLevelArticle->children->filter(function($item) {
-                                    return !$item->suppress_listing;
-                                })->sortBy('position') as $item)
-                                    @if($loop->iteration <= 9 || $showAll == true)
-                                        @component('components.molecules._m-listing----cover')
-                                            @slot('variation', 'm-listing--cover--digital-publication')
-                                            @slot('href', $item->present()->url)
-                                            @slot('image', $item->imageFront('hero'))
-                                            @slot('title', $item->present()->title)
-                                        @endcomponent
-                                    @endif
-                                @endforeach
+                            @if ($showAll == true)
+
+                                    @foreach ($topLevelArticle->children->filter(function($item) {
+                                        return !$item->suppress_listing;
+                                    })->sortBy('position') as $item)
+
+                                        @if ($item->children && $item->children->count() > 0)
+                                            @component('components.molecules._m-title-bar', [
+                                                'variation' => 'm-title-bar--no-hr',
+                                                'titleFont' => 'f-list-3',
+                                            ])
+                                            {!! $item->title !!}
+                                            @endcomponent
+
+                                            @component('components.organisms._o-grid-listing')
+                                                @slot('cols_xsmall','2')
+                                                @slot('cols_small','2')
+                                                @slot('cols_medium','4')
+                                                @slot('cols_large','4')
+                                                @slot('cols_xlarge','4')
+                                        
+                                                @foreach ($item->children as $child)
+                                                    @component('components.molecules._m-listing----digital-publication-article-entry')
+                                                        @slot('href', $child->present()->url)
+                                                        @slot('image', $child->imageFront('hero'))
+                                                        @slot('title', $child->present()->title)
+                                                        @slot('title_display', $child->present()->title_display)
+                                                        @slot('label', $child->present()->label)
+                                                        @slot('imageSettings', array(
+                                                            'fit' => 'crop',
+                                                            'ratio' => '16:9',
+                                                            'srcset' => array(200,400,600),
+                                                            'sizes' => ImageHelpers::aic_imageSizes(array(
+                                                                'xsmall' => '216px',
+                                                                'small' => '216px',
+                                                                'medium' => '18',
+                                                                'large' => '13',
+                                                                'xlarge' => '13',
+                                                            )),
+                                                        ))
+                                                    @endcomponent
+                                                @endforeach
+
+                                            @endcomponent
+                                        @endif
+                                    @endforeach
+                            @else
+                                @component('components.organisms._o-grid-listing')
+                                    @slot('cols_xsmall','1')
+                                    @slot('cols_small','1')
+                                    @slot('cols_medium','3')
+                                    @slot('cols_large','3')
+                                    @slot('cols_xlarge','3')
+
+                                    @foreach ($topLevelArticle->children->filter(function($item) {
+                                        return !$item->suppress_listing;
+                                    })->sortBy('position') as $item)
+                                        @if($loop->iteration <= 9 || $showAll == true)
+                                            @component('components.molecules._m-listing----cover')
+                                                @slot('variation', 'm-listing--cover--digital-publication')
+                                                @slot('href', $item->present()->url)
+                                                @slot('image', $item->imageFront('hero'))
+                                                @slot('title', $item->present()->title)
+                                            @endcomponent
+                                        @endif
+                                    @endforeach
 
 
-                            @endcomponent
+                                @endcomponent
+                            @endif
                         @endif
                     @break
 
