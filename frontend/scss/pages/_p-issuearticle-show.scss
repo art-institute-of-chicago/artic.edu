@@ -107,7 +107,7 @@
     color: $color__white;
     @include breakpoint('medium-') {
       padding-top: 40px;
-      width: 100vw;
+      width: 100%;
     }
 
     &::before {
@@ -118,7 +118,7 @@
       right: 0;
       bottom: 0;
       z-index: -1;
-      width: 200vw;
+      width: 300vw;
       margin-left: calc(-600px + 50%);
       @each $name in ('large', 'xlarge') {
         @include breakpoint('#{$name}') {
@@ -371,5 +371,11 @@ Styling related specifically to digital publications
   // Gallery block
   .o-blocks > h2:not([class*=f-]) {
     margin-top: 20px;
+  }
+
+  .o-article > .o-article__primary-actions--digital-publication {
+    @include breakpoint('xsmall') {
+      display: none;
+    }
   }
 }
