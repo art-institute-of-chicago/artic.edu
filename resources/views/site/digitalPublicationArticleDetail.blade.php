@@ -6,6 +6,15 @@
 
 @section('content')
 
+@if ($bgcolor ?? false)
+    <style>
+        .m-article-header--digital-publication-article ~ .m-article-header__text::before,
+        .m-article-actions--publication__logo::before {
+            background-color: {{ $bgcolor }};
+        }
+    </style>
+@endif
+
 <article class="o-article">
     @if ($item->type == DigitalPublicationArticleType::Contributions)
         @component('components.molecules._m-article-header----digital-publication-article')

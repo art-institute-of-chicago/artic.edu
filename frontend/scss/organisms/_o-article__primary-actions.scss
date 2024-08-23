@@ -269,6 +269,7 @@
     height: 110px;
     margin-bottom: 40px;
     white-space: nowrap;
+    color: $color__white;
 
     &::before {
       content: "";
@@ -277,7 +278,6 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: $color__black--50;
       z-index: -1;
       height: 150px;
       width: 600px;
@@ -290,7 +290,19 @@
           margin-right: colspan(2, #{$name});
         }
       }
+    }
 
+    a {
+      color: $color__link--publications;
+    }
+
+    a:hover,
+    a:focus {
+      color: $color__link--publications-hover;
+    }
+
+    a:active {
+      color: $color__link--publications-active;
     }
 
     @include breakpoint('large+') {
