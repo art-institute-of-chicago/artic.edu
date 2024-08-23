@@ -1137,6 +1137,7 @@
       margin-top: 35px;
     }
   }
+
   @include breakpoint('medium-') {
     .s-sticky-digital-publication-header {
       &~.m-sidebar-toggle {
@@ -1165,51 +1166,6 @@
 
     .subtitle {
       opacity: 1;
-    }
-
-    .s-shrinking-digital-publication-header.s-scroll-direction-down & {
-      .m-article-header__img img {
-        opacity: 0;
-        transition: opacity 2s;
-      }
-
-      .title {
-        opacity: 0;
-        transition: opacity 2s;
-      }
-
-      .subtitle {
-        opacity: 0;
-        transition: opacity 2s;
-      }
-    }
-
-    .s-sticky-digital-publication-header & {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: map-get($zindexs, 'header');
-
-      .title {
-        margin-bottom: auto;
-        margin-top: auto;
-        opacity: 1;
-        transition: opacity 2s;
-      }
-
-      .subtitle {
-        display: none;
-      }
-
-      .m-article-header__img {
-        flex: 0 0 auto;
-        height: 180px;
-
-        img {
-          opacity: 1;
-          transition: opacity 2s;
-        }
-      }
     }
 
     .m-article-header__text {
@@ -1244,6 +1200,101 @@
       max-width: colspan(50, 'xlarge');
     }
   }
+
+  .p-digitalpublications-showlisting & {
+    @include breakpoint('large+') {
+      .m-article-header__img {
+        height: 180px;
+
+        img {
+          display: none;
+        }
+      }
+
+      .title {
+        margin-bottom: auto;
+        margin-top: auto;
+      }
+
+      .subtitle {
+        display: none;
+      }
+
+    }
+  }
+}
+
+// TODO Isolate the following to a _s-sticky-digital-publication-header.scss file?
+.s-shrinking-digital-publication-header.s-scroll-direction-down {
+  @include breakpoint('large+') {
+    .m-article-header__img img {
+      opacity: 0;
+      transition: opacity 2s;
+    }
+
+    .title {
+      opacity: 0;
+      transition: opacity 2s;
+    }
+
+    .subtitle {
+      opacity: 0;
+      transition: opacity 2s;
+    }
+  }
+}
+
+.s-sticky-digital-publication-header {
+  @include breakpoint('large+') {
+    .m-article-header--digital-publication {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: map-get($zindexs, 'header');
+
+      .title {
+        margin-bottom: auto;
+        margin-top: auto;
+        opacity: 1;
+        transition: opacity 2s;
+      }
+
+      .subtitle {
+        display: none;
+      }
+
+      .m-article-header__img {
+        flex: 0 0 auto;
+        height: 180px;
+
+        img {
+          opacity: 1;
+          transition: opacity 2s;
+        }
+      }
+    }
+
+    .m-article-header__spacer {
+      display: block;
+      width: 100vw;
+    }
+
+    &.p-digitalpublications-show {
+      .m-article-header__spacer {
+        height: 75vh;
+      }
+    }
+
+    &.p-digitalpublications-showlisting {
+      .m-article-header__spacer {
+        height: 180px;
+      }
+    }
+  }
+}
+
+.m-article-header__spacer {
+  display: none;
 }
 
 .m-article-header--generic {
@@ -1661,15 +1712,4 @@ a.m-article-header__img-credit {
 .m-article-header__img-thumbs button:hover + img,
 .m-article-header__img-thumbs button[disabled] + img {
   outline: 1px solid $color__black--54;
-}
-
-@include breakpoint('large+') {
-  .m-article-header__spacer {
-    display: none;
-    .s-sticky-digital-publication-header & {
-      display: block;
-      height: 75vh;
-      width: 100vw;
-    }
-  }
 }
