@@ -1,5 +1,6 @@
 @if ($bgcolor ?? false)
     <style>
+        .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__img::before,
         .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__text,
         .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__text::before {
             background-color: {{ $bgcolor }};
