@@ -1138,25 +1138,6 @@
     }
   }
 
-  @include breakpoint('medium-') {
-    .s-sticky-digital-publication-header {
-      &~.m-sidebar-toggle {
-        position: fixed;
-        top: 0;
-        width: 100vw;
-        z-index: map-get($zindexs, 'header');
-
-        &::before {
-          left: 0;
-          width: 150vw;
-        }
-      }
-      .m-article-header__spacer {
-        min-height: 54px;
-      }
-    }
-  }
-
   @include breakpoint('large+') {
     flex-flow: row-reverse nowrap;
 
@@ -1202,6 +1183,10 @@
   }
 
   .p-digitalpublications-showlisting & {
+    @include breakpoint('medium-') {
+      display: none;
+    }
+
     @include breakpoint('large+') {
       .m-article-header__img {
         height: 180px;
@@ -1245,6 +1230,24 @@
 }
 
 .s-sticky-digital-publication-header {
+  @include breakpoint('medium-') {
+    .m-sidebar-toggle {
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      z-index: map-get($zindexs, 'header');
+
+      &::before {
+        left: 0;
+        width: 150vw;
+      }
+    }
+
+    .m-article-header__spacer {
+      min-height: 54px;
+    }
+  }
+
   @include breakpoint('large+') {
     .m-article-header--digital-publication {
       position: fixed;
