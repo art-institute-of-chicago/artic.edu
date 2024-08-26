@@ -24,7 +24,7 @@
             </div>
         @else
             <span class="m-link-list__item o-accordion__panel-content">
-                <a class="m-link-list__trigger f-secondary {{ $isActive ? 'active' : '' }}" href="{{ $href }}"{!! (isset($item->gtmAttributes)) ? ' '.$item->gtmAttributes.'' : '' !!}>
+                <a class="m-link-list__trigger f-secondary {{ $isActive ? 'active' : '' }}" href="{{ $item->present()->getCanonicalUrl }}"{!! (isset($item->gtmAttributes)) ? ' '.$item->gtmAttributes.'' : '' !!}>
                     <span class="m-link-list__label">{!! $item->title !!}</span>
                 </a>
             </span>
