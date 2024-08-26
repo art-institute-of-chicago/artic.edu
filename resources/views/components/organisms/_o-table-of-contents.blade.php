@@ -7,18 +7,6 @@
                 $isExpanded = true;
             }
             $isActive = isset($currentArticle) && $item->id === $currentArticle->id;
-
-            if ($item->type === App\Enums\DigitalPublicationArticleType::Grouping) {
-                $href = route(
-                    'collection.publications.digital-publications.showListing',
-                    [
-                        'id' => $item->digitalPublication->id,
-                        'slug' => $item->digitalPublication->getSlug()
-                    ]
-                ) . '#' . Str::kebab($item->title);
-            } else {
-                $href = $item->url;
-            }
         @endphp
 
         @if (count($item->children) > 0)
