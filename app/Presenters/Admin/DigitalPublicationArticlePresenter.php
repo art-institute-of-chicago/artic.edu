@@ -10,7 +10,17 @@ class DigitalPublicationArticlePresenter extends BasePresenter
 {
     public function getCanonicalUrl()
     {
-        return $this->getArticleUrl($this->entity->digitalPublication);
+        if ($this->entity->type === DigitalPublicationArticleType::Grouping) {
+            return route(
+                'collection.publications.digital-publications.showListing',
+                [
+                    'id' => $this->entity->digitalPublication->id,
+                    'slug' => $this->entity->digitalPublication->getSlug()
+                ]
+            ) . '#' . Str::kebab($this->entity->title);
+        } else {
+            return $this->getArticleUrl($this->entity->digitalPublication);
+        }
     }
 
     public function type()
