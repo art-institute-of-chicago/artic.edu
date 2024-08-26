@@ -6,7 +6,26 @@
 
 @section('content')
 
+@if ($bgcolor ?? false)
+    <style>
+        .m-article-header--digital-publication-article ~ .m-article-header__text::before,
+        .m-article-actions--publication__logo,
+        .m-article-actions--publication__logo::before {
+            background-color: {{ $bgcolor }};
+        }
+    </style>
+@endif
+
 <article class="o-article">
+    @if ($item->type == DigitalPublicationArticleType::Contributions)
+        @component('components.molecules._m-article-header----digital-publication-article')
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display)
+            @slot('img', $item->imageFront('hero'))
+            @slot('imgMobile', $item->imageFront('mobile_hero'))
+        @endcomponent
+    @endif
+
     @component('components.molecules._m-sidebar-toggle')
         @slot('title', $item->digitalPublication->title_display ?? $item->digitalPublication->title)
     @endcomponent
@@ -20,28 +39,26 @@
         @endcomponent
     </div>
 
-    @switch ($item->type)
-        @case (DigitalPublicationArticleType::Contributions)
-            @component('components.molecules._m-article-header----journal-article')
-                @slot('title', $item->present()->title)
-                @slot('title_display', $item->present()->title_display)
-                @slot('img', $item->imageFront('hero'))
-                @slot('imgMobile', $item->imageFront('mobile_hero'))
-            @endcomponent
-            @break
-        @case (DigitalPublicationArticleType::Entry)
-            {{-- The Entry type does not display a header --}}
-            @break
-        @default
-            @component('components.molecules._m-article-header')
-                @slot('headerType', 'generic')
-                @slot('title', $item->present()->title)
-                @slot('title_display', $item->present()->title_display ?? null) {{-- WEB-2244: Populate this? --}}
-            @endcomponent
-    @endswitch
+    @if ($item->type != DigitalPublicationArticleType::Contributions && $item->type != DigitalPublicationArticleType::Entry)
+        @component('components.molecules._m-article-header')
+            @slot('headerType', 'generic')
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display ?? null) {{-- WEB-2244: Populate this? --}}
+        @endcomponent
+    @endif
 
     <div class="o-article__secondary-actions o-article__secondary-actions--empty">
         {{-- Intentionally left blank for layout --}}
+    </div>
+
+    <div class="m-article-header__text u-show@large+">
+        @component('components.atoms._title')
+            @slot('tag', 'h1')
+            @slot('font', 'f-headline-editorial')
+            @slot('itemprop', 'name')
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display ?? null)
+        @endcomponent
     </div>
 
     @if ($item->heading)
