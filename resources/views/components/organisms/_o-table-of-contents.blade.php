@@ -7,6 +7,18 @@
                 $isExpanded = true;
             }
             $isActive = isset($currentArticle) && $item->id === $currentArticle->id;
+
+            if ($item->type === App\Enums\DigitalPublicationArticleType::Grouping) {
+                $href = route(
+                    'collection.publications.digital-publications.showListing',
+                    [
+                        'id' => $item->digitalPublication->id,
+                        'slug' => $item->digitalPublication->getSlug()
+                    ]
+                ) . '#' . Str::kebab($item->title);
+            } else {
+                $href = $item->url;
+            }
         @endphp
 
         @if (count($item->children) > 0)
@@ -24,7 +36,7 @@
             </div>
         @else
             <span class="m-link-list__item o-accordion__panel-content">
-                <a class="m-link-list__trigger f-secondary {{ $isActive ? 'active' : '' }}" href="{{ $item->url }}"{!! (isset($item->gtmAttributes)) ? ' '.$item->gtmAttributes.'' : '' !!}>
+                <a class="m-link-list__trigger f-secondary {{ $isActive ? 'active' : '' }}" href="{{ $href }}"{!! (isset($item->gtmAttributes)) ? ' '.$item->gtmAttributes.'' : '' !!}>
                     <span class="m-link-list__label">{!! $item->title !!}</span>
                 </a>
             </span>
