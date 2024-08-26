@@ -101,6 +101,47 @@
     }
   }
 
+  .m-article-actions--publication__logo {
+    height: 110px;
+    padding-bottom: 40px;
+    color: $color__white;
+    @include breakpoint('medium-') {
+      padding-top: 40px;
+      width: 100%;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      width: 300vw;
+      margin-left: calc(-600px + 50%);
+      @each $name in ('large', 'xlarge') {
+        @include breakpoint('#{$name}') {
+          width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2));
+          padding-right: calc(#{colspan(1, '#{$name}')} * 2);
+          margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
+          margin-right: colspan(2, #{$name});
+        }
+      }
+    }
+
+    @include font-styles-untuck(generate-font-obj(
+      (
+        font-family: $serif-font,
+        font-family-loaded: $serif-font--loaded,
+        font-loaded-class: $serif-font-loaded-class,
+        settings: (
+          'xsmall': (font-size: 22, line-height: 23, push: 0),
+        )
+      )
+    ));
+  }
+
   .o-article {
     padding-bottom: 0;
 
@@ -145,7 +186,7 @@
     padding-top: 0;
   }
 
-  .m-article-header--journal-article {
+  .m-article-header--digital-publication-article {
     padding-top: 0;
     margin-bottom: 0 !important; // Bad
 
@@ -170,7 +211,12 @@
 
     .m-article-header__img {
       min-height: 240px;
-      height: 60vh;
+      height: 40vh;
+      right: 50%;
+      margin-right: -50vw;
+      left: auto;
+      margin-left: auto;
+      width: 100vw;
 
       img {
         width: 100%;
@@ -325,5 +371,11 @@ Styling related specifically to digital publications
   // Gallery block
   .o-blocks > h2:not([class*=f-]) {
     margin-top: 20px;
+  }
+
+  .o-article > .o-article__primary-actions--digital-publication {
+    @include breakpoint('xsmall') {
+      display: none;
+    }
   }
 }

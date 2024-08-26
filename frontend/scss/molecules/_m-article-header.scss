@@ -1300,6 +1300,34 @@
   display: none;
 }
 
+.m-article-header--digital-publication-article ~ .m-article-header__text {
+  height: 140px;
+  color: $color__white;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 40vh;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    height: 150px;
+    width: 200vw;
+    margin-left: calc(-600px + 50%);
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        left: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2));
+        margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
+      }
+    }
+  }
+
+  .title {
+    color: $color__white;
+  }
+}
+
 .m-article-header--generic {
   padding-top: 0;
 
