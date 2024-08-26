@@ -52,7 +52,7 @@ const stickyDigitalPublicationHeader = function(container) {
   function update() {
     scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
-    if (scrollTop < navContainerHeight) {
+    if (scrollTop < (containerOffsetHeight - MIN_CONTAINER_HEIGHT)*.75) {
       // If user has not scrolled past nav container to the digital publication
       // header, unset state
       setState(null);
