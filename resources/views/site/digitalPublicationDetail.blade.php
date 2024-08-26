@@ -327,7 +327,13 @@
                                         @if($loop->iteration <= 9 || $showAll == true)
                                             @component('components.molecules._m-listing----cover')
                                                 @slot('variation', 'm-listing--cover--digital-publication')
-                                                @slot('href', $item->present()->url)
+                                                @slot('href', route(
+                                                    'collection.publications.digital-publications.showListing',
+                                                    [
+                                                        'id' => $item->digitalPublication->id,
+                                                        'slug' => $item->digitalPublication->getSlug()
+                                                    ]
+                                                ) . '#' . Str::kebab($item->title))
                                                 @slot('image', $item->imageFront('hero'))
                                                 @slot('title', $item->present()->title)
                                             @endcomponent
