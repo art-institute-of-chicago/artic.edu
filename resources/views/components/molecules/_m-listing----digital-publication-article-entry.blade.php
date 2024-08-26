@@ -1,5 +1,5 @@
 <{{ $tag ?? 'li' }} class="m-listing m-listing--digital-publication-article-entry m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <a href="{{ $href }}" class="m-listing__link">
+    <a href="{{ $href }}" id={{Str::kebab($title)}} class="m-listing__link">
         <span class="m-listing__img">
             @if ($image)
                 @component('components.atoms._img')
