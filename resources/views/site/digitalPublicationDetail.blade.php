@@ -67,7 +67,7 @@
                                         @if($loop->first && $showAll == false)
                                             @component('components.molecules._m-showcase')
                                                 @slot('variation', 'showcase--digital-publication')
-                                                @slot('tag', $item->present()->type)
+                                                @slot('tag', $item->present()->label ?? null)
                                                 @slot('title', $item->present()->title_display ?? $item->present()->title)
                                                 @slot('author_display', $item->showAuthors())
                                                 @slot('description', $item->present()->list_description)
