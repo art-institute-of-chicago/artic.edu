@@ -22,6 +22,36 @@
             @slot('currentArticle', $currentArticle ?? null)
         @endcomponent
     @endif
+
+    <ul class="m-article-actions{{ (isset($variation)) ? ' '.$variation : '' }}" aria-labelledby="h-article-actions{{ (isset($variation)) ? $variation : '' }}">
+
+        @if (empty($hideShare))
+            <li class="m-article-actions__action">
+                @component('components.atoms._btn')
+                    @slot('variation', 'btn--icon'.((isset($articleType) and $articleType === 'editorial') ? ' btn--senary' : '').((isset($btnVariation)) ? ' '.$btnVariation : ''))
+                    @slot('font', '')
+                    @slot('icon', 'icon--share--24')
+                    @slot('behavior','sharePage')
+                    @slot('ariaLabel','Share page')
+                    @slot('dataAttributes',' data-share-url="' . ($shareUrl ?? '') . '"')
+                @endcomponent
+            </li>
+        @endif
+
+        @if (isset($pdfDownloadPath))
+            <li class="m-article-actions__action">
+                @component('components.atoms._btn')
+                    @slot('variation', 'btn--icon ' . ((isset($btnVariation)) ? ' '.$btnVariation : ''))
+                    @slot('font', '')
+                    @slot('tag', 'a')
+                    @slot('href', $pdfDownloadPath)
+                    @slot('icon', 'icon--download--24')
+                    @slot('ariaLabel','Download PDF')
+                @endcomponent
+            </li>
+        @endif
+
+    </ul>
 </div>
 
 <div class="o-sticky-sidebar__placeholder"></div>
