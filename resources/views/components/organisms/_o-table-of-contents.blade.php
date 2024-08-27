@@ -4,7 +4,15 @@
             if (isset($currentArticle)) {
                 $isExpanded = $currentArticle->parent === $item || $currentArticle->present()->isArticleInTree($item->children);
             } else {
-                $isExpanded = true;
+                if ($item->type === App\Enums\DigitalPublicationArticleType::Grouping) {
+
+                    $hasGroupingAncestor = $item->ancestors->contains(function ($ancestor) {
+                        return $ancestor->type === App\Enums\DigitalPublicationArticleType::Grouping;
+                    });
+                    $isExpanded = !$hasGroupingAncestor;
+                } else {
+                    $isExpanded = true;
+                }
             }
             $isActive = isset($currentArticle) && $item->id === $currentArticle->id;
         @endphp
