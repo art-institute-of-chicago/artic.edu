@@ -225,6 +225,10 @@
       }
     }
 
+    .m-article-header__img::before {
+      background-image: none;
+    }
+
     .m-article-header__text {
       position: absolute;
       bottom: 0;
