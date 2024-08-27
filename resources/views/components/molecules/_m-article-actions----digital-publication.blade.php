@@ -25,18 +25,16 @@
 
     <ul class="m-article-actions{{ (isset($variation)) ? ' '.$variation : '' }}" aria-labelledby="h-article-actions{{ (isset($variation)) ? $variation : '' }}">
 
-        @if (empty($hideShare))
-            <li class="m-article-actions__action">
-                @component('components.atoms._btn')
-                    @slot('variation', 'btn--icon'.((isset($articleType) and $articleType === 'editorial') ? ' btn--senary' : '').((isset($btnVariation)) ? ' '.$btnVariation : ''))
-                    @slot('font', '')
-                    @slot('icon', 'icon--share--24')
-                    @slot('behavior','sharePage')
-                    @slot('ariaLabel','Share page')
-                    @slot('dataAttributes',' data-share-url="' . ($shareUrl ?? '') . '"')
-                @endcomponent
-            </li>
-        @endif
+        <li class="m-article-actions__action">
+            @component('components.atoms._btn')
+                @slot('variation', 'btn--icon'.((isset($articleType) and $articleType === 'editorial') ? ' btn--senary' : '').((isset($btnVariation)) ? ' '.$btnVariation : ''))
+                @slot('font', '')
+                @slot('icon', 'icon--share--24')
+                @slot('behavior','sharePage')
+                @slot('ariaLabel','Share page')
+                @slot('dataAttributes',' data-share-url="' . ($shareUrl ?? '') . '"')
+            @endcomponent
+        </li>
 
         @if (isset($pdfDownloadPath))
             <li class="m-article-actions__action">
