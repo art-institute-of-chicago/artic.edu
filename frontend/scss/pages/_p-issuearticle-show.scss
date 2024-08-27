@@ -122,9 +122,9 @@
       margin-left: calc(-600px + 50%);
       @each $name in ('large', 'xlarge') {
         @include breakpoint('#{$name}') {
-          width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2));
+          width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2) + 14vw);
           padding-right: calc(#{colspan(1, '#{$name}')} * 2);
-          margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
+          margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1) - 14vw);
           margin-right: colspan(2, #{$name});
         }
       }
