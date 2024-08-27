@@ -1214,17 +1214,17 @@
   @include breakpoint('large+') {
     .m-article-header__img img {
       opacity: 0;
-      transition: opacity 2s;
+      transition: opacity 1s;
     }
 
-    .title {
+    .m-article-header__text .title {
       opacity: 0;
-      transition: opacity 2s;
+      transition: opacity 1s;
     }
 
-    .subtitle {
+    .m-article-header__text .subtitle {
       opacity: 0;
-      transition: opacity 2s;
+      transition: opacity 1s;
     }
   }
 }
@@ -1255,14 +1255,14 @@
       width: 100%;
       z-index: map-get($zindexs, 'header');
 
-      .title {
+      .m-article-header__text .title {
         margin-bottom: auto;
         margin-top: auto;
         opacity: 1;
-        transition: opacity 2s;
+        transition: opacity 1s;
       }
 
-      .subtitle {
+      .m-article-header__text .subtitle {
         display: none;
       }
 
@@ -1272,7 +1272,7 @@
 
         img {
           opacity: 1;
-          transition: opacity 2s;
+          transition: opacity 1s;
         }
       }
     }
