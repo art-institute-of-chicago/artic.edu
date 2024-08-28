@@ -108,6 +108,8 @@
     @include breakpoint('medium-') {
       padding-top: 40px;
       width: 100%;
+      display: flex;
+      align-items: center;
     }
 
     &::before {
@@ -178,7 +180,7 @@
 
   .o-article__body {
     padding-top: 0;
-    margin-top: 25px;
+    margin-top: 60px;
   }
 
   .o-article__secondary-actions {
@@ -385,6 +387,10 @@ Styling related specifically to digital publications
 }
 
 .p-digitalpublicationarticle-show:not(.p-t-contributions) {
+  .m-article-header  {
+    display: none;
+  }
+
   .m-article-header .m-article-header__text {
     display: none;
   }
