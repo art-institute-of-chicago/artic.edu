@@ -108,6 +108,8 @@
     @include breakpoint('medium-') {
       padding-top: 40px;
       width: 100%;
+      display: flex;
+      align-items: center;
     }
 
     &::before {
