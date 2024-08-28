@@ -387,6 +387,10 @@ Styling related specifically to digital publications
 }
 
 .p-digitalpublicationarticle-show:not(.p-t-contributions) {
+  .m-article-header  {
+    display: none;
+  }
+
   .m-article-header .m-article-header__text {
     display: none;
   }
