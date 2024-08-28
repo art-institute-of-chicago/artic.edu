@@ -1303,6 +1303,12 @@
 .m-article-header--digital-publication-article ~ .m-article-header__text {
   height: 140px;
   color: $color__white;
+  margin-top: -6px;
+
+  @include breakpoint('large+') {
+    display: flex;
+    align-items: center;
+  }
 
   &::before {
     content: "";
