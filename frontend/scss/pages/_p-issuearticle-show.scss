@@ -377,7 +377,7 @@ Styling related specifically to digital publications
     margin-top: 20px;
   }
 
-  .o-article > .o-article__primary-actions--digital-publication {
+  &:not(.is-sidebar-overlay) .o-article > .o-article__primary-actions--digital-publication {
     @include breakpoint('xsmall') {
       display: none;
     }
