@@ -118,7 +118,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
 
         .m-article-actions--publication__logo,
         .m-article-actions--publication__logo::before {
-          background-color: $color__white;
+          background-color: transparent;
           transition: background-color 1s;
         }
 
@@ -129,7 +129,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
       }
 
       .m-article-header--digital-publication-article ~ .m-article-header__text::before {
-        background-color: $color__white;
+        background-color: transparent;
         transition: background-color 1s;
       }
     }
