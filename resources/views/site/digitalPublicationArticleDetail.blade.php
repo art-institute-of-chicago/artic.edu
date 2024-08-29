@@ -9,8 +9,7 @@
 @if ($bgcolor ?? false)
     <style>
         .m-article-header--digital-publication-article ~ .m-article-header__text::before,
-        .m-article-actions--publication__logo,
-        .m-article-actions--publication__logo::before {
+        .m-article-actions--publication__logo.u-show\@medium-::before {
             background-color: {{ $bgcolor }};
             transition: background-color 1s;
         }
