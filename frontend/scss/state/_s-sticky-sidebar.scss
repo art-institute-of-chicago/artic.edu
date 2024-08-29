@@ -13,6 +13,11 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
   }
 
   &.is-sidebar-overlay {
+    .m-article-actions--publication__logo a {
+      color: $color__text--title !important;
+      transition: color 1s;
+    }
+
     @include breakpoint('medium-') {
       .g-mask {
         right: 0;
