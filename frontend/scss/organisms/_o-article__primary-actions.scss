@@ -259,6 +259,7 @@
 .o-article__primary-actions--digital-publication {
   @extend %o-article__primary-actions--toggleable;
   padding-top: 0px;
+  z-index: 4;
 
   .o-sticky-sidebar__sticker {
     padding-top: 40px;

@@ -1324,12 +1324,14 @@
     @each $name in ('large', 'xlarge') {
       @include breakpoint('#{$name}') {
         margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
+        z-index: 3;
       }
     }
   }
 
   .title {
     color: $color__white;
+    z-index: 4;
   }
 }
 
