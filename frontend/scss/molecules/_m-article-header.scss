@@ -1323,14 +1323,15 @@
     margin-left: calc(-600px + 50%);
     @each $name in ('large', 'xlarge') {
       @include breakpoint('#{$name}') {
-        left: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2));
         margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
+        z-index: 3;
       }
     }
   }
 
   .title {
     color: $color__white;
+    z-index: 4;
   }
 }
 

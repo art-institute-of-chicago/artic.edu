@@ -259,6 +259,7 @@
 .o-article__primary-actions--digital-publication {
   @extend %o-article__primary-actions--toggleable;
   padding-top: 0px;
+  z-index: 4;
 
   .o-sticky-sidebar__sticker {
     padding-top: 40px;
@@ -270,6 +271,8 @@
     margin-bottom: 40px;
     white-space: nowrap;
     color: $color__white;
+    transition: display 1s, background-color 1s;
+
 
     &::before {
       content: "";
@@ -294,6 +297,7 @@
 
     a {
       color: $color__link--publications;
+      transition: color 1s;
     }
 
     a:hover,
@@ -326,6 +330,10 @@
     a:hover {
       text-decoration: underline;
     }
+  }
+
+  .m-article-header__text {
+    transition: background-color 1s, display 1s;
   }
 
   .m-article-header__text::before {
