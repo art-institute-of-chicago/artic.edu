@@ -270,12 +270,12 @@
   }
 
   .m-media--s.o-blocks__block .m-media__img {
-    width: fit-content;
+    max-width: 450px;
   }
 
   .m-media.o-blocks__block .m-media__img img {
     margin-left: 0;
-    max-height: 450px;
+    max-height: 100%;
   }
 
   .m-media--l, .m-media--m {
