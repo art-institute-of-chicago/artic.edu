@@ -269,7 +269,7 @@
     margin-bottom: 50px;
   }
 
-  .m-media--s.o-blocks__block .m-media__img {
+  .m-media--s.o-blocks__block .m-media__img:not(.m-media__img--video) {
     max-width: 450px;
   }
 
