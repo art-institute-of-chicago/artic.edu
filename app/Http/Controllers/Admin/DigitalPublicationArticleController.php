@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use A17\Twill\Http\Controllers\Admin\NestedModuleController;
 use App\Repositories\DigitalPublicationRepository;
 use App\Http\Controllers\Admin\Behaviors\IsNestedModule;
+use Illuminate\Support\Collection;
 
 class DigitalPublicationArticleController extends NestedModuleController
 {
@@ -73,6 +74,32 @@ class DigitalPublicationArticleController extends NestedModuleController
             ]
             ]
         );
+    }
+
+    protected function getSubbrowserItems($digitalPublicationId)
+    {
+        $articles = $this->repository->where('digital_publication_id', $digitalPublicationId)
+                                     ->withDepth()
+                                     ->defaultOrder()
+                                     ->get()
+                                     ->filter(function ($article) {
+                                         return $article->depth < 3;
+                                     });
+
+        $formattedArticles = $articles->map(function ($article) use ($digitalPublicationId) {
+            return [
+                'id' => $article->id,
+                'name' => $article->title,
+                'edit' => route('admin.collection.articles_publications.digitalPublications.articles.edit', [
+                    'digitalPublication' => $digitalPublicationId,
+                    'article' => $article->id
+                ]),
+                'endpointType' => 'digitalPublicationArticles',
+                'thumbnail' => $article->defaultCmsImage(['w' => 100, 'h' => 100]),
+            ];
+        });
+
+        return ['data' => $formattedArticles->toArray()];
     }
 
     protected function transformIndexItems($items)
