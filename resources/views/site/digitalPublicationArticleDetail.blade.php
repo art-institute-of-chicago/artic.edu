@@ -12,6 +12,7 @@
         .m-article-actions--publication__logo,
         .m-article-actions--publication__logo::before {
             background-color: {{ $bgcolor }};
+            transition: background-color 1s;
         }
     </style>
 @endif
