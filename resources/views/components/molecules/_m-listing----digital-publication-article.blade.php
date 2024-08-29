@@ -44,7 +44,7 @@
             @component('components.atoms._link')
                 @slot('font', 'f-secondary')
                 @slot('href', $href)
-                Read full {{isset($type) ? Str::singular(Str::lower($type)) : 'article'}}<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>
+                Read more <svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>
             @endcomponent
             </span>
         </span>
