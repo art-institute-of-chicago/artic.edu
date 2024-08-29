@@ -398,7 +398,7 @@ Styling related specifically to digital publications
   .o-article__primary-actions--digital-publication {
     .m-article-actions--publication__logo,
     .m-article-actions--publication__logo::before {
-      background: $color__white;;
+      background: transparent !important;
     }
 
     .m-article-actions--publication__logo {
