@@ -205,6 +205,75 @@ class StringHelpers
         return [$text, $_collectedReferences];
     }
 
+    public static function convertReferenceText($dom, $node)
+    {
+        global $_paragraphCount;
+
+        $_paragraphCount++;
+
+        $newNode = $dom->createElement('p');
+        $newNode->setAttribute('id', 'p-' . $_paragraphCount);
+        $newNode->setAttribute('class', 'p--linked');
+
+        $refSpan = $dom->createElement('span');
+        $refSpan->setAttribute('class', 'p--linked__ref');
+
+        $textSpan = $dom->createElement('span');
+        $textSpan->setAttribute('class', 'p--linked__text');
+
+        $refAnchor = $dom->createElement('a');
+        $refAnchor->setAttribute('href', '#p-' . $_paragraphCount);
+        $refAnchor->setAttribute('class', 'reset');
+
+        $refText = $dom->createTextNode($_paragraphCount);
+        $refAnchor->appendChild($refText);
+        $refSpan->appendChild($refAnchor);
+
+        foreach ($node->childNodes as $childNode) {
+            $textSpan->appendChild(clone $childNode);
+        }
+
+        $newNode->appendChild($textSpan);
+        $newNode->appendChild($refSpan);
+
+        return $newNode;
+    }
+
+    public static function parseFootnotes($oldContent)
+    {
+        global $_collectedReferences;
+        if (!isset($_collectedReferences)) {
+            $_collectedReferences = [];
+        }
+        list($newContent, $_collectedReferences)  = static::convertReferenceLinks($oldContent, $_collectedReferences);
+
+        global $_paragraphCount;
+
+        if (isset($_paragraphCount)) {
+            $oldInternalErrors = libxml_use_internal_errors(true);
+
+            $dom = new \DomDocument();
+            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $newContent, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+            $xpath = new \DOMXpath($dom);
+            $nodes = $xpath->query('//p');
+
+            $wrapper = $dom->createElement('div');
+            $wrapper->setAttribute('class', 'wrapper');
+
+            foreach ($nodes as $node) {
+                $newNode = static::convertReferenceText($dom, $node);
+                $node->parentNode->replaceChild($newNode, $node);
+            }
+
+            $newContent = $dom->saveHTML($dom);
+
+            libxml_clear_errors();
+            libxml_use_internal_errors($oldInternalErrors);
+        }
+        return $newContent;
+    }
+
     public static function properTitleCase($string)
     {
         // Exceptions in lowercase will be converted to lowercase
