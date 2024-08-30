@@ -23,9 +23,9 @@ class DigitalPublicationArticlePresenter extends BasePresenter
         }
     }
 
-    public function type()
+    public function articleType()
     {
-        return $this->entity->type->name;
+        return $this->entity->article_type->name;
     }
 
     public function pdfDownloadPath()
