@@ -18,7 +18,7 @@ return new class extends Migration
             $article->article_type = $article->type;
             $article->save();
         }
-        Schema::table('digital_publication_articles', function (Blueprint $table) use ($types) {
+        Schema::table('digital_publication_articles', function (Blueprint $table) {
             $table->dropColumn('type');
         });
     }
