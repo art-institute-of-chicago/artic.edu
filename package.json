@@ -29,6 +29,8 @@
   },
   "dependencies": {
     "@area17/a17-helpers": "^0.6.7",
+    "@sentry/react": "^8.26.0",
+    "@sketchfab/viewer-api": "^1.12.1",
     "closer-look": "git+ssh://git@github.com/jonw-cogapp/digital-labels-ui.git#master",
     "fitty": "^2.4.2",
     "gl-vec3": "^1.1.3",
