@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom';
-import 'intersection-observer';
 import React from 'react';
 import CloserLook, { Modal } from 'closer-look';
 import getAbsoluteHeight from '../../functions/core/getAbsoluteHeight';
