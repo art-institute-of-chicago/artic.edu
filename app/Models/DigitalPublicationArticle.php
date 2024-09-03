@@ -37,7 +37,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         'hide_title',
         'list_description',
         'date',
-        'type',
+        'article_type',
         'listing_display',
         'suppress_listing',
         'heading',
@@ -62,12 +62,12 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         'date' => 'date',
         'publish_start_date' => 'date',
         'published' => 'boolean',
-        'type' => DigitalPublicationArticleType::class,
+        'article_type' => DigitalPublicationArticleType::class,
     ];
 
     public $attributes = [
         'published' => false,
-        'type' => 'entry'
+        'article_type' => 'entry',
     ];
 
     public $mediasParams = [
@@ -211,11 +211,11 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
                 }
             ],
             [
-                'name' => 'type',
+                'name' => 'article_type',
                 'doc' => 'Type of Article',
                 'type' => 'string',
                 'value' => function () {
-                    return $this->present()->type;
+                    return $this->present()->articleType;
                 },
             ],
             [
