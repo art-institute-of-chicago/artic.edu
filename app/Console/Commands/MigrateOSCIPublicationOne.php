@@ -136,6 +136,8 @@ class MigrateOSCIPublicationOne extends Command
         $media->alt_text = 'Alt text for the image';
         $media->caption = $caption_html;
         $media->save();
+        $media->addTag('Publication Image');
+        $media->save();
 
         return $media;
     }
