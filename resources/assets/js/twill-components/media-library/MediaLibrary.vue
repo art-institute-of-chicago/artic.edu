@@ -154,7 +154,10 @@
         page: this.initialPage,
         tags: [],
         lastScrollTop: 0,
-        gridLoaded: false
+        gridLoaded: false,
+        /* Create Publications bucket in media library [PUB-227] */
+        typeFilter: 'withoutTag=publication-image'
+        /* /Create Publications bucket in media library [PUB-227] */
       }
     },
     computed: {
@@ -255,7 +258,13 @@
       updateType: function (newType) {
         if (this.loading) return
         if (this.strict) return
-        if (this.type === newType) return
+        /* Create Publications bucket in media library [PUB-227] */
+        if (newType === 'image') {
+          this.typeFilter = 'withoutTag=publication-image'
+        } else if (newType === 'publication-image') {
+          this.typeFilter = 'withTag=publication-image'
+        }
+        /* /Create Publications bucket in media library [PUB-227] */
 
         this.$store.commit(MEDIA_LIBRARY.UPDATE_MEDIA_TYPE, newType)
         this.submitFilter()
@@ -364,6 +373,13 @@
         else data = { page: this.page }
 
         data.type = this.type
+
+        /* Create Publications bucket in media library [PUB-227] */
+        if (this.typeFilter) {
+          const [key, value] = this.typeFilter.split('=', 2)
+          data[key] = value
+        }
+        /* /Create Publications bucket in media library [PUB-227] */
 
         if (Array.isArray(data.unused) && data.unused.length) {
           data.unused = data.unused[0]
