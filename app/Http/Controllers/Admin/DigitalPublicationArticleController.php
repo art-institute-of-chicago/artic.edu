@@ -81,10 +81,7 @@ class DigitalPublicationArticleController extends NestedModuleController
         $articles = $this->repository->where('digital_publication_id', $digitalPublicationId)
                                      ->withDepth()
                                      ->defaultOrder()
-                                     ->get()
-                                     ->filter(function ($article) {
-                                         return $article->depth < 3;
-                                     });
+                                     ->get();
 
         $formattedArticles = $articles->map(function ($article) use ($digitalPublicationId) {
             return [
