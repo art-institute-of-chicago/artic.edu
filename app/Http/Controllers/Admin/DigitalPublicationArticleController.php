@@ -28,9 +28,9 @@ class DigitalPublicationArticleController extends NestedModuleController
             'edit_link' => true,
             'field' => 'title',
         ],
-        'type' => [
+        'article_type' => [
             'title' => 'Type',
-            'field' => 'type',
+            'field' => 'articleType',
             'present' => true,
         ],
     ];
