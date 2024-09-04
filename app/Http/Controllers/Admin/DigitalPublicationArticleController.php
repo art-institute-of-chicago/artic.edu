@@ -99,9 +99,10 @@ class DigitalPublicationArticleController extends NestedModuleController
         return ['data' => $formattedArticles->toArray()];
     }
 
-    protected function getBrowserItems($scopes = []) {
+    protected function getBrowserItems($scopes = [])
+    {
         $articles = $this->repository->withDepth()->defaultOrder()->get();
-    
+
         $formattedArticles = $articles->map(function ($article) {
             return [
                 'id' => $article->id,
@@ -114,8 +115,9 @@ class DigitalPublicationArticleController extends NestedModuleController
                 'thumbnail' => $article->defaultCmsImage(['w' => 100, 'h' => 100]),
             ];
         });
-    
+
         return ['data' => $formattedArticles->values()->toArray()];
+    }
     protected function transformIndexItems($items)
     {
         // If we're in the browser, don't transform the items
