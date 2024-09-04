@@ -76,37 +76,26 @@ class DigitalPublicationArticleController extends NestedModuleController
         );
     }
 
-    protected function getSubbrowserItems($digitalPublicationId)
+    protected function getBrowserData($prependScope = [])
     {
-        $articles = $this->repository->where('digital_publication_id', $digitalPublicationId)
-                                     ->withDepth()
-                                     ->defaultOrder()
-                                     ->get();
+        $query = $this->repository->withDepth()->defaultOrder();
+
+        $search = $this->request->get('search', $prependScope['search'] ?? null);
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+
+        $digitalPublicationId = $this->request->get('digitalPublication', $prependScope['digitalPublication'] ?? null);
+        if ($digitalPublicationId) {
+            $query->where('digital_publication_id', $digitalPublicationId);
+        }
+
+        $articles = $query->get();
 
         $formattedArticles = $articles->map(function ($article) use ($digitalPublicationId) {
             return [
                 'id' => $article->id,
-                'name' => $article->title,
-                'edit' => route('admin.collection.articles_publications.digitalPublications.articles.edit', [
-                    'digitalPublication' => $digitalPublicationId,
-                    'article' => $article->id
-                ]),
-                'endpointType' => 'digitalPublicationArticles',
-                'thumbnail' => $article->defaultCmsImage(['w' => 100, 'h' => 100]),
-            ];
-        });
-
-        return ['data' => $formattedArticles->toArray()];
-    }
-
-    protected function getBrowserItems($scopes = [])
-    {
-        $articles = $this->repository->withDepth()->defaultOrder()->get();
-
-        $formattedArticles = $articles->map(function ($article) {
-            return [
-                'id' => $article->id,
-                'name' => $article->title,
+                'name' => $digitalPublicationId ? $article->title : ($article->digitalPublication ? $article->digitalPublication->title : $article->title) . ' - ' . $article->title,
                 'edit' => route('admin.collection.articles_publications.digitalPublications.articles.edit', [
                     'digitalPublication' => $article->digital_publication_id,
                     'article' => $article->id
