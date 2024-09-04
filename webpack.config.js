@@ -35,8 +35,13 @@ module.exports = {
     fallback: {
       "url": false,
     }
-
   },
+  plugins: [
+    // See: https://github.com/ProjectMirador/mirador/issues/3493
+    new webpack.IgnorePlugin({
+      resourceRegExp: /@blueprintjs\/(core|icons)/,
+    }),
+  ],
   module: {
     rules: [
       {
