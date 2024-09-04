@@ -2,7 +2,6 @@
 
 namespace App\Presenters\Admin;
 
-use App\Enums\DigitalPublicationArticleType;
 use App\Presenters\BasePresenter;
 
 class DigitalPublicationPresenter extends BasePresenter
