@@ -56,7 +56,8 @@ trait HasAutoRelated
             'exhibitions',
             'experiences',
             'digitalPublications',
-            'videos'
+            'digitalPublicationsArticles',
+            'videos',
         ];
 
         // Set scope to only include sidebar items that can be related to
