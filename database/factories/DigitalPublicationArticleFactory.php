@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\DigitalPublicationArticleType;
+use App\Enums\DigitalPublicationArticleCategory;
 use App\Models\DigitalPublicationArticle;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,9 +14,9 @@ class DigitalPublicationArticleFactory extends Factory
     {
         return [
             'title' => $this->faker->words(5, true),
-            'article_type' => $this->faker->randomElement(array_map(
+            'category' => $this->faker->randomElement(array_map(
                 fn ($type) => $type->value,
-                DigitalPublicationArticleType::cases()
+                DigitalPublicationArticleCategory::cases()
             )),
         ];
     }

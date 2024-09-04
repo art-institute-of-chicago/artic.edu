@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use A17\Twill\Http\Controllers\Admin\NestedModuleController;
 use App\Repositories\DigitalPublicationRepository;
 use App\Http\Controllers\Admin\Behaviors\IsNestedModule;
-use Illuminate\Support\Collection;
 
 class DigitalPublicationArticleController extends NestedModuleController
 {
@@ -28,9 +27,9 @@ class DigitalPublicationArticleController extends NestedModuleController
             'edit_link' => true,
             'field' => 'title',
         ],
-        'article_type' => [
-            'title' => 'Type',
-            'field' => 'articleType',
+        'category' => [
+            'title' => 'Category',
+            'field' => 'category',
             'present' => true,
         ],
     ];
@@ -57,7 +56,7 @@ class DigitalPublicationArticleController extends NestedModuleController
             [
             'nested' => true,
             'nestedDepth' => 2,
-            'types' => $this->repository->getTypes(),
+            'categories' => $this->repository->getCategories(),
             'articles' => $articlesList,
             'breadcrumb' => [
                 [
@@ -122,7 +121,7 @@ class DigitalPublicationArticleController extends NestedModuleController
         $baseUrl = '//' . config('app.url') . '/' . $this->permalinkBase . $digPub->id . '/' . $digPub->getSlug() . '/' . $item->id . '/';
 
         return [
-            'types' => $this->repository->getTypes(),
+            'categories' => $this->repository->getCategories(),
             'baseUrl' => $baseUrl,
             'breadcrumb' => [
                 [
