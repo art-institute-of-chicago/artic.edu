@@ -11,8 +11,10 @@
           >
             <input class="singleselector__radio" type="radio" :value="radio.value" :name="name + '[' + randKey + ']'" :id="uniqId(radio.value, index)" :disabled="radio.disabled || disabled" :class="{'singleselector__radio--checked': radio.value == selectedValue }">
             <label class="singleselector__label" :for="uniqId(radio.value, index)" @click.prevent="changeRadio(radio.value)">
+              <!-- New code added [PUB-192] -->
               {{ radio.label }}
               <span :style="{ backgroundColor: radio.value }" class="singleselector__color-label"></span>
+              <!-- /New code added [PUB-192] -->
             </label>
             <span class="singleselector__bg"></span>
           </div>
@@ -297,10 +299,12 @@
       margin-top: -9px;
     }
   }
+  /* New code added [PUB-192] */
   .singleselector__color-label {
     border: 10px solid lightgrey;
     float: right;
     height: 52px;
     width: 52px;
   }
+  /* /New code added [PUB-192] */
 </style>
