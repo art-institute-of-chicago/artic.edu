@@ -224,7 +224,7 @@
                                     @if (count($topLevelArticle->children) > 0)
                                         @component('components.molecules._m-listing----digital-publication-article-entry')
                                             @slot('href', $item->present()->url)
-                                            @slot('image', $item->imageFront('hero'))
+                                            @slot('image', $item->imageFront('hero', 'square') ?? $item->imageFront('hero'))
                                             @slot('title', $item->present()->title)
                                             @slot('title_display', $item->present()->title_display)
                                             @slot('label', $item->present()->label)
