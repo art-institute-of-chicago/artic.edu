@@ -33,8 +33,8 @@
 
     @formField('select', [
         'name' => 'category',
-        'label' => 'Category',
-        'placeholder' => 'Select a category',
+        'label' => 'Type',
+        'placeholder' => 'Select a type',
         'default' => 'text',
         'options' => $categories,
     ])
