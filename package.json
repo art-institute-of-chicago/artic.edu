@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "echo 'TODO: Add dev script'",
     "build": "echo 'TODO: Add build script'",
+    "sass": "sass ./frontend/scss:public/dist/styles -s compressed",
+    "sass:watch": "sass ./frontend/scss:public/dist/styles -s compressed --watch",
     "presvg-sprite": "mkdirp ./public/dist/icons",
     "svg-sprite": "svg-symbol-sprite -i ./frontend/icons -o ./public/dist/icons/icons.svg -p icon--"
   },
