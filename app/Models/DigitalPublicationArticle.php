@@ -157,6 +157,15 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         return $this->present()->getCanonicalUrl();
     }
 
+    public function getUrlWithoutSlugAttribute()
+    {
+        return route('collection.publications.digital-publications-articles.show', [
+            'pubId' => $this->digital_publication_id,
+            'pubSlug' => $this->digitalPublication->slug,
+            'id' => $this->id,
+        ]);
+    }
+
     protected function transformMappingInternal()
     {
         return [
