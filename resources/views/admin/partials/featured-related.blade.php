@@ -31,6 +31,10 @@
                 'value' => moduleRoute('digitalPublications', 'collection.articles_publications', 'browser'),
             ],
             [
+                'label' => 'Digital Publication Article',
+                'value' => moduleRoute('digitalPublications.articles', 'collection.articles_publications', 'browser'),
+            ],
+            [
                 'label' => 'Video',
                 'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
             ],
