@@ -91,6 +91,8 @@ Route::group(['prefix' => 'collection'], function () {
 
         // WEB-1963: Browser for nested modules must be implemented manually
         Route::get('digitalPublicationsFoo/{digitalPublication}/articles/browser', [DigitalPublicationArticleController::class, 'getSubbrowserItems'])->name('collection.articles_publications.digitalPublications.articles.subbrowser');
+        Route::get('/digitalPublications/articles/browser', [DigitalPublicationArticleController::class, 'getBrowserItems'])->name('collection.articles_publications.digitalPublications.articles.browser');
+
     });
 
     Route::module('galleries');
