@@ -27,6 +27,7 @@ trait HasAutoRelated
             'genericPages',
             'events',
             'exhibitions',
+            'artworks',
         ];
 
         // Get all blocks that have this model as a related item
