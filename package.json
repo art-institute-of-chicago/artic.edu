@@ -10,7 +10,9 @@
     "presvg-sprite": "mkdirp ./public/dist/icons",
     "svg-sprite": "svg-symbol-sprite -i ./frontend/icons -o ./public/dist/icons/icons.svg -p icon-- -c false",
     "webpack:build": "cross-env NODE_ENV=production webpack",
-    "webpack:watch": "cross-env NODE_ENV=development webpack --watch"
+    "webpack:watch": "cross-env NODE_ENV=development webpack --watch",
+    "webpack:generate-stats": "cross-env NODE_ENV=production webpack --profile --json > bundle-stats.json",
+    "webpack:analyze": "webpack-bundle-analyzer bundle-stats.json"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -24,6 +26,7 @@
     "sass": "^1.77.8",
     "svg-symbol-sprite": "^1.5.2",
     "webpack": "^5.93.0",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
