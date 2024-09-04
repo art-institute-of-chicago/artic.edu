@@ -8,13 +8,12 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleNesting;
 use A17\Twill\Repositories\ModuleRepository;
-use App\Enums\DigitalPublicationArticleType;
+use App\Enums\DigitalPublicationArticleCategory;
 use App\Jobs\GeneratePdf;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleAuthors;
-use A17\Twill\Jobs\ReorderNestedModuleItems;
 
 class DigitalPublicationArticleRepository extends ModuleRepository
 {
@@ -27,9 +26,9 @@ class DigitalPublicationArticleRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getTypes()
+    public function getCategories()
     {
-        return collect(DigitalPublicationArticleType::cases())
+        return collect(DigitalPublicationArticleCategory::cases())
             ->mapWithKeys(fn ($type) => [$type->value => $type->name]);
     }
 
