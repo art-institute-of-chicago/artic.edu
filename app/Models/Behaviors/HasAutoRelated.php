@@ -28,6 +28,7 @@ trait HasAutoRelated
             'events',
             'exhibitions',
             'artworks',
+            'digitalPublicationArticles'
         ];
 
         // Get all blocks that have this model as a related item
