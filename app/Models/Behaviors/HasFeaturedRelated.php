@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Api\Exhibition;
 use App\Models\Experience;
 use App\Models\DigitalPublication;
+use App\Models\DigitalPublicationArticle;
 use App\Models\Video;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
@@ -72,6 +73,7 @@ trait HasFeaturedRelated
             'exhibitions' => true, // API!
             'experiences' => false,
             'digitalPublications' => false,
+            'digitalPublicationArticles' => false,
             'videos' => false,
         ]) ?? collect([]);
 
@@ -183,6 +185,12 @@ trait HasFeaturedRelated
                 case DigitalPublication::class:
                     // No tag
                     $label = 'Digital Publication';
+                    $type = 'generic';
+
+                    break;
+                case DigitalPublicationArticle::class:
+                    // No tag
+                    $label = 'Digital Publication Article';
                     $type = 'generic';
 
                     break;

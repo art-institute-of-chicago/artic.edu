@@ -76,19 +76,28 @@ class DigitalPublicationArticleController extends NestedModuleController
         );
     }
 
-    protected function getSubbrowserItems($digitalPublicationId)
+    protected function getBrowserData($prependScope = [])
     {
-        $articles = $this->repository->where('digital_publication_id', $digitalPublicationId)
-                                     ->withDepth()
-                                     ->defaultOrder()
-                                     ->get();
+        $query = $this->repository->withDepth()->defaultOrder()->where('article_type', '!=', 'grouping');
+
+        $search = $this->request->get('search', $prependScope['search'] ?? null);
+        if ($search) {
+            $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($search) . '%']);
+        }
+
+        $digitalPublicationId = $this->request->get('digitalPublication', $prependScope['digitalPublication'] ?? null);
+        if ($digitalPublicationId) {
+            $query->where('digital_publication_id', $digitalPublicationId);
+        }
+
+        $articles = $query->get();
 
         $formattedArticles = $articles->map(function ($article) use ($digitalPublicationId) {
             return [
                 'id' => $article->id,
-                'name' => $article->title,
+                'name' => $digitalPublicationId ? $article->title : ($article->digitalPublication ? $article->digitalPublication->title . ' - ' . $article->title : $article->title),
                 'edit' => route('admin.collection.articles_publications.digitalPublications.articles.edit', [
-                    'digitalPublication' => $digitalPublicationId,
+                    'digitalPublication' => $article->digital_publication_id,
                     'article' => $article->id
                 ]),
                 'endpointType' => 'digitalPublicationArticles',
@@ -96,9 +105,8 @@ class DigitalPublicationArticleController extends NestedModuleController
             ];
         });
 
-        return ['data' => $formattedArticles->toArray()];
+        return ['data' => $formattedArticles->values()->toArray()];
     }
-
     protected function transformIndexItems($items)
     {
         // If we're in the browser, don't transform the items
