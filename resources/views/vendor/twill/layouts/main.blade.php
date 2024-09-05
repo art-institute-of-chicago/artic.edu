@@ -97,25 +97,11 @@
                 window['{{ config('twill.js_namespace') }}'].STORE.medias.types.push({
                     value: 'image',
                     text: '{{ twillTrans("twill::lang.media-library.images") }}',
-                    {{-- PUB-227: Create Publications bucket in media library --}}
-                    total: {{ \A17\Twill\Models\Media::withoutTag('publication-image')->count() }},
-                    {{-- /PUB-227: Create Publications bucket in media library --}}
+                    total: {{ \A17\Twill\Models\Media::count() }},
                     endpoint: '{{ route('admin.media-library.medias.index') }}',
                     tagsEndpoint: '{{ route('admin.media-library.medias.tags') }}',
                     uploaderConfig: {!! json_encode($mediasUploaderConfig) !!}
                 });
-
-                {{-- PUB-227: Create Publications bucket in media library --}}
-                window['{{ config('twill.js_namespace') }}'].STORE.medias.types.push({
-                    value: 'publication-image',
-                    text: 'Publication Images',
-                    total: {{ \A17\Twill\Models\Media::withTag('publication-image')->count() }},
-                    endpoint: '{{ route('admin.media-library.medias.index') }}',
-                    tagsEndpoint: '{{ route('admin.media-library.medias.tags') }}',
-                    uploaderConfig: {!! json_encode($mediasUploaderConfig) !!}
-                });
-                {{-- /PUB-227: Create Publications bucket in media library --}}
-
 
                 window['{{ config('twill.js_namespace') }}'].STORE.medias.showFileName = !!'{{ config('twill.media_library.show_file_name') }}';
             @endif
