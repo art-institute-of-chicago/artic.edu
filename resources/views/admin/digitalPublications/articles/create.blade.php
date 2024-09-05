@@ -1,8 +1,8 @@
 @include('twill::partials.create')
 
 @formField('select', [
-    'name' => 'category',
+    'name' => 'article_type',
     'label' => 'Type',
     'placeholder' => 'Select a type',
-    'options' => $categories,
+    'options' => $types,
 ])

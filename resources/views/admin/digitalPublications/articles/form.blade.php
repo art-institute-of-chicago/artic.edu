@@ -32,11 +32,11 @@
     ])
 
     @formField('select', [
-        'name' => 'category',
+        'name' => 'article_type',
         'label' => 'Type',
         'placeholder' => 'Select a type',
         'default' => 'text',
-        'options' => $categories,
+        'options' => $types,
     ])
 
     @component('twill::partials.form.utils._columns')
@@ -153,7 +153,7 @@
 
 @section('fieldsets')
     @formConnectedFields([
-        'fieldName' => 'category',
+        'fieldName' => 'article_type',
         'fieldValues' => 'grouping',
         'renderForBlocks' => false,
     ])

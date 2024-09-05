@@ -7,7 +7,7 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
-use App\Enums\DigitalPublicationArticleCategory;
+use App\Enums\DigitalPublicationArticleType;
 use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
@@ -37,7 +37,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         'hide_title',
         'list_description',
         'date',
-        'category',
+        'article_type',
         'listing_display',
         'suppress_listing',
         'heading',
@@ -59,15 +59,15 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
     ];
 
     public $casts = [
-        'category' => DigitalPublicationArticleCategory::class,
         'date' => 'date',
         'publish_start_date' => 'date',
         'published' => 'boolean',
+        'article_type' => DigitalPublicationArticleType::class,
     ];
 
     public $attributes = [
-        'category' => 'text',
         'published' => false,
+        'article_type' => 'entry',
     ];
 
     public $mediasParams = [
@@ -217,11 +217,11 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
                 }
             ],
             [
-                'name' => 'category',
-                'doc' => 'Category',
+                'name' => 'article_type',
+                'doc' => 'Type of Article',
                 'type' => 'string',
                 'value' => function () {
-                    return $this->present()->category;
+                    return $this->present()->articleType;
                 },
             ],
             [

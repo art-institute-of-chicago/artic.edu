@@ -1,5 +1,5 @@
 @php
-    use App\Enums\DigitalPublicationArticleCategory;
+    use App\Enums\DigitalPublicationArticleType;
 @endphp
 
 @extends('layouts.app')
@@ -17,7 +17,7 @@
 @endif
 
 <article class="o-article">
-    @if ($item->type == DigitalPublicationArticleCategory::Contributions)
+    @if ($item->type == DigitalPublicationArticleType::Contributions)
         @component('components.molecules._m-article-header----digital-publication-article')
             @slot('title', $item->present()->title)
             @slot('title_display', $item->present()->title_display)
@@ -39,7 +39,7 @@
         @endcomponent
     </div>
 
-    @if ($item->type != DigitalPublicationArticleCategory::Contributions && $item->type != DigitalPublicationArticleCategory::Entry)
+    @if ($item->type != DigitalPublicationArticleType::Contributions && $item->type != DigitalPublicationArticleType::Entry)
         @component('components.molecules._m-article-header')
             @slot('headerType', 'generic')
             @slot('title', $item->present()->title)
@@ -51,7 +51,7 @@
         {{-- Intentionally left blank for layout --}}
     </div>
 
-    @if ($item->type !== DigitalPublicationArticleCategory::Entry)
+    @if ($item->type !== DigitalPublicationArticleType::Entry)
         <div class="m-article-header__text u-show@large+">
             @component('components.atoms._title')
                 @slot('tag', 'h1')
@@ -75,8 +75,8 @@
 
     <div class="o-article__body o-blocks o-blocks--with-sidebar">
         @switch ($item->type)
-            @case (DigitalPublicationArticleCategory::Contributions)
-            @case (DigitalPublicationArticleCategory::Entry)
+            @case (DigitalPublicationArticleType::Contributions)
+            @case (DigitalPublicationArticleType::Entry)
                 @if ($item->showAuthorsWithLinks())
                     @component('components.blocks._text')
                         @slot('font', 'f-tag-2')
@@ -90,8 +90,8 @@
 
         @php
         switch ($item->type) {
-            case DigitalPublicationArticleCategory::Contributions:
-            case DigitalPublicationArticleCategory::Entry:
+            case DigitalPublicationArticleType::Contributions:
+            case DigitalPublicationArticleType::Entry:
                 global $_collectedReferences;
                 $_collectedReferences = [];
 

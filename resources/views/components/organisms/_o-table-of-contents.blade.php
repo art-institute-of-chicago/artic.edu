@@ -4,10 +4,10 @@
             if (isset($currentArticle)) {
                 $isExpanded = $currentArticle->parent === $item || $currentArticle->present()->isArticleInTree($item->children);
             } else {
-                if ($item->type === App\Enums\DigitalPublicationArticleCategory::Grouping) {
+                if ($item->type === App\Enums\DigitalPublicationArticleType::Grouping) {
 
                     $hasGroupingAncestor = $item->ancestors->contains(function ($ancestor) {
-                        return $ancestor->type === App\Enums\DigitalPublicationArticleCategory::Grouping;
+                        return $ancestor->type === App\Enums\DigitalPublicationArticleType::Grouping;
                     });
                     $isExpanded = !$hasGroupingAncestor;
                 } else {

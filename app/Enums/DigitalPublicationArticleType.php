@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum DigitalPublicationArticleCategory: string
+enum DigitalPublicationArticleType: string
 {
     case About = 'about';
     case Contributions = 'text';
