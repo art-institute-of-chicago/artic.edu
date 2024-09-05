@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\DigitalPublicationArticleType;
+use App\Enums\DigitalPublicationArticleCategory;
 use App\Models\DigitalPublicationArticle;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -10,7 +10,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        $types = array_map(fn($enum) => $enum->value, DigitalPublicationArticleType::cases());
+        $types = array_map(fn($enum) => $enum->value, DigitalPublicationArticleCategory::cases());
         Schema::table('digital_publication_articles', function (Blueprint $table) use ($types) {
             $table->enum('article_type', $types)->default('text');
         });
