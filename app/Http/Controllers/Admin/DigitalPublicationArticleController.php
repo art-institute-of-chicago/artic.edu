@@ -82,7 +82,7 @@ class DigitalPublicationArticleController extends NestedModuleController
 
         $search = $this->request->get('search', $prependScope['search'] ?? null);
         if ($search) {
-            $query->where('title', 'like', '%' . $search . '%');
+            $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($search) . '%']);
         }
 
         $digitalPublicationId = $this->request->get('digitalPublication', $prependScope['digitalPublication'] ?? null);
