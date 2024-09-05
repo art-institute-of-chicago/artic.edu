@@ -28,11 +28,11 @@ return new class extends Migration
             $table->enum('article_type', $this->categories())->nullable(false)->default('text');
         });
         foreach (DigitalPublicationArticle::withTrashed()->get() as $article) {
-            $article->article_type = $article->categories;
+            $article->article_type = $article->category;
             $article->save();
         }
         Schema::table('digital_publication_articles', function (Blueprint $table) {
-            $table->dropColumn('categories');
+            $table->dropColumn('category');
         });
     }
 
