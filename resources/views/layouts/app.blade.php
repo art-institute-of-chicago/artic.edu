@@ -13,8 +13,8 @@ $pClass = preg_replace('/Controller/i','',$pClass);
 $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 
 $pType = '';
-if (isset($item) && isset($item->type) && isset($item->type->name)) {
-    $pType = 'p-t-' . Str::kebab($item->type->name);
+if (isset($item) && isset($item->category) && isset($item->category->name)) {
+    $pType = 'p-t-' . Str::kebab($item->category->name);
 }
 @endphp
 <!DOCTYPE html>

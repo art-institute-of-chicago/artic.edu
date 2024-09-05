@@ -10,7 +10,7 @@ class DigitalPublicationArticlePresenter extends BasePresenter
 {
     public function getCanonicalUrl()
     {
-        if ($this->entity->type === DigitalPublicationArticleCategory::Grouping) {
+        if ($this->entity->category === DigitalPublicationArticleCategory::Grouping) {
             return route(
                 'collection.publications.digital-publications.showListing',
                 [
@@ -74,7 +74,7 @@ class DigitalPublicationArticlePresenter extends BasePresenter
         $descendants = $entity->descendants;
 
         $filteredDescendants = $descendants->filter(function ($descendant) {
-            return $descendant->type !== DigitalPublicationArticleCategory::Grouping;
+            return $descendant->category !== DigitalPublicationArticleCategory::Grouping;
         });
 
         return $filteredDescendants->count();
