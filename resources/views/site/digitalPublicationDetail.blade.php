@@ -1,3 +1,6 @@
+@php
+    use App\Enums\DigitalPublicationArticleType;
+@endphp
 
 @extends('layouts.app')
 
@@ -284,7 +287,7 @@
                                                 @slot('cols_medium','4')
                                                 @slot('cols_large','4')
                                                 @slot('cols_xlarge','4')
-
+                                        
                                                 @foreach ($item->children as $child)
                                                     @component('components.molecules._m-listing----digital-publication-article-entry')
                                                         @slot('href', $child->present()->url)

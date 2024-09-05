@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\DigitalPublicationArticleCategory;
+use App\Enums\DigitalPublicationArticleType;
 use App\Models\DigitalPublicationArticle;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -10,12 +10,12 @@ return new class extends Migration
 {
     public function up(): void
     {
-        $categories = array_map(fn ($category) => $category->value, DigitalPublicationArticleCategory::cases());
-        Schema::table('digital_publication_articles', function (Blueprint $table) use ($categories) {
-            $table->enum('category', $categories)->nullable(false)->default('text');
+        $types = array_map(fn($enum) => $enum->value, DigitalPublicationArticleType::cases());
+        Schema::table('digital_publication_articles', function (Blueprint $table) use ($types) {
+            $table->enum('article_type', $types)->default('text');
         });
         foreach (DigitalPublicationArticle::withTrashed()->get() as $article) {
-            $article->category = $article->type;
+            $article->article_type = $article->type;
             $article->save();
         }
         Schema::table('digital_publication_articles', function (Blueprint $table) {
@@ -29,11 +29,11 @@ return new class extends Migration
             $table->string('type')->nullable(false)->default('text');
         });
         foreach (DigitalPublicationArticle::withTrashed()->get() as $article) {
-            $article->type = $article->category;
+            $article->type = $article->article_type;
             $article->save();
         }
         Schema::table('digital_publication_articles', function (Blueprint $table) {
-            $table->dropColumn('category');
+            $table->dropColumn('article_type');
         });
     }
 };

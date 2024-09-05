@@ -4,13 +4,13 @@ namespace App\Presenters\Admin;
 
 use Illuminate\Support\Str;
 use App\Presenters\BasePresenter;
-use App\Enums\DigitalPublicationArticleCategory;
+use App\Enums\DigitalPublicationArticleType;
 
 class DigitalPublicationArticlePresenter extends BasePresenter
 {
     public function getCanonicalUrl()
     {
-        if ($this->entity->type === DigitalPublicationArticleCategory::Grouping) {
+        if ($this->entity->type === DigitalPublicationArticleType::Grouping) {
             return route(
                 'collection.publications.digital-publications.showListing',
                 [
@@ -23,9 +23,9 @@ class DigitalPublicationArticlePresenter extends BasePresenter
         }
     }
 
-    public function category()
+    public function articleType()
     {
-        return $this->entity->category->name;
+        return $this->entity->article_type->name;
     }
 
     public function pdfDownloadPath()
@@ -74,7 +74,7 @@ class DigitalPublicationArticlePresenter extends BasePresenter
         $descendants = $entity->descendants;
 
         $filteredDescendants = $descendants->filter(function ($descendant) {
-            return $descendant->type !== DigitalPublicationArticleCategory::Grouping;
+            return $descendant->type !== DigitalPublicationArticleType::Grouping;
         });
 
         return $filteredDescendants->count();

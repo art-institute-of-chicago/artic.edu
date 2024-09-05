@@ -154,7 +154,7 @@
                 'italic',
             ],
         ])
-    @endformFieldset
+    @endformConnectedFields
 
     @include('admin.partials.related')
 
