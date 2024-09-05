@@ -78,7 +78,7 @@ class DigitalPublicationArticleController extends NestedModuleController
 
     protected function getBrowserData($prependScope = [])
     {
-        $query = $this->repository->withDepth()->defaultOrder();
+        $query = $this->repository->withDepth()->defaultOrder()->where('article_type', '!=', 'grouping');
 
         $search = $this->request->get('search', $prependScope['search'] ?? null);
         if ($search) {
