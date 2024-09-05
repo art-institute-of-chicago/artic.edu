@@ -27,6 +27,8 @@ trait HasAutoRelated
             'genericPages',
             'events',
             'exhibitions',
+            'artworks',
+            'digitalPublicationArticles'
         ];
 
         // Get all blocks that have this model as a related item
@@ -40,8 +42,15 @@ trait HasAutoRelated
             });
 
         foreach ($relatedBlockItems as $relatedBlockItem) {
-            if ($relatedBlockItem->blockable && method_exists($relatedBlockItem->blockable, "getApiModel") && $relatedBlockItem->blockable->getApiModel()) {
-                $relatedBlockable = $relatedBlockItem->blockable->getApiModelFilledCached();
+            $relatedBlockable = null;
+
+            if ($relatedBlockItem->blockable) {
+                if (method_exists($relatedBlockItem->blockable, "getApiModel")) {
+                    $apiModel = $relatedBlockItem->blockable->getApiModel();
+                    if ($apiModel) {
+                        $relatedBlockable = $relatedBlockItem->blockable->getApiModelFilledCached();
+                    }
+                }
             }
 
             $relatedItems[] = $relatedBlockable ?? $relatedBlockItem->blockable;
@@ -55,7 +64,8 @@ trait HasAutoRelated
             'exhibitions',
             'experiences',
             'digitalPublications',
-            'videos'
+            'digitalPublicationsArticles',
+            'videos',
         ];
 
         // Set scope to only include sidebar items that can be related to

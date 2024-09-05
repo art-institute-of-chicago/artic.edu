@@ -28,6 +28,16 @@ class DigitalPublicationArticlePresenter extends BasePresenter
         return $this->entity->article_type->name;
     }
 
+    public function type()
+    {
+        return 'Digital Publication Article';
+    }
+
+    public function subtype()
+    {
+        return 'Digital Publication Article';
+    }
+
     public function pdfDownloadPath()
     {
         if (!isset($this->entity->pdf_download_path)) {

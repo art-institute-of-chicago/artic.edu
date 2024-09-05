@@ -59,7 +59,7 @@
                 </span>
             @endif
             <div class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
-                <span class="m-listing__types f-tag">{!! $item->subtype ? $item->present()->subtype : $item->type !!}
+                <span class="m-listing__types f-tag">{!! $item->present()->subtype ?? $item->present()->type !!}
                     @if ($item->exclusive)
                         @component('components.atoms._type')
                             @slot('variation', 'type--membership')
