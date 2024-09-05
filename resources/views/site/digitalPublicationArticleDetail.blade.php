@@ -17,7 +17,7 @@
 @endif
 
 <article class="o-article">
-    @if ($item->type == DigitalPublicationArticleType::Contributions)
+    @if ($item->article_type == DigitalPublicationArticleType::Contributions)
         @component('components.molecules._m-article-header----digital-publication-article')
             @slot('title', $item->present()->title)
             @slot('title_display', $item->present()->title_display)
@@ -39,7 +39,7 @@
         @endcomponent
     </div>
 
-    @if ($item->type != DigitalPublicationArticleType::Contributions && $item->type != DigitalPublicationArticleType::Entry)
+    @if ($item->article_type != DigitalPublicationArticleType::Contributions && $item->article_type != DigitalPublicationArticleType::Entry)
         @component('components.molecules._m-article-header')
             @slot('headerType', 'generic')
             @slot('title', $item->present()->title)
@@ -51,7 +51,7 @@
         {{-- Intentionally left blank for layout --}}
     </div>
 
-    @if ($item->type !== DigitalPublicationArticleType::Entry)
+    @if ($item->article_type !== DigitalPublicationArticleType::Entry)
         <div class="m-article-header__text u-show@large+">
             @component('components.atoms._title')
                 @slot('tag', 'h1')
@@ -74,7 +74,7 @@
     @endif
 
     <div class="o-article__body o-blocks o-blocks--with-sidebar">
-        @switch ($item->type)
+        @switch ($item->article_type)
             @case (DigitalPublicationArticleType::Contributions)
             @case (DigitalPublicationArticleType::Entry)
                 @if ($item->showAuthorsWithLinks())
@@ -89,7 +89,7 @@
         @endswitch
 
         @php
-        switch ($item->type) {
+        switch ($item->article_type) {
             case DigitalPublicationArticleType::Contributions:
             case DigitalPublicationArticleType::Entry:
                 global $_collectedReferences;
