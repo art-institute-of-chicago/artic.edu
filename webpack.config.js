@@ -45,6 +45,12 @@ module.exports = {
     new webpack.IgnorePlugin({
       resourceRegExp: /@blueprintjs\/(core|icons)/,
     }),
+    ...(isCI ? [
+      new webpack.IgnorePlugin({
+        resourceRegExp: /closer-look/,
+      }),
+    ] : []),
+
   ],
   module: {
     rules: [
