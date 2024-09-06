@@ -61,7 +61,7 @@
             <ol style="margin: 1em 0; padding-left: 40px">
                 @foreach($autoRelated as $related)
                     <li style="list-style-type: decimal; margin-bottom: 0.5em">
-                        {!! Str::title($related->present()->type) . (Str::title($related->present()->type) ? ":" : "") !!} <a href="{{$related->admin_edit_url}}">{{ $related->title }}</a>
+                        {!! Str::title($related->present()->articleType) . (Str::title($related->present()->articleType) ? ":" : "") !!} <a href="{{$related->admin_edit_url}}">{{ $related->title }}</a>
                     </li>
                 @endforeach
             </ol>
