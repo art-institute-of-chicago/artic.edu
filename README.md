@@ -78,6 +78,9 @@ For continuous work, run the following which runs as a `watch` command on locall
 npm run dev
 ```
 
+These npm scripts are likely to be all you'll need, but they are composite commands and more granular scripts can be found by inspecting the `scripts` section of [package.json](package.json).
+
+
 We recommend using [nvm](https://github.com/nvm-sh/nvm) or another node version manager to install exactly the node version listed in the requirements.
 
 
@@ -87,15 +90,6 @@ To compile all that is needed by the CMS, run:
 
 ```bash
 php artisan twill:build
-```
-
-
-### Style guide
-
-Run this command to generate a style guide that will be served from http://{your_dev_domain}/styleguide
-
-```bash
-npm run toolkit
 ```
 
 
