@@ -2,11 +2,15 @@ const path = require('path');
 const webpack = require('webpack');
 const isProd = process.env.NODE_ENV === 'production';
 
-// Set in Github action
+// Can be set in Github action
 const isCI = process.env.CI === '1'
 
+// See: https://webpack.js.org/configuration/
 module.exports = {
   mode: isProd ? 'production' : 'development',
+  // Currently CSS isn't included in the Webpack build
+  // This could be added later if the stdout webpack produces is preferred
+  // For now this avoids the need for sass-loader, css-loader, and style-loader
   entry: {
     app: ['./frontend/js/app.js'],
     blocks3D: ['./frontend/js/blocks3D.js'],
@@ -44,6 +48,7 @@ module.exports = {
   ],
   module: {
     rules: [
+      // Transpile JavaScript files using Babel
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
