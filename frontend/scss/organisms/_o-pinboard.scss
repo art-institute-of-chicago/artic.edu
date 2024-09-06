@@ -458,7 +458,6 @@
       .o-pinboard[class*="col@#{$name}"] > * {
         @if ($name == 'xsmall') {
         } @else {
-          border-top: 1px solid $color__rules--contrast;
           margin-top: -1px;
         }
       }
