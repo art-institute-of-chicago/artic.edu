@@ -3,6 +3,8 @@ on: [push]
 jobs:
     test:
         runs-on: ubuntu-22.04
+        env:
+          NODE_OPTIONS: '--openssl-legacy-provider'
         steps:
             - name: Install PHP
               uses: shivammathur/setup-php@v2
@@ -11,9 +13,7 @@ jobs:
             - name: Install Node
               uses: actions/setup-node@v3
               with:
-                  node-version: 8.10.0
-            - name: Install NPM
-              run: npm install --global npm@6.13
+                  node-version: lts/iron
             - name: Install Postgres
               id: postgres
               uses: ikalnytskyi/action-setup-postgres@v4
