@@ -5,6 +5,7 @@ jobs:
         runs-on: ubuntu-22.04
         env:
           NODE_OPTIONS: '--openssl-legacy-provider'
+          CI: 1
         steps:
             - name: Install PHP
               uses: shivammathur/setup-php@v2
