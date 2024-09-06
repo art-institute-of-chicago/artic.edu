@@ -14,6 +14,7 @@ class DigitalPublicationArticleRequest extends Request
     public function rulesForUpdate()
     {
         return [
+            'article_type' => 'required',
             'date' => 'required',
         ];
     }

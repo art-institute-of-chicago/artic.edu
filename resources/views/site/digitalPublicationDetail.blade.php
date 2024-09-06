@@ -1,7 +1,3 @@
-@php
-    use App\Enums\DigitalPublicationArticleType;
-@endphp
-
 @extends('layouts.app')
 
 @section('content')
@@ -98,7 +94,7 @@
                                                 @component('components.molecules._m-listing----digital-publication-article')
                                                     @slot('href', $item->present()->url)
                                                     @slot('image', $item->imageFront('hero'))
-                                                    @slot('type', $item->present()->type)
+                                                    @slot('type', $item->present()->articleType)
                                                     @slot('title', $item->present()->title)
                                                     @slot('title_display', $item->present()->title_display)
                                                     @slot('list_description', $item->present()->list_description)
@@ -125,7 +121,7 @@
                             @else
                                 @component('components.molecules._m-showcase')
                                     @slot('variation', 'showcase--digital-publication')
-                                    @slot('tag', $topLevelArticle->present()->type)
+                                    @slot('tag', $topLevelArticle->present()->articleType)
                                     @slot('title', $topLevelArticle->present()->title_display ?? $topLevelArticle->present()->title)
                                     @slot('author_display', $topLevelArticle->showAuthors())
                                     @slot('description', $topLevelArticle->present()->list_description)
@@ -176,7 +172,7 @@
                                     @component('components.molecules._m-listing----digital-publication-article')
                                         @slot('href', $item->present()->url)
                                         @slot('image', $item->imageFront('hero'))
-                                        @slot('type', $item->present()->type)
+                                        @slot('type', $item->present()->articleType)
                                         @slot('title', $item->present()->title)
                                         @slot('title_display', $item->present()->title_display)
                                         @slot('list_description', $item->present()->list_description)
@@ -287,7 +283,7 @@
                                                 @slot('cols_medium','4')
                                                 @slot('cols_large','4')
                                                 @slot('cols_xlarge','4')
-                                        
+
                                                 @foreach ($item->children as $child)
                                                     @component('components.molecules._m-listing----digital-publication-article-entry')
                                                         @slot('href', $child->present()->url)
@@ -371,7 +367,7 @@
                                             @slot('variation', 'm-listing--seventy-thirty')
                                             @slot('href', $item->present()->url)
                                             @slot('image', $item->imageFront('hero'))
-                                            @slot('type', $item->present()->type)
+                                            @slot('type', $item->present()->articleType)
                                             @slot('title', $item->present()->title)
                                             @slot('title_display', $item->present()->title_display)
                                             @slot('list_description', $item->present()->list_description)
@@ -427,14 +423,14 @@
                                                 'variation' => 'm-title-bar--compact m-title-bar--no-hr',
                                             ])
                                                 @slot('item', $item)
-                                                {!! $item->present()->type !!}
+                                                {!! $item->present()->articleType !!}
                                             @endcomponent
                                         @else
                                             @component('components.molecules._m-listing----digital-publication-article')
                                                 @slot('variation', 'm-listing--title-only')
                                                 @slot('href', $item->present()->url)
                                                 @slot('image', $item->imageFront('hero'))
-                                                @slot('type', $item->present()->type)
+                                                @slot('type', $item->present()->articleType)
                                                 @slot('title', $item->present()->title)
                                                 @slot('title_display', $item->present()->title_display)
                                                 @slot('list_description', $item->present()->list_description)
@@ -459,7 +455,7 @@
                                         'variation' => 'm-title-bar--compact m-title-bar--no-hr',
                                     ])
                                         @slot('item', $topLevelArticle)
-                                        {!! $topLevelArticle->present()->type !!}
+                                        {!! $topLevelArticle->present()->articleType !!}
                                     @endcomponent
                                 @endif
 
@@ -497,7 +493,7 @@
                                 @component('components.molecules._m-listing----digital-publication-article')
                                     @slot('href', $item->present()->url)
                                     @slot('image', $item->imageFront('hero'))
-                                    @slot('type', $item->present()->type)
+                                    @slot('type', $item->present()->articleType)
                                     @slot('title', $item->present()->title)
                                     @slot('title_display', $item->present()->title_display)
                                     @slot('list_description', $item->present()->list_description)
