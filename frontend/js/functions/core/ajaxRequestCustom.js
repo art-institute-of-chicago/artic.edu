@@ -1,4 +1,4 @@
-import queryStringHandler from '@area17/a17-helpers';
+import { queryStringHandler } from '@area17/a17-helpers';
 
 /**
  * This is a modification of A17's `ajaxRequest` that allows us to detect redirects.
