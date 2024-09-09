@@ -7,13 +7,6 @@
 @section('content')
 
 @if ($bgcolor ?? false)
-    <style>
-        .m-article-header--digital-publication-article ~ .m-article-header__text::before,
-        .m-article-actions--publication__logo.u-show\@medium-::before {
-            background-color: {{ $bgcolor }};
-            transition: background-color 1s;
-        }
-    </style>
 @endif
 
 <article class="o-article">
@@ -74,19 +67,14 @@
     @endif
 
     <div class="o-article__body o-blocks o-blocks--with-sidebar">
-        @switch ($item->article_type)
-            @case (DigitalPublicationArticleType::Contributions)
-            @case (DigitalPublicationArticleType::Entry)
-                @if ($item->showAuthorsWithLinks())
-                    @component('components.blocks._text')
-                        @slot('font', 'f-tag-2')
-                        @slot('variation', 'author-links')
-                        @slot('tag', 'div')
-                        {!! $item->showAuthorsWithLinks() !!}
-                    @endcomponent
-                @endif
-                @break
-        @endswitch
+        @if ($item->showAuthorsWithLinks() && $item->article_type == DigitalPublicationArticleType::Contributions)
+            @component('components.blocks._text')
+                @slot('font', 'f-tag-2')
+                @slot('variation', 'author-links')
+                @slot('tag', 'div')
+                {!! $item->showAuthorsWithLinks() !!}
+            @endcomponent
+        @endif
 
         @php
         switch ($item->article_type) {
@@ -108,6 +96,15 @@
         {!! $item->renderBlocks(false, [], [
             'pageTitle' => $item->meta_title ?: $item->title,
         ]) !!}
+
+        @if ($item->showAuthorsWithLinks() && $item->article_type == DigitalPublicationArticleType::Entry)
+            @component('components.blocks._text')
+                @slot('font', 'f-tag-2')
+                @slot('variation', 'author-links')
+                @slot('tag', 'div')
+                Entry by {!! $item->showAuthorsWithLinks() !!}
+            @endcomponent
+        @endif
 
         @component('partials._bibliography')
             @slot('notes', $_collectedReferences ?? null)
