@@ -30,7 +30,7 @@
     </div>
 
     <div class="o-article__body o-blocks">
-        @if ($item->welcome_note_display && $welcomeNote)
+        @if ($item->welcome_note_display && $welcomeNote && $showAll == false)
             <div class="o-issue__intro">
                 @component('components.organisms._o-editors-note----publication')
                     @slot('description', $item->welcome_note_display)
