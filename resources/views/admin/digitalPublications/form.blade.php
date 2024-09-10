@@ -17,17 +17,8 @@
     </div>
 
     @formField('wysiwyg', [
-        'name' => 'header_title_display',
-        'label' => 'Title lockup for header',
-        'note' => 'Use Shift+Enter to add linebreak instead of starting a new paragraph',
-        'toolbarOptions' => [
-            'italic',
-        ],
-    ])
-
-    @formField('wysiwyg', [
         'name' => 'header_subtitle_display',
-        'label' => 'Subtitle lockup for header',
+        'label' => 'Subtitle for header',
         'toolbarOptions' => [
             'italic',
         ],

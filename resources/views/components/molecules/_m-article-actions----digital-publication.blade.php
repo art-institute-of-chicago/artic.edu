@@ -6,7 +6,7 @@
 
     <div class="m-article-actions--publication__logo u-show@large+">
         <a href="{!! $digitalPublication->present()->getCanonicalUrl() !!}">
-            {!! $digitalPublication->header_title_display !!}
+            {!! $digitalPublication->title_display ?? $digitalPublication->title !!}
         </a>
     </div>
 
