@@ -97,7 +97,7 @@
         'moduleName' => 'authors',
         'name' => 'authors',
         'label' => 'Authors',
-        'max' => 10
+        'max' => 10,
         'note' => 'On Entry type articles, authorship is prepended with "Entry by"',
     ])
 
