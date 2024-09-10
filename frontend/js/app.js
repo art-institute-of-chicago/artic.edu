@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery, forEach, lazyLoad } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors/core';
-import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, headerHeight, roadblock } from './functions/core';
+import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, headerAwareScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, headerHeight, roadblock } from './functions/core';
 /**
  * A17
  * @see Doc: https://code.area17.com/a17/fe-boilerplate/wikis/js-app
@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function(){
   focusDisplayHandler();
   // Scroll anchor links
   anchorLinksScroll();
+  // Scroll to hash and adjust for header
+  headerAwareScroll();
   // Listen for modal open/close requests
   modals();
   // Listen for modal open/close requests
