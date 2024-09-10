@@ -229,7 +229,7 @@
                                             @slot('label', $item->present()->label)
                                             @slot('imageSettings', array(
                                                 'fit' => 'crop',
-                                                'ratio' => '16:9',
+                                                'ratio' => $item->imageFront('hero', 'square') ? '1' : '16:9',
                                                 'srcset' => array(200,400,600),
                                                 'sizes' => ImageHelpers::aic_imageSizes(array(
                                                     'xsmall' => '216px',
