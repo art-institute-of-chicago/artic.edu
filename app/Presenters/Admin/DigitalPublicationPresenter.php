@@ -71,7 +71,7 @@ class DigitalPublicationPresenter extends BasePresenter
 
     public function headerTitle()
     {
-        return $this->entity->header_title_display ?? $this->entity->title_display;
+        return $this->entity->title_display ?? $this->entity->title;
     }
 
     public function headerSubtitle()
