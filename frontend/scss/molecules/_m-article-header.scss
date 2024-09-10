@@ -1186,7 +1186,7 @@
       z-index: 1;
     }
     .m-article-header__text::before {
-      left: -300%;
+      left: -36vw;
       margin-left: 0;
       max-width: colspan(50, 'xlarge');
     }
@@ -1315,7 +1315,7 @@
       z-index: map-get($zindexs, 'header');
 
       .m-article-header__text::before {
-        left: -10vw;
+        left: -40vw;
         margin-left: 0;
         max-width: 110vw;
       }
