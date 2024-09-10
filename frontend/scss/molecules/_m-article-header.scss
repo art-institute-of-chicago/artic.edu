@@ -1076,7 +1076,7 @@
     min-height: initial;
     z-index: auto;
 
-    white-space: nowrap;
+    white-space: normal;
 
     >a {
       color: $color__white !important;
@@ -1109,8 +1109,8 @@
   }
 
   .title {
-    font-size: 28px;
-    line-height: 34px;
+    font-size: 38px;
+    line-height: 44px;
     margin-top: 26px;
   }
 
@@ -1221,7 +1221,7 @@
 
 // TODO Isolate the following to a _s-sticky-digital-publication-header.scss file?
 .s-shrinking-digital-publication-header.s-scroll-direction-down {
-  @include breakpoint('large+') {
+  @include breakpoint('medium+') {
     .m-article-header__img img {
       opacity: 0;
       transition: opacity 1s;
@@ -1234,6 +1234,39 @@
 
     .m-article-header__text .subtitle {
       opacity: 0;
+      transition: opacity 1s;
+    }
+  }
+}
+
+.s-sticky-digital-publication-header.is-sidebar-top.s-scroll-direction-up {
+  .m-article-header--digital-publication {
+    position: absolute !important;
+  }
+}
+
+.s-sticky-digital-publication-header, .p-digitalpublications-showlisting {
+  .m-article-header--digital-publication {
+    .m-article-header__text {
+      justify-content: center;
+    }
+  }
+}
+
+.s-shrinking-digital-publication-header.is-sidebar-top {
+  @include breakpoint('medium+') {
+    .m-article-header__img img {
+      opacity: 1;
+      transition: opacity 1s;
+    }
+
+    .m-article-header__text .title {
+      opacity: 1;
+      transition: opacity 1s;
+    }
+
+    .m-article-header__text .subtitle {
+      opacity: 1;
       transition: opacity 1s;
     }
   }
@@ -1277,11 +1310,19 @@
       width: 100%;
       z-index: map-get($zindexs, 'header');
 
+      .m-article-header__text::before {
+        left: -10vw;
+        margin-left: 0;
+        max-width: 110vw;
+      }
+
       .m-article-header__text .title {
         margin-bottom: auto;
         margin-top: auto;
         opacity: 1;
         transition: opacity 1s;
+        font-size: 20px;
+        line-height: 24px;
       }
 
       .m-article-header__text .subtitle {
@@ -1289,11 +1330,11 @@
       }
 
       .m-article-header__img {
-        flex: 0 0 auto;
         height: 180px;
+        flex: 0 0 colspan(56, 'large');
 
         img {
-          opacity: 1;
+          object-position: bottom;
           transition: opacity 1s;
         }
       }
