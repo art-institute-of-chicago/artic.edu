@@ -42,6 +42,7 @@
         'name' => 'bgcolor',
         'label' => 'Hero background color',
         'options' => $heroBackgroundColors,
+        'columns' => 3,
     ])
 
     @formField('wysiwyg', [
