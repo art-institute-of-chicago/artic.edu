@@ -18,7 +18,7 @@
 
     @formField('wysiwyg', [
         'name' => 'header_subtitle_display',
-        'label' => 'Subtitle lockup for header',
+        'label' => 'Subtitle for header',
         'toolbarOptions' => [
             'italic',
         ],
