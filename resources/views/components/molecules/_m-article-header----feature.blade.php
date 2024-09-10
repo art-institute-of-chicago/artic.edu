@@ -33,13 +33,19 @@
     </div>
     <div class="m-article-header__text" data-blur-clip-to>
         @if (isset($title))
-            @component('components.atoms._title')
-                @slot('tag','h1')
-                @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-headline')
-                @slot('itemprop','name')
-                @slot('title', $title)
-                @slot('title_display', $title_display ?? null)
-            @endcomponent
+            @if (isset($title_href))
+                <a href="{{ $title_href }}">
+            @endif
+                @component('components.atoms._title')
+                    @slot('tag', 'h1')
+                    @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-headline')
+                    @slot('itemprop','name')
+                    @slot('title', $title)
+                    @slot('title_display', $title_display ?? null)
+                @endcomponent
+            @if (isset($title_href))
+                </a>
+            @endif
             @if (isset($subtitle_display))
                 <h2 class="subtitle f-headline-editorial">
                     {!! $subtitle_display !!}
