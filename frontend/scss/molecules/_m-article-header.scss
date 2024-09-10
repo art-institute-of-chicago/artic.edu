@@ -1121,7 +1121,7 @@
 
   @include breakpoint('medium+') {
     .m-article-header__text {
-      padding-right: 0;
+      padding-right: 4.875vw !important;
     }
 
     .m-article-header__img {
@@ -1138,7 +1138,7 @@
     }
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint('medium+') {
     flex-flow: row-reverse nowrap;
 
     .title {
