@@ -89,6 +89,7 @@
     @formField('input', [
         'name' => 'author_display',
         'label' => 'Author display',
+        'note' => 'On Entry type articles, authorship is prepended with "Entry by"',
     ])
 
     @formField('browser', [
@@ -96,7 +97,8 @@
         'moduleName' => 'authors',
         'name' => 'authors',
         'label' => 'Authors',
-        'max' => 10
+        'max' => 10,
+        'note' => 'On Entry type articles, authorship is prepended with "Entry by"',
     ])
 
     @formField('wysiwyg', [
