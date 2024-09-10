@@ -1078,7 +1078,17 @@
 
     white-space: nowrap;
 
+    >a {
+      color: $color__white !important;
+
+      &:hover {
+        color: $color__white !important;
+        text-decoration: underline !important;
+      }
+    }
+
     .f-headline-editorial {
+      color: $color__white !important;
       @include untuck();
     }
   }
