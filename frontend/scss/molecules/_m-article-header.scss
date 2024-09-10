@@ -1249,6 +1249,10 @@
   .m-article-header--digital-publication {
     .m-article-header__text {
       justify-content: center;
+
+      .title {
+        font-size: 26px !important;
+      }
     }
   }
 }
@@ -1328,7 +1332,7 @@
         margin-top: auto;
         opacity: 1;
         transition: opacity 1s;
-        font-size: 20px;
+        font-size: 26px;
         line-height: 24px;
       }
 
