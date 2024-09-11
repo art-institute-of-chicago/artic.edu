@@ -268,12 +268,16 @@
 
   .m-article-actions--publication__logo {
     height: 110px;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     white-space: nowrap;
     color: $color__white;
     transition: display 1s, background-color 1s;
     display: flex;
     align-items: center;
+
+    .p-digitalpublicationarticle-show.p-t-contributions & {
+      margin-bottom: 40px;
+    }
 
     &::before {
       content: "";
