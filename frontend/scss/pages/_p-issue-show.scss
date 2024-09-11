@@ -71,9 +71,15 @@
   }
 }
 
-.p-digitalpublications-show,
 .p-digitalpublications-showlisting {
   .o-article__body {
+    margin-top: 40px !important;
+  }
+}
+
+.p-digitalpublications-show,
+.p-digitalpublications-showlisting {
+  .o-article__body:has(.o-issue__intro) {
     margin-top: 40px;
   }
 
