@@ -272,7 +272,8 @@
     white-space: nowrap;
     color: $color__white;
     transition: display 1s, background-color 1s;
-
+    display: flex;
+    align-items: center;
 
     &::before {
       content: "";
