@@ -271,7 +271,6 @@
     margin-bottom: 0px;
     white-space: nowrap;
     color: $color__white;
-    transition: display 1s, background-color 1s;
     display: flex;
     align-items: center;
 
@@ -307,7 +306,6 @@
 
     a {
       color: $color__link--publications;
-      transition: color 1s;
     }
 
     a:hover,
@@ -340,10 +338,6 @@
     a:hover {
       text-decoration: underline;
     }
-  }
-
-  .m-article-header__text {
-    transition: background-color 1s, display 1s;
   }
 
   .m-article-header__text::before {
