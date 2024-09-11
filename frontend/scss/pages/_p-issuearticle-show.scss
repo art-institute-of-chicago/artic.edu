@@ -270,7 +270,8 @@
   }
 
   .m-media--s.o-blocks__block .m-media__img {
-    max-width: 450px;
+    max-height: 450px;
+    max-width: 100%;
   }
 
   .m-media.o-blocks__block .m-media__img img {
