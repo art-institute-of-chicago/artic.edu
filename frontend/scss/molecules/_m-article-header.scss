@@ -1078,7 +1078,17 @@
 
     white-space: normal;
 
+    >a {
+      color: $color__white !important;
+
+      &:hover {
+        color: $color__white !important;
+        text-decoration: underline !important;
+      }
+    }
+
     .f-headline-editorial {
+      color: $color__white !important;
       @include untuck();
     }
   }
@@ -1176,7 +1186,7 @@
       z-index: 1;
     }
     .m-article-header__text::before {
-      left: -300%;
+      left: -36vw;
       margin-left: 0;
       max-width: colspan(50, 'xlarge');
     }
@@ -1229,6 +1239,24 @@
   }
 }
 
+.s-sticky-digital-publication-header.is-sidebar-top.s-scroll-direction-up {
+  .m-article-header--digital-publication {
+    position: absolute !important;
+  }
+}
+
+.s-sticky-digital-publication-header, .p-digitalpublications-showlisting {
+  .m-article-header--digital-publication {
+    .m-article-header__text {
+      justify-content: center;
+
+      .title {
+        font-size: 26px !important;
+      }
+    }
+  }
+}
+
 .s-shrinking-digital-publication-header.is-sidebar-top {
   @include breakpoint('medium+') {
     .m-article-header__img img {
@@ -1248,26 +1276,19 @@
   }
 }
 
-.s-sticky-digital-publication-header {
-  &.is-sidebar-fixed, &.is-sidebar-bottom {
-    @include breakpoint('medium+') {
-      .m-article-header__img img {
-        opacity: 0;
-        transition: opacity 1s;
-      }
-  
-      .m-article-header__text .title {
-        opacity: 0;
-        transition: opacity 1s;
-      }
-  
-      .m-article-header__text .subtitle {
-        opacity: 0;
-        transition: opacity 1s;
-      }
-    }
-
+.s-sticky-digital-publication-header.is-sidebar-top.s-scroll-direction-up {
+  .m-article-header--digital-publication {
+    position: absolute !important;
   }
+}
+
+.s-sticky-digital-publication-header, .p-digitalpublications-showlisting {
+  .m-article-header--digital-publication {
+    .m-article-header__text {
+      justify-content: center;
+    }
+  }
+
   @include breakpoint('medium-') {
     .m-sidebar-toggle {
       position: fixed;
@@ -1294,7 +1315,7 @@
       z-index: map-get($zindexs, 'header');
 
       .m-article-header__text::before {
-        left: -10vw;
+        left: -40vw;
         margin-left: 0;
         max-width: 110vw;
       }
@@ -1304,7 +1325,7 @@
         margin-top: auto;
         opacity: 1;
         transition: opacity 1s;
-        font-size: 20px;
+        font-size: 26px;
         line-height: 24px;
       }
 

@@ -11,6 +11,7 @@ export { default as ajaxableHref } from './ajaxableHref';
 export { default as loadProgressBar } from './loadProgressBar';
 export { default as setScrollDirection } from './setScrollDirection';
 export { default as anchorLinksScroll } from './anchorLinksScroll';
+export { default as headerAwareScroll } from './headerAwareScroll';
 export { default as fontObservers } from './fontObservers';
 export { default as modals } from './modals';
 export { default as mediaQuery } from './mediaQuery';
