@@ -99,6 +99,21 @@
       display: none !important;
     }
   }
+
+  &.m-digipub-grouping-title-bar {
+    .title {
+      font-size: 26px;
+      letter-spacing: 3px !important;
+    }
+  }
+
+  &.m-digipub-subgrouping-title-bar {
+    margin-top: 20px;
+
+    .title {
+      font-size: 24px;
+    }
+  }
 }
 
 .m-title-bar::before {
