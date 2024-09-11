@@ -253,13 +253,13 @@
                         {{-- Title Component --}}
                         @if (!$topLevelArticle->hide_title)
                             @component('components.molecules._m-title-bar', [
-                                'variation' => 'm-title-bar--compact m-title-bar--light',
+                                'variation' => 'm-title-bar--compact m-title-bar--light  m-digipub-grouping-title-bar',
                             ])
                             @slot('links', $topLevelArticle->present()->getBrowseMoreLink($showAll))
                             {!! $topLevelArticle->title !!}
                             @endcomponent
                         @endif
-                        </br>
+                        <br/>
 
                         {{-- Listing Component --}}
                         @if (!$topLevelArticle->suppress_listing)
@@ -272,8 +272,8 @@
 
                                         @if ($item->children && $item->children->count() > 0)
                                             @component('components.molecules._m-title-bar', [
-                                                'variation' => 'm-title-bar--no-hr',
-                                                'titleFont' => 'f-list-3',
+                                                'variation' => 'm-title-bar--no-hr m-digipub-subgrouping-title-bar',
+                                                'titleFont' => 'f-list-2',
                                             ])
                                             {!! $item->title !!}
                                             @endcomponent
