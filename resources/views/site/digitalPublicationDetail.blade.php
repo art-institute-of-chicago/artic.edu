@@ -34,7 +34,6 @@
             <div class="o-issue__intro">
                 @component('components.organisms._o-editors-note----publication')
                     @slot('description', $item->welcome_note_display)
-                    @slot('articleLink', $welcomeNote->present()->getArticleUrl($item))
                 @endcomponent
             </div>
         @endif
