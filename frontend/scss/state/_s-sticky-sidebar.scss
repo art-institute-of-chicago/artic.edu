@@ -111,7 +111,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
 
         @each $name in ('large', 'xlarge') {
           @include breakpoint('#{$name}') {
-            width: #{colspan(14, '#{$name}')};
+            width: #{colspan(17, '#{$name}')};
             padding-right: #{colspan(1, '#{$name}')};
           }
         }

@@ -17,7 +17,7 @@
 
   @include breakpoint('large+') {
     float: left;
-    width: colspan(13, large);
+    width: colspan(16, large);
     margin-top: 0;
     margin-right: colspan(2, large);
 
@@ -28,7 +28,7 @@
   }
 
   @include breakpoint('xlarge') {
-    width: colspan(13, xlarge);
+    width: colspan(16, xlarge);
     margin-right: colspan(2, xlarge);
   }
 
