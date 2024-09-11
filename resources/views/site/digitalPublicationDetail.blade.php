@@ -6,7 +6,9 @@
     @component('components.molecules._m-article-header----feature')
         @slot('variation', 'm-article-header--digital-publication')
         @slot('title', $item->present()->title)
+        @slot('title_href', (request()->url() !== $item->present()->url) ? $item->present()->url : null)
         @slot('title_display', $item->present()->headerTitle())
+        @slot('title_tag', (request()->url() !== $item->present()->url) ? 'a' : 'h1')
         @slot('subtitle_display', $item->present()->headerSubtitle())
         @slot('img', $item->imageFront('listing'))
         @slot('imgMobile', $item->imageFront('mobile_listing'))
@@ -28,7 +30,7 @@
     </div>
 
     <div class="o-article__body o-blocks">
-        @if ($item->welcome_note_display && $welcomeNote)
+        @if ($item->welcome_note_display && $welcomeNote && $showAll == false)
             <div class="o-issue__intro">
                 @component('components.organisms._o-editors-note----publication')
                     @slot('description', $item->welcome_note_display)
