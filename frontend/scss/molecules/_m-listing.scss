@@ -2266,18 +2266,22 @@ a:focus:hover .btn--magazine {
 
   @include breakpoint('small+') {
     width: colspan(28, small) !important;
+    margin-left: colspan(2, small) !important;
   }
 
   @include breakpoint('medium+') {
     width: colspan(13, medium) !important;
+    margin-left: colspan(2, medium) !important;
   }
 
   @include breakpoint('large+') {
-    width: colspan(9, large) !important;
+    width: colspan(9.2, large) !important;
+    margin-left: colspan(2.04, large) !important;
   }
 
   @include breakpoint('xlarge') {
-    width: colspan(9, xlarge) !important;
+    width: colspan(9.2, xlarge) !important;
+    margin-left: colspan(2.04, xlarge) !important;
   }
 
   .m-listing__img {
@@ -2285,7 +2289,7 @@ a:focus:hover .btn--magazine {
   }
 
   .m-listing__meta {
-    min-height: 118px;
+    min-height: 76px;
   }
 
   .type {
@@ -2295,8 +2299,9 @@ a:focus:hover .btn--magazine {
 
   .title {
     @include untuck;
+    padding-top: 10px;
     line-height: 1.25em;
-    font-size: 22px;
+    font-size: 19px;
   }
 }
 
