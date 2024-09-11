@@ -2275,13 +2275,13 @@ a:focus:hover .btn--magazine {
   }
 
   @include breakpoint('large+') {
-    width: colspan(9, large) !important;
-    margin-left: colspan(2.2, large) !important;
+    width: colspan(9.2, large) !important;
+    margin-left: colspan(2.04, large) !important;
   }
 
   @include breakpoint('xlarge') {
-    width: colspan(9, xlarge) !important;
-    margin-left: colspan(2.2, xlarge) !important;
+    width: colspan(9.2, xlarge) !important;
+    margin-left: colspan(2.04, xlarge) !important;
   }
 
   .m-listing__img {
