@@ -515,7 +515,7 @@
 
 .o-gallery--small-mosaic.o-gallery----theme-3 {
   .o-pinboard {
-    border-top: 1px solid $color__rules--primary;
+    border-top: 0;
   }
 
   @each $name, $point in $breakpoints {
