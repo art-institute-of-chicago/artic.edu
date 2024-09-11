@@ -101,36 +101,36 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
     &.is-sidebar-grabbed,
     &.is-sidebar-fixed,
     &.is-sidebar-bottom {
-      .o-sticky-sidebar__sticker {
-
-        &[data-sticky-animated-logo] {
+      .o-article__primary-actions {
+        .o-sticky-sidebar__sticker {
           .m-article-actions--publication__logo {
             display: block;
+            align-items: normal;
+          }
+
+          @each $name in ('large', 'xlarge') {
+            @include breakpoint('#{$name}') {
+              width: #{colspan(14, '#{$name}')};
+              padding-right: #{colspan(1, '#{$name}')};
+            }
+          }
+
+          .m-article-actions--publication__logo,
+          .m-article-actions--publication__logo::before {
+            background-color: transparent;
+            transition: background-color 1s;
+          }
+
+          .m-article-actions--publication__logo a {
+            color: $color__text--title;
+            transition: color 1s;
           }
         }
 
-        @each $name in ('large', 'xlarge') {
-          @include breakpoint('#{$name}') {
-            width: #{colspan(14, '#{$name}')};
-            padding-right: #{colspan(1, '#{$name}')};
-          }
-        }
-
-        .m-article-actions--publication__logo,
-        .m-article-actions--publication__logo::before {
+        .m-article-header--digital-publication-article ~ .m-article-header__text::before {
           background-color: transparent;
           transition: background-color 1s;
         }
-
-        .m-article-actions--publication__logo a {
-          color: $color__text--title;
-          transition: color 1s;
-        }
-      }
-
-      .m-article-header--digital-publication-article ~ .m-article-header__text::before {
-        background-color: transparent;
-        transition: background-color 1s;
       }
     }
 

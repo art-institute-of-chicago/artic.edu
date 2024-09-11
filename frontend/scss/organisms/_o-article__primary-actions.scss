@@ -275,6 +275,11 @@
     display: flex;
     align-items: center;
 
+    .is-sidebar-fixed & {
+      display: block;
+      align-items: normal;
+    }
+
     .p-digitalpublicationarticle-show.p-t-contributions & {
       margin-bottom: 40px;
     }
