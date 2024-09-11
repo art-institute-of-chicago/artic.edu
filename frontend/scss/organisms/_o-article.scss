@@ -370,7 +370,6 @@
   @include breakpoint('large+') {
     float: none;
     width: colspan(28, large);
-    margin-left: colspan(18, large);
   }
 
   @include breakpoint('xlarge') {
