@@ -1280,6 +1280,18 @@
   }
 }
 
+.s-sticky-digital-publication-header:not(.s-allow-top-link) {
+  .m-sidebar-toggle {
+    position: relative !important;
+  }
+}
+
+.s-sticky-digital-publication-header.s-allow-top-link {
+  .m-sidebar-toggle {
+    position: fixed !important;
+  }
+}
+
 .s-sticky-digital-publication-header, .p-digitalpublications-showlisting {
   .m-article-header--digital-publication {
     .m-article-header__text {
