@@ -1123,7 +1123,7 @@
     text-align: left;
   }
 
-  @include breakpoint('small') {
+  @include breakpoint('small-') {
 
     .m-article-header__img {
       height: 300px;
