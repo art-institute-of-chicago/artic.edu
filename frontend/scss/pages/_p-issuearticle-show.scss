@@ -102,11 +102,9 @@
   }
 
   .m-article-actions--publication__logo {
-    height: 110px;
-    padding-bottom: 40px;
+    margin-top: 15px;
     color: $color__white;
     @include breakpoint('medium-') {
-      padding-top: 40px;
       width: 100%;
       display: flex;
       align-items: center;
@@ -410,5 +408,13 @@ Styling related specifically to digital publications
       }
     }
 
+  }
+}
+
+.p-digitalpublicationarticle-show.p-t-contributions {
+  .m-article-actions--publication__logo {
+    height: 150px;
+    margin-bottom: 0;
+    margin-top: 0;
   }
 }

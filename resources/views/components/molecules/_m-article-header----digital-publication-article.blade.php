@@ -3,7 +3,6 @@
         .m-article-header--digital-publication-article ~ .m-article-header__text::before,
         .m-article-actions--publication__logo {
             background-color: {{ $bgcolor }};
-            transition: background-color 1s;
         }
     </style>
 @endif
@@ -30,6 +29,6 @@
         @endif
     </div>
     <div class="m-article-actions--publication__logo u-show@medium-">
-        {!! $title_display ?? $title !!}
+        {!! $pub_title_display ?? $pub_title !!}
     </div>
 </header>
