@@ -268,9 +268,19 @@
   }
 
   .m-media--s.o-blocks__block .m-media__img {
-    max-height: 450px;
+    width: 100%;
     max-width: 100%;
+    overflow: hidden;
+    text-align: left;
+    
+    img {
+        max-height: 450px !important;
+        width: auto;
+        object-fit: contain;
+        display: block;
+    }
   }
+
 
   .m-media.o-blocks__block .m-media__img img {
     margin-left: 0;
