@@ -49,6 +49,7 @@ const stickySidebar = function(container){
 
   let navContainer;
   let stickyHeaderContainer;
+  let contributionHeaderHeight;
 
   const sidebarOverlayState = 'is-sidebar-overlay';
   let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
@@ -67,11 +68,12 @@ const stickySidebar = function(container){
     navContainer = document.querySelector('.g-header');
     stickyHeaderContainer = document.querySelector('.m-article-header');
 
-    if (scrollTop < containerTop - (document.documentElement.classList.contains('s-sticky-digital-publication-header') ? stickyHeaderContainer.offsetHeight : 0)) {
+    // `containerToo` is caluclated in the `handleResize` method
+    if (scrollTop < containerTop) {
       top();
       container.style.marginTop = '0px';
     } else {
-      if (scrollTop + containerHeight > article.offsetHeight) {
+      if (scrollTop + containerHeight > article.offsetHeight + (document.documentElement.classList.contains('s-unsticky-header') ? navContainer.clientHeight : 0)) {
         bottom();
       } else {
         sticky();
@@ -106,7 +108,21 @@ const stickySidebar = function(container){
   function handleResize() {
     top();
     windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    stickyHeaderContainer = document.querySelector('.m-article-header');
+
+    contributionHeaderHeight = 0;
+    let logoList = document.querySelectorAll('.m-article-actions--publication__logo');
+    for (let i = 0; i < logoList.length; i++) {
+      contributionHeaderHeight += logoList[i].clientHeight;
+    }
+
     containerTop = getOffsetTop(container) + document.body.scrollTop;
+    if (document.documentElement.classList.contains('s-sticky-digital-publication-header')) {
+      containerTop -= stickyHeaderContainer.offsetHeight;
+    }
+    if (document.documentElement.classList.contains('p-digitalpublicationarticle-show') && document.documentElement.classList.contains('p-t-contributions')) {
+      containerTop += contributionHeaderHeight;
+    }
 
     logo.setAttribute('style', 'display: block');
     logo.removeAttribute('style');
