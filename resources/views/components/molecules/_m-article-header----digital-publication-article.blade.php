@@ -7,7 +7,11 @@
     </style>
 @endif
 
-<header class="m-article-header m-article-header--feature m-article-header--digital-publication-article">
+<header
+    class="m-article-header m-article-header--feature m-article-header--digital-publication-article"
+    data-behavior="contrastText"
+    data-background-color="{{ $bgcolor }}"
+>
     <div class="m-article-header__img">
         @if ($img)
             @component('components.atoms._img')

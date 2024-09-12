@@ -18,6 +18,7 @@
 <article class="o-article">
     @if ($item->article_type == DigitalPublicationArticleType::Contributions)
         @component('components.molecules._m-article-header----digital-publication-article')
+            @slot('bgcolor', $bgcolor)
             @slot('title', $item->present()->title)
             @slot('title_display', $item->present()->title_display)
             @slot('pub_title', $item->digitalPublication->present()->title)
@@ -60,6 +61,7 @@
                 @slot('itemprop', 'name')
                 @slot('title', $item->present()->title)
                 @slot('title_display', $item->present()->title_display ?? null)
+                @slot('variation', 'contrast-text')
             @endcomponent
         </div>
     @endif
