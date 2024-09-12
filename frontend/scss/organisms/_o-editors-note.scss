@@ -17,7 +17,9 @@
   a:focus .f-deck,
   a:hover .f-body-editorial,
   a:focus .f-body-editorial {
-    color: $color__black--61;
+    &:not(.o-editors-note__title-lockup) {
+      color: $color__black--61;
+    }
   }
 
   a .icon--arrow {
