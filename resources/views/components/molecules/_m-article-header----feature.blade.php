@@ -9,7 +9,8 @@
 @endif
 <{{ $tag ?? 'header' }}
     class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}"
-    data-behavior="blurMyBackground stickyDigitalPublicationHeader"
+    data-behavior="blurMyBackground stickyDigitalPublicationHeader contrastText"
+    data-background-color="{{ $bgcolor }}"
 >
     <div class="m-article-header__img"{{ (isset($variation) && $variation != 'm-article-header--digital-publication') ? ' data-blur-img' : '' }}>
         @if ($img)
@@ -42,12 +43,13 @@
                     @slot('itemprop','name')
                     @slot('title', $title)
                     @slot('title_display', $title_display ?? null)
+                    @slot('variation', 'contrast-text')
                 @endcomponent
             @if (isset($title_href))
                 </a>
             @endif
             @if (isset($subtitle_display))
-                <h2 class="subtitle f-headline-editorial">
+                <h2 class="subtitle f-headline-editorial contrast-text">
                     {!! $subtitle_display !!}
                 </h2>
             @endif
