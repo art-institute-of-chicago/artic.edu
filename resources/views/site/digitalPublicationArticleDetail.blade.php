@@ -20,6 +20,8 @@
         @component('components.molecules._m-article-header----digital-publication-article')
             @slot('title', $item->present()->title)
             @slot('title_display', $item->present()->title_display)
+            @slot('pub_title', $item->digitalPublication->present()->title)
+            @slot('pub_title_display', $item->digitalPublication->present()->title_display)
             @slot('img', $item->imageFront('hero'))
             @slot('imgMobile', $item->imageFront('mobile_hero'))
         @endcomponent
@@ -73,6 +75,18 @@
     @endif
 
     <div class="o-article__body o-blocks o-blocks--with-sidebar">
+        @if ($item->article_type !== DigitalPublicationArticleType::Entry)
+            <div class="m-article-header__text u-show@medium-">
+                @component('components.atoms._title')
+                    @slot('tag', 'h1')
+                    @slot('font', 'f-headline-editorial')
+                    @slot('itemprop', 'name')
+                    @slot('title', $item->present()->title)
+                    @slot('title_display', $item->present()->title_display ?? null)
+                @endcomponent
+            </div>
+        @endif
+
         @if ($item->showAuthorsWithLinks() && $item->article_type == DigitalPublicationArticleType::Contributions)
             @component('components.blocks._text')
                 @slot('font', 'f-tag-2')
