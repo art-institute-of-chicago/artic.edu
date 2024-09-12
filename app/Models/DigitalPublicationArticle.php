@@ -67,7 +67,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
 
     public $attributes = [
         'published' => false,
-        'article_type' => 'entry',
+        'article_type' => 'text',
     ];
 
     public $mediasParams = [
