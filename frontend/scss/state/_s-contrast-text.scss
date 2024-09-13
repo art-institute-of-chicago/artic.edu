@@ -1,0 +1,11 @@
+.contrast-text {
+  .s-light-background ~ * &,
+  .s-light-background & {
+    color: $color__black !important;
+  }
+
+  .s-dark-background ~ * &,
+  .s-dark-background & {
+    color: $color__white !important;
+  }
+}

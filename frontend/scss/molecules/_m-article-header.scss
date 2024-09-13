@@ -1078,17 +1078,11 @@
 
     white-space: normal;
 
-    >a {
-      color: $color__white !important;
-
-      &:hover {
-        color: $color__white !important;
-        text-decoration: underline !important;
-      }
+    >a:hover {
+      text-decoration: underline !important;
     }
 
     .f-headline-editorial {
-      color: $color__white !important;
       @include untuck();
     }
   }
@@ -1409,7 +1403,6 @@
   }
 
   .title {
-    color: $color__white;
     z-index: 4;
   }
 }
