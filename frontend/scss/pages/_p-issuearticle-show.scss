@@ -15,6 +15,16 @@
       }
     }
   }
+  @each $name in ('large', 'xlarge') {
+    @include breakpoint('#{$name}') {
+      #a17 {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+
+      }
+    }
+  }
 
   .o-article__body::before {
     position: absolute;
@@ -179,6 +189,30 @@
   .o-article__body {
     padding-top: 0;
     margin-top: 60px;
+
+    @include breakpoint('large+') {
+      margin-left: calc(300px + colspan(2, large));
+      max-width: 900px;
+      width: colspan(46, large);
+    }
+  }
+
+  .o-article__body .p--linked {
+    margin-right: 1.5em;
+    padding-right: 1em;
+  }
+
+  .o-article__primary-actions--digital-publication {
+    @include breakpoint('large+') {
+      max-width: 300px;
+      width: colspan(16, large);
+    }
+
+    .o-sticky-sidebar__sticker {
+      max-width: 300px;
+      padding-right: 0;
+      width: colspan(16, large);
+    }
   }
 
   .o-article__secondary-actions {
