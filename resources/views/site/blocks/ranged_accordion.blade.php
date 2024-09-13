@@ -15,7 +15,7 @@
         </span>
     </button></h3>
     <div id="panel_accordion_{{ StringHelpers::getUtf8Slug($title) }}" class="o-accordion__panel" aria-labelledby="{{ StringHelpers::getUtf8Slug($title)}}">
-        <div class="o-accordion__panel-content o-blocks">
+        <div class="o-accordion__panel-content o-blocks o-blocks--with-sidebar">
     @else
             </div>
         </div>
