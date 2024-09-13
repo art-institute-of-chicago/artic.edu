@@ -303,6 +303,10 @@ h3 {
   }
 }
 
+.o-accordion__panel-content.o-blocks > .m-media {
+  margin-top: 44px;
+}
+
 .o-accordion__panel-content.o-blocks > h4:not([class*=f-]) + p:not([class*=f-]),
 .o-accordion__panel-content.o-blocks > .f-subheading-1 + .f-body,
 .o-accordion__panel-content.o-blocks > .f-subheading-1 + .f-body-editorial {
