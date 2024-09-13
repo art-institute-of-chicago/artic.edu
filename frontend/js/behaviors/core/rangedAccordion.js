@@ -30,13 +30,13 @@ const rangedAccordion = function(container) {
         if (isExpanded) {
             window.scrollTo({
                 top: currentScrollY,
-                behavior: 'smooth'
+                behavior: 'instant'
             });
         } else {
             // After expanding, ensure the current scroll position is restored
             window.scrollTo({
                 top: currentScrollY,
-                behavior: 'smooth'
+                behavior: 'instant'
             });
         }
     };
