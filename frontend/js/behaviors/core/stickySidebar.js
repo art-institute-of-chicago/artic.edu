@@ -204,6 +204,9 @@ const stickySidebar = function(container){
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resized', handleResize);
 
+    document.addEventListener('accordion:toggled', () => {
+      window.requestAnimationFrame(update);
+    }, false);
     document.addEventListener('stickySidebar:open', _showSidebar, false);
     document.addEventListener('stickySidebar:close', _hideSidebar, false);
     document.addEventListener('stickySidebar:toggle', _toggleSidebar, false);
@@ -220,6 +223,7 @@ const stickySidebar = function(container){
     window.removeEventListener('resized', handleResize);
     window.removeEventListener('scroll', handleScroll);
 
+    document.removeEventListener('accordion:toggled', window.requestAnimationFrame(update));
     document.removeEventListener('stickySidebar:open', _showSidebar);
     document.removeEventListener('stickySidebar:close', _hideSidebar);
     document.removeEventListener('stickySidebar:toggle', _toggleSidebar);
