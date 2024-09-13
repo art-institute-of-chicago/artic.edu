@@ -65,3 +65,4 @@ export { default as editorialHeader } from './editorialHeader';
 export { default as loadRelatedSidebar } from './loadRelatedSidebar';
 export { default as rangedAccordion } from './rangedAccordion';
 export { default as stickyDigitalPublicationHeader } from './stickyDigitalPublicationHeader';
+export { default as contrastText } from './contrastText';

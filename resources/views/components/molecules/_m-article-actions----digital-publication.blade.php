@@ -5,7 +5,7 @@
     </button>
 
     <div class="m-article-actions--publication__logo u-show@large+">
-        <a href="{!! $digitalPublication->present()->getCanonicalUrl() !!}">
+        <a href="{!! $digitalPublication->present()->getCanonicalUrl() !!}" class="contrast-text">
             {!! $digitalPublication->title_display ?? $digitalPublication->title !!}
         </a>
     </div>

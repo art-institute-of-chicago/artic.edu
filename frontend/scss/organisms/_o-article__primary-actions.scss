@@ -302,7 +302,11 @@
     }
 
     a {
-      color: $color__link--publications;
+      transition: color 1s;
+
+      .is-sidebar-fixed & {
+        color: $color__black !important;
+      }
     }
 
     a:hover,
