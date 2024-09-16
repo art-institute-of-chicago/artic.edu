@@ -7,7 +7,7 @@
 
 <div class="o-accordion{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="rangedAccordion">
     @if ($type === 'start')
-    <h3><button id="accordion_{{ StringHelpers::getUtf8Slug($title) }}" class="o-accordion__trigger {{ $titleFont ?? 'f-list-3' }}" tabindex="0">
+    <h3><button id="accordion_{{ StringHelpers::getUtf8Slug($title) }}" class="o-accordion__trigger {{ $titleFont ?? 'f-module-title-2' }}" tabindex="0">
         {!! $title !!}
         <span class="o-accordion__trigger-icon">
             <svg class="icon--plus"><use xlink:href="#icon--plus" /></svg>
