@@ -311,7 +311,7 @@
   }
 
   .m-media--s.o-blocks__block .m-media__img {
-    width: 100%;
+    width: max-content;
     max-width: 100%;
     overflow: hidden;
     text-align: left;
