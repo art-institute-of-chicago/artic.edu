@@ -1,13 +1,39 @@
-
-
 .o-accordion {
 
-h3 {
-  padding: 25px 0;
-}
-
-.o-article + & {
+  h3 {
+    padding: 25px 0;
+  }
+  
+  .o-article + & {
     margin-top: 40px;
+  }
+
+  &.o-ranged-accordion {
+    &:nth-of-type(2) {
+      margin-top: 40px;
+    }
+
+    h3 {
+      border-top: 1px solid $color__rules--primary;
+      padding: 16px 0 !important;
+    }
+
+    .o-accordion__trigger.f-module-title-2 {
+      padding-top: 0;
+      border-top: none;
+
+      &:before {
+        display: none !important;
+      }
+
+      @include breakpoint('small+') {
+        padding-top: 0;
+      }
+
+      .o-accordion__trigger-icon {
+        top: 6px;
+      }
+    }
   }
 }
 
