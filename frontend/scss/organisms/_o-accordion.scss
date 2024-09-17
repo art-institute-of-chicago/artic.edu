@@ -3,13 +3,13 @@
   h3 {
     padding: 25px 0;
   }
+  
   .o-article + & {
     margin-top: 40px;
   }
 
   &.o-ranged-accordion {
-    // Only apply margin-top if the previous sibling is not another o-ranged-accordion
-    &:not(.o-ranged-accordion + .o-ranged-accordion) {
+    &:nth-of-type(2) {
       margin-top: 40px;
     }
 
@@ -389,8 +389,7 @@
   margin-bottom: 48px;
 }
 
-.o-accordion.o-accordion--publication-sidebar,
-.o-accordion.o-accordion--magazine-issue-archive {
+.o-accordion.o-accordion--publication-sidebar {
 
   h3 {
     padding: 1px 0 0 0;
@@ -416,17 +415,6 @@
 
   .o-accordion__panel > .o-accordion--publication-sidebar {
     padding-left: 20px;
-  }
-
-  .o-accordion__panel > .o-accordion.o-accordion--magazine-issue-archive {
-    padding-left: 0;
-    &:not(:has(>.o-accordion__panel-content)) {
-      padding-left: 20px;
-    }
-  }
-
-  .o-accordion__panel > .o-accordion--publication-sidebar,
-  .o-accordion__panel > .o-accordion.o-accordion--magazine-issue-archive {
     &:last-of-type {
       padding-bottom: 20px;
     }
