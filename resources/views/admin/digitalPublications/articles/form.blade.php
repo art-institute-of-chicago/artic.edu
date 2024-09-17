@@ -22,33 +22,48 @@
         'default' => 'text',
         'options' => $types,
     ])
+    @formField('select', [
+        'name' => 'listing_display',
+        'label' => 'Listing display',
+        'placeholder' => 'Select a listing display',
+        'default' => 'default',
+        'options' => [
+            ['value' => 'feature', 'label' => 'Feature'],
+            ['value' => '3-across', 'label' => '3-Across'],
+            ['value' => 'entries', 'label' => 'Entries'],
+            ['value' => 'group_entries', 'label' => 'Group of Entries'],
+            ['value' => 'list', 'label' => 'List view'],
+            ['value' => 'simple_list', 'label' => 'Text list view'],
+        ],
+    ])
+
+    @component('twill::partials.form.utils._columns')
+        @slot('left')
+            @formField('checkbox', [
+                'name' => 'hide_title',
+                'label' => 'Hide title in listing view',
+            ])
+        @endslot
+
+        @slot('right')
+            @formField('checkbox', [
+                'name' => 'suppress_listing',
+                'label' => 'Hide from listing view',
+            ])
+        @endslot
+    @endcomponent
 @stop
 
 @section('fieldsets')
     @formFieldset([
-        'id' => 'article-type-fields',
-        'title' => 'Article type fields',
+        'id' => 'editorial-content',
+        'title' => 'Editorial Content',
     ])
         @formConnectedFields([
             'fieldName' => 'article_type',
             'fieldValues' => 'grouping',
             'renderForBlocks' => false,
         ])
-            @formField('select', [
-                'name' => 'listing_display',
-                'label' => 'Listing display',
-                'placeholder' => 'Select a listing display',
-                'default' => 'default',
-                'options' => [
-                    ['value' => 'feature', 'label' => 'Feature'],
-                    ['value' => '3-across', 'label' => '3-Across'],
-                    ['value' => 'entries', 'label' => 'Entries'],
-                    ['value' => 'group_entries', 'label' => 'Group of Entries'],
-                    ['value' => 'list', 'label' => 'List view'],
-                    ['value' => 'simple_list', 'label' => 'Text list view'],
-                ],
-            ])
-
             @formField('wysiwyg', [
                 'name' => 'grouping_description',
                 'label' => 'Description',
@@ -154,22 +169,6 @@
             'isEqual' => false,
             'renderForBlocks' => false,
         ])
-            @component('twill::partials.form.utils._columns')
-                @slot('left')
-                    @formField('checkbox', [
-                        'name' => 'hide_title',
-                        'label' => 'Hide title in listing view',
-                    ])
-                @endslot
-
-                @slot('right')
-                    @formField('checkbox', [
-                        'name' => 'suppress_listing',
-                        'label' => 'Hide from listing view',
-                    ])
-                @endslot
-            @endcomponent
-
             @formField('input', [
                 'name' => 'label',
                 'label' => 'Article label',
