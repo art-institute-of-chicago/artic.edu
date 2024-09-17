@@ -26,6 +26,14 @@
     }
   }
 
+  .m-article-header__text {
+    width: 70% !important;
+
+    @include breakpoint('medium-') {
+      width: 100% !important;
+    }
+  }
+
   .o-article__body::before {
     position: absolute;
     background-color: $color__rules--primary;
