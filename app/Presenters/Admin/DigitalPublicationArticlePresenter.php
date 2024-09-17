@@ -35,7 +35,7 @@ class DigitalPublicationArticlePresenter extends BasePresenter
 
     public function subtype()
     {
-        return 'Digital Publication Article';
+        return 'From The Digital Publication';
     }
 
     public function pdfDownloadPath()
