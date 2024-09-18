@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "run-p svg-sprite webpack:watch sass:watch",
     "build": "run-p svg-sprite webpack:build sass:build",
+    "production": "npm run webpack:build",
     "sass:build": "sass ./frontend/scss:public/dist/styles -s compressed",
     "sass:watch": "sass ./frontend/scss:public/dist/styles -s compressed --watch",
     "presvg-sprite": "mkdirp ./public/dist/icons",
