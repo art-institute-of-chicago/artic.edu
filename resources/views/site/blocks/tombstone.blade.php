@@ -1,8 +1,8 @@
 @php
-    $content = StringHelpers::parseFootnotes($block->present()->input('text'));
+    $content = StringHelpers::parseFootnotes($block->present()->input('text'), $block->id);
 @endphp
 
-<div class="m-tombstone-block">
+<div class="m-tombstone-block" id="{{$block->id}}">
     @component('components.atoms._title')
         @slot('font', 'f-secondary')
         @slot('tag', 'div')

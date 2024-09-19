@@ -239,7 +239,7 @@ class StringHelpers
         return $newNode;
     }
 
-    public static function parseFootnotes($oldContent)
+    public static function parseFootnotes($oldContent, $limiter = null)
     {
         global $_collectedReferences;
         if (!isset($_collectedReferences)) {
@@ -256,7 +256,14 @@ class StringHelpers
             $dom->loadHTML('<?xml encoding="utf-8" ?>' . $newContent, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
             $xpath = new \DOMXpath($dom);
-            $nodes = $xpath->query('//p');
+    
+            // If a limiter is set, restrict to paragraphs within that id
+            if ($limiter) {
+                $nodes = $xpath->query("//div[@id='$limiter']//p");
+            } else {
+                // No limiter, select all p elements
+                $nodes = $xpath->query('//p');
+            }
 
             $wrapper = $dom->createElement('div');
             $wrapper->setAttribute('class', 'wrapper');
