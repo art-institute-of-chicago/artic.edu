@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
+use App\Http\ViewComposers\PublicationMediasUploaderConfig;
 use App\Models\Hour;
 use App\Libraries\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\EmbedConverterService;
@@ -11,6 +12,7 @@ use App\Libraries\DamsImageService;
 use App\Observers\FileObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerClosureService();
         $this->registerPrintService();
         $this->composeTemplatesViews();
+        $this->addViewComposers();
         File::observe(FileObserver::class);
 
         \Illuminate\Pagination\AbstractPaginator::defaultView('site.pagination.aic');
@@ -422,5 +425,17 @@ class AppServiceProvider extends ServiceProvider
                 ],
             ]);
         });
+    }
+
+    /**
+     * Registers the package additional View Composers.
+     *
+     * @return void
+     */
+    private function addViewComposers(): void
+    {
+        if (config('twill.enabled.media-library')) {
+            View::composer('twill::layouts.main', PublicationMediasUploaderConfig::class);
+        }
     }
 }

@@ -84,6 +84,17 @@ return [
             'endpoint' => env('OSCI_S3_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
+
+        'twill_publication_media_library' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID', env('S3_KEY')),
+            'secret' => env('AWS_SECRET_ACCESS_KEY', env('S3_SECRET')),
+            'region' => env('AWS_DEFAULT_REGION', env('S3_REGION', 'us-east-1')),
+            'bucket' => env('AWS_BUCKET', env('S3_BUCKET')),
+            'url' => env('AWS_URL', env('S3_URL')),
+            'endpoint' => env('AWS_ENDPOINT', env('S3_ENDPOINT')),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+        ]
     ],
 
     /*

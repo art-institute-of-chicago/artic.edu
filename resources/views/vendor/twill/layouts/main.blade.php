@@ -103,6 +103,18 @@
                     uploaderConfig: {!! json_encode($mediasUploaderConfig) !!}
                 });
 
+                {{-- PUB-227: Create Publications bucket in media library --}}
+                window['{{ config('twill.js_namespace') }}'].STORE.medias.types.push({
+                    value: 'publication-image',
+                    text: 'Publication Images',
+                    total: {{ \App\Models\PublicationMedia::count() }},
+                    endpoint: '{{ route('admin.media-library.publication-medias.index') }}',
+                    tagsEndpoint: '{{ route('admin.media-library.publication-medias.tags') }}',
+                    uploaderConfig: {!! json_encode($publicationMediasUploaderConfig) !!}
+                });
+                {{-- /PUB-227: Create Publications bucket in media library --}}
+
+
                 window['{{ config('twill.js_namespace') }}'].STORE.medias.showFileName = !!'{{ config('twill.media_library.show_file_name') }}';
             @endif
 
