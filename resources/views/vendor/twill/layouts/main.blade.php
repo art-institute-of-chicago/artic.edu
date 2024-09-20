@@ -105,7 +105,7 @@
 
                 {{-- PUB-227: Create Publications bucket in media library --}}
                 window['{{ config('twill.js_namespace') }}'].STORE.medias.types.push({
-                    value: 'publication-image',
+                    value: 'publication image',
                     text: 'Publication Images',
                     total: {{ \App\Models\PublicationMedia::count() }},
                     endpoint: '{{ route('admin.media-library.publication-medias.index') }}',
