@@ -9,7 +9,8 @@
   }
 
   &.o-ranged-accordion {
-    &:nth-of-type(2) {
+    // Only apply margin-top if the previous sibling is not another o-ranged-accordion
+    &:not(.o-ranged-accordion + .o-ranged-accordion) {
       margin-top: 40px;
     }
 
