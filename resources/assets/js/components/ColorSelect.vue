@@ -39,7 +39,7 @@
   import singleSelect from '@/components/SingleSelect.vue'
 
   export default {
-    extends: singleSelect,
+    extends: singleSelect
   }
 </script>
 
