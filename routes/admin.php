@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ExhibitionController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\Vendor\PublicationMediaLibraryController;
 
 Route::module('pages');
 
@@ -90,7 +91,7 @@ Route::group(['prefix' => 'collection'], function () {
 
         // WEB-1963: Browser for nested modules must be implemented manually
         Route::get('/digitalPublicationsBrowser/articles/browser?digitalPublication={digitalPublication}', [DigitalPublicationArticleController::class, 'browser'])->name('collection.articles_publications.digitalPublications.articles.subbrowser');
-        Route::get('/digitalPublicationsBrowser/articles/browser', [DigitalPublicationArticleController::class, 'browser'])->name('collection.articles_publications.digitalPublications.articles.browser');
+        Route::get('/digitalPublicationsBrowser/articles/browser', [DigitalPublicationArticleController::class, 'browser'])->name('collection.articles_publications.digitalPublications.articles.customBrowser');
     });
 
     Route::module('galleries');
@@ -121,3 +122,13 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('tourStops');
     Route::module('vanityRedirects');
 });
+
+if (config('twill.enabled.media-library')) {
+    Route::group(['prefix' => 'media-library', 'as' => 'media-library.'], function () {
+        Route::put('publication-medias/single-update', ['as' => 'publication-medias.single-update', 'uses' => PublicationMediaLibraryController::class . '@singleUpdate']);
+        Route::put('publication-medias/bulk-update', ['as' => 'publication-medias.bulk-update', 'uses' => PublicationMediaLibraryController::class . '@bulkUpdate']);
+        Route::put('publication-medias/bulk-delete', ['as' => 'publication-medias.bulk-delete', 'uses' => PublicationMediaLibraryController::class . '@bulkDelete']);
+        Route::get('publication-medias/tags', ['as' => 'publication-medias.tags', 'uses' => PublicationMediaLibraryController::class . '@tags']);
+        Route::resource('publication-medias', PublicationMediaLibraryController::class, ['only' => ['index', 'store', 'destroy']]);
+    });
+}
