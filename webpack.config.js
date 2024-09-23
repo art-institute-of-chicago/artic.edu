@@ -2,6 +2,7 @@ const fs = require('fs').promises; // Use promises for async operations (not the
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const outputDir = path.resolve(__dirname, 'public', 'dist');
 
@@ -29,7 +30,7 @@ async function cleanDirectories(dirs) {
 // Use async function to trigger webpack to wait for the promise to resolve
 module.exports = async () => {
   // Clean scripts and styles directories before the build process starts
-  await cleanDirectories(['scripts', 'styles']);
+  await cleanDirectories(['scripts', 'styles', 'images']);
 
   // Define if the environment is production
   const isProd = process.env.NODE_ENV === 'production';
@@ -86,6 +87,14 @@ module.exports = async () => {
         : []),
       new MiniCssExtractPlugin({
         filename: 'styles/[name]-[contenthash].css',
+      }),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: 'frontend/images/**/*',
+            to: 'images/[name]-[contenthash][ext]',
+          },
+        ],
       }),
     ],
     module: {

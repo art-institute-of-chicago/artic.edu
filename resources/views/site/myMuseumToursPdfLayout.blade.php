@@ -165,7 +165,7 @@
                 @endisset
             </td>
             <td class="logos">
-                <img class="i-aic-bloomberg" src="/dist/images/my_museum_tour--aic-bloomberg.png">
+                <img class="i-aic-bloomberg" src="{{FrontendHelpers::revAsset('images/my_museum_tour--aic-bloomberg.png')}}">
             </td>
             <td class="gutter"></td>
             <td colspan="3" class="logos">
