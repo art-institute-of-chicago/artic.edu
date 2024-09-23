@@ -9,6 +9,7 @@
     "presvg-sprite": "mkdirp ./public/dist/icons",
     "svg-sprite": "svg-symbol-sprite -i ./frontend/icons -o ./public/dist/icons/icons.svg -p icon-- -c false",
     "webpack:build": "cross-env NODE_ENV=production webpack",
+    "webpack:build-dev": "cross-env NODE_ENV=development webpack",
     "webpack:watch": "cross-env NODE_ENV=development webpack --watch",
     "webpack:generate-stats": "cross-env NODE_ENV=production webpack --profile --json > bundle-stats.json",
     "webpack:analyze": "webpack-bundle-analyzer bundle-stats.json"
