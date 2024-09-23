@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 const isProd = process.env.NODE_ENV === 'production';
 
 // Can be set in Github action
@@ -12,7 +14,7 @@ module.exports = {
   // This could be added later if the stdout webpack produces is preferred
   // For now this avoids the need for sass-loader, css-loader, and style-loader
   entry: {
-    app: ['./frontend/js/app.js'],
+    app: ['./frontend/scss/app.scss', './frontend/js/app.js'],
     blocks3D: ['./frontend/js/blocks3D.js'],
     blocks360: ['./frontend/js/blocks360.js'],
     collectionSearch: ['./frontend/js/collectionSearch.js'],
@@ -24,6 +26,11 @@ module.exports = {
     recaptcha: ['./frontend/js/recaptcha.js'],
     videojs: ['./frontend/js/videojs.js'],
     virtualTour: ['./frontend/js/virtualTour.js'],
+    html4css: ['./frontend/scss/html4css.scss'],
+    'mirador-kiosk': ['./frontend/scss/mirador-kiosk.scss'],
+    'my-museum-tour-pdf': ['./frontend/scss/my-museum-tour-pdf.scss'],
+    print: ['./frontend/scss/print.scss'],
+    setup: ['./frontend/scss/setup.scss'],
   },
   output: {
     filename: './scripts/[name].js',
@@ -35,7 +42,7 @@ module.exports = {
     minimize: isProd && !isCI,
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.scss'],
     fallback: {
       "url": false,
     }
@@ -50,7 +57,9 @@ module.exports = {
         resourceRegExp: /closer-look/,
       }),
     ] : []),
-
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].css',
+    }),
   ],
   module: {
     rules: [
@@ -59,6 +68,26 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              url: false,
+              sourceMap: true,
+            },
+          },
+
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
       },
     ],
   },
