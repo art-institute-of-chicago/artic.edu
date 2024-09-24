@@ -2,7 +2,7 @@
  * GenerateRevManifest.js
  * Creates a file that maps dist file names to their content hashed versions
  *
- * Can be run from the CLI with `node scripts/generateRevManifest.js <inputPath> <outputPath>`
+ * Can be run from the CLI with `node scripts/generateRevManifest.js <inputPath> <outputFile>`
  * Also exports generateRevManifest function for use in other scripts
  */
 
@@ -37,16 +37,17 @@ function removeContentHash(filename) {
  *
  * @param {string} rootPath The original input path
  * @param {string} incomingPath Path to crawl
+ * @param {string} outputFile File to write the manifest to
  * @param {object} manifest Object to add mappings to
  */
-function processPath(rootPath, incomingPath, manifest) {
+function processPath(rootPath, incomingPath, outputFile, manifest) {
   const files = fs.readdirSync(incomingPath);
 
   files.forEach((file) => {
     const filePath = path.join(incomingPath, file);
 
     // Skip the manifest
-    if (filePath.includes(path.join(incomingPath, 'rev-manifest.json'))) {
+    if (filePath === outputFile) {
       return;
     }
 
@@ -54,7 +55,7 @@ function processPath(rootPath, incomingPath, manifest) {
 
     if (stat.isDirectory()) {
       // Recurse into sub-directories
-      processPath(rootPath, filePath, manifest);
+      processPath(rootPath, filePath, outputFile, manifest);
     } else {
       // Add file to manifest
       const relativeFilePath = path.relative(rootPath, filePath);
@@ -69,16 +70,16 @@ function processPath(rootPath, incomingPath, manifest) {
  * generateRevManifest
  * Write the manifest file to disk
  * @param {string} inputPath Path to crawl
- * @param {string} outputPath Path to write the manifest file to
+ * @param {string} outputFile File to write the manifest to
  * @returns {void}
  */
 
-function generateRevManifest(inputPath, outputPath) {
+function generateRevManifest(inputPath, outputFile) {
   // JSON content for manifest file
   const manifest = {};
-  processPath(inputPath, inputPath, manifest);
-  fs.writeFileSync(outputPath, JSON.stringify(manifest, null, 2), 'utf-8');
-  console.log(`Manifest generated at ${outputPath}`);
+  processPath(inputPath, inputPath, outputFile, manifest);
+  fs.writeFileSync(outputFile, JSON.stringify(manifest, null, 2), 'utf-8');
+  console.log(`Manifest generated at ${outputFile}`);
 }
 
 // Check if the script is being run on the CLI
@@ -87,7 +88,7 @@ if (require.main === module) {
 
   // Check for the required arguments
   if (args < 2) {
-    console.error('Usage: generateRevManifest.js <inputPath> <outputPath>');
+    console.error('Usage: generateRevManifest.js <inputPath> <outputFile>');
     process.exit(1);
   }
 
