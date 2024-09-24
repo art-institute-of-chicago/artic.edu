@@ -9,8 +9,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// JSON content for manifest file
-const manifest = {};
 
 /**
  * removeContentHash
@@ -37,9 +35,11 @@ function removeContentHash(filename) {
  * processPath
  * Crawls a path and adds file mappings to the manifest
  *
+ * @param {string} rootPath The original input path
  * @param {string} incomingPath Path to crawl
+ * @param {object} manifest Object to add mappings to
  */
-function processPath(incomingPath) {
+function processPath(rootPath, incomingPath, manifest) {
   const files = fs.readdirSync(incomingPath);
 
   files.forEach((file) => {
@@ -54,11 +54,12 @@ function processPath(incomingPath) {
 
     if (stat.isDirectory()) {
       // Recurse into sub-directories
-      processPath(filePath);
+      processPath(rootPath, filePath, manifest);
     } else {
       // Add file to manifest
-      const hashedName = path.relative(incomingPath, filePath);
-      const originalName = removeContentHash(hashedName);
+      const relativeFilePath = path.relative(rootPath, filePath);
+      const hashedName = relativeFilePath;
+      const originalName = removeContentHash(relativeFilePath);
       manifest[originalName] = hashedName;
     }
   });
@@ -73,7 +74,9 @@ function processPath(incomingPath) {
  */
 
 function generateRevManifest(inputPath, outputPath) {
-  processPath(inputPath);
+  // JSON content for manifest file
+  const manifest = {};
+  processPath(inputPath, inputPath, manifest);
   fs.writeFileSync(outputPath, JSON.stringify(manifest, null, 2), 'utf-8');
   console.log(`Manifest generated at ${outputPath}`);
 }
