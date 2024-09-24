@@ -1,65 +1,134 @@
+const fs = require('fs').promises; // Use promises for async operations (not the default)
 const path = require('path');
 const webpack = require('webpack');
-const isProd = process.env.NODE_ENV === 'production';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const generateRevManifestPlugin = require('./scripts/webpack/GenerateRevManifestPlugin');
 
-// Can be set in Github action
-const isCI = process.env.CI === '1'
+const outputDir = path.resolve(__dirname, 'public', 'dist');
 
-// See: https://webpack.js.org/configuration/
-module.exports = {
-  mode: isProd ? 'production' : 'development',
-  // Currently CSS isn't included in the Webpack build
-  // This could be added later if the stdout webpack produces is preferred
-  // For now this avoids the need for sass-loader, css-loader, and style-loader
-  entry: {
-    app: ['./frontend/js/app.js'],
-    blocks3D: ['./frontend/js/blocks3D.js'],
-    blocks360: ['./frontend/js/blocks360.js'],
-    collectionSearch: ['./frontend/js/collectionSearch.js'],
-    head: ['./frontend/js/head.js'],
-    interactiveFeatures: ['./frontend/js/interactiveFeatures.js'],
-    layeredImageViewer: ['./frontend/js/layeredImageViewer.js'],
-    mirador: ['./frontend/js/mirador.js'],
-    myMuseumTourBuilder: ['./frontend/js/myMuseumTourBuilder.js'],
-    recaptcha: ['./frontend/js/recaptcha.js'],
-    videojs: ['./frontend/js/videojs.js'],
-    virtualTour: ['./frontend/js/virtualTour.js'],
-  },
-  output: {
-    filename: './scripts/[name].js',
-    path: path.resolve(__dirname, 'public', 'dist'),
-    publicPath: '/dist/',
-  },
-  devtool: isProd ? 'source-map' : 'eval-source-map',
-  optimization: {
-    minimize: isProd && !isCI,
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-    fallback: {
-      "url": false,
+// Async delete any directories passed in and wait for all deletions to complete
+async function cleanDirectories(dirs) {
+  const deletePromises = dirs.map(async (dir) => {
+    const dirPath = path.resolve(outputDir, dir);
+    try {
+      const stat = await fs.stat(dirPath);
+      if (stat.isDirectory()) {
+        await fs.rm(dirPath, { recursive: true, force: true });
+        console.log(`Deleted directory: ${dirPath}`);
+      }
+    } catch (err) {
+      // n.b. ENOENT is expected if the directory doesn't exist
+      if (err.code !== 'ENOENT') {
+        console.error(`Failed to delete ${dirPath}:`, err);
+      }
     }
-  },
-  plugins: [
-    // See: https://github.com/ProjectMirador/mirador/issues/3493
-    new webpack.IgnorePlugin({
-      resourceRegExp: /@blueprintjs\/(core|icons)/,
-    }),
-    ...(isCI ? [
-      new webpack.IgnorePlugin({
-        resourceRegExp: /closer-look/,
-      }),
-    ] : []),
+  });
 
-  ],
-  module: {
-    rules: [
-      // Transpile JavaScript files using Babel
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
-    ],
-  },
+  await Promise.all(deletePromises);
 }
+
+// Use async function to trigger webpack to wait for the promise to resolve
+module.exports = async () => {
+  // Clean scripts and styles directories before the build process starts
+  await cleanDirectories(['scripts', 'styles', 'images']);
+
+  // Define if the environment is production
+  const isProd = process.env.NODE_ENV === 'production';
+  const isCI = process.env.CI === '1'; // Set in GitHub Action
+
+  // Resolve implicit promise with the Webpack configuration object
+  return {
+    mode: isProd ? 'production' : 'development',
+    entry: {
+      app: ['./frontend/scss/app.scss', './frontend/js/app.js'],
+      blocks3D: ['./frontend/js/blocks3D.js'],
+      blocks360: ['./frontend/js/blocks360.js'],
+      collectionSearch: ['./frontend/js/collectionSearch.js'],
+      head: ['./frontend/js/head.js'],
+      interactiveFeatures: ['./frontend/js/interactiveFeatures.js'],
+      layeredImageViewer: ['./frontend/js/layeredImageViewer.js'],
+      mirador: ['./frontend/js/mirador.js'],
+      myMuseumTourBuilder: ['./frontend/js/myMuseumTourBuilder.js'],
+      recaptcha: ['./frontend/js/recaptcha.js'],
+      videojs: ['./frontend/js/videojs.js'],
+      virtualTour: ['./frontend/js/virtualTour.js'],
+      html4css: ['./frontend/scss/html4css.scss'],
+      'mirador-kiosk': ['./frontend/scss/mirador-kiosk.scss'],
+      'my-museum-tour-pdf': ['./frontend/scss/my-museum-tour-pdf.scss'],
+      print: ['./frontend/scss/print.scss'],
+      setup: ['./frontend/scss/setup.scss'],
+    },
+    output: {
+      filename: './scripts/[name]-[contenthash].js',
+      path: outputDir,
+      publicPath: '/dist/',
+    },
+    devtool: isProd ? 'source-map' : 'eval-source-map',
+    optimization: {
+      minimize: isProd && !isCI,
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.scss'],
+      fallback: {
+        url: false,
+      },
+    },
+    plugins: [
+      // Ignore unused libraries if CI is detected
+      new webpack.IgnorePlugin({
+        resourceRegExp: /@blueprintjs\/(core|icons)/,
+      }),
+      ...(isCI
+        ? [
+            new webpack.IgnorePlugin({
+              resourceRegExp: /closer-look/,
+            }),
+          ]
+        : []),
+      new MiniCssExtractPlugin({
+        filename: 'styles/[name]-[contenthash].css',
+      }),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: 'frontend/images/**/*',
+            to: 'images/[name]-[contenthash][ext]',
+          },
+        ],
+      }),
+      new generateRevManifestPlugin({
+        manifestPath: path.resolve(outputDir, 'rev-manifest.json'),
+      }),
+    ],
+    module: {
+      rules: [
+        // Transpile JavaScript files using Babel
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: ['babel-loader'],
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                url: false,
+                sourceMap: true,
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        },
+      ],
+    },
+  };
+};
