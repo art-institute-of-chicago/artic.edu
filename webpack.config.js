@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const generateRevManifestPlugin = require('./scripts/webpack/GenerateRevManifestPlugin');
 
 const outputDir = path.resolve(__dirname, 'public', 'dist');
 
@@ -95,6 +96,9 @@ module.exports = async () => {
             to: 'images/[name]-[contenthash][ext]',
           },
         ],
+      }),
+      new generateRevManifestPlugin({
+        manifestPath: path.resolve(outputDir, 'rev-manifest.json'),
       }),
     ],
     module: {
