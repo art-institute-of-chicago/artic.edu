@@ -4,10 +4,17 @@
  * Works for a given file, or all files in a given directory
  *
  */
+require('dotenv').config();
 
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const useContentHash = process.env.NODE_ENV === 'production' || process.env.USE_COMPILED_REVASSETS === 'true';
+
+// Exit early if content hash is not required
+if (!useContentHash) {
+  process.exit(0);
+}
 
 // Ensure an argument is provided
 if (process.argv.length < 3) {
