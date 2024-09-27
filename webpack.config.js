@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const fs = require('fs').promises; // Use promises for async operations (not the default)
 const path = require('path');
 const webpack = require('webpack');
@@ -36,6 +38,8 @@ module.exports = async () => {
   // Define if the environment is production
   const isProd = process.env.NODE_ENV === 'production';
   const isCI = process.env.CI === '1'; // Set in GitHub Action
+  // Use content hash and generate manifest in production or when explicitly set
+  const useContentHash = process.env.USE_COMPILED_REVASSETS === 'true' || isProd;
 
   // Resolve implicit promise with the Webpack configuration object
   return {
@@ -60,7 +64,7 @@ module.exports = async () => {
       setup: ['./frontend/scss/setup.scss'],
     },
     output: {
-      filename: './scripts/[name]-[contenthash].js',
+      filename: `./scripts/[name]${useContentHash ? '-[contenthash]' : ''}.js`,
       path: outputDir,
       publicPath: '/dist/',
     },
@@ -87,19 +91,24 @@ module.exports = async () => {
           ]
         : []),
       new MiniCssExtractPlugin({
-        filename: 'styles/[name]-[contenthash].css',
+        filename: `styles/[name]${useContentHash ? '-[contenthash]' : ''}.css`,
       }),
       new CopyPlugin({
         patterns: [
           {
             from: 'frontend/images/**/*',
-            to: 'images/[name]-[contenthash][ext]',
+            to: `images/[name]${useContentHash ? '-[contenthash]' : ''}[ext]`,
           },
         ],
       }),
-      new generateRevManifestPlugin({
-        manifestPath: path.resolve(outputDir, 'rev-manifest.json'),
-      }),
+      // Only generate manifest if contentHashes are used
+      ...(useContentHash
+        ? [
+          new generateRevManifestPlugin({
+            manifestPath: path.resolve(outputDir, 'rev-manifest.json'),
+          }),
+        ] : []
+      )
     ],
     module: {
       rules: [
