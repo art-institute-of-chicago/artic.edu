@@ -59,6 +59,12 @@
 
   .o-blocks > p {
     @include untuck();
+
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        width: colspan(33, '#{$name}');
+      }
+    }
   }
 
   &.s-sans-serif-loaded .o-blocks>p:not([class*=f-]),
