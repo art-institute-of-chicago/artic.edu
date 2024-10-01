@@ -205,11 +205,6 @@
     }
   }
 
-  .o-article__body .p--linked {
-    margin-right: 1.5em;
-    padding-right: 1em;
-  }
-
   .o-article__primary-actions--digital-publication {
     @include breakpoint('large+') {
       max-width: 300px;
