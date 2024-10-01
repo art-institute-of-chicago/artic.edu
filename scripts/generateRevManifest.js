@@ -6,8 +6,11 @@
  * Also exports generateRevManifest function for use in other scripts
  */
 
+require('dotenv').config();
+
 const fs = require('fs');
 const path = require('path');
+const useContentHash = process.env.NODE_ENV === 'production' || process.env.USE_COMPILED_REVASSETS === 'true';
 
 
 /**
@@ -75,6 +78,11 @@ function processPath(rootPath, incomingPath, outputFile, manifest) {
  */
 
 function generateRevManifest(inputPath, outputFile) {
+  // Skip if we're not using content hashes
+  if (!useContentHash) {
+    return;
+  }
+
   // JSON content for manifest file
   const manifest = {};
   processPath(inputPath, inputPath, outputFile, manifest);
