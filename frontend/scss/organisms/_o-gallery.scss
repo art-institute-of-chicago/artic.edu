@@ -2,12 +2,14 @@
 
 .o-gallery {
   @include background-fill;
-  padding-top: .02px;
-  background-color: $color__bg--gallery;
-  color: $color__text--contrast;
-  transform: translateZ(0);
 
-  margin-top: 48px;
+  & {
+    padding-top: .02px;
+    background-color: $color__bg--gallery;
+    color: $color__text--contrast;
+    transform: translateZ(0);
+    margin-top: 48px;
+  }
 
   @include breakpoint('small+') {
     margin-top: 60px;
@@ -27,7 +29,7 @@
   }
 }
 
-.o-gallery__title + ul.o-pinboard {
+.o-gallery__title+ul.o-pinboard {
   margin-top: 24px;
 }
 
@@ -60,7 +62,7 @@
 }
 
 .o-gallery .m-media figcaption a:hover,
-.o-gallery .m-media a.m-media__img:hover + figcaption a {
+.o-gallery .m-media a.m-media__img:hover+figcaption a {
   @include text-underline(1.05em, $color__text--title-contrast, $color__bg--gallery);
 }
 
@@ -135,11 +137,15 @@
 
 .o-gallery__caption .f-caption {
   @include untuck();
-  margin-top: 24px;
+
+  & {
+    margin-top: 24px;
+  }
 }
 
 
 .o-gallery--mosaic {
+
   .o-gallery__media,
   .o-gallery__title,
   .o-gallery__caption {
@@ -198,7 +204,7 @@
     }
   }
 
-  .o-gallery__media > * {
+  .o-gallery__media>* {
     margin-top: 48px;
 
     @include breakpoint('small+') {
@@ -223,7 +229,7 @@
     }
   }
 
-  .o-gallery__media > *.s-positioned {
+  .o-gallery__media>*.s-positioned {
     position: absolute;
     z-index: 1;
     flex: none;
@@ -231,18 +237,41 @@
     transition: opacity .25s, top .3s $bezier--marius-mosaic, left .3s $bezier--marius-mosaic, height .3s $bezier--marius-mosaic;
   }
 
-  .o-gallery__media > *.s-positioned:not(.s-repositioning) {
+  .o-gallery__media>*.s-positioned:not(.s-repositioning) {
     margin-top: 0;
   }
 
-  .o-gallery__media > *:nth-child(1) { transition-delay: .1s; }
-  .o-gallery__media > *:nth-child(2) { transition-delay: .2s; }
-  .o-gallery__media > *:nth-child(3) { transition-delay: .3s; }
-  .o-gallery__media > *:nth-child(4) { transition-delay: .4s; }
-  .o-gallery__media > *:nth-child(5) { transition-delay: .5s; }
-  .o-gallery__media > *:nth-child(6) { transition-delay: .6s; }
-  .o-gallery__media > *:nth-child(7) { transition-delay: .7s; }
-  .o-gallery__media > *:nth-child(7) ~ * { transition-delay: .8s; }
+  .o-gallery__media>*:nth-child(1) {
+    transition-delay: .1s;
+  }
+
+  .o-gallery__media>*:nth-child(2) {
+    transition-delay: .2s;
+  }
+
+  .o-gallery__media>*:nth-child(3) {
+    transition-delay: .3s;
+  }
+
+  .o-gallery__media>*:nth-child(4) {
+    transition-delay: .4s;
+  }
+
+  .o-gallery__media>*:nth-child(5) {
+    transition-delay: .5s;
+  }
+
+  .o-gallery__media>*:nth-child(6) {
+    transition-delay: .6s;
+  }
+
+  .o-gallery__media>*:nth-child(7) {
+    transition-delay: .7s;
+  }
+
+  .o-gallery__media>*:nth-child(7)~* {
+    transition-delay: .8s;
+  }
 
   .m-media__img img {
     max-height: #{math.div(colspan(58, xsmall) * 4, 3)};
@@ -436,7 +465,7 @@
     }
   }
 
-  .o-gallery__media > * {
+  .o-gallery__media>* {
     flex: 0 0 auto;
     margin-top: 0;
     margin-left: colspan(2, xsmall);
@@ -476,15 +505,15 @@
   }
 
   figcaption {
-    @each $name, $point in $breakpoints {
+
+    @each $name,
+    $point in $breakpoints {
       @include breakpoint('#{$name}') {
-        max-width: colspan(map-get((
-          xsmall: 48,
-          small: 36,
-          medium: 24,
-          large: 24,
-          xlarge: 18
-        ), $name), $name);
+        max-width: colspan(map-get((xsmall: 48,
+                small: 36,
+                medium: 24,
+                large: 24,
+                xlarge: 18), $name), $name);
       }
     }
   }
@@ -517,20 +546,19 @@
     }
   }
 
-  $mediaColWidth: (
-    xsmall: 50,
+  $mediaColWidth: (xsmall: 50,
     small: 26,
     medium: 18,
     large: 18,
-    xlarge: 18
-  );
+    xlarge: 18);
 
   .o-gallery__media [data-type="embed"],
   .o-gallery__media .m-media--video,
   .o-gallery__media .m-media--soundcloud {
     flex: 0 0 auto;
 
-    @each $name, $point in $breakpoints {
+    @each $name,
+    $point in $breakpoints {
       @include breakpoint('#{$name}') {
         width: colspan(map-get($mediaColWidth, $name), $name);
       }
@@ -538,7 +566,7 @@
   }
 
   .m-media__img--video {
-    + figcaption {
+    +figcaption {
       padding-right: 0;
     }
 
@@ -551,7 +579,8 @@
       width: 100%;
       min-width: none;
 
-      @each $name, $point in $breakpoints {
+      @each $name,
+      $point in $breakpoints {
         @include breakpoint('#{$name}') {
           height: math.div(colspan(map-get($mediaColWidth, $name), $name) * 9, 16);
           max-height: none;
@@ -610,7 +639,7 @@
   }
 
   .m-media figcaption a:hover,
-  .m-media a.m-media__img:hover + figcaption a {
+  .m-media a.m-media__img:hover+figcaption a {
     @include text-underline(1.05em, $color__text--title, $color__bg--primary);
   }
 
@@ -629,25 +658,31 @@
 .o-gallery.o-gallery----theme-3 {
   background: $color__bg;
 }
+
 /**
  *  For the artist carousel on the homepage.
  */
 .o-gallery--artist {
+
   a:hover,
   a:focus {
     .m-media__img img {
       opacity: 0.9;
     }
   }
+
   .m-media {
     position: relative;
+
     .m-media__img {
       background-color: $color__black;
+
       img {
         opacity: 0.8;
         transition: opacity .20s;
       }
     }
+
     figcaption {
       position: absolute;
       top: 50%;
@@ -658,31 +693,34 @@
       padding: 0;
       margin: 0;
       z-index: 2;
+
       .f-caption-title {
         display: block;
       }
-      .f-caption, .f-caption-title div {
+
+      .f-caption,
+      .f-caption-title div {
         color: white;
         text-shadow: 0 0 6px rgba($color__black, .5);
         display: block;
         margin-bottom: 20px;
+
         @include breakpoint('medium+') {
           margin-bottom: 15px;
         }
+
         @include untuck;
-        @include font-styles-untuck(generate-font-obj(
-          (
-            font-family: $serif-font,
-            font-family-loaded: $serif-font--loaded,
-            font-loaded-class: $serif-font-loaded-class,
-            settings: (
-              'xsmall': (font-size: 17, line-height: 21, text-transform: 'uppercase', letter-spacing: 0.1em, push: 0),
-              'small+': (font-size: 17, line-height: 21, push: -2),
-              'medium+': (font-size: 20, line-height: 26, push: -1),
-            )
-          )
-        ));
-        font-feature-settings: 'lnum' on;
+        @include font-styles-untuck(generate-font-obj((font-family: $serif-font,
+              font-family-loaded: $serif-font--loaded,
+              font-loaded-class: $serif-font-loaded-class,
+              settings: ('xsmall': (font-size: 17, line-height: 21, text-transform: 'uppercase', letter-spacing: 0.1em, push: 0),
+                'small+': (font-size: 17, line-height: 21, push: -2),
+                'medium+': (font-size: 20, line-height: 26, push: -1),
+              ))));
+
+        & {
+          font-feature-settings: 'lnum'on;
+        }
       }
     }
   }

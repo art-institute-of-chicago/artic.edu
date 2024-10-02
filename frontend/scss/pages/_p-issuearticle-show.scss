@@ -2,7 +2,7 @@
 .p-issuearticle-preview,
 .p-digitalpublicationarticle-show,
 .p-digitalpublicationarticle-preview {
-    @extend %sticky-sidebar;
+  @extend %sticky-sidebar;
 
   @each $name in ('xsmall', 'small', 'medium') {
     @include breakpoint('#{$name}') {
@@ -29,17 +29,17 @@
     @each $name in ('large', 'xlarge') {
       @include breakpoint('#{$name}') {
         left: #{- colspan(1, '#{$name}')};
-        top: -100%;
+top: -100%;
         height: 200%;
       }
     }
   }
 
-  .o-blocks:not(.o-blocks--bibliographic) > p {
+  .o-blocks:not(.o-blocks--bibliographic)>p {
     @include f-body;
   }
 
-  .o-blocks > p {
+  .o-blocks>p {
     @include untuck();
   }
 
@@ -55,10 +55,12 @@
     font-family: $serif-font;
 
     // PUB-140: Emulate %f-deck for bold?
-    strong, b {
+    strong,
+    b {
       font-weight: 600;
 
-      em, i {
+      em,
+      i {
         font-weight: 600;
       }
     }
@@ -95,6 +97,7 @@
           margin-bottom: 0;
         }
       }
+
       .o-accordion--publication-sidebar {
         display: none;
       }
@@ -105,6 +108,7 @@
     height: 110px;
     padding-bottom: 40px;
     color: $color__white;
+
     @include breakpoint('medium-') {
       padding-top: 40px;
       width: 100%;
@@ -122,290 +126,296 @@
       z-index: -1;
       width: 300vw;
       margin-left: calc(-600px + 50%);
+
       @each $name in ('large', 'xlarge') {
         @include breakpoint('#{$name}') {
           width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2) + 14vw);
-          padding-right: calc(#{colspan(1, '#{$name}')} * 2);
-          margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1) - 14vw);
-          margin-right: colspan(2, #{$name});
-        }
-      }
-    }
+padding-right: calc(#{colspan(1, '#{$name}')} * 2);
+margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1) - 14vw);
+margin-right: colspan(2, #{$name});
+                }
+              }
+            }
 
-    @include font-styles-untuck(generate-font-obj(
-      (
-        font-family: $serif-font,
-        font-family-loaded: $serif-font--loaded,
-        font-loaded-class: $serif-font-loaded-class,
-        settings: (
-          'xsmall': (font-size: 22, line-height: 23, push: 0),
-        )
-      )
-    ));
-  }
+            @include font-styles-untuck(generate-font-obj((font-family: $serif-font,
+                  font-family-loaded: $serif-font--loaded,
+                  font-loaded-class: $serif-font-loaded-class,
+                  settings: ('xsmall': (font-size: 22, line-height: 23, push: 0),
+                  ))));
+          }
 
-  .o-article {
-    padding-bottom: 0;
+          .o-article {
+            padding-bottom: 0;
 
-    @include breakpoint('xsmall') {
-      display: flex;
-      flex-direction: column;
+            @include breakpoint('xsmall') {
+              display: flex;
+              flex-direction: column;
 
-      &>.o-article__primary-actions {
-        display: block;
-        order: 1;
-      }
-      &>.m-sidebar-toggle {
-        order: 2;
-      }
-      &>.o-article__secondary-actions,
-      &>.o-article__secondary-actions--empty {
-        order: 3;
-      }
-      &>.o-article__body {
-        order: 4;
-      }
-    }
-  }
+              &>.o-article__primary-actions {
+                display: block;
+                order: 1;
+              }
 
-  .o-article__intro {
-    padding-top: 30px;
-    margin-top: 0;
-    border-top: 0;
-  }
+              &>.m-sidebar-toggle {
+                order: 2;
+              }
 
-  .o-article--journal_abstract {
-    margin-top: 30px;
-  }
+              &>.o-article__secondary-actions,
+              &>.o-article__secondary-actions--empty {
+                order: 3;
+              }
 
-  .o-article__body {
-    padding-top: 0;
-    margin-top: 60px;
-  }
+              &>.o-article__body {
+                order: 4;
+              }
+            }
+          }
 
-  .o-article__secondary-actions {
-    margin-top: 0;
-    padding-top: 0;
-  }
+          .o-article__intro {
+            padding-top: 30px;
+            margin-top: 0;
+            border-top: 0;
+          }
 
-  .m-article-header--digital-publication-article {
-    padding-top: 0;
-    margin-bottom: 0 !important; // Bad
+          .o-article--journal_abstract {
+            margin-top: 30px;
+          }
 
-    .m-article-header__img,
-    .m-article-header__text {
-      width: 100vw;
+          .o-article__body {
+            padding-top: 0;
+            margin-top: 60px;
+          }
 
-      margin-left: -#{map-get($outer-gutters, medium)};
+          .o-article__secondary-actions {
+            margin-top: 0;
+            padding-top: 0;
+          }
 
-      @include breakpoint('large') {
-        // full width - one gutter - (left sidebar width)
-        width: 100vw - map-get($outer-gutters, large) - (colspan(13, large) + colspan(1, large));
-        margin-left: -#{colspan(1, large)};
-      }
+          .m-article-header--digital-publication-article {
+            padding-top: 0;
+            margin-bottom: 0 !important; // Bad
 
-      @include breakpoint('xlarge') {
-        // (main column width - left sidebar width) + (right gutter width)
-        width: calc(#{map-get($main-col-widths, xlarge) - (colspan(13, xlarge) + colspan(1, xlarge))} + (100vw - #{map-get($main-col-widths, xlarge)}) / 2);
-        margin-left: -#{colspan(1, xlarge)};
-      }
-    }
+            .m-article-header__img,
+            .m-article-header__text {
+              width: 100vw;
 
-    .m-article-header__img {
-      min-height: 240px;
-      height: 40vh;
-      right: 50%;
-      margin-right: -50vw;
-      left: auto;
-      margin-left: auto;
-      width: 100vw;
+              margin-left: -#{map-get($outer-gutters, medium)};
 
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
+              @include breakpoint('large') {
+                // full width - one gutter - (left sidebar width)
+                width: 100vw - map-get($outer-gutters, large) - (colspan(13, large) + colspan(1, large));
+                margin-left: -#{colspan(1, large)};
+              }
 
-    .m-article-header__img::before {
-      background-image: none;
-    }
+              @include breakpoint('xlarge') {
+                // (main column width - left sidebar width) + (right gutter width)
+                width: calc(#{map-get($main-col-widths, xlarge) - (colspan(13, xlarge) + colspan(1, xlarge))} + (100vw - #{map-get($main-col-widths, xlarge)}) / 2);
+                margin-left: -#{colspan(1, xlarge)};
+              }
+            }
 
-    .m-article-header__text {
-      position: absolute;
-      bottom: 0;
+            .m-article-header__img {
+              min-height: 240px;
+              height: 40vh;
+              right: 50%;
+              margin-right: -50vw;
+              left: auto;
+              margin-left: auto;
+              width: 100vw;
 
-      padding-bottom: 30px;
-      padding-top: 30px;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
 
-      background-color: rgba(255,255,255,0.75);
+            .m-article-header__img::before {
+              background-image: none;
+            }
 
-      h1 {
-        @include untuck;
-        margin-top: 0;
+            .m-article-header__text {
+              position: absolute;
+              bottom: 0;
 
-        @each $name, $point in ('xsmall', 'small', 'medium') {
-          @include breakpoint('#{$name}') {
-            padding-left: map-get($outer-gutters, $name);
-            padding-right: map-get($outer-gutters, $name);
+              padding-bottom: 30px;
+              padding-top: 30px;
+
+              background-color: rgba(255, 255, 255, 0.75);
+
+              h1 {
+                @include untuck;
+
+                & {
+                  margin-top: 0;
+                }
+
+                @each $name, $point in ('xsmall', 'small', 'medium') {
+                  @include breakpoint('#{$name}') {
+                    padding-left: map-get($outer-gutters, $name);
+                    padding-right: map-get($outer-gutters, $name);
+                  }
+                }
+
+                @each $name, $point in ('large', 'xlarge') {
+                  @include breakpoint('#{$name}') {
+                    padding-left: colspan(1, $name);
+                    padding-right: colspan(1, $name);
+                    width: colspan(30, $name);
+                  }
+                }
+              }
+            }
+          }
+
+          // TODO: Verify if this should only apply to publications?
+          // Previously, journal issues had this at 25px each
+          .m-article-actions {
+            margin-top: 50px;
+            margin-bottom: 50px;
+          }
+
+          .m-media--s.o-blocks__block .m-media__img {
+            max-width: 450px;
+          }
+
+          .m-media.o-blocks__block .m-media__img img {
+            margin-left: 0;
+            max-height: 100%;
+          }
+
+          .m-media--l, .m-media--m {
+            clear: right;
+          }
+
+          .m-title-bar > .f-list-3 {
+            @include untuck();
+
+            & {
+              font-family: $sans-serif-font--loaded;
+              font-size: 24px;
+              font-weight: 400;
+              padding: 28px 0;
+              text-transform: uppercase;
+            }
+          }
+
+          .o-blocks--bibliographic .f-secondary {
+            @include untuck();
+
+            &:not(:first-child) {
+              margin-top: 8px;
+            }
+
+            li+li {
+              margin-top: 8px;
+            }
           }
         }
 
-        @each $name, $point in ('large', 'xlarge') {
-          @include breakpoint('#{$name}') {
-            padding-left: colspan(1, $name);
-            padding-right: colspan(1, $name);
-            width: colspan(30, $name);
-          }
-        }
-      }
-    }
-  }
-
-  // TODO: Verify if this should only apply to publications?
-  // Previously, journal issues had this at 25px each
-  .m-article-actions {
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-
-  .m-media--s.o-blocks__block .m-media__img {
-    max-width: 450px;
-  }
-
-  .m-media.o-blocks__block .m-media__img img {
-    margin-left: 0;
-    max-height: 100%;
-  }
-
-  .m-media--l, .m-media--m {
-    clear: right;
-  }
-
-  .m-title-bar > .f-list-3 {
-    @include untuck();
-
-    font-family: $sans-serif-font--loaded;
-    font-size: 24px;
-    font-weight: 400;
-    padding: 28px 0;
-    text-transform: uppercase;
-  }
-
-  .o-blocks--bibliographic .f-secondary {
-    @include untuck();
-
-    &:not(:first-child) {
-      margin-top: 8px;
-    }
-
-    li+li {
-      margin-top: 8px;
-    }
-  }
-}
-
-/***
+        /***
 
 Digital Publications
 =====
 
 Styling related specifically to digital publications
 ***/
-.p-digitalpublicationarticle-show,
-.p-digitalpublicationarticle-preview {
-  .o-blocks {
-    .author-links {
-      a {
-        color: $color__link--accent;
-      }
+        .p-digitalpublicationarticle-show,
+        .p-digitalpublicationarticle-preview {
+          .o-blocks {
+            .author-links {
+              a {
+                color: $color__link--accent;
+              }
 
-      a:hover {
-        color: $color__link--accent-hover;
-        text-decoration: underline;
-      }
+              a:hover {
+                color: $color__link--accent-hover;
+                text-decoration: underline;
+              }
 
-      a:active {
-        color: $color__link--accent-active;
-      }
-    }
+              a:active {
+                color: $color__link--accent-active;
+              }
+            }
 
-    .quote {
-      padding-top: 40px;
-      padding-bottom: 50px;
-      border-bottom: 1px solid #e6e6e6;
-      .quote__icon {
-        display: none;
-      }
-    }
-  }
+            .quote {
+              padding-top: 40px;
+              padding-bottom: 50px;
+              border-bottom: 1px solid #e6e6e6;
 
-  .o-article__body.o-blocks > ol,
-  .o-article__body.o-blocks > ul {
-    @extend .list;
-  }
+              .quote__icon {
+                display: none;
+              }
+            }
+          }
 
-  .o-article__body.o-blocks {
-    & > h2, h3, h4 {
-      font-family: $serif-font--loaded;
-      font-size: 24px;
-      text-transform: none;
-    }
-  }
+          .o-article__body.o-blocks > ol,
+          .o-article__body.o-blocks > ul {
+            @extend .list;
+          }
 
-  .m-article-header--generic-no-breadcrumb .m-article-header__text {
-    padding-left: 0;
-    padding-right: 0;
-  }
+          .o-article__body.o-blocks {
+            & > h2, h3, h4 {
+              font-family: $serif-font--loaded;
+              font-size: 24px;
+              text-transform: none;
+            }
+          }
 
-  .o-article__body.o-article__body--no-top-border {
-    border-top: 0;
-  }
+          .m-article-header--generic-no-breadcrumb .m-article-header__text {
+            padding-left: 0;
+            padding-right: 0;
+          }
 
-  .o-blocks.f-body > p,
-  .o-blocks.f-body > ol,
-  .o-blocks.f-body > ul {
-    font-family: $sans-serif-font--loaded;
-    font-weight: 300;
-  }
+          .o-article__body.o-article__body--no-top-border {
+            border-top: 0;
+          }
 
-  // Heading
-  .o-article__intro {
-    padding-top: 0;
-  }
+          .o-blocks.f-body > p,
+          .o-blocks.f-body > ol,
+          .o-blocks.f-body > ul {
+            font-family: $sans-serif-font--loaded;
+            font-weight: 300;
+          }
 
-  // Gallery block
-  .o-blocks > h2:not([class*=f-]) {
-    margin-top: 20px;
-  }
+          // Heading
+          .o-article__intro {
+            padding-top: 0;
+          }
 
-  &:not(.is-sidebar-overlay) .o-article > .o-article__primary-actions--digital-publication {
-    @include breakpoint('xsmall') {
-      display: none;
-    }
-  }
-}
+          // Gallery block
+          .o-blocks > h2:not([class*=f-]) {
+            margin-top: 20px;
+          }
 
-.p-digitalpublicationarticle-show:not(.p-t-contributions) {
-  .m-article-header  {
-    display: none;
-  }
+          &:not(.is-sidebar-overlay) .o-article > .o-article__primary-actions--digital-publication {
+            @include breakpoint('xsmall') {
+              display: none;
+            }
+          }
+        }
 
-  .m-article-header .m-article-header__text {
-    display: none;
-  }
+        .p-digitalpublicationarticle-show:not(.p-t-contributions) {
+          .m-article-header {
+            display: none;
+          }
 
-  .o-article__primary-actions--digital-publication {
-    .m-article-actions--publication__logo,
-    .m-article-actions--publication__logo::before {
-      background: transparent !important;
-    }
+          .m-article-header .m-article-header__text {
+            display: none;
+          }
 
-    .m-article-actions--publication__logo {
-      a {
-        color: $color__text--title;
-      }
-    }
+          .o-article__primary-actions--digital-publication {
 
-  }
-}
+            .m-article-actions--publication__logo,
+            .m-article-actions--publication__logo::before {
+              background: transparent !important;
+            }
+
+            .m-article-actions--publication__logo {
+              a {
+                color: $color__text--title;
+              }
+            }
+
+          }
+        }

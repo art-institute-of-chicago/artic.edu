@@ -1,5 +1,3 @@
-
-
 .m-filters__whittle-down {
   position: relative;
 }
@@ -53,7 +51,7 @@
     padding-bottom: 0;
   }
 
-  form + & {
+  form+& {
     padding-top: 7px;
     padding-bottom: 1px;
 
@@ -64,7 +62,7 @@
   }
 }
 
-.m-filters__list > li {
+.m-filters__list>li {
   margin-top: 8px;
 
   @include breakpoint('medium+') {
@@ -72,23 +70,26 @@
   }
 }
 
-.m-filters__list.s-capped > li:nth-child(8) ~ li,
-.m-filters__whittle-down:not(.s-whittling) + .m-filters__list > li:nth-child(8) ~ li {
+.m-filters__list.s-capped>li:nth-child(8)~li,
+.m-filters__whittle-down:not(.s-whittling)+.m-filters__list>li:nth-child(8)~li {
   display: none;
 }
 
 
 .m-filters__show-more-toggle {
   @include untuck;
-  display: block;
-  position: relative;
-  margin: 8px 0 0;
-  padding: 0 0 0 32px;
-  border: 0 none;
-  background: transparent;
-  text-align: left;
-  color: $color__link;
-  cursor: pointer;
+
+  & {
+    display: block;
+    position: relative;
+    margin: 8px 0 0;
+    padding: 0 0 0 32px;
+    border: 0 none;
+    background: transparent;
+    text-align: left;
+    color: $color__link;
+    cursor: pointer;
+  }
 
   &:hover,
   &:focus:hover {
@@ -109,7 +110,7 @@
   transform: rotate(-90deg);
   transform-origin: 8px 8px;
 
-  .m-filters__list.s-capped + & {
+  .m-filters__list.s-capped+& {
     transform: rotate(90deg);
   }
 }

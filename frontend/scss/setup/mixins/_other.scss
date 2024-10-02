@@ -15,7 +15,9 @@
 
 // @mixin background-fill
 @mixin background-fill {
-  position: relative;
+  & {
+    position: relative;
+  }
 
   &::before {
     content: '';
@@ -41,11 +43,15 @@
     position: absolute;
     z-index: 0;
     left: 50%;
-    @if $position == top {
+
+    @if $position==top {
       bottom: 100%;
-    } @else {
+    }
+
+    @else {
       top: 100%;
     }
+
     width: 100vw;
     margin-left: -50vw;
     border-top: 1px solid $color;
@@ -114,21 +120,26 @@ Creates a load spinner.
 
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
+
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return str-slice($string, 1, $index - 1)+$replace+str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
   }
+
   @return $string;
 }
 
 // To fix collapsing margins
 .clearfix {
-  &:before,&:after {
-    display:table;
-    content:"";
-    line-height:0;
-  }
+
+  &:before,
   &:after {
-    clear:both;
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+
+  &:after {
+    clear: both;
   }
 }
 
@@ -140,33 +151,45 @@ Creates a load spinner.
   $new-line-height: 0;
   $new-margin: 0;
   $new-push: 0;
+
   @if $font-obj {
     $settings: map-get($font-obj, settings);
   }
+
   @if $settings {
-    @each $name, $point in $breakpoints-with-directions {
+
+    @each $name,
+    $point in $breakpoints-with-directions {
+
       // First see if font settings has a line height for this breakpoint
       @if map-has-key($settings, $name) {
         $settings-at-breakpoint: map-get($settings, $name);
+
         @if map-has-key($settings-at-breakpoint, line-height) {
           $new-line-height: map-get($settings-at-breakpoint, line-height);
         }
+
         @if map-has-key($settings-at-breakpoint, push) {
           $new-push: map-get($settings-at-breakpoint, push);
         }
       }
+
       // Now see if a margin was specified for this breakpoint
       @if map-has-key($distances, $name) {
         $new-margin: map-get($distances, $name);
       }
+
       // Now set the margin top
-      @if ($new-margin != $margin or $new-line-height != $line-height or $new-push != $push) {
+      @if ($new-margin !=$margin or $new-line-height !=$line-height or $new-push !=$push) {
         $line-height: $new-line-height;
         $margin: $new-margin;
         $push: $new-push;
-        @if ($name == 'xsmall' or $single-bp == $name) {
+
+        @if ($name=='xsmall'or $single-bp==$name) {
           margin-top: #{$margin - $line-height}px;
-        } @else {
+        }
+
+        @else {
           @include breakpoint(#{$name}) {
             margin-top: #{$margin - $line-height}px;
           }
@@ -180,27 +203,37 @@ Creates a load spinner.
   $settings: false;
   $pull: 0;
   $new-pull: 0;
+
   @if $font-obj {
     $settings: map-get($font-obj, settings);
   }
+
   @if $settings {
-    @each $name, $point in $breakpoints-with-directions {
+
+    @each $name,
+    $point in $breakpoints-with-directions {
+
       // First see if font settings has a line height for this breakpoint
       @if map-has-key($settings, $name) {
         $settings-at-breakpoint: map-get($settings, $name);
+
         @if map-has-key($settings-at-breakpoint, pull) {
           $new-pull: map-get($settings-at-breakpoint, pull);
         }
       }
+
       // Now set the margin top
-      @if ($new-pull != $pull) {
+      @if ($new-pull !=$pull) {
         $pull: $new-pull;
         $base-height-into-pull: floor(math.div($pull, $base-height)); // round or floor? erm
         // Round will be closer but has the risk of drawing too much negative margin
         $margin-top: 0 - ($base-height-into-pull * $base-height);
-        @if ($name == 'xsmall' or $single-bp == $name) {
+
+        @if ($name=='xsmall'or $single-bp==$name) {
           margin-top: #{$margin-top}px;
-        } @else {
+        }
+
+        @else {
           @include breakpoint(#{$name}) {
             margin-top: #{$margin-top}px;
           }

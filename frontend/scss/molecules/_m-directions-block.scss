@@ -1,9 +1,11 @@
-
 .m-directions-block {
   @include float-clear;
-  margin-top: 32px;
-  padding-top: 19px;
-  border-top: 1px solid $color__rules--primary;
+
+  & {
+    margin-top: 32px;
+    padding-top: 19px;
+    border-top: 1px solid $color__rules--primary;
+  }
 
   @include breakpoint('small+') {
     margin-top: 52px;
@@ -54,9 +56,11 @@
     @include breakpoint('small+') {
       margin-top: 11px;
     }
+
     @include breakpoint('medium+') {
       margin-top: 16px;
     }
+
     @include breakpoint('large+') {
       margin-top: 0;
     }
@@ -95,18 +99,24 @@
   @include untuck;
 }
 
-.m-directions-block__links.o-blocks > span[class*=f-] a {
+.m-directions-block__links.o-blocks>span[class*=f-] a {
   background: none;
   color: $color__link--accent;
 
   &:hover,
   &:focus:hover {
     @include text-underline(1.02em, $color__link--accent-hover);
-    color: $color__link--accent-hover;
+
+    & {
+      color: $color__link--accent-hover;
+    }
   }
 
   &:active {
     @include text-underline(1.02em, transparent);
-    color: $color__link--accent-active;
+
+    & {
+      color: $color__link--accent-active;
+    }
   }
 }

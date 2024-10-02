@@ -48,11 +48,13 @@ $f-ui: (
 @function get-primary-font-name($font) {
   // Check for a font family rather than a single font name
   $font-family-comma-index: str-index("#{$font}", ',');
+
   @if $font-family-comma-index {
     // Get the primary font from the font family
     $font: str-slice(#{$font}, 0, $font-family-comma-index - 1);
     $font: str-replace($font, '"', '');
   }
+
   @return $font;
 }
 
@@ -60,13 +62,17 @@ $f-ui: (
   @if map-has-key($cap-heights, $font) {
     // Adjust cap height for this font size
     $cap-height: $font-size * map-get($cap-heights, $font);
+
     // Check push isn't null
-    @if ($push == null) {
+    @if ($push==null) {
       $push: 0;
     }
+
     // Calc the push/pull
     @return round((($line-height - $cap-height) * 0.5) + $push);
-  } @else {
+  }
+
+  @else {
     @warn "Unknown font `#{$font}` in $cap-heights.";
     @return 0;
   }
@@ -76,8 +82,9 @@ $f-ui: (
   $_obj: ();
   $_settings: ();
 
-  @each $key, $value in $obj {
-    @if ($key != 'settings') {
+  @each $key,
+  $value in $obj {
+    @if ($key !='settings') {
       $_obj: map-merge($_obj, ($key: $value));
     }
   }
@@ -89,24 +96,31 @@ $f-ui: (
   $font: if($font-family-loaded, $font-family-loaded, $font-family);
   // Work out the primary font name (used in the cap heights map)
   $font-name: get-primary-font-name($font);
+
   // Ok if we have settings
   @if $settings {
     // Set some defaults, we we can keep track of changes so tuck calc doesn't get null values
     $font-size: 0;
     $line-height: 0;
     $push: 0;
-    @each $breakpoint, $font-info in $settings {
+
+    @each $breakpoint,
+    $font-info in $settings {
+
       // Set font info for this breakpoint
       @if map-has-key($font-info, font-size) {
         // Conditional here because this can inherit from earlier items in the map so that the tuck calculation can take place
         $font-size: map-get($font-info, font-size);
       }
+
       @if map-has-key($font-info, line-height) {
         $line-height: map-get($font-info, line-height);
       }
+
       @if map-has-key($font-info, push) {
         $push: map-get($font-info, push);
       }
+
       // Calc pull
       $pull: calc-pull($font-name, $font-size, $line-height, $push);
       // Update
@@ -114,6 +128,7 @@ $f-ui: (
       $_settings: map-merge($_settings, (#{$breakpoint}: $font-info));
     }
   }
+
   //
   $_obj: map-merge($_obj, (settings: $_settings));
   @return $_obj;
@@ -122,75 +137,104 @@ $f-ui: (
 // This assumes that the font is vertically centered within the box so may require some tweaking
 // @see https://codepen.io/13twelve/pen/PJgqBN?editors=0100
 @mixin untuck($tuck-method: 'pseudo') {
-  @if ($tuck-method == null or $tuck-method == 'pseudo') {
+  @if ($tuck-method==null or $tuck-method=='pseudo') {
+
     &::before,
     &::after {
       content: none;
     }
   }
-  @if ($tuck-method == 'padding') {
+
+  @if ($tuck-method=='padding') {
     margin-bottom: 0;
     padding-top: 0;
   }
 }
 
 @mixin tuck($tuck-method: 'pseudo', $pre-tucked: false, $tuck-amount: 0) {
-  @if ($tuck-amount == null) {
+  @if ($tuck-amount==null) {
     $tuck-amount: 0;
   }
+
   // If the tuck method is using pseudo blocks
-  @if ($tuck-method == null or $tuck-method == 'pseudo') {
+  @if ($tuck-method==null or $tuck-method=='pseudo') {
+
     // Add the psuedo-block if required
-    @if ($pre-tucked == false) {
+    @if ($pre-tucked==false) {
+
       &::before,
       &::after {
         content: '';
         display: block;
       }
     }
+
     // Set the push/pull tucks
     &::before {
       padding-top: $tuck-amount * 1px;
     }
+
     &::after {
       margin-bottom: - $tuck-amount * 1px;
     }
   }
+
   // If the tuck method is padding-top/margin-bottom
-  @if ($tuck-method == 'padding') {
+  @if ($tuck-method=='padding') {
     padding-top: $tuck-amount * 1px;
     margin-bottom: - $tuck-amount * 1px;
   }
 }
 
 @mixin font-style($font-size: false, $line-height: false, $font-weight: false, $font-style: false, $letter-spacing: false, $text-transform: false, $tuck: false, $pre-tucked: false, $tuck-method: 'pseudo', $push: 0, $tuck-amount: 0) {
+
   // Set font settings
   @if $font-size {
-    font-size: $font-size * 1px;
+    & {
+      font-size: $font-size * 1px;
+    }
   }
+
   @if $line-height {
-    line-height: $line-height * 1px;
+    & {
+      line-height: $line-height * 1px;
+    }
   }
+
   @if $font-weight {
-    font-weight: $font-weight;
+    & {
+      font-weight: $font-weight;
+    }
   }
+
   @if $font-style {
-    font-style: $font-style;
+    & {
+      font-style: $font-style;
+    }
   }
+
   @if $letter-spacing {
-    letter-spacing: $letter-spacing;
+    & {
+      letter-spacing: $letter-spacing;
+    }
   }
+
   @if $text-transform {
-    text-transform: $text-transform;
+    & {
+      text-transform: $text-transform;
+    }
   }
+
   // Is tuck required?
   @if $font-size and $line-height and $tuck {
     @if ($font-size < 1) {
       @warn "Did you intend to set a font size of 0? Perhaps no font size has been defined in the font info object?";
     }
+
     @if ($line-height < 1) {
       @warn "Did you intend to set a line-height of 0? Perhaps no line-height has been defined in the font info object?";
     }
+
     @include tuck($tuck-method, $pre-tucked, $tuck-amount);
   }
 }
@@ -200,36 +244,47 @@ $f-ui: (
   $font-family-loaded: map-get($obj, font-family-loaded);
   $font-loaded-class: map-get($obj, font-loaded-class);
   $settings: map-get($obj, settings);
+
   // Set base font family
   @if $font-family {
     font-family: $font-family;
-  } @else {
+  }
+
+  @else {
     @warn "No fall back font family specified.";
   }
+
   // Set font family when font loaded class, if exists
   @if $font-family-loaded and $font-loaded-class {
     .#{$font-loaded-class} & {
       font-family: $font-family-loaded;
     }
   }
+
   // Set the various font info per breakpoint
   @if $settings and $font-family {
     $font-size: 0;
     $line-height: 0;
     $untuck: false;
     $tuck-method: null;
+
     // Loop the breakpoints in the setttings
-    @each $breakpoint, $font-info in $settings {
+    @each $breakpoint,
+    $font-info in $settings {
+
       // Check this is a valid breakpoint
       @if map-has-key($breakpoints-with-directions, $breakpoint) {
+
         // Get font info for this breakpoint
         @if map-has-key($font-info, font-size) {
           // Conditional here because this can inherit from earlier items in the map so that the tuck calculation can take place
           $font-size: map-get($font-info, font-size);
         }
+
         @if map-has-key($font-info, line-height) {
           $line-height: map-get($font-info, line-height);
         }
+
         $font-weight: map-get($font-info, font-weight);
         $font-style: map-get($font-info, font-style);
         $letter-spacing: map-get($font-info, letter-spacing);
@@ -239,31 +294,42 @@ $f-ui: (
 
         @if map-has-key($font-info, tuck-method) {
           // Check if the new tuck method differs from the last
-          $untuck: if(($tuck-method and $tuck-method != map-get($font-info, tuck-method)), $tuck-method, false);
+          $untuck: if(($tuck-method and $tuck-method !=map-get($font-info, tuck-method)), $tuck-method, false);
           // Set the new tuck method
           $tuck-method: map-get($font-info, tuck-method);
-        } @else {
+        }
+
+        @else {
           // Set old tuck method or default if no old tuck method
           $tuck-method: if($tuck-method, $tuck-method, 'pseudo');
         }
+
         // Check if this is the smallest breakpoint (the default font setting)
-        @if (index(map-keys($settings), $breakpoint) == 1) {
+        @if (index(map-keys($settings), $breakpoint)==1) {
           @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push, $tuck-amount);
-        } @else {
+        }
+
+        @else {
           @include breakpoint(#{$breakpoint}) {
             $pre-tucked: true;
+
             @if $untuck {
               @include untuck($untuck);
               $pre-tucked: false;
             }
+
             @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, $pre-tucked, $tuck-method, $push, $tuck-amount);
           }
         }
-      } @else {
+      }
+
+      @else {
         @warn "Setting font info to unknown breakpoint: `#{$breakpoint}`";
       }
     }
-  } @else {
+  }
+
+  @else {
     @warn "No font settings specified.";
   }
 }
@@ -274,52 +340,72 @@ $f-ui: (
   $font-family-loaded: map-get($obj, font-family-loaded);
   $font-loaded-class: map-get($obj, font-loaded-class);
   $settings: map-get($obj, settings);
+
   // Set base font family
   @if $font-family {
-    font-family: $font-family;
-  } @else {
+    & {
+      font-family: $font-family;
+    }
+  }
+
+  @else {
     @warn "No fall back font family specified.";
   }
+
   // Set font family when font loaded class, if exists
   @if $font-family-loaded and $font-loaded-class {
     .#{$font-loaded-class} & {
       font-family: $font-family-loaded;
     }
   }
+
   // Set the various font info per breakpoint
   @if $settings and $font-family {
     $font-size: 0;
     $line-height: 0;
     $tuck-method: null;
+
     // Loop the breakpoints in the setttings
-    @each $breakpoint, $font-info in $settings {
+    @each $breakpoint,
+    $font-info in $settings {
+
       // Check this is a valid breakpoint
       @if map-has-key($breakpoints-with-directions, $breakpoint) {
+
         // Get font info for this breakpoint
         @if map-has-key($font-info, font-size) {
           // Conditional here because this can inherit from earlier items in the map so that the tuck calculation can take place
           $font-size: map-get($font-info, font-size);
         }
+
         @if map-has-key($font-info, line-height) {
           $line-height: map-get($font-info, line-height);
         }
+
         $font-weight: map-get($font-info, font-weight);
         $font-style: map-get($font-info, font-style);
         $letter-spacing: map-get($font-info, letter-spacing);
         $text-transform: map-get($font-info, text-transform);
+
         // Check if this is the smallest breakpoint (the default font setting)
-        @if (index(map-keys($settings), $breakpoint) == 1) {
+        @if (index(map-keys($settings), $breakpoint)==1) {
           @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform);
-        } @else {
+        }
+
+        @else {
           @include breakpoint(#{$breakpoint}) {
             @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform);
           }
         }
-      } @else {
+      }
+
+      @else {
         @warn "Setting font info to unknown breakpoint: `#{$breakpoint}`";
       }
     }
-  } @else {
+  }
+
+  @else {
     @warn "No font settings specified.";
   }
 }
@@ -331,10 +417,12 @@ $f-ui: (
   Set font smoothing ON or OFF
 */
 @mixin font-smoothing($value: on) {
-  @if $value == on {
+  @if $value==on {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  } @else {
+  }
+
+  @else {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
   }

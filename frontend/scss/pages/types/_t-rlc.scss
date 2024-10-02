@@ -270,8 +270,10 @@
         @include breakpoint('xsmall') {
           bottom: 20px;
         }
+        & {
         min-height: unset;
         position: absolute;
+        }
         .f-caption {
           font-family: var(--sans-serif);
           font-size: 13px;

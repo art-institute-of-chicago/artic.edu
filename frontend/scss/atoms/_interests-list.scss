@@ -21,11 +21,17 @@ Typically used at the bottom of the artwork detail.
 
 .interests-list a {
   @include text-underline(.8em, $color__text--title);
-  color: $color__text--title;
-  text-decoration: none;
+
+  & {
+    color: $color__text--title;
+    text-decoration: none;
+  }
 }
 
 .interests-list a:hover {
   @include text-underline(.8em, $color__text--secondary);
-  color: $color__text--secondary;
+
+  & {
+    color: $color__text--secondary;
+  }
 }

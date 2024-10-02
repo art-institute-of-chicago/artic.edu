@@ -74,7 +74,7 @@
                     transform: scale(2);
                 }
             }
-            
+
             .arrow-link--back svg {
                 -webkit-transform: scale(1.5) rotate(180deg);
                 -o-transform: scale(1.5) rotate(180deg);
@@ -97,7 +97,7 @@
         @include breakpoint('xsmall') {
             flex-direction: column;
         }
-        
+
         .m-collection-artworks {
             display: flex;
             flex-wrap: wrap;
@@ -232,7 +232,7 @@
                         width: 100%;
                     }
                 }
-            }   
+            }
         }
     }
 }

@@ -12,16 +12,22 @@
 
 .m-link-list {
   @include untuck;
-  margin-top: 40px;
 
-  .o-blocks &.o-blocks__block + & {
+  & {
+    margin-top: 40px;
+  }
+
+  .o-blocks &.o-blocks__block+& {
     margin-top: 20px;
   }
 }
 
 .m-link-list__sublabel {
   @include f-secondary;
-  color: $color__text--type;
+
+  & {
+    color: $color__text--type;
+  }
 }
 
 .m-link-list__sub-list {
@@ -89,10 +95,14 @@
 // TODO: Is this needed anymore?
 .m-link-list__trigger.f-module-title-1 {
   @include tucked-align-top($f-module-title-1);
-  color: $color__text--title;
+
+  & {
+    color: $color__text--title;
+  }
 }
 
 a.m-link-list__trigger.f-module-title-1 {
+
   &:hover,
   &:focus:hover {
     color: $color__link--hover;
@@ -105,7 +115,10 @@ a.m-link-list__trigger.f-module-title-1 {
 
 .m-link-list__trigger.f-secondary {
   @include tucked-align-top($f-secondary);
-  color: $color__link;
+
+  & {
+    color: $color__link;
+  }
 }
 
 
@@ -143,8 +156,8 @@ a.m-link-list__trigger.f-secondary {
 }
 
 // TODO: Is this needed anymore? Related to PUB-132
-.m-link-list__item.s-active > .m-link-list__trigger.f-module-title-1,
-.m-link-list__item.s-active > .m-link-list__trigger.f-secondary {
+.m-link-list__item.s-active>.m-link-list__trigger.f-module-title-1,
+.m-link-list__item.s-active>.m-link-list__trigger.f-secondary {
   color: $color__text--accent;
 
   &:hover,

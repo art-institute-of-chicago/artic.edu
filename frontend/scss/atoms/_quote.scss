@@ -63,7 +63,10 @@ Has a variant for editorial articles:
 
 .quote cite {
   @include tucked-margin-top($f-secondary, ('xsmall': 40, 'medium': 56));
-  display: block;
+
+  & {
+    display: block;
+  }
 }
 
 .quote__icon {
@@ -170,7 +173,7 @@ Has a variant for editorial articles:
   }
 }
 
-.o-article .quote.o-blocks__block  {
+.o-article .quote.o-blocks__block {
   padding: 12px 40px 60px 12px;
   border-radius: $border-radius;
   background-color: $color__bg--editorial;

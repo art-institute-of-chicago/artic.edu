@@ -77,6 +77,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
       .o-sticky-sidebar__placeholder::before {
         content: '';
       }
+
       .o-sticky-sidebar__stopper {
         clear: both;
       }
@@ -112,7 +113,8 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         @each $name in ('large', 'xlarge') {
           @include breakpoint('#{$name}') {
             width: #{colspan(14, '#{$name}')};
-            padding-right: #{colspan(1, '#{$name}')};
+padding-right: #{colspan(1, '#{$name}')};
+
           }
         }
 
@@ -128,7 +130,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         }
       }
 
-      .m-article-header--digital-publication-article ~ .m-article-header__text::before {
+      .m-article-header--digital-publication-article~.m-article-header__text::before {
         background-color: transparent;
         transition: background-color 1s;
       }
@@ -143,8 +145,10 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
           }
         }
 
-        height: 100vh;
-        overflow-y: auto;
+        & {
+          height: 100vh;
+          overflow-y: auto;
+        }
       }
     }
 
@@ -154,9 +158,11 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         position: fixed;
         top: 0;
       }
+
       .o-sticky-sidebar__placeholder::before {
         content: '';
       }
+
       .o-sticky-sidebar__stopper {
         clear: both;
       }
@@ -194,6 +200,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         position: fixed;
         top: 0;
         z-index: map-get($zindexs, 'header');
+
         &::before {
           left: 0;
           margin-left: -4.6875vw;
