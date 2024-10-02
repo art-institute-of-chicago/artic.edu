@@ -2,7 +2,6 @@
 .m-showcase-background { // The showcase background is used in the Showcase Multiple block
     width: 100vw;
     margin-top: 50px;
-    margin-bottom: 30px;
     margin-left: calc(50% - 50vw);
     display: flex;
     flex-direction: row;
@@ -106,6 +105,7 @@
 .m-showcase-block, .m-showcase {
     &.showcase--digital-publication {
         width: 100%;
+        margin-bottom: 30px;
         margin-left: 0 !important;
         padding: 0;
 
