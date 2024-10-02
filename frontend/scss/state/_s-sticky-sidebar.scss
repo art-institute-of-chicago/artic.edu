@@ -83,6 +83,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
       .o-sticky-sidebar__placeholder::before {
         content: '';
       }
+
       .o-sticky-sidebar__stopper {
         clear: both;
       }
@@ -168,9 +169,11 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         position: fixed;
         top: 0;
       }
+
       .o-sticky-sidebar__placeholder::before {
         content: '';
       }
+
       .o-sticky-sidebar__stopper {
         clear: both;
       }
@@ -208,6 +211,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         position: fixed;
         top: 0;
         z-index: map-get($zindexs, 'header');
+
         &::before {
           left: 0;
           margin-left: -4.6875vw;

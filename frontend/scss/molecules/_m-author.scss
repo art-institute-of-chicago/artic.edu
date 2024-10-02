@@ -48,24 +48,30 @@
 
 .m-author__img img {
   @include objectFitFix;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
+
+  & {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 }
 
 .m-author .f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 12, 'medium+': 12));
-  flex: 0 0 auto;
-  max-width: 100%;
+
+  & {
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
 }
 
-.m-author .m-author__img + .f-secondary {
+.m-author .m-author__img+.f-secondary {
   max-width: calc(100% - 52px);
 }
 
@@ -75,12 +81,18 @@
   &:hover,
   &:focus:hover {
     @include text-underline(1.02em, $color__link--accent-hover);
-    color: $color__link--accent-hover;
+
+    & {
+      color: $color__link--accent-hover;
+    }
   }
 
   &:active:hover {
     @include text-underline(1.02em, $color__link--accent-active);
-    color: $color__link--accent-active;
+
+    & {
+      color: $color__link--accent-active;
+    }
   }
 }
 
@@ -90,11 +102,17 @@
   &:hover,
   &:focus:hover {
     @include text-underline(1.02em, $color__link--editorial-hover);
-    color: $color__link--editorial-hover;
+
+    & {
+      color: $color__link--editorial-hover;
+    }
   }
 
   &:active:hover {
     @include text-underline(1.02em, $color__link--editorial-active);
-    color: $color__link--editorial-active;
+
+    & {
+      color: $color__link--editorial-active;
+    }
   }
 }

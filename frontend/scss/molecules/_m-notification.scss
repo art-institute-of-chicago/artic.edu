@@ -47,12 +47,15 @@
 
 .m-notification {
   @include background-fill;
-  display: block;
-  padding-top: 16px;
-  padding-right: 48px;
-  padding-bottom: 20px;
-  background-color: $color__error;
-  transition: all .1s linear;
+
+  & {
+    display: block;
+    padding-top: 16px;
+    padding-right: 48px;
+    padding-bottom: 20px;
+    background-color: $color__error;
+    transition: all .1s linear;
+  }
 }
 
 .m-notification--header {
@@ -109,7 +112,7 @@
 .m-notification__text.f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 12));
 
-  .m-notification__title + & {
+  .m-notification__title+& {
     @include tucked-margin-top($f-secondary, ('xsmall': 20));
   }
 }

@@ -1,26 +1,26 @@
-
 .o-visit .m-links-bar {
   margin-top: 0;
 }
-  .m-links-bar--title-bar-companion,
-  .o-visit .o-grid-listing + .m-links-bar--title-bar-companion,
-  .o-visit .m-link-list + .m-links-bar--title-bar-companion {
-    @include breakpoint('xsmall') {
-      margin-top: 24px;
-    }
+
+.m-links-bar--title-bar-companion,
+.o-visit .o-grid-listing+.m-links-bar--title-bar-companion,
+.o-visit .m-link-list+.m-links-bar--title-bar-companion {
+  @include breakpoint('xsmall') {
+    margin-top: 24px;
   }
+}
 
 .o-visit .m-cta-banner {
   margin-top: 0;
 
-  & + * {
+  &+* {
     margin-top: 0;
   }
 
   @include breakpoint('small+') {
     margin-top: 0;
 
-    & + * {
+    &+* {
       margin-top: 0;
     }
   }
@@ -28,12 +28,12 @@
   @include breakpoint('medium+') {
     margin-top: 0;
 
-    & + * {
+    &+* {
       margin-top: 0;
     }
   }
 
-  + .m-title-bar {
+  +.m-title-bar {
     margin-top: 0;
   }
 }
@@ -142,8 +142,8 @@
   flex-direction: column;
   align-items: center;
 
-  @each $name, $margin in (
-    'xsmall': 36,
+  @each $name,
+  $margin in ('xsmall': 36,
     'small+': 40,
     'medium+': 52,
   ) {
@@ -168,7 +168,10 @@
     h2 {
       @include f-list-3;
       @include untuck;
-      margin-bottom: 12px;
+
+      & {
+        margin-bottom: 12px;
+      }
     }
 
     a {

@@ -145,16 +145,19 @@
 }
 
 .m-calendar__header {
-  @include opaqueBg(rgba(255,255,255,.95), rgba(255,255,255,.85));
-  position: absolute;
-  z-index: 2;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 64px;
-  padding-bottom: 11px;
-  border-bottom: 1px solid rgba(0,0,0,.1);
-  background-clip: padding-box;
+  @include opaqueBg(rgba(255, 255, 255, .95), rgba(255, 255, 255, .85));
+
+  & {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 64px;
+    padding-bottom: 11px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    background-clip: padding-box;
+  }
 }
 
 .m-calendar__header .btn {
@@ -381,7 +384,7 @@
 }
 
 .m-calendar[data-calendar-mode="single"] {
-  .m-calendar__header > .btn {
+  .m-calendar__header>.btn {
     display: none;
   }
 }

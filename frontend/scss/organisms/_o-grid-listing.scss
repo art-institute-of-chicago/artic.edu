@@ -30,7 +30,7 @@ Basic flexed set up
     }
   }
 
-  .m-table + & {
+  .m-table+& {
     @include breakpoint('small+') {
       margin-top: 32px;
     }
@@ -41,12 +41,13 @@ Basic flexed set up
   }
 }
 
-.o-grid-listing > * {
+.o-grid-listing>* {
   position: relative;
   flex: 0 0 auto;
   width: 100%;
 
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       //margin-top: #{map-get($grid-margin-tops, $name)}px;
       margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
@@ -54,8 +55,10 @@ Basic flexed set up
   }
 }
 
-.o-grid-listing > *:first-child {
-  @each $name, $point in $breakpoints {
+.o-grid-listing>*:first-child {
+
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       margin-top: 0;
     }
@@ -63,23 +66,30 @@ Basic flexed set up
 }
 
 // If this is in cols, adjust spacings
-@each $name, $point in $breakpoints {
+@each $name,
+$point in $breakpoints {
   @include breakpoint('#{$name}') {
     .o-grid-listing[class*="col@#{$name}"] {
-      @if ($name == 'xsmall') {
+      @if ($name=='xsmall') {
         margin-left: colspan(6, #{$name}, 0, true);
-      } @else {
+      }
+
+      @else {
         margin-left: colspan(2, #{$name}, 0, true);
       }
     }
 
-    .o-grid-listing[class*="col@#{$name}"] > * {
+    .o-grid-listing[class*="col@#{$name}"]>* {
       margin-top: 0;
-      @if ($name == 'xsmall') {
+
+      @if ($name=='xsmall') {
         margin-left: colspan(6, #{$name});
-      } @else {
+      }
+
+      @else {
         margin-left: colspan(2, #{$name});
       }
+
       border-top-style: none;
       border-top-width: 0;
     }
@@ -96,7 +106,8 @@ Variant: `o-listing--single-row` - limits to a single row
   flex-wrap: nowrap;
 }
 
-@each $name, $point in $breakpoints {
+@each $name,
+$point in $breakpoints {
   @include breakpoint('#{$name}') {
     .o-grid-listing--single-row[class*="scroll@#{$name}"] {
       position: relative;
@@ -104,13 +115,19 @@ Variant: `o-listing--single-row` - limits to a single row
       width: 100vw;
       margin-right: 0;
       margin-left: -50vw;
-      @if ($name == 'xlarge') {
+
+      @if ($name=='xlarge') {
         padding-left: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
-      } @else if ($name == 'xsmall') {
+      }
+
+      @else if ($name=='xsmall') {
         padding-left: 0;
-      } @else {
+      }
+
+      @else {
         padding-left: colspan(1, $name);
       }
+
       overflow-x: auto;
       overflow-y: hidden;
     }
@@ -119,59 +136,71 @@ Variant: `o-listing--single-row` - limits to a single row
       content: '';
       display: block;
       flex: 0 0 auto;
-      @if ($name == 'xlarge') {
+
+      @if ($name=='xlarge') {
         width: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
-      } @else if ($name == 'xsmall') {
-        width: colspan(3, $name);
-      } @else {
+      }
+
+      @else if ($name=='xsmall') {
         width: colspan(3, $name);
       }
+
+      @else {
+        width: colspan(3, $name);
+      }
+
       height: 1px;
     }
 
-    .o-grid-listing--single-row[class*="scroll@#{$name}"] > * {
+    .o-grid-listing--single-row[class*="scroll@#{$name}"]>* {
       width: 216px;
       margin-top: 0;
-      @if ($name == 'xsmall') {
+
+      @if ($name=='xsmall') {
         margin-left: colspan(6, #{$name});
 
         &:first-child {
           margin-left: colspan(3, #{$name});
         }
-      } @else {
+      }
+
+      @else {
         margin-left: colspan(2, #{$name});
       }
-      border-top: 0 none;
 
-      @if ($name == 'xlarge') {
+      & {
+        border-top: 0 none;
+      }
+
+      @if ($name=='xlarge') {
         &:first-child {
           margin-left: 0;
         }
       }
     }
 
-    .o-grid-listing--gridlines-right.o-grid-listing--single-row[class*="scroll@#{$name}"] > *:not(:last-child)::after,
-    .o-grid-listing--gridlines-cols.o-grid-listing--single-row[class*="scroll@#{$name}"] > *:not(:last-child)::after {
+    .o-grid-listing--gridlines-right.o-grid-listing--single-row[class*="scroll@#{$name}"]>*:not(:last-child)::after,
+    .o-grid-listing--gridlines-cols.o-grid-listing--single-row[class*="scroll@#{$name}"]>*:not(:last-child)::after {
       display: block;
     }
 
-    .o-grid-listing--gridlines-right.o-grid-listing--single-row[class*="scroll@#{$name}"] > *:last-child::after,
-    .o-grid-listing--gridlines-cols.o-grid-listing--single-row[class*="scroll@#{$name}"] > *:last-child::after {
+    .o-grid-listing--gridlines-right.o-grid-listing--single-row[class*="scroll@#{$name}"]>*:last-child::after,
+    .o-grid-listing--gridlines-cols.o-grid-listing--single-row[class*="scroll@#{$name}"]>*:last-child::after {
       content: '';
       display: none;
     }
 
-    .o-grid-listing--gridlines-rows.o-grid-listing--single-row[class*="scroll@#{$name}"] > *::before {
+    .o-grid-listing--gridlines-rows.o-grid-listing--single-row[class*="scroll@#{$name}"]>*::before {
       left: colspan(1, #{$name}, 0, true);
       right: colspan(1, #{$name}, 0, true);
       width: auto;
     }
 
-    .o-grid-listing--gridlines-rows.o-grid-listing--single-row[class*="scroll@#{$name}"] > *:first-child::before {
+    .o-grid-listing--gridlines-rows.o-grid-listing--single-row[class*="scroll@#{$name}"]>*:first-child::before {
       left: 0;
     }
 
-    .o-grid-listing--gridlines-rows.o-grid-listing--single-row[class*="scroll@#{$name}"] > *:last-child::before {
+    .o-grid-listing--gridlines-rows.o-grid-listing--single-row[class*="scroll@#{$name}"]>*:last-child::before {
       right: 0;
     }
   }
@@ -183,9 +212,11 @@ Following a <hr> or <tag class="hr"></tag>
 
 ***/
 
-hr + .o-grid-listing,
-.hr + .o-grid-listing {
-  @each $name, $point in $breakpoints {
+hr+.o-grid-listing,
+.hr+.o-grid-listing {
+
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       margin-top: 0;
       //padding-top: #{map-get($grid-margin-tops, $name)}px;
@@ -194,12 +225,14 @@ hr + .o-grid-listing,
   }
 }
 
-@each $name, $point in $breakpoints {
+@each $name,
+$point in $breakpoints {
   @include breakpoint('#{$name}') {
-    hr + .o-grid-listing--gridlines-top[class*="col@#{$name}"],
-    hr + .o-grid-listing--gridlines-rows[class*="col@#{$name}"],
-    .hr + .o-grid-listing--gridlines-top[class*="col@#{$name}"],
-    .hr + .o-grid-listing--gridlines-rows[class*="col@#{$name}"] {
+
+    hr+.o-grid-listing--gridlines-top[class*="col@#{$name}"],
+    hr+.o-grid-listing--gridlines-rows[class*="col@#{$name}"],
+    .hr+.o-grid-listing--gridlines-top[class*="col@#{$name}"],
+    .hr+.o-grid-listing--gridlines-rows[class*="col@#{$name}"] {
       padding-top: 0;
     }
   }
@@ -211,22 +244,25 @@ Variant `o-grid-listing--info-block`
 
 ***/
 
-@each $name, $point in $breakpoints {
+@each $name,
+$point in $breakpoints {
   @include breakpoint('#{$name}') {
-    .o-grid-listing:not([class*="col@#{$name}"]):not(.o-grid-listing--info-block) + .o-grid-listing--info-block[class*="col@#{$name}"] {
+    .o-grid-listing:not([class*="col@#{$name}"]):not(.o-grid-listing--info-block)+.o-grid-listing--info-block[class*="col@#{$name}"] {
       margin-top: 60px;
     }
 
-    .o-grid-listing--info-block[class*="col@#{$name}"] + .o-grid-listing--info-block[class*="col@#{$name}"] {
-      @if ($name == 'xsmall') {
+    .o-grid-listing--info-block[class*="col@#{$name}"]+.o-grid-listing--info-block[class*="col@#{$name}"] {
+      @if ($name=='xsmall') {
         margin-top: 36px;
-      } @else {
+      }
+
+      @else {
         margin-top: 52px;
       }
     }
 
-    .o-grid-listing--gridlines-top.o-grid-listing--info-block:not([class*="col@#{$name}"]) > *,
-    .o-grid-listing--gridlines-rows.o-grid-listing--info-block:not([class*="col@#{$name}"]) > * {
+    .o-grid-listing--gridlines-top.o-grid-listing--info-block:not([class*="col@#{$name}"])>*,
+    .o-grid-listing--gridlines-rows.o-grid-listing--info-block:not([class*="col@#{$name}"])>* {
       margin-top: #{map-get($grid-margin-tops, $name)}px;
       padding-top: 0;
 
@@ -261,220 +297,220 @@ X cols at XXXXX breakpoint
 // Adjust width of things, second row onwards wants margin-tops
 
 @include breakpoint('xsmall') {
-  .o-grid-listing--2-col\@xsmall > * {
+  .o-grid-listing--2-col\@xsmall>* {
     width: colspan(grid-cols-to-colspan(2, 58, 6), 'xsmall');
   }
 
-  .o-grid-listing--3-col\@xsmall > * {
+  .o-grid-listing--3-col\@xsmall>* {
     width: colspan(grid-cols-to-colspan(3, 58, 6), 'xsmall');
   }
 
-  .o-grid-listing--4-col\@xsmall > *,
-  .o-grid-listing--scroll\@xsmall.o-grid-listing--4-col\@xsmall > * {
+  .o-grid-listing--4-col\@xsmall>*,
+  .o-grid-listing--scroll\@xsmall.o-grid-listing--4-col\@xsmall>* {
     width: colspan(grid-cols-to-colspan(4, 58, 6), 'xsmall');
   }
 
-  .o-grid-listing--6-col\@xsmall > *,
-  .o-grid-listing--scroll\@xsmall.o-grid-listing--6-col\@xsmall > * {
+  .o-grid-listing--6-col\@xsmall>*,
+  .o-grid-listing--scroll\@xsmall.o-grid-listing--6-col\@xsmall>* {
     width: colspan(grid-cols-to-colspan(6, 58, 6), 'xsmall');
   }
 
-  .o-grid-listing--2-col\@xsmall:not(.o-grid-listing--single-row) > *:nth-child(2) ~ *,
-  .o-grid-listing--3-col\@xsmall:not(.o-grid-listing--single-row) > *:nth-child(3) ~ *,
-  .o-grid-listing--4-col\@xsmall:not(.o-grid-listing--single-row) > *:nth-child(4) ~ *,
-  .o-grid-listing--6-col\@xsmall:not(.o-grid-listing--single-row) > *:nth-child(6) ~ * {
+  .o-grid-listing--2-col\@xsmall:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
+  .o-grid-listing--3-col\@xsmall:not(.o-grid-listing--single-row)>*:nth-child(3)~*,
+  .o-grid-listing--4-col\@xsmall:not(.o-grid-listing--single-row)>*:nth-child(4)~*,
+  .o-grid-listing--6-col\@xsmall:not(.o-grid-listing--single-row)>*:nth-child(6)~* {
     //margin-top: #{map-get($grid-margin-tops, 'xsmall')}px;
     margin-top: colspan(map-get($grid-padding-tops, 'xsmall'), 'xsmall');
   }
 
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xsmall.o-grid-listing--2-col\@xsmall > *:nth-child(2) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xsmall.o-grid-listing--3-col\@xsmall > *:nth-child(3) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xsmall.o-grid-listing--4-col\@xsmall > *:nth-child(4) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xsmall.o-grid-listing--6-col\@xsmall > *:nth-child(6) ~ * {
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xsmall.o-grid-listing--2-col\@xsmall>*:nth-child(2)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xsmall.o-grid-listing--3-col\@xsmall>*:nth-child(3)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xsmall.o-grid-listing--4-col\@xsmall>*:nth-child(4)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xsmall.o-grid-listing--6-col\@xsmall>*:nth-child(6)~* {
     display: none;
   }
 }
 
 @include breakpoint('small') {
-  .o-grid-listing--2-col\@small > * {
+  .o-grid-listing--2-col\@small>* {
     width: colspan(grid-cols-to-colspan(2), 'small');
   }
 
-  .o-grid-listing--3-col\@small > * {
+  .o-grid-listing--3-col\@small>* {
     width: colspan(grid-cols-to-colspan(3), 'small');
   }
 
-  .o-grid-listing--4-col\@small > *,
-  .o-grid-listing--scroll\@small.o-grid-listing--4-col\@small > * {
+  .o-grid-listing--4-col\@small>*,
+  .o-grid-listing--scroll\@small.o-grid-listing--4-col\@small>* {
     width: colspan(grid-cols-to-colspan(4), 'small');
   }
 
-  .o-grid-listing--6-col\@small > *,
-  .o-grid-listing--scroll\@small.o-grid-listing--6-col\@small > * {
+  .o-grid-listing--6-col\@small>*,
+  .o-grid-listing--scroll\@small.o-grid-listing--6-col\@small>* {
     width: colspan(grid-cols-to-colspan(6), 'small');
   }
 
-  .o-grid-listing--2-col\@small:not(.o-grid-listing--single-row) > *:nth-child(2) ~ *,
-  .o-grid-listing--3-col\@small:not(.o-grid-listing--single-row) > *:nth-child(3) ~ *,
-  .o-grid-listing--4-col\@small:not(.o-grid-listing--single-row) > *:nth-child(4) ~ *,
-  .o-grid-listing--6-col\@small:not(.o-grid-listing--single-row) > *:nth-child(6) ~ * {
+  .o-grid-listing--2-col\@small:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
+  .o-grid-listing--3-col\@small:not(.o-grid-listing--single-row)>*:nth-child(3)~*,
+  .o-grid-listing--4-col\@small:not(.o-grid-listing--single-row)>*:nth-child(4)~*,
+  .o-grid-listing--6-col\@small:not(.o-grid-listing--single-row)>*:nth-child(6)~* {
     //margin-top: #{map-get($grid-margin-tops, 'small')}px;
     margin-top: colspan(map-get($grid-padding-tops, 'small'), 'small');
   }
 
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@small.o-grid-listing--2-col\@small > *:nth-child(2) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@small.o-grid-listing--3-col\@small > *:nth-child(3) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@small.o-grid-listing--4-col\@small > *:nth-child(4) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@small.o-grid-listing--6-col\@small > *:nth-child(6) ~ * {
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@small.o-grid-listing--2-col\@small>*:nth-child(2)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@small.o-grid-listing--3-col\@small>*:nth-child(3)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@small.o-grid-listing--4-col\@small>*:nth-child(4)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@small.o-grid-listing--6-col\@small>*:nth-child(6)~* {
     display: none;
   }
 }
 
 @include breakpoint('medium') {
-  .o-grid-listing--2-col\@medium > * {
+  .o-grid-listing--2-col\@medium>* {
     width: colspan(grid-cols-to-colspan(2), 'medium');
 
-    .o-article__secondary-actions ~ .o-article__body & {
+    .o-article__secondary-actions~.o-article__body & {
       width: colspan(18, 'medium');
     }
   }
 
-  .o-grid-listing--3-col\@medium > * {
+  .o-grid-listing--3-col\@medium>* {
     width: colspan(grid-cols-to-colspan(3), 'medium');
   }
 
-  .o-grid-listing--4-col\@medium > *,
-  .o-grid-listing--scroll\@medium.o-grid-listing--4-col\@medium > * {
+  .o-grid-listing--4-col\@medium>*,
+  .o-grid-listing--scroll\@medium.o-grid-listing--4-col\@medium>* {
     width: colspan(grid-cols-to-colspan(4), 'medium');
   }
 
-  .o-grid-listing--6-col\@medium > *,
-  .o-grid-listing--scroll\@medium.o-grid-listing--6-col\@medium > * {
+  .o-grid-listing--6-col\@medium>*,
+  .o-grid-listing--scroll\@medium.o-grid-listing--6-col\@medium>* {
     width: colspan(grid-cols-to-colspan(6), 'medium');
   }
 
-  .o-grid-listing--2-col\@medium:not(.o-grid-listing--single-row) > *:nth-child(2) ~ *,
-  .o-grid-listing--3-col\@medium:not(.o-grid-listing--single-row) > *:nth-child(3) ~ *,
-  .o-grid-listing--4-col\@medium:not(.o-grid-listing--single-row) > *:nth-child(4) ~ *,
-  .o-grid-listing--6-col\@medium:not(.o-grid-listing--single-row) > *:nth-child(6) ~ * {
+  .o-grid-listing--2-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
+  .o-grid-listing--3-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(3)~*,
+  .o-grid-listing--4-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(4)~*,
+  .o-grid-listing--6-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(6)~* {
     //margin-top: #{map-get($grid-margin-tops, 'medium')}px;
     margin-top: colspan(map-get($grid-padding-tops, 'medium'), 'medium');
   }
 
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--2-col\@medium > *:nth-child(2) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--3-col\@medium > *:nth-child(3) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--4-col\@medium > *:nth-child(4) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--6-col\@medium > *:nth-child(6) ~ * {
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--2-col\@medium>*:nth-child(2)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--3-col\@medium>*:nth-child(3)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--4-col\@medium>*:nth-child(4)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--6-col\@medium>*:nth-child(6)~* {
     display: none;
   }
 }
 
 @include breakpoint('large') {
-  .o-grid-listing--2-col\@large > * {
+  .o-grid-listing--2-col\@large>* {
     width: colspan(grid-cols-to-colspan(2), 'large');
 
     .o-article__body & {
       width: colspan(20.5, 'large');
     }
 
-    .o-article__secondary-actions ~ .o-article__body & {
+    .o-article__secondary-actions~.o-article__body & {
       width: colspan(13, 'large');
     }
   }
 
-  .o-grid-listing--3-col\@large > * {
+  .o-grid-listing--3-col\@large>* {
     width: colspan(grid-cols-to-colspan(3), 'large');
   }
 
-  .o-grid-listing--4-col\@large > * {
+  .o-grid-listing--4-col\@large>* {
     width: colspan(grid-cols-to-colspan(4), 'large');
   }
 
-  .o-grid-listing--5-col\@large > * {
+  .o-grid-listing--5-col\@large>* {
     width: colspan(grid-cols-to-colspan(5), 'large');
   }
 
-  .o-grid-listing--6-col\@large > *,
-  .o-grid-listing--scroll\@large.o-grid-listing--6-col\@large > * {
+  .o-grid-listing--6-col\@large>*,
+  .o-grid-listing--scroll\@large.o-grid-listing--6-col\@large>* {
     width: colspan(grid-cols-to-colspan(6), 'large');
   }
 
-  .o-grid-listing--12-col\@large > *,
-  .o-grid-listing--scroll\@large.o-grid-listing--12-col\@large > * {
+  .o-grid-listing--12-col\@large>*,
+  .o-grid-listing--scroll\@large.o-grid-listing--12-col\@large>* {
     width: colspan(grid-cols-to-colspan(12), 'large');
   }
 
-  .o-grid-listing--2-col\@large:not(.o-grid-listing--single-row) > *:nth-child(2) ~ *,
-  .o-grid-listing--3-col\@large:not(.o-grid-listing--single-row) > *:nth-child(3) ~ *,
-  .o-grid-listing--4-col\@large:not(.o-grid-listing--single-row) > *:nth-child(4) ~ *,
-  .o-grid-listing--5-col\@large:not(.o-grid-listing--single-row) > *:nth-child(5) ~ *,
-  .o-grid-listing--6-col\@large:not(.o-grid-listing--single-row) > *:nth-child(6) ~ *,
-  .o-grid-listing--12-col\@large:not(.o-grid-listing--single-row) > *:nth-child(12) ~ * {
+  .o-grid-listing--2-col\@large:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
+  .o-grid-listing--3-col\@large:not(.o-grid-listing--single-row)>*:nth-child(3)~*,
+  .o-grid-listing--4-col\@large:not(.o-grid-listing--single-row)>*:nth-child(4)~*,
+  .o-grid-listing--5-col\@large:not(.o-grid-listing--single-row)>*:nth-child(5)~*,
+  .o-grid-listing--6-col\@large:not(.o-grid-listing--single-row)>*:nth-child(6)~*,
+  .o-grid-listing--12-col\@large:not(.o-grid-listing--single-row)>*:nth-child(12)~* {
     //margin-top: #{map-get($grid-margin-tops, 'large')}px;
     margin-top: colspan(map-get($grid-padding-tops, 'large'), 'large');
   }
 
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--2-col\@large > *:nth-child(2) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--3-col\@large > *:nth-child(3) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--4-col\@large > *:nth-child(4) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--4-col\@large > *:nth-child(4) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--6-col\@large > *:nth-child(6) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--12-col\@large > *:nth-child(12) ~ * {
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--2-col\@large>*:nth-child(2)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--3-col\@large>*:nth-child(3)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--4-col\@large>*:nth-child(4)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--4-col\@large>*:nth-child(4)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--6-col\@large>*:nth-child(6)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--12-col\@large>*:nth-child(12)~* {
     display: none;
   }
 }
 
 @include breakpoint('xlarge') {
-  .o-grid-listing--2-col\@xlarge > * {
+  .o-grid-listing--2-col\@xlarge>* {
     width: colspan(grid-cols-to-colspan(2), 'xlarge');
 
     .o-article__body & {
       width: colspan(20.5, 'xlarge');
     }
 
-    .o-article__secondary-actions ~ .o-article__body & {
+    .o-article__secondary-actions~.o-article__body & {
       width: colspan(13, 'xlarge');
     }
   }
 
-  .o-grid-listing--3-col\@xlarge > * {
+  .o-grid-listing--3-col\@xlarge>* {
     width: colspan(grid-cols-to-colspan(3), 'xlarge');
   }
 
-  .o-grid-listing--4-col\@xlarge > * {
+  .o-grid-listing--4-col\@xlarge>* {
     width: colspan(grid-cols-to-colspan(4), 'xlarge');
   }
 
-  .o-grid-listing--5-col\@xlarge > * {
+  .o-grid-listing--5-col\@xlarge>* {
     width: colspan(grid-cols-to-colspan(5), 'xlarge');
   }
 
-  .o-grid-listing--6-col\@xlarge > *,
-  .o-grid-listing--scroll\@xlarge.o-grid-listing--6-col\@xlarge > * {
+  .o-grid-listing--6-col\@xlarge>*,
+  .o-grid-listing--scroll\@xlarge.o-grid-listing--6-col\@xlarge>* {
     width: colspan(grid-cols-to-colspan(6), 'xlarge');
   }
 
-  .o-grid-listing--12-col\@xlarge > *,
-  .o-grid-listing--scroll\@xlarge.o-grid-listing--12-col\@xlarge > * {
+  .o-grid-listing--12-col\@xlarge>*,
+  .o-grid-listing--scroll\@xlarge.o-grid-listing--12-col\@xlarge>* {
     width: colspan(grid-cols-to-colspan(12), 'xlarge');
   }
 
-  .o-grid-listing--2-col\@xlarge:not(.o-grid-listing--single-row) > *:nth-child(2) ~ *,
-  .o-grid-listing--3-col\@xlarge:not(.o-grid-listing--single-row) > *:nth-child(3) ~ *,
-  .o-grid-listing--4-col\@xlarge:not(.o-grid-listing--single-row) > *:nth-child(4) ~ *,
-  .o-grid-listing--5-col\@xlarge:not(.o-grid-listing--single-row) > *:nth-child(5) ~ *,
-  .o-grid-listing--6-col\@xlarge:not(.o-grid-listing--single-row) > *:nth-child(6) ~ *,
-  .o-grid-listing--12-col\@xlarge:not(.o-grid-listing--single-row) > *:nth-child(12) ~ * {
+  .o-grid-listing--2-col\@xlarge:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
+  .o-grid-listing--3-col\@xlarge:not(.o-grid-listing--single-row)>*:nth-child(3)~*,
+  .o-grid-listing--4-col\@xlarge:not(.o-grid-listing--single-row)>*:nth-child(4)~*,
+  .o-grid-listing--5-col\@xlarge:not(.o-grid-listing--single-row)>*:nth-child(5)~*,
+  .o-grid-listing--6-col\@xlarge:not(.o-grid-listing--single-row)>*:nth-child(6)~*,
+  .o-grid-listing--12-col\@xlarge:not(.o-grid-listing--single-row)>*:nth-child(12)~* {
     //margin-top: #{map-get($grid-margin-tops, 'large')}px;
     margin-top: colspan(map-get($grid-padding-tops, 'large'), 'large');
   }
 
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--2-col\@xlarge > *:nth-child(2) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--3-col\@xlarge > *:nth-child(3) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--4-col\@xlarge > *:nth-child(4) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--4-col\@xlarge > *:nth-child(4) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--6-col\@xlarge > *:nth-child(6) ~ *,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--12-col\@xlarge > *:nth-child(12) ~ * {
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--2-col\@xlarge>*:nth-child(2)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--3-col\@xlarge>*:nth-child(3)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--4-col\@xlarge>*:nth-child(4)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--4-col\@xlarge>*:nth-child(4)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--6-col\@xlarge>*:nth-child(6)~*,
+  .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--12-col\@xlarge>*:nth-child(12)~* {
     display: none;
   }
 }
@@ -496,8 +532,8 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
   padding-bottom: 4px; // Why? because design thats why..
 }
 
-.o-grid-listing--gridlines-right > *::after,
-.o-grid-listing--gridlines-cols > *::after {
+.o-grid-listing--gridlines-right>*::after,
+.o-grid-listing--gridlines-cols>*::after {
   content: '';
   display: none;
   position: absolute;
@@ -507,11 +543,14 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
   background-color: $color__rules--tertiary;
   pointer-events: none;
 
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      @if ($name == 'xsmall') {
+      @if ($name=='xsmall') {
         right: colspan(3, #{$name}, 0, true);
-      } @else {
+      }
+
+      @else {
         right: colspan(1, #{$name}, 0, true);
       }
     }
@@ -519,9 +558,11 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
 }
 
 // If following a hr and no grid lines, tweak position
-hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-grid-listing--gridlines-rows) > *::after,
-.hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-grid-listing--gridlines-rows) > *::after {
-  @each $name, $point in $breakpoints {
+hr+.o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-grid-listing--gridlines-rows)>*::after,
+.hr+.o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-grid-listing--gridlines-rows)>*::after {
+
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       //top: #{0 - map-get($grid-margin-tops, $name)}px;
       top: colspan(map-get($grid-padding-tops, $name), #{$name}, 0, true);
@@ -533,117 +574,122 @@ hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-
 // cols gridlines need to stretch to reach each other
 // so from the 2nd row onwards, needs a negative top spacing
 @include breakpoint('xsmall') {
-  .o-grid-listing--gridlines-right.o-grid-listing--2-col\@xsmall > *:not(:nth-child(2n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--3-col\@xsmall > *:not(:nth-child(3n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--4-col\@xsmall > *:not(:nth-child(4n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--6-col\@xsmall > *:not(:nth-child(6n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@xsmall > *:not(:nth-child(2n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@xsmall > *:not(:nth-child(3n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@xsmall > *:not(:nth-child(4n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@xsmall > *:not(:nth-child(6n))::after {
+
+  .o-grid-listing--gridlines-right.o-grid-listing--2-col\@xsmall>*:not(:nth-child(2n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--3-col\@xsmall>*:not(:nth-child(3n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--4-col\@xsmall>*:not(:nth-child(4n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--6-col\@xsmall>*:not(:nth-child(6n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@xsmall>*:not(:nth-child(2n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@xsmall>*:not(:nth-child(3n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@xsmall>*:not(:nth-child(4n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@xsmall>*:not(:nth-child(6n))::after {
     display: block;
   }
 
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@xsmall > *:nth-child(2) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@xsmall > *:nth-child(3) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@xsmall > *:nth-child(4) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@xsmall > *:nth-child(6) ~ *::after {
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@xsmall>*:nth-child(2)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@xsmall>*:nth-child(3)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@xsmall>*:nth-child(4)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@xsmall>*:nth-child(6)~*::after {
     //top: #{0 - map-get($grid-margin-tops, xsmall)}px;
     top: colspan(map-get($grid-padding-tops, 'xsmall'), 'xsmall', 0, true);
   }
 }
 
 @include breakpoint('small') {
-  .o-grid-listing--gridlines-right.o-grid-listing--2-col\@small > *:not(:nth-child(2n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--3-col\@small > *:not(:nth-child(3n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--4-col\@small > *:not(:nth-child(4n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--6-col\@small > *:not(:nth-child(6n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@small > *:not(:nth-child(2n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@small > *:not(:nth-child(3n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@small > *:not(:nth-child(4n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@small > *:not(:nth-child(6n))::after {
+
+  .o-grid-listing--gridlines-right.o-grid-listing--2-col\@small>*:not(:nth-child(2n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--3-col\@small>*:not(:nth-child(3n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--4-col\@small>*:not(:nth-child(4n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--6-col\@small>*:not(:nth-child(6n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@small>*:not(:nth-child(2n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@small>*:not(:nth-child(3n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@small>*:not(:nth-child(4n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@small>*:not(:nth-child(6n))::after {
     display: block;
   }
 
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@small > *:nth-child(2) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@small > *:nth-child(3) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@small > *:nth-child(4) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@small > *:nth-child(6) ~ *::after {
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@small>*:nth-child(2)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@small>*:nth-child(3)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@small>*:nth-child(4)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@small>*:nth-child(6)~*::after {
     //top: #{0 - map-get($grid-margin-tops, small)}px;
     top: colspan(map-get($grid-padding-tops, 'small'), 'small', 0, true);
   }
 }
 
 @include breakpoint('medium') {
-  .o-grid-listing--gridlines-right.o-grid-listing--2-col\@medium > *:not(:nth-child(2n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--3-col\@medium > *:not(:nth-child(3n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--4-col\@medium > *:not(:nth-child(4n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--6-col\@medium > *:not(:nth-child(6n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@medium > *:not(:nth-child(2n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@medium > *:not(:nth-child(3n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@medium > *:not(:nth-child(4n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@medium > *:not(:nth-child(6n))::after {
+
+  .o-grid-listing--gridlines-right.o-grid-listing--2-col\@medium>*:not(:nth-child(2n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--3-col\@medium>*:not(:nth-child(3n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--4-col\@medium>*:not(:nth-child(4n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--6-col\@medium>*:not(:nth-child(6n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@medium>*:not(:nth-child(2n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@medium>*:not(:nth-child(3n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@medium>*:not(:nth-child(4n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@medium>*:not(:nth-child(6n))::after {
     display: block;
   }
 
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@medium > *:nth-child(2) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@medium > *:nth-child(3) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@medium > *:nth-child(4) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@medium > *:nth-child(6) ~ *::after {
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@medium>*:nth-child(2)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@medium>*:nth-child(3)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@medium>*:nth-child(4)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@medium>*:nth-child(6)~*::after {
     //top: #{0 - map-get($grid-margin-tops, medium)}px;
     top: colspan(map-get($grid-padding-tops, 'medium'), 'medium', 0, true);
   }
 }
 
 @include breakpoint('large') {
-  .o-grid-listing--gridlines-right.o-grid-listing--2-col\@large > *:not(:nth-child(2n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--3-col\@large > *:not(:nth-child(3n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--4-col\@large > *:not(:nth-child(4n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--5-col\@large > *:not(:nth-child(5n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--6-col\@large > *:not(:nth-child(6n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--12-col\@large > *:not(:nth-child(12n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@large > *:not(:nth-child(2n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@large > *:not(:nth-child(3n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@large > *:not(:nth-child(4n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--5-col\@large > *:not(:nth-child(5n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@large > *:not(:nth-child(6n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@large > *:not(:nth-child(12n))::after {
+
+  .o-grid-listing--gridlines-right.o-grid-listing--2-col\@large>*:not(:nth-child(2n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--3-col\@large>*:not(:nth-child(3n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--4-col\@large>*:not(:nth-child(4n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--5-col\@large>*:not(:nth-child(5n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--6-col\@large>*:not(:nth-child(6n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--12-col\@large>*:not(:nth-child(12n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@large>*:not(:nth-child(2n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@large>*:not(:nth-child(3n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@large>*:not(:nth-child(4n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--5-col\@large>*:not(:nth-child(5n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@large>*:not(:nth-child(6n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@large>*:not(:nth-child(12n))::after {
     display: block;
   }
 
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@large > *:nth-child(2) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@large > *:nth-child(3) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@large > *:nth-child(4) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--5-col\@large > *:nth-child(5) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@large > *:nth-child(6) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@large > *:nth-child(12) ~ *::after {
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@large>*:nth-child(2)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@large>*:nth-child(3)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@large>*:nth-child(4)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--5-col\@large>*:nth-child(5)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@large>*:nth-child(6)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@large>*:nth-child(12)~*::after {
     //top: #{0 - map-get($grid-margin-tops, large)}px;
     top: colspan(map-get($grid-padding-tops, 'large'), 'large', 0, true);
   }
 }
 
 @include breakpoint('xlarge') {
-  .o-grid-listing--gridlines-right.o-grid-listing--2-col\@xlarge > *:not(:nth-child(2n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--3-col\@xlarge > *:not(:nth-child(3n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--4-col\@xlarge > *:not(:nth-child(4n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--5-col\@xlarge > *:not(:nth-child(5n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--6-col\@xlarge > *:not(:nth-child(6n))::after,
-  .o-grid-listing--gridlines-right.o-grid-listing--12-col\@xlarge > *:not(:nth-child(12n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@xlarge > *:not(:nth-child(2n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@xlarge > *:not(:nth-child(3n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@xlarge > *:not(:nth-child(4n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--5-col\@xlarge > *:not(:nth-child(5n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@xlarge > *:not(:nth-child(6n))::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@xlarge > *:not(:nth-child(12n))::after {
+
+  .o-grid-listing--gridlines-right.o-grid-listing--2-col\@xlarge>*:not(:nth-child(2n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--3-col\@xlarge>*:not(:nth-child(3n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--4-col\@xlarge>*:not(:nth-child(4n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--5-col\@xlarge>*:not(:nth-child(5n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--6-col\@xlarge>*:not(:nth-child(6n))::after,
+  .o-grid-listing--gridlines-right.o-grid-listing--12-col\@xlarge>*:not(:nth-child(12n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@xlarge>*:not(:nth-child(2n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@xlarge>*:not(:nth-child(3n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@xlarge>*:not(:nth-child(4n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--5-col\@xlarge>*:not(:nth-child(5n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@xlarge>*:not(:nth-child(6n))::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@xlarge>*:not(:nth-child(12n))::after {
     display: block;
   }
 
-  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@xlarge > *:nth-child(2) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@xlarge > *:nth-child(3) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@xlarge > *:nth-child(4) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--5-col\@xlarge > *:nth-child(5) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@xlarge > *:nth-child(6) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@xlarge > *:nth-child(12) ~ *::after {
+  .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@xlarge>*:nth-child(2)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@xlarge>*:nth-child(3)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@xlarge>*:nth-child(4)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--5-col\@xlarge>*:nth-child(5)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@xlarge>*:nth-child(6)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@xlarge>*:nth-child(12)~*::after {
     //top: #{0 - map-get($grid-margin-tops, xlarge)}px;
     top: colspan(map-get($grid-padding-tops, 'xlarge'), 'xlarge', 0, true);
   }
@@ -660,8 +706,8 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 ***/
 
 // Draw a keyline at the top of each element
-.o-grid-listing--gridlines-top > *::before,
-.o-grid-listing--gridlines-rows > *::before {
+.o-grid-listing--gridlines-top>*::before,
+.o-grid-listing--gridlines-rows>*::before {
   content: '';
   display: none;
   position: absolute;
@@ -673,21 +719,23 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
   pointer-events: none;
 }
 
-.o-grid-listing--gridlines-top > *::before {
+.o-grid-listing--gridlines-top>*::before {
   display: block;
   right: 0;
 }
 
-@each $name, $point in $breakpoints {
+@each $name,
+$point in $breakpoints {
   @include breakpoint('#{$name}') {
-    .o-grid-listing--gridlines-top > *,
-    .o-grid-listing--gridlines-rows > * {
+
+    .o-grid-listing--gridlines-top>*,
+    .o-grid-listing--gridlines-rows>* {
       padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
       border-top: 0 none;
     }
 
-    .o-grid-listing--gridlines-top:not([class*=col\@#{$name}]):not([class*=scroll\@#{$name}]) > *:first-child,
-    .o-grid-listing--gridlines-rows:not([class*=col\@#{$name}]):not([class*=scroll\@#{$name}]) > *:first-child {
+    .o-grid-listing--gridlines-top:not([class*=col\@#{$name}]):not([class*=scroll\@#{$name}])>*:first-child,
+    .o-grid-listing--gridlines-rows:not([class*=col\@#{$name}]):not([class*=scroll\@#{$name}])>*:first-child {
       padding-top: 0;
 
       &::before {
@@ -701,33 +749,36 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 // Start drawing a keyline at the top of the first item in each row
 // this keyline will be full width
 @include breakpoint('xsmall') {
-  .o-grid-listing--gridlines-rows:not([class*=col\@xsmall]) > *::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall > *:nth-child(2n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xsmall > *:nth-child(3n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xsmall > *:nth-child(4n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xsmall > *:nth-child(6n + 1)::before {
+
+  .o-grid-listing--gridlines-rows:not([class*=col\@xsmall])>*::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall>*:nth-child(2n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xsmall>*:nth-child(3n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xsmall>*:nth-child(4n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xsmall>*:nth-child(6n + 1)::before {
     display: block;
     width: colspan(58, 'xsmall');
   }
 }
 
 @include breakpoint('small') {
-  .o-grid-listing--gridlines-rows:not([class*=col\@small]) > *::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@small > *:nth-child(2n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--3-col\@small > *:nth-child(3n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@small > *:nth-child(4n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@small > *:nth-child(6n + 1)::before {
+
+  .o-grid-listing--gridlines-rows:not([class*=col\@small])>*::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@small>*:nth-child(2n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--3-col\@small>*:nth-child(3n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@small>*:nth-child(4n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@small>*:nth-child(6n + 1)::before {
     display: block;
     width: colspan(58, 'small');
   }
 }
 
 @include breakpoint('medium') {
-  .o-grid-listing--gridlines-rows:not([class*=col\@medium]) > *::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@medium > *:nth-child(2n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--3-col\@medium > *:nth-child(3n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@medium > *:nth-child(4n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@medium > *:nth-child(6n + 1)::before {
+
+  .o-grid-listing--gridlines-rows:not([class*=col\@medium])>*::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@medium>*:nth-child(2n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--3-col\@medium>*:nth-child(3n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@medium>*:nth-child(4n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@medium>*:nth-child(6n + 1)::before {
     display: block;
     width: colspan(58, 'medium');
 
@@ -738,13 +789,14 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 }
 
 @include breakpoint('large') {
-  .o-grid-listing--gridlines-rows:not([class*=col\@large]) > *::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@large > *:nth-child(2n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--3-col\@large > *:nth-child(3n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@large > *:nth-child(4n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--5-col\@large > *:nth-child(5n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@large > *:nth-child(6n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--12-col\@large > *:nth-child(12n + 1)::before {
+
+  .o-grid-listing--gridlines-rows:not([class*=col\@large])>*::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@large>*:nth-child(2n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--3-col\@large>*:nth-child(3n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@large>*:nth-child(4n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--5-col\@large>*:nth-child(5n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@large>*:nth-child(6n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--12-col\@large>*:nth-child(12n + 1)::before {
     display: block;
     width: colspan(58, 'large');
 
@@ -755,13 +807,14 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 }
 
 @include breakpoint('xlarge') {
-  .o-grid-listing--gridlines-rows:not([class*=col\@xlarge]) > *::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xlarge > *:nth-child(2n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xlarge > *:nth-child(3n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xlarge > *:nth-child(4n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--5-col\@xlarge > *:nth-child(5n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xlarge > *:nth-child(6n + 1)::before,
-  .o-grid-listing--gridlines-rows.o-grid-listing--12-col\@xlarge > *:nth-child(12n + 1)::before {
+
+  .o-grid-listing--gridlines-rows:not([class*=col\@xlarge])>*::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xlarge>*:nth-child(2n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xlarge>*:nth-child(3n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xlarge>*:nth-child(4n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--5-col\@xlarge>*:nth-child(5n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xlarge>*:nth-child(6n + 1)::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--12-col\@xlarge>*:nth-child(12n + 1)::before {
     display: block;
     width: colspan(58, 'xlarge');
 
@@ -773,9 +826,11 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 
 // Gridlines in 2 directions need some fixing
 // adjust the top position of the vertical gridlines when right hand lines are used with top or rows
-.o-grid-listing--gridlines-right.o-grid-listing--gridlines-top > *::after,
-.o-grid-listing--gridlines-right.o-grid-listing--gridlines-rows > *::after {
-  @each $name, $point in $breakpoints {
+.o-grid-listing--gridlines-right.o-grid-listing--gridlines-top>*::after,
+.o-grid-listing--gridlines-right.o-grid-listing--gridlines-rows>*::after {
+
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       top: colspan(map-get($grid-padding-tops, $name), #{$name});
     }
@@ -784,8 +839,10 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 
 // Adjust the bottom position of the vertical gridlines when cols lines are used with top or rows
 // starts off easy
-.o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows > *::after {
-  @each $name, $point in $breakpoints {
+.o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows>*::after {
+
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       //bottom: #{0 - map-get($grid-margin-tops, $name)}px;
       bottom: colspan(map-get($grid-padding-tops, $name), #{$name}, 0, true);
@@ -795,74 +852,79 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 
 // Then you have to select the last row of everything and fix
 @include breakpoint('xsmall') {
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall > *:nth-child(2n+1):nth-last-child(-n+2)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall > *:nth-child(2n+1):nth-last-child(-n+2) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xsmall > *:nth-child(3n+1):nth-last-child(-n+3)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xsmall > *:nth-child(3n+1):nth-last-child(-n+3) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xsmall > *:nth-child(4n+1):nth-last-child(-n+4)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xsmall > *:nth-child(4n+1):nth-last-child(-n+4) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xsmall > *:nth-child(6n+1):nth-last-child(-n+6) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xsmall > *:nth-child(6n+1):nth-last-child(-n+6) ~ *::after {
+
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall>*:nth-child(2n+1):nth-last-child(-n+2)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall>*:nth-child(2n+1):nth-last-child(-n+2)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xsmall>*:nth-child(3n+1):nth-last-child(-n+3)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xsmall>*:nth-child(3n+1):nth-last-child(-n+3)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xsmall>*:nth-child(4n+1):nth-last-child(-n+4)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xsmall>*:nth-child(4n+1):nth-last-child(-n+4)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xsmall>*:nth-child(6n+1):nth-last-child(-n+6)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xsmall>*:nth-child(6n+1):nth-last-child(-n+6)~*::after {
     bottom: 0;
   }
 }
 
 @include breakpoint('small') {
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@small > *:nth-child(2n+1):nth-last-child(-n+2)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@small > *:nth-child(2n+1):nth-last-child(-n+2) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@small > *:nth-child(3n+1):nth-last-child(-n+3)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@small > *:nth-child(3n+1):nth-last-child(-n+3) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@small > *:nth-child(4n+1):nth-last-child(-n+4)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@small > *:nth-child(4n+1):nth-last-child(-n+4) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@small > *:nth-child(6n+1):nth-last-child(-n+6) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@small > *:nth-child(6n+1):nth-last-child(-n+6) ~ *::after {
+
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@small>*:nth-child(2n+1):nth-last-child(-n+2)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@small>*:nth-child(2n+1):nth-last-child(-n+2)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@small>*:nth-child(3n+1):nth-last-child(-n+3)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@small>*:nth-child(3n+1):nth-last-child(-n+3)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@small>*:nth-child(4n+1):nth-last-child(-n+4)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@small>*:nth-child(4n+1):nth-last-child(-n+4)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@small>*:nth-child(6n+1):nth-last-child(-n+6)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@small>*:nth-child(6n+1):nth-last-child(-n+6)~*::after {
     bottom: 0;
   }
 }
 
 @include breakpoint('medium') {
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@medium > *:nth-child(2n+1):nth-last-child(-n+2)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@medium > *:nth-child(2n+1):nth-last-child(-n+2) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@medium > *:nth-child(3n+1):nth-last-child(-n+3)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@medium > *:nth-child(3n+1):nth-last-child(-n+3) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@medium > *:nth-child(4n+1):nth-last-child(-n+4)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@medium > *:nth-child(4n+1):nth-last-child(-n+4) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@medium > *:nth-child(6n+1):nth-last-child(-n+6) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@medium > *:nth-child(6n+1):nth-last-child(-n+6) ~ *::after {
+
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@medium>*:nth-child(2n+1):nth-last-child(-n+2)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@medium>*:nth-child(2n+1):nth-last-child(-n+2)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@medium>*:nth-child(3n+1):nth-last-child(-n+3)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@medium>*:nth-child(3n+1):nth-last-child(-n+3)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@medium>*:nth-child(4n+1):nth-last-child(-n+4)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@medium>*:nth-child(4n+1):nth-last-child(-n+4)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@medium>*:nth-child(6n+1):nth-last-child(-n+6)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@medium>*:nth-child(6n+1):nth-last-child(-n+6)~*::after {
     bottom: 0;
   }
 }
 
 @include breakpoint('large') {
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@large > *:nth-child(2n+1):nth-last-child(-n+2)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@large > *:nth-child(2n+1):nth-last-child(-n+2) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@large > *:nth-child(3n+1):nth-last-child(-n+3)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@large > *:nth-child(3n+1):nth-last-child(-n+3) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@large > *:nth-child(4n+1):nth-last-child(-n+4)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@large > *:nth-child(4n+1):nth-last-child(-n+4) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--5-col\@large > *:nth-child(5n+1):nth-last-child(-n+5)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--5-col\@large > *:nth-child(5n+1):nth-last-child(-n+5) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@large > *:nth-child(6n+1):nth-last-child(-n+6)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@large > *:nth-child(6n+1):nth-last-child(-n+6) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--12-col\@large > *:nth-child(12n+1):nth-last-child(-n+12)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--12-col\@large > *:nth-child(12n+1):nth-last-child(-n+12) ~ *::after {
+
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@large>*:nth-child(2n+1):nth-last-child(-n+2)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@large>*:nth-child(2n+1):nth-last-child(-n+2)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@large>*:nth-child(3n+1):nth-last-child(-n+3)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@large>*:nth-child(3n+1):nth-last-child(-n+3)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@large>*:nth-child(4n+1):nth-last-child(-n+4)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@large>*:nth-child(4n+1):nth-last-child(-n+4)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--5-col\@large>*:nth-child(5n+1):nth-last-child(-n+5)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--5-col\@large>*:nth-child(5n+1):nth-last-child(-n+5)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@large>*:nth-child(6n+1):nth-last-child(-n+6)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@large>*:nth-child(6n+1):nth-last-child(-n+6)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--12-col\@large>*:nth-child(12n+1):nth-last-child(-n+12)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--12-col\@large>*:nth-child(12n+1):nth-last-child(-n+12)~*::after {
     bottom: 0;
   }
 }
 
 @include breakpoint('xlarge') {
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xlarge > *:nth-child(2n+1):nth-last-child(-n+2)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xlarge > *:nth-child(2n+1):nth-last-child(-n+2) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xlarge > *:nth-child(3n+1):nth-last-child(-n+3)::after,
-.o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xlarge > *:nth-child(3n+1):nth-last-child(-n+3) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xlarge > *:nth-child(4n+1):nth-last-child(-n+4)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xlarge > *:nth-child(4n+1):nth-last-child(-n+4) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--5-col\@xlarge > *:nth-child(5n+1):nth-last-child(-n+5)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--5-col\@xlarge > *:nth-child(5n+1):nth-last-child(-n+5) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xlarge > *:nth-child(6n+1):nth-last-child(-n+6)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xlarge > *:nth-child(6n+1):nth-last-child(-n+6) ~ *::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--12-col\@xlarge > *:nth-child(12n+1):nth-last-child(-n+12)::after,
-  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--12-col\@xlarge > *:nth-child(12n+1):nth-last-child(-n+12) ~ *::after {
+
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xlarge>*:nth-child(2n+1):nth-last-child(-n+2)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xlarge>*:nth-child(2n+1):nth-last-child(-n+2)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xlarge>*:nth-child(3n+1):nth-last-child(-n+3)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--3-col\@xlarge>*:nth-child(3n+1):nth-last-child(-n+3)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xlarge>*:nth-child(4n+1):nth-last-child(-n+4)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xlarge>*:nth-child(4n+1):nth-last-child(-n+4)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--5-col\@xlarge>*:nth-child(5n+1):nth-last-child(-n+5)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--5-col\@xlarge>*:nth-child(5n+1):nth-last-child(-n+5)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xlarge>*:nth-child(6n+1):nth-last-child(-n+6)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xlarge>*:nth-child(6n+1):nth-last-child(-n+6)~*::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--12-col\@xlarge>*:nth-child(12n+1):nth-last-child(-n+12)::after,
+  .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--12-col\@xlarge>*:nth-child(12n+1):nth-last-child(-n+12)~*::after {
     bottom: 0;
   }
 }
@@ -879,17 +941,19 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
   padding-bottom: 0;
 }
 
-.o-grid-listing--gridlines-right.o-grid-listing--basic-artworks > *,
-.o-grid-listing--gridlines-cols.o-grid-listing--basic-artworks > * {
-  @each $name, $point in $breakpoints {
+.o-grid-listing--gridlines-right.o-grid-listing--basic-artworks>*,
+.o-grid-listing--gridlines-cols.o-grid-listing--basic-artworks>* {
+
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       padding-bottom: colspan(map-get($grid-padding-tops, $name), #{$name});
     }
   }
 }
 
-.o-grid-listing--gridlines-right.o-grid-listing--basic-artworks > *::after,
-.o-grid-listing--gridlines-cols.o-grid-listing--basic-artworks > *::after {
+.o-grid-listing--gridlines-right.o-grid-listing--basic-artworks>*::after,
+.o-grid-listing--gridlines-cols.o-grid-listing--basic-artworks>*::after {
   bottom: 0;
 }
 
@@ -927,9 +991,10 @@ Draws boxes around each grid item
   }
 
   // By default, top border is hidden; show it!
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      &[class*="col@#{$name}"] > * {
+      &[class*="col@#{$name}"]>* {
         border-top-style: solid;
         border-top-width: thin;
       }
@@ -938,29 +1003,33 @@ Draws boxes around each grid item
 
   // Override weird default above: no space to breathe!
   @include breakpoint('xsmall') {
-    &.o-grid-listing[class*="col@xsmall"] > * {
+    &.o-grid-listing[class*="col@xsmall"]>* {
       margin-top: colspan(map-get($grid-padding-tops, 'xsmall'), xsmall);
       width: colspan(58, xsmall);
     }
   }
 
   // Ensure all cards after the first rows have the right margin-top:
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      &[class*="2-col@#{$name}"]:not(.o-grid-listing--single-row) > *:nth-child(2) ~ *,
-      &[class*="3-col@#{$name}"]:not(.o-grid-listing--single-row) > *:nth-child(3) ~ *,
-      &[class*="4-col@#{$name}"]:not(.o-grid-listing--single-row) > *:nth-child(4) ~ *,
-      &[class*="6-col@#{$name}"]:not(.o-grid-listing--single-row) > *:nth-child(6) ~ * {
+
+      &[class*="2-col@#{$name}"]:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
+      &[class*="3-col@#{$name}"]:not(.o-grid-listing--single-row)>*:nth-child(3)~*,
+      &[class*="4-col@#{$name}"]:not(.o-grid-listing--single-row)>*:nth-child(4)~*,
+      &[class*="6-col@#{$name}"]:not(.o-grid-listing--single-row)>*:nth-child(6)~* {
         margin-top: #{map-get((
-          xsmall: 24,
+ xsmall: 24,
           small: 36,
           medium: 48,
           large: 48,
-          xlarge: 60
-        ), $name)}px;
+          xlarge: 60), $name)
       }
+
+      px;
     }
   }
+}
 }
 
 /***
@@ -976,19 +1045,21 @@ Variants: `.o-grid-listing--feature-2x`
   }
 }
 
-.o-article__body.o-blocks .o-grid-listing--feature-2x > li {
-  @each $name, $point in ('small', 'medium', 'large', 'xlarge') {
+.o-article__body.o-blocks .o-grid-listing--feature-2x>li {
+
+  @each $name,
+  $point in ('small', 'medium', 'large', 'xlarge') {
     @include breakpoint('#{$name}') {
       width: colspan(grid-cols-to-colspan(2), $name);
     }
   }
 }
 
-.o-article__body.o-blocks .o-grid-listing--feature-2x > li:nth-child(1) {
+.o-article__body.o-blocks .o-grid-listing--feature-2x>li:nth-child(1) {
   margin-left: 0;
 }
 
-.o-article__body.o-blocks .o-grid-listing--feature-2x > li:nth-child(2) {
+.o-article__body.o-blocks .o-grid-listing--feature-2x>li:nth-child(2) {
   margin-right: 0;
 }
 
@@ -1005,31 +1076,32 @@ Variants: `.o-grid-listing--feature-4x`
   }
 }
 
-@each $name, $point in ('small', 'medium') {
+@each $name,
+$point in ('small', 'medium') {
   @include breakpoint('#{$name}') {
     .o-grid-listing--feature-4x[class*="col@#{$name}"] {
       margin-left: 0;
     }
 
-    .o-article__body.o-blocks .o-grid-listing--feature-4x.o-grid-listing--2-col\@#{$name} > * {
+    .o-article__body.o-blocks .o-grid-listing--feature-4x.o-grid-listing--2-col\@#{$name}>* {
       width: colspan(grid-cols-to-colspan(2), $name);
     }
 
-    .o-article__body.o-blocks .o-grid-listing--feature-4x > li:nth-child(1),
-    .o-article__body.o-blocks .o-grid-listing--feature-4x > li:nth-child(3) {
+    .o-article__body.o-blocks .o-grid-listing--feature-4x>li:nth-child(1),
+    .o-article__body.o-blocks .o-grid-listing--feature-4x>li:nth-child(3) {
       margin-left: 0;
     }
   }
 }
 
-.o-article__body.o-blocks .o-grid-listing--feature-4x > li {
+.o-article__body.o-blocks .o-grid-listing--feature-4x>li {
   margin-top: 0;
 }
 
-.o-article__body.o-blocks .o-grid-listing--feature-4x > li:nth-child(1) {
+.o-article__body.o-blocks .o-grid-listing--feature-4x>li:nth-child(1) {
   margin-left: 0;
 }
 
-.o-article__body.o-blocks .o-grid-listing--feature-4x > li:nth-child(4) {
+.o-article__body.o-blocks .o-grid-listing--feature-4x>li:nth-child(4) {
   margin-right: 0;
 }
