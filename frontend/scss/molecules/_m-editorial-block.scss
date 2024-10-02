@@ -186,7 +186,9 @@
                                     padding: 0 !important;
                                 }
 
-                                margin: 0 !important;
+                                & {
+                                    margin: 0 !important;
+                                }
                             }
 
                             .author {
@@ -375,6 +377,7 @@
                                 @include breakpoint('small-') {
                                     margin-top: 0 !important;
                                 }
+
                                 &::before {
                                     padding: 0 !important;
                                 }

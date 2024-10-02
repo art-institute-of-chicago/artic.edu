@@ -43,9 +43,12 @@
   }
 
   @include centered;
-  width: 90%;
-  height: 0;
-  padding-bottom: 90%;
+
+  & {
+    width: 90%;
+    height: 0;
+    padding-bottom: 90%;
+  }
 
   .o-color-picker__wheel {
     @include overflow-hidden();
@@ -53,6 +56,7 @@
 
   .o-color-picker__wheel--shade {
     @include centered-circle(100%);
+
     &:after {
       @include centered-circle(90%);
       content: '';
@@ -62,6 +66,7 @@
 
   .o-color-picker__wheel--hue {
     @include centered-circle(85%);
+
     &:after {
       @include centered-circle(45%);
       content: '';
@@ -72,9 +77,12 @@
   .o-color-picker__handle {
     cursor: pointer;
     @include centered;
-    width: 100%;
-    height: 100%;
-    display: none;
+
+    & {
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
 
     &.o-color-picker__handle--initialized {
       display: block;
@@ -88,8 +96,11 @@
 
     .o-color-picker__center__swatch {
       @include centered-circle(95%);
-      content: '';
-      background-color: red;
+
+      & {
+        content: '';
+        background-color: red;
+      }
     }
   }
 
@@ -118,7 +129,8 @@
   cursor: pointer;
   -webkit-appearance: none;
 
-  &:before, &:after {
+  &:before,
+  &:after {
     content: none;
   }
 

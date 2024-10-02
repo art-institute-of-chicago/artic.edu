@@ -177,14 +177,17 @@
 .m-listing__img video,
 .m-listing__img .default-img {
   @include objectFitFix;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+
+  & {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .m-listing__img .img-hero-desktop {
@@ -290,13 +293,16 @@
 
 .m-listing__img-prompt {
   @include untuck;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 10px 12px 12px;
-  background-color: $color__text--type;
-  color: $color__text--title-contrast;
-  text-align: center;
+
+  & {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 10px 12px 12px;
+    background-color: $color__text--type;
+    color: $color__text--title-contrast;
+    text-align: center;
+  }
 
   @include breakpoint('medium+') {
     min-width: 120px;
@@ -494,7 +500,10 @@
 
 .m-listing__meta .f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 36));
-  margin-bottom: 14px;
+
+  & {
+    margin-bottom: 14px;
+  }
 }
 
 .m-listing__meta .f-list-1+br+.f-secondary:not(ul),
@@ -550,17 +559,26 @@
 
 .m-listing__meta .f-body-editorial {
   @include tucked-margin-top($f-body-editorial, ('xsmall': 40));
-  color: $color__text;
+
+  & {
+    color: $color__text;
+  }
 }
 
 .m-listing__meta .f-secondary+br+.f-secondary:not(ul):not(span):not(.date) {
   @include tucked-align-top($f-secondary);
-  color: $color__text--tertiary;
+
+  & {
+    color: $color__text--tertiary;
+  }
 }
 
 .m-listing__meta .f-tertiary+br+.f-tertiary {
   @include tucked-align-top($f-tertiary);
-  color: $color__text--tertiary;
+
+  & {
+    color: $color__text--tertiary;
+  }
 }
 
 .m-listing__meta .f-list-3+br+.f-link,
@@ -833,13 +851,16 @@ $point in $breakpoints {
 
 .m-listing--hero .m-listing__meta {
   @include opaqueBg(rgba(0, 0, 0, .4), rgba(0, 0, 0, .25));
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  min-height: 0;
-  padding: 20px colspan(3, xsmall);
-  pointer-events: none;
+
+  & {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 0;
+    padding: 20px colspan(3, xsmall);
+    pointer-events: none;
+  }
 
   @include breakpoint('small+') {
     padding: colspan(2, small) colspan(3, small);
@@ -959,7 +980,10 @@ $point in $breakpoints {
 
 .m-listing--hero-editorial .m-listing__meta {
   @include opaqueBg(rgba($color__bg--editorial, .85), rgba($color__bg--editorial, .85));
-  padding: 0 colspan(3, xsmall) 24px;
+
+  & {
+    padding: 0 colspan(3, xsmall) 24px;
+  }
 
   @include breakpoint('small') {
     left: 50%;
@@ -1014,7 +1038,10 @@ $point in $breakpoints {
 
 .m-listing--hero-editorial .m-listing__meta>.f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 44));
-  display: none;
+
+  & {
+    display: none;
+  }
 
   @include breakpoint('small+') {
     display: block;
@@ -1023,7 +1050,10 @@ $point in $breakpoints {
 
 .m-listing--hero-editorial .m-listing__meta>.f-tertiary {
   @include tucked-margin-top($f-tertiary, ('xsmall': 44, 'small+': 44, 'medium+': 48));
-  display: none;
+
+  & {
+    display: none;
+  }
 
   @include breakpoint('small+') {
     display: block;
@@ -1501,7 +1531,10 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
   .m-listing--sound__subtitle {
     @include font-styles($f-audio-subtitle);
-    text-align: right;
+
+    & {
+      text-align: right;
+    }
 
     a {
       color: $color__link--accent;
@@ -1741,44 +1774,56 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
   @include breakpoint('small+') {
     @include objectFitFix;
-    position: absolute;
-    left: colspan(4, small);
-    right: colspan(4, small);
-    top: colspan(4, small);
-    bottom: colspan(4, small);
-    width: colspan(20, small);
-    height: colspan(20, small);
-    object-fit: cover;
+
+    & {
+      position: absolute;
+      left: colspan(4, small);
+      right: colspan(4, small);
+      top: colspan(4, small);
+      bottom: colspan(4, small);
+      width: colspan(20, small);
+      height: colspan(20, small);
+      object-fit: cover;
+    }
   }
 
   @include breakpoint('medium+') {
     @include objectFitFix;
-    left: colspan(3, medium);
-    right: colspan(3, medium);
-    top: colspan(3, medium);
-    bottom: colspan(3, medium);
-    width: colspan(12, medium);
-    height: colspan(12, medium);
+
+    & {
+      left: colspan(3, medium);
+      right: colspan(3, medium);
+      top: colspan(3, medium);
+      bottom: colspan(3, medium);
+      width: colspan(12, medium);
+      height: colspan(12, medium);
+    }
   }
 
   @include breakpoint('large+') {
     @include objectFitFix;
-    left: colspan(2, large);
-    right: colspan(2, large);
-    top: colspan(2, large);
-    bottom: colspan(2, large);
-    width: colspan(9, large);
-    height: colspan(9, large);
+
+    & {
+      left: colspan(2, large);
+      right: colspan(2, large);
+      top: colspan(2, large);
+      bottom: colspan(2, large);
+      width: colspan(9, large);
+      height: colspan(9, large);
+    }
   }
 
   @include breakpoint('xlarge') {
     @include objectFitFix;
-    left: colspan(2, xlarge);
-    right: colspan(2, xlarge);
-    top: colspan(2, xlarge);
-    bottom: colspan(2, xlarge);
-    width: colspan(9, xlarge);
-    height: colspan(9, xlarge);
+
+    & {
+      left: colspan(2, xlarge);
+      right: colspan(2, xlarge);
+      top: colspan(2, xlarge);
+      bottom: colspan(2, xlarge);
+      width: colspan(9, xlarge);
+      height: colspan(9, xlarge);
+    }
   }
 }
 
@@ -1845,12 +1890,15 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 .o-pinboard__item.m-listing--variable-height .m-listing__img img,
 .o-pinboard__item.m-listing--variable-height .m-listing__img .default-img {
   @include objectFitFix;
-  display: block;
-  position: static;
-  // WEB-1495: Do not "crop" object images in pinboards
-  // height: auto;
-  object-fit: contain;
-  object-position: center top;
+
+  & {
+    display: block;
+    position: static;
+    // WEB-1495: Do not "crop" object images in pinboards
+    // height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
 }
 
 .o-pinboard__item.m-listing--variable-height .m-listing__img::before,
@@ -1926,7 +1974,10 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
   @include breakpoint('large+') {
     @include tucked-margin-top($f-secondary, ('xsmall': 36));
-    margin-right: colspan(0.5);
+
+    & {
+      margin-right: colspan(0.5);
+    }
   }
 }
 
@@ -1975,12 +2026,18 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 .m-listing--highlight .m-listing__img .m-listing__img__overlay {
   @include m-listing__img__overlay;
-  padding: 32px;
+
+  & {
+    padding: 32px;
+  }
 }
 
 .m-listing--interactive .m-listing__img .m-listing__img__overlay {
   @include m-listing__img__overlay;
-  padding: 8px 10px;
+
+  & {
+    padding: 8px 10px;
+  }
 }
 
 .o-grid-listing--feature-2x .m-listing__img .m-listing__img__overlay {
@@ -2063,7 +2120,10 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
     .m-listing__meta-bottom {
       @include untuck;
-      margin-bottom: 20px;
+
+      & {
+        margin-bottom: 20px;
+      }
 
       .f-secondary {
         color: $color__black--54;
@@ -2360,7 +2420,10 @@ a:focus:hover .btn--magazine {
 
         .title {
           @include untuck;
-          margin: 0;
+
+          & {
+            margin: 0;
+          }
         }
 
         .type {
@@ -2588,7 +2651,10 @@ a:focus:hover .btn--magazine {
 
     .f-body {
       @include untuck();
-      margin-top: 0;
+
+      & {
+        margin-top: 0;
+      }
     }
   }
 }

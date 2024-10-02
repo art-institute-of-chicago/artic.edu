@@ -14,20 +14,23 @@ html {
 
 body {
   @include font-smoothing(on);
-  width: 100vw;
-  overflow-x: hidden;
-  background: $color__bg;
-  color: $color__text;
-  font-family: $sans-serif-font;
-  font-size: 62.5%;
-  font-feature-settings: 'kern';
-  font-kerning: normal;
-  line-height: 1;
-  text-rendering: optimizeLegibility;
-  font-variant-ligatures: common-ligatures;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  -ms-overflow-style: scrollbar;
+
+  & {
+    width: 100vw;
+    overflow-x: hidden;
+    background: $color__bg;
+    color: $color__text;
+    font-family: $sans-serif-font;
+    font-size: 62.5%;
+    font-feature-settings: 'kern';
+    font-kerning: normal;
+    line-height: 1;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: common-ligatures;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+  }
 
   &::after {
     position: absolute;
@@ -43,7 +46,8 @@ body {
   }
 }
 
-@each $name, $point in $breakpoints {
+@each $name,
+$point in $breakpoints {
   @include breakpoint('#{$name}') {
     head {
       font-family: '#{$name}';

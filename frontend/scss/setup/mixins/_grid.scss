@@ -24,60 +24,79 @@
       $this-multiplier: -1;
     }
 
-    @if ($this-bp-main-col-width == 'fluid') {
-      @if (unit($this-bp-outer-gutter) == 'vw') {
+    @if ($this-bp-main-col-width=='fluid') {
+      @if (unit($this-bp-outer-gutter)=='vw') {
         // Outer gutters in vw
 
         // Whats the inner column?
         $this-calc: 100vw - $this-bp-outer-gutter - $this-bp-outer-gutter;
         // Get 1/58th of that
         $this-calc: math.div($this-calc, 58);
-        @if ($number-of-columns >= 1) {
+
+        @if ($number-of-columns >=1) {
           // Multiple CSS columns?
           $this-calc: $this-calc * $number-of-columns;
         }
-        @if ($bump == 0) {
+
+        @if ($bump==0) {
+
           // If no bump, we can return just a vw number
           @if($inverse) {
             @return $this-calc * -1;
-          } @else {
+          }
+
+          @else {
             @return $this-calc;
           }
-        } @else {
+        }
+
+        @else {
           // If there is a bump, we need to return a calc
           $this-calc: '(#{$this-calc} + #{$bump})';
+
           @if($inverse) {
             $this-calc: '(#{$this-calc}) * -1';
           }
+
           @return calc(#{$this-calc});
         }
-      } @else {
+      }
+
+      @else {
         // Outer gutters in px, means we always need to return a calc
         // so lets build it
         // Firstly, lets double the outer gutter
         $this-calc: $this-bp-outer-gutter + $this-bp-outer-gutter;
         // And then remove it from 100vw and divide by our 58 CSS cols
         $this-calc: '(100vw - #{$this-calc}) / 58';
+
         // If we need to span multiple CSS cols
-        @if ($number-of-columns >= 1) {
+        @if ($number-of-columns >=1) {
           $this-calc: '(#{$this-calc}) * #{$number-of-columns}';
         }
+
         // Is there a bump to add?
-        @if($bump != 0) {
+        @if($bump !=0) {
           $this-calc: '(#{$this-calc}) + #{$bump}';
         }
+
         // Do we need to inverse it?
         @if($inverse) {
           $this-calc: '(#{$this-calc}) * -1';
         }
+
         // Return the calc
         @return calc(#{$this-calc});
       }
 
-    } @else {
+    }
+
+    @else {
       @return ((math.div($this-bp-main-col-width, 58) * $number-of-columns) + $bump) * $this-multiplier;
     }
-  } @else {
+  }
+
+  @else {
     @warn "Unknown breakpoint `#{$breakpoints}` in $breakpoints-with-directions";
   }
 }
@@ -171,7 +190,9 @@
 
 @mixin width-multi($colspans:false, $bump:0px) {
   @if $colspans {
-    @each $name, $point in $breakpoints {
+
+    @each $name,
+    $point in $breakpoints {
       $colspan: map-get($colspans, #{$name});
 
       @if $colspan {
@@ -233,7 +254,9 @@
 
 @mixin push-multi($colspans:false, $bump:0px) {
   @if $colspans {
-    @each $name, $point in $breakpoints {
+
+    @each $name,
+    $point in $breakpoints {
       $colspan: map-get($colspans, #{$name});
 
       @if $colspan {
@@ -264,7 +287,8 @@
   display: flex;
   flex-flow: row wrap;
 
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       margin-left: math.div(map-get($inner-gutters, $name), -1);
     }
@@ -299,14 +323,18 @@
 
 @mixin column-flex($colspans:false) {
   flex: 0 0 auto;
-  @each $name, $point in $breakpoints {
+
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       @if $colspans {
         $colspan: map-get($colspans, #{$name});
+
         @if $colspan {
           width: colspan($colspan, #{$name});
         }
       }
+
       margin-left: map-get($inner-gutters, $name);
     }
   }

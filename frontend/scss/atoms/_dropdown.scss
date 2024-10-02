@@ -110,7 +110,7 @@ Demonstrated in **statics/toybox**
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(255,255,255,0);
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .dropdown__trigger.f-secondary,
@@ -135,7 +135,7 @@ Demonstrated in **statics/toybox**
   color: $color__input-text--focus;
 }
 
-.dropdown__trigger > .icon--arrow {
+.dropdown__trigger>.icon--arrow {
   // position: absolute;
   // right: 16px;
   // top: 50%;
@@ -145,7 +145,7 @@ Demonstrated in **statics/toybox**
   transform-origin: 8px 8px;
 }
 
-.dropdown.s-active .dropdown__trigger > .icon--arrow {
+.dropdown.s-active .dropdown__trigger>.icon--arrow {
   transform: rotate(90deg) scaleX(-1);
 }
 
@@ -158,20 +158,23 @@ Demonstrated in **statics/toybox**
 }
 
 .dropdown__list {
-  @include untuck;
   @extend %styled-scrollbars;
-  display: none;
-  position: absolute;
-  z-index: map-get($zindexs, 'dropdown');
-  left: 0;
-  top: 100%;
-  min-width: 100%;
-  max-height: 80vh;
-  margin-top: 0;
-  background-color: $color__white;
-  box-shadow: $shadow;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  @include untuck;
+
+  & {
+    display: none;
+    position: absolute;
+    z-index: map-get($zindexs, 'dropdown');
+    left: 0;
+    top: 100%;
+    min-width: 100%;
+    max-height: 80vh;
+    margin-top: 0;
+    background-color: $color__white;
+    box-shadow: $shadow;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
   .dropdown.s-active & {
     display: block;
@@ -189,23 +192,23 @@ Demonstrated in **statics/toybox**
   .m-links-bar__item--overflow & {
     left: auto;
     right: 0;
-    width: colspan(58,'xsmall');
+    width: colspan(58, 'xsmall');
 
     @include breakpoint('small+') {
       width: auto;
-      max-width: colspan(58,'small');
+      max-width: colspan(58, 'small');
     }
 
     @include breakpoint('medium+') {
-      max-width: colspan(58,'medium');
+      max-width: colspan(58, 'medium');
     }
 
     @include breakpoint('large+') {
-      max-width: colspan(58,'large');
+      max-width: colspan(58, 'large');
     }
 
     @include breakpoint('xlarge') {
-      max-width: colspan(58,'xlarge');
+      max-width: colspan(58, 'xlarge');
     }
   }
 
@@ -213,22 +216,22 @@ Demonstrated in **statics/toybox**
     left: auto;
     right: 0;
     top: calc(100% - 1px);
-    width: colspan(58,'xsmall');
+    width: colspan(58, 'xsmall');
 
     @include breakpoint('small+') {
-      width: colspan(58,'small');
+      width: colspan(58, 'small');
     }
 
     @include breakpoint('medium+') {
-      width: colspan(58,'medium');
+      width: colspan(58, 'medium');
     }
 
     @include breakpoint('large+') {
-      width: colspan(58,'large');
+      width: colspan(58, 'large');
     }
 
     @include breakpoint('xlarge') {
-      width: colspan(58,'xlarge');
+      width: colspan(58, 'xlarge');
     }
   }
 
@@ -241,11 +244,11 @@ Demonstrated in **statics/toybox**
 }
 
 
-.dropdown__list > li:not(:first-child) {
+.dropdown__list>li:not(:first-child) {
   border-top: 1px solid $color__rules--tertiary;
 }
 
-.dropdown__list > li.s-hidden {
+.dropdown__list>li.s-hidden {
   display: none;
 }
 
@@ -333,6 +336,6 @@ Demonstrated in **statics/toybox**
   color: $color__link--active;
 }
 
-.dropdown--filter .dropdown__trigger > .icon--arrow {
+.dropdown--filter .dropdown__trigger>.icon--arrow {
   // right: 0;
 }

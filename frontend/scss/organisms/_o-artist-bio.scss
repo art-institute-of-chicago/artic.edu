@@ -1,5 +1,4 @@
-$bioBreakpoints: (
-  'large',
+$bioBreakpoints: ('large',
   'xlarge',
 );
 
@@ -29,7 +28,8 @@ $bioBreakpoints: (
   position: relative;
   flex-flow: column wrap;
 
-  @each $name, $point in $bioBreakpoints {
+  @each $name,
+  $point in $bioBreakpoints {
     @include breakpoint('#{$name}') {
       flex-flow: row wrap;
       margin-left: colspan(2, $name, 0, true);
@@ -46,7 +46,9 @@ $bioBreakpoints: (
 .o-artist-bio__main,
 .o-artist-bio__image {
   width: 100%;
-  @each $name, $point in $bioBreakpoints {
+
+  @each $name,
+  $point in $bioBreakpoints {
     @include breakpoint('#{$name}') {
       width: colspan(grid-cols-to-colspan(2), $name);
       margin-left: colspan(2, #{$name});
@@ -55,14 +57,17 @@ $bioBreakpoints: (
 }
 
 .o-author-bio .o-artist-bio__image {
-  @each $name, $point in ('xsmall', 'small') {
+
+  @each $name,
+  $point in ('xsmall', 'small') {
     @include breakpoint('#{$name}') {
       width: 300px;
       align-self: center;
     }
   }
 
-  @each $name, $point in ('medium', 'large', 'xlarge') {
+  @each $name,
+  $point in ('medium', 'large', 'xlarge') {
     @include breakpoint('#{$name}') {
       width: 300px;
     }
@@ -78,7 +83,9 @@ $bioBreakpoints: (
 }
 
 .o-author-bio .o-artist-bio__main {
-  @each $name, $point in ('medium', 'large', 'xlarge') {
+
+  @each $name,
+  $point in ('medium', 'large', 'xlarge') {
     @include breakpoint('#{$name}') {
       width: calc(#{colspan(58, $name)} - 300px - #{colspan(2, $name)});
       margin-left: colspan(2, #{$name});
@@ -109,8 +116,11 @@ $bioBreakpoints: (
 
   p a {
     @include text-underline(20px, $color__rules--primary);
-    padding-bottom: 1px;
-    color: $color__text--accent;
+
+    & {
+      padding-bottom: 1px;
+      color: $color__text--accent;
+    }
   }
 
   p a:hover,
@@ -119,8 +129,7 @@ $bioBreakpoints: (
   }
 }
 
-.o-artist-bio__main {
-}
+.o-artist-bio__main {}
 
 .o-artist-bio__main dl {
   display: flex;
@@ -132,7 +141,8 @@ $bioBreakpoints: (
     margin-top: -16px;
   }
 
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       margin-left: colspan(2, $name, 0, true);
     }
@@ -145,7 +155,8 @@ $bioBreakpoints: (
     margin-top: 4px;
   }
 
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       margin-left: colspan(2, $name);
     }
@@ -211,8 +222,11 @@ $bioBreakpoints: (
 
 .o-artist-bio__body a {
   @include text-underline(20px, $color__rules--primary);
-  padding-bottom: 1px;
-  color: $color__text--accent;
+
+  & {
+    padding-bottom: 1px;
+    color: $color__text--accent;
+  }
 }
 
 .o-artist-bio__body a:hover,
@@ -220,7 +234,7 @@ $bioBreakpoints: (
   @include text-underline(20px, $color__rules--brand);
 }
 
-.o-artist-bio__main dl + .o-artist-bio__body {
+.o-artist-bio__main dl+.o-artist-bio__body {
   margin-top: 24px;
 }
 
@@ -235,7 +249,7 @@ $bioBreakpoints: (
   }
 }
 
-.o-artist-bio__tags > li {
+.o-artist-bio__tags>li {
   flex: 0 0 auto;
   margin-top: 8px;
   margin-right: 20px;
