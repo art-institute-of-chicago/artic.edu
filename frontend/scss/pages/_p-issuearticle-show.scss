@@ -198,16 +198,32 @@
     padding-top: 0;
     margin-top: 60px;
 
-    @include breakpoint('large+') {
-      margin-left: calc(300px + colspan(2, large));
-      max-width: 900px;
-      width: colspan(46, large);
-    }
-  }
 
   .o-article__body .p--linked {
-    margin-right: 1.5em;
-    padding-right: 1em;
+    @include breakpoint('small-') {
+      padding-right: 0;
+      .p--linked__text {
+        width: 100%;
+      }
+      .p--linked__ref {
+        display: none;
+      }
+    }
+    @include breakpoint('medium') {
+      .p--linked__text {
+        width: 88%;
+      }
+    }
+    @include breakpoint('large') {
+      .p--linked__text {
+        width: colspan(33, 'large');
+      }
+    }
+    @include breakpoint('xlarge') {
+      .p--linked__text {
+        width: 73.5%
+      }
+    }
   }
 
   .o-article__primary-actions--digital-publication {
