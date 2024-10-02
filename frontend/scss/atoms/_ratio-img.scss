@@ -36,7 +36,7 @@ Can optionally use `object-fit` to cover or contain the area:
   display: block;
   position: relative;
 
-  #demo > & {
+  #demo>& {
     display: inline-block;
     width: 200px;
   }
@@ -88,11 +88,17 @@ Can optionally use `object-fit` to cover or contain the area:
 .ratio-img--cover img,
 .ratio-img--cover video {
   @include objectFitFix;
-  object-fit: cover;
+
+  & {
+    object-fit: cover;
+  }
 }
 
 .ratio-img--contain img,
 .ratio-img--contain video {
   @include objectFitFix;
-  object-fit: contain;
+
+  & {
+    object-fit: contain;
+  }
 }

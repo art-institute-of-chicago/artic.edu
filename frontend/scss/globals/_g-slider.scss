@@ -7,6 +7,7 @@ $btn-close-size: 20px;
     opacity: 0;
     transform: translateY(66%);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0%);
@@ -36,10 +37,10 @@ $btn-close-size: 20px;
   bottom: 0;
   left: 0;
 
-  border-top: 1px solid rgba(0,0,0,.1);
-  box-shadow: 0 0 3px rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 
-  &.g-slider--msg-active  {
+  &.g-slider--msg-active {
     border-top: none;
     box-shadow: none;
 
@@ -50,10 +51,13 @@ $btn-close-size: 20px;
 
   .g-slider__msg {
     @include untuck;
-    display: none;
-    background-color: $color__link;
-    color: $color__white;
-    font-style: normal;
+
+    & {
+      display: none;
+      background-color: $color__link;
+      color: $color__white;
+      font-style: normal;
+    }
 
     &.f-buttons {
       padding-top: 11px;
@@ -72,7 +76,8 @@ $btn-close-size: 20px;
     .g-slider__msg__content {
       margin: auto;
 
-      @each $name, $point in $breakpoints {
+      @each $name,
+      $point in $breakpoints {
         @include breakpoint('#{$name}') {
           width: colspan(58, $name);
         }
@@ -85,7 +90,8 @@ $btn-close-size: 20px;
     margin: auto;
     padding: $slider-edge-spacing 0;
 
-    @each $name, $point in $breakpoints {
+    @each $name,
+    $point in $breakpoints {
       @include breakpoint('#{$name}') {
         width: colspan(58, $name);
       }
@@ -114,16 +120,16 @@ $btn-close-size: 20px;
 
   // TODO: Make link styles more consistent! Here, we mirror .btn color conventions.
   a {
-      color: $color__link--accent;
+    color: $color__link--accent;
 
-      &:hover,
-      &:focus:hover {
-        color: $color__link--accent-hover;
-      }
+    &:hover,
+    &:focus:hover {
+      color: $color__link--accent-hover;
+    }
 
-      &:active:hover {
-        color: $color__link--accent-active;
-      }
+    &:active:hover {
+      color: $color__link--accent-active;
+    }
   }
 }
 
@@ -142,13 +148,19 @@ $btn-close-size: 20px;
 
       .g-slider__title {
         @include untuck;
-        margin-bottom: $slider-edge-spacing * 0.5;
+
+        & {
+          margin-bottom: $slider-edge-spacing * 0.5;
+        }
       }
 
       .g-slider__intro {
         @include untuck;
-        margin-bottom: $slider-edge-spacing * 0.5;
-        color: $color__text--secondary;
+
+        & {
+          margin-bottom: $slider-edge-spacing * 0.5;
+          color: $color__text--secondary;
+        }
 
         @include breakpoint('small+') {
           margin-bottom: 0;
@@ -156,7 +168,7 @@ $btn-close-size: 20px;
       }
     }
 
-   .g-slider__form {
+    .g-slider__form {
 
       @include breakpoint('small+') {
         margin-left: $slider-edge-spacing;

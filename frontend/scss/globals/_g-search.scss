@@ -1,23 +1,17 @@
-$f-search-input: generate-font-obj((
-  font-family: $serif-font,
-  font-family-loaded: $serif-font--loaded,
-  font-loaded-class: $serif-font-loaded-class,
-  settings: (
-    'xsmall': (font-size: 28, line-height: 32, letter-spacing: -.01em, push: 0),
-    'small+': (font-size: 35, line-height: 40, push: 0),
-    'medium+': (font-size: 38, line-height: 44, push: 0),
-   )
-));
+$f-search-input: generate-font-obj((font-family: $serif-font,
+    font-family-loaded: $serif-font--loaded,
+    font-loaded-class: $serif-font-loaded-class,
+    settings: ('xsmall': (font-size: 28, line-height: 32, letter-spacing: -.01em, push: 0),
+      'small+': (font-size: 35, line-height: 40, push: 0),
+      'medium+': (font-size: 38, line-height: 44, push: 0),
+    )));
 
-$f-autocomplete: generate-font-obj((
-  font-family: $sans-serif-font,
-  font-family-loaded: $sans-serif-font--loaded,
-  font-loaded-class: $sans-serif-font-loaded-class,
-  settings: (
-    'xsmall': (font-size: 16, line-height: 24, letter-spacing: .01em, push: 0),
-    'small+': (font-size: 17, line-height: 24, push: 0),
-   )
-));
+$f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
+    font-family-loaded: $sans-serif-font--loaded,
+    font-loaded-class: $sans-serif-font-loaded-class,
+    settings: ('xsmall': (font-size: 16, line-height: 24, letter-spacing: .01em, push: 0),
+      'small+': (font-size: 17, line-height: 24, push: 0),
+    )));
 
 .g-search {
   position: fixed;
@@ -68,15 +62,19 @@ $f-autocomplete: generate-font-obj((
 
 .g-search__input {
   @include font-styles($f-search-input);
-  width: 100%;
-  padding-right: 40px;
-  padding-bottom: 15px;
-  border: 0;
-  border-bottom: 1px solid rgba($color__rules--tertiary, 0.5);
-  background-color: transparent;
-  color: $color__text--search;
-  -webkit-appearance: none;
-  outline: 0;
+
+  & {
+    width: 100%;
+    padding-right: 40px;
+    padding-bottom: 15px;
+    border: 0;
+    border-bottom: 1px solid rgba($color__rules--tertiary, 0.5);
+    background-color: transparent;
+    color: $color__text--search;
+    -webkit-appearance: none;
+    outline: 0;
+
+  }
 
   @include placeholder() {
     color: $color__text--search;
@@ -156,7 +154,7 @@ $f-autocomplete: generate-font-obj((
 .g-search__suggested li a {
   display: block;
   padding: 10px 12px;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: $color__text--title-contrast;
 }
 
@@ -170,15 +168,13 @@ $f-autocomplete: generate-font-obj((
   transition: opacity .25s linear;
 }
 
-.g-search__autocomplete ul {
-}
+.g-search__autocomplete ul {}
 
 .g-search__autocomplete li {
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.g-search__autocomplete li:first-child {
-}
+.g-search__autocomplete li:first-child {}
 
 .g-search__autocomplete li a {
   @extend %f-buttons;
@@ -190,7 +186,7 @@ $f-autocomplete: generate-font-obj((
 }
 
 .g-search__autocomplete li a:hover {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   color: $color__white;
 }
 

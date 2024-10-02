@@ -1,6 +1,10 @@
 .o-article {
   @include float-clear;
-  position: relative;
+
+  & {
+    position: relative;
+
+  }
 
   @include breakpoint('xsmall') {
     display: flex;
@@ -133,8 +137,10 @@
     display: none;
   }
 
-  position: relative;
-  z-index: 2;
+  & {
+    position: relative;
+    z-index: 2;
+  }
 
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
@@ -309,9 +315,11 @@
 
 .o-article__body {
   @include float-clear;
-  position: relative;
-  margin-top: 28px;
-  padding-top: 12px;
+
+  & {
+    margin-top: 28px;
+    padding-top: 12px;
+  }
 
   &.o-article--disable-float-clear::after {
     clear: none;

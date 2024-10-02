@@ -1,4 +1,3 @@
-
 .m-share-menu {
   @extend %styled-scrollbars;
   display: none;
@@ -7,7 +6,7 @@
   left: colspan(3, xsmall);
   right: colspan(3, xsmall);
   top: 50%;
-    margin-top: -144px;
+  margin-top: -144px;
   max-height: 80vh;
   background-color: $color__white;
   box-shadow: $shadow;
@@ -44,8 +43,11 @@
 
 .m-share-menu__title {
   @include untuck;
-  padding: 18px 60px 18px 16px;
-  color: $color__text--title;
+
+  & {
+    padding: 18px 60px 18px 16px;
+    color: $color__text--title;
+  }
 
   @include breakpoint('medium+') {
     display: none;
@@ -70,16 +72,19 @@
 .m-share-menu ul a,
 .m-share-menu ul button {
   @include untuck;
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 10px 16px;
-  border: 0 none;
-  background-color: $color__white;
-  color: $color__text--secondary;
-  text-align: left;
-  text-decoration: none;
-  cursor: pointer;
+
+  & {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 10px 16px;
+    border: 0 none;
+    background-color: $color__white;
+    color: $color__text--secondary;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 
 .m-share-menu ul.f-secondary a,

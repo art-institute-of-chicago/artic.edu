@@ -22,13 +22,16 @@ Form selects, partially styled using [select-css](https://github.com/filamentgro
 
 .select__select {
   @include styled-select;
-  border: 1px solid $color__input-border;
-  border-radius: $border-radius;
-  background-color: $color__white;
-  cursor: pointer;
 
-  &:hover {
-    border-color: $color__input-border--hover;
+  & {
+    border: 1px solid $color__input-border;
+    border-radius: $border-radius;
+    background-color: $color__white;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color__input-border--hover;
+    }
   }
 
   &:focus:hover,
@@ -41,7 +44,7 @@ Form selects, partially styled using [select-css](https://github.com/filamentgro
     border-color: $color__input-border--error;
   }
 
-  label + & {
+  label+& {
     margin-top: 16px;
   }
 }

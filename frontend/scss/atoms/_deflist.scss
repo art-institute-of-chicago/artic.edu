@@ -161,12 +161,18 @@ Demonstrated in **statics/article**
 
 .deflist .f-module-title-1 {
   @include tucked-margin-top($f-module-title-1, ('xsmall': 28));
-  display: block;
+
+  & {
+    display: block;
+  }
 }
 
 .deflist .f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 24, 'small+': 28));
-  display: block;
+
+  & {
+    display: block;
+  }
 }
 
 
