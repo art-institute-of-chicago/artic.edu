@@ -1159,7 +1159,7 @@
     }
 
     .m-article-header__text {
-      flex: 0 0 colspan(14, 'large');
+      flex: 0 0 colspan(19, 'large');
       padding-right: initial;
       padding-left: initial;
     }
@@ -1179,15 +1179,20 @@
     }
   }
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large') {
     .m-article-header__text {
-      max-width: colspan(14, 'xlarge');
-      z-index: 1;
+      flex: 0 0 colspan(19, 'large');
     }
+  }
+
+  @include breakpoint('xlarge') {
     .m-article-header__text::before {
       left: 0;
       margin-left: -100vw;
       max-width: 100vw;
+    }
+    .m-article-header__text {
+      flex: 0 0 colspan(19, 'xlarge');
     }
   }
 
