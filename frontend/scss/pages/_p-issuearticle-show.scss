@@ -15,20 +15,8 @@
       }
     }
   }
-  @each $name in ('large', 'xlarge') {
-    @include breakpoint('#{$name}') {
-      #a17 {
-        max-width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-
-      }
-    }
-  }
 
   .m-article-header__text {
-    width: 70% !important;
-
     @include breakpoint('medium-') {
       width: 100% !important;
     }
@@ -197,6 +185,18 @@
   .o-article__body {
     padding-top: 0;
     margin-top: 60px;
+
+    @include breakpoint('medium') {
+      width: colspan(58, 'medium');
+    }
+    @include breakpoint('large') {
+      margin-left: colspan(20, 'large');
+      width: colspan(38, 'large');
+    }
+    @include breakpoint('xlarge') {
+      margin-left: colspan(20, 'xlarge');
+      width: colspan(38, 'xlarge');
+    }
   }
 
   .o-article__body .p--linked {
@@ -227,15 +227,15 @@
   }
 
   .o-article__primary-actions--digital-publication {
-    @include breakpoint('large+') {
-      max-width: 300px;
-      width: colspan(16, large);
+    @include breakpoint('large') {
+      width: colspan(18, 'large');
+    }
+    @include breakpoint('xlarge') {
+      width: colspan(18, 'xlarge');
     }
 
     .o-sticky-sidebar__sticker {
-      max-width: 300px;
       padding-right: 0;
-      width: colspan(16, large);
     }
   }
 
