@@ -40,7 +40,7 @@ f-display-3
 $f-display-3: generate-font-obj((font-family: $serif-font,
     font-family-loaded: $serif-font--loaded,
     font-loaded-class: $serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 31, line-height: 36, text-transform: 'uppercase', letter-spacing: 0.1em, push: 0),
+    settings: ('xsmall': (font-size: 31, line-height: 36, text-transform: uppercase, letter-spacing: .1em, push: 0),
       'small+': (font-size: 51, line-height: 60, push: -2),
       'medium+': (font-size: 58, line-height: 68, push: -1),
       'large+': (font-size: 68, line-height: 80, push: -1))));
@@ -72,7 +72,7 @@ f-display-2
 $f-display-2: generate-font-obj((font-family: $sans-serif-font,
     font-family-loaded: $sans-serif-font--loaded,
     font-loaded-class: $sans-serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 31, line-height: 36, font-weight: 300, text-transform: 'uppercase', letter-spacing: 0.08em, push: 0),
+    settings: ('xsmall': (font-size: 31, line-height: 36, font-weight: 300, text-transform: uppercase, letter-spacing: 0.08em, push: 0),
       'small+': (font-size: 51, line-height: 60, push: 0),
       'medium+': (font-size: 58, line-height: 68, push: 0),
       'large+': (font-size: 68, line-height: 80, push: 0))));
@@ -104,7 +104,7 @@ f-display-1
 $f-display-1: generate-font-obj((font-family: $sans-serif-font,
     font-family-loaded: $sans-serif-font--loaded,
     font-loaded-class: $sans-serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 26, line-height: 32, font-weight: 300, text-transform: 'uppercase', letter-spacing: 0.08em, push: 0),
+    settings: ('xsmall': (font-size: 26, line-height: 32, font-weight: 300, text-transform: uppercase, letter-spacing: 0.08em, push: 0),
       'small+': (font-size: 32, line-height: 40, push: 0),
       'medium+': (font-size: 36, line-height: 44, push: 0))));
 
@@ -276,7 +276,7 @@ f-module-title-2 (f-subheading-2)
 $f-module-title-2: generate-font-obj((font-family: $sans-serif-font,
     font-family-loaded: $sans-serif-font--loaded,
     font-loaded-class: $sans-serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 17, line-height: 24, letter-spacing: 0.09em, text-transform: 'uppercase', font-weight: 'normal', push: 0),
+    settings: ('xsmall': (font-size: 17, line-height: 24, letter-spacing: .09em, text-transform: uppercase, font-weight: normal, push: 0),
       'small+': (font-size: 20, line-height: 28, push: 0),
       'medium+': (font-size: 21, line-height: 28, push: 0))));
 
@@ -466,7 +466,7 @@ f-body-emphasis
 $f-body-emphasis: generate-font-obj((font-family: $sans-serif-font,
     font-family-loaded: $sans-serif-font--loaded,
     font-loaded-class: $sans-serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 16, line-height: 24, font-weight: 300, font-style: 'italic', letter-spacing: 0.01em, push: 1),
+    settings: ('xsmall': (font-size: 16, line-height: 24, font-weight: 300, font-style: italic, letter-spacing: .01em, push: 1),
       'small+': (font-size: 18, line-height: 28, push: 0),
       'xlarge': (font-size: 19, line-height: 28, push: 1))));
 
@@ -550,7 +550,7 @@ f-body-editorial-emphasis
 $f-body-editorial-emphasis: generate-font-obj((font-family: $serif-font,
     font-family-loaded: $serif-font--loaded,
     font-loaded-class: $serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 17, line-height: 24, font-style: 'italic', letter-spacing: 0.005em, push: -1),
+    settings: ('xsmall': (font-size: 17, line-height: 24, font-style: italic, letter-spacing: .005em, push: -1),
       'small+': (font-size: 18, line-height: 28, letter-spacing: 0, push: -2),
       'large+': (font-size: 19, line-height: 28, push: -2))));
 
@@ -812,7 +812,7 @@ f-tag-2
 $f-tag-2: generate-font-obj((font-family: $sans-serif-font,
     font-family-loaded: $sans-serif-font--loaded,
     font-loaded-class: $sans-serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 12, line-height: 16, letter-spacing: 0.14em, text-transform: 'uppercase', push: 0),
+    settings: ('xsmall': (font-size: 12, line-height: 16, letter-spacing: .14em, text-transform: uppercase, push: 0),
       'medium+': (font-size: 13, line-height: 16, push: 1))));
 
 @mixin f-tag-2() {
@@ -842,7 +842,7 @@ f-tag
 $f-tag: generate-font-obj((font-family: $sans-serif-font,
     font-family-loaded: $sans-serif-font--loaded,
     font-loaded-class: $sans-serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 11, line-height: 16, letter-spacing: .14em, text-transform: 'uppercase', push: 0),
+    settings: ('xsmall': (font-size: 11, line-height: 16, letter-spacing: .14em, text-transform: uppercase, push: 0),
       'medium+': (font-size: 12, line-height: 16, push: 0))));
 
 @mixin f-tag() {
@@ -1220,7 +1220,7 @@ f-dropcap-editorial
 $f-dropcap-editorial: generate-font-obj((font-family: $serif-font,
     font-family-loaded: $serif-font--loaded,
     font-loaded-class: $serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 54, line-height: 60, text-transform: 'uppercase', push: 1),
+    settings: ('xsmall': (font-size: 54, line-height: 60, text-transform: uppercase, push: 1),
       'medium+': (font-size: 100, line-height: 120, push: -1))));
 
 @mixin f-dropcap-editorial() {
@@ -1336,7 +1336,7 @@ f-small-caps
 $f-small-caps: generate-font-obj((font-family: $sans-serif-font,
     font-family-loaded: $sans-serif-font--loaded,
     font-loaded-class: $sans-serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 11, line-height: 48, letter-spacing: 0.14em, text-transform: 'uppercase', push: 0),
+    settings: ('xsmall': (font-size: 11, line-height: 48, letter-spacing: .14em, text-transform: uppercase, push: 0),
       'medium+': (font-size: 12, line-height: 48, push: 0))));
 
 @mixin f-small-caps() {
