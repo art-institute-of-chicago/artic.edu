@@ -7,10 +7,26 @@
 
   .o-article__body {
     border-top: none;
+    float: none;
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        margin-left: colspan(20, '#{$name}');
+        width: colspan(38, '#{$name}');
+      }
+    }
   }
 
   .m-article-header~.o-article__primary-actions::before {
     content: none;
+  }
+
+  .m-article-header~.o-article__primary-actions {
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        width: colspan(18, '#{$name}');
+        margin-right: colspan(2, '#{$name}');
+      }
+    }
   }
 
   .m-article-header--digital-publication {
