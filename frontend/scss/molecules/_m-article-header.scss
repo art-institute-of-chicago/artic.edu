@@ -1240,12 +1240,6 @@
   }
 }
 
-.s-sticky-digital-publication-header.is-sidebar-top.s-scroll-direction-up {
-  .m-article-header--digital-publication {
-    position: absolute !important;
-  }
-}
-
 .s-sticky-digital-publication-header:not(.s-allow-top-link) {
   .m-sidebar-toggle {
     position: relative !important;
@@ -1351,7 +1345,7 @@
         flex: 0 0 colspan(56, 'large');
 
         img {
-          object-position: bottom;
+          opacity: 0;
         }
       }
     }
