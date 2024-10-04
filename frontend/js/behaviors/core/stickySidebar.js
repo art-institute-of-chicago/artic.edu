@@ -69,7 +69,7 @@ const stickySidebar = function(container){
     stickyHeaderContainer = document.querySelector('.m-article-header');
 
     // `containerToo` is caluclated in the `handleResize` method
-    if (scrollTop < containerTop) {
+    if (scrollTop < containerTop - (document.documentElement.classList.contains('s-sticky-digital-publication-header') ? stickyHeaderContainer.clientHeight : 0)) {
       top();
       container.style.marginTop = '0px';
     } else {
