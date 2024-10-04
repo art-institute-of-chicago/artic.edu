@@ -115,13 +115,44 @@
 
         background-color: unset !important;
 
+
+        .m-showcase-wrapper {
+            @include breakpoint('small-') {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        .showcase-tag {
+            @include breakpoint('small-') {
+                font-size: 12px;
+            }
+        }
+
         .showcase-title {
-            margin-top: 12px !important;
+            @include breakpoint('small-') {
+                @include untuck;
+                & {
+                    font-size: 19px !important;
+                    line-height: 4px !important;
+                }
+            }
+            & {
+                font-size: 28px;
+                margin-top: 12px !important;
+            }
+        }
+
+        .showcase-author {
+            font-size: 15px;
         }
 
         .showcase-description {
             * {
             color: $color__black !important;
+            }
+            & {
+                margin: 0 !important;
             }
         }
     }
