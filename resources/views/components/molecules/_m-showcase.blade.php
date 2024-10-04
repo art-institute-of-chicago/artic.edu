@@ -29,7 +29,7 @@
             </a>
             @endif
             @if ($author_display)
-                <span class="f-secondary">by {{ $author_display }}</span>
+                <span class="showcase-author f-secondary">by {{ $author_display }}</span>
             @endif
             @if ($description)
                 <a href={{ $linkUrl }} class="showcase-link" >
