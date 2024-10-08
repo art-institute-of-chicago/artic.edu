@@ -18,11 +18,11 @@ return new class extends Migration
         // Update the size in the content JSON column to 'l'
         foreach ($digiPubImageBlocks as $block) {
             $content = json_decode($block->content, associative: true);
-            
+
             $content['size'] = 'l';
             $content['use_alt_background'] = true;
             $content['use_contain'] = true;
-            
+
             // Update the block with the new JSON
             DB::table(table: 'blocks')
                 ->where(column: 'id', operator: $block->id)
