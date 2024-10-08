@@ -1240,15 +1240,29 @@
   }
 }
 
-.s-sticky-digital-publication-header:not(.s-allow-top-link) {
+.s-sticky-digital-publication-header:not(.s-allow-top-link),
+.p-t-entry:not(.s-allow-top-link),
+.p-t-contributions:not(.s-allow-top-link),
+.p-t-about:not(.s-allow-top-link) {
   .m-sidebar-toggle {
     position: relative !important;
   }
 }
 
-.s-sticky-digital-publication-header.s-allow-top-link {
+.s-sticky-digital-publication-header.s-allow-top-link,
+.p-t-entry.s-allow-top-link,
+.p-t-contributions.s-allow-top-link,
+.p-t-about.s-allow-top-link {
   .m-sidebar-toggle {
     position: fixed !important;
+    top: 0;
+    width: 100vw;
+    z-index: map-get($zindexs, 'header');
+
+    &::before {
+      left: 0;
+      width: 150vw;
+    }
   }
 }
 
