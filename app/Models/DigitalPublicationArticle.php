@@ -11,6 +11,7 @@ use App\Enums\DigitalPublicationArticleType;
 use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasPublicationMedias;
 use App\Models\Behaviors\HasBlocks;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -22,6 +23,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
     use HasPosition;
     use HasMedias;
     use HasMediasEloquent;
+    use HasPublicationMedias;
     use HasBlocks;
     use HasAuthors;
     use Transformable;

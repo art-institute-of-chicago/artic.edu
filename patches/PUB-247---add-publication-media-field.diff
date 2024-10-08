@@ -1,0 +1,21 @@
+diff --git a/frontend/js/main-form.js b/frontend/js/main-form.js
+index 6c94b870..2165924d 100644
+--- a/frontend/js/main-form.js
++++ b/frontend/js/main-form.js
+@@ -60,9 +60,16 @@ import BlockMixin from '@/mixins/block'
+ import retrySubmitMixin from '@/mixins/retrySubmit'
+ import _ from 'lodash'
+ 
++// PUB-247: Add publication media form field
++import AicConfig from '@/plugins/AicConfig.js'
++// /PUB-247
++
+ // configuration
+ Vue.use(A17Config)
+ Vue.use(A17Notif)
++// PUB-247: Add publication media form field
++Vue.use(AicConfig)
++// /PUB-247
+ 
+ store.registerModule('form', form)
+ store.registerModule('publication', publication)

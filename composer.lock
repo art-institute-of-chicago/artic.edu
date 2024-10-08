@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "88847d619228317bb5f01d90db331862",
+    "content-hash": "ab566b4983eefbd90c1dcd4b8e9a610c",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -12013,7 +12013,7 @@
         },
         {
             "name": "vendor/package-patches",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "require": {
                 "netresearch/composer-patches-plugin": "~1.2"
             },
@@ -12032,6 +12032,10 @@
                         {
                             "title": "WEB-2678: Backport Node 10 syntax",
                             "url": "patches/WEB-2678---backport-node-10-syntax.diff"
+                        },
+                        {
+                            "title": "PUB-247: Add publication media field",
+                            "url": "patches/PUB-247---add-publication-media-field.diff"
                         }
                     ]
                 }
