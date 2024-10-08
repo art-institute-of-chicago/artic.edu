@@ -18,7 +18,8 @@
     'name' => 'size',
     'label' => 'Size',
     'placeholder' => 'Select size',
-    'default' => 'm',
+    'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
+    'disabled' => ($type === 'digitalPublications' ? true : false),
     'options' => [
         [
             'value' => 's',
@@ -38,11 +39,15 @@
 @formField('checkbox', [
     'name' => 'use_contain',
     'label' => 'Always show the whole image instead of cropping to the container',
+    'default' => ($type === 'digitalPublications' ? true : false),
+    'disabled' => ($type === 'digitalPublications' ? true : false),
 ])
 
 @formField('checkbox', [
     'name' => 'use_alt_background',
     'label' => 'Use white instead of gray to pillarbox the image',
+    'default' => ($type === 'digitalPublications' ? true : false),
+    'disabled' => ($type === 'digitalPublications' ? true : false),
 ])
 
 @formField('checkbox', [
