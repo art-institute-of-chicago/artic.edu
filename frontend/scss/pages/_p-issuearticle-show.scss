@@ -334,18 +334,33 @@
     }
   }
 
-  .m-media--s.o-blocks__block .m-media__img {
-    width: max-content;
+  .m-media--s.o-blocks__block,
+  .m-media--l.o-blocks__block {
+    width: max-content !important;
     max-width: 100%;
-    overflow: hidden;
-    text-align: left;
-    background-image: unset !important;
+    min-width: unset !important;
 
-    img {
+    .m-media__contain--spacer {
+      display: none !important;
+    }
+
+    .m-media__img {
+      & {
+        width: 100%!important;
+        max-width: 100% !important;
+        max-height: 450px;
+        overflow: hidden !important;
+        text-align: left !important;
+        background-image: unset !important;
+      }
+
+      img {
+        position: relative !important;
         max-height: 450px !important;
-        width: auto;
-        object-fit: contain;
-        display: block;
+        width: auto !important;
+        object-fit: contain !important;
+        display: block !important;
+      }
     }
   }
 
