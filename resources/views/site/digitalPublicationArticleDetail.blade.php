@@ -10,7 +10,7 @@
 <style>
     .m-article-header--digital-publication-article ~ .m-article-header__text::before,
     .m-article-actions--publication__logo.u-show\@medium-::before {
-        background-color: {{ $bgcolor }};
+        background-color: {{ isset($bgcolor) ? $bgcolor : null  }};
     }
 </style>
 @endif
@@ -18,7 +18,7 @@
 <article class="o-article">
     @if ($item->article_type == DigitalPublicationArticleType::Contributions)
         @component('components.molecules._m-article-header----digital-publication-article')
-            @slot('bgcolor', $bgcolor)
+            @slot('bgcolor', isset($bgcolor) ? $bgcolor : null )
             @slot('title', $item->present()->title)
             @slot('title_display', $item->present()->title_display)
             @slot('pub_title', $item->digitalPublication->present()->title)

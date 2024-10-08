@@ -2,7 +2,7 @@
     <style>
         .m-article-header--digital-publication-article ~ .m-article-header__text::before,
         .m-article-actions--publication__logo {
-            background-color: {{ $bgcolor }};
+            background-color: {{ isset($bgcolor) ? $bgcolor : null  }};
         }
     </style>
 @endif
@@ -10,7 +10,7 @@
 <header
     class="m-article-header m-article-header--feature m-article-header--digital-publication-article"
     data-behavior="contrastText"
-    data-background-color="{{ $bgcolor }}"
+    data-background-color="{{ isset($bgcolor) ? $bgcolor : null }}"
 >
     <div class="m-article-header__img">
         @if ($img)
