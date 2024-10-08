@@ -3,14 +3,14 @@
         .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__text,
         .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__text::before,
         .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__img::before {
-            background-color: {{ $bgcolor }};
+            background-color: {{ isset($bgcolor) ? $bgcolor : null  }};
         }
     </style>
 @endif
 <{{ $tag ?? 'header' }}
     class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}"
     data-behavior="blurMyBackground stickyDigitalPublicationHeader contrastText"
-    data-background-color="{{ $bgcolor }}"
+    data-background-color="{{ isset($bgcolor) ? $bgcolor : null  }}"
 >
     <div class="m-article-header__img"{{ (isset($variation) && $variation != 'm-article-header--digital-publication') ? ' data-blur-img' : '' }}>
         @if ($img)
