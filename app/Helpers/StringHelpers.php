@@ -256,7 +256,7 @@ class StringHelpers
             $dom->loadHTML('<?xml encoding="utf-8" ?>' . $newContent, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
             $xpath = new \DOMXpath($dom);
-    
+
             // If a limiter is set, restrict to paragraphs within that id
             if ($limiter) {
                 $nodes = $xpath->query("//div[@id='$limiter']//p");
