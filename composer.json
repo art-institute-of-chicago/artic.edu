@@ -59,6 +59,7 @@
         "laravel/tinker": "^2.0",
         "league/csv": "^9.0",
         "michelf/php-smartypants": "^1.8",
+        "pgvector/pgvector": "^0.2.0",
         "ramsey/uuid": "^4.0",
         "rlanvin/php-rrule": "^2.0",
         "salesforce-mc/fuel-sdk-php": "dev-master",
