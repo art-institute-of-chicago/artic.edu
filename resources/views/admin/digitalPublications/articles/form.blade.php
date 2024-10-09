@@ -104,7 +104,7 @@
                 'note' => 'Minimum image width 3000px'
             ])
 
-            @formField('medias', [
+            @formField('publicationmedias', [
                 'with_multiple' => false,
                 'no_crop' => false,
                 'label' => 'Mobile listing image',
@@ -141,7 +141,7 @@
                 'note' => 'Minimum image width 3000px'
             ])
 
-            @formField('medias', [
+            @formField('publicationmedias', [
                 'with_multiple' => false,
                 'no_crop' => false,
                 'label' => 'Mobile hero image',

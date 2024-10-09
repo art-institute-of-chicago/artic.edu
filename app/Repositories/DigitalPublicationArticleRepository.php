@@ -14,11 +14,12 @@ use App\Models\DigitalPublicationArticle;
 use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleAuthors;
+use App\Repositories\Behaviors\HandlePublicationMedias;
 use A17\Twill\Jobs\ReorderNestedModuleItems;
 
 class DigitalPublicationArticleRepository extends ModuleRepository
 {
-    use HandleNesting, HandleSlugs, HandleMedias, HandleRevisions, HandleBlocks, HandleApiBlocks, HandleAuthors {
+    use HandleNesting, HandleSlugs, HandleMedias, HandlePublicationMedias, HandleRevisions, HandleBlocks, HandleApiBlocks, HandleAuthors {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 

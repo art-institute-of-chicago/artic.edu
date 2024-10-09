@@ -1,0 +1,181 @@
+<?php
+
+namespace App\Repositories\Behaviors;
+
+use App\Models\PublicationMedia;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+
+trait HandlePublicationMedias
+{
+    /**
+     * @param \A17\Twill\Models\Model $object
+     * @param array $fields
+     * @return \A17\Twill\Models\Model
+     */
+    public function hydrateHandlePublicationMedias($object, $fields)
+    {
+        if ($this->shouldIgnoreFieldBeforeSave('publicationmedias')) {
+            return $object;
+        }
+
+        $mediasCollection = Collection::make();
+        $mediasFromFields = $this->getPublicationMedias($fields);
+
+        $mediasFromFields->each(function ($media) use ($object, $mediasCollection) {
+            $newMedia = PublicationMedia::withTrashed()->find(is_array($media['id']) ? Arr::first($media['id']) : $media['id']);
+            $pivot = $newMedia->newPivot($object, Arr::except($media, ['id']), config('twill.publication_mediables_table', 'twill_publication_mediables'), true);
+            $newMedia->setRelation('pivot', $pivot);
+            $mediasCollection->push($newMedia);
+        });
+
+        $object->setRelation('publicationMedias', $mediasCollection);
+
+        return $object;
+    }
+
+    /**
+     * @param \A17\Twill\Models\Model $object
+     * @param array $fields
+     * @return void
+     */
+    public function afterSaveHandlePublicationMedias($object, $fields)
+    {
+        if ($this->shouldIgnoreFieldBeforeSave('publicationmedias')) {
+            return;
+        }
+
+        $object->publicationMedias()->sync([]);
+
+        $this->getPublicationMedias($fields)->each(function ($media) use ($object) {
+            $object->publicationMedias()->attach($media['id'], Arr::except($media, ['id']));
+        });
+    }
+
+    /**
+     * @param array $fields
+     * @return \Illuminate\Support\Collection
+     */
+    private function getPublicationMedias($fields)
+    {
+        $medias = Collection::make();
+
+        if (isset($fields['publicationmedias'])) {
+            dd($fields['publicationmedias']);
+            foreach ($fields['publicationmedias'] as $role => $mediasForRole) {
+                if (config('twill.media_library.translated_form_fields', false)) {
+                    if (Str::contains($role, ['[', ']'])) {
+                        $start = strpos($role, '[') + 1;
+                        $finish = strpos($role, ']', $start);
+                        $locale = substr($role, $start, $finish - $start);
+                        $role = strtok($role, '[');
+                    }
+                }
+
+                $locale = $locale ?? config('app.locale');
+
+                if (in_array($role, array_keys($this->model->mediasParams ?? []))
+                    || in_array($role, array_keys(config('twill.block_editor.crops', [])))
+                    || in_array($role, array_keys(config('twill.settings.crops', [])))) {
+                    Collection::make($mediasForRole)->each(function ($media) use (&$medias, $role, $locale) {
+                        $customMetadatas = $media['metadatas']['custom'] ?? [];
+                        if (isset($media['crops']) && !empty($media['crops'])) {
+                            foreach ($media['crops'] as $cropName => $cropData) {
+                                $medias->push([
+                                    'id' => $media['id'],
+                                    'crop' => $cropName,
+                                    'role' => $role,
+                                    'locale' => $locale,
+                                    'ratio' => $cropData['name'],
+                                    'crop_w' => $cropData['width'],
+                                    'crop_h' => $cropData['height'],
+                                    'crop_x' => $cropData['x'],
+                                    'crop_y' => $cropData['y'],
+                                    'metadatas' => json_encode($customMetadatas),
+                                ]);
+                            }
+                        } else {
+                            foreach ($this->getCrops($role) as $cropName => $cropDefinitions) {
+                                $medias->push([
+                                    'id' => $media['id'],
+                                    'crop' => $cropName,
+                                    'role' => $role,
+                                    'locale' => $locale,
+                                    'ratio' => Arr::first($cropDefinitions)['name'],
+                                    'crop_w' => null,
+                                    'crop_h' => null,
+                                    'crop_x' => null,
+                                    'crop_y' => null,
+                                    'metadatas' => json_encode($customMetadatas),
+                                ]);
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
+        return $medias;
+    }
+
+    /**
+     * @param \A17\Twill\Models\Model $object
+     * @param array $fields
+     * @return array
+     */
+    public function getFormFieldsHandlePublicationMedias($object, $fields)
+    {
+        $fields['publicationmedias'] = null;
+
+        if ($object->has('publicationMedias')) {
+            foreach ($object->publicationMedias->groupBy('pivot.role') as $role => $mediasByRole) {
+                if (config('twill.media_library.translated_form_fields', false)) {
+                    foreach ($mediasByRole->groupBy('pivot.locale') as $locale => $mediasByLocale) {
+                        foreach ($this->getPublicationMediaFormItems($mediasByLocale) as $item) {
+                            $fields['publicationmedias'][$locale][$role][] = $item;
+                        }
+                    }
+                } else {
+                    foreach ($this->getPublicationMediaFormItems($mediasByRole) as $item) {
+                        $fields['publicationmedias'][$role][] = $item;
+                    }
+                }
+            }
+        }
+
+        return $fields;
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Collection $medias
+     * @return array
+     */
+    private function getPublicationMediaFormItems($medias)
+    {
+        $itemsForForm = [];
+
+        foreach ($medias->groupBy('id') as $id => $mediasById) {
+            $item = $mediasById->first();
+
+            $itemForForm = $item->toCmsArray();
+
+            $itemForForm['metadatas']['custom'] = json_decode($item->pivot->metadatas, true);
+
+            foreach ($mediasById->groupBy('pivot.crop') as $crop => $mediaByCrop) {
+                $media = $mediaByCrop->first();
+                $itemForForm['crops'][$crop] = [
+                    'name' => $media->pivot->ratio,
+                    'width' => $media->pivot->crop_w,
+                    'height' => $media->pivot->crop_h,
+                    'x' => $media->pivot->crop_x,
+                    'y' => $media->pivot->crop_y,
+                ];
+            }
+
+            $itemsForForm[] = $itemForForm;
+        }
+
+        return $itemsForForm;
+    }
+}

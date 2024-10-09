@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use App\Models\DigitalPublication;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Vendor\Block;
-use A17\Twill\Models\Media;
+use App\Models\PublicationMedia;
 
 class MigrateOSCIPublicationOne extends Command
 {
@@ -125,7 +125,7 @@ class MigrateOSCIPublicationOne extends Command
 
         Storage::disk('s3')->put($imageName, $imageContent);
 
-        $media = new Media([
+        $media = new PublicationMedia([
                     'uuid' => $imageName,
                     'width' => $width,
                     'height' => $height,
@@ -135,8 +135,6 @@ class MigrateOSCIPublicationOne extends Command
 
         $media->alt_text = 'Alt text for the image';
         $media->caption = $caption_html;
-        $media->save();
-        $media->addTag('Publication Image');
         $media->save();
 
         return $media;

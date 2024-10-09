@@ -236,6 +236,9 @@
         return 'mediaMeta[' + this.name + '][' + this.media.id + ']'
       },
       media: function () {
+        // eslint-disable-next-line no-console
+        console.log('PublicationMediaField.media', this.mediaKey, this.selectedMedias)
+
         if (this.selectedMedias.hasOwnProperty(this.mediaKey)) {
           return this.selectedMedias[this.mediaKey][this.index] || {}
         } else {
@@ -517,6 +520,9 @@
       },
       // metadatas
       updateMetadata: function (newValue) {
+        // eslint-disable-next-line no-console
+        console.log('PublicationMediaField.updateMetadata', this.mediaKey, this.index)
+
         this.$store.commit(MEDIA_LIBRARY.SET_MEDIA_METADATAS, {
           media: {
             context: this.mediaKey,

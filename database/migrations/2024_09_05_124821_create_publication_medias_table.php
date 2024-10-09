@@ -25,7 +25,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->integer('publication_mediable_id')->nullable()->unsigned();
-            $table->string('mediable_type')->nullable();
+            $table->string('publication_mediable_type')->nullable();
             $table->integer('publication_media_id')->unsigned();
             $table->integer('crop_x')->nullable();
             $table->integer('crop_y')->nullable();
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('ratio')->nullable();
             $table->json('metadatas')->nullable();
             $table->string('locale', 7)->default($this->getCurrentLocale())->index();
-            $table->index(['mediable_type', 'publication_mediable_id']);
+            $table->index(['publication_mediable_type', 'publication_mediable_id']);
         });    }
 
     public function down(): void
