@@ -12,6 +12,6 @@
     'label' => 'Text',
     'placeholder' => 'Text',
     'toolbarOptions' => [
-        'italic',
+        'bold', 'italic'
     ],
 ])
