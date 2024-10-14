@@ -258,6 +258,7 @@
 // Styles specific to digital publications and their sections:
 .o-article__primary-actions--digital-publication {
   @extend %o-article__primary-actions--toggleable;
+  margin-top: 40px;
   padding-top: 0px;
   z-index: 4;
 
@@ -316,6 +317,10 @@
 
     a:active {
       color: $color__link--publications-active;
+    }
+
+    @include breakpoint('medium-') {
+      margin-top: 40px;
     }
 
     @include breakpoint('large+') {
