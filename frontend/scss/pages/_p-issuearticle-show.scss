@@ -519,7 +519,8 @@ Styling related specifically to digital publications
   }
 }
 
-.p-digitalpublicationarticle-show.p-t-contributions {
+.p-digitalpublicationarticle-show.p-t-contributions,
+.p-digitalpublicationarticle-show.p-t-entry {
   .m-article-actions--publication__logo {
     height: 150px;
     margin-bottom: 0;
