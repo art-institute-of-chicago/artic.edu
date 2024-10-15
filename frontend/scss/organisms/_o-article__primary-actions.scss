@@ -332,6 +332,8 @@
 
     @include breakpoint('medium-') {
       margin-top: 40px;
+      padding-right: 20px;
+      width: 100%;
     }
 
     @include breakpoint('large+') {
