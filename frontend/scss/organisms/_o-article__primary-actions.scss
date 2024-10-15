@@ -282,6 +282,11 @@
       align-items: normal;
     }
 
+    .p-digitalpublicationarticle-show.p-t-contributions &,
+    .p-digitalpublicationarticle-show.p-t-entry & {
+      background-color: unset;
+    }
+
     .p-digitalpublicationarticle-show.p-t-contributions:not(.is-sidebar-overlay) &,
     .p-digitalpublicationarticle-show.p-t-entry:not(.is-sidebar-overlay) & {
       margin-bottom: 40px;
