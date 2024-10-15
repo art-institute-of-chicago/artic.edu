@@ -266,7 +266,8 @@
     margin-top: 40px;
   }
 
-  .o-sticky-sidebar__sticker {
+  .is-sidebar-overlay & .o-sticky-sidebar__sticker {
+    overflow-y: unset;
     padding-bottom: 60px;
   }
 
