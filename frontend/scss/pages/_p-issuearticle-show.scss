@@ -233,10 +233,6 @@
     @include breakpoint('xlarge') {
       width: colspan(18, 'xlarge');
     }
-
-    .o-sticky-sidebar__sticker {
-      padding-right: 0;
-    }
   }
 
   .o-article__secondary-actions {
