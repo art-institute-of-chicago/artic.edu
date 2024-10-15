@@ -200,6 +200,12 @@ const stickySidebar = function(container){
     }
   }
 
+  function _escape(event) {
+    if (overlayActive && event.keyCode === 27) {
+      triggerCustomEvent(document, 'stickySidebar:close');
+    }
+  }
+
   function _init() {
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resized', handleResize);
@@ -214,6 +220,7 @@ const stickySidebar = function(container){
     document.addEventListener('mediaQueryUpdated',_mediaQueryUpdated, false);
 
     window.addEventListener('hashchange', _hideSidebar, false);
+    window.addEventListener('keyup', _escape, false);
 
     handleResize();
     handleScroll();
@@ -231,6 +238,7 @@ const stickySidebar = function(container){
     document.removeEventListener('mediaQueryUpdated',_mediaQueryUpdated);
 
     window.removeEventListener('hashchange', _hideSidebar);
+    window.removeEventListener('keyup', _escape);
 
     // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
