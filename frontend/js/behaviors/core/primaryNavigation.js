@@ -35,7 +35,11 @@ export default function(container) {
             `${exhibitionApiPath}?${featuredExhibitionApiQuery.toString()}`,
             container.dataset.apiUrl
         )
-        fetch(featuredExhibitionData, { cache: 'force-cache' })
+        fetch(featuredExhibitionData, {
+          headers: {
+            'Cache-Control': 'max-age=86400' // 86400 = 24 hours
+          }
+        })
             .then(response => response.json())
             .then(exhibitionHandler)
         menuItems.forEach(function(menuItem) {
