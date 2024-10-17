@@ -40,7 +40,6 @@ class Experience extends AbstractModel implements Sortable
         'interactive_feature_id',
         'archived',
         'kiosk_only',
-        'show_on_articles',
         'is_unlisted',
         'is_in_magazine',
         'author_display',
@@ -228,11 +227,6 @@ class Experience extends AbstractModel implements Sortable
                     ->published()
                     ->unarchived();
             });
-    }
-
-    public function scopeArticlePublished($query)
-    {
-        return $query->where('show_on_articles', '=', true);
     }
 
     public function scopeArchived($query)
