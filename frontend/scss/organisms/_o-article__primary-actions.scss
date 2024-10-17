@@ -261,7 +261,13 @@
   padding-top: 0px;
   z-index: 4;
 
-  .o-sticky-sidebar__sticker {
+  .p-digitalpublications-show &,
+  .p-digitalpublications-showlisting & {
+    margin-top: 40px;
+  }
+
+  .is-sidebar-overlay & .o-sticky-sidebar__sticker {
+    overflow-y: unset;
     padding-bottom: 60px;
   }
 
@@ -271,12 +277,18 @@
     display: flex;
     align-items: center;
 
-    .is-sidebar-fixed & {
+    .is-sidebar-fixed:not(.is-sidebar-overlay) & {
       display: block;
       align-items: normal;
     }
 
-    .p-digitalpublicationarticle-show.p-t-contributions & {
+    .p-digitalpublicationarticle-show.p-t-contributions &,
+    .p-digitalpublicationarticle-show.p-t-entry & {
+      background-color: unset;
+    }
+
+    .p-digitalpublicationarticle-show.p-t-contributions:not(.is-sidebar-overlay) &,
+    .p-digitalpublicationarticle-show.p-t-entry:not(.is-sidebar-overlay) & {
       margin-bottom: 40px;
     }
 
@@ -316,6 +328,12 @@
 
     a:active {
       color: $color__link--publications-active;
+    }
+
+    @include breakpoint('medium-') {
+      margin-top: 40px;
+      padding-right: 20px;
+      width: 100%;
     }
 
     @include breakpoint('large+') {
