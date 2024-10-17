@@ -205,27 +205,31 @@
     &>div.author-links,
     &>div.m-title-bar,
     &>div.o-blocks--bibliographic,
+    &>h1,
     &>h2,
     &>h3,
     &>h4,
     &>p:not(.p--linked) {
-      @include breakpoint('small-') {
+      @include breakpoint('xsmall') {
         width: 100%;
       }
+      @include breakpoint('small') {
+        width: colspan(52, 'small');
+      }
       @include breakpoint('medium') {
-        width: 88%;
+        width: colspan(38, 'medium');
       }
       @include breakpoint('large') {
-        width: colspan(33, 'large');
+        width: colspan(28, 'large');
       }
       @include breakpoint('xlarge') {
-        width: 73.5%;
+        width: colspan(25, 'xlarge');
       }
     }
   }
 
   .o-article__body .p--linked {
-    @include breakpoint('small-') {
+    @include breakpoint('xsmall') {
       padding-right: 0;
       .p--linked__text {
         width: 100%;
@@ -234,19 +238,28 @@
         display: none;
       }
     }
+    @include breakpoint('small') {
+      padding-right: 0;
+      .p--linked__text {
+        width: colspan(52, 'small');
+      }
+      .p--linked__ref {
+        display: none;
+      }
+    }
     @include breakpoint('medium') {
       .p--linked__text {
-        width: 88%;
+        width: colspan(38, 'medium');
       }
     }
     @include breakpoint('large') {
       .p--linked__text {
-        width: colspan(33, 'large');
+        width: colspan(28, 'large');
       }
     }
     @include breakpoint('xlarge') {
       .p--linked__text {
-        width: 73.5%
+        width: colspan(25, 'xlarge');
       }
     }
   }
