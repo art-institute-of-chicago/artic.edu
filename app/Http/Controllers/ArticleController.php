@@ -48,7 +48,7 @@ class ArticleController extends FrontController
                 return $highlight;
             });
 
-        $experiences = Experience::published()
+        $experiences = Experience::webPublished()
             ->notUnlisted()
             ->byCategories(request('category'))
             ->orderBy('created_at', 'desc')
