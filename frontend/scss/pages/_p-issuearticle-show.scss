@@ -200,6 +200,30 @@
     }
   }
 
+  .o-article__body {
+    &>blockquote.quote,
+    &>div.author-links,
+    &>div.m-title-bar,
+    &>div.o-blocks--bibliographic,
+    &>h2,
+    &>h3,
+    &>h4,
+    &>p:not(.p--linked) {
+      @include breakpoint('small-') {
+        width: 100%;
+      }
+      @include breakpoint('medium') {
+        width: 88%;
+      }
+      @include breakpoint('large') {
+        width: colspan(33, 'large');
+      }
+      @include breakpoint('xlarge') {
+        width: 73.5%;
+      }
+    }
+  }
+
   .o-article__body .p--linked {
     @include breakpoint('small-') {
       padding-right: 0;
