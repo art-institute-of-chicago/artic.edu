@@ -114,6 +114,7 @@
       width: 100%;
       display: flex;
       align-items: center;
+      padding-right: 20px;
     }
 
     &::before {
@@ -232,10 +233,6 @@
     }
     @include breakpoint('xlarge') {
       width: colspan(18, 'xlarge');
-    }
-
-    .o-sticky-sidebar__sticker {
-      padding-right: 0;
     }
   }
 
@@ -519,7 +516,8 @@ Styling related specifically to digital publications
   }
 }
 
-.p-digitalpublicationarticle-show.p-t-contributions {
+.p-digitalpublicationarticle-show.p-t-contributions,
+.p-digitalpublicationarticle-show.p-t-entry.is-sidebar-overlay {
   .m-article-actions--publication__logo {
     height: 150px;
     margin-bottom: 0;

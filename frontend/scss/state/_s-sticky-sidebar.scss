@@ -86,6 +86,16 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         width: 100vw;
       }
     }
+    @include breakpoint('small') {
+      .o-sticky-sidebar__sticker {
+        width: calc(colspan(19, 'small') + map-get($outer-gutters, 'small'));
+      }
+    }
+    @include breakpoint('medium') {
+      .o-sticky-sidebar__sticker {
+        width: calc(colspan(19, 'medium') + map-get($outer-gutters, 'medium'));
+      }
+    }
   }
 
   @include breakpoint('large+') {
