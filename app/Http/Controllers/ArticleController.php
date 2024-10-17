@@ -30,61 +30,62 @@ class ArticleController extends FrontController
 
         $page = Page::forType('Articles')->first();
 
-        if (request('category') !== 'interactive-features') {
-            $articles = Article::published()
-                ->notUnlisted()
-                ->byCategories(request('category'))
-                ->orderBy('date', 'desc')
-                ->get()->map(function ($article) {
-                    $article->sort_date = $article->date ?? $article->created_at;
-                    return $article;
-                });
+        $articles = Article::published()
+            ->notUnlisted()
+            ->byCategories(request('category'))
+            ->orderBy('date', 'desc')
+            ->get()->map(function ($article) {
+                $article->sort_date = $article->date ?? $article->created_at;
+                return $article;
+            });
 
-            $highlights = Highlight::published()
-                ->notUnlisted()
-                ->byCategories(request('category'))
-                ->orderBy('publish_start_date', 'desc')
-                ->get()->map(function ($highlight) {
-                    $highlight->sort_date = $highlight->publish_start_date ?? $highlight->created_at;
-                    return $highlight;
-                });
+        $highlights = Highlight::published()
+            ->notUnlisted()
+            ->byCategories(request('category'))
+            ->orderBy('publish_start_date', 'desc')
+            ->get()->map(function ($highlight) {
+                $highlight->sort_date = $highlight->publish_start_date ?? $highlight->created_at;
+                return $highlight;
+            });
 
-            $experiences = Experience::published()
-                ->notUnlisted()
-                ->byCategories(request('category'))
-                ->orderBy('created_at', 'desc')
-                ->get()->map(function ($experience) {
-                    $experience->sort_date = $experience->created_at;
-                    return $experience;
-                });
+        $experiences = Experience::published()
+            ->notUnlisted()
+            ->byCategories(request('category'))
+            ->orderBy('created_at', 'desc')
+            ->get()->map(function ($experience) {
+                $experience->sort_date = $experience->created_at;
+                return $experience;
+            });
 
-            $videos = Video::published()
-                ->byCategories(request('category'))
-                ->where('is_listed', true)
-                ->orderBy('date', 'desc')
-                ->get()->map(function ($video) {
-                    $video->sort_date = $video->date ?? $video->created_at;
-                    return $video;
-                });
+        $videos = Video::published()
+            ->byCategories(request('category'))
+            ->where('is_listed', true)
+            ->orderBy('date', 'desc')
+            ->get()->map(function ($video) {
+                $video->sort_date = $video->date ?? $video->created_at;
+                return $video;
+            });
 
-            $items = $articles->concat($highlights)->concat($experiences)->concat($videos)->sortByDesc('sort_date');
-
-            if (request('type')) {
-                $items = $items->where('type', (Str::singular(request('type'))));
-            }
-
-            $articlesCount = $items->count();
-
-            $perPage = self::ARTICLES_PER_PAGE;
-            $currentPage = LengthAwarePaginator::resolveCurrentPage();
-            $currentItems = $items->slice(($currentPage - 1) * $perPage, $perPage)->all();
-            $paginator = new LengthAwarePaginator($currentItems, count($items), $perPage, $currentPage, ['path' => LengthAwarePaginator::resolveCurrentPath()]);
-
-            $articles = $paginator;
+        if (request('type') == 'articles') {
+            $items = $articles;
+        } elseif (request('type') == 'highlights') {
+            $items = $highlights;
+        } elseif (request('type') == 'videos') {
+            $items = $videos;
+        } elseif (request('type') == 'interactive features') {
+            $items = $experiences;
         } else {
-            // Retrieve experiences entires
-            $articles = Experience::webPublished()->articlePublished()->paginate(self::ARTICLES_PER_PAGE);
+            $items = $articles->concat($highlights)->concat($experiences)->concat($videos)->sortByDesc('sort_date');
         }
+
+        $articlesCount = $items->count();
+
+        $perPage = self::ARTICLES_PER_PAGE;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = $items->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $paginator = new LengthAwarePaginator($currentItems, count($items), $perPage, $currentPage, ['path' => LengthAwarePaginator::resolveCurrentPath()]);
+
+        $articles = $paginator;
 
         $types = [
             [
