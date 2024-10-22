@@ -70,10 +70,10 @@
             @slot('date', $date ?? null)
         @endcomponent
 
-        @if (isset($type))
+        @if (isset($type) || isset($type_override))
             @component('components.atoms._type')
                 @slot('tag','p')
-                {{ $type }}
+                {{ $type_override ?? $type }}
             @endcomponent
         @endif
 
