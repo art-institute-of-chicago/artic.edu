@@ -92,7 +92,7 @@ class ExhibitionPresenter extends BasePresenter
 
     public function exhibitionType()
     {
-        return $this->entity->isOngoing ? 'Ongoing' : 'Exhibition';
+        return $this->entity->type_override ? $this->entity->type_override : ($this->entity->isOngoing ? 'Ongoing' : 'Exhibition');
     }
 
     /**
