@@ -26,9 +26,9 @@ const viewer360 = function(container) {
 	frames360 = frames360.map(frame => ({
 		frame: frame.frame,
 		src: assetURL(frame.src, {
-			w: isLarge ? windowWidth - 120 : windowWidth,
-			h: isLarge ? windowHeight - 80 : windowHeight,
-			q: 75
+		  w: isLarge ? (windowWidth - 120) * (window.devicePixelRatio || 1) : windowWidth * (window.devicePixelRatio || 1),
+		  h: isLarge ? (windowHeight - 80) * (window.devicePixelRatio || 1) : windowHeight * (window.devicePixelRatio || 1),
+		  q: 75
 		})
 	}));
 
