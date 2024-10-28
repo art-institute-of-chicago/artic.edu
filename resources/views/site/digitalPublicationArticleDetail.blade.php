@@ -53,7 +53,8 @@
         {{-- Intentionally left blank for layout --}}
     </div>
 
-    @if ($item->article_type !== DigitalPublicationArticleType::Entry)
+    @if ($item->article_type !== DigitalPublicationArticleType::About
+        && $item->article_type !== DigitalPublicationArticleType::Entry)
         <div class="m-article-header__text u-show@large+">
             @component('components.atoms._title')
                 @slot('tag', 'h1')
