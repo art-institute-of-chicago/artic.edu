@@ -143,7 +143,11 @@
         font-family-loaded: $serif-font--loaded,
         font-loaded-class: $serif-font-loaded-class,
         settings: (
-          'xsmall': (font-size: 22, line-height: 23, push: 0),
+          'xlarge': (font-size: 20, line-height: 24, push: 0),
+          'large': (font-size: 20, line-height: 24, push: 0),
+          'medium': (font-size: 28, line-height: 32, push: 0),
+          'small': (font-size: 22, line-height: 38, push: 0),
+          'xsmall': (font-size: 22, line-height: 38, push: 0),
         )
       )
     ));
@@ -222,6 +226,28 @@
       }
       @include breakpoint('xlarge') {
         width: colspan(25, 'xlarge');
+      }
+    }
+  }
+
+  .o-article>.m-article-header__text {
+    .f-headline-editorial {
+      @include breakpoint('large+') {
+        font-size: 28px;
+        line-height: 32px;
+      }
+    }
+  }
+
+  .o-article__body>.m-article-header__text {
+    .f-headline-editorial {
+      @include breakpoint('small-') {
+        font-size: 22px;
+        line-height: 28px;
+      }
+      @include breakpoint('medium') {
+        font-size: 28px;
+        line-height: 32px;
       }
     }
   }

@@ -1126,6 +1126,16 @@
         z-index: map-get($zindexs, 'header');
       }
     }
+
+    .title {
+      font-size: 22px;
+      line-height: 28px;
+      margin-bottom: 26px;
+    }
+
+    .subtitle {
+      display: none;
+    }
   }
 
   @include breakpoint('medium+') {
@@ -1138,6 +1148,8 @@
     }
 
     .title {
+      font-size: 28px;
+      line-height: 32px;
       margin-top: 35px;
     }
 
