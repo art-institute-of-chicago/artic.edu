@@ -1105,6 +1105,7 @@
   .title {
     font-size: 38px;
     line-height: 44px;
+    margin-right: 26px;
     margin-top: 26px;
   }
 
@@ -1113,6 +1114,7 @@
     font-size: 18px;
     line-height: 25px;
     margin-bottom: 26px;
+    margin-right: 26px;
     margin-top: 26px;
     text-align: left;
   }
@@ -1138,7 +1140,7 @@
     }
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint('medium') {
     .m-article-header__text {
       padding-right: 4.875vw !important;
     }
