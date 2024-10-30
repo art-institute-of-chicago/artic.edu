@@ -25,7 +25,7 @@ const headerAwareScroll = function(container) {
             if (headerFeature) {
                 const headerHeight = headerFeature.getBoundingClientRect().height;
                 // Add the height to the scroll position
-                scrollPosition -= headerHeight + 30;
+                scrollPosition -= headerHeight + 60;
             }
 
 
@@ -33,7 +33,7 @@ const headerAwareScroll = function(container) {
             window.requestAnimationFrame(() => {
                 window.scrollTo({
                     top: scrollPosition,
-                    behavior: 'smooth'
+                    behavior: 'instant'
                 });
             });
         }
