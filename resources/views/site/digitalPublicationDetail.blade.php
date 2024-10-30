@@ -60,8 +60,8 @@
                                 @foreach ($topLevelArticle->children->filter(function($item) {
                                     return !$item->suppress_listing;
                                     })->sortBy('position') as $item)
-                                    @if ($loop->iteration <= 4 || $showAll == true)
-                                        @if($loop->first && $showAll == false)
+                                    @if ($loop->iteration <= 4)
+                                        @if($loop->first)
                                             @component('components.molecules._m-showcase')
                                                 @slot('variation', 'showcase--digital-publication')
                                                 @slot('tag', $item->present()->label ?? null)
@@ -85,7 +85,7 @@
                                                 ))
                                             @endcomponent
                                         @else
-                                            @if($loop->first || ($loop->iteration == 2 && $showAll == false))
+                                            @if($loop->iteration == 2)
                                                 @component('components.organisms._o-grid-listing')
                                                     @slot('cols_small','2')
                                                     @slot('cols_medium','3')
