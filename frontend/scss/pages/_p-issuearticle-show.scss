@@ -492,7 +492,7 @@ Styling related specifically to digital publications
     }
   }
 
-  .o-article__body.o-blocks.o-gallery {
+  .o-article__body.o-blocks>.o-gallery {
     >.o-gallery__media-wrapper {
       padding: 0 !important;
       margin: 0 !important;
