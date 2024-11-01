@@ -32,7 +32,7 @@
             @endcomponent
         @endif
     </div>
-    <div class="m-article-actions--publication__logo u-show@medium-">
+    <div class="m-article-actions--publication__logo u-show@medium- contrast-text">
         {!! $pub_title_display ?? $pub_title !!}
     </div>
 </header>

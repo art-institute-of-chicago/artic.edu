@@ -86,6 +86,7 @@
                     @slot('itemprop', 'name')
                     @slot('title', $item->present()->title)
                     @slot('title_display', $item->present()->title_display ?? null)
+                    @slot('variation', 'contrast-text')
                 @endcomponent
             </div>
         @endif
