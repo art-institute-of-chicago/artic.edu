@@ -143,11 +143,11 @@
         font-family-loaded: $serif-font--loaded,
         font-loaded-class: $serif-font-loaded-class,
         settings: (
-          'xlarge': (font-size: 20, line-height: 24, push: 0),
-          'large': (font-size: 20, line-height: 24, push: 0),
-          'medium': (font-size: 28, line-height: 32, push: 0),
-          'small': (font-size: 22, line-height: 38, push: 0),
-          'xsmall': (font-size: 22, line-height: 38, push: 0),
+          'xlarge': (font-size: 20, line-height: 26, push: 0),
+          'large': (font-size: 20, line-height: 26, push: 0),
+          'medium': (font-size: 28, line-height: 34, push: 0),
+          'small': (font-size: 22, line-height: 28, push: 0),
+          'xsmall': (font-size: 22, line-height: 28, push: 0),
         )
       )
     ));
