@@ -362,22 +362,22 @@
 @each $name,
 $point in ('xsmall', 'small') {
   @include breakpoint('#{$name}') {
-    >li:nth-child(2) .g-footer__grid__group {
+    .g-footer > li:nth-child(2) .g-footer__grid__group {
       padding-bottom: 0;
     }
 
-    >li:nth-child(4) .g-footer__grid__group {
+    .g-footer > li:nth-child(4) .g-footer__grid__group {
       margin-top: -8px;
     }
   }
 }
 
 @include breakpoint('medium+') {
-  >li:nth-child(1) {
+  .g-footer > li:nth-child(1) {
     width: colspan(grid-cols-to-colspan(3, 58), 'medium');
   }
 
-  >li:nth-child(2) {
+  .g-footer > li:nth-child(2) {
     display: flex;
     justify-content: space-between;
 
@@ -407,7 +407,7 @@ $point in ('xsmall', 'small') {
     }
   }
 
-  >li:nth-child(3)::before {
+  .g-footer > li:nth-child(3)::before {
     content: '';
     position: absolute;
     display: block;
@@ -420,15 +420,15 @@ $point in ('xsmall', 'small') {
     pointer-events: none;
   }
 
-  >li {
+  .g-footer > li {
     .g-footer__grid__group:first-child {
       border-top: none;
       padding-top: 0;
     }
   }
 
-  >li:nth-child(1),
-  >li:nth-child(2) {
+  .g-footer > li:nth-child(1),
+  .g-footer > li:nth-child(2) {
     min-height: initial;
   }
 
@@ -439,7 +439,7 @@ $point in ('xsmall', 'small') {
 }
 
 @include breakpoint('medium') {
-  >li {
+  .g-footer > li {
     &::after {
       display: none;
     }
@@ -454,11 +454,11 @@ $point in ('xsmall', 'small') {
 @each $name,
 $point in ('large', 'xlarge') {
   @include breakpoint('#{$name}') {
-    >li:first-child {
+    .g-footer > li:first-child {
       width: colspan(grid-cols-to-colspan(2, 58), $name);
     }
 
-    >li:nth-child(2) {
+    .g-footer > li:nth-child(2) {
       width: colspan(grid-cols-to-colspan(2, 58), $name);
 
       .g-footer__grid__group {
@@ -474,7 +474,7 @@ $point in ('large', 'xlarge') {
       }
     }
 
-    >li:nth-child(3)::before {
+    .g-footer > li:nth-child(3)::before {
       width: colspan(58, $name);
     }
   }
