@@ -44,9 +44,10 @@
     "gl-vec3": "^1.1.3",
     "lodash": "^4.17.21",
     "mirador": "^3.0.0",
-    "my-museum-tour-builder": "git+https://github.com/art-institute-of-chicago/my-museum-tour.git#semver:^1.15",
+    "my-museum-tour-builder": "github:art-institute-of-chicago/my-museum-tour#semver:^1.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "text-contrast": "^1.0.2",
     "video.js": "^8.17.2",
     "videojs-event-tracking": "^1.0.3"
   },
