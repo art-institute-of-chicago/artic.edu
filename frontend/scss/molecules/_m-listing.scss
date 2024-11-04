@@ -2370,9 +2370,12 @@ a:focus:hover .btn--magazine {
 
   .title {
     @include untuck;
-    padding-top: 10px;
-    line-height: 1.25em;
-    font-size: 19px;
+
+    & {
+      padding-top: 10px;
+      line-height: 1.25em;
+      font-size: 19px;
+    }
   }
 }
 
