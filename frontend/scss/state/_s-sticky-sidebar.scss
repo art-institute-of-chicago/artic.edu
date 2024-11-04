@@ -159,7 +159,9 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
           }
         }
 
-        overflow-y: auto;
+        & {
+          overflow-y: auto;
+        }
       }
     }
 
