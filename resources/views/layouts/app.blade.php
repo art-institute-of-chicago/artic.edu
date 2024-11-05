@@ -2,7 +2,7 @@
 $print = app('printservice')->isPrintMode();
 $pClass = 'App\Http\Controllers\GenericPagesController';
 if (env('APP_ENV') != 'testing') {
-    $action = request()->route()->getAction();
+    $action = request()->route()?->getAction();
     if (is_array($action) && $action['controller']) {
         $pClass = $action['controller'];
     }
