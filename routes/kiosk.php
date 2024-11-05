@@ -9,4 +9,4 @@ Route::get(
 )->name('interactiveFeatures.showKiosk');
 
 // Only needed so that the kiosk doesn't fallback to the web routes.
-Route::fallback(fn() => null);
+Route::fallback(fn() => abort(404));
