@@ -26,35 +26,14 @@
         </ul>
     </div>
 
-    @if (isset($issues) && $issues->count() > 1)
+    @if (isset($issues))
         <hr>
-
-        <ul class="m-article-actions--journal__issues" data-behavior="dragScroll">
-            @foreach($issues as $issue)
-                <li>
-                    @component('components.atoms._tag')
-                        @slot('href', route('magazine-issues.show', [
-                            'id' => $issue->id,
-                            'slug' => $issue->getSlug(),
-                        ]))
-                        @slot('variation', 'tag--magazine tag--senary tag--w-image')
-                        @slot('gtmAttributes', 'data-gtm-event="' . StringHelpers::getUtf8Slug( $issue->title ) . '" data-gtm-event-category="magazine-sidebar-issue"')
-                        @if (!empty($issue->imageFront('hero', 'default')))
-                            @component('components.atoms._img')
-                                @slot('image', $issue->imageFront('hero', 'default'))
-                                @slot('settings', array(
-                                    'fit' => 'crop',
-                                    'ratio' => '1:1',
-                                    'srcset' => array(30,60),
-                                    'sizes' => '60px',
-                                ))
-                            @endcomponent
-                        @endif
-                        {!! $issue->present()->title !!}
-                    @endcomponent
-                </li>
-            @endforeach
-        </ul>
+        @component('components.organisms._o-accordion-tree')
+            @slot('variation', 'o-accordion--magazine-issue-archive')
+            @slot('titleFont', 'f-tag-2')
+            @slot('items', $issues)
+            @slot('active', true)
+        @endcomponent
     @endif
 
     <hr class="u-hide@large u-hide@xlarge">
