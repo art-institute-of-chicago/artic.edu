@@ -1,3 +1,26 @@
+{{--
+    Expects $items to be in the format:
+    [
+        [
+            'title' => 'Level 1 title',
+            'items' => [
+                [
+                    'title' => 'Level 2 title',
+                    'items' => [
+                        [
+                            'title' => 'Level 3 item',
+                            'url' => 'https://some.link',
+                        ],
+                        [
+                            'title' => 'Another level 3 item',
+                            'url' => 'https://some-other.link',
+                        ]
+                    ]
+                ],
+            ],
+        ]
+    ]
+--}}
 <div class="o-accordion{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="accordion">
     @foreach ($items as $item)
         @if (isset($item['items']) && count($item['items']) > 0)
