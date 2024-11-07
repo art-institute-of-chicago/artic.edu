@@ -155,21 +155,10 @@ class AppServiceProvider extends ServiceProvider
 
     private function composeTemplatesViews()
     {
-        if (!\Schema::hasTable('hours')) {
-            /*
-            If the project is being initialized or not all of the migrations
-            have been run yet, the `hours` table may not exist, so skip this
-            function.
-            */
-            return;
-        }
-        $hour = app()->environment() === 'testing' ? null : Hour::today()->first();
-
         // WEB-2269: Consider moving some of this to a config?
-        view()->composer('*', function ($view) use ($hour) {
-            $view->with(\Cache::remember('navArray', 3600, function () use ($hour) {
+        view()->composer('*', function ($view) {
+            $view->with(\Cache::remember('navArray', 3600, function () {
                 return [
-                    'hour' => $hour,
                     '_pages' => [
                         'visit' => route('pages.slug', ['slug' => 'visit']),
                         'hours' => route('pages.slug', ['slug' => 'visit']) . '#hours',
