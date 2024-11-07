@@ -85,7 +85,7 @@ class InteractiveFeatureExperiencesController extends FrontController
     {
         if (in_array('kiosk', request()->segments())) {
             return redirect()->action(
-                'InteractiveFeatureExperiencesController@showKiosk',
+                [self::class, 'showKiosk'],
                 ['slug' => $slug]
             );
         }
@@ -132,9 +132,7 @@ class InteractiveFeatureExperiencesController extends FrontController
 
         $this->seo->setTitle($experience->title);
 
-        $view = 'site.experienceDetailKiosk';
-
-        return view($view, [
+        return view('site.experienceDetailKiosk', [
             'contrastHeader' => true,
             'experience' => $experience
         ]);

@@ -9,9 +9,11 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasRelated;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class InteractiveFeature extends AbstractModel
 {
+    use HasFactory;
     use HasRevisions;
     use HasSlug;
     use HasMedias;
