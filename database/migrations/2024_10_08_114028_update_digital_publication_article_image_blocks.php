@@ -13,7 +13,7 @@ return new class extends Migration
             ->where('blockable_type', 'digitalPublicationArticles')
             ->get();
 
-        // Update the size in the content JSON column to 'l'
+        // Update the content JSON column for image block on digital publication articles
         foreach ($digiPubImageBlocks as $block) {
             $content = $block->content;
             if ($content['size'] == 'm') {
