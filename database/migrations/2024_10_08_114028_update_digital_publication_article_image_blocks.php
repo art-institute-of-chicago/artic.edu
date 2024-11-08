@@ -1,32 +1,30 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use App\Models\Vendor\Block;
 
 return new class extends Migration
 {
     public function up(): void
     {
         // Find all image blocks of digitalPublicationArticles
-        $digiPubImageBlocks = DB::table(table: 'blocks')
-            ->where(column: 'type', operator: 'image')
-            ->where(column: 'blockable_type', operator: 'digitalPublicationArticles')
+        $digiPubImageBlocks = Block::where('type', 'image')
+            ->where('blockable_type', 'digitalPublicationArticles')
             ->get();
 
-        // Update the size in the content JSON column to 'l'
+        // Update the content JSON column for image block on digital publication articles
         foreach ($digiPubImageBlocks as $block) {
-            $content = json_decode($block->content, associative: true);
-
-            $content['size'] = 'l';
+            $content = $block->content;
+            if ($content['size'] == 'm') {
+                $content['size'] = 's';
+            }
             $content['use_alt_background'] = true;
             $content['use_contain'] = true;
 
             // Update the block with the new JSON
-            DB::table(table: 'blocks')
-                ->where(column: 'id', operator: $block->id)
-                ->update(values: ['content' => json_encode(value: $content)]);
+            $block->content = $content;
+            $block->save();
         }
     }
 
