@@ -1,7 +1,12 @@
 {
     "name": "aic/website",
     "description": "Art Institute of Chicago website – artic.edu",
-    "keywords": ["website", "museum", "musetech", "art institute of chicago"],
+    "keywords": [
+        "website",
+        "museum",
+        "musetech",
+        "art institute of chicago"
+    ],
     "license": "AGPL-3.0-or-later",
     "type": "project",
     "repositories": [
@@ -62,7 +67,7 @@
         "rlanvin/php-rrule": "^2.0",
         "salesforce-mc/fuel-sdk-php": "dev-master",
         "sendgrid/sendgrid": "^8.1",
-        "sentry/sentry-laravel": "^3.0",
+        "sentry/sentry-laravel": "^4.9",
         "spatie/calendar-links": "^1.0",
         "spatie/laravel-feed": "^4.0",
         "spatie/laravel-sitemap": "^6.0",
