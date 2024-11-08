@@ -414,7 +414,7 @@
 
       img {
         position: relative !important;
-        max-height: 450px !important;
+        max-height: 225px !important;
         width: 100% !important;
         object-fit: contain !important;
         display: block !important;
@@ -422,6 +422,25 @@
     }
   }
 
+  .m-media--s.o-blocks__block figcaption {
+    @include breakpoint('xsmall') {
+      padding-right: 0;
+      width: 100%;
+    }
+    @include breakpoint('small') {
+      padding-right: 0;
+      width: colspan(52, 'small');
+    }
+    @include breakpoint('medium') {
+      width: colspan(38, 'medium');
+    }
+    @include breakpoint('large') {
+      width: colspan(28, 'large');
+    }
+    @include breakpoint('xlarge') {
+      width: colspan(25, 'xlarge');
+    }
+  }
 
   .m-media.o-blocks__block .m-media__img img {
     margin-left: 0;
