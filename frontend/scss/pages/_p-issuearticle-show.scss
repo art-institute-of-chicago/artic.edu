@@ -414,10 +414,18 @@
 
       img {
         position: relative !important;
-        max-height: 225px !important;
+        max-height: 450px !important;
         width: 100% !important;
         object-fit: contain !important;
         display: block !important;
+      }
+    }
+  }
+
+  .m-media--s.o-blocks__block {
+    .m-media__img {
+      img {
+        max-height: 225px !important;
       }
     }
   }
