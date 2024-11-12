@@ -36,8 +36,6 @@
         @endcomponent
     @endif
 
-    <hr class="u-hide@large u-hide@xlarge">
-
 </div>
 
 <div class="o-sticky-sidebar__placeholder"></div>
