@@ -103,6 +103,10 @@
     top: -40px;
     height: calc(100% + 40px);
   }
+
+  .o-article__body > .m-title-bar:first-of-type:not(:has(+ .m-showcase, + .o-issue__intro))::before {
+    content: none;
+  }
 }
 
 .p-digitalpublications-showlisting {
