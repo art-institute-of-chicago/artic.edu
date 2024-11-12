@@ -13,7 +13,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
   }
 
   .o-sticky-sidebar__sticker {
-    height: 100vh;
+    max-height: 100vh;
   }
 
   &.is-sidebar-overlay {
