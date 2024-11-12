@@ -388,6 +388,25 @@
 }
 
 // Styles specific to magazine issues:
+.p-magazineissue-latest,
+.p-magazineissue-show {
+  @include breakpoint('medium-') {
+    .o-article {
+      display: flex;
+      flex-direction: column;
+
+      &>.m-article-header {
+        order: 1;
+      }
+      &>.o-article__primary-actions {
+        order: 3;
+      }
+      &>.o-article__body {
+        order: 2;
+      }
+    }
+  }
+}
 .o-article__primary-actions--magazine-issue {
   .o-sticky-sidebar__sticker {
     padding-top: 100px;
