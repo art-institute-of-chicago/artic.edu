@@ -104,8 +104,16 @@
     height: calc(100% + 40px);
   }
 
-  .o-article__body > .m-title-bar:first-of-type:not(:has(+ .m-showcase, + .o-issue__intro))::before {
-    content: none;
+  .o-article__body > .m-title-bar {
+    margin-top: 55px;
+  }
+
+  .o-article__body > .m-title-bar:first-of-type:not(:has(+ .m-showcase, + .o-issue__intro)) {
+    margin-top: 36px !important;
+
+    &::before {
+      content: none;
+    }
   }
 }
 
