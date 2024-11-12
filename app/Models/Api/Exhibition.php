@@ -136,11 +136,6 @@ class Exhibition extends BaseApiModel
 
     public function getIsClosingSoonAttribute()
     {
-        // If the start and end dates are overriden, don't consider this exhibition as closing soon
-        if ($this->date_display_override) {
-            return false;
-        }
-
         if (!empty($this->dateEnd)) {
             if (empty($this->dateStart) || Carbon::now()->gt($this->dateStart->endOfDay())) {
                 return Carbon::now()->between($this->dateEnd->endOfDay()->subWeeks(2), $this->dateEnd->endOfDay());
