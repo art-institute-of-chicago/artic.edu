@@ -390,7 +390,8 @@
   margin-bottom: 48px;
 }
 
-.o-accordion.o-accordion--publication-sidebar {
+.o-accordion.o-accordion--publication-sidebar,
+.o-accordion.o-accordion--magazine-issue-archive {
 
   h3 {
     padding: 1px 0 0 0;
@@ -414,7 +415,8 @@
     }
   }
 
-  .o-accordion__panel > .o-accordion--publication-sidebar {
+  .o-accordion__panel > .o-accordion--publication-sidebar,
+  .o-accordion__panel > .o-accordion.o-accordion--magazine-issue-archive {
     padding-left: 20px;
     &:last-of-type {
       padding-bottom: 20px;

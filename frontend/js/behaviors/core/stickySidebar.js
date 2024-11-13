@@ -68,7 +68,7 @@ const stickySidebar = function(container){
     navContainer = document.querySelector('.g-header');
     stickyHeaderContainer = document.querySelector('.m-article-header');
 
-    // `containerToo` is caluclated in the `handleResize` method
+    // `containerTop` is caluclated in the `handleResize` method
     if (scrollTop < containerTop - (document.documentElement.classList.contains('s-sticky-digital-publication-header') ? stickyHeaderContainer.clientHeight : 0)) {
       top();
       container.style.marginTop = '0px';
@@ -77,13 +77,6 @@ const stickySidebar = function(container){
         bottom();
       } else {
         sticky();
-
-        // Only add margin if the screen width is 1200px or above
-        if (window.innerWidth >= 1200) {
-          container.style.marginTop = (document.documentElement.classList.contains('p-digitalpublicationarticle-show') ? 0 : (!document.documentElement.classList.contains('s-unsticky-header') ? navContainer.clientHeight : 0) + (!document.documentElement.classList.contains('s-unsticky-digital-publication-header') ? stickyHeaderContainer.clientHeight : 0)) + 'px';
-        } else {
-          container.style.marginTop = '0px';
-        }
       }
     }
   }
