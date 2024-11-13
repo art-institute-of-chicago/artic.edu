@@ -10,7 +10,6 @@ use App\Http\Controllers\Admin\ExhibitionController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Admin\Vendor\MediaLibraryController;
 
 Route::module('pages');
 
@@ -122,9 +121,3 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('tourStops');
     Route::module('vanityRedirects');
 });
-
-if (config('twill.enabled.media-library')) {
-    Route::group(['prefix' => 'media-library', 'as' => 'media-library.'], function () {
-        Route::resource('medias', MediaLibraryController::class, ['only' => ['index']]);
-    });
-}
