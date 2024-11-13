@@ -1,6 +1,23 @@
 @php
     $currentUrl = explode('/', request()->url());
     $type = $currentUrl[5] ?? null;
+    $options = [];
+    $options[] = [
+        'value' => 's',
+        'label' => 'Small'
+    ];
+
+    if ($type !== 'digitalPublications') {  // replace $condition with your actual condition
+        $options[] = [
+            'value' => 'm',
+            'label' => 'Medium'
+        ];
+    }
+
+    $options[] = [
+        'value' => 'l',
+        'label' => 'Large'
+    ];
 @endphp
 
 @twillBlockTitle('Image')
@@ -19,21 +36,7 @@
     'label' => 'Size',
     'placeholder' => 'Select size',
     'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-    'options' => [
-        [
-            'value' => 's',
-            'label' => 'Small'
-        ],
-        [
-            'value' => 'm',
-            'label' => 'Medium'
-        ],
-        [
-            'value' => 'l',
-            'label' => 'Large'
-        ]
-    ]
+    'options' => $options,
 ])
 
 @formField('checkbox', [
