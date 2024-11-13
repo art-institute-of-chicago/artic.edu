@@ -1,3 +1,8 @@
+@php
+    $currentUrl = explode('/', request()->url());
+    $type = $currentUrl[5] ?? null;
+@endphp
+
 @twillBlockTitle('Mirador Embed')
 @twillBlockIcon('image')
 
@@ -18,7 +23,8 @@
     'name' => 'size',
     'label' => 'Size',
     'placeholder' => 'Select size',
-    'default' => 'm',
+    'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
+    'disabled' => ($type === 'digitalPublications' ? true : false),
     'options' => [
         [
             'value' => 's',

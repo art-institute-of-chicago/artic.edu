@@ -18,7 +18,8 @@
     'name' => 'size',
     'label' => 'Size',
     'placeholder' => 'Select size',
-    'default' => 'm',
+    'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
+    'disabled' => ($type === 'digitalPublications' ? true : false),
     'options' => [
         [
             'value' => 's',
