@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 use Pgvector\Laravel\Vector;
 use Pgvector\Laravel\Distance;
@@ -14,9 +15,9 @@ class VectorEmbedding extends Model
 
     protected $connection;
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->connection = 'vectors';
-
     }
 }
