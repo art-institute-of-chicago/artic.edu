@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
 use App\Models\Vendor\Block;
 
 return new class extends Migration
@@ -17,7 +16,7 @@ return new class extends Migration
         foreach ($digiPubImageBlocks as $block) {
             $content = $block->content;
             if ($content['size'] == 'm') {
-                $content['size'] = 's';
+                $content['size'] = 'l';
             }
             $content['use_alt_background'] = true;
             $content['use_contain'] = true;

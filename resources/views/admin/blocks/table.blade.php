@@ -1,3 +1,8 @@
+@php
+    $currentUrl = explode('/', request()->url());
+    $type = $currentUrl[5] ?? null;
+@endphp
+
 @twillBlockTitle('Table')
 @twillBlockIcon('text')
 
@@ -9,7 +14,8 @@
     'name' => 'size',
     'label' => 'Size',
     'placeholder' => 'Select size',
-    'default' => 's',
+    'default' => ($type === 'digitalPublications' ? 'l' : 's'),
+    'disabled' => ($type === 'digitalPublications' ? true : false),
     'options' => [
         [
             'value' => 's',
@@ -62,4 +68,3 @@
     'name' => 'hide_columns',
     'label' => 'Hide vertical cell borders',
 ])
-

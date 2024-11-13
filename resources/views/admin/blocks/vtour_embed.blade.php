@@ -1,3 +1,8 @@
+@php
+    $currentUrl = explode('/', request()->url());
+    $type = $currentUrl[5] ?? null;
+@endphp
+
 @twillBlockTitle('Virtual Tour Embed')
 @twillBlockIcon('image')
 
@@ -12,6 +17,7 @@
     'label' => 'Size',
     'placeholder' => 'Select size',
     'default' => 'l',
+    'disabled' => ($type === 'digitalPublications' ? true : false),
     'options' => [
         [
             'value' => 'm',
