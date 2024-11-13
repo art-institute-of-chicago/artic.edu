@@ -50,14 +50,13 @@ return new class extends Migration
 
         // The weights table will save normalized query embeddings and, upon user action, increment the weight based on the actual result
 
-        // Example: "Articles of cats" is queried as an embedding frequently and returns 3 items. 
+        // Example: "Articles of cats" is queried as an embedding frequently and returns 3 items.
         // The query_embedding is matched against the weight table and the embeddings of the 3 items is returned.
         // Users consistenly select the 2nd item based on that query so we weigh that higher.
         // Now when we query "Articles of cats" again users get a more practical result which corrects the order of expected results.
         // This makes the index self-correcting and adds a much more robust search. This is similar to practices of SEO.
 
         // NOTE: Weights should only be applied if the weight is above a variance threshold!
-        
     }
 
     public function down(): void
