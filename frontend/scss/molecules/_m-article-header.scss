@@ -1360,8 +1360,8 @@
         margin-bottom: auto;
         margin-top: auto;
         opacity: 1;
-        font-size: 26px;
-        line-height: 24px;
+        font-size: 26px !important;
+        line-height: 28px !important;
       }
 
       .m-article-header__text .subtitle {
@@ -1385,7 +1385,7 @@
 
     &.p-digitalpublications-show {
       .m-article-header__spacer {
-        height: 75vh;
+        height: 58vh;
       }
     }
 
