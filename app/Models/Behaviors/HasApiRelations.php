@@ -106,8 +106,11 @@ trait HasApiRelations
     {
         // Find locally selected objects
         return $items->filter(function ($relatedElement) use ($apiElements) {
-            $apiRelationElement = \App\Models\ApiRelation::where('id', $relatedElement->related_id)->first();
-            $result = $apiElements->where('id', $apiRelationElement->datahub_id)->first();
+            $apiRelationElement = \App\Models\ApiRelation::where('id', $relatedElement->related_id)
+                ->first()
+                ?->datahub_id;
+
+            $result = $apiElements->where('id', $apiRelationElement)->first();
 
             if ($result) {
                 $result->position = $relatedElement->position;
