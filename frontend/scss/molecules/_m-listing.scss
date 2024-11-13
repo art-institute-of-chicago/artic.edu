@@ -2229,7 +2229,6 @@ a:focus:hover .btn--magazine {
     @include breakpoint('small+') {
       width: colspan(58, small) !important;
       margin-left: colspan(2, small) !important;
-      margin-top: colspan(map-get($grid-padding-tops, 'small'), 'small') !important;
     }
 
     @include breakpoint('medium+') {
@@ -2300,7 +2299,7 @@ a:focus:hover .btn--magazine {
   }
 
   .m-listing__meta {
-    min-height: 76px;
+    min-height: unset;
   }
 
   .type {
