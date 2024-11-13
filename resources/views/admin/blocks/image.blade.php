@@ -7,7 +7,7 @@
         'label' => 'Small'
     ];
 
-    if ($type !== 'digitalPublications') {  // replace $condition with your actual condition
+    if ($type !== 'digitalPublications') {
         $options[] = [
             'value' => 'm',
             'label' => 'Medium'
