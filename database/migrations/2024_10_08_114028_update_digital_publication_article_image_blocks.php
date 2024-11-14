@@ -15,9 +15,7 @@ return new class extends Migration
         // Update the content JSON column for image block on digital publication articles
         foreach ($digiPubImageBlocks as $block) {
             $content = $block->content;
-            if ($content['size'] == 'm') {
-                $content['size'] = 'l';
-            }
+            $content['size'] = 'l';
             $content['use_alt_background'] = true;
             $content['use_contain'] = true;
 
