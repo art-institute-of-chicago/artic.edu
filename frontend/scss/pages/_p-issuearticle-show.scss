@@ -41,6 +41,14 @@
     }
   }
 
+  .o-blocks{
+    &.o-blocks--with-sidebar {
+      >.o-gallery {
+        width: 100% !important;
+      }
+    }
+  }
+
   .o-blocks:not(.o-blocks--bibliographic) > p {
     @include f-body;
   }
@@ -392,8 +400,40 @@
     }
   }
 
+  .m-split-block {
+    .m-media--s.o-blocks__block,
+    .m-media--l.o-blocks__block {
+      width: unset !important;
+
+      .m-media__img {
+        display: block;
+        width: unset !important;
+        height: auto;
+        margin: 0 auto;
+        max-width: 100% !important;
+        max-height: 80vh !important;
+
+        img {
+          min-width: 100%
+        }
+      }
+    }
+  }
+
   .m-media--s.o-blocks__block,
   .m-media--l.o-blocks__block {
+    &.m-media--layered-image-viewer-embed {
+      width: 100% !important;
+      .m-media__img {
+        width: 100% !important;
+      }
+    }
+
+    .m-media__img.m-media--360-embed {
+      max-height: unset !important;
+      width: 100% !important;
+    }
+
     width: max-content !important;
     max-width: 100%;
     min-width: unset !important;
