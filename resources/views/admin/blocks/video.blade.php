@@ -88,7 +88,8 @@
 
     @formField('input', [
         'name' => 'url',
-        'label' => 'Video URL'
+        'label' => 'Video URL',
+        'type' => 'url'
     ])
 
 @endcomponent
