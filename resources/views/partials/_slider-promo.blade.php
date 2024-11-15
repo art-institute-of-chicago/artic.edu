@@ -20,32 +20,30 @@
                             Email address
                         @endcomponent
                     </div>
-                @else
-                    @if ($modal['variation'] === \App\Models\Lightbox::VARIATION_EMAIL)
-                        <div class="g-slider__form-row">
-                            @component('components.atoms._email')
-                                @slot('id', 'edit-submitted-mail')
-                                @slot('name', 'submitted[mail]')
-                                @slot('required', 'required')
-                                Email address
-                            @endcomponent
-                        </div>
-                    @elseif ($modal['variation'] === \App\Models\Lightbox::VARIATION_TICKETING)
-                        <div class="g-slider__form-row">
-                            @component('components.atoms._select')
-                                @slot('id', 'g-slider--promo__ticketing')
-                                @slot('name', 'g-slider--promo__ticketing')
-                                @slot('options', [
-                                    ['value' => '1', 'label' => 'Visit today'],
-                                ])
-                            @endcomponent
-                        </div>
-                    @endif
-
-                    <input type="hidden" name="submitted[tlcsource]" id="edit-submitted-tlcsource" value="{{ $modal['form_tlc_source'] }}" >
-                    <input type="hidden" name="form_token" value="{{ $modal['form_token'] }}">
-                    <input type="hidden" name="form_id" value="{{ $modal['form_id'] }}">
+                @elseif ($modal['variation'] === \App\Models\Lightbox::VARIATION_EMAIL)
+                    <div class="g-slider__form-row">
+                        @component('components.atoms._email')
+                            @slot('id', 'edit-submitted-mail')
+                            @slot('name', 'submitted[mail]')
+                            @slot('required', 'required')
+                            Email address
+                        @endcomponent
+                    </div>
+                @elseif ($modal['variation'] === \App\Models\Lightbox::VARIATION_TICKETING)
+                    <div class="g-slider__form-row">
+                        @component('components.atoms._select')
+                            @slot('id', 'g-slider--promo__ticketing')
+                            @slot('name', 'g-slider--promo__ticketing')
+                            @slot('options', [
+                                ['value' => '1', 'label' => 'Visit today'],
+                            ])
+                        @endcomponent
+                    </div>
                 @endif
+
+                <input type="hidden" name="submitted[tlcsource]" id="edit-submitted-tlcsource" value="{{ $modal['form_tlc_source'] }}" >
+                <input type="hidden" name="form_token" value="{{ $modal['form_token'] }}">
+                <input type="hidden" name="form_id" value="{{ $modal['form_id'] }}">
 
                 <div class="g-slider__form-row g-slider__form-row--submit">
                     @component('components.atoms._btn')
@@ -57,7 +55,7 @@
             </form>
         @else
             <div class="g-slider__form-row g-slider__form-row--submit">
-                <a href="{{ $modal['action_url'] }}" 
+                <a href="{{ $modal['action_url'] }}"
                 {{ !empty(parse_url($modal['action_url'] ?? '')['host']) && !Str::startsWith($modal['action_url'] ?? '', request()->root()) ? 'target="_blank" rel="noopener noreferrer"' : '' }}
                 >
                 @component('components.atoms._btn')
