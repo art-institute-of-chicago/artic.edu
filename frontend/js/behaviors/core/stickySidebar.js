@@ -2,6 +2,7 @@ import { triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
 import { mediaQuery } from '../../functions/core';
 
 const stickySidebar = function(container){
+  const isDigitalPublicationArticle = document.documentElement.classList.contains('p-digitalpublicationarticle-show');
 
   const getOffsetTop = element => {
     let offsetTop = 0;
@@ -60,6 +61,10 @@ const stickySidebar = function(container){
   let currentState;
 
   function update() {
+    const hasDigitalPublicationStickyHeader = document.documentElement.classList.contains('s-sticky-digital-publication-header');
+    const hasDigitalPublicationUnstickyHeader = document.documentElement.classList.contains('s-unsticky-digital-publication-header');
+    const hasUnstickyHeader = document.documentElement.classList.contains('s-unsticky-header');
+
     scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
     containerHeight = container.offsetHeight;
@@ -69,20 +74,25 @@ const stickySidebar = function(container){
     stickyHeaderContainer = document.querySelector('.m-article-header');
 
     // `containerTop` is caluclated in the `handleResize` method
-    if (scrollTop < containerTop - (document.documentElement.classList.contains('s-sticky-digital-publication-header') ? stickyHeaderContainer.clientHeight : 0)) {
+    let digitalPublicaitonStickyHeaderHeight = hasDigitalPublicationStickyHeader ? stickyHeaderContainer.clientHeight : 0;
+    let unstickyNavHeight = hasUnstickyHeader ? navContainer.clientHeight : 0;
+    if (scrollTop < containerTop - digitalPublicaitonStickyHeaderHeight) {
       top();
       container.style.marginTop = '0px';
     } else {
-      if (scrollTop + containerHeight > article.offsetHeight + (document.documentElement.classList.contains('s-unsticky-header') ? navContainer.clientHeight : 0)) {
+      if (scrollTop + containerHeight > article.offsetHeight + unstickyNavHeight) {
         bottom();
       } else {
         sticky();
+        let marginToAdd = 0;
         // Only add margin if the screen width is 1200px or above
         if (window.innerWidth >= 1200) {
-          container.style.marginTop = (document.documentElement.classList.contains('p-digitalpublicationarticle-show') ? 0 : (!document.documentElement.classList.contains('s-unsticky-header') ? navContainer.clientHeight : 0) + (!document.documentElement.classList.contains('s-unsticky-digital-publication-header') ? stickyHeaderContainer.clientHeight : 0)) + 'px';
-        } else {
-          container.style.marginTop = '0px';
+          if (!isDigitalPublicationArticle) {
+            marginToAdd += !hasUnstickyHeader ? navContainer.clientHeight : 0;
+            marginToAdd += !hasDigitalPublicationUnstickyHeader ? stickyHeaderContainer.clientHeight : 0;
+          }
         }
+        container.style.marginTop = marginToAdd + 'px';
       }
     }
   }
