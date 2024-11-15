@@ -2,7 +2,8 @@ import { triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
 import { mediaQuery } from '../../functions/core';
 
 const stickySidebar = function(container){
-  const isDigitalPublicationArticle = document.documentElement.classList.contains('p-digitalpublicationarticle-show');
+  const isDigitalPublicationLanding = document.documentElement.classList.contains('p-digitalpublications-show');
+  const isDigitalPublicationListing = document.documentElement.classList.contains('p-digitalpublications-showlisting');
 
   const getOffsetTop = element => {
     let offsetTop = 0;
@@ -87,7 +88,7 @@ const stickySidebar = function(container){
         let marginToAdd = 0;
         // Only add margin if the screen width is 1200px or above
         if (window.innerWidth >= 1200) {
-          if (!isDigitalPublicationArticle) {
+          if (isDigitalPublicationLanding || isDigitalPublicationListing) {
             marginToAdd += !hasUnstickyHeader ? navContainer.clientHeight : 0;
             marginToAdd += !hasDigitalPublicationUnstickyHeader ? stickyHeaderContainer.clientHeight : 0;
           }
