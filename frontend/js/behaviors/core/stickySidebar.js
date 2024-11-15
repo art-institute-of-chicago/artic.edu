@@ -77,6 +77,12 @@ const stickySidebar = function(container){
         bottom();
       } else {
         sticky();
+        // Only add margin if the screen width is 1200px or above
+        if (window.innerWidth >= 1200) {
+          container.style.marginTop = (document.documentElement.classList.contains('p-digitalpublicationarticle-show') ? 0 : (!document.documentElement.classList.contains('s-unsticky-header') ? navContainer.clientHeight : 0) + (!document.documentElement.classList.contains('s-unsticky-digital-publication-header') ? stickyHeaderContainer.clientHeight : 0)) + 'px';
+        } else {
+          container.style.marginTop = '0px';
+        }
       }
     }
   }
