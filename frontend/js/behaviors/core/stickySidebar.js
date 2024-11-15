@@ -4,6 +4,21 @@ import { mediaQuery } from '../../functions/core';
 const stickySidebar = function(container){
   const isDigitalPublicationLanding = document.documentElement.classList.contains('p-digitalpublications-show');
   const isDigitalPublicationListing = document.documentElement.classList.contains('p-digitalpublications-showlisting');
+  const logo = document.querySelector('.m-article-actions--publication__logo');
+  const sidebarOverlayState = 'is-sidebar-overlay';
+
+  let article;
+  let scrollTop;
+  let windowHeight;
+  let containerTop;
+  let containerHeight;
+  let navContainer;
+  let stickyHeaderContainer;
+  let contributionHeaderHeight;
+  let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
+  let savedFocus;
+  let savedScroll;
+  let currentState;
 
   const getOffsetTop = element => {
     let offsetTop = 0;
@@ -40,26 +55,6 @@ const stickySidebar = function(container){
     }
   }
 
-  let article;
-  let logo = document.querySelector('.m-article-actions--publication__logo');
-
-  let scrollTop;
-
-  let windowHeight;
-  let containerTop;
-  let containerHeight;
-
-  let navContainer;
-  let stickyHeaderContainer;
-  let contributionHeaderHeight;
-
-  const sidebarOverlayState = 'is-sidebar-overlay';
-  let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
-
-  let savedFocus;
-  let savedScroll;
-
-  let currentState;
 
   function update() {
     const hasDigitalPublicationStickyHeader = document.documentElement.classList.contains('s-sticky-digital-publication-header');
