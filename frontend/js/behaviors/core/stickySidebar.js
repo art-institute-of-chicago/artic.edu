@@ -66,18 +66,14 @@ const stickySidebar = function(container){
     // `containerTop` is caluclated in the `handleResize` method
     if (scrollTop < containerTop - digitalPublicaitonStickyHeaderHeight) {
       top();
+    } else if (scrollTop + container.offsetHeight > article.offsetHeight + unstickyNavHeight) {
+      bottom();
     } else {
-      if (scrollTop + container.offsetHeight > article.offsetHeight + unstickyNavHeight) {
-        bottom();
-      } else {
-        sticky();
-        // Only add margin if the screen width is 1200px or above
-        if (window.innerWidth >= 1200) {
-          if (isDigitalPublicationLanding || isDigitalPublicationListing) {
-            marginToAdd += !hasUnstickyHeader ? navContainer.clientHeight : 0;
-            marginToAdd += !hasDigitalPublicationUnstickyHeader ? stickyHeaderContainer.clientHeight : 0;
-          }
-        }
+      sticky();
+      // Only add margin if the screen width is 1200px or above
+      if (window.innerWidth >= 1200 && (isDigitalPublicationLanding || isDigitalPublicationListing)) {
+        marginToAdd += !hasUnstickyHeader ? navContainer.clientHeight : 0;
+        marginToAdd += !hasDigitalPublicationUnstickyHeader ? stickyHeaderContainer.clientHeight : 0;
       }
     }
     container.style.marginTop = marginToAdd + 'px';
