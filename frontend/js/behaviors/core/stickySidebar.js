@@ -77,15 +77,14 @@ const stickySidebar = function(container){
     // `containerTop` is caluclated in the `handleResize` method
     let digitalPublicaitonStickyHeaderHeight = hasDigitalPublicationStickyHeader ? stickyHeaderContainer.clientHeight : 0;
     let unstickyNavHeight = hasUnstickyHeader ? navContainer.clientHeight : 0;
+    let marginToAdd = 0;
     if (scrollTop < containerTop - digitalPublicaitonStickyHeaderHeight) {
       top();
-      container.style.marginTop = '0px';
     } else {
       if (scrollTop + containerHeight > article.offsetHeight + unstickyNavHeight) {
         bottom();
       } else {
         sticky();
-        let marginToAdd = 0;
         // Only add margin if the screen width is 1200px or above
         if (window.innerWidth >= 1200) {
           if (isDigitalPublicationLanding || isDigitalPublicationListing) {
@@ -93,9 +92,9 @@ const stickySidebar = function(container){
             marginToAdd += !hasDigitalPublicationUnstickyHeader ? stickyHeaderContainer.clientHeight : 0;
           }
         }
-        container.style.marginTop = marginToAdd + 'px';
       }
     }
+    container.style.marginTop = marginToAdd + 'px';
   }
 
   function top() {
