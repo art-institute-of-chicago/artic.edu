@@ -9,7 +9,6 @@ const stickySidebar = function(container){
 
   let article;
   let scrollTop;
-  let windowHeight;
   let containerTop;
   let containerHeight;
   let navContainer;
@@ -111,7 +110,6 @@ const stickySidebar = function(container){
 
   function handleResize() {
     top();
-    windowHeight = window.innerHeight || document.documentElement.clientHeight;
     stickyHeaderContainer = document.querySelector('.m-article-header');
 
     contributionHeaderHeight = 0;
