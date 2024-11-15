@@ -61,7 +61,7 @@
                 {{ !empty(parse_url($modal['action_url'] ?? '')['host']) && !Str::startsWith($modal['action_url'] ?? '', request()->root()) ? 'target="_blank" rel="noopener noreferrer"' : '' }}
                 >
                 @component('components.atoms._btn')
-                        @slot('variation', 'btn--secondary')
+                        @slot('variation', 'btn--primary')
                         {{ $modal['lightbox_button_text'] ?? 'View' }}
                     @endcomponent
                 </a>
