@@ -28,9 +28,7 @@ return new class extends Migration
             // Update the content JSON column for image block on digital publication articles
             foreach ($digiPubBlocks as $block) {
                 $content = $block->content;
-                if ($content['size'] == 'm') {
-                    $content['size'] = 'l';
-                }
+                $content['size'] = 'l';
 
                 foreach ($fieldsToSetToTrue as $field) {
                     $content[$field] = true;
