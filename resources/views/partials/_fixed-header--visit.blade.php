@@ -90,7 +90,7 @@
                                 </th>
                                 <th
                                     aria-labelledby="h-public-hours"
-                                    scole="col"
+                                    scope="col"
                                 >
                                     <span class="f-module-title-1" id="h-public-hours">Public</span>
                                 </th>
