@@ -2,22 +2,21 @@ import { triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
 import { mediaQuery } from '../../functions/core';
 
 const stickySidebar = function(container){
+  const hasDigitalPublicationStickyHeader = document.documentElement.classList.contains('s-sticky-digital-publication-header');
+  const hasDigitalPublicationUnstickyHeader = document.documentElement.classList.contains('s-unsticky-digital-publication-header');
+  const isDigitalPublicationArticle = document.documentElement.classList.contains('p-digitalpublicationarticle-show');
   const isDigitalPublicationLanding = document.documentElement.classList.contains('p-digitalpublications-show');
   const isDigitalPublicationListing = document.documentElement.classList.contains('p-digitalpublications-showlisting');
-  const logo = document.querySelector('.m-article-actions--publication__logo');
+  const logoSelector = '.m-article-actions--publication__logo';
+  const logo = document.querySelector(logoSelector);
   const sidebarOverlayState = 'is-sidebar-overlay';
+  const stickyHeaderContainer = document.querySelector('.m-article-header');
 
-  let article;
-  let scrollTop;
   let containerTop;
-  let containerHeight;
-  let navContainer;
-  let stickyHeaderContainer;
-  let contributionHeaderHeight;
+  let currentState;
   let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
   let savedFocus;
   let savedScroll;
-  let currentState;
 
   const getOffsetTop = element => {
     let offsetTop = 0;
@@ -54,28 +53,21 @@ const stickySidebar = function(container){
     }
   }
 
-
   function update() {
-    const hasDigitalPublicationStickyHeader = document.documentElement.classList.contains('s-sticky-digital-publication-header');
-    const hasDigitalPublicationUnstickyHeader = document.documentElement.classList.contains('s-unsticky-digital-publication-header');
+    const article = document.querySelector('.o-article');
     const hasUnstickyHeader = document.documentElement.classList.contains('s-unsticky-header');
+    const navContainer = document.querySelector('.g-header');
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
-    scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-
-    containerHeight = container.offsetHeight;
-
-    article = document.querySelector('.o-article');
-    navContainer = document.querySelector('.g-header');
-    stickyHeaderContainer = document.querySelector('.m-article-header');
-
-    // `containerTop` is caluclated in the `handleResize` method
     let digitalPublicaitonStickyHeaderHeight = hasDigitalPublicationStickyHeader ? stickyHeaderContainer.clientHeight : 0;
     let unstickyNavHeight = hasUnstickyHeader ? navContainer.clientHeight : 0;
     let marginToAdd = 0;
+
+    // `containerTop` is caluclated in the `handleResize` method
     if (scrollTop < containerTop - digitalPublicaitonStickyHeaderHeight) {
       top();
     } else {
-      if (scrollTop + containerHeight > article.offsetHeight + unstickyNavHeight) {
+      if (scrollTop + container.offsetHeight > article.offsetHeight + unstickyNavHeight) {
         bottom();
       } else {
         sticky();
@@ -110,19 +102,18 @@ const stickySidebar = function(container){
 
   function handleResize() {
     top();
-    stickyHeaderContainer = document.querySelector('.m-article-header');
-
-    contributionHeaderHeight = 0;
-    let logoList = document.querySelectorAll('.m-article-actions--publication__logo');
+    let contributionHeaderHeight = 0;
+    let logoList = document.querySelectorAll(logoSelector);
     for (let i = 0; i < logoList.length; i++) {
       contributionHeaderHeight += logoList[i].clientHeight;
     }
 
     containerTop = getOffsetTop(container) + document.body.scrollTop;
-    if (document.documentElement.classList.contains('s-sticky-digital-publication-header')) {
+    if (hasDigitalPublicationStickyHeader) {
       containerTop -= stickyHeaderContainer.offsetHeight;
     }
-    if (document.documentElement.classList.contains('p-digitalpublicationarticle-show') && document.documentElement.classList.contains('p-t-contributions')) {
+    let isContribution = document.documentElement.classList.contains('p-t-contributions');
+    if (isDigitalPublicationArticle && isContribution) {
       containerTop += contributionHeaderHeight;
     }
 
