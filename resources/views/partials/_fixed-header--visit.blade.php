@@ -81,16 +81,26 @@
                     <table>
                         <thead>
                             <tr>
-                                <th> </th>
-                                <th aria-labelledby="h-member-hours"><span class="f-module-title-1" id="h-member-hours">Members</span></th>
-                                <th aria-labelledby="h-public-hours"><span class="f-module-title-1" id="h-public-hours">Public</span></th>
+                                <td></td>
+                                <th
+                                    aria-labelledby="h-member-hours"
+                                    scope="col"
+                                >
+                                    <span class="f-module-title-1" id="h-member-hours">Members</span>
+                                </th>
+                                <th
+                                    aria-labelledby="h-public-hours"
+                                    scope="col"
+                                >
+                                    <span class="f-module-title-1" id="h-public-hours">Public</span>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (!empty($hour))
                                 @foreach ($hour->present()->getHoursTableForVisit() as $hour)
                                     <tr>
-                                        <th>
+                                        <th scope="row">
                                             <span class="f-module-title-1">{{ $hour['days'] }}</span>
                                         </th>
                                         <td>
@@ -103,7 +113,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <th>
+                                    <th scope="row">
                                         <span class="f-module-title-1">Monday</span>
                                     </th>
                                     <td>
@@ -114,8 +124,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>
-                                        <span class="f-module-title-1">Tuesday&ndash;<div class="u-hide@small+"></div>Wednesday</span>
+                                    <th scope="row">
+                                        <span class="f-module-title-1">
+                                            Tuesday&ndash;<div class="u-hide@small+"></div>Wednesday
+                                        </span>
                                     </th>
                                     <td>
                                         <span class="f-secondary">Closed</span>
@@ -125,8 +137,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>
-                                        <span class="f-module-title-1">Thursday&ndash;<div class="u-hide@small+"></div>Sunday</span>
+                                    <th scope="row">
+                                        <span class="f-module-title-1">
+                                            Thursday&ndash;<div class="u-hide@small+"></div>Sunday
+                                        </span>
                                     </th>
                                     <td>
                                         <span class="f-secondary">10&ndash;11 a.m.</span>
