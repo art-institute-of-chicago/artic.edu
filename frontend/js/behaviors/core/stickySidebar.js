@@ -27,6 +27,11 @@ const stickySidebar = function(container){
     return offsetTop;
   }
 
+  function _getPaddingTop(node) {
+    let style = window.getComputedStyle(node);
+    return parseInt(style.getPropertyValue('padding-top'));
+}
+
   const setState = targetState => {
     let classList = document.documentElement.classList;
 
@@ -56,6 +61,7 @@ const stickySidebar = function(container){
   function update() {
     const article = document.querySelector('.o-article');
     const hasUnstickyHeader = document.documentElement.classList.contains('s-unsticky-header');
+    const hasStickyNav = document.documentElement.classList.contains('s-scroll-direction-up');
     const hasDigitalPublicationStickyHeader = document.documentElement.classList.contains('s-sticky-digital-publication-header');
     const hasDigitalPublicationUnstickyHeader = document.documentElement.classList.contains('s-unsticky-digital-publication-header');
     const navContainer = document.querySelector('.g-header');
@@ -73,9 +79,15 @@ const stickySidebar = function(container){
     } else {
       sticky();
       // Only add margin if the screen width is 1200px or above
-      if (window.innerWidth >= 1200 && (isDigitalPublicationLanding || isDigitalPublicationListing)) {
-        marginToAdd += !hasUnstickyHeader ? navContainer.clientHeight : 0;
-        marginToAdd += !hasDigitalPublicationUnstickyHeader ? stickyHeaderContainer.clientHeight : 0;
+      if (window.innerWidth >= 1200) {
+        if (isDigitalPublicationLanding || isDigitalPublicationListing) {
+          marginToAdd += !hasUnstickyHeader ? navContainer.clientHeight : 0;
+          marginToAdd += !hasDigitalPublicationUnstickyHeader ? stickyHeaderContainer.clientHeight : 0;
+        }
+        if (isMagazineIssue) {
+          let paddingTop = _getPaddingTop(container);
+          marginToAdd += hasStickyNav ? navContainer.clientHeight - paddingTop : 0;
+        }
       }
     }
     container.style.marginTop = marginToAdd + 'px';
