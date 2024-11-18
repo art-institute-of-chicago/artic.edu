@@ -2,6 +2,21 @@ import { triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
 import { mediaQuery } from '../../functions/core';
 
 const stickySidebar = function(container){
+  const isDigitalPublicationArticle = document.documentElement.classList.contains('p-digitalpublicationarticle-show');
+  const isDigitalPublicationLanding = document.documentElement.classList.contains('p-digitalpublications-show');
+  const isDigitalPublicationListing = document.documentElement.classList.contains('p-digitalpublications-showlisting');
+  const isContribution = document.documentElement.classList.contains('p-t-contributions');
+  const isMagazineIssue = document.documentElement.classList.contains('p-magazineissue-latest') || document.documentElement.classList.contains('p-magazineissue-show');
+  const logoSelector = '.m-article-actions--publication__logo';
+  const logo = document.querySelector(logoSelector);
+  const sidebarOverlayState = 'is-sidebar-overlay';
+  const stickyHeaderContainer = document.querySelector('.m-article-header');
+
+  let containerTop;
+  let currentState;
+  let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
+  let savedFocus;
+  let savedScroll;
 
   const getOffsetTop = element => {
     let offsetTop = 0;
@@ -11,6 +26,11 @@ const stickySidebar = function(container){
     }
     return offsetTop;
   }
+
+  function _getPaddingTop(node) {
+    let style = window.getComputedStyle(node);
+    return parseInt(style.getPropertyValue('padding-top'));
+}
 
   const setState = targetState => {
     let classList = document.documentElement.classList;
@@ -38,47 +58,39 @@ const stickySidebar = function(container){
     }
   }
 
-  let article;
-  let logo = document.querySelector('.m-article-actions--publication__logo');
-
-  let scrollTop;
-
-  let windowHeight;
-  let containerTop;
-  let containerHeight;
-
-  let navContainer;
-  let stickyHeaderContainer;
-  let contributionHeaderHeight;
-
-  const sidebarOverlayState = 'is-sidebar-overlay';
-  let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
-
-  let savedFocus;
-  let savedScroll;
-
-  let currentState;
-
   function update() {
-    scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const article = document.querySelector('.o-article');
+    const hasUnstickyHeader = document.documentElement.classList.contains('s-unsticky-header');
+    const hasStickyNav = document.documentElement.classList.contains('s-scroll-direction-up');
+    const hasDigitalPublicationStickyHeader = document.documentElement.classList.contains('s-sticky-digital-publication-header');
+    const hasDigitalPublicationUnstickyHeader = document.documentElement.classList.contains('s-unsticky-digital-publication-header');
+    const navContainer = document.querySelector('.g-header');
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
-    containerHeight = container.offsetHeight;
-
-    article = document.querySelector('.o-article');
-    navContainer = document.querySelector('.g-header');
-    stickyHeaderContainer = document.querySelector('.m-article-header');
+    let digitalPublicaitonStickyHeaderHeight = hasDigitalPublicationStickyHeader ? stickyHeaderContainer.clientHeight : 0;
+    let unstickyNavHeight = hasUnstickyHeader ? navContainer.clientHeight : 0;
+    let marginToAdd = 0;
 
     // `containerTop` is caluclated in the `handleResize` method
-    if (scrollTop < containerTop - (document.documentElement.classList.contains('s-sticky-digital-publication-header') ? stickyHeaderContainer.clientHeight : 0)) {
+    if (scrollTop < containerTop - digitalPublicaitonStickyHeaderHeight) {
       top();
-      container.style.marginTop = '0px';
+    } else if (scrollTop + container.offsetHeight > article.offsetHeight + unstickyNavHeight) {
+      bottom();
     } else {
-      if (scrollTop + containerHeight > article.offsetHeight + (document.documentElement.classList.contains('s-unsticky-header') ? navContainer.clientHeight : 0)) {
-        bottom();
-      } else {
-        sticky();
+      sticky();
+      // Only add margin if the screen width is 1200px or above
+      if (window.innerWidth >= 1200) {
+        if (isDigitalPublicationLanding || isDigitalPublicationListing) {
+          marginToAdd += !hasUnstickyHeader ? navContainer.clientHeight : 0;
+          marginToAdd += !hasDigitalPublicationUnstickyHeader ? stickyHeaderContainer.clientHeight : 0;
+        }
+        if (isMagazineIssue) {
+          let paddingTop = _getPaddingTop(container);
+          marginToAdd += hasStickyNav ? navContainer.clientHeight - paddingTop : 0;
+        }
       }
     }
+    container.style.marginTop = marginToAdd + 'px';
   }
 
   function top() {
@@ -100,21 +112,23 @@ const stickySidebar = function(container){
 
   function handleResize() {
     top();
-    windowHeight = window.innerHeight || document.documentElement.clientHeight;
-    stickyHeaderContainer = document.querySelector('.m-article-header');
+    let contributionHeaderHeight = 0;
+    let logoList = document.querySelectorAll(logoSelector);
+    let hasDigitalPublicationStickyHeader = document.documentElement.classList.contains('s-sticky-digital-publication-header');
 
-    contributionHeaderHeight = 0;
-    let logoList = document.querySelectorAll('.m-article-actions--publication__logo');
     for (let i = 0; i < logoList.length; i++) {
       contributionHeaderHeight += logoList[i].clientHeight;
     }
 
     containerTop = getOffsetTop(container) + document.body.scrollTop;
-    if (document.documentElement.classList.contains('s-sticky-digital-publication-header')) {
+    if (hasDigitalPublicationStickyHeader) {
       containerTop -= stickyHeaderContainer.offsetHeight;
     }
-    if (document.documentElement.classList.contains('p-digitalpublicationarticle-show') && document.documentElement.classList.contains('p-t-contributions')) {
+    if ((isDigitalPublicationArticle && isContribution) || isDigitalPublicationLanding) {
       containerTop += contributionHeaderHeight;
+    }
+    if (isMagazineIssue) {
+      containerTop -= 30;
     }
 
     logo.setAttribute('style', 'display: block');
