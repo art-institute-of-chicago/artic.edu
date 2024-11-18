@@ -443,7 +443,7 @@
       display: none !important;
     }
 
-    .m-media__img {
+    .m-media__img:not(.m-media__img--video) {
       & {
         width: max-content !important;
         max-width: 100% !important;
@@ -624,6 +624,22 @@ Styling related specifically to digital publications
   &:not(.is-sidebar-overlay) .o-article > .o-article__primary-actions--digital-publication {
     @include breakpoint('xsmall') {
       display: none;
+    }
+  }
+
+  .o-pinboard--3-col\@xlarge::before {
+    display: none;
+  }
+
+  @include breakpoint('large') {
+    .o-gallery--small-mosaic .o-pinboard--3-col\@large > * {
+      width: colspan(grid-cols-to-colspan(4, 52), 'large');
+    }
+  }
+
+  @include breakpoint('xlarge') {
+    .o-gallery--small-mosaic .o-pinboard--3-col\@xlarge > * {
+      width: colspan(grid-cols-to-colspan(4, 52), 'xlarge');
     }
   }
 }

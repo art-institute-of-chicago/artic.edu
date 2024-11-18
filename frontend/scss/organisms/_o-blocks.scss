@@ -368,7 +368,7 @@
     }
 
     @include breakpoint('xlarge') {
-      width: colspan(43, xlarge);
+      width: colspan(33, xlarge);
       margin-right: colspan(15, xlarge, 0, true);
     }
   }
