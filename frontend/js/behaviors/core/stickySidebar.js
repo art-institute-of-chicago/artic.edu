@@ -102,6 +102,8 @@ const stickySidebar = function(container){
     top();
     let contributionHeaderHeight = 0;
     let logoList = document.querySelectorAll(logoSelector);
+    let hasDigitalPublicationStickyHeader = document.documentElement.classList.contains('s-sticky-digital-publication-header');
+
     for (let i = 0; i < logoList.length; i++) {
       contributionHeaderHeight += logoList[i].clientHeight;
     }
