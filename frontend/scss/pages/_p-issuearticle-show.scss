@@ -394,9 +394,14 @@
 
   .o-layered-image-viewer {
     .m-media.o-blocks__block {
-      .m-media__img img  {
-        background-color: transparent;
-        background-image: none;
+      .m-media__img {
+        max-height: unset !important;
+        width: 100% !important;
+
+        img {
+          background-color: transparent;
+          background-image: none;
+        }
       }
     }
   }
@@ -424,6 +429,7 @@
   .m-media--s.o-blocks__block,
   .m-media--l.o-blocks__block {
     &.m-media--layered-image-viewer-embed {
+      max-height: unset !important;
       width: 100% !important;
       .m-media__img {
         width: 100% !important;
@@ -445,8 +451,8 @@
 
     .m-media__img:not(.m-media__img--video) {
       & {
-        width: max-content !important;
-        max-width: 100% !important;
+        width: max-content;
+        max-width: 100%;
         max-height: 450px;
         overflow: hidden !important;
         text-align: left !important;
