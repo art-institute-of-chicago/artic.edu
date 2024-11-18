@@ -2,11 +2,11 @@ import { triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
 import { mediaQuery } from '../../functions/core';
 
 const stickySidebar = function(container){
-  const hasDigitalPublicationStickyHeader = document.documentElement.classList.contains('s-sticky-digital-publication-header');
-  const hasDigitalPublicationUnstickyHeader = document.documentElement.classList.contains('s-unsticky-digital-publication-header');
   const isDigitalPublicationArticle = document.documentElement.classList.contains('p-digitalpublicationarticle-show');
   const isDigitalPublicationLanding = document.documentElement.classList.contains('p-digitalpublications-show');
   const isDigitalPublicationListing = document.documentElement.classList.contains('p-digitalpublications-showlisting');
+  const isContribution = document.documentElement.classList.contains('p-t-contributions');
+  const isMagazineIssue = document.documentElement.classList.contains('p-magazineissue-latest') || document.documentElement.classList.contains('p-magazineissue-show');
   const logoSelector = '.m-article-actions--publication__logo';
   const logo = document.querySelector(logoSelector);
   const sidebarOverlayState = 'is-sidebar-overlay';
@@ -56,6 +56,8 @@ const stickySidebar = function(container){
   function update() {
     const article = document.querySelector('.o-article');
     const hasUnstickyHeader = document.documentElement.classList.contains('s-unsticky-header');
+    const hasDigitalPublicationStickyHeader = document.documentElement.classList.contains('s-sticky-digital-publication-header');
+    const hasDigitalPublicationUnstickyHeader = document.documentElement.classList.contains('s-unsticky-digital-publication-header');
     const navContainer = document.querySelector('.g-header');
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
@@ -108,9 +110,11 @@ const stickySidebar = function(container){
     if (hasDigitalPublicationStickyHeader) {
       containerTop -= stickyHeaderContainer.offsetHeight;
     }
-    let isContribution = document.documentElement.classList.contains('p-t-contributions');
-    if (isDigitalPublicationArticle && isContribution) {
+    if ((isDigitalPublicationArticle && isContribution) || isDigitalPublicationLanding) {
       containerTop += contributionHeaderHeight;
+    }
+    if (isMagazineIssue) {
+      containerTop -= 30;
     }
 
     logo.setAttribute('style', 'display: block');

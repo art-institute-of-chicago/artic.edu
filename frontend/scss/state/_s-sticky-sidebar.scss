@@ -14,6 +14,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
 
   .o-sticky-sidebar__sticker {
     max-height: 100vh;
+    height: 100vh;
   }
 
   &.is-sidebar-overlay {
@@ -119,7 +120,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
             display: block;
             align-items: normal;
             height: auto;
-            margin-top: 40px;
+            margin-top: 30px;
           }
 
           @each $name in ('large', 'xlarge') {
