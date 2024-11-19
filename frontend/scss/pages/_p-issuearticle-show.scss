@@ -216,7 +216,6 @@
     &>div.m-title-bar,
     &>div.o-blocks--bibliographic,
     &>.m-listing--sound,
-    &>.m-split-block,
     &>h1,
     &>h2,
     &>h3,
@@ -536,7 +535,8 @@
   .m-split-block--quarter div {
     &:first-child {
       width: 25%;
-      margin-top: 16px;
+      flex-basis: 15%;
+      margin-top: 21px;
       margin-bottom: 16px;
     }
 
@@ -548,13 +548,21 @@
     }
 
     @include breakpoint('xsmall') {
+      &:first-child {
+        flex-basis: 25%;
+      }
+
       &:last-child {
-        width: 72%
+        width: 72%;
       }
     }
     @include breakpoint('small+') {
+      &:first-child {
+        flex-basis: 25%;
+      }
+
       &:last-child {
-        width: 75%
+        width: 75%;
       }
     }
   }
