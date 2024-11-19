@@ -86,7 +86,7 @@
         <p>The page must have a banner image in order to display museum hours.</p>
     </a17-fieldset>
 
-    @component('admin.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
+    @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
         @slot('routePrefix', 'generic')
         @slot('moduleName', 'genericPages')
     @endcomponent
@@ -102,7 +102,7 @@
         ])
     </a17-fieldset>
 
-    {{-- WEB-2236: Use 'admin.partials.meta' as a component --}}
+    {{-- WEB-2236: Use 'twill.partials.meta' as a component --}}
     <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
         @formField('input', [
             'name' => 'meta_title',

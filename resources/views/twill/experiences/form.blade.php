@@ -50,7 +50,7 @@
         ],
     ])
 
-    @include('admin.partials.authors')
+    @include('twill.partials.authors')
 
     @formField('checkbox', [
         'name' => 'archived',
