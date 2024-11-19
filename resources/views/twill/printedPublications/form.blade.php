@@ -60,8 +60,8 @@
 
 @section('fieldsets')
 
-    @include('admin.partials.related')
+    @include('twill.partials.related')
 
-    @include('admin.partials.meta')
+    @include('twill.partials.meta')
 
 @endsection

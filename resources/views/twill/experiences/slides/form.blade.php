@@ -3,7 +3,7 @@
     ])
 
 @section('contentFields')
-    @include('admin.experiences.slides._setting')
+    @include('twill.experiences.slides._setting')
 @stop
 
 @section('fieldsets')
@@ -14,17 +14,17 @@
             'keepAlive' => true,
             'isEqual' => false
         ])
-            @include('admin.experiences.slides._asset_type')
+            @include('twill.experiences.slides._asset_type')
         @endcomponent
 
-        @include('admin.experiences.slides._attract')
-        @include('admin.experiences.slides._end')
-        @include('admin.experiences.slides._split')
-        @include('admin.experiences.slides._interstitial')
-        @include('admin.experiences.slides._fullwidthmedia')
-        @include('admin.experiences.slides._tooltip')
-        @include('admin.experiences.slides._compare')
-        @include('admin.experiences.slides._3dtour')
+        @include('twill.experiences.slides._attract')
+        @include('twill.experiences.slides._end')
+        @include('twill.experiences.slides._split')
+        @include('twill.experiences.slides._interstitial')
+        @include('twill.experiences.slides._fullwidthmedia')
+        @include('twill.experiences.slides._tooltip')
+        @include('twill.experiences.slides._compare')
+        @include('twill.experiences.slides._3dtour')
     </a17-fieldset>
 @stop
 @push('extra_js')
