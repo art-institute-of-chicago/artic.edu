@@ -79,7 +79,7 @@
 
     <div class="o-article__body o-blocks o-blocks--with-sidebar">
         @if ($item->article_type !== DigitalPublicationArticleType::Entry)
-            <div class="m-article-header__text u-show@medium-">
+            <div class="m-article-header__text {{ $item->article_type !== DigitalPublicationArticleType::About ? 'u-show@medium-' : '' }}">
                 @component('components.atoms._title')
                     @slot('tag', 'h1')
                     @slot('font', 'f-headline-editorial')
