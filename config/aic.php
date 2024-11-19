@@ -19,6 +19,10 @@ return [
     'pdf_s3_endpoint' => env('PDF_S3_ENDPOINT'),
     'pdf_debug' => (bool) env('PDF_DEBUG', false),
 
+    'osci_s3_bucket' => env('OSCI_S3_BUCKET'),
+    'osci_s3_endpoint' => env('OSCI_S3_ENDPOINT'),
+    'osci_s3_regiont' => env('OSCI_S3_REGION'),
+
     'disable_extra_scripts' => (bool) env('DISABLE_EXTRA_SCRIPTS', false),
 
     'hide_from_tours' => env('HIDE_FROM_TOURS'),
@@ -35,4 +39,30 @@ return [
     'show_hours_in_footer' => (bool) env('SHOW_HOURS_IN_FOOTER', false),
     'disable_captcha' => (bool) env('DISABLE_CAPTCHA', false),
     'show_default_related_items' => (bool) env('SHOW_DEFAULT_RELATED_ITEMS', true),
+
+    // Branding
+    'branding' => [
+        'digital_publications' => [
+            'colors' => [
+                '#282829',
+                '#422E22',
+                '#284725',
+                '#1E3F49',
+                '#1C2454',
+                '#35295A',
+                '#711F2A',
+                '#983820',
+                '#E19E26',
+                '#9D9FA2',
+                '#A39282',
+                '#A1B981',
+                '#75B4BA',
+                '#77A8D5',
+                '#8C8FBE',
+                '#D58FA2',
+                '#EC9E6C',
+                '#F8EB83',
+            ],
+        ]
+    ],
 ];

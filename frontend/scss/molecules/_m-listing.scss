@@ -2156,64 +2156,70 @@ a:focus:hover .btn--magazine {
 }
 
 .m-listing----cover {
-  @include breakpoint('xsmall') {
-    margin-bottom: 20px;
-    height: 80px;
-    width: colspan(design-cols-to-colspan(12), xsmall) !important;
-  }
+  &.m-listing {
 
-  @include breakpoint('small+') {
-    margin-bottom: 20px;
-    height: 80px;
-    width: colspan(design-cols-to-colspan(12), small) !important;
-  }
-
-  @include breakpoint('medium+') {
-    height: auto;
-    width: colspan(design-cols-to-colspan(4), medium) !important;
-  }
-
-  @include breakpoint('large+') {
-    height: auto;
-    width: colspan(design-cols-to-colspan(3), large) !important;
-  }
-
-  @include breakpoint('xlarge') {
-    height: auto;
-    width: colspan(design-cols-to-colspan(3), xlarge) !important;
-  }
-
-  .m-listing__link:hover + .title {
-    color: rgba($color__white, .8) !important;
-  }
-
-  .m-listing__img {
-    aspect-ratio: 5/6;
-    height: 100%;
-    width: 100%;
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba($color__black, .4);
-      z-index: 1;
+    @include breakpoint('xsmall') {
+      margin-bottom: 20px;
+      height: 80px;
+      width: colspan(design-cols-to-colspan(12), xsmall) !important;
     }
-  }
 
-  .m-listing----cover-title {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: $color__white;
-    height: 100%;
-    width: 100%;
-    z-index: 2;
+    @include breakpoint('small+') {
+      margin-bottom: 20px;
+      height: 80px;
+      width: colspan(design-cols-to-colspan(12), small) !important;
+    }
+
+    @include breakpoint('medium+') {
+      height: auto;
+      width: colspan(design-cols-to-colspan(4), medium) !important;
+    }
+
+    @include breakpoint('large+') {
+      height: auto;
+      width: colspan(11.25, large) !important;
+      margin-left: colspan(2, large) !important;
+    }
+
+    @include breakpoint('xlarge') {
+      height: auto;
+      width: colspan(11.33, xlarge) !important;
+      margin-left: colspan(2, xlarge) !important;
+    }
+
+    a:hover .title {
+      color: rgba($color__white, .8) !important;
+    }
+
+    .m-listing__img {
+      aspect-ratio: 5/6;
+      height: 100%;
+      width: 100%;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba($color__black, .4);
+        z-index: 1;
+      }
+    }
+
+    .m-listing----cover-title {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: $color__white;
+      height: 100%;
+      width: 100%;
+      z-index: 2;
+    }
   }
 }
 
@@ -2221,19 +2227,23 @@ a:focus:hover .btn--magazine {
   &.m-listing {
 
     @include breakpoint('small+') {
-      width: colspan(design-cols-to-colspan(12), small) !important;
+      width: colspan(58, small) !important;
+      margin-left: colspan(2, small) !important;
     }
-  
+
     @include breakpoint('medium+') {
-      width: colspan(design-cols-to-colspan(4), medium) !important;
+      width: colspan(18, medium) !important;
+      margin-left: colspan(2, medium) !important;
     }
-  
+
     @include breakpoint('large+') {
-      width: colspan(design-cols-to-colspan(3), large) !important;
+      width: colspan(11.33, large) !important;
+      margin-left: colspan(2, large) !important;
     }
-  
+
     @include breakpoint('xlarge') {
-      width: colspan(design-cols-to-colspan(3), xlarge) !important;
+      width: colspan(11.33, xlarge) !important;
+      margin-left: colspan(2, xlarge) !important;
     }
 
     .short-description {
@@ -2251,6 +2261,7 @@ a:focus:hover .btn--magazine {
         display: none;
       }
     }
+
     .link {
       display: none
     }
@@ -2265,22 +2276,30 @@ a:focus:hover .btn--magazine {
 
   @include breakpoint('small+') {
     width: colspan(28, small) !important;
+    margin-left: colspan(2, small) !important;
   }
 
   @include breakpoint('medium+') {
     width: colspan(13, medium) !important;
+    margin-left: colspan(2, medium) !important;
   }
 
   @include breakpoint('large+') {
-    width: colspan(9, large) !important;
+    width: colspan(8, large) !important;
+    margin-left: colspan(2, large) !important;
   }
 
   @include breakpoint('xlarge') {
-    width: colspan(9, xlarge) !important;
+    width: colspan(8, xlarge) !important;
+    margin-left: colspan(2, xlarge) !important;
   }
 
   .m-listing__img {
     padding: 50% !important;
+  }
+
+  .m-listing__meta {
+    min-height: unset;
   }
 
   .type {
@@ -2290,15 +2309,35 @@ a:focus:hover .btn--magazine {
 
   .title {
     @include untuck;
+    padding-top: 10px;
     line-height: 1.25em;
-    font-size: 22px;
+    font-size: 19px;
   }
 }
 
 .m-listing--seventy-thirty {
   &.m-listing {
-    width: 100% !important;
-    margin: 24px 0 !important;
+    @include breakpoint('small') {
+      margin-left: 0 !important
+    }
+
+    @include breakpoint('medium') {
+      margin-left: 0 !important
+    }
+
+    @include breakpoint('large') {
+      margin-left: 0 !important;
+    }
+
+    @include breakpoint('xlarge') {
+      margin-left: 0 !important;
+    }
+
+    & {
+      width: 100% !important;
+      margin-top: 24px!important;
+      margin-bottom: 24px!important;
+    }
 
     >.link {
       display: none !important;
@@ -2556,4 +2595,3 @@ a:focus:hover .btn--magazine {
 .o-grid-listing--feature-4x .m-listing__meta {
   min-height: 128px;
 }
-

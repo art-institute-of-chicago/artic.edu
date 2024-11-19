@@ -46,7 +46,7 @@
   left: 0;
   right: 0;
   top: 0;
-  height: 1px;
+  height: 0px;
   background-color: $color__rules--primary;
 }
 
@@ -259,15 +259,89 @@
 .o-article__primary-actions--digital-publication {
   @extend %o-article__primary-actions--toggleable;
   padding-top: 0px;
+  z-index: 4;
 
-  .o-sticky-sidebar__sticker {
-    padding-top: 40px;
+  .p-digitalpublications-show &,
+  .p-digitalpublications-showlisting & {
+    margin-top: 40px;
+  }
+
+  .is-sidebar-overlay & .o-sticky-sidebar__sticker {
+    overflow-y: unset;
     padding-bottom: 60px;
   }
 
   .m-article-actions--publication__logo {
     margin-bottom: 40px;
-    white-space: nowrap;
+    color: $color__white;
+    display: flex;
+    align-items: center;
+
+    .is-sidebar-fixed:not(.is-sidebar-overlay) & {
+      display: block;
+      align-items: normal;
+    }
+
+    .p-digitalpublicationarticle-show.p-t-contributions &,
+    .p-digitalpublicationarticle-show.p-t-entry & {
+      background-color: unset;
+    }
+
+    .p-digitalpublicationarticle-show.p-t-contributions:not(.is-sidebar-overlay) &,
+    .p-digitalpublicationarticle-show.p-t-entry:not(.is-sidebar-overlay) & {
+      margin-bottom: 40px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      height: 150px;
+      width: 600px;
+      margin-left: calc(-600px + 50%);
+      @each $name in ('large', 'xlarge') {
+        @include breakpoint('#{$name}') {
+          width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2));
+          padding-right: calc(#{colspan(1, '#{$name}')} * 2);
+          margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
+          margin-right: colspan(2, #{$name});
+        }
+      }
+    }
+
+    a {
+      transition: color 1s;
+
+      .is-sidebar-fixed & {
+        color: $color__black !important;
+      }
+    }
+
+    a:hover,
+    a:focus {
+      color: $color__link--publications-hover;
+    }
+
+    a:active {
+      color: $color__link--publications-active;
+    }
+
+    @include breakpoint('medium-') {
+      margin-top: 40px;
+      padding-right: 20px;
+      width: 100%;
+    }
+
+    @include breakpoint('large+') {
+      .p-digitalpublications-show &,
+      .p-digitalpublications-showlisting & {
+        display: none !important;
+      }
+    }
 
     @include font-styles-untuck(generate-font-obj(
       (
@@ -285,15 +359,54 @@
     }
   }
 
+  .m-article-header__text::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    height: 150px;
+    width: 600px;
+    margin-left: calc(-600px + 50%);
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2));
+        padding-right: calc(#{colspan(1, '#{$name}')} * 2);
+        margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
+        margin-right: colspan(2, #{$name});
+      }
+    }
+  }
+
   .m-article-actions {
     margin-top: 50px;
     margin-bottom: 50px;
     padding-top: 8px;
-    border-top: 1px solid $color__rules--primary;
   }
 }
 
 // Styles specific to magazine issues:
+.p-magazineissue-latest,
+.p-magazineissue-show {
+  @include breakpoint('medium-') {
+    .o-article {
+      display: flex;
+      flex-direction: column;
+
+      &>.m-article-header {
+        order: 1;
+      }
+      &>.o-article__primary-actions {
+        order: 3;
+      }
+      &>.o-article__body {
+        order: 2;
+      }
+    }
+  }
+}
 .o-article__primary-actions--magazine-issue {
   .o-sticky-sidebar__sticker {
     padding-top: 100px;
@@ -307,9 +420,20 @@
     }
   }
 
-  #h-nav-magazine-social {
+  button#archive {
+    color: $color__magazine__byzantium !important;
+
+    .o-accordion__trigger-icon {
+      color: $color__black__90;
+    }
+  }
+
+  #h-nav-magazine-social,
+  hr+.o-accordion .o-accordion>.o-accordion__title>.o-accordion__trigger {
+    color: $color__black--90 !important;
+    font-family: $sans-serif-font--loaded;
+    font-size: 17px;
     font-weight: 400;
-    color: $color__black--90;
   }
 }
 

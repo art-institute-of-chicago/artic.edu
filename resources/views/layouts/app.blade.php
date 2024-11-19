@@ -2,7 +2,7 @@
 $print = app('printservice')->isPrintMode();
 $pClass = 'App\Http\Controllers\GenericPagesController';
 if (env('APP_ENV') != 'testing') {
-    $action = request()->route()->getAction();
+    $action = request()->route()?->getAction();
     if (is_array($action) && $action['controller']) {
         $pClass = $action['controller'];
     }
@@ -11,9 +11,14 @@ $pClass = preg_replace('/App\\\\Http\\\\Controllers\\\\Admin\\\\/i','p-',$pClass
 $pClass = preg_replace('/App\\\\Http\\\\Controllers\\\\/i','p-',$pClass);
 $pClass = preg_replace('/Controller/i','',$pClass);
 $pClass = strtolower(preg_replace('/@/i','-',$pClass));
+
+$pType = '';
+if (isset($item) && isset($item->article_type) && isset($item->article_type->name)) {
+    $pType = 'p-t-' . Str::kebab($item->article_type->name);
+}
 @endphp
 <!DOCTYPE html>
-<html dir="ltr" lang="{{ app()->getLocale() }}" class="no-js{{ (isset($unstickyHeader) && $unstickyHeader) ? ' s-unsticky-header' : '' }}{{ (isset($contrastHeader) && $contrastHeader) ? ' s-contrast-header' : '' }}{{ (isset($borderlessHeader) && $borderlessHeader && empty($hour)) ? ' s-borderless-header' : '' }}{{ (isset($filledLogo) and $filledLogo) ? ' s-filled-logo' : '' }}{{ $print ? ' s-print' : '' }}  {{ !empty($roadblocks) && $roadblocks->count() > 0 ? ' s-roadblock-defined' : '' }}{{ isset($_COOKIE["A17_fonts_cookie_serif"]) ? ' s-serif-loaded' : '' }}{{ isset($_COOKIE["A17_fonts_cookie_sans-serif"]) ? ' s-sans-serif-loaded' : '' }} s-env-{{ app()->environment() }} {{ $pClass }} {{ $print ? 's-serif-loaded s-sans-serif-loaded s-print' : '' }}">
+<html dir="ltr" lang="{{ app()->getLocale() }}" class="no-js{{ (isset($unstickyHeader) && $unstickyHeader) ? ' s-unsticky-header' : '' }}{{ (isset($contrastHeader) && $contrastHeader) ? ' s-contrast-header' : '' }}{{ (isset($borderlessHeader) && $borderlessHeader && empty($hour)) ? ' s-borderless-header' : '' }}{{ (isset($filledLogo) and $filledLogo) ? ' s-filled-logo' : '' }}{{ $print ? ' s-print' : '' }}  {{ !empty($roadblocks) && $roadblocks->count() > 0 ? ' s-roadblock-defined' : '' }}{{ isset($_COOKIE["A17_fonts_cookie_serif"]) ? ' s-serif-loaded' : '' }}{{ isset($_COOKIE["A17_fonts_cookie_sans-serif"]) ? ' s-sans-serif-loaded' : '' }} s-env-{{ app()->environment() }} {{ $pClass }} {{ $pType }} {{ $print ? 's-serif-loaded s-sans-serif-loaded s-print' : '' }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />

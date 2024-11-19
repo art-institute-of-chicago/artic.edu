@@ -49,8 +49,9 @@ class DigitalPublicationArticleController extends FrontController
             'item' => $item,
             'contrastHeader' => false,
             'borderlessHeader' => false,
-            'unstickyHeader' => false,
+            'unstickyHeader' => true,
             'canonicalUrl' => $canonicalPath,
+            'bgcolor' => $item->digitalPublication->bgcolor,
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use A17\Twill\Http\Controllers\Admin\NestedModuleController;
 use App\Repositories\DigitalPublicationRepository;
 use App\Http\Controllers\Admin\Behaviors\IsNestedModule;
+use Illuminate\Support\Collection;
 
 class DigitalPublicationArticleController extends NestedModuleController
 {
@@ -27,9 +28,9 @@ class DigitalPublicationArticleController extends NestedModuleController
             'edit_link' => true,
             'field' => 'title',
         ],
-        'type' => [
+        'article_type' => [
             'title' => 'Type',
-            'field' => 'type',
+            'field' => 'articleType',
             'present' => true,
         ],
     ];
@@ -75,6 +76,37 @@ class DigitalPublicationArticleController extends NestedModuleController
         );
     }
 
+    protected function getBrowserData($prependScope = [])
+    {
+        $query = $this->repository->withDepth()->defaultOrder()->where('article_type', '!=', 'grouping');
+
+        $search = $this->request->get('search', $prependScope['search'] ?? null);
+        if ($search) {
+            $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($search) . '%']);
+        }
+
+        $digitalPublicationId = $this->request->get('digitalPublication', $prependScope['digitalPublication'] ?? null);
+        if ($digitalPublicationId) {
+            $query->where('digital_publication_id', $digitalPublicationId);
+        }
+
+        $articles = $query->get();
+
+        $formattedArticles = $articles->map(function ($article) use ($digitalPublicationId) {
+            return [
+                'id' => $article->id,
+                'name' => $digitalPublicationId ? $article->title : ($article->digitalPublication ? $article->digitalPublication->title . ' - ' . $article->title : $article->title),
+                'edit' => route('admin.collection.articles_publications.digitalPublications.articles.edit', [
+                    'digitalPublication' => $article->digital_publication_id,
+                    'article' => $article->id
+                ]),
+                'endpointType' => 'digitalPublicationArticles',
+                'thumbnail' => $article->defaultCmsImage(['w' => 100, 'h' => 100]),
+            ];
+        });
+
+        return ['data' => $formattedArticles->values()->toArray()];
+    }
     protected function transformIndexItems($items)
     {
         // If we're in the browser, don't transform the items

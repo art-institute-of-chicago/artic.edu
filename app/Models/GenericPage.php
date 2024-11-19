@@ -197,6 +197,11 @@ class GenericPage extends AbstractModel implements Sortable
         return $this->belongsToMany('App\Models\PageCategory');
     }
 
+    public function sponsors()
+    {
+        return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
+    }
+
     protected function transformMappingInternal()
     {
         return [

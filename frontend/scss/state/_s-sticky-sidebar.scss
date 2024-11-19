@@ -12,7 +12,15 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
     display: none;
   }
 
+  .o-sticky-sidebar__sticker {
+    height: 100vh;
+  }
+
   &.is-sidebar-overlay {
+    .m-article-actions--publication__logo a {
+      color: $color__text--title !important;
+    }
+
     @include breakpoint('medium-') {
       .g-mask {
         right: 0;
@@ -40,7 +48,6 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         left: 0;
 
         width: 300px;
-        height: 100vh;
         overflow-y: auto;
 
         // Gutters are always about the same as on xsmall
@@ -82,6 +89,16 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         width: 100vw;
       }
     }
+    @include breakpoint('small') {
+      .o-sticky-sidebar__sticker {
+        width: calc(colspan(19, 'small') + map-get($outer-gutters, 'small'));
+      }
+    }
+    @include breakpoint('medium') {
+      .o-sticky-sidebar__sticker {
+        width: calc(colspan(19, 'medium') + map-get($outer-gutters, 'medium'));
+      }
+    }
   }
 
   @include breakpoint('large+') {
@@ -96,19 +113,34 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
     &.is-sidebar-grabbed,
     &.is-sidebar-fixed,
     &.is-sidebar-bottom {
-      .o-sticky-sidebar__sticker {
-
-        &[data-sticky-animated-logo] {
+      .o-article__primary-actions {
+        .o-sticky-sidebar__sticker {
           .m-article-actions--publication__logo {
             display: block;
+            align-items: normal;
+            height: auto;
+            margin-top: 30px;
+          }
+
+          @each $name in ('large', 'xlarge') {
+            @include breakpoint('#{$name}') {
+              width: #{colspan(19, '#{$name}')};
+              padding-right: #{colspan(1, '#{$name}')};
+            }
+          }
+
+          .m-article-actions--publication__logo,
+          .m-article-actions--publication__logo::before {
+            background-color: transparent;
+          }
+
+          .m-article-actions--publication__logo a {
+            color: $color__text--title;
           }
         }
 
-        @each $name in ('large', 'xlarge') {
-          @include breakpoint('#{$name}') {
-            width: #{colspan(14, '#{$name}')};
-            padding-right: #{colspan(1, '#{$name}')};
-          }
+        .m-article-header--digital-publication-article ~ .m-article-header__text::before {
+          background-color: transparent;
         }
       }
     }
@@ -122,7 +154,6 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
           }
         }
 
-        height: 100vh;
         overflow-y: auto;
       }
     }

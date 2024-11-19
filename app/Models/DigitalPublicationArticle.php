@@ -37,7 +37,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         'hide_title',
         'list_description',
         'date',
-        'type',
+        'article_type',
         'listing_display',
         'suppress_listing',
         'heading',
@@ -62,12 +62,12 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         'date' => 'date',
         'publish_start_date' => 'date',
         'published' => 'boolean',
-        'type' => DigitalPublicationArticleType::class,
+        'article_type' => DigitalPublicationArticleType::class,
     ];
 
     public $attributes = [
         'published' => false,
-        'type' => 'entry'
+        'article_type' => 'text',
     ];
 
     public $mediasParams = [
@@ -76,6 +76,12 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
                 [
                     'name' => 'default',
                     'ratio' => 16 / 9,
+                ],
+            ],
+            'square' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
                 ],
             ],
             'special' => [
@@ -151,6 +157,15 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         return $this->present()->getCanonicalUrl();
     }
 
+    public function getUrlWithoutSlugAttribute()
+    {
+        return route('collection.publications.digital-publications-articles.show', [
+            'pubId' => $this->digital_publication_id,
+            'pubSlug' => $this->digitalPublication->slug,
+            'id' => $this->id,
+        ]);
+    }
+
     protected function transformMappingInternal()
     {
         return [
@@ -211,11 +226,11 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
                 }
             ],
             [
-                'name' => 'type',
+                'name' => 'article_type',
                 'doc' => 'Type of Article',
                 'type' => 'string',
                 'value' => function () {
-                    return $this->present()->type;
+                    return $this->present()->articleType;
                 },
             ],
             [

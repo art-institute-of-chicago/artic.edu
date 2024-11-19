@@ -40,9 +40,7 @@ class DigitalPublication extends AbstractModel
         'sponsor_display',
         'welcome_note_display',
         'cite_as',
-        'header_title_display',
         'header_subtitle_display',
-        'sidebar_title_display',
         'bgcolor',
         'toggle_autorelated',
     ];

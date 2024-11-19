@@ -6,7 +6,28 @@
 
 @section('content')
 
+@if ($bgcolor ?? false)
+<style>
+    .m-article-header--digital-publication-article ~ .m-article-header__text::before,
+    .m-article-actions--publication__logo.u-show\@medium-::before {
+        background-color: {{ isset($bgcolor) ? $bgcolor : null  }};
+    }
+</style>
+@endif
+
 <article class="o-article">
+    @if ($item->article_type == DigitalPublicationArticleType::Contributions)
+        @component('components.molecules._m-article-header----digital-publication-article')
+            @slot('bgcolor', isset($bgcolor) ? $bgcolor : null )
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display)
+            @slot('pub_title', $item->digitalPublication->present()->title)
+            @slot('pub_title_display', $item->digitalPublication->present()->title_display)
+            @slot('img', $item->imageFront('hero'))
+            @slot('imgMobile', $item->imageFront('mobile_hero'))
+        @endcomponent
+    @endif
+
     @component('components.molecules._m-sidebar-toggle')
         @slot('title', $item->digitalPublication->title_display ?? $item->digitalPublication->title)
     @endcomponent
@@ -20,29 +41,31 @@
         @endcomponent
     </div>
 
-    @switch ($item->type)
-        @case (DigitalPublicationArticleType::Contributions)
-            @component('components.molecules._m-article-header----journal-article')
-                @slot('title', $item->present()->title)
-                @slot('title_display', $item->present()->title_display)
-                @slot('img', $item->imageFront('hero'))
-                @slot('imgMobile', $item->imageFront('mobile_hero'))
-            @endcomponent
-            @break
-        @case (DigitalPublicationArticleType::Entry)
-            {{-- The Entry type does not display a header --}}
-            @break
-        @default
-            @component('components.molecules._m-article-header')
-                @slot('headerType', 'generic')
-                @slot('title', $item->present()->title)
-                @slot('title_display', $item->present()->title_display ?? null) {{-- WEB-2244: Populate this? --}}
-            @endcomponent
-    @endswitch
+    @if ($item->article_type != DigitalPublicationArticleType::Contributions && $item->article_type != DigitalPublicationArticleType::Entry)
+        @component('components.molecules._m-article-header')
+            @slot('headerType', 'generic')
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display ?? null) {{-- WEB-2244: Populate this? --}}
+        @endcomponent
+    @endif
 
     <div class="o-article__secondary-actions o-article__secondary-actions--empty">
         {{-- Intentionally left blank for layout --}}
     </div>
+
+    @if ($item->article_type !== DigitalPublicationArticleType::About
+        && $item->article_type !== DigitalPublicationArticleType::Entry)
+        <div class="m-article-header__text u-show@large+">
+            @component('components.atoms._title')
+                @slot('tag', 'h1')
+                @slot('font', 'f-headline-editorial')
+                @slot('itemprop', 'name')
+                @slot('title', $item->present()->title)
+                @slot('title_display', $item->present()->title_display ?? null)
+                @slot('variation', 'contrast-text')
+            @endcomponent
+        </div>
+    @endif
 
     @if ($item->heading)
     <div class="o-article__intro">
@@ -55,22 +78,30 @@
     @endif
 
     <div class="o-article__body o-blocks o-blocks--with-sidebar">
-        @switch ($item->type)
-            @case (DigitalPublicationArticleType::Contributions)
-            @case (DigitalPublicationArticleType::Entry)
-                @if ($item->showAuthorsWithLinks())
-                    @component('components.blocks._text')
-                        @slot('font', 'f-tag-2')
-                        @slot('variation', 'author-links')
-                        @slot('tag', 'div')
-                        {!! $item->showAuthorsWithLinks() !!}
-                    @endcomponent
-                @endif
-                @break
-        @endswitch
+        @if ($item->article_type !== DigitalPublicationArticleType::Entry)
+            <div class="m-article-header__text {{ $item->article_type !== DigitalPublicationArticleType::About ? 'u-show@medium-' : '' }}">
+                @component('components.atoms._title')
+                    @slot('tag', 'h1')
+                    @slot('font', 'f-headline-editorial')
+                    @slot('itemprop', 'name')
+                    @slot('title', $item->present()->title)
+                    @slot('title_display', $item->present()->title_display ?? null)
+                    @slot('variation', 'contrast-text')
+                @endcomponent
+            </div>
+        @endif
+
+        @if ($item->showAuthorsWithLinks() && $item->article_type == DigitalPublicationArticleType::Contributions)
+            @component('components.blocks._text')
+                @slot('font', 'f-tag-2')
+                @slot('variation', 'author-links')
+                @slot('tag', 'div')
+                {!! $item->showAuthorsWithLinks() !!}
+            @endcomponent
+        @endif
 
         @php
-        switch ($item->type) {
+        switch ($item->article_type) {
             case DigitalPublicationArticleType::Contributions:
             case DigitalPublicationArticleType::Entry:
                 global $_collectedReferences;
@@ -89,6 +120,15 @@
         {!! $item->renderBlocks(false, [], [
             'pageTitle' => $item->meta_title ?: $item->title,
         ]) !!}
+
+        @if ($item->showAuthorsWithLinks() && $item->article_type == DigitalPublicationArticleType::Entry)
+            @component('components.blocks._text')
+                @slot('font', 'f-tag-2')
+                @slot('variation', 'author-links')
+                @slot('tag', 'div')
+                Entry by {!! $item->showAuthorsWithLinks() !!}
+            @endcomponent
+        @endif
 
         @component('partials._bibliography')
             @slot('notes', $_collectedReferences ?? null)

@@ -15,6 +15,7 @@ trait HandleFeaturedRelated
             'events' => false,
             'experiences' => false,
             'digitalPublications' => false,
+            'digitalPublicationArticles' => false,
             'videos' => false,
             'exhibitions' => true,
         ]);
@@ -34,6 +35,7 @@ trait HandleFeaturedRelated
             'events' => false,
             'experiences' => false,
             'digitalPublications' => false,
+            'digitalPublicationArticles' => false,
             'videos' => false,
             'exhibitions' => true,
         ]);

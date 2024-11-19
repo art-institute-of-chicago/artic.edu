@@ -4,17 +4,38 @@ namespace App\Presenters\Admin;
 
 use Illuminate\Support\Str;
 use App\Presenters\BasePresenter;
+use App\Enums\DigitalPublicationArticleType;
 
 class DigitalPublicationArticlePresenter extends BasePresenter
 {
     public function getCanonicalUrl()
     {
-        return $this->getArticleUrl($this->entity->digitalPublication);
+        if ($this->entity->article_type === DigitalPublicationArticleType::Grouping) {
+            return route(
+                'collection.publications.digital-publications.showListing',
+                [
+                    'id' => $this->entity->digitalPublication->id,
+                    'slug' => $this->entity->digitalPublication->getSlug()
+                ]
+            ) . '#' . Str::kebab($this->entity->title);
+        } else {
+            return $this->getArticleUrl($this->entity->digitalPublication);
+        }
+    }
+
+    public function articleType()
+    {
+        return $this->entity->article_type->name;
     }
 
     public function type()
     {
-        return $this->entity->type->name;
+        return 'Digital Publication Article';
+    }
+
+    public function subtype()
+    {
+        return 'From The Digital Publication';
     }
 
     public function pdfDownloadPath()
@@ -40,10 +61,11 @@ class DigitalPublicationArticlePresenter extends BasePresenter
 
     public function getBrowseMoreLink($showAll = false)
     {
-        if ($this->entity->children->count() > 0  && !$showAll) {
+        if ($this->entity->children->count() > 0 && !$showAll) {
+            $totalChildrenCount = $this->countAllChildren($this->entity);
             return [
                 [
-                    'label' => 'Browse all ' . $this->entity->children->count() . ' ' . $this->entity->title,
+                    'label' => 'Browse all ' . $totalChildrenCount . ' ' . $this->entity->title,
                     'href' => route(
                         'collection.publications.digital-publications.showListing',
                         [
@@ -55,6 +77,17 @@ class DigitalPublicationArticlePresenter extends BasePresenter
             ];
         }
         return '';
+    }
+
+    public function countAllChildren($entity)
+    {
+        $descendants = $entity->descendants;
+
+        $filteredDescendants = $descendants->filter(function ($descendant) {
+            return $descendant->article_type !== DigitalPublicationArticleType::Grouping;
+        });
+
+        return $filteredDescendants->count();
     }
 
     public function references()
@@ -73,5 +106,18 @@ class DigitalPublicationArticlePresenter extends BasePresenter
         }
 
         return $this->addCssClass($this->entity->cite_as, 'f-secondary');
+    }
+
+    public function isArticleInTree($items)
+    {
+        foreach ($items as $childItem) {
+            if ($childItem->id === $this->entity->id) {
+                return true;
+            }
+            if (count($childItem->children) > 0 && $this->isArticleInTree($childItem->children)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

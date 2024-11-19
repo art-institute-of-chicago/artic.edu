@@ -1,3 +1,8 @@
+@php
+    $currentUrl = explode('/', request()->url());
+    $type = $currentUrl[5] ?? null;
+@endphp
+
 @twillBlockTitle('Video')
 @twillBlockIcon('image')
 
@@ -5,7 +10,8 @@
     'name' => 'size',
     'label' => 'Size',
     'placeholder' => 'Select size',
-    'default' => 'm',
+    'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
+    'disabled' => ($type === 'digitalPublications' ? true : false),
     'options' => [
         [
             'value' => 's',
@@ -82,7 +88,8 @@
 
     @formField('input', [
         'name' => 'url',
-        'label' => 'Video URL'
+        'label' => 'Video URL',
+        'type' => 'url'
     ])
 
 @endcomponent

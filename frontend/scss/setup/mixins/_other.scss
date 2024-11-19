@@ -120,18 +120,6 @@ Creates a load spinner.
   @return $string;
 }
 
-// To fix collapsing margins
-.clearfix {
-  &:before,&:after {
-    display:table;
-    content:"";
-    line-height:0;
-  }
-  &:after {
-    clear:both;
-  }
-}
-
 @mixin tucked-margin-top($font-obj, $distances, $single-bp: false) {
   $settings: false;
   $line-height: 0;

@@ -57,6 +57,7 @@ class Exhibition extends AbstractModel
         'exhibition_message',
         'exhibition_location',
         'status_override',
+        'type_override',
         'list_description',
         'cms_exhibition_type',
         'hero_caption',

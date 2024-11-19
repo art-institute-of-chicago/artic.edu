@@ -1,4 +1,17 @@
-<header class="m-article-header m-article-header--journal-article">
+@if ($bgcolor ?? false)
+    <style>
+        .m-article-header--digital-publication-article ~ .m-article-header__text::before,
+        .m-article-actions--publication__logo {
+            background-color: {{ isset($bgcolor) ? $bgcolor : null  }};
+        }
+    </style>
+@endif
+
+<header
+    class="m-article-header m-article-header--feature m-article-header--digital-publication-article"
+    data-behavior="contrastText"
+    data-background-color="{{ isset($bgcolor) ? $bgcolor : null }}"
+>
     <div class="m-article-header__img">
         @if ($img)
             @component('components.atoms._img')
@@ -19,21 +32,7 @@
             @endcomponent
         @endif
     </div>
-    <div class="m-article-header__text">
-        @if (isset($title))
-            @component('components.atoms._title')
-                @slot('tag', 'h1')
-                @slot('font', 'f-headline-editorial')
-                @slot('itemprop', 'name')
-                @slot('title', $title)
-                @slot('title_display', $title_display ?? null)
-            @endcomponent
-        @endif
-        @if (!empty($credit))
-            @component('components.molecules._m-info-trigger')
-                @slot('isInverted', true)
-                @slot('creditText', $credit)
-            @endcomponent
-        @endif
+    <div class="m-article-actions--publication__logo u-show@medium- contrast-text">
+        {!! $pub_title_display ?? $pub_title !!}
     </div>
 </header>

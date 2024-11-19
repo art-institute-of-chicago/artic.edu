@@ -15,12 +15,14 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasUnlisted;
 use App\Helpers\ImageHelpers;
 use App\Helpers\StringHelpers;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Experience extends AbstractModel implements Sortable
 {
     use HasBlocks;
     use HasSlug;
     use HasMedias;
+    use HasFactory;
     use HasFiles;
     use HasRevisions;
     use HasPosition;

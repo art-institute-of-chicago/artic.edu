@@ -21,9 +21,22 @@ class GenericPageRepository extends ModuleRepository
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
+    protected $browsers = [
+        'sponsors' => [
+            'routePrefix' => 'exhibitions_events',
+        ],
+    ];
+
     public function __construct(GenericPage $model)
     {
         $this->model = $model;
+    }
+
+    public function hydrate($object, $fields)
+    {
+        $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
+
+        return parent::hydrate($object, $fields);
     }
 
     public function setNewOrder($ids)

@@ -5,12 +5,36 @@
 .p-digitalpublications-showlisting {
   @extend %sticky-sidebar;
 
-  .o-article__body {
+  .o-article:not(.o-article--generic-page) .o-article__body {
     border-top: none;
+    float: none;
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        margin-left: colspan(20, '#{$name}');
+        width: colspan(38, '#{$name}');
+      }
+    }
   }
 
   .m-article-header~.o-article__primary-actions::before {
     content: none;
+  }
+
+  .m-article-header~.o-article__primary-actions {
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        width: colspan(18, '#{$name}');
+        margin-right: colspan(2, '#{$name}');
+      }
+    }
+  }
+
+  .m-article-header--digital-publication {
+    .subtitle {
+      font-size: 18px;
+      line-height: 25px;
+      text-align: left;
+    }
   }
 
   .o-article {
@@ -63,14 +87,38 @@
   }
 }
 
-.p-digitalpublications-show,
 .p-digitalpublications-showlisting {
   .o-article__body {
+    margin-top: 40px !important;
+  }
+}
+
+.p-digitalpublications-show,
+.p-digitalpublications-showlisting {
+  .o-article__body:has(.o-issue__intro) {
     margin-top: 40px;
   }
 
   .o-article__body::before {
     top: -40px;
     height: calc(100% + 40px);
+  }
+
+  .o-article__body > .m-title-bar {
+    margin-top: 55px;
+  }
+
+  .o-article__body > .m-title-bar:first-of-type:not(:has(+ .m-showcase, + .o-issue__intro)) {
+    margin-top: 36px !important;
+
+    &::before {
+      content: none;
+    }
+  }
+}
+
+.p-digitalpublications-showlisting {
+  .m-info-trigger {
+    display: none;
   }
 }

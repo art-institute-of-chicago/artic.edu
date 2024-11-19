@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
   @if ($item->children && count($item->children) >= 1)
   <a href="{{ $item->present()->url }}" class="f-link">
     <h2 class="title {{ $titleFont ?? 'f-list-2' }}" id="{{ isset($id) ? $id : Str::snake(strip_tags($item->present()->title), '-') }}">{!! $item->present()->title !!}</h2>
-      <span class="link">{{ 'View all ' . $item->present()->type }}
+      <span class="link">{{ 'View all ' . $item->present()->articleType }}
         <span aria-hidden="true">&rsaquo;</span>
       </span>
     </a>

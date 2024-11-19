@@ -1,11 +1,17 @@
 @if ($bgcolor ?? false)
     <style>
-        .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__text::before {
-            background-color: {{ $bgcolor }};
+        .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__text,
+        .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__text::before,
+        .{{ (isset($variation)) ? $variation : 'm-article-header--feature' }} .m-article-header__img::before {
+            background-color: {{ isset($bgcolor) ? $bgcolor : null  }};
         }
     </style>
 @endif
-<{{ $tag ?? 'header' }} class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
+<{{ $tag ?? 'header' }}
+    class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}"
+    data-behavior="blurMyBackground stickyDigitalPublicationHeader contrastText"
+    data-background-color="{{ isset($bgcolor) ? $bgcolor : null  }}"
+>
     <div class="m-article-header__img"{{ (isset($variation) && $variation != 'm-article-header--digital-publication') ? ' data-blur-img' : '' }}>
         @if ($img)
             @component('components.atoms._img')
@@ -28,15 +34,22 @@
     </div>
     <div class="m-article-header__text" data-blur-clip-to>
         @if (isset($title))
-            @component('components.atoms._title')
-                @slot('tag','h1')
-                @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-headline')
-                @slot('itemprop','name')
-                @slot('title', $title)
-                @slot('title_display', $title_display ?? null)
-            @endcomponent
+            @if (isset($title_href))
+                <a href="{{ $title_href }}">
+            @endif
+                @component('components.atoms._title')
+                    @slot('tag', 'h1')
+                    @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-headline')
+                    @slot('itemprop','name')
+                    @slot('title', $title)
+                    @slot('title_display', $title_display ?? null)
+                    @slot('variation', 'contrast-text')
+                @endcomponent
+            @if (isset($title_href))
+                </a>
+            @endif
             @if (isset($subtitle_display))
-                <h2 class="subtitle f-headline-editorial">
+                <h2 class="subtitle f-headline-editorial contrast-text">
                     {!! $subtitle_display !!}
                 </h2>
             @endif
@@ -57,10 +70,10 @@
             @slot('date', $date ?? null)
         @endcomponent
 
-        @if (isset($type))
+        @if (isset($type) || isset($type_override))
             @component('components.atoms._type')
                 @slot('tag','p')
-                {{ $type }}
+                {{ $type_override ?? $type }}
             @endcomponent
         @endif
 
@@ -83,3 +96,7 @@
         @endif
     @endif
 </{{ $tag ?? 'header' }}>
+
+@if (($variation ?? '') == 'm-article-header--digital-publication')
+    <div class="m-article-header__spacer"></div>
+@endif
