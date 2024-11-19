@@ -20,7 +20,7 @@ return [
     | This value is the URL of your admin application.
     |
      */
-    'admin_app_url' => env('ADMIN_APP_URL', 'admin.' . env('APP_URL')),
+    'admin_app_url' => env('ADMIN_APP_URL', 'twill.' . env('APP_URL')),
     'admin_app_path' => env('ADMIN_APP_PATH', ''),
 
     /*
@@ -31,7 +31,7 @@ return [
     | This value is added to the admin route names of your Admin application.
     |
     */
-    'admin_route_name_prefix' => env('ADMIN_ROUTE_NAME_PREFIX', 'admin.'),
+    'admin_route_name_prefix' => env('ADMIN_ROUTE_NAME_PREFIX', 'twill.'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     | dashboard modules configuration, mapping to a subdomain.
     | This is a very simple way to implement multi-tenant CMS/sites in Twill.
     | A navigation array looking like the following would expose your CMS on
-    | the 'admin.subdomain1.app-url.test' and 'admin.subdomain2.app-url.test'
+    | the 'twill.subdomain1.app-url.test' and 'twill.subdomain2.app-url.test'
     | urls, with its corresponding links.
     | [
     |   'subdomain1' => [
@@ -90,7 +90,7 @@ return [
     | Application Admin Route and domain pattern
     |--------------------------------------------------------------------------
     |
-    | This value add some patterns for the domain and routes of the admin.
+    | This value add some patterns for the domain and routes of the twill.
     |
      */
     'admin_route_patterns' => [
