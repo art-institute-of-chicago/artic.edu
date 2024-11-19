@@ -538,6 +538,10 @@
       flex-basis: 15%;
       margin-top: 21px;
       margin-bottom: 16px;
+
+      .m-media .m-media__img img {
+        max-height: 180px !important;
+      }
     }
 
     &:last-child {
