@@ -21,7 +21,7 @@
             ],
         ])
 
-        {{-- We cannot @include('admin.partials.hero') here, but let's keep parity with it! --}}
+        {{-- We cannot @include('twill.partials.hero') here, but let's keep parity with it! --}}
 
         @formField('wysiwyg', [
             'type' => 'textarea',

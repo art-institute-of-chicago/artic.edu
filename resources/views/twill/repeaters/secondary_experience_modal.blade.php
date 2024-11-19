@@ -3,4 +3,4 @@
 @twillRepeaterComponent('a17-block-experience_modal')
 @twillRepeaterMax('1')
 
-@extends('admin.repeaters-shared._experience_modal')
+@extends('twill.repeaters-shared._experience_modal')
