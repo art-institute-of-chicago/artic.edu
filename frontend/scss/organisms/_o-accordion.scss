@@ -415,9 +415,19 @@
     }
   }
 
+  .o-accordion__panel > .o-accordion--publication-sidebar {
+    padding-left: 20px;
+  }
+
+  .o-accordion__panel > .o-accordion.o-accordion--magazine-issue-archive {
+    padding-left: 0;
+    &:not(:has(>.o-accordion__panel-content)) {
+      padding-left: 20px;
+    }
+  }
+
   .o-accordion__panel > .o-accordion--publication-sidebar,
   .o-accordion__panel > .o-accordion.o-accordion--magazine-issue-archive {
-    padding-left: 20px;
     &:last-of-type {
       padding-bottom: 20px;
     }
