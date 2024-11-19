@@ -531,6 +531,45 @@
   .o-accordion__trigger {
     background-color: transparent;
   }
+
+  .m-split-block--quarter div {
+    &:first-child {
+      width: 25%;
+      flex-basis: 15%;
+      margin-top: 21px;
+      margin-bottom: 16px;
+
+      .m-media .m-media__img img {
+        max-height: 180px !important;
+      }
+    }
+
+    &:last-child {
+      & h2 {
+        margin-top: 0;
+        line-height: 21px;
+      }
+    }
+
+    @include breakpoint('xsmall') {
+      &:first-child {
+        flex-basis: 25%;
+      }
+
+      &:last-child {
+        width: 72%;
+      }
+    }
+    @include breakpoint('small+') {
+      &:first-child {
+        flex-basis: 25%;
+      }
+
+      &:last-child {
+        width: 75%;
+      }
+    }
+  }
 }
 
 /***
