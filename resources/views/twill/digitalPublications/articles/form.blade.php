@@ -238,5 +238,5 @@
         @endformConnectedFields
     @endformFieldset
 
-    @include('admin.partials.meta')
+    @include('twill.partials.meta')
 @stop

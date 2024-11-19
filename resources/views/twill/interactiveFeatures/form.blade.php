@@ -144,6 +144,6 @@
 
 @section('fieldsets')
 
-    @include('admin.partials.related')
+    @include('twill.partials.related')
 
 @endsection

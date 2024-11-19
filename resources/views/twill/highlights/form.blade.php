@@ -41,7 +41,7 @@
         ],
     ])
 
-    @include('admin.partials.hero')
+    @include('twill.partials.hero')
 
     @formField('select', [
         'name' => 'highlight_type',
@@ -60,7 +60,7 @@
         'label' => 'Assume this highlight is featured in a magazine issue',
     ])
 
-    @include('admin.partials.authors')
+    @include('twill.partials.authors')
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
@@ -70,11 +70,11 @@
 @stop
 
 @section('fieldsets')
-    @component('admin.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
+    @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
         @slot('routePrefix', 'collection')
         @slot('moduleName', 'highlights')
     @endcomponent
 
-    @include('admin.partials.meta')
+    @include('twill.partials.meta')
 
 @stop
