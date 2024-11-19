@@ -36,5 +36,5 @@
 @stop
 
 @section('fieldsets')
-    @include('admin.partials.meta')
+    @include('twill.partials.meta')
 @endsection

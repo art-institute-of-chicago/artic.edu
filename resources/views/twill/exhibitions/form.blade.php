@@ -24,7 +24,7 @@
         'note' => '"Special" crop is used for "Special exhibition" layout',
     ])
 
-    @include('admin.partials.hero')
+    @include('twill.partials.hero')
 
     @component('twill::partials.form.utils._columns')
         @slot('left')
@@ -222,14 +222,14 @@
         ])
     </a17-fieldset>
 
-    @component('admin.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
+    @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
         @slot('routePrefix', 'exhibitions_events')
         @slot('moduleName', 'exhibitions')
     @endcomponent
 
-    @include('admin.partials.related')
+    @include('twill.partials.related')
 
-    @include('admin.partials.meta')
+    @include('twill.partials.meta')
 
     <a17-fieldset id="api" title="Datahub fields">
         @formField('input', [

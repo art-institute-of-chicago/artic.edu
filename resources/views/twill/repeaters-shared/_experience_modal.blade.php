@@ -43,7 +43,7 @@
         'renderForBlocks' => true,
         'keepAlive' => true
 ])
-    @include('admin.experiences.slides._video_form')
+    @include('twill.experiences.slides._video_form')
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [

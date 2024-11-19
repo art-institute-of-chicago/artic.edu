@@ -144,6 +144,6 @@
 
     </a17-fieldset>
 
-    @include('admin.partials.meta')
+    @include('twill.partials.meta')
 
 @endsection

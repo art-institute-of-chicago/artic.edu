@@ -6,7 +6,7 @@
     'additionalFieldsets' => $additionalFieldsets
 ])
 
-@include('admin.pages.form_' . Str::snake($pageType))
+@include('twill.pages.form_' . Str::snake($pageType))
 
 @push('vuexStore')
   window['{{ config('twill.js_namespace') }}'].STORE.publication.submitOptions = {

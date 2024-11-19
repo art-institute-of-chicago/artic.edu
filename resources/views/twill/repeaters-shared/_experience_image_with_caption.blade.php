@@ -1,4 +1,4 @@
-@extends('admin.repeaters-shared._experience_image')
+@extends('twill.repeaters-shared._experience_image')
 
 @section('caption')
     @formField('wysiwyg', [

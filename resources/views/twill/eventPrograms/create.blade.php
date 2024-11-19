@@ -1,4 +1,4 @@
-@include('admin.partials.create')
+@include('twill.partials.create')
 
 @formField('checkbox', [
     'name' => 'is_affiliate_group',
