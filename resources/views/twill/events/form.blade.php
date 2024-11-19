@@ -32,7 +32,7 @@
             'default' => '0'
         ])
 
-        @include('admin.partials.hero')
+        @include('twill.partials.hero')
 
         <p><strong>Note:</strong> Hero images are used by event listings, ticketing pages, and the mobile app.</p>
     </a17-fieldset>
@@ -346,7 +346,7 @@
         ])
     </a17-fieldset>
 
-    {{--  WEB-2236: Use 'admin.partials.meta' as a component --}}
+    {{--  WEB-2236: Use 'twill.partials.meta' as a component --}}
     <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
         @formField('input', [
             'name' => 'meta_title',

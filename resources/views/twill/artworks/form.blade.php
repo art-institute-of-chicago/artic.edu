@@ -14,12 +14,12 @@
 @stop
 
 @section('fieldsets')
-    @component('admin.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
+    @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
         @slot('routePrefix', 'collection')
         @slot('moduleName', 'artworks')
     @endcomponent
 
-    @include('admin.partials.meta')
+    @include('twill.partials.meta')
 
     <a17-fieldset id="api" title="Datahub fields">
         @formField('input', [

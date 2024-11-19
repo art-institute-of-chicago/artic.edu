@@ -188,7 +188,7 @@
             ])
                 <br/>
                 <a17-fieldset title="Video" id="video">
-                    @include('admin.experiences.slides._video_form', ['moduleType' => $moduleType])
+                    @include('twill.experiences.slides._video_form', ['moduleType' => $moduleType])
                 </a17-fieldset>
             @endcomponent
         @endcomponent

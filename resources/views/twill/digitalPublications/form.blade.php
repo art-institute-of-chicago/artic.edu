@@ -11,7 +11,7 @@
 
 @section('contentFields')
     <div class="articles-index-link">
-        <a href="{{ route('admin.collection.articles_publications.digitalPublications.articles.index', [$item->id]) }}">
+        <a href="{{ route('twill.collection.articles_publications.digitalPublications.articles.index', [$item->id]) }}">
             {{ $item->articles->count() }} articles
         </a>
     </div>
@@ -125,7 +125,7 @@
         @formField('browser', [
             'name' => 'welcome_note_section',
             'label' => 'Welcome note section',
-            'endpoint' => route('admin.collection.articles_publications.digitalPublications.articles.subbrowser',[
+            'endpoint' => route('twill.collection.articles_publications.digitalPublications.articles.subbrowser',[
                 'digitalPublication' => $item->id,
             ]),
             'max' => 1,
@@ -148,8 +148,8 @@
         ])
     @endformConnectedFields
 
-    @include('admin.partials.related')
+    @include('twill.partials.related')
 
-    @include('admin.partials.meta')
+    @include('twill.partials.meta')
 
 @endsection

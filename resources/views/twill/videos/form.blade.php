@@ -113,6 +113,6 @@
 
     </a17-fieldset>
 
-    @include('admin.partials.related')
+    @include('twill.partials.related')
 
 @endsection
