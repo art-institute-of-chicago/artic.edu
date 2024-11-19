@@ -5,7 +5,7 @@
 .p-digitalpublications-showlisting {
   @extend %sticky-sidebar;
 
-  .o-article__body {
+  .o-article:not(.o-article--generic-page) .o-article__body {
     border-top: none;
     float: none;
     @each $name in ('large', 'xlarge') {
