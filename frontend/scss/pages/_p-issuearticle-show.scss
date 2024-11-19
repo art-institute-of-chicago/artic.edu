@@ -216,6 +216,7 @@
     &>div.m-title-bar,
     &>div.o-blocks--bibliographic,
     &>.m-listing--sound,
+    &>.m-split-block,
     &>h1,
     &>h2,
     &>h3,
@@ -530,6 +531,32 @@
 
   .o-accordion__trigger {
     background-color: transparent;
+  }
+
+  .m-split-block--quarter div {
+    &:first-child {
+      width: 25%;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+
+    &:last-child {
+      & h2 {
+        margin-top: 0;
+        line-height: 21px;
+      }
+    }
+
+    @include breakpoint('xsmall') {
+      &:last-child {
+        width: 72%
+      }
+    }
+    @include breakpoint('small+') {
+      &:last-child {
+        width: 75%
+      }
+    }
   }
 }
 
