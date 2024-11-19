@@ -7,7 +7,7 @@
 @twillBlockIcon('image')
 
 {{-- WEB-1251: Inline contents partial for shared gallery block --}}
-@include('admin.partials.gallery-shared')
+@include('twill.partials.gallery-shared')
 
 @if ($type === 'digitalPublications')
     @formField('checkbox', [

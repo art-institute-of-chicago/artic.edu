@@ -1,4 +1,4 @@
-@include('admin.partials.create')
+@include('twill.partials.create')
 
 @formField('select', [
     'name' => 'interactive_feature_id',
