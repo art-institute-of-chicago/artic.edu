@@ -916,13 +916,13 @@ Draws boxes around each grid item
     }
 
     @include breakpoint('large') {
-      width: colspan(grid-cols-to-colspan(3), 'large');
+      width: colspan(20, 'large');
       margin-left: colspan(2, large) !important;
     }
 
     @include breakpoint('xlarge') {
-      width: colspan(grid-cols-to-colspan(3), 'xlarge');
-      margin-left: colspan(2, xlarge) !important;
+      width: colspan(20, 'xlarge');
+      margin-left: colspan(2, 'xlarge') !important;
     }
   }
 
