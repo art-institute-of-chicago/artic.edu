@@ -571,6 +571,24 @@
         margin-top: 0;
         line-height: 21px;
       }
+      &>*:not(p),
+      &>p>*:not(.p--linked__ref) {
+        @include breakpoint('xsmall') {
+          width: colspan(38, 'small');
+        }
+        @include breakpoint('small') {
+          width: colspan(38, 'small');
+        }
+        @include breakpoint('medium') {
+          width: colspan(28, 'medium');
+        }
+        @include breakpoint('large') {
+          width: colspan(22, 'large');
+        }
+        @include breakpoint('xlarge') {
+          width: colspan(19, 'xlarge');
+        }
+      }
     }
 
     @include breakpoint('xsmall') {
@@ -582,7 +600,7 @@
         width: 72%;
       }
     }
-    @include breakpoint('small+') {
+    @include breakpoint('small') {
       &:first-child {
         flex-basis: 25%;
       }
