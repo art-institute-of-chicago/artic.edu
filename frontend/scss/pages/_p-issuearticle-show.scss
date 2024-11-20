@@ -553,16 +553,17 @@
   .o-accordion__trigger {
     background-color: transparent;
   }
-
-  .m-split-block--quarter div {
+  .m-split-block div {
     &:first-child {
-      width: 25%;
-      flex-basis: 15%;
       margin-top: 21px;
       margin-bottom: 16px;
 
-      .m-media .m-media__img img {
-        max-height: 180px !important;
+      .m-media .m-media__img {
+        background-color: $color__white;
+
+        img {
+          max-height: 180px !important;
+        }
       }
     }
 
@@ -570,6 +571,36 @@
       & h2 {
         margin-top: 0;
         line-height: 21px;
+      }
+    }
+  }
+
+  .m-split-block--quarter div {
+    &:first-child {
+      width: 25%;
+      flex-basis: 15%;
+    }
+
+    &:last-child {
+      flex-basis: 84%;
+
+      &>*:not(p),
+      &>p>*:not(.p--linked__ref) {
+        @include breakpoint('xsmall') {
+          width: colspan(38, 'small');
+        }
+        @include breakpoint('small') {
+          width: colspan(38, 'small');
+        }
+        @include breakpoint('medium') {
+          width: colspan(28, 'medium');
+        }
+        @include breakpoint('large') {
+          width: colspan(22, 'large');
+        }
+        @include breakpoint('xlarge') {
+          width: colspan(19, 'xlarge');
+        }
       }
     }
 
@@ -582,13 +613,73 @@
         width: 72%;
       }
     }
-    @include breakpoint('small+') {
+    @include breakpoint('small') {
       &:first-child {
         flex-basis: 25%;
       }
 
       &:last-child {
         width: 75%;
+      }
+    }
+  }
+
+  .m-split-block--half div {
+    &:first-child {
+      width: 50%;
+      flex-basis: 30%;
+    }
+
+    &:last-child {
+      flex-basis: 69%;
+
+      &>*:not(p),
+      &>p>*:not(.p--linked__ref) {
+        @include breakpoint('xsmall') {
+          width: colspan(25, 'small');
+        }
+        @include breakpoint('small') {
+          width: colspan(25, 'small');
+        }
+        @include breakpoint('medium') {
+          width: colspan(18, 'medium');
+        }
+        @include breakpoint('large') {
+          width: colspan(14, 'large');
+        }
+        @include breakpoint('xlarge') {
+          width: colspan(18, 'xlarge');
+        }
+      }
+    }
+
+    @include breakpoint('large') {
+      &:first-child {
+        flex-basis: 33%;
+      }
+
+      &:last-child {
+        width: 66%;
+      }
+    }
+
+    @include breakpoint('medium') {
+      &:first-child {
+        flex-basis: 35%;
+      }
+
+      &:last-child {
+        width: 64%;
+      }
+    }
+
+    @include breakpoint('small-') {
+      &:first-child {
+        flex-basis: 50%;
+      }
+
+      &:last-child {
+        width: 50%;
       }
     }
   }
