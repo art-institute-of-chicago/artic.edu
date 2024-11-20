@@ -85,6 +85,40 @@
       }
     }
   }
+
+  .o-article .o-article__body {
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        margin-left: colspan(16, '#{$name}') !important;
+        width: colspan(42, '#{$name}') !important;
+      }
+    }
+  }
+
+  .m-article-header~.o-article__primary-actions {
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        width: colspan(14, '#{$name}');
+        margin-right: colspan(2, '#{$name}');
+      }
+    }
+  }
+
+  &.is-sidebar-grabbed,
+  &.is-sidebar-fixed,
+  &.is-sidebar-bottom,
+  &.is-sidebar-top {
+    .o-article__primary-actions {
+      .o-sticky-sidebar__sticker {
+        @each $name in ('large', 'xlarge') {
+          @include breakpoint('#{$name}') {
+            width: #{colspan(15, '#{$name}')};
+            padding-right: #{colspan(1, '#{$name}')};
+          }
+        }
+      }
+    }
+  }
 }
 
 .p-digitalpublications-showlisting {
