@@ -553,11 +553,8 @@
   .o-accordion__trigger {
     background-color: transparent;
   }
-
-  .m-split-block--quarter div {
+  .m-split-block div {
     &:first-child {
-      width: 25%;
-      flex-basis: 15%;
       margin-top: 21px;
       margin-bottom: 16px;
 
@@ -575,6 +572,18 @@
         margin-top: 0;
         line-height: 21px;
       }
+    }
+  }
+
+  .m-split-block--quarter div {
+    &:first-child {
+      width: 25%;
+      flex-basis: 15%;
+    }
+
+    &:last-child {
+      flex-basis: 84%;
+
       &>*:not(p),
       &>p>*:not(.p--linked__ref) {
         @include breakpoint('xsmall') {
