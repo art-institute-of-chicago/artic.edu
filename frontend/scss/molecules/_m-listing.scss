@@ -2411,7 +2411,7 @@ a:focus:hover .btn--magazine {
   @each $name,
   $point in ('large', 'xlarge') {
     @include breakpoint('#{$name}') {
-      width: colspan(43, $name) !important;
+      width: colspan(38, $name) !important;
     }
   }
 

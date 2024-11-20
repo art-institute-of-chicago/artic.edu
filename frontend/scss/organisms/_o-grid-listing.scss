@@ -903,6 +903,29 @@ Draws boxes around each grid item
 ***/
 .o-grid-listing--journal {
 
+  >.m-listing {
+
+    @include breakpoint('small+') {
+      width: colspan(grid-cols-to-colspan(2), 'small');
+      margin-left: colspan(2, small) !important;
+    }
+
+    @include breakpoint('medium+') {
+      width: colspan(grid-cols-to-colspan(2), 'medium');
+      margin-left: colspan(2, medium) !important;
+    }
+
+    @include breakpoint('large') {
+      width: colspan(grid-cols-to-colspan(3), 'large');
+      margin-left: colspan(2, large) !important;
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(grid-cols-to-colspan(3), 'xlarge');
+      margin-left: colspan(2, xlarge) !important;
+    }
+  }
+
   // By default, top border is hidden; show it!
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
