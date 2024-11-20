@@ -474,9 +474,11 @@ top: -100%;
       }
     }
 
-    width: max-content !important;
-    max-width: 100%;
-    min-width: unset !important;
+    & {
+      width: max-content !important;
+      max-width: 100%;
+      min-width: unset !important;
+    }
 
     .m-media__contain--spacer {
       display: none !important;
