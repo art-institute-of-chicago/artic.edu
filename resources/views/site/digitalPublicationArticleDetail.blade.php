@@ -23,7 +23,7 @@
             @slot('title_display', $item->present()->title_display)
             @slot('pub_title', $item->digitalPublication->present()->title)
             @slot('pub_title_display', $item->digitalPublication->present()->title_display)
-            @slot('img', $item->imageFront('hero'))
+            @slot('img', $item->imageAsArray('hero', 'special') ?? $item->imageFront('hero'))
             @slot('imgMobile', $item->imageFront('mobile_hero'))
         @endcomponent
     @endif

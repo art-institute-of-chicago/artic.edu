@@ -10,7 +10,7 @@
         @slot('title_display', $item->present()->headerTitle())
         @slot('title_tag', (request()->url() !== $item->present()->url) ? 'a' : 'h1')
         @slot('subtitle_display', $item->present()->headerSubtitle())
-        @slot('img', $item->imageFront('listing'))
+        @slot('img', $item->imageAsArray('listing', 'banner') ?? $item->imageFront('listing'))
         @slot('imgMobile', $item->imageFront('mobile_listing'))
         @slot('credit', $item->hero_caption ?? null)
         @slot('editorial', true)
