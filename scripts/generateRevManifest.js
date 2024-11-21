@@ -27,7 +27,7 @@ function removeContentHash(filename) {
   // This should do a good enough job, but may need tuning
 
   const regex = /^(.*?)-[a-f0-9]{8,}\.(.*)$/;
-  const match = filename.match(regex);
+  const match = regex.exec(filename);
   if (match) {
     return `${match[1]}.${match[2]}`;
   }
