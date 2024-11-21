@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Repositories\EventProgramRepository;
 
-class EventController extends ModuleController
+class EventController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'events';
     protected $previewView = 'site.events.detail';
@@ -52,7 +52,7 @@ class EventController extends ModuleController
      * We will override the index function so it works the same in all
      * respects except item order.
      */
-    protected function getIndexItems($scopes = [], $forcePagination = false)
+    protected function getIndexItems(array $scopes = [], bool $forcePagination = false)
     {
         $sortKey = request('sortKey');
 

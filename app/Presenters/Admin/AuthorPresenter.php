@@ -42,7 +42,7 @@ class AuthorPresenter extends BasePresenter
         return $this->writingsCache = collect($writings)->flatten(1)->filter()->sortByDesc('date');
     }
 
-    private function prepWriting($element, $type = 'article')
+    private function prepWriting($element, string $type = 'article')
     {
         $element->date = $element->date ?? $element->publish_start_date ?? $element->updated_at;
         $element->writingType = $type;

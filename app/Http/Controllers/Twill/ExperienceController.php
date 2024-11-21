@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -9,7 +9,7 @@ use App\Models\InteractiveFeature;
 use App\Models\Article;
 use App\Repositories\CategoryRepository;
 
-class ExperienceController extends ModuleController
+class ExperienceController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'experiences';
     protected $modelName = 'Experience';
@@ -110,7 +110,7 @@ class ExperienceController extends ModuleController
         return $statusFilters;
     }
 
-    protected function getIndexItems($scopes = [], $forcePagination = false)
+    protected function getIndexItems(array $scopes = [], bool $forcePagination = false)
     {
         $requestFilters = $this->getRequestFilters();
 
@@ -123,7 +123,7 @@ class ExperienceController extends ModuleController
         return parent::getIndexItems($scopes, $forcePagination);
     }
 
-    protected function getPermalinkBaseUrl()
+    public function getPermalinkBaseUrl()
     {
         return request()->getScheme() . '://' . config('app.url') . '/interactive-features/';
     }
@@ -160,7 +160,7 @@ class ExperienceController extends ModuleController
         ];
     }
 
-    protected function getBrowserTableData($items)
+    protected function getBrowserTableData($items, bool $forRepeater = false): array
     {
         $withImage = $this->moduleHas('medias');
 
@@ -183,7 +183,7 @@ class ExperienceController extends ModuleController
         })->toArray();
     }
 
-    protected function getBrowserData($prependScope = [])
+    protected function getBrowserData($prependScope = []): array
     {
         if (request()->has('except')) {
             $prependScope['exceptIds'] = request('except');

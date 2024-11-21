@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class ArtistController extends BaseApiController
+class ArtistController extends \App\Http\Controllers\Twill\BaseApiController
 {
     protected $moduleName = 'artists';
     protected $hasAugmentedModel = true;

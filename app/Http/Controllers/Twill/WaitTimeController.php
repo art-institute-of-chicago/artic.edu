@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class WaitTimeController extends BaseApiController
+class WaitTimeController extends \App\Http\Controllers\Twill\BaseApiController
 {
     protected $moduleName = 'waitTimes';
 }

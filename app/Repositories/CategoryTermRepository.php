@@ -15,7 +15,7 @@ class CategoryTermRepository extends BaseApiRepository
         $this->model = $model;
     }
 
-    public function beforeSave($object, $fields)
+    public function beforeSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $object->local_subtype = $fields['subtype'];
         $object->local_title = $fields['title'];

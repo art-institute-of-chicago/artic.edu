@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class LightboxController extends ModuleController
+class LightboxController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'lightboxes';
 

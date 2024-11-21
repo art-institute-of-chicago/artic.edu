@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class SearchTermController extends ModuleController
+class SearchTermController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'searchTerms';
 

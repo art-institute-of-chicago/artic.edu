@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class VanityRedirectController extends ModuleController
+class VanityRedirectController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'vanityRedirects';
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class TourStopController extends BaseApiController
+class TourStopController extends \App\Http\Controllers\Twill\BaseApiController
 {
     protected $moduleName = 'tourStops';
 }

@@ -51,7 +51,7 @@ class ExhibitionRepository extends BaseApiRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
+    public function hydrate(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): \A17\Twill\Models\Contracts\TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
@@ -59,7 +59,7 @@ class ExhibitionRepository extends BaseApiRepository
         return parent::hydrate($object, $fields);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
         parent::afterSave($object, $fields);

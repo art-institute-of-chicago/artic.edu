@@ -26,7 +26,7 @@ class SlideRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $this->updateExperienceModule($object, $fields, 'primaryExperienceImage', 'ExperienceImage', 'slide_primary_experience_image');
         $this->updateExperienceModule($object, $fields, 'secondaryExperienceImage', 'ExperienceImage', 'slide_secondary_experience_image');
@@ -76,7 +76,7 @@ class SlideRepository extends ModuleRepository
         return $fields;
     }
 
-    public function create($fields)
+    public function create(array $fields): \A17\Twill\Models\Contracts\TwillModelContract
     {
         $slide = parent::create($fields);
 

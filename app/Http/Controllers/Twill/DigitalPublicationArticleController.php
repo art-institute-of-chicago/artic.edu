@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Http\Controllers\Admin\NestedModuleController;
 use App\Repositories\DigitalPublicationRepository;
-use App\Http\Controllers\Admin\Behaviors\IsNestedModule;
+use App\Http\Controllers\Twill\Behaviors\IsNestedModule;
 use Illuminate\Support\Collection;
 
 class DigitalPublicationArticleController extends NestedModuleController
 {
-    use IsNestedModule;
+    use \App\Http\Controllers\Twill\Behaviors\IsNestedModule;
 
     protected $moduleName = 'digitalPublications.articles';
     protected $modelName = 'DigitalPublicationArticle';
@@ -76,7 +76,7 @@ class DigitalPublicationArticleController extends NestedModuleController
         );
     }
 
-    protected function getBrowserData($prependScope = [])
+    protected function getBrowserData($prependScope = []): array
     {
         $query = $this->repository->withDepth()->defaultOrder()->where('article_type', '!=', 'grouping');
 
@@ -107,7 +107,7 @@ class DigitalPublicationArticleController extends NestedModuleController
 
         return ['data' => $formattedArticles->values()->toArray()];
     }
-    protected function transformIndexItems($items)
+    protected function transformIndexItems(\Illuminate\Support\Collection|\Illuminate\Pagination\LengthAwarePaginator $items): \Illuminate\Support\Collection|\Illuminate\Pagination\LengthAwarePaginator
     {
         // If we're in the browser, don't transform the items
         if (property_exists($items, 'path')) {

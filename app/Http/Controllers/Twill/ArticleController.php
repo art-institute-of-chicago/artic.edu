@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Repositories\CategoryRepository;
 
-class ArticleController extends ModuleController
+class ArticleController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'articles';
 
@@ -69,7 +69,7 @@ class ArticleController extends ModuleController
         ];
     }
 
-    public function getBrowserData($prependScope = [])
+    protected function getBrowserData(array $prependScope = []): array
     {
         if ($this->request->has('is_unlisted')) {
             $prependScope['is_unlisted'] = $this->request->get('is_unlisted');

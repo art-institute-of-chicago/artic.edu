@@ -590,7 +590,7 @@ class ApiQueryBuilder
     /**
      * WEB-1626: If this was an `ids` query, reorder results to match `ids`.
      */
-    private function getSortedCollection($collection)
+    private function getSortedCollection(\Illuminate\Support\Collection $collection)
     {
         if (empty($this->ids)) {
             return $collection;
