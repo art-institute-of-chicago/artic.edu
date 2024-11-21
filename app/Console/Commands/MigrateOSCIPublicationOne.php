@@ -136,7 +136,8 @@ class MigrateOSCIPublicationOne extends Command
         $media->alt_text = 'Alt text for the image';
         $media->caption = $caption_html;
         $media->save();
-        $media->addTag('Publication Image');
+        $media->addTag('Pubs Image');
+        $media->addTag('OSCI' . $this->argument('id'));
         $media->save();
 
         return $media;
@@ -454,7 +455,7 @@ EOT;
 
         foreach ($texts as $text) {
             $webArticle = new DigitalPublicationArticle();
-            $webArticle->type = "text";
+            $webArticle->article_type = "text";
             $webArticle->title = $text->title;
             $webArticle->published = false;
             $webArticle->digital_publication_id = $webPubId;
