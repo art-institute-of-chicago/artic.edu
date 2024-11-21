@@ -561,9 +561,7 @@ $point in $breakpoints {
   $point in $breakpoints {
     @include breakpoint('#{$name}') {
       .o-pinboard[class*="col@#{$name}"]>* {
-        @if ($name=='xsmall') {}
-
-        @else {
+        @if ($name!='xsmall') {
           border-top: 1px solid $color__rules--primary;
           margin-top: -1px;
         }
