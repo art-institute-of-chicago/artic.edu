@@ -17,7 +17,7 @@ abstract class ModuleRepository extends BaseModuleRepository
      * Flatten attributes cast as collections to fields with dot-separated field
      * names.
      */
-    public function getFormFields($object)
+    public function getFormFields(\A17\Twill\Models\Contracts\TwillModelContract $object): array
     {
         $fields = parent::getFormFields($object);
         $collectionFieldNames = collect($object->casts)->filter(fn ($cast) => $cast === AsCollection::class)->keys();
@@ -36,7 +36,7 @@ abstract class ModuleRepository extends BaseModuleRepository
      * Remove trailing newlines from WYSIWYG fields and transform fields with dot-
      * separated names into arrays.
      */
-    public function prepareFieldsBeforeSave($object, $fields)
+    public function prepareFieldsBeforeSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): array
     {
         // Remove trailing newlines from fields
         foreach ($fields as $key => $field) {

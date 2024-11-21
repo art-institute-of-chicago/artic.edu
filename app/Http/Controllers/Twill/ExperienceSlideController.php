@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Models\Article;
 use App\Repositories\ExperienceRepository;
 use App\Repositories\SlideRepository;
 
-class ExperienceSlideController extends ModuleController
+class ExperienceSlideController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'experiences.slides';
     protected $modelName = 'Slide';
@@ -100,7 +100,7 @@ class ExperienceSlideController extends ModuleController
         ];
     }
 
-    public function destroy($id, $submoduleId = null)
+    public function destroy($id, $submoduleId = null): \Illuminate\Http\JsonResponse
     {
         $item = $this->repository->getById($submoduleId);
 

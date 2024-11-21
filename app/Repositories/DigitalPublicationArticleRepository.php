@@ -33,7 +33,7 @@ class DigitalPublicationArticleRepository extends ModuleRepository
             ->mapWithKeys(fn ($type) => [$type->value => $type->name]);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         parent::afterSave($object, $fields);
         GeneratePdf::dispatch($object);

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Models\FeeAge;
 use App\Models\FeeCategory;
 use App\Repositories\FeeRepository;
 
-class FeeController extends ModuleController
+class FeeController extends \App\Http\Controllers\Twill\ModuleController
 {
     public function __construct(FeeRepository $fees)
     {
@@ -14,7 +14,7 @@ class FeeController extends ModuleController
         $this->request = request();
     }
 
-    public function index($parentModuleId = null)
+    public function index($parentModuleId = null): mixed
     {
         $feeCategories = FeeCategory::ordered()->get();
         $feeAges = FeeAge::ordered()->get();
@@ -31,7 +31,7 @@ class FeeController extends ModuleController
         ]);
     }
 
-    public function update($id, $submoduleId = null)
+    public function update($id, $submoduleId = null): \Illuminate\Http\JsonResponse
     {
         if (array_key_exists('cancel', request()->all())) {
             return redirect()->route('admin.visit.fees.update');
