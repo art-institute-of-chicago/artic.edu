@@ -45,6 +45,6 @@ jobs:
             - name: Build Twill assets
               run: php artisan twill:build --env=testing
             - name: Build Javascript assets
-              run: npm run build
+              run: npm run build:dev
             - name: Run PHPUnit
               run: php artisan test --env=testing
