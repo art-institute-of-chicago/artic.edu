@@ -58,7 +58,8 @@ class FrontendHelpers
         return base_path() . '/public' . config('twill.frontend.dist_assets_path') . (!empty($file) ? '/' . $file : '');
     }
 
-    public static function ip($array) {
+    public static function ip($array)
+    {
         foreach ($array as $value) {
             if (is_array($value)) {
                 if (isset($value['broadcast']) && isset($value['address'])) {
