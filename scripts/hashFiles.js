@@ -53,7 +53,7 @@ function hashFile (filePath) {
     const content = fs.readFileSync(filePath, 'utf8');
     const hash = getHash(content);
     const extension = filePath.split('.').pop();
-    const hashFileName = `${filePath.replace(`.${extension}`, '')}-${hash}.${extension}`;
+    const hashFileName = filePath.replace(`.${extension}`, `-${hash}.${extension}`);
     fs.renameSync(filePath, hashFileName);
   }
   catch (err) {
