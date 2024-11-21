@@ -52,7 +52,7 @@ class ExperienceImageRepository extends ModuleRepository
         return $fields;
     }
 
-    public function prepareFieldsBeforeCreate($fields)
+    public function prepareFieldsBeforeCreate(array $fields): array
     {
         if ($fields['credits_input'] == 'datahub') {
             $fields = $this->updateFieldsFromApi($fields);

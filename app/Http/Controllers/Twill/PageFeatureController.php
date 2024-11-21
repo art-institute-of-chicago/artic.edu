@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class PageFeatureController extends ModuleController
+class PageFeatureController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'pageFeatures';
 

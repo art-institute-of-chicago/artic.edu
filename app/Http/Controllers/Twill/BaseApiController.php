@@ -11,11 +11,11 @@
  *
  */
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Helpers\UrlHelpers;
 
-class BaseApiController extends ModuleController
+class BaseApiController extends \App\Http\Controllers\Twill\ModuleController
 {
     /**
      * Option to setup links and the possibility of augmenting a model
@@ -54,7 +54,7 @@ class BaseApiController extends ModuleController
         return $this->redirectToForm($item->id);
     }
 
-    protected function getRepository()
+    protected function getRepository(): \A17\Twill\Repositories\ModuleRepository
     {
         if ($this->hasAugmentedModel) {
             return parent::getRepository();
@@ -63,7 +63,7 @@ class BaseApiController extends ModuleController
         return $this->getApiRepository();
     }
 
-    protected function getBrowserTableData($items)
+    protected function getBrowserTableData(\Illuminate\Support\Collection|\Illuminate\Pagination\LengthAwarePaginator $items, bool $forRepeater = false): array
     {
         // Ensure data is an array and not an object to avoid json_encode wrong conversion
         $results = array_values(parent::getBrowserTableData($items));
@@ -85,7 +85,7 @@ class BaseApiController extends ModuleController
         return $this->app->make("{$this->namespace}\Repositories\\Api\\" . $this->modelName . 'Repository');
     }
 
-    public function getIndexItems($scopes = [], $forcePagination = false)
+    protected function getIndexItems($scopes = [], $forcePagination = false)
     {
         $perPage = request('offset') ?? $this->perPage ?? 50;
         $items = $this->getApiRepository()->get($this->indexWith, $scopes, $this->orderScope(), $perPage, $forcePagination);
@@ -108,7 +108,7 @@ class BaseApiController extends ModuleController
     /**
      * Disable sorting by default for API listings. This has to be implemented individually on each controller
      */
-    protected function orderScope()
+    protected function orderScope(): array
     {
         return [];
     }

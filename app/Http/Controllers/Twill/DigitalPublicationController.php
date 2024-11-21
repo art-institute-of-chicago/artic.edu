@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class DigitalPublicationController extends ModuleController
+class DigitalPublicationController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'digitalPublications';
     protected $previewView = 'site.genericPage.show';

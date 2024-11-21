@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Repositories\CategoryRepository;
 
-class VideoController extends ModuleController
+class VideoController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'videos';
     protected $previewView = 'site.videoDetail';

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Repositories\PageCategoryRepository;
 
-class GenericPageController extends ModuleController
+class GenericPageController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'genericPages';
     protected $previewView = 'site.genericPage.show';
@@ -41,7 +41,7 @@ class GenericPageController extends ModuleController
     /**
      * Exposed as public for sitemap:generate command.
      */
-    public function indexData($request)
+    protected function indexData($request)
     {
         $pagesList = $this->repository->withDepth()->defaultOrder()->get()->filter(function ($page) {
             return $page->depth < 3;
@@ -98,7 +98,7 @@ class GenericPageController extends ModuleController
         ];
     }
 
-    protected function transformIndexItems($items)
+    protected function transformIndexItems($items): \Illuminate\Support\Collection|\Illuminate\Pagination\LengthAwarePaginator
     {
         // If we're in the browser, don't transform the items
         if (property_exists($items, 'path')) {

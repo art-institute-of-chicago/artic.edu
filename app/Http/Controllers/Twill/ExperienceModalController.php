@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class ExperienceModalController extends ModuleController
+class ExperienceModalController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'experienceModals';
 }
