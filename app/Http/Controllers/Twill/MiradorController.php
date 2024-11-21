@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class MiradorController extends ModuleController
+class MiradorController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'miradors';
     protected $previewView = 'site.miradorDetail';

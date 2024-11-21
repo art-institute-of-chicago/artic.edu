@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Behaviors;
+namespace App\Http\Controllers\Twill\Behaviors;
 
 use Illuminate\Support\Collection;
 

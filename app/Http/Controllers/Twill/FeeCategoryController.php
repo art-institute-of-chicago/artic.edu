@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class FeeCategoryController extends ModuleController
+class FeeCategoryController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'feeCategories';
 

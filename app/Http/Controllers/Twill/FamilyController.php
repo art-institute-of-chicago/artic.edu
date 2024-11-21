@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class FamilyController extends ModuleController
+class FamilyController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'families';
 }

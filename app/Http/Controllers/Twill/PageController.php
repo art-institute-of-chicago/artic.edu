@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Repositories\PageRepository;
 use Session;
 
-class PageController extends ModuleController
+class PageController extends \App\Http\Controllers\Twill\ModuleController
 {
     public const MISSING_CMS_PAGE_MESSAGE = "CMS home page doesn't exist, make sure to migrate the database and seed it first (php artisan migrate & php artisan db:seed)";
 

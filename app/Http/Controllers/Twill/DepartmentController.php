@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class DepartmentController extends BaseApiController
+class DepartmentController extends \App\Http\Controllers\Twill\BaseApiController
 {
     protected $moduleName = 'departments';
     protected $hasAugmentedModel = true;

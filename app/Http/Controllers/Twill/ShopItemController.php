@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class ShopItemController extends BaseApiController
+class ShopItemController extends \App\Http\Controllers\Twill\BaseApiController
 {
     protected $moduleName = 'shopItems';
     protected $hasAugmentedModel = false;

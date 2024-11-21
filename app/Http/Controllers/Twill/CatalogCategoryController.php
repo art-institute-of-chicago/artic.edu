@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class CatalogCategoryController extends ModuleController
+class CatalogCategoryController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'catalogCategories';
 

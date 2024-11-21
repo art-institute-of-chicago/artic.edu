@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class ExhibitionPressRoomController extends ModuleController
+class ExhibitionPressRoomController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'exhibitionPressRooms';
     protected $previewView = 'site.genericPage.show';
