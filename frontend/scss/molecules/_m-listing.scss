@@ -2255,6 +2255,10 @@ a:focus:hover .btn--magazine {
     }
   }
 
+  &.m-listing--w-meta-bottom {
+    margin-bottom: 30px;
+  }
+
   &.m-listing--title-only {
     .m-listing__meta {
       >:not(.title) {

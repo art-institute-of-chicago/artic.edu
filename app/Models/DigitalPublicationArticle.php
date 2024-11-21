@@ -87,7 +87,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
             'special' => [
                 [
                     'name' => 'default',
-                    'ratio' => 21 / 9,
+                    'ratio' => 10 / 3,
                 ],
             ],
         ],
