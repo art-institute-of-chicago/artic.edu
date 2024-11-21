@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Twill;
 
 use App\Models\Event;
 use Illuminate\Validation\Rule;

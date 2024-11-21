@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class EventProgramController extends ModuleController
+class EventProgramController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'eventPrograms';
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Models\Hour;
 
-class HourController extends ModuleController
+class HourController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'hours';
 
