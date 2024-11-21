@@ -32,14 +32,14 @@ class GenericPageRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
+    public function hydrate(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): \A17\Twill\Models\Contracts\TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
 
         return parent::hydrate($object, $fields);
     }
 
-    public function setNewOrder($ids)
+    public function setNewOrder(array $ids): void
     {
         if (is_array(Arr::first($ids))) {
             ReorderPages::dispatch($ids);
@@ -48,7 +48,7 @@ class GenericPageRepository extends ModuleRepository
         }
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $object->categories()->sync($fields['categories'] ?? []);
 

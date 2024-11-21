@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class TicketedEventController extends BaseApiController
+class TicketedEventController extends \App\Http\Controllers\Twill\BaseApiController
 {
     protected $moduleName = 'ticketedEvents';
 

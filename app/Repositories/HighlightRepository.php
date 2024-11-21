@@ -32,14 +32,14 @@ class HighlightRepository extends ModuleRepository
         return collect($this->model::$highlightTypes);
     }
 
-    public function hydrate($object, $fields)
+    public function hydrate(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): \A17\Twill\Models\Contracts\TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
 
         return parent::hydrate($object, $fields);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
         $object->categories()->sync($fields['categories'] ?? []);

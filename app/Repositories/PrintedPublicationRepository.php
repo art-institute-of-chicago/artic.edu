@@ -22,7 +22,7 @@ class PrintedPublicationRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $object->categories()->sync($fields['categories'] ?? []);
         parent::afterSave($object, $fields);

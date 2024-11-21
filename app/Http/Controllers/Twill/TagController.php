@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class TagController extends ModuleController
+class TagController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'tags';
 

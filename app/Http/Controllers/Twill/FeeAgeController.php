@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class FeeAgeController extends ModuleController
+class FeeAgeController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'feeAges';
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class SiteTagController extends ModuleController
+class SiteTagController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'siteTags';
 

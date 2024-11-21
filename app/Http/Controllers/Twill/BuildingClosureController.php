@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Models\BuildingClosure;
 
-class BuildingClosureController extends ModuleController
+class BuildingClosureController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'buildingClosures';
 

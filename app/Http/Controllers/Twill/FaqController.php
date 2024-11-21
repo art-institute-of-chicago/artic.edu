@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class FaqController extends ModuleController
+class FaqController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'faq';
 }

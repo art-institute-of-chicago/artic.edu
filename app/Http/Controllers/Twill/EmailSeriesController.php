@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class EmailSeriesController extends ModuleController
+class EmailSeriesController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'emailSeries';
 

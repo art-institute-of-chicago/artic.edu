@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class PressReleaseController extends ModuleController
+class PressReleaseController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'pressReleases';
     protected $previewView = 'site.genericPage.show';

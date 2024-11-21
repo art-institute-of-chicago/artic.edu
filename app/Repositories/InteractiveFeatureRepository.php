@@ -21,7 +21,7 @@ class InteractiveFeatureRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getCountByStatusSlug($slug, $scope = [])
+    public function getCountByStatusSlug(string $slug, array $scope = []): int
     {
         $scope = $scope + ['archived' => false];
 

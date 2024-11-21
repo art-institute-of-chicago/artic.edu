@@ -181,7 +181,7 @@ class GenerateSitemap extends Command
      * Add a URL by module
      * Anything paginated and CMS-native of format `/resources/{id}/{slug}`
      */
-    private function addNativeModel(&$sitemap, $class, string $route, float $priority = 0.8, $changeFrequency = Url::CHANGE_FREQUENCY_DAILY, $paramCallback = null, $additionalFields = [])
+    private function addNativeModel(&$sitemap, string $class, string $route, float $priority = 0.8, string $changeFrequency = Url::CHANGE_FREQUENCY_DAILY, $paramCallback = null, array $additionalFields = [])
     {
         // `id` is always needed for retrieving slugs
         $fields = array_values(array_unique(array_merge($additionalFields, ['id', 'updated_at'])));
@@ -226,7 +226,7 @@ class GenerateSitemap extends Command
      * Add to the sitemap
      * Ensures everything is prefixed w/ SITEMAP_BASE_URL
      */
-    private function add(&$sitemap, $url)
+    private function add(&$sitemap, \Spatie\Sitemap\Tags\Url $url)
     {
         $tmpUrl = $url->url ?? $url;
 

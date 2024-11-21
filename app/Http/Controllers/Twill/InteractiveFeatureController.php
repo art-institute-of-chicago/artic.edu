@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Models\InteractiveFeature;
 
-class InteractiveFeatureController extends ModuleController
+class InteractiveFeatureController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'interactiveFeatures';
 
@@ -42,7 +42,7 @@ class InteractiveFeatureController extends ModuleController
         return $statusFilters;
     }
 
-    protected function getIndexItems($scopes = [], $forcePagination = false)
+    protected function getIndexItems(array $scopes = [], bool $forcePagination = false)
     {
         $requestFilters = $this->getRequestFilters();
 
