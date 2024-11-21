@@ -32,7 +32,7 @@ class MagazineIssueRepository extends ModuleRepository
         return MagazineIssue::query()->published()->orderBy('publish_start_date', 'desc')->first();
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $this->syncMagazineItems($object, $fields);
         parent::afterSave($object, $fields);
@@ -52,7 +52,7 @@ class MagazineIssueRepository extends ModuleRepository
     /**
      * Replace all MagazineItems associated with this MagazineIssue by filtering blocks
      */
-    private function syncMagazineItems($object, $fields)
+    private function syncMagazineItems(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields)
     {
         $object->magazineItems()->delete();
 

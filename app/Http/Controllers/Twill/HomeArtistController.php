@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class HomeArtistController extends ModuleController
+class HomeArtistController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'homeArtists';
 }

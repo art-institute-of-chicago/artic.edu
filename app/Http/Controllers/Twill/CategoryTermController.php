@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class CategoryTermController extends BaseApiController
+class CategoryTermController extends \App\Http\Controllers\Twill\BaseApiController
 {
     protected $moduleName = 'categoryTerms';
     protected $hasAugmentedModel = true;

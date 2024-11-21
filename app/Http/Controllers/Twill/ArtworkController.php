@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class ArtworkController extends BaseApiController
+class ArtworkController extends \App\Http\Controllers\Twill\BaseApiController
 {
     protected $moduleName = 'artworks';
     protected $hasAugmentedModel = true;
@@ -80,7 +80,7 @@ class ArtworkController extends BaseApiController
         ];
     }
 
-    public function browser()
+    public function browser(): \Illuminate\Http\JsonResponse
     {
         // Allow to filter by IDS when listing artworks.
         return response()->json($this->getBrowserData(['id' => request('artwork_ids')]));

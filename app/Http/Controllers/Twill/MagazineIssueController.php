@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class MagazineIssueController extends ModuleController
+class MagazineIssueController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'magazineIssues';
 

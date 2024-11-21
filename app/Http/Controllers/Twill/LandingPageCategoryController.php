@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class LandingPageCategoryController extends ModuleController
+class LandingPageCategoryController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'landingPageCategories';
 
