@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class ResourceCategoryController extends ModuleController
+class ResourceCategoryController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'resourceCategories';
 

@@ -46,7 +46,7 @@ class DigitalPublicationsController extends BaseScopedController
         return $this->showDetail($id, true);
     }
 
-    private function showDetail($id, $showAll = false)
+    private function showDetail($id, bool $showAll = false)
     {
         $item = $this->repository->published()->find((int) $id);
 

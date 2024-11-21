@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class OfferController extends ModuleController
+class OfferController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'offers';
 }

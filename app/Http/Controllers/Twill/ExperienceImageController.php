@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class ExperienceImageController extends ModuleController
+class ExperienceImageController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'experienceImages';
 }

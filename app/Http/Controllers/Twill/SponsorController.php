@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class SponsorController extends ModuleController
+class SponsorController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'sponsors';
 
