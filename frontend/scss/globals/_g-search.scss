@@ -168,13 +168,9 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
   transition: opacity .25s linear;
 }
 
-.g-search__autocomplete ul {}
-
 .g-search__autocomplete li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-.g-search__autocomplete li:first-child {}
 
 .g-search__autocomplete li a {
   @extend %f-buttons;
