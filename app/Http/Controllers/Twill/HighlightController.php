@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Repositories\SiteTagRepository;
 use App\Repositories\CategoryRepository;
 
-class HighlightController extends ModuleController
+class HighlightController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'highlights';
     protected $previewView = 'site.articleDetail';

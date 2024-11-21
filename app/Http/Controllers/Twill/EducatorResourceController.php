@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Repositories\ResourceCategoryRepository;
 
-class EducatorResourceController extends ModuleController
+class EducatorResourceController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'educatorResources';
     protected $previewView = 'site.genericPage.show';

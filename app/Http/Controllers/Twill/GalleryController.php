@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class GalleryController extends BaseApiController
+class GalleryController extends \App\Http\Controllers\Twill\BaseApiController
 {
     protected $moduleName = 'galleries';
     protected $hasAugmentedModel = true;

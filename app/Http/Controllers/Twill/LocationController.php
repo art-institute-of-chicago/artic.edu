@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
-class LocationController extends ModuleController
+class LocationController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'locations';
 

@@ -31,14 +31,14 @@ class ExperienceRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getCountByStatusSlug($slug, $scope = [])
+    public function getCountByStatusSlug(string $slug, array $scope = []): int
     {
         $scope = $scope + ['archived' => false];
 
         return parent::getCountByStatusSlug($slug, $scope);
     }
 
-    public function create($fields)
+    public function create(array $fields): \A17\Twill\Models\Contracts\TwillModelContract
     {
         $experience = parent::create($fields);
         $attract_fields = [
@@ -64,7 +64,7 @@ class ExperienceRepository extends ModuleRepository
         return Experience::where('title', 'ILIKE', "%{$search}%")->published()->notUnlisted();
     }
 
-    public function order($query, array $orders = [])
+    public function order(\Illuminate\Database\Eloquent\Builder $query, array $orders = []): \Illuminate\Database\Eloquent\Builder
     {
         if (array_key_exists('interactiveFeatureTitle', $orders)) {
             $sort_method = $orders['interactiveFeatureTitle'];
@@ -96,7 +96,7 @@ class ExperienceRepository extends ModuleRepository
             ->paginate(4);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave($object, $fields): void
     {
         $object->categories()->sync($fields['categories'] ?? []);
     }

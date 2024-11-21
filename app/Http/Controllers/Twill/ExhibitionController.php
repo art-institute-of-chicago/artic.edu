@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\Api\ExhibitionRepository;
@@ -8,7 +8,7 @@ use App\Repositories\SiteTagRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 
-class ExhibitionController extends BaseApiController
+class ExhibitionController extends \App\Http\Controllers\Twill\BaseApiController
 {
     protected $moduleName = 'exhibitions';
     protected $hasAugmentedModel = true;

@@ -23,7 +23,7 @@ class ArtworkRepository extends BaseApiRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $this->handle3DModel($object, $fields);
 

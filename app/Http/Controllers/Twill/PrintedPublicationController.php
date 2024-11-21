@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Twill;
 
 use App\Repositories\CatalogCategoryRepository;
 
-class PrintedPublicationController extends ModuleController
+class PrintedPublicationController extends \App\Http\Controllers\Twill\ModuleController
 {
     protected $moduleName = 'printedPublications';
     protected $previewView = 'site.genericPage.show';

@@ -67,14 +67,14 @@ class LandingPageRepository extends ModuleRepository
         'what_to_expects',
     ];
 
-    protected $model;
+    protected \A17\Twill\Models\Contracts\TwillModelContract $model;
 
     public function __construct(LandingPage $model)
     {
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
+    public function hydrate(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): \A17\Twill\Models\Contracts\TwillModelContract
     {
         // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
         // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
@@ -83,7 +83,7 @@ class LandingPageRepository extends ModuleRepository
         return parent::hydrate($object, $fields);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
