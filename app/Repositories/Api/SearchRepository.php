@@ -24,7 +24,7 @@ class SearchRepository extends BaseApiRepository
                 'agents',
                 'events',
                 'articles',
-                'digital-catalogs',
+                'digital-publications',
                 'printed-catalogs',
                 'generic-pages',
                 'educator-resources',
