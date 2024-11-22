@@ -74,7 +74,7 @@
 
   <div class="o-article__body o-blocks">
     <div class='o-blocks' itemprop="description">
-      {!! $item->renderBlocks(false) !!}
+      {!! $item->renderBlocks() !!}
     </div>
 
     @if ($item->pictures)
