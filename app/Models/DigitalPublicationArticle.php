@@ -117,7 +117,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         ],
     ];
 
-    public function scopePublished($query)
+    public function scopePublished($query): \Illuminate\Database\Eloquent\Builder
     {
         parent::scopePublished($query);
 

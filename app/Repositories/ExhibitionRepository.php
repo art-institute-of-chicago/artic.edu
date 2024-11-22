@@ -37,7 +37,7 @@ class ExhibitionRepository extends BaseApiRepository
         'waitTimes',
     ];
 
-    protected $repeaters = [
+    protected array $repeaters = [
         'offers'
     ];
 
