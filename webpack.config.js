@@ -68,7 +68,7 @@ module.exports = async () => {
       path: outputDir,
       publicPath: '/dist/',
     },
-    devtool: isProd ? 'source-map' : 'eval-source-map',
+    devtool: 'source-map',
     optimization: {
       minimize: isProd && !isCI,
     },
