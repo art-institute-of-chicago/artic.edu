@@ -315,6 +315,7 @@
 
 .o-article__body {
   @include float-clear;
+  position: relative;
 
   & {
     margin-top: 28px;

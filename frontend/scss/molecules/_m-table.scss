@@ -156,6 +156,7 @@ Intended for very simple m-tables..
 
   .f-secondary {
     @include tucked-align-top($f-secondary);
+    display: inline-block;
 
     & {
       font-style: normal;
@@ -164,6 +165,7 @@ Intended for very simple m-tables..
 
   .f-tag {
     @include tucked-align-top($f-tag);
+    display: inline-block;
 
     & {
       color: $color__text--title;
