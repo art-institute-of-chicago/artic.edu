@@ -101,7 +101,7 @@ class PageRepository extends ModuleRepository
         ],
     ];
 
-    protected $repeaters = [
+    protected array $repeaters = [
         // Homepage landing
         'artists' => [
             'relation' => 'homeArtists',
@@ -159,7 +159,7 @@ class PageRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object)
+    public function getFormFields($object): array
     {
         $fields = parent::getFormFields($object);
 
