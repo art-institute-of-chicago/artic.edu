@@ -34,7 +34,7 @@ class EventRepository extends ModuleRepository
         'ticketedEvent',
     ];
 
-    protected $repeaters = [
+    protected array $repeaters = [
         'date_rule' => [
             'relation' => 'dateRules'
         ],
@@ -45,7 +45,7 @@ class EventRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
+    public function hydrate($object, $fields): \A17\Twill\Models\Contracts\TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
@@ -57,7 +57,7 @@ class EventRepository extends ModuleRepository
      * Some editors paste links to our sales site instead of browsing for the ticketed event.
      * Find and auto-attach the ticketed event if it's a match.
      */
-    public function prepareFieldsBeforeSave($object, $fields)
+    public function prepareFieldsBeforeSave($object, $fields): array
     {
         if (isset($fields['rsvp_link'])) {
             $isTicketedEvent = preg_match('/https*:\/\/sales\.artic\.edu\/Events\/Event\/([0-9]+)\?date=([0-9]+\/[0-9]+\/[0-9]+)/', $fields['rsvp_link'], $matches);
@@ -131,14 +131,14 @@ class EventRepository extends ModuleRepository
         return parent::prepareFieldsBeforeSave($object, $fields);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave($object, $fields): void
     {
         $object->programs()->sync($fields['programs'] ?? []);
 
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object)
+    public function getFormFields($object): array
     {
         $fields = parent::getFormFields($object);
 
@@ -298,7 +298,7 @@ class EventRepository extends ModuleRepository
         return $results;
     }
 
-    public function duplicate($id, $titleColumnKey = 'title')
+    public function duplicate($id, $titleColumnKey = 'title'): ?\A17\Twill\Models\Contracts\TwillModelContract
     {
         $newObject = parent::duplicate($id, $titleColumnKey);
 
