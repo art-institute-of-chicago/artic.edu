@@ -16,7 +16,7 @@
         @slot('variation', 'visit')
     @endcomponent
 
-    @if (!empty($hour))
+    @if (!empty($hours) && isset($hours['hours']))
     <div class="o-hours f-secondary">
         <div class="o-hours__clock">
             <svg class="icon--clock" aria-hidden="true">
@@ -25,12 +25,12 @@
         </div>
         <div class="o-hours__text">
             <span class="o-hours__status o-hours__status--mobile">{{
-                $hour->present()->getStatusHeader(null, true)
+                $hours['hours']->present()->getStatusHeader(null, true)
             }}</span>
             <span class="o-hours__status o-hours__status--desktop">{{
-                $hour->present()->getStatusHeader()
+                $hours['hours']->present()->getStatusHeader()
             }}</span>
-            @if ($hoursHeader = $hour->present()->getHoursHeader())
+            @if ($hoursHeader = $hours['hours']->present()->getHoursHeader())
                 <span class="o-hours__hours">{{ $hoursHeader }}</span>
             @endif
         </div>
@@ -55,8 +55,8 @@
                             <td>Hours</td>
                         </th>
                     </tr>
-                    @if (!empty($hour))
-                        @foreach ($hour->present()->getHoursTableForHeader() as $item)
+                    @if (!empty($hours) && isset($hours['hours']))
+                        @foreach ($hours['hours']->present()->getHoursTableForHeader() as $item)
                             @php
                                 $hourClass = '';
                                 if ($item['hours'] === 'Closed') {

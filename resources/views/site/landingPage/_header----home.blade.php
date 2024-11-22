@@ -17,9 +17,9 @@
         @slot('variation', 'home')
     @endcomponent
 
-    @if (!empty($hour))
+    @if (!empty($hours) && isset($hours['hours']))
         @component('components.organisms._o-hours')
-            @slot('hour', $hour)
+            @slot('hour', $hours['hours'])
         @endcomponent
     @endif
 
