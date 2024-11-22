@@ -63,7 +63,7 @@
         global $_collectedReferences;
         $_collectedReferences = [];
     @endphp
-    {!! $item->renderBlocks(false) !!}
+    {!! $item->renderBlocks() !!}
     @if (sizeof($_collectedReferences))
         @component('components.organisms._o-accordion')
             @slot('variation', 'o-accordion--section o-blocks__block')
