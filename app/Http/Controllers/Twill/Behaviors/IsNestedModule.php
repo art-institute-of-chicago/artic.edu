@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Twill\Behaviors;
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 trait IsNestedModule
@@ -9,7 +11,7 @@ trait IsNestedModule
     /**
      * PUB-35, PUB-127: Adds check for `$parentModuleId`
      */
-    public function browser($parentModuleId = null)
+    public function browser($parentModuleId = null): JsonResponse
     {
         $this->submodule = isset($parentModuleId);
         $this->submoduleParentId = $parentModuleId;
@@ -20,7 +22,7 @@ trait IsNestedModule
     /**
      * PUB-35, PUB-127, PUB-146: Override inherited function to fix `edit` link
      */
-    protected function getBrowserTableData($items)
+    protected function getBrowserTableData(Collection|LengthAwarePaginator $items, bool $forRepeater = false): array
     {
         $withImage = $this->moduleHas('medias');
 
