@@ -12,7 +12,7 @@
 
     <div class="o-page__body o-blocks">
 
-        {!! $item->renderBlocks(false, [], []) !!}
+        {!! $item->renderBlocks() !!}
 
     </div>
 
