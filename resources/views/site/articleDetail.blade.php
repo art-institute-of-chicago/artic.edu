@@ -130,7 +130,7 @@
         $_collectedReferences = [];
     @endphp
 
-    {!! $item->renderBlocks(false, [], [
+    {!! $item->renderBlocks(data: [
       'pageTitle' => $item->meta_title ?: $item->title
     ]) !!}
 
