@@ -53,7 +53,7 @@
                   @slot('autoRelated', $autoRelated)
                   @slot('featuredRelated', $featuredRelated)
               @endcomponent
-              
+
           </div>
       @endif
   @endif
@@ -66,7 +66,7 @@
             {!! SmartyPants::defaultTransform($intro) !!}
         @endcomponent
     @endif
-    {!! $page->renderBlocks(false) !!}
+    {!! $page->renderBlocks() !!}
     @if (isset($filters) && $filters)
         @component('components.molecules._m-links-bar')
             @slot('variation','m-links-bar--filters')

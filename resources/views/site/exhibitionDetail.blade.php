@@ -72,7 +72,7 @@
 
     @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
-    @endcomponent  
+    @endcomponent
     </div>
 
   @if ($item->header_copy and $item->present()->headerType !== 'super-hero')
@@ -94,7 +94,7 @@
   @endif
 
   <div class="o-article__body o-blocks">
-    {!! $item->renderBlocks(false) ?: $item->description !!}
+    {!! $item->renderBlocks() ?: $item->description !!}
 
     @if ($item->isClosed)
         {{-- History Detail - Exhibition PDF's --}}
