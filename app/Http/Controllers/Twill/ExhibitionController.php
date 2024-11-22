@@ -78,7 +78,7 @@ class ExhibitionController extends \App\Http\Controllers\Twill\BaseApiController
      *
      * @see App\Models\Api\Exhibition::scopeOrderBy
      */
-    protected function orderScope()
+    protected function orderScope(): array
     {
         return ModuleController::orderScope();
     }

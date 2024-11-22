@@ -34,7 +34,7 @@ class ExperienceModalRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function prepareFieldsBeforeSave($object, $fields)
+    public function prepareFieldsBeforeSave($object, $fields): array
     {
         if (isset($fields['blocks']) && !empty($fields['blocks'])) {
             $fields['repeaters'] = $fields['blocks'];
