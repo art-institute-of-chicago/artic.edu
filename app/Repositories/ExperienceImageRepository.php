@@ -61,7 +61,7 @@ class ExperienceImageRepository extends ModuleRepository
         return parent::prepareFieldsBeforeCreate($fields);
     }
 
-    public function prepareFieldsBeforeSave($object, $fields)
+    public function prepareFieldsBeforeSave($object, $fields): array
     {
         if ($fields['credits_input'] == 'datahub') {
             $fields = $this->updateFieldsFromApi($fields);
