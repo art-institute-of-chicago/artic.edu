@@ -9,6 +9,7 @@
 namespace App\Libraries\Api\Models;
 
 use A17\Twill\Models\Behaviors\HasPresenter;
+use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Libraries\Api\Models\ApiCollection as BaseCollection;
 use App\Libraries\Api\Models\Behaviors\HasApiCalls;
 use App\Libraries\Api\Models\Behaviors\HasAugmentedModel;
@@ -18,12 +19,13 @@ use DateTime;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use JsonSerializable;
 
-abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, UrlRoutable
+abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, TwillModelContract, UrlRoutable
 {
     use HasApiCalls;
     use HasAugmentedModel;
@@ -1087,6 +1089,34 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     public function getKeyName()
     {
         return $this->primaryKey;
+    }
+
+    /**
+     * TODO: Implement TwillModelContract
+     */
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query;
+    }
+
+    public function scopeAccessible(Builder $query): Builder
+    {
+        return $query;
+    }
+
+    public function scopeOnlyTrashed(Builder $query): Builder
+    {
+        return $query;
+    }
+
+    public function scopeDraft(Builder $query): Builder
+    {
+        return $query;
+    }
+
+    public function getTranslatedAttributes(): array
+    {
+        return array();
     }
 
     /**

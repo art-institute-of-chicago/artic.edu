@@ -5,6 +5,7 @@ namespace App\Models\Api;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Libraries\Api\Builders\ApiModelBuilderSearch;
 use App\Libraries\Search\Filters\Departments as DepartmentFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use App\Helpers\DateHelpers;
@@ -864,7 +865,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopePublished($query)
+    public function scopePublished(Builder $query): Builder
     {
         $params = [
             'bool' => [
