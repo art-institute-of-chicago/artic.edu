@@ -39,7 +39,7 @@ class DepartmentRepository extends BaseApiRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object)
+    public function getFormFields($object): array
     {
         $fields = parent::getFormFields($object);
 
