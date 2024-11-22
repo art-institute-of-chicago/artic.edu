@@ -1,6 +1,7 @@
 // ------ My Museum Tour
 
 .my-museum-tour {
+
   // Override the reset styles for dialog elements
   dialog {
     display: revert;
@@ -17,8 +18,9 @@
       object-fit: contain;
       object-position: center top;
     }
+
     &::backdrop {
-      background-color: rgb(0,0,0,0.6);
+      background-color: rgb(0, 0, 0, 0.6);
     }
 
   }
@@ -36,7 +38,7 @@
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 30px $color__white inset;
+    -webkit-box-shadow: 0 0 0 30px $color__white inset;
   }
 
   .checkbox {
@@ -47,12 +49,12 @@
       color: $color__black--80;
     }
 
-    input[type=checkbox]:checked + span label::before {
+    input[type=checkbox]:checked+span label::before {
       background-color: $color__grey--130;
       border-color: $color__grey--130;
     }
 
-    input + span {
+    input+span {
       @include untuck;
     }
   }
@@ -60,7 +62,7 @@
   .input__io-container textarea {
     padding-right: 100px;
 
-    & + output {
+    &+output {
       top: 16px;
       transform: none;
     }
@@ -87,6 +89,7 @@
 }
 
 .s-body-locked--ct {
+
   // For supporting native position sticky the builder unsets the body overflow value
   // When the moodal is open other styles will be effected by this so we need to override it
   body {
@@ -129,6 +132,7 @@
         font-size: 30px;
         line-height: 34px;
       }
+
       @include breakpoint('xsmall') {
         font-size: 24px;
         line-height: 28px;
@@ -234,15 +238,18 @@
 
 .aic-ct-header {
   @include untuck;
-  position: sticky;
-  top: 0;
-  width: 100vw;
-  padding: 20px 0;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  background-color: $color__teal--my-museum-tour;
-  color: $color__white;
-  z-index: 9;
+
+  & {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    padding: 20px 0;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: $color__teal--my-museum-tour;
+    color: $color__white;
+    z-index: 9;
+  }
 
   .aic-ct-header__wrapper {
     display: flex;
@@ -269,20 +276,23 @@
 
 .aic-ct-item-info__count-num {
   @include untuck;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  min-width: 24px;
-  aspect-ratio: 1;
-  color: $color__grey--100;
-  background-color: $color__white;
-  font-size: 0.778em;
-  line-height: 1;
-  font-weight: 500;
+
+  & {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    min-width: 24px;
+    aspect-ratio: 1;
+    color: $color__grey--100;
+    background-color: $color__white;
+    font-size: 0.778em;
+    line-height: 1;
+    font-weight: 500;
+  }
 
   @include breakpoint('small+') {
-    min-width:28px;
+    min-width: 28px;
   }
 }
 
@@ -438,7 +448,10 @@
 .aic-ct-pre-result-text,
 .aic-ct-post-result-text {
   @include untuck;
-  margin-bottom: 24px;
+
+  & {
+    margin-bottom: 24px;
+  }
 }
 
 .aic-ct-post-result-text {
@@ -528,7 +541,7 @@
     min-width: 150px;
   }
 
-  & + & {
+  &+& {
     margin-left: 0;
   }
 
@@ -541,6 +554,7 @@
     width: calc(50% - 8px);
     height: 1px;
   }
+
   &:not(:last-child) .aic-ct-nav__number::after {
     content: "";
     display: block;
@@ -560,7 +574,7 @@
   color: $color__white;
 
   & .aic-ct-nav__number {
-    color: $color__black--45;;
+    color: $color__black--45;
   }
 }
 
@@ -627,6 +641,7 @@
 
 .aic-ct-fieldset {
   margin-bottom: 32px;
+
   &::before {
     display: none;
   }

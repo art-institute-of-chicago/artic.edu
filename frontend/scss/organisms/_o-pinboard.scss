@@ -2,6 +2,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -16,7 +17,7 @@
   }
 }
 
-.explore-further-injected > .o-pinboard {
+.explore-further-injected>.o-pinboard {
   transition: .15s ease-in-out;
   opacity: unset;
   animation: fadeIn .75s ease-in-out;
@@ -28,7 +29,7 @@
   border-top: 1px solid $color__rules--primary;
 }
 
-.m-title-bar + .o-pinboard {
+.m-title-bar+.o-pinboard {
   margin-top: 19px;
 
   &:first-child {
@@ -52,11 +53,11 @@
   }
 }
 
-.m-links-bar + .o-pinboard {
+.m-links-bar+.o-pinboard {
   margin-top: 0;
 }
 
-.m-search-actions + .o-pinboard {
+.m-search-actions+.o-pinboard {
   margin-top: 20px;
 }
 
@@ -73,7 +74,7 @@
   pointer-events: none;
 }
 
-.o-pinboard > *::before {
+.o-pinboard>*::before {
   content: '';
   position: absolute;
   left: 0;
@@ -84,7 +85,7 @@
   pointer-events: none;
 }
 
-.o-pinboard > *:first-child {
+.o-pinboard>*:first-child {
   padding-top: 0;
 
   &::before {
@@ -103,17 +104,21 @@
   }
 }
 
-@each $name, $point in $breakpoints {
+@each $name,
+$point in $breakpoints {
   @include breakpoint('#{$name}') {
-    .o-pinboard > * {
-      @if ($name == 'xsmall') {
+    .o-pinboard>* {
+      @if ($name=='xsmall') {
         margin-top: 56px;
 
         &:first-child:not(.s-positioned) {
           margin-top: 16px;
         }
       }
-      padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+
+      & {
+        padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+      }
     }
 
     .o-pinboard[class*="col@#{$name}"] {
@@ -124,22 +129,28 @@
       padding-top: 0;
     }
 
-    .o-pinboard[class*="col@#{$name}"] > * {
+    .o-pinboard[class*="col@#{$name}"]>* {
       left: 0;
       top: 0;
       flex: 0 0 auto;
-      @if ($name == 'xsmall') {
+
+      @if ($name=='xsmall') {
         margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
         padding-top: #{map-get($pinboard-grid-padding-tops, $name)}px;
-      } @else if ($name == 'small') {
+      }
+
+      @else if ($name=='small') {
         margin-top: colspan(1.5, small);
         padding-top: colspan(1.5, small, -1px);
         border-top: 1px solid $color__rules--primary;
-      } @else {
+      }
+
+      @else {
         margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
         padding-top: #{map-get($pinboard-grid-padding-tops, $name) - 1}px;
         border-top: 1px solid $color__rules--primary;
       }
+
       opacity: 0;
       transition: opacity .25s;
 
@@ -149,16 +160,17 @@
       }
     }
 
-    .o-pinboard[class*="col@#{$name}"] > .m-listing--variable-height {
-      @if ($name == 'xsmall') {
+    .o-pinboard[class*="col@#{$name}"]>.m-listing--variable-height {
+      @if ($name=='xsmall') {
         margin-top: 32px;
       }
-      @if ($name == 'small') {
+
+      @if ($name=='small') {
         margin-top: 60px;
       }
     }
 
-    .o-pinboard[class*="col@#{$name}"] > .s-positioned {
+    .o-pinboard[class*="col@#{$name}"]>.s-positioned {
       position: absolute;
       z-index: 1;
       flex: none;
@@ -166,18 +178,41 @@
       transition: top .3s $bezier--marius-mosaic, left .3s $bezier--marius-mosaic, height .3s $bezier--marius-mosaic;
     }
 
-    .o-pinboard[class*="col@#{$name}"] > .s-positioned:not(.s-repositioning) {
+    .o-pinboard[class*="col@#{$name}"]>.s-positioned:not(.s-repositioning) {
       margin-top: 0;
     }
 
-    .o-pinboard[class*="col@#{$name}"] > *:nth-child(1) { transition-delay: .1s; }
-    .o-pinboard[class*="col@#{$name}"] > *:nth-child(2) { transition-delay: .2s; }
-    .o-pinboard[class*="col@#{$name}"] > *:nth-child(3) { transition-delay: .3s; }
-    .o-pinboard[class*="col@#{$name}"] > *:nth-child(4) { transition-delay: .4s; }
-    .o-pinboard[class*="col@#{$name}"] > *:nth-child(5) { transition-delay: .5s; }
-    .o-pinboard[class*="col@#{$name}"] > *:nth-child(6) { transition-delay: .6s; }
-    .o-pinboard[class*="col@#{$name}"] > *:nth-child(7) { transition-delay: .7s; }
-    .o-pinboard[class*="col@#{$name}"] > *:nth-child(7) ~ * { transition-delay: .8s; }
+    .o-pinboard[class*="col@#{$name}"]>*:nth-child(1) {
+      transition-delay: .1s;
+    }
+
+    .o-pinboard[class*="col@#{$name}"]>*:nth-child(2) {
+      transition-delay: .2s;
+    }
+
+    .o-pinboard[class*="col@#{$name}"]>*:nth-child(3) {
+      transition-delay: .3s;
+    }
+
+    .o-pinboard[class*="col@#{$name}"]>*:nth-child(4) {
+      transition-delay: .4s;
+    }
+
+    .o-pinboard[class*="col@#{$name}"]>*:nth-child(5) {
+      transition-delay: .5s;
+    }
+
+    .o-pinboard[class*="col@#{$name}"]>*:nth-child(6) {
+      transition-delay: .6s;
+    }
+
+    .o-pinboard[class*="col@#{$name}"]>*:nth-child(7) {
+      transition-delay: .7s;
+    }
+
+    .o-pinboard[class*="col@#{$name}"]>*:nth-child(7)~* {
+      transition-delay: .8s;
+    }
   }
 }
 
@@ -187,21 +222,21 @@
     //left: colspan(29, xsmall);
   }
 
-  .o-pinboard--1-col\@xsmall > * {
+  .o-pinboard--1-col\@xsmall>* {
     width: colspan(grid-cols-to-colspan(1), 'xsmall');
   }
 
-  .o-pinboard--1-col\@xsmall > *:nth-child(1),
-  .o-pinboard--1-col\@xsmall > *:nth-child(2) {
+  .o-pinboard--1-col\@xsmall>*:nth-child(1),
+  .o-pinboard--1-col\@xsmall>*:nth-child(2) {
     border-top-color: transparent;
   }
 
-  .o-pinboard--2-col\@xsmall > * {
+  .o-pinboard--2-col\@xsmall>* {
     width: colspan(grid-cols-to-colspan(2), 'xsmall');
   }
 
-  .o-pinboard--2-col\@xsmall > *:nth-child(1),
-  .o-pinboard--2-col\@xsmall > *:nth-child(2) {
+  .o-pinboard--2-col\@xsmall>*:nth-child(1),
+  .o-pinboard--2-col\@xsmall>*:nth-child(2) {
     border-top-color: transparent;
   }
 }
@@ -212,12 +247,12 @@
     //left: colspan(29, small);
   }
 
-  .o-pinboard--2-col\@small > * {
+  .o-pinboard--2-col\@small>* {
     width: colspan(grid-cols-to-colspan(2), 'small');
   }
 
-  .o-pinboard--2-col\@small > *:nth-child(1),
-  .o-pinboard--2-col\@small > *:nth-child(2) {
+  .o-pinboard--2-col\@small>*:nth-child(1),
+  .o-pinboard--2-col\@small>*:nth-child(2) {
     border-top-color: transparent;
   }
 }
@@ -228,7 +263,7 @@
     left: colspan(19, medium);
   }
 
-  .o-pinboard--2-col\@medium > * {
+  .o-pinboard--2-col\@medium>* {
     width: colspan(grid-cols-to-colspan(2), 'medium');
   }
 
@@ -242,15 +277,15 @@
     left: colspan(39, medium);
   }
 
-  .o-pinboard--3-col\@medium > * {
+  .o-pinboard--3-col\@medium>* {
     width: colspan(grid-cols-to-colspan(3), 'medium');
   }
 
-  .o-pinboard--2-col\@medium > *:nth-child(1),
-  .o-pinboard--2-col\@medium > *:nth-child(2),
-  .o-pinboard--3-col\@medium > *:nth-child(1),
-  .o-pinboard--3-col\@medium > *:nth-child(2),
-  .o-pinboard--3-col\@medium > *:nth-child(3) {
+  .o-pinboard--2-col\@medium>*:nth-child(1),
+  .o-pinboard--2-col\@medium>*:nth-child(2),
+  .o-pinboard--3-col\@medium>*:nth-child(1),
+  .o-pinboard--3-col\@medium>*:nth-child(2),
+  .o-pinboard--3-col\@medium>*:nth-child(3) {
     border-top-color: transparent;
   }
 }
@@ -261,7 +296,7 @@
     left: colspan(19, large);
   }
 
-  .o-pinboard--2-col\@large > * {
+  .o-pinboard--2-col\@large>* {
     width: colspan(grid-cols-to-colspan(2), 'large');
   }
 
@@ -275,7 +310,7 @@
     left: colspan(39, large);
   }
 
-  .o-pinboard--3-col\@large > * {
+  .o-pinboard--3-col\@large>* {
     width: colspan(grid-cols-to-colspan(3), 'large');
   }
 
@@ -293,19 +328,19 @@
     left: colspan(44, large);
   }
 
-  .o-pinboard--4-col\@large > * {
+  .o-pinboard--4-col\@large>* {
     width: colspan(grid-cols-to-colspan(4), 'large');
   }
 
-  .o-pinboard--2-col\@large > *:nth-child(1),
-  .o-pinboard--2-col\@large > *:nth-child(2),
-  .o-pinboard--3-col\@large > *:nth-child(1),
-  .o-pinboard--3-col\@large > *:nth-child(2),
-  .o-pinboard--3-col\@large > *:nth-child(3),
-  .o-pinboard--4-col\@large > *:nth-child(1),
-  .o-pinboard--4-col\@large > *:nth-child(2),
-  .o-pinboard--4-col\@large > *:nth-child(3),
-  .o-pinboard--4-col\@large > *:nth-child(4) {
+  .o-pinboard--2-col\@large>*:nth-child(1),
+  .o-pinboard--2-col\@large>*:nth-child(2),
+  .o-pinboard--3-col\@large>*:nth-child(1),
+  .o-pinboard--3-col\@large>*:nth-child(2),
+  .o-pinboard--3-col\@large>*:nth-child(3),
+  .o-pinboard--4-col\@large>*:nth-child(1),
+  .o-pinboard--4-col\@large>*:nth-child(2),
+  .o-pinboard--4-col\@large>*:nth-child(3),
+  .o-pinboard--4-col\@large>*:nth-child(4) {
     border-top-color: transparent;
   }
 }
@@ -316,7 +351,7 @@
     left: colspan(19, xlarge);
   }
 
-  .o-pinboard--2-col\@xlarge > * {
+  .o-pinboard--2-col\@xlarge>* {
     width: colspan(grid-cols-to-colspan(2), 'xlarge');
   }
 
@@ -330,7 +365,7 @@
     left: colspan(39, xlarge);
   }
 
-  .o-pinboard--3-col\@xlarge > * {
+  .o-pinboard--3-col\@xlarge>* {
     width: colspan(grid-cols-to-colspan(3), 'xlarge');
   }
 
@@ -348,44 +383,44 @@
     left: colspan(44, xlarge);
   }
 
-  .o-pinboard--4-col\@xlarge > * {
+  .o-pinboard--4-col\@xlarge>* {
     width: colspan(grid-cols-to-colspan(4), 'xlarge');
   }
 
-  .o-pinboard--2-col\@xlarge > *:nth-child(1),
-  .o-pinboard--2-col\@xlarge > *:nth-child(2),
-  .o-pinboard--3-col\@xlarge > *:nth-child(1),
-  .o-pinboard--3-col\@xlarge > *:nth-child(2),
-  .o-pinboard--3-col\@xlarge > *:nth-child(3),
-  .o-pinboard--4-col\@xlarge > *:nth-child(1),
-  .o-pinboard--4-col\@xlarge > *:nth-child(2),
-  .o-pinboard--4-col\@xlarge > *:nth-child(3),
-  .o-pinboard--4-col\@xlarge > *:nth-child(4) {
+  .o-pinboard--2-col\@xlarge>*:nth-child(1),
+  .o-pinboard--2-col\@xlarge>*:nth-child(2),
+  .o-pinboard--3-col\@xlarge>*:nth-child(1),
+  .o-pinboard--3-col\@xlarge>*:nth-child(2),
+  .o-pinboard--3-col\@xlarge>*:nth-child(3),
+  .o-pinboard--4-col\@xlarge>*:nth-child(1),
+  .o-pinboard--4-col\@xlarge>*:nth-child(2),
+  .o-pinboard--4-col\@xlarge>*:nth-child(3),
+  .o-pinboard--4-col\@xlarge>*:nth-child(4) {
     border-top-color: transparent;
   }
 }
 
 .o-gallery--small-mosaic {
   @include breakpoint('xsmall') {
-    .o-pinboard--1-col\@xsmall > * {
+    .o-pinboard--1-col\@xsmall>* {
       margin-left: 10px;
     }
   }
 
   @include breakpoint('small') {
-    .o-pinboard--2-col\@small > * {
+    .o-pinboard--2-col\@small>* {
       margin-left: 20px;
     }
   }
 
   @include breakpoint('medium') {
-    .o-pinboard--2-col\@medium > * {
+    .o-pinboard--2-col\@medium>* {
       margin-left: 30px;
     }
   }
 
   @include breakpoint('large') {
-   .o-pinboard--3-col\@large > * {
+    .o-pinboard--3-col\@large>* {
       width: colspan(grid-cols-to-colspan(4), 'large');
       border-top: 0;
     }
@@ -405,24 +440,24 @@
   }
 
   @include breakpoint('xlarge') {
-    .o-pinboard--3-col\@xlarge > * {
-       width: colspan(grid-cols-to-colspan(4), 'xlarge');
-       border-top: 0;
-     }
+    .o-pinboard--3-col\@xlarge>* {
+      width: colspan(grid-cols-to-colspan(4), 'xlarge');
+      border-top: 0;
+    }
 
-     .o-pinboard--3-col\@xlarge::before {
-       display: block;
-       left: colspan(18, xlarge);
-       width: colspan(22, xlarge);
-       border-right: 1px solid $color__rules--tertiary;
-       border-left: 1px solid $color__rules--tertiary;
-       background: transparent;
-     }
+    .o-pinboard--3-col\@xlarge::before {
+      display: block;
+      left: colspan(18, xlarge);
+      width: colspan(22, xlarge);
+      border-right: 1px solid $color__rules--tertiary;
+      border-left: 1px solid $color__rules--tertiary;
+      background: transparent;
+    }
 
-     .o-pinboard--3-col\@xlarge::after {
-       display: none;
-     }
-   }
+    .o-pinboard--3-col\@xlarge::after {
+      display: none;
+    }
+  }
 }
 
 /**
@@ -453,7 +488,8 @@
     background-color: $color__rules--focus;
   }
 
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       .o-pinboard[class*="col@#{$name}"] > * {
         @if ($name == 'xsmall') {
@@ -472,19 +508,22 @@
   }
 
   @include breakpoint('xlarge') {
-     .o-pinboard--3-col\@xlarge::before {
-       border-right: 1px solid $color__rules--contrast;
-       border-left: 1px solid $color__rules--contrast;
-     }
-   }
+    .o-pinboard--3-col\@xlarge::before {
+      border-right: 1px solid $color__rules--contrast;
+      border-left: 1px solid $color__rules--contrast;
+    }
+  }
 }
 
 .o-gallery--small-mosaic.o-gallery----theme-2 {
-  @each $name, $point in $breakpoints {
+
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      .o-pinboard[class*="col@#{$name}"] > * {
-        @if ($name == 'xsmall') {
-        } @else {
+      .o-pinboard[class*="col@#{$name}"]>* {
+        @if ($name=='xsmall') {}
+
+        @else {
           border-top: 1px solid $color__rules--primary;
           margin-top: -1px;
         }
@@ -500,11 +539,11 @@
   }
 
   @include breakpoint('xlarge') {
-     .o-pinboard--3-col\@xlarge::before {
-       border-right: 1px solid $color__rules--primary;
-       border-left: 1px solid $color__rules--primary;
-     }
-   }
+    .o-pinboard--3-col\@xlarge::before {
+      border-right: 1px solid $color__rules--primary;
+      border-left: 1px solid $color__rules--primary;
+    }
+  }
 }
 
 .o-gallery--small-mosaic.o-gallery----theme-2 {
@@ -518,11 +557,11 @@
     border-top: 0;
   }
 
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      .o-pinboard[class*="col@#{$name}"] > * {
-        @if ($name == 'xsmall') {
-        } @else {
+      .o-pinboard[class*="col@#{$name}"]>* {
+        @if ($name!='xsmall') {
           border-top: 1px solid $color__rules--primary;
           margin-top: -1px;
         }

@@ -1,9 +1,13 @@
 .g-footer {
   @include background-fill;
-  padding-top: 56px;
-  padding-bottom: 44px;
-  background-color: $color__bg--footer;
-  color: $color__text--footer;
+
+  & {
+    padding-top: 56px;
+    padding-bottom: 44px;
+    background-color: $color__bg--footer;
+    color: $color__text--footer;
+
+  }
 
   @include breakpoint('medium+') {
     padding-top: 76px;
@@ -13,11 +17,14 @@
 
 .g-footer__top-link {
   @include untuck;
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: inherit;
-  line-height: 48px;
+
+  & {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: inherit;
+    line-height: 48px;
+  }
 }
 
 .g-footer__top-link span {
@@ -59,9 +66,11 @@
   }
 
   &:active {
-    background-image: none;
-    color: $color__text--footer;
-    text-shadow: 0;
+    & {
+      background-image: none;
+      color: $color__text--footer;
+      text-shadow: 0;
+    }
   }
 }
 
@@ -76,7 +85,10 @@
 
 .g-footer__link-list--flush {
   @include untuck;
-  margin-top: 0;
+
+  & {
+    margin-top: 0;
+  }
 }
 
 .g-footer__link-list--spaced li {
@@ -93,14 +105,15 @@
   flex-flow: row wrap;
   height: 100%;
 
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       margin-left: colspan(2, $name, 0, true);
     }
   }
 }
 
-.g-footer__grid > li {
+.g-footer__grid>li {
   position: relative;
   padding-top: 40px;
 
@@ -134,26 +147,22 @@
   }
 }
 
-.g-footer__grid > li:first-child {
+.g-footer__grid>li:first-child {
   padding-top: 26px;
 }
 
-.g-footer__grid > li:nth-child(1),
-.g-footer__grid > li:nth-child(2) {
+.g-footer__grid>li:nth-child(1),
+.g-footer__grid>li:nth-child(2) {
   @include breakpoint('medium+') {
     min-height: 334px;
   }
 }
 
-.g-footer__grid > li:nth-child(3),
-.g-footer__grid > li:nth-child(4) {
-}
-
-.g-footer__grid > li h3 {
+.g-footer__grid>li h3 {
   margin-top: -8px;
 }
 
-.g-footer__grid > li::after {
+.g-footer__grid>li::after {
   content: '';
   display: none;
   position: absolute;
@@ -163,7 +172,8 @@
   background-color: $color__rules--contrast;
   pointer-events: none;
 
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
       right: colspan(1, #{$name}, 0, true);
     }
@@ -174,7 +184,7 @@
   }
 }
 
-.g-footer__grid > li:nth-child(2n)::after {
+.g-footer__grid>li:nth-child(2n)::after {
   @include breakpoint('medium+') {
     display: none;
   }
@@ -184,7 +194,7 @@
   }
 }
 
-.g-footer__grid > li:last-child::after {
+.g-footer__grid>li:last-child::after {
   display: none;
 }
 
@@ -205,38 +215,38 @@
   }
 }
 
-.g-footer .o-grid-listing > *::before,
-.g-footer .o-grid-listing > *::after {
+.g-footer .o-grid-listing>*::before,
+.g-footer .o-grid-listing>*::after {
   background-color: $color__rules--contrast;
 }
 
-.g-footer .o-grid-listing > * > *:first-child {
+.g-footer .o-grid-listing>*>*:first-child {
   margin-top: 0;
 }
 
 @include breakpoint('medium-') {
-  .g-footer .o-grid-listing > *::after {
+  .g-footer .o-grid-listing>*::after {
     content: none;
     display: none;
   }
 
-  .g-footer .o-grid-listing > *:nth-child(1),
-  .g-footer .o-grid-listing > *:nth-child(2) {
+  .g-footer .o-grid-listing>*:nth-child(1),
+  .g-footer .o-grid-listing>*:nth-child(2) {
     order: 1;
   }
 
-  .g-footer .o-grid-listing > *:nth-child(3),
-  .g-footer .o-grid-listing > *:nth-child(4) {
+  .g-footer .o-grid-listing>*:nth-child(3),
+  .g-footer .o-grid-listing>*:nth-child(4) {
     order: 3;
   }
 
-  .g-footer .o-grid-listing > *:nth-child(5),
-  .g-footer .o-grid-listing > *:nth-child(6) {
+  .g-footer .o-grid-listing>*:nth-child(5),
+  .g-footer .o-grid-listing>*:nth-child(6) {
     order: 2;
   }
 
-  .g-footer .o-grid-listing > *:nth-child(7),
-  .g-footer .o-grid-listing > *:nth-child(8) {
+  .g-footer .o-grid-listing>*:nth-child(7),
+  .g-footer .o-grid-listing>*:nth-child(8) {
     order: 4;
   }
 }
@@ -327,138 +337,142 @@
 .g-footer__grid--hours {
   .g-footer__link-list--hours {
     @include untuck;
-    margin-top: -8px;
+
+    & {
+      margin-top: -8px;
+    }
 
     h4 {
       margin-top: 4px;
     }
-
-    h4:first-child {
-      margin-top: 0px;
-    }
-
-    p {
-      color: $color__text--footer;
-    }
   }
 
-  @each $name, $point in ('xsmall', 'small') {
-    @include breakpoint('#{$name}') {
-      > li:nth-child(2) .g-footer__grid__group {
-        padding-bottom: 0;
+  h4:first-child {
+    margin-top: 0px;
+  }
+
+  p {
+    color: $color__text--footer;
+  }
+}
+
+@each $name,
+$point in ('xsmall', 'small') {
+  @include breakpoint('#{$name}') {
+    .g-footer > li:nth-child(2) .g-footer__grid__group {
+      padding-bottom: 0;
+    }
+
+    .g-footer > li:nth-child(4) .g-footer__grid__group {
+      margin-top: -8px;
+    }
+  }
+}
+
+@include breakpoint('medium+') {
+  .g-footer > li:nth-child(1) {
+    width: colspan(grid-cols-to-colspan(3, 58), 'medium');
+  }
+
+  .g-footer > li:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+
+    width: colspan(38, 'medium');
+
+    .g-footer__grid__group {
+      width: colspan(grid-cols-to-colspan(3, 58), 'medium');
+      border-top: none;
+      padding-top: 0;
+
+      &:nth-child(1)::after {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 0;
+        bottom: 0;
+        left: calc(50% - 1px);
+        width: 1px;
+        background-color: $color__rules--contrast;
+        pointer-events: none;
       }
 
-      > li:nth-child(4) .g-footer__grid__group {
+      &:nth-child(2) {
+        margin-left: colspan(2, 'medium');
         margin-top: -8px;
       }
     }
   }
 
-  @include breakpoint('medium+') {
-    > li:nth-child(1) {
-      width: colspan(grid-cols-to-colspan(3, 58), 'medium');
+  .g-footer > li:nth-child(3)::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
+    width: colspan(58, 'medium');
+    background-color: $color__rules--contrast;
+    pointer-events: none;
+  }
+
+  .g-footer > li {
+    .g-footer__grid__group:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+  }
+
+  .g-footer > li:nth-child(1),
+  .g-footer > li:nth-child(2) {
+    min-height: initial;
+  }
+
+  nav,
+  .g-footer__grid__group {
+    padding-bottom: 60px;
+  }
+}
+
+@include breakpoint('medium') {
+  .g-footer > li {
+    &::after {
+      display: none;
     }
 
-    > li:nth-child(2) {
-      display: flex;
-      justify-content: space-between;
+    &:first-child::after,
+    &:nth-child(3)::after {
+      display: block;
+    }
+  }
+}
 
-      width: colspan(38, 'medium');
+@each $name,
+$point in ('large', 'xlarge') {
+  @include breakpoint('#{$name}') {
+    .g-footer > li:first-child {
+      width: colspan(grid-cols-to-colspan(2, 58), $name);
+    }
+
+    .g-footer > li:nth-child(2) {
+      width: colspan(grid-cols-to-colspan(2, 58), $name);
 
       .g-footer__grid__group {
-        width: colspan(grid-cols-to-colspan(3, 58), 'medium');
-        border-top: none;
-        padding-top: 0;
-
-        &:nth-child(1)::after {
-          content: '';
-          position: absolute;
-          display: block;
-          top: 0;
-          bottom: 0;
-          left: calc(50% - 1px);
-          width: 1px;
-          background-color: $color__rules--contrast;
-          pointer-events: none;
-        }
+        width: colspan(grid-cols-to-colspan(4, 58) + 1, $name);
 
         &:nth-child(2) {
-          margin-left: colspan(2, 'medium');
-          margin-top: -8px;
+          margin-left: colspan(2, $name);
         }
       }
-    }
 
-    > li:nth-child(3)::before {
-      content: '';
-      position: absolute;
-      display: block;
-      top: 0;
-      right: 0;
-      left: 0;
-      height: 1px;
-      width: colspan(58, 'medium');
-      background-color: $color__rules--contrast;
-      pointer-events: none;
-    }
-
-    > li {
-      .g-footer__grid__group:first-child {
-        border-top: none;
-        padding-top: 0;
-      }
-    }
-
-    > li:nth-child(1),
-    > li:nth-child(2) {
-      min-height: initial;
-    }
-
-    nav,
-    .g-footer__grid__group {
-      padding-bottom: 60px;
-    }
-  }
-
-  @include breakpoint('medium') {
-    > li {
-      &::after {
+      &:after {
         display: none;
       }
+    }
 
-      &:first-child::after,
-      &:nth-child(3)::after {
-        display: block;
-      }
+    .g-footer > li:nth-child(3)::before {
+      width: colspan(58, $name);
     }
   }
-
-  @each $name, $point in ('large', 'xlarge') {
-    @include breakpoint('#{$name}') {
-      > li:first-child {
-        width: colspan(grid-cols-to-colspan(2, 58), $name);
-      }
-
-      > li:nth-child(2) {
-        width: colspan(grid-cols-to-colspan(2, 58), $name);
-
-        .g-footer__grid__group {
-          width: colspan(grid-cols-to-colspan(4, 58) + 1, $name);
-
-          &:nth-child(2) {
-            margin-left: colspan(2, $name);
-          }
-        }
-
-        &:after {
-          display: none;
-        }
-      }
-
-      > li:nth-child(3)::before {
-        width: colspan(58, $name);
-      }
-    }
-  }
-
 }

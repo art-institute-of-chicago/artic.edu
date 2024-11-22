@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c13a1e04af07a01db29d089d834f4067",
+    "content-hash": "d3382daf85ddf26108657d7ca411de99",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -11264,7 +11264,7 @@
         },
         {
             "name": "vendor/package-patches",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "require": {
                 "netresearch/composer-patches-plugin": "~1.2"
             },
@@ -11275,14 +11275,6 @@
                         {
                             "title": "WEB-2103: Get repository model of API models",
                             "url": "patches/WEB-2301---get-repository-of-API-models.diff"
-                        },
-                        {
-                            "title": "WEB-2638: Backport Node 14 syntax",
-                            "url": "patches/WEB-2638---backport-node-14-syntax.diff"
-                        },
-                        {
-                            "title": "WEB-2678: Backport Node 10 syntax",
-                            "url": "patches/WEB-2678---backport-node-10-syntax.diff"
                         }
                     ]
                 }

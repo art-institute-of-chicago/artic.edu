@@ -19,18 +19,21 @@
 
 .m-search-triggers button {
   @include untuck;
-  display: block;
-  min-width: 48px;
-  height: 48px;
-  margin: 0;
-  padding: 0 16px;
-  border: 0 none;
-  border-radius: $border-radius;
-  background: $color__bg;
-  color: $color__link;
-  line-height: 44px;
-  cursor: pointer;
-  box-shadow: $shadow;
+
+  & {
+    display: block;
+    min-width: 48px;
+    height: 48px;
+    margin: 0;
+    padding: 0 16px;
+    border: 0 none;
+    border-radius: $border-radius;
+    background: $color__bg;
+    color: $color__link;
+    line-height: 44px;
+    cursor: pointer;
+    box-shadow: $shadow;
+  }
 
   &.m-search-triggers__search {
     padding: 0 8px;
@@ -64,7 +67,7 @@
   color: $color__text--title;
 }
 
-.m-search-triggers button:hover .icon--search--24 ,
-.m-search-triggers button:focus .icon--search--24  {
+.m-search-triggers button:hover .icon--search--24,
+.m-search-triggers button:focus .icon--search--24 {
   color: $color__text--title;
 }

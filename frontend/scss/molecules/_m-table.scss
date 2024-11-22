@@ -89,7 +89,8 @@ Intended for very simple m-tables..
     }
   }
 
-  th, td {
+  th,
+  td {
     padding: 15px 12px 23px;
     border-top: 1px solid $color__rules--primary;
     border-bottom: 1px solid $color__rules--primary;
@@ -106,18 +107,23 @@ Intended for very simple m-tables..
   }
 
   tr.tr--border-before {
-    th, td {
+
+    th,
+    td {
       border-top-width: 3px;
     }
   }
 
   tr.tr--border-after {
-    th, td {
+
+    th,
+    td {
       border-bottom-width: 3px;
     }
   }
 
   &.m-table--minimal {
+
     th,
     td {
       border-top: 0;
@@ -142,24 +148,36 @@ Intended for very simple m-tables..
 
   .f-module-title-1 {
     @include tucked-align-top($f-module-title-1);
-    display: inline-block;
+
+    & {
+      display: inline-block;
+    }
   }
 
   .f-secondary {
     @include tucked-align-top($f-secondary);
     display: inline-block;
-    font-style: normal;
+
+    & {
+      font-style: normal;
+    }
   }
 
   .f-tag {
     @include tucked-align-top($f-tag);
     display: inline-block;
-    color: $color__text--title;
+
+    & {
+      color: $color__text--title;
+    }
   }
 
   .f-caption {
     @include untuck;
-    margin-top: 16px;
+
+    & {
+      margin-top: 16px;
+    }
 
     h3 {
       text-decoration: underline;
@@ -169,18 +187,22 @@ Intended for very simple m-tables..
 }
 
 .m-table--word-wrap {
-  th, td {
+
+  th,
+  td {
     white-space: normal;
   }
 }
 
 .m-table--hide-columns {
+
   th:first-child,
   td:first-child {
     padding-left: 0;
   }
 
-  td, th {
+  td,
+  th {
     border-left: none;
     border-right: none;
   }

@@ -22,7 +22,7 @@
     margin-right: colspan(2, large);
 
     //&.o-article__primary-actions--inline-header {
-    .m-article-header--gallery ~ & {
+    .m-article-header--gallery~& {
       margin-top: 40px;
     }
   }
@@ -32,7 +32,7 @@
     margin-right: colspan(2, xlarge);
   }
 
-  .m-article-header--default ~ & {
+  .m-article-header--default~& {
     @include breakpoint('medium') {
       float: left;
       width: colspan(38, medium);
@@ -40,7 +40,7 @@
   }
 }
 
-.m-article-header ~ .o-article__primary-actions::before {
+.m-article-header~.o-article__primary-actions::before {
   content: '';
   position: absolute;
   left: 0;
@@ -50,7 +50,7 @@
   background-color: $color__rules--primary;
 }
 
-.o-article__primary-actions > *:not(:nth-child(1)):not([class*='f-']):not(.o-collapsing-nav) {
+.o-article__primary-actions>*:not(:nth-child(1)):not([class*='f-']):not(.o-collapsing-nav) {
   margin-top: 8px;
 
   @include breakpoint('large+') {
@@ -58,15 +58,15 @@
   }
 }
 
-.o-article__primary-actions > *.f-secondary:not(:nth-child(1)) {
+.o-article__primary-actions>*.f-secondary:not(:nth-child(1)) {
   @include tucked-margin-top($f-secondary, ('xsmall': 52));
 }
 
-.o-article__primary-actions > *.f-secondary:nth-child(3) {
+.o-article__primary-actions>*.f-secondary:nth-child(3) {
   @include tucked-margin-top($f-secondary, ('xsmall': 39));
 }
 
-.o-article__primary-actions > .m-article-actions:nth-child(1) {
+.o-article__primary-actions>.m-article-actions:nth-child(1) {
   @include breakpoint('large+') {
     margin-top: 8px;
   }
@@ -80,9 +80,9 @@
   }
 }
 
-.m-article-header--feature ~ .o-article__primary-actions,
-.m-article-header--hero ~ .o-article__primary-actions,
-.m-article-header--super-hero ~ .o-article__primary-actions {
+.m-article-header--feature~.o-article__primary-actions,
+.m-article-header--hero~.o-article__primary-actions,
+.m-article-header--super-hero~.o-article__primary-actions {
   @include breakpoint('medium-') {
     margin-top: 0;
 
@@ -114,14 +114,17 @@
 
     @include breakpoint('medium-') {
       @include background-fill;
-      margin-top: 0;
-      background-color: $color__bg--primary;
 
-      & ~ .o-article__secondary-actions {
+      & {
+        margin-top: 0;
+        background-color: $color__bg--primary;
+      }
+
+      &~.o-article__secondary-actions {
         margin-top: 8px;
       }
 
-      & ~ .o-article__body {
+      &~.o-article__body {
         margin-top: 20px;
       }
 
@@ -134,11 +137,11 @@
     @include breakpoint('medium') {
       width: colspan(58, medium);
 
-      & ~ .o-article__secondary-actions {
+      &~.o-article__secondary-actions {
         margin-top: 28px;
       }
 
-      & ~ .o-article__body {
+      &~.o-article__body {
         margin-top: 28px;
       }
     }
@@ -184,75 +187,82 @@
   padding-top: initial;
   margin-top: 0;
 
-  @each $name, $point in $breakpoints {
+  @each $name,
+  $point in $breakpoints {
     @include breakpoint('#{$name}') {
+
       .m-search-bar,
       hr,
-      .hr--no-archive ~ .m-article-actions { // PUB-128
+      .hr--no-archive~.m-article-actions {
+        // PUB-128
         margin-top: #{map-get((
-          xsmall: 24,
+ xsmall: 24,
           small: 24,
           medium: 24,
           large: 24,
-          xlarge: 30
-        ), $name)}px;
+          xlarge: 30), $name)
       }
+
+      px;
     }
   }
+}
 
-  .m-article-actions--journal__issues {
-    @include breakpoint('medium-'){
-      display: flex;
-      flex-direction: row;
-      overflow-x: scroll;
+.m-article-actions--journal__issues {
+  @include breakpoint('medium-') {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+  }
+}
+
+.m-article-actions--journal__issues::-webkit-scrollbar {
+  width: 0;
+}
+
+.m-article-actions--journal__issues::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.m-article-actions--journal__issues a {
+  margin-bottom: 12px;
+
+  @include breakpoint('medium-') {
+    margin-bottom: 0;
+    margin-right: 12px;
+  }
+}
+
+.m-article-actions--publication__logo {
+  a {
+    color: $color__black--90;
+  }
+}
+
+.m-article-actions--publication__text {
+  @include untuck();
+
+  @each $name in ('large', 'xlarge') {
+    @include breakpoint('#{$name}') {
+      margin-top: #{map-get((
+ large: 24,
+        xlarge: 30), $name)
     }
+
+    px;
   }
+}
 
-  .m-article-actions--journal__issues::-webkit-scrollbar {
-    width: 0;
+&.f-secondary {
+  color: $color__black--54;
+  padding-right: 2em;
+
+  a {
+    color: $color__black--54;
+    text-decoration: underline;
   }
-
-  .m-article-actions--journal__issues::-webkit-scrollbar-thumb {
-    background: transparent;
-  }
-
-  .m-article-actions--journal__issues a {
-    margin-bottom: 12px;
-
-    @include breakpoint('medium-') {
-      margin-bottom: 0;
-      margin-right: 12px;
-    }
-  }
-
-  .m-article-actions--publication__logo {
-    a {
-      color: $color__black--90;
-    }
-  }
-
-  .m-article-actions--publication__text {
-    @include untuck();
-
-    @each $name in ('large', 'xlarge') {
-      @include breakpoint('#{$name}') {
-        margin-top: #{map-get((
-          large: 24,
-          xlarge: 30
-        ), $name)}px;
-      }
-    }
-
-    &.f-secondary {
-      color: $color__black--54;
-      padding-right: 2em;
-
-      a {
-        color: $color__black--54;
-        text-decoration: underline;
-      }
-    }
-  }
+}
+}
 }
 
 // Styles specific to digital publications and their sections:
@@ -303,15 +313,16 @@
       height: 150px;
       width: 600px;
       margin-left: calc(-600px + 50%);
+
       @each $name in ('large', 'xlarge') {
         @include breakpoint('#{$name}') {
           width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2));
-          padding-right: calc(#{colspan(1, '#{$name}')} * 2);
-          margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
-          margin-right: colspan(2, #{$name});
-        }
-      }
-    }
+padding-right: calc(#{colspan(1, '#{$name}')} * 2);
+margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
+margin-right: colspan(2, #{$name});
+                }
+              }
+            }
 
     a {
       transition: color 1s;
@@ -321,10 +332,10 @@
       }
     }
 
-    a:hover,
-    a:focus {
-      color: $color__link--publications-hover;
-    }
+            a:hover,
+            a:focus {
+              color: $color__link--publications-hover;
+            }
 
     a:active {
       color: $color__link--publications-active;
@@ -336,49 +347,46 @@
       width: 100%;
     }
 
-    @include breakpoint('large+') {
-      .p-digitalpublications-show &,
-      .p-digitalpublications-showlisting & {
-        display: none !important;
-      }
-    }
+            @include breakpoint('large+') {
 
-    @include font-styles-untuck(generate-font-obj(
-      (
-        font-family: $serif-font,
-        font-family-loaded: $serif-font--loaded,
-        font-loaded-class: $serif-font-loaded-class,
-        settings: (
-          'xsmall': (font-size: 22, line-height: 23, push: 0),
-        )
-      )
-    ));
+              .p-digitalpublications-show &,
+              .p-digitalpublications-showlisting & {
+                display: none !important;
+              }
+            }
+
+            @include font-styles-untuck(generate-font-obj((font-family: $serif-font,
+                  font-family-loaded: $serif-font--loaded,
+                  font-loaded-class: $serif-font-loaded-class,
+                  settings: ('xsmall': (font-size: 22, line-height: 23, push: 0),
+                  ))));
 
     a:hover {
       text-decoration: underline;
     }
   }
 
-  .m-article-header__text::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    height: 150px;
-    width: 600px;
-    margin-left: calc(-600px + 50%);
-    @each $name in ('large', 'xlarge') {
-      @include breakpoint('#{$name}') {
-        width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2));
-        padding-right: calc(#{colspan(1, '#{$name}')} * 2);
-        margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
-        margin-right: colspan(2, #{$name});
-      }
-    }
-  }
+          .m-article-header__text::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            height: 150px;
+            width: 600px;
+            margin-left: calc(-600px + 50%);
+
+            @each $name in ('large', 'xlarge') {
+              @include breakpoint('#{$name}') {
+                width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2));
+padding-right: calc(#{colspan(1, '#{$name}')} * 2);
+margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1));
+margin-right: colspan(2, #{$name});
+                      }
+                    }
+                  }
 
   .m-article-actions {
     margin-top: 50px;
@@ -448,16 +456,18 @@
   }
 }
 
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      .m-article-actions--journal__issues {
-        margin-top: #{map-get((
-          xsmall: 24,
-          small: 24,
-          medium: 24,
-          large: 24,
-          xlarge: 30
-        ), $name)}px;
-      }
-    }
-  }
+                @each $name, $point in $breakpoints {
+                  @include breakpoint('#{$name}') {
+                    .m-article-actions--journal__issues {
+                      margin-top: #{map-get((
+ xsmall: 24,
+                      small: 24,
+                      medium: 24,
+                      large: 24,
+                      xlarge: 30), $name)
+                }
+
+                px;
+              }
+            }
+          }
