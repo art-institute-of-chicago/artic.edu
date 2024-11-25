@@ -156,9 +156,9 @@ Intended for very simple m-tables..
 
   .f-secondary {
     @include tucked-align-top($f-secondary);
-    display: inline-block;
 
     & {
+      display: inline-block;
       font-style: normal;
     }
   }

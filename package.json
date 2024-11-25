@@ -8,7 +8,7 @@
     "build:dev": "cross-env NODE_ENV=development run-p svg-sprite webpack:build",
     "production": "npm run build",
     "presvg-sprite": "mkdirp ./public/dist/icons && rm -f ./public/dist/icons/icons*",
-    "svg-sprite": "svg-symbol-sprite -i ./frontend/icons -o ./public/dist/icons/icons.svg -p icon-- -c ./svgo.config.mjs",
+    "svg-sprite": "svg-symbol-sprite -i ./frontend/icons -o ./public/dist/icons/icons.svg -p icon-- -c false",
     "postsvg-sprite": "node ./scripts/hashFiles.js ./public/dist/icons/icons.svg && node ./scripts/generateRevManifest ./public/dist ./public/dist/rev-manifest.json",
     "webpack:build": "webpack",
     "webpack:watch": "webpack --watch",
