@@ -25,7 +25,7 @@ class SearchRepository extends BaseApiRepository
                 'events',
                 'articles',
                 'digital-publications',
-                'printed-catalogs',
+                'printed-publications',
                 'generic-pages',
                 'educator-resources',
                 'press-releases',
