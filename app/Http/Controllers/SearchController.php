@@ -439,7 +439,7 @@ class SearchController extends BaseScopedController
         }
         array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
 
-        if (QueryHelpers::extractAggregation($aggregations, ['digital-publications', 'printed-catalogs'])) {
+        if (QueryHelpers::extractAggregation($aggregations, ['digital-publications', 'printed-publications'])) {
             array_push($links, $this->buildLabel('Publications', QueryHelpers::extractAggregation($aggregations, ['digital-publications', 'printed-publications']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
 
