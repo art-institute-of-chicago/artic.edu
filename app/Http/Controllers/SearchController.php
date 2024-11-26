@@ -139,7 +139,7 @@ class SearchController extends BaseScopedController
     public function autocomplete()
     {
         $collection = GeneralSearch::search(request('q'))
-            ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs', 'highlights'])
+            ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-publications', 'printed-publications', 'highlights'])
             ->getSearch(self::AUTOCOMPLETE_PER_PAGE);
 
         foreach ($collection as &$item) {
@@ -439,8 +439,8 @@ class SearchController extends BaseScopedController
         }
         array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
 
-        if (QueryHelpers::extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs'])) {
-            array_push($links, $this->buildLabel('Publications', QueryHelpers::extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
+        if (QueryHelpers::extractAggregation($aggregations, ['digital-publications', 'printed-publications'])) {
+            array_push($links, $this->buildLabel('Publications', QueryHelpers::extractAggregation($aggregations, ['digital-publications', 'printed-publications']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
 
         if (QueryHelpers::extractAggregation($aggregations, 'educator-resources')) {
