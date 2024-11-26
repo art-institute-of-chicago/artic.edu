@@ -84,7 +84,7 @@ class PrintedPublication extends AbstractModel
 
     public function categories()
     {
-        return $this->belongsToMany('App\Models\CatalogCategory', 'catalog_category_printed_catalog', 'printed_catalog_id');
+        return $this->belongsToMany('App\Models\CatalogCategory', 'catalog_category_printed_publication', 'printed_publication_id');
     }
 
     public function scopeIds($query, $ids = [])
