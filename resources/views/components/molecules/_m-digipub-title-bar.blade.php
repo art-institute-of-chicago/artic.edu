@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Str;
+
 ?>
 
 <div class="m-title-bar m-digipub-title-bar"{!! isset($id) ? ' id="'.$id.'"' : '' !!}>

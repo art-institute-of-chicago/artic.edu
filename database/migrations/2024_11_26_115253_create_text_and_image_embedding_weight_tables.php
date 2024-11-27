@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         Schema::create('text_embedding_weights', function (Blueprint $table) {
@@ -16,7 +15,7 @@ return new class extends Migration
             $table->timestamps();
             $table->vector('query_embedding', 1536);
             $table->decimal('weight', 5, 2)->default(1.0);
-            
+
             $table->index('weight');
         });
 
@@ -28,7 +27,7 @@ return new class extends Migration
             $table->timestamps();
             $table->vector('query_embedding', 1024);
             $table->decimal('weight', 5, 2)->default(1.0);
-            
+
             $table->index('weight');
         });
     }
