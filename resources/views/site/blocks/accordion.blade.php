@@ -1,6 +1,6 @@
 @php
     $items = [];
-    foreach ($block->childs as $item) {
+    foreach ($block->children as $item) {
         $item->title = $item->present()->input('header');
         $item->blocks = [
             [
