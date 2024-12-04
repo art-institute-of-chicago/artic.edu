@@ -167,6 +167,11 @@ $disable-font-loading: true;
     display: inline-block;
   }
 
+  .f-body em {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
   #a17 {
     padding-top: 0px;
     width: auto;
