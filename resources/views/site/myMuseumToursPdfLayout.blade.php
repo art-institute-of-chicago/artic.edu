@@ -69,7 +69,7 @@
             <td class="short-description">
                 @if(isset($my_museum_tour['artworks'][4]))
                     @isset($my_museum_tour['artworks'][4]['description'])
-                        <span class="f-body t-short-description">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][4]['description'], 452) }}</span>
+                        <span class="f-body t-short-description">{!! StringHelpers::truncateStr($my_museum_tour['artworks'][4]['description'], 452) !!}</span>
                     @endisset
                 @endif
             </td>
@@ -143,7 +143,7 @@
             <td class="short-description">
                 @if(isset($my_museum_tour['artworks'][5]))
                     @isset($my_museum_tour['artworks'][5]['description'])
-                        <span class="f-body t-short-description">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][5]['description'], 452) }}</span>
+                        <span class="f-body t-short-description">{!! StringHelpers::truncateStr($my_museum_tour['artworks'][5]['description'], 452) !!}</span>
                     @endisset
                 @endif
             </td>
@@ -264,14 +264,14 @@
             <td class="short-description">
                 @if(isset($my_museum_tour['artworks'][0]))
                     @isset($my_museum_tour['artworks'][0]['description'])
-                        <span class="f-body t-short-description">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][0]['description'], 452) }}</span>
+                        <span class="f-body t-short-description">{!! StringHelpers::truncateStr($my_museum_tour['artworks'][0]['description'], 452) !!}</span>
                     @endisset
                 @endif
             </td>
             <td colspan="5" class="short-description">
                 @if(isset($my_museum_tour['artworks'][2]))
                     @isset($my_museum_tour['artworks'][2]['description'])
-                        <span class="f-body t-short-description">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][2]['description'], 452) }}</span>
+                        <span class="f-body t-short-description">{!! StringHelpers::truncateStr($my_museum_tour['artworks'][2]['description'], 452) !!}</span>
                     @endisset
                 @endif
             </td>
@@ -364,14 +364,14 @@
             <td class="short-description">
                 @if(isset($my_museum_tour['artworks'][1]))
                     @isset($my_museum_tour['artworks'][1]['description'])
-                        <span class="f-body t-short-description">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][1]['description'], 452) }}</span>
+                        <span class="f-body t-short-description">{!! StringHelpers::truncateStr($my_museum_tour['artworks'][1]['description'], 452) !!}</span>
                     @endisset
                 @endif
             </td>
             <td colspan="5" class="short-description">
                 @if(isset($my_museum_tour['artworks'][3]))
                     @isset($my_museum_tour['artworks'][3]['description'])
-                        <span class="f-body t-short-description">{{ StringHelpers::truncateStr($my_museum_tour['artworks'][3]['description'], 452) }}</span>
+                        <span class="f-body t-short-description">{!! StringHelpers::truncateStr($my_museum_tour['artworks'][3]['description'], 452) !!}</span>
                     @endisset
                 @endif
             </td>
