@@ -9,7 +9,7 @@
 @endif
 <{{ $tag ?? 'header' }}
     class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}"
-    data-behavior="blurMyBackground stickyDigitalPublicationHeader contrastText"
+    data-behavior="blurMyBackground {{ isset($variation) && $variation == 'm-article-header--digital-publication' ? 'stickyDigitalPublicationHeader' : '' }} contrastText"
     data-background-color="{{ isset($bgcolor) ? $bgcolor : null  }}"
 >
     <div class="m-article-header__img"{{ (isset($variation) && $variation != 'm-article-header--digital-publication') ? ' data-blur-img' : '' }}>
