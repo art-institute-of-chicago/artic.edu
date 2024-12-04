@@ -21,13 +21,13 @@
     justify-content: space-between;
     min-height: 180px;
     padding-top: .02px;
-    padding-right: colspan(15, large);
-    padding-left: colspan(15, large);
+    /* padding-right: colspan(15, large); */
+    /* padding-left: colspan(15, large); */
   }
 
   @include breakpoint('xlarge') {
-    padding-right: colspan(15, xlarge);
-    padding-left: colspan(15, xlarge);
+    /* padding-right: colspan(15, xlarge); */
+    /* padding-left: colspan(15, xlarge); */
   }
 }
 
