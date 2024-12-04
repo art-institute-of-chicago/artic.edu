@@ -1,6 +1,6 @@
 @php
     $items = [];
-    foreach ($block->childs as $item) {
+    foreach ($block->children as $item) {
         $item->subtype = $item->present()->input('tag');
         $item->title = $item->present()->input('header');
         $item->shortDesc = $item->present()->input('description');

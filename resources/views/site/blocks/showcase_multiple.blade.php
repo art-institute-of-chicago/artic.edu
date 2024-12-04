@@ -16,7 +16,7 @@
                     <h4 class="showcase-intro">{!! $intro !!}</h4>
                 @endif
             </div>
-            @foreach ($block->childs as $item)
+            @foreach ($block->children as $item)
                 @php
                     $media = $item->imageAsArray('image', 'desktop');
                 @endphp
