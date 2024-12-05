@@ -157,7 +157,7 @@ class Highlight extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.collection.highlights.edit', $this->id);
+        return route('twill.collection.highlights.edit', $this->id);
     }
 
     public function getUrlWithoutSlugAttribute()

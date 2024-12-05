@@ -19,14 +19,14 @@ class FeeController extends \App\Http\Controllers\Twill\ModuleController
         $feeCategories = FeeCategory::ordered()->get();
         $feeAges = FeeAge::ordered()->get();
 
-        return view('admin.fees.index', [
+        return view('twill.fees.index', [
             'customForm' => true,
             'editableTitle' => false,
             'customTitle' => 'Update admission fees',
             'form_fields' => $this->fees->getFormFields(),
             'feeCategories' => $feeCategories,
             'feeAges' => $feeAges,
-            'saveUrl' => route('admin.visit.fees.update'),
+            'saveUrl' => route('twill.visit.fees.update'),
             'publish' => false,
         ]);
     }
@@ -34,13 +34,13 @@ class FeeController extends \App\Http\Controllers\Twill\ModuleController
     public function update($id, $submoduleId = null): \Illuminate\Http\JsonResponse
     {
         if (array_key_exists('cancel', request()->all())) {
-            return redirect()->route('admin.visit.fees.update');
+            return redirect()->route('twill.visit.fees.update');
         }
 
         $this->fees->update(request()->except('_token'));
 
         $this->fireEvent();
 
-        return redirect()->route('admin.visit.fees.update');
+        return redirect()->route('twill.visit.fees.update');
     }
 }
