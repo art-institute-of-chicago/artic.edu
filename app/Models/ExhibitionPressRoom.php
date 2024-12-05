@@ -103,7 +103,7 @@ class ExhibitionPressRoom extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.generic.exhibitionPressRooms.edit', $this->id);
+        return route('twill.generic.exhibitionPressRooms.edit', $this->id);
     }
 
     public function scopeOrdered($query)
