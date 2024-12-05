@@ -125,7 +125,7 @@ class PressRelease extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.generic.pressReleases.edit', $this->id);
+        return route('twill.generic.pressReleases.edit', $this->id);
     }
 
     public function scopeRecent($query)
