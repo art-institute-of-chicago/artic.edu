@@ -114,7 +114,7 @@ class Video extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.collection.articles_publications.videos.edit', $this->id);
+        return route('twill.collection.articles_publications.videos.edit', $this->id);
     }
 
     public function getUrlAttribute()
