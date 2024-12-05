@@ -96,7 +96,7 @@ class DigitalPublicationArticleController extends NestedModuleController
             return [
                 'id' => $article->id,
                 'name' => $digitalPublicationId ? $article->title : ($article->digitalPublication ? $article->digitalPublication->title . ' - ' . $article->title : $article->title),
-                'edit' => route('admin.collection.articles_publications.digitalPublications.articles.edit', [
+                'edit' => route('twill.collection.articles_publications.digitalPublications.articles.edit', [
                     'digitalPublication' => $article->digital_publication_id,
                     'article' => $article->id
                 ]),

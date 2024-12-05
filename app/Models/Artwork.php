@@ -79,7 +79,7 @@ class Artwork extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.collection.artworks.edit', $this->id);
+        return route('twill.collection.artworks.edit', $this->id);
     }
 
     public function getAssetLibraryAttribute()
