@@ -20,9 +20,9 @@ Portions of the website rely heavily on our [API](https://api.artic.edu). Check 
 ## Requirements
 
 * PHP 8.1
-* Node 8.17.0
-* NPM 6.13.0
-* PostgreSQL 15
+* Node 20.17.0 (lts/iron)
+* NPM 10.8.2
+* PostgreSQL 16
 * Homestead stable `release` branch
 * krpano 1.12.* (for virtual tour blocks)
 
