@@ -67,7 +67,7 @@ class DepartmentRepository extends BaseApiRepository
     /**
      * Query for artworks that haven't been explicitly linked.
      */
-    private function getApiRelatedArtworks($item, $excludedArtworks, $perPage)
+    private function getApiRelatedArtworks($item, $excludedArtworks, float|int $perPage)
     {
         $query = [
             'bool' => [

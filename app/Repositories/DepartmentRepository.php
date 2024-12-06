@@ -24,7 +24,7 @@ class DepartmentRepository extends BaseApiRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $this->updateMultiBrowserApiRelated($object, $fields, 'related_items', [
             'articles' => false,
@@ -39,7 +39,7 @@ class DepartmentRepository extends BaseApiRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object)
+    public function getFormFields($object): array
     {
         $fields = parent::getFormFields($object);
 

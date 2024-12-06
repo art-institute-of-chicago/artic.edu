@@ -24,7 +24,7 @@ class ExperienceModalRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $this->updateExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'modal_experience_image');
 
@@ -34,7 +34,7 @@ class ExperienceModalRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function prepareFieldsBeforeSave($object, $fields)
+    public function prepareFieldsBeforeSave($object, $fields): array
     {
         if (isset($fields['blocks']) && !empty($fields['blocks'])) {
             $fields['repeaters'] = $fields['blocks'];

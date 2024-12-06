@@ -1,4 +1,4 @@
-@extends(Illuminate\Support\Str::startsWith(request()->getHost(), 'admin.') ? 'twill::layouts.errors' : 'layouts.app')
+@extends(Illuminate\Support\Str::startsWith(request()->getHost(), 'twill.') ? 'twill::layouts.errors' : 'layouts.app')
 
 @section('content')
 
@@ -12,7 +12,7 @@
 
 <p>
     <a href="/" class="btn f-buttons btn--secondary">To Homepage</a>
-    @if (!Illuminate\Support\Str::startsWith(request()->getHost(), 'admin.'))
+    @if (!Illuminate\Support\Str::startsWith(request()->getHost(), 'twill.'))
         <a href="/search" class="btn f-buttons btn--secondary">Perform a Search</a>
     @endif
 </p>
