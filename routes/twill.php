@@ -1,44 +1,44 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ArtworkController;
-use App\Http\Controllers\Admin\ArtistController;
-use App\Http\Controllers\Admin\CategoryTermController;
-use App\Http\Controllers\Admin\DepartmentController;
-use App\Http\Controllers\Admin\DigitalPublicationArticleController;
-use App\Http\Controllers\Admin\ExhibitionController;
-use App\Http\Controllers\Admin\FeeController;
-use App\Http\Controllers\Admin\GalleryController;
-use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Twill\ArtworkController;
+use App\Http\Controllers\Twill\ArtistController;
+use App\Http\Controllers\Twill\CategoryTermController;
+use App\Http\Controllers\Twill\DepartmentController;
+use App\Http\Controllers\Twill\DigitalPublicationArticleController;
+use App\Http\Controllers\Twill\ExhibitionController;
+use App\Http\Controllers\Twill\FeeController;
+use App\Http\Controllers\Twill\GalleryController;
+use App\Http\Controllers\Twill\PageController;
 
 TwillRoutes::module('pages');
 
 Route::group(['prefix' => 'homepage'], function () {
-    Route::name('homepage.landing')->get('landing', [PageController::class, 'home']);
+    Route::name('homepage.landing')->get('landing', [\App\Http\Controllers\Twill\PageController::class, 'home']);
     TwillRoutes::module('homeFeatures');
     TwillRoutes::module('lightboxes');
     TwillRoutes::module('homeArtists');
 });
 
 Route::group(['prefix' => 'visit'], function () {
-    Route::name('visit.landing')->get('landing', [PageController::class, 'visit']);
+    Route::name('visit.landing')->get('landing', [\App\Http\Controllers\Twill\PageController::class, 'visit']);
     TwillRoutes::module('hours');
     TwillRoutes::module('buildingClosures');
     TwillRoutes::module('questions');
     TwillRoutes::module('feeAges');
     TwillRoutes::module('feeCategories');
     TwillRoutes::module('shopItems');
-    Route::name('visit.fees')->get('fees', [FeeController::class, 'index']);
-    Route::name('visit.fees.update')->post('fees', [FeeController::class, 'update']);
+    Route::name('visit.fees')->get('fees', [\App\Http\Controllers\Twill\FeeController::class, 'index']);
+    Route::name('visit.fees.update')->post('fees', [\App\Http\Controllers\Twill\FeeController::class, 'update']);
     TwillRoutes::module('virtualTours');
     TwillRoutes::module('myMuseumTourItems');
 });
 
 Route::group(['prefix' => 'exhibitions_events'], function () {
-    Route::name('exhibitions_events.landing')->get('landing', [PageController::class, 'exhibitions']);
+    Route::name('exhibitions_events.landing')->get('landing', [\App\Http\Controllers\Twill\PageController::class, 'exhibitions']);
 
     TwillRoutes::module('exhibitions');
-    Route::get('exhibitions/augment/{datahub_id}', [ExhibitionController::class, 'augment'])->name('exhibitions_events.exhibitions.augment');
+    Route::get('exhibitions/augment/{datahub_id}', [\App\Http\Controllers\Twill\ExhibitionController::class, 'augment'])->name('exhibitions_events.exhibitions.augment');
 
     TwillRoutes::module('events');
     TwillRoutes::module('sponsors');
@@ -46,7 +46,7 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
 
     TwillRoutes::module('ticketedEvents');
 
-    Route::get('history', [PageController::class, 'exhibitionHistory'])->name('exhibitions_events.history');
+    Route::get('history', [\App\Http\Controllers\Twill\PageController::class, 'exhibitionHistory'])->name('exhibitions_events.history');
 
     TwillRoutes::module('emailSeries');
 
@@ -56,11 +56,11 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
 });
 
 Route::group(['prefix' => 'collection'], function () {
-    Route::get('landing', [PageController::class, 'art'])->name('collection.landing');
+    Route::get('landing', [\App\Http\Controllers\Twill\PageController::class, 'art'])->name('collection.landing');
     TwillRoutes::module('artworks');
-    Route::get('artworks/augment/{datahub_id}', [ArtworkController::class, 'augment'])->name('collection.artworks.augment');
+    Route::get('artworks/augment/{datahub_id}', [\App\Http\Controllers\Twill\ArtworkController::class, 'augment'])->name('collection.artworks.augment');
     TwillRoutes::module('artists');
-    Route::get('artists/augment/{datahub_id}', [ArtistController::class, 'augment'])->name('collection.artists.augment');
+    Route::get('artists/augment/{datahub_id}', [\App\Http\Controllers\Twill\ArtistController::class, 'augment'])->name('collection.artists.augment');
 
     Route::group(['prefix' => 'interactive_features'], function () {
         TwillRoutes::module('interactiveFeatures');
@@ -71,16 +71,16 @@ Route::group(['prefix' => 'collection'], function () {
     TwillRoutes::module('authors');
 
     TwillRoutes::module('categoryTerms');
-    Route::get('categoryTerms/augment/{datahub_id}', [CategoryTermController::class, 'augment'])->name('collection.categoryTerms.augment');
+    Route::get('categoryTerms/augment/{datahub_id}', [\App\Http\Controllers\Twill\CategoryTermController::class, 'augment'])->name('collection.categoryTerms.augment');
 
     Route::group(['prefix' => 'research_resources'], function () {
-        Route::get('landing', [PageController::class, 'research'])->name('collection.research_resources.landing');
+        Route::get('landing', [\App\Http\Controllers\Twill\PageController::class, 'research'])->name('collection.research_resources.landing');
         TwillRoutes::module('educatorResources');
     });
 
     Route::group(['prefix' => 'articles_publications'], function () {
-        Route::get('landing', [PageController::class, 'articles_publications'])->name('collection.articles_publications.landing');
-        Route::get('articles_landing', [PageController::class, 'articles'])->name('collection.articles_publications.articles_landing');
+        Route::get('landing', [\App\Http\Controllers\Twill\PageController::class, 'articles_publications'])->name('collection.articles_publications.landing');
+        Route::get('articles_landing', [\App\Http\Controllers\Twill\PageController::class, 'articles'])->name('collection.articles_publications.articles_landing');
         TwillRoutes::module('articles');
         TwillRoutes::module('categories');
         TwillRoutes::module('videos');
@@ -89,15 +89,15 @@ Route::group(['prefix' => 'collection'], function () {
         TwillRoutes::module('digitalPublications.articles');
 
         // WEB-1963: Browser for nested modules must be implemented manually
-        Route::get('/digitalPublicationsBrowser/articles/browser?digitalPublication={digitalPublication}', [DigitalPublicationArticleController::class, 'browser'])->name('collection.articles_publications.digitalPublications.articles.subbrowser');
-        Route::get('/digitalPublicationsBrowser/articles/browser', [DigitalPublicationArticleController::class, 'browser'])->name('collection.articles_publications.digitalPublications.articles.browserbrowser');
+        Route::get('/digitalPublicationsBrowser/articles/browser?digitalPublication={digitalPublication}', [\App\Http\Controllers\Twill\DigitalPublicationArticleController::class, 'browser'])->name('collection.articles_publications.digitalPublications.articles.subbrowser');
+        Route::get('/digitalPublicationsBrowser/articles/browser', [\App\Http\Controllers\Twill\DigitalPublicationArticleController::class, 'browser'])->name('collection.articles_publications.digitalPublications.articles.browser');
     });
 
     TwillRoutes::module('galleries');
-    Route::get('galleries/augment/{datahub_id}', [GalleryController::class, 'augment'])->name('collection.galleries.augment');
+    Route::get('galleries/augment/{datahub_id}', [\App\Http\Controllers\Twill\GalleryController::class, 'augment'])->name('collection.galleries.augment');
 
     TwillRoutes::module('departments');
-    Route::get('departments/augment/{datahub_id}', [DepartmentController::class, 'augment'])->name('collection.departments.augment');
+    Route::get('departments/augment/{datahub_id}', [\App\Http\Controllers\Twill\DepartmentController::class, 'augment'])->name('collection.departments.augment');
 
     TwillRoutes::module('highlights');
 });
