@@ -30,4 +30,4 @@
     'note' => 'Makes image clickable',
 ])
 
-{!! app(\A17\Twill\Services\Blocks\BlockCollection::class)->findByName('paragraph')->render() !!}
+{!! TwillBlocks::getBlockCollection()->findByName('paragraph')->renderForm() !!}
