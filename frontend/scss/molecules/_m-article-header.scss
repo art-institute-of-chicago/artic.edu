@@ -21,6 +21,13 @@
     justify-content: space-between;
     min-height: 180px;
     padding-top: .02px;
+    padding-right: colspan(15, large);
+    padding-left: colspan(15, large);
+  }
+
+  @include breakpoint('xlarge') {
+    padding-right: colspan(15, xlarge);
+    padding-left: colspan(15, xlarge);
   }
 }
 
@@ -1548,6 +1555,18 @@
       @include breakpoint('small+') {
         padding-top: 4px;
         padding-bottom: 52px;
+      }
+    }
+
+    .m-article-header--generic {
+      @include breakpoint('large+') {
+        padding-right: initial;
+        padding-left: initial;
+      }
+
+      @include breakpoint('xlarge') {
+        padding-right: initial;
+        padding-left: initial;
       }
     }
 
