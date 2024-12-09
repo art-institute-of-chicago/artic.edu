@@ -37,8 +37,8 @@ class Gallery extends AbstractModel
         ],
     ];
 
-    public function getSlugAttribute()
+    public function getSlugAttribute(): string
     {
-        return ['en' => StringHelpers::getUtf8Slug($this->title)];
+        return StringHelpers::getUtf8Slug($this->title);
     }
 }
