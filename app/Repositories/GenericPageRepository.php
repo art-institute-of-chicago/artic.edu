@@ -59,7 +59,7 @@ class GenericPageRepository extends ModuleRepository
     /**
      * Show data, moved here to allow preview
      */
-    public function getShowData($item, $slug = null, $previewPage = null)
+    public function getShowData($item, $slug = null, $previewPage = null): array
     {
         $navigation = $item->present()->navigation();
 

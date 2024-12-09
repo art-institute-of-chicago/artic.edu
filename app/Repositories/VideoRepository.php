@@ -9,6 +9,7 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\Video;
+use Illuminate\Support\Collection;
 
 class VideoRepository extends ModuleRepository
 {
@@ -29,7 +30,7 @@ class VideoRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getShowData($item, $slug = null, $previewPage = null)
+    public function getShowData($item, $slug = null, $previewPage = null): array
     {
         return [
             'item' => $item,
@@ -37,7 +38,7 @@ class VideoRepository extends ModuleRepository
         ];
     }
 
-    public function getRelatedVideos($item)
+    public function getRelatedVideos($item): Collection
     {
         // Filter collection after database query
         $customRelatedVideos = $item->getRelated('related_videos')->where('published', true);
