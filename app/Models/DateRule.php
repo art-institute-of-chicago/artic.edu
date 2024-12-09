@@ -127,12 +127,12 @@ class DateRule extends AbstractModel
         }, ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']));
     }
 
-    public function setStartDateAttribute($value)
+    public function setStartDateAttribute($value): void
     {
         $this->attributes['start_date'] = DateHelpers::stripTime($value);
     }
 
-    public function setEndDateAttribute($value)
+    public function setEndDateAttribute($value): void
     {
         $this->attributes['end_date'] = DateHelpers::stripTime($value);
     }
