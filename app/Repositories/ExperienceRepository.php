@@ -98,7 +98,7 @@ class ExperienceRepository extends ModuleRepository
             ->paginate(4);
     }
 
-    public function afterSave($object, $fields): void
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $object->categories()->sync($fields['categories'] ?? []);
     }
