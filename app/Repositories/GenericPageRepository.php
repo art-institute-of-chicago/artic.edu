@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -32,7 +33,7 @@ class GenericPageRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): \A17\Twill\Models\Contracts\TwillModelContract
+    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
 
@@ -48,7 +49,7 @@ class GenericPageRepository extends ModuleRepository
         }
     }
 
-    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $object->categories()->sync($fields['categories'] ?? []);
 

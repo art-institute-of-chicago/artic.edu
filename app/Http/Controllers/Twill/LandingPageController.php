@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Twill;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Http\Controllers\LandingPagesController;
 use App\Models\LandingPage;
 use App\Repositories\LandingPageRepository;
@@ -32,7 +33,7 @@ class LandingPageController extends \App\Http\Controllers\Twill\ModuleController
     /**
      * Dynamically set the view prefix to include the landing page type.
      */
-    public function edit(\A17\Twill\Models\Contracts\TwillModelContract|int $id, $submoduleId = null): mixed
+    public function edit(TwillModelContract|int $id, $submoduleId = null): mixed
     {
         $landingPage = $this->repository->getById($id);
         $prefix = str($landingPage->type)->camel();

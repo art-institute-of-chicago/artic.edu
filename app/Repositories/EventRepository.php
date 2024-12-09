@@ -6,6 +6,7 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
+use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Repositories\Behaviors\HandleRecurrence;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleApiRelations;
@@ -45,7 +46,7 @@ class EventRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields): \A17\Twill\Models\Contracts\TwillModelContract
+    public function hydrate($object, $fields): TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
@@ -298,7 +299,7 @@ class EventRepository extends ModuleRepository
         return $results;
     }
 
-    public function duplicate($id, $titleColumnKey = 'title'): ?\A17\Twill\Models\Contracts\TwillModelContract
+    public function duplicate($id, $titleColumnKey = 'title'): ?TwillModelContract
     {
         $newObject = parent::duplicate($id, $titleColumnKey);
 
