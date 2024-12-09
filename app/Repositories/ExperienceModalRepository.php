@@ -35,7 +35,7 @@ class ExperienceModalRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function prepareFieldsBeforeSave($object, $fields): array
+    public function prepareFieldsBeforeSave(TwillModelContract $object, array $fields): array
     {
         if (isset($fields['blocks']) && !empty($fields['blocks'])) {
             $fields['repeaters'] = $fields['blocks'];
