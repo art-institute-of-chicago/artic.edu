@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\MagazineIssue;
 use App\Models\MagazineItem;
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -32,7 +33,7 @@ class MagazineIssueRepository extends ModuleRepository
         return MagazineIssue::query()->published()->orderBy('publish_start_date', 'desc')->first();
     }
 
-    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $this->syncMagazineItems($object, $fields);
         parent::afterSave($object, $fields);
@@ -52,7 +53,7 @@ class MagazineIssueRepository extends ModuleRepository
     /**
      * Replace all MagazineItems associated with this MagazineIssue by filtering blocks
      */
-    private function syncMagazineItems(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields)
+    private function syncMagazineItems(TwillModelContract $object, array $fields)
     {
         $object->magazineItems()->delete();
 

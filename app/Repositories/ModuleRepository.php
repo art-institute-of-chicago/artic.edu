@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleRelatedBrowsers;
 use A17\Twill\Repositories\ModuleRepository as BaseModuleRepository;
 use App\Helpers\StringHelpers;
@@ -17,7 +18,7 @@ abstract class ModuleRepository extends BaseModuleRepository
      * Flatten attributes cast as collections to fields with dot-separated field
      * names.
      */
-    public function getFormFields(\A17\Twill\Models\Contracts\TwillModelContract $object): array
+    public function getFormFields(TwillModelContract $object): array
     {
         $fields = parent::getFormFields($object);
         $collectionFieldNames = collect($object->casts)->filter(fn ($cast) => $cast === AsCollection::class)->keys();
@@ -36,7 +37,7 @@ abstract class ModuleRepository extends BaseModuleRepository
      * Remove trailing newlines from WYSIWYG fields and transform fields with dot-
      * separated names into arrays.
      */
-    public function prepareFieldsBeforeSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): array
+    public function prepareFieldsBeforeSave(TwillModelContract $object, array $fields): array
     {
         // Remove trailing newlines from fields
         foreach ($fields as $key => $field) {

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -32,7 +33,7 @@ class DigitalPublicationArticleRepository extends ModuleRepository
             ->mapWithKeys(fn ($type) => [$type->value => $type->name]);
     }
 
-    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         parent::afterSave($object, $fields);
         GeneratePdf::dispatch($object);
