@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -61,7 +62,7 @@ class ExperienceImageRepository extends ModuleRepository
         return parent::prepareFieldsBeforeCreate($fields);
     }
 
-    public function prepareFieldsBeforeSave($object, $fields): array
+    public function prepareFieldsBeforeSave(TwillModelContract $object, array $fields): array
     {
         if ($fields['credits_input'] == 'datahub') {
             $fields = $this->updateFieldsFromApi($fields);
