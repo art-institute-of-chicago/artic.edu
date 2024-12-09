@@ -9,6 +9,7 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleNesting;
 use A17\Twill\Repositories\ModuleRepository;
+use Illuminate\Support\Collection;
 use App\Enums\DigitalPublicationArticleType;
 use App\Jobs\GeneratePdf;
 use App\Models\DigitalPublicationArticle;
@@ -27,7 +28,7 @@ class DigitalPublicationArticleRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getTypes()
+    public function getTypes(): Collection
     {
         return collect(DigitalPublicationArticleType::cases())
             ->mapWithKeys(fn ($type) => [$type->value => $type->name]);
