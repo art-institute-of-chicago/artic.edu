@@ -47,7 +47,7 @@ class EventRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields): TwillModelContract
+    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
@@ -59,7 +59,7 @@ class EventRepository extends ModuleRepository
      * Some editors paste links to our sales site instead of browsing for the ticketed event.
      * Find and auto-attach the ticketed event if it's a match.
      */
-    public function prepareFieldsBeforeSave($object, $fields): array
+    public function prepareFieldsBeforeSave(TwillModelContract $object, array $fields): array
     {
         if (isset($fields['rsvp_link'])) {
             $isTicketedEvent = preg_match('/https*:\/\/sales\.artic\.edu\/Events\/Event\/([0-9]+)\?date=([0-9]+\/[0-9]+\/[0-9]+)/', $fields['rsvp_link'], $matches);
@@ -133,14 +133,14 @@ class EventRepository extends ModuleRepository
         return parent::prepareFieldsBeforeSave($object, $fields);
     }
 
-    public function afterSave($object, $fields): void
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $object->programs()->sync($fields['programs'] ?? []);
 
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object): array
+    public function getFormFields(TwillModelContract $object): array
     {
         $fields = parent::getFormFields($object);
 
@@ -300,7 +300,7 @@ class EventRepository extends ModuleRepository
         return $results;
     }
 
-    public function duplicate($id, $titleColumnKey = 'title'): ?TwillModelContract
+    public function duplicate(int|string $id, string $titleColumnKey = 'title'): ?TwillModelContract
     {
         $newObject = parent::duplicate($id, $titleColumnKey);
 
