@@ -118,7 +118,7 @@ class PressRelease extends AbstractModel
         return route('about.press.show', $this->id);
     }
 
-    public function getSlugAttribute()
+    public function getSlugAttribute(): string
     {
         return route('about.press.show', $this);
     }
