@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Artwork;
 use App\Jobs\TileMedia;
 use A17\Twill\Models\Media;
+use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Repositories\Behaviors\Handle3DModel;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -23,7 +24,7 @@ class ArtworkRepository extends BaseApiRepository
         $this->model = $model;
     }
 
-    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $this->handle3DModel($object, $fields);
 

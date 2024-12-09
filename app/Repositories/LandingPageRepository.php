@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -67,14 +68,14 @@ class LandingPageRepository extends ModuleRepository
         'what_to_expects',
     ];
 
-    protected \A17\Twill\Models\Contracts\TwillModelContract $model;
+    protected TwillModelContract $model;
 
     public function __construct(LandingPage $model)
     {
         $this->model = $model;
     }
 
-    public function hydrate(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): \A17\Twill\Models\Contracts\TwillModelContract
+    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
     {
         // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
         // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
@@ -83,7 +84,7 @@ class LandingPageRepository extends ModuleRepository
         return parent::hydrate($object, $fields);
     }
 
-    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
