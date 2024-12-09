@@ -346,12 +346,12 @@ class Event extends AbstractModel
         return $this->getMultiSelectFromJsonColumn($value);
     }
 
-    public function setAltTypesAttribute($value)
+    public function setAltTypesAttribute($value): void
     {
         $this->attributes['alt_types'] = $this->getJsonColumnFromMultiSelect($value);
     }
 
-    public function setAltAudiencesAttribute($value)
+    public function setAltAudiencesAttribute($value): void
     {
         $this->attributes['alt_audiences'] = $this->getJsonColumnFromMultiSelect($value);
     }
@@ -542,27 +542,27 @@ class Event extends AbstractModel
         return $field . " LIKE '%" . QueryHelpers::escape_like($value) . "%'";
     }
 
-    public function setEventTypeAttribute($value)
+    public function setEventTypeAttribute($value): void
     {
         $this->attributes['event_type'] = $value > max(array_keys(self::$eventTypes)) ? null : $value; // 1-based
     }
 
-    public function setAudienceAttribute($value)
+    public function setAudienceAttribute($value): void
     {
         $this->attributes['audience'] = $value > max(array_keys(self::$eventAudiences)) ? null : $value; // 1-based
     }
 
-    public function setEntranceAttribute($value)
+    public function setEntranceAttribute($value): void
     {
         $this->attributes['entrance'] = $value > max(array_keys(self::$eventEntrances)) ? null : $value; // 1-based
     }
 
-    public function setAffiliateGroupIdAttribute($value)
+    public function setAffiliateGroupIdAttribute($value): void
     {
         $this->attributes['affiliate_group_id'] = ($value == self::NULL_OPTION_AFFILIATE_GROUP) ? null : $value;
     }
 
-    public function setEventHostIdAttribute($value)
+    public function setEventHostIdAttribute($value): void
     {
         $this->attributes['event_host_id'] = ($value == self::NULL_OPTION_EVENT_HOST) ? null : $value;
     }
