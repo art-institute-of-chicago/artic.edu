@@ -8,6 +8,7 @@ use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Experience;
 use App\Models\Article;
 use App\Repositories\Behaviors\HandleExperienceModule;
@@ -65,7 +66,7 @@ class ExperienceRepository extends ModuleRepository
         return Experience::where('title', 'ILIKE', "%{$search}%")->published()->notUnlisted();
     }
 
-    public function order(\Illuminate\Database\Eloquent\Builder $query, array $orders = []): \Illuminate\Database\Eloquent\Builder
+    public function order(Builder $query, array $orders = []): Builder
     {
         if (array_key_exists('interactiveFeatureTitle', $orders)) {
             $sort_method = $orders['interactiveFeatureTitle'];
@@ -76,7 +77,7 @@ class ExperienceRepository extends ModuleRepository
         return parent::order($query, $orders);
     }
 
-    public function getFurtherReadingTitle($item)
+    public function getFurtherReadingTitle($item): string
     {
         if ($this->isInMagazine($item) && $item->is_unlisted) {
             return 'Also in this Issue';

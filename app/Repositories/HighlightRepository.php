@@ -14,6 +14,7 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Repositories\Behaviors\HandleMagazine;
 use App\Repositories\Behaviors\HandleAuthors;
+use Illuminate\Support\Collection;
 
 class HighlightRepository extends ModuleRepository
 {
@@ -28,7 +29,7 @@ class HighlightRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getHighlightTypeList()
+    public function getHighlightTypeList(): Collection
     {
         return collect($this->model::$highlightTypes);
     }
@@ -51,7 +52,7 @@ class HighlightRepository extends ModuleRepository
     /**
      * Show data, moved here to allow preview
      */
-    public function getShowData($item, $slug = null, $previewPage = null)
+    public function getShowData($item, $slug = null, $previewPage = null): array
     {
         return [
             'contrastHeader' => $item->present()->contrastHeader,
@@ -68,7 +69,7 @@ class HighlightRepository extends ModuleRepository
         return $results;
     }
 
-    public function getFurtherReadingTitle($item)
+    public function getFurtherReadingTitle($item): string
     {
         if ($this->isInMagazine($item) && $item->is_unlisted) {
             return 'Also in this Issue';
