@@ -11,6 +11,7 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Models\Exhibition;
 use App\Repositories\Api\BaseApiRepository;
+use Illuminate\Support\Collection;
 
 class ExhibitionRepository extends BaseApiRepository
 {
@@ -66,12 +67,12 @@ class ExhibitionRepository extends BaseApiRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getExhibitionTypesList()
+    public function getExhibitionTypesList(): Collection
     {
         return collect($this->model::$exhibitionTypes);
     }
 
-    public function getExhibitionStatusesList()
+    public function getExhibitionStatusesList(): Collection
     {
         return collect($this->model::$exhibitionStatuses);
     }

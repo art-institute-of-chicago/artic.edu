@@ -15,6 +15,7 @@ use App\Models\EmailSeries;
 use App\Models\Api\Search;
 use App\Models\Api\TicketedEvent;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 class EventRepository extends ModuleRepository
 {
@@ -165,22 +166,22 @@ class EventRepository extends ModuleRepository
         return $fields;
     }
 
-    public function getEventTypesList()
+    public function getEventTypesList(): Collection
     {
         return collect($this->model::$eventTypes);
     }
 
-    public function getEventAudiencesList()
+    public function getEventAudiencesList(): Collection
     {
         return collect($this->model::$eventAudiences);
     }
 
-    public function getEventLayoutsList()
+    public function getEventLayoutsList(): Collection
     {
         return collect($this->model::$eventLayouts);
     }
 
-    public function getEventEntrancesList()
+    public function getEventEntrancesList(): Collection
     {
         return collect($this->model::$eventEntrances);
     }

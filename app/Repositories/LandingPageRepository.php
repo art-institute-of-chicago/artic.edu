@@ -134,7 +134,7 @@ class LandingPageRepository extends ModuleRepository
         return $fields;
     }
 
-    public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
+    public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null): array
     {
         if ($relation === 'experiences') {
             return $object->{$relation}->map(function ($relatedElement) use ($titleKey) {

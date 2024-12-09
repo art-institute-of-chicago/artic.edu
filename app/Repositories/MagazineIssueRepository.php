@@ -28,7 +28,7 @@ class MagazineIssueRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getLatestIssue()
+    public function getLatestIssue(): MagazineIssue
     {
         return MagazineIssue::query()->published()->orderBy('publish_start_date', 'desc')->first();
     }
@@ -39,7 +39,7 @@ class MagazineIssueRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getWelcomeNote($item)
+    public function getWelcomeNote($item): MagazineItem
     {
         $welcomeNotes = $item->getRelated('welcome_note');
 
@@ -53,7 +53,7 @@ class MagazineIssueRepository extends ModuleRepository
     /**
      * Replace all MagazineItems associated with this MagazineIssue by filtering blocks
      */
-    private function syncMagazineItems(TwillModelContract $object, array $fields)
+    private function syncMagazineItems(TwillModelContract $object, array $fields): void
     {
         $object->magazineItems()->delete();
 
