@@ -2,11 +2,12 @@
 
 namespace App\Repositories\Behaviors;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use Illuminate\Support\Collection;
 
 trait HandleRecurrence
 {
-    public function afterSaveHandleRecurrence($object, $fields): void
+    public function afterSaveHandleRecurrence(TwillModelContract $object, array $fields): void
     {
         $rules = $object->getRules();
 
