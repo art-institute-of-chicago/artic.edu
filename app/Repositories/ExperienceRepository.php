@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -38,7 +39,7 @@ class ExperienceRepository extends ModuleRepository
         return parent::getCountByStatusSlug($slug, $scope);
     }
 
-    public function create(array $fields): \A17\Twill\Models\Contracts\TwillModelContract
+    public function create(array $fields): TwillModelContract
     {
         $experience = parent::create($fields);
         $attract_fields = [
