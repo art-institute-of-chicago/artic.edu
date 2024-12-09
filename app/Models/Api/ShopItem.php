@@ -33,7 +33,7 @@ class ShopItem extends BaseApiModel
         }
     }
 
-    public function getSlugAttribute()
+    public function getSlugAttribute(): string
     {
         return $this->link;
     }
