@@ -7,7 +7,7 @@ namespace App\Repositories\Behaviors;
  */
 trait HandleFeaturedRelated
 {
-    public function afterSaveHandleFeaturedRelated($object, $fields)
+    public function afterSaveHandleFeaturedRelated($object, $fields): void
     {
         $this->updateMultiBrowserApiRelated($object, $fields, 'sidebar_items', [
             'articles' => false,
@@ -21,7 +21,7 @@ trait HandleFeaturedRelated
         ]);
     }
 
-    public function getFormFieldsHandleFeaturedRelated($object, $fields)
+    public function getFormFieldsHandleFeaturedRelated($object, $fields): array
     {
         $fields['browsers']['sidebar_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'sidebar_items', [
             'exhibitions' => [

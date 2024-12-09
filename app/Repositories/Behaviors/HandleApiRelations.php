@@ -14,7 +14,7 @@ trait HandleApiRelations
      * and it creates new models per each new relation as we don't have both ends of the polymorphic relation
      * This is done this way so we can reuse the same functions and table for all API browsers.
      */
-    public function updateBrowserApiRelated($object, $fields, $relationship, $positionAttribute = 'position')
+    public function updateBrowserApiRelated($object, $fields, $relationship, $positionAttribute = 'position'): void
     {
         $relatedElementsWithPosition = [];
 
@@ -40,7 +40,7 @@ trait HandleApiRelations
         $object->{$relationship}()->attach($relatedElementsWithPosition);
     }
 
-    public function updateMultiBrowserApiRelated($object, $fields, $relationship, $typeUsesApi)
+    public function updateMultiBrowserApiRelated($object, $fields, $relationship, $typeUsesApi): void
     {
         // WEB-2272: check if we dont leave some stale data in database by not deleting apiElements
         // Remove all associations
@@ -87,7 +87,7 @@ trait HandleApiRelations
      * This way we don't have to redesign the browser.
      *
      */
-    public function getFormFieldsForBrowserApi($object, $relation, $apiModel, $routePrefix = null, $titleKey = 'title', $moduleName = null)
+    public function getFormFieldsForBrowserApi($object, $relation, $apiModel, $routePrefix = null, $titleKey = 'title', $moduleName = null): array
     {
         // Get all datahub_id's
         $ids = $object->{$relation}->pluck('datahub_id')->toArray();
@@ -127,7 +127,7 @@ trait HandleApiRelations
         })->values()->toArray();
     }
 
-    public function getFormFieldsForMultiBrowserApi($object, $browser_name, $apiModelsDefinitions, $typeUsesApi)
+    public function getFormFieldsForMultiBrowserApi($object, $browser_name, $apiModelsDefinitions, $typeUsesApi): array
     {
         $results = collect();
 
