@@ -61,9 +61,9 @@ class Artist extends AbstractModel
         return $this->apiElements()->where('relation', 'featuredArtworks');
     }
 
-    public function getSlugAttribute()
+    public function getSlugAttribute(): string
     {
-        return ['en' => StringHelpers::getUtf8Slug($this->title)];
+        return StringHelpers::getUtf8Slug($this->title);
     }
 
     protected function transformMappingInternal()
