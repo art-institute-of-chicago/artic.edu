@@ -52,7 +52,7 @@ class SlideRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object): array
+    public function getFormFields(TwillModelContract $object): array
     {
         $fields = parent::getFormFields($object);
         $fields = $this->getExperienceModule($object, $fields, 'primaryExperienceImage', 'ExperienceImage', 'slide_primary_experience_image');
