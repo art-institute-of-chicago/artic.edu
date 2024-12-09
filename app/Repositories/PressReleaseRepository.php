@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -29,7 +30,7 @@ class PressReleaseRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): \A17\Twill\Models\Contracts\TwillModelContract
+    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
 

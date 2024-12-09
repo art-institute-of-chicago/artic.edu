@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
@@ -32,14 +33,14 @@ class HighlightRepository extends ModuleRepository
         return collect($this->model::$highlightTypes);
     }
 
-    public function hydrate(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): \A17\Twill\Models\Contracts\TwillModelContract
+    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
 
         return parent::hydrate($object, $fields);
     }
 
-    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
         $object->categories()->sync($fields['categories'] ?? []);
