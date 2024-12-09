@@ -26,7 +26,7 @@ class AbstractModel extends Model
      * `publish_start_date` and `publish_end_date`. See
      * `scopeVisible` on `\A17\Twill\Models\Model`.
      */
-    public function scopePublished($query)
+    public function scopePublished($query): \Illuminate\Database\Eloquent\Builder
     {
         if (config('aic.is_preview_mode')) {
             return $query;
@@ -42,7 +42,7 @@ class AbstractModel extends Model
         return $query;
     }
 
-    public function scopeVisible($query)
+    public function scopeVisible($query): \Illuminate\Database\Eloquent\Builder
     {
         if (config('aic.is_preview_mode')) {
             return $query;

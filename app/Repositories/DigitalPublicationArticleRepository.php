@@ -14,7 +14,6 @@ use App\Models\DigitalPublicationArticle;
 use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleAuthors;
-use A17\Twill\Jobs\ReorderNestedModuleItems;
 
 class DigitalPublicationArticleRepository extends ModuleRepository
 {
@@ -33,7 +32,7 @@ class DigitalPublicationArticleRepository extends ModuleRepository
             ->mapWithKeys(fn ($type) => [$type->value => $type->name]);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         parent::afterSave($object, $fields);
         GeneratePdf::dispatch($object);

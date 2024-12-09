@@ -72,14 +72,14 @@ class Artwork extends AbstractModel
         return $this->title;
     }
 
-    public function getSlugAttribute()
+    public function getSlugAttribute(): string
     {
-        return ['en' => StringHelpers::getUtf8Slug($this->title)];
+        return StringHelpers::getUtf8Slug($this->title);
     }
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.collection.artworks.edit', $this->id);
+        return route('twill.collection.artworks.edit', $this->id);
     }
 
     public function getAssetLibraryAttribute()

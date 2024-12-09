@@ -142,7 +142,7 @@ class GenericPage extends AbstractModel implements Sortable
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.generic.genericPages.edit', $this->id);
+        return route('twill.generic.genericPages.edit', $this->id);
     }
 
     public static function saveTreeFromIds($nodeTree)

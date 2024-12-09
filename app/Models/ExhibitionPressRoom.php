@@ -96,14 +96,14 @@ class ExhibitionPressRoom extends AbstractModel
         return join([route('about.exhibitionPressRooms'), '/', $this->id, '-']);
     }
 
-    public function getSlugAttribute()
+    public function getSlugAttribute(): string
     {
         return route('about.exhibitionPressRooms.show', $this);
     }
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.generic.exhibitionPressRooms.edit', $this->id);
+        return route('twill.generic.exhibitionPressRooms.edit', $this->id);
     }
 
     public function scopeOrdered($query)

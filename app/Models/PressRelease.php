@@ -118,14 +118,14 @@ class PressRelease extends AbstractModel
         return route('about.press.show', $this->id);
     }
 
-    public function getSlugAttribute()
+    public function getSlugAttribute(): string
     {
         return route('about.press.show', $this);
     }
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.generic.pressReleases.edit', $this->id);
+        return route('twill.generic.pressReleases.edit', $this->id);
     }
 
     public function scopeRecent($query)

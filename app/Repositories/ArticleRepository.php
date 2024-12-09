@@ -31,7 +31,7 @@ class ArticleRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         $object->categories()->sync($fields['categories'] ?? []);
 
@@ -44,7 +44,7 @@ class ArticleRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object)
+    public function getFormFields($object): array
     {
         $fields = parent::getFormFields($object);
 

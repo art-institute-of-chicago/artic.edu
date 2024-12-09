@@ -101,7 +101,7 @@ class PageRepository extends ModuleRepository
         ],
     ];
 
-    protected $repeaters = [
+    protected array $repeaters = [
         // Homepage landing
         'artists' => [
             'relation' => 'homeArtists',
@@ -123,7 +123,7 @@ class PageRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
+    public function hydrate(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): \A17\Twill\Models\Contracts\TwillModelContract
     {
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeExhibitions', 'position', 'Exhibition');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeEvents', 'position', 'Event');
@@ -146,7 +146,7 @@ class PageRepository extends ModuleRepository
         return parent::hydrate($object, $fields);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
     {
         // Art & Ideas
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
@@ -159,7 +159,7 @@ class PageRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object)
+    public function getFormFields($object): array
     {
         $fields = parent::getFormFields($object);
 
