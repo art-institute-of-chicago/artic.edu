@@ -326,7 +326,7 @@ class Artwork extends BaseApiModel
         return join('/', array_filter([$this->id, StringHelpers::getUtf8Slug($this->title)]));
     }
 
-    public function getSlugAttribute()
+    public function getSlugAttribute(): string
     {
         return route('artworks.show', $this->id, StringHelpers::getUtf8Slug($this->title));
     }

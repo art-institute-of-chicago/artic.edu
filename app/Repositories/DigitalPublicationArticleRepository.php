@@ -14,7 +14,6 @@ use App\Models\DigitalPublicationArticle;
 use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleAuthors;
-use A17\Twill\Jobs\ReorderNestedModuleItems;
 
 class DigitalPublicationArticleRepository extends ModuleRepository
 {
