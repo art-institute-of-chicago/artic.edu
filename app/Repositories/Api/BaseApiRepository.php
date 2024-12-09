@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Api;
 
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Model;
 use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Repositories\ModuleRepository;
@@ -22,7 +23,7 @@ abstract class BaseApiRepository extends ModuleRepository
         return $item;
     }
 
-    public function filter(\Illuminate\Database\Eloquent\Builder $query, array $scopes = []): \Illuminate\Database\Eloquent\Builder
+    public function filter(Builder $query, array $scopes = []): Builder
     {
         // Perform a search first and then filter.
         // Because endpoints are different is preferable to acknoledge a search before
