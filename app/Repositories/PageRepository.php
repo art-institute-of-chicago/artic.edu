@@ -182,7 +182,7 @@ class PageRepository extends ModuleRepository
         return $this->model->whereType($type)->with($with)->first();
     }
 
-    public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
+    public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null): array
     {
         if ($relation === 'experiences') {
             return $object->{$relation}->map(function ($relatedElement) use ($titleKey, $routePrefix, $relation, $moduleName) {
