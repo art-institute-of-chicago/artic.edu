@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class EventProgram extends AbstractModel
 {
@@ -28,12 +29,12 @@ class EventProgram extends AbstractModel
     protected $presenter = 'App\Presenters\Admin\EventProgramPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\EventProgramPresenter';
 
-    public function scopeAffiliateGroups($query)
+    public function scopeAffiliateGroups($query): Builder
     {
         return $query->where('is_affiliate_group', true);
     }
 
-    public function scopeEventHosts($query)
+    public function scopeEventHosts($query): Builder
     {
         return $query->where('is_event_host', true);
     }

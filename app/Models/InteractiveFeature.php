@@ -10,6 +10,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasRelated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class InteractiveFeature extends AbstractModel
 {
@@ -73,12 +74,12 @@ class InteractiveFeature extends AbstractModel
         return $this->hasMany('App\Models\Experience', 'interactive_feature_id');
     }
 
-    public function scopeArchived($query)
+    public function scopeArchived($query): Builder
     {
         return $query->where('archived', true);
     }
 
-    public function scopeUnarchived($query)
+    public function scopeUnarchived($query): Builder
     {
         if (config('aic.is_preview_mode')) {
             return $query;
