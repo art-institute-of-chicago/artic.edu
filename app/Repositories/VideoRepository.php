@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -48,7 +49,7 @@ class VideoRepository extends ModuleRepository
         return $this->model::published()->orderBy('date', 'desc')->whereNotIn('id', [$item->id])->limit(4)->get();
     }
 
-    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $object, array $fields): void
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $object->categories()->sync($fields['categories'] ?? []);
 

@@ -3,6 +3,7 @@
 namespace App\Repositories\Api;
 
 use A17\Twill\Models\Model;
+use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleApiRelations;
 
@@ -10,7 +11,7 @@ abstract class BaseApiRepository extends ModuleRepository
 {
     use HandleApiRelations;
 
-    public function getById($id, $with = [], $withCount = []): \A17\Twill\Models\Contracts\TwillModelContract
+    public function getById($id, $with = [], $withCount = []): TwillModelContract
     {
         $item = $this->model->with($with)->withCount($withCount)->findOrFail($id);
 
