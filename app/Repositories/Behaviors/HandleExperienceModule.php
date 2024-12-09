@@ -2,10 +2,10 @@
 
 namespace App\Repositories\Behaviors;
 
+use A17\Twill\Facades\TwillBlocks;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-use A17\Twill\Services\Blocks\BlockCollection;
 
 trait HandleExperienceModule
 {
@@ -84,7 +84,7 @@ trait HandleExperienceModule
         $repeatersMedias = [];
         $repeatersFiles = [];
         $relationRepository = $this->getModelRepository($relation, $model);
-        $repeatersConfig = app(BlockCollection::class)->getRepeaters();
+        $repeatersConfig = TwillBlocks::getBlockCollection()->getRepeaters();
 
         foreach ($object->{$relation} as $relationItem) {
             $rep = $repeatersConfig->first(function (\A17\Twill\Services\Blocks\Block $block) use ($fieldName) {
