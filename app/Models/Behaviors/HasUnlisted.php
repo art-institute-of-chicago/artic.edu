@@ -2,9 +2,11 @@
 
 namespace App\Models\Behaviors;
 
+use Illuminate\Database\Eloquent\Builder;
+
 trait HasUnlisted
 {
-    public function scopeNotUnlisted($query)
+    public function scopeNotUnlisted($query): Builder
     {
         return $query->whereIsUnlisted(false);
     }

@@ -14,6 +14,7 @@ use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasUnlisted;
 use App\Models\Behaviors\HasAutoRelated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
@@ -195,12 +196,12 @@ class Article extends AbstractModel implements Feedable
         return $this->belongsToMany('App\Models\Category', 'article_category');
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }
 
-    public function scopeByCategories($query, $categories = null)
+    public function scopeByCategories($query, $categories = null): Builder
     {
         if (empty($categories)) {
             return $query;
