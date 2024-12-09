@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -87,12 +88,12 @@ class PrintedPublication extends AbstractModel
         return $this->belongsToMany('App\Models\CatalogCategory', 'catalog_category_printed_publication', 'printed_publication_id');
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }
 
-    public function scopeByCategory($query, $category = null)
+    public function scopeByCategory($query, $category = null): Builder
     {
         if (!empty($category)) {
             $query->whereHas('categories', function ($query) use ($category) {
@@ -103,7 +104,7 @@ class PrintedPublication extends AbstractModel
         return $this->scopeOrdered($query);
     }
 
-    public function scopeOrdered($query)
+    public function scopeOrdered($query): Builder
     {
         return $query->orderBy(\DB::raw("COALESCE(publication_date, '1970-01-01')"), 'desc');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -170,7 +171,7 @@ class Highlight extends AbstractModel
         return $this->belongsToMany('App\Models\Category', 'highlight_category');
     }
 
-    public function scopeByCategories($query, $categories = null)
+    public function scopeByCategories($query, $categories = null): Builder
     {
         if (empty($categories)) {
             return $query;
@@ -186,7 +187,7 @@ class Highlight extends AbstractModel
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }

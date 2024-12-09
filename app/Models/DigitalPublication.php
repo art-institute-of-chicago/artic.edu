@@ -12,6 +12,7 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class DigitalPublication extends AbstractModel
 {
@@ -137,7 +138,7 @@ class DigitalPublication extends AbstractModel
         return 'Digital Publication';
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }
@@ -147,7 +148,7 @@ class DigitalPublication extends AbstractModel
      * @link https://stackoverflow.com/questions/3252577
      * @link https://stackoverflow.com/questions/47903727
      */
-    public function scopeOrdered($query)
+    public function scopeOrdered($query): Builder
     {
         $driver = DB::connection()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
 

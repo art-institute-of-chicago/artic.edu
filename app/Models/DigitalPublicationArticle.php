@@ -13,6 +13,8 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasBlocks;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class DigitalPublicationArticle extends AbstractModel implements Sortable
 {
@@ -117,7 +119,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         ],
     ];
 
-    public function scopePublished($query): \Illuminate\Database\Eloquent\Builder
+    public function scopePublished($query): Builder
     {
         parent::scopePublished($query);
 
@@ -127,7 +129,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         });
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }

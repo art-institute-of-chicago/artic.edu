@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -111,16 +112,16 @@ class EducatorResource extends AbstractModel
         return route('twill.collection.research_resources.educatorResources.edit', $this->id);
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }
 
-    public function scopeOrderByDate($query)
+    public function scopeOrderByDate($query): Builder
     {
         return $query->orderBy('publish_start_date', 'DESC');
     }
-    public function scopeByCategory($query, $category = null)
+    public function scopeByCategory($query, $category = null): Builder
     {
         if (empty($category)) {
             return $query;
