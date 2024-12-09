@@ -29,7 +29,7 @@ class PrintedPublicationRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getShowData($item, $slug = null, $previewPage = null)
+    public function getShowData($item, $slug = null, $previewPage = null): array
     {
         return [
             'borderlessHeader' => !(empty($item->imageFront('banner'))),

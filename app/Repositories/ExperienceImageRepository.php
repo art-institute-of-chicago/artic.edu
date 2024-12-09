@@ -21,7 +21,7 @@ class ExperienceImageRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function updateFieldsFromApi($fields)
+    public function updateFieldsFromApi($fields): array
     {
         $credits_map = [
             'artist' => 'artist_title',
