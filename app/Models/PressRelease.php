@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -95,7 +96,7 @@ class PressRelease extends AbstractModel
         return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }
@@ -128,18 +129,18 @@ class PressRelease extends AbstractModel
         return route('twill.generic.pressReleases.edit', $this->id);
     }
 
-    public function scopeRecent($query)
+    public function scopeRecent($query): Builder
     {
         return $query->orderBy('publish_start_date', 'desc');
     }
 
-    public function scopeCurrent($query)
+    public function scopeCurrent($query): Builder
     {
         return $query->whereNull('publish_start_date')
             ->orWhere('publish_start_date', '>', Carbon::parse('2011-12-31'));
     }
 
-    public function scopeArchive($query)
+    public function scopeArchive($query): Builder
     {
         return $query->where('publish_start_date', '<=', Carbon::parse('2011-12-31'));
     }
@@ -149,12 +150,12 @@ class PressRelease extends AbstractModel
         return url(route('about.press.show', $this->id_slug));
     }
 
-    public function scopeByYear($query, $year)
+    public function scopeByYear($query, $year): Builder
     {
         return $query->where(DB::raw('EXTRACT( YEAR FROM publish_start_date )'), $year);
     }
 
-    public function scopeByMonth($query, $year)
+    public function scopeByMonth($query, $year): Builder
     {
         return $query->where(DB::raw('EXTRACT( MONTH FROM publish_start_date )'), $year);
     }
