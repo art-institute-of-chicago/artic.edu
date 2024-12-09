@@ -20,6 +20,6 @@ class CategoryTermRepository extends BaseApiRepository
         $object->local_subtype = $fields['subtype'];
         $object->local_title = $fields['title'];
 
-        return parent::beforeSave($object, $fields);
+        parent::beforeSave($object, $fields);
     }
 }
