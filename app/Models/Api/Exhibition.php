@@ -5,6 +5,7 @@ namespace App\Models\Api;
 use Illuminate\Support\Carbon;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Libraries\Api\Models\BaseApiModel;
+use App\Libraries\Api\Builders\ApiModelBuilder;
 use App\Helpers\StringHelpers;
 use Database\Factories\Api\HasApiFactory;
 
@@ -239,7 +240,7 @@ class Exhibition extends BaseApiModel
     /**
      * Used for sorting in the admin interface.
      */
-    public function scopeOrderBy($query, $field, $direction = 'asc')
+    public function scopeOrderBy($query, $field, $direction = 'asc'): ApiModelBuilder
     {
         $params = [
             'sort' => [
@@ -250,7 +251,7 @@ class Exhibition extends BaseApiModel
         return $query->rawQuery($params);
     }
 
-    public function scopeOrderByDate($query, $direction = 'asc')
+    public function scopeOrderByDate($query, $direction = 'asc'): ApiModelBuilder
     {
         $params = [
             'sort' => [
@@ -264,7 +265,7 @@ class Exhibition extends BaseApiModel
     /**
      * Search for all exhibitions for the next 2 weeks, not closed
      */
-    public function scopeCurrent($query)
+    public function scopeCurrent($query): ApiModelBuilder
     {
         $params = [
             'bool' => [
@@ -295,7 +296,7 @@ class Exhibition extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeUpcoming($query)
+    public function scopeUpcoming($query): ApiModelBuilder
     {
         $params = [
             'bool' => [
@@ -314,7 +315,7 @@ class Exhibition extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeHistory($query, $year = null)
+    public function scopeHistory($query, $year = null): ApiModelBuilder
     {
         if ($year == null) {
             $params = [

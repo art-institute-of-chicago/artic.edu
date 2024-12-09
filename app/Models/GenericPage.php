@@ -16,6 +16,7 @@ use App\Models\Behaviors\HasAutoRelated;
 use App\Models\Behaviors\HasFeaturedRelated;
 use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class GenericPage extends AbstractModel implements Sortable
 {
@@ -107,7 +108,7 @@ class GenericPage extends AbstractModel implements Sortable
         ],
     ];
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }

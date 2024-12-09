@@ -3,11 +3,7 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
-use App\Models\Article;
-use App\Models\Highlight;
-use App\Models\Experience;
-use App\Models\Video;
-use App\Models\Vendor\Block;
+use App\Libraries\Api\Builders\ApiModelBuilder;
 use App\Models\Behaviors\HasMediasApi;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Helpers\DateHelpers;
@@ -364,7 +360,7 @@ class Artwork extends BaseApiModel
         }
     }
 
-    public function scopeAggregationClassification($query)
+    public function scopeAggregationClassification($query): ApiModelBuilder
     {
         $aggs = [
             'types' => [
@@ -377,7 +373,7 @@ class Artwork extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
-    public function scopeAggregationArtworkType($query)
+    public function scopeAggregationArtworkType($query): ApiModelBuilder
     {
         $aggs = [
             'types' => [
@@ -390,7 +386,7 @@ class Artwork extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
-    public function scopeByClassifications($query, $ids)
+    public function scopeByClassifications($query, $ids): ApiModelBuilder
     {
         if (empty($ids)) {
             return $query;
@@ -413,7 +409,7 @@ class Artwork extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByArtworkType($query, $id)
+    public function scopeByArtworkType($query, $id): ApiModelBuilder
     {
         if (empty($id)) {
             return $query;
@@ -436,7 +432,7 @@ class Artwork extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByArtists($query, $ids)
+    public function scopeByArtists($query, $ids): ApiModelBuilder
     {
         if (empty($ids)) {
             return $query;
@@ -459,7 +455,7 @@ class Artwork extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByStyles($query, $ids)
+    public function scopeByStyles($query, $ids): ApiModelBuilder
     {
         if (empty($ids)) {
             return $query;
