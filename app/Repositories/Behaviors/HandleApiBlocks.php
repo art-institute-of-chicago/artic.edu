@@ -9,7 +9,7 @@ use App\Helpers\UrlHelpers;
 
 trait HandleApiBlocks
 {
-    protected function getBlockBrowsers($block)
+    protected function getBlockBrowsers($block): array
     {
         return collect($block['content']['browsers'])->mapWithKeys(function ($ids, $relation) use ($block) {
             try {

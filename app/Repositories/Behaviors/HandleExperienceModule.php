@@ -9,7 +9,7 @@ use A17\Twill\Services\Blocks\BlockCollection;
 
 trait HandleExperienceModule
 {
-    public function updateExperienceModule($object, $fields, $relation, $model = null, $fieldName = null)
+    public function updateExperienceModule($object, $fields, $relation, $model = null, $fieldName = null): void
     {
         if ($model === 'ExperienceImage') {
             $morphKey = 'imagable';
@@ -76,7 +76,7 @@ trait HandleExperienceModule
         }
     }
 
-    public function getExperienceModule($object, $fields, $relation, $model = null, $fieldName = null)
+    public function getExperienceModule($object, $fields, $relation, $model = null, $fieldName = null): array
     {
         $repeaters = [];
         $repeatersFields = [];

@@ -6,7 +6,7 @@ use App\Models\Model3d;
 
 trait Handle3DModel
 {
-    private function handle3DModel($object, $fields, $fieldName = 'aic_3d_model')
+    private function handle3DModel($object, $fields, $fieldName = 'aic_3d_model'): void
     {
         if (
             !empty($fields["{$fieldName}[model_url]"])
@@ -37,7 +37,7 @@ trait Handle3DModel
         }
     }
 
-    private function getFormFieldsFor3DModel($object, $fields, $fieldName = 'aic_3d_model')
+    private function getFormFieldsFor3DModel($object, $fields, $fieldName = 'aic_3d_model'): array
     {
         // Render the 3d model field in repeater block
         if (

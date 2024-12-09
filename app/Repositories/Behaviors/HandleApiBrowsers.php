@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Behaviors;
 
+use Illuminate\Support\Collection;
+
 /**
  * Mimic Twill's generalized behavior for API browsers
  *
@@ -11,7 +13,7 @@ trait HandleApiBrowsers
 {
     protected $apiBrowsers = [];
 
-    protected function getApiBrowsers()
+    protected function getApiBrowsers(): Collection
     {
         return collect($this->apiBrowsers)->map(function ($browser, $key) {
             $browserName = is_string($browser) ? $browser : $key;
@@ -28,14 +30,14 @@ trait HandleApiBrowsers
         })->values();
     }
 
-    public function afterSaveHandleApiBrowsers($object, $fields)
+    public function afterSaveHandleApiBrowsers($object, $fields): void
     {
         foreach ($this->getApiBrowsers() as $browser) {
             $this->updateBrowserApiRelated($object, $fields, $browser['browserName']);
         }
     }
 
-    public function getFormFieldsHandleApiBrowsers($object, $fields)
+    public function getFormFieldsHandleApiBrowsers($object, $fields): array
     {
         foreach ($this->getApiBrowsers() as $browser) {
             $fields['browsers'][$browser['browserName']] = $this->getFormFieldsForBrowserApi($object, $browser['relation'], $browser['model'], $browser['routePrefix'], $browser['titleKey'], $browser['moduleName']);
