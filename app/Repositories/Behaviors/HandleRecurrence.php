@@ -2,9 +2,11 @@
 
 namespace App\Repositories\Behaviors;
 
+use Illuminate\Support\Collection;
+
 trait HandleRecurrence
 {
-    public function afterSaveHandleRecurrence($object, $fields)
+    public function afterSaveHandleRecurrence($object, $fields): void
     {
         $rules = $object->getRules();
 
@@ -32,7 +34,7 @@ trait HandleRecurrence
         }
     }
 
-    public function getByRange($startDate, $endDate)
+    public function getByRange($startDate, $endDate): Collection
     {
         $query = $this->model->rightJoin('event_metas', function ($join) {
             $join->on('events.id', '=', 'event_metas.event_id');
