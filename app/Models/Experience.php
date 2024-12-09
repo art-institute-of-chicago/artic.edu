@@ -16,6 +16,7 @@ use App\Models\Behaviors\HasUnlisted;
 use App\Helpers\ImageHelpers;
 use App\Helpers\StringHelpers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class Experience extends AbstractModel implements Sortable
 {
@@ -171,7 +172,7 @@ class Experience extends AbstractModel implements Sortable
         return $this->belongsToMany('App\Models\Category', 'experience_category');
     }
 
-    public function scopeByCategories($query, $categories = null)
+    public function scopeByCategories($query, $categories = null): Builder
     {
         if (empty($categories)) {
             return $query;
@@ -214,7 +215,7 @@ class Experience extends AbstractModel implements Sortable
      *
      * @TODO Consider moving this to just override `published`?
      */
-    public function scopeWebPublished($query)
+    public function scopeWebPublished($query): Builder
     {
         if (config('aic.is_preview_mode')) {
             return $query;
@@ -231,12 +232,12 @@ class Experience extends AbstractModel implements Sortable
             });
     }
 
-    public function scopeArchived($query)
+    public function scopeArchived($query): Builder
     {
         return $query->where('archived', true);
     }
 
-    public function scopeUnarchived($query)
+    public function scopeUnarchived($query): Builder
     {
         if (config('aic.is_preview_mode')) {
             return $query;
@@ -245,7 +246,7 @@ class Experience extends AbstractModel implements Sortable
         return $query->where('archived', false);
     }
 
-    public function scopeOrderByInteractiveFeature($query, $sort_method = 'ASC')
+    public function scopeOrderByInteractiveFeature($query, $sort_method = 'ASC'): Builder
     {
         return $query
             ->leftJoin('interactiveFeatures', 'experience.interactive_feature_id', '=', 'interactive_features.id')

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use App\Models\Behaviors\HasBlocks;
@@ -66,7 +67,7 @@ class MagazineIssue extends AbstractModel
         return $this->hasMany(MagazineItem::class)->orderBy('position');
     }
 
-    public function scopeOrdered($query)
+    public function scopeOrdered($query): Builder
     {
         return $query->orderBy('publish_start_date', 'desc');
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class BuildingClosure extends AbstractModel
 {
@@ -45,7 +46,7 @@ class BuildingClosure extends AbstractModel
         'published' => true,
     ];
 
-    public function scopeToday($query, $type = 0)
+    public function scopeToday($query, $type = 0): Builder
     {
         $today = Carbon::today();
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasPresenter;
 
 class MyMuseumTour extends Model
@@ -23,7 +24,7 @@ class MyMuseumTour extends Model
 
     protected $casts = ['tour_json' => 'array'];
 
-    public function scopeNotSent($query)
+    public function scopeNotSent($query): Builder
     {
         $query->where('confirmation_sent', false);
         $query->whereNotNull('pdf_download_path');

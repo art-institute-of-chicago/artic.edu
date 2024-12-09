@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use PDO;
 
 class Event extends AbstractModel
@@ -424,7 +425,7 @@ class Event extends AbstractModel
         });
     }
 
-    public function scopeToday($query)
+    public function scopeToday($query): Builder
     {
         $today = Carbon::today();
 
@@ -432,22 +433,22 @@ class Event extends AbstractModel
     }
 
 
-    public function scopeLanding($query)
+    public function scopeLanding($query): Builder
     {
         return $query->whereLanding(true);
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }
 
-    public function scopeNotPrivate($query)
+    public function scopeNotPrivate($query): Builder
     {
         return $query->whereIsPrivate(false);
     }
 
-    public function scopeFuture($query)
+    public function scopeFuture($query): Builder
     {
         return $query->whereHas('eventMetas', function ($query) {
             $query->where('date_end', '>=', Carbon::now());
@@ -459,7 +460,7 @@ class Event extends AbstractModel
         return self::future()->find($this->id) != null;
     }
 
-    public function scopeBetweenDates($query, $startDate, $endDate = null)
+    public function scopeBetweenDates($query, $startDate, $endDate = null): Builder
     {
         $query->rightJoin('event_metas', function ($join) {
             $join->on('events.id', '=', 'event_metas.event_id');
@@ -480,7 +481,7 @@ class Event extends AbstractModel
      *
      * @see WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
      */
-    public function scopeByType($query, $types)
+    public function scopeByType($query, $types): Builder
     {
         collect($types)->map(function ($type) {
             return (int) $type;
@@ -498,7 +499,7 @@ class Event extends AbstractModel
      * NOTE: This works only while there are less than 10 possible audience values
      * @see WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
      */
-    public function scopeByAudience($query, $audiences)
+    public function scopeByAudience($query, $audiences): Builder
     {
         collect($audiences)->map(function ($audience) {
             return (int) $audience;
@@ -512,7 +513,7 @@ class Event extends AbstractModel
         return $query;
     }
 
-    public function scopeByProgram($query, $programs = null)
+    public function scopeByProgram($query, $programs = null): Builder
     {
         if (empty($programs)) {
             return $query;
@@ -566,22 +567,22 @@ class Event extends AbstractModel
         $this->attributes['event_host_id'] = ($value == self::NULL_OPTION_EVENT_HOST) ? null : $value;
     }
 
-    public function scopeDefault($query)
+    public function scopeDefault($query): Builder
     {
         return $this->scopeSixMonths($query);
     }
 
-    public function scopeSixMonths($query)
+    public function scopeSixMonths($query): Builder
     {
         return $query->betweenDates(Carbon::today(), Carbon::today()->addMonths(6));
     }
 
-    public function scopeYear($query)
+    public function scopeYear($query): Builder
     {
         return $query->betweenDates(Carbon::today(), Carbon::today()->addYear());
     }
 
-    public function scopeWeekend($query)
+    public function scopeWeekend($query): Builder
     {
         return $query->betweenDates(Carbon::today()->nextWeekendDay(), Carbon::today()->nextWeekendDay()->addDays(2));
     }
