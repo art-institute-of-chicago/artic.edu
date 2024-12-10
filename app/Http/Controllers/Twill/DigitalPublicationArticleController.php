@@ -93,9 +93,13 @@ class DigitalPublicationArticleController extends NestedModuleController
         $articles = $query->get();
 
         $formattedArticles = $articles->map(function ($article) use ($digitalPublicationId) {
+            $name = $article->title;
+            if ($article->digitalPublication) {
+                $name = $article->digitalPublication->title . ' - ' . $name;
+            }
             return [
                 'id' => $article->id,
-                'name' => $digitalPublicationId ? $article->title : ($article->digitalPublication ? $article->digitalPublication->title . ' - ' . $article->title : $article->title),
+                'name' => $name,
                 'edit' => route('twill.collection.articles_publications.digitalPublications.articles.edit', [
                     'digitalPublication' => $article->digital_publication_id,
                     'article' => $article->id
