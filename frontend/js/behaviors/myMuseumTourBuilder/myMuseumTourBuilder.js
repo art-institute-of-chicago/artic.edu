@@ -6,8 +6,10 @@ import * as Sentry from "@sentry/react";
 export default function myMuseumTourBuilder(container) {
   this.init = function () {
     let dataStringObjects = container.getAttribute('data-hide-objects-from-tours');
+    let dataStringGalleries = container.getAttribute('data-hide-galleries-from-tours');
     let sentryDsn = container.getAttribute('data-dsn');
     const hideObjectsFromTours = dataStringObjects.length > 0 ? dataStringObjects.split(",") : [];
+    const hideGalleriesFromTours = dataStringGalleries.length > 0 ? dataStringGalleries.split(",") : [];
 
     Sentry.init({
       dsn: sentryDsn,
@@ -26,6 +28,7 @@ export default function myMuseumTourBuilder(container) {
     ReactDOM.render(
       <MyMuseumTourBuilder
         hideObjectsFromTours={hideObjectsFromTours}
+        hideGalleriesFromTours={hideGalleriesFromTours}
       />,
       container,
       () => {
