@@ -8,20 +8,16 @@ class ExhibitionRequest extends Request
 {
     public function rulesForCreate()
     {
-        $rules = [
+        return [
             'title' => 'required',
         ];
-
-        return $rules;
     }
 
     public function rulesForUpdate()
     {
-        $rules = [
+        return [
             'title' => 'required',
             'list_description' => 'required',
         ];
-
-        return $rules;
     }
 }
