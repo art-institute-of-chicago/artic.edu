@@ -3,18 +3,17 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasNesting;
-use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\Sortable;
 use App\Enums\DigitalPublicationArticleType;
 use App\Models\Behaviors\HasAuthors;
+use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
-use App\Models\Behaviors\HasBlocks;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DigitalPublicationArticle extends AbstractModel implements Sortable
 {
