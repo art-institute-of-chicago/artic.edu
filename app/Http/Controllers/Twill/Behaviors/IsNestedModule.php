@@ -27,7 +27,7 @@ trait IsNestedModule
         $withImage = $this->moduleHas('medias');
 
         return $items->map(function ($item) use ($withImage) {
-            $columnsData = Collection::make($this->browserColumns)->mapWithKeys(function ($column) use ($item, $withImage) {
+            $columnsData = Collection::make($this->browserColumns)->mapWithKeys(function ($column) use ($item) {
                 return $this->getItemColumnData($item, $column);
             })->toArray();
 

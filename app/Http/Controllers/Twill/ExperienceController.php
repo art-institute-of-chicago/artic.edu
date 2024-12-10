@@ -61,7 +61,6 @@ class ExperienceController extends \App\Http\Controllers\Twill\ModuleController
                 ];
             }
             $variant = isset($column['variant']);
-            $crop = $variant ? $column['variant']['crop'] : head(array_keys(head($item->mediasParams)));
             $params = $variant && isset($column['variant']['params'])
             ? $column['variant']['params']
             : ['w' => 80, 'h' => 80, 'fit' => 'crop'];
@@ -165,7 +164,7 @@ class ExperienceController extends \App\Http\Controllers\Twill\ModuleController
         $withImage = $this->moduleHas('medias');
 
         return $items->map(function ($item) use ($withImage) {
-            $columnsData = collect($this->browserColumns)->mapWithKeys(function ($column) use ($item, $withImage) {
+            $columnsData = collect($this->browserColumns)->mapWithKeys(function ($column) use ($item) {
                 return $this->getItemColumnData($item, $column);
             })->toArray();
 
