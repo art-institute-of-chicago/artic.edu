@@ -92,7 +92,7 @@ class DigitalPublicationArticleController extends NestedModuleController
 
         $articles = $query->get();
 
-        $formattedArticles = $articles->map(function ($article) use ($digitalPublicationId) {
+        $formattedArticles = $articles->map(function ($article) {
             $name = $article->title;
             if ($article->digitalPublication) {
                 $name = $article->digitalPublication->title . ' - ' . $name;
