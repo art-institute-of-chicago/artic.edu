@@ -93,7 +93,7 @@ class ExperienceController extends \App\Http\Controllers\Twill\ModuleController
         }
 
         return [
-            "${field}" => $value,
+            $field => $value,
         ];
     }
 
