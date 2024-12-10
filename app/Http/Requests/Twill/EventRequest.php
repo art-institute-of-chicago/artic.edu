@@ -49,16 +49,14 @@ class EventRequest extends Request
     }
     public function rulesForCreate()
     {
-        $rules = [
+        return [
             'title' => 'required',
         ];
-
-        return $rules;
     }
 
     public function rulesForUpdate()
     {
-        $rules = [
+        return [
             'start_time' => 'required',
             'end_time' => 'required|time_greater_than',
             'short_description' => 'required',
@@ -69,7 +67,5 @@ class EventRequest extends Request
             ],
             'test_emails' => 'emails',
         ];
-
-        return $rules;
     }
 }
