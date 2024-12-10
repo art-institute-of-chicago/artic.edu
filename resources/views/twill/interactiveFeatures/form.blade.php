@@ -87,7 +87,7 @@
 
         <dl>
             @foreach ($item->experiences as $exp)
-                <li><a href="{{ url('/collection/experiences/' . $exp->id) }}">{{ $exp->title }}</a></li>
+                <dd><a href="{{ url('/collection/experiences/' . $exp->id) }}">{{ $exp->title }}</a></dd>
             @endforeach
         </dl>
     @endif
