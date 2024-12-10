@@ -6,7 +6,7 @@
     $overlays = [];
     $cropRegion = null;
 
-    $firstImage = $block->childs->filter(function ($item) {
+    $firstImage = $block->children->filter(function ($item) {
         return $item->type == 'layered_image_viewer_img';
     })->first();
 
@@ -23,7 +23,7 @@
         $cropRegion = htmlspecialchars(json_encode($cropRegion), ENT_QUOTES, 'UTF-8');
     }
 
-    foreach ($block->childs as $child) {
+    foreach ($block->children as $child) {
         $mediaItem = [
             'media' => $child->imageAsArray('image', 'desktop'),
             'label' => $child->input('label'),

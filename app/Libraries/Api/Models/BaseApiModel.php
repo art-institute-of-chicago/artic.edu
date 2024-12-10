@@ -9,6 +9,7 @@
 namespace App\Libraries\Api\Models;
 
 use A17\Twill\Models\Behaviors\HasPresenter;
+use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Libraries\Api\Models\ApiCollection as BaseCollection;
 use App\Libraries\Api\Models\Behaviors\HasApiCalls;
 use App\Libraries\Api\Models\Behaviors\HasAugmentedModel;
@@ -18,12 +19,13 @@ use DateTime;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use JsonSerializable;
 
-abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, UrlRoutable
+abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, TwillModelContract, UrlRoutable
 {
     use HasApiCalls;
     use HasAugmentedModel;
@@ -326,7 +328,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      *
      * @return array
      */
-    public function getFillable()
+    public function getFillable(): array
     {
         return $this->fillable;
     }
@@ -479,7 +481,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      *
      * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return $this->toArray();
     }
@@ -984,7 +986,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * @param  mixed  $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->{$offset});
     }
@@ -995,7 +997,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * @param  mixed  $offset
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->{$offset};
     }
@@ -1007,7 +1009,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * @param  mixed  $value
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->{$offset} = $value;
     }
@@ -1018,7 +1020,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * @param  mixed  $offset
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->{$offset});
     }
@@ -1090,6 +1092,34 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     }
 
     /**
+     * TODO: Implement TwillModelContract
+     */
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query;
+    }
+
+    public function scopeAccessible(Builder $query): Builder
+    {
+        return $query;
+    }
+
+    public function scopeOnlyTrashed(Builder $query): Builder
+    {
+        return $query;
+    }
+
+    public function scopeDraft(Builder $query): Builder
+    {
+        return $query;
+    }
+
+    public function getTranslatedAttributes(): array
+    {
+        return array();
+    }
+
+    /**
      * Determine if an attribute exists on the model.
      *
      * @param  string  $key
@@ -1128,7 +1158,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toJson();
     }

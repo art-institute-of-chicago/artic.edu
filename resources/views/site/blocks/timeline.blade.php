@@ -1,6 +1,6 @@
 @php
     $items = [];
-    foreach ($block->childs as $item) {
+    foreach ($block->children as $item) {
         $item->time = $item->present()->input('time');
         $item->title = $item->present()->input('title');
         $item->blurb = $item->present()->input('description');

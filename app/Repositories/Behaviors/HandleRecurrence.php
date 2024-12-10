@@ -2,9 +2,12 @@
 
 namespace App\Repositories\Behaviors;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
+use Illuminate\Support\Collection;
+
 trait HandleRecurrence
 {
-    public function afterSaveHandleRecurrence($object, $fields)
+    public function afterSaveHandleRecurrence(TwillModelContract $object, array $fields): void
     {
         $rules = $object->getRules();
 
@@ -32,7 +35,7 @@ trait HandleRecurrence
         }
     }
 
-    public function getByRange($startDate, $endDate)
+    public function getByRange($startDate, $endDate): Collection
     {
         $query = $this->model->rightJoin('event_metas', function ($join) {
             $join->on('events.id', '=', 'event_metas.event_id');

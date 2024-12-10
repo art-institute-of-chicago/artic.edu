@@ -4,7 +4,7 @@ namespace App\Http\Requests\Form;
 
 class FilmingProposalRequest extends FormRequest
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required',

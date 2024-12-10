@@ -51,7 +51,7 @@
         @endif
 
         <div class="o-article__body o-blocks">
-            {!! $item->renderBlocks(false, [], [
+            {!! $item->renderBlocks(data: [
                 'pageTitle' => $item->title
             ]) !!}
         </div>

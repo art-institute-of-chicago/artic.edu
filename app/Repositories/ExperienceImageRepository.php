@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -21,7 +22,7 @@ class ExperienceImageRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function updateFieldsFromApi($fields)
+    public function updateFieldsFromApi($fields): array
     {
         $credits_map = [
             'artist' => 'artist_title',
@@ -52,7 +53,7 @@ class ExperienceImageRepository extends ModuleRepository
         return $fields;
     }
 
-    public function prepareFieldsBeforeCreate($fields)
+    public function prepareFieldsBeforeCreate(array $fields): array
     {
         if ($fields['credits_input'] == 'datahub') {
             $fields = $this->updateFieldsFromApi($fields);
@@ -61,7 +62,7 @@ class ExperienceImageRepository extends ModuleRepository
         return parent::prepareFieldsBeforeCreate($fields);
     }
 
-    public function prepareFieldsBeforeSave($object, $fields)
+    public function prepareFieldsBeforeSave(TwillModelContract $object, array $fields): array
     {
         if ($fields['credits_input'] == 'datahub') {
             $fields = $this->updateFieldsFromApi($fields);

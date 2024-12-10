@@ -35,7 +35,7 @@ docker-compose.override.yml
 /public/storage
 /public/test
 .vault_pass
-/public/assets/admin
+/public/assets/twill
 /public/assets/vendor
 /public/mix-manifest.json
 /public/sitemap.xml

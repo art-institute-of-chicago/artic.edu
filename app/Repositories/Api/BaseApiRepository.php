@@ -2,7 +2,9 @@
 
 namespace App\Repositories\Api;
 
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Model;
+use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleApiRelations;
 
@@ -10,7 +12,7 @@ abstract class BaseApiRepository extends ModuleRepository
 {
     use HandleApiRelations;
 
-    public function getById($id, $with = [], $withCount = [])
+    public function getById($id, $with = [], $withCount = []): TwillModelContract
     {
         $item = $this->model->with($with)->withCount($withCount)->findOrFail($id);
 
@@ -21,7 +23,7 @@ abstract class BaseApiRepository extends ModuleRepository
         return $item;
     }
 
-    public function filter($query, array $scopes = [])
+    public function filter(Builder $query, array $scopes = []): Builder
     {
         // Perform a search first and then filter.
         // Because endpoints are different is preferable to acknoledge a search before

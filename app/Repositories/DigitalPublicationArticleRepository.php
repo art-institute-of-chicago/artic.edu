@@ -2,19 +2,20 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleNesting;
 use A17\Twill\Repositories\ModuleRepository;
+use Illuminate\Support\Collection;
 use App\Enums\DigitalPublicationArticleType;
 use App\Jobs\GeneratePdf;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleAuthors;
-use A17\Twill\Jobs\ReorderNestedModuleItems;
 
 class DigitalPublicationArticleRepository extends ModuleRepository
 {
@@ -27,13 +28,13 @@ class DigitalPublicationArticleRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getTypes()
+    public function getTypes(): Collection
     {
         return collect(DigitalPublicationArticleType::cases())
             ->mapWithKeys(fn ($type) => [$type->value => $type->name]);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         parent::afterSave($object, $fields);
         GeneratePdf::dispatch($object);

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
@@ -101,7 +102,7 @@ class PageRepository extends ModuleRepository
         ],
     ];
 
-    protected $repeaters = [
+    protected array $repeaters = [
         // Homepage landing
         'artists' => [
             'relation' => 'homeArtists',
@@ -123,7 +124,7 @@ class PageRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
+    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
     {
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeExhibitions', 'position', 'Exhibition');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeEvents', 'position', 'Event');
@@ -146,7 +147,7 @@ class PageRepository extends ModuleRepository
         return parent::hydrate($object, $fields);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         // Art & Ideas
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
@@ -159,7 +160,7 @@ class PageRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object)
+    public function getFormFields(TwillModelContract $object): array
     {
         $fields = parent::getFormFields($object);
 
@@ -181,7 +182,7 @@ class PageRepository extends ModuleRepository
         return $this->model->whereType($type)->with($with)->first();
     }
 
-    public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
+    public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null): array
     {
         if ($relation === 'experiences') {
             return $object->{$relation}->map(function ($relatedElement) use ($titleKey, $routePrefix, $relation, $moduleName) {

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -24,21 +25,7 @@ class LandingPageRepository extends ModuleRepository
         HandleBlocks::getBlockBrowsers as HandleBlocksgetBlockBrowsers;
     }
 
-    protected $browsers = [
-        // Research landing
-        // 'researchResourcesFeaturePages' => [
-        //     'routePrefix' => 'generic',
-        //     'moduleName' => 'genericPages',
-        // ],
-        // 'researchResourcesStudyRooms' => [
-        //     'routePrefix' => 'generic',
-        //     'moduleName' => 'genericPages',
-        // ],
-        // 'researchResourcesStudyRoomMore' => [
-        //     'routePrefix' => 'generic',
-        //     'moduleName' => 'genericPages',
-        // ],
-    ];
+    protected $browsers = [];
 
     protected $apiBrowsers = [
         'artworks' => [
@@ -53,7 +40,7 @@ class LandingPageRepository extends ModuleRepository
 
     ];
 
-    protected $repeaters = [
+    protected array $repeaters = [
         'social_links',
 
         // Visit
@@ -67,23 +54,14 @@ class LandingPageRepository extends ModuleRepository
         'what_to_expects',
     ];
 
-    protected $model;
+    protected TwillModelContract $model;
 
     public function __construct(LandingPage $model)
     {
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
-    {
-        // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
-        // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
-        // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRoomMore', 'position', 'GenericPage');
-
-        return parent::hydrate($object, $fields);
-    }
-
-    public function afterSave($object, $fields)
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
@@ -107,7 +85,7 @@ class LandingPageRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object)
+    public function getFormFields(TwillModelContract $object): array
     {
         $fields = parent::getFormFields($object);
         // Art & Ideas
@@ -133,7 +111,7 @@ class LandingPageRepository extends ModuleRepository
         return $fields;
     }
 
-    public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
+    public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null): array
     {
         if ($relation === 'experiences') {
             return $object->{$relation}->map(function ($relatedElement) use ($titleKey) {

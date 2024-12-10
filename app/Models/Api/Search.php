@@ -5,9 +5,11 @@ namespace App\Models\Api;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Libraries\Api\Builders\ApiModelBuilderSearch;
 use App\Libraries\Search\Filters\Departments as DepartmentFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use App\Helpers\DateHelpers;
+use App\Libraries\Api\Builders\ApiModelBuilder;
 
 class Search extends BaseApiModel
 {
@@ -85,7 +87,7 @@ class Search extends BaseApiModel
         return date('Y') - ($curHalf % 2);
     }
 
-    public function scopeAllAggregations($query, $categoryFilter = null, $queryFilter = null)
+    public function scopeAllAggregations($query, $categoryFilter = null, $queryFilter = null): ApiModelBuilderSearch
     {
         // AggregationName => Parameter
         $aggsParams = [
@@ -128,7 +130,7 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
-    public function scopeAggregationType($query)
+    public function scopeAggregationType($query): ApiModelBuilderSearch
     {
         $aggs = [
             'types' => [
@@ -142,7 +144,7 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
-    public function scopeAggregationClassifications($query, $max = 3)
+    public function scopeAggregationClassifications($query, $max = 3): ApiModelBuilderSearch
     {
         $aggs = [
             'classifications' => [
@@ -156,7 +158,7 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
-    public function scopeAggregationArtworkType($query, $max = 3)
+    public function scopeAggregationArtworkType($query, $max = 3): ApiModelBuilderSearch
     {
         $aggs = [
             'artworkTypes' => [
@@ -170,7 +172,7 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
-    public function scopeAggregationStyles($query, $max = 3)
+    public function scopeAggregationStyles($query, $max = 3): ApiModelBuilderSearch
     {
         $aggs = [
             'styles' => [
@@ -184,7 +186,7 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
-    public function scopeAggregationPlaces($query, $max = 3)
+    public function scopeAggregationPlaces($query, $max = 3): ApiModelBuilderSearch
     {
         $aggs = [
             'place_of_origin' => [
@@ -198,7 +200,7 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
-    public function scopeByGalleryIdsOnView($query, $ids)
+    public function scopeByGalleryIdsOnView($query, $ids): ApiModelBuilderSearch
     {
         $result = $this->scopeByGalleryIds($query, $ids);
         $result = $this->scopeOnView($query, true);
@@ -206,69 +208,69 @@ class Search extends BaseApiModel
         return $result;
     }
 
-    public function scopeByGalleryIds($query, $ids)
+    public function scopeByGalleryIds($query, $ids): ApiModelBuilderSearch
     {
         return $this->scopeByListType($query, $ids, 'gallery_id');
     }
 
-    public function scopeByDepartmentIds($query, $ids)
+    public function scopeByDepartmentIds($query, $ids): ApiModelBuilderSearch
     {
         return $this->scopeByListType($query, $ids, 'department_id');
     }
 
-    public function scopeByDepartments($query, $ids)
+    public function scopeByDepartments($query, $ids): ApiModelBuilderSearch
     {
         $ids = DepartmentFilter::handleResearchCenter($ids);
 
         return $this->scopeByListType($query, $ids, 'department_title.keyword', true);
     }
 
-    public function scopeByPlaces($query, $ids)
+    public function scopeByPlaces($query, $ids): ApiModelBuilderSearch
     {
         return $this->scopeByListType($query, $ids, 'place_of_origin.keyword');
     }
 
-    public function scopeByClassifications($query, $ids)
+    public function scopeByClassifications($query, $ids): ApiModelBuilderSearch
     {
         return $this->scopeByListType($query, $ids, 'classification_titles.keyword');
     }
 
-    public function scopeByMaterials($query, $ids)
+    public function scopeByMaterials($query, $ids): ApiModelBuilderSearch
     {
         return $this->scopeByListType($query, $ids, 'material_titles.keyword');
     }
 
-    public function scopeByArtists($query, $ids)
+    public function scopeByArtists($query, $ids): ApiModelBuilderSearch
     {
         return $this->scopeByListType($query, $ids, 'artist_titles.keyword');
     }
 
-    public function scopeBySubjects($query, $ids)
+    public function scopeBySubjects($query, $ids): ApiModelBuilderSearch
     {
         return $this->scopeByListType($query, $ids, 'subject_titles.keyword');
     }
 
-    public function scopeByStyles($query, $ids)
+    public function scopeByStyles($query, $ids): ApiModelBuilderSearch
     {
         return $this->scopeByListType($query, $ids, 'style_titles.keyword');
     }
 
-    public function scopeByTechniques($query, $ids)
+    public function scopeByTechniques($query, $ids): ApiModelBuilderSearch
     {
         return $this->scopeByListType($query, $ids, 'technique_ids');
     }
 
-    public function scopeByThemes($query, $ids)
+    public function scopeByThemes($query, $ids): ApiModelBuilderSearch
     {
         return $this->scopeByListType($query, $ids, 'category_ids');
     }
 
-    public function scopeByArtworkType($query, $ids)
+    public function scopeByArtworkType($query, $ids): ApiModelBuilderSearch
     {
         return $this->scopeByListType($query, $ids, 'artwork_type_title.keyword');
     }
 
-    public function scopeByArtworkIds($query, $ids)
+    public function scopeByArtworkIds($query, $ids): ApiModelBuilderSearch
     {
         if (empty($ids)) {
             return $query;
@@ -285,7 +287,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopePublicDomain($query, $value = true)
+    public function scopePublicDomain($query, $value = true): ApiModelBuilderSearch
     {
         $params = [
             'bool' => [
@@ -302,7 +304,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeRecentAcquisition($query, $value = null)
+    public function scopeRecentAcquisition($query, $value = null): ApiModelBuilderSearch
     {
         $params = [
             'bool' => [
@@ -321,7 +323,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeHasMultimedia($query, $value = false)
+    public function scopeHasMultimedia($query, $value = false): ApiModelBuilderSearch
     {
         $params = [
             'bool' => [
@@ -338,7 +340,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeHasEducationalResources($query, $value = false)
+    public function scopeHasEducationalResources($query, $value = false): ApiModelBuilderSearch
     {
         $params = [
             'bool' => [
@@ -355,7 +357,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeHasAdvancedImaging($query, $value = false)
+    public function scopeHasAdvancedImaging($query, $value = false): ApiModelBuilderSearch
     {
         $params = [
             'bool' => [
@@ -372,7 +374,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeOnView($query, $value = true)
+    public function scopeOnView($query, $value = true): ApiModelBuilderSearch
     {
         $params = [
             'bool' => [
@@ -389,7 +391,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByListType($query, $ids, $parameter, $additive = false)
+    public function scopeByListType($query, $ids, $parameter, $additive = false): ApiModelBuilderSearch
     {
         if (empty($ids)) {
             return $query;
@@ -425,7 +427,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByColor($query, $hsl)
+    public function scopeByColor($query, $hsl): ApiModelBuilderSearch
     {
         if (empty($hsl)) {
             return $query;
@@ -512,7 +514,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByMostSimilar($query, Artist|Artwork $item = null, $boost = false)
+    public function scopeByMostSimilar($query, Artist|Artwork $item = null, $boost = false): ApiModelBuilderSearch
     {
         if (empty($item)) {
             return $query;
@@ -570,7 +572,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeYearMin($query, $year)
+    public function scopeYearMin($query, $year): ApiModelBuilderSearch
     {
         if (empty($year)) {
             return $query;
@@ -593,7 +595,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeYearMax($query, $year)
+    public function scopeYearMax($query, $year): ApiModelBuilderSearch
     {
         if (empty($year)) {
             return $query;
@@ -616,7 +618,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeYearRange($query, $min, $max)
+    public function scopeYearRange($query, $min, $max): ApiModelBuilderSearch
     {
         if (empty($min)) {
             return $query;
@@ -666,7 +668,7 @@ class Search extends BaseApiModel
         return $year;
     }
 
-    public function scopeDateMin($query, $date = null)
+    public function scopeDateMin($query, $date = null): ApiModelBuilderSearch
     {
         if (empty($date)) {
             $date = Carbon::today();
@@ -690,7 +692,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByIds($query, $ids)
+    public function scopeByIds($query, $ids): ApiModelBuilderSearch
     {
         $ids = is_array($ids) ? $ids : explode(';', $ids); //Transform the ID into an array
 
@@ -711,7 +713,7 @@ class Search extends BaseApiModel
      * Date Display: The correct parameter is date_display (with no .keyword added)
      * Default: Parameter name with .keywork added.
      */
-    public function scopeSortBy($query, $field)
+    public function scopeSortBy($query, $field): ApiModelBuilderSearch
     {
         switch ($field) {
             case 'relevance':
@@ -754,7 +756,7 @@ class Search extends BaseApiModel
     }
 
     // WEB-2264: Dead code? Remove..?
-    public function scopeExhibitionUpcoming($query)
+    public function scopeExhibitionUpcoming($query): ApiModelBuilderSearch
     {
         $params = [
             'bool' => [
@@ -774,7 +776,7 @@ class Search extends BaseApiModel
     }
 
     // WEB-2264: Dead code? Remove..?
-    public function scopeExhibitionHistory($query)
+    public function scopeExhibitionHistory($query): ApiModelBuilderSearch
     {
         $params = [
             'bool' => [
@@ -793,7 +795,7 @@ class Search extends BaseApiModel
         return $query->exhibitionOrderByDate('asc')->rawSearch($params);
     }
 
-    public function scopeExhibitionGlobal($query)
+    public function scopeExhibitionGlobal($query): ApiModelBuilderSearch
     {
         $params = [
             'bool' => [
@@ -845,7 +847,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopePublic($query)
+    public function scopePublic($query): ApiModelBuilderSearch
     {
         $params = [
             'bool' => [
@@ -864,7 +866,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopePublished($query)
+    public function scopePublished(Builder $query): Builder
     {
         $params = [
             'bool' => [
@@ -964,7 +966,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeNotUnlisted($query)
+    public function scopeNotUnlisted($query): ApiModelBuilderSearch
     {
         $params = [
             'bool' => [
@@ -998,7 +1000,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeExhibitionOrderByDate($query, $direction = 'asc')
+    public function scopeExhibitionOrderByDate($query, $direction = 'asc'): ApiModelBuilderSearch
     {
         $params = [
             'sort' => [

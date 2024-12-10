@@ -72,14 +72,14 @@ class TileMedia extends BaseJob
         $this->deleteOut($local, $localFilename);
     }
 
-    private function deleteSrc($local, $localFilename)
+    private function deleteSrc(\Illuminate\Contracts\Filesystem\Filesystem $local, string $localFilename)
     {
         if ($local->exists('tiles/src/' . $localFilename)) {
             $local->delete('tiles/src/' . $localFilename);
         }
     }
 
-    private function deleteOut($local, $localFilename)
+    private function deleteOut(\Illuminate\Contracts\Filesystem\Filesystem $local, string $localFilename)
     {
         if ($local->exists('tiles/out/' . $localFilename)) {
             exec(sprintf('rm -r %s', escapeshellarg(storage_path() . '/app/tiles/out/' . $localFilename)));
