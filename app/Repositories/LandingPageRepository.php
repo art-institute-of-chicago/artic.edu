@@ -25,21 +25,7 @@ class LandingPageRepository extends ModuleRepository
         HandleBlocks::getBlockBrowsers as HandleBlocksgetBlockBrowsers;
     }
 
-    protected $browsers = [
-        // Research landing
-        // 'researchResourcesFeaturePages' => [
-        //     'routePrefix' => 'generic',
-        //     'moduleName' => 'genericPages',
-        // ],
-        // 'researchResourcesStudyRooms' => [
-        //     'routePrefix' => 'generic',
-        //     'moduleName' => 'genericPages',
-        // ],
-        // 'researchResourcesStudyRoomMore' => [
-        //     'routePrefix' => 'generic',
-        //     'moduleName' => 'genericPages',
-        // ],
-    ];
+    protected $browsers = [];
 
     protected $apiBrowsers = [
         'artworks' => [
@@ -73,15 +59,6 @@ class LandingPageRepository extends ModuleRepository
     public function __construct(LandingPage $model)
     {
         $this->model = $model;
-    }
-
-    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
-    {
-        // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
-        // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
-        // $this->hydrateOrderedBelongsToMany($object, $fields, 'researchResourcesStudyRoomMore', 'position', 'GenericPage');
-
-        return parent::hydrate($object, $fields);
     }
 
     public function afterSave(TwillModelContract $object, array $fields): void
