@@ -25,7 +25,7 @@ return [
 
     'disable_extra_scripts' => (bool) env('DISABLE_EXTRA_SCRIPTS', false),
 
-    'hide_from_tours' => env('HIDE_FROM_TOURS'),
+    'hide_objects_from_tours' => env('HIDE_OBJECTS_FROM_TOURS'),
 
     // Feature flags
     'is_preview_mode' => (bool) env('ALWAYS_PREVIEW_MODE', false),
