@@ -1148,6 +1148,7 @@
 
   .m-article-header__img {
     height: 250px;
+    z-index: -1;
   }
 
   .m-article-header__img::before {
