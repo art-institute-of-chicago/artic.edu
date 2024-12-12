@@ -1148,6 +1148,7 @@
 
   .m-article-header__img {
     height: 250px;
+    z-index: -1;
   }
 
   .m-article-header__img::before {
@@ -1237,6 +1238,11 @@
       padding-left: initial;
     }
 
+    .m-article-header__text::before {
+      left: -100%;
+      max-width: 100vw;
+    }
+
     .m-article-header__img {
       left: auto;
       margin-left: auto;
@@ -1244,7 +1250,7 @@
       flex: 0 0 colspan(50, 'large');
       height: 58vh;
       right: 50%;
-      margin-right: -50vw;
+      margin-right: -62vw;
 
       &::before {
         z-index: -1;
@@ -1255,6 +1261,12 @@
   @include breakpoint('large') {
     .m-article-header__text {
       flex: 0 0 colspan(19, 'large');
+      left: 0;
+    }
+
+    .m-article-header__text::before {
+      left: -100%;
+      max-width: 100vw;
     }
   }
 
