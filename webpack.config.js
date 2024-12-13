@@ -7,6 +7,18 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const generateRevManifestPlugin = require('./scripts/webpack/GenerateRevManifestPlugin');
 
+class TimestampPlugin {
+  apply(compiler) {
+    compiler.hooks.done.tap('TimestampPlugin', () => {
+      const timestamp = new Date().toLocaleString();
+      setImmediate(() => {
+        const emoji = "✅"
+        console.log(`${emoji} build completed ${timestamp}`);
+      });
+    });
+  }
+}
+
 const outputDir = path.resolve(__dirname, 'public', 'dist');
 
 // Async delete any directories passed in and wait for all deletions to complete
@@ -108,7 +120,8 @@ module.exports = async () => {
             manifestPath: path.resolve(outputDir, 'rev-manifest.json'),
           }),
         ] : []
-      )
+      ),
+      new TimestampPlugin(),
     ],
     module: {
       rules: [
