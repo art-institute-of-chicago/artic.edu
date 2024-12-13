@@ -1,0 +1,561 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.explore-further-injected {
+  opacity: unset;
+
+  &.s-loading {
+    transition: .15s ease-in-out;
+    opacity: .7;
+  }
+}
+
+.explore-further-injected>.o-gridboard {
+  transition: .15s ease-in-out;
+  opacity: unset;
+  animation: fadeIn .75s ease-in-out;
+}
+
+.o-gridboard {
+  position: relative;
+  padding-top: 0.02px;
+  border-top: 1px solid $color__rules--primary;
+}
+
+.m-title-bar+.o-gridboard {
+  margin-top: 19px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @include breakpoint('small+') {
+    margin-top: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 40px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.m-links-bar+.o-gridboard {
+  margin-top: 0;
+}
+
+.m-search-actions+.o-gridboard {
+  margin-top: 20px;
+}
+
+.o-gridboard::before,
+.o-gridboard::after {
+  content: '';
+  display: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: $color__rules--tertiary;
+  pointer-events: none;
+}
+
+.o-gridboard>*::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+  pointer-events: none;
+}
+
+.o-gridboard>*:first-child {
+  padding-top: 0;
+
+  &::before {
+    content: none;
+    display: none;
+  }
+}
+
+.o-gridboard__footer {
+  margin-top: 40px;
+  padding-top: 25px;
+  border-top: 1px solid $color__rules--primary;
+
+  @include breakpoint('small+') {
+    margin-top: 0;
+  }
+}
+
+@each $name,
+$point in $breakpoints {
+  @include breakpoint('#{$name}') {
+    .o-gridboard>* {
+      @if ($name=='xsmall') {
+        margin-top: 56px;
+
+        &:first-child:not(.s-positioned) {
+          margin-top: 16px;
+        }
+      }
+
+      & {
+        padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+      }
+    }
+
+    .o-gridboard[class*="col@#{$name}"] {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-top: 0;
+    }
+
+    .o-gridboard[class*="col@#{$name}"]>* {
+      left: 0;
+      top: 0;
+      flex: 0 0 auto;
+
+      @if ($name=='xsmall') {
+        margin-top: #{map-get($grid-margin-tops, $name)}px;
+        padding-top: #{map-get($grid-padding-tops, $name)}px;
+      }
+
+      @else if ($name=='small') {
+        margin-top: colspan(1.5, small);
+        padding-top: colspan(1.5, small, -1px);
+        border-top: 1px solid $color__rules--primary;
+      }
+
+      @else {
+        margin-top: #{map-get($grid-margin-tops, $name)}px;
+        padding-top: #{map-get($grid-padding-tops, $name) - 1}px;
+        border-top: 1px solid $color__rules--primary;
+      }
+
+      opacity: 0;
+      transition: opacity .25s;
+
+      &::before {
+        content: none;
+        display: none;
+      }
+    }
+
+    .o-gridboard[class*="col@#{$name}"]>.s-positioned {
+      position: absolute;
+      z-index: 1;
+      flex: none;
+      opacity: 1;
+      transition: top .3s $bezier--marius-mosaic, left .3s $bezier--marius-mosaic, height .3s $bezier--marius-mosaic;
+    }
+
+    .o-gridboard[class*="col@#{$name}"]>.s-positioned:not(.s-repositioning) {
+      margin-top: 0;
+    }
+
+    .o-gridboard[class*="col@#{$name}"]>*:nth-child(1) {
+      transition-delay: .1s;
+    }
+
+    .o-gridboard[class*="col@#{$name}"]>*:nth-child(2) {
+      transition-delay: .2s;
+    }
+
+    .o-gridboard[class*="col@#{$name}"]>*:nth-child(3) {
+      transition-delay: .3s;
+    }
+
+    .o-gridboard[class*="col@#{$name}"]>*:nth-child(4) {
+      transition-delay: .4s;
+    }
+
+    .o-gridboard[class*="col@#{$name}"]>*:nth-child(5) {
+      transition-delay: .5s;
+    }
+
+    .o-gridboard[class*="col@#{$name}"]>*:nth-child(6) {
+      transition-delay: .6s;
+    }
+
+    .o-gridboard[class*="col@#{$name}"]>*:nth-child(7) {
+      transition-delay: .7s;
+    }
+
+    .o-gridboard[class*="col@#{$name}"]>*:nth-child(7)~* {
+      transition-delay: .8s;
+    }
+  }
+}
+
+@include breakpoint('xsmall') {
+  .o-gridboard--2-col\@xsmall::before {
+    //display: block;
+    //left: colspan(29, xsmall);
+  }
+
+  .o-gridboard--1-col\@xsmall>* {
+    width: colspan(grid-cols-to-colspan(1), 'xsmall');
+  }
+
+  .o-gridboard--1-col\@xsmall>*:nth-child(1),
+  .o-gridboard--1-col\@xsmall>*:nth-child(2) {
+    border-top-color: transparent;
+  }
+
+  .o-gridboard--2-col\@xsmall>* {
+    width: colspan(grid-cols-to-colspan(2), 'xsmall');
+  }
+
+  .o-gridboard--2-col\@xsmall>*:nth-child(1),
+  .o-gridboard--2-col\@xsmall>*:nth-child(2) {
+    border-top-color: transparent;
+  }
+}
+
+@include breakpoint('small') {
+  .o-gridboard--2-col\@small::before {
+    //display: block;
+    //left: colspan(29, small);
+  }
+
+  .o-gridboard--2-col\@small>* {
+    width: colspan(grid-cols-to-colspan(2), 'small');
+  }
+
+  .o-gridboard--2-col\@small>*:nth-child(1),
+  .o-gridboard--2-col\@small>*:nth-child(2) {
+    border-top-color: transparent;
+  }
+}
+
+@include breakpoint('medium') {
+  .o-gridboard--2-col\@medium::before {
+    display: block;
+    left: colspan(19, medium);
+  }
+
+  .o-gridboard--2-col\@medium>* {
+    width: colspan(grid-cols-to-colspan(2), 'medium');
+  }
+
+  .o-gridboard--3-col\@medium::before {
+    display: block;
+    left: colspan(19, medium);
+  }
+
+  .o-gridboard--3-col\@medium::after {
+    display: block;
+    left: colspan(39, medium);
+  }
+
+  .o-gridboard--3-col\@medium>* {
+    width: colspan(grid-cols-to-colspan(3), 'medium');
+  }
+
+  .o-gridboard--2-col\@medium>*:nth-child(1),
+  .o-gridboard--2-col\@medium>*:nth-child(2),
+  .o-gridboard--3-col\@medium>*:nth-child(1),
+  .o-gridboard--3-col\@medium>*:nth-child(2),
+  .o-gridboard--3-col\@medium>*:nth-child(3) {
+    border-top-color: transparent;
+  }
+}
+
+@include breakpoint('large') {
+  .o-gridboard--2-col\@large::before {
+    display: block;
+    left: colspan(19, large);
+  }
+
+  .o-gridboard--2-col\@large>* {
+    width: colspan(grid-cols-to-colspan(2), 'large');
+  }
+
+  .o-gridboard--3-col\@large::before {
+    display: block;
+    left: colspan(19, large);
+  }
+
+  .o-gridboard--3-col\@large::after {
+    display: block;
+    left: colspan(39, large);
+  }
+
+  .o-gridboard--3-col\@large>* {
+    width: colspan(grid-cols-to-colspan(3), 'large');
+  }
+
+  .o-gridboard--4-col\@large::before {
+    display: block;
+    left: colspan(14, large);
+    width: colspan(15, large);
+    border-right: 1px solid $color__rules--tertiary;
+    border-left: 1px solid $color__rules--tertiary;
+    background: transparent;
+  }
+
+  .o-gridboard--4-col\@large::after {
+    display: block;
+    left: colspan(44, large);
+  }
+
+  .o-gridboard--4-col\@large>* {
+    width: colspan(grid-cols-to-colspan(4), 'large');
+  }
+
+  .o-gridboard--2-col\@large>*:nth-child(1),
+  .o-gridboard--2-col\@large>*:nth-child(2),
+  .o-gridboard--3-col\@large>*:nth-child(1),
+  .o-gridboard--3-col\@large>*:nth-child(2),
+  .o-gridboard--3-col\@large>*:nth-child(3),
+  .o-gridboard--4-col\@large>*:nth-child(1),
+  .o-gridboard--4-col\@large>*:nth-child(2),
+  .o-gridboard--4-col\@large>*:nth-child(3),
+  .o-gridboard--4-col\@large>*:nth-child(4) {
+    border-top-color: transparent;
+  }
+}
+
+@include breakpoint('xlarge') {
+  .o-gridboard--2-col\@xlarge::before {
+    display: block;
+    left: colspan(19, xlarge);
+  }
+
+  .o-gridboard--2-col\@xlarge>* {
+    width: colspan(grid-cols-to-colspan(2), 'xlarge');
+  }
+
+  .o-gridboard--3-col\@xlarge::before {
+    display: block;
+    left: colspan(19, xlarge);
+  }
+
+  .o-gridboard--3-col\@xlarge::after {
+    display: block;
+    left: colspan(39, xlarge);
+  }
+
+  .o-gridboard--3-col\@xlarge>* {
+    width: colspan(grid-cols-to-colspan(3), 'xlarge');
+  }
+
+  .o-gridboard--4-col\@xlarge::before {
+    display: block;
+    left: colspan(14, xlarge);
+    width: colspan(15, xlarge);
+    border-right: 1px solid $color__rules--tertiary;
+    border-left: 1px solid $color__rules--tertiary;
+    background: transparent;
+  }
+
+  .o-gridboard--4-col\@xlarge::after {
+    display: block;
+    left: colspan(44, xlarge);
+  }
+
+  .o-gridboard--4-col\@xlarge>* {
+    width: colspan(grid-cols-to-colspan(4), 'xlarge');
+  }
+
+  .o-gridboard--2-col\@xlarge>*:nth-child(1),
+  .o-gridboard--2-col\@xlarge>*:nth-child(2),
+  .o-gridboard--3-col\@xlarge>*:nth-child(1),
+  .o-gridboard--3-col\@xlarge>*:nth-child(2),
+  .o-gridboard--3-col\@xlarge>*:nth-child(3),
+  .o-gridboard--4-col\@xlarge>*:nth-child(1),
+  .o-gridboard--4-col\@xlarge>*:nth-child(2),
+  .o-gridboard--4-col\@xlarge>*:nth-child(3),
+  .o-gridboard--4-col\@xlarge>*:nth-child(4) {
+    border-top-color: transparent;
+  }
+}
+
+.o-gallery--small-mosaic {
+  @include breakpoint('xsmall') {
+    .o-gridboard--1-col\@xsmall>* {
+      margin-left: 10px;
+    }
+  }
+
+  @include breakpoint('small') {
+    .o-gridboard--2-col\@small>* {
+      margin-left: 20px;
+    }
+  }
+
+  @include breakpoint('medium') {
+    .o-gridboard--2-col\@medium>* {
+      margin-left: 30px;
+    }
+  }
+
+  @include breakpoint('large') {
+    .o-gridboard--3-col\@large>* {
+      width: colspan(grid-cols-to-colspan(4), 'large');
+      border-top: 0;
+    }
+
+    .o-gridboard--3-col\@large::before {
+      display: block;
+      left: colspan(18, large);
+      width: colspan(22, large);
+      border-right: 1px solid $color__rules--tertiary;
+      border-left: 1px solid $color__rules--tertiary;
+      background: transparent;
+    }
+
+    .o-gridboard--3-col\@large::after {
+      display: none;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+    .o-gridboard--3-col\@xlarge>* {
+      width: colspan(grid-cols-to-colspan(4), 'xlarge');
+      border-top: 0;
+    }
+
+    .o-gridboard--3-col\@xlarge::before {
+      display: block;
+      left: colspan(18, xlarge);
+      width: colspan(22, xlarge);
+      border-right: 1px solid $color__rules--tertiary;
+      border-left: 1px solid $color__rules--tertiary;
+      background: transparent;
+    }
+
+    .o-gridboard--3-col\@xlarge::after {
+      display: none;
+    }
+  }
+}
+
+/**
+ *  Themes for dark/light variations. Light is default.
+ */
+.o-gallery--small-mosaic.o-gallery----theme-1,
+.o-gallery--small-mosaic.o-gallery----theme-2 {
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: $color__white;
+    z-index: 2;
+  }
+}
+
+.o-gallery--small-mosaic.o-gallery----theme-1 {
+  .o-gridboard {
+    border-top-color: $color__rules--contrast;
+  }
+
+  .o-gridboard::before,
+  .o-gridboard::after {
+    background-color: $color__rules--focus;
+  }
+
+  @each $name,
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      .o-gridboard[class*="col@#{$name}"] > * {
+        @if ($name == 'xsmall') {
+        } @else {
+          margin-top: -1px;
+        }
+      }
+    }
+  }
+
+  @include breakpoint('large') {
+    .o-gridboard--3-col\@large::before {
+      border-right: 1px solid $color__rules--contrast;
+      border-left: 1px solid $color__rules--contrast;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+    .o-gridboard--3-col\@xlarge::before {
+      border-right: 1px solid $color__rules--contrast;
+      border-left: 1px solid $color__rules--contrast;
+    }
+  }
+}
+
+.o-gallery--small-mosaic.o-gallery----theme-2 {
+
+  @each $name,
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      .o-gridboard[class*="col@#{$name}"]>* {
+        @if ($name=='xsmall') {}
+
+        @else {
+          border-top: 1px solid $color__rules--primary;
+          margin-top: -1px;
+        }
+      }
+    }
+  }
+
+  @include breakpoint('large') {
+    .o-gridboard--3-col\@large::before {
+      border-right: 1px solid $color__rules--primary;
+      border-left: 1px solid $color__rules--primary;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+    .o-gridboard--3-col\@xlarge::before {
+      border-right: 1px solid $color__rules--primary;
+      border-left: 1px solid $color__rules--primary;
+    }
+  }
+}
+
+.o-gallery--small-mosaic.o-gallery----theme-2 {
+  .o-gridboard {
+    border-top: 0;
+  }
+}
+
+.o-gallery--small-mosaic.o-gallery----theme-3 {
+  .o-gridboard {
+    border-top: 0;
+  }
+
+  @each $name,
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      .o-gridboard[class*="col@#{$name}"]>* {
+        @if ($name!='xsmall') {
+          border-top: 1px solid $color__rules--primary;
+          margin-top: -1px;
+        }
+      }
+    }
+  }
+}
