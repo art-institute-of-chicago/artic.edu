@@ -5,7 +5,7 @@ namespace App\Models\Api;
 use Illuminate\Support\Carbon;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Libraries\Api\Models\BaseApiModel;
-use App\Libraries\Api\Builders\ApiModelBuilder;
+use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilder;
 use App\Helpers\StringHelpers;
 use Database\Factories\Api\HasApiFactory;
 

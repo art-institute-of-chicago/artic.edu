@@ -11,8 +11,8 @@
     "type": "project",
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/art-institute-of-chicago/data-hub-foundation.git"
+            "type": "path",
+            "url": "../data-hub-foundation"
         },
         {
             "type": "package",
@@ -42,12 +42,12 @@
     ],
     "require": {
         "php": "^8.1",
-        "aic/data-hub-foundation": "^2.0",
+        "aic/data-hub-foundation": "dev-feature/api-models",
         "area17/twill": "^3.0",
         "chillerlan/php-qrcode": "^5.0",
         "eluceo/ical": "2.0",
         "erusev/parsedown": "^1.7",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.9",
         "intervention/httpauth": "^4.0",
         "kalnoy/nestedset": "^6.0",
         "laravel/framework": "^10.0",

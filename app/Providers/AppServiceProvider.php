@@ -5,7 +5,7 @@ namespace App\Providers;
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
 use App\Models\Hour;
-use App\Libraries\Api\Consumers\GuzzleApiConsumer;
+use Aic\Hub\Foundation\Library\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\EmbedConverterService;
 use App\Libraries\DamsImageService;
 use App\Observers\FileObserver;

@@ -10,10 +10,10 @@ namespace App\Libraries\Api\Models;
 
 use A17\Twill\Models\Behaviors\HasPresenter;
 use A17\Twill\Models\Contracts\TwillModelContract;
-use App\Libraries\Api\Models\ApiCollection as BaseCollection;
-use App\Libraries\Api\Models\Behaviors\HasApiCalls;
-use App\Libraries\Api\Models\Behaviors\HasAugmentedModel;
-use App\Libraries\Api\Models\Behaviors\HasRelationships;
+use Aic\Hub\Foundation\Library\Api\Models\ApiCollection as BaseCollection;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasApiCalls;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasAugmentedModel;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasRelationships;
 use ArrayAccess;
 use DateTime;
 use Illuminate\Contracts\Routing\UrlRoutable;

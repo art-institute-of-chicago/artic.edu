@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
 use App\Models\Api\Exhibition;
 use App\Models\Event;
-use Tests\MockApi;
+use Aic\Hub\Foundation\Testing\MockApi;
 
 class HomePageTest extends BaseTestCase
 {
