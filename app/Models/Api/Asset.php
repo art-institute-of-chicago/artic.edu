@@ -3,7 +3,7 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
-use App\Libraries\Api\Builders\ApiModelBuilder;
+use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilder;
 use App\Models\Behaviors\HasMediasApi;
 use App\Helpers\ImageHelpers;
 use Illuminate\Support\Str;

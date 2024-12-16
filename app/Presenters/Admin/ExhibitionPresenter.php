@@ -291,7 +291,7 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
-    protected function augmented()
+    public function augmented()
     {
         return $this->entity->getAugmentedModel() ? 'Yes' : 'No';
     }
