@@ -2,11 +2,11 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 
 class ArtworkType extends BaseApiModel
 {
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/artwork-types',
         'resource' => '/api/v1/artwork-types/{id}',
         'search' => '/api/v1/artwork-types/search',

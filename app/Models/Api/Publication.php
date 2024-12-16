@@ -2,11 +2,11 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 
 class Publication extends BaseApiModel
 {
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/publications',
         'resource' => '/api/v1/publications/{id}',
         'search' => '/api/v1/publications/search'

@@ -45,7 +45,7 @@ trait HandleApiBlocks
                             ) || (
                                 isset($data['thumbnail']) && $data['thumbnail'] === ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100])
                             )) && (
-                                classHasTrait($relatedElement, \App\Models\Behaviors\HasMediasApi::class)
+                                classHasTrait($relatedElement, \Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasMediasApi::class)
                             )
                         ) {
                             $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
@@ -56,7 +56,7 @@ trait HandleApiBlocks
                             $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'augment', [$relatedElement->id]);
                         }
 
-                        if (classHasTrait($relatedElement, \App\Models\Behaviors\HasMediasApi::class)) {
+                        if (classHasTrait($relatedElement, \Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasMediasApi::class)) {
                             $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
                         }
                     }

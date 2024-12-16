@@ -12,6 +12,6 @@ class CollectionHelpers
      */
     public static function collectApi($value = null)
     {
-        return new \App\Libraries\Api\Models\ApiCollection($value);
+        return new \Aic\Hub\Foundation\Library\Api\Models\ApiCollection($value);
     }
 }

@@ -3,6 +3,7 @@
 namespace Database\Factories\Api;
 
 use App\Models\Api\Artwork;
+use Aic\Hub\Foundation\Library\Database\ApiFactory;
 
 class ArtworkFactory extends ApiFactory
 {

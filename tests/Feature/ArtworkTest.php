@@ -6,7 +6,7 @@ use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
 use App\Models\Api\Artwork;
 use App\Models\Article;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\MockApi;
+use Aic\Hub\Foundation\Testing\MockApi;
 
 class ArtworkTest extends BaseTestCase
 {

@@ -2,12 +2,12 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use App\Helpers\StringHelpers;
 
 class Gallery extends BaseApiModel
 {
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/galleries',
         'resource' => '/api/v1/galleries/{id}',
         'search' => '/api/v1/galleries/search',
