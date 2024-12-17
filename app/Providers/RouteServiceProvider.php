@@ -44,9 +44,13 @@ class RouteServiceProvider extends ServiceProvider
             // These routes all receive session state, CSRF protection, etc.
             $allowedDomains = config('app.allowed_domains') ?? [config('app.url')];
             $host = request()->getHttpHost();
-            $domain = config('app.url');
+            $domain = in_array($host, $allowedDomains) ? $host : config('app.url');
             if (filter_var($host, FILTER_VALIDATE_IP) !== false) {
-                $domain = in_array($host, $allowedDomains) ? $host : config('app.url');
+                $interfaces = net_get_interfaces();
+                $ip = FrontendHelpers::ip($interfaces);
+                if ($host == $ip) {
+                    $domain = $host;
+                }
             }
 
             Route::middleware('web')

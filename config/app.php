@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
-use App\Helpers\FrontendHelpers;
-
-$interfaces = net_get_interfaces();
-$ip = FrontendHelpers::ip($interfaces);
 
 return [
 
@@ -57,7 +53,7 @@ return [
     | this list will be redirected to www.
     |
     */
-    'allowed_domains' => array_merge(array_map('trim', explode(',', env('ALLOWED_DOMAINS', env('APP_URL', 'www.artic.edu')))), [$ip]),
+    'allowed_domains' => array_map('trim', explode(',', env('ALLOWED_DOMAINS', env('APP_URL', 'www.artic.edu')))),
 
     /*
     |--------------------------------------------------------------------------
