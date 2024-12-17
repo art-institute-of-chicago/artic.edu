@@ -162,7 +162,7 @@ class Exhibition extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.exhibitions_events.exhibitions.edit', $this->id);
+        return route('twill.exhibitions_events.exhibitions.edit', $this->id);
     }
 
     public function events()

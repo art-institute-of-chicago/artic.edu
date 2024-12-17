@@ -2,13 +2,14 @@
 
 namespace App\Repositories\Behaviors;
 
+use A17\Twill\Repositories\ModuleRepository;
 use ImageService;
 use Illuminate\Support\Str;
 use App\Helpers\UrlHelpers;
 
 trait HandleApiBlocks
 {
-    protected function getBlockBrowsers($block)
+    protected function getBlockBrowsers($block): array
     {
         return collect($block['content']['browsers'])->mapWithKeys(function ($ids, $relation) use ($block) {
             try {
@@ -78,8 +79,10 @@ trait HandleApiBlocks
         })->filter()->toArray();
     }
 
-    protected function getModelRepository($relation, $model = null)
-    {
+    protected function getModelRepository(
+        string $relation,
+        ModuleRepository|string|null $model = null,
+    ): ModuleRepository {
         if (!$model) {
             $model = ucfirst(Str::camel(Str::singular($relation)));
         }
