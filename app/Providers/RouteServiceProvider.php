@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use App\Helpers\FrontendHelpers;
 
 class RouteServiceProvider extends ServiceProvider
 {
