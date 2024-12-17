@@ -21,6 +21,7 @@ class ExperienceImage extends AbstractModel implements Sortable
         'published',
         'position',
         'inline_credits',
+        'image_credits',
         'credits_input',
         'object_id',
         'artist',
