@@ -18,15 +18,7 @@ class SlideMedia extends JsonResource
             'src' => $this->image('experience_image'),
             '__option_credits' => $this->inline_credits === 'on',
             'credits' => [
-                'creditsACP' => $this->artist,
-                'creditsTitle' => $this->credit_title,
-                'creditsDate' => $this->credit_date,
-                'creditsMedium' => $this->medium,
-                'creditsDimensions' => $this->dimensions,
-                'creditsCreditLine' => $this->credit_line,
-                'creditsRefNum' => $this->main_reference_number,
-                'creditsCopyright' => $this->copyright_notice,
-                'type' => $this->credits_input,
+                'image_credits' => $this->image_credits,
             ],
             'altText' => $this->imageAltText('experience_image'),
         ];
