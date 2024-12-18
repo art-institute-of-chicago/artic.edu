@@ -2,11 +2,9 @@
 
 namespace App\Libraries;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use App\Models\ExactTargetList;
-use FuelSdk\ET_Client;
-use FuelSdk\ET_DataExtension_Row;
-use FuelSdk\ET_Subscriber;
 
 class ExactTargetService
 {
@@ -42,14 +40,9 @@ class ExactTargetService
      */
     public function subscribe($alsoRemove = true)
     {
-        $client = $this->getEtClient();
-
-        // Add the user to a data extension
-        $deRow = new ET_DataExtension_Row();
-
-        $deRow->authStub = $client;
-        $deRow->props = [
-            'Email' => $this->email,
+        $accessToken = $this->getAccessToken();
+        $dataExtensionKey = config('exact-target.customer_key');
+        $props = [
             'OptMuseum' => 'True',
         ];
 
@@ -62,65 +55,35 @@ class ExactTargetService
 
             foreach ($allLists as $list) {
                 if (in_array($list, $this->list)) {
-                    $deRow->props[$list] = 'True';
+                    $props[$list] = 'True';
                 } elseif ($alsoRemove) {
-                    $deRow->props[$list] = 'False';
+                    $props[$list] = 'False';
                 }
             }
         }
 
         if ($this->wasFormPrefilled || $this->firstName) {
-            $deRow->props['FirstName'] = $this->firstName;
+            $props['FirstName'] = $this->firstName;
         }
 
         if ($this->wasFormPrefilled || $this->lastName) {
-            $deRow->props['LastName'] = $this->lastName;
+            $props['LastName'] = $this->lastName;
         }
 
-        $deRow->CustomerKey = config('exact-target.customer_key');
-        $deRow->Name = config('exact-target.name');
+        $response = Http::withToken($accessToken)->post(
+            config('exact-target.client.baseUrl') . "hub/v1/dataeventsasync/key:$dataExtensionKey/rowset",
+            [
+                [
+                    'keys' => [
+                        'Email' => $this->email
+                    ],
+                    'values' => $props
+                ]
+            ]
+        );
 
-        $response = $deRow->post();
-
-        // If it fails, try patch
-        if (!$response->status) {
-            $response = $deRow->patch();
-
-            if (!$response->status) {
-                return $response;
-            }
-        }
-
-        // Add the subscriber
-        $subscriber = new ET_Subscriber();
-        $subscriber->authStub = $client;
-        $subscriber->props = [
-            'EmailAddress' => $this->email,
-            'SubscriberKey' => $this->email,
-        ];
-        $response = $subscriber->post();
-
-        if (!$response->status) {
-            $error = $response->results[0]->ErrorMessage ?? '';
-            $status = $response->results[0]->StatusMessage ?? '';
-
-            if (
-                Str::startsWith($error, 'Violation of PRIMARY KEY constraint')
-                || Str::startsWith($status, 'The subscriber is already on the list')
-            ) {
-                // Email has been previously subscribed, so proceed
-            } else {
-                return $response;
-            }
-        }
-
-        // Then patch it with some additional properties
-        $subscriber->props['Status'] = 'Active';
-        $subscriber->Name = 'Museum Business Unit';
-        $response = $subscriber->patch();
-
-        if (!$response->status) {
-            return $response;
+        if ($response->failed()) {
+            return $response->json();
         }
 
         return true;
@@ -131,38 +94,35 @@ class ExactTargetService
      */
     public function unsubscribe()
     {
-        $client = $this->getEtClient();
+        $accessToken = $this->getAccessToken();
+        $dataExtensionKey = config('exact-target.customer_key');
 
         // Delete the user from the data extension
-        $deRow = new ET_DataExtension_Row();
+        $response = Http::withToken($accessToken)->delete(
+            config('exact-target.client.baseUrl') . "hub/v1/dataevents/key:$dataExtensionKey/rowset",
+            [
+                'keys' => [
+                    'Email' => $this->email
+                ]
+            ]
+        );
 
-        $deRow->authStub = $client;
-        $deRow->props = [
-            'Email' => $this->email,
-        ];
-
-        $deRow->CustomerKey = config('exact-target.customer_key');
-        $deRow->Name = config('exact-target.name');
-
-        $response = $deRow->delete();
-
-        if (!$response->status) {
-            return $response;
+        if ($response->failed()) {
+            return $response->json();
         }
 
         // Set the subscriber to Unsubscribed
-        $subscriber = new ET_Subscriber();
-        $subscriber->authStub = $client;
-        $subscriber->props = [
-            'EmailAddress' => $this->email,
-            'SubscriberKey' => $this->email,
-            'Status' => 'Unsubscribed'
-        ];
-        $subscriber->Name = 'Museum Business Unit';
-        $response = $subscriber->patch();
+        $subscriberResponse = Http::withToken($accessToken)->patch(
+            config('exact-target.client.baseUrl') . "contacts/v1/subscribers",
+            [
+                'EmailAddress' => $this->email,
+                'SubscriberKey' => $this->email,
+                'Status' => 'Unsubscribed'
+            ]
+        );
 
-        if (!$response->status) {
-            return $response;
+        if ($subscriberResponse->failed()) {
+            return $subscriberResponse->json();
         }
 
         return true;
@@ -170,69 +130,44 @@ class ExactTargetService
 
     public function get()
     {
-        $client = new ET_Client(false, config('app.debug'), config('exact-target.client'));
+        $accessToken = $this->getAccessToken();
+        $dataExtensionKey = config('exact-target.customer_key');
+        $fields = array_merge([
+            'Email',
+            'FirstName',
+            'LastName',
+        ], ExactTargetList::getList()->keys()->all());
 
-        $deRow = new ET_DataExtension_Row();
-        $deRow->authStub = $client;
-
-        // Select
-        $allLists = ExactTargetList::getList()->keys()->all();
-        $fields = array_merge(
+        $response = Http::withToken($accessToken)->get(
+            config('exact-target.client.baseUrl') . "data/v1/customobjectdata/key:$dataExtensionKey/rowset",
             [
-                'Email',
-                'FirstName',
-                'LastName',
-            ],
-            $allLists
-        );
-
-        $deRow->props = $fields;
-
-        // From (e.g. "All Subscribers Master")
-        $deRow->Name = config('exact-target.customer_key');
-
-        // Where
-        $deRow->filter = [
-            'Property' => 'Email',
-            'SimpleOperator' => 'equals',
-            'Value' => $this->email,
-        ];
-
-        return $deRow->get();
-    }
-
-    protected function getEtClient()
-    {
-        $auth_url = config('exact-target.client.baseAuthUrl');
-        $clientId = config('exact-target.client.clientid');
-        $clientSecret = config('exact-target.client.clientsecret');
-
-        $api = new \GuzzleHttp\Client();
-
-        $result = $api->request(
-            'POST',
-            $auth_url . '/v2/token',
-            [
-                'json' => [
-                    'client_id' => $clientId,
-                    'client_secret' => $clientSecret,
-                    'grant_type' => 'client_credentials',
+                'fields' => implode(',', $fields),
+                'filter' => [
+                    'Property' => 'Email',
+                    'SimpleOperator' => 'equals',
+                    'Value' => $this->email
                 ]
             ]
         );
 
-        $tokenInfo = json_decode($result->getBody()->getContents(), true);
+        return $response->json();
+    }
 
-        return new ET_Client(
-            true,
-            config('app.debug'),
-            array_merge(
-                config('exact-target.client'),
-                [
-                    'authorizationCode' => $tokenInfo['access_token'],
-                    'scope' => $tokenInfo['scope'],
-                ]
-            )
-        );
+    protected function getAccessToken()
+    {
+        $auth_url = config('exact-target.client.baseAuthUrl');
+
+        $response = Http::asForm()->post($auth_url . "v2/token", [
+            'grant_type' => 'client_credentials',
+            'client_id' => config('exact-target.client.clientid'),
+            'client_secret' => config('exact-target.client.clientsecret'),
+        ]);
+
+
+        if ($response->failed()) {
+            throw new \Exception('Unable to retrieve access token');
+        }
+
+        return $response->json()['access_token'];
     }
 }
