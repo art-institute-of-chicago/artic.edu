@@ -15,10 +15,6 @@
             "url": "https://github.com/art-institute-of-chicago/data-hub-foundation.git"
         },
         {
-            "type": "vcs",
-            "url": "https://github.com/axsweet/FuelSDK-PHP.git"
-        },
-        {
             "type": "package",
             "package": {
                 "type": "metapackage",
@@ -61,7 +57,6 @@
         "michelf/php-smartypants": "^1.8",
         "ramsey/uuid": "^4.0",
         "rlanvin/php-rrule": "^2.0",
-        "salesforce-mc/fuel-sdk-php": "dev-master",
         "sendgrid/sendgrid": "^8.1",
         "sentry/sentry-laravel": "^4.9",
         "spatie/calendar-links": "^1.0",
