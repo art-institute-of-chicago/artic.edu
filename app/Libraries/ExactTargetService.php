@@ -111,20 +111,6 @@ class ExactTargetService
             return $response->json();
         }
 
-        // Set the subscriber to Unsubscribed
-        $subscriberResponse = Http::withToken($accessToken)->patch(
-            config('exact-target.client.baseUrl') . "contacts/v1/subscribers",
-            [
-                'EmailAddress' => $this->email,
-                'SubscriberKey' => $this->email,
-                'Status' => 'Unsubscribed'
-            ]
-        );
-
-        if ($subscriberResponse->failed()) {
-            return $subscriberResponse->json();
-        }
-
         return true;
     }
 
