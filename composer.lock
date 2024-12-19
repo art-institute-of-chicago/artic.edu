@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9061b70c83062135f3beada78a896b01",
+    "content-hash": "69dd7545eae675260459358169e381ed",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -6771,154 +6771,6 @@
                 "source": "https://github.com/rlanvin/php-rrule/tree/v2.4.1"
             },
             "time": "2023-06-07T13:15:59+00:00"
-        },
-        {
-            "name": "robrichards/wse-php",
-            "version": "2.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/robrichards/wse-php.git",
-                "reference": "f705f0242ab5f9ea69570955d2ebc64a902b12eb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/robrichards/wse-php/zipball/f705f0242ab5f9ea69570955d2ebc64a902b12eb",
-                "reference": "f705f0242ab5f9ea69570955d2ebc64a902b12eb",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">= 5.3",
-                "robrichards/xmlseclibs": ">=3.0.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "RobRichards\\WsePhp\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Richards",
-                    "homepage": "http://www.cdatazone.org/",
-                    "role": "Main developer"
-                }
-            ],
-            "description": "Libraries for adding WS-* support to ext/soap in PHP.",
-            "homepage": "https://github.com/robrichards/wse-php",
-            "keywords": [
-                "WS-Security",
-                "soap",
-                "ws-addressing"
-            ],
-            "support": {
-                "issues": "https://github.com/robrichards/wse-php/issues",
-                "source": "https://github.com/robrichards/wse-php/tree/master"
-            },
-            "time": "2019-01-03T15:37:08+00:00"
-        },
-        {
-            "name": "robrichards/xmlseclibs",
-            "version": "3.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/robrichards/xmlseclibs.git",
-                "reference": "f8f19e58f26cdb42c54b214ff8a820760292f8df"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/robrichards/xmlseclibs/zipball/f8f19e58f26cdb42c54b214ff8a820760292f8df",
-                "reference": "f8f19e58f26cdb42c54b214ff8a820760292f8df",
-                "shasum": ""
-            },
-            "require": {
-                "ext-openssl": "*",
-                "php": ">= 5.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "RobRichards\\XMLSecLibs\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "A PHP library for XML Security",
-            "homepage": "https://github.com/robrichards/xmlseclibs",
-            "keywords": [
-                "security",
-                "signature",
-                "xml",
-                "xmldsig"
-            ],
-            "support": {
-                "issues": "https://github.com/robrichards/xmlseclibs/issues",
-                "source": "https://github.com/robrichards/xmlseclibs/tree/3.1.1"
-            },
-            "time": "2020-09-05T13:00:25+00:00"
-        },
-        {
-            "name": "salesforce-mc/fuel-sdk-php",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/axsweet/FuelSDK-PHP.git",
-                "reference": "a5be7ca56420b9cbc6114faff4f6d1846e5d9c53"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/axsweet/FuelSDK-PHP/zipball/a5be7ca56420b9cbc6114faff4f6d1846e5d9c53",
-                "reference": "a5be7ca56420b9cbc6114faff4f6d1846e5d9c53",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-openssl": "*",
-                "ext-soap": "*",
-                "firebase/php-jwt": ">=5.0.0",
-                "php": ">=5.6.24",
-                "robrichards/wse-php": "2.0.3"
-            },
-            "require-dev": {
-                "dompdf/dompdf": "0.6",
-                "phpdocumentor/phpdocumentor": "2.8.0",
-                "phpunit/phpunit": ">=5.7.20"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "FuelSdk\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "FuelSdk\\Test\\": "tests/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "Salesforce Marketing Cloud Fuel SDK for PHP",
-            "homepage": "https://developer.salesforce.com/docs/atlas.en-us.mc-sdks.meta/mc-sdks/index-sdk.htm",
-            "keywords": [
-                "exacttarget",
-                "fuel sdk",
-                "fuel-sdk",
-                "marketing cloud",
-                "php sdk",
-                "salesforce",
-                "sdk"
-            ],
-            "support": {
-                "source": "https://github.com/axsweet/FuelSDK-PHP/tree/master"
-            },
-            "time": "2021-10-26T20:46:29+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -14816,14 +14668,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "salesforce-mc/fuel-sdk-php": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.1"
     },
-    "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
