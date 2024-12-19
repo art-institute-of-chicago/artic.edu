@@ -149,7 +149,7 @@ class PressReleasesController extends BaseScopedController
 
     public function show($id)
     {
-        $item = $this->repository->getById((int) $id);
+        $item = $this->repository->published()->findOrFail((int) $id);
 
         $canonicalPath = route('about.press.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
 
