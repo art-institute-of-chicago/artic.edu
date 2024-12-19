@@ -12,6 +12,7 @@ export { default as sharePage } from './sharePage';
 export { default as shareMenu } from './shareMenu';
 export { default as mask } from './mask';
 export { default as pinboard } from './pinboard';
+export { default as gridboard } from './gridboard';
 export { default as bannerParallax } from './bannerParallax';
 export { default as imageInfo } from './imageInfo';
 export { default as headerGallery } from './headerGallery';

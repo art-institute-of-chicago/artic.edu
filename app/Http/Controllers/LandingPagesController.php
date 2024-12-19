@@ -6,6 +6,7 @@ use App\Models\Admission;
 use App\Models\Hour;
 use App\Models\Lightbox;
 use App\Models\LandingPage;
+use App\Models\PrintedPublication;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -268,7 +269,7 @@ class LandingPagesController extends FrontController
                             'label' => 'Research',
                             'active' => true,
                         ],
-                    ],
+                    ]
                 ];
                 break;
 
@@ -287,6 +288,12 @@ class LandingPagesController extends FrontController
                 $viewData = [
                     'hours' => $hours,
                     'subnav' => collect(['Top Stories'])->concat($blockHeadings)->all(),
+                ];
+                break;
+
+            case $types->search('Publications'):
+                $viewData = [
+                    'publications' => PrintedPublication::all(),
                 ];
                 break;
 
