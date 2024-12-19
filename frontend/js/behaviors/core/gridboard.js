@@ -1,15 +1,12 @@
-import { forEach, triggerCustomEvent } from '@area17/a17-helpers';
-import { mediaQuery } from '../../functions/core';
+import { forEach, triggerCustomEvent, queryStringHandler, getUrlParameterByName } from '@area17/a17-helpers';
 
 const gridboard = function(container) {
     let colCounts = {};
     let colCount = 0;
-    let colCurrent = 0;
     let cols;
     let active = false;
-    let maintainOrder = false;
-    let primeLayout = container.className;
-    let optionLayout = container.getAttribute('data-gridboard-option-layout');
+    let btnRandom = container.querySelector('.o-gridboard__btn-random');
+    let btnPages = Array.from(container.querySelectorAll('.o-gridboard__btn-page'));
     const re = /([0-9])-col@(\w*)/gi;
 
     function _getColCounts(classes) {
@@ -19,14 +16,6 @@ const gridboard = function(container) {
         }
     }
 
-    function _minOfArray(array) {
-        return Math.min.apply(Math, array);
-    }
-
-    function _maxOfArray(array) {
-        return Math.max.apply(Math, array);
-    }
-
     function _getMarginTop(node) {
         let style = window.getComputedStyle(node);
         return parseInt(style.getPropertyValue('margin-top'));
@@ -34,31 +23,36 @@ const gridboard = function(container) {
 
     function _unpositionBlocks() {
         if (active) {
-            forEach(container.children, function(index, block) {
+            forEach(container.getElementsByClassName('o-gridboard')[0].children, function(index, block) {
                 block.style.left = '';
                 block.style.top = '';
                 block.style.height = '';
                 block.classList.remove('s-positioned');
             });
-            container.style.height = '';
+            container.getElementsByClassName('o-gridboard')[0].style.height = '';
         }
     }
 
     function _positionBlocks(resetPreviousPositions) {
-        let blocks = container.children;
+        let allBlocks = container.getElementsByClassName('o-gridboard')[0].children;
+
+        let blocks = Array.from(allBlocks).filter(child => {
+          return window.getComputedStyle(child).display !== 'none';
+        });
+
         if (blocks.length === 0) {
             return;
         }
 
         // Get the top margin of the first block
-        let firstChild = container.firstElementChild;
+        let firstChild = blocks[0];
         firstChild.classList.add('s-repositioning');
         let marginTop = _getMarginTop(firstChild);
+        marginTop = typeof marginTop === 'number' ? marginTop : 60; // Default margin top to 60px if calculation fails
         firstChild.classList.remove('s-repositioning');
 
         let colWidth = firstChild.offsetWidth;
-        let marginLeft = (container.offsetWidth - colWidth * colCount) / (colCount - 1);
-        marginTop = typeof marginTop === 'number' ? marginTop : 60; // Default margin top to 60px if calculation fails
+        let marginLeft = (container.getElementsByClassName('o-gridboard')[0].offsetWidth - colWidth * colCount) / (colCount - 1);
 
         let rows = [];
         let currentRow = [];
@@ -70,11 +64,7 @@ const gridboard = function(container) {
                 !block.classList.contains('s-positioned') ||
                 resetPreviousPositions
             ) {
-                block.style.height = 'auto';
-                block.style.top = "auto";
-                block.style.left = "auto";
-
-                let colIndex = index % colCount;
+              let colIndex = index % colCount;
                 let rowIndex = Math.floor(index / colCount);
 
                 if (rowIndex !== rows.length) {
@@ -86,9 +76,17 @@ const gridboard = function(container) {
                 currentRow.push(block);
 
                 // Calculate the top position based on the tallest element in the previous row
-                let topPosition = rowIndex === 0 ? 0 : rows[rowIndex - 1].reduce((maxHeight, el) => {
-                  return Math.max(maxHeight, el.offsetTop + el.offsetHeight);
-                }, 0) + marginTop;
+                let prevTop = 0;
+                let prevHeight = 0
+
+                if (rowIndex !== 0) {
+                  prevTop = rows[rowIndex - 1][0].offsetTop;
+                  prevHeight = rows[rowIndex - 1].reduce((maxHeight, el) => {
+                    return Math.max(maxHeight, el.offsetHeight);
+                  }, 0);
+                }
+                let topPosition = prevHeight + prevTop + marginTop;
+
 
                 // Set the `top` and `left` positions for the block
                 let leftPosition = colIndex * (colWidth + marginLeft);
@@ -98,24 +96,12 @@ const gridboard = function(container) {
 
                 currentRowHeight = Math.max(currentRowHeight, block.offsetHeight);
 
-                // Determine and set the height of the block
-                let computedStyle = window.getComputedStyle(block);
-                let paddingTop = parseFloat(computedStyle.paddingTop) || 0;
-                let paddingBottom =
-                    parseFloat(computedStyle.paddingBottom) || 0;
-
-                let newHeight =
-                    block.offsetHeight + paddingTop + paddingBottom + 12;
-
-                block.style.height = Math.round(newHeight) + 'px';
+                container.getElementsByClassName('o-gridboard')[0].style.height = (topPosition + currentRowHeight) + 'px';
 
                 // Add the 's-positioned' class after a delay to mark it as positioned
                 setTimeout(function() {
                     block.classList.add('s-positioned');
                 }, 250);
-
-                // Update the overall container height to the height of the tallest column
-                container.style.height = (topPosition + newHeight) + 'px';
 
                 // Trigger a custom event to signal that the page has been updated
                 triggerCustomEvent(document, 'page:updated');
@@ -144,73 +130,93 @@ const gridboard = function(container) {
 
     function _resized() {
         setTimeout(function() {
-            _getColCounts(
-                document.documentElement.classList.contains(
-                    's-collection-filters-active',
-                ) && optionLayout
-                    ? optionLayout
-                    : container.className,
-            );
+            _getColCounts(container.getElementsByClassName('o-gridboard')[0].className);
             _setupBlocks();
         }, 32);
     }
 
-    function _showFilters() {
-        if (mediaQuery('medium+')) {
-            setTimeout(function() {
-                _getColCounts(optionLayout);
-                _setupBlocks();
-            }, 432);
+    function _executeRandom() {
+      let blocks = container.getElementsByClassName('o-gridboard')[0].children;
+      if (blocks.length === 0) {
+          return;
+      }
+
+      let shown = 0;
+
+      // Loop through each block and position them based on the column layout
+      forEach(blocks, function(index, block) {
+        var random_boolean = Math.random() < 0.5;
+        if (random_boolean && shown < 50) {
+          block.style.display = 'flex';
+          shown++;
         }
+        else {
+          block.style.display = 'none';
+        }
+      });
+      setTimeout(function() {
+        _setupBlocks();
+        triggerCustomEvent(document, 'page:updated');
+      }, 32);
     }
 
-    function _hideFilters() {
-        if (mediaQuery('medium+')) {
-            setTimeout(function() {
-                _getColCounts(container.className);
-                _setupBlocks();
-            }, 432);
+    function _executePage(page) {
+      let blocks = container.getElementsByClassName('o-gridboard')[0].children;
+      if (blocks.length === 0) {
+          return;
+      }
+
+      // Loop through each block and position them based on the column layout
+      forEach(blocks, function(index, block) {
+        if ((Math.floor(index / 50) + 1) == page) {
+          block.style.display = 'flex';
         }
+        else {
+          block.style.display = 'none';
+        }
+      });
+      setTimeout(function() {
+        _setupBlocks();
+        triggerCustomEvent(document, 'page:updated', {'page': page});
+
+        window.history.pushState("", queryStringHandler.updateParameter(window.location.href, 'page', page));
+      }, 32);
     }
 
     function _init() {
-        maintainOrder =
-            container.getAttribute('data-gridboard-maintain-order') === 'true';
-        _getColCounts(
-            document.documentElement.classList.contains(
-                's-collection-filters-active',
-            ) && optionLayout
-                ? optionLayout
-                : container.className,
-        );
-        setTimeout(function() {
-            _setupBlocks();
-        }, 32); // Add a slight delay for the initial setup similar to how resize behaves
-        container.addEventListener(
+        _getColCounts(container.getElementsByClassName('o-gridboard')[0].className);
+
+        let page = getUrlParameterByName('page', window.location.search);
+
+        if (page) {
+          _executePage(page);
+        }
+        else {
+            setTimeout(function() {
+              _setupBlocks();
+          }, 32); // Add a slight delay for the initial setup similar to how resize behaves
+        }
+        container.getElementsByClassName('o-gridboard')[0].addEventListener(
             'gridboard:contentAdded',
             _contentAdded,
             false,
         );
         document.addEventListener('resized', _resized, false);
         document.addEventListener('ajaxPageLoad:complete', _resized, false);
-        document.addEventListener(
-            'collectionFilters:open',
-            _showFilters,
-            false,
-        );
-        document.addEventListener(
-            'collectionFilters:close',
-            _hideFilters,
-            false,
-        );
+        btnRandom.addEventListener('click', _executeRandom);
+        forEach(btnPages, function(index, btn) {
+          btn.addEventListener('click', _executePage.bind(this, btn.innerText), false);
+        });
     }
 
     this.destroy = function() {
         container.removeEventListener('gridboard:contentAdded', _contentAdded);
         document.removeEventListener('resized', _resized);
         document.removeEventListener('ajaxPageLoad:complete', _resized);
-        document.removeEventListener('collectionFilters:open', _showFilters);
-        document.removeEventListener('collectionFilters:close', _hideFilters);
+        btnRandom.removeEventListener('click', _executeRandom);
+        forEach(btnPages, function(index, btn) {
+          btn.removeEventListener('click', _executePage.bind(this, btn.innerText), false);
+        });
         A17.Helpers.purgeProperties(this);
     };
 
