@@ -32,7 +32,7 @@
             ],
             [
                 'label' => 'Digital Publication Article',
-                'value' => moduleRoute('digitalPublications.articles', 'collection.articles_publications', 'browser'),
+                'value' => moduleRoute('digitalPublications.articles', 'collection.articles_publications', 'browserbrowser'),
             ],
             [
                 'label' => 'Video',
