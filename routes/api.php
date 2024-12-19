@@ -21,7 +21,7 @@ use App\Http\Controllers\API\HoursController;
 use App\Http\Controllers\API\InteractiveFeaturesController;
 use App\Http\Controllers\API\LandingPagesController;
 use App\Http\Controllers\API\LocationsController;
-use App\http\Controllers\API\PageFeaturesController;
+use App\Http\Controllers\API\PageFeaturesController;
 use App\Http\Controllers\API\PressReleasesController;
 use App\Http\Controllers\API\PrintedPublicationsController;
 use App\Http\Controllers\API\SponsorsController;
