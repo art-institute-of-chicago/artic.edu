@@ -60,45 +60,13 @@
         ])
     @endcomponent
 
-    @formField('input', [
-        'name' => 'artist',
-        'label' => 'Artist',
-        'maxlength' => 150,
-    ])
-    @formField('input', [
-        'name' => 'credit_title',
-        'label' => 'Title',
-        'maxlength' => 150,
-    ])
-    @formField('input', [
-        'name' => 'credit_date',
-        'label' => 'Date',
-        'maxlength' => 150,
-    ])
-    @formField('input', [
-        'name' => 'medium',
-        'label' => 'Medium',
-        'maxlength' => 150,
-    ])
-    @formField('input', [
-        'name' => 'dimensions',
-        'label' => 'Dimensions',
-        'maxlength' => 150,
-    ])
-    @formField('input', [
-        'name' => 'credit_line',
-        'label' => 'Credit Line',
-        'maxlength' => 150,
-    ])
-    @formField('input', [
-        'name' => 'main_reference_number',
-        'label' => 'Main Reference Number',
-        'maxlength' => 150,
-    ])
-    @formField('input', [
-        'name' => 'copyright_notice',
-        'label' => 'Copyright Notice',
-        'maxlength' => 150,
+    @formField('wysiwyg', [
+        'type' => 'textarea',
+        'name' => 'image_credits',
+        'label' => 'Image credits',
+        'toolbarOptions' => [
+            'italic', 'bold'
+        ],
     ])
 
 @endcomponent
