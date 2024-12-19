@@ -1,0 +1,53 @@
+name: Lighthouse
+on: [push]
+jobs:
+  lhci:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: '--openssl-legacy-provider'
+      CI: 1
+    steps:
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+            php-version: 8.1
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+            node-version: lts/iron
+      - name: Install Postgres
+        id: postgres
+        uses: ikalnytskyi/action-setup-postgres@v4
+        with:
+            username: homestead
+            password: secret
+            database: testing
+            port: 5432
+      - name: Install Prince
+        run: |
+            TEMP_PRINCE="$(mktemp)"
+            sudo apt-get update; sudo apt-get install gdebi -y
+            wget https://www.princexml.com/download/prince_15.3-1_ubuntu22.04_amd64.deb -O "${TEMP_PRINCE}"
+            sudo gdebi "${TEMP_PRINCE}" --n
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install PHP dependencies
+        run: composer install --no-interaction --no-progress --no-scripts
+      # Remove the closer-look dependency. We will not need it for testing
+      # and, since it is a private package, it requires setting up an SSH
+      # key in the test runner, which is convoluted.
+      - name: Remove private NPM package
+        run: npm uninstall closer-look --save
+      - name: Migrate database
+        run: php artisan migrate --env=testing
+      - name: Generate key
+        run: php artisan key:generate --env=testing
+      - name: Build Twill assets
+        run: php artisan twill:build --env=testing
+      - name: Build Javascript assets
+        run: npm run build:dev
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.14.x
+          lhci autorun
