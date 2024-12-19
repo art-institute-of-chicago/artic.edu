@@ -1,6 +1,7 @@
 @php
     use App\Helpers\GtmHelpers;
 @endphp
+
 @foreach ($publications as $item)
     @component('components.molecules._m-listing----publication')
         {{-- @slot('variation', 'o-pinboard__item') --}}
