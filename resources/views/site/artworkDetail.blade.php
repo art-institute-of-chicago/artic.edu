@@ -112,7 +112,7 @@
       <div class="o-article__related{{ (empty($item->description) or $item->description === '') ? ' o-article__related--no-description' : '' }}">
         @component('site.shared._loadRelatedSidebar')
             @slot('item', $item)
-        @endcomponent      
+        @endcomponent
     </div>
   @endif
 
@@ -148,7 +148,7 @@
 
     @if ($exploreFurtherCollectionUrl)
         @component('components.molecules._m-links-bar')
-            @slot('variation', 'm-links-bar--buttons')
+            @slot('variation', 'm-links-bar--   s')
             @slot('linksPrimary', [
                 [
                     'label' => 'See more results',
