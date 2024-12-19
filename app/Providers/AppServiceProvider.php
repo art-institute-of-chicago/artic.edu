@@ -160,15 +160,16 @@ class AppServiceProvider extends ServiceProvider
             $view->with(\Cache::remember('navArray', 3600, function () {
                 return [
                     '_pages' => [
-                        'visit' => route('pages.slug', ['slug' => 'visit']),
-                        'hours' => route('pages.slug', ['slug' => 'visit']) . '#hours',
-                        'directions' => route('pages.slug', ['slug' => 'visit']) . '#directions',
+                        'visit' => '/visit',
+                        'hours' => '/visit' . '#hours',
+                        'directions' => '/visit' . '#directions',
                         'buy' => 'https://sales.artic.edu/admissions',
                         'become-a-member' => 'https://sales.artic.edu/memberships',
                         'shop' => 'https://shop.artic.edu/',
-                        'collection' => route('collection'),
-                        'exhibitions' => route('exhibitions'),
-                        'events' => route('events'), 'about-us' => '/about-us',
+                        'collection' => '/collection',
+                        'exhibitions' => '/exhibitions',
+                        'events' => '/events',
+                        'about-us' => '/about-us',
                         'about-us-mission-and-history' => '/about-us/mission-and-history',
                         'about-us-leadership' => '/about-us/leadership',
                         'about-us-departments' => '/about-us/departments',
@@ -188,7 +189,7 @@ class AppServiceProvider extends ServiceProvider
                         'follow-twitter' => 'https://twitter.com/artinstitutechi',
                         'follow-instagram' => 'https://www.instagram.com/artinstitutechi/',
                         'follow-youtube' => 'https://www.youtube.com/user/ArtInstituteChicago',
-                        'legal-articles' => route('articles'),
+                        'legal-articles' => '/articles',
                         'legal-employment' => '/employment',
                         'legal-venue-rental' => '/venue-rental',
                         'legal-contact' => '/contact', 'legal-press' => '/press',
@@ -202,19 +203,19 @@ class AppServiceProvider extends ServiceProvider
                             'description' => 'Find all the information you need&mdash;plus helpful tips&mdash;to plan your visit',
                             'cta' => 'Start planning',
                             'image' => 'https://artic-web.imgix.net/b55a24a5-ab1c-453e-9ecd-e30ee5473f6e/navigation-thumbnail-visit.jpg',
-                            'url' => route('pages.slug', ['slug' => 'visit']),
+                            'url' => '/visit',
                             'children' => [
                                 [
                                     'name' => 'Hours',
-                                    'url' => route('pages.slug', ['slug' => 'visit']) . '#hours',
+                                    'url' => '/visit#hours',
                                 ],
                                 [
                                     'name' => 'Admission',
-                                    'url' => route('pages.slug', ['slug' => 'visit']) . '#admission',
+                                    'url' => '/visit#admission',
                                 ],
                                 [
                                     'name' => 'Plan Your Visit',
-                                    'url' => route('pages.slug', ['slug' => 'visit']) . '#plan-your-visit',
+                                    'url' => '/visit#plan-your-visit',
                                     'children' => [
                                         [
                                             'name' => 'Museum Map',
@@ -222,15 +223,15 @@ class AppServiceProvider extends ServiceProvider
                                         ],
                                         [
                                             'name' => 'Free Daily Tours',
-                                            'url' => route('events', ['audience' => 3, 'type' => 6]),
+                                            'url' => '/events?type=6&audience=3',
                                         ],
                                         [
                                             'name' => 'My Museum Tour',
-                                            'url' => route('pages.slug', ['slug' => 'my-museum-tour']),
+                                            'url' => '/my-museum-tour',
                                         ],
                                         [
                                             'name' => 'What to See in an Hour',
-                                            'url' => route('highlights.show', ['id' => 3, 'slug' => 'what-to-see-in-an-hour']),
+                                            'url' => '/highlights/3/what-to-see-in-an-hour',
                                         ],
                                         [
                                             'name' => 'Shopping and Dining',
@@ -244,7 +245,7 @@ class AppServiceProvider extends ServiceProvider
                                 ],
                                 [
                                     'name' => 'Who&apos;s Visiting?',
-                                    'url' => route('pages.slug', ['slug' => 'visit']) . '#whos-visiting',
+                                    'url' => '/visit' . '#whos-visiting',
                                     'children' => [
                                         [
                                             'name' => 'First-Time Visitors',
@@ -284,20 +285,20 @@ class AppServiceProvider extends ServiceProvider
                         ],
                         [
                             'name' => 'Exhibitions',
-                            'url' => route('exhibitions'),
+                            'url' => '/exhibitions',
                             'class' => 'exhibitions',
                             'children' => [
                                 [
                                     'name' => 'Current',
-                                    'url' => route('exhibitions'),
+                                    'url' => '/exhibitions',
                                 ],
                                 [
                                     'name' => 'Upcoming',
-                                    'url' => route('exhibitions.upcoming'),
+                                    'url' => '/exhibitions/upcoming',
                                 ],
                                 [
                                     'name' => 'Archive',
-                                    'url' => route('exhibitions.history'),
+                                    'url' => '/exhibitions/history',
                                 ],
                             ],
                         ],
@@ -306,19 +307,19 @@ class AppServiceProvider extends ServiceProvider
                             'description' => 'Explore the works in our collection and delve deeper into their stories.',
                             'cta' => 'Start your discovery',
                             'image' => 'https://artic-web.imgix.net/fd36787d-a4f7-480c-8e34-11115a9d240a/navigation-thumbnail-art-and-artists.jpg',
-                            'url' => route('collection'),
+                            'url' => '/collection',
                             'children' => [
                                 [
                                     'name' => 'Artworks',
-                                    'url' => route('collection'),
+                                    'url' => '/collection',
                                 ],
                                 [
                                     'name' => 'Articles &amp; Videos',
-                                    'url' => route('pages.slug', ['slug' => 'articles-and-videos']),
+                                    'url' => '/articles-and-videos',
                                 ],
                                 [
                                     'name' => 'Research',
-                                    'url' => route('collection.research_resources'),
+                                    'url' => '/collection/research_resources',
                                     'children' => [
                                         [
                                             'name' => 'Library',
@@ -340,15 +341,15 @@ class AppServiceProvider extends ServiceProvider
                                 ],
                                 [
                                     'name' => 'Publications',
-                                    'url' => route('articles_publications'),
+                                    'url' => '/articles_publications',
                                     'children' => [
                                         [
                                             'name' => 'Print Catalogues',
-                                            'url' => route('collection.publications.printed-publications'),
+                                            'url' => '/print-publications',
                                         ],
                                         [
                                             'name' => 'Digital Publications',
-                                            'url' => route('collection.publications.digital-publications'),
+                                            'url' => '/digital-publications',
                                         ],
                                     ],
                                 ],
@@ -359,27 +360,27 @@ class AppServiceProvider extends ServiceProvider
                             'description' => 'Join us for a wide range of programs&mdash;there&apos;s something for visitors of all ages.',
                             'cta' => 'Check out the calendar',
                             'image' => 'https://artic-web.imgix.net/d335c986-7075-4753-a84f-9cb11876ac77/navigation-thumbnail-events.jpg',
-                            'url' => route('events'),
+                            'url' => '/events',
                             'children' => [
                                 [
                                     'name' => 'Calendar',
-                                    'url' => route('events'),
+                                    'url' => '/events',
                                 ],
                                 [
                                     'name' => 'Daily Tours',
-                                    'url' => route('events', ['type' => 6]),
+                                    'url' => '/events?type=6',
                                 ],
                                 [
                                     'name' => 'Talks',
-                                    'url' => route('events', ['type' => 5]),
+                                    'url' => '/events?type=5',
                                 ],
                                 [
                                     'name' => 'Art Making',
-                                    'url' => route('events', ['type' => 1]),
+                                    'url' => '/events?type=1',
                                 ],
                                 [
                                     'name' => 'Member Programs',
-                                    'url' => route('events', ['audience' => 2]),
+                                    'url' => '/events?audience=2',
                                 ],
                             ],
                         ],
@@ -407,7 +408,7 @@ class AppServiceProvider extends ServiceProvider
                         [
                             'name' => 'Visit',
                             'class' => 'u-hide@small+',
-                            'url' => route('pages.slug', ['slug' => 'visit']),
+                            'url' => '/visit',
                         ],
                     ],
                 ];
