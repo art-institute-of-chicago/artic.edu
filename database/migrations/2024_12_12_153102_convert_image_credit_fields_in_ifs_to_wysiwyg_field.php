@@ -40,7 +40,7 @@ return new class extends Migration
                 $parts[] = "<p>{$date}</p>";
             }
             if ($medium) {
-                $parts[] = "<p>{$medium}</p><";
+                $parts[] = "<p>{$medium}</p>";
             }
             if ($dimensions) {
                 $parts[] = "<p>{$dimensions}</p>";
