@@ -31,22 +31,22 @@ return new class extends Migration
             $parts = [];
 
             if ($artist) {
-                $parts[] = "<p>{$artist}</p><br class=\"softbreak\">";
+                $parts[] = "<p>{$artist}</p>";
             }
             if ($title) {
-                $parts[] = "<p>{$title}</p><br class=\"softbreak\">";
+                $parts[] = "<p>{$title}</p>";
             }
             if ($date) {
-                $parts[] = "<p>{$date}</p><br class=\"softbreak\">";
+                $parts[] = "<p>{$date}</p>";
             }
             if ($medium) {
-                $parts[] = "<p>{$medium}</p><br class=\"softbreak\">";
+                $parts[] = "<p>{$medium}</p><";
             }
             if ($dimensions) {
-                $parts[] = "<p>{$dimensions}</p><br class=\"softbreak\">";
+                $parts[] = "<p>{$dimensions}</p>";
             }
             if ($referenceNumber) {
-                $parts[] = "<p>{$referenceNumber}</p><br class=\"softbreak\">";
+                $parts[] = "<p>{$referenceNumber}</p>";
             }
 
             $imageCredit = !empty($parts) ? implode('', $parts) : null;
