@@ -125,14 +125,10 @@ class ExactTargetService
         ], ExactTargetList::getList()->keys()->all());
 
         $response = Http::withToken($accessToken)->get(
-            config('exact-target.client.baseUrl') . "data/v1/customobjectdata/key:$dataExtensionKey/rowset",
+            config('exact-target.client.baseUrl') . "data/v1/customobjectdata/key/$dataExtensionKey/rowset",
             [
-                'fields' => implode(',', $fields),
-                'filter' => [
-                    'Property' => 'Email',
-                    'SimpleOperator' => 'equals',
-                    'Value' => $this->email
-                ]
+                '$fields' => implode(',', $fields),
+                '$filter' => "\"Email\"='" . $this->email . "'",
             ]
         );
 
