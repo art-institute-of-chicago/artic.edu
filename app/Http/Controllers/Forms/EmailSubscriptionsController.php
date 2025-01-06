@@ -25,29 +25,32 @@ class EmailSubscriptionsController extends FormController
             $exactTarget = new ExactTargetService($email);
             $response = $exactTarget->get();
 
-            if ($response->status && $response->code == 200 && count($response->results)) {
+            if (isset($response['items']) && count($response['items'])) {
                 // When a new property gets added to the data extension,
                 // even if it is given a default value, existing records
                 // will not be updated with that value. We need to assume
                 // some true/false defaults here.
-                foreach ($response->results[0]->Properties->Property as $item) {
-                    switch ($item->Name) {
-                        case 'Email':
-                            $this->old->email = $item->Value;
+                foreach ($response['items'][0]['keys'] as $key => $value) {
+                    switch ($key) {
+                        case 'email':
+                            $this->old->email = $value;
                             break;
-                        case 'FirstName':
-                            $this->old->first_name = $item->Value;
+                    }
+                }
+                foreach ($response['items'][0]['values'] as $key => $value) {
+                    switch ($key) {
+                        case 'firstname':
+                            $this->old->first_name = $value;
                             break;
-                        case 'LastName':
-                            $this->old->last_name = $item->Value;
+                        case 'lastname':
+                            $this->old->last_name = $value;
                             break;
-                        case 'OptMuseum':
-                            $this->old->OptMuseum = empty($item->Value)
-                                || strtolower($item->Value) == 'true';
-                            break;
-                        default:
-                            $this->old->{$item->Name} = !empty($item->Value)
-                                && strtolower($item->Value) == 'true';
+                    }
+                }
+                foreach (ExactTargetList::getList() as $sub => $name) {
+                    if (isset($response['items'][0]['values'][Str::lower($sub)])) {
+                        $value = $response['items'][0]['values'][Str::lower($sub)];
+                        $this->old->{$sub} = !empty($value) && strtolower($value) == 'true';
                     }
                 }
             } else {
@@ -396,7 +399,7 @@ class EmailSubscriptionsController extends FormController
     {
         return trim(openssl_decrypt(
             base64_decode($encryptedEmail),
-            'des-ecb',
+            'des-ede3-ecb',
             hex2bin(config('exact-target.encryption_key')),
             OPENSSL_ZERO_PADDING,
             ''
