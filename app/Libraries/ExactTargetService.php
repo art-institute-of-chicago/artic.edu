@@ -79,7 +79,8 @@ class ExactTargetService
         return $this->submitSubscribe($props);
     }
 
-    private function submitSubscribe($props = []) {
+    private function submitSubscribe($props = [])
+    {
         $accessToken = $this->getAccessToken();
         $dataExtensionKey = config('exact-target.customer_key');
 
