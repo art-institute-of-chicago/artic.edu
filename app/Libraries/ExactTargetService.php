@@ -40,8 +40,6 @@ class ExactTargetService
      */
     public function subscribe($alsoRemove = true)
     {
-        $accessToken = $this->getAccessToken();
-        $dataExtensionKey = config('exact-target.customer_key');
         $props = [
             'OptMuseum' => 'True',
         ];
@@ -54,13 +52,37 @@ class ExactTargetService
             $allLists = ExactTargetList::getList()->keys()->all();
 
             foreach ($allLists as $list) {
-                if (in_array($list, $this->list)) {
+                if (in_array($list, $this->list) || $list == 'OptMuseum') {
                     $props[$list] = 'True';
                 } elseif ($alsoRemove) {
                     $props[$list] = 'False';
                 }
             }
         }
+
+        return $this->submitSubscribe($props);
+    }
+
+    /**
+     * WEB-2401: Only use this function for `unsubscribeFromAll`, not partial.
+     */
+    public function unsubscribe()
+    {
+        $allLists = ExactTargetList::getList()->keys()->all();
+
+        // Set all 'Opt' fields to False
+        $props = [];
+        foreach ($allLists as $list) {
+            $props[$list] = 'False';
+        }
+
+        return $this->submitSubscribe($props);
+    }
+
+    private function submitSubscribe($props = [])
+    {
+        $accessToken = $this->getAccessToken();
+        $dataExtensionKey = config('exact-target.customer_key');
 
         if ($this->wasFormPrefilled || $this->firstName) {
             $props['FirstName'] = $this->firstName;
@@ -89,31 +111,6 @@ class ExactTargetService
         return true;
     }
 
-    /**
-     * WEB-2401: Only use this function for `unsubscribeFromAll`, not partial.
-     */
-    public function unsubscribe()
-    {
-        $accessToken = $this->getAccessToken();
-        $dataExtensionKey = config('exact-target.customer_key');
-
-        // Delete the user from the data extension
-        $response = Http::withToken($accessToken)->delete(
-            config('exact-target.client.baseUrl') . "hub/v1/dataevents/key:$dataExtensionKey/rowset",
-            [
-                'keys' => [
-                    'Email' => $this->email
-                ]
-            ]
-        );
-
-        if ($response->failed()) {
-            return $response->json();
-        }
-
-        return true;
-    }
-
     public function get()
     {
         $accessToken = $this->getAccessToken();
@@ -125,14 +122,10 @@ class ExactTargetService
         ], ExactTargetList::getList()->keys()->all());
 
         $response = Http::withToken($accessToken)->get(
-            config('exact-target.client.baseUrl') . "data/v1/customobjectdata/key:$dataExtensionKey/rowset",
+            config('exact-target.client.baseUrl') . "data/v1/customobjectdata/key/$dataExtensionKey/rowset",
             [
-                'fields' => implode(',', $fields),
-                'filter' => [
-                    'Property' => 'Email',
-                    'SimpleOperator' => 'equals',
-                    'Value' => $this->email
-                ]
+                '$fields' => implode(',', $fields),
+                '$filter' => "\"Email\"='" . $this->email . "'",
             ]
         );
 
