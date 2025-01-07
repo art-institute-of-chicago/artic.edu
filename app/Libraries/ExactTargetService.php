@@ -96,13 +96,31 @@ class ExactTargetService
     {
         $accessToken = $this->getAccessToken();
         $dataExtensionKey = config('exact-target.customer_key');
+        $allLists = ExactTargetList::getList()->keys()->all();
 
-        // Delete the user from the data extension
-        $response = Http::withToken($accessToken)->delete(
-            config('exact-target.client.baseUrl') . "hub/v1/dataevents/key:$dataExtensionKey/rowset",
+        // Set all 'Opt' fields to False
+        $props = [];
+        foreach ($allLists as $list) {
+            $props[$list] = 'False';
+        }
+
+
+        if ($this->wasFormPrefilled || $this->firstName) {
+            $props['FirstName'] = $this->firstName;
+        }
+
+        if ($this->wasFormPrefilled || $this->lastName) {
+            $props['LastName'] = $this->lastName;
+        }
+
+        $response = Http::withToken($accessToken)->post(
+            config('exact-target.client.baseUrl') . "hub/v1/dataeventsasync/key:$dataExtensionKey/rowset",
             [
-                'keys' => [
-                    'Email' => $this->email
+                [
+                    'keys' => [
+                        'Email' => $this->email
+                    ],
+                    'values' => $props
                 ]
             ]
         );
