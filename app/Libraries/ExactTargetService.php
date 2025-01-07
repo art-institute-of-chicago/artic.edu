@@ -40,8 +40,6 @@ class ExactTargetService
      */
     public function subscribe($alsoRemove = true)
     {
-        $accessToken = $this->getAccessToken();
-        $dataExtensionKey = config('exact-target.customer_key');
         $props = [
             'OptMuseum' => 'True',
         ];
@@ -54,7 +52,7 @@ class ExactTargetService
             $allLists = ExactTargetList::getList()->keys()->all();
 
             foreach ($allLists as $list) {
-                if (in_array($list, $this->list)) {
+                if (in_array($list, $this->list) || $list == 'OptMuseum') {
                     $props[$list] = 'True';
                 } elseif ($alsoRemove) {
                     $props[$list] = 'False';
@@ -62,31 +60,7 @@ class ExactTargetService
             }
         }
 
-        if ($this->wasFormPrefilled || $this->firstName) {
-            $props['FirstName'] = $this->firstName;
-        }
-
-        if ($this->wasFormPrefilled || $this->lastName) {
-            $props['LastName'] = $this->lastName;
-        }
-
-        $response = Http::withToken($accessToken)->post(
-            config('exact-target.client.baseUrl') . "hub/v1/dataeventsasync/key:$dataExtensionKey/rowset",
-            [
-                [
-                    'keys' => [
-                        'Email' => $this->email
-                    ],
-                    'values' => $props
-                ]
-            ]
-        );
-
-        if ($response->failed()) {
-            return $response->json();
-        }
-
-        return true;
+        return $this->submitSubscribe($props);
     }
 
     /**
@@ -94,8 +68,6 @@ class ExactTargetService
      */
     public function unsubscribe()
     {
-        $accessToken = $this->getAccessToken();
-        $dataExtensionKey = config('exact-target.customer_key');
         $allLists = ExactTargetList::getList()->keys()->all();
 
         // Set all 'Opt' fields to False
@@ -104,6 +76,12 @@ class ExactTargetService
             $props[$list] = 'False';
         }
 
+        return $this->submitSubscribe($props);
+    }
+
+    private function submitSubscribe($props = []) {
+        $accessToken = $this->getAccessToken();
+        $dataExtensionKey = config('exact-target.customer_key');
 
         if ($this->wasFormPrefilled || $this->firstName) {
             $props['FirstName'] = $this->firstName;
