@@ -6,11 +6,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
-        $types = array_map(fn($enum) => $enum->value, DigitalPublicationArticleType::cases());
+        $types = array_map(fn ($enum) => $enum->value, DigitalPublicationArticleType::cases());
         Schema::table('digital_publication_articles', function (Blueprint $table) use ($types) {
             $table->enum('article_type', $types)->default('text');
         });
