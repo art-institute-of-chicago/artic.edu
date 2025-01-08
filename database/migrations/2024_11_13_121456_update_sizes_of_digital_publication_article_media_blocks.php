@@ -3,8 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use App\Models\Vendor\Block;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         $types = [
