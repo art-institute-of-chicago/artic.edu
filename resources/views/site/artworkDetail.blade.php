@@ -112,7 +112,7 @@
       <div class="o-article__related{{ (empty($item->description) or $item->description === '') ? ' o-article__related--no-description' : '' }}">
         @component('site.shared._loadRelatedSidebar')
             @slot('item', $item)
-        @endcomponent      
+        @endcomponent
     </div>
   @endif
 
