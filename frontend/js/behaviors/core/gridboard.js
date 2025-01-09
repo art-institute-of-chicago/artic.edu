@@ -5,7 +5,7 @@ const gridboard = function(container) {
     let colCount = 0;
     let cols;
     let active = false;
-    let btnRandom = container.querySelector('.o-gridboard__btn-random');
+    let btnRandoms = Array.from(container.querySelectorAll('.o-gridboard__btn-random'));
     let btnPages = Array.from(container.querySelectorAll('.o-gridboard__btn-page'));
     const re = /([0-9])-col@(\w*)/gi;
 
@@ -135,20 +135,18 @@ const gridboard = function(container) {
         }, 32);
     }
 
-    function _executeRandom() {
+    function _executeRandom(tag, hash) {
       let blocks = container.getElementsByClassName('o-gridboard')[0].children;
       if (blocks.length === 0) {
           return;
       }
 
-      let shown = 0;
+      let hashes = hash.split('');
 
       // Loop through each block and position them based on the column layout
       forEach(blocks, function(index, block) {
-        var random_boolean = Math.random() < 0.5;
-        if (random_boolean && shown < 50) {
+        if (hashes[index] == '1') {
           block.style.display = 'flex';
-          shown++;
         }
         else {
           block.style.display = 'none';
@@ -157,6 +155,10 @@ const gridboard = function(container) {
       setTimeout(function() {
         _setupBlocks();
         triggerCustomEvent(document, 'page:updated');
+        // Update history
+        triggerCustomEvent(document, 'history:pushstate', {
+          url: '?tag=' + kebabCase(tag),
+        });
       }, 32);
     }
 
@@ -179,8 +181,17 @@ const gridboard = function(container) {
         _setupBlocks();
         triggerCustomEvent(document, 'page:updated', {'page': page});
 
-        window.history.pushState("", queryStringHandler.updateParameter(window.location.href, 'page', page));
+        triggerCustomEvent(document, 'history:pushstate', {
+          url: '?page=' + page,
+        });
       }, 32);
+    }
+
+    function kebabCase(string) {
+      return string.replace(/\W+/g, " ")
+        .split(/ |\B(?=[A-Z])/)
+        .map(word => word.toLowerCase())
+        .join('-');
     }
 
     function _init() {
@@ -203,7 +214,9 @@ const gridboard = function(container) {
         );
         document.addEventListener('resized', _resized, false);
         document.addEventListener('ajaxPageLoad:complete', _resized, false);
-        btnRandom.addEventListener('click', _executeRandom);
+        forEach(btnRandoms, function(index, btn) {
+          btn.addEventListener('click', _executeRandom.bind(this, btn.innerText, btn.getAttribute('data-hash')), false);
+        });
         forEach(btnPages, function(index, btn) {
           btn.addEventListener('click', _executePage.bind(this, btn.innerText), false);
         });
@@ -213,9 +226,11 @@ const gridboard = function(container) {
         container.removeEventListener('gridboard:contentAdded', _contentAdded);
         document.removeEventListener('resized', _resized);
         document.removeEventListener('ajaxPageLoad:complete', _resized);
-        btnRandom.removeEventListener('click', _executeRandom);
         forEach(btnPages, function(index, btn) {
           btn.removeEventListener('click', _executePage.bind(this, btn.innerText), false);
+        });
+        forEach(btnRandoms, function(index, btn) {
+          btn.removeEventListener('click', _executeRandom.bind(this, btn.innerText, btn.getAttribute('data-hash')), false);
         });
         A17.Helpers.purgeProperties(this);
     };
