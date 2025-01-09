@@ -148,7 +148,7 @@
 
     @if ($exploreFurtherCollectionUrl)
         @component('components.molecules._m-links-bar')
-            @slot('variation', 'm-links-bar--   s')
+            @slot('variation', 'm-links-bar--buttons')
             @slot('linksPrimary', [
                 [
                     'label' => 'See more results',

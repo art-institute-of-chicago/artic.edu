@@ -4,7 +4,6 @@
 
 @foreach ($publications as $item)
     @component('components.molecules._m-listing----publication')
-        {{-- @slot('variation', 'o-pinboard__item') --}}
         @slot('href', $item->present()->url)
         @slot('image', $item->imageFront('listing'))
         @slot('type', $item->present()->type)
