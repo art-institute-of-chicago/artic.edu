@@ -45,7 +45,7 @@
     font-family: var(--sans-serif);
     font-size: 21px;
     font-weight: 400;
-    text-transform: 'uppercase';
+    text-transform: uppercase;
   }
   .o-info-grid {
     @include breakpoint('small+') {
@@ -123,7 +123,7 @@
         font-family: var(--sans-serif);
         font-size: 21px;
         font-weight: 400;
-        text-transform: 'uppercase';
+        text-transform: uppercase;
       }
       &>hr {
         margin: 18px 0;
