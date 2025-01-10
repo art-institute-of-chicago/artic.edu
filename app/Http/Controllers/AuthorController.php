@@ -21,6 +21,11 @@ class AuthorController extends FrontController
         $items = $this->repository->published()->ordered()->paginate();
 
         $title = 'Authors';
+        $titles = array_filter([
+            $title,
+            request('page') ? 'Page ' . request('page') : null,
+        ]);
+        $this->seo->setTitle(implode(', ', $titles));
 
         $subNav = [
             ['label' => $title, 'href' => route('authors.index'), 'active' => true]
@@ -29,8 +34,6 @@ class AuthorController extends FrontController
         $nav = [
             ['label' => 'Publications', 'href' => route('articles_publications'), 'links' => $subNav]
         ];
-
-        $this->seo->setTitle($title);
 
         $view_data = [
             'title' => $title,

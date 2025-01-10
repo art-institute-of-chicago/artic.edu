@@ -36,8 +36,14 @@ class PrintedPublicationsController extends BaseScopedController
         $items = $this->collection()->ordered()->paginate();
 
         $title = 'Print Publications';
+        $cat = CatalogCategory::where('id', request('category'))->first();
 
-        $this->seo->setTitle($title);
+        $titles = array_filter([
+            $title,
+            $cat?->name,
+            request('page') ? 'Page ' . request('page') : null,
+        ]);
+        $this->seo->setTitle(implode(', ', $titles));
 
         $navElements = NavHelpers::get_nav_for_publications($title);
 

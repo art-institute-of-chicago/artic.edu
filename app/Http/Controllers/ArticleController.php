@@ -133,6 +133,21 @@ class ArticleController extends FrontController
             );
         }
 
+        if (request('category') || request('type')) {
+            $cat = $page->articlesCategories->first(function ($value) {
+                return $value->id == request('category');
+            });
+            $titles = array_filter([
+                'Articles',
+                $cat?->name,
+                Str::title(request('type')),
+                request('page') ? 'Page ' . request('page') : null,
+            ]);
+            $this->seo->setTitle(implode(', ', $titles));
+        } else {
+            $this->seo->setTitle('Articles');
+        }
+
         return view('site.articles', [
             'primaryNavCurrent' => 'collection',
             'page' => $page,

@@ -35,6 +35,14 @@ class ExhibitionHistoryController extends FrontController
             $extraResults = $this->apiRepository->searchApi(request('q'), self::PER_PAGE);
         }
 
+        $titles = array_filter([
+            'Exhibition History',
+            request('year'),
+            request('page') ? 'Page ' . request('page') : null,
+        ]);
+
+        $this->seo->setTitle(implode(', ', $titles));
+
         $viewData = [
             'page' => $page,
             'years' => $years,
