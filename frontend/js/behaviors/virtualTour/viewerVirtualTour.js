@@ -11,7 +11,7 @@ const viewerVirtualTour = function(container) {
         target: targetDiv,
         html5: 'only',
         mobilescale: 1.0,
-        passQueryParameters: true,
+        passQueryParameters: false,
         initvars: {imagepath: vtourImages},
         capturetouch: false,
         bgcolor: "none"
