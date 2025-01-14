@@ -2,7 +2,7 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilder;
 use App\Models\Behaviors\HasMediasApi;
 use App\Helpers\ImageHelpers;
@@ -16,7 +16,7 @@ class Asset extends BaseApiModel
         imageFront as public imageDams;
     }
 
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/assets',
         'resource' => '/api/v1/assets/{id}',
         'search' => '/api/v1/assets/search',

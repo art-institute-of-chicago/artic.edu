@@ -4,10 +4,10 @@ namespace App\Models\Api;
 
 use Illuminate\Support\Carbon;
 use App\Models\Behaviors\HasFeaturedRelated;
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilder;
 use App\Helpers\StringHelpers;
-use Database\Factories\Api\HasApiFactory;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasApiFactory;
 
 class Exhibition extends BaseApiModel
 {
@@ -17,7 +17,7 @@ class Exhibition extends BaseApiModel
 
     use HasApiFactory;
 
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/exhibitions',
         'resource' => '/api/v1/exhibitions/{id}',
         'search' => '/api/v1/exhibitions/search',

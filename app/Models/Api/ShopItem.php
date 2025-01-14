@@ -2,7 +2,7 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use App\Models\Behaviors\HasMediasApi;
 use App\Helpers\ImageHelpers;
 
@@ -10,7 +10,7 @@ class ShopItem extends BaseApiModel
 {
     use HasMediasApi;
 
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/products',
         'resource' => '/api/v1/products/{id}',
         'search' => '/api/v1/products/search'

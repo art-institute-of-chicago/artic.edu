@@ -2,12 +2,12 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use DamsImageService;
 
 class Image extends BaseApiModel
 {
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/images',
         'resource' => '/api/v1/images/{id}',
         'search' => '/api/v1/images/search'

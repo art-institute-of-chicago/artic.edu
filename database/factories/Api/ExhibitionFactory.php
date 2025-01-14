@@ -3,6 +3,7 @@
 namespace Database\Factories\Api;
 
 use App\Models\Api\Exhibition;
+use Aic\Hub\Foundation\Library\Database\ApiFactory;
 
 class ExhibitionFactory extends ApiFactory
 {

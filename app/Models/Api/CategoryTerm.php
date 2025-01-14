@@ -2,11 +2,11 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 
 class CategoryTerm extends BaseApiModel
 {
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/category-terms',
         'resource' => '/api/v1/category-terms/{id}',
         'search' => '/api/v1/category-terms/search',

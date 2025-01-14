@@ -2,14 +2,14 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilder;
 use App\Models\Behaviors\HasMediasApi;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Helpers\DateHelpers;
 use App\Helpers\ImageHelpers;
 use App\Helpers\StringHelpers;
-use Database\Factories\Api\HasApiFactory;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasApiFactory;
 
 class Artwork extends BaseApiModel
 {
@@ -29,7 +29,7 @@ class Artwork extends BaseApiModel
 
     protected $showDefaultRelatedItems = true;
 
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/artworks',
         'resource' => '/api/v1/artworks/{id}',
         'search' => '/api/v1/artworks/search',
