@@ -27,6 +27,10 @@ trait HasAuthors
         }
     }
 
+    public function getAuthorAttribute() {
+        return $this->showAuthors();
+    }
+
     /**
      * Meant for sidebar.
      */
