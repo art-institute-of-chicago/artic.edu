@@ -90,7 +90,7 @@ Route::group(['prefix' => 'collection'], function () {
 
         // WEB-1963: Browser for nested modules must be implemented manually
         Route::get('/digitalPublicationsBrowser/articles/browser?digitalPublication={digitalPublication}', [\App\Http\Controllers\Twill\DigitalPublicationArticleController::class, 'browser'])->name('collection.articlesPublications.digitalPublications.articles.subbrowser');
-        Route::get('/digitalPublicationsBrowser/articles/browser', [\App\Http\Controllers\Twill\DigitalPublicationArticleController::class, 'browser'])->name('collection.articlesPublications.digitalPublications.articles.browser');
+        Route::get('/digitalPublicationsBrowser/articles/browser', [\App\Http\Controllers\Twill\DigitalPublicationArticleController::class, 'browser'])->name('collection.articlesPublications.digitalPublications.articles.browserbrowser');
     });
 
     TwillRoutes::module('galleries');
