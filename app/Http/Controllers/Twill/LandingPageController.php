@@ -3,32 +3,20 @@
 namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Models\Contracts\TwillModelContract;
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
 use App\Http\Controllers\LandingPagesController;
 use App\Models\LandingPage;
 use App\Repositories\LandingPageRepository;
 
-class LandingPageController extends \App\Http\Controllers\Twill\ModuleController
+class LandingPageController extends BaseController
 {
-    protected $moduleName = 'landingPages';
-
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'edit_link' => true,
-            'sort' => true,
-            'field' => 'title',
-        ],
-        'type' => [
-            'title' => 'Type',
-            'field' => 'type',
-        ],
-    ];
-
-    protected $indexWith = [];
-
-    protected $defaultOrders = [];
-
-    protected $previewView = 'site.landingPageDetail';
+    protected function setUpController(): void
+    {
+        parent::setUpController();
+        $this->setModuleName('landingPages');
+        $this->setPreviewView('site.landingPageDetail');
+    }
 
     /**
      * Dynamically set the view prefix to include the landing page type.
@@ -37,7 +25,7 @@ class LandingPageController extends \App\Http\Controllers\Twill\ModuleController
     {
         $landingPage = $this->repository->getById($id);
         $prefix = str($landingPage->type)->camel();
-        $this->viewPrefix = "admin.$this->moduleName.$prefix";
+        $this->viewPrefix = config('twill.admin_route_name_prefix') . "$this->moduleName.$prefix";
         return parent::edit($id, $submoduleId);
     }
 
@@ -49,6 +37,18 @@ class LandingPageController extends \App\Http\Controllers\Twill\ModuleController
             'defaultType' => $types->search(LandingPage::DEFAULT_TYPE),
             'types' => $types->sort(),
         ];
+    }
+
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Text::make()
+                ->field('type')
+                ->optional()
+        );
+
+        return $columns;
     }
 
     protected function formData($request)
