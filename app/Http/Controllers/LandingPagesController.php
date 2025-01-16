@@ -157,15 +157,10 @@ class LandingPagesController extends FrontController
         ];
 
         $title = '';
-
-        switch ($item->type_id) {
-            case $types->search('Visit'):
-                $title = __('Visit');
-                break;
-
-            default:
-                $title = $item->title;
-                break;
+        if ($item->type_id === $types->search('Visit')) {
+            $title = __('Visit');
+        } else {
+            $title = $item->title;
         }
 
         $commonViewData = [
