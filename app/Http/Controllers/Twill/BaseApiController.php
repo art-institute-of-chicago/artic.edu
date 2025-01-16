@@ -38,15 +38,14 @@ class BaseApiController extends ModuleController
     /**
      * Option to setup links and the possibility of augmenting a model
      */
-    protected $hasAugmentedModel = false;
+    protected bool $hasAugmentedModel = false;
+
+    /**
+     * The prefix for the label of the Datahub Id column.
+     */
+    protected string $idColumnLabelPrefix = 'Datahub';
 
     protected $localElements = [];
-
-    protected $defaultFilters = [
-        'search' => 'search',
-    ];
-
-    protected $displayName = 'Datahub';
 
     protected function setUpController(): void
     {
@@ -232,7 +231,7 @@ class BaseApiController extends ModuleController
             $columns->add(
                 Text::make()
                     ->field('id')
-                    ->title($this->displayName . ' Id')
+                    ->title($this->idColumnLabelPrefix . ' Id')
                     ->optional()
                     ->hide()
             );
@@ -378,8 +377,8 @@ class BaseApiController extends ModuleController
         $this->hasAugmentedModel = true;
     }
 
-    protected function setDisplayName(string $displayName): void
+    protected function setIdColumnLabelPrefix(string $idColumnLabelPrefix): void
     {
-        $this->displayName = $displayName;
+        $this->idColumnLabelPrefix = $idColumnLabelPrefix;
     }
 }
