@@ -95,7 +95,7 @@
                 ],
                 [
                     'label' => 'Interactive Features',
-                    'value' => '/collection/interactive_features/experiences/browser'
+                    'value' => '/collection/interactiveFeatures/experiences/browser'
                 ],
                 [
                     'label' => 'Videos',

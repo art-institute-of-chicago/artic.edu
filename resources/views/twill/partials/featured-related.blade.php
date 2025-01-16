@@ -24,7 +24,7 @@
             ],
             [
                 'label' => 'Interactive Feature',
-                'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser'),
+                'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser'),
             ],
             [
                 'label' => 'Digital Publication',
