@@ -109,7 +109,7 @@ class EducatorResource extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('twill.collection.research_resources.educatorResources.edit', $this->id);
+        return route('twill.collection.researchResources.educatorResources.edit', $this->id);
     }
 
     public function scopeIds($query, $ids = []): Builder
