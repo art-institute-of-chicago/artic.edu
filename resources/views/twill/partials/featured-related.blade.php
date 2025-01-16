@@ -16,11 +16,11 @@
             ],
             [
                 'label' => 'Event',
-                'value' => moduleRoute('events', 'exhibitions_events', 'browser'),
+                'value' => moduleRoute('events', 'exhibitionsEvents', 'browser'),
             ],
             [
                 'label' => 'Exhibition',
-                'value' => moduleRoute('exhibitions', 'exhibitions_events', 'browser'),
+                'value' => moduleRoute('exhibitions', 'exhibitionsEvents', 'browser'),
             ],
             [
                 'label' => 'Interactive Feature',

@@ -104,7 +104,7 @@ class DepartmentRepository extends BaseApiRepository
         $relatedItems = $item->getRelatedWithApiModels('related_items', [
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
-                'routePrefix' => 'exhibitions_events',
+                'routePrefix' => 'exhibitionsEvents',
                 'moduleName' => 'exhibitions',
             ],
             'experiences' => [

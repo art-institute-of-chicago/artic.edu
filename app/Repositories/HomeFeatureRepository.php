@@ -20,7 +20,7 @@ class HomeFeatureRepository extends ModuleRepository
             'routePrefix' => 'collection.articles_publications',
         ],
         'events' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
         ],
         'highlights' => [
             'routePrefix' => 'collection',
@@ -29,7 +29,7 @@ class HomeFeatureRepository extends ModuleRepository
 
     protected $apiBrowsers = [
         'exhibitions' => [
-            'routePrefix' => 'exhibitions_events'
+            'routePrefix' => 'exhibitionsEvents'
         ],
     ];
 
