@@ -13,7 +13,7 @@ return [
     'modules' => [
         'events' => [
             'name' => 'events',
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'count' => true,
             'create' => true,
             'search' => true,
@@ -31,7 +31,7 @@ return [
         ],
         'exhibitions' => [
             'name' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'count' => false,
             'create' => false,
             'search' => true,

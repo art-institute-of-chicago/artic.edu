@@ -103,7 +103,7 @@
                 ],
                 [
                     'label' => 'Exhibitions',
-                    'value' => '/exhibitions_events/exhibitions/browser'
+                    'value' => '/exhibitionsEvents/exhibitions/browser'
                 ],
             ],
             'max' => 1000,
@@ -131,7 +131,7 @@
             'endpoints' => [
                 [
                     'label' => 'Exhibition',
-                    'value' => '/exhibitions_events/exhibitions/browser'
+                    'value' => '/exhibitionsEvents/exhibitions/browser'
                 ],
                 [
                     'label' => 'Videos',

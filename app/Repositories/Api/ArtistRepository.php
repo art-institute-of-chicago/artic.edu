@@ -20,7 +20,7 @@ class ArtistRepository extends BaseApiRepository
         $hiddenItems = $item->getRelatedWithApiModels('hidden_related_items', [
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
-                'routePrefix' => 'exhibitions_events',
+                'routePrefix' => 'exhibitionsEvents',
                 'moduleName' => 'exhibitions',
             ],
         ], [
@@ -42,7 +42,7 @@ class ArtistRepository extends BaseApiRepository
         $relatedItems = $item->getRelatedWithApiModels('related_items', [
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
-                'routePrefix' => 'exhibitions_events',
+                'routePrefix' => 'exhibitionsEvents',
                 'moduleName' => 'exhibitions',
             ],
             'experiences' => [

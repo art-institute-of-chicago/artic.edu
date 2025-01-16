@@ -117,7 +117,7 @@
                 ],
                 [
                     'label' => 'Exhibitions',
-                    'value' => '/exhibitions_events/exhibitions/browser'
+                    'value' => '/exhibitionsEvents/exhibitions/browser'
                 ],
             ],
             'max' => 1000,

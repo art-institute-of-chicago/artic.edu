@@ -212,7 +212,7 @@
 
     <a17-fieldset title="Exhibitions and Event" id="exhibitions-and-events">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'max' => 2,
             'moduleName' => 'exhibitions',
             'name' => 'homeExhibitions',
@@ -220,7 +220,7 @@
         ])
 
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'max' => 10,
             'moduleName' => 'events',
             'name' => 'homeEvents',
