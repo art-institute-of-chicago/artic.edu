@@ -52,7 +52,7 @@ class DepartmentRepository extends BaseApiRepository
             ],
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
-                'routePrefix' => 'exhibitions_events',
+                'routePrefix' => 'exhibitionsEvents',
                 'moduleName' => 'exhibitions',
             ],
         ], [

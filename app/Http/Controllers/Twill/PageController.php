@@ -47,7 +47,7 @@ class PageController extends \App\Http\Controllers\Twill\ModuleController
     public function exhibitions(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Exhibitions and Events'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put('pages_back_link', route('twill.exhibitions_events.landing'));
+        Session::put('pages_back_link', route('twill.exhibitionsEvents.landing'));
 
         $additionalFieldsets = [];
         $fields = $this->form($page->id);
@@ -118,7 +118,7 @@ class PageController extends \App\Http\Controllers\Twill\ModuleController
     public function exhibitionHistory(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Exhibition History'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put('pages_back_link', route('twill.exhibitions_events.history'));
+        Session::put('pages_back_link', route('twill.exhibitionsEvents.history'));
 
         $additionalFieldsets = [];
         $fields = $this->form($page->id);
