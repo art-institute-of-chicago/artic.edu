@@ -32,7 +32,7 @@
                     ],
                     [
                         'label' => 'Interactive feature',
-                        'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser')
+                        'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser')
                     ],
                     [
                         'label' => 'Video',
@@ -60,7 +60,7 @@
                     ],
                     [
                         'label' => 'Interactive feature',
-                        'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser')
+                        'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser')
                     ],
                     [
                         'label' => 'Video',

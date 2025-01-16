@@ -341,7 +341,7 @@
 
     @formField('browser', [
         'name' => 'experiences',
-        'routePrefix' => 'collection.interactive_features',
+        'routePrefix' => 'collection.interactiveFeatures',
         'moduleName' => 'experiences',
         'max' => 4,
         'label' => 'Experiences',
