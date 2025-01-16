@@ -47,7 +47,7 @@ class DepartmentRepository extends BaseApiRepository
         $fields['browsers']['related_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'related_items', [
             'experiences' => [
                 'apiModel' => 'App\Models\Experience',
-                'routePrefix' => 'collection.interactive_features',
+                'routePrefix' => 'collection.interactiveFeatures',
                 'moduleName' => 'experiences',
             ],
             'exhibitions' => [

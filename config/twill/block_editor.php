@@ -179,7 +179,7 @@ return [
         'authors' => 'collection',
         'highlights' => 'collection',
         'articles' => 'collection.articles_publications',
-        'experiences' => 'collection.interactive_features',
+        'experiences' => 'collection.interactiveFeatures',
         'landingPages' => 'generic',
         'genericPages' => 'generic',
         'videos' => 'collection.articles_publications',

@@ -47,7 +47,7 @@ class ArtistRepository extends BaseApiRepository
             ],
             'experiences' => [
                 'apiModel' => 'App\Models\Experience',
-                'routePrefix' => 'collection.interactive_features',
+                'routePrefix' => 'collection.interactiveFeatures',
                 'moduleName' => 'experiences',
             ],
         ], [

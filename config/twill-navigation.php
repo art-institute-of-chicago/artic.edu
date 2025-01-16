@@ -184,9 +184,9 @@ $nav = [
                 'title' => 'Departments',
                 'module' => true,
             ],
-            'interactive_features' => [
+            'interactiveFeatures' => [
                 'title' => 'Interactive Features',
-                'route' => 'twill.collection.interactive_features.experiences.index',
+                'route' => 'twill.collection.interactiveFeatures.experiences.index',
                 'secondary_navigation' => [
                     'experiences' => [
                         'title' => 'Experiences',

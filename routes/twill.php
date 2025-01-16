@@ -62,7 +62,7 @@ Route::group(['prefix' => 'collection'], function () {
     TwillRoutes::module('artists');
     Route::get('artists/augment/{datahub_id}', [\App\Http\Controllers\Twill\ArtistController::class, 'augment'])->name('collection.artists.augment');
 
-    Route::group(['prefix' => 'interactive_features'], function () {
+    Route::group(['prefix' => 'interactiveFeatures'], function () {
         TwillRoutes::module('interactiveFeatures');
         TwillRoutes::module('experiences');
         TwillRoutes::module('experiences.slides');
