@@ -14,7 +14,6 @@
 namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Facades\TwillPermissions;
-use A17\Twill\Models\Behaviors\HasTranslation;
 use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Services\Forms\Fields\Input;
 use A17\Twill\Services\Forms\Fieldset;
@@ -27,15 +26,14 @@ use A17\Twill\Services\Listings\Columns\ScheduledStatus;
 use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\Filters\BasicFilter;
 use A17\Twill\Services\Listings\Filters\QuickFilter;
-use A17\Twill\Services\Listings\TableColumn;
 use A17\Twill\Services\Listings\TableColumns;
-use App\Helpers\UrlHelpers;
-use App\Http\Controllers\Twill\Columns\ApiImage;
+use Aic\Hub\Foundation\Library\Api\Controllers\Columns\ApiImage;
 use Aic\Hub\Foundation\Library\Api\Filters\Search;
+use App\Helpers\UrlHelpers;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
-class BaseApiController extends \App\Http\Controllers\Twill\ModuleController
+class BaseApiController extends ModuleController
 {
     /**
      * Option to setup links and the possibility of augmenting a model
@@ -52,9 +50,6 @@ class BaseApiController extends \App\Http\Controllers\Twill\ModuleController
 
     protected function setUpController(): void
     {
-        $this->setFeatureField('is_featured');
-        $this->setResultsPerPage(5);
-
         $this->disableBulkDelete();
         $this->disableBulkEdit();
         $this->disableBulkPublish();
@@ -227,30 +222,27 @@ class BaseApiController extends \App\Http\Controllers\Twill\ModuleController
             );
         }
 
-        $columns->add(
-            Boolean::make()
-                ->field('is_augmented')
-                ->optional()
-                ->hide()
-        );
-        $columns->add(
-            Text::make()
-                ->field('id')
-                ->title($this->displayName . ' Id')
-                ->optional()
-        );
-        $columns->add(
-            Text::make()
-                ->field('source_updated_at')
-                ->optional()
-                ->hide()
-        );
-        $columns->add(
-            Text::make()
-                ->field('updated_at')
-                ->optional()
-                ->hide()
-        );
+        if ($this->hasAugmentedModel) {
+            $columns->add(
+                Boolean::make()
+                    ->field('is_augmented')
+                    ->optional()
+                    ->hide()
+            );
+            $columns->add(
+                Text::make()
+                    ->field('id')
+                    ->title($this->displayName . ' Id')
+                    ->optional()
+                    ->hide()
+            );
+            $columns->add(
+                Text::make()
+                    ->field('source_updated_at')
+                    ->optional()
+                    ->hide()
+            );
+        }
 
         $title = $this->titleColumnKey === 'title' && $this->titleColumnLabel === 'Title'
             ? twillTrans('twill::lang.main.title')
@@ -311,31 +303,7 @@ class BaseApiController extends \App\Http\Controllers\Twill\ModuleController
         return $columns;
     }
 
-    public function getForm(TwillModelContract $model): Form
-    {
-        $model->refreshApi();
-        $title = $this->getTitleField();
-        if (classHasTrait($model::class, HasTranslation::class)) {
-            $title->translatable();
-        }
-        $content = Form::make()
-            ->add($title)
-            ->merge($this->additionalFormFields($model, $model->getApiModel()));
-        return parent::getForm($model)
-            ->addFieldset(
-                Fieldset::make()
-                    ->title('Content')
-                    ->id('content')
-                    ->fields($content->toArray())
-            );
-    }
-
-    protected function additionalFormFields($model, $apiModel): Form
-    {
-        return new Form();
-    }
-
-    public function getSideFieldSets(TwillModelContract $model): Form
+        public function getSideFieldSets(TwillModelContract $model): Form
     {
         return parent::getSideFieldSets($model)
             // For some reason, the side form will not render unless there is a
@@ -358,22 +326,6 @@ class BaseApiController extends \App\Http\Controllers\Twill\ModuleController
                             ->note('readonly'),
                         Input::make()
                             ->name('source_updated_at')
-                            ->disabled()
-                            ->note('readonly'),
-                    ])
-            )
-            ->addFieldset(
-                Fieldset::make()
-                    ->id('timestamps')
-                    ->title('Timestamps')
-                    ->closed()
-                    ->fields([
-                        Input::make()
-                            ->name('created_at')
-                            ->disabled()
-                            ->note('readonly'),
-                        Input::make()
-                            ->name('updated_at')
                             ->disabled()
                             ->note('readonly'),
                     ])
