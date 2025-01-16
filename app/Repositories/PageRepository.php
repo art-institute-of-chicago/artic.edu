@@ -40,7 +40,7 @@ class PageRepository extends ModuleRepository
             'routePrefix' => 'collection.articles_publications'
         ],
         'experiences' => [
-            'routePrefix' => 'collection.interactive_features'
+            'routePrefix' => 'collection.interactiveFeatures'
         ],
         'printedPublications' => [
             'routePrefix' => 'collection.articles_publications'

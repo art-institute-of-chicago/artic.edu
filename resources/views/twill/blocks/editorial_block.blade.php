@@ -13,7 +13,7 @@
         ],
         [
             'label' => 'Interactive feature',
-            'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser', ['is_published' => true])
+            'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser', ['is_published' => true])
         ],
         [
             'label' => 'Video',
@@ -77,7 +77,7 @@
                 ],
             ]
         ])
-    
+
     @endcomponent
 
     @formField('input', [
