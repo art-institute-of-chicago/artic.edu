@@ -187,7 +187,7 @@
 
     @formField('browser', [
         'name' => 'articles',
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'moduleName' => 'articles',
         'max' => 4,
         'label' => 'Articles',
@@ -223,7 +223,7 @@
 
     @formField('browser', [
         'name' => 'digitalPublications',
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'moduleName' => 'digitalPublications',
         'max' => 4,
         'label' => 'Digital Publications',
@@ -414,7 +414,7 @@
 
     @formField('browser', [
         'name' => 'videos',
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'moduleName' => 'videos',
         'max' => 4,
         'label' => 'Videos',

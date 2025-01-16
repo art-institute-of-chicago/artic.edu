@@ -71,7 +71,7 @@
         'fieldValues' => 'articles'
     ])
         @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'moduleName' => 'articles',
             'name' => 'articles',
             'label' => 'Article'

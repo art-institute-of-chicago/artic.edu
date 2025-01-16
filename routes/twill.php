@@ -78,9 +78,9 @@ Route::group(['prefix' => 'collection'], function () {
         TwillRoutes::module('educatorResources');
     });
 
-    Route::group(['prefix' => 'articles_publications'], function () {
-        Route::get('landing', [\App\Http\Controllers\Twill\PageController::class, 'articles_publications'])->name('collection.articles_publications.landing');
-        Route::get('articles_landing', [\App\Http\Controllers\Twill\PageController::class, 'articles'])->name('collection.articles_publications.articles_landing');
+    Route::group(['prefix' => 'articlesPublications'], function () {
+        Route::get('landing', [\App\Http\Controllers\Twill\PageController::class, 'articlesPublications'])->name('collection.articlesPublications.landing');
+        Route::get('articles_landing', [\App\Http\Controllers\Twill\PageController::class, 'articles'])->name('collection.articlesPublications.articles_landing');
         TwillRoutes::module('articles');
         TwillRoutes::module('categories');
         TwillRoutes::module('videos');
@@ -89,8 +89,8 @@ Route::group(['prefix' => 'collection'], function () {
         TwillRoutes::module('digitalPublications.articles');
 
         // WEB-1963: Browser for nested modules must be implemented manually
-        Route::get('/digitalPublicationsBrowser/articles/browser?digitalPublication={digitalPublication}', [\App\Http\Controllers\Twill\DigitalPublicationArticleController::class, 'browser'])->name('collection.articles_publications.digitalPublications.articles.subbrowser');
-        Route::get('/digitalPublicationsBrowser/articles/browser', [\App\Http\Controllers\Twill\DigitalPublicationArticleController::class, 'browser'])->name('collection.articles_publications.digitalPublications.articles.browser');
+        Route::get('/digitalPublicationsBrowser/articles/browser?digitalPublication={digitalPublication}', [\App\Http\Controllers\Twill\DigitalPublicationArticleController::class, 'browser'])->name('collection.articlesPublications.digitalPublications.articles.subbrowser');
+        Route::get('/digitalPublicationsBrowser/articles/browser', [\App\Http\Controllers\Twill\DigitalPublicationArticleController::class, 'browser'])->name('collection.articlesPublications.digitalPublications.articles.browser');
     });
 
     TwillRoutes::module('galleries');

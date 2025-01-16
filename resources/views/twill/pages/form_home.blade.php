@@ -87,7 +87,7 @@
         ])
 
         @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'max' => 10,
             'moduleName' => 'videos',
             'name' => 'homeVideos',
