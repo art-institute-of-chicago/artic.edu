@@ -63,7 +63,7 @@
 
     <a17-fieldset id="welcome_note" title="Welcome Note">
         @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'moduleName' => 'articles',
             'name' => 'welcome_note',
             'label' => 'Welcome note',

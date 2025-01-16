@@ -5,7 +5,7 @@
     $endpoints = [
         [
             'label' => 'Article',
-            'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['published' => true]),
+            'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['published' => true]),
         ],
         [
             'label' => 'Highlight',
@@ -17,7 +17,7 @@
         ],
         [
             'label' => 'Video',
-            'value' => moduleRoute('videos', 'collection.articles_publications', 'browser', ['is_published' => true]),
+            'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser', ['is_published' => true]),
         ],
     ];
 
@@ -122,7 +122,7 @@
     ])
 
         @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'moduleName' => 'articles',
             'name' => 'stories',
             'endpoints' => $endpoints,
@@ -156,13 +156,13 @@
         @endcomponent
 
         @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'moduleName' => 'articles',
             'name' => 'videos',
             'endpoints' => [
                 [
                     'label' => 'Video',
-                    'value' => moduleRoute('videos', 'collection.articles_publications', 'browser', ['is_published' => true]),
+                    'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser', ['is_published' => true]),
                 ],
             ],
             'max' => 6,
@@ -177,7 +177,7 @@
     ])
 
         @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'moduleName' => 'articles',
             'name' => 'stories',
             'endpoints' => $endpoints,
@@ -210,7 +210,7 @@
         @endcomponent
 
         @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'moduleName' => 'articles',
             'name' => 'stories',
             'endpoints' => $endpoints,

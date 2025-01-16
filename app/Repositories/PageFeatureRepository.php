@@ -17,7 +17,7 @@ class PageFeatureRepository extends ModuleRepository
 
     protected $browsers = [
         'articles' => [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
         ],
         'events' => [
             'routePrefix' => 'exhibitionsEvents',

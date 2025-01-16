@@ -59,7 +59,7 @@
         'rows' => 3,
         'type' => 'textarea',
     ])
-    
+
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
@@ -82,7 +82,7 @@
         <p>If this is left blank, we will show the four most recently published videos.</p>
 
         @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'name' => 'related_videos',
             'moduleName' => 'videos',
             'label' => 'Related videos',
