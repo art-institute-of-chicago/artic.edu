@@ -146,13 +146,13 @@ $nav = [
                     ],
                 ],
             ],
-            'research_resources' => [
+            'researchResources' => [
                 'title' => 'Resources',
-                'route' => 'twill.collection.research_resources.landing',
+                'route' => 'twill.collection.researchResources.landing',
                 'secondary_navigation' => [
                     'landing' => [
                         'title' => 'Landing',
-                        'route' => 'twill.collection.research_resources.landing',
+                        'route' => 'twill.collection.researchResources.landing',
                     ],
                     'educatorResources' => [
                         'title' => 'Educator Resources',
