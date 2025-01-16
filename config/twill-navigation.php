@@ -65,13 +65,13 @@ $nav = [
         ]
     ],
 
-    'exhibitions_events' => [
+    'exhibitionsEvents' => [
         'title' => 'Exhibitions & Events',
-        'route' => 'twill.exhibitions_events.landing',
+        'route' => 'twill.exhibitionsEvents.landing',
         'primary_navigation' => [
             'landing' => [
                 'title' => 'Landing',
-                'route' => 'twill.exhibitions_events.landing',
+                'route' => 'twill.exhibitionsEvents.landing',
             ],
             'exhibitions' => [
                 'title' => 'Exhibitions',
@@ -87,7 +87,7 @@ $nav = [
             ],
             'history' => [
                 'title' => 'History Landing',
-                'route' => 'twill.exhibitions_events.history',
+                'route' => 'twill.exhibitionsEvents.history',
             ],
             'emailSeries' => [
                 'title' => 'Email Series',

@@ -172,8 +172,8 @@ return [
         'vtour_xml_file',
     ],
     'browser_route_prefixes' => [
-        'events' => 'exhibitions_events',
-        'exhibitions' => 'exhibitions_events',
+        'events' => 'exhibitionsEvents',
+        'exhibitions' => 'exhibitionsEvents',
         'highlights' => 'collection',
         'artworks' => 'collection',
         'authors' => 'collection',

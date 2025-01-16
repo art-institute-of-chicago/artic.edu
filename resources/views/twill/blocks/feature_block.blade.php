@@ -253,7 +253,7 @@
 
         @formField('browser', [
             'name' => 'events',
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'events',
             'label' => 'Events',
             'max' => 20,
@@ -302,7 +302,7 @@
     ])
 
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'name' => 'exhibitions',
             'moduleName' => 'exhibitions',
             'max' => 4,

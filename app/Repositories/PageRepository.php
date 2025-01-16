@@ -23,7 +23,7 @@ class PageRepository extends ModuleRepository
     protected $browsers = [
         // Homepage landing
         'homeEvents' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'events',
         ],
         'mainHomeFeatures' => [
@@ -75,7 +75,7 @@ class PageRepository extends ModuleRepository
         // Homepage landing
         'homeExhibitions' => [
             'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
+            'routePrefix' => 'exhibitionsEvents'
         ],
         'homeShopItems' => [
             'moduleName' => 'shopItems',
@@ -88,11 +88,11 @@ class PageRepository extends ModuleRepository
         // Exhibition and events landing
         'exhibitionsCurrent' => [
             'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
+            'routePrefix' => 'exhibitionsEvents'
         ],
         'exhibitionsUpcomingListing' => [
             'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
+            'routePrefix' => 'exhibitionsEvents'
         ],
 
         // Collection landing

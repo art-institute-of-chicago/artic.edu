@@ -276,7 +276,7 @@ class Event extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('twill.exhibitions_events.events.edit', $this->id);
+        return route('twill.exhibitionsEvents.events.edit', $this->id);
     }
 
     public function getTimeStartAttribute()

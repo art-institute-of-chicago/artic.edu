@@ -34,11 +34,11 @@ Route::group(['prefix' => 'visit'], function () {
     TwillRoutes::module('myMuseumTourItems');
 });
 
-Route::group(['prefix' => 'exhibitions_events'], function () {
-    Route::name('exhibitions_events.landing')->get('landing', [\App\Http\Controllers\Twill\PageController::class, 'exhibitions']);
+Route::group(['prefix' => 'exhibitionsEvents'], function () {
+    Route::name('exhibitionsEvents.landing')->get('landing', [\App\Http\Controllers\Twill\PageController::class, 'exhibitions']);
 
     TwillRoutes::module('exhibitions');
-    Route::get('exhibitions/augment/{datahub_id}', [\App\Http\Controllers\Twill\ExhibitionController::class, 'augment'])->name('exhibitions_events.exhibitions.augment');
+    Route::get('exhibitions/augment/{datahub_id}', [\App\Http\Controllers\Twill\ExhibitionController::class, 'augment'])->name('exhibitionsEvents.exhibitions.augment');
 
     TwillRoutes::module('events');
     TwillRoutes::module('sponsors');
@@ -46,7 +46,7 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
 
     TwillRoutes::module('ticketedEvents');
 
-    Route::get('history', [\App\Http\Controllers\Twill\PageController::class, 'exhibitionHistory'])->name('exhibitions_events.history');
+    Route::get('history', [\App\Http\Controllers\Twill\PageController::class, 'exhibitionHistory'])->name('exhibitionsEvents.history');
 
     TwillRoutes::module('emailSeries');
 

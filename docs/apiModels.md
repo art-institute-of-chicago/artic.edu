@@ -230,7 +230,7 @@ The form behaves as a normal Browser:
 
 ```php
 @formField('browser', [
-    'routePrefix' => 'exhibitions_events',
+    'routePrefix' => 'exhibitionsEvents',
     'max' => 4,
     'name' => 'exhibitions',
     'label' => 'Related exhibitions'
