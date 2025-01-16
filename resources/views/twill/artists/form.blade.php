@@ -91,7 +91,7 @@
                 ],
                 [
                     'label' => 'Educational Resources',
-                    'value' => '/collection/research_resources/educatorResources/browser'
+                    'value' => '/collection/researchResources/educatorResources/browser'
                 ],
                 [
                     'label' => 'Interactive Features',
