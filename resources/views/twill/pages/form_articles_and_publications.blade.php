@@ -1,6 +1,6 @@
 @section('contentFields')
     @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'max' => 6,
         'moduleName' => 'digitalPublications',
         'name' => 'digitalPublications',
@@ -8,7 +8,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'max' => 6,
         'moduleName' => 'printedPublications',
         'name' => 'printedPublications',

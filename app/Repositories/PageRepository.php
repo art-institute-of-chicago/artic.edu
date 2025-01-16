@@ -37,16 +37,16 @@ class PageRepository extends ModuleRepository
 
         // Visit
         'articles' => [
-            'routePrefix' => 'collection.articles_publications'
+            'routePrefix' => 'collection.articlesPublications'
         ],
         'experiences' => [
             'routePrefix' => 'collection.interactiveFeatures'
         ],
         'printedPublications' => [
-            'routePrefix' => 'collection.articles_publications'
+            'routePrefix' => 'collection.articlesPublications'
         ],
         'digitalPublications' => [
-            'routePrefix' => 'collection.articles_publications'
+            'routePrefix' => 'collection.articlesPublications'
         ],
 
         // Research landing
@@ -170,7 +170,7 @@ class PageRepository extends ModuleRepository
             'experiences' => false
         ]);
 
-        $fields['browsers']['articlesCategories'] = $this->getFormFieldsForBrowser($object, 'articlesCategories', 'collection.articles_publications', 'name', 'categories');
+        $fields['browsers']['articlesCategories'] = $this->getFormFieldsForBrowser($object, 'articlesCategories', 'collection.articlesPublications', 'name', 'categories');
 
         return $fields;
     }

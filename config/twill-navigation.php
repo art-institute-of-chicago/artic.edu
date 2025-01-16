@@ -112,17 +112,17 @@ $nav = [
                 'title' => 'Quick Filters',
                 'module' => true,
             ],
-            'articles_publications' => [
+            'articlesPublications' => [
                 'title' => 'Writings',
-                'route' => 'twill.collection.articles_publications.landing',
+                'route' => 'twill.collection.articlesPublications.landing',
                 'secondary_navigation' => [
                     'landing' => [
                         'title' => 'Landing',
-                        'route' => 'twill.collection.articles_publications.landing',
+                        'route' => 'twill.collection.articlesPublications.landing',
                     ],
                     'articles_landing' => [
                         'title' => 'Articles Landing',
-                        'route' => 'twill.collection.articles_publications.articles_landing',
+                        'route' => 'twill.collection.articlesPublications.articles_landing',
                     ],
                     'articles' => [
                         'title' => 'Articles',

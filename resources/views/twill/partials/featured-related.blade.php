@@ -8,7 +8,7 @@
         'endpoints' => [
             [
                 'label' => 'Article',
-                'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
+                'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['is_unlisted' => false]),
             ],
             [
                 'label' => 'Highlight',
@@ -28,15 +28,15 @@
             ],
             [
                 'label' => 'Digital Publication',
-                'value' => moduleRoute('digitalPublications', 'collection.articles_publications', 'browser'),
+                'value' => moduleRoute('digitalPublications', 'collection.articlesPublications', 'browser'),
             ],
             [
                 'label' => 'Digital Publication Article',
-                'value' => moduleRoute('digitalPublications.articles', 'collection.articles_publications', 'browserbrowser'),
+                'value' => moduleRoute('digitalPublications.articles', 'collection.articlesPublications', 'browserbrowser'),
             ],
             [
                 'label' => 'Video',
-                'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
+                'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
             ],
         ],
     ])

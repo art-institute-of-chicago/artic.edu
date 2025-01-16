@@ -22,7 +22,7 @@ return [
         ],
         'articles' => [
             'name' => 'articles',
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'count' => true,
             'create' => true,
             'search' => true,

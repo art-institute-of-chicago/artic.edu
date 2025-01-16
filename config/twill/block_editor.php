@@ -177,11 +177,11 @@ return [
         'artworks' => 'collection',
         'authors' => 'collection',
         'highlights' => 'collection',
-        'articles' => 'collection.articles_publications',
+        'articles' => 'collection.articlesPublications',
         'experiences' => 'collection.interactiveFeatures',
         'landingPages' => 'generic',
         'genericPages' => 'generic',
-        'videos' => 'collection.articles_publications',
+        'videos' => 'collection.articlesPublications',
         'myMuseumTourItems' => 'visit',
     ],
     'block-order' => [
