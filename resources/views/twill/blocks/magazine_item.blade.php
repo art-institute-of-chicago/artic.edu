@@ -32,7 +32,7 @@
     'renderForBlocks' => true
 ])
     @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'moduleName' => 'articles',
         'name' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
         'label' => 'Article'

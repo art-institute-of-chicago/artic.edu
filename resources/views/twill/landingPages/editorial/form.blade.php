@@ -18,13 +18,13 @@
         @component('twill::partials.form.utils._columns')
         @slot('left')
             @formField('browser', [
-                'routePrefix' => 'collection.articles_publications',
+                'routePrefix' => 'collection.articlesPublications',
                 'moduleName' => 'articles',
                 'name' => 'top_stories',
                 'endpoints' => [
                     [
                         'label' => 'Article',
-                        'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['published' => true]),
+                        'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['published' => true]),
                     ],
                     [
                         'label' => 'Highlight',
@@ -36,7 +36,7 @@
                     ],
                     [
                         'label' => 'Video',
-                        'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
+                        'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
                     ],
                 ],
                 'max' => 3,
@@ -46,13 +46,13 @@
 
         @slot('right')
             @formField('browser', [
-                'routePrefix' => 'collection.articles_publications',
+                'routePrefix' => 'collection.articlesPublications',
                 'moduleName' => 'articles',
                 'name' => 'most_popular_stories',
                 'endpoints' => [
                     [
                         'label' => 'Article',
-                        'value' => '/collection/articles_publications/articles/browser'
+                        'value' => '/collection/articlesPublications/articles/browser'
                     ],
                     [
                         'label' => 'Highlight',
@@ -64,7 +64,7 @@
                     ],
                     [
                         'label' => 'Video',
-                        'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
+                        'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
                     ],
                 ],
                 'max' => 5,

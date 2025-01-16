@@ -1,13 +1,13 @@
 @section('contentFields')
     @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'max' => 3,
         'moduleName' => 'articles',
         'name' => 'featured_items',
         'endpoints' => [
             [
                 'label' => 'Article',
-                'value' => '/collection/articles_publications/articles/browser'
+                'value' => '/collection/articlesPublications/articles/browser'
             ],
             [
                 'label' => 'Interactive feature',
@@ -18,7 +18,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'max' => 10,
         'moduleName' => 'categories',
         'name' => 'articlesCategories',
