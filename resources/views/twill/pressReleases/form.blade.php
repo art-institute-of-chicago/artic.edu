@@ -1,11 +1,11 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'title_display',
-        'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-    ])
+    <x-twill::input
+        name='title_display'
+        label='Title formatting (optional)'
+        note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+    />
 
     @formField('medias', [
         'with_multiple' => false,
@@ -31,12 +31,12 @@
         ],
     ])
 
-    @formField('input', [
-        'name' => 'short_description',
-        'label' => 'Short description',
-        'type' => 'textarea',
-        'maxlength' => 255
-    ])
+    <x-twill::input
+        name='short_description'
+        label='Short description'
+        type='textarea'
+        :maxlength='255'
+    />
 
     @formField('checkbox', [
         'name' => 'is_unlisted',

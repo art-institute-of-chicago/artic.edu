@@ -86,9 +86,8 @@
     ],
 ])
 
-@formField('input', [
-    'name' => 'image_link',
-    'label' => 'Link (optional)',
-    'note' => 'Makes image clickable',
-    'type' => 'text'
-])
+<x-twill::input
+    name='image_link'
+    label='Link (optional)'
+    note='Makes image clickable'
+/>

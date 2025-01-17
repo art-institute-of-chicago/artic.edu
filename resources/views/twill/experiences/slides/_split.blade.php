@@ -4,10 +4,10 @@
     'keepAlive' => true,
 ])
     <div style="display: none" id="headline">
-        @formField('input', [
-            'name' => 'headline',
-            'label' => 'Headline'
-        ])
+        <x-twill::input
+            name='headline'
+            label='Headline'
+        />
     </div>
 
     @formField('wysiwyg', [

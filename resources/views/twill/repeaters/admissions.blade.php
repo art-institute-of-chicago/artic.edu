@@ -3,11 +3,11 @@
 @twillRepeaterComponent('a17-block-admissions')
 @twillRepeaterMax('10')
 
-@formField('input', [
-    'name' => 'title',
-    'label' => 'Title',
-    'required' => true
-])
+<x-twill::input
+    name='title'
+    label='Title'
+    :required='true'
+/>
 
 @component('twill::partials.form.utils._collapsed_fields', ['label' => 'Edit admission'])
     @formField('date_picker', [
@@ -16,22 +16,22 @@
         'required' => true
     ])
 
-    @formField('input', [
-        'name' => 'time_start',
-        'label' => 'Opening time',
-        'required' => true
-    ])
+    <x-twill::input
+        name='time_start'
+        label='Opening time'
+        :required='true'
+    />
 
-    @formField('input', [
-        'name' => 'time_end',
-        'label' => 'Closing time',
-        'required' => true
-    ])
+    <x-twill::input
+        name='time_end'
+        label='Closing time'
+        :required='true'
+    />
 
-    @formField('input', [
-        'name' => 'copy',
-        'label' => 'Copy',
-        'type' => 'textarea',
-        'required' => true
-    ])
+    <x-twill::input
+        name='copy'
+        label='Copy'
+        type='textarea'
+        :required='true'
+    />
 @endcomponent

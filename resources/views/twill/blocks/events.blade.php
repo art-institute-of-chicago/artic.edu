@@ -26,10 +26,10 @@ $programs = app(EventProgramRepository::class)->listAll('name');
 
 @endphp
 
-@formField('input', [
-    'name' => 'title',
-    'label' => 'Title',
-])
+<x-twill::input
+    name='title'
+    label='Title'
+/>
 
 @formField('multi_select', [
     'name' => 'audience',

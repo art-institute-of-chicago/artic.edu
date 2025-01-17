@@ -34,10 +34,10 @@
     'note' => 'Upload a .zip file',
 ])
 
-@formField('input', [
-    'name' => 'alt_text',
-    'label' => 'Alt Text',
-])
+<x-twill::input
+    name='alt_text'
+    label='Alt Text'
+/>
 
 @formField('wysiwyg', [
     'name' => 'caption_title',

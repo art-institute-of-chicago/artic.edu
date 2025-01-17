@@ -5,11 +5,11 @@
 ])
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'title_display',
-        'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-    ])
+    <x-twill::input
+        name='title_display'
+        label='Title formatting (optional)'
+        note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+    />
 
     @formField('files', [
         'name' => 'vtour_xml_file',
@@ -41,12 +41,12 @@
         ],
     ])
 
-    @formField('input', [
-        'name' => 'heading',
-        'label' => 'Heading',
-        'rows' => 3,
-        'type' => 'textarea',
-    ])
+    <x-twill::input
+        name='heading'
+        label='Heading'
+        type='textarea'
+        :rows='3'
+    />
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([

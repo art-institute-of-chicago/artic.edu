@@ -61,20 +61,20 @@
     'renderForBlocks' => false
 ])
 
-    @formField('input', [
-        'name' => 'header_cta_title',
-        'label' => 'CTA Title'
-    ])
+    <x-twill::input
+        name='header_cta_title'
+        label='CTA Title'
+    />
 
-    @formField('input', [
-        'name' => 'header_cta_button_label',
-        'label' => 'Button Label'
-    ])
+    <x-twill::input
+        name='header_cta_button_label'
+        label='Button Label'
+    />
 
-    @formField('input', [
-        'name' => 'header_cta_button_link',
-        'label' => 'Button Link'
-    ])
+    <x-twill::input
+        name='header_cta_button_link'
+        label='Button Link'
+    />
 
 @endcomponent
 
@@ -110,25 +110,25 @@
 
     <hr/>
 
-    @formField('input', [
-        'name' => 'labels.home_location_label',
-        'label' => 'Location Label'
-    ])
+    <x-twill::input
+        name='labels.home_location_label'
+        label='Location Label'
+    />
 
-    @formField('input', [
-        'name' => 'labels.home_location_link',
-        'label' => 'Location Link'
-    ])
+    <x-twill::input
+        name='labels.home_location_link'
+        label='Location Link'
+    />
 
-    @formField('input', [
-        'name' => 'labels.home_buy_tix_label',
-        'label' => 'Tickets Label'
-    ])
+    <x-twill::input
+        name='labels.home_buy_tix_label'
+        label='Tickets Label'
+    />
 
-    @formField('input', [
-        'name' => 'labels.home_buy_tix_link',
-        'label' => 'Tickets Link'
-    ])
+    <x-twill::input
+        name='labels.home_buy_tix_link'
+        label='Tickets Link'
+    />
 
 </a17-fieldset>
 
@@ -173,23 +173,23 @@
 </a17-fieldset>
 
 <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
-    @formField('input', [
-        'name' => 'meta_title',
-        'label' => 'Metadata Title'
-    ])
+    <x-twill::input
+        name='meta_title'
+        label='Metadata Title'
+    />
 
-    @formField('input', [
-        'name' => 'meta_description',
-        'label' => 'Metadata Description',
-        'type' => 'textarea'
-    ])
+    <x-twill::input
+        name='meta_description'
+        label='Metadata Description'
+        type='textarea'
+    />
 
 
-    @formField('input', [
-        'name' => 'search_tags',
-        'label' => 'Internal Search Tags',
-        'type' => 'textarea'
-    ])
+    <x-twill::input
+        name='search_tags'
+        label='Internal Search Tags'
+        type='textarea'
+    />
 
     <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
 </a17-fieldset>

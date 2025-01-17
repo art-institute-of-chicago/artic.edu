@@ -122,21 +122,21 @@
         'renderForBlocks' => false,
         'fieldValues' => 'custom'
     ])
-        @formField('input', [
-            'name' => 'tag',
-            'label' => 'Tag',
-            'note' => 'Small text, eg "Exhibition"'
-        ])
+        <x-twill::input
+            name='tag'
+            label='Tag'
+            note='Small text eg "Exhibition"'
+        />
 
-        @formField('input', [
-            'name' => 'call_to_action',
-            'label' => 'Call to action',
-            'note' => 'Displays where dates do for Exhibitions'
-        ])
+        <x-twill::input
+            name='call_to_action'
+            label='Call to action'
+            note='Displays where dates do for Exhibitions'
+        />
 
-        @formField('input', [
-            'name' => 'url',
-            'label' => 'URL for link'
-        ])
+        <x-twill::input
+            name='url'
+            label='URL for link'
+        />
     @endcomponent
 @stop
