@@ -22,10 +22,10 @@
     @include('twill.partials.meta')
 
     <a17-fieldset id="api" title="Datahub fields">
-        @formField('input', [
-            'name' => 'datahub_id',
-            'label' => 'Datahub ID',
-            'disabled' => true
+        <x-twill::input
+            name='datahub_id'
+            label='Datahub ID'
+            disabled='true'
         ])
     </a17-fieldset>
 
@@ -94,10 +94,10 @@
 
     <a17-fieldset id="website" title="Artwork website">
         <p>When the work of art is itself a website, enter its information here.</p>
-        @formField('input', [
-            'name' => 'artwork_website_url',
-            'label' => 'Artwork website URL',
-        ])
+        <x-twill::input
+            name='artwork_website_url'
+            label='Artwork website URL'
+        />
     </a17-fieldset>
 @stop
 

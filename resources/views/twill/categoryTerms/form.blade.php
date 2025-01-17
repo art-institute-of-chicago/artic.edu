@@ -1,22 +1,22 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'datahub_id',
-        'label' => 'Datahub ID',
-        'disabled' => true
-    ])
-    @formField('input', [
-        'name' => 'title',
-        'label' => 'API Title',
-        'disabled' => true
-    ])
+    <x-twill::input
+        name='datahub_id'
+        label='Datahub ID'
+        disabled='true'
+    />
+    <x-twill::input
+        name='title'
+        label='API Title'
+        disabled='true'
+    />
 
-    @formField('input', [
-        'name' => 'subtype',
-        'label' => 'Sub Type',
-        'disabled' => true
-    ])
+    <x-twill::input
+        name='subtype'
+        label='Sub Type'
+        disabled='true'
+    />
 
     @formField('medias', [
         'with_multiple' => false,

@@ -1,10 +1,10 @@
 @twillBlockTitle('Featured Pages Grid')
 @twillBlockIcon('image')
 
-@formField('input', [
-    'name' => 'heading',
-    'label' => 'Heading',
-])
+<x-twill::input
+    name='heading'
+    label='Heading'
+/>
 
 @formField('browser', [
     'routePrefix' => 'generic',

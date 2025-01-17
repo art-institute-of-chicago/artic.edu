@@ -28,20 +28,20 @@
     ]
 ])
 
-@formField('input', [
-    'name' => 'table_title',
-    'label' => 'Title',
-    'maxlength' => 60,
-    'note' => 'Optional',
-])
+<x-twill::input
+    name='table_title'
+    label='Title'
+    note='Optional'
+    :maxlength='60'
+/>
 
-@formField('input', [
-    'type' => 'textarea',
-    'name' => 'table_markdown',
-    'label' => 'Table (Markdown)',
-    'rows' => 4,
-    'note' => 'Limited to one table per block',
-])
+<x-twill::input
+    type='textarea'
+    name='table_markdown'
+    label='Table (Markdown)'
+    note='Limited to one table per block'
+    :rows='4'
+/>
 
 @formField('wysiwyg', [
     'name' => 'table_caption',

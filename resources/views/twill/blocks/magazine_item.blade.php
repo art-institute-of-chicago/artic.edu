@@ -75,27 +75,27 @@
         'label' => 'Hero image',
     ])
 
-    @formField('input', [
-        'name' => 'tag',
-        'label' => 'Tag',
-        'note' => 'Small text, e.g. "Exhibition"'
-    ])
+    <x-twill::input
+        name='tag'
+        label='Tag'
+        note='Small text e.g. "Exhibition"'
+    />
 
-    @formField('input', [
-        'name' => 'title',
-        'label' => 'Title',
-        'note' => 'Use <i> tag to add italics, e.g. <i>Nighthawks</i>'
-    ])
+    <x-twill::input
+        name='title'
+        label='Title'
+        note='Use <i> tag to add italics, e.g. <i>Nighthawks</i>'
+    />
 
-    @formField('input', [
-        'name' => 'url',
-        'label' => 'URL for link'
-    ])
+    <x-twill::input
+        name='url'
+        label='URL for link'
+    />
 
-    @formField('input', [
-        'name' => 'author_display',
-        'label' => 'Author'
-    ])
+    <x-twill::input
+        name='author_display'
+        label='Author'
+    />
 @endcomponent
 
 @formField('wysiwyg', [

@@ -5,11 +5,11 @@
 ])
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'title',
-        'label' => 'Title',
-        'required' => true
-    ])
+    <x-twill::input
+        name='title'
+        label='Title'
+        :required='true'
+    />
 
     @formField('multi_select', [
         'name' => 'siteTags',
@@ -25,11 +25,11 @@
         'placeholder' => 'Select some categories',
     ])
 
-    @formField('input', [
-        'name' => 'title_display',
-        'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-    ])
+    <x-twill::input
+        name='title_display'
+        label='Title formatting (optional)'
+        note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+    />
 
     @formField('wysiwyg', [
         'name' => 'short_copy',

@@ -33,11 +33,11 @@
         'max' => 1,
     ])
 
-    @formField('input', [
-        'name' => 'subtitle',
-        'label' => 'Subtitle',
-        'maxlength' => 300
-    ])
+    <x-twill::input
+        name='subtitle'
+        label='Subtitle'
+        :maxlength='300'
+    />
 
     @formField('wysiwyg', [
         'name' => 'listing_description',

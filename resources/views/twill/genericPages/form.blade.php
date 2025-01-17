@@ -7,11 +7,11 @@
 ])
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'title_display',
-        'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-    ])
+    <x-twill::input
+        name='title_display'
+        label='Title formatting (optional)'
+        note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+    />
 
     @formField('medias', [
         'with_multiple' => false,
@@ -54,10 +54,10 @@
         'placeholder' => 'Select some categories',
     ])
 
-    @formField('input', [
-        'name' => 'redirect_url',
-        'label' => 'Redirect URL',
-    ])
+    <x-twill::input
+        name='redirect_url'
+        label='Redirect URL'
+    />
 
     @formField('checkbox', [
         'name'  => 'is_redirect_url_external',
@@ -104,22 +104,22 @@
 
     {{-- WEB-2236: Use 'twill.partials.meta' as a component --}}
     <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
-        @formField('input', [
-            'name' => 'meta_title',
-            'label' => 'Metadata Title'
-        ])
+        <x-twill::input
+            name='meta_title'
+            label='Metadata Title'
+        />
 
-        @formField('input', [
-            'name' => 'meta_description',
-            'label' => 'Metadata Description',
-            'type' => 'textarea'
-        ])
+        <x-twill::input
+            name='meta_description'
+            label='Metadata Description'
+            type='textarea'
+        />
 
-        @formField('input', [
-            'name' => 'search_tags',
-            'label' => 'Internal Search Tags',
-            'type' => 'textarea'
-        ])
+        <x-twill::input
+            name='search_tags'
+            label='Internal Search Tags'
+            type='textarea'
+        />
 
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
 
