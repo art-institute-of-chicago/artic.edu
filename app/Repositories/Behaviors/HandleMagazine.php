@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Behaviors;
 
+use Illuminate\Support\Collection;
 use App\Models\MagazineItem;
 use App\Models\MagazineIssue;
 
@@ -9,7 +10,7 @@ trait HandleMagazine
 {
     private $magazineItems = [];
 
-    public function getMagazineItem($item)
+    public function getMagazineItem($item): MagazineItem
     {
         return $magazineItems[$item->id] ?? $magazineItems[$item->id] = MagazineItem::query()
             ->where('magazinable_type', $this->morphType)
@@ -20,7 +21,7 @@ trait HandleMagazine
     /**
      * Be sure to add `protected $morphType = '___';` to your repository.
      */
-    public function getAlsoInThisIssue($item)
+    public function getAlsoInThisIssue($item): Collection
     {
         $magItem = $this->getMagazineItem($item);
 

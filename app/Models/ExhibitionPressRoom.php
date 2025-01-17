@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -96,17 +97,17 @@ class ExhibitionPressRoom extends AbstractModel
         return join([route('about.exhibitionPressRooms'), '/', $this->id, '-']);
     }
 
-    public function getSlugAttribute()
+    public function getSlugAttribute(): string
     {
         return route('about.exhibitionPressRooms.show', $this);
     }
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.generic.exhibitionPressRooms.edit', $this->id);
+        return route('twill.generic.exhibitionPressRooms.edit', $this->id);
     }
 
-    public function scopeOrdered($query)
+    public function scopeOrdered($query): Builder
     {
         return $query->orderBy('publish_start_date', 'desc');
     }
