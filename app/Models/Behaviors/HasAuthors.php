@@ -27,7 +27,8 @@ trait HasAuthors
         }
     }
 
-    public function getAuthorAttribute() {
+    public function getAuthorAttribute()
+    {
         return $this->showAuthors();
     }
 
