@@ -37,7 +37,7 @@
             @slot('cols_large','2')
             @slot('cols_xlarge','2')
 
-            {!! $item->renderBlocks(false) !!}
+            {!! $item->renderBlocks() !!}
         @endcomponent
     </div>
 
