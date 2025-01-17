@@ -53,16 +53,14 @@
 @twillBlockTitle('Showcase Multiple')
 @twillBlockIcon('image')
 
-@formField('input', [
-    'name' => 'heading',
-    'label' => 'Heading',
-    'type' => 'text',
-])
+<x-twill::input
+    name='heading'
+    label='Heading'
+/>
 
-@formField('input', [
-    'name' => 'intro',
-    'label' => 'Intro',
-    'type' => 'text',
-])
+<x-twill::input
+    name='intro'
+    label='Intro'
+/>
 
 @formField('repeater', ['type' => 'showcase_item'])

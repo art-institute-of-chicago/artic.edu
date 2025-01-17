@@ -29,11 +29,11 @@
         ],
     ])
 
-    @formField('input', [
-        'name' => 'header',
-        'label' => 'Header',
-        'note' => 'Use "Title Case"',
-    ])
+    <x-twill::input
+        name='header'
+        label='Header'
+        note='Use "Title Case"'
+    />
 
     @formField('wysiwyg', [
         'name' => 'body',
@@ -43,11 +43,11 @@
         ],
     ])
 
-    @formField('input', [
-        'name' => 'lightbox_button_text',
-        'label' => 'Button Text',
-        'note' => 'Defaults to "Join Now"',
-    ])
+    <x-twill::input
+        name='lightbox_button_text'
+        label='Button Text'
+        note='Defaults to "Join Now"'
+    />
 
     @formField('radios', [
         'name' => 'variation',
@@ -121,11 +121,11 @@
 
         <hr>
 
-        @formField('input', [
-            'name' => 'action_url',
-            'label' => 'Action URL',
-            'note' => 'e.g. https://join.artic.edu/secure/holiday-annual-fund',
-        ])
+        <x-twill::input
+            name='action_url'
+            label='Action URL'
+            note='e.g. https://join.artic.edu/secure/holiday-annual-fund'
+        />
 
     </a17-fieldset>
 

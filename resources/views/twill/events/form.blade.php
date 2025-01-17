@@ -17,11 +17,11 @@
 @section('fieldsets')
 
     <a17-fieldset id="title_and_image" title="Title and Image">
-        @formField('input', [
-            'name' => 'title_display',
-            'label' => 'Title formatting (optional)',
-            'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-        ])
+        <x-twill::input
+            name='title_display'
+            label='Title formatting (optional)'
+            note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+        />
 
         <hr>
 
@@ -38,14 +38,14 @@
     </a17-fieldset>
 
     <a17-fieldset id="dates" title="Date rules">
-        @formField('input', [
-            'name' => 'all_dates_cms',
-            'label' => 'All computed dates',
-            'note' => 'Dates built using all rules below.',
-            'type' => 'textarea',
-            'disabled' => true,
-            'rows' => 2
-        ])
+        <x-twill::input
+            name='all_dates_cms'
+            label='All computed dates'
+            note='Dates built using all rules below.'
+            type='textarea'
+            disabled='true'
+            :rows='2'
+        />
 
         @component('twill::partials.form.utils._columns')
             @slot('left')
@@ -72,12 +72,11 @@
             @endslot
         @endcomponent
 
-        @formField('input', [
-            'name' => 'forced_date',
-            'label' => 'Force the event to show this text as date',
-            'note' => 'Optional, the event will show this instead of the automatic computed date',
-            'type' => 'text'
-        ])
+        <x-twill::input
+            name='forced_date'
+            label='Force the event to show this text as date'
+            note='Optional, the event will show this instead of the automatic computed date'
+        />
 
         @formField('repeater', [
             'type' => 'date_rule',
@@ -101,18 +100,18 @@
             'label' => 'Event from ticketing system'
         ])
 
-        @formField('input', [
-            'name' => 'rsvp_link',
-            'label' => 'Custom tickets link',
-            'note' => 'Only use this field when using an alternate sales platform, e.g., Eventbrite.'
-        ])
+        <x-twill::input
+            name='rsvp_link'
+            label='Custom tickets link'
+            note=''Only use this field when using an alternate sales platform' e.g., Eventbrite.'
+        />
 
-        @formField('input', [
-            'name' => 'buy_tickets_link',
-            'label' => 'Button link preview',
-            'readonly' => 'true',
-            'note' => 'Save and refresh the page to see the link preview',
-        ])
+        <x-twill::input
+            name='buy_tickets_link'
+            label='Button link preview'
+            readonly='true'
+            note='Save and refresh the page to see the link preview'
+        />
 
         @formField('radios', [
             'name' => 'buy_button_text',
@@ -219,15 +218,15 @@
             'label' => 'Is Virtual Event',
         ])
 
-        @formField('input', [
-            'name' => 'virtual_event_url',
-            'label' => 'Virtual event URL',
-        ])
+        <x-twill::input
+            name='virtual_event_url'
+            label='Virtual event URL'
+        />
 
-        @formField('input', [
-            'name' => 'virtual_event_passcode',
-            'label' => 'Virtual event passcode',
-        ])
+        <x-twill::input
+            name='virtual_event_passcode'
+            label='Virtual event passcode'
+        />
     </a17-fieldset>
 
     <a17-fieldset title="Content" id="content" data-sticky-top="publisher">
@@ -266,11 +265,11 @@
 
         <hr>
 
-        @formField('input', [
-            'name' => 'location',
-            'label' => 'Location',
-            'note' => 'Displayed in left sidebar',
-        ])
+        <x-twill::input
+            name='location'
+            label='Location'
+            note='Displayed in left sidebar'
+        />
 
         @formField('block_editor', [
             'blocks' => BlockHelpers::getBlocksForEditor([
@@ -337,34 +336,34 @@
             'options' => $eventProgramsList,
         ])
 
-        @formField('input', [
-            'name' => 'program_urls',
-            'label' => 'Program URLs',
-            'type' => 'textarea',
-            'rows' => $item->programs->count(),
-            'readonly' => 'true',
-        ])
+        <x-twill::input
+            name='program_urls'
+            label='Program URLs'
+            type='textarea'
+            :rows='{{ $item->programs->count() }}'
+            readonly='true'
+        />
     </a17-fieldset>
 
     {{--  WEB-2236: Use 'twill.partials.meta' as a component --}}
     <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
-        @formField('input', [
-            'name' => 'meta_title',
-            'label' => 'Metadata Title'
-        ])
+        <x-twill::input
+            name='meta_title'
+            label='Metadata Title'
+        />
 
-        @formField('input', [
-            'name' => 'meta_description',
-            'label' => 'Metadata Description',
-            'type' => 'textarea'
-        ])
+        <x-twill::input
+            name='meta_description'
+            label='Metadata Description'
+            type='textarea'
+        />
 
 
-        @formField('input', [
-            'name' => 'search_tags',
-            'label' => 'Internal Search Tags',
-            'type' => 'textarea'
-        ])
+        <x-twill::input
+            name='search_tags'
+            label='Internal Search Tags'
+            type='textarea'
+        />
 
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
     </a17-fieldset>
@@ -482,16 +481,16 @@
 
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
-            @formField('input', [
-                'name' => 'join_url',
-                'label' => 'Join URL'
-            ])
+            <x-twill::input
+                name='join_url'
+                label='Join URL'
+            />
 
-            @formField('input', [
-                'name' => 'survey_url',
-                'label' => 'Questionnaire Survey URL',
-                'note' => 'Sent 1 day after user registers if URL is populated',
-            ])
+            <x-twill::input
+                name='survey_url'
+                label='Questionnaire Survey URL'
+                note='Sent 1 day after user registers if URL is populated'
+            />
 
             <br>
 
@@ -514,11 +513,11 @@
 
                 <p>By default, test emails will be sent to the Email Marketing Manager and to any addresses specified in the list that is associated with this event's host in Salesforce. Use this field to add your email to the list of recipients.</p>
 
-                @formField('input', [
-                    'name' => 'test_emails',
-                    'label' => 'Extra Email Addresses',
-                    'note' => 'One or more comma-separated email addresses',
-                ])
+                <x-twill::input
+                    name='test_emails'
+                    label='Extra Email Addresses'
+                    note='One or more comma-separated email addresses'
+                />
 
                 <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 

@@ -1,8 +1,8 @@
 @section('contentFields')
-    @formField('input', [
-        'name' => 'art_intro',
-        'label' => 'Intro text',
-    ])
+    <x-twill::input
+        name='art_intro'
+        label='Intro text'
+    />
 
     @formField('browser', [
         'routePrefix' => 'collection',
