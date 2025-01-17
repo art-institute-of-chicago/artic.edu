@@ -64,7 +64,7 @@
 
     @formField('checkbox', [
         'name' => 'is_unlisted',
-        'label' => 'Don\'t show this experience in listings',
+        'label' => "Don't show this experience in listings",
     ])
 
     @formField('checkbox', [

@@ -74,7 +74,7 @@
             'name' => 'welcome_note_display',
             'label' => 'Preview text',
             'maxlength' => 255,
-            'note' => 'If empty, we use the article\'s "List description"',
+            'note' => "If empty, we use the article's \"List description\"",
             'toolbarOptions' => [
                 'italic'
             ],
@@ -83,7 +83,7 @@
         @formField('input', [
             'name' => 'welcome_note_author_override',
             'label' => 'Author override',
-            'note' => 'If empty, we use the article\'s author logic'
+            'note' => "If empty, we use the article's author logic"
         ])
     </a17-fieldset>
 
