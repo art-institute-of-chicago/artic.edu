@@ -40,7 +40,7 @@
 
     @formField('checkbox', [
         'name' => 'is_unlisted',
-        'label' => 'Don\'t show this press release in listings',
+        'label' => "Don't show this press release in listings",
     ])
 
     @formField('block_editor', [
