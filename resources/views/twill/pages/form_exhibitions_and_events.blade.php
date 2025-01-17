@@ -1,8 +1,8 @@
 @section('contentFields')
-    @formField('input', [
-        'name' => 'exhibition_intro',
-        'label' => 'Intro text',
-    ])
+    <x-twill::input
+        name='exhibition_intro'
+        label='Intro text'
+    />
 @stop
 
 

@@ -1,8 +1,8 @@
-@formField('input', [
-    'name' => 'title',
-    'label' => 'Title',
-    'required' => true
-])
+<x-twill::input
+    name='title'
+    label='Title'
+    :required='true'
+/>
 
 @formField('select', [
     'name' => 'type',
@@ -12,11 +12,11 @@
 ])
 
 @if(!isset($item))
-    @formField('input', [
-        'name' => 'url',
-        'label' => 'URL',
-        'note' => 'e.g., /visit'
-    ])
+    <x-twill::input
+        name='url'
+        label='URL'
+        note='e.g., /visit'
+    />
 
     @formField('date_picker', [
         'name' => 'valid_from',

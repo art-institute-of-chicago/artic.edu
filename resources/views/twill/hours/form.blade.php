@@ -1,10 +1,10 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'title',
-        'label' => 'Title',
-    ])
+    <x-twill::input
+        name='title'
+        label='Title'
+    />
 
     @formField('select', [
         'name' => 'type',
@@ -13,11 +13,11 @@
         'options' => $types,
     ])
 
-    @formField('input', [
-        'name' => 'url',
-        'label' => 'URL',
-        'note' => 'e.g., /visit'
-    ])
+    <x-twill::input
+        name='url'
+        label='URL'
+        note='e.g., /visit'
+    />
 
     @formField('date_picker', [
         'name' => 'valid_from',
@@ -317,11 +317,11 @@
 </a17-fieldset>
 
 <a17-fieldset id="additional" title="Additional content">
-    @formField('input', [
-        'name' => 'additional_text',
-        'label' => 'Additional text',
-        'note' => 'For the "See all hours" modal',
-    ])
+    <x-twill::input
+        name='additional_text'
+        label='Additional text'
+        note='For the "See all hours" modal'
+    />
 
     @formField('wysiwyg', [
         'name' => 'summary',

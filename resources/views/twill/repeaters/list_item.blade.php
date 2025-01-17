@@ -9,17 +9,17 @@
     'max' => '1'
 ])
 
-@formField('input', [
-    'name' => 'tag',
-    'label' => 'Tag',
-    'maxlength' => 20
-])
+<x-twill::input
+    name='tag'
+    label='Tag'
+    :maxlength='20'
+/>
 
-@formField('input', [
-    'name' => 'header',
-    'label' => 'Header',
-    'maxlength' => 60
-])
+<x-twill::input
+    name='header'
+    label='Header'
+    :maxlength='60'
+/>
 
 @formField('wysiwyg', [
     'name' => 'description',
@@ -30,7 +30,7 @@
     ],
 ])
 
-@formField('input', [
-    'name' => 'external_link',
-    'label' => 'Link'
-])
+<x-twill::input
+    name='external_link'
+    label='Link'
+/>

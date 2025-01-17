@@ -98,10 +98,10 @@
         'name' => 'hero',
         'note' => 'Minimum image width 3000px'
     ])
-    @formField('input', [
-        'label' => 'Subtitle',
-        'name' => 'sub_title',
-    ])
+    <x-twill::input
+        label='Subtitle'
+        name='sub_title'
+    />
 
     @formField('radios', [
         'name' => 'grouping_background_color',

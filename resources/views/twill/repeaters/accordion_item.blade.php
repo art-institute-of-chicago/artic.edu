@@ -3,11 +3,11 @@
 @twillRepeaterComponent('a17-block-accordion_item')
 @twillRepeaterMax('20')
 
-@formField('input', [
-    'name' => 'header',
-    'label' => 'Header',
-    'maxlength' => 60
-])
+<x-twill::input
+    name='header'
+    label='Header'
+    :maxlength='60'
+/>
 
 @formField('wysiwyg', [
     'type' => 'textarea',

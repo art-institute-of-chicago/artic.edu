@@ -1,8 +1,8 @@
-@formField('input', [
-    'name' => 'author_display',
-    'label' => 'Author display',
-    'maxlength' => 255
-])
+<x-twill::input
+    name='author_display'
+    label='Author display'
+    :maxlength='255'
+/>
 
 @formField('browser', [
     'routePrefix' => 'collection',

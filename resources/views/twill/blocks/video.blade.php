@@ -86,11 +86,11 @@
 
     <p>For <strong>YouTube</strong>, we recommend using <a href="https://www.youtube.com/watch?v=LFF68_bME9E">full URLs</a> instead of <a href="https://youtu.be/LFF68_bME9E">shortened ones</a>.</p>
 
-    @formField('input', [
-        'name' => 'url',
-        'label' => 'Video URL',
-        'type' => 'url'
-    ])
+    <x-twill::input
+        name='url'
+        label='Video URL'
+        type='url'
+    />
 
 @endcomponent
 

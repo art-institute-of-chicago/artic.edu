@@ -52,12 +52,12 @@
         'renderForBlocks' => true,
         'keepAlive' => true,
     ])
-        @formField('input', [
-            'name' => 'object_id',
-            'label' => 'Object ID',
-            'maxlength' => 150,
-            'note' => 'To see fields update: 1. Enter object ID 2. Click Update button 3. Refresh browser'
-        ])
+        <x-twill::input
+            name='object_id'
+            label='Object ID'
+            note='To see fields update: 1. Enter object ID 2. Click Update button 3. Refresh browser'
+            :maxlength='150'
+        />
     @endcomponent
 
     @formField('wysiwyg', [

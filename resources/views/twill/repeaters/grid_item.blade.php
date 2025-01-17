@@ -17,11 +17,11 @@
     ],
 ])
 
-@formField('input', [
-    'name' => 'tag',
-    'label' => 'Tag',
-    'note' => 'Displayed in smaller font above title',
-])
+<x-twill::input
+    name='tag'
+    label='Tag'
+    note='Displayed in smaller font above title'
+/>
 
 @formField('wysiwyg', [
     'type' => 'textarea',
@@ -36,10 +36,10 @@
 @component('twill::partials.form.utils._columns')
 @slot('left')
 
-@formField('input', [
-    'name' => 'label',
-    'label' => 'Label',
-])
+<x-twill::input
+    name='label'
+    label='Label'
+/>
 @endslot
 
 @slot('right')
@@ -62,7 +62,7 @@
 @endslot
 @endcomponent
 
-@formField('input', [
-    'name' => 'url',
-    'label' => 'URL'
-])
+<x-twill::input
+    name='url'
+    label='URL'
+/>

@@ -2,12 +2,12 @@
 
 @section('contentFields')
 
-    @formField('input', [
-        'name' => 'intro',
-        'label' => 'Intro Text',
-        'maxlength' => 100,
-        'required' => true,
-    ])
+    <x-twill::input
+        name='intro'
+        label='Intro Text'
+        :maxlength='100'
+        :required='true'
+    />
 
 @stop
 

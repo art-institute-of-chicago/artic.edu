@@ -1,16 +1,16 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'title',
-        'label' => 'Title',
-        'required' => true
-    ])
+    <x-twill::input
+        name='title'
+        label='Title'
+        :required='true'
+    />
 
-    @formField('input', [
-        'name' => 'tooltip',
-        'label' => 'Tooltip'
-    ])
+    <x-twill::input
+        name='tooltip'
+        label='Tooltip'
+    />
 
     @formField('wysiwyg', [
         'name' => 'description',
@@ -21,13 +21,13 @@
         ],
     ])
 
-    @formField('input', [
-        'name' => 'link_label',
-        'label' => 'Link label',
-    ])
+    <x-twill::input
+        name='link_label'
+        label='Link label'
+    />
 
-    @formField('input', [
-        'name' => 'link_url',
-        'label' => 'Link URL',
-    ])
+    <x-twill::input
+        name='link_url'
+        label='Link URL'
+    />
 @stop
