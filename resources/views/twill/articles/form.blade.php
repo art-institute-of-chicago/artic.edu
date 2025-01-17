@@ -99,7 +99,7 @@
 
     @formField('checkbox', [
         'name' => 'is_unlisted',
-        'label' => 'Don\'t show this article in listings',
+        'label' => "Don't show this article in listings",
     ])
 
     @formField('checkbox', [
