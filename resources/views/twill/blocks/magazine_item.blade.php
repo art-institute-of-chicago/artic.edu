@@ -32,7 +32,7 @@
     'renderForBlocks' => true
 ])
     @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'moduleName' => 'articles',
         'name' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
         'label' => 'Article'
@@ -58,7 +58,7 @@
     'renderForBlocks' => true
 ])
     @formField('browser', [
-        'routePrefix' => 'collection.interactive_features',
+        'routePrefix' => 'collection.interactiveFeatures',
         'moduleName' => 'experiences',
         'name' => \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE,
         'label' => 'Interactive Feature'

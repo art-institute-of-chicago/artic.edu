@@ -28,11 +28,11 @@
     'endpoints' => [
         [
             'label' => 'Article',
-            'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
+            'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['is_unlisted' => false]),
         ],
         [
             'label' => 'Video',
-            'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
+            'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
         ],
         [
             'label' => 'Highlight',
@@ -40,7 +40,7 @@
         ],
         [
             'label' => 'Interactive Feature',
-            'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser'),
+            'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser'),
         ],
     ],
 ])

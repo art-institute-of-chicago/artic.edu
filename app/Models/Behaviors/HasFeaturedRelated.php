@@ -62,7 +62,7 @@ trait HasFeaturedRelated
         $relatedItems = $this->getRelatedWithApiModels('sidebar_items', [
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
-                'routePrefix' => 'exhibitions_events',
+                'routePrefix' => 'exhibitionsEvents',
                 'moduleName' => 'exhibitions',
             ],
         ], [

@@ -65,13 +65,13 @@ $nav = [
         ]
     ],
 
-    'exhibitions_events' => [
+    'exhibitionsEvents' => [
         'title' => 'Exhibitions & Events',
-        'route' => 'twill.exhibitions_events.landing',
+        'route' => 'twill.exhibitionsEvents.landing',
         'primary_navigation' => [
             'landing' => [
                 'title' => 'Landing',
-                'route' => 'twill.exhibitions_events.landing',
+                'route' => 'twill.exhibitionsEvents.landing',
             ],
             'exhibitions' => [
                 'title' => 'Exhibitions',
@@ -87,7 +87,7 @@ $nav = [
             ],
             'history' => [
                 'title' => 'History Landing',
-                'route' => 'twill.exhibitions_events.history',
+                'route' => 'twill.exhibitionsEvents.history',
             ],
             'emailSeries' => [
                 'title' => 'Email Series',
@@ -116,17 +116,17 @@ $nav = [
                 'title' => 'Quick Filters',
                 'module' => true,
             ],
-            'articles_publications' => [
+            'articlesPublications' => [
                 'title' => 'Writings',
-                'route' => 'twill.collection.articles_publications.landing',
+                'route' => 'twill.collection.articlesPublications.landing',
                 'secondary_navigation' => [
                     'landing' => [
                         'title' => 'Landing',
-                        'route' => 'twill.collection.articles_publications.landing',
+                        'route' => 'twill.collection.articlesPublications.landing',
                     ],
                     'articles_landing' => [
                         'title' => 'Articles Landing',
-                        'route' => 'twill.collection.articles_publications.articles_landing',
+                        'route' => 'twill.collection.articlesPublications.articles_landing',
                     ],
                     'articles' => [
                         'title' => 'Articles',
@@ -150,13 +150,13 @@ $nav = [
                     ],
                 ],
             ],
-            'research_resources' => [
+            'researchResources' => [
                 'title' => 'Resources',
-                'route' => 'twill.collection.research_resources.landing',
+                'route' => 'twill.collection.researchResources.landing',
                 'secondary_navigation' => [
                     'landing' => [
                         'title' => 'Landing',
-                        'route' => 'twill.collection.research_resources.landing',
+                        'route' => 'twill.collection.researchResources.landing',
                     ],
                     'educatorResources' => [
                         'title' => 'Educator Resources',
@@ -184,9 +184,9 @@ $nav = [
                 'title' => 'Departments',
                 'module' => true,
             ],
-            'interactive_features' => [
+            'interactiveFeatures' => [
                 'title' => 'Interactive Features',
-                'route' => 'twill.collection.interactive_features.experiences.index',
+                'route' => 'twill.collection.interactiveFeatures.experiences.index',
                 'secondary_navigation' => [
                     'experiences' => [
                         'title' => 'Experiences',

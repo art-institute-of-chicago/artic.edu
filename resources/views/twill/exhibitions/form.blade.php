@@ -128,7 +128,7 @@
 @section('fieldsets')
     <a17-fieldset id="sponsors" title="Sponsors">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'sponsors',
             'name' => 'sponsors',
             'label' => 'Sponsors',
@@ -139,7 +139,7 @@
 
     <a17-fieldset id="waitTime" title="Wait time">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'waitTimes',
             'name' => 'waitTimes',
             'label' => 'Wait Time',
@@ -174,14 +174,14 @@
     </a17-fieldset>
     <a17-fieldset id="related" title="Related">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'max' => 4,
             'name' => 'exhibitions',
             'label' => 'Related exhibitions'
         ])
 
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'events',
             'name' => 'events',
             'label' => 'Related events',
@@ -223,7 +223,7 @@
     </a17-fieldset>
 
     @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
-        @slot('routePrefix', 'exhibitions_events')
+        @slot('routePrefix', 'exhibitionsEvents')
         @slot('moduleName', 'exhibitions')
     @endcomponent
 

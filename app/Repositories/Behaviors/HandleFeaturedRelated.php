@@ -28,7 +28,7 @@ trait HandleFeaturedRelated
         $fields['browsers']['sidebar_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'sidebar_items', [
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
-                'routePrefix' => 'exhibitions_events',
+                'routePrefix' => 'exhibitionsEvents',
                 'moduleName' => 'exhibitions',
             ],
         ], [

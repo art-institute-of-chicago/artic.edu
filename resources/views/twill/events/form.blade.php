@@ -94,7 +94,7 @@
         ])
 
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'max' => 1,
             'moduleName' => 'ticketedEvents',
             'name' => 'ticketedEvent',
@@ -281,7 +281,7 @@
 
     <a17-fieldset id="sponsors" title="Sponsors">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'sponsors',
             'name' => 'sponsors',
             'label' => 'Sponsors',
@@ -292,7 +292,7 @@
 
     <a17-fieldset id="related_elements" title="Related Events">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'events',
             'name' => 'events',
             'label' => 'Related events',

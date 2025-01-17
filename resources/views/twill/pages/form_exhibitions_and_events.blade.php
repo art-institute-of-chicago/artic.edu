@@ -10,7 +10,7 @@
 
     <a17-fieldset id="current" title="Current exhibitions">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'max' => 24,
             'moduleName' => 'exhibitions',
             'name' => 'exhibitionsCurrent',
@@ -21,7 +21,7 @@
 
     <a17-fieldset id="upcoming" title="Upcoming exhibitions">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'max' => 24,
             'moduleName' => 'exhibitions',
             'name' => 'exhibitionsUpcomingListing',

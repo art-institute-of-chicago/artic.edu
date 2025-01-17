@@ -2,7 +2,7 @@
 @twillBlockIcon('text')
 
 @formField('browser', [
-    'routePrefix' => 'exhibitions_events',
+    'routePrefix' => 'exhibitionsEvents',
     'moduleName' => 'events',
     'name' => 'events',
     'label' => 'Event'

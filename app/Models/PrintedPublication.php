@@ -134,7 +134,7 @@ class PrintedPublication extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('twill.collection.articles_publications.printedPublications.edit', $this->id);
+        return route('twill.collection.articlesPublications.printedPublications.edit', $this->id);
     }
 
     protected function transformMappingInternal()
