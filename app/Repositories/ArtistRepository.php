@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\Artist;
@@ -17,7 +18,7 @@ class ArtistRepository extends BaseApiRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $this->updateMultiBrowserApiRelated($object, $fields, 'related_items', [
             'articles' => false,
@@ -36,7 +37,7 @@ class ArtistRepository extends BaseApiRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object)
+    public function getFormFields(TwillModelContract $object): array
     {
         $fields = parent::getFormFields($object);
 

@@ -15,7 +15,7 @@
     }
 
     // Preload all artworks ahead of time
-    $ids = $block->childs
+    $ids = $block->children
         ->filter(function($item) {
             return $item->input('gallery_item_type') === \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK;
         })
@@ -37,7 +37,7 @@
 
     $items = [];
 
-    foreach ($block->childs as $item) {
+    foreach ($block->children as $item) {
         switch ($item->input('gallery_item_type')) {
             case \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK:
                 $ids = $item->browserIds('artworks');

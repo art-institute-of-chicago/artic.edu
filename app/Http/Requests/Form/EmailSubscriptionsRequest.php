@@ -4,7 +4,7 @@ namespace App\Http\Requests\Form;
 
 class EmailSubscriptionsRequest extends FormRequest
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'email' => 'required',

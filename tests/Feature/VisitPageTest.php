@@ -37,7 +37,8 @@ class VisitPageTest extends BaseTestCase
             'blockable_id' => $visitPage->id,
             'blockable_type' => 'landingPages',
             'type' => 'showcase',
-            'position' => 1
+            'position' => 1,
+            'editor_name' => 'default',
         ]);
         $showcase->content = [
             'link_label' => 'Learn more',
@@ -52,7 +53,8 @@ class VisitPageTest extends BaseTestCase
             'blockable_id' => $visitPage->id,
             'blockable_type' => 'landingPages',
             'type' => 'grid',
-            'position' => 2
+            'position' => 2,
+            'editor_name' => 'default',
         ]);
         $grid->content = [
             'grid_title' => '<p>Plan Your Visit<\/p>',
@@ -67,6 +69,7 @@ class VisitPageTest extends BaseTestCase
             'position' => 1,
             'parent_id' => $grid->id,
             'child_key' => 'grid_item',
+            'editor_name' => 'default',
         ]);
         $gridItem->content = [
             'description' => '<p>Take a look at our museum floor plan to get a sense of the museum\'s layout and mark any must-see spaces.<\/p>',
@@ -84,6 +87,7 @@ class VisitPageTest extends BaseTestCase
             'position' => 2,
             'parent_id' => $grid->id,
             'child_key' => 'grid_item',
+            'editor_name' => 'default',
         ]);
         $gridItem->content = [
             'title' => '<p>Free Daily Tours<\/p>',
@@ -101,6 +105,7 @@ class VisitPageTest extends BaseTestCase
             'position' => 3,
             'parent_id' => $grid->id,
             'child_key' => 'grid_item',
+            'editor_name' => 'default',
         ]);
         $gridItem->content = [
             'url' => '\/highlights\/3\/what-to-see-in-an-hour',
@@ -118,6 +123,7 @@ class VisitPageTest extends BaseTestCase
             'position' => 4,
             'parent_id' => $grid->id,
             'child_key' => 'grid_item',
+            'editor_name' => 'default',
         ]);
         $gridItem->content = [
             'title' => '<p>Ryan Learning Center<\/p>',
@@ -135,6 +141,7 @@ class VisitPageTest extends BaseTestCase
             'position' => 5,
             'parent_id' => $grid->id,
             'child_key' => 'grid_item',
+            'editor_name' => 'default',
         ]);
         $gridItem->content = [
             'title' => '<p>Dining and Shopping<\/p>',
@@ -152,6 +159,7 @@ class VisitPageTest extends BaseTestCase
             'position' => 6,
             'parent_id' => $grid->id,
             'child_key' => 'grid_item',
+            'editor_name' => 'default',
         ]);
         $gridItem->content = [
             'title' => '<p>Accessibility<\/p>',
@@ -166,7 +174,8 @@ class VisitPageTest extends BaseTestCase
             'blockable_id' => $visitPage->id,
             'blockable_type' => 'landingPages',
             'type' => 'custom_banner',
-            'position' => 3
+            'position' => 3,
+            'editor_name' => 'default',
         ]);
         $customBanner->content = [
             'button_type' => 'mobile_app',
@@ -185,7 +194,8 @@ class VisitPageTest extends BaseTestCase
             'blockable_id' => $visitPage->id,
             'blockable_type' => 'landingPages',
             'type' => 'featured_pages_grid',
-            'position' => 4
+            'position' => 4,
+            'editor_name' => 'default',
         ]);
         $featuredPagesGrid->content = [
             'grid_heading' => 'Who\'s Visiting',
