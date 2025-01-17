@@ -10,10 +10,9 @@
             'options' => \App\Models\Page::getIconTypes(),
             'default' => 0
         ])
-        @formField('input', [
-            'name' => 'text',
-            'field_name' => 'text',
-            'label' => 'Text',
-            'required' => true
-        ])
+        <x-twill::input
+            name='text'
+            label='Text'
+            :required='true'
+        />
     </div>

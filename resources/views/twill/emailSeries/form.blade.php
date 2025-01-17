@@ -6,17 +6,17 @@
 
 @section('contentFields')
 
-    @formField('input', [
-        'name' => 'id',
-        'label' => 'Email Series ID',
-        'disabled' => true
-    ])
+    <x-twill::input
+        name='id'
+        label='Email Series ID'
+        disabled='true'
+    />
 
-    @formField('input', [
-        'name' => 'timing_message',
-        'label' => 'Timing information',
-        'note' => 'Will be appended in parentheses to the label'
-    ])
+    <x-twill::input
+        name='timing_message'
+        label='Timing information'
+        note='Will be appended in parentheses to the label'
+    />
 
     <hr>
 

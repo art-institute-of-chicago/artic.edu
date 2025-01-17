@@ -50,11 +50,11 @@
     'fieldValues' => 'html',
     'renderForBlocks' => true
 ])
-    @formField('input', [
-        'name' => 'embed_code',
-        'label' => 'Media embed code',
-        'type' => 'textarea'
-    ])
+    <x-twill::input
+        name='embed_code'
+        label='Media embed code'
+        type='textarea'
+    />
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
@@ -62,17 +62,17 @@
     'fieldValues' => 'url',
     'renderForBlocks' => true
 ])
-    @formField('input', [
-        'name' => 'embed_url',
-        'label' => 'Media embed URL',
-    ])
+    <x-twill::input
+        name='embed_url'
+        label='Media embed URL'
+    />
 @endcomponent
 
-@formField('input', [
-    'name' => 'embed_height',
-    'label' => 'Height override',
-    'note' => 'Optional. Use CSS units, e.g. "400px"',
-])
+<x-twill::input
+    name='embed_height'
+    label='Height override'
+    note='Optional. Use CSS units, e.g. "400px"'
+/>
 
 @formField('checkbox', [
     'name' => 'disable_placeholder',

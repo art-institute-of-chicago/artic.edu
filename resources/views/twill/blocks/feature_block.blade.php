@@ -83,24 +83,23 @@
     'renderForBlocks' => true,
     ])
 
-    @formField('input', [
-        'name' => 'feature_heading',
-        'label' => 'Heading',
-        'type' => 'text',
-    ])
+    <x-twill::input
+        name='feature_heading'
+        label='Heading'
+    />
 
     @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('input', [
-                'name' => 'browse_label',
-                'label' => 'Browse More Label',
-            ])
+            <x-twill::input
+                name='browse_label'
+                label='Browse More Label'
+            />
         @endslot
         @slot('right')
-            @formField('input', [
-                'name' => 'browse_link',
-                'label' => 'Browse More Link',
-            ])
+            <x-twill::input
+                name='browse_link'
+                label='Browse More Link'
+            />
         @endslot
     @endcomponent
 

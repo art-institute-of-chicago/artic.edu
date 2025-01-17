@@ -1,10 +1,10 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'tour_id',
-        'label' => 'Tour ID'
-    ])
+    <x-twill::input
+        name='tour_id'
+        label='Tour ID'
+    />
 
     @formField('medias', [
         'with_multiple' => false,

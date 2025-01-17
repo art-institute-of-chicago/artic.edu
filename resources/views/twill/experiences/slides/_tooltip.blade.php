@@ -2,11 +2,11 @@
     'fieldName' => 'module_type',
     'fieldValues' => 'tooltip',
 ])
-    @formField('input', [
-        'name' => 'object_title',
-        'label' => 'Object Title',
-        'maxlength' => 150,
-    ])
+    <x-twill::input
+        name='object_title'
+        label='Object Title'
+        :maxlength='150'
+    />
     @formField('wysiwyg', [
         'name' => 'caption',
         'label' => 'Caption',

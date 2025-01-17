@@ -23,9 +23,8 @@
         'fieldValues' => 'start',
         'renderForBlocks' => true,
     ])
-        @formField('input', [
-            'name' => 'title',
-            'label' => 'Title',
-            'type' => 'text',
-        ])
+        <x-twill::input
+            name='title'
+            label='Title'
+        />
     @endcomponent

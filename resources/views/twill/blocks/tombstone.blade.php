@@ -1,11 +1,11 @@
 @twillBlockTitle('Tombstone')
 @twillBlockIcon('text')
 
-@formField('input', [
-    'name' => 'heading',
-    'label' => 'Heading',
-    'default' => 'Cat. ',
-])
+<x-twill::input
+    name='heading'
+    label='Heading'
+    default='Cat. '
+/>
 
 @formField('wysiwyg', [
     'name' => 'text',

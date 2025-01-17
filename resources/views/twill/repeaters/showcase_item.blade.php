@@ -17,12 +17,11 @@
     'required' => true,
 ])
 
-@formField('input', [
-    'name' => 'tag',
-    'label' => 'Tag',
-    'maxlength' => 100,
-    'type' => 'text',
-])
+<x-twill::input
+    name='tag'
+    label='Tag'
+    :maxlength='100'
+/>
 
 @formField('wysiwyg', [
     'name' => 'title',
@@ -50,17 +49,15 @@
 
 @component('twill::partials.form.utils._columns')
     @slot('left')
-        @formField('input', [
-            'name' => 'link_label',
-            'label' => 'Link Label',
-            'type' => 'text',
-        ])
+        <x-twill::input
+            name='link_label'
+            label='Link Label'
+        />
     @endslot
     @slot('right')
-        @formField('input', [
-            'name' => 'link_url',
-            'label' => 'Link Url',
-            'type' => 'text',
-        ])
+        <x-twill::input
+            name='link_url'
+            label='Link Url'
+        />
     @endslot
 @endcomponent
