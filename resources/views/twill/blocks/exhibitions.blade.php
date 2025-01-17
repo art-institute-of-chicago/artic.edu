@@ -1,10 +1,10 @@
 @twillBlockTitle('Exhibitions')
 @twillBlockIcon('text')
 
-@formField('input', [
-    'name' => 'title',
-    'label' => 'Title',
-])
+<x-twill::input
+    name='title'
+    label='Title'
+/>
 
 @formField('browser', [
     'routePrefix' => 'exhibitionsEvents',

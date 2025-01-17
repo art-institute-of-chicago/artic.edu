@@ -3,15 +3,15 @@
 @twillRepeaterComponent('a17-block-timeline_item')
 @twillRepeaterMax('10')
 
-@formField('input', [
-    'name' => 'time',
-    'label' => 'Time'
-])
+<x-twill::input
+    name='time'
+    label='Time'
+/>
 
-@formField('input', [
-    'name' => 'title',
-    'label' => 'Title'
-])
+<x-twill::input
+    name='title'
+    label='Title'
+/>
 
 @formField('wysiwyg', [
     'name' => 'description',

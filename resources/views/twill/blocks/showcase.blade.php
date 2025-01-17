@@ -79,11 +79,10 @@
         ]
     ])
 
-    @formField('input', [
-        'name' => 'heading',
-        'label' => 'Heading',
-        'type' => 'text',
-    ])
+    <x-twill::input
+        name='heading'
+        label='Heading'
+    />
 @endcomponent
 
 @if (count($mediaTypes) > 1)
@@ -139,12 +138,11 @@
     ])
 @endif
 
-@formField('input', [
-    'name' => 'tag',
-    'label' => 'Tag',
-    'type' => 'text',
-    'maxlength' => 100,
-])
+<x-twill::input
+    name='tag'
+    label='Tag'
+    :maxlength='100'
+/>
 
 @formField('wysiwyg', [
     'name' => 'title',
@@ -167,26 +165,23 @@
     'fieldValues' => 'rlc',
     'renderForBlocks' => true,
 ])
-    @formField('input', [
-        'name' => 'date',
-        'label' => 'Date',
-        'type' => 'text',
-    ])
+    <x-twill::input
+        name='date'
+        label='Date'
+    />
 @endcomponent
 
 @component('twill::partials.form.utils._columns')
     @slot('left')
-        @formField('input', [
-            'name' => 'link_label',
-            'label' => 'Link Label',
-            'type' => 'text',
-        ])
+        <x-twill::input
+            name='link_label'
+            label='Link Label'
+        />
     @endslot
     @slot('right')
-        @formField('input', [
-            'name' => 'link_url',
-            'label' => 'Link Url',
-            'type' => 'text',
-        ])
+        <x-twill::input
+            name='link_url'
+            label='Link Url'
+        />
     @endslot
 @endcomponent

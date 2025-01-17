@@ -149,10 +149,10 @@
                 :hotspotsdata="{{ isset($form_fields['tooltip_hotspots']) ? json_encode($form_fields['tooltip_hotspots']) : '[]' }}">
             </component>
 
-            @formField('input', [
-                'name' => 'seamless_alt_text',
-                'label' => 'Alt Text'
-            ])
+            <x-twill::input
+                name='seamless_alt_text'
+                label='Alt Text'
+            />
         </a17-fieldset>
     @endcomponent
 

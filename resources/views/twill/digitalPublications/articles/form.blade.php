@@ -1,11 +1,11 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'title_display',
-        'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-    ])
+    <x-twill::input
+        name='title_display'
+        label='Title formatting (optional)'
+        note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+    />
 
     @formField('date_picker', [
         'name' => 'date',
@@ -112,11 +112,11 @@
                 'note' => 'Minimum image width 2000px'
             ])
 
-            @formField('input', [
-                'name' => 'author_display',
-                'label' => 'Author display',
-                'note' => 'On Entry type articles, authorship is prepended with "Entry by"',
-            ])
+            <x-twill::input
+                name='author_display'
+                label='Author display'
+                note='On Entry type articles, authorship is prepended with "Entry by"'
+            />
 
             @formField('browser', [
                 'routePrefix' => 'collection',
@@ -149,10 +149,10 @@
                 'note' => 'Minimum image width 2000px'
             ])
 
-            @formField('input', [
-                'name' => 'author_display',
-                'label' => 'Author display',
-            ])
+            <x-twill::input
+                name='author_display'
+                label='Author display'
+            />
 
             @formField('browser', [
                 'routePrefix' => 'collection',
@@ -169,11 +169,11 @@
             'isEqual' => false,
             'renderForBlocks' => false,
         ])
-            @formField('input', [
-                'name' => 'label',
-                'label' => 'Article label',
-                'note' => 'Used in the "eyebrow" of cards on the publication page',
-            ])
+            <x-twill::input
+                name='label'
+                label='Article label'
+                note='Used in the "eyebrow" of cards on the publication page'
+            />
 
             @formField('wysiwyg', [
                 'name' => 'list_description',

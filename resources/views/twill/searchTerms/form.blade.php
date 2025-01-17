@@ -1,15 +1,15 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'name',
-        'label' => 'Name',
-    ])
+    <x-twill::input
+        name='name'
+        label='Name'
+    />
 
-    @formField('input', [
-        'name' => 'direct_url',
-        'label' => 'Direct URL',
-        'required' => true,
-        'note' => 'Where should this term take the user?',
-    ])
+    <x-twill::input
+        name='direct_url'
+        label='Direct URL'
+        note='Where should this term take the user?'
+        :required='true'
+    />
 @stop

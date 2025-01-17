@@ -1,9 +1,9 @@
 @section('contentFields')
-    @formField('input', [
-        'name' => 'home_intro',
-        'label' => 'Intro text',
-        'type' => 'textarea'
-    ])
+    <x-twill::input
+        name='home_intro'
+        label='Intro text'
+        type='textarea'
+    />
 
     @formField('browser', [
         'routePrefix' => 'homepage',
@@ -26,57 +26,57 @@
 
 @section('fieldsets')
     <a17-fieldset title="Plan your visit" id="plan-your-visit">
-        @formField('input', [
-            'name' => 'home_visit_button_text',
-            'label' => 'Label for "Visit" button',
-            'note' => 'Defaults to "Visit"',
-        ])
+        <x-twill::input
+            name='home_visit_button_text'
+            label='Label for "Visit" button'
+            note='Defaults to "Visit"'
+        />
 
-        @formField('input', [
-            'name' => 'home_visit_button_url',
-            'label' => 'Link for "Visit" button',
-            'note' => 'Defaults to "/visit"',
-        ])
+        <x-twill::input
+            name='home_visit_button_url'
+            label='Link for "Visit" button'
+            note='Defaults to "/visit"'
+        />
 
         <hr/>
 
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_1_text',
-            'label' => 'First "Plan your visit" link text',
-        ])
+        <x-twill::input
+            name='home_plan_your_visit_link_1_text'
+            label='First "Plan your visit" link text'
+        />
 
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_1_url',
-            'label' => 'First "Plan your visit" link URL',
-        ])
+        <x-twill::input
+            name='home_plan_your_visit_link_1_url'
+            label='First "Plan your visit" link URL'
+        />
 
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_2_text',
-            'label' => 'Second "Plan your visit" link text',
-        ])
+        <x-twill::input
+            name='home_plan_your_visit_link_2_text'
+            label='Second "Plan your visit" link text'
+        />
 
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_2_url',
-            'label' => 'Second "Plan your visit" link URL',
-        ])
+        <x-twill::input
+            name='home_plan_your_visit_link_2_url'
+            label='Second "Plan your visit" link URL'
+        />
 
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_3_text',
-            'label' => 'Third "Plan your visit" link text',
-        ])
+        <x-twill::input
+            name='home_plan_your_visit_link_3_text'
+            label='Third "Plan your visit" link text'
+        />
 
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_3_url',
-            'label' => 'Third "Plan your visit" link URL',
-        ])
+        <x-twill::input
+            name='home_plan_your_visit_link_3_url'
+            label='Third "Plan your visit" link URL'
+        />
     </a17-fieldset>
 
     <a17-fieldset title="Video carousel" id="video-carousel">
 
-        @formField('input', [
-            'name' => 'home_video_title',
-            'label' => 'Title',
-        ])
+        <x-twill::input
+            name='home_video_title'
+            label='Title'
+        />
 
         @formField('wysiwyg', [
             'name' => 'home_video_description',
@@ -102,10 +102,10 @@
             'name' => 'home_cta_module_image'
         ])
 
-        @formField('input', [
-            'name' => 'home_cta_module_header',
-            'label' => 'Header',
-        ])
+        <x-twill::input
+            name='home_cta_module_header'
+            label='Header'
+        />
 
         @formField('wysiwyg', [
             'name' => 'home_cta_module_body',
@@ -115,10 +115,10 @@
             ],
         ])
 
-        @formField('input', [
-            'name' => 'home_cta_module_button_text',
-            'label' => 'Button text',
-        ])
+        <x-twill::input
+            name='home_cta_module_button_text'
+            label='Button text'
+        />
 
         @formField('radios', [
             'name' => 'variation',
@@ -150,29 +150,29 @@
 
         <hr>
 
-        @formField('input', [
-            'name' => 'home_cta_module_action_url',
-            'label' => 'Action URL',
-            'note' => 'e.g. https://join.artic.edu/secure/holiday-annual-fund',
-        ])
+        <x-twill::input
+            name='home_cta_module_action_url'
+            label='Action URL'
+            note='e.g. https://join.artic.edu/secure/holiday-annual-fund'
+        />
 
-        @formField('input', [
-            'name' => 'home_cta_module_form_tlc_source',
-            'label' => 'Form TLC Source',
-            'note' => 'e.g. AIC17137L01',
-        ])
+        <x-twill::input
+            name='home_cta_module_form_tlc_source'
+            label='Form TLC Source'
+            note='e.g. AIC17137L01'
+        />
 
-        @formField('input', [
-            'name' => 'home_cta_module_form_token',
-            'label' => 'Form Token',
-            'note' => 'e.g. pa5U17siEjW4suerjWEB5LP7sFJYgAwLZYMS6kNTEag',
-        ])
+        <x-twill::input
+            name='home_cta_module_form_token'
+            label='Form Token'
+            note='e.g. pa5U17siEjW4suerjWEB5LP7sFJYgAwLZYMS6kNTEag'
+        />
 
-        @formField('input', [
-            'name' => 'home_cta_module_form_id',
-            'label' => 'Form ID',
-            'note' => 'e.g. webform_client_form_5111',
-        ])
+        <x-twill::input
+            name='home_cta_module_form_id'
+            label='Form ID'
+            note='e.g. webform_client_form_5111'
+        />
     </a17-fieldset>
 
     <a17-fieldset title="Highlights" id="highlights">

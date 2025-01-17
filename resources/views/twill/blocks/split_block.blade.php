@@ -24,10 +24,10 @@
     'max' => 1
 ])
 
-@formField('input', [
-    'name' => 'image_link',
-    'label' => 'Link (optional)',
-    'note' => 'Makes image clickable',
-])
+<x-twill::input
+    name='image_link'
+    label='Link (optional)'
+    note='Makes image clickable'
+/>
 
 {!! TwillBlocks::getBlockCollection()->findByName('paragraph')->renderForm() !!}

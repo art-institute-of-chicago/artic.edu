@@ -7,11 +7,11 @@
     'note' => 'Upload a .mp3 file',
 ])
 
-@formField('input', [
-    'name' => 'title_display',
-    'label' => 'Title',
-    'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-])
+<x-twill::input
+    name='title_display'
+    label='Title'
+    note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+/>
 
 @formField('wysiwyg', [
     'name' => 'transcript',

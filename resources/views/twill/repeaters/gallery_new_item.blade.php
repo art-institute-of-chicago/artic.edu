@@ -46,11 +46,11 @@
         ],
     ])
 
-    @formField('input', [
-        'name' => 'videoUrl',
-        'label' => 'YouTube URL',
-        'note' => 'Provide to show video in modal instead of image',
-    ])
+    <x-twill::input
+        name='videoUrl'
+        label='YouTube URL'
+        note='Provide to show video in modal instead of image'
+    />
 
     @formField('checkbox', [
         'name' => 'is_zoomable',

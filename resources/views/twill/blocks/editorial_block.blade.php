@@ -80,13 +80,12 @@
 
     @endcomponent
 
-    @formField('input', [
-        'name' => 'heading',
-        'label' => 'Heading',
-        'type' => 'text',
-        'maxlength' => 100,
-        'required' => true,
-    ])
+    <x-twill::input
+        name='heading'
+        label='Heading'
+        :maxlength='100'
+        :required='true'
+    />
 
     @formField('wysiwyg', [
         'name' => 'body',
@@ -140,18 +139,16 @@
 
         @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('input', [
-                'name' => 'browse_label',
-                'label' => 'Browse More Label',
-                'type' => 'text',
-            ])
+            <x-twill::input
+                name='browse_label'
+                label='Browse More Label'
+            />
         @endslot
         @slot('right')
-            @formField('input', [
-                'name' => 'browse_link',
-                'label' => 'Browse More Link',
-                'type' => 'text',
-            ])
+            <x-twill::input
+                name='browse_link'
+                label='Browse More Link'
+            />
         @endslot
         @endcomponent
 
@@ -194,18 +191,16 @@
 
         @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('input', [
-                'name' => 'browse_label',
-                'label' => 'Browse More Label',
-                'type' => 'text',
-            ])
+            <x-twill::input
+                name='browse_label'
+                label='Browse More Label'
+            />
         @endslot
         @slot('right')
-            @formField('input', [
-                'name' => 'browse_link',
-                'label' => 'Browse More Link',
-                'type' => 'text',
-            ])
+            <x-twill::input
+                name='browse_link'
+                label='Browse More Link'
+            />
         @endslot
         @endcomponent
 

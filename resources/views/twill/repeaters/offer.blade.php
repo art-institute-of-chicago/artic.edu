@@ -10,24 +10,24 @@
     'note' => 'Minimum image width 2000px'
 ])
 
-@formField('input', [
-    'name' => 'header',
-    'label' => 'Header'
-])
+<x-twill::input
+    name='header'
+    label='Header'
+/>
 
-@formField('input', [
-    'name' => 'subheader',
-    'label' => 'Subheader'
-])
+<x-twill::input
+    name='subheader'
+    label='Subheader'
+/>
 
-@formField('input', [
-    'type' => 'textarea',
-    'name' => 'description',
-    'label' => 'Description',
-    'rows' => 4
-])
+<x-twill::input
+    type='textarea'
+    name='description'
+    label='Description'
+    :rows='4'
+/>
 
-@formField('input', [
-    'name' => 'link_to_book',
-    'label' => 'Link to Book'
-])
+<x-twill::input
+    name='link_to_book'
+    label='Link to Book'
+/>
