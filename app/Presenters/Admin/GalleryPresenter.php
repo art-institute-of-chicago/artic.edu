@@ -6,7 +6,7 @@ use App\Presenters\BasePresenter;
 
 class GalleryPresenter extends BasePresenter
 {
-    protected function augmented()
+    public function augmented()
     {
         return $this->entity->getAugmentedModel() ? 'Yes' : 'No';
     }

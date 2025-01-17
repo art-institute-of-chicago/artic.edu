@@ -2,12 +2,12 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use App\Helpers\StringHelpers;
 
 class Department extends BaseApiModel
 {
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/departments',
         'resource' => '/api/v1/departments/{id}',
         'search' => '/api/v1/departments/search',

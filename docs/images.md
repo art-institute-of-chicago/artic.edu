@@ -6,11 +6,11 @@ Images on the frontend are provided by Twill's [Media Library](https://twill.io/
 
 ## API models
 
-Use the [`HasMediasApi`](../app/Models/Behaviors/HasMediasApi) trait in the API models you want to load images. This behavior adds a method with the same prototype as Twill so we can show images from the CMS or API models indistinctly.
+Use the `HasMediasApi` trait in the API models you want to load images. This behavior adds a method with the same prototype as Twill so we can show images from the CMS or API models indistinctly.
 
 
 ```php
-use App\Models\Behaviors\HasMediasApi;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasMediasApi;
 
 class Artwork extends BaseApiModel
 {
