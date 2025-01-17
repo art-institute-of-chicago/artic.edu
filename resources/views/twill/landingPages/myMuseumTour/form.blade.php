@@ -65,20 +65,20 @@
     'renderForBlocks' => false
 ])
 
-    @formField('input', [
-        'name' => 'header_cta_title',
-        'label' => 'CTA Title'
-    ])
+    <x-twill::input
+        name='header_cta_title'
+        label='CTA Title'
+    />
 
-    @formField('input', [
-        'name' => 'header_cta_button_label',
-        'label' => 'Button Label'
-    ])
+    <x-twill::input
+        name='header_cta_button_label'
+        label='Button Label'
+    />
 
-    @formField('input', [
-        'name' => 'header_cta_button_link',
-        'label' => 'Button Link'
-    ])
+    <x-twill::input
+        name='header_cta_button_link'
+        label='Button Link'
+    />
 
 @endcomponent
 
@@ -116,33 +116,33 @@
 
     @component('twill::partials.form.utils._columns')
     @slot('left')
-        @formField('input', [
-            'name' => 'labels.header_my_museum_tour_primary_button_label',
-            'label' => 'Primary Button Label'
-        ])
+        <x-twill::input
+            name='labels.header_my_museum_tour_primary_button_label'
+            label='Primary Button Label'
+        />
     @endslot
 
     @slot('right')
-        @formField('input', [
-            'name' => 'labels.header_my_museum_tour_primary_button_link',
-            'label' => 'Primary Button Link'
-        ])
+        <x-twill::input
+            name='labels.header_my_museum_tour_primary_button_link'
+            label='Primary Button Link'
+        />
     @endslot
     @endcomponent
 
     @component('twill::partials.form.utils._columns')
     @slot('left')
-        @formField('input', [
-            'name' => 'labels.header_my_museum_tour_secondary_button_label',
-            'label' => 'Secondary Button Label'
-        ])
+        <x-twill::input
+            name='labels.header_my_museum_tour_secondary_button_label'
+            label='Secondary Button Label'
+        />
     @endslot
 
     @slot('right')
-        @formField('input', [
-            'name' => 'labels.header_my_museum_tour_secondary_button_link',
-            'label' => 'Secondary Button Link'
-        ])
+        <x-twill::input
+            name='labels.header_my_museum_tour_secondary_button_link'
+            label='Secondary Button Link'
+        />
     @endslot
     @endcomponent
 
@@ -163,49 +163,49 @@
 
     @component('twill::partials.form.utils._columns')
     @slot('left')
-        @formField('input', [
-            'name' => 'labels.header_my_museum_tour_icon_choose_title',
-            'label' => '`Choose` Title'
-        ])
+        <x-twill::input
+            name='labels.header_my_museum_tour_icon_choose_title'
+            label='`Choose` Title'
+        />
     @endslot
 
     @slot('right')
-        @formField('input', [
-            'name' => 'labels.header_my_museum_tour_icon_choose_desc',
-            'label' => '`Choose` Description'
-        ])
+        <x-twill::input
+            name='labels.header_my_museum_tour_icon_choose_desc'
+            label='`Choose` Description'
+        />
     @endslot
     @endcomponent
 
     @component('twill::partials.form.utils._columns')
     @slot('left')
-        @formField('input', [
-            'name' => 'labels.header_my_museum_tour_icon_personalize_title',
-            'label' => '`Personalize` Title'
-        ])
+        <x-twill::input
+            name='labels.header_my_museum_tour_icon_personalize_title'
+            label='`Personalize` Title'
+        />
     @endslot
 
     @slot('right')
-        @formField('input', [
-            'name' => 'labels.header_my_museum_tour_icon_personalize_desc',
-            'label' => '`Personalize` Description'
-        ])
+        <x-twill::input
+            name='labels.header_my_museum_tour_icon_personalize_desc'
+            label='`Personalize` Description'
+        />
     @endslot
     @endcomponent
 
     @component('twill::partials.form.utils._columns')
     @slot('left')
-        @formField('input', [
-            'name' => 'labels.header_my_museum_tour_icon_finish_title',
-            'label' => '`Finish` Title'
-        ])
+        <x-twill::input
+            name='labels.header_my_museum_tour_icon_finish_title'
+            label='`Finish` Title'
+        />
     @endslot
 
     @slot('right')
-        @formField('input', [
-            'name' => 'labels.header_my_museum_tour_icon_finish_desc',
-            'label' => '`Finish` Description'
-        ])
+        <x-twill::input
+            name='labels.header_my_museum_tour_icon_finish_desc'
+            label='`Finish` Description'
+        />
     @endslot
     @endcomponent
 
@@ -238,10 +238,10 @@
             'name' => 'tours_create_cta_module_image'
         ])
 
-        @formField('input', [
-            'name' => 'labels.tours_create_cta_module_header',
-            'label' => 'Header',
-        ])
+        <x-twill::input
+            name='labels.tours_create_cta_module_header'
+            label='Header'
+        />
 
         @formField('wysiwyg', [
             'name' => 'labels.tours_create_cta_module_body',
@@ -251,10 +251,10 @@
             ],
         ])
 
-        @formField('input', [
-            'name' => 'labels.tours_create_cta_module_button_text',
-            'label' => 'Button text',
-        ])
+        <x-twill::input
+            name='labels.tours_create_cta_module_button_text'
+            label='Button text'
+        />
 
         @formField('radios', [
             'name' => 'variation',
@@ -286,29 +286,29 @@
 
         <hr>
 
-        @formField('input', [
-            'name' => 'labels.tours_create_cta_module_action_url',
-            'label' => 'Action URL',
-            'note' => 'e.g. https://join.artic.edu/secure/holiday-annual-fund',
-        ])
+        <x-twill::input
+            name='labels.tours_create_cta_module_action_url'
+            label='Action URL'
+            note='e.g. https://join.artic.edu/secure/holiday-annual-fund'
+        />
 
-        @formField('input', [
-            'name' => 'labels.tours_create_cta_module_form_tlc_source',
-            'label' => 'Form TLC Source',
-            'note' => 'e.g. AIC17137L01',
-        ])
+        <x-twill::input
+            name='labels.tours_create_cta_module_form_tlc_source'
+            label='Form TLC Source'
+            note='e.g. AIC17137L01'
+        />
 
-        @formField('input', [
-            'name' => 'labels.tours_create_cta_module_form_token',
-            'label' => 'Form Token',
-            'note' => 'e.g. pa5U17siEjW4suerjWEB5LP7sFJYgAwLZYMS6kNTEag',
-        ])
+        <x-twill::input
+            name='labels.tours_create_cta_module_form_token'
+            label='Form Token'
+            note='e.g. pa5U17siEjW4suerjWEB5LP7sFJYgAwLZYMS6kNTEag'
+        />
 
-        @formField('input', [
-            'name' => 'labels.tours_create_cta_module_form_id',
-            'label' => 'Form ID',
-            'note' => 'e.g. webform_client_form_5111',
-        ])
+        <x-twill::input
+            name='labels.tours_create_cta_module_form_id'
+            label='Form ID'
+            note='e.g. webform_client_form_5111'
+        />
     </a17-fieldset>
     <a17-fieldset title="Call to Action (Buy Tickets)" id="tickets-call-to-action">
 
@@ -317,10 +317,10 @@
             'name' => 'tours_tickets_cta_module_image'
         ])
 
-        @formField('input', [
-            'name' => 'labels.tours_tickets_cta_module_header',
-            'label' => 'Header',
-        ])
+        <x-twill::input
+            name='labels.tours_tickets_cta_module_header'
+            label='Header'
+        />
 
         @formField('wysiwyg', [
             'name' => 'labels.tours_tickets_cta_module_body',
@@ -330,10 +330,10 @@
             ],
         ])
 
-        @formField('input', [
-            'name' => 'labels.tours_tickets_cta_module_button_text',
-            'label' => 'Button text',
-        ])
+        <x-twill::input
+            name='labels.tours_tickets_cta_module_button_text'
+            label='Button text'
+        />
 
         @formField('radios', [
             'name' => 'variation',
@@ -365,49 +365,49 @@
 
         <hr>
 
-        @formField('input', [
-            'name' => 'labels.tours_tickets_cta_module_action_url',
-            'label' => 'Action URL',
-            'note' => 'e.g. https://join.artic.edu/secure/holiday-annual-fund',
-        ])
+        <x-twill::input
+            name='labels.tours_tickets_cta_module_action_url'
+            label='Action URL'
+            note='e.g. https://join.artic.edu/secure/holiday-annual-fund'
+        />
 
-        @formField('input', [
-            'name' => 'labels.tours_tickets_cta_module_form_tlc_source',
-            'label' => 'Form TLC Source',
-            'note' => 'e.g. AIC17137L01',
-        ])
+        <x-twill::input
+            name='labels.tours_tickets_cta_module_form_tlc_source'
+            label='Form TLC Source'
+            note='e.g. AIC17137L01'
+        />
 
-        @formField('input', [
-            'name' => 'labels.tours_tickets_cta_module_form_token',
-            'label' => 'Form Token',
-            'note' => 'e.g. pa5U17siEjW4suerjWEB5LP7sFJYgAwLZYMS6kNTEag',
-        ])
+        <x-twill::input
+            name='labels.tours_tickets_cta_module_form_token'
+            label='Form Token'
+            note='e.g. pa5U17siEjW4suerjWEB5LP7sFJYgAwLZYMS6kNTEag'
+        />
 
-        @formField('input', [
-            'name' => 'labels.tours_tickets_cta_module_form_id',
-            'label' => 'Form ID',
-            'note' => 'e.g. webform_client_form_5111',
-        ])
+        <x-twill::input
+            name='labels.tours_tickets_cta_module_form_id'
+            label='Form ID'
+            note='e.g. webform_client_form_5111'
+        />
     </a17-fieldset>
 
     <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
-        @formField('input', [
-            'name' => 'meta_title',
-            'label' => 'Metadata Title'
-        ])
+        <x-twill::input
+            name='meta_title'
+            label='Metadata Title'
+        />
 
-        @formField('input', [
-            'name' => 'meta_description',
-            'label' => 'Metadata Description',
-            'type' => 'textarea'
-        ])
+        <x-twill::input
+            name='meta_description'
+            label='Metadata Description'
+            type='textarea'
+        />
 
 
-        @formField('input', [
-            'name' => 'search_tags',
-            'label' => 'Internal Search Tags',
-            'type' => 'textarea'
-        ])
+        <x-twill::input
+            name='search_tags'
+            label='Internal Search Tags'
+            type='textarea'
+        />
 
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
     </a17-fieldset>

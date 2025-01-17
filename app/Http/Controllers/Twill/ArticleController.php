@@ -35,7 +35,6 @@ class ArticleController extends \App\Http\Controllers\Twill\ModuleController
             'edit_link' => true,
             'sort' => true,
             'field' => 'author',
-            'present' => true,
         ],
     ];
 

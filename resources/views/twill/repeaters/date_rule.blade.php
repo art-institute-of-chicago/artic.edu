@@ -25,24 +25,24 @@
             'withTime' => false
         ])
 
-        @formField('input', [
-            'name' => 'ocurrencies',
-            'label' => 'Or stop after the following amount of ocurrencies:',
-            'type' => 'number',
-            'placeholder' => '1, 2, 3.... etc',
-        ])
+        <x-twill::input
+            name='ocurrencies'
+            label='Or stop after the following amount of ocurrencies:'
+            type='number'
+            placeholder='1, 2, 3.... etc'
+        />
     @endslot
 @endcomponent
 
 
 @component('twill::partials.form.utils._columns')
     @slot('left')
-        @formField('input', [
-            'name' => 'every',
-            'label' => 'Repeat every',
-            'type' => 'number',
-            'placeholder' => '1, 2, 3.... etc'
-        ])
+        <x-twill::input
+            name='every'
+            label='Repeat every'
+            type='number'
+            placeholder='1, 2, 3.... etc'
+        />
     @endslot
     @slot('right')
         @formField('select', [

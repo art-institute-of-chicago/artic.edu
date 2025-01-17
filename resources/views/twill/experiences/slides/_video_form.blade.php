@@ -1,7 +1,7 @@
-@formField('input', [
-    'name' => isset($moduleType) && $moduleType === 'split' ? 'split_video_url' : 'video_url',
-    'label' => 'Vimeo URL'
-])
+<x-twill::input
+    name='{{ isset($moduleType) && $moduleType === 'split' ? 'split_video_url' : 'video_url' }}'
+    label='Vimeo URL'
+/>
 
 @formField('multi_select', [
     'name' => isset($moduleType) && $moduleType === 'split' ? 'split_video_play_settings' : 'video_play_settings',

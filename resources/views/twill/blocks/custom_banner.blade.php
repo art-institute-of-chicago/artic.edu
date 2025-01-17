@@ -52,13 +52,12 @@
         'renderForBlocks' => true,
     ])
 
-        @formField('input', [
-            'name' => 'title',
-            'label' => 'Title',
-            'type' => 'text',
-            'maxlength' => 100,
-            'required' => true,
-        ])
+        <x-twill::input
+            name='title'
+            label='Title'
+            :maxlength='100'
+            :required='true'
+        />
 
         @formField('wysiwyg', [
             'name' => 'body',
@@ -80,19 +79,17 @@
 
         @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('input', [
-                'name' => 'link_label',
-                'label' => 'Link label',
-                'type' => 'text',
-            ])
+            <x-twill::input
+                name='link_label'
+                label='Link label'
+            />
         @endslot
 
         @slot('right')
-            @formField('input', [
-                'name' => 'link_url',
-                'label' => 'Link URL',
-                'type' => 'text',
-            ])
+            <x-twill::input
+                name='link_url'
+                label='Link URL'
+            />
         @endslot
         @endcomponent
 
@@ -152,13 +149,12 @@
 @endcomponent
 
 
-@formField('input', [
-    'name' => 'title',
-    'label' => 'Title',
-    'type' => 'text',
-    'maxlength' => 100,
-    'required' => true,
-])
+<x-twill::input
+    name='title'
+    label='Title'
+    :maxlength='100'
+    :required='true'
+/>
 
 @formField('wysiwyg', [
     'name' => 'body',
@@ -189,21 +185,19 @@
     'renderForBlocks' => true
 ])
 
-    @formField('input', [
-        'name' => 'button_text',
-        'label' => 'Button Text',
-        'type' => 'text',
-        'maxlength' => 100,
-        'required' => true,
-    ])
+    <x-twill::input
+        name='button_text'
+        label='Button Text'
+        :maxlength='100'
+        :required='true'
+    />
 
-    @formField('input', [
-        'name' => 'button_url',
-        'label' => 'Button URL',
-        'type' => 'text',
-        'maxlength' => 100,
-        'required' => true,
-    ])
+    <x-twill::input
+        name='button_url'
+        label='Button URL'
+        :maxlength='100'
+        :required='true'
+    />
 
 @endcomponent
 

@@ -1,8 +1,8 @@
 @section('contentFields')
-    @formField('input', [
-        'name' => 'art_intro',
-        'label' => 'Intro text',
-    ])
+    <x-twill::input
+        name='art_intro'
+        label='Intro text'
+    />
 
     @formField('browser', [
         'routePrefix' => 'collection',
@@ -13,18 +13,18 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'max' => 5,
         'moduleName' => 'articles',
         'name' => 'featured_items',
         'endpoints' => [
             [
                 'label' => 'Article',
-                'value' => '/collection/articles_publications/articles/browser'
+                'value' => '/collection/articlesPublications/articles/browser'
             ],
             [
                 'label' => 'Interactive feature',
-                'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser')
+                'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser')
             ]
         ],
         'label' => 'Featured items',

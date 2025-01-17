@@ -30,11 +30,11 @@ class ExperienceSlideController extends \App\Http\Controllers\Twill\ModuleContro
             'breadcrumb' => [
                 [
                     'label' => 'Experiences',
-                    'url' => moduleRoute('experiences', 'collection.interactive_features', 'index'),
+                    'url' => moduleRoute('experiences', 'collection.interactiveFeatures', 'index'),
                 ],
                 [
                     'label' => $experience->title,
-                    'url' => moduleRoute('experiences', 'collection.interactive_features', 'edit', [$experience->id]),
+                    'url' => moduleRoute('experiences', 'collection.interactiveFeatures', 'edit', [$experience->id]),
                 ],
                 [
                     'label' => 'Slides',
@@ -64,15 +64,15 @@ class ExperienceSlideController extends \App\Http\Controllers\Twill\ModuleContro
             'breadcrumb' => [
                 [
                     'label' => 'Experiences',
-                    'url' => moduleRoute('experiences', 'collection.interactive_features', 'index'),
+                    'url' => moduleRoute('experiences', 'collection.interactiveFeatures', 'index'),
                 ],
                 [
                     'label' => $experience->title,
-                    'url' => moduleRoute('experiences', 'collection.interactive_features', 'edit', [$experience->id]),
+                    'url' => moduleRoute('experiences', 'collection.interactiveFeatures', 'edit', [$experience->id]),
                 ],
                 [
                     'label' => 'Slides',
-                    'url' => moduleRoute('experiences.slides', 'collection.interactive_features', 'index', [$experience->id]),
+                    'url' => moduleRoute('experiences.slides', 'collection.interactiveFeatures', 'index', [$experience->id]),
                 ],
                 [
                     'label' => $slide->title,

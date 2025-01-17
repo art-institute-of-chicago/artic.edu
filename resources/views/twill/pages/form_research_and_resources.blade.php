@@ -1,14 +1,14 @@
 @section('contentFields')
-    @formField('input', [
-        'name' => 'resources_landing_title',
-        'label' => 'Title',
-    ])
+    <x-twill::input
+        name='resources_landing_title'
+        label='Title'
+    />
 
-    @formField('input', [
-        'name' => 'resources_landing_intro',
-        'label' => 'Intro text',
-        'type' => 'textarea'
-    ])
+    <x-twill::input
+        name='resources_landing_intro'
+        label='Intro text'
+        type='textarea'
+    />
 
     @formField('medias', [
         'label' => 'Hero image',

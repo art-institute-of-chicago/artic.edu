@@ -1,15 +1,15 @@
-@formField('input', [
-    'name' => $titleFormKey ?? 'title',
-    'label' => ucfirst($titleFormKey ?? 'title'),
-    'translated' => $translateTitle ?? false,
-    'required' => true,
-    'note' => 'Must be defined in lowercase',
-])
+<x-twill::input
+    name='{{ $titleFormKey ?? 'title' }}'
+    label='{{ ucfirst($titleFormKey ?? 'title') }}'
+    translated='{{ $translateTitle ?? false }}'
+    note='Must be defined in lowercase'
+    :required='true'
+/>
 
 @if (!isset($item))
-    @formField('input', [
-        'name' => 'destination',
-        'label' => 'Destination',
-        'required' => true,
-    ])
+    <x-twill::input
+        name='destination'
+        label='Destination'
+        :required='true'
+    />
 @endif

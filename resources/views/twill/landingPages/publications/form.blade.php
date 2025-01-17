@@ -61,20 +61,20 @@
     'renderForBlocks' => false
 ])
 
-    @formField('input', [
-        'name' => 'header_cta_title',
-        'label' => 'CTA Title'
-    ])
+    <x-twill::input
+        name='header_cta_title'
+        label='CTA Title'
+    />
 
-    @formField('input', [
-        'name' => 'header_cta_button_label',
-        'label' => 'Button Label'
-    ])
+    <x-twill::input
+        name='header_cta_button_label'
+        label='Button Label'
+    />
 
-    @formField('input', [
-        'name' => 'header_cta_button_link',
-        'label' => 'Button Link'
-    ])
+    <x-twill::input
+        name='header_cta_button_link'
+        label='Button Link'
+    />
 
 @endcomponent
 

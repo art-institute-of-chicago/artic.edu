@@ -1,23 +1,23 @@
 @twillBlockTitle('Stories Block')
 @twillBlockIcon('Image')
 
-@formField('input', [
-    'name' => 'stories_heading',
-    'label' => 'Heading'
-])
+<x-twill::input
+    name='stories_heading'
+    label='Heading'
+/>
 
 @component('twill::partials.form.utils._columns')
     @slot('left')
-        @formField('input', [
-            'name' => 'browse_label',
-            'label' => 'Browse More Label',
-        ])
+        <x-twill::input
+            name='browse_label'
+            label='Browse More Label'
+        />
     @endslot
     @slot('right')
-        @formField('input', [
-            'name' => 'browse_link',
-            'label' => 'Browse More Link',
-        ])
+        <x-twill::input
+            name='browse_link'
+            label='Browse More Link'
+        />
     @endslot
 @endcomponent
 
@@ -28,11 +28,11 @@
     'endpoints' => [
         [
             'label' => 'Article',
-            'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
+            'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['is_unlisted' => false]),
         ],
         [
             'label' => 'Video',
-            'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
+            'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
         ],
         [
             'label' => 'Highlight',
@@ -40,7 +40,7 @@
         ],
         [
             'label' => 'Interactive Feature',
-            'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser'),
+            'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser'),
         ],
     ],
 ])

@@ -10,11 +10,11 @@
         'note' => 'Minimum image width 2000px'
     ])
 
-    @formField('input', [
-        'name' => 'caption',
-        'label' => 'Caption',
-        'maxlength' => 255
-    ])
+    <x-twill::input
+        name='caption'
+        label='Caption'
+        :maxlength='255'
+    />
 
     @formField('wysiwyg', [
         'name' => 'intro',
@@ -24,22 +24,22 @@
         ],
     ])
 
-    @formField('input', [
-        'name' => 'datahub_id',
-        'label' => 'Datahub ID',
-        'disabled' => true
-    ])
+    <x-twill::input
+        name='datahub_id'
+        label='Datahub ID'
+        disabled='true'
+    />
 
 @stop
 
 @section('fieldsets')
     <a17-fieldset id="artworks" title="Artworks">
 
-        @formField('input', [
-            'name' => 'pinboard_title',
-            'label' => 'Artwork Pinboard Title',
-            'note' => 'Defaults to "Artworks" if empty',
-        ])
+        <x-twill::input
+            name='pinboard_title'
+            label='Artwork Pinboard Title'
+            note='Defaults to "Artworks" if empty'
+        />
 
         <p>Use the field below to control which artworks are displayed on the page. The order specified here will be preserved. If there are no artworks selected here, we will filter artworks from CITI by departmental publish category and order the results by relevance.</p>
 
@@ -93,31 +93,31 @@
             'endpoints' => [
                 [
                     'label' => 'Articles',
-                    'value' => '/collection/articles_publications/articles/browser'
+                    'value' => '/collection/articlesPublications/articles/browser'
                 ],
                 [
                     'label' => 'Digital Publications',
-                    'value' => '/collection/articles_publications/digitalPublications/browser'
+                    'value' => '/collection/articlesPublications/digitalPublications/browser'
                 ],
                 [
                     'label' => 'Print Publications',
-                    'value' => '/collection/articles_publications/printedPublications/browser'
+                    'value' => '/collection/articlesPublications/printedPublications/browser'
                 ],
                 [
                     'label' => 'Educational Resources',
-                    'value' => '/collection/research_resources/educatorResources/browser'
+                    'value' => '/collection/researchResources/educatorResources/browser'
                 ],
                 [
                     'label' => 'Interactive Features',
-                    'value' => '/collection/interactive_features/experiences/browser'
+                    'value' => '/collection/interactiveFeatures/experiences/browser'
                 ],
                 [
                     'label' => 'Videos',
-                    'value' => '/collection/articles_publications/videos/browser'
+                    'value' => '/collection/articlesPublications/videos/browser'
                 ],
                 [
                     'label' => 'Exhibitions',
-                    'value' => '/exhibitions_events/exhibitions/browser'
+                    'value' => '/exhibitionsEvents/exhibitions/browser'
                 ],
             ],
             'max' => 1000,

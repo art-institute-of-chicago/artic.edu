@@ -9,11 +9,11 @@
     'max' => 1
 ])
 
-@formField('input', [
-    'name' => 'title_display',
-    'label' => 'Title override (optional)',
-    'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-])
+<x-twill::input
+    name='title_display'
+    label='Title override (optional)'
+    note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+/>
 
 @formField('checkbox', [
     'name' => 'hidePromoText',

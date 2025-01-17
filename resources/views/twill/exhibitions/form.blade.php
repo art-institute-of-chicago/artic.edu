@@ -10,11 +10,11 @@
 ])
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'title_display',
-        'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics, e.g. <i>Nighthawks</i>'
-    ])
+    <x-twill::input
+        name='title_display'
+        label='Title formatting (optional)'
+        note='Use <i> tag to add italics, e.g. <i>Nighthawks</i>'
+    />
 
     @formField('select', [
         'name' => 'cms_exhibition_type',
@@ -64,12 +64,12 @@
         @endslot
     @endcomponent
 
-    @formField('input', [
-        'name' => 'date_display_override',
-        'label' => 'Date display override',
-        'maxlength' => 255,
-        'note' => 'Override exhibition start and end dates with custom text'
-    ])
+    <x-twill::input
+        name='date_display_override'
+        label='Date display override'
+        note='Override exhibition start and end dates with custom text'
+        :maxlength='255'
+    />
 
     @formField('wysiwyg', [
         'name' => 'header_copy',
@@ -98,11 +98,11 @@
         'toolbarOptions' => ['bold']
     ])
 
-    @formField('input', [
-        'name' => 'exhibition_location',
-        'label' => 'Exhibition location',
-        'note' => 'Override CITI gallery location'
-    ])
+    <x-twill::input
+        name='exhibition_location'
+        label='Exhibition location'
+        note='Override CITI gallery location'
+    />
 
     @formField('select', [
         'name' => 'status_override',
@@ -111,12 +111,11 @@
         'options' => $exhibitionStatusesList,
     ])
 
-    @formField('input', [
-        'name' => 'type_override',
-        'label' => 'Exhibition eyebrow',
-        'note' => 'Override exhibition eyebrow',
-        'type' => 'text',
-    ])
+    <x-twill::input
+        name='type_override'
+        label='Exhibition eyebrow'
+        note='Override exhibition eyebrow'
+    />
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
@@ -128,7 +127,7 @@
 @section('fieldsets')
     <a17-fieldset id="sponsors" title="Sponsors">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'sponsors',
             'name' => 'sponsors',
             'label' => 'Sponsors',
@@ -139,7 +138,7 @@
 
     <a17-fieldset id="waitTime" title="Wait time">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'waitTimes',
             'name' => 'waitTimes',
             'label' => 'Wait Time',
@@ -159,11 +158,11 @@
     </a17-fieldset>
 
     <a17-fieldset id="attributes" title="Attributes">
-        @formField('input', [
-            'name' => 'datahub_id',
-            'label' => 'Datahub ID',
-            'disabled' => true
-        ])
+        <x-twill::input
+            name='datahub_id'
+            label='Datahub ID'
+            disabled='true'
+        />
 
         @formField('multi_select', [
             'name' => 'siteTags',
@@ -174,14 +173,14 @@
     </a17-fieldset>
     <a17-fieldset id="related" title="Related">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'max' => 4,
             'name' => 'exhibitions',
             'label' => 'Related exhibitions'
         ])
 
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'events',
             'name' => 'events',
             'label' => 'Related events',
@@ -195,23 +194,23 @@
 
         <hr />
 
-        @formField('input', [
-            'name' => 'product_section_title',
-            'label' => 'Shop section title',
-            'note' => 'Defaults to "Related Products" if blank'
-        ])
+        <x-twill::input
+            name='product_section_title'
+            label='Shop section title'
+            note='Defaults to "Related Products" if blank'
+        />
 
-        @formField('input', [
-            'name' => 'product_section_title_link_label',
-            'label' => 'Shop link label',
-            'note' => 'Defaults to "Explore the shop" if blank'
-        ])
+        <x-twill::input
+            name='product_section_title_link_label'
+            label='Shop link label'
+            note='Defaults to "Explore the shop" if blank'
+        />
 
-        @formField('input', [
-            'name' => 'product_section_title_link_href',
-            'label' => 'Shop link URL',
-            'note' => 'Defaults to "https://shop.artic.edu" if blank'
-        ])
+        <x-twill::input
+            name='product_section_title_link_href'
+            label='Shop link URL'
+            note='Defaults to "https://shop.artic.edu" if blank'
+        />
 
         @formField('browser', [
             'routePrefix' => 'general',
@@ -223,7 +222,7 @@
     </a17-fieldset>
 
     @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
-        @slot('routePrefix', 'exhibitions_events')
+        @slot('routePrefix', 'exhibitionsEvents')
         @slot('moduleName', 'exhibitions')
     @endcomponent
 
@@ -232,77 +231,77 @@
     @include('twill.partials.meta')
 
     <a17-fieldset id="api" title="Datahub fields">
-        @formField('input', [
-            'name' => 'title',
-            'label' => 'Title',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'description',
-            'label' => 'Description',
-            'type' => 'textarea',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'short_description',
-            'label' => 'Short description',
-            'type' => 'textarea',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'status',
-            'label' => 'Status',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'lake_guid',
-            'label' => 'DAMS GUID',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'department_id',
-            'label' => 'Department ID',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'gallery_title',
-            'label' => 'Gallery',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'gallery_id',
-            'label' => 'Gallery ID',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'type',
-            'label' => 'Type',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'updated_at',
-            'label' => 'Updated at',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'artwork_ids',
-            'label' => 'Artwork IDs',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'venue_ids',
-            'label' => 'Venue IDs',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'site_ids',
-            'label' => 'Site IDs',
-            'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'event_ids',
-            'label' => 'Event IDs',
-            'disabled' => true
-        ])
+        <x-twill::input
+            name='title'
+            label='Title'
+            disabled='true'
+        />
+        <x-twill::input
+            name='description'
+            label='Description'
+            type='textarea'
+            disabled='true'
+        />
+        <x-twill::input
+            name='short_description'
+            label='Short description'
+            type='textarea'
+            disabled='true'
+        />
+        <x-twill::input
+            name='status'
+            label='Status'
+            disabled='true'
+        />
+        <x-twill::input
+            name='lake_guid'
+            label='DAMS GUID'
+            disabled='true'
+        />
+        <x-twill::input
+            name='department_id'
+            label='Department ID'
+            disabled='true'
+        />
+        <x-twill::input
+            name='gallery_title'
+            label='Gallery'
+            disabled='true'
+        />
+        <x-twill::input
+            name='gallery_id'
+            label='Gallery ID'
+            disabled='true'
+        />
+        <x-twill::input
+            name='type'
+            label='Type'
+            disabled='true'
+        />
+        <x-twill::input
+            name='updated_at'
+            label='Updated at'
+            disabled='true'
+        />
+        <x-twill::input
+            name='artwork_ids'
+            label='Artwork IDs'
+            disabled='true'
+        />
+        <x-twill::input
+            name='venue_ids'
+            label='Venue IDs'
+            disabled='true'
+        />
+        <x-twill::input
+            name='site_ids'
+            label='Site IDs'
+            disabled='true'
+        />
+        <x-twill::input
+            name='event_ids'
+            label='Event IDs'
+            disabled='true'
+        />
     </a17-fieldset>
 @stop

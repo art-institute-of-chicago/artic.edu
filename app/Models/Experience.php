@@ -261,7 +261,7 @@ class Experience extends AbstractModel implements Sortable
 
     public function getAdminEditUrlAttribute()
     {
-        return route('twill.collection.interactive_features.experiences.edit', $this->id);
+        return route('twill.collection.interactiveFeatures.experiences.edit', $this->id);
     }
 
     public function getUrlWithoutSlugAttribute()

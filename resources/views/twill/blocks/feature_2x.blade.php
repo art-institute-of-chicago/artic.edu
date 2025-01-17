@@ -2,7 +2,7 @@
 @twillBlockIcon('image')
 
 @formField('browser', [
-    'routePrefix' => 'collection.interactive_features',
+    'routePrefix' => 'collection.interactiveFeatures',
     'moduleName' => 'experiences',
     'name' => 'experiences',
     'max' => 2,

@@ -71,7 +71,7 @@
         'fieldValues' => 'articles'
     ])
         @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'moduleName' => 'articles',
             'name' => 'articles',
             'label' => 'Article'
@@ -84,7 +84,7 @@
         'fieldValues' => 'events'
     ])
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'events',
             'name' => 'events',
             'label' => 'Event'
@@ -97,7 +97,7 @@
         'fieldValues' => 'exhibitions'
     ])
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'exhibitions',
             'name' => 'exhibitions',
             'label' => 'Exhibition'
@@ -122,21 +122,21 @@
         'renderForBlocks' => false,
         'fieldValues' => 'custom'
     ])
-        @formField('input', [
-            'name' => 'tag',
-            'label' => 'Tag',
-            'note' => 'Small text, eg "Exhibition"'
-        ])
+        <x-twill::input
+            name='tag'
+            label='Tag'
+            note='Small text eg "Exhibition"'
+        />
 
-        @formField('input', [
-            'name' => 'call_to_action',
-            'label' => 'Call to action',
-            'note' => 'Displays where dates do for Exhibitions'
-        ])
+        <x-twill::input
+            name='call_to_action'
+            label='Call to action'
+            note='Displays where dates do for Exhibitions'
+        />
 
-        @formField('input', [
-            'name' => 'url',
-            'label' => 'URL for link'
-        ])
+        <x-twill::input
+            name='url'
+            label='URL for link'
+        />
     @endcomponent
 @stop

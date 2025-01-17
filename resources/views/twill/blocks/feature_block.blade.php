@@ -83,24 +83,23 @@
     'renderForBlocks' => true,
     ])
 
-    @formField('input', [
-        'name' => 'feature_heading',
-        'label' => 'Heading',
-        'type' => 'text',
-    ])
+    <x-twill::input
+        name='feature_heading'
+        label='Heading'
+    />
 
     @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('input', [
-                'name' => 'browse_label',
-                'label' => 'Browse More Label',
-            ])
+            <x-twill::input
+                name='browse_label'
+                label='Browse More Label'
+            />
         @endslot
         @slot('right')
-            @formField('input', [
-                'name' => 'browse_link',
-                'label' => 'Browse More Link',
-            ])
+            <x-twill::input
+                name='browse_link'
+                label='Browse More Link'
+            />
         @endslot
     @endcomponent
 
@@ -187,7 +186,7 @@
 
     @formField('browser', [
         'name' => 'articles',
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'moduleName' => 'articles',
         'max' => 4,
         'label' => 'Articles',
@@ -223,7 +222,7 @@
 
     @formField('browser', [
         'name' => 'digitalPublications',
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'moduleName' => 'digitalPublications',
         'max' => 4,
         'label' => 'Digital Publications',
@@ -253,7 +252,7 @@
 
         @formField('browser', [
             'name' => 'events',
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'events',
             'label' => 'Events',
             'max' => 20,
@@ -302,7 +301,7 @@
     ])
 
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'name' => 'exhibitions',
             'moduleName' => 'exhibitions',
             'max' => 4,
@@ -341,7 +340,7 @@
 
     @formField('browser', [
         'name' => 'experiences',
-        'routePrefix' => 'collection.interactive_features',
+        'routePrefix' => 'collection.interactiveFeatures',
         'moduleName' => 'experiences',
         'max' => 4,
         'label' => 'Experiences',
@@ -414,7 +413,7 @@
 
     @formField('browser', [
         'name' => 'videos',
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection.articlesPublications',
         'moduleName' => 'videos',
         'max' => 4,
         'label' => 'Videos',
