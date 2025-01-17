@@ -2,12 +2,16 @@
 
 namespace App\Libraries\Api\Builders;
 
-use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Helpers\CollectionHelpers;
+use App\Libraries\Api\Models\ApiCollection;
+use App\Libraries\Api\Models\BaseApiModel;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Builder;
 
-class ApiModelBuilder
+class ApiModelBuilder extends Builder
 {
     /**
      * The base query builder instance.
@@ -103,7 +107,7 @@ class ApiModelBuilder
      * @param  mixed  $relations
      * @return $this
      */
-    public function with($relations)
+    public function with($relations, $callback = null)
     {
         $this->eagerLoad = array_merge($this->eagerLoad, $relations);
 
@@ -249,7 +253,7 @@ class ApiModelBuilder
      * @param  mixed  $id
      * @param  array  $columns
      */
-    public function find($id, $columns = [])
+    public function find($id, $columns = ['*'])
     {
         if (is_array($id) || $id instanceof Arrayable) {
             return $this->findMany($id, $columns);
@@ -264,7 +268,7 @@ class ApiModelBuilder
      * @param  mixed  $id
      * @param  array  $columns
      */
-    public function findOrFail($id, $columns = [])
+    public function findOrFail($id, $columns = ['*'])
     {
         $result = $this->find($id, $columns);
 
@@ -286,7 +290,7 @@ class ApiModelBuilder
         );
     }
 
-    public function findSingle($id, $columns = [])
+    public function findSingle($id, $columns = ['*'])
     {
         $builder = clone $this;
 
@@ -298,7 +302,7 @@ class ApiModelBuilder
         return $builder->getModel()->newCollection($result)->first();
     }
 
-    public function findMany($ids, $columns = [])
+    public function findMany($ids, $columns = ['*'])
     {
         if (empty($ids)) {
             return $this->model->newCollection();
@@ -312,7 +316,7 @@ class ApiModelBuilder
      *
      * @param  array  $columns
      */
-    public function get($columns = [])
+    public function get($columns = ['*'])
     {
         $builder = clone $this;
 
@@ -333,7 +337,7 @@ class ApiModelBuilder
      *
      * @param  array  $columns
      */
-    public function getRaw($columns = [])
+    public function getRaw($columns = ['*'])
     {
         $builder = clone $this;
 
@@ -345,7 +349,7 @@ class ApiModelBuilder
      *
      * @param  array  $columns
      */
-    public function getModels($columns = [])
+    public function getModels($columns = ['*'])
     {
         $results = $this->query->get($columns, $this->getEndpoint($this->resolveCollectionEndpoint()));
 
@@ -365,10 +369,8 @@ class ApiModelBuilder
      *
      * @param  array  $columns
      */
-    public function getSearch($perPage = null, $columns = [], $pageName = 'page', $page = null)
+    public function getSearch($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
-        $builder = clone $this;
-
         $page = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
         $perPage = is_null($perPage) ? $this->model->getPerPage() : $perPage;
 
@@ -414,7 +416,7 @@ class ApiModelBuilder
      *
      * @throws \InvalidArgumentException
      */
-    public function getPaginatedModel($perPage = null, $columns = [], $pageName = 'page', $page = null)
+    public function getPaginatedModel($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $results = $this->getPaginated($perPage, $columns, $pageName, $page);
 
@@ -462,7 +464,7 @@ class ApiModelBuilder
      * @param  string  $name
      * @return array
      */
-    protected function eagerLoadRelation($models, $name)
+    protected function eagerLoadRelation(array $models, $name, ?\Closure $constraints = null)
     {
         foreach ($models as $model) {
             if ($model instanceof BaseApiModel) {
@@ -487,9 +489,8 @@ class ApiModelBuilder
      *
      * @param  array  $columns
      */
-    public function getSingle($id, $columns = [])
+    public function getSingle($id, $columns = ['*'])
     {
-        $builder = clone $this;
         $endpoint = $this->getEndpoint($this->resolveResourceEndpoint(), ['id' => $id]);
 
         $results = $this->query->get($columns, $endpoint);
@@ -499,7 +500,7 @@ class ApiModelBuilder
             return $results;
         }
 
-        $models = $result = $this->model->hydrate($results->all());
+        $models = $this->model->hydrate($results->all());
 
         return collect($models)->first();
     }
@@ -515,7 +516,7 @@ class ApiModelBuilder
      *
      * @throws \InvalidArgumentException
      */
-    public function getPaginated($perPage = null, $columns = [], $pageName = 'page', $page = null)
+    public function getPaginated($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
@@ -542,7 +543,7 @@ class ApiModelBuilder
      *
      * @throws \InvalidArgumentException
      */
-    public function paginate($perPage = null, $columns = [], $pageName = 'page', $page = null)
+    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
         if ($this->performSearch) {
             return $this->getSearch($perPage, $columns, $pageName, $page);
@@ -633,7 +634,7 @@ class ApiModelBuilder
      * @param  array  $parameters
      * @return mixed
      */
-    protected function callScope(callable $scope, $parameters = [])
+    protected function callScope(callable $scope, array $parameters = [])
     {
         array_unshift($parameters, $this);
         $result = $scope(...array_values($parameters)) ?? $this;

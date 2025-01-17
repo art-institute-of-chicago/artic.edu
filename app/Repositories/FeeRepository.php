@@ -11,7 +11,7 @@ class FeeRepository
         $this->model = $model;
     }
 
-    public function getFormFields()
+    public function getFormFields(): array
     {
         $fields = ['price' => []];
 
@@ -22,7 +22,7 @@ class FeeRepository
         return $fields;
     }
 
-    public function update($feeFields)
+    public function update($feeFields): void
     {
         foreach ($feeFields['price'] as $feeAgeId => $feeCategories) {
             foreach ($feeCategories as $feeCategoryId => $price) {

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -77,7 +78,7 @@ class Video extends AbstractModel
         return $this->belongsToMany('App\Models\Category', 'video_category');
     }
 
-    public function scopeByCategories($query, $categories = null)
+    public function scopeByCategories($query, $categories = null): Builder
     {
         if (empty($categories)) {
             return $query;
@@ -114,7 +115,7 @@ class Video extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.collection.articles_publications.videos.edit', $this->id);
+        return route('twill.collection.articles_publications.videos.edit', $this->id);
     }
 
     public function getUrlAttribute()

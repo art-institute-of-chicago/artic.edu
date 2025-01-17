@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -32,14 +33,14 @@ class GenericPageRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
+    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
 
         return parent::hydrate($object, $fields);
     }
 
-    public function setNewOrder($ids)
+    public function setNewOrder(array $ids): void
     {
         if (is_array(Arr::first($ids))) {
             ReorderPages::dispatch($ids);
@@ -48,7 +49,7 @@ class GenericPageRepository extends ModuleRepository
         }
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $object->categories()->sync($fields['categories'] ?? []);
 
@@ -58,7 +59,7 @@ class GenericPageRepository extends ModuleRepository
     /**
      * Show data, moved here to allow preview
      */
-    public function getShowData($item, $slug = null, $previewPage = null)
+    public function getShowData($item, $slug = null, $previewPage = null): array
     {
         $navigation = $item->present()->navigation();
 

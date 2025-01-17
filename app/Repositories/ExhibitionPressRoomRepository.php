@@ -25,7 +25,7 @@ class ExhibitionPressRoomRepository extends ModuleRepository
     /**
      * Show data, moved here to allow preview
      */
-    public function getShowData($item, $slug = null, $previewPage = null)
+    public function getShowData($item, $slug = null, $previewPage = null): array
     {
         return [
             'borderlessHeader' => !(empty($item->imageFront('banner'))),

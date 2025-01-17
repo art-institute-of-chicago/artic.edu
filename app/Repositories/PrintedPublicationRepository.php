@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -22,13 +23,13 @@ class PrintedPublicationRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $object->categories()->sync($fields['categories'] ?? []);
         parent::afterSave($object, $fields);
     }
 
-    public function getShowData($item, $slug = null, $previewPage = null)
+    public function getShowData($item, $slug = null, $previewPage = null): array
     {
         return [
             'borderlessHeader' => !(empty($item->imageFront('banner'))),

@@ -177,7 +177,7 @@ class HoursPresenter extends BasePresenter
         return $items;
     }
 
-    private function getHoursForHeader($when, $hideMemberHours = false)
+    private function getHoursForHeader($when, bool $hideMemberHours = false)
     {
         $whenFields = $this->getWhenFields($when);
 
@@ -328,7 +328,7 @@ class HoursPresenter extends BasePresenter
             && $this->isBeforePublicClose($when);
     }
 
-    private function getNextOpen($when, $prefix)
+    private function getNextOpen($when, string $prefix)
     {
         $nextWhen = clone $when;
         $tries = 0;

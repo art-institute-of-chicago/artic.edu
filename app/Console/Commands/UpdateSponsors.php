@@ -55,7 +55,7 @@ class UpdateSponsors extends Command
         }
     }
 
-    private function getParagraphBlock($model, $position, $content)
+    private function getParagraphBlock(\App\Models\Sponsor $model, int $position, $content)
     {
         return [
             'blockable_id' => $model->id,
