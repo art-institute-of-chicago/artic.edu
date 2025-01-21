@@ -55,15 +55,15 @@
         label='Redirect URL'
     />
 
-    @formField('checkbox', [
-        'name'  => 'is_redirect_url_external',
-        'label' => 'Is Redirect URL external?',
-    ])
+    <x-twill::checkbox
+        name='is_redirect_url_external'
+        label='Is Redirect URL external?'
+    />
 
-    @formField('checkbox', [
-        'name'  => 'http_protected',
-        'label' => 'Authentication required?',
-    ])
+    <x-twill::checkbox
+        name='http_protected'
+        label='Authentication required?'
+    />
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
@@ -74,10 +74,10 @@
 
 @section('fieldsets')
     <a17-fieldset id="hours" title="Hours">
-        @formField('checkbox', [
-            'name'  => 'show_hours',
-            'label' => 'Select to display museum hours on the page',
-        ])
+        <x-twill::checkbox
+            name='show_hours'
+            label='Select to display museum hours on the page'
+        />
 
         <p>The page must have a banner image in order to display museum hours.</p>
     </a17-fieldset>
