@@ -136,10 +136,10 @@
         @endcomponent
     @endforeach
 
-    @formField('checkbox', [
-        'name' => 'archived',
-        'label' => 'Archived'
-    ])
+    <x-twill::checkbox
+        name='archived'
+        label='Archived'
+    />
 @stop
 
 @section('fieldsets')

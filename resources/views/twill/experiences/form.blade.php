@@ -50,25 +50,25 @@
 
     @include('twill.partials.authors')
 
-    @formField('checkbox', [
-        'name' => 'archived',
-        'label' => 'Archived'
-    ])
+    <x-twill::checkbox
+        name='archived'
+        label='Archived'
+    />
 
-    @formField('checkbox', [
-        'name' => 'kiosk_only',
-        'label' => 'Kiosk only',
-    ])
+    <x-twill::checkbox
+        name='kiosk_only'
+        label='Kiosk only'
+    />
 
-    @formField('checkbox', [
-        'name' => 'is_unlisted',
-        'label' => "Don't show this experience in listings",
-    ])
+    <x-twill::checkbox
+        name='is_unlisted'
+        label="Don't show this experience in listings"
+    />
 
-    @formField('checkbox', [
-        'name' => 'is_in_magazine',
-        'label' => 'Assume this experience is featured in a magazine issue',
-    ])
+    <x-twill::checkbox
+        name='is_in_magazine'
+        label='Assume this experience is featured in a magazine issue'
+    />
 
     @formField('multi_select', [
         'name' => 'categories',

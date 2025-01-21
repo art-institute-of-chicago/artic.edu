@@ -17,7 +17,7 @@
     :maxlength='82'
 />
 
-@formField('checkbox', [
-    'name' => 'starting_view',
-    'label' => 'Show this overlay in starting view',
-])
+<x-twill::checkbox
+    name='starting_view'
+    label='Show this overlay in starting view'
+/>

@@ -87,10 +87,10 @@
     <a17-fieldset id="ticketing" title="Ticketing Information">
         <p>Select the "Ticketed Event" box when you want a "Buy Tickets" button to appear on the event page. If the event is associated with the ticketing system, the button will not appear until the ticketed event is on sale.</p>
 
-        @formField('checkbox', [
-            'name' => 'is_ticketed',
-            'label' => 'Ticketed Event'
-        ])
+        <x-twill::checkbox
+            name='is_ticketed'
+            label='Ticketed Event'
+        />
 
         @formField('browser', [
             'routePrefix' => 'exhibitionsEvents',
@@ -149,34 +149,34 @@
         <p>Event Tags<br/>
         <span class="f--note f--small">Will display a tag above the event title</span></p>
 
-        @formField('checkbox', [
-            'name' => 'is_member_exclusive',
-            'label' => 'Member Exclusive',
-        ])
+        <x-twill::checkbox
+            name='is_member_exclusive'
+            label='Member Exclusive'
+        />
 
         <hr/>
         <p>Event Labels<br/>
         <span class="f--note f--small">Will display a label beneath the event time</span></p>
 
-        @formField('checkbox', [
-            'name' => 'is_registration_required',
-            'label' => 'Registration Required',
-        ])
+        <x-twill::checkbox
+            name='is_registration_required'
+            label='Registration Required'
+        />
 
-        @formField('checkbox', [
-            'name' => 'is_sold_out',
-            'label' => 'Sold Out',
-        ])
+        <x-twill::checkbox
+            name='is_sold_out'
+            label='Sold Out'
+        />
 
-        @formField('checkbox', [
-            'name' => 'is_rsvp',
-            'label' => 'RSVP',
-        ])
+        <x-twill::checkbox
+            name='is_rsvp'
+            label='RSVP'
+        />
 
-        @formField('checkbox', [
-            'name' => 'is_free',
-            'label' => 'Free',
-        ])
+        <x-twill::checkbox
+            name='is_free'
+            label='Free'
+        />
 
         <p>If you attach an event from the ticketing system, we will handle "Sold Out" for you automatically.</p>
 
@@ -184,27 +184,27 @@
         <p>Private<br/>
         <span class="f--note f--small">Does not generate any labels or tags, only excludes the event from the listing</span></p>
 
-        @formField('checkbox', [
-            'name' => 'is_private',
-            'label' => 'Is Private',
-        ])
+        <x-twill::checkbox
+            name='is_private'
+            label='Is Private'
+        />
 
-        @formField('checkbox', [
-            'name' => 'is_sales_button_hidden',
-            'label' => 'Hide Sales Button',
-        ])
+        <x-twill::checkbox
+            name='is_sales_button_hidden'
+            label='Hide Sales Button'
+        />
     </a17-fieldset>
 
     <a17-fieldset id="sales_site" title="Sales site fields">
-        @formField('checkbox', [
-            'name' => 'is_admission_required',
-            'label' => 'Is Admission Required',
-        ])
+        <x-twill::checkbox
+            name='is_admission_required'
+            label='Is Admission Required'
+        />
 
-        @formField('checkbox', [
-            'name' => 'is_after_hours',
-            'label' => 'Is After Hours',
-        ])
+        <x-twill::checkbox
+            name='is_after_hours'
+            label='Is After Hours'
+        />
 
         @formField('select', [
             'name' => 'entrance',
@@ -213,10 +213,10 @@
             'default' => \App\Models\Event::NULL_OPTION, // No effect?
         ])
 
-        @formField('checkbox', [
-            'name' => 'is_virtual_event',
-            'label' => 'Is Virtual Event',
-        ])
+        <x-twill::checkbox
+            name='is_virtual_event'
+            label='Is Virtual Event'
+        />
 
         <x-twill::input
             name='virtual_event_url'
@@ -367,10 +367,10 @@
     <a17-fieldset id="event_series" title="Event series emails">
         <p>Please review the <a href="https://docs.google.com/document/d/19SN1uMkJy2ldk83uBnEL0GHSZFDOB5j2exz-X1oSb4Y/edit">documentation for email series</a> before proceeding.</p>
 
-        @formField('checkbox', [
-            'name' => 'add_to_event_email_series',
-            'label' => 'Add to event email series',
-        ])
+        <x-twill::checkbox
+            name='add_to_event_email_series'
+            label='Add to event email series'
+        />
 
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'add_to_event_email_series',
@@ -406,10 +406,10 @@
                     }
                 @endphp
 
-                @formField('checkbox', [
-                    'name' => $currentSeriesName,
-                    'label' => $currentSeriesTitle,
-                ])
+                <x-twill::checkbox
+                    name='$currentSeriesName'
+                    label='$currentSeriesTitle'
+                />
 
                 @component('twill::partials.form.utils._connected_fields', [
                     'fieldName' => $currentSeriesName,
@@ -437,13 +437,10 @@
 
                     @foreach ($enabledSubFields as $subFieldName => $subFieldLabel)
 
-                        @formField('checkbox', [
-                            'name' => $currentSeriesName . '_' . $subFieldName . '_override',
-                            'label' => ($useShortLabel ?
-                                'Override default copy' :
-                                'Include ' . $subFieldLabel . '-specific copy (overrides default copy)'
-                            ),
-                        ])
+                        <x-twill::checkbox
+                            name='{{ '$currentSeriesName . '_' . $subFieldName . '_override' }}'
+                            label='{{ ($useShortLabel ? 'Override default copy' : 'Include ' . $subFieldLabel . '-specific copy (overrides default copy)' }}'
+                        />
 
                         @component('twill::partials.form.utils._connected_fields', [
                             'fieldName' => $currentSeriesName . '_' . $subFieldName . '_override',
@@ -490,10 +487,10 @@
 
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
-            @formField('checkbox', [
-                'name' => 'send_test_emails',
-                'label' => 'Send test emails after save',
-            ])
+            <x-twill::checkbox
+                name='send_test_emails'
+                label='Send test emails after save'
+            />
 
             @component('twill::partials.form.utils._connected_fields', [
                 'fieldName' => 'send_test_emails',
@@ -532,10 +529,10 @@
                         'fieldValues' => true
                     ])
 
-                        @formField('checkbox', [
-                            'name' => $currentSeriesName . '_test',
-                            'label' => $currentSeriesTitle,
-                        ])
+                        <x-twill::checkbox
+                            name='{{ $currentSeriesName . '_test' }}'
+                            label='{{ $currentSeriesTitle }}'
+                        />
 
                         @php
                             $subFields = \App\Models\EmailSeries::$memberTypes;
@@ -563,10 +560,10 @@
 
                                     @foreach ($enabledSubFields as $subFieldName => $subFieldLabel)
 
-                                        @formField('checkbox', [
-                                            'name' => $currentSeriesName . '_test_' . $subFieldName,
-                                            'label' => 'Send ' . $subFieldLabel . ' test',
-                                        ])
+                                        <x-twill::checkbox
+                                            name='{{ $currentSeriesName . '_test_' . $subFieldName }}'
+                                            label='{{ 'Send ' . $subFieldLabel . ' test' }}'
+                                        />
 
                                     @endforeach
 
