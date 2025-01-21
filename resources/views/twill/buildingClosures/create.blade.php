@@ -1,12 +1,11 @@
 @if(!isset($item))
-    @formField('select', [
-        'name' => "type",
-        'label' => "Type",
-        'native' => true,
-        'options' => $typesList,
-        'placeholder' => 'Select a type',
-        'required' => true
-    ])
+    <x-twill::select
+        name='"type"'
+        label='"Type"'
+        placeholder='Select a type'
+        :options='$typesList'
+        :required='true'
+    />
 
     @formField('date_picker', [
         'name' => 'date_start',
