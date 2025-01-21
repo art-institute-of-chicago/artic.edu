@@ -113,12 +113,12 @@
             note='Save and refresh the page to see the link preview'
         />
 
-        @formField('radios', [
-            'name' => 'buy_button_text',
-            'label' => 'Sales button text',
-            'default' => 'Buy Tickets',
-            'inline' => true,
-            'options' => [
+        <x-twill::radios
+            name='buy_button_text'
+            label='Sales button text'
+            default='Buy Tickets'
+            :inline='true'
+            :options="[
                 [
                     'value' => 'Buy Tickets',
                     'label' => 'Buy Tickets'
@@ -130,9 +130,9 @@
                 [
                     'value' => 'RSVP',
                     'label' => 'RSVP'
-                ],
-            ]
-        ])
+                ]
+            ]"
+        />
 
         <hr/>
 
