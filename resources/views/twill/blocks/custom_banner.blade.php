@@ -69,17 +69,21 @@
             :required='true'
         />
 
-        @formField('multi_select', [
-            'name' => 'categories',
-            'label' => 'Categories',
-            'options' => collect($categoriesList)->map(function($name, $id) {
+        @php
+            $options = collect($categoriesList)->map(function($name, $id) {
                 return [
                     'value' => $id,
                     'label' => $name,
                 ];
-            })->toArray(),
-            'placeholder' => 'Add categories to the tag cloud',
-        ])
+            })->toArray();
+        @endphp
+
+        <x-twill::multi-select
+            name='categories'
+            label='Categories'
+            placeholder='Add categories to the tag cloud'
+            :options="$options"
+        />
 
         @component('twill::partials.form.utils._columns')
         @slot('left')

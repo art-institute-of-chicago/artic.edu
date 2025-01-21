@@ -302,12 +302,12 @@
             default='\App\Models\Event::NULL_OPTION' // No effect?
         />
 
-        @formField('multi_select', [
-            'name' => 'alt_types',
-            'label' => 'Event type (alternative)',
-            'note' => 'Used to enhance filtering',
-            'options' => $eventTypesList,
-        ])
+        <x-twill::multi-select
+            name='alt_types'
+            label='Event type (alternative)'
+            note='Used to enhance filtering'
+            :options='$eventTypesList'
+        />
 
         <x-twill::select
             name='audience'
@@ -316,19 +316,19 @@
             :options="$eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION)' '[None]')"
         />
 
-        @formField('multi_select', [
-            'name' => 'alt_audiences',
-            'label' => 'Event audience (alternative)',
-            'note' => 'Used to enhance filtering',
-            'options' => $eventAudiencesList,
-        ])
+        <x-twill::multi-select
+            name='alt_audiences'
+            label='Event audience (alternative)'
+            note='Used to enhance filtering'
+            :options='$eventAudiencesList'
+        />
 
-        @formField('multi_select', [
-            'name' => 'programs',
-            'label' => 'Programs',
-            'note' => 'To view program URLS, select programs below, update event, and refresh the page',
-            'options' => $eventProgramsList,
-        ])
+        <x-twill::multi-select
+            name='programs'
+            label='Programs'
+            note='To view program URLS, select programs below, update event, and refresh the page'
+            :options='$eventProgramsList'
+        />
 
         <x-twill::input
             name='program_urls'

@@ -11,19 +11,19 @@
         :required='true'
     />
 
-    @formField('multi_select', [
-        'name' => 'siteTags',
-        'label' => 'Tags',
-        'options' => $siteTagsList,
-        'placeholder' => 'Select some tags',
-    ])
+    <x-twill::multi-select
+        name='siteTags'
+        label='Tags'
+        placeholder='Select some tags'
+        :options='$siteTagsList'
+    />
 
-    @formField('multi_select', [
-        'name' => 'categories',
-        'label' => 'Categories',
-        'options' => $categoriesList,
-        'placeholder' => 'Select some categories',
-    ])
+    <x-twill::multi-select
+        name='categories'
+        label='Categories'
+        placeholder='Select some categories'
+        :options='$categoriesList'
+    />
 
     <x-twill::input
         name='title_display'

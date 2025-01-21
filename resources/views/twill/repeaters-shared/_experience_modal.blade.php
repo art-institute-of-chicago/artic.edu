@@ -58,10 +58,10 @@
         'note' => 'Upload a .zip file'
     ])
 
-    @formField('multi_select', [
-        'name' => 'image_sequence_playback',
-        'label' => 'playback',
-        'options' => [
+    <x-twill::multi-select
+        name='image_sequence_playback'
+        label='playback'
+        :options="[
             [
                 'value' => 'reverse',
                 'label' => 'Reverse'
@@ -70,8 +70,8 @@
                 'value' => 'infinite',
                 'label' => 'Infinite'
             ]
-        ]
-    ])
+        ]"
+    />
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [

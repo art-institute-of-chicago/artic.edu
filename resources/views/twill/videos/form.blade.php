@@ -70,12 +70,12 @@
 
     <a17-fieldset id="related_to" title="Related">
 
-        @formField('multi_select', [
-            'name' => 'categories',
-            'label' => 'Categories',
-            'options' => $categoriesList,
-            'placeholder' => 'Select some categories',
-        ])
+        <x-twill::multi-select
+            name='categories'
+            label='Categories'
+            placeholder='Select some categories'
+            :options="$categoriesList"
+        />
 
         <p>If this is left blank, we will show the four most recently published videos.</p>
 

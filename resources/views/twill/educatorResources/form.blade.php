@@ -36,12 +36,12 @@
         :maxlength='255'
     />
 
-    @formField('multi_select', [
-        'name' => 'categories',
-        'label' => 'Categories',
-        'options' => $categoriesList,
-        'placeholder' => 'Select some categories',
-    ])
+    <x-twill::multi-select
+        name='categories'
+        label='Categories'
+        placeholder='Select some categories'
+        :options='$categoriesList'
+    />
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([

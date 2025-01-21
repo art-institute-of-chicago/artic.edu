@@ -43,12 +43,12 @@
         :toolbar-options="[ 'italic' ]"
     />
 
-    @formField('multi_select', [
-        'name' => 'categories',
-        'label' => 'Categories',
-        'options' => $categoriesList,
-        'placeholder' => 'Select some categories',
-    ])
+    <x-twill::multi-select
+        name='categories'
+        label='Categories'
+        placeholder='Select some categories'
+        :options='$categoriesList'
+    />
 
     <x-twill::input
         name='redirect_url'
