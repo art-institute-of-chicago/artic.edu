@@ -25,11 +25,11 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('date_picker', [
-        'name' => 'date',
-        'label' => 'Display date',
-        'note' => 'When was this virtual tour published?',
-    ])
+    <x-twill::date-picker
+        name='date'
+        label='Display date'
+        note='When was this virtual tour published?'
+    />
 
     <x-twill::wysiwyg
         name='list_description'
