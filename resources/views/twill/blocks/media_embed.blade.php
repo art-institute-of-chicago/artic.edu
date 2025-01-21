@@ -28,12 +28,12 @@
     ]
 ])
 
-@formField('radios', [
-    'name' => 'embed_type',
-    'label' => 'Embed type',
-    'default' => 'html',
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='embed_type'
+    label='Embed type'
+    default='html'
+    :inline='true'
+    :options="[
         [
             'value' => 'html',
             'label' => 'HTML code'
@@ -41,9 +41,9 @@
         [
             'value' => 'url',
             'label' => 'Embed URL'
-        ],
-    ]
-])
+        ]
+    ]"
+/>
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'embed_type',

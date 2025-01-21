@@ -138,14 +138,14 @@
             'value' => 'videos',
         ],
     ]
-])
+/>
 
-@formField('radios', [
-    'name' => 'image_ratio',
-    'label' => 'Image Ratio',
-    'default' => 'square',
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='image_ratio'
+    label='Image Ratio'
+    default='square'
+    :inline='true'
+    :options="[
         [
             'value' => 'square',
             'label' => '1:1'
@@ -153,9 +153,9 @@
         [
             'value' => 'landscape',
             'label' => '16:9'
-        ],
-    ]
-])
+        ]
+    ]"
+/>
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'feature_type',

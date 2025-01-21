@@ -37,12 +37,12 @@ foreach (\App\Models\Mirador::$viewTypes as $key => $viewType) {
         'note' => 'Upload a .json file'
     ])
 
-    @formField('radios', [
-        'name' => 'default_view',
-        'label' => 'Default View',
-        'default' => 'single',
-        'inline' => true,
-        'options' => $views
-    ])
+    <x-twill::radios
+        name='default_view'
+        label='Default View'
+        default='single'
+        :inline='true'
+        :options="$views"
+    />
 
 @stop

@@ -35,12 +35,12 @@
         }
     @endphp
 
-    @formField('radios', [
-        'name' => '_featureType',
-        'label' => 'Feature type',
-        'default' => $selectedFeature,
-        'inline' => true,
-        'options' => [
+    <x-twill::radios
+        name='_featureType'
+        label='Feature type'
+        default='$selectedFeature'
+        :inline='true'
+        :options="[
             [
                 'value' => 'articles',
                 'label' => 'Article'
@@ -60,9 +60,9 @@
             [
                 'value' => 'custom',
                 'label' => 'Custom'
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
 
     @component('twill::partials.form.utils._connected_fields', [

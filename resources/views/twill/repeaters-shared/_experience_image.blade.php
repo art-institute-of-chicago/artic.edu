@@ -5,12 +5,12 @@
 
 @yield('caption')
 
-@formField('radios', [
-    'name' => 'inline_credits',
-    'label' => 'Inline Credits',
-    'default' => 'off',
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='inline_credits'
+    label='Inline Credits'
+    default='off'
+    :inline='true'
+    :options="[
         [
             'value' => 'on',
             'label' => 'On'
@@ -19,8 +19,8 @@
             'value' => 'off',
             'label' => 'Off'
         ]
-    ]
-])
+    ]"
+/>
 
 @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'inline_credits',
@@ -28,13 +28,13 @@
         'keepAlive' => true,
         'renderForBlocks' => true
 ])
-    @formField('radios', [
-        'name' => 'credits_input',
-        'label' => 'Credits Input',
-        'default' => 'datahub',
-        'inline' => true,
-        'maxlength' => 150,
-        'options' => [
+    <x-twill::radios
+        name='credits_input'
+        label='Credits Input'
+        default='datahub'
+        :inline='true'
+        :maxlength='150'
+        :options="[
             [
                 'value' => 'datahub',
                 'label' => 'Datahub'
@@ -43,8 +43,8 @@
                 'value' => 'manual',
                 'label' => 'Manual'
             ]
-        ]
-    ])
+        ]"
+    />
 
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'credits_input',

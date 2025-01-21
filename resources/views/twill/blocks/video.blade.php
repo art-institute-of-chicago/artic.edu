@@ -28,12 +28,12 @@
     ]
 ])
 
-@formField('radios', [
-    'name' => 'media_type',
-    'label' => 'Media type',
-    'default' => 'youtube',
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='media_type'
+    label='Media type'
+    default='youtube'
+    :inline='true'
+    :options="[
         [
             'value' => 'youtube',
             'label' => 'YouTube embed'
@@ -41,9 +41,9 @@
         [
             'value' => 'loop',
             'label' => 'Video loop'
-        ],
-    ]
-])
+        ]
+    ]"
+/>
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'media_type',
@@ -55,12 +55,12 @@
         'label' => 'Video loop'
     ])
 
-    @formField('radios', [
-        'name' => 'loop_or_once',
-        'label' => 'Loop or play just once?',
-        'default' => 'loop',
-        'inline' => true,
-        'options' => [
+    <x-twill::radios
+        name='loop_or_once'
+        label='Loop or play just once?'
+        default='loop'
+        :inline='true'
+        :options="[
             [
                 'value' => 'loop',
                 'label' => 'Loop'
@@ -68,9 +68,9 @@
             [
                 'value' => 'just_once',
                 'label' => 'Play just once'
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
 @endcomponent
 

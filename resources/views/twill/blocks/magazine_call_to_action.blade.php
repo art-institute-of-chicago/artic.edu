@@ -1,12 +1,12 @@
 @twillBlockTitle('Magazine Call to Action')
 @twillBlockIcon('text')
 
-@formField('radios', [
-    'name' => 'theme',
-    'label' => 'Theme',
-    'default' => 'dark',
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='theme'
+    label='Theme'
+    default='dark'
+    :inline='true'
+    :options="[
         [
             'value' => 'dark',
             'label' => 'Dark'
@@ -14,9 +14,9 @@
         [
             'value' => 'light',
             'label' => 'Light'
-        ],
-    ]
-])
+        ]
+    ]"
+/>
 
 <x-twill::input
     name='tag'

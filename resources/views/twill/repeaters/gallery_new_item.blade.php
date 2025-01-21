@@ -2,22 +2,22 @@
 @twillRepeaterTrigger('Add gallery item')
 @twillRepeaterComponent('a17-block-gallery_new_item')
 
-@formField('radios', [
-    'name' => 'gallery_item_type',
-    'label' => 'Gallery item type',
-    'default' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM,
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='gallery_item_type'
+    label='Gallery item type'
+    default='\App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM'
+    :inline='true'
+    :options="[
         [
-            'value' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM,
+            'value' => '{{ \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM }}',
             'label' => 'Custom',
         ],
         [
-            'value' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK,
+            'value' => '{{ \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK }}',
             'label' => 'Artwork',
-        ],
-    ]
-])
+        ]
+    ]"
+/>
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'gallery_item_type',

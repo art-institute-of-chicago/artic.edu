@@ -1,10 +1,10 @@
 @unless(in_array($item->module_type, ['attract', 'end']))
-    @formField('radios', [
-        'name' => 'asset_type',
-        'label' => 'Asset Type',
-        'default' => 'standard',
-        'inline' => true,
-        'options' => [
+    <x-twill::radios
+        name='asset_type'
+        label='Asset Type'
+        default='standard'
+        :inline='true'
+        :options="[
             [
                 'value' => 'standard',
                 'label' => 'Standard'
@@ -17,8 +17,8 @@
                 'value' => '3dModel',
                 'label' => '3D model'
             ]
-        ]
-    ])
+        ]"
+    />
 
     @push('extra_js')
     <script>
@@ -68,12 +68,12 @@
             'renderForBlocks' => false,
             'keepAlive' => true,
         ])
-            @formField('radios', [
-                'name' => $moduleType . '_standard_media_type',
-                'label' => 'Media Type',
-                'default' => 'type_image',
-                'inline' => true,
-                'options' => [
+            <x-twill::radios
+                name='$moduleType . '_standard_media_type''
+                label='Media Type'
+                default='type_image'
+                :inline='true'
+                :options="[
                     [
                         'value' => 'type_image',
                         'label' => 'Image'
@@ -81,9 +81,9 @@
                     [
                         'value' => 'type_video',
                         'label' => 'Video'
-                    ],
-                ]
-            ])
+                    ]
+                ]"
+            />
         @endcomponent
     @endforeach
 @endcomponent
@@ -94,12 +94,12 @@
     'renderForBlocks' => false,
     'keepAlive' => true
 ])
-    @formField('radios', [
-        'name' => 'media_type',
-        'label' => 'Media Type',
-        'default' => 'type_image',
-        'inline' => true,
-        'options' => [
+    <x-twill::radios
+        name='media_type'
+        label='Media Type'
+        default='type_image'
+        :inline='true'
+        :options="[
             [
                 'value' => 'type_image',
                 'label' => 'Image'
@@ -107,9 +107,9 @@
             [
                 'value' => 'type_sequence',
                 'label' => 'Sequence'
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'media_type',
