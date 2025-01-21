@@ -15,13 +15,11 @@
         'note' => 'Minimum image width 2000px'
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'caption',
-        'label' => 'Caption',
-        'toolbarOptions' => [
-            'italic', 'link'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='caption'
+        label='Caption'
+        :toolbar-options="[ 'italic', 'link' ]"
+    />
 
     <x-twill::input
         name='birth_date'
@@ -35,14 +33,11 @@
         disabled='true'
     />
 
-    @formField('wysiwyg', [
-        'name' => 'intro',
-        'label' => 'Intro',
-        'toolbarOptions' => [
-            'italic', 'link', 'strike'
-        ],
-
-    ])
+    <x-twill::wysiwyg
+        name='intro'
+        label='Intro'
+        :toolbar-options="[ 'italic', 'link', 'strike' ]"
+    />
 @stop
 
 @section('fieldsets')

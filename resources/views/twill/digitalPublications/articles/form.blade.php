@@ -64,15 +64,13 @@
             'fieldValues' => 'grouping',
             'renderForBlocks' => false,
         ])
-            @formField('wysiwyg', [
-                'name' => 'grouping_description',
-                'label' => 'Description',
-                'maxlength' => 255,
-                'note' => 'Max 255 characters',
-                'toolbarOptions' => [
-                    'italic', 'link',
-                ],
-            ])
+            <x-twill::wysiwyg
+                name='grouping_description'
+                label='Description'
+                note='Max 255 characters'
+                :maxlength='255'
+                :toolbar-options="[ 'italic', 'link' ]"
+            />
 
             @formField('medias', [
                 'with_multiple' => false,
@@ -175,31 +173,25 @@
                 note='Used in the "eyebrow" of cards on the publication page'
             />
 
-            @formField('wysiwyg', [
-                'name' => 'list_description',
-                'label' => 'List description',
-                'maxlength' => 255,
-                'note' => 'Max 255 characters. Will be used on the main landing, search, and social media.',
-                'toolbarOptions' => [
-                    'italic',
-                ],
-            ])
+            <x-twill::wysiwyg
+                name='list_description'
+                label='List description'
+                note='Max 255 characters. Will be used on the main landing, search, and social media.'
+                :maxlength='255'
+                :toolbar-options="[ 'italic' ]"
+            />
 
-            @formField('wysiwyg', [
-                'name' => 'cite_as',
-                'label' => 'How to Cite',
-                'toolbarOptions' => [
-                    'italic',
-                ],
-            ])
+            <x-twill::wysiwyg
+                name='cite_as'
+                label='How to Cite'
+                :toolbar-options="[ 'italic' ]"
+            />
 
-            @formField('wysiwyg', [
-                'name' => 'references',
-                'label' => 'References',
-                'toolbarOptions' => [
-                    'italic', 'link', 'list-ordered', 'list-unordered',
-                ],
-            ])
+            <x-twill::wysiwyg
+                name='references'
+                label='References'
+                :toolbar-options="[ 'italic', 'link', 'list-ordered', 'list-unordered' ]"
+            />
 
             @formField('block_editor', [
                 'blocks' => BlockHelpers::getBlocksForEditor([

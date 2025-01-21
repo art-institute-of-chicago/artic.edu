@@ -97,13 +97,11 @@
             name='hour_header'
             label='Hour Header'
         />
-        @formField('wysiwyg', [
-            'name' => 'hour_intro',
-            'label' => 'Hour Intro',
-            'toolbarOptions' => [
-                'bold', 'italic', 'link',
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='hour_intro'
+            label='Hour Intro'
+            :toolbar-options="[ 'bold', 'italic', 'link' ]"
+        />
         @formField('checkbox', [
             'name' => 'is_custom_hours',
             'label' => 'Override default hours',
@@ -124,13 +122,11 @@
             'name' => 'rlc_location',
             'label' => 'Location Image',
         ])
-        @formField('wysiwyg', [
-            'name' => 'labels.location_intro',
-            'label' => 'Location Intro',
-            'toolbarOptions' => [
-                'bold', 'italic', 'link',
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='labels.location_intro'
+            label='Location Intro'
+            :toolbar-options="[ 'bold', 'italic', 'link' ]"
+        />
         <x-twill::input
             name='labels.directions_label'
             label='Directions Label'
@@ -163,13 +159,11 @@
             name='labels.contact_header'
             label='Contact Header'
         />
-        @formField('wysiwyg', [
-            'name' => 'labels.contact_intro',
-            'label' => 'Contact Intro',
-            'toolbarOptions' => [
-                'bold', 'italic',
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='labels.contact_intro'
+            label='Contact Intro'
+            :toolbar-options="[ 'bold', 'italic' ]"
+        />
         @formField('block_editor', [
             'blocks' => [
                 'newsletter_signup_inline',

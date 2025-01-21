@@ -24,13 +24,11 @@
     note='Small text e.g. "Exhibition"'
 />
 
-@formField('wysiwyg', [
-    'name' => 'title',
-    'label' => 'Title',
-    'toolbarOptions' => [
-        'italic'
-    ],
-])
+<x-twill::wysiwyg
+    name='title'
+    label='Title'
+    :toolbar-options="[ 'italic' ]"
+/>
 
 <x-twill::input
     name='link_text'

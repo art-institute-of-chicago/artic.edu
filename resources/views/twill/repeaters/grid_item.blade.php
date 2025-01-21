@@ -9,13 +9,11 @@
     'max' => '1'
 ])
 
-@formField('wysiwyg', [
-    'name' => 'title',
-    'label' => 'Title',
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    name='title'
+    label='Title'
+    :toolbar-options="[ 'italic' ]"
+/>
 
 <x-twill::input
     name='tag'
@@ -23,15 +21,13 @@
     note='Displayed in smaller font above title'
 />
 
-@formField('wysiwyg', [
-    'type' => 'textarea',
-    'name' => 'description',
-    'label' => 'Description',
-    'rows' => 4,
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    type='textarea'
+    name='description'
+    label='Description'
+    :rows='4'
+    :toolbar-options="[ 'italic' ]"
+/>
 
 @component('twill::partials.form.utils._columns')
 @slot('left')

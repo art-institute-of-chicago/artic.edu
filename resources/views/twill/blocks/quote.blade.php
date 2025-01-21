@@ -8,10 +8,8 @@
     :rows='4'
 />
 
-@formField('wysiwyg', [
-    'name' => 'attribution',
-    'label' => 'Attribution',
-    'toolbarOptions' => [
-        'italic'
-    ],
-])
+<x-twill::wysiwyg
+    name='attribution'
+    label='Attribution'
+    :toolbar-options="[ 'italic' ]"
+/>
