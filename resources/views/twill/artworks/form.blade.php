@@ -36,13 +36,11 @@
     <a17-fieldset title="Hi-Res" id="high_res">
         <p>This functionality is meant to support super-resolution images. It is a work-around for the 3000-pixel limit on images coming from our DAMS. If you upload an image here, it will replace the primary zoomable image for the artwork on the website.</p>
 
-        @formField('medias', [
-            'with_multiple' => false,
-            'no_crop' => true,
-            'label' => 'Custom image',
-            'name' => 'iiif',
-            'note' => 'Minimum image width 3000px'
-        ])
+        <x-twill::medias
+            name='iiif'
+            label='Custom image'
+            note='Minimum image width 3000px'
+        />
 
         <x-twill::checkbox
             name='force_iiif_regenerate'

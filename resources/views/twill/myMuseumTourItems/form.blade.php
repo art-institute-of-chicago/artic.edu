@@ -6,11 +6,10 @@
         label='Tour ID'
     />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'name' => 'teaser_image',
-        'label' => 'Teaser image',
-    ])
+    <x-twill::medias
+        name='teaser_image'
+        label='Teaser image'
+    />
 
     <x-twill::wysiwyg
         name='artwork_count'

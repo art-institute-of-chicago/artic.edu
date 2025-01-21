@@ -36,23 +36,21 @@
             :toolbar-options="[ 'italic', 'link' ]"
         />
 
-        @formField('medias', [
-            'name' => 'hero',
-            'label' => 'Hero images',
-            'withAddInfo' => false,
-            'withVideoUrl' => false,
-            'withCaption' => false,
-            'note' => 'Order should match links in header text',
-            'max' => 20,
-        ])
+        <x-twill::medias
+            name='hero'
+            label='Hero images'
+            note='Order should match links in header text'
+            :withAddInfo='false'
+            :withVideoUrl='false'
+            :withCaption='false'
+            :max='20'
+        />
 
-        @formField('medias', [
-            'with_multiple' => false,
-            'no_crop' => false,
-            'label' => 'Mobile hero image',
-            'name' => 'mobile_hero',
-            'note' => 'Minimum image width 3000px'
-        ])
+        <x-twill::medias
+            name='mobile_hero'
+            label='Mobile hero image'
+            note='Minimum image width 3000px'
+        />
     </a17-fieldset>
 
     <a17-fieldset id="welcome_note" title="Welcome Note">

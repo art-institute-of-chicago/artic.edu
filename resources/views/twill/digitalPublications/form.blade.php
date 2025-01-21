@@ -22,19 +22,17 @@
         :toolbar-options="[ 'italic' ]"
     />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Hero image',
-        'name' => 'listing',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        name='listing'
+        label='Hero image'
+        note='Minimum image width 3000px'
+    />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Hero image, mobile',
-        'name' => 'mobile_listing',
-        'note' => 'Minimum image width 2000px',
-    ])
+    <x-twill::medias
+        name='mobile_listing'
+        label='Hero image, mobile'
+        note='Minimum image width 2000px'
+    />
 
     @formField('color_select', [
         'name' => 'bgcolor',
@@ -77,12 +75,11 @@
             <p style="margin-bottom: -20px">This content is only shown when the page is a DSC stub.</p>
             <hr>
 
-            @formField('medias', [
-                'with_multiple' => false,
-                'label' => 'Banner image',
-                'name' => 'banner',
-                'note' => 'Minimum image width 3000px'
-            ])
+            <x-twill::medias
+                name='banner'
+                label='Banner image'
+                note='Minimum image width 3000px'
+            />
 
             @formField('block_editor', [
                 'blocks' => BlockHelpers::getBlocksForEditor([

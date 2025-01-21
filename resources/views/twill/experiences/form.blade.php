@@ -27,11 +27,11 @@
         :options="$groupingsList"
     />
 
-    @formField('medias', [
-        'name' => 'thumbnail',
-        'label' => 'Thumbnail',
-        'max' => 1,
-    ])
+    <x-twill::medias
+        name='thumbnail'
+        label='Thumbnail'
+        :max='1'
+    />
 
     <x-twill::input
         name='subtitle'

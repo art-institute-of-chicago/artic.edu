@@ -1,9 +1,9 @@
 @section('contentFields')
-    @formField('medias', [
-        'name' => 'visit_hero',
-        'label' => 'Hero image',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        name='visit_hero'
+        label='Hero image'
+        note='Minimum image width 3000px'
+    />
 
     @formField('files', [
         'name' => 'video',
@@ -11,11 +11,11 @@
         'note' => 'Add an MP4 file'
     ])
 
-    @formField('medias', [
-        'name' => 'visit_mobile',
-        'label' => 'Hero image, mobile',
-        'note' => 'Minimum image width 2000px'
-    ])
+    <x-twill::medias
+        name='visit_mobile'
+        label='Hero image, mobile'
+        note='Minimum image width 2000px'
+    />
 @stop
 
 @section('fieldsets')
@@ -31,12 +31,12 @@
             type='textarea'
         />
 
-        @formField('medias', [
-            'name' => 'visit_featured_hour',
-            'label' => 'Image',
-            'max' => '1',
-            'note' => 'Minimum image width 2000px'
-        ])
+        <x-twill::medias
+            name='visit_featured_hour'
+            label='Image'
+            note='Minimum image width 2000px'
+            :max='1'
+        />
         <x-twill::wysiwyg
             name='visit_hour_image_caption'
             label='Image caption'
@@ -138,11 +138,11 @@
     </a17-fieldset>
 
     <a17-fieldset title="CityPASS" id="citypass">
-        @formField('medias', [
-            'name' => 'visit_city_pass',
-            'label' => 'Image',
-            'note' => 'Minimum image width 2000px'
-        ])
+        <x-twill::medias
+            name='visit_city_pass'
+            label='Image'
+            note='Minimum image width 2000px'
+        />
         <x-twill::input
             name='visit_city_pass_title'
             label='Title'
@@ -167,10 +167,10 @@
     </a17-fieldset>
 
     <a17-fieldset title="Accessibility" id="accessibility">
-        @formField('medias', [
-            'name' => 'visit_accessibility',
-            'label' => 'Image',
-        ])
+        <x-twill::medias
+            name='visit_accessibility'
+            label='Image'
+        />
 
         <x-twill::input
             name='visit_accessibility_text'
@@ -192,10 +192,10 @@
 
     <a17-fieldset title="Directions" id="directions">
 
-        @formField('medias', [
-            'name' => 'visit_map',
-            'label' => 'Museum map',
-        ])
+        <x-twill::medias
+            name='visit_map'
+            label='Museum map'
+        />
 
         <x-twill::input
             name='visit_transportation_link'

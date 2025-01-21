@@ -49,12 +49,12 @@
 
 <hr>
 
-@formField('medias', [
-    'name' => 'left_image',
-    'label' => 'Left image',
-])
+<x-twill::medias
+    name='left_image'
+    label='Left image'
+/>
 
-@formField('medias', [
-    'name' => 'right_image',
-    'label' => 'Right image',
-])
+<x-twill::medias
+    name='right_image'
+    label='Right image'
+/>
