@@ -12,18 +12,18 @@
 
 @component('twill::partials.form.utils._columns')
     @slot('left')
-        @formField('date_picker', [
-            'name' => 'start_date',
-            'label' => 'Start Date',
-            'withTime' => false
-        ])
+        <x-twill::date-picker
+            name='start_date'
+            label='Start Date'
+            withTime='false'
+        />
     @endslot
     @slot('right')
-        @formField('date_picker', [
-            'name' => 'end_date',
-            'label' => 'Ends',
-            'withTime' => false
-        ])
+        <x-twill::date-picker
+            name='end_date'
+            label='Ends'
+            withTime='false'
+        />
 
         <x-twill::input
             name='ocurrencies'
