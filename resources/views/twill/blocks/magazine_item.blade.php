@@ -98,12 +98,10 @@
     />
 @endcomponent
 
-@formField('wysiwyg', [
-    'name' => 'list_description',
-    'label' => 'List description',
-    'maxlength' => 255,
-    'note' => 'Max 255 characters',
-    'toolbarOptions' => [
-        'italic'
-    ],
-])
+<x-twill::wysiwyg
+    name='list_description'
+    label='List description'
+    note='Max 255 characters'
+    :maxlength='255'
+    :toolbar-options="[ 'italic' ]"
+/>

@@ -27,25 +27,21 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'listing_description',
-        'label' => 'Listing description',
-        'maxlength'  => 255,
-        'note' => 'Max 255 characters',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='listing_description'
+        label='Listing description'
+        note='Max 255 characters'
+        :maxlength="255"
+        :toolbar-options="[ 'italic' ]"
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'short_description',
-        'label' => 'Short description',
-        'maxlength' => 255,
-        'note' => 'Max 255 characters',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='short_description'
+        label='Short description'
+        note='Max 255 characters'
+        :maxlength='255'
+        :toolbar-options="[ 'italic' ]"
+    />
 
     @formField('multi_select', [
         'name' => 'categories',

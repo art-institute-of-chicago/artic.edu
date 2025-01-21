@@ -16,13 +16,11 @@
         :maxlength='255'
     />
 
-    @formField('wysiwyg', [
-        'name' => 'intro',
-        'label' => 'Intro',
-        'toolbarOptions' => [
-            'italic', 'link', 'strike'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='intro'
+        label='Intro'
+        :toolbar-options="[ 'italic', 'link', 'strike' ]"
+    />
 
     <x-twill::input
         name='datahub_id'

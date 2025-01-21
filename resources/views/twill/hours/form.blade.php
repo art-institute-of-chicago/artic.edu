@@ -323,15 +323,13 @@
         note='For the "See all hours" modal'
     />
 
-    @formField('wysiwyg', [
-        'name' => 'summary',
-        'label' => 'Summary',
-        'maxlength' => 255,
-        'note' => 'Shown in the site-wide footer',
-        'toolbarOptions' => [
-            ['header' => 4],
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='summary'
+        label='Summary'
+        note='Shown in the site-wide footer'
+        :maxlength='255'
+        :toolbar-options="[ ['header' => 4] ]"
+    />
 </a17-fieldset>
 
 <a17-fieldset id="closures" title="Closures">

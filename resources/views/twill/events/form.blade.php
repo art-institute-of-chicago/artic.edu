@@ -136,12 +136,12 @@
 
         <hr/>
 
-        @formField('wysiwyg', [
-            'name' => 'buy_button_caption',
-            'label' => 'Pricing or attendance information',
-            'note' => 'e.g. add cost of event or other relevant information',
-            'toolbarOptions' => ['bold']
-        ])
+        <x-twill::wysiwyg
+            name='buy_button_caption'
+            label='Pricing or attendance information'
+            note='e.g. add cost of event or other relevant information'
+            :toolbar-options="[ 'bold' ]"
+        />
 
         <p>If you attach an event from the ticketing system, we will automatically display the date and time of when its registration opens above this text in the sidebar.</p>
 
@@ -232,36 +232,30 @@
     <a17-fieldset title="Content" id="content" data-sticky-top="publisher">
         <p><strong>Note:</strong> For the following three fields, please keep character count below 255.</p>
 
-        @formField('wysiwyg', [
-            'name' => 'description',
-            'label' => 'Header',
-            'maxlength' => 255,
-            'note' => 'Used by website, displayed above main content',
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='description'
+            label='Header'
+            note='Used by website, displayed above main content'
+            :maxlength='255'
+            :toolbar-options="[ 'italic' ]"
+        />
 
-        @formField('wysiwyg', [
-            'name' => 'short_description',
-            'label' => 'Short description (required)',
-            'note' => 'Used by Sales Site and for event emails',
-            'required' => true,
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='short_description'
+            label='Short description (required)'
+            note='Used by Sales Site and for event emails'
+            :required='true'
+            :toolbar-options="[ 'italic' ]"
+        />
 
-        @formField('wysiwyg', [
-            'name' => 'list_description',
-            'label' => 'Listing description',
-            'maxlength'  => 255,
-            'note' => 'Used by website and Mobile App for listings',
-            'required' => true,
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='list_description'
+            label='Listing description'
+            note='Used by website and Mobile App for listings'
+            :maxlength="255"
+            :required='true'
+            :toolbar-options="[ 'italic' ]"
+        />
 
         <hr>
 
@@ -459,13 +453,11 @@
 
                             <div style="padding-left: 35px">
 
-                            @formField('wysiwyg', [
-                                'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                'label' => '',
-                                'toolbarOptions' => [
-                                    'bold', 'italic', 'link'
-                                ],
-                            ])
+                            <x-twill::wysiwyg
+                                name='{{ $currentSeriesName . '_' . $subFieldName . '_copy' }}'
+                                label=''
+                                :toolbar-options="[ 'bold', 'italic', 'link' ]"
+                            />
 
                             </div>
 

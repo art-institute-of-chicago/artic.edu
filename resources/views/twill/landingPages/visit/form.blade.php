@@ -115,21 +115,17 @@
 
 <a17-fieldset title="Hours" id="visit_hours">
 
-    @formField('wysiwyg', [
-        'name' => 'labels.visit_members_intro',
-        'label' => 'Member Intro',
-        'toolbarOptions' => [
-        'bold', 'italic', 'link'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='labels.visit_members_intro'
+        label='Member Intro'
+        :toolbar-options="[ 'bold', 'italic', 'link' ]"
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'hour_intro',
-        'label' => 'Hours Intro',
-        'toolbarOptions' => [
-        'bold', 'italic', 'link'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='hour_intro'
+        label='Hours Intro'
+        :toolbar-options="[ 'bold', 'italic', 'link' ]"
+    />
 
     @formField('checkbox', [
         'name' => 'is_custom_hours',
@@ -145,10 +141,10 @@
 </a17-fieldset>
 
 <a17-fieldset title="Admission" id="visit_admission">
-    @formField('wysiwyg', [
-        'name' => 'labels.visit_admission_intro',
-        'label' => 'Admission Intro'
-    ])
+    <x-twill::wysiwyg
+        name='labels.visit_admission_intro'
+        label='Admission Intro'
+    />
 
     <x-twill::input
         name='labels.visit_admission_tix_label'
