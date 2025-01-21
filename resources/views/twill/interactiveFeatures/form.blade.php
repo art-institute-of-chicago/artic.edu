@@ -103,12 +103,12 @@
         name='sub_title'
     />
 
-    @formField('radios', [
-        'name' => 'grouping_background_color',
-        'label' => 'Grouping Background Color',
-        'default' => 'grey',
-        'inline' => true,
-        'options' => [
+    <x-twill::radios
+        name='grouping_background_color'
+        label='Grouping Background Color'
+        default='grey'
+        :inline='true'
+        :options="[
             [
                 'value' => '#f7f7f7',
                 'label' => 'Grey'
@@ -116,9 +116,9 @@
             [
                 'value' => '#ffffff',
                 'label' => 'White'
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
     @formField('select', [
         'name' => 'color',
