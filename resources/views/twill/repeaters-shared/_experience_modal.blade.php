@@ -1,9 +1,9 @@
-@formField('select', [
-    'name' => 'modal_type',
-    'label' => 'Modal Type',
-    'placeholder' => 'Choose Modal Type',
-    'default' => 'image',
-    'options' => [
+<x-twill::select
+    name='modal_type'
+    label='Modal Type'
+    placeholder='Choose Modal Type'
+    default='image'
+    :options="[
         [
             'value' => 'image',
             'label' => 'Image'
@@ -20,8 +20,8 @@
             'value' => '3d_model',
             'label' => '3D Model'
         ]
-    ]
-])
+    ]"
+/>
 
 @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'modal_type',

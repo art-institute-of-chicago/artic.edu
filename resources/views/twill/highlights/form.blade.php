@@ -41,12 +41,12 @@
 
     @include('twill.partials.hero')
 
-    @formField('select', [
-        'name' => 'highlight_type',
-        'label' => 'Type',
-        'options' => $highlightTypeList,
-        'placeholder' => 'Select a type',
-    ])
+    <x-twill::select
+        name='highlight_type'
+        label='Type'
+        placeholder='Select a type'
+        :options='$highlightTypeList'
+    />
 
     <x-twill::checkbox
         name='is_unlisted'

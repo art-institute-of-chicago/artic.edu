@@ -20,17 +20,21 @@
 @twillBlockTitle('Showcase')
 @twillBlockIcon('image')
 
-@formField('select', [
-    'name' => 'theme',
-    'label' => 'Theme',
-    'default' => 'default',
-    'options' => collect($themes)->map(function($theme) {
+@php
+    $options = collect($themes)->map(function($theme) {
         return [
             'value' => $theme,
             'label' => ucfirst($theme),
         ];
-    })->toArray(),
-])
+    })->toArray();
+@endphp
+
+<x-twill::select
+    name='theme'
+    label='Theme'
+    default='default'
+    :options="$options"
+/>
 
 @formConnectedFields([
     'fieldName' => 'theme',
@@ -38,10 +42,10 @@
     'renderForBlocks' => true,
     ])
 
-    @formField('select', [
-        'name' => 'variation',
-        'label' => 'Variation',
-        'options' => [
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
             [
                 'value' => 'default',
                 'label' => 'Default',
@@ -50,8 +54,8 @@
                 'value' => '1e3f49',
                 'label' => 'Dark Teal',
             ],
-        ]
-    ])
+        ]"
+    />
 @endcomponent
 
 @formConnectedFields([
@@ -60,10 +64,10 @@
     'renderForBlocks' => true,
     ])
 
-    @formField('select', [
-        'name' => 'variation',
-        'label' => 'Variation',
-        'options' => [
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
             [
                 'value' => 'default',
                 'label' => 'Default',
@@ -76,8 +80,8 @@
                 'value' => 'rlc-secondary',
                 'label' => 'RLC secondary (teal)',
             ],
-        ]
-    ])
+        ]"
+    />
 
     <x-twill::input
         name='heading'
@@ -87,18 +91,22 @@
 
 @if (count($mediaTypes) > 1)
 
-    @formField('select', [
-        'name' => 'media_type',
-        'label' => 'Media Type',
-        'required' => true,
-        'unpack' => true,
-        'options' => collect($mediaTypes)->map(function($media) {
-            return [
-                'value' => $media,
-                'label' => ucfirst($media),
-            ];
-        })->toArray(),
-    ])
+    @php
+        $options = collect($mediaTypes)->map(function($media) {
+                return [
+                    'value' => $media,
+                    'label' => ucfirst($media),
+                ];
+            })->toArray();
+    @endphp
+
+    <x-twill::select
+        name='media_type'
+        label='Media Type'
+        :required='true'
+        :unpack='true'
+        :options="$options"
+    />
 
     @formConnectedFields([
         'fieldName' => 'media_type',

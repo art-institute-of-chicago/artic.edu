@@ -6,12 +6,12 @@
         label='Title'
     />
 
-    @formField('select', [
-        'name' => 'type',
-        'label' => 'Type',
-        'unpack' => true,
-        'options' => $types,
-    ])
+    <x-twill::select
+        name='type'
+        label='Type'
+        :unpack='true'
+        :options='$types'
+    />
 
     <x-twill::input
         name='url'
@@ -49,28 +49,28 @@
     ])
         @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('select', [
-                'name' => 'monday_member_open',
-                'label' => 'Member open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'monday_public_open',
-                'label' => 'Public open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='monday_member_open'
+                label='Member open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='monday_public_open'
+                label='Public open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @slot('right')
-            @formField('select', [
-                'name' => 'monday_member_close',
-                'label' => 'Member close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'monday_public_close',
-                'label' => 'Public close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='monday_member_close'
+                label='Member close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='monday_public_close'
+                label='Public close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @endcomponent
     @endformConnectedFields
@@ -89,28 +89,28 @@
     ])
         @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('select', [
-                'name' => 'tuesday_member_open',
-                'label' => 'Member open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'tuesday_public_open',
-                'label' => 'Public open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='tuesday_member_open'
+                label='Member open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='tuesday_public_open'
+                label='Public open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @slot('right')
-            @formField('select', [
-                'name' => 'tuesday_member_close',
-                'label' => 'Member close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'tuesday_public_close',
-                'label' => 'Public close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='tuesday_member_close'
+                label='Member close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='tuesday_public_close'
+                label='Public close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @endcomponent
     @endformConnectedFields
@@ -129,28 +129,28 @@
     ])
         @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('select', [
-                'name' => 'wednesday_member_open',
-                'label' => 'Member open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'wednesday_public_open',
-                'label' => 'Public open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='wednesday_member_open'
+                label='Member open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='wednesday_public_open'
+                label='Public open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @slot('right')
-            @formField('select', [
-                'name' => 'wednesday_member_close',
-                'label' => 'Member close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'wednesday_public_close',
-                'label' => 'Public close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='wednesday_member_close'
+                label='Member close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='wednesday_public_close'
+                label='Public close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @endcomponent
     @endformConnectedFields
@@ -169,28 +169,28 @@
     ])
         @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('select', [
-                'name' => 'thursday_member_open',
-                'label' => 'Member open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'thursday_public_open',
-                'label' => 'Public open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='thursday_member_open'
+                label='Member open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='thursday_public_open'
+                label='Public open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @slot('right')
-            @formField('select', [
-                'name' => 'thursday_member_close',
-                'label' => 'Member close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'thursday_public_close',
-                'label' => 'Public close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='thursday_member_close'
+                label='Member close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='thursday_public_close'
+                label='Public close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @endcomponent
     @endformConnectedFields
@@ -209,28 +209,28 @@
     ])
         @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('select', [
-                'name' => 'friday_member_open',
-                'label' => 'Member open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'friday_public_open',
-                'label' => 'Public open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='friday_member_open'
+                label='Member open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='friday_public_open'
+                label='Public open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @slot('right')
-            @formField('select', [
-                'name' => 'friday_member_close',
-                'label' => 'Member close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'friday_public_close',
-                'label' => 'Public close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='friday_member_close'
+                label='Member close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='friday_public_close'
+                label='Public close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @endcomponent
     @endformConnectedFields
@@ -249,28 +249,28 @@
     ])
         @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('select', [
-                'name' => 'saturday_member_open',
-                'label' => 'Member open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'saturday_public_open',
-                'label' => 'Public open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='saturday_member_open'
+                label='Member open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='saturday_public_open'
+                label='Public open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @slot('right')
-            @formField('select', [
-                'name' => 'saturday_member_close',
-                'label' => 'Member close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'saturday_public_close',
-                'label' => 'Public close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='saturday_member_close'
+                label='Member close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='saturday_public_close'
+                label='Public close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @endcomponent
     @endformConnectedFields
@@ -289,28 +289,28 @@
     ])
         @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('select', [
-                'name' => 'sunday_member_open',
-                'label' => 'Member open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'sunday_public_open',
-                'label' => 'Public open',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='sunday_member_open'
+                label='Member open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='sunday_public_open'
+                label='Public open'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @slot('right')
-            @formField('select', [
-                'name' => 'sunday_member_close',
-                'label' => 'Member close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
-            @formField('select', [
-                'name' => 'sunday_public_close',
-                'label' => 'Public close',
-                'options' => DateHelpers::hoursSelectOptions()
-            ])
+            <x-twill::select
+                name='sunday_member_close'
+                label='Member close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
+            <x-twill::select
+                name='sunday_public_close'
+                label='Public close'
+                :options="DateHelpers::hoursSelectOptions()"
+            />
         @endslot
         @endcomponent
     @endformConnectedFields
