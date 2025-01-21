@@ -120,12 +120,12 @@
         ]"
     />
 
-    @formField('select', [
-        'name' => 'color',
-        'label' => 'Color',
-        'placeholder' => 'Select a color',
-        'options' => $colors
-    ])
+    <x-twill::select
+        name='color'
+        label='Color'
+        placeholder='Select a color'
+        :options="$colors"
+    />
 
     @foreach($colors as $color)
         @component('twill::partials.form.utils._connected_fields', [

@@ -15,17 +15,21 @@
 @twillBlockTitle('Custom Banner')
 @twillBlockIcon('image')
 
-@formField('select', [
-    'name' => 'theme',
-    'label' => 'Theme',
-    'default' => 'default',
-    'options' => collect($themes)->map(function($theme) {
+@php
+    $options = collect($themes)->map(function($theme) {
         return [
             'value' => $theme,
             'label' => ucfirst($theme),
         ];
-    })->toArray(),
-])
+    })->toArray()
+@endphp
+
+<x-twill::select
+    name='theme'
+    label='Theme'
+    default='default'
+    :options="$options"
+/>
 
 @formConnectedFields([
     'fieldName' => 'theme',
@@ -33,16 +37,16 @@
     'renderForBlocks' => true,
     ])
 
-    @formField('select', [
-        'name' => 'variation',
-        'label' => 'Variation',
-        'options' => [
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
             [
                 'value' => 'cloud',
-                'label' => 'Tag cloud',
-            ],
-        ]
-    ])
+                'label' => 'Tag cloud'
+            ]
+        ]"
+    />
 
 @endcomponent
 

@@ -33,17 +33,21 @@
 @twillBlockTitle('Editorial Block')
 @twillBlockIcon('image')
 
-@formField('select', [
-    'name' => 'theme',
-    'label' => 'Theme',
-    'default' => 'default',
-    'options' => collect($themes)->map(function($theme) {
+@php
+    $options = collect($themes)->map(function($theme) {
         return [
             'value' => $theme,
             'label' => ucfirst($theme),
         ];
-    })->toArray(),
-])
+    })->toArray();
+@endphp
+
+<x-twill::select
+    name='theme'
+    label='Theme'
+    default='default'
+    :options="$options"
+/>
 
     @formConnectedFields([
         'fieldName' => 'theme',
@@ -51,10 +55,10 @@
         'renderForBlocks' => true,
     ])
 
-        @formField('select', [
-            'name' => 'variation',
-            'label' => 'Variation',
-            'options' => [
+        <x-twill::select
+            name='variation'
+            label='Variation'
+            :options="[
                 [
                     'value' => 'feature-5-side',
                     'label' => 'Feature 5 Side',
@@ -74,9 +78,9 @@
                 [
                     'value' => '4-across',
                     'label' => '4 Across',
-                ],
-            ]
-        ])
+                ]
+            ]"
+        />
 
     @endcomponent
 
