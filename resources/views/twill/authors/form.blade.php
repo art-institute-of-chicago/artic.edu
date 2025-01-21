@@ -19,9 +19,9 @@
         :toolbar-options="[ 'italic' ]"
     />
 
-    @formField('medias', [
-        'label' => 'Hero Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 2000px'
-    ])
+    <x-twill::medias
+        name='hero'
+        label='Hero Image'
+        note='Minimum image width 2000px'
+    />
 @stop

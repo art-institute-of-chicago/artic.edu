@@ -3,11 +3,11 @@
 @twillRepeaterComponent('a17-block-offers')
 @twillRepeaterMax('10')
 
-@formField('medias', [
-    'name' => 'hero',
-    'label' => 'Image',
-    'max' => '1'
-])
+<x-twill::medias
+    name='hero'
+    label='Image'
+    :max='1'
+/>
 
 <x-twill::input
     name='title'

@@ -1,7 +1,7 @@
-@formField('medias', [
-    'name' => 'experience_image',
-    'label' => 'Image',
-])
+<x-twill::medias
+    name='experience_image'
+    label='Image'
+/>
 
 @yield('caption')
 

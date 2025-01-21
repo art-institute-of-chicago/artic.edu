@@ -24,11 +24,11 @@
     'fieldValues' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM,
     'renderForBlocks' => true
 ])
-    @formField('medias', [
-        'name' => 'image',
-        'label' => 'Image',
-        'max' => 1
-    ])
+    <x-twill::medias
+        name='image'
+        label='Image'
+        :max='1'
+    />
 
     <x-twill::wysiwyg
         name='captionTitle'

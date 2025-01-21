@@ -39,11 +39,11 @@
     'renderForBlocks' => false
 ])
 
-    @formField('medias', [
-        'name' => 'hero',
-        'label' => 'Hero image',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        name='hero'
+        label='Hero image'
+        note='Minimum image width 3000px'
+    />
 
     @formField('files', [
         'name' => 'video',
@@ -51,11 +51,11 @@
         'note' => 'Add an MP4 file'
     ])
 
-    @formField('medias', [
-        'name' => 'mobile_hero',
-        'label' => 'Hero image, mobile',
-        'note' => 'Minimum image width 2000px'
-    ])
+    <x-twill::medias
+        name='mobile_hero'
+        label='Hero image, mobile'
+        note='Minimum image width 2000px'
+    />
 
 @endcomponent
 
@@ -144,20 +144,20 @@
     @endslot
     @endcomponent
 
-    @formField('medias', [
-        'label' => 'Hero Image',
-        'name' => 'header_my_museum_tour_header_image'
-    ])
+    <x-twill::medias
+        name='header_my_museum_tour_header_image'
+        label='Hero Image'
+    />
 
-    @formField('medias', [
-        'label' => 'Mobile hero Image',
-        'name' => 'header_my_museum_tour_header_image_mobile'
-    ])
+    <x-twill::medias
+        name='header_my_museum_tour_header_image_mobile'
+        label='Mobile hero Image'
+    />
 
-    @formField('medias', [
-        'label' => 'PDF hero Image',
-        'name' => 'header_my_museum_tour_header_image_pdf'
-    ])
+    <x-twill::medias
+        name='header_my_museum_tour_header_image_pdf'
+        label='PDF hero Image'
+    />
 
     @component('twill::partials.form.utils._columns')
     @slot('left')
@@ -231,10 +231,10 @@
 
     <a17-fieldset title="Call to Action (Create Tour)" id="create-call-to-action">
 
-        @formField('medias', [
-            'label' => 'Image',
-            'name' => 'tours_create_cta_module_image'
-        ])
+        <x-twill::medias
+            name='tours_create_cta_module_image'
+            label='Image'
+        />
 
         <x-twill::input
             name='labels.tours_create_cta_module_header'
@@ -303,10 +303,10 @@
     </a17-fieldset>
     <a17-fieldset title="Call to Action (Buy Tickets)" id="tickets-call-to-action">
 
-        @formField('medias', [
-            'label' => 'Image',
-            'name' => 'tours_tickets_cta_module_image'
-        ])
+        <x-twill::medias
+            name='tours_tickets_cta_module_image'
+            label='Image'
+        />
 
         <x-twill::input
             name='labels.tours_tickets_cta_module_header'

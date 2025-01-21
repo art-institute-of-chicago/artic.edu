@@ -70,10 +70,10 @@
     'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_CUSTOM,
     'renderForBlocks' => true
 ])
-    @formField('medias', [
-        'name' => 'listing_image',
-        'label' => 'Hero image',
-    ])
+    <x-twill::medias
+        name='listing_image'
+        label='Hero image'
+    />
 
     <x-twill::input
         name='tag'

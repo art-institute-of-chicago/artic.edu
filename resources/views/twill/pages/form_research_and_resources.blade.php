@@ -10,10 +10,10 @@
         type='textarea'
     />
 
-    @formField('medias', [
-        'label' => 'Hero image',
-        'name' => 'research_landing_image'
-    ])
+    <x-twill::medias
+        label='Hero image'
+        name='research_landing_image'
+    />
 
     @formField('browser', [
     'routePrefix' => 'generic',

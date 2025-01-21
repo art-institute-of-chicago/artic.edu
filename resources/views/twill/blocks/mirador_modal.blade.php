@@ -1,11 +1,11 @@
 @twillBlockTitle('Mirador Modal')
 @twillBlockIcon('image')
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Mirador Image',
-    'max' => '1',
-])
+<x-twill::medias
+    name='image'
+    label='Mirador Image'
+    :max='1'
+/>
 
 <x-twill::input
     type='number'

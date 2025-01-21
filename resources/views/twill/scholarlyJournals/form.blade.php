@@ -1,19 +1,17 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Banner image',
-        'name' => 'banner',
-        'note' => 'Minimum image width 2000px'
-    ])
+    <x-twill::medias
+        label='Banner image'
+        name='banner'
+        note='Minimum image width 2000px'
+    />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Listing image',
-        'name' => 'listing',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        label='Listing image'
+        name='listing'
+        note='Minimum image width 3000px'
+    />
 
     <x-twill::input
         name='listing_description'

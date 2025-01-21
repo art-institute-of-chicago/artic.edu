@@ -1,11 +1,11 @@
 @twillBlockTitle('360 Modal')
 @twillBlockIcon('image')
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => '360 Image',
-    'max' => '1',
-])
+<x-twill::medias
+    name='image'
+    label='360 Image'
+    :max='1'
+/>
 
 <x-twill::wysiwyg
     name='caption_title'

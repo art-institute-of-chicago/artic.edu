@@ -14,9 +14,9 @@
             label='Hours'
             :required='true'
         />
-        @formField('medias', [
-            'name' => 'dining_cover',
-            'label' => 'Image',
-            'max' => '1'
-        ])
+        <x-twill::medias
+            name='dining_cover'
+            label='Image'
+            :max='1'
+        />
     </div>

@@ -132,13 +132,13 @@
     'renderForBlocks' => true
 ])
 
-    @formField('medias', [
-        'name' => 'image',
-        'label' => 'Image',
-        'max' => 1,
-        'withVideoUrl' => false,
-        'required' => true,
-    ])
+    <x-twill::medias
+        name='image'
+        label='Image'
+        :required='true'
+        :max='1'
+        :withVideoUrl='false'
+    />
 
 @endcomponent
 

@@ -95,10 +95,10 @@
 
     <a17-fieldset title="Call to Action Module" id="call-to-action">
 
-        @formField('medias', [
-            'label' => 'Image',
-            'name' => 'home_cta_module_image'
-        ])
+        <x-twill::medias
+            label='Image'
+            name='home_cta_module_image'
+        />
 
         <x-twill::input
             name='home_cta_module_header'

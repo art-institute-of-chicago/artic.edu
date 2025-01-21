@@ -3,11 +3,11 @@
 @twillRepeaterComponent('a17-block-grid_item')
 @twillRepeaterMax('48')
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Image',
-    'max' => '1'
-])
+<x-twill::medias
+    name='image'
+    label='Image'
+    :max='1'
+/>
 
 <x-twill::wysiwyg
     name='title'

@@ -72,21 +72,17 @@
                 :toolbar-options="[ 'italic', 'link' ]"
             />
 
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Grouping image',
-                'name' => 'grouping_hero',
-                'note' => 'Minimum image width 3000px'
-            ])
+            <x-twill::medias
+                name='grouping_hero'
+                label='Grouping image'
+                note='Minimum image width 3000px'
+            />
 
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Mobile grouping image',
-                'name' => 'grouping_mobile_hero',
-                'note' => 'Minimum image width 2000px'
-            ])
+            <x-twill::medias
+                name='grouping_mobile_hero'
+                label='Mobile grouping image'
+                note='Minimum image width 2000px'
+            />
         @endformConnectedFields
 
         @formConnectedFields([
@@ -94,21 +90,17 @@
             'fieldValues' => 'entry',
             'renderForBlocks' => false,
         ])
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Listing image',
-                'name' => 'hero',
-                'note' => 'Minimum image width 3000px'
-            ])
+            <x-twill::medias
+                name='hero'
+                label='Listing image'
+                note='Minimum image width 3000px'
+            />
 
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Mobile listing image',
-                'name' => 'mobile_hero',
-                'note' => 'Minimum image width 2000px'
-            ])
+            <x-twill::medias
+                name='mobile_hero'
+                label='Mobile listing image'
+                note='Minimum image width 2000px'
+            />
 
             <x-twill::input
                 name='author_display'
@@ -131,21 +123,17 @@
             'fieldValues' => ['about', 'text', 'work'],
             'renderForBlocks' => false,
         ])
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Hero image',
-                'name' => 'hero',
-                'note' => 'Minimum image width 3000px'
-            ])
+            <x-twill::medias
+                name='hero'
+                label='Hero image'
+                note='Minimum image width 3000px'
+            />
 
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Mobile hero image',
-                'name' => 'mobile_hero',
-                'note' => 'Minimum image width 2000px'
-            ])
+            <x-twill::medias
+                name='mobile_hero'
+                label='Mobile hero image'
+                note='Minimum image width 2000px'
+            />
 
             <x-twill::input
                 name='author_display'

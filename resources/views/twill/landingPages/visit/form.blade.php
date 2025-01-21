@@ -35,11 +35,11 @@
     'renderForBlocks' => false
 ])
 
-    @formField('medias', [
-        'name' => 'hero',
-        'label' => 'Hero image',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        name='hero'
+        label='Hero image'
+        note='Minimum image width 3000px'
+    />
 
     @formField('files', [
         'name' => 'video',
@@ -47,11 +47,11 @@
         'note' => 'Add an MP4 file'
     ])
 
-    @formField('medias', [
-        'name' => 'mobile_hero',
-        'label' => 'Hero image, mobile',
-        'note' => 'Minimum image width 2000px'
-    ])
+    <x-twill::medias
+        name='mobile_hero'
+        label='Hero image, mobile'
+        note='Minimum image width 2000px'
+    />
 
 @endcomponent
 
@@ -168,11 +168,11 @@
 </a17-fieldset>
 
 <a17-fieldset title="Location" id="visit_hours">
-    @formField('medias', [
-        'name' => 'visit_map',
-        'label' => 'Map Image',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        name='visit_map'
+        label='Map Image'
+        note='Minimum image width 3000px'
+    />
 
     @formField('repeater', ['type' => 'locations', 'max' => 2])
 

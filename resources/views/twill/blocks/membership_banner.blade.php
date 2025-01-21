@@ -1,11 +1,11 @@
 @twillBlockTitle('Banner')
 @twillBlockIcon('text')
 
-@formField('medias', [
-    'name' => 'membership_banner_image',
-    'label' => 'Image',
-    'max' => '1'
-])
+<x-twill::medias
+    name='membership_banner_image'
+    label='Image'
+    :max='1'
+/>
 
 <x-twill::input
     name='headline'

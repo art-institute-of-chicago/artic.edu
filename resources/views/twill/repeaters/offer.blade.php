@@ -3,12 +3,12 @@
 @twillRepeaterComponent('a17-block-offer')
 @twillRepeaterMax('10')
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Image',
-    'max' => '1',
-    'note' => 'Minimum image width 2000px'
-])
+<x-twill::medias
+    name='image'
+    label='Image'
+    note='Minimum image width 2000px'
+    :max='1'
+/>
 
 <x-twill::input
     name='header'

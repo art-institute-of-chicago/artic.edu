@@ -4,11 +4,11 @@
 @twillRepeaterMax('3')
 
     <div class="col">
-        @formField('medias', [
-            'name' => 'family_cover',
-            'label' => 'Image',
-            'max' => '1'
-        ])
+        <x-twill::medias
+            name='family_cover'
+            label='Image'
+            :max='1'
+        />
         <x-twill::input
             name='title'
             field_name='title'
