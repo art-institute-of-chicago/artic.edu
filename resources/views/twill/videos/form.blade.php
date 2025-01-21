@@ -32,11 +32,11 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('date_picker', [
-        'name' => 'date',
-        'label' => 'Display date',
-        'note' => 'When was this video published?',
-    ])
+    <x-twill::date-picker
+        name='date'
+        label='Display date'
+        note='When was this video published?'
+    />
 
     <x-twill::checkbox
         name='is_listed'

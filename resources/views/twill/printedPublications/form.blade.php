@@ -36,11 +36,11 @@
         :maxlength='255'
     />
 
-    @formField('date_picker', [
-        'name' => 'publication_date',
-        'label' => 'Publication date',
-        'withTime' => false,
-    ])
+    <x-twill::date-picker
+        name='publication_date'
+        label='Publication date'
+        withTime='false'
+    />
 
     <x-twill::multi-select
         name='categories'
