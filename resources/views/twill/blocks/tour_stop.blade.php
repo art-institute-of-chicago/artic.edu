@@ -15,7 +15,7 @@
     note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
 />
 
-@formField('checkbox', [
-    'name' => 'hidePromoText',
-    'label' => 'Hide promo text'
-])
+<x-twill::checkbox
+    name='hidePromoText'
+    label='Hide promo text'
+/>

@@ -7,11 +7,11 @@
 @twillBlockIcon('image')
 
 @if ($type === 'digitalPublications')
-    @formField('checkbox', [
-        'name' => 'hide_figure_number',
-        'label' => 'Hide figure number',
-        'default' => false,
-    ])
+    <x-twill::checkbox
+        name='hide_figure_number'
+        label='Hide figure number'
+        default='false'
+    />
 @endif
 
 @formField('select', [
