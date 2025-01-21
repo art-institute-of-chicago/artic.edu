@@ -10,11 +10,11 @@
 />
 
 @component('twill::partials.form.utils._collapsed_fields', ['label' => 'Edit admission'])
-    @formField('date_picker', [
-        'name' => 'date',
-        'label' => 'Date',
-        'required' => true
-    ])
+    <x-twill::date-picker
+        name='date'
+        label='Date'
+        :required='true'
+    />
 
     <x-twill::input
         name='time_start'

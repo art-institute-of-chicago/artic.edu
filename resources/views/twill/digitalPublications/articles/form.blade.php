@@ -7,13 +7,13 @@
         note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
     />
 
-    @formField('date_picker', [
-        'name' => 'date',
-        'label' => 'Display date',
-        'required' => true,
-        'withTime' => false,
-        'note' => 'Required',
-    ])
+    <x-twill::date-picker
+        name='date'
+        label='Display date'
+        :required='true'
+        withTime='false'
+        note='Required'
+    />
 
     <x-twill::select
         name='article_type'

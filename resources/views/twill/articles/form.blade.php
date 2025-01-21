@@ -19,8 +19,8 @@
     <x-twill::date-picker
         name='date'
         label='Display date'
-        optional='false'
         note='Required'
+        :required='true'
     />
 
     <x-twill::select

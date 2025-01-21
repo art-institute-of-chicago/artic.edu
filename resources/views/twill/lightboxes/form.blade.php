@@ -76,17 +76,17 @@
 
     <a17-fieldset id="duration" title="Duration">
 
-        @formField('date_picker', [
-            'name' => 'lightbox_start_date',
-            'label' => 'Start Date',
-            'withTime' => false
-        ])
+        <x-twill::date-picker
+            name='lightbox_start_date'
+            label='Start Date'
+            withTime='false'
+        />
 
-        @formField('date_picker', [
-            'name' => 'lightbox_end_date',
-            'label' => 'End Date',
-            'withTime' => false
-        ])
+        <x-twill::date-picker
+            name='lightbox_end_date'
+            label='End Date'
+            withTime='false'
+        />
 
         {{-- Expiry period is in seconds --}}
         <x-twill::radios

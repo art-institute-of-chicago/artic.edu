@@ -18,11 +18,11 @@ foreach (\App\Models\Mirador::$viewTypes as $key => $viewType) {
 ])
 
 @section('contentFields')
-    @formField('date_picker', [
-        'name' => 'date',
-        'label' => 'Display date',
-        'note' => 'When was this mirador published?',
-    ])
+    <x-twill::date-picker
+        name='date'
+        label='Display date'
+        note='When was this mirador published?'
+    />
 
     <x-twill::input
         type='number'

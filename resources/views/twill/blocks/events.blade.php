@@ -51,17 +51,17 @@ $programs = app(EventProgramRepository::class)->listAll('name');
 
 @component('twill::partials.form.utils._columns')
 @slot('left')
-    @formField('date_picker', [
-        'name' => 'date_start',
-        'label' => 'Start date',
-        'withTime' => false,
-    ])
+    <x-twill::date-picker
+        name='date_start'
+        label='Start date'
+        withTime='false'
+    />
 @endslot
 @slot('right')
-    @formField('date_picker', [
-        'name' => 'date_end',
-        'label' => 'End date',
-        'withTime' => false,
-    ])
+    <x-twill::date-picker
+        name='date_end'
+        label='End date'
+        withTime='false'
+    />
 @endslot
 @endcomponent

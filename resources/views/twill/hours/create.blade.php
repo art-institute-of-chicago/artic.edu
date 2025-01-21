@@ -18,17 +18,17 @@
         note='e.g., /visit'
     />
 
-    @formField('date_picker', [
-        'name' => 'valid_from',
-        'label' => 'Valid From',
-        'withTime' => false,
-        'required' => true
-    ])
+    <x-twill::date-picker
+        name='valid_from'
+        label='Valid From'
+        withTime='false'
+        :required='true'
+    />
 
-    @formField('date_picker', [
-        'name' => 'valid_through',
-        'label' => 'Valid Through',
-        'withTime' => false,
-        'required' => false
-    ])
+    <x-twill::date-picker
+        name='valid_through'
+        label='Valid Through'
+        withTime='false'
+        :required='false'
+    />
 @endif
