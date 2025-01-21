@@ -37,10 +37,10 @@
 @section('fieldsets')
 
 <a17-fieldset id="monday_hours" title="Monday">
-    @formField('checkbox', [
-        'name' => 'monday_is_closed',
-        'label' => 'Is closed?',
-    ])
+    <x-twill::checkbox
+        name='monday_is_closed'
+        label='Is closed?'
+    />
 
     @formConnectedFields([
         'fieldName' => 'monday_is_closed',
@@ -77,10 +77,10 @@
 </a17-fieldset>
 
 <a17-fieldset id="tuesday_hours" title="Tuesday">
-    @formField('checkbox', [
-        'name' => 'tuesday_is_closed',
-        'label' => 'Is closed?',
-    ])
+    <x-twill::checkbox
+        name='tuesday_is_closed'
+        label='Is closed?'
+    />
 
     @formConnectedFields([
         'fieldName' => 'tuesday_is_closed',
@@ -117,10 +117,10 @@
 </a17-fieldset>
 
 <a17-fieldset id="wednesday_hours" title="Wednesday">
-    @formField('checkbox', [
-        'name' => 'wednesday_is_closed',
-        'label' => 'Is closed?',
-    ])
+    <x-twill::checkbox
+        name='wednesday_is_closed'
+        label='Is closed?'
+    />
 
     @formConnectedFields([
         'fieldName' => 'wednesday_is_closed',
@@ -157,10 +157,10 @@
 </a17-fieldset>
 
 <a17-fieldset id="thursday_hours" title="Thursday">
-    @formField('checkbox', [
-        'name' => 'thursday_is_closed',
-        'label' => 'Is closed?',
-    ])
+    <x-twill::checkbox
+        name='thursday_is_closed'
+        label='Is closed?'
+    />
 
     @formConnectedFields([
         'fieldName' => 'thursday_is_closed',
@@ -197,10 +197,10 @@
 </a17-fieldset>
 
 <a17-fieldset id="friday_hours" title="Friday">
-    @formField('checkbox', [
-        'name' => 'friday_is_closed',
-        'label' => 'Is closed?',
-    ])
+    <x-twill::checkbox
+        name='friday_is_closed'
+        label='Is closed?'
+    />
 
     @formConnectedFields([
         'fieldName' => 'friday_is_closed',
@@ -237,10 +237,10 @@
 </a17-fieldset>
 
 <a17-fieldset id="saturday_hours" title="Saturday">
-    @formField('checkbox', [
-        'name' => 'saturday_is_closed',
-        'label' => 'Is closed?',
-    ])
+    <x-twill::checkbox
+        name='saturday_is_closed'
+        label='Is closed?'
+    />
 
     @formConnectedFields([
         'fieldName' => 'saturday_is_closed',
@@ -277,10 +277,10 @@
 </a17-fieldset>
 
 <a17-fieldset id="sunday_hours" title="Sunday">
-    @formField('checkbox', [
-        'name' => 'sunday_is_closed',
-        'label' => 'Is closed?',
-    ])
+    <x-twill::checkbox
+        name='sunday_is_closed'
+        label='Is closed?'
+    />
 
     @formConnectedFields([
         'fieldName' => 'sunday_is_closed',

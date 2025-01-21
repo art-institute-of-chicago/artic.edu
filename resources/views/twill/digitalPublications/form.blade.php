@@ -16,13 +16,11 @@
         </a>
     </div>
 
-    @formField('wysiwyg', [
-        'name' => 'header_subtitle_display',
-        'label' => 'Subtitle for header',
-        'toolbarOptions' => [
-            'italic',
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='header_subtitle_display'
+        label='Subtitle for header'
+        :toolbar-options="[ 'italic' ]"
+    />
 
     @formField('medias', [
         'with_multiple' => false,
@@ -45,30 +43,26 @@
         'columns' => 3,
     ])
 
-    @formField('wysiwyg', [
-        'type' => 'textarea',
-        'name' => 'hero_caption',
-        'label' => 'Hero image caption',
-        'note' => 'Usually used for copyright',
-        'maxlength' => 255,
-        'toolbarOptions' => [
-            'italic', 'link',
-        ],
-    ])
+    <x-twill::wysiwyg
+        type='textarea'
+        name='hero_caption'
+        label='Hero image caption'
+        note='Usually used for copyright'
+        :maxlength='255'
+        :toolbar-options="[ 'italic', 'link' ]"
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'listing_description',
-        'label' => 'Listing description',
-        'maxlength' => 300,
-        'toolbarOptions' => [
-            'italic',
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='listing_description'
+        label='Listing description'
+        :maxlength='300'
+        :toolbar-options="[ 'italic' ]"
+    />
 
-    @formField('checkbox', [
-        'name' => 'is_dsc_stub',
-        'label' => 'This page is a stub that links out to publications.artic.edu',
-    ])
+    <x-twill::checkbox
+        name='is_dsc_stub'
+        label='This page is a stub that links out to publications.artic.edu'
+    />
 @stop
 
 @section('fieldsets')

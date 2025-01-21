@@ -20,10 +20,10 @@
 
 @section('fieldsets')
     <a17-fieldset title="Hours" id="hours">
-        @formField('checkbox', [
-            'name' => 'visit_hide_hours',
-            'label' => 'Hide hours table and image',
-        ])
+        <x-twill::checkbox
+            name='visit_hide_hours'
+            label='Hide hours table and image'
+        />
 
         <x-twill::input
             name='visit_hour_intro'

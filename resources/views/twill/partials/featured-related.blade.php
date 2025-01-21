@@ -41,11 +41,11 @@
         ],
     ])
 
-    @formField('checkbox', [
-        'name' => 'toggle_autorelated',
-        'label' => 'Suppress auto-related items',
-        'default' => false,
-    ])
+    <x-twill::checkbox
+        name='toggle_autorelated'
+        label='Suppress auto-related items'
+        default='false'
+    />
 
     <br>
 

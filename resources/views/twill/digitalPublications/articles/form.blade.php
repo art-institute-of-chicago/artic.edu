@@ -39,17 +39,17 @@
 
     @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('checkbox', [
-                'name' => 'hide_title',
-                'label' => 'Hide title in listing view',
-            ])
+            <x-twill::checkbox
+                name='hide_title'
+                label='Hide title in listing view'
+            />
         @endslot
 
         @slot('right')
-            @formField('checkbox', [
-                'name' => 'suppress_listing',
-                'label' => 'Hide from listing view',
-            ])
+            <x-twill::checkbox
+                name='suppress_listing'
+                label='Hide from listing view'
+            />
         @endslot
     @endcomponent
 @stop

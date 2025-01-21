@@ -48,10 +48,10 @@
         note='Provide to show video in modal instead of image'
     />
 
-    @formField('checkbox', [
-        'name' => 'is_zoomable',
-        'label' => 'Make this image modal zoomable',
-    ])
+    <x-twill::checkbox
+        name='is_zoomable'
+        label='Make this image modal zoomable'
+    />
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [

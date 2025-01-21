@@ -45,10 +45,10 @@
         'fieldName' => 'asset_type',
         'fieldValues' => '3dModel',
         'isEqual' => false
-    ])
+    />
     @endcomponent
-    @formField('checkbox', [
-        'name' => 'fullwidth_inset',
-        'label' => 'Inset',
-    ])
+    <x-twill::checkbox
+        name='fullwidth_inset'
+        label='Inset'
+    />
 @endcomponent

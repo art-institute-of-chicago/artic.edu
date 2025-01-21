@@ -235,11 +235,11 @@
     'renderForBlocks' => true,
 ])
 
-    @formField('checkbox', [
-        'name' => 'override_event',
-        'label' => 'Customize Events',
-        'inline' => true,
-    ])
+    <x-twill::checkbox
+        name='override_event'
+        label='Customize Events'
+        :inline='true'
+    />
 
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'override_event',
@@ -287,11 +287,11 @@
         ]
     ])
 
-    @formField('checkbox', [
-        'name' => 'override_exhibition',
-        'label' => 'Customize Exhibitions',
-        'inline' => true,
-    ])
+    <x-twill::checkbox
+        name='override_exhibition'
+        label='Customize Exhibitions'
+        :inline='true'
+    />
 
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'override_exhibition',

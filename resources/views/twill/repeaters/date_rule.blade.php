@@ -61,34 +61,34 @@
     @component('twill::partials.form.utils._inline_checkboxes')
         @slot('label', 'If repeated weekly, which days?')
 
-        @formField('checkbox', [
-            'name' => 'monday',
-            'label' => 'Monday',
-        ])
-        @formField('checkbox', [
-            'name' => 'tuesday',
-            'label' => 'Tuesday',
-        ])
-        @formField('checkbox', [
-            'name' => 'wednesday',
-            'label' => 'Wednesday',
-        ])
-        @formField('checkbox', [
-            'name' => 'thursday',
-            'label' => 'Thursday',
-        ])
-        @formField('checkbox', [
-            'name' => 'friday',
-            'label' => 'Friday',
-        ])
-        @formField('checkbox', [
-            'name' => 'saturday',
-            'label' => 'Saturday',
-        ])
-        @formField('checkbox', [
-            'name' => 'sunday',
-            'label' => 'Sunday',
-        ])
+        <x-twill::checkbox
+            name='monday'
+            label='Monday'
+        />
+        <x-twill::checkbox
+            name='tuesday'
+            label='Tuesday'
+        />
+        <x-twill::checkbox
+            name='wednesday'
+            label='Wednesday'
+        />
+        <x-twill::checkbox
+            name='thursday'
+            label='Thursday'
+        />
+        <x-twill::checkbox
+            name='friday'
+            label='Friday'
+        />
+        <x-twill::checkbox
+            name='saturday'
+            label='Saturday'
+        />
+        <x-twill::checkbox
+            name='sunday'
+            label='Sunday'
+        />
     @endcomponent
 
     @formField('select', [

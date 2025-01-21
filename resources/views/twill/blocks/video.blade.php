@@ -94,10 +94,10 @@
 
 @endcomponent
 
-@formField('checkbox', [
-    'name' => 'use_alt_background',
-    'label' => 'Use white instead of gray to pillarbox the image',
-])
+<x-twill::checkbox
+    name='use_alt_background'
+    label='Use white instead of gray to pillarbox the image'
+/>
 
 <x-twill::wysiwyg
     name='caption_title'

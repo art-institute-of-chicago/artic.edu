@@ -38,10 +38,10 @@
         'note' => 'When was this video published?',
     ])
 
-    @formField('checkbox', [
-        'name' => 'is_listed',
-        'label' => 'Show this video in listings',
-    ])
+    <x-twill::checkbox
+        name='is_listed'
+        label='Show this video in listings'
+    />
 
     <x-twill::wysiwyg
         name='list_description'

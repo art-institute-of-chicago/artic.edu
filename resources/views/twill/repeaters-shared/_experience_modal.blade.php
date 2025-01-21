@@ -28,11 +28,11 @@
         'fieldValues' => 'image',
         'renderForBlocks' => true,
         'keepAlive' => true
-])
-    @formField('checkbox', [
-        'name' => 'zoomable',
-        'label' => 'Zoomable'
-    ])
+/>
+    <x-twill::checkbox
+        name='zoomable'
+        label='Zoomable'
+    />
 
     @formField('repeater', ['type' => 'modal_experience_image'])
 @endcomponent

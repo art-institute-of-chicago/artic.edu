@@ -48,15 +48,15 @@
         'placeholder' => 'Select a type',
     ])
 
-    @formField('checkbox', [
-        'name' => 'is_unlisted',
-        'label' => "Don't show this highlight in listings",
-    ])
+    <x-twill::checkbox
+        name='is_unlisted'
+        label="Don't show this highlight in listings"
+    />
 
-    @formField('checkbox', [
-        'name' => 'is_in_magazine',
-        'label' => 'Assume this highlight is featured in a magazine issue',
-    ])
+    <x-twill::checkbox
+        name='is_in_magazine'
+        label='Assume this highlight is featured in a magazine issue'
+    />
 
     @include('twill.partials.authors')
 

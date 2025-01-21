@@ -127,10 +127,10 @@
         :toolbar-options="[ 'bold', 'italic', 'link' ]"
     />
 
-    @formField('checkbox', [
-        'name' => 'is_custom_hours',
-        'label' => 'Override default hours',
-    ])
+    <x-twill::checkbox
+        name='is_custom_hours'
+        label='Override default hours'
+    />
 
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'is_custom_hours',

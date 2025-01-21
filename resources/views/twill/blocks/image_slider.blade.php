@@ -6,10 +6,10 @@
 @twillBlockTitle('Image Slider')
 @twillBlockIcon('image')
 
-@formField('checkbox', [
-    'name' => 'is_slider_zoomable',
-    'label' => 'Enable zoom',
-])
+<x-twill::checkbox
+    name='is_slider_zoomable'
+    label='Enable zoom'
+/>
 
 @formField('select', [
     'name' => 'size',

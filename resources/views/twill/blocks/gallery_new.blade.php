@@ -10,11 +10,11 @@
 @include('twill.partials.gallery-shared')
 
 @if ($type === 'digitalPublications')
-    @formField('checkbox', [
-        'name' => 'hide_figure_number',
-        'label' => 'Hide figure number',
-        'default' => false,
-    ])
+    <x-twill::checkbox
+        name='hide_figure_number'
+        label='Hide figure number'
+        default='false'
+    />
 @endif
 
 <x-twill::wysiwyg
@@ -33,15 +33,15 @@
     :toolbar-options="[ 'italic', 'link' ]"
 />
 
-@formField('checkbox', [
-    'name' => 'disable_gallery_modals',
-    'label' => 'Disable modals for this gallery',
-])
+<x-twill::checkbox
+    name='disable_gallery_modals'
+    label='Disable modals for this gallery'
+/>
 
-@formField('checkbox', [
-    'name' => 'is_gallery_zoomable',
-    'label' => 'Make all image modals zoomable (override)',
-])
+<x-twill::checkbox
+    name='is_gallery_zoomable'
+    label='Make all image modals zoomable (override)'
+/>
 
 @formField('repeater', [
     'type' => 'gallery_new_item',
