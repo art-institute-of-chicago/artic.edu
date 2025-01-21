@@ -16,10 +16,10 @@
         :maxlength='255'
     />
 
-    @formField('wysiwyg', [
-        'name' => 'intro',
-        'label' => 'Intro',
-    ])
+    <x-twill::wysiwyg
+        name='intro'
+        label='Intro'
+    />
 
     <x-twill::input
         name='datahub_id'

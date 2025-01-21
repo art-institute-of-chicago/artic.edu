@@ -7,23 +7,19 @@
     'max' => '1',
 ])
 
-@formField('wysiwyg', [
-    'name' => 'caption_title',
-    'label' => 'Caption title',
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption_title'
+    label='Caption title'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption',
-    'label' => 'Caption',
-    'maxlength' => 300,
-    'note' => 'Max 300 characters',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption'
+    label='Caption'
+    note='Max 300 characters'
+    :maxlength='300'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
 
 @formField('files', [
     'name' => 'image_sequence_file',

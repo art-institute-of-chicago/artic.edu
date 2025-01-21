@@ -25,14 +25,12 @@
 
     <p>For a 1 day closure, use the same start and end date.</p>
 
-    @formField('wysiwyg', [
-        'name' => 'closure_copy',
-        'label' => 'Closure Copy',
-        'toolbarOptions' => [
-            'italic', 'link'
-        ],
-        'maxlength' => 255
-    ])
+    <x-twill::wysiwyg
+        name='closure_copy'
+        label='Closure Copy'
+        :maxlength="255"
+        :toolbar-options="[ 'italic', 'link' ]"
+    />
 @stop
 
 @push('vuexStore')

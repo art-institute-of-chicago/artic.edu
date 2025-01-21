@@ -43,15 +43,13 @@
         'label' => 'Show this video in listings',
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'list_description',
-        'label' => 'List description',
-        'maxlength' => 255,
-        'note' => 'Max 255 characters. Will be used in "Related Videos" and social media.',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='list_description'
+        label='List description'
+        note='Max 255 characters. Will be used in "Related Videos" and social media.'
+        :maxlength='255'
+        :toolbar-options="[ 'italic' ]"
+    />
 
     <x-twill::input
         name='heading'

@@ -30,21 +30,17 @@
         'max' => 1
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'captionTitle',
-        'label' => 'Caption title',
-        'toolbarOptions' => [
-            'italic', 'link',
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='captionTitle'
+        label='Caption title'
+        :toolbar-options="[ 'italic', 'link' ]"
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'captionText',
-        'label' => 'Caption text',
-        'toolbarOptions' => [
-            'italic', 'link',
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='captionText'
+        label='Caption text'
+        :toolbar-options="[ 'italic', 'link' ]"
+    />
 
     <x-twill::input
         name='videoUrl'
@@ -71,12 +67,10 @@
         'max' => 1
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'captionAddendum',
-        'label' => 'Caption addendum',
-        'note' => 'Appended to generated tombstone',
-        'toolbarOptions' => [
-            'italic', 'link',
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='captionAddendum'
+        label='Caption addendum'
+        note='Appended to generated tombstone'
+        :toolbar-options="[ 'italic', 'link' ]"
+    />
 @endcomponent

@@ -59,11 +59,11 @@
             :required='true'
         />
 
-        @formField('wysiwyg', [
-            'name' => 'body',
-            'label' => 'Body',
-            'required' => true,
-        ])
+        <x-twill::wysiwyg
+            name='body'
+            label='Body'
+            :required='true'
+        />
 
         @formField('multi_select', [
             'name' => 'categories',
@@ -156,11 +156,11 @@
     :required='true'
 />
 
-@formField('wysiwyg', [
-    'name' => 'body',
-    'label' => 'Body',
-    'required' => true,
-])
+<x-twill::wysiwyg
+    name='body'
+    label='Body'
+    :required='true'
+/>
 
 @formField('radios', [
     'name' => 'button_type',

@@ -3,11 +3,11 @@
     'fieldValues' => 'compare',
     'keepAlive' => true,
 ])
-    @formField('wysiwyg', [
-        'name' => 'compare_title',
-        'label' => 'Primary Copy',
-        'maxlength' => 500,
-    ])
+    <x-twill::wysiwyg
+        name='compare_title'
+        label='Primary Copy'
+        :maxlength='500'
+    />
 
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'asset_type',

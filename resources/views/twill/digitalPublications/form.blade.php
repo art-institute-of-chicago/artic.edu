@@ -114,13 +114,11 @@
         'id' => 'fields_for_full_publication',
         'title' => 'Publication Fields',
     ])
-        @formField('wysiwyg', [
-            'name' => 'welcome_note_display',
-            'label' => 'Welcome note text',
-            'toolbarOptions' => [
-                'italic',
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='welcome_note_display'
+            label='Welcome note text'
+            :toolbar-options="[ 'italic' ]"
+        />
 
         @formField('browser', [
             'name' => 'welcome_note_section',
@@ -131,21 +129,17 @@
             'max' => 1,
         ])
 
-        @formField('wysiwyg', [
-            'name' => 'sponsor_display',
-            'label' => 'Sponsors',
-            'toolbarOptions' => [
-                'italic',
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='sponsor_display'
+            label='Sponsors'
+            :toolbar-options="[ 'italic' ]"
+        />
 
-        @formField('wysiwyg', [
-            'name' => 'cite_as',
-            'label' => 'How to Cite',
-            'toolbarOptions' => [
-                'italic',
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='cite_as'
+            label='How to Cite'
+            :toolbar-options="[ 'italic' ]"
+        />
     @endformConnectedFields
 
     @include('twill.partials.related')
