@@ -4,10 +4,10 @@
         label='Intro text'
     />
 
-    @formField('medias', [
-        'name' => 'exhibition_history_intro',
-        'label' => 'Hero image',
-    ])
+    <x-twill::medias
+        name='exhibition_history_intro'
+        label='Hero image'
+    />
 
     <x-twill::input
         type='textarea'

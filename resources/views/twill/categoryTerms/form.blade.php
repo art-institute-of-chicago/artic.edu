@@ -18,11 +18,9 @@
         disabled='true'
     />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Thumbnail Image',
-        'name' => 'thumb',
-        'note' => 'Minimum image width 1500px'
-    ])
+    <x-twill::medias
+        name='thumb'
+        label='Thumbnail Image'
+        note='Minimum image width 1500px'
+    />
 @stop

@@ -92,12 +92,11 @@
         </dl>
     @endif
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        name='hero'
+        label='Image'
+        note='Minimum image width 3000px'
+    />
     <x-twill::input
         label='Subtitle'
         name='sub_title'

@@ -50,10 +50,10 @@
     'fieldValues' => 'loop',
     'renderForBlocks' => true
 ])
-    @formField('medias', [
-        'name' => 'image',
-        'label' => 'Video loop'
-    ])
+    <x-twill::medias
+        name='image'
+        label='Video loop'
+    />
 
     <x-twill::radios
         name='loop_or_once'
@@ -79,10 +79,10 @@
     'fieldValues' => 'youtube',
     'renderForBlocks' => true
 ])
-    @formField('medias', [
-        'name' => 'image',
-        'label' => 'Thumbnail image'
-    ])
+    <x-twill::medias
+        name='image'
+        label='Thumbnail image'
+    />
 
     <p>For <strong>YouTube</strong>, we recommend using <a href="https://www.youtube.com/watch?v=LFF68_bME9E">full URLs</a> instead of <a href="https://youtu.be/LFF68_bME9E">shortened ones</a>.</p>
 

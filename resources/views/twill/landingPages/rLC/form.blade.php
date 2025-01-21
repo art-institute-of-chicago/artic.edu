@@ -37,22 +37,22 @@
         'fieldName' => 'header_variation',
         'fieldValues' => ['default', 'small', 'cta'],
         'renderForBlocks' => false
-    ])
-        @formField('medias', [
-            'name' => 'hero',
-            'label' => 'Hero image',
-            'note' => 'Minimum image width 3000px',
-        ])
+    />
+        <x-twill::medias
+            name='hero'
+            label='Hero image'
+            note='Minimum image width 3000px'
+        />
         @formField('files', [
             'name' => 'video',
             'label' => 'Hero video',
             'note' => 'Add an MP4 file',
         ])
-        @formField('medias', [
-            'name' => 'mobile_hero',
-            'label' => 'Hero image, mobile',
-            'note' => 'Minimum image width 2000px',
-        ])
+        <x-twill::medias
+            name='mobile_hero'
+            label='Hero image, mobile'
+            note='Minimum image width 2000px'
+        />
     @endcomponent
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'header_variation',
@@ -118,10 +118,10 @@
             name='labels.location_header'
             label='Location Header'
         />
-        @formField('medias', [
-            'name' => 'rlc_location',
-            'label' => 'Location Image',
-        ])
+        <x-twill::medias
+            name='rlc_location'
+            label='Location Image'
+        />
         <x-twill::wysiwyg
             name='labels.location_intro'
             label='Location Intro'
