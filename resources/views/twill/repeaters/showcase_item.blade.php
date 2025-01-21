@@ -1,13 +1,22 @@
 @twillRepeaterTitle('Showcase Item')
 @twillRepeaterMax('4')
 
-@formField('select', [
-    'name' => 'media_type',
-    'label' => 'Media Type',
-    'required' => true,
-    'unpack' => true,
-    'options' => collect(['image' => 'Image', 'video' => 'Video']),
-])
+<x-twill::select
+    name='media_type'
+    label='Media Type'
+    :required='true'
+    :unpack='true'
+    :options='[
+        [
+            'value' => 'image',
+            'label' => 'Image'
+        ],
+        [
+            'value' => 'video',
+            'label' => 'Video'
+        ]
+    ]"
+/>
 
 @formField('medias', [
     'name' => 'image',

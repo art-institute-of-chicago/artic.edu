@@ -14,18 +14,21 @@
 
 @twillBlockTitle('Feature Block')
 @twillBlockIcon('image')
-
-@formField('select', [
-    'name' => 'theme',
-    'label' => 'Theme',
-    'default' => 'default',
-    'options' => collect($themes)->map(function($theme) {
+@php
+    $options = collect($themes)->map(function($theme) {
         return [
             'value' => $theme,
             'label' => ucfirst($theme),
         ];
-    })->toArray(),
-])
+    })->toArray();
+@endphp
+
+<x-twill::select
+    name='theme'
+    label='Theme'
+    default='default'
+    :options="$options"
+/>
 
 @formConnectedFields([
     'fieldName' => 'theme',
@@ -33,16 +36,16 @@
     'renderForBlocks' => true,
     ])
 
-    @formField('select', [
-        'name' => 'variation',
-        'label' => 'Variation',
-        'options' => [
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
             [
                 'value' => 'default',
                 'label' => 'Default',
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
 @endcomponent
 
@@ -104,11 +107,11 @@
 
 @endcomponent
 
-@formField('select', [
-    'name' => 'feature_type',
-    'label' => 'Feature Type',
-    'default' => 'custom',
-    'options' => [
+<x-twill::select
+    name='feature_type'
+    label='Feature Type'
+    default='custom'
+    :options="[
         [
             'label' => 'Articles',
             'value' => 'articles',
@@ -136,8 +139,8 @@
         [
             'label' => 'Videos',
             'value' => 'videos',
-        ],
-    ]
+        ]
+    ]"
 />
 
 <x-twill::radios
@@ -163,11 +166,11 @@
     'renderForBlocks' => true
 ])
 
-    @formField('select', [
-        'name' => 'columns',
-        'label' => '# of columns',
-        'note' => 'Number of columns selected and items loaded must match',
-        'options' => [
+    <x-twill::select
+        name='columns'
+        label='# of columns'
+        note='Number of columns selected and items loaded must match'
+        :options="[
             [
                 'label' => '2',
                 'value' => 2,
@@ -179,9 +182,9 @@
             [
                 'label' => '4',
                 'value' => 4,
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
     @formField('browser', [
         'name' => 'articles',
@@ -199,11 +202,11 @@
     'renderForBlocks' => true
 ])
 
-    @formField('select', [
-        'name' => 'columns',
-        'label' => '# of columns',
-        'note' => 'Number of columns selected and items loaded must match',
-        'options' => [
+    <x-twill::select
+        name='columns'
+        label='# of columns'
+        note='Number of columns selected and items loaded must match'
+        :options="[
             [
                 'label' => '2',
                 'value' => 2,
@@ -267,11 +270,11 @@
     'renderForBlocks' => true,
 ])
 
-    @formField('select', [
-        'name' => 'columns',
-        'label' => '# of columns',
-        'note' => 'Number of columns selected and items loaded must match',
-        'options' => [
+    <x-twill::select
+        name='columns'
+        label='# of columns'
+        note='Number of columns selected and items loaded must match'
+        :options="[
             [
                 'label' => '2',
                 'value' => 2,
@@ -283,9 +286,9 @@
             [
                 'label' => '4',
                 'value' => 4,
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
     <x-twill::checkbox
         name='override_exhibition'
@@ -317,11 +320,11 @@
     'renderForBlocks' => true
 ])
 
-    @formField('select', [
-        'name' => 'columns',
-        'label' => '# of columns',
-        'note' => 'Number of columns selected and items loaded must match',
-        'options' => [
+    <x-twill::select
+        name='columns'
+        label='# of columns'
+        note='Number of columns selected and items loaded must match'
+        :options="[
             [
                 'label' => '2',
                 'value' => 2,
@@ -333,9 +336,9 @@
             [
                 'label' => '4',
                 'value' => 4,
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
     @formField('browser', [
         'name' => 'experiences',
@@ -354,11 +357,11 @@
     'renderForBlocks' => true
 ])
 
-    @formField('select', [
-        'name' => 'columns',
-        'label' => '# of columns',
-        'note' => 'Number of columns selected and items loaded must match',
-        'options' => [
+    <x-twill::select
+        name='columns'
+        label='# of columns'
+        note='Number of columns selected and items loaded must match'
+        :options="[
             [
                 'label' => '2',
                 'value' => 2,
@@ -370,9 +373,9 @@
             [
                 'label' => '4',
                 'value' => 4,
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
     @formField('browser', [
         'routePrefix' => 'collection',
@@ -390,11 +393,11 @@
     'renderForBlocks' => true
 ])
 
-    @formField('select', [
-        'name' => 'columns',
-        'label' => '# of columns',
-        'note' => 'Number of columns selected and items loaded must match',
-        'options' => [
+    <x-twill::select
+        name='columns'
+        label='# of columns'
+        note='Number of columns selected and items loaded must match'
+        :options="[
             [
                 'label' => '2',
                 'value' => 2,
@@ -406,9 +409,9 @@
             [
                 'label' => '4',
                 'value' => 4,
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
     @formField('browser', [
         'name' => 'videos',

@@ -31,13 +31,13 @@
     />
 @endif
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
-    'options' => $options,
-])
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='{{ $type === 'digitalPublications' ? 'l' : 'm' }}'
+    :options='$options'
+/>
 
 <x-twill::checkbox
     name='use_contain'

@@ -11,13 +11,13 @@
     label='Enable zoom'
 />
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-    'options' => [
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='{{ $type === 'digitalPublications' ? 'l' : 'm' }}'
+    disabled='{{ $type === 'digitalPublications' ? true : false }}'
+    :options="[
         [
             'value' => 's',
             'label' => 'Small'
@@ -30,8 +30,8 @@
             'value' => 'l',
             'label' => 'Large'
         ]
-    ]
-])
+    ]"
+/>
 
 <x-twill::wysiwyg
     name='caption_title'

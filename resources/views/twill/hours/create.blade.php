@@ -4,12 +4,12 @@
     :required='true'
 />
 
-@formField('select', [
-    'name' => 'type',
-    'label' => 'Type',
-    'unpack' => true,
-    'options' => $types,
-])
+<x-twill::select
+    name='type'
+    label='Type'
+    :unpack='true'
+    :options='$types'
+/>
 
 @if(!isset($item))
     <x-twill::input
