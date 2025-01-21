@@ -3,23 +3,23 @@
     'fieldValues' => 'interstitial',
     'keepAlive' => true,
 ])
-    @formField('wysiwyg', [
-        'name' => 'article_title',
-        'label' => 'Article Title',
-        'maxlength' => 150,
-    ])
+    <x-twill::wysiwyg
+        name='article_title'
+        label='Article Title'
+        :maxlength='150'
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'interstitial_headline',
-        'label' => 'Headline',
-        'maxlength' => 150,
-    ])
+    <x-twill::wysiwyg
+        name='interstitial_headline'
+        label='Headline'
+        :maxlength='150'
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'body_copy',
-        'label' => 'Body Copy',
-        'maxlength' => 500,
-    ])
+    <x-twill::wysiwyg
+        name='body_copy'
+        label='Body Copy'
+        :maxlength='500'
+    />
 
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'asset_type',

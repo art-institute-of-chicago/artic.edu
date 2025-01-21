@@ -39,16 +39,14 @@
         :maxlength='300'
     />
 
-    @formField('wysiwyg', [
-        'name' => 'listing_description',
-        'label' => 'Listing Description',
-        'type' => 'textarea',
-        'maxlength' => 225,
-        'note' => 'Used in listings and for social media',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='listing_description'
+        label='Listing Description'
+        type='textarea'
+        note='Used in listings and for social media'
+        :maxlength='225'
+        :toolbar-options="[ 'italic' ]"
+    />
 
     @include('twill.partials.authors')
 

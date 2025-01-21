@@ -99,20 +99,16 @@
     'label' => 'Use white instead of gray to pillarbox the image',
 ])
 
-@formField('wysiwyg', [
-    'name' => 'caption_title',
-    'label' => 'Caption title',
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption_title'
+    label='Caption title'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption',
-    'label' => 'Caption',
-    'maxlength' => 200,
-    'note' => 'Max 200 characters',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption'
+    label='Caption'
+    note='Max 200 characters'
+    :maxlength='200'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>

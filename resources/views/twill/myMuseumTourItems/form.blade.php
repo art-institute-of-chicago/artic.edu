@@ -12,21 +12,17 @@
         'label' => 'Teaser image',
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'artwork_count',
-        'label' => 'Artwork Count',
-        'toolbarOptions' => [
-            'italic', 'bold'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='artwork_count'
+        label='Artwork Count'
+        :toolbar-options="[ 'italic', 'bold' ]"
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'teaser_text',
-        'label' => 'Teaser Text',
-        'toolbarOptions' => [
-            'italic',
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='teaser_text'
+        label='Teaser Text'
+        :toolbar-options="[ 'italic' ]"
+    />
 
 
 @stop

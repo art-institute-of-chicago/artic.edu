@@ -10,10 +10,10 @@
         />
     </div>
 
-    @formField('wysiwyg', [
-        'name' => 'split_primary_copy',
-        'label' => 'Primary Copy',
-    ])
+    <x-twill::wysiwyg
+        name='split_primary_copy'
+        label='Primary Copy'
+    />
 
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'asset_type',

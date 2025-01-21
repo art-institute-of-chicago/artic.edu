@@ -8,25 +8,21 @@
     'max' => 1
 ])
 
-@formField('wysiwyg', [
-    'name' => 'captionTitle',
-    'label' => 'Caption title',
-    'maxlength' => 80,
-    'note' => 'Max 80 characters',
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    name='captionTitle'
+    label='Caption title'
+    note='Max 80 characters'
+    :maxlength='80'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption',
-    'label' => 'Caption',
-    'maxlength' => 300,
-    'note' => 'Max 300 characters',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption'
+    label='Caption'
+    note='Max 300 characters'
+    :maxlength='300'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
 
 <x-twill::input
     name='videoUrl'

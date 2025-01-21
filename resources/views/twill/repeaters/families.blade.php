@@ -21,12 +21,11 @@
             label='Associated generic page link'
             :required='false'
         />
-        @formField('wysiwyg', [
-            'name' => 'text',
-            'field_name' => 'text',
-            'label' => 'Text',
-            'required' => true
-        ])
+        <x-twill::wysiwyg
+            name='text'
+            label='Text'
+            :required='true'
+        />
         <x-twill::input
             name='link_label'
             field_name='link_label'

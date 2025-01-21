@@ -35,13 +35,11 @@
         note='Use "Title Case"'
     />
 
-    @formField('wysiwyg', [
-        'name' => 'body',
-        'label' => 'Body',
-        'toolbarOptions' => [
-            'italic',
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='body'
+        label='Body'
+        :toolbar-options="[ 'italic' ]"
+    />
 
     <x-twill::input
         name='lightbox_button_text'

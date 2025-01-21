@@ -21,14 +21,12 @@
     :maxlength='60'
 />
 
-@formField('wysiwyg', [
-    'name' => 'description',
-    'label' => 'Description',
-    'rows' => 4,
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    name='description'
+    label='Description'
+    :rows='4'
+    :toolbar-options="[ 'italic' ]"
+/>
 
 <x-twill::input
     name='external_link'
