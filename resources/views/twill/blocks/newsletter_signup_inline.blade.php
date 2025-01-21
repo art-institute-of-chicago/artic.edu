@@ -8,8 +8,8 @@
     :maxlength='60'
 />
 
-@formField('select', [
-    'name' => 'list',
-    'label' => 'Newsletter target list',
-    'options' => \App\Models\ExactTargetList::getList()
-])
+<x-twill::select
+    name='list'
+    label='Newsletter target list'
+    :options="{{ \App\Models\ExactTargetList::getList() }}"
+/>

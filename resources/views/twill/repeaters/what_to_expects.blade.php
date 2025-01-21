@@ -4,12 +4,12 @@
 @twillRepeaterMax('9')
 
     <div class="col">
-        @formField('select', [
-            'name' => 'icon_type',
-            'label' => 'Icon',
-            'options' => \App\Models\Page::getIconTypes(),
-            'default' => 0
-        ])
+        <x-twill::select
+            name='icon_type'
+            label='Icon'
+            default='0'
+            :options="\App\Models\Page::getIconTypes()"
+        />
         <x-twill::input
             name='text'
             label='Text'

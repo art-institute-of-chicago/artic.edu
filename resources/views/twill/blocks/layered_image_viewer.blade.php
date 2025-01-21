@@ -20,13 +20,13 @@
     :toolbar-options="[ 'italic', 'link' ]"
 />
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-    'options' => [
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='{{ $type === 'digitalPublications' ? 'l' : 'm' }}'
+    disabled='{{ $type === 'digitalPublications' ? true : false }}'
+    :options="[
         [
             'value' => 's',
             'label' => 'Small'
@@ -39,8 +39,8 @@
             'value' => 'l',
             'label' => 'Large'
         ]
-    ]
-])
+    ]"
+/>
 
 @formField('repeater', ['type' => 'layered_image_viewer_img'])
 

@@ -3,12 +3,12 @@
 @twillRepeaterComponent('a17-block-date_rule')
 @twillRepeaterMax('10')
 
-@formField('select', [
-    'name' => 'type',
-    'label' => 'Type of rule',
-    'options' => \App\Models\DateRule::getRuleTypes(),
-    'default' => 0
-])
+<x-twill::select
+    name='type'
+    label='Type of rule'
+    default='0'
+    :options='\App\Models\DateRule::getRuleTypes()'
+/>
 
 @component('twill::partials.form.utils._columns')
     @slot('left')
@@ -45,12 +45,12 @@
         />
     @endslot
     @slot('right')
-        @formField('select', [
-            'name' => 'recurring_type',
-            'label' => 'Days/Week/Month',
-            'options' => \App\Models\DateRule::getRecurringTypes(),
-            'default' => 0
-        ])
+        <x-twill::select
+            name='recurring_type'
+            label='Days/Week/Month'
+            default='0'
+            :options='\App\Models\DateRule::getRecurringTypes()'
+        />
     @endslot
 @endcomponent
 
@@ -91,10 +91,10 @@
         />
     @endcomponent
 
-    @formField('select', [
-        'name' => 'monthly_repeat_pattern',
-        'label' => 'If repeated monthly, select a pattern',
-        'options' => \App\Models\DateRule::getMonthlyRepeat(),
-        'default' => 0
-    ])
+    <x-twill::select
+        name='monthly_repeat_pattern'
+        label='If repeated monthly, select a pattern'
+        default='0'
+        :options='\App\Models\DateRule::getMonthlyRepeat()'
+    />
 @endcomponent

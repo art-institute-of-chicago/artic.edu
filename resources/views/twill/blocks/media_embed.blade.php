@@ -6,13 +6,13 @@
 @twillBlockTitle('Media embed')
 @twillBlockIcon('text')
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 's'),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-    'options' => [
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='{{ $type === 'digitalPublications' ? 'l' : 's' }}'
+    disabled='{{ $type === 'digitalPublications' ? true : false }}'
+    :options="[
         [
             'value' => 's',
             'label' => 'Small'
@@ -25,8 +25,8 @@
             'value' => 'l',
             'label' => 'Large'
         ]
-    ]
-])
+    ]"
+/>
 
 <x-twill::radios
     name='embed_type'

@@ -1,10 +1,10 @@
 @unless($item->module_type === 'attract' || $item->module_type === 'end')
-@formField('select', [
-    'name' => 'module_type',
-    'required' => true,
-    'label' => 'Module Type',
-    'placeholder' => 'Select a type',
-    'options' => [
+<x-twill::select
+    name='module_type'
+    label='Module Type'
+    placeholder='Select a type'
+    :required='true'
+    :options="[
         [
             'value' => 'split',
             'label' => 'Split'
@@ -29,8 +29,8 @@
             'value' => '3dtour',
             'label' => '3D Tour'
         ]
-    ]
-])
+    ]"
+/>
 @endunless
 
 @component('twill::partials.form.utils._connected_fields', [

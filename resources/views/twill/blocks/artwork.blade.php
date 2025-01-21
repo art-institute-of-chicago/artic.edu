@@ -14,13 +14,13 @@
     />
 @endif
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-    'options' => [
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='{{ $type === 'digitalPublications' ? 'l' : 'm' }}'
+    disabled='{{ $type === 'digitalPublications' ? true : false }}'
+    :options="[
         [
             'value' => 's',
             'label' => 'Small'
@@ -33,8 +33,8 @@
             'value' => 'l',
             'label' => 'Large'
         ]
-    ]
-])
+    ]"
+/>
 
 <p>Note: if the chosen artwork does not have rights to be viewed at a large size, it will display as size small</p>
 

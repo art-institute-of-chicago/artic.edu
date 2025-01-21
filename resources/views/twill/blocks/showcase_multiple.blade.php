@@ -9,19 +9,21 @@
         default:
             $themes = ['default'];
     }
-@endphp
 
-@formField('select', [
-    'name' => 'theme',
-    'label' => 'Theme',
-    'default' => 'default',
-    'options' => collect($themes)->map(function($theme) {
+    $options = collect($themes)->map(function($theme) {
         return [
             'value' => $theme,
             'label' => ucfirst($theme),
         ];
-    })->toArray(),
-])
+    })->toArray();
+@endphp
+
+<x-twill::select
+    name='theme'
+    label='Theme'
+    default='default'
+    :options="$options"
+/>
 
 @formConnectedFields([
     'fieldName' => 'theme',
@@ -29,10 +31,10 @@
     'renderForBlocks' => true,
     ])
 
-    @formField('select', [
-        'name' => 'variation',
-        'label' => 'Variation',
-        'options' => [
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
             [
                 'value' => 'make-with-us',
                 'label' => 'Make with us',
@@ -44,9 +46,9 @@
             [
                 'value' => 'learn-with-us',
                 'label' => 'Learn with us',
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
 @endcomponent
 

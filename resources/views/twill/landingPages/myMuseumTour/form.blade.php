@@ -2,12 +2,12 @@
 
 @section('contentFields')
 
-@formField('select', [
-    'name' => 'header_variation',
-    'label' => 'Header Style',
-    'placeholder' => 'Select style of page header',
-    'default' => 'default',
-    'options' => [
+<x-twill::select
+    name='header_variation'
+    label='Header Style'
+    placeholder='Select style of page header'
+    default='default'
+    :options="[
         [
             'value' => 'default',
             'label' => 'Default'
@@ -27,9 +27,9 @@
         [
             'value' => 'my_museum_tour',
             'label' => 'My Museum Tour'
-        ],
-    ]
-])
+        ]
+    ]"
+/>
 
 <hr/>
 

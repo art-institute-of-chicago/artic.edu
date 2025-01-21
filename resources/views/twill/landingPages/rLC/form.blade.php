@@ -8,12 +8,12 @@
         name='intro'
         label='Intro'
     />
-    @formField('select', [
-        'name' => 'header_variation',
-        'label' => 'Header Style',
-        'placeholder' => 'Select style of page header',
-        'default' => 'default',
-        'options' => [
+    <x-twill::select
+        name='header_variation'
+        label='Header Style'
+        placeholder='Select style of page header'
+        default='default'
+        :options="[
             [
                 'value' => 'default',
                 'label' => 'Default',
@@ -29,9 +29,9 @@
             [
                 'value' => 'feature',
                 'label' => 'Featured Content',
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
     <hr/>
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'header_variation',

@@ -25,12 +25,12 @@
 
         <hr>
 
-        @formField('select', [
-            'name' => 'layout_type',
-            'label' => 'Hero type',
-            'options' => $eventLayoutsList,
-            'default' => '0'
-        ])
+        <x-twill::select
+            name='layout_type'
+            label='Hero type'
+            default='0'
+            :options='$eventLayoutsList'
+        />
 
         @include('twill.partials.hero')
 
@@ -49,26 +49,26 @@
 
         @component('twill::partials.form.utils._columns')
             @slot('left')
-                @formField('select', [
-                    'name' => 'start_time',
-                    'label' => 'Start Time',
-                    'options' => DateHelpers::hoursSelectOptions(),
-                    'required' => true
-                ])
+                <x-twill::select
+                    name='start_time'
+                    label='Start Time'
+                    :options='DateHelpers::hoursSelectOptions()'
+                    :required='true'
+                />
 
-                @formField('select', [
-                    'name' => 'door_time',
-                    'label' => 'Door Time',
-                    'options' => DateHelpers::hoursSelectOptions()
-                ])
+                <x-twill::select
+                    name='door_time'
+                    label='Door Time'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
             @endslot
             @slot('right')
-                @formField('select', [
-                    'name' => 'end_time',
-                    'label' => 'End Time',
-                    'options' => DateHelpers::hoursSelectOptions(),
-                    'required' => true
-                ])
+                <x-twill::select
+                    name='end_time'
+                    label='End Time'
+                    :options='DateHelpers::hoursSelectOptions()'
+                    :required='true'
+                />
             @endslot
         @endcomponent
 
@@ -206,12 +206,12 @@
             label='Is After Hours'
         />
 
-        @formField('select', [
-            'name' => 'entrance',
-            'label' => 'Entrance',
-            'options' => $eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // No effect?
-        ])
+        <x-twill::select
+            name='entrance'
+            label='Entrance'
+            default='{{ \App\Models\Event::NULL_OPTION }}' // No effect?
+            :options="$eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION)' '[None]')"
+        />
 
         <x-twill::checkbox
             name='is_virtual_event'
@@ -295,12 +295,12 @@
     </a17-fieldset>
 
     <a17-fieldset id="filters_and_types" title="Filters and types">
-        @formField('select', [
-            'name' => 'event_type',
-            'label' => 'Event type (preferred)',
-            'options' => $eventTypesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // No effect?
-        ])
+        <x-twill::select
+            name='event_type'
+            label='Event type (preferred)'
+            :options="$eventTypesList->put(strval(\App\Models\Event::NULL_OPTION)' '[None]')"
+            default='\App\Models\Event::NULL_OPTION' // No effect?
+        />
 
         @formField('multi_select', [
             'name' => 'alt_types',
@@ -309,12 +309,12 @@
             'options' => $eventTypesList,
         ])
 
-        @formField('select', [
-            'name' => 'audience',
-            'label' => 'Event audience (preferred)',
-            'options' => $eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // No effect?
-        ])
+        <x-twill::select
+            name='audience'
+            label='Event audience (preferred)'
+            default='\App\Models\Event::NULL_OPTION' // No effect?
+            :options="$eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION)' '[None]')"
+        />
 
         @formField('multi_select', [
             'name' => 'alt_audiences',
@@ -379,17 +379,21 @@
         ])
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
-            @formField('select', [
-                'name' => 'event_host_id',
-                'label' => 'Event Host',
-                'options' => $eventHostsList->put(
+            @php
+                $options = $eventHostsList->put(
                     // TODO: Use new null option!
                     strval(\App\Models\Event::NULL_OPTION_EVENT_HOST), '[None]'
-                ),
-                'default' => \App\Models\Event::NULL_OPTION_EVENT_HOST, // No effect?
-                'note' => 'This field is mandatory and will be used to determine audience list for email send',
-                'required' => true,
-            ])
+                );
+            @endphp
+
+            <x-twill::select
+                name='event_host_id'
+                label='Event Host'
+                default='{{ \App\Models\Event::NULL_OPTION_EVENT_HOST }}' // No effect?
+                note='This field is mandatory and will be used to determine audience list for email send'
+                :required='true'
+                :options="$options"
+            />
 
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 

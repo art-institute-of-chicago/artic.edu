@@ -15,27 +15,27 @@
         'note' => 'Required',
     ])
 
-    @formField('select', [
-        'name' => 'article_type',
-        'label' => 'Type',
-        'placeholder' => 'Select a type',
-        'default' => 'text',
-        'options' => $types,
-    ])
-    @formField('select', [
-        'name' => 'listing_display',
-        'label' => 'Listing display',
-        'placeholder' => 'Select a listing display',
-        'default' => 'default',
-        'options' => [
+    <x-twill::select
+        name='article_type'
+        label='Type'
+        placeholder='Select a type'
+        default='text'
+        :options='$types'
+    />
+    <x-twill::select
+        name='listing_display'
+        label='Listing display'
+        placeholder='Select a listing display'
+        default='default'
+        :options="[
             ['value' => 'feature', 'label' => 'Feature'],
             ['value' => '3-across', 'label' => '3-Across'],
             ['value' => 'entries', 'label' => 'Entries'],
             ['value' => 'group_entries', 'label' => 'Group of Entries'],
             ['value' => 'list', 'label' => 'List view'],
             ['value' => 'simple_list', 'label' => 'Text list view'],
-        ],
-    ])
+        ]"
+    />
 
     @component('twill::partials.form.utils._columns')
         @slot('left')

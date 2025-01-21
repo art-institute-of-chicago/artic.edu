@@ -6,13 +6,13 @@
 @twillBlockTitle('360 Embed')
 @twillBlockIcon('image')
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 's'),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-    'options' => [
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='{{ $type === 'digitalPublications' ? 'l' : 's' }}'
+    disabled='{{ $type === 'digitalPublications' ? true : false }}'
+    :options="[
         [
             'value' => 's',
             'label' => 'Small'
@@ -25,8 +25,8 @@
             'value' => 'l',
             'label' => 'Large'
         ]
-    ]
-])
+    ]"
+/>
 
 @formField('files', [
     'name' => 'image_sequence_file',

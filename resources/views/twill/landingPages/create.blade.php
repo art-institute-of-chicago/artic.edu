@@ -1,8 +1,8 @@
 @include('twill.partials.create')
 
-@formField('select', [
-    'name' => 'type_id',
-    'label' => 'Page type',
-    'default' => $defaultType,
-    'options' => $types,
-])
+<x-twill::select
+    name='type_id'
+    label='Page type'
+    default='$defaultType'
+    :options='$types'
+/>

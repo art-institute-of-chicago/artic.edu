@@ -66,18 +66,23 @@
             'renderForBlocks' => false,
             'fieldValues' => true
         ])
-            @formField('select', [
-                'name' => 'max_artworks',
-                'label' => 'Max Artworks',
-                'note' => 'Artworks will be appended until this number is reached',
-                'default' => $maxArtworks,
-                'options' => array_map(function($i) {
-                    return [
-                        'value' => $i,
-                        'label' => $i,
-                    ];
-                }, array_reverse(range(12, $maxArtworks))),
-            ])
+
+            @php
+                $options = array_map(function($i) {
+                            return [
+                                'value' => $i,
+                                'label' => $i,
+                            ];
+                        }, array_reverse(range(12, $maxArtworks)))
+            @endphp
+
+            <x-twill::select
+                name='max_artworks'
+                label='Max Artworks'
+                note='Artworks will be appended until this number is reached'
+                default="$maxArtworks"
+                :options="$options"
+            />
         @endcomponent
 
     </a17-fieldset>

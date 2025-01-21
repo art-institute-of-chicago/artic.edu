@@ -1,13 +1,13 @@
 @extends('twill::layouts.form', ['contentFieldsetLabel' => 'Edit closure'])
 
 @section('contentFields')
-    @formField('select', [
-        'name' => "type",
-        'label' => "Type",
-        'options' => $typesList,
-        'placeholder' => 'Select a type',
-        'required' => true
-    ])
+    <x-twill::select
+        name='"type"'
+        label='"Type"'
+        placeholder='Select a type'
+        :required='true'
+        :options='$typesList'
+    />
 
     @formField('date_picker', [
         'name' => 'date_start',
