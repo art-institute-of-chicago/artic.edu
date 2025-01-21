@@ -7,13 +7,11 @@
         disabled='true'
     />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Hero Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 2000px'
-    ])
+    <x-twill::medias
+        name='hero'
+        label='Hero Image'
+        note='Minimum image width 2000px'
+    />
 
     <x-twill::wysiwyg
         name='caption'
@@ -44,13 +42,11 @@
     <a17-fieldset id="related" title="Related">
         <p>These fields will be used for the homepage carousel.</p>
 
-        @formField('medias', [
-            'with_multiple' => false,
-            'no_crop' => false,
-            'label' => 'Carousel Image',
-            'name' => 'carousel',
-            'note' => 'If left blank, hero image will be used instead',
-        ])
+        <x-twill::medias
+            name='carousel'
+            label='Carousel Image'
+            note='If left blank, hero image will be used instead'
+        />
 
         <x-twill::input
             name='short_name_caption'

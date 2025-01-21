@@ -19,8 +19,8 @@
     :toolbar-options="[ 'italic', 'link' ]"
 />
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Image',
-    'max' => '1'
-])
+<x-twill::medias
+    name='image'
+    label='Image'
+    :max='1'
+/>

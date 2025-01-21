@@ -1,21 +1,17 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Hero image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        label='Hero image'
+        name='hero'
+        note='Minimum image width 3000px'
+    />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Mobile Hero Image',
-        'name' => 'mobile_hero',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        label='Mobile Hero Image'
+        name='mobile_hero'
+        note='Minimum image width 3000px'
+    />
 
     @formField('files', [
         'name' => 'video',

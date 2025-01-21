@@ -18,13 +18,13 @@
     ]"
 />
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Media',
-    'max' => 1,
-    'withVideoUrl' => false,
-    'required' => true,
-])
+<x-twill::medias
+    name='image'
+    label='Media'
+    :max='1'
+    :required='true'
+    :withVideoUrl='false'
+/>
 
 <x-twill::input
     name='tag'

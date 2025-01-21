@@ -13,19 +13,17 @@
         note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
     />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Banner image',
-        'name' => 'banner',
-        'note' => 'Minimum image width 2000px'
-    ])
+    <x-twill::medias
+        name='banner'
+        label='Banner image'
+        note='Minimum image width 2000px'
+    />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Listing image',
-        'name' => 'listing',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        name='listing'
+        label='Listing image'
+        note='Minimum image width 3000px'
+    />
 
     <x-twill::wysiwyg
         name='listing_description'
