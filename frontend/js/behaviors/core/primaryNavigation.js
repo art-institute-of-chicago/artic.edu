@@ -5,7 +5,6 @@ export default function(container) {
     const menuQuery = 'ul[role="menu"]'
     const listItemQuery = 'li[role="none"]'
     const menuItemQuery = 'a[role="menuitem"]'
-    const levelOneQuery = '.level-1'
     const canExpandAttribute = 'aria-haspopup'
     const isExpandedAttribute = 'aria-expanded'
     const isCollapsingClass = 'collapsing'
@@ -26,7 +25,6 @@ export default function(container) {
 
     const menuBar = container.querySelector(menuBarQuery)
     const menuItems = menuBar.querySelectorAll(menuItemQuery)
-    const levelOneMenuItems = menuBar.querySelectorAll(`${levelOneQuery}>${menuItemQuery}`)
     const exhibitionsDetailsContainer = container.querySelector(exhibitionsDetailsContainerQuery)
     const featuredExhibitionTemplate = container.querySelector(featuredExhibitionTemplateQuery)
 
@@ -51,10 +49,6 @@ export default function(container) {
 
     function expandHandler(event) {
         let menuItem = event.target.closest(menuItemQuery)
-        if (isLevelOneMenuItem(menuItem)) {
-            event.preventDefault()
-            event.stopPropagation()
-        }
         collapseMenu()
         expandAncestors(menuItem)
         Object.keys(collapseEventTypes).forEach(function(eventType) {
@@ -101,15 +95,6 @@ export default function(container) {
         if (ancestor) {
             expandAncestors(ancestor.querySelector(menuItemQuery))
         }
-    }
-
-    function isLevelOneMenuItem(menuItem) {
-        for (let index in levelOneMenuItems) {
-            if (menuItem === levelOneMenuItems[index]) {
-                return true;
-            }
-        }
-        return false;
     }
 
     this.init = function() {
