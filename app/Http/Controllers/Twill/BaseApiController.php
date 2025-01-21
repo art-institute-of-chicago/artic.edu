@@ -302,33 +302,33 @@ class BaseApiController extends ModuleController
         return $columns;
     }
 
-        public function getSideFieldSets(TwillModelContract $model): Form
+    public function getSideFieldSets(TwillModelContract $model): Form
     {
         return parent::getSideFieldSets($model)
-            // For some reason, the side form will not render unless there is a
-            // field in the default Content fieldset. 🤷
-            ->add(
-                Input::make()
-                    ->name('id')
-                    ->disabled()
-                    ->note('readonly')
-            )
-            ->addFieldset(
-                Fieldset::make()
-                    ->id('datahub')
-                    ->title('Datahub')
-                    ->closed()
-                    ->fields([
-                        Input::make()
-                            ->name('datahub_id')
-                            ->disabled()
-                            ->note('readonly'),
-                        Input::make()
-                            ->name('source_updated_at')
-                            ->disabled()
-                            ->note('readonly'),
-                    ])
-            );
+        // For some reason, the side form will not render unless there is a
+        // field in the default Content fieldset. 🤷
+        ->add(
+            Input::make()
+                ->name('id')
+                ->disabled()
+                ->note('readonly')
+        )
+        ->addFieldset(
+            Fieldset::make()
+                ->id('datahub')
+                ->title('Datahub')
+                ->closed()
+                ->fields([
+                    Input::make()
+                        ->name('datahub_id')
+                        ->disabled()
+                        ->note('readonly'),
+                    Input::make()
+                        ->name('source_updated_at')
+                        ->disabled()
+                        ->note('readonly'),
+                ])
+        );
     }
 
     protected function transformIndexItems(Collection|LengthAwarePaginator $items): Collection|LengthAwarePaginator
