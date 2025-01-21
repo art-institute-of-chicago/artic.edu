@@ -74,10 +74,10 @@
     note='Optional. Use CSS units, e.g. "400px"'
 />
 
-@formField('checkbox', [
-    'name' => 'disable_placeholder',
-    'label' => 'Disable placeholder element',
-])
+<x-twill::checkbox
+    name='disable_placeholder'
+    label='Disable placeholder element'
+/>
 
 <x-twill::wysiwyg
     name='caption_title'

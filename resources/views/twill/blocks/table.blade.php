@@ -50,17 +50,17 @@
     :toolbar-options="[ ['header' => 3], 'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered', ['script' => 'super'] ]"
 />
 
-@formField('checkbox', [
-    'name' => 'has_side_header',
-    'label' => 'Leftmost column is also a header',
-])
+<x-twill::checkbox
+    name='has_side_header'
+    label='Leftmost column is also a header'
+/>
 
-@formField('checkbox', [
-    'name' => 'allow_word_wrap',
-    'label' => 'Allow word wrap in table cells',
-])
+<x-twill::checkbox
+    name='allow_word_wrap'
+    label='Allow word wrap in table cells'
+/>
 
-@formField('checkbox', [
-    'name' => 'hide_columns',
-    'label' => 'Hide vertical cell borders',
-])
+<x-twill::checkbox
+    name='hide_columns'
+    label='Hide vertical cell borders'
+/>
