@@ -63,10 +63,10 @@
     label='Make the image modal zoomable'
 />
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Image'
-])
+<x-twill::medias
+    name='image'
+    label='Image'
+/>
 
 <x-twill::wysiwyg
     name='caption_title'

@@ -2,13 +2,11 @@
 
 @section('contentFields')
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Hero Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 2000px'
-    ])
+    <x-twill::medias
+        name='hero'
+        label='Hero Image'
+        note='Minimum image width 2000px'
+    />
 
     <x-twill::input
         name='caption'

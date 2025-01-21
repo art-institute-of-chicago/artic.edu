@@ -113,13 +113,13 @@
         'fieldValues' => 'image',
         'renderForBlocks' => true,
     ])
-        @formField('medias', [
-            'name' => 'image',
-            'label' => 'Image',
-            'max' => 1,
-            'withVideoUrl' => false,
-            'required' => true,
-        ])
+        <x-twill::medias
+            name='image'
+            label='Image'
+            :max='1'
+            :withVideoUrl='false'
+            :required='true'
+        />
     @endcomponent
 
     @formConnectedFields([
@@ -127,23 +127,23 @@
         'fieldValues' => 'video',
         'renderForBlocks' => true,
     ])
-        @formField('medias', [
-            'name' => 'image',
-            'label' => 'Video',
-            'max' => 1,
-            'withVideoUrl' => false,
-            'required' => true,
-        ])
+        <x-twill::medias
+            name='image'
+            label='Video'
+            :max='1'
+            :withVideoUrl='false'
+            :required='true'
+        />
     @endcomponent
 
 @else
-    @formField('medias', [
-        'name' => 'image',
-        'label' => 'Image',
-        'max' => 1,
-        'withVideoUrl' => false,
-        'required' => true,
-    ])
+    <x-twill::medias
+        name='image'
+        label='Image'
+        :max='1'
+        :withVideoUrl='false'
+        :required='true'
+    />
 @endif
 
 <x-twill::input

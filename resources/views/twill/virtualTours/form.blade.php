@@ -17,13 +17,11 @@
         'note' => 'Upload a .xml file'
     ])
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Hero Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        label='Hero Image'
+        name='hero'
+        note='Minimum image width 3000px'
+    />
 
     <x-twill::date-picker
         name='date'
