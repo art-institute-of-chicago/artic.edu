@@ -158,12 +158,12 @@
             disabled='true'
         />
 
-        @formField('multi_select', [
-            'name' => 'siteTags',
-            'label' => 'Tags',
-            'options' => $siteTagsList,
-            'placeholder' => 'Select some tags',
-        ])
+        <x-twill::multi-select
+            name='siteTags'
+            label='Tags'
+            placeholder='Select some tags'
+            :options='$siteTagsList'
+        />
     </a17-fieldset>
     <a17-fieldset id="related" title="Related">
         @formField('browser', [

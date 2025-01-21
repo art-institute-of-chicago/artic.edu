@@ -3,11 +3,11 @@
     label='Vimeo URL'
 />
 
-@formField('multi_select', [
-    'name' => isset($moduleType) && $moduleType === 'split' ? 'split_video_play_settings' : 'video_play_settings',
-    'label' => 'Video Player Setting',
-    'default' => 'autoplay',
-    'options' => [
+<x-twill::multi-select
+    name='{{ isset($moduleType) && $moduleType === 'split' ? 'split_video_play_settings' : 'video_play_settings' }}'
+    label='Video Player Setting'
+    default='autoplay'
+    :options="[
         [
             'value' => 'autoplay',
             'label' => 'Autoplay'
@@ -28,5 +28,5 @@
             'value' => 'loop',
             'label' => 'Loop'
         ]
-    ]
-])
+    ]"
+/>
