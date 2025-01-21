@@ -51,10 +51,6 @@ export default function(container) {
 
     function expandHandler(event) {
         let menuItem = event.target.closest(menuItemQuery)
-        if (isLevelOneMenuItem(menuItem)) {
-            event.preventDefault()
-            event.stopPropagation()
-        }
         collapseMenu()
         expandAncestors(menuItem)
         Object.keys(collapseEventTypes).forEach(function(eventType) {
