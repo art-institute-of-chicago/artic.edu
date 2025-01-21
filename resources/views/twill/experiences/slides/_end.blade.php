@@ -23,14 +23,11 @@
             :maxlength='150'
         />
 
-        @formField('wysiwyg', [
-            'name' => 'end_credit_copy',
-            'label' => 'Copy',
-            'toolbarOptions' => [
-                ['header' => 2],
-                'bold', 'italic',
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='end_credit_copy'
+            label='Copy'
+            :toolbar-options="[ ['header' => 2], 'bold', 'italic' ]"
+        />
 
         @formField('repeater', ['type' => 'end_experience_image'])
     </a17-fieldset>

@@ -1,14 +1,12 @@
 @twillBlockTitle('Grid')
 @twillBlockIcon('image')
 
-@formField('wysiwyg', [
-    'name' => 'heading',
-    'label' => 'Heading',
-    'maxlength' => 60,
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    name='heading'
+    label='Heading'
+    :maxlength='60'
+    :toolbar-options="[ 'italic' ]"
+/>
 
 <x-twill::input
     name='grid_link_label'

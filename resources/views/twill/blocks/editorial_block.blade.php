@@ -87,12 +87,12 @@
         :required='true'
     />
 
-    @formField('wysiwyg', [
-        'name' => 'body',
-        'label' => 'Body',
-        'required' => true,
-        'type' => 'textarea',
-    ])
+    <x-twill::wysiwyg
+        name='body'
+        label='Body'
+        type='textarea'
+        :required='true'
+    />
 
     @formConnectedFields([
         'fieldName' => 'variation',

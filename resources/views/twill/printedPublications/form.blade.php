@@ -21,15 +21,13 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'listing_description',
-        'label' => 'Listing description',
-        'maxlength'  => 255,
-        'note' => 'Max 255 characters',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='listing_description'
+        label='Listing description'
+        note='Max 255 characters'
+        :maxlength="255"
+        :toolbar-options="[ 'italic' ]"
+    />
 
     <x-twill::input
         name='short_description'

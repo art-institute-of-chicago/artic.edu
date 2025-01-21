@@ -58,20 +58,19 @@
         'renderForBlocks' => true,
     ])
 
-        @formField('input', [
-            'name' => 'heading',
-            'label' => 'Heading',
-            'type' => 'text',
-            'maxlength' => 100,
-            'required' => true,
-        ])
+        <x-twill::input
+            name='heading'
+            label='Heading'
+            :maxlength='100'
+            :required='true'
+        />
 
-        @formField('wysiwyg', [
-            'name' => 'body',
-            'label' => 'Body',
-            'required' => true,
-            'type' => 'textarea',
-        ])
+        <x-twill::wysiwyg
+            name='body'
+            label='Body'
+            type='textarea'
+            :required='true'
+        />
 
     @endcomponent
 

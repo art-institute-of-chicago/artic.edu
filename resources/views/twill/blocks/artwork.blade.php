@@ -46,11 +46,9 @@
     'max' => 1
 ])
 
-@formField('wysiwyg', [
-    'name' => 'captionAddendum',
-    'label' => 'Caption addendum',
-    'note' => 'Appended to generated tombstone',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='captionAddendum'
+    label='Caption addendum'
+    note='Appended to generated tombstone'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>

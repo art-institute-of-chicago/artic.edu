@@ -7,11 +7,11 @@
         label='Object Title'
         :maxlength='150'
     />
-    @formField('wysiwyg', [
-        'name' => 'caption',
-        'label' => 'Caption',
-        'maxlength' => 500,
-        ])
+    <x-twill::wysiwyg
+        name='caption'
+        label='Caption'
+        :maxlength='500'
+    />
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'asset_type',
         'fieldValues' => 'standard',

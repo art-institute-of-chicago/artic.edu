@@ -43,16 +43,12 @@
     :rows='4'
 />
 
-@formField('wysiwyg', [
-    'name' => 'table_caption',
-    'label' => 'Caption',
-    'note' => 'Optional',
-    'toolbarOptions' => [
-        ['header' => 3],
-        'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered',
-        ['script' => 'super'],
-    ],
-])
+<x-twill::wysiwyg
+    name='table_caption'
+    label='Caption'
+    note='Optional'
+    :toolbar-options="[ ['header' => 3], 'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered', ['script' => 'super'] ]"
+/>
 
 @formField('checkbox', [
     'name' => 'has_side_header',

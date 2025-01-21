@@ -106,13 +106,11 @@
     'fieldValues' => 'my_museum_tour',
     'renderForBlocks' => false
 ])
-    @formField('wysiwyg', [
-        'name' => 'labels.header_my_museum_tour_text',
-        'label' => 'Intro Text',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='labels.header_my_museum_tour_text'
+        label='Intro Text'
+        :toolbar-options="[ 'italic' ]"
+    />
 
     @component('twill::partials.form.utils._columns')
     @slot('left')
@@ -243,13 +241,11 @@
             label='Header'
         />
 
-        @formField('wysiwyg', [
-            'name' => 'labels.tours_create_cta_module_body',
-            'label' => 'Body',
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='labels.tours_create_cta_module_body'
+            label='Body'
+            :toolbar-options="[ 'italic' ]"
+        />
 
         <x-twill::input
             name='labels.tours_create_cta_module_button_text'
@@ -322,13 +318,11 @@
             label='Header'
         />
 
-        @formField('wysiwyg', [
-            'name' => 'labels.tours_tickets_cta_module_body',
-            'label' => 'Body',
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='labels.tours_tickets_cta_module_body'
+            label='Body'
+            :toolbar-options="[ 'italic' ]"
+        />
 
         <x-twill::input
             name='labels.tours_tickets_cta_module_button_text'

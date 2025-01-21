@@ -13,13 +13,11 @@
     label='Title'
 />
 
-@formField('wysiwyg', [
-    'name' => 'description',
-    'label' => 'Description',
-    'toolbarOptions' => [
-        'italic', 'link'
-    ],
-])
+<x-twill::wysiwyg
+    name='description'
+    label='Description'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
 
 @formField('medias', [
     'name' => 'image',

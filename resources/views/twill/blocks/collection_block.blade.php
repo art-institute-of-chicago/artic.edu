@@ -14,11 +14,11 @@
     'max' => 20,
 ])
 
-@formField('wysiwyg', [
-    'name' => 'bottom_desc',
-    'label' => 'Description',
-    'type' => 'textarea'
-])
+<x-twill::wysiwyg
+    name='bottom_desc'
+    label='Description'
+    type='textarea'
+/>
 
 @component('twill::partials.form.utils._columns')
     @slot('left')

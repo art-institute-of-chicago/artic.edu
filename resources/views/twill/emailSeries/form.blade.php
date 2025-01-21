@@ -46,14 +46,12 @@
 
     <hr>
 
-    @formField('wysiwyg', [
-        'name' => 'alert_message',
-        'label' => 'General alert message',
-        'note' => 'Will be displayed before the copy selection options',
-        'toolbarOptions' => [
-            'bold', 'italic', 'link'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='alert_message'
+        label='General alert message'
+        note='Will be displayed before the copy selection options'
+        :toolbar-options="[ 'bold', 'italic', 'link' ]"
+    />
 
 @stop
 

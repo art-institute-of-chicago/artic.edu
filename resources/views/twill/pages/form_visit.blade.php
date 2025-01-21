@@ -37,13 +37,11 @@
             'max' => '1',
             'note' => 'Minimum image width 2000px'
         ])
-        @formField('wysiwyg', [
-            'name' => 'visit_hour_image_caption',
-            'field_name' => 'visit_hour_image_caption',
-            'label' => 'Image caption',
-            'toolbarOptions' => [
-                'italic', 'link'
-            ],
+        <x-twill::wysiwyg
+            name='visit_hour_image_caption'
+            label='Image caption'
+            :toolbar-options="[ 'italic', 'link' ]"
+        />
 
         ])
         <x-twill::input
@@ -52,12 +50,12 @@
             label='Header'
             :required='true'
         />
-        @formField('wysiwyg', [
-            'name' => 'visit_hour_subheader',
-            'field_name' => 'visit_hour_subheader',
-            'label' => 'Description',
-            'required' => true
-        ])
+
+        <x-twill::wysiwyg
+            name='visit_hour_subheader'
+            label='Description'
+            :required='true'
+        />
         @formField('repeater', ['type' => 'featured_hours'])
     </a17-fieldset>
 
@@ -67,13 +65,11 @@
             label='Header'
         />
 
-        @formField('wysiwyg', [
-            'name' => 'visit_cta_module_body',
-            'label' => 'Body',
-            'toolbarOptions' => [
-                'italic'
-            ]
-        ])
+        <x-twill::wysiwyg
+            name='visit_cta_module_body'
+            label='Body'
+            :toolbar-options="[ 'italic' ]"
+        />
 
         <x-twill::input
             name='visit_cta_module_button_text'
@@ -102,11 +98,10 @@
     </a17-fieldset>
 
     <a17-fieldset title="Admissions" id="admissions">
-        @formField('wysiwyg', [
-            'name' => 'visit_admission_description',
-            'field_name' => 'visit_admission_description',
-            'label' => 'Admission table description'
-        ])
+        <x-twill::wysiwyg
+            name='visit_admission_description'
+            label='Admission table description'
+        />
         <x-twill::input
             name='visit_buy_tickets_label'
             field_name='visit_buy_tickets_label'

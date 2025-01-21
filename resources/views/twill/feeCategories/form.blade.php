@@ -12,14 +12,12 @@
         label='Tooltip'
     />
 
-    @formField('wysiwyg', [
-        'name' => 'description',
-        'label' => 'Description',
-        'note' => 'Will display instead of price table',
-        'toolbarOptions' => [
-            'italic', 'link'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='description'
+        label='Description'
+        note='Will display instead of price table'
+        :toolbar-options="[ 'italic', 'link' ]"
+    />
 
     <x-twill::input
         name='link_label'

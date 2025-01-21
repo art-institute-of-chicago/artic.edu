@@ -1,12 +1,10 @@
 @include('twill.partials.create')
 
-@formField('wysiwyg', [
-    'name' => 'description',
-    'label' => 'Description',
-    'maxlength' => 1000,
-    'type' => 'textarea',
-    'rows' => 6,
-    'toolbarOptions' => [
-        'bold', 'italic', 'link'
-    ],
-])
+<x-twill::wysiwyg
+    name='description'
+    label='Description'
+    type='textarea'
+    :maxlength='1000'
+    :rows='6'
+    :toolbar-options="[ 'bold', 'italic', 'link' ]"
+/>

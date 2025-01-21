@@ -71,32 +71,28 @@
         :maxlength='255'
     />
 
-    @formField('wysiwyg', [
-        'name' => 'header_copy',
-        'label' => 'Header',
-        'maxlength' => 255,
-        'note' => 'Max 255 characters',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='header_copy'
+        label='Header'
+        note='Max 255 characters'
+        :maxlength='255'
+        :toolbar-options="[ 'italic' ]"
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'list_description',
-        'label' => 'Listing description',
-        'maxlength'  => 255,
-        'note' => 'Max 255 characters',
-        'required' => true,
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='list_description'
+        label='Listing description'
+        note='Max 255 characters'
+        :maxlength="255"
+        :required='true'
+        :toolbar-options="[ 'italic' ]"
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'exhibition_message',
-        'label' => 'Pricing or attendance information',
-        'toolbarOptions' => ['bold']
-    ])
+    <x-twill::wysiwyg
+        name='exhibition_message'
+        label='Pricing or attendance information'
+        :toolbar-options="[ 'bold' ]"
+    />
 
     <x-twill::input
         name='exhibition_location'
@@ -146,15 +142,13 @@
             'max' => 1
         ])
 
-        @formField('wysiwyg', [
-            'name' => 'wait_time_override',
-            'label' => 'Wait time copy',
-            'maxlength' => 255,
-            'note' => 'Content will display below wait time data',
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='wait_time_override'
+            label='Wait time copy'
+            note='Content will display below wait time data'
+            :maxlength='255'
+            :toolbar-options="[ 'italic' ]"
+        />
     </a17-fieldset>
 
     <a17-fieldset id="attributes" title="Attributes">

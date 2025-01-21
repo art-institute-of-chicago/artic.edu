@@ -161,11 +161,11 @@
         'fieldValues' => 'compare',
         'renderForBlocks' => false,
     ])
-        @formField('wysiwyg', [
-            'name' => 'caption',
-            'label' => 'Seamless Caption',
-            'maxlength' => 500,
-        ])
+        <x-twill::wysiwyg
+            name='caption'
+            label='Seamless Caption'
+            :maxlength='500'
+        />
     @endcomponent
 @endcomponent
 

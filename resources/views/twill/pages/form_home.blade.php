@@ -78,13 +78,11 @@
             label='Title'
         />
 
-        @formField('wysiwyg', [
-            'name' => 'home_video_description',
-            'label' => 'Description',
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='home_video_description'
+            label='Description'
+            :toolbar-options="[ 'italic' ]"
+        />
 
         @formField('browser', [
             'routePrefix' => 'collection.articlesPublications',
@@ -107,13 +105,11 @@
             label='Header'
         />
 
-        @formField('wysiwyg', [
-            'name' => 'home_cta_module_body',
-            'label' => 'Body',
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='home_cta_module_body'
+            label='Body'
+            :toolbar-options="[ 'italic' ]"
+        />
 
         <x-twill::input
             name='home_cta_module_button_text'

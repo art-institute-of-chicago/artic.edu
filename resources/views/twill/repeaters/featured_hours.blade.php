@@ -14,11 +14,10 @@
             label='Link'
             :required='true'
         />
-        @formField('wysiwyg', [
-            'rows' => 3,
-            'name' => 'copy',
-            'field_name' => 'copy',
-            'label' => 'Text',
-            'required' => true
-        ])
+        <x-twill::wysiwyg
+            name='copy'
+            label='Text'
+            :required='true'
+            :rows='3'
+        />
     </div>

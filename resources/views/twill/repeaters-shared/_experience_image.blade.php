@@ -60,13 +60,11 @@
         />
     @endcomponent
 
-    @formField('wysiwyg', [
-        'type' => 'textarea',
-        'name' => 'image_credits',
-        'label' => 'Image credits',
-        'toolbarOptions' => [
-            'italic', 'bold'
-        ],
-    ])
+    <x-twill::wysiwyg
+        type='textarea'
+        name='image_credits'
+        label='Image credits'
+        :toolbar-options="[ 'italic', 'bold' ]"
+    />
 
 @endcomponent

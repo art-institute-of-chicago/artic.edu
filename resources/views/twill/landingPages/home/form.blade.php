@@ -101,10 +101,10 @@
 
 <a17-fieldset title="Top Section" id="home-top">
 
-    @formField('wysiwyg', [
-        'name' => 'labels.home_intro',
-        'label' => 'Intro text',
-    ])
+    <x-twill::wysiwyg
+        name='labels.home_intro'
+        label='Intro text'
+    />
 
     @formField('repeater', ['type' => 'social_links'])
 

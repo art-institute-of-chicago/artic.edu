@@ -31,15 +31,13 @@
         note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
     />
 
-    @formField('wysiwyg', [
-        'name' => 'short_copy',
-        'label' => 'Short intro copy',
-        'maxlength' => 255,
-        'note' => 'Max 255 characters',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='short_copy'
+        label='Short intro copy'
+        note='Max 255 characters'
+        :maxlength='255'
+        :toolbar-options="[ 'italic' ]"
+    />
 
     @include('twill.partials.hero')
 

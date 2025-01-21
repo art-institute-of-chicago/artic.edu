@@ -23,29 +23,20 @@
     :maxlength='100'
 />
 
-@formField('wysiwyg', [
-    'name' => 'title',
-    'label' => 'Title',
-    'maxlength' => 100,
-    'required' => true,
-    'toolbarOptions' => [
-        'italic'
-    ],
-])
+<x-twill::wysiwyg
+    name='title'
+    label='Title'
+    :maxlength='100'
+    :required='true'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'description',
-    'label' => 'Description',
-    'required' => true,
-    'toolbarOptions' => [
-        'bold',
-        'italic',
-        'underline',
-        'link',
-        ['list' => 'bullet'],
-        ['list' => 'ordered'],
-    ],
-])
+<x-twill::wysiwyg
+    name='description'
+    label='Description'
+    :required='true'
+    :toolbar-options="[ 'bold', 'italic', 'underline', 'link', ['list' => 'bullet'], ['list' => 'ordered'] ]"
+/>
 
 @component('twill::partials.form.utils._columns')
     @slot('left')

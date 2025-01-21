@@ -11,36 +11,30 @@
 
     <a17-fieldset id="header" title="Header">
 
-        @formField('wysiwyg', [
-            'name' => 'list_description',
-            'label' => 'List description',
-            'maxlength' => 255,
-            'note' => 'Max 255 characters. Will be used for social media.',
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='list_description'
+            label='List description'
+            note='Max 255 characters. Will be used for social media.'
+            :maxlength="255"
+            :toolbar-options="[ 'italic' ]"
+        />
 
-        {{-- We cannot @include('twill.partials.hero') here, but let's keep parity with it! --}}
+        {{-- We cannot @include('twill.partials.hero') here, but lets keep parity with it! --}}
 
-        @formField('wysiwyg', [
-            'type' => 'textarea',
-            'name' => 'hero_caption',
-            'label' => 'Hero caption',
-            'note' => 'Copyright for all images',
-            'toolbarOptions' => [
-                'italic', 'link',
-            ],
-        ])
+        <x-twill::wysiwyg
+            type='textarea'
+            name='hero_caption'
+            label='Hero caption'
+            note='Copyright for all images'
+            :toolbar-options="[ 'italic', 'link' ]"
+        />
 
-        @formField('wysiwyg', [
-            'type' => 'textarea',
-            'name' => 'hero_text',
-            'label' => 'Hero text',
-            'toolbarOptions' => [
-                'italic', 'link',
-            ],
-        ])
+        <x-twill::wysiwyg
+            type='textarea'
+            name='hero_text'
+            label='Hero text'
+            :toolbar-options="[ 'italic', 'link' ]"
+        />
 
         @formField('medias', [
             'name' => 'hero',
@@ -70,15 +64,13 @@
             'note' => 'Select one article',
         ])
 
-        @formField('wysiwyg', [
-            'name' => 'welcome_note_display',
-            'label' => 'Preview text',
-            'maxlength' => 255,
-            'note' => "If empty, we use the article's \"List description\"",
-            'toolbarOptions' => [
-                'italic'
-            ],
-        ])
+        <x-twill::wysiwyg
+            name='welcome_note_display'
+            label='Preview text'
+            note="If empty, we use the article's \"List description\""
+            :maxlength="255"
+            :toolbar-options="[ 'italic' ]"
+        />
 
         <x-twill::input
             name='welcome_note_author_override'
