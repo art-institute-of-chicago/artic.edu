@@ -38,10 +38,10 @@
     'fieldValues' => 'split',
     'keepAlive' => true,
 ])
-    @formField('multi_select', [
-        'name' => 'split_attributes',
-        'label' => 'Attributes',
-        'options' => [
+    <x-twill::multi-select
+        name='split_attributes'
+        label='Attributes'
+        :options="[
             [
                 'value' => 'inset',
                 'label' => 'Inset'
@@ -62,6 +62,6 @@
                 'value' => 'secondary_modal',
                 'label' => 'Secondary Modal'
             ]
-        ]
-    ])
+        ]"
+    />
 @endcomponent
