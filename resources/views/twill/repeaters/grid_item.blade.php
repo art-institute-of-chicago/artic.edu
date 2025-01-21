@@ -39,12 +39,12 @@
 @endslot
 
 @slot('right')
-@formField('radios', [
-    'name' => 'label_position',
-    'label' => 'Label position',
-    'note' => '',
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='label_position'
+    label='Label position'
+    note=''
+    :inline='true'
+    :options="[
         [
             'value' => 'overlay',
             'label' => 'Bottom of image'
@@ -53,8 +53,8 @@
             'value' => 'description',
             'label' => 'Below description'
         ]
-    ]
-])
+    ]"
+/>
 @endslot
 @endcomponent
 

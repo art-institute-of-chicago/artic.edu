@@ -74,12 +74,12 @@
             'label' => 'Alternative manifest file',
             'note' => 'Upload a .json file'
         ])
-        @formField('radios', [
-            'name' => 'default_view',
-            'label' => 'Default View',
-            'default' => 'single',
-            'inline' => true,
-            'options' => [
+        <x-twill::radios
+            name='default_view'
+            label='Default View'
+            default='single'
+            :inline='true'
+            :options="[
                 [
                     'value' => 'single',
                     'label' => 'Single'
@@ -87,9 +87,9 @@
                 [
                     'value' => 'book',
                     'label' => 'Book'
-                ],
-            ]
-        ])
+                ]
+            ]"
+        />
     </a17-fieldset>
 
     <a17-fieldset id="website" title="Artwork website">

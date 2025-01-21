@@ -1,30 +1,30 @@
 @twillBlockTitle('Magazine Item')
 @twillBlockIcon('text')
 
-@formField('radios', [
-    'name' => 'feature_type',
-    'label' => 'Feature type',
-    'default' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='feature_type'
+    label='Feature type'
+    default='\App\Models\MagazineItem::ITEM_TYPE_ARTICLE'
+    :inline='true'
+    :options="[
         [
-            'value' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
+            'value' => '{{ \App\Models\MagazineItem::ITEM_TYPE_ARTICLE }}',
             'label' => 'Article'
         ],
         [
-            'value' => \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT,
+            'value' => '{{ \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT }}',
             'label' => 'Highlights'
         ],
         [
-            'value' => \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE,
+            'value' => '{{ \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE }}',
             'label' => 'Interactive Features'
         ],
         [
-            'value' => \App\Models\MagazineItem::ITEM_TYPE_CUSTOM,
+            'value' => '{{ \App\Models\MagazineItem::ITEM_TYPE_CUSTOM }}',
             'label' => 'Custom'
-        ],
-    ]
-])
+        ]
+    ]"
+/>
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'feature_type',

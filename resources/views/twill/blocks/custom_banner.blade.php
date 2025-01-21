@@ -101,12 +101,12 @@
     'renderForBlocks' => true,
     ])
 
-@formField('radios', [
-    'name' => 'background_type',
-    'label' => 'Background Type',
-    'default' => 'mobile_app',
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='background_type'
+    label='Background Type'
+    default='mobile_app'
+    :inline='true'
+    :options="[
         [
             'value' => 'background_image',
             'label' => 'Image'
@@ -114,9 +114,9 @@
         [
             'value' => 'background_color',
             'label' => 'Color'
-        ],
-    ]
-])
+        ]
+    ]"
+/>
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'background_type',
@@ -162,12 +162,12 @@
     :required='true'
 />
 
-@formField('radios', [
-    'name' => 'button_type',
-    'label' => 'Variation',
-    'default' => 'mobile_app',
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='button_type'
+    label='Variation'
+    default='mobile_app'
+    :inline='true'
+    :options="[
         [
             'value' => 'mobile_app',
             'label' => 'Mobile App'
@@ -175,9 +175,9 @@
         [
             'value' => 'custom',
             'label' => 'Custom'
-        ],
-    ]
-])
+        ]
+    ]"
+/>
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'button_type',
