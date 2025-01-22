@@ -60,12 +60,6 @@ class BaseApiController extends ModuleController
         $this->disableRestore();
     }
 
-    public function getIndexTableMainFilters($items, $scopes = [])
-    {
-        // Remove Twill table filters.
-        return [];
-    }
-
     /**
      * Create a new model to augment it and redirect to the editing form
      *
@@ -201,7 +195,6 @@ class BaseApiController extends ModuleController
             $columns->add(
                 PublishStatus::make()
                     ->title(twillTrans('twill::lang.listing.columns.published'))
-                    ->sortable()
                     ->optional()
             );
         }
@@ -250,7 +243,6 @@ class BaseApiController extends ModuleController
             Text::make()
                 ->field($this->titleColumnKey)
                 ->title($title)
-                ->sortable()
                 ->linkCell(function (TwillModelContract $model) {
                     if ($model->is_augmented) {
                         $action = 'edit';
@@ -347,11 +339,16 @@ class BaseApiController extends ModuleController
     }
 
     /**
-     * Disable sorting by default for API listings. This has to be implemented individually on each controller
+     * Disable default Twill orders, and do an API search first.
+     * See \Apppp\Repositories\Api\BaseApiRepository::filter().
      */
     protected function orderScope(): array
     {
-        return [];
+        $orderScope = parent::orderScope();
+        $orderScope['search'] ??= 'search';
+        unset($orderScope['created_at']);
+
+        return $orderScope;
     }
 
     protected function indexItemData($item)
