@@ -9,7 +9,7 @@
 
 @section('fieldsets')
 
-    <a17-fieldset id="header" title="Header">
+    <x-twill::formFieldset id="header" title="Header">
 
         <x-twill::wysiwyg
             name='list_description'
@@ -51,9 +51,9 @@
             label='Mobile hero image'
             note='Minimum image width 3000px'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="welcome_note" title="Welcome Note">
+    <x-twill::formFieldset id="welcome_note" title="Welcome Note">
         <x-twill::browser
             name='welcome_note'
             label='Welcome note'
@@ -75,9 +75,9 @@
             label='Author override'
             note="If empty, we use the article's author logic"
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="content" title="Content">
+    <x-twill::formFieldset id="content" title="Content">
         <p>For non-custom magazine items (Articles, Highlights, etc.), if there is no "List description" specified here, we will attempt to fallback to the "List description" field specified on that item's edit page.</p>
 
         @php
@@ -89,6 +89,6 @@
         <x-twill::block-editor
             :blocks='$blocks'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
 @endsection

@@ -55,10 +55,7 @@
 @stop
 
 @section('fieldsets')
-    @formFieldset([
-        'id' => 'editorial-content',
-        'title' => 'Editorial Content',
-    ])
+    <x-twill::formFieldset id='editorial-content' title='Editorial Content'>
         <x-twill::formConnectedFields
             field-name='article_type'
             field-values="grouping"
@@ -220,7 +217,7 @@
                 :blocks='$blocks'
             />
         </x-twill::formConnectedFields>
-    @endformFieldset
+    </x-twill::formFieldset>
 
     @include('twill.partials.meta')
 @stop

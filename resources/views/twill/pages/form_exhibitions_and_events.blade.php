@@ -8,7 +8,7 @@
 
 @section('fieldsets')
 
-    <a17-fieldset id="current" title="Current exhibitions">
+    <x-twill::formFieldset id="current" title="Current exhibitions">
         <x-twill::browser
             name='exhibitionsCurrent'
             label='Current exhibitions'
@@ -17,9 +17,9 @@
             module-name='exhibitions'
             :max='24'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="upcoming" title="Upcoming exhibitions">
+    <x-twill::formFieldset id="upcoming" title="Upcoming exhibitions">
         <x-twill::browser
             name='exhibitionsUpcomingListing'
             label='Upcoming exhibitions'
@@ -28,6 +28,6 @@
             module-name='exhibitions'
             :max='24'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
 @endsection

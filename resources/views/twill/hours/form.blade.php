@@ -36,7 +36,7 @@
 
 @section('fieldsets')
 
-<a17-fieldset id="monday_hours" title="Monday">
+<x-twill::formFieldset id="monday_hours" title="Monday">
     <x-twill::checkbox
         name='monday_is_closed'
         label='Is closed?'
@@ -74,9 +74,9 @@
         @endslot
         @endcomponent
     </x-twill::formConnectedFields>
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset id="tuesday_hours" title="Tuesday">
+<x-twill::formFieldset id="tuesday_hours" title="Tuesday">
     <x-twill::checkbox
         name='tuesday_is_closed'
         label='Is closed?'
@@ -114,9 +114,9 @@
         @endslot
         @endcomponent
     </x-twill::formConnectedFields>
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset id="wednesday_hours" title="Wednesday">
+<x-twill::formFieldset id="wednesday_hours" title="Wednesday">
     <x-twill::checkbox
         name='wednesday_is_closed'
         label='Is closed?'
@@ -154,9 +154,9 @@
         @endslot
         @endcomponent
     </x-twill::formConnectedFields>
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset id="thursday_hours" title="Thursday">
+<x-twill::formFieldset id="thursday_hours" title="Thursday">
     <x-twill::checkbox
         name='thursday_is_closed'
         label='Is closed?'
@@ -194,9 +194,9 @@
         @endslot
         @endcomponent
     </x-twill::formConnectedFields>
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset id="friday_hours" title="Friday">
+<x-twill::formFieldset id="friday_hours" title="Friday">
     <x-twill::checkbox
         name='friday_is_closed'
         label='Is closed?'
@@ -234,9 +234,9 @@
         @endslot
         @endcomponent
     </x-twill::formConnectedFields>
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset id="saturday_hours" title="Saturday">
+<x-twill::formFieldset id="saturday_hours" title="Saturday">
     <x-twill::checkbox
         name='saturday_is_closed'
         label='Is closed?'
@@ -274,9 +274,9 @@
         @endslot
         @endcomponent
     </x-twill::formConnectedFields>
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset id="sunday_hours" title="Sunday">
+<x-twill::formFieldset id="sunday_hours" title="Sunday">
     <x-twill::checkbox
         name='sunday_is_closed'
         label='Is closed?'
@@ -314,9 +314,9 @@
         @endslot
         @endcomponent
     </x-twill::formConnectedFields>
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset id="additional" title="Additional content">
+<x-twill::formFieldset id="additional" title="Additional content">
     <x-twill::input
         name='additional_text'
         label='Additional text'
@@ -330,13 +330,13 @@
         :maxlength='255'
         :toolbar-options="[ ['header' => 4] ]"
     />
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset id="closures" title="Closures">
+<x-twill::formFieldset id="closures" title="Closures">
     <x-twill::repeater
         type='building_closures'
         title='Closures'
     />
-</a17-fieldset>
+</x-twill::formFieldset>
 
 @stop

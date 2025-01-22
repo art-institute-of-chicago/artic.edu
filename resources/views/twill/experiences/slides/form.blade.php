@@ -7,7 +7,7 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset title="Content" id="content">
+    <x-twill::formFieldset title="Content" id="content">
         <x-twill::formConnectedFields
             field-name='module_type'
             field-values='3dtour'
@@ -25,7 +25,7 @@
         @include('twill.experiences.slides._tooltip')
         @include('twill.experiences.slides._compare')
         @include('twill.experiences.slides._3dtour')
-    </a17-fieldset>
+    </x-twill::formFieldset>
 @stop
 @push('extra_js')
     <script>

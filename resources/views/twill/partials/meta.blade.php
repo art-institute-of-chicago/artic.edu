@@ -1,4 +1,4 @@
-<a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
+<x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
 
     <x-twill::input
         name='meta_title'
@@ -12,4 +12,4 @@
         type='textarea'
     />
 
-</a17-fieldset>
+</x-twill::formFieldset>

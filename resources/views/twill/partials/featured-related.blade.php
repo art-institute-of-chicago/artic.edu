@@ -1,4 +1,4 @@
-<a17-fieldset id="side_related" title="Sidebar Related">
+<x-twill::formFieldset id="side_related" title="Sidebar Related">
     <x-twill::browser
         name='sidebar_items'
         label='Sidebar items'
@@ -68,4 +68,4 @@
         @endif
 
     </x-twill::formConnectedFields>
-</a17-fieldset>
+</x-twill::formFieldset>

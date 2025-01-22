@@ -21,19 +21,19 @@
 
     @include('twill.partials.meta')
 
-    <a17-fieldset id="api" title="Datahub fields">
+    <x-twill::formFieldset id="api" title="Datahub fields">
         <x-twill::input
             name='datahub_id'
             label='Datahub ID'
             disabled='true'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="3D Object" id="3dModel">
+    <x-twill::formFieldset title="3D Object" id="3dModel">
         <a17-block-aic_3d_model name="aic_3d_model" :thumbnail="false" :caption="false" :browser="false" :cc0="false" />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="Hi-Res" id="high_res">
+    <x-twill::formFieldset title="Hi-Res" id="high_res">
         <p>This functionality is meant to support super-resolution images. It is a work-around for the 3000-pixel limit on images coming from our DAMS. If you upload an image here, it will replace the primary zoomable image for the artwork on the website.</p>
 
         <x-twill::medias
@@ -49,17 +49,17 @@
         />
 
         <p>This checkbox is meant as a fail-safe. If for some reason, you see missing tiles when you zoom and pan around the deep-zoom viewer, check this option and re-publish. There's no need to use it under normal circumstances. Please note that it may take up to 10 minutes to generate tiles.</p>
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="360file" title="360 File">
+    <x-twill::formFieldset id="360file" title="360 File">
         <x-twill::files
             name='image_sequence_file'
             label='Image Sequence Zip'
             note='Upload a .zip file'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="mirador" title="Mirador">
+    <x-twill::formFieldset id="mirador" title="Mirador">
         <p>Add a Mirador modal to the artwork page by either checking the box below to use the default manifest file or uploading your own.</p>
         <x-twill::checkbox
             name='default_manifest_url'
@@ -88,15 +88,15 @@
                 ]
             ]"
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="website" title="Artwork website">
+    <x-twill::formFieldset id="website" title="Artwork website">
         <p>When the work of art is itself a website, enter its information here.</p>
         <x-twill::input
             name='artwork_website_url'
             label='Artwork website URL'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 @stop
 
 @push('vuexStore')

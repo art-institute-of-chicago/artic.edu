@@ -125,7 +125,7 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="sponsors" title="Sponsors">
+    <x-twill::formFieldset id="sponsors" title="Sponsors">
         <x-twill::browser
             name='sponsors'
             label='Sponsors'
@@ -134,9 +134,9 @@
             note='Display content blocks from this sponsor'
             :max='1'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="waitTime" title="Wait time">
+    <x-twill::formFieldset id="waitTime" title="Wait time">
         <x-twill::browser
             name='waitTimes'
             label='Wait Time'
@@ -153,9 +153,9 @@
             :maxlength='255'
             :toolbar-options="[ 'italic' ]"
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="attributes" title="Attributes">
+    <x-twill::formFieldset id="attributes" title="Attributes">
         <x-twill::input
             name='datahub_id'
             label='Datahub ID'
@@ -168,8 +168,8 @@
             placeholder='Select some tags'
             :options='$siteTagsList'
         />
-    </a17-fieldset>
-    <a17-fieldset id="related" title="Related">
+    </x-twill::formFieldset>
+    <x-twill::formFieldset id="related" title="Related">
         <x-twill::browser
             name='exhibitions'
             label='Related exhibitions'
@@ -185,9 +185,9 @@
             module-name='events'
             :max='20'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="offers" title="Offers and Products">
+    <x-twill::formFieldset id="offers" title="Offers and Products">
         <x-twill::repeater
             type="offers"
         />
@@ -219,7 +219,7 @@
             module-name='shopItems'
             :max='5'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
     @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
         @slot('routePrefix', 'exhibitionsEvents')
@@ -230,7 +230,7 @@
 
     @include('twill.partials.meta')
 
-    <a17-fieldset id="api" title="Datahub fields">
+    <x-twill::formFieldset id="api" title="Datahub fields">
         <x-twill::input
             name='title'
             label='Title'
@@ -303,5 +303,5 @@
             label='Event IDs'
             disabled='true'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 @stop

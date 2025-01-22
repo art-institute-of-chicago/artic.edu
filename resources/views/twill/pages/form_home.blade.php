@@ -25,7 +25,7 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset title="Plan your visit" id="plan-your-visit">
+    <x-twill::formFieldset title="Plan your visit" id="plan-your-visit">
         <x-twill::input
             name='home_visit_button_text'
             label='Label for "Visit" button'
@@ -69,9 +69,9 @@
             name='home_plan_your_visit_link_3_url'
             label='Third "Plan your visit" link URL'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="Video carousel" id="video-carousel">
+    <x-twill::formFieldset title="Video carousel" id="video-carousel">
 
         <x-twill::input
             name='home_video_title'
@@ -91,9 +91,9 @@
             module-name='videos'
             :max='10'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="Call to Action Module" id="call-to-action">
+    <x-twill::formFieldset title="Call to Action Module" id="call-to-action">
 
         <x-twill::medias
             label='Image'
@@ -164,9 +164,9 @@
             label='Form ID'
             note='e.g. webform_client_form_5111'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="Highlights" id="highlights">
+    <x-twill::formFieldset title="Highlights" id="highlights">
         <x-twill::browser
             name='homeHighlights'
             label='Highlights'
@@ -174,15 +174,15 @@
             module-name='highlights'
             :max='10'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="Artists" id="artists">
+    <x-twill::formFieldset title="Artists" id="artists">
         <x-twill::repeater
             type='artists'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="From the Collection" id="from-the-collection">
+    <x-twill::formFieldset title="From the Collection" id="from-the-collection">
         <x-twill::browser
             name='homeArtworks'
             label='Artworks'
@@ -190,9 +190,9 @@
             module-name='artworks'
             :max='20'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="From the Shop" id="from-the-shop">
+    <x-twill::formFieldset title="From the Shop" id="from-the-shop">
         <x-twill::browser
             name='homeShopItems'
             label='Featured shop items'
@@ -201,9 +201,9 @@
             module-name='shopItems'
             :max='5'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="Exhibitions and Event" id="exhibitions-and-events">
+    <x-twill::formFieldset title="Exhibitions and Event" id="exhibitions-and-events">
         <x-twill::browser
             name='homeExhibitions'
             label='Featured exhibitions'
@@ -220,5 +220,5 @@
             module-name='events'
             :max='10'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 @stop

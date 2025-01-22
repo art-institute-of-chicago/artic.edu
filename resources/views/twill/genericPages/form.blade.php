@@ -75,21 +75,21 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="hours" title="Hours">
+    <x-twill::formFieldset id="hours" title="Hours">
         <x-twill::checkbox
             name='show_hours'
             label='Select to display museum hours on the page'
         />
 
         <p>The page must have a banner image in order to display museum hours.</p>
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
     @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
         @slot('routePrefix', 'generic')
         @slot('moduleName', 'genericPages')
     @endcomponent
 
-    <a17-fieldset id="sponsors" title="Sponsors">
+    <x-twill::formFieldset id="sponsors" title="Sponsors">
         <x-twill::browser
             name='sponsors'
             label-'Sponsors'
@@ -98,10 +98,10 @@
             module-name='sponsors'
             :max='1'
         ])
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
     {{-- WEB-2236: Use 'twill.partials.meta' as a component --}}
-    <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
+    <x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
         <x-twill::input
             name='meta_title'
             label='Metadata Title'
@@ -121,6 +121,6 @@
 
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
 @stop

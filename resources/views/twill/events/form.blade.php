@@ -16,7 +16,7 @@
 
 @section('fieldsets')
 
-    <a17-fieldset id="title_and_image" title="Title and Image">
+    <x-twill::formFieldset id="title_and_image" title="Title and Image">
         <x-twill::input
             name='title_display'
             label='Title formatting (optional)'
@@ -35,9 +35,9 @@
         @include('twill.partials.hero')
 
         <p><strong>Note:</strong> Hero images are used by event listings, ticketing pages, and the mobile app.</p>
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="dates" title="Date rules">
+    <x-twill::formFieldset id="dates" title="Date rules">
         <x-twill::input
             name='all_dates_cms'
             label='All computed dates'
@@ -82,9 +82,9 @@
             type='date_rule'
             title='Date rule'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="ticketing" title="Ticketing Information">
+    <x-twill::formFieldset id="ticketing" title="Ticketing Information">
         <p>Select the "Ticketed Event" box when you want a "Buy Tickets" button to appear on the event page. If the event is associated with the ticketing system, the button will not appear until the ticketed event is on sale.</p>
 
         <x-twill::checkbox
@@ -193,9 +193,9 @@
             name='is_sales_button_hidden'
             label='Hide Sales Button'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="sales_site" title="Sales site fields">
+    <x-twill::formFieldset id="sales_site" title="Sales site fields">
         <x-twill::checkbox
             name='is_admission_required'
             label='Is Admission Required'
@@ -227,9 +227,9 @@
             name='virtual_event_passcode'
             label='Virtual event passcode'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="Content" id="content" data-sticky-top="publisher">
+    <x-twill::formFieldset title="Content" id="content" data-sticky-top="publisher">
         <p><strong>Note:</strong> For the following three fields, please keep character count below 255.</p>
 
         <x-twill::wysiwyg
@@ -274,9 +274,9 @@
         <x-twill::block-editor
             :blocks='$blocks'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="sponsors" title="Sponsors">
+    <x-twill::formFieldset id="sponsors" title="Sponsors">
         <x-twill::browser
             name='sponsors'
             label='Sponsors'
@@ -285,9 +285,9 @@
             note='Display content blocks from this sponsor'
             :max='1'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="related_elements" title="Related Events">
+    <x-twill::formFieldset id="related_elements" title="Related Events">
         <x-twill::browser
             name='events'
             label='Related events'
@@ -296,9 +296,9 @@
             note='Show up to 4 events at bottom of page'
             :max='4'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="filters_and_types" title="Filters and types">
+    <x-twill::formFieldset id="filters_and_types" title="Filters and types">
         <x-twill::select
             name='event_type'
             label='Event type (preferred)'
@@ -341,10 +341,10 @@
             :rows='{{ $item->programs->count() }}'
             readonly='true'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
     {{--  WEB-2236: Use 'twill.partials.meta' as a component --}}
-    <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
+    <x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
         <x-twill::input
             name='meta_title'
             label='Metadata Title'
@@ -364,11 +364,11 @@
         />
 
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
     @if (config('aic.show_event_series_emails'))
 
-    <a17-fieldset id="event_series" title="Event series emails">
+    <x-twill::formFieldset id="event_series" title="Event series emails">
         <p>Please review the <a href="https://docs.google.com/document/d/19SN1uMkJy2ldk83uBnEL0GHSZFDOB5j2exz-X1oSb4Y/edit">documentation for email series</a> before proceeding.</p>
 
         <x-twill::checkbox
@@ -589,7 +589,7 @@
 
         </x-twill::formConnectedFields>
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
     @endif
 

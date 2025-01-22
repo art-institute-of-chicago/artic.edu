@@ -29,7 +29,7 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="artworks" title="Artworks">
+    <x-twill::formFieldset id="artworks" title="Artworks">
 
         <x-twill::input
             name='pinboard_title'
@@ -83,9 +83,9 @@
             />
         </x-twill::formConnectedFields>
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="related" title="Related">
+    <x-twill::formFieldset id="related" title="Related">
 
         <p>Use "Custom related items" to relate as many items as possible. No more than 12 will be shown on the department's detail page, but all of them will be used to augment search. See special note on exhibitions below.</p>
 
@@ -127,7 +127,7 @@
 
         <p style="margin-top: 2em;">At this time, we are unable to use CITI data to determine which exhibitions are related to each department, so we cannot automatically add them to department pages. Feel free to relate historic exhibitions here.</p>
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
     @include('twill.partials.meta')
 
