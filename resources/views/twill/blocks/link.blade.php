@@ -12,8 +12,8 @@
     label='Link'
 />
 
-@formField('files', [
-    'name' => 'attachment',
-    'label' => 'Attachment',
-    'note' => 'Add one file'
-])
+<x-twill::files
+    name='attachment'
+    label='Attachment'
+    note='Add one file'
+/>

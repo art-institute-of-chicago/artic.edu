@@ -13,11 +13,11 @@
         note='Minimum image width 3000px'
     />
 
-    @formField('files', [
-        'name' => 'video',
-        'label' => 'Video file',
-        'note' => 'Add an MP4 file'
-    ])
+    <x-twill::files
+        name='video'
+        label='Video file'
+        note='Add an MP4 file'
+    />
 
     @php
         $selectedFeature = 'articles';

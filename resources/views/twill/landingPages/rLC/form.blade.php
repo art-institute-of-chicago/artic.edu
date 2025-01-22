@@ -43,11 +43,11 @@
             label='Hero image'
             note='Minimum image width 3000px'
         />
-        @formField('files', [
-            'name' => 'video',
-            'label' => 'Hero video',
-            'note' => 'Add an MP4 file',
-        ])
+        <x-twill::files
+            name='video'
+            label='Hero video'
+            note='Add an MP4 file'
+        />
         <x-twill::medias
             name='mobile_hero'
             label='Hero image, mobile'
