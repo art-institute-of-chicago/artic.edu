@@ -26,6 +26,8 @@
         'fieldValues' => 'standard',
         'keepAlive' => true,
     ])
-        @formField('repeater', ['type' => 'interstitial_experience_image'])
+        <x-twill::repeater
+            type="interstitial_experience_image"
+        />
     @endcomponent
 @endcomponent

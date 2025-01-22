@@ -25,7 +25,9 @@
             'fieldValues' => 'type_image',
             'keepAlive' => true,
         ])
-            @formField('repeater', ['type' => 'slide_primary_experience_image'])
+            <x-twill::repeater
+                type="slide_primary_experience_image"
+            />
         @endcomponent
     @endcomponent
 
@@ -48,13 +50,19 @@
     />
 
     <div style="display: none" id="secondary_image">
-        @formField('repeater', ['type' => 'slide_secondary_experience_image'])
+        <x-twill::repeater
+            type="slide_secondary_experience_image"
+        />
     </div>
 
     <div style="display: none" id="primary_modal">
-        @formField('repeater', ['type' => 'primary_experience_modal'])
+        <x-twill::repeater
+            type="primary_experience_modal"
+        />
     </div>
     <div style="display: none" id="secondary_modal">
-        @formField('repeater', ['type' => 'secondary_experience_modal'])
+        <x-twill::repeater
+            type="secondary_experience_modal"
+        />
     </div>
 @endcomponent

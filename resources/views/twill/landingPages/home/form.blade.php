@@ -106,7 +106,9 @@
         label='Intro text'
     />
 
-    @formField('repeater', ['type' => 'social_links'])
+    <x-twill::repeater
+        type="social_links"
+    />
 
     <hr/>
 

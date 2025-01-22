@@ -78,10 +78,10 @@
             note='Optional, the event will show this instead of the automatic computed date'
         />
 
-        @formField('repeater', [
-            'type' => 'date_rule',
-            'title' => 'Date rule',
-        ])
+        <x-twill::repeater
+            type='date_rule'
+            title='Date rule'
+        />
     </a17-fieldset>
 
     <a17-fieldset id="ticketing" title="Ticketing Information">

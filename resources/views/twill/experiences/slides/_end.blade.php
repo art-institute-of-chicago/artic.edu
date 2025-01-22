@@ -12,7 +12,9 @@
         :maxlength='150'
     />
 
-    @formField('repeater', ['type' => 'end_bg_experience_image'])
+    <x-twill::repeater
+        type="end_bg_experience_image"
+    />
 
     <br />
 
@@ -29,6 +31,8 @@
             :toolbar-options="[ ['header' => 2], 'bold', 'italic' ]"
         />
 
-        @formField('repeater', ['type' => 'end_experience_image'])
+        <x-twill::repeater
+            type="end_experience_image"
+        />
     </a17-fieldset>
 @endif

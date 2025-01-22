@@ -42,6 +42,10 @@
     ]"
 />
 
-@formField('repeater', ['type' => 'layered_image_viewer_img'])
+<x-twill::repeater
+    type="layered_image_viewer_img"
+/>
 
-@formField('repeater', ['type' => 'layered_image_viewer_overlay'])
+<x-twill::repeater
+    type="layered_image_viewer_overlay"
+/>

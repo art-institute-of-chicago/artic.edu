@@ -16,7 +16,9 @@
         'fieldName' => 'asset_type',
         'fieldValues' => 'standard',
     ])
-        @formField('repeater', ['type' => 'tooltip_experience_image'])
+        <x-twill::repeater
+            type="tooltip_experience_image"
+        />
         <component
         v-bind:is="`a17-block-tooltip`"
         :name="`tooltip`"

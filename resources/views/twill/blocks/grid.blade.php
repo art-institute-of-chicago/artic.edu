@@ -21,4 +21,6 @@
     :maxlength='60'
 />
 
-@formField('repeater', ['type' => 'grid_item'])
+<x-twill::repeater
+    type="grid_item"
+/>

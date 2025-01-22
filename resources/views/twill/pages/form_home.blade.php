@@ -177,7 +177,9 @@
     </a17-fieldset>
 
     <a17-fieldset title="Artists" id="artists">
-        @formField('repeater', [ 'type' => 'artists' ])
+        <x-twill::repeater
+            type='artists'
+        />
     </a17-fieldset>
 
     <a17-fieldset title="From the Collection" id="from-the-collection">

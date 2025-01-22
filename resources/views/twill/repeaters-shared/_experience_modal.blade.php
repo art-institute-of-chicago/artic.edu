@@ -34,7 +34,9 @@
         label='Zoomable'
     />
 
-    @formField('repeater', ['type' => 'modal_experience_image'])
+    <x-twill::repeater
+        type="modal_experience_image"
+    />
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [

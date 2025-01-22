@@ -56,7 +56,9 @@
             label='Description'
             :required='true'
         />
-        @formField('repeater', ['type' => 'featured_hours'])
+        <x-twill::repeater
+            type="featured_hours"
+        />
     </a17-fieldset>
 
     <a17-fieldset title="Call to Action" id="call-to-action">
@@ -94,7 +96,9 @@
             field_name='visit_what_to_expect_more_link'
             label='More link'
         />
-        @formField('repeater', ['type' => 'what_to_expects'])
+        <x-twill::repeater
+            type="what_to_expects"
+        />
     </a17-fieldset>
 
     <a17-fieldset title="Admissions" id="admissions">
@@ -134,7 +138,9 @@
             label="More FAQs and guidelines link"
         />
 
-        @formField('repeater', ['type' => 'faqs'])
+        <x-twill::repeater
+            type="faqs"
+        />
     </a17-fieldset>
 
     <a17-fieldset title="CityPASS" id="citypass">
@@ -214,11 +220,16 @@
             label='Visitors with Mobility Needs'
         />
 
-        @formField('repeater', ['type' => 'locations', 'max' => 2])
+        <x-twill::repeater
+            type='locations'
+            :max='2'
+        />
     </a17-fieldset>
 
     <a17-fieldset title="Enhance Your Visit" id="explore">
-        @formField('repeater', ['type' => 'families'])
+        <x-twill::repeater
+            type="families"
+        />
     </a17-fieldset>
 
 @stop
