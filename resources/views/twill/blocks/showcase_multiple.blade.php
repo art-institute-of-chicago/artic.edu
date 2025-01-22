@@ -65,4 +65,6 @@
     label='Intro'
 />
 
-@formField('repeater', ['type' => 'showcase_item'])
+<x-twill::repeater
+    type="showcase_item"
+/>

@@ -1,4 +1,6 @@
 @twillBlockTitle('Timeline')
 @twillBlockIcon('text')
 
-@formField('repeater', ['type' => 'timeline_item'])
+<x-twill::repeater
+    type="timeline_item"
+/>
