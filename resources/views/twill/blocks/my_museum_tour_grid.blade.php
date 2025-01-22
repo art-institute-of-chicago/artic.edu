@@ -13,10 +13,10 @@
     :toolbar-options="[ 'italic' ]"
 />
 
-@formField('browser', [
-    'routePrefix' => 'visit',
-    'moduleName' => 'myMuseumTourItems',
-    'name' => 'myMuseumTourItems',
-    'label' => 'My Museum Tour',
-    'max' => -1,
-])
+<x-twill::browser
+    name='myMuseumTourItems'
+    label='My Museum Tour'
+    route-prefix='visit'
+    module-name='myMuseumTourItems'
+    :max='-1'
+/>

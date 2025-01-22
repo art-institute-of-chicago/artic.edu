@@ -40,12 +40,12 @@
         'renderForBlocks' => false,
         'fieldValues' => 'articles'
     ])
-        @formField('browser', [
-            'routePrefix' => 'collection.articlesPublications',
-            'moduleName' => 'articles',
-            'name' => 'articles',
-            'label' => 'Article'
-        ])
+        <x-twill::browser
+            name='articles'
+            label='Article'
+            route-prefix='collection.articlesPublications'
+            module-name='articles'
+        />
     @endcomponent
 
     @component('twill::partials.form.utils._connected_fields', [
@@ -53,12 +53,12 @@
         'renderForBlocks' => false,
         'fieldValues' => 'artworks'
     ])
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'moduleName' => 'artworks',
-            'name' => 'artworks',
-            'label' => 'Artworks'
-        ])
+        <x-twill::browser
+            name='artworks'
+            label='Artworks'
+            route-prefix='collection'
+            module-name='artworks'
+        />
     @endcomponent
 
     @component('twill::partials.form.utils._connected_fields', [
@@ -66,12 +66,12 @@
         'renderForBlocks' => false,
         'fieldValues' => 'highlights'
     ])
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'moduleName' => 'highlights',
-            'name' => 'highlights',
-            'label' => 'Highlight'
-        ])
+        <x-twill::browser
+            name='highlights'
+            label='Highlight'
+            route-prefix='collection'
+            module-name='highlights'
+        />
     @endcomponent
 
     @component('twill::partials.form.utils._connected_fields', [
@@ -79,11 +79,11 @@
         'renderForBlocks' => false,
         'fieldValues' => 'experiences'
     ])
-        @formField('browser', [
-            'routePrefix' => 'collection.interactiveFeatures',
-            'moduleName' => 'experiences',
-            'name' => 'experiences',
-            'label' => 'Interactive Feature'
-        ])
+        <x-twill::browser
+            name='experiences'
+            label='Interactive Feature'
+            route-prefix='collection.interactiveFeatures'
+            module-name='experiences'
+        />
     @endcomponent
 @stop

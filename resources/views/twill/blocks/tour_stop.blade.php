@@ -1,13 +1,13 @@
 @twillBlockTitle('Audio Tour Stop')
 @twillBlockIcon('image')
 
-@formField('browser', [
-    'routePrefix' => 'general',
-    'name' => 'tour_stop',
-    'moduleName' => 'tourStops',
-    'label' => 'Audio Tour Stop',
-    'max' => 1
-])
+<x-twill::browser
+    name='tour_stop'
+    label='Audio Tour Stop'
+    route-prefix='general'
+    module-name='tourStops'
+    :max='1'
+/>
 
 <x-twill::input
     name='title_display'

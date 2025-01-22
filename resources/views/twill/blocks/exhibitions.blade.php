@@ -6,10 +6,10 @@
     label='Title'
 />
 
-@formField('browser', [
-    'routePrefix' => 'exhibitionsEvents',
-    'max' => 4,
-    'moduleName' => 'exhibitions',
-    'name' => 'exhibitions',
-    'label' => 'Exhibitions'
-])
+<x-twill::browser
+    name='exhibitions'
+    label='Exhibitions'
+    route-prefix='exhibitionsEvents'
+    module-name='exhibitions'
+    :max='4'
+/>

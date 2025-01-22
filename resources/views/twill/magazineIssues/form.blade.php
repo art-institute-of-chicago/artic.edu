@@ -54,13 +54,13 @@
     </a17-fieldset>
 
     <a17-fieldset id="welcome_note" title="Welcome Note">
-        @formField('browser', [
-            'routePrefix' => 'collection.articlesPublications',
-            'moduleName' => 'articles',
-            'name' => 'welcome_note',
-            'label' => 'Welcome note',
-            'note' => 'Select one article',
-        ])
+        <x-twill::browser
+            name='welcome_note'
+            label='Welcome note'
+            note='Select one article'
+            route-prefix='collection.articlesPublications'
+            module-name='articles'
+        />
 
         <x-twill::wysiwyg
             name='welcome_note_display'
