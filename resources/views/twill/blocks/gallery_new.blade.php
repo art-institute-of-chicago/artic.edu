@@ -43,6 +43,6 @@
     label='Make all image modals zoomable (override)'
 />
 
-@formField('repeater', [
-    'type' => 'gallery_new_item',
-])
+<x-twill::repeater
+    type='gallery_new_item'
+/>

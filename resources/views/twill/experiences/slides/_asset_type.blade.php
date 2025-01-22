@@ -117,7 +117,9 @@
         'renderForBlocks' => false,
         'keepAlive' => true
     ])
-        @formField('repeater', ['type' => 'seamless_experience_image'])
+        <x-twill::repeater
+            type="seamless_experience_image"
+        />
         <component
             v-bind:is="`a17-block-seamless`"
             :is-seamless-image="{{ 'true' }}"

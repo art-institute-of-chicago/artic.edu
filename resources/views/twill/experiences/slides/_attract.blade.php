@@ -11,5 +11,7 @@
         :maxlength='500'
     />
 
-    @formField('repeater', ['type' => 'attract_experience_image'])
+    <x-twill::repeater
+        type="attract_experience_image"
+    />
 @endif
