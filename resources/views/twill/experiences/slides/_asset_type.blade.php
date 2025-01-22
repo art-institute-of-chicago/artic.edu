@@ -135,12 +135,11 @@
         'keepAlive' => true
     ])
         <a17-fieldset title="Seamless Sequence" id="seamless-asset">
-            @formField('files', [
-                'name' => 'sequence_file',
-                'label' => 'Sequence zip file',
-                'noTranslate' => true,
-                'max' => 1,
-            ])
+            <x-twill::files
+                name='sequence_file'
+                label='Sequence zip file'
+                :max='1'
+            />
 
             <component
                 v-bind:is="`a17-block-seamless`"
