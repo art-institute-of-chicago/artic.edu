@@ -48,14 +48,14 @@
 
 @section('fieldsets')
     <a17-fieldset id="sponsors" title="Sponsors">
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'sponsors',
-            'name' => 'sponsors',
-            'label' => 'Sponsors',
-            'note' => 'Display content blocks from this sponsor',
-            'max' => 1
-        ])
+        <x-twill::browser
+            name='sponsors'
+            label='Sponsors'
+            note='Display content blocks from this sponsor'
+            route-prefix='exhibitionsEvents'
+            module-name='sponsors'
+            :max='1'
+        />
     </a17-fieldset>
 
     @include('twill.partials.meta')

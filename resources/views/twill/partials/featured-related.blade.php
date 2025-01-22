@@ -1,11 +1,11 @@
 <a17-fieldset id="side_related" title="Sidebar Related">
-    @formField('browser', [
-        'routePrefix' => $routePrefix,
-        'moduleName' => $moduleName,
-        'name' => 'sidebar_items',
-        'label' => 'Sidebar items',
-        'max' => 6,
-        'endpoints' => [
+    <x-twill::browser
+        name='sidebar_items'
+        label='Sidebar items'
+        route-prefix='$routePrefix'
+        module-name='$moduleName'
+        :max='6'
+        :modules="[
             [
                 'label' => 'Article',
                 'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['is_unlisted' => false]),
@@ -38,8 +38,8 @@
                 'label' => 'Video',
                 'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
             ],
-        ],
-    ])
+        ]"
+    />
 
     <x-twill::checkbox
         name='toggle_autorelated'

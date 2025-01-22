@@ -128,14 +128,12 @@
         'renderForBlocks' => true,
     ])
 
-        @formField('browser', [
-            'routePrefix' => 'collection.articlesPublications',
-            'moduleName' => 'articles',
-            'name' => 'stories',
-            'endpoints' => $endpoints,
-            'max' => 5,
-            'label' => 'Stories',
-        ])
+        <x-twill::browser
+            name='stories'
+            label='Stories'
+            :max='5'
+            :modules='$endpoints'
+        />
     @endcomponent
 
 
@@ -160,19 +158,17 @@
         @endslot
         @endcomponent
 
-        @formField('browser', [
-            'routePrefix' => 'collection.articlesPublications',
-            'moduleName' => 'articles',
-            'name' => 'videos',
-            'endpoints' => [
+        <x-twill::browser
+            name='videos'
+            label='Videos'
+            :max='6'
+            :modules="[
                 [
                     'label' => 'Video',
                     'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser', ['is_published' => true]),
-                ],
-            ],
-            'max' => 6,
-            'label' => 'Videos',
-        ])
+                ]
+            ]"
+        />
     @endcomponent
 
     @formConnectedFields([
@@ -181,14 +177,12 @@
         'renderForBlocks' => true,
     ])
 
-        @formField('browser', [
-            'routePrefix' => 'collection.articlesPublications',
-            'moduleName' => 'articles',
-            'name' => 'stories',
-            'endpoints' => $endpoints,
-            'max' => 6,
-            'label' => 'Stories',
-        ])
+        <x-twill::browser
+            name='stories'
+            label='Stories'
+            :max='6'
+            :modules='$endpoints'
+        />
     @endcomponent
 
     @formConnectedFields([
@@ -212,12 +206,10 @@
         @endslot
         @endcomponent
 
-        @formField('browser', [
-            'routePrefix' => 'collection.articlesPublications',
-            'moduleName' => 'articles',
-            'name' => 'stories',
-            'endpoints' => $endpoints,
-            'max' => 8,
-            'label' => 'Stories',
-        ])
+        <x-twill::browser
+            name='stories'
+            label='Stories'
+            :max='8'
+            :modules='$endpoints'
+        />
     @endcomponent

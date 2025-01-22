@@ -43,13 +43,13 @@
             $maxArtworks = \App\Http\Controllers\DepartmentController::ARTWORKS_PER_PAGE;
         @endphp
 
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'moduleName' => 'artworks',
-            'name' => 'customRelatedArtworks',
-            'label' => 'Artworks',
-            'max' => $maxArtworks,
-        ])
+        <x-twill::browser
+            name='customRelatedArtworks'
+            label='Artworks'
+            route-prefix='collection'
+            module-name='artworks'
+            :max='$maxArtworks'
+        />
 
         <p style="margin-top: 2em">You may select up to {{ $maxArtworks }} artworks, but you don't have to max out that number. If you select fewer than {{ $maxArtworks }} artworks, there are two options. First, we can do nothing and display only the artworks you select. Secondly, we can append artworks from CITI as described above, filtered by departmental category and ordered by relevance. Any artworks you select will be filtered out to prevent duplication. This second option is enabled by default to allow departments more time to select artworks to feature.</p>
 
@@ -89,9 +89,11 @@
 
         <p>Use "Custom related items" to relate as many items as possible. No more than 12 will be shown on the department's detail page, but all of them will be used to augment search. See special note on exhibitions below.</p>
 
-        @formField('browser', [
-            'name' => 'related_items',
-            'endpoints' => [
+        <x-twill::browser
+            name='related_items'
+            label='Custom related items'
+            :max='1000'
+            :modules="[
                 [
                     'label' => 'Articles',
                     'value' => '/collection/articlesPublications/articles/browser'
@@ -120,10 +122,8 @@
                     'label' => 'Exhibitions',
                     'value' => '/exhibitionsEvents/exhibitions/browser'
                 ],
-            ],
-            'max' => 1000,
-            'label' => 'Custom related items',
-        ])
+            ]"
+        />
 
         <p style="margin-top: 2em;">At this time, we are unable to use CITI data to determine which exhibitions are related to each department, so we cannot automatically add them to department pages. Feel free to relate historic exhibitions here.</p>
 

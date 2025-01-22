@@ -77,13 +77,13 @@
 
         <p>If this is left blank, we will show the four most recently published videos.</p>
 
-        @formField('browser', [
-            'routePrefix' => 'collection.articlesPublications',
-            'name' => 'related_videos',
-            'moduleName' => 'videos',
-            'label' => 'Related videos',
-            'max' => 4,
-        ])
+        <x-twill::browser
+            name='related_videos'
+            label='Related videos'
+            route-prefix='collection.articlesPublications'
+            module-name='videos'
+            :max='4'
+        />
 
     </a17-fieldset>
 

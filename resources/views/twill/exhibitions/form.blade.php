@@ -122,25 +122,25 @@
 
 @section('fieldsets')
     <a17-fieldset id="sponsors" title="Sponsors">
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'sponsors',
-            'name' => 'sponsors',
-            'label' => 'Sponsors',
-            'note' => 'Display content blocks from this sponsor',
-            'max' => 1
-        ])
+        <x-twill::browser
+            name='sponsors'
+            label='Sponsors'
+            route-prefix='exhibitionsEvents'
+            module-name='sponsors'
+            note='Display content blocks from this sponsor'
+            :max='1'
+        />
     </a17-fieldset>
 
     <a17-fieldset id="waitTime" title="Wait time">
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'waitTimes',
-            'name' => 'waitTimes',
-            'label' => 'Wait Time',
-            'note' => 'Select a queue to display the wait time for',
-            'max' => 1
-        ])
+        <x-twill::browser
+            name='waitTimes'
+            label='Wait Time'
+            note='Select a queue to display the wait time for'
+            route-prefix='exhibitionsEvents'
+            module-name='waitTimes'
+            :max='1'
+        />
 
         <x-twill::wysiwyg
             name='wait_time_override'
@@ -166,21 +166,21 @@
         />
     </a17-fieldset>
     <a17-fieldset id="related" title="Related">
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'max' => 4,
-            'name' => 'exhibitions',
-            'label' => 'Related exhibitions'
-        ])
+        <x-twill::browser
+            name='exhibitions'
+            label='Related exhibitions'
+            route-prefix='exhibitionsEvents'
+            :max='4'
+        />
 
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'events',
-            'name' => 'events',
-            'label' => 'Related events',
-            'note' => 'Select related events',
-            'max' => 20
-        ])
+        <x-twill::browser
+            name='events'
+            label='Related events'
+            note='Select related events'
+            route-prefix='exhibitionsEvents'
+            module-name='events'
+            :max='20'
+        />
     </a17-fieldset>
 
     <a17-fieldset id="offers" title="Offers and Products">
@@ -206,13 +206,13 @@
             note='Defaults to "https://shop.artic.edu" if blank'
         />
 
-        @formField('browser', [
-            'routePrefix' => 'general',
-            'name' => 'shopItems',
-            'moduleName' => 'shopItems',
-            'label' => 'Shop items',
-            'max' => 5,
-        ])
+        <x-twill::browser
+            name='shopItems'
+            label='Shop items'
+            route-prefix='general'
+            module-name='shopItems'
+            :max='5'
+        />
     </a17-fieldset>
 
     @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])

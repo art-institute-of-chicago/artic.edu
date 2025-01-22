@@ -92,13 +92,13 @@
             label='Ticketed Event'
         />
 
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'max' => 1,
-            'moduleName' => 'ticketedEvents',
-            'name' => 'ticketedEvent',
-            'label' => 'Event from ticketing system'
-        ])
+        <x-twill::browser
+            name='ticketedEvent'
+            label='Event from ticketing system'
+            route-prefix='exhibitionsEvents'
+            module-name='ticketedEvents'
+            :max='1'
+        />
 
         <x-twill::input
             name='rsvp_link'
@@ -273,25 +273,25 @@
     </a17-fieldset>
 
     <a17-fieldset id="sponsors" title="Sponsors">
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'sponsors',
-            'name' => 'sponsors',
-            'label' => 'Sponsors',
-            'note' => 'Display content blocks from this sponsor',
-            'max' => 1
-        ])
+        <x-twill::browser
+            name='sponsors'
+            label='Sponsors'
+            route-prefix='exhibitionsEvents'
+            module-name='sponsors'
+            note='Display content blocks from this sponsor'
+            :max='1'
+        />
     </a17-fieldset>
 
     <a17-fieldset id="related_elements" title="Related Events">
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'events',
-            'name' => 'events',
-            'label' => 'Related events',
-            'note' => 'Show up to 4 events at bottom of page',
-            'max' => 4
-        ])
+        <x-twill::browser
+            name='events'
+            label='Related events'
+            route-prefix='exhibitionsEvents'
+            module-name='events'
+            note='Show up to 4 events at bottom of page'
+            :max='4'
+        />
     </a17-fieldset>
 
     <a17-fieldset id="filters_and_types" title="Filters and types">

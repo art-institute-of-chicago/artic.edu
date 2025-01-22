@@ -59,13 +59,13 @@
     'fieldValues' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK,
     'renderForBlocks' => true
 ])
-    @formField('browser', [
-        'routePrefix' => 'collection',
-        'name' => 'artworks',
-        'moduleName' => 'artworks',
-        'label' => 'Artwork',
-        'max' => 1
-    ])
+    <x-twill::browser
+        name='artworks'
+        label='Artwork'
+        route-prefix='collection'
+        module-name='artworks'
+        :max='1'
+    />
 
     <x-twill::wysiwyg
         name='captionAddendum'

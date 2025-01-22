@@ -31,12 +31,12 @@
     'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
     'renderForBlocks' => true
 ])
-    @formField('browser', [
-        'routePrefix' => 'collection.articlesPublications',
-        'moduleName' => 'articles',
-        'name' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
-        'label' => 'Article'
-    ])
+    <x-twill::browser
+        name='{{ \App\Models\MagazineItem::ITEM_TYPE_ARTICLE }}'
+        label='Article'
+        route-prefix='collection.articlesPublications'
+        module-name='articles'
+    />
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
@@ -44,12 +44,12 @@
     'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT,
     'renderForBlocks' => true
 ])
-    @formField('browser', [
-        'routePrefix' => 'collection',
-        'moduleName' => 'highlights',
-        'name' => \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT,
-        'label' => 'Highlight'
-    ])
+    <x-twill::browser
+        name='{{ \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT }}'
+        label='Highlight'
+        route-prefix='collection'
+        module-name='highlights'
+    />
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
@@ -57,12 +57,12 @@
     'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE,
     'renderForBlocks' => true
 ])
-    @formField('browser', [
-        'routePrefix' => 'collection.interactiveFeatures',
-        'moduleName' => 'experiences',
-        'name' => \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE,
-        'label' => 'Interactive Feature'
-    ])
+    <x-twill::browser
+        name='{{ \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE }}'
+        label='Interactive Feature'
+        route-prefix='collection.interactiveFeatures'
+        module-name='experiences'
+    />
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [

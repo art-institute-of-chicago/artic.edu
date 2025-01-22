@@ -186,13 +186,13 @@
         ]"
     />
 
-    @formField('browser', [
-        'name' => 'articles',
-        'routePrefix' => 'collection.articlesPublications',
-        'moduleName' => 'articles',
-        'max' => 4,
-        'label' => 'Articles',
-    ])
+    <x-twill::browser
+        name='articles'
+        label='Articles'
+        route-prefix='collection.articlesPublications'
+        module-name='articles'
+        :max='4'
+    />
 
 @endcomponent
 
@@ -222,13 +222,13 @@
         ]
     ])
 
-    @formField('browser', [
-        'name' => 'digitalPublications',
-        'routePrefix' => 'collection.articlesPublications',
-        'moduleName' => 'digitalPublications',
-        'max' => 4,
-        'label' => 'Digital Publications',
-    ])
+    <x-twill::browser
+        name='digitalPublications'
+        label='Digital Publications'
+        route-prefix='collection.articlesPublications'
+        module-name='digitalPublications'
+        :max='4'
+    />
 
 @endcomponent
 
@@ -252,13 +252,13 @@
         <br/>
         <i>Note: If event date has passed it will not be shown</i>
 
-        @formField('browser', [
-            'name' => 'events',
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'events',
-            'label' => 'Events',
-            'max' => 20,
-        ])
+        <x-twill::browser
+            name='events'
+            label='Events'
+            route-prefix='exhibitionsEvents'
+            module-name='events'
+            :max='20'
+        />
 
     @endcomponent
 
@@ -302,13 +302,13 @@
         'renderForBlocks' => true,
     ])
 
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'name' => 'exhibitions',
-            'moduleName' => 'exhibitions',
-            'max' => 4,
-            'label' => 'Exhibitions',
-        ])
+        <x-twill::browser
+            name='exhibitions'
+            label='Exhibitions'
+            route-prefix='exhibitionsEvents'
+            module-name='exhibitions'
+            :max='4'
+        />
 
     @endcomponent
 
@@ -340,13 +340,13 @@
         ]"
     />
 
-    @formField('browser', [
-        'name' => 'experiences',
-        'routePrefix' => 'collection.interactiveFeatures',
-        'moduleName' => 'experiences',
-        'max' => 4,
-        'label' => 'Experiences',
-    ])
+    <x-twill::browser
+        name='experiences'
+        label='Experiences'
+        route-prefix='collection.interactiveFeatures'
+        module-name='experiences'
+        :max='4'
+    />
 
 @endcomponent
 
@@ -377,13 +377,13 @@
         ]"
     />
 
-    @formField('browser', [
-        'routePrefix' => 'collection',
-        'moduleName' => 'highlights',
-        'name' => 'highlights',
-        'label' => 'Highlights',
-        'max' => 4,
-    ])
+    <x-twill::browser
+        name='highlights'
+        label='Highlights'
+        route-prefix='collection'
+        module-name='highlights'
+        :max='4'
+    />
 
 @endcomponent
 
@@ -413,12 +413,12 @@
         ]"
     />
 
-    @formField('browser', [
-        'name' => 'videos',
-        'routePrefix' => 'collection.articlesPublications',
-        'moduleName' => 'videos',
-        'max' => 4,
-        'label' => 'Videos',
-    ])
+    <x-twill::browser
+        name='videos'
+        label='Videos'
+        route-prefix='collection.articlesPublications'
+        module-name='videos'
+        :max='4'
+    />
 
 @endcomponent

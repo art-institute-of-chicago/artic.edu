@@ -38,13 +38,13 @@
 
 <p>Note: if the chosen artwork does not have rights to be viewed at a large size, it will display as size small</p>
 
-@formField('browser', [
-    'routePrefix' => 'collection',
-    'name' => 'artworks',
-    'moduleName' => 'artworks',
-    'label' => 'Artworks',
-    'max' => 1
-])
+<x-twill::browser
+    name='artworks'
+    label='Artworks'
+    route-prefix='collection'
+    module-name='artworks'
+    :max='1'
+/>
 
 <x-twill::wysiwyg
     name='captionAddendum'

@@ -122,9 +122,9 @@
             name='sponsors'
             label='Sponsors'
             note='Display content blocks from this sponsor'
-            :max='1'
             route-prefix='exhibitionsEvents'
             module-name='sponsors'
+            :max='1'
         />
     </x-twill::formFieldset>
 
@@ -148,7 +148,6 @@
                     'label' => 'Interactive feature',
                     'name' => 'collection.interactiveFeatures.experiences'
                 ]
-
             ]"
         />
 

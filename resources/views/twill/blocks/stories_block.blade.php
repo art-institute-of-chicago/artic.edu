@@ -21,11 +21,11 @@
     @endslot
 @endcomponent
 
-@formField('browser', [
-    'name' => 'content',
-    'label' => 'Stories',
-    'max' => 5,
-    'endpoints' => [
+<x-twill::browser
+    name='content'
+    label='Stories'
+    :max='5'
+    :modules="[
         [
             'label' => 'Article',
             'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['is_unlisted' => false]),
@@ -42,5 +42,5 @@
             'label' => 'Interactive Feature',
             'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser'),
         ],
-    ],
-])
+    ]"
+/>

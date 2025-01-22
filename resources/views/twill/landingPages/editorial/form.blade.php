@@ -17,11 +17,13 @@
 
         @component('twill::partials.form.utils._columns')
         @slot('left')
-            @formField('browser', [
-                'routePrefix' => 'collection.articlesPublications',
-                'moduleName' => 'articles',
-                'name' => 'top_stories',
-                'endpoints' => [
+            <x-twill::browser
+                name='top_stories'
+                label='Top Stories'
+                route-prefix='collection.articlesPublications'
+                module-name='articles'
+                :max='3'
+                :modules="[
                     [
                         'label' => 'Article',
                         'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['published' => true]),
@@ -38,18 +40,18 @@
                         'label' => 'Video',
                         'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
                     ],
-                ],
-                'max' => 3,
-                'label' => 'Top Stories',
-            ])
+                ]"
+            />
         @endslot
 
         @slot('right')
-            @formField('browser', [
-                'routePrefix' => 'collection.articlesPublications',
-                'moduleName' => 'articles',
-                'name' => 'most_popular_stories',
-                'endpoints' => [
+            <x-twill::browser
+                name='most_popular_stories'
+                label='Most popular stories'
+                route-prefix='collection.articlesPublications'
+                module-name='articles'
+                :max='5'
+                :modules="[
                     [
                         'label' => 'Article',
                         'value' => '/collection/articlesPublications/articles/browser'
@@ -66,10 +68,8 @@
                         'label' => 'Video',
                         'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
                     ],
-                ],
-                'max' => 5,
-                'label' => 'Most popular stories',
-            ])
+                ]"
+            />
         @endslot
         @endcomponent
 

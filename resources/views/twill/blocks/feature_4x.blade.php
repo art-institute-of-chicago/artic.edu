@@ -1,10 +1,10 @@
 @twillBlockTitle('Feature 4x')
 @twillBlockIcon('image')
 
-@formField('browser', [
-    'routePrefix' => 'collection',
-    'moduleName' => 'highlights',
-    'name' => 'highlights',
-    'max' => 4,
-    'label' => 'Featured items',
-])
+<x-twill::browser
+    name='highlights'
+    label='Featured items'
+    route-prefix='collection'
+    module-name='highlights'
+    :max='4'
+/>
