@@ -68,10 +68,7 @@
         field-name='is_dsc_stub'
         field-values="true"
     >
-        @formFieldset([
-            'id' => 'fields_for_dsc_stub',
-            'title' => 'DSC Stub Fields',
-        ])
+        <x-twill::formFieldset id='fields_for_dsc_stub' title'DSC Stub Fields'>
             <p style="margin-bottom: -20px">This content is only shown when the page is a DSC stub.</p>
             <hr>
 
@@ -102,13 +99,10 @@
             <x-twill::block-editor
                 :blocks='$blocks'
             />
-        @endformFieldset
+        </x-twill::formFieldset>
     </x-twill::formConnectedFields>
 
-    @formFieldset([
-        'id' => 'fields_for_full_publication',
-        'title' => 'Publication Fields',
-    ])
+    <x-twill::formFieldset id='fields_for_full_publication' title='Publication Fields'>
         <x-twill::wysiwyg
             name='welcome_note_display'
             label='Welcome note text'
@@ -138,7 +132,7 @@
             label='How to Cite'
             :toolbar-options="[ 'italic' ]"
         />
-    @endformConnectedFields
+    </x-twill::formFieldset>
 
     @include('twill.partials.related')
 
