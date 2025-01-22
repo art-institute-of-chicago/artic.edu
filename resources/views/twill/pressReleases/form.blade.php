@@ -51,7 +51,7 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="sponsors" title="Sponsors">
+    <x-twill::formFieldset id="sponsors" title="Sponsors">
         <x-twill::browser
             name='sponsors'
             label='Sponsors'
@@ -60,7 +60,7 @@
             module-name='sponsors'
             :max='1'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
     @include('twill.partials.meta')
 @endsection

@@ -136,7 +136,7 @@
         :render-for-blocks='false'
         :keep-alive='true'
     >
-        <a17-fieldset title="Seamless Sequence" id="seamless-asset">
+        <x-twill::formFieldset title="Seamless Sequence" id="seamless-asset">
             <x-twill::files
                 name='sequence_file'
                 label='Sequence zip file'
@@ -154,7 +154,7 @@
                 name='seamless_alt_text'
                 label='Alt Text'
             />
-        </a17-fieldset>
+        </x-twill::formFieldset>
     </x-twill::formConnectedFields>
 
     <x-twill::formConnectedFields
@@ -188,9 +188,9 @@
                 :keep-alive='true'
             >
                 <br/>
-                <a17-fieldset title="Video" id="video">
+                <x-twill::formFieldset title="Video" id="video">
                     @include('twill.experiences.slides._video_form', ['moduleType' => $moduleType])
-                </a17-fieldset>
+                </x-twill::formFieldset>
             </x-twill::formConnectedFields>
         </x-twill::formConnectedFields>
     @endforeach

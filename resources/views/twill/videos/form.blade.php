@@ -69,7 +69,7 @@
 
 @section('fieldsets')
 
-    <a17-fieldset id="related_to" title="Related">
+    <x-twill::formFieldset id="related_to" title="Related">
 
         <x-twill::multi-select
             name='categories'
@@ -88,9 +88,9 @@
             :max='4'
         />
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
+    <x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
         <x-twill::input
             name='meta_title'
             label='Metadata Title'
@@ -110,7 +110,7 @@
 
     <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
     @include('twill.partials.related')
 
