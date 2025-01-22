@@ -149,14 +149,18 @@
         />
     </a17-fieldset>
     <a17-fieldset title="Custom Content" id="custom_content">
-        @formField('block_editor', [
-            'name' => 'default',
-            'blocks' => [
+        @php
+            $blocks = [
                 'showcase',
                 'showcase_multiple',
-            ],
-            'withoutSeparator' => true,
-        ])
+            ];
+        @endphp
+
+        <x-twill::block-editor
+            name='default'
+            :blocks='$blocks'
+            withoutSeparator='true'
+        />
     </a17-fieldset>
     <a17-fieldset title="Contact" id="contact">
         <x-twill::input
@@ -168,14 +172,19 @@
             label='Contact Intro'
             :toolbar-options="[ 'bold', 'italic' ]"
         />
-        @formField('block_editor', [
-            'blocks' => [
+
+        @php
+            $blocks = [
                 'newsletter_signup_inline',
                 'paragraph',
-            ],
-            'name' => 'contact',
-            'withoutSeparator' => true,
-        ])
+            ];
+        @endphp
+
+        <x-twill::block-editor
+            name='contact'
+            :blocks='$blocks'
+            withoutSeparator='true'
+        />
     </a17-fieldset>
     <a17-fieldset title="FAQs" id="faq">
         <x-twill::repeater
@@ -183,13 +192,17 @@
         />
     </a17-fieldset>
     <a17-fieldset title="Donor Information" id="donor_info">
-        @formField('block_editor', [
-            'blocks' => [
+        @php
+            $blocks = [
                 'paragraph',
-            ],
-            'name' => 'donor_info',
-            'withoutSeparator' => true,
-        ])
+            ];
+        @endphp
+
+        <x-twill::block-editor
+            name='donor_info'
+            :blocks='$blocks'
+            withoutSeparator='true'
+        />
     </a17-fieldset>
 
     <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
