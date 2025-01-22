@@ -2,90 +2,74 @@
 
 namespace App\Http\Controllers\Twill;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController;
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
+use App\Models\Api\Exhibition;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\SiteTagRepository;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Http\Request;
 
-class ExhibitionController extends \App\Http\Controllers\Twill\BaseApiController
+class ExhibitionController extends BaseApiController
 {
-    protected $moduleName = 'exhibitions';
-    protected $hasAugmentedModel = true;
-    protected $previewView = 'site.exhibitionDetail';
-
-    protected $indexOptions = [
-        'publish' => true,
-        'bulkEdit' => false,
-        'create' => false,
-        'permalink' => true,
-    ];
-
-    protected $indexColumns = [
-        'image' => [
-            'thumb' => true,
-            'optional' => false,
-            'variant' => [
-                'role' => 'hero',
-                'crop' => 'default',
-            ],
-        ],
-        'title' => [
-            'title' => 'Title',
-            'field' => 'title',
-            'sort' => true,
-        ],
-        'augmented' => [
-            'title' => 'Augmented?',
-            'field' => 'augmented',
-            'present' => true,
-        ],
-        'date' => [
-            'title' => 'Dates',
-            'field' => 'date',
-            'present' => true,
-            'optional' => false,
-            'sort' => true,
-            'sortKey' => 'aic_start_at',
-        ],
-    ];
-
-    protected $indexWith = ['medias'];
-
-    protected $formWith = ['revisions', 'siteTags'];
-
-    protected $defaultOrders;
-
-    protected $filters = [];
-
-    public function __construct(Application $app, Request $request)
+    public function setUpController(): void
     {
-        parent::__construct(...func_get_args());
+        $this->disableBulkDelete();
+        $this->disableBulkEdit();
+        $this->disableCreate();
+        $this->disableDelete();
+        $this->disableEdit();
+        $this->disableRestore();
+        $this->eagerLoadFormRelations(['revisions', 'siteTags']);
+        // I believe this was meant to load local images (as opposed to from the
+        // api), but this no longer seems to work.
+        $this->eagerLoadListingRelations(['medias']);
+        $this->enableAugmentedModel();
+        // The images don't always render, but this was also an issue before
+        // upgrading.
+        $this->enableShowImage();
+        $this->setModuleName('exhibitions');
+        $this->setPreviewView('site.exhibitionDetail');
+    }
 
-        $filters = $this->getRequestFilters();
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Text::make()
+                ->title('Dates')
+                ->field('date')
+                ->sortable()
+                ->sortKey('aic_start_at')
+                ->sortByDefault(direction: 'desc')
+                ->customRender(self::renderDate(...))
+        );
+        return $columns;
+    }
 
-        if (is_array($filters) && ($filters['search'] ?? false)) {
-            $this->defaultOrders = ['_score' => 'desc'];
-        } else {
-            $this->defaultOrders = ['aic_start_at' => 'desc'];
+    protected function renderDate(Exhibition $exhibition)
+    {
+        $date = '';
+
+        // Strangely, we cannot use isset() or empty() here
+        $hasStart = $exhibition->aic_start_at !== null;
+        $hasEnd = $exhibition->aic_end_at !== null;
+
+        // These default gracefully to `now` if the attrs are empty
+        $start = $exhibition->asDateTime($exhibition->aic_start_at);
+        $end = $exhibition->asDateTime($exhibition->aic_end_at);
+
+        if ($hasStart) {
+            $date .= $start->format('m d Y');
         }
-    }
 
-    /**
-     * Use the default order scope from Twill.
-     * Added this as an exception on exhibitions because it's the only API listing that
-     * sorting has been implemented.
-     *
-     * @see App\Models\Api\Exhibition::scopeOrderBy
-     */
-    protected function orderScope(): array
-    {
-        return ModuleController::orderScope();
-    }
+        if ($hasStart && $hasEnd) {
+            $date .= '–';
+        }
 
-    protected function indexData($request)
-    {
-        return [];
+        if ($hasEnd) {
+            $date .= $end->format('m d Y');
+        }
+
+        return $date;
     }
 
     protected function formData($request)
