@@ -49,60 +49,60 @@
     :options="$options"
 />
 
-    @formConnectedFields([
-        'fieldName' => 'theme',
-        'fieldValues' => 'default',
-        'renderForBlocks' => true,
-    ])
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="default"
+    :render-for-blocks='true'
+>
 
-        <x-twill::select
-            name='variation'
-            label='Variation'
-            :options="[
-                [
-                    'value' => 'feature-5-side',
-                    'label' => 'Feature 5 Side',
-                ],
-                [
-                    'value' => 'feature-5-top',
-                    'label' => 'Feature 5 Top',
-                ],
-                [
-                    'value' => 'video',
-                    'label' => 'Video',
-                ],
-                [
-                    'value' => '3-across',
-                    'label' => '3 Across',
-                ],
-                [
-                    'value' => '4-across',
-                    'label' => '4 Across',
-                ]
-            ]"
-        />
-
-    @endcomponent
-
-    <x-twill::input
-        name='heading'
-        label='Heading'
-        :maxlength='100'
-        :required='true'
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
+            [
+                'value' => 'feature-5-side',
+                'label' => 'Feature 5 Side',
+            ],
+            [
+                'value' => 'feature-5-top',
+                'label' => 'Feature 5 Top',
+            ],
+            [
+                'value' => 'video',
+                'label' => 'Video',
+            ],
+            [
+                'value' => '3-across',
+                'label' => '3 Across',
+            ],
+            [
+                'value' => '4-across',
+                'label' => '4 Across',
+            ]
+        ]"
     />
 
-    <x-twill::wysiwyg
-        name='body'
-        label='Body'
-        type='textarea'
-        :required='true'
-    />
+</x-twill::formConnectedFields>
 
-    @formConnectedFields([
-        'fieldName' => 'variation',
-        'fieldValues' => ['feature-5-side', 'feature-5-top', '3-across', '4-across'],
-        'renderForBlocks' => true,
-    ])
+<x-twill::input
+    name='heading'
+    label='Heading'
+    :maxlength='100'
+    :required='true'
+/>
+
+<x-twill::wysiwyg
+    name='body'
+    label='Body'
+    type='textarea'
+    :required='true'
+/>
+
+<x-twill::formConnectedFields
+    field-name='variation'
+    field-values="['feature-5-side', 'feature-5-top', '3-across', '4-across']""
+    :render-for-blocks='true'
+>
 
     @php
         $options = collect($categoriesList)->map(function($name, $id) {
@@ -120,96 +120,96 @@
         :options="$options"
     />
 
-    @endcomponent
+</x-twill::formConnectedFields>
 
-    @formConnectedFields([
-        'fieldName' => 'variation',
-        'fieldValues' => ['feature-5-side', 'feature-5-top'],
-        'renderForBlocks' => true,
-    ])
+<x-twill::formConnectedFields
+    field-name='variation'
+    field-values="['feature-5-side', 'feature-5-top']"
+    :render-for-blocks='true'
+>
 
-        <x-twill::browser
-            name='stories'
-            label='Stories'
-            :max='5'
-            :modules='$endpoints'
+    <x-twill::browser
+        name='stories'
+        label='Stories'
+        :max='5'
+        :modules='$endpoints'
+    />
+</x-twill::formConnectedFields>
+
+
+<x-twill::formConnectedFields
+    field-name='variation'
+    field-values="video"
+    :render-for-blocks='true'
+>
+
+    @component('twill::partials.form.utils._columns')
+    @slot('left')
+        <x-twill::input
+            name='browse_label'
+            label='Browse More Label'
         />
-    @endcomponent
-
-
-    @formConnectedFields([
-        'fieldName' => 'variation',
-        'fieldValues' => 'video',
-        'renderForBlocks' => true,
-    ])
-
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            <x-twill::input
-                name='browse_label'
-                label='Browse More Label'
-            />
-        @endslot
-        @slot('right')
-            <x-twill::input
-                name='browse_link'
-                label='Browse More Link'
-            />
-        @endslot
-        @endcomponent
-
-        <x-twill::browser
-            name='videos'
-            label='Videos'
-            :max='6'
-            :modules="[
-                [
-                    'label' => 'Video',
-                    'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser', ['is_published' => true]),
-                ]
-            ]"
+    @endslot
+    @slot('right')
+        <x-twill::input
+            name='browse_link'
+            label='Browse More Link'
         />
+    @endslot
     @endcomponent
 
-    @formConnectedFields([
-        'fieldName' => 'variation',
-        'fieldValues' => '3-across',
-        'renderForBlocks' => true,
-    ])
+    <x-twill::browser
+        name='videos'
+        label='Videos'
+        :max='6'
+        :modules="[
+            [
+                'label' => 'Video',
+                'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser', ['is_published' => true]),
+            ]
+        ]"
+    />
+</x-twill::formConnectedFields>
 
-        <x-twill::browser
-            name='stories'
-            label='Stories'
-            :max='6'
-            :modules='$endpoints'
+<x-twill::formConnectedFields
+    field-name='variation'
+    field-values="3-across"
+    :render-for-blocks='true'
+>
+
+    <x-twill::browser
+        name='stories'
+        label='Stories'
+        :max='6'
+        :modules='$endpoints'
+    />
+</x-twill::formConnectedFields>
+
+<x-twill::formConnectedFields
+    field-name='variation'
+    field-values="4-across"
+    :render-for-blocks='true'
+>
+
+    @component('twill::partials.form.utils._columns')
+    @slot('left')
+        <x-twill::input
+            name='browse_label'
+            label='Browse More Label'
         />
-    @endcomponent
-
-    @formConnectedFields([
-        'fieldName' => 'variation',
-        'fieldValues' => '4-across',
-        'renderForBlocks' => true,
-    ])
-
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            <x-twill::input
-                name='browse_label'
-                label='Browse More Label'
-            />
-        @endslot
-        @slot('right')
-            <x-twill::input
-                name='browse_link'
-                label='Browse More Link'
-            />
-        @endslot
-        @endcomponent
-
-        <x-twill::browser
-            name='stories'
-            label='Stories'
-            :max='8'
-            :modules='$endpoints'
+    @endslot
+    @slot('right')
+        <x-twill::input
+            name='browse_link'
+            label='Browse More Link'
         />
+    @endslot
     @endcomponent
+
+    <x-twill::browser
+        name='stories'
+        label='Stories'
+        :max='8'
+        :modules='$endpoints'
+    />
+</x-twill::formConnectedFields>

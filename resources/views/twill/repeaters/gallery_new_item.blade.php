@@ -19,11 +19,11 @@
     ]"
 />
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'gallery_item_type',
-    'fieldValues' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM,
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='gallery_item_type'
+    field-values="{{ \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM }}"
+    :render-for-blocks='true'
+>
     <x-twill::medias
         name='image'
         label='Image'
@@ -52,13 +52,13 @@
         name='is_zoomable'
         label='Make this image modal zoomable'
     />
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'gallery_item_type',
-    'fieldValues' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK,
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='gallery_item_type'
+    field-values="{{ \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK }}"
+    :render-for-blocks='true'
+>
     <x-twill::browser
         name='artworks'
         label='Artwork'
@@ -73,4 +73,4 @@
         note='Appended to generated tombstone'
         :toolbar-options="[ 'italic', 'link' ]"
     />
-@endcomponent
+</x-twill::formConnectedFields>

@@ -59,11 +59,11 @@
             default='true'
         />
 
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'should_append_artworks',
-            'renderForBlocks' => false,
-            'fieldValues' => true
-        ])
+        <x-twill::formConnectedFields
+            field-name='should_append_artworks'
+            field-values='true'
+            :render-for-blocks='false'
+        >
 
             @php
                 $options = array_map(function($i) {
@@ -81,7 +81,7 @@
                 default="$maxArtworks"
                 :options="$options"
             />
-        @endcomponent
+        </x-twill::formConnectedFields>
 
     </a17-fieldset>
 

@@ -31,11 +31,11 @@
     :options="$options"
 />
 
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => 'editorial',
-    'renderForBlocks' => true,
-    ])
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="editorial"
+    :render-for-blocks='true'
+>
 
     <x-twill::select
         name='variation'
@@ -48,165 +48,164 @@
         ]"
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-    @formConnectedFields([
-        'fieldName' => 'variation',
-        'fieldValues' => 'cloud',
-        'renderForBlocks' => true,
-    ])
+<x-twill::formConnectedFields
+    field-name='variation'
+    field-values="cloud"
+    :render-for-blocks='true'
+>
+
+    <x-twill::input
+        name='title'
+        label='Title'
+        :maxlength='100'
+        :required='true'
+    />
+
+    <x-twill::wysiwyg
+        name='body'
+        label='Body'
+        :required='true'
+    />
+
+    @php
+        $options = collect($categoriesList)->map(function($name, $id) {
+            return [
+                'value' => $id,
+                'label' => $name,
+            ];
+        })->toArray();
+    @endphp
+
+    <x-twill::multi-select
+        name='categories'
+        label='Categories'
+        placeholder='Add categories to the tag cloud'
+        :options="$options"
+    />
+
+    @component('twill::partials.form.utils._columns')
+    @slot('left')
+        <x-twill::input
+            name='link_label'
+            label='Link label'
+        />
+    @endslot
+
+    @slot('right')
+        <x-twill::input
+            name='link_url'
+            label='Link URL'
+        />
+    @endslot
+    @endcomponent
+
+</x-twill::formConnectedFields>
+
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="default"
+    :render-for-blocks='true'
+>
+
+    <x-twill::radios
+        name='background_type'
+        label='Background Type'
+        default='mobile_app'
+        :inline='true'
+        :options="[
+            [
+                'value' => 'background_image',
+                'label' => 'Image'
+            ],
+            [
+                'value' => 'background_color',
+                'label' => 'Color'
+            ]
+        ]"
+    />
+
+    <x-twill::formConnectedFields
+        field-name='background_type'
+        field-values="background_image"
+        :render-for-blocks='true'
+    >
+
+        <x-twill::medias
+            name='image'
+            label='Image'
+            :required='true'
+            :max='1'
+            :withVideoUrl='false'
+        />
+
+    </x-twill::formConnectedFields>
+
+    <x-twill::formConnectedFields
+        field-name='background_type'
+        field-values="background_color"
+        :render-for-blocks='true'
+    >
+
+        <x-twill::color
+            name='bgcolor'
+            label='Background color'
+            default='#000000'
+        />
+
+    </x-twill::formConnectedFields>
+
+    <x-twill::input
+        name='title'
+        label='Title'
+        :maxlength='100'
+        :required='true'
+    />
+
+    <x-twill::wysiwyg
+        name='body'
+        label='Body'
+        :required='true'
+    />
+
+    <x-twill::radios
+        name='button_type'
+        label='Variation'
+        default='mobile_app'
+        :inline='true'
+        :options="[
+            [
+                'value' => 'mobile_app',
+                'label' => 'Mobile App'
+            ],
+            [
+                'value' ='> custom',
+                'label' => 'Custom'
+            ]
+        ]"
+    />
+
+    <x-twill::formConnectedFields
+        field-name='button_type'
+        field-values="custom"
+        :render-for-blocks='true'
+    >
 
         <x-twill::input
-            name='title'
-            label='Title'
+            name='button_text'
+            label='Button Text'
             :maxlength='100'
             :required='true'
         />
 
-        <x-twill::wysiwyg
-            name='body'
-            label='Body'
+        <x-twill::input
+            name='button_url'
+            label='Button URL'
+            :maxlength='100'
             :required='true'
         />
 
-        @php
-            $options = collect($categoriesList)->map(function($name, $id) {
-                return [
-                    'value' => $id,
-                    'label' => $name,
-                ];
-            })->toArray();
-        @endphp
+    </x-twill::formConnectedFields>
 
-        <x-twill::multi-select
-            name='categories'
-            label='Categories'
-            placeholder='Add categories to the tag cloud'
-            :options="$options"
-        />
-
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            <x-twill::input
-                name='link_label'
-                label='Link label'
-            />
-        @endslot
-
-        @slot('right')
-            <x-twill::input
-                name='link_url'
-                label='Link URL'
-            />
-        @endslot
-        @endcomponent
-
-    @endcomponent
-
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => 'default',
-    'renderForBlocks' => true,
-    ])
-
-<x-twill::radios
-    name='background_type'
-    label='Background Type'
-    default='mobile_app'
-    :inline='true'
-    :options="[
-        [
-            'value' => 'background_image',
-            'label' => 'Image'
-        ],
-        [
-            'value' => 'background_color',
-            'label' => 'Color'
-        ]
-    ]"
-/>
-
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'background_type',
-    'fieldValues' => 'background_image',
-    'renderForBlocks' => true
-])
-
-    <x-twill::medias
-        name='image'
-        label='Image'
-        :required='true'
-        :max='1'
-        :withVideoUrl='false'
-    />
-
-@endcomponent
-
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'background_type',
-    'fieldValues' => 'background_color',
-    'renderForBlocks' => true
-])
-
-    <x-twill::color
-        name='bgcolor'
-        label='Background color'
-        default='#000000'
-    />
-
-@endcomponent
-
-
-<x-twill::input
-    name='title'
-    label='Title'
-    :maxlength='100'
-    :required='true'
-/>
-
-<x-twill::wysiwyg
-    name='body'
-    label='Body'
-    :required='true'
-/>
-
-<x-twill::radios
-    name='button_type'
-    label='Variation'
-    default='mobile_app'
-    :inline='true'
-    :options="[
-        [
-            'value' => 'mobile_app',
-            'label' => 'Mobile App'
-        ],
-        [
-            'value' => 'custom',
-            'label' => 'Custom'
-        ]
-    ]"
-/>
-
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'button_type',
-    'fieldValues' => 'custom',
-    'renderForBlocks' => true
-])
-
-    <x-twill::input
-        name='button_text'
-        label='Button Text'
-        :maxlength='100'
-        :required='true'
-    />
-
-    <x-twill::input
-        name='button_url'
-        label='Button URL'
-        :maxlength='100'
-        :required='true'
-    />
-
-@endcomponent
-
-@endcomponent
+</x-twill::formConnectedFields>

@@ -42,11 +42,11 @@
         label='Is closed?'
     />
 
-    @formConnectedFields([
-        'fieldName' => 'monday_is_closed',
-        'fieldValues' => false,
-        'renderForBlocks' => false
-    ])
+    <x-twill::formConnectedFields
+        field-name='monday_is_closed'
+        field-values="false"
+        :render-for-blocks='false'
+    >
         @component('twill::partials.form.utils._columns')
         @slot('left')
             <x-twill::select
@@ -73,7 +73,7 @@
             />
         @endslot
         @endcomponent
-    @endformConnectedFields
+    </x-twill::formConnectedFields>
 </a17-fieldset>
 
 <a17-fieldset id="tuesday_hours" title="Tuesday">
@@ -82,11 +82,11 @@
         label='Is closed?'
     />
 
-    @formConnectedFields([
-        'fieldName' => 'tuesday_is_closed',
-        'fieldValues' => false,
-        'renderForBlocks' => false
-    ])
+    <x-twill::formConnectedFields
+        field-name='tuesday_is_closed'
+        field-values="false"
+        :render-for-blocks='false'
+    >
         @component('twill::partials.form.utils._columns')
         @slot('left')
             <x-twill::select
@@ -113,7 +113,7 @@
             />
         @endslot
         @endcomponent
-    @endformConnectedFields
+    </x-twill::formConnectedFields>
 </a17-fieldset>
 
 <a17-fieldset id="wednesday_hours" title="Wednesday">
@@ -122,11 +122,11 @@
         label='Is closed?'
     />
 
-    @formConnectedFields([
-        'fieldName' => 'wednesday_is_closed',
-        'fieldValues' => false,
-        'renderForBlocks' => false
-    ])
+    <x-twill::formConnectedFields
+        field-name='wednesday_is_closed'
+        field-values="false"
+        :render-for-blocks='false'
+    >
         @component('twill::partials.form.utils._columns')
         @slot('left')
             <x-twill::select
@@ -153,7 +153,7 @@
             />
         @endslot
         @endcomponent
-    @endformConnectedFields
+    </x-twill::formConnectedFields>
 </a17-fieldset>
 
 <a17-fieldset id="thursday_hours" title="Thursday">
@@ -162,11 +162,11 @@
         label='Is closed?'
     />
 
-    @formConnectedFields([
-        'fieldName' => 'thursday_is_closed',
-        'fieldValues' => false,
-        'renderForBlocks' => false
-    ])
+    <x-twill::formConnectedFields
+        field-name='thursday_is_closed'
+        field-values="false"
+        :render-for-blocks='false'
+    >
         @component('twill::partials.form.utils._columns')
         @slot('left')
             <x-twill::select
@@ -193,7 +193,7 @@
             />
         @endslot
         @endcomponent
-    @endformConnectedFields
+    </x-twill::formConnectedFields>
 </a17-fieldset>
 
 <a17-fieldset id="friday_hours" title="Friday">
@@ -202,11 +202,11 @@
         label='Is closed?'
     />
 
-    @formConnectedFields([
-        'fieldName' => 'friday_is_closed',
-        'fieldValues' => false,
-        'renderForBlocks' => false
-    ])
+    <x-twill::formConnectedFields
+        field-name='friday_is_closed'
+        field-values="false"
+        :render-for-blocks='false'
+    >
         @component('twill::partials.form.utils._columns')
         @slot('left')
             <x-twill::select
@@ -233,7 +233,7 @@
             />
         @endslot
         @endcomponent
-    @endformConnectedFields
+    </x-twill::formConnectedFields>
 </a17-fieldset>
 
 <a17-fieldset id="saturday_hours" title="Saturday">
@@ -242,11 +242,11 @@
         label='Is closed?'
     />
 
-    @formConnectedFields([
-        'fieldName' => 'saturday_is_closed',
-        'fieldValues' => false,
-        'renderForBlocks' => false
-    ])
+    <x-twill::formConnectedFields
+        field-name='saturday_is_closed'
+        field-values="false"
+        :render-for-blocks='false'
+    >
         @component('twill::partials.form.utils._columns')
         @slot('left')
             <x-twill::select
@@ -273,7 +273,7 @@
             />
         @endslot
         @endcomponent
-    @endformConnectedFields
+    </x-twill::formConnectedFields>
 </a17-fieldset>
 
 <a17-fieldset id="sunday_hours" title="Sunday">
@@ -282,11 +282,11 @@
         label='Is closed?'
     />
 
-    @formConnectedFields([
-        'fieldName' => 'sunday_is_closed',
-        'fieldValues' => false,
-        'renderForBlocks' => false
-    ])
+    <x-twill::formConnectedFields
+        field-name='sunday_is_closed'
+        field-values="false"
+        :render-for-blocks='false'
+    >
         @component('twill::partials.form.utils._columns')
         @slot('left')
             <x-twill::select
@@ -313,7 +313,7 @@
             />
         @endslot
         @endcomponent
-    @endformConnectedFields
+    </x-twill::formConnectedFields>
 </a17-fieldset>
 
 <a17-fieldset id="additional" title="Additional content">

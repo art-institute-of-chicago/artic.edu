@@ -376,11 +376,11 @@
             label='Add to event email series'
         />
 
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'add_to_event_email_series',
-            'renderForBlocks' => false,
-            'fieldValues' => true
-        ])
+        <x-twill::formConnectedFields
+            field-name='add_to_event_email_series'
+            field-values='true'
+            :render-for-blocks='false'
+        >
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
             @php
@@ -419,11 +419,11 @@
                     label='$currentSeriesTitle'
                 />
 
-                @component('twill::partials.form.utils._connected_fields', [
-                    'fieldName' => $currentSeriesName,
-                    'renderForBlocks' => false,
-                    'fieldValues' => true
-                ])
+                <x-twill::formConnectedFields
+                    field-name='{{ $currentSeriesName }}'
+                    field-values='true'
+                    :render-for-blocks='false'
+                >
 
                     <div style="padding-left: 35px">
 
@@ -450,11 +450,11 @@
                             label='{{ ($useShortLabel ? 'Override default copy' : 'Include ' . $subFieldLabel . '-specific copy (overrides default copy)' }}'
                         />
 
-                        @component('twill::partials.form.utils._connected_fields', [
-                            'fieldName' => $currentSeriesName . '_' . $subFieldName . '_override',
-                            'renderForBlocks' => false,
-                            'fieldValues' => true
-                        ])
+                        <x-twill::formConnectedFields
+                            field-name='{{ $currentSeriesName . '_' . $subFieldName . '_override' }}'
+                            field-values='true'
+                            :render-for-blocks='false'
+                        >
 
                             <div style="padding-left: 35px">
 
@@ -466,13 +466,13 @@
 
                             </div>
 
-                        @endcomponent
+                        </x-twill::formConnectedFields>
 
                     @endforeach
 
                     </div>
 
-                @endcomponent
+                </x-twill::formConnectedFields>
 
             @endforeach
 
@@ -500,11 +500,11 @@
                 label='Send test emails after save'
             />
 
-            @component('twill::partials.form.utils._connected_fields', [
-                'fieldName' => 'send_test_emails',
-                'renderForBlocks' => false,
-                'fieldValues' => true
-            ])
+            <x-twill::formConnectedFields
+                field-name='send_test_emails'
+                field-values='true'
+                :render-for-blocks='false'
+            >
 
                 <hr style="height: 5px; margin: 30px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
@@ -531,11 +531,11 @@
                         }
                     @endphp
 
-                    @component('twill::partials.form.utils._connected_fields', [
-                        'fieldName' => $currentSeriesName,
-                        'renderForBlocks' => false,
-                        'fieldValues' => true
-                    ])
+                    <x-twill::formConnectedFields
+                        field-name='{{ $currentSeriesName }}'
+                        field-values='true'
+                        :render-for-blocks='false'
+                    >
 
                         <x-twill::checkbox
                             name='{{ $currentSeriesName . '_test' }}'
@@ -558,11 +558,11 @@
 
                         @elseif(count($enabledSubFields) > 1)
 
-                            @component('twill::partials.form.utils._connected_fields', [
-                                'fieldName' => $currentSeriesName . '_test',
-                                'renderForBlocks' => false,
-                                'fieldValues' => true
-                            ])
+                            <x-twill::formConnectedFields
+                                field-name='{{ $currentSeriesName . '_test' }}'
+                                field-values='true'
+                                :render-for-blocks='false'
+                            >
 
                                 <div style="padding-left: 35px">
 
@@ -577,17 +577,17 @@
 
                                 </div>
 
-                            @endcomponent
+                            </x-twill::formConnectedFields>
 
                         @endif
 
-                    @endcomponent
+                    </x-twill::formConnectedFields>
 
                 @endforeach
 
-            @endcomponent
+            </x-twill::formConnectedFields>
 
-        @endcomponent
+        </x-twill::formConnectedFields>
 
     </a17-fieldset>
 

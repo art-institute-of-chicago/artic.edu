@@ -45,11 +45,11 @@
     ]"
 />
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'media_type',
-    'fieldValues' => 'loop',
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='media_type'
+    field-values="loop"
+    :render-for-blocks='true'
+>
     <x-twill::medias
         name='image'
         label='Video loop'
@@ -72,13 +72,13 @@
         ]"
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'media_type',
-    'fieldValues' => 'youtube',
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='media_type'
+    field-values="youtube"
+    :render-for-blocks='true'
+>
     <x-twill::medias
         name='image'
         label='Thumbnail image'
@@ -92,7 +92,7 @@
         type='url'
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
 <x-twill::checkbox
     name='use_alt_background'

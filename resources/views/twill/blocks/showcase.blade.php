@@ -36,11 +36,11 @@
     :options="$options"
 />
 
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => 'default',
-    'renderForBlocks' => true,
-    ])
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="default"
+    :render-for-blocks='true'
+>
 
     <x-twill::select
         name='variation'
@@ -56,13 +56,13 @@
             ],
         ]"
     />
-@endcomponent
+</x-twill::formConnectedFields>
 
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => 'rlc',
-    'renderForBlocks' => true,
-    ])
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="rlc"
+    :render-for-blocks='true'
+>
 
     <x-twill::select
         name='variation'
@@ -87,7 +87,7 @@
         name='heading'
         label='Heading'
     />
-@endcomponent
+</x-twill::formConnectedFields>
 
 @if (count($mediaTypes) > 1)
 
@@ -108,11 +108,11 @@
         :options="$options"
     />
 
-    @formConnectedFields([
-        'fieldName' => 'media_type',
-        'fieldValues' => 'image',
-        'renderForBlocks' => true,
-    ])
+    <x-twill::formConnectedFields
+        field-name='media_type'
+        field-values="image"
+        :render-for-blocks='true'
+    >
         <x-twill::medias
             name='image'
             label='Image'
@@ -120,13 +120,13 @@
             :withVideoUrl='false'
             :required='true'
         />
-    @endcomponent
+    </x-twill::formConnectedFields>
 
-    @formConnectedFields([
-        'fieldName' => 'media_type',
-        'fieldValues' => 'video',
-        'renderForBlocks' => true,
-    ])
+    <x-twill::formConnectedFields
+        field-name='media_type'
+        field-values="video"
+        :render-for-blocks='true'
+    >
         <x-twill::medias
             name='image'
             label='Video'
@@ -134,7 +134,7 @@
             :withVideoUrl='false'
             :required='true'
         />
-    @endcomponent
+    </x-twill::formConnectedFields>
 
 @else
     <x-twill::medias
@@ -166,16 +166,16 @@
     :required='true'
 />
 
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => 'rlc',
-    'renderForBlocks' => true,
-])
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="rlc"
+    :render-for-blocks='true'
+>
     <x-twill::input
         name='date'
         label='Date'
     />
-@endcomponent
+</x-twill::formConnectedFields>
 
 @component('twill::partials.form.utils._columns')
     @slot('left')

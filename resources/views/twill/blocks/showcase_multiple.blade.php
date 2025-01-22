@@ -25,11 +25,11 @@
     :options="$options"
 />
 
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => 'rlc',
-    'renderForBlocks' => true,
-    ])
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="rlc"
+    :render-for-blocks='true'
+>
 
     <x-twill::select
         name='variation'
@@ -50,7 +50,7 @@
         ]"
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
 @twillBlockTitle('Showcase Multiple')
 @twillBlockIcon('image')

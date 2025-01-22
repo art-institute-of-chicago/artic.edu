@@ -55,19 +55,19 @@
 
 @endunless
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'asset_type',
-    'fieldValues' => 'standard',
-    'renderForBlocks' => false,
-    'keepAlive' => true
-])
+<x-twill::formConnectedFields
+    field-name='asset_type'
+    field-values="standard"
+    :render-for-blocks='false'
+    :keep-alive='true'
+>
     @foreach(['split', 'fullwidthmedia'] as $moduleType)
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'module_type',
-            'fieldValues' => $moduleType,
-            'renderForBlocks' => false,
-            'keepAlive' => true,
-        ])
+        <x-twill::formConnectedFields
+            field-name='module_type'
+            field-values="$moduleType"
+            :render-for-blocks='false'
+            :keep-alive='true'
+        >
             <x-twill::radios
                 name='$moduleType . '_standard_media_type''
                 label='Media Type'
@@ -84,16 +84,16 @@
                     ]
                 ]"
             />
-        @endcomponent
+        </x-twill::formConnectedFields>
     @endforeach
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'asset_type',
-    'fieldValues' => 'seamless',
-    'renderForBlocks' => false,
-    'keepAlive' => true
-])
+<x-twill::formConnectedFields
+    field-name='asset_type'
+    field-values="seamless"
+    :render-for-blocks='false'
+    :keep-alive='true'
+>
     <x-twill::radios
         name='media_type'
         label='Media Type'
@@ -111,12 +111,12 @@
         ]"
     />
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'media_type',
-        'fieldValues' => 'type_image',
-        'renderForBlocks' => false,
-        'keepAlive' => true
-    ])
+    <x-twill::formConnectedFields
+        field-name='media_type'
+        field-values="type_image"
+        :render-for-blocks='false'
+        :keep-alive='true'
+    >
         <x-twill::repeater
             type="seamless_experience_image"
         />
@@ -127,15 +127,15 @@
             :hotspotsdata="{{ isset($form_fields['tooltip_hotspots']) ? json_encode($form_fields['tooltip_hotspots']) : '[]' }}"
             :name="`seamless_image`">
         </component>
-    @endcomponent
+    </x-twill::formConnectedFields>
 
     <br />
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'media_type',
-        'fieldValues' => 'type_sequence',
-        'renderForBlocks' => false,
-        'keepAlive' => true
-    ])
+    <x-twill::formConnectedFields
+        field-name='media_type'
+        field-values="type_sequence"
+        :render-for-blocks='false'
+        :keep-alive='true'
+    >
         <a17-fieldset title="Seamless Sequence" id="seamless-asset">
             <x-twill::files
                 name='sequence_file'
@@ -155,43 +155,43 @@
                 label='Alt Text'
             />
         </a17-fieldset>
-    @endcomponent
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'module_type',
-        'fieldValues' => 'compare',
-        'renderForBlocks' => false,
-    ])
+    <x-twill::formConnectedFields
+        field-name='module_type'
+        field-values="compare"
+        :render-for-blocks='false'
+    >
         <x-twill::wysiwyg
             name='caption'
             label='Seamless Caption'
             :maxlength='500'
         />
-    @endcomponent
-@endcomponent
+    </x-twill::formConnectedFields>
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'asset_type',
-    'fieldValues' => 'standard',
-    'keepAlive' => true,
-])
+<x-twill::formConnectedFields
+    field-name='asset_type'
+    field-values="standard"
+    :keep-alive='true'
+>
     @foreach(['split', 'fullwidthmedia'] as $moduleType)
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => $moduleType . '_standard_media_type',
-            'fieldValues' => 'type_video',
-            'keepAlive' => true,
-        ])
-            @component('twill::partials.form.utils._connected_fields', [
-                'fieldName' => 'module_type',
-                'fieldValues' => $moduleType,
-                'renderForBlocks' => false,
-                'keepAlive' => true,
-            ])
+        <x-twill::formConnectedFields
+            field-name='{{ $moduleType . '_standard_media_type' }}'
+            field-values="type_video"
+            :keep-alive='true'
+        >
+            <x-twill::formConnectedFields
+                field-name='module_type'
+                field-values="$moduleType"
+                :render-for-blocks='false'
+                :keep-alive='true'
+            >
                 <br/>
                 <a17-fieldset title="Video" id="video">
                     @include('twill.experiences.slides._video_form', ['moduleType' => $moduleType])
                 </a17-fieldset>
-            @endcomponent
-        @endcomponent
+            </x-twill::formConnectedFields>
+        </x-twill::formConnectedFields>
     @endforeach
-@endcomponent
+</x-twill::formConnectedFields>

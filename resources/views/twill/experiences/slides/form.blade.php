@@ -8,14 +8,14 @@
 
 @section('fieldsets')
     <a17-fieldset title="Content" id="content">
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'module_type',
-            'fieldValues' => '3dtour',
-            'keepAlive' => true,
-            'isEqual' => false
-        ])
+        <x-twill::formConnectedFields
+            field-name='module_type'
+            field-values='3dtour'
+            :keep-alive='true'
+            :is-equal='false'
+        >
             @include('twill.experiences.slides._asset_type')
-        @endcomponent
+        </x-twill::formConnectedFields>
 
         @include('twill.experiences.slides._attract')
         @include('twill.experiences.slides._end')

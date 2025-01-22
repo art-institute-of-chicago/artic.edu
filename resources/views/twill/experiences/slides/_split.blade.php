@@ -1,8 +1,8 @@
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'module_type',
-    'fieldValues' => 'split',
-    'keepAlive' => true,
-])
+<x-twill::formConnectedFields
+    field-name='module_type'
+    field-values="split"
+    :keep-alive='true'
+>
     <div style="display: none" id="headline">
         <x-twill::input
             name='headline'
@@ -15,21 +15,21 @@
         label='Primary Copy'
     />
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'asset_type',
-        'fieldValues' => 'standard',
-        'keepAlive' => true,
-    ])
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'split_standard_media_type',
-            'fieldValues' => 'type_image',
-            'keepAlive' => true,
-        ])
+    <x-twill::formConnectedFields
+        field-name='asset_type'
+        field-values="standard"
+        :keep-alive='true'
+    >
+        <x-twill::formConnectedFields
+            field-name='split_standard_media_type'
+            field-values="type_image"
+            :keep-alive='true'
+        >
             <x-twill::repeater
                 type="slide_primary_experience_image"
             />
-        @endcomponent
-    @endcomponent
+        </x-twill::formConnectedFields>
+    </x-twill::formConnectedFields>
 
     <x-twill::radios
         name='image_side'
@@ -65,4 +65,4 @@
             type="secondary_experience_modal"
         />
     </div>
-@endcomponent
+</x-twill::formConnectedFields>

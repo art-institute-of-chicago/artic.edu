@@ -30,11 +30,11 @@
     :options="$options"
 />
 
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => 'editorial',
-    'renderForBlocks' => true,
-    ])
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="editorial"
+    :render-for-blocks='true'
+>
 
     <x-twill::select
         name='variation'
@@ -47,19 +47,19 @@
         ]"
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => 'editorial',
-    'renderForBlocks' => true,
-    ])
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="editorial"
+    :render-for-blocks='true'
+>
 
-    @formConnectedFields([
-        'fieldName' => 'variation',
-        'fieldValues' => 'default',
-        'renderForBlocks' => true,
-    ])
+    <x-twill::formConnectedFields
+        field-name='variation'
+        field-values="default"
+        :render-for-blocks='true'
+    >
 
         <x-twill::input
             name='heading'
@@ -75,15 +75,15 @@
             :required='true'
         />
 
-    @endcomponent
+    </x-twill::formConnectedFields>
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => 'default',
-    'renderForBlocks' => true,
-    ])
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="default"
+    :render-for-blocks='true'
+>
 
     <x-twill::input
         name='feature_heading'
@@ -105,7 +105,7 @@
         @endslot
     @endcomponent
 
-@endcomponent
+</x-twill::formConnectedFields>
 
 <x-twill::select
     name='feature_type'
@@ -160,11 +160,11 @@
     ]"
 />
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => 'articles',
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="articles"
+    :render-for-blocks='true'
+>
 
     <x-twill::select
         name='columns'
@@ -194,13 +194,13 @@
         :max='4'
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => 'digital_publications',
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="digital_publications"
+    :render-for-blocks='true'
+>
 
     <x-twill::select
         name='columns'
@@ -230,13 +230,13 @@
         :max='4'
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => 'events',
-    'renderForBlocks' => true,
-])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="events"
+    :render-for-blocks='true'
+>
 
     <x-twill::checkbox
         name='override_event'
@@ -244,11 +244,11 @@
         :inline='true'
     />
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'override_event',
-        'fieldValues' => true,
-        'renderForBlocks' => true,
-    ])
+    <x-twill::formConnectedFields
+        field-name='override_event'
+        field-values="true"
+        :render-for-blocks='true'
+    >
         <br/>
         <i>Note: If event date has passed it will not be shown</i>
 
@@ -260,15 +260,15 @@
             :max='20'
         />
 
-    @endcomponent
+    </x-twill::formConnectedFields>
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => 'exhibitions',
-    'renderForBlocks' => true,
-])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="exhibitions"
+    :render-for-blocks='true'
+>
 
     <x-twill::select
         name='columns'
@@ -296,11 +296,11 @@
         :inline='true'
     />
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'override_exhibition',
-        'fieldValues' => true,
-        'renderForBlocks' => true,
-    ])
+    <x-twill::formConnectedFields
+        field-name='override_exhibition'
+        field-values="true"
+        :render-for-blocks='true'
+    >
 
         <x-twill::browser
             name='exhibitions'
@@ -310,15 +310,15 @@
             :max='4'
         />
 
-    @endcomponent
+    </x-twill::formConnectedFields>
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => 'experiences',
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="experiences"
+    :render-for-blocks='true'
+>
 
     <x-twill::select
         name='columns'
@@ -348,14 +348,13 @@
         :max='4'
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => 'highlights',
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="highlights"
+    :render-for-blocks='true'
+>
 
     <x-twill::select
         name='columns'
@@ -385,13 +384,13 @@
         :max='4'
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => 'videos',
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="videos"
+    :render-for-blocks='true'
+>
 
     <x-twill::select
         name='columns'
@@ -421,4 +420,4 @@
         :max='4'
     />
 
-@endcomponent
+</x-twill::formConnectedFields>

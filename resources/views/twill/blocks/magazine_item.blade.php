@@ -26,50 +26,50 @@
     ]"
 />
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="{{ \App\Models\MagazineItem::ITEM_TYPE_ARTICLE }}"
+    :render-for-blocks='true'
+>
     <x-twill::browser
         name='{{ \App\Models\MagazineItem::ITEM_TYPE_ARTICLE }}'
         label='Article'
         route-prefix='collection.articlesPublications'
         module-name='articles'
     />
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT,
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="{{ \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT }}"
+    :render-for-blocks='true'
+>
     <x-twill::browser
         name='{{ \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT }}'
         label='Highlight'
         route-prefix='collection'
         module-name='highlights'
     />
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE,
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="{{ \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE }}"
+    :render-for-blocks='true'
+>
     <x-twill::browser
         name='{{ \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE }}'
         label='Interactive Feature'
         route-prefix='collection.interactiveFeatures'
         module-name='experiences'
     />
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_CUSTOM,
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="{{ \App\Models\MagazineItem::ITEM_TYPE_CUSTOM }}"
+    :render-for-blocks='true'
+>
     <x-twill::medias
         name='listing_image'
         label='Hero image'
@@ -96,7 +96,7 @@
         name='author_display'
         label='Author'
     />
-@endcomponent
+</x-twill::formConnectedFields>
 
 <x-twill::wysiwyg
     name='list_description'

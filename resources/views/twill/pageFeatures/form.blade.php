@@ -61,63 +61,63 @@
     />
 
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'articles'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'collection.articlesPublications',
-            'moduleName' => 'articles',
-            'name' => 'articles',
-            'label' => 'Article'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='articles'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='articles'
+            label='Article'
+            route-prefix='collection.articlesPublications'
+            module-name='articles'
+        />
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'events'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'events',
-            'name' => 'events',
-            'label' => 'Event'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='events'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='events'
+            label='Event'
+            route-prefix='exhibitionsEvents'
+            module-name='events'
+        />
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'exhibitions'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'exhibitions',
-            'name' => 'exhibitions',
-            'label' => 'Exhibition'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='exhibitions'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='exhibitions'
+            label='Exhibition'
+            route-prefix='exhibitionsEvents'
+            module-name='exhibitions'
+        />
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'highlights'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'moduleName' => 'highlights',
-            'name' => 'highlights',
-            'label' => 'Collection Highlights'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='highlights'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='highlights'
+            label='Collection Highlights'
+            route-prefix='collection'
+            module-name='highlights'
+        />
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'custom'
-    ])
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='custom'
+        :render-for-blocks='false'
+    >
         <x-twill::input
             name='tag'
             label='Tag'
@@ -134,5 +134,5 @@
             name='url'
             label='URL for link'
         />
-    @endcomponent
+    </x-twill::formConnectedFields>
 @stop
