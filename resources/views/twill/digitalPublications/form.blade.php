@@ -111,14 +111,17 @@
             :toolbar-options="[ 'italic' ]"
         />
 
-        @formField('browser', [
-            'name' => 'welcome_note_section',
-            'label' => 'Welcome note section',
-            'endpoint' => route('twill.collection.articlesPublications.digitalPublications.articles.subbrowser',[
-                'digitalPublication' => $item->id,
-            ]),
-            'max' => 1,
-        ])
+        <x-twill::browser
+            name='welcome_note_section'
+            label='Welcome note section'
+            :max='1'
+            :modules="[
+                [
+                    'name' => route('twill.collection.articlesPublications.digitalPublications.articles.subbrowser', [ 'digitalPublication' => $item->id, ])
+                    'label' => 'Articles'
+                ]
+            ]"
+        />
 
         <x-twill::wysiwyg
             name='sponsor_display'

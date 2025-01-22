@@ -84,14 +84,14 @@
     'renderForBlocks' => false
 ])
 
-    @formField('browser', [
-        'routePrefix' => 'generic',
-        'max' => 3,
-        'moduleName' => 'pageFeatures',
-        'name' => 'primaryFeatures',
-        'label' => 'Main feature',
-        'note' => 'Queue up to 3 home features for the large hero area',
-    ])
+    <x-twill::browser
+        name='primaryFeatures'
+        label='Main feature'
+        note='Queue up to 3 home features for the large hero area'
+        route-prefix='generic'
+        module-name='pageFeatures'
+        :max='3'
+    />
 
 @endcomponent
 

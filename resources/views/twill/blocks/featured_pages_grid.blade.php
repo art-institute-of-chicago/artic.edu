@@ -6,11 +6,13 @@
     label='Heading'
 />
 
-@formField('browser', [
-    'routePrefix' => 'generic',
-    'moduleName' => 'genericPages',
-    'name' => 'genericPages',
-    'endpoints' => [
+<x-twill::browser
+    name='genericPages'
+    label='Featured Pages'
+    route-prefix='generic'
+    module-name='genericPages'
+    :max='8'
+    :modules="[
         [
             'label' => 'Generic Pages',
             'value' => moduleRoute('genericPages', 'generic', 'browser', [], false)
@@ -19,7 +21,5 @@
             'label' => 'Landing Pages',
             'value' => moduleRoute('landingPages', 'generic', 'browser', [], false)
         ]
-    ],
-    'max' => 8,
-    'label' => 'Featured Pages',
-])
+    ]"
+/>

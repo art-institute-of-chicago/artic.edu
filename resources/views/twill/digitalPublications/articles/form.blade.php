@@ -108,14 +108,14 @@
                 note='On Entry type articles, authorship is prepended with "Entry by"'
             />
 
-            @formField('browser', [
-                'routePrefix' => 'collection',
-                'moduleName' => 'authors',
-                'name' => 'authors',
-                'label' => 'Authors',
-                'max' => 10,
-                'note' => 'On Entry type articles, authorship is prepended with "Entry by"',
-            ])
+            <x-twill::browser
+                name='authors'
+                label='Authors'
+                note='On Entry type articles, authorship is prepended with "Entry by"'
+                route-prefix='collection'
+                module-name='authors'
+                :max='10'
+            />
         @endformConnectedFields
 
         @formConnectedFields([
@@ -140,13 +140,13 @@
                 label='Author display'
             />
 
-            @formField('browser', [
-                'routePrefix' => 'collection',
-                'moduleName' => 'authors',
-                'name' => 'authors',
-                'label' => 'Authors',
-                'max' => 10,
-            ])
+            <x-twill::browser
+                name='authors'
+                label='Authors'
+                route-prefix='collection'
+                module-name='authors'
+                :max='10'
+            />
         @endformConnectedFields
 
         @formConnectedFields([
