@@ -64,10 +64,10 @@
 @stop
 
 @section('fieldsets')
-    @formConnectedFields([
-        'fieldName' => 'is_dsc_stub',
-        'fieldValues' => true,
-    ])
+    <x-twill::formConnectedFields
+        field-name='is_dsc_stub'
+        field-values="true"
+    >
         @formFieldset([
             'id' => 'fields_for_dsc_stub',
             'title' => 'DSC Stub Fields',
@@ -103,7 +103,7 @@
                 :blocks='$blocks'
             />
         @endformFieldset
-    @endformConnectedFields
+    </x-twill::formConnectedFields>
 
     @formFieldset([
         'id' => 'fields_for_full_publication',

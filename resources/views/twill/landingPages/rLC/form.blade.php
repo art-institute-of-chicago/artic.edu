@@ -33,11 +33,11 @@
         ]"
     />
     <hr/>
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'header_variation',
-        'fieldValues' => ['default', 'small', 'cta'],
-        'renderForBlocks' => false
-    />
+    <x-twill::formConnectedFields
+        field-name='header_variation'
+        field-values="['default', 'small', 'cta']",
+        :render-for-blocks='false'
+    >
         <x-twill::medias
             name='hero'
             label='Hero image'
@@ -53,12 +53,13 @@
             label='Hero image, mobile'
             note='Minimum image width 2000px'
         />
-    @endcomponent
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'header_variation',
-        'fieldValues' => 'cta',
-        'renderForBlocks' => false,
-    ])
+    </x-twill::formConnectedFields>
+
+    <x-twill::formConnectedFields
+        field-name='header_variation'
+        field-values="cta"
+        :render-for-blocks='false'
+    >
         <x-twill::input
             name='header_cta_title'
             label='CTA Title'
@@ -71,12 +72,13 @@
             name='header_cta_button_link'
             label='Button Link'
         />
-    @endcomponent
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'header_variation',
-        'fieldValues' => 'feature',
-        'renderForBlocks' => false,
-    ])
+    </x-twill::formConnectedFields>
+
+    <x-twill::formConnectedFields
+        field-name='header_variation'
+        field-values="feature"
+        :render-for-blocks='false'
+    >
         <x-twill::browser
             name='primaryFeatures'
             label='Main feature'
@@ -85,7 +87,8 @@
             module-name='pageFeatures'
             :max='3'
         />
-    @endcomponent
+
+    </x-twill::formConnectedFields>
 @stop
 
 @section('fieldsets')
@@ -108,14 +111,14 @@
             name='is_custom_hours'
             label='Override default hours'
         />
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'is_custom_hours',
-            'fieldValues' => true
-        ])
+        <x-twill::formConnectedFields
+            field-name='is_custom_hours'
+            field-values='true'
+        >
             <x-twill::repeater
                 type="featured_hours"
             />
-        @endcomponent
+        </x-twill::formConnectedFields>
     </a17-fieldset>
     <a17-fieldset title="Location" id="location">
         <x-twill::input

@@ -45,28 +45,28 @@
     ]"
 />
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'embed_type',
-    'fieldValues' => 'html',
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='embed_type'
+    field-values="html"
+    :render-for-blocks='true'
+>
     <x-twill::input
         name='embed_code'
         label='Media embed code'
         type='textarea'
     />
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'embed_type',
-    'fieldValues' => 'url',
-    'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+    field-name='embed_type'
+    field-values="url"
+    :render-for-blocks='true'
+>
     <x-twill::input
         name='embed_url'
         label='Media embed URL'
     />
-@endcomponent
+</x-twill::formConnectedFields>
 
 <x-twill::input
     name='embed_height'

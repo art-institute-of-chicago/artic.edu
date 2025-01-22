@@ -22,12 +22,12 @@
     ]"
 />
 
-@component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'inline_credits',
-        'fieldValues' => 'on',
-        'keepAlive' => true,
-        'renderForBlocks' => true
-])
+<x-twill::formConnectedFields
+        field-name='inline_credits'
+        field-values="on"
+        :keep-alive='true'
+        :render-for-blocks='true'
+>
     <x-twill::radios
         name='credits_input'
         label='Credits Input'
@@ -46,19 +46,19 @@
         ]"
     />
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'credits_input',
-        'fieldValues' => 'datahub',
-        'renderForBlocks' => true,
-        'keepAlive' => true,
-    ])
+    <x-twill::formConnectedFields
+        field-name='credits_input'
+        field-values="datahub"
+        :render-for-blocks='true'
+        :keep-alive='true'
+    >
         <x-twill::input
             name='object_id'
             label='Object ID'
             note='To see fields update: 1. Enter object ID 2. Click Update button 3. Refresh browser'
             :maxlength='150'
         />
-    @endcomponent
+    </x-twill::formConnectedFields>
 
     <x-twill::wysiwyg
         type='textarea'
@@ -67,4 +67,4 @@
         :toolbar-options="[ 'italic', 'bold' ]"
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
