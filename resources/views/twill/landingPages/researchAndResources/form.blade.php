@@ -145,11 +145,15 @@
 
 <a17-fieldset title="Custom Content" id="custom_content">
 
-    @formField('block_editor', [
-        'blocks' => BlockHelpers::getBlocksForEditor([
+    @php
+        $blocks = BlockHelpers::getBlocksForEditor([
             'paragraph', 'image', 'image', 'hr', 'hr', 'artwork', 'split_block', 'split_block', 'gallery_new', 'video', 'video', 'quote', 'quote', 'tour_stop', 'tour_stop', 'media_embed', 'media_embed', 'list', 'grid', 'grid', 'image_slider', 'button', 'audio_player', '360_embed', 'mirador_embed', '3d_embed', 'membership_banner', 'membership_banner', 'showcase', '3d_tour', '3d_model', 'stories_block', 'citation', 'mobile_app', 'mirador_modal', 'digital_label', '360_modal'
-        ])
-    ])
+        ]);
+    @endphp
+
+    <x-twill::block-editor
+        :blocks='$blocks'
+    />
 
 </a17-fieldset>
 

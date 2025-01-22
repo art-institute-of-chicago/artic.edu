@@ -80,11 +80,15 @@
     <a17-fieldset id="content" title="Content">
         <p>For non-custom magazine items (Articles, Highlights, etc.), if there is no "List description" specified here, we will attempt to fallback to the "List description" field specified on that item's edit page.</p>
 
-        @formField('block_editor', [
-            'blocks' => BlockHelpers::getBlocksForEditor([
+        @php
+            $blocks = BlockHelpers::getBlocksForEditor([
                 'exhibitions', 'events', 'magazine_item', 'magazine_call_to_action'
-            ])
-        ])
+            ]);
+        @endphp
+
+        <x-twill::block-editor
+            :blocks='$blocks'
+        />
     </a17-fieldset>
 
 @endsection
