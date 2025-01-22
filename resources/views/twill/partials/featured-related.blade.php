@@ -49,11 +49,11 @@
 
     <br>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'toggle_autorelated',
-        'fieldValues' => false,
-        'renderForBlocks' => false
-    ])
+    <x-twill::formConnectedFields
+        field-name='toggle_autorelated'
+        field-values="false"
+        :render-for-blocks='false'
+    >
 
         @if(count($autoRelated) > 0)
             <p>These items are automatically related and will fill the sidebar along with any of the above selected items.</p>
@@ -67,5 +67,5 @@
             </ol>
         @endif
 
-    @endcomponent
+    </x-twill::formConnectedFields>
 </a17-fieldset>

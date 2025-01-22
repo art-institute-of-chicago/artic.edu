@@ -33,11 +33,11 @@
 />
 @endunless
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'module_type',
-    'fieldValues' => 'split',
-    'keepAlive' => true,
-])
+<x-twill::formConnectedFields
+    field-name='module_type'
+    field-values="split"
+    :keep-alive='true'
+>
     <x-twill::multi-select
         name='split_attributes'
         label='Attributes'
@@ -64,4 +64,4 @@
             ]
         ]"
     />
-@endcomponent
+</x-twill::formConnectedFields>

@@ -127,12 +127,12 @@
     />
 
     @foreach($colors as $color)
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'color',
-            'fieldValues' => $color['value'],
-        ])
+        <x-twill::formConnectedFields
+            field-name='color'
+            field-values="$color['value']"
+        >
             <div style="background-color: {{ $color['value'] }}; width: 30px; height: 30px; margin-top: 10px"></div>
-        @endcomponent
+        </x-twill::formConnectedFields>
     @endforeach
 
     <x-twill::checkbox
