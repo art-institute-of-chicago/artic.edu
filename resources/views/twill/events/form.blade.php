@@ -265,11 +265,15 @@
             note='Displayed in left sidebar'
         />
 
-        @formField('block_editor', [
-            'blocks' => BlockHelpers::getBlocksForEditor([
+        @php
+            $blocks = BlockHelpers::getBlocksForEditor([
                 'paragraph', 'image', 'hr', 'artwork', 'split_block', 'gallery_new', 'link', 'video', 'quote', 'tour_stop', 'media_embed', 'list', 'timeline', 'button', 'newsletter_signup_inline', 'audio_player', '3d_model', 'mobile_app'
-            ])
-        ])
+            ]);
+        @endphp
+
+        <x-twill::block-editor
+            :blocks='$blocks'
+        />
     </a17-fieldset>
 
     <a17-fieldset id="sponsors" title="Sponsors">

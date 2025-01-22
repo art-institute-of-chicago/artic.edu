@@ -77,13 +77,17 @@
 
 <a17-fieldset title="Custom Content" id="custom_content">
 
-    @formField('block_editor', [
-        'blocks' => BlockHelpers::getBlocksForEditor([
+    @php
+        $blocks = BlockHelpers::getBlocksForEditor([
             'feature_block',
             'editorial_block',
             'custom_banner',
-        ])
-    ])
+        ]);
+    @endphp
+
+    <x-twill::block-editor
+        :blocks='$blocks'
+    />
 
 </a17-fieldset>
 

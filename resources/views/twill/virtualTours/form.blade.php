@@ -44,9 +44,13 @@
         :rows='3'
     />
 
-    @formField('block_editor', [
-        'blocks' => BlockHelpers::getBlocksForEditor([
+    @php
+        $blocks = BlockHelpers::getBlocksForEditor([
             'paragraph', 'hr', 'artwork', 'split_block', 'quote', 'tour_stop', 'list', 'button', 'audio_player', 'membership_banner', 'mobile_app', 'artworks'
-        ])
-    ])
+        ]);
+    @endphp
+
+    <x-twill::block-editor
+        :blocks='$blocks'
+    />
 @stop

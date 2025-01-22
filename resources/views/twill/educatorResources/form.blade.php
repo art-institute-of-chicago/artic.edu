@@ -41,11 +41,15 @@
         :options='$categoriesList'
     />
 
-    @formField('block_editor', [
-        'blocks' => BlockHelpers::getBlocksForEditor([
+    @php
+        $blocks = BlockHelpers::getBlocksForEditor([
             'paragraph', 'image', 'hr', 'artwork', 'split_block', 'gallery_new', 'link', 'video', 'quote', 'tour_stop', 'accordion', 'media_embed', 'list', 'timeline', 'button', 'newsletter_signup_inline', 'audio_player', 'membership_banner', '3d_model', 'mobile_app', 'citiation'
-        ])
-    ])
+        ]);
+    @endphp
+
+    <x-twill::block-editor
+        :blocks='$blocks'
+    />
 @stop
 
 @section('fieldsets')

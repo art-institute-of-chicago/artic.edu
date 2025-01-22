@@ -81,8 +81,8 @@
                 note='Minimum image width 3000px'
             />
 
-            @formField('block_editor', [
-                'blocks' => BlockHelpers::getBlocksForEditor([
+            @php
+                $blocks = BlockHelpers::getBlocksForEditor([
                     '3d_model',
                     'accordion',
                     'hr',
@@ -96,8 +96,12 @@
                     'split_block',
                     'timeline',
                     'video',
-                ]),
-            ])
+                ]);
+            @endphp
+
+            <x-twill::block-editor
+                :blocks='$blocks'
+            />
         @endformFieldset
     @endformConnectedFields
 
