@@ -13,7 +13,9 @@
             'fieldValues' => 'type_image',
             'keepAlive' => true,
         ])
-            @formField('repeater', ['type' => 'fullwidthmedia_experience_image'])
+            <x-twill::repeater
+                type="fullwidthmedia_experience_image"
+            />
         @endcomponent
     @endcomponent
     @component('twill::partials.form.utils._connected_fields', [
@@ -26,7 +28,9 @@
             'fieldValues' => '3dModel',
             'isEqual' => false
         ])
-            @formField('repeater', ['type' => 'experience_modal'])
+            <x-twill::repeater
+                type="experience_modal"
+            />
         @endcomponent
     @endcomponent
 

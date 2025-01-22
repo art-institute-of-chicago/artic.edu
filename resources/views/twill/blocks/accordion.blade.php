@@ -1,4 +1,6 @@
 @twillBlockTitle('Accordion')
 @twillBlockIcon('text')
 
-@formField('repeater', ['type' => 'accordion_item'])
+<x-twill::repeater
+    type="accordion_item"
+/>

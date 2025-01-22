@@ -136,7 +136,9 @@
         'fieldName' => 'is_custom_hours',
         'fieldValues' => true
     ])
-        @formField('repeater', ['type' => 'featured_hours'])
+        <x-twill::repeater
+            type="featured_hours"
+        />
     @endcomponent
 </a17-fieldset>
 
@@ -174,7 +176,10 @@
         note='Minimum image width 3000px'
     />
 
-    @formField('repeater', ['type' => 'locations', 'max' => 2])
+    <x-twill::repeater
+        type='locations'
+        :max='2'
+    />
 
     <x-twill::input
         name='labels.visit_parking_label'
@@ -242,7 +247,9 @@
         label="More FAQs and guidelines link"
     />
 
-    @formField('repeater', ['type' => 'faqs'])
+    <x-twill::repeater
+        type="faqs"
+    />
 </a17-fieldset>
 
 <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">

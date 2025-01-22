@@ -90,7 +90,9 @@
 
 @section('fieldsets')
     <a17-fieldset title="Navigation Menu" id="nav-menu">
-        @formField('repeater', ['type' => 'menu_items'])
+        <x-twill::repeater
+            type="menu_items"
+        />
     </a17-fieldset>
     <a17-fieldset title="Hours" id="hours">
         <x-twill::input
@@ -110,7 +112,9 @@
             'fieldName' => 'is_custom_hours',
             'fieldValues' => true
         ])
-            @formField('repeater', ['type' => 'featured_hours'])
+            <x-twill::repeater
+                type="featured_hours"
+            />
         @endcomponent
     </a17-fieldset>
     <a17-fieldset title="Location" id="location">
@@ -174,9 +178,9 @@
         ])
     </a17-fieldset>
     <a17-fieldset title="FAQs" id="faq">
-        @formField('repeater', [
-            'type' => 'faqs',
-        ])
+        <x-twill::repeater
+            type='faqs'
+        />
     </a17-fieldset>
     <a17-fieldset title="Donor Information" id="donor_info">
         @formField('block_editor', [

@@ -14,9 +14,15 @@
         'fieldValues' => 'standard',
         'keepAlive' => true,
     ])
-        @formField('repeater', ['type' => 'compare_experience_image_1'])
+        <x-twill::repeater
+            type='compare_experience_image_1'
+        />
     @endcomponent
-    @formField('repeater', ['type' => 'compare_experience_image_2'])
+    <x-twill::repeater
+        type='compare_experience_image_2'
+    />
 
-    @formField('repeater', ['type' => 'compare_experience_modal'])
+    <x-twill::repeater
+        type="compare_experience_modal"
+    />
 @endcomponent
