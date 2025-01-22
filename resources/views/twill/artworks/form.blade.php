@@ -52,11 +52,11 @@
     </a17-fieldset>
 
     <a17-fieldset id="360file" title="360 File">
-        @formField('files', [
-            'name' => 'image_sequence_file',
-            'label' => 'Image Sequence Zip',
-            'note' => 'Upload a .zip file'
-        ])
+        <x-twill::files
+            name='image_sequence_file'
+            label='Image Sequence Zip'
+            note='Upload a .zip file'
+        />
     </a17-fieldset>
 
     <a17-fieldset id="mirador" title="Mirador">
@@ -67,11 +67,11 @@
             note='{{ 'i.e. ' . config('api.public_uri') . '/api/v1/artworks/' . $item->datahub_id . '/manifest.json' }}'
             default='false'
         />
-        @formField('files', [
-            'name' => 'upload_manifest_file',
-            'label' => 'Alternative manifest file',
-            'note' => 'Upload a .json file'
-        ])
+        <x-twill::files
+            name='upload_manifest_file'
+            label='Alternative manifest file'
+            note='Upload a .json file'
+        />
         <x-twill::radios
             name='default_view'
             label='Default View'

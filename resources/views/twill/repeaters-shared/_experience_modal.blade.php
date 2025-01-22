@@ -52,11 +52,11 @@
         'renderForBlocks' => true,
         'keepAlive' => true
 ])
-    @formField('files', [
-        'name' => 'image_sequence_file',
-        'label' => 'Image Sequence Zip',
-        'note' => 'Upload a .zip file'
-    ])
+    <x-twill::files
+        name='image_sequence_file'
+        label='Image Sequence Zip'
+        note='Upload a .zip file'
+    />
 
     <x-twill::multi-select
         name='image_sequence_playback'

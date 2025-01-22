@@ -6,11 +6,11 @@
 @twillBlockTitle('Virtual Tour Embed')
 @twillBlockIcon('image')
 
-@formField('files', [
-    'name' => 'vtour_xml_file',
-    'label' => 'Virtual tour XML file',
-    'note' => 'Upload a .xml file'
-])
+<x-twill::files
+    name='vtour_xml_file'
+    label='Virtual tour XML file'
+    note='Upload a .xml file'
+/>
 
 <x-twill::select
     name='size'

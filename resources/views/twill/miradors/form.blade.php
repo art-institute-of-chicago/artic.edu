@@ -31,11 +31,11 @@ foreach (\App\Models\Mirador::$viewTypes as $key => $viewType) {
         note='Enter object ID to obtain manifest dynamically.'
     />
 
-    @formField('files', [
-        'name' => 'upload_manifest_file',
-        'label' => 'Alternative manifest file',
-        'note' => 'Upload a .json file'
-    ])
+    <x-twill::files
+        name='upload_manifest_file'
+        label='Alternative manifest file'
+        note='Upload a .json file'
+    />
 
     <x-twill::radios
         name='default_view'
