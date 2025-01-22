@@ -6,13 +6,13 @@
     label='Heading'
 />
 
-@formField('browser', [
-    'name' => 'artworks',
-    'routePrefix' => 'collection',
-    'moduleName' => 'artworks',
-    'label' => 'Artworks',
-    'max' => 20,
-])
+<x-twill::browser
+    name='artworks'
+    label='Artworks'
+    route-prefix='collection'
+    module-name='artworks'
+    :max='20'
+/>
 
 <x-twill::wysiwyg
     name='bottom_desc'
