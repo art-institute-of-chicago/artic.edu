@@ -60,11 +60,15 @@
 
     @include('twill.partials.authors')
 
-    @formField('block_editor', [
-        'blocks' => BlockHelpers::getBlocksForEditor([
+    @php
+        $blocks = BlockHelpers::getBlocksForEditor([
             'paragraph', 'image', 'hr', 'artwork', 'split_block', 'gallery_new', 'video', 'quote', 'tour_stop', 'media_embed', 'list', 'grid', 'button', 'audio_player', 'vtour_embed', 'event', 'feature_2x', 'layered_image_viewer', '3d_model', 'feature_4x'
-        ])
-    ])
+        ]);
+    @endphp
+
+    <x-twill::block-editor
+        :blocks='$blocks'
+    />
 @stop
 
 @section('fieldsets')
