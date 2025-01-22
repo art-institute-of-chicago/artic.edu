@@ -215,8 +215,8 @@
 
     <a17-fieldset title="Custom Content" id="custom_content">
 
-        @formField('block_editor', [
-            'blocks' => BlockHelpers::getBlocksForEditor([
+        @php
+            $blocks = BlockHelpers::getBlocksForEditor([
                 'paragraph', 'image', 'video', 'media_embed', 'quote',
                 'list', 'artwork', 'hr', 'citation', 'split_block', 'grid',
                 'membership_banner', 'digital_label', 'audio_player', 'tour_stop', 'button', 'mobile_app',
@@ -224,8 +224,12 @@
                 'gallery_new',
                 'image_slider', 'mirador_embed', 'mirador_modal',
                 'feature_2x', 'feature_4x', 'showcase', 'custom_banner', 'featured_pages_grid', 'my_museum_tour_grid'
-            ])
-        ])
+            ]);
+        @endphp
+
+        <x-twill::block-editor
+            :blocks='$blocks'
+        />
 
     </a17-fieldset>
 

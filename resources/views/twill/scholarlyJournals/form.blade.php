@@ -26,9 +26,14 @@
         type='textarea'
         :maxlength='255'
     />
-    @formField('block_editor', [
-        'blocks' => BlockHelpers::getBlocksForEditor([
+
+    @php
+        $blocks = BlockHelpers::getBlocksForEditor([
             'paragraph', 'image', 'hr', 'link', 'video', 'accordion', 'media_embed', 'list', 'timeline', 'newsletter_signup_inline', 'membership_banner', '3d_model'
-        ])
-    ])
+        ]);
+    @endphp
+
+    <x-twill::block-editor
+        :blocks='$blocks'
+    />
 @stop

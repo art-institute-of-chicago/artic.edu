@@ -181,8 +181,8 @@
                 :toolbar-options="[ 'italic', 'link', 'list-ordered', 'list-unordered' ]"
             />
 
-            @formField('block_editor', [
-                'blocks' => BlockHelpers::getBlocksForEditor([
+            @php
+                $blocks = BlockHelpers::getBlocksForEditor([
                     '360_embed',
                     '360_modal',
                     '3d_embed',
@@ -213,8 +213,12 @@
                     'tombstone',
                     'tour_stop',
                     'video',
-                ])
-            ])
+                ]);
+            @endphp
+
+            <x-twill::block-editor
+                :blocks='$blocks'
+            />
         @endformConnectedFields
     @endformFieldset
 
