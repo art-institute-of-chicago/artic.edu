@@ -148,11 +148,11 @@
     'renderForBlocks' => true
 ])
 
-    @formField('color', [
-        'name' => 'bgcolor',
-        'label' => 'Background color',
-        'default' => '#000000'
-    ])
+    <x-twill::color
+        name='bgcolor'
+        label='Background color'
+        default='#000000'
+    />
 
 @endcomponent
 
