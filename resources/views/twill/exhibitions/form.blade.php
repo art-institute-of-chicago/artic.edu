@@ -184,7 +184,9 @@
     </a17-fieldset>
 
     <a17-fieldset id="offers" title="Offers and Products">
-        @formField('repeater', ['type' => 'offers'])
+        <x-twill::repeater
+            type="offers"
+        />
 
         <hr />
 
