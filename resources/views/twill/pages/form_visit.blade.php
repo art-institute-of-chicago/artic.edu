@@ -43,10 +43,8 @@
             :toolbar-options="[ 'italic', 'link' ]"
         />
 
-        ])
         <x-twill::input
             name='visit_hour_header'
-            field_name='visit_hour_header'
             label='Header'
             :required='true'
         />
@@ -88,12 +86,10 @@
     <a17-fieldset title="What to Expect" id="expect">
         <x-twill::input
             name='visit_what_to_expect_more_text'
-            field_name='visit_what_to_expect_more_text'
             label='More link text'
         />
         <x-twill::input
             name='visit_what_to_expect_more_link'
-            field_name='visit_what_to_expect_more_link'
             label='More link'
         />
         <x-twill::repeater
@@ -108,22 +104,18 @@
         />
         <x-twill::input
             name='visit_buy_tickets_label'
-            field_name='visit_buy_tickets_label'
             label='Buy tickets label'
         />
         <x-twill::input
             name='visit_buy_tickets_link'
-            field_name='visit_buy_tickets_link'
             label='Buy tickets link'
         />
         <x-twill::input
             name='visit_become_member_label'
-            field_name='visit_become_member_label'
             label='Become a member label'
         />
         <x-twill::input
             name='visit_become_member_link'
-            field_name='visit_become_member_link'
             label='Become a member link'
         />
     </a17-fieldset>
