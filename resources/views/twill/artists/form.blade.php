@@ -39,7 +39,7 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="related" title="Related">
+    <x-twill::formFieldset id="related" title="Related">
         <p>These fields will be used for the homepage carousel.</p>
 
         <x-twill::medias
@@ -59,9 +59,9 @@
             label='Short name'
             note='Override default of "{{ $item->getApiModelFilledCached()->short_name }}"'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="related" title="Related">
+    <x-twill::formFieldset id="related" title="Related">
 
         <p>Use "Custom related items" to relate as many items as possible. No more than 12 will be shown on the artist's detail page, but all of them will be used to augment search. See special note on exhibitions below.</p>
 
@@ -133,7 +133,7 @@
             ]"
         />
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
     @include('twill.partials.meta')
 

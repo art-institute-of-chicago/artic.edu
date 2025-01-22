@@ -74,7 +74,7 @@
 
 @section('fieldsets')
 
-    <a17-fieldset id="duration" title="Duration">
+    <x-twill::formFieldset id="duration" title="Duration">
 
         <x-twill::date-picker
             name='lightbox_start_date'
@@ -106,9 +106,9 @@
             ]"
         />
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="metadata" title="Metadata">
+    <x-twill::formFieldset id="metadata" title="Metadata">
 
         <p><strong>Note:</strong> Metadata fields are not used for the "Newsletter" variation.</p>
 
@@ -120,6 +120,6 @@
             note='e.g. https://join.artic.edu/secure/holiday-annual-fund'
         />
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
 @endsection

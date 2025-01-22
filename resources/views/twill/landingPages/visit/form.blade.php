@@ -99,7 +99,7 @@
 
 @section('fieldsets')
 
-<a17-fieldset title="Navigation Menu" id="visit_nav-menu">
+<x-twill::formFieldset title="Navigation Menu" id="visit_nav-menu">
 
     <x-twill::input
         name='labels.visit_nav_buy_tix_label'
@@ -111,9 +111,9 @@
         label='Tickets Link'
     />
 
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset title="Hours" id="visit_hours">
+<x-twill::formFieldset title="Hours" id="visit_hours">
 
     <x-twill::wysiwyg
         name='labels.visit_members_intro'
@@ -140,9 +140,9 @@
             type="featured_hours"
         />
     </x-twill::formConnectedFields>
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset title="Admission" id="visit_admission">
+<x-twill::formFieldset title="Admission" id="visit_admission">
     <x-twill::wysiwyg
         name='labels.visit_admission_intro'
         label='Admission Intro'
@@ -167,9 +167,9 @@
         name='labels.visit_admission_members_link'
         label='Member Link'
     />
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset title="Location" id="visit_hours">
+<x-twill::formFieldset title="Location" id="visit_hours">
     <x-twill::medias
         name='visit_map'
         label='Map Image'
@@ -190,9 +190,9 @@
         name='labels.visit_parking_link'
         label='Parking Button Link'
     />
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset title="Custom Content" id="custom_content">
+<x-twill::formFieldset title="Custom Content" id="custom_content">
 
     @php
         $blocks = BlockHelpers::getBlocksForEditor([
@@ -233,9 +233,9 @@
         :blocks='$blocks'
     />
 
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset title="FAQs" id="faq">
+<x-twill::formFieldset title="FAQs" id="faq">
     <x-twill::input
         name='labels.visit_faqs_label'
         label='More FAQs Label'
@@ -254,9 +254,9 @@
     <x-twill::repeater
         type="faqs"
     />
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
+<x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
     <x-twill::input
         name='meta_title'
         label='Metadata Title'
@@ -276,6 +276,6 @@
     />
 
     <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
-</a17-fieldset>
+</x-twill::formFieldset>
 
 @stop
