@@ -1,11 +1,11 @@
 @twillBlockTitle('Audio Player')
 @twillBlockIcon('image')
 
-@formField('files', [
-    'name' => 'audio_file',
-    'label' => 'Audio file',
-    'note' => 'Upload a .mp3 file',
-])
+<x-twill::files
+    name='audio_file'
+    label='Audio file'
+    note='Upload a .mp3 file'
+/>
 
 <x-twill::input
     name='title_display'

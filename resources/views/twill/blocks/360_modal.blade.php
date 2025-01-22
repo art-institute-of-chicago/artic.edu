@@ -21,8 +21,8 @@
     :toolbar-options="[ 'italic', 'link' ]"
 />
 
-@formField('files', [
-    'name' => 'image_sequence_file',
-    'label' => '360 Zip',
-    'note' => 'Upload a .zip file',
-])
+<x-twill::files
+    name='image_sequence_file'
+    label='360 Zip'
+    note='Upload a .zip file'
+/>
