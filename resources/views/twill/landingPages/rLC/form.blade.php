@@ -92,12 +92,12 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset title="Navigation Menu" id="nav-menu">
+    <x-twill::formFieldset title="Navigation Menu" id="nav-menu">
         <x-twill::repeater
             type="menu_items"
         />
-    </a17-fieldset>
-    <a17-fieldset title="Hours" id="hours">
+    </x-twill::formFieldset>
+    <x-twill::formFieldset title="Hours" id="hours">
         <x-twill::input
             name='hour_header'
             label='Hour Header'
@@ -119,8 +119,8 @@
                 type="featured_hours"
             />
         </x-twill::formConnectedFields>
-    </a17-fieldset>
-    <a17-fieldset title="Location" id="location">
+    </x-twill::formFieldset>
+    <x-twill::formFieldset title="Location" id="location">
         <x-twill::input
             name='labels.location_header'
             label='Location Header'
@@ -150,8 +150,8 @@
             name='labels.visit_museum_button_link'
             label='Visit Museum Button Link'
         />
-    </a17-fieldset>
-    <a17-fieldset title="Custom Content" id="custom_content">
+    </x-twill::formFieldset>
+    <x-twill::formFieldset title="Custom Content" id="custom_content">
         @php
             $blocks = [
                 'showcase',
@@ -164,8 +164,8 @@
             :blocks='$blocks'
             withoutSeparator='true'
         />
-    </a17-fieldset>
-    <a17-fieldset title="Contact" id="contact">
+    </x-twill::formFieldset>
+    <x-twill::formFieldset title="Contact" id="contact">
         <x-twill::input
             name='labels.contact_header'
             label='Contact Header'
@@ -188,13 +188,13 @@
             :blocks='$blocks'
             withoutSeparator='true'
         />
-    </a17-fieldset>
-    <a17-fieldset title="FAQs" id="faq">
+    </x-twill::formFieldset>
+    <x-twill::formFieldset title="FAQs" id="faq">
         <x-twill::repeater
             type='faqs'
         />
-    </a17-fieldset>
-    <a17-fieldset title="Donor Information" id="donor_info">
+    </x-twill::formFieldset>
+    <x-twill::formFieldset title="Donor Information" id="donor_info">
         @php
             $blocks = [
                 'paragraph',
@@ -206,9 +206,9 @@
             :blocks='$blocks'
             withoutSeparator='true'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
+    <x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
         <x-twill::input
             name='meta_title'
             label='Metadata Title'
@@ -228,5 +228,5 @@
         />
 
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
-    </a17-fieldset>
+    </x-twill::formFieldset>
 @stop

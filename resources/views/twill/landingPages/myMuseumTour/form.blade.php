@@ -88,7 +88,7 @@
     :render-for-blocks='false'
 >
 
-    <a17-fieldset title="Home Features" id="home-features">
+    <x-twill::formFieldset title="Home Features" id="home-features">
 
         <x-twill::browser
             name='mainHomeFeatures'
@@ -99,7 +99,7 @@
             :max='3'
         />
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
 </x-twill::formConnectedFields>
 
@@ -215,7 +215,7 @@
 
 @section('fieldsets')
 
-    <a17-fieldset title="Custom Content" id="custom_content">
+    <x-twill::formFieldset title="Custom Content" id="custom_content">
 
         @php
             $blocks = BlockHelpers::getBlocksForEditor([
@@ -233,9 +233,9 @@
             :blocks='$blocks'
         />
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="Call to Action (Create Tour)" id="create-call-to-action">
+    <x-twill::formFieldset title="Call to Action (Create Tour)" id="create-call-to-action">
 
         <x-twill::medias
             name='tours_create_cta_module_image'
@@ -306,8 +306,8 @@
             label='Form ID'
             note='e.g. webform_client_form_5111'
         />
-    </a17-fieldset>
-    <a17-fieldset title="Call to Action (Buy Tickets)" id="tickets-call-to-action">
+    </x-twill::formFieldset>
+    <x-twill::formFieldset title="Call to Action (Buy Tickets)" id="tickets-call-to-action">
 
         <x-twill::medias
             name='tours_tickets_cta_module_image'
@@ -378,9 +378,9 @@
             label='Form ID'
             note='e.g. webform_client_form_5111'
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
+    <x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
         <x-twill::input
             name='meta_title'
             label='Metadata Title'
@@ -400,6 +400,6 @@
         />
 
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
 @stop

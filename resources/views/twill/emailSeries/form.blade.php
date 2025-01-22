@@ -58,7 +58,7 @@
 
 @section('fieldsets')
 
-    <a17-fieldset id="testing" title="Testing">
+    <x-twill::formFieldset id="testing" title="Testing">
 
         <x-twill::checkbox
             name='show_affiliate_test'
@@ -82,6 +82,6 @@
 
         <p>If only one option is selected here, we won't show it on the event form. We will assume that if the email series is selected for testing, then it should be sent only to the member group selected here.</p>
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
 @endsection

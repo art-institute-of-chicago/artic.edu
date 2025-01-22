@@ -13,7 +13,7 @@
 
 @section('fieldsets')
 
-<a17-fieldset title="Top Stories" id="stories_top">
+<x-twill::formFieldset title="Top Stories" id="stories_top">
 
         @component('twill::partials.form.utils._columns')
         @slot('left')
@@ -73,9 +73,9 @@
         @endslot
         @endcomponent
 
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset title="Custom Content" id="custom_content">
+<x-twill::formFieldset title="Custom Content" id="custom_content">
 
     @php
         $blocks = BlockHelpers::getBlocksForEditor([
@@ -89,6 +89,6 @@
         :blocks='$blocks'
     />
 
-</a17-fieldset>
+</x-twill::formFieldset>
 
 @stop

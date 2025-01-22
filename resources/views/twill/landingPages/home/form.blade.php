@@ -99,7 +99,7 @@
 
 @section('fieldsets')
 
-<a17-fieldset title="Top Section" id="home-top">
+<x-twill::formFieldset title="Top Section" id="home-top">
 
     <x-twill::wysiwyg
         name='labels.home_intro'
@@ -132,9 +132,9 @@
         label='Tickets Link'
     />
 
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset title="Custom Content" id="custom_content">
+<x-twill::formFieldset title="Custom Content" id="custom_content">
 
     @php
         $blocks = BlockHelpers::getBlocksForEditor([
@@ -176,9 +176,9 @@
         :blocks='$blocks'
     />
 
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
+<x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
     <x-twill::input
         name='meta_title'
         label='Metadata Title'
@@ -198,6 +198,6 @@
     />
 
     <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
-</a17-fieldset>
+</x-twill::formFieldset>
 
 @stop

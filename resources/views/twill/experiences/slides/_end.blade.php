@@ -18,7 +18,7 @@
 
     <br />
 
-    <a17-fieldset title="Credits and Acknowledgements" id="end" :open="true">
+    <x-twill::formFieldset title="Credits and Acknowledgements" id="end" :open="true">
         <x-twill::input
             name='end_credit_subhead'
             label='Subhead'
@@ -34,5 +34,5 @@
         <x-twill::repeater
             type="end_experience_image"
         />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 @endif
