@@ -26,7 +26,7 @@
             name='datahub_id'
             label='Datahub ID'
             disabled='true'
-        ])
+        />
     </a17-fieldset>
 
     <a17-fieldset title="3D Object" id="3dModel">
