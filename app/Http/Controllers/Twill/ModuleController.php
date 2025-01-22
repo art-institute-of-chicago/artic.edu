@@ -6,6 +6,11 @@ use A17\Twill\Http\Controllers\Admin\ModuleController as BaseModuleController;
 
 class ModuleController extends BaseModuleController
 {
+    protected function setPreviewView(string $previewView): void
+    {
+        $this->previewView = $previewView;
+    }
+
     protected function previewData($item)
     {
         return [
