@@ -65,9 +65,11 @@
 
         <p>Use "Custom related items" to relate as many items as possible. No more than 12 will be shown on the artist's detail page, but all of them will be used to augment search. See special note on exhibitions below.</p>
 
-        @formField('browser', [
-            'name' => 'related_items',
-            'endpoints' => [
+        <x-twill::browser
+            name='related_items'
+            label='Custom related items'
+            :max='1000'
+            :modules="[
                 [
                     'label' => 'Articles',
                     'value' => '/collection/articlesPublications/articles/browser'
@@ -96,10 +98,8 @@
                     'label' => 'Exhibitions',
                     'value' => '/exhibitionsEvents/exhibitions/browser'
                 ],
-            ],
-            'max' => 1000,
-            'label' => 'Custom related items',
-        ])
+            ]"
+        />
 
         <p>We use CITI data to determine which exhibitions are related to each artist by checking which artworks were featured in each exhibition. We automatically append any exhibition related in this way to the "Related Content" section in reverse chronological order. The following exhibitions would be shown on this artist's page automatically:</p>
 
@@ -117,9 +117,11 @@
 
         <p style="margin-top: 1em">If this logic is satisfactory, there's no need to add exhibitions to the "Custom related items" field. However, if you'd like to control the order of exhibitions relative to other related content, feel free to add them using the field above. If you'd like to ensure that certain exhibitions never show up on this artist's detail page, use the following field:</p>
 
-        @formField('browser', [
-            'name' => 'hidden_related_items',
-            'endpoints' => [
+        <x-twill::browser
+            name='hidden_related_items'
+            label='Suppressed related items'
+            :max='1000'
+            :modules="[
                 [
                     'label' => 'Exhibition',
                     'value' => '/exhibitionsEvents/exhibitions/browser'
@@ -128,10 +130,8 @@
                     'label' => 'Videos',
                     'value' => '/collection/articlesPublications/videos/browser'
                 ],
-            ],
-            'max' => 1000,
-            'label' => 'Suppressed related items',
-        ])
+            ]"
+        />
 
     </a17-fieldset>
 

@@ -90,14 +90,14 @@
 
 <a17-fieldset title="Home Features" id="home-features">
 
-    @formField('browser', [
-        'routePrefix' => 'homepage',
-        'max' => 3,
-        'moduleName' => 'homeFeatures',
-        'name' => 'mainHomeFeatures',
-        'label' => 'Main feature',
-        'note' => 'Queue up to 3 home features for the large hero area',
-    ])
+    <x-twill::browser
+        name='mainHomeFeatures'
+        label='Main feature'
+        note='Queue up to 3 home features for the large hero area'
+        route-prefix='homepage'
+        module-name='homeFeatures'
+        :max='3'
+    />
 
 @endcomponent
 

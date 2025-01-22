@@ -69,7 +69,6 @@
             label='Article'
             route-prefix='collection.articlesPublications'
             module-name='articles'
-
         />
     </x-twill::formConnectedFields>
 
@@ -107,8 +106,8 @@
         <x-twill::browser
             name='highlights'
             label='Collection Highlights'
-            route-Prefix='collection'
-            module-Name='highlights'
+            route-prefix='collection'
+            module-name='highlights'
         />
     </x-twill::formConnectedFields>
 
