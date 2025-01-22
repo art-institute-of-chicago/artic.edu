@@ -218,9 +218,9 @@
             [
                 'label' => '4',
                 'value' => 4,
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
     <x-twill::browser
         name='digitalPublications'

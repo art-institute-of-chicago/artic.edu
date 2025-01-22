@@ -210,7 +210,7 @@
             name='entrance'
             label='Entrance'
             default='{{ \App\Models\Event::NULL_OPTION }}' // No effect?
-            :options="$eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION)' '[None]')"
+            :options="$eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]')"
         />
 
         <x-twill::checkbox

@@ -11,13 +11,11 @@
         />
         <x-twill::input
             name='title'
-            field_name='title'
             label='Title'
             :required='true'
         />
         <x-twill::input
             name='associated_generic_page_link'
-            field_name='associated_generic_page_link'
             label='Associated generic page link'
             :required='false'
         />
@@ -28,13 +26,11 @@
         />
         <x-twill::input
             name='link_label'
-            field_name='link_label'
             label='Link Label'
             :required='true'
         />
         <x-twill::input
             name='external_link'
-            field_name='external_link'
             label='Link URL'
             :required='true'
         />
