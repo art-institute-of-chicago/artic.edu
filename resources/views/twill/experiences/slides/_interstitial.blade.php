@@ -1,8 +1,8 @@
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'module_type',
-    'fieldValues' => 'interstitial',
-    'keepAlive' => true,
-])
+<x-twill::formConnectedFields
+    field-name='module_type'
+    field-values="interstitial"
+    :keep-alive='true'
+>
     <x-twill::wysiwyg
         name='article_title'
         label='Article Title'
@@ -21,13 +21,13 @@
         :maxlength='500'
     />
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'asset_type',
-        'fieldValues' => 'standard',
-        'keepAlive' => true,
-    ])
+    <x-twill::formConnectedFields
+        field-name='asset_type'
+        field-values="standard"
+        :keep-alive='true'
+    >
         <x-twill::repeater
             type="interstitial_experience_image"
         />
-    @endcomponent
-@endcomponent
+    </x-twill::formConnectedFields>
+</x-twill::formConnectedFields>

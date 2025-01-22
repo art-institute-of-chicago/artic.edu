@@ -33,11 +33,11 @@
 
 <hr/>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'header_variation',
-    'fieldValues' => ['default', 'small', 'cta'],
-    'renderForBlocks' => false
-])
+<x-twill::formConnectedFields
+    field-name='header_variation'
+    field-values="['default', 'small', 'cta']",
+    :render-for-blocks='false'
+>
 
     <x-twill::medias
         name='hero'
@@ -57,13 +57,13 @@
         note='Minimum image width 2000px'
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'header_variation',
-    'fieldValues' => 'cta',
-    'renderForBlocks' => false
-])
+<x-twill::formConnectedFields
+    field-name='header_variation'
+    field-values="cta"
+    :render-for-blocks='false'
+>
 
     <x-twill::input
         name='header_cta_title'
@@ -80,32 +80,34 @@
         label='Button Link'
     />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'header_variation',
-    'fieldValues' => 'feature',
-    'renderForBlocks' => false
-])
+<x-twill::formConnectedFields
+    field-name='header_variation'
+    field-values="feature"
+    :render-for-blocks='false'
+>
 
-<a17-fieldset title="Home Features" id="home-features">
+    <a17-fieldset title="Home Features" id="home-features">
 
-    <x-twill::browser
-        name='mainHomeFeatures'
-        label='Main feature'
-        note='Queue up to 3 home features for the large hero area'
-        route-prefix='homepage'
-        module-name='homeFeatures'
-        :max='3'
-    />
+        <x-twill::browser
+            name='mainHomeFeatures'
+            label='Main feature'
+            note='Queue up to 3 home features for the large hero area'
+            route-prefix='homepage'
+            module-name='homeFeatures'
+            :max='3'
+        />
 
-@endcomponent
+    </a17-fieldset>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'header_variation',
-    'fieldValues' => 'my_museum_tour',
-    'renderForBlocks' => false
-])
+</x-twill::formConnectedFields>
+
+<x-twill::formConnectedFields
+    field-name='header_variation'
+    field-values="my_museum_tour"
+    :render-for-blocks='false'
+>
     <x-twill::wysiwyg
         name='labels.header_my_museum_tour_text'
         label='Intro Text'
@@ -207,7 +209,7 @@
     @endslot
     @endcomponent
 
-@endcomponent
+</x-twill::formConnectedFields>
 
 @stop
 

@@ -59,11 +59,11 @@
         'id' => 'editorial-content',
         'title' => 'Editorial Content',
     ])
-        @formConnectedFields([
-            'fieldName' => 'article_type',
-            'fieldValues' => 'grouping',
-            'renderForBlocks' => false,
-        ])
+        <x-twill::formConnectedFields
+            field-name='article_type'
+            field-values="grouping"
+            :render-for-blocks='false'
+        >
             <x-twill::wysiwyg
                 name='grouping_description'
                 label='Description'
@@ -83,13 +83,13 @@
                 label='Mobile grouping image'
                 note='Minimum image width 2000px'
             />
-        @endformConnectedFields
+        </x-twill::formConnectedFields>
 
-        @formConnectedFields([
-            'fieldName' => 'article_type',
-            'fieldValues' => 'entry',
-            'renderForBlocks' => false,
-        ])
+        <x-twill::formConnectedFields
+            field-name='article_type'
+            field-values="entry"
+            :render-for-blocks='false'
+        >
             <x-twill::medias
                 name='hero'
                 label='Listing image'
@@ -116,13 +116,13 @@
                 module-name='authors'
                 :max='10'
             />
-        @endformConnectedFields
+        </x-twill::formConnectedFields>
 
-        @formConnectedFields([
-            'fieldName' => 'article_type',
-            'fieldValues' => ['about', 'text', 'work'],
-            'renderForBlocks' => false,
-        ])
+        <x-twill::formConnectedFields
+            field-name='article_type'
+            field-values="['about'' 'text', 'work"],
+            :render-for-blocks='false'
+        >
             <x-twill::medias
                 name='hero'
                 label='Hero image'
@@ -147,14 +147,14 @@
                 module-name='authors'
                 :max='10'
             />
-        @endformConnectedFields
+        </x-twill::formConnectedFields>
 
-        @formConnectedFields([
-            'fieldName' => 'article_type',
-            'fieldValues' => 'grouping',
-            'isEqual' => false,
-            'renderForBlocks' => false,
-        ])
+        <x-twill::formConnectedFields
+            field-name='article_type'
+            field-values="grouping"
+            :is-equal='false'
+            :render-for-blocks='false'
+        >
             <x-twill::input
                 name='label'
                 label='Article label'
@@ -219,7 +219,7 @@
             <x-twill::block-editor
                 :blocks='$blocks'
             />
-        @endformConnectedFields
+        </x-twill::formConnectedFields>
     @endformFieldset
 
     @include('twill.partials.meta')

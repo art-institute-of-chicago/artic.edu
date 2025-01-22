@@ -17,13 +17,13 @@
     ]"
 />
 
-    @formConnectedFields ([
-        'fieldName' => 'type',
-        'fieldValues' => 'start',
-        'renderForBlocks' => true,
-    ])
+    <x-twill::formConnectedFields
+        field-name='type'
+        field-values="start"
+        :render-for-blocks='true'
+    >
         <x-twill::input
             name='title'
             label='Title'
         />
-    @endcomponent
+    </x-twill::formConnectedFields>
