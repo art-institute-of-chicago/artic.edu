@@ -127,7 +127,7 @@ class DigitalPublication extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('twill.collection.articles_publications.digitalPublications.edit', $this->id);
+        return route('twill.collection.articlesPublications.digitalPublications.edit', $this->id);
     }
 
     /**

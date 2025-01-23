@@ -71,7 +71,7 @@
         'fieldValues' => 'articles'
     ])
         @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'moduleName' => 'articles',
             'name' => 'articles',
             'label' => 'Article'
@@ -84,7 +84,7 @@
         'fieldValues' => 'events'
     ])
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'events',
             'name' => 'events',
             'label' => 'Event'
@@ -97,7 +97,7 @@
         'fieldValues' => 'exhibitions'
     ])
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'exhibitions',
             'name' => 'exhibitions',
             'label' => 'Exhibition'

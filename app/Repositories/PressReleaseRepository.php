@@ -21,7 +21,7 @@ class PressReleaseRepository extends ModuleRepository
 
     protected $browsers = [
         'sponsors' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
         ],
     ];
 

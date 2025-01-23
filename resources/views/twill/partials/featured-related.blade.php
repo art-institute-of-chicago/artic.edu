@@ -8,7 +8,7 @@
         'endpoints' => [
             [
                 'label' => 'Article',
-                'value' => moduleRoute('articles', 'collection.articles_publications', 'browser', ['is_unlisted' => false]),
+                'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['is_unlisted' => false]),
             ],
             [
                 'label' => 'Highlight',
@@ -16,27 +16,27 @@
             ],
             [
                 'label' => 'Event',
-                'value' => moduleRoute('events', 'exhibitions_events', 'browser'),
+                'value' => moduleRoute('events', 'exhibitionsEvents', 'browser'),
             ],
             [
                 'label' => 'Exhibition',
-                'value' => moduleRoute('exhibitions', 'exhibitions_events', 'browser'),
+                'value' => moduleRoute('exhibitions', 'exhibitionsEvents', 'browser'),
             ],
             [
                 'label' => 'Interactive Feature',
-                'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser'),
+                'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser'),
             ],
             [
                 'label' => 'Digital Publication',
-                'value' => moduleRoute('digitalPublications', 'collection.articles_publications', 'browser'),
+                'value' => moduleRoute('digitalPublications', 'collection.articlesPublications', 'browser'),
             ],
             [
                 'label' => 'Digital Publication Article',
-                'value' => moduleRoute('digitalPublications.articles', 'collection.articles_publications', 'browserbrowser'),
+                'value' => moduleRoute('digitalPublications.articles', 'collection.articlesPublications', 'browserbrowser'),
             ],
             [
                 'label' => 'Video',
-                'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
+                'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
             ],
         ],
     ])

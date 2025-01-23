@@ -40,7 +40,7 @@
 
     @formField('checkbox', [
         'name' => 'is_unlisted',
-        'label' => 'Don\'t show this press release in listings',
+        'label' => "Don't show this press release in listings",
     ])
 
     @formField('block_editor', [
@@ -53,7 +53,7 @@
 @section('fieldsets')
     <a17-fieldset id="sponsors" title="Sponsors">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'sponsors',
             'name' => 'sponsors',
             'label' => 'Sponsors',

@@ -99,7 +99,7 @@
 
     @formField('checkbox', [
         'name' => 'is_unlisted',
-        'label' => 'Don\'t show this article in listings',
+        'label' => "Don't show this article in listings",
     ])
 
     @formField('checkbox', [
@@ -128,7 +128,7 @@
 @section('fieldsets')
     <a17-fieldset id="sponsors" title="Sponsors">
         @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'sponsors',
             'name' => 'sponsors',
             'label' => 'Sponsors',
@@ -141,13 +141,13 @@
         <p>Use "Custom related items" to relate up to 4 articles to show on the article page. See special note on articles below.</p>
 
         @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'moduleName' => 'articles',
             'name' => 'further_reading_items',
             'endpoints' => [
                 [
                     'label' => 'Article',
-                    'value' => '/collection/articles_publications/articles/browser'
+                    'value' => '/collection/articlesPublications/articles/browser'
                 ],
                 [
                     'label' => 'Highlight',
@@ -155,7 +155,7 @@
                 ],
                 [
                     'label' => 'Interactive feature',
-                    'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser')
+                    'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser')
                 ]
             ],
             'max' => 4,
@@ -182,7 +182,7 @@
     </a17-fieldset>
 
     @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated, 'item' => $item])
-        @slot('routePrefix', 'collection.articles_publications')
+        @slot('routePrefix', 'collection.articlesPublications')
         @slot('moduleName', 'articles')
     @endcomponent
 
