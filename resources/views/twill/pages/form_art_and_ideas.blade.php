@@ -1,5 +1,4 @@
 @section('contentFields')
-
     <x-twill::input
         name='art_intro'
         label='Intro text'
