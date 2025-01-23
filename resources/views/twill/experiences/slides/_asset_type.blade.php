@@ -69,7 +69,7 @@
             :keep-alive='true'
         >
             <x-twill::radios
-                name='$moduleType . '_standard_media_type''
+                name="{{ $moduleType . '_standard_media_type' }}"
                 label='Media Type'
                 default='type_image'
                 :inline='true'

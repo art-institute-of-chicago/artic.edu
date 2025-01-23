@@ -117,7 +117,7 @@
 
         <x-twill::formConnectedFields
             field-name='article_type'
-            field-values="['about'' 'text', 'work"],
+            field-values="['about', 'text', 'work']"
             :render-for-blocks='false'
         >
             <x-twill::medias

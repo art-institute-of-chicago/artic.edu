@@ -50,5 +50,5 @@
     label='Caption'
     note='Max 300 characters'
     :maxlength='300'
-    :toolbar-options="[ 'italic', 'link' ],
+    :toolbar-options="[ 'italic', 'link' ]"
 />

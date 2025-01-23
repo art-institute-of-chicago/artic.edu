@@ -1,6 +1,6 @@
 @extends('twill::layouts.form', [
     'contentFieldsetLabel' => 'Setting'
-    ])
+])
 
 @section('contentFields')
     @include('twill.experiences.slides._setting')
