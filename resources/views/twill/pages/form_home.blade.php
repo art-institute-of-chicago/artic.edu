@@ -116,12 +116,8 @@
             label='Button text'
         />
 
-        <x-twill::radios
-            name='variation'
-            label='Variation'
-            default='{{ \App\Models\Lightbox::VARIATION_DEFAULT }}'
-            :inline='false'
-            :options="[
+        @php
+            $options = [
                 [
                     'value' => '{{ \App\Models\Lightbox::VARIATION_DEFAULT }}',
                     'label' => 'Default (button)'
@@ -133,8 +129,23 @@
                 [
                     'value' => '{{ \App\Models\Lightbox::VARIATION_EMAIL }}',
                     'label' => 'Email capture (button + email input)'
-                ]{{ config('aic.show_button_and_date_select_lightbox_variation') ? ', [ \'value\' => ' . \App\Models\Lightbox::VARIATION_TICKETING . ', '\label\' => \'Ticketing (button + date select) (WIP)\' ]' }}
-            ]"
+                ]
+            ];
+
+            if (config('aic.show_button_and_date_select_lightbox_variation')) {
+                $options[] = [
+                    'value' => \App\Models\Lightbox::VARIATION_TICKETING,
+                    'label' => 'Ticketing (button + date select) (WIP)'
+                ];
+            }
+        @endphp
+
+        <x-twill::radios
+            name='variation'
+            label='Variation'
+            default='{{ \App\Models\Lightbox::VARIATION_DEFAULT }}'
+            :inline='false'
+            :options="$options"
         />
 
         <p>If you choose any variation except "Newsletter", you must fill out the "Metadata" fields below. The "Newsletter" variation works like the newsletter signup in our footer.</p>
