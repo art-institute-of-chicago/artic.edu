@@ -180,7 +180,7 @@
                 'label' => 'Mobile App'
             ],
             [
-                'value' ='> custom',
+                'value' => 'custom',
                 'label' => 'Custom'
             ]
         ]"
