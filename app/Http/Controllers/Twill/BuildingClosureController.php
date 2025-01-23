@@ -2,54 +2,76 @@
 
 namespace App\Http\Controllers\Twill;
 
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\Filters\BasicFilter;
+use A17\Twill\Services\Listings\Filters\TableFilters;
+use A17\Twill\Services\Listings\TableColumns;
 use App\Models\BuildingClosure;
+use Illuminate\Database\Eloquent\Builder;
 
-class BuildingClosureController extends \App\Http\Controllers\Twill\ModuleController
+class BuildingClosureController extends BaseController
 {
-    protected $moduleName = 'buildingClosures';
+    public function setUpController(): void
+    {
+        parent::setUpController();
+        $this->setModuleName('buildingClosures');
+        $this->setSearchColumns(['closure_copy']);
+        $this->setTitleColumnKey('presentType');
+        $this->setTitleColumnLabel('Type');
+        $this->setTitleFormKey('cmsFormTitle');
+    }
 
-    protected $titleColumnKey = 'presentType';
-    protected $titleFormKey = 'cmsFormTitle';
+    public function filters(): TableFilters
+    {
+        $tableFilters = parent::filters();
+        $tableFilters->add(
+            BasicFilter::make()
+                ->queryString('types')
+                ->options(collect(BuildingClosure::$types))
+                ->apply(function (Builder $builder, mixed $value) {
+                    $builder->where('type', '=', $value);
+                })
+        );
 
-    protected $indexColumns = [
-        'presentType' => [
-            'title' => 'Type',
-            'present' => true,
-            'field' => 'presentType',
-            'edit_link' => true,
-            'sortKey' => 'type',
-        ],
-        'presentStartDate' => [
-            'title' => 'Start Date',
-            'present' => true,
-            'field' => 'presentStartDate',
-            'sort' => true,
-            'sortKey' => 'date_start',
-        ],
-        'presentEndDate' => [
-            'title' => 'End Date',
-            'present' => true,
-            'field' => 'presentEndDate',
-            'sort' => true,
-            'sortKey' => 'date_end',
-        ],
-        'closure_copy' => [
-            'title' => 'Closure Copy',
-            'edit_link' => true,
-            'sort' => false,
-            'field' => 'closure_copy',
-        ],
-    ];
+        return $tableFilters;
+    }
 
-    protected $defaultFilters = [
-        'search' => '%closure_copy',
-    ];
+    public function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Text::make()
+                ->field('date_start')
+                ->title('Start Date')
+                ->sortable()
+                ->sortByDefault(direction: 'desc')
+                ->customRender(function (BuildingClosure $closure): string {
+                    return $closure->date_start->format('M j, Y');
+                })
+        );
+        $columns->add(
+            Text::make()
+                ->field('date_end')
+                ->title('End Date')
+                ->sortable()
+                ->customRender(function (BuildingClosure $closure): string {
+                    return $closure->date_end->format('M j, Y');
+                })
+        );
+        $columns->add(
+            Text::make()
+                ->field('closure_copy')
+                ->customRender(function (BuildingClosure $closure): string {
+                    $closure_copy = $closure->closure_copy;
+                    $closure_copy = str_replace('<p>', ' ', $closure_copy);
+                    $closure_copy = str_replace('</p>', ' ', $closure_copy);
 
-    protected $filters = [
-        'types' => 'type',
-    ];
+                    return $closure_copy;
+                })
+        );
 
-    protected $defaultOrders = ['date_start' => 'desc'];
+        return $columns;
+    }
 
     protected function indexData($request)
     {
