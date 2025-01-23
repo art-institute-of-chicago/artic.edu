@@ -16,7 +16,7 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    <br/><strong><a href="{{ url('collection/interactive_features/experiences/' . $item->id . '/slides') }}">{{ $item->slides->count() }} Slides</a></strong><br/>
+    <br/><strong><a href="{{ url('collection/interactiveFeatures/experiences/' . $item->id . '/slides') }}">{{ $item->slides->count() }} Slides</a></strong><br/>
     <br/><h1><strong>Kiosk URL:</strong> <a href={{ $kiosk_url }}>{{ $kiosk_url }}</a></h1>
     <br/><h1><strong>Bundle ID: </strong>{{ $item->id }}</h1>
 
@@ -64,7 +64,7 @@
 
     @formField('checkbox', [
         'name' => 'is_unlisted',
-        'label' => 'Don\'t show this experience in listings',
+        'label' => "Don't show this experience in listings",
     ])
 
     @formField('checkbox', [

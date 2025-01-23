@@ -188,7 +188,7 @@ class Article extends AbstractModel implements Feedable
 
     public function getAdminEditUrlAttribute()
     {
-        return route('twill.collection.articles_publications.articles.edit', $this->id);
+        return route('twill.collection.articlesPublications.articles.edit', $this->id);
     }
 
     public function categories()

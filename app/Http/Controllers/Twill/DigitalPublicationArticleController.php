@@ -62,11 +62,11 @@ class DigitalPublicationArticleController extends NestedModuleController
             'breadcrumb' => [
                 [
                     'label' => 'Digital Publication',
-                    'url' => moduleRoute('digitalPublications', 'collection.articles_publications', 'index'),
+                    'url' => moduleRoute('digitalPublications', 'collection.articlesPublications', 'index'),
                 ],
                 [
                     'label' => $digPub->title,
-                    'url' => moduleRoute('digitalPublications', 'collection.articles_publications', 'edit', [$digPub->id]),
+                    'url' => moduleRoute('digitalPublications', 'collection.articlesPublications', 'edit', [$digPub->id]),
                 ],
                 [
                     'label' => 'Articles',
@@ -100,7 +100,7 @@ class DigitalPublicationArticleController extends NestedModuleController
             return [
                 'id' => $article->id,
                 'name' => $name,
-                'edit' => route('twill.collection.articles_publications.digitalPublications.articles.edit', [
+                'edit' => route('twill.collection.articlesPublications.digitalPublications.articles.edit', [
                     'digitalPublication' => $article->digital_publication_id,
                     'article' => $article->id
                 ]),
@@ -139,15 +139,15 @@ class DigitalPublicationArticleController extends NestedModuleController
             'breadcrumb' => [
                 [
                     'label' => 'Digital Publications',
-                    'url' => moduleRoute('digitalPublications', 'collection.articles_publications', 'index'),
+                    'url' => moduleRoute('digitalPublications', 'collection.articlesPublications', 'index'),
                 ],
                 [
                     'label' => $digPub->title,
-                    'url' => moduleRoute('digitalPublications', 'collection.articles_publications', 'edit', [$digPub->id]),
+                    'url' => moduleRoute('digitalPublications', 'collection.articlesPublications', 'edit', [$digPub->id]),
                 ],
                 [
                     'label' => 'Articles',
-                    'url' => moduleRoute('digitalPublications.articles', 'collection.articles_publications', 'index', [$request->route('digitalPublication')]),
+                    'url' => moduleRoute('digitalPublications.articles', 'collection.articlesPublications', 'index', [$request->route('digitalPublication')]),
                 ],
                 [
                     'label' => $item->title,

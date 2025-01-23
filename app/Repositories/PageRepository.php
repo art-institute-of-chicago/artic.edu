@@ -23,7 +23,7 @@ class PageRepository extends ModuleRepository
     protected $browsers = [
         // Homepage landing
         'homeEvents' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'moduleName' => 'events',
         ],
         'mainHomeFeatures' => [
@@ -37,16 +37,16 @@ class PageRepository extends ModuleRepository
 
         // Visit
         'articles' => [
-            'routePrefix' => 'collection.articles_publications'
+            'routePrefix' => 'collection.articlesPublications'
         ],
         'experiences' => [
-            'routePrefix' => 'collection.interactive_features'
+            'routePrefix' => 'collection.interactiveFeatures'
         ],
         'printedPublications' => [
-            'routePrefix' => 'collection.articles_publications'
+            'routePrefix' => 'collection.articlesPublications'
         ],
         'digitalPublications' => [
-            'routePrefix' => 'collection.articles_publications'
+            'routePrefix' => 'collection.articlesPublications'
         ],
 
         // Research landing
@@ -75,7 +75,7 @@ class PageRepository extends ModuleRepository
         // Homepage landing
         'homeExhibitions' => [
             'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
+            'routePrefix' => 'exhibitionsEvents'
         ],
         'homeShopItems' => [
             'moduleName' => 'shopItems',
@@ -88,11 +88,11 @@ class PageRepository extends ModuleRepository
         // Exhibition and events landing
         'exhibitionsCurrent' => [
             'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
+            'routePrefix' => 'exhibitionsEvents'
         ],
         'exhibitionsUpcomingListing' => [
             'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events'
+            'routePrefix' => 'exhibitionsEvents'
         ],
 
         // Collection landing
@@ -170,7 +170,7 @@ class PageRepository extends ModuleRepository
             'experiences' => false
         ]);
 
-        $fields['browsers']['articlesCategories'] = $this->getFormFieldsForBrowser($object, 'articlesCategories', 'collection.articles_publications', 'name', 'categories');
+        $fields['browsers']['articlesCategories'] = $this->getFormFieldsForBrowser($object, 'articlesCategories', 'collection.articlesPublications', 'name', 'categories');
 
         return $fields;
     }

@@ -24,16 +24,16 @@ class ExhibitionRepository extends BaseApiRepository
 
     protected $browsers = [
         'sponsors' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
         ],
         'events' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
         ]
     ];
 
     protected $apiBrowsers = [
         'exhibitions' => [
-            'routePrefix' => 'exhibitions_events'
+            'routePrefix' => 'exhibitionsEvents'
         ],
         'shopItems',
         'waitTimes',
