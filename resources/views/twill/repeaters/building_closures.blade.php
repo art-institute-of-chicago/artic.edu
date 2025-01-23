@@ -22,5 +22,5 @@
     name='closure_copy'
     label='Closure Copy'
     :maxlength="255"
-    :toolbar-options="[ 'italic', 'link' ]
+    :toolbar-options="[ 'italic', 'link' ]"
 />

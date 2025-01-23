@@ -103,7 +103,7 @@
         <x-twill::input
             name='rsvp_link'
             label='Custom tickets link'
-            note=''Only use this field when using an alternate sales platform' e.g., Eventbrite.'
+            note="Only use this field when using an alternate sales platform' e.g., Eventbrite."
         />
 
         <x-twill::input
@@ -299,11 +299,16 @@
     </x-twill::formFieldset>
 
     <x-twill::formFieldset id="filters_and_types" title="Filters and types">
+        @php
+            $eventTypesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]');
+            $eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]')
+        @endphp
+
         <x-twill::select
             name='event_type'
             label='Event type (preferred)'
-            :options="$eventTypesList->put(strval(\App\Models\Event::NULL_OPTION)' '[None]')"
-            default='\App\Models\Event::NULL_OPTION' // No effect?
+            :options="$eventTypesList"
+            default='\App\Models\Event::NULL_OPTION' {{-- No effect? --}}
         />
 
         <x-twill::multi-select
@@ -316,8 +321,8 @@
         <x-twill::select
             name='audience'
             label='Event audience (preferred)'
-            default='\App\Models\Event::NULL_OPTION' // No effect?
-            :options="$eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION)' '[None]')"
+            default='{{ \App\Models\Event::NULL_OPTION }}' {{-- No effect? --}}
+            :options="$eventAudiencesList"
         />
 
         <x-twill::multi-select
@@ -446,8 +451,8 @@
                     @foreach ($enabledSubFields as $subFieldName => $subFieldLabel)
 
                         <x-twill::checkbox
-                            name='{{ '$currentSeriesName . '_' . $subFieldName . '_override' }}'
-                            label='{{ ($useShortLabel ? 'Override default copy' : 'Include ' . $subFieldLabel . '-specific copy (overrides default copy)' }}'
+                            name='{{ $currentSeriesName . '_' . $subFieldName . '_override' }}''
+                            label='{{ ($useShortLabel ? 'Override default copy' : 'Include ' . $subFieldLabel . '-specific copy (overrides default copy)') }}'
                         />
 
                         <x-twill::formConnectedFields

@@ -31,7 +31,7 @@
 
 <x-twill::formConnectedFields
     field-name='header_variation'
-    field-values="['default'' 'small', 'cta"],
+    field-values="['default', 'small', 'cta']"
     :render-for-blocks='false'
 >
 
