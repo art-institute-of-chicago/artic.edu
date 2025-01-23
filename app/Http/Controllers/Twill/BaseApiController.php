@@ -82,7 +82,7 @@ class BaseApiController extends ModuleController
 
     public function feature()
     {
-        if (($id = $this->request->get('id'))) {
+        if ($id = $this->request->get('id')) {
             if ($apiModel = $this->getApiRepository()->getById($id)) {
                 $augmentedModel = $this->getRepository()->firstOrCreate(['datahub_id' => $apiModel->id]);
                 $this->request->merge(['id' => $augmentedModel->id]);
