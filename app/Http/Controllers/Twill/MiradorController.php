@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Twill;
 
-class MiradorController extends \App\Http\Controllers\Twill\ModuleController
+class MiradorController extends BaseController
 {
-    protected $moduleName = 'miradors';
-    protected $previewView = 'site.miradorDetail';
+    protected function setUpController(): void
+    {
+        parent::setUpController();
+        $this->setModuleName('miradors');
+        $this->setPreviewView('site.miradorDetail');
+    }
 
     protected function formData($request)
     {
