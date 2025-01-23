@@ -165,7 +165,7 @@
     </a17-modal>
     <a17-editor v-if="editor" ref="editor"
                 bg-color="{{ config('twill.block_editor.background_color') ?? '#FFFFFF' }}"></a17-editor>
-    <a17-previewer ref="preview"></a17-previewer>
+    <a17-previewer ref="preview" :breakpoints-config="{{ json_encode(config('twill.preview.breakpoints')) }}"></a17-previewer>
     <a17-dialog ref="warningContentEditor" modal-title="{{ twillTrans('twill::lang.form.dialogs.delete.title') }}"
                 confirm-label="{{ twillTrans('twill::lang.form.dialogs.delete.confirm') }}">
         <p class="modal--tiny-title">
@@ -180,11 +180,10 @@
     baseUrl: '{{ $baseUrl ?? '' }}',
     saveUrl: '{{ $saveUrl }}',
     previewUrl: '{{ $previewUrl ?? '' }}',
-    restoreUrl: '{{ $restoreUrl ?? '' }}',
+    restoreUrl: '{!! $restoreUrl ?? '' !!}',
     availableBlocks: {},
     blocks: {},
     blockPreviewUrl: '{{ $blockPreviewUrl ?? '' }}',
-    availableRepeaters: {!! $availableRepeaters ?? '{}' !!},
     repeaters: {!! json_encode(($form_fields['repeaters'] ?? []) + ($form_fields['blocksRepeaters'] ?? [])) !!},
     fields: [],
     editor: {{ $editor ? 'true' : 'false' }},
