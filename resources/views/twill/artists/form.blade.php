@@ -79,31 +79,31 @@
             'endpoints' => [
                 [
                     'label' => 'Articles',
-                    'value' => '/collection/articles_publications/articles/browser'
+                    'value' => '/collection/articlesPublications/articles/browser'
                 ],
                 [
                     'label' => 'Digital Publications',
-                    'value' => '/collection/articles_publications/digitalPublications/browser'
+                    'value' => '/collection/articlesPublications/digitalPublications/browser'
                 ],
                 [
                     'label' => 'Print Publications',
-                    'value' => '/collection/articles_publications/printedPublications/browser'
+                    'value' => '/collection/articlesPublications/printedPublications/browser'
                 ],
                 [
                     'label' => 'Educational Resources',
-                    'value' => '/collection/research_resources/educatorResources/browser'
+                    'value' => '/collection/researchResources/educatorResources/browser'
                 ],
                 [
                     'label' => 'Interactive Features',
-                    'value' => '/collection/interactive_features/experiences/browser'
+                    'value' => '/collection/interactiveFeatures/experiences/browser'
                 ],
                 [
                     'label' => 'Videos',
-                    'value' => '/collection/articles_publications/videos/browser'
+                    'value' => '/collection/articlesPublications/videos/browser'
                 ],
                 [
                     'label' => 'Exhibitions',
-                    'value' => '/exhibitions_events/exhibitions/browser'
+                    'value' => '/exhibitionsEvents/exhibitions/browser'
                 ],
             ],
             'max' => 1000,
@@ -131,11 +131,11 @@
             'endpoints' => [
                 [
                     'label' => 'Exhibition',
-                    'value' => '/exhibitions_events/exhibitions/browser'
+                    'value' => '/exhibitionsEvents/exhibitions/browser'
                 ],
                 [
                     'label' => 'Videos',
-                    'value' => '/collection/articles_publications/videos/browser'
+                    'value' => '/collection/articlesPublications/videos/browser'
                 ],
             ],
             'max' => 1000,
