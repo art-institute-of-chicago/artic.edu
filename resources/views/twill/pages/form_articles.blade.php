@@ -8,11 +8,11 @@
         :modules="[
             [
                 'label' => 'Article',
-                'value' => '/collection/articlesPublications/articles/browser'
+                'name' => 'collection.articlesPublications.articles'
             ],
             [
                 'label' => 'Interactive feature',
-                'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser')
+                'name' => 'collection.interactiveFeatures.experiences'
             ]
         ]"
     />

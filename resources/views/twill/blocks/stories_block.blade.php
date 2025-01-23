@@ -28,19 +28,20 @@
     :modules="[
         [
             'label' => 'Article',
-            'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['is_unlisted' => false]),
+            'name' => 'collection.articlesPublications.articles',
         ],
         [
             'label' => 'Video',
-            'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
+            'name' => 'collection.articlesPublications.videos'
         ],
         [
             'label' => 'Highlight',
-            'value' => moduleRoute('highlights', 'collection', 'browser'),
+            'name' => 'collection.highlights'
         ],
         [
             'label' => 'Interactive Feature',
-            'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser'),
+            'name' => 'collection.interactiveFeatures.experiences'
         ],
     ]"
+    :params="[ 'is_unlisted' => false ]"
 />

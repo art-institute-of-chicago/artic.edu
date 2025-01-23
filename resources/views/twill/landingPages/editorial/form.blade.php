@@ -26,21 +26,22 @@
                 :modules="[
                     [
                         'label' => 'Article',
-                        'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['published' => true]),
+                        'name' => 'collection.articlesPublications.articles',
                     ],
                     [
                         'label' => 'Highlight',
-                        'value' => moduleRoute('highlights', 'collection', 'browser')
+                        'name' => 'collection.highlights'
                     ],
                     [
                         'label' => 'Interactive feature',
-                        'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser')
+                        'name' => 'collection.interactiveFeatures.experiences'
                     ],
                     [
                         'label' => 'Video',
-                        'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
+                        'name' => 'collection.articlesPublications.videos'
                     ],
                 ]"
+                :params="[ 'published' => true ]"
             />
         @endslot
 
@@ -54,19 +55,19 @@
                 :modules="[
                     [
                         'label' => 'Article',
-                        'value' => '/collection/articlesPublications/articles/browser'
+                        'name' => 'collection.articlesPublications.articles'
                     ],
                     [
                         'label' => 'Highlight',
-                        'value' => moduleRoute('highlights', 'collection', 'browser')
+                        'name' => 'collection.highlights'
                     ],
                     [
                         'label' => 'Interactive feature',
-                        'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser')
+                        'name' => 'collection.interactiveFeatures.experiences'
                     ],
                     [
                         'label' => 'Video',
-                        'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
+                        'name' => 'collection.articlesPublications.videos'
                     ],
                 ]"
             />

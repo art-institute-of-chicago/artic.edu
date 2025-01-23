@@ -5,20 +5,25 @@
     $endpoints = [
         [
             'label' => 'Article',
-            'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['published' => true]),
+            'name' => 'collection.articlesPublications.articles'
         ],
         [
             'label' => 'Highlight',
-            'value' => moduleRoute('highlights', 'collection', 'browser', ['is_published' => true])
+            'name' => 'collection.highlights'
         ],
         [
             'label' => 'Interactive feature',
-            'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser', ['is_published' => true])
+            'name' => 'collection.interactiveFeatures.experiences'
         ],
         [
             'label' => 'Video',
-            'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser', ['is_published' => true]),
+            'name' => 'collection.articlesPublications.videos'
         ],
+    ];
+
+    $params = [
+        'published' => true,
+        'is_published' => true
     ];
 
     switch ($type) {
@@ -133,6 +138,7 @@
         label='Stories'
         :max='5'
         :modules='$endpoints'
+        :params='$params'
     />
 </x-twill::formConnectedFields>
 
@@ -165,9 +171,10 @@
         :modules="[
             [
                 'label' => 'Video',
-                'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser', ['is_published' => true]),
+                'name' => 'collection.articlesPublications.videos'
             ]
         ]"
+        :params='$params'
     />
 </x-twill::formConnectedFields>
 
@@ -182,6 +189,7 @@
         label='Stories'
         :max='6'
         :modules='$endpoints'
+        :params='$params'
     />
 </x-twill::formConnectedFields>
 
@@ -211,5 +219,6 @@
         label='Stories'
         :max='8'
         :modules='$endpoints'
+        :params='$params'
     />
 </x-twill::formConnectedFields>

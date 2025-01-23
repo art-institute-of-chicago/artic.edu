@@ -15,11 +15,11 @@
     :modules="[
         [
             'label' => 'Generic Pages',
-            'value' => moduleRoute('genericPages', 'generic', 'browser', [], false)
+            'name' => 'generic.genericPages'
         ],
         [
             'label' => 'Landing Pages',
-            'value' => moduleRoute('landingPages', 'generic', 'browser', [], false)
+            'name' => 'generic.landingPages'
         ]
     ]"
 />

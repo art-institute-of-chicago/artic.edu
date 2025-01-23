@@ -8,35 +8,35 @@
         :modules="[
             [
                 'label' => 'Article',
-                'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['is_unlisted' => false]),
+                'name' => 'collection.articlesPublications.articles'
             ],
             [
                 'label' => 'Highlight',
-                'value' => moduleRoute('highlights', 'collection', 'browser'),
+                'name' => 'collection.highlights'
             ],
             [
                 'label' => 'Event',
-                'value' => moduleRoute('events', 'exhibitionsEvents', 'browser'),
+                'name' => 'exhibitionsEvents.events'
             ],
             [
                 'label' => 'Exhibition',
-                'value' => moduleRoute('exhibitions', 'exhibitionsEvents', 'browser'),
+                'name' => 'exhibitionsEvents.exhibitions'
             ],
             [
                 'label' => 'Interactive Feature',
-                'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser'),
+                'name' => 'collection.interactiveFeatures.experiences'
             ],
             [
                 'label' => 'Digital Publication',
-                'value' => moduleRoute('digitalPublications', 'collection.articlesPublications', 'browser'),
+                'name' => 'collection.articlesPublication.digitalPublications'
             ],
             [
                 'label' => 'Digital Publication Article',
-                'value' => moduleRoute('digitalPublications.articles', 'collection.articlesPublications', 'browserbrowser'),
+                'name' => 'collection.articlesPublications.digitalPublications.articles.browserbrowser'
             ],
             [
                 'label' => 'Video',
-                'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
+                'name' => 'collection.articlesPublications.videos'
             ],
         ]"
     />
