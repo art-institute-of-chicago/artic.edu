@@ -46,6 +46,10 @@ class BuildingClosure extends AbstractModel
         'published' => true,
     ];
 
+    protected $appends = [
+        'presentType',
+    ];
+
     public function scopeToday($query, $type = 0): Builder
     {
         $today = Carbon::today();
@@ -54,6 +58,11 @@ class BuildingClosure extends AbstractModel
             ->where('type', $type)
             ->where('date_start', '<=', $today)
             ->where('date_end', '>=', $today);
+    }
+
+    public function getPresentTypeAttribute()
+    {
+        return self::$types[$this->type];
     }
 
     protected function transformMappingInternal()
