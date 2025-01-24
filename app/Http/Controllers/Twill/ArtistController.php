@@ -2,46 +2,14 @@
 
 namespace App\Http\Controllers\Twill;
 
-class ArtistController extends \App\Http\Controllers\Twill\BaseApiController
+class ArtistController extends BaseApiController
 {
-    protected $moduleName = 'artists';
-    protected $hasAugmentedModel = true;
-
-    protected $indexOptions = [
-        'publish' => false,
-        'bulkPublish' => false,
-        'feature' => false,
-        'bulkFeature' => false,
-        'restore' => false,
-        'bulkRestore' => false,
-        'bulkDelete' => false,
-        'reorder' => false,
-        'permalink' => true,
-    ];
-
-    protected $titleColumnKey = 'title';
-
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Name',
-            'field' => 'title',
-        ],
-        'augmented' => [
-            'title' => 'Augmented?',
-            'field' => 'augmented',
-            'present' => true,
-        ],
-        'datahub_id' => [
-            'title' => 'Datahub ID',
-            'field' => 'id',
-        ],
-    ];
-
-    protected $formWith = [];
-
-    protected function indexData($request)
+    public function setUpController(): void
     {
-        return [];
+        parent::setUpController();
+        $this->enableAugmentedModel();
+        $this->setModuleName('artists');
+        $this->setTitleColumnLabel('Name');
     }
 
     protected function formData($request)
