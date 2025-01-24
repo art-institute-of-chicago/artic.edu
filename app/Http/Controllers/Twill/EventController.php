@@ -2,49 +2,56 @@
 
 namespace App\Http\Controllers\Twill;
 
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
+use App\Models\Event;
 use App\Repositories\EventProgramRepository;
 
-class EventController extends \App\Http\Controllers\Twill\ModuleController
+class EventController extends BaseController
 {
-    protected $moduleName = 'events';
-    protected $previewView = 'site.events.detail';
+    protected function setUpController(): void
+    {
+        $this->eagerLoadFormRelations(['revisions', 'dateRules']);
+        $this->eagerLoadListingRelations(['medias']); // I don't believe this is necessary anymore
+        $this->enableBulkFeature();
+        $this->enableDuplicate();
+        $this->enableFeature();
+        $this->enableShowImage();
+        $this->setFeatureField('landing');
+        $this->setModuleName('events');
+        $this->setPreviewView('site.events.detail');
+        parent::setUpController();
+    }
 
-    protected $indexOptions = [
-        'publish' => true,
-        'bulkPublish' => true,
-        'duplicate' => true,
-    ];
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = new TableColumns();
+        $columns->add(
+            Text::make()
+                ->field('formattedNextOccurrence')
+                ->title('Event Date')
+                ->sortable()
+                ->customRender(self::renderDate(...))
+        );
 
-    protected $indexColumns = [
-        'image' => [
-            'thumb' => true,
-            'optional' => false,
-            'variant' => [
-                'role' => 'hero',
-                'crop' => 'default',
-            ],
-        ],
-        'title' => [
-            'title' => 'Title',
-            'field' => 'title',
-        ],
-        'formattedNextOccurrence' => [
-            'title' => 'Event Date',
-            'field' => 'formattedNextOccurrence',
-            'present' => true,
-            'sort' => true,
-        ]
-    ];
+        return $columns;
+    }
 
-    protected $featureField = 'landing';
+    private function renderDate(Event $event)
+    {
+        if (!empty($event->forced_date)) {
+            return $event->forced_date;
+        }
 
-    protected $indexWith = ['medias'];
+        if ($next = $event->nextOccurrenceExclusive) {
+            return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
+        }
 
-    protected $formWith = ['revisions', 'dateRules'];
-
-    protected $filters = [];
-
-    protected $defaultOrders;
+        if ($last = $event->lastOccurrence) {
+            return '<time datetime="' . $last->date->format('c') . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format('c') . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
+        }
+        return '';
+    }
 
     /**
      * Twill has trouble ordering items by a column on related items.

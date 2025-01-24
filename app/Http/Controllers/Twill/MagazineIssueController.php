@@ -2,39 +2,19 @@
 
 namespace App\Http\Controllers\Twill;
 
-class MagazineIssueController extends \App\Http\Controllers\Twill\ModuleController
-{
-    protected $moduleName = 'magazineIssues';
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
 
+class MagazineIssueController extends BaseController
+{
     protected $permalinkBase = 'magazine/issues/';
 
-    protected $indexColumns = [
-        'image' => [
-            'title' => 'Hero',
-            'thumb' => true,
-            'variant' => [
-                'role' => 'hero',
-                'crop' => 'default',
-            ],
-        ],
-        'title' => [
-            'title' => 'Title',
-            'edit_link' => true,
-            'sort' => true,
-            'field' => 'title',
-        ],
-        'date' => [
-            'title' => 'Publish Date',
-            'edit_link' => true,
-            'sort' => true,
-            'field' => 'publish_start_date',
-            'present' => true,
-        ],
-    ];
-
-    protected $defaultOrders = [
-        'publish_start_date' => 'desc',
-    ];
+    protected function setUpController(): void
+    {
+        parent::setUpController();
+        $this->enableShowImage();
+        $this->setModuleName('magazineIssues');
+    }
 
     protected function formData($request)
     {
