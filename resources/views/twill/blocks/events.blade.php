@@ -49,19 +49,19 @@ $programs = app(EventProgramRepository::class)->listAll('name');
     :options='$programs'
 />
 
-@component('twill::partials.form.utils._columns')
-@slot('left')
-    <x-twill::date-picker
-        name='date_start'
-        label='Start date'
-        withTime='false'
-    />
-@endslot
-@slot('right')
-    <x-twill::date-picker
-        name='date_end'
-        label='End date'
-        withTime='false'
-    />
-@endslot
-@endcomponent
+<x-twill::formColumns>
+    <x-slot:left>
+        <x-twill::date-picker
+            name='date_start'
+            label='Start date'
+            withTime='false'
+        />
+    </x-slot>
+    <x-slot:right>
+        <x-twill::date-picker
+            name='date_end'
+            label='End date'
+            withTime='false'
+        />
+    </x-slot>
+</x-twill::formColumns>
