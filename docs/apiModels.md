@@ -470,7 +470,7 @@ If you don't want to use the general endpoints, you can specify the name for the
 ```php
 class Artwork extends BaseApiModel
 {
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/artworks',
         'resource'   => '/api/v1/artworks/{id}',
         'search'     => '/api/v1/artworks/search',
