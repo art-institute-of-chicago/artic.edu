@@ -2,26 +2,31 @@
 
 namespace App\Http\Controllers\Twill;
 
-class FeeCategoryController extends \App\Http\Controllers\Twill\ModuleController
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
+
+class FeeCategoryController extends BaseController
 {
-    protected $moduleName = 'feeCategories';
+    public function setUpController(): void
+    {
+        parent::setUpController();
+        $this->disableBulkPublish();
+        $this->disablePublish();
+        $this->enableReorder();
+        $this->setModuleName('feeCategories');
+        $this->setSearchColumns(['title', 'tooltip']);
+    }
 
-    protected $defaultOrders = ['position' => 'asc'];
+    public function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Text::make()
+                ->title('Tooltip')
+                ->field('tooltip')
+                ->sortable()
+        );
 
-    protected $indexOptions = [
-        'publish' => false,
-        'permalink' => false,
-        'reorder' => true,
-    ];
-
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'field' => 'title',
-        ],
-        'tooltip' => [
-            'title' => 'Tooltip',
-            'field' => 'tooltip',
-        ],
-    ];
+        return $columns;
+    }
 }

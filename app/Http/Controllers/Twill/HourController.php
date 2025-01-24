@@ -2,56 +2,55 @@
 
 namespace App\Http\Controllers\Twill;
 
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
 use App\Models\Hour;
 
-class HourController extends \App\Http\Controllers\Twill\ModuleController
+class HourController extends BaseController
 {
-    protected $moduleName = 'hours';
+    public function setUpController(): void
+    {
+        parent::setUpController();
+        $this->setModuleName('hours');
+    }
 
-    protected $titleColumnKey = 'title';
+    public function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Text::make()
+                ->field('type')
+                ->sortable()
+                ->customRender(function (Hour $hour): string {
+                    return Hour::$types[$hour->type];
+                })
+        );
+        $columns->add(
+            Text::make()
+                ->field('url')
+                ->title('Link URL')
+                ->sortable()
+        );
+        $columns->add(
+            Text::make()
+                ->field('valid_from')
+                ->sortable()
+                ->sortByDefault(direction: 'desc')
+                ->customRender(function (Hour $hour) {
+                    return $hour->valid_from->format('M j, Y');
+                })
+        );
+        $columns->add(
+            Text::make()
+                ->field('valid_through')
+                ->sortable()
+                ->customRender(function (Hour $hour) {
+                    return $hour->valid_through->format('M j, Y');
+                })
+        );
 
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'present' => true,
-            'field' => 'title',
-            'edit_link' => true,
-        ],
-        'type' => [
-            'title' => 'Type',
-            'present' => true,
-            'field' => 'type',
-        ],
-        'url' => [
-            'title' => 'Link URL',
-            'present' => true,
-            'field' => 'url',
-        ],
-        'validFrom' => [
-            'title' => 'Valid From',
-            'present' => true,
-            'field' => 'validFrom',
-            'sort_key' => 'valid_from',
-        ],
-        'validThrough' => [
-            'title' => 'Valid Through',
-            'present' => true,
-            'field' => 'validThrough',
-            'sort_key' => 'valid_through',
-        ],
-    ];
-
-    /**
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
-
-    /**
-     * Relations to eager load for the form view
-     */
-    protected $formWith = [];
-
-    protected $defaultOrders = ['valid_from' => 'desc'];
+        return $columns;
+    }
 
     protected function indexData($request)
     {
