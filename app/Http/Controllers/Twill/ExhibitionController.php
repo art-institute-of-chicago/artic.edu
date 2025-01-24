@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Twill;
 
-use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\Columns\Presenter;
 use A17\Twill\Services\Listings\TableColumns;
-use App\Models\Api\Exhibition;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\SiteTagRepository;
 
@@ -19,13 +18,7 @@ class ExhibitionController extends BaseApiController
         $this->disableEdit();
         $this->disableRestore();
         $this->eagerLoadFormRelations(['revisions', 'siteTags']);
-        // I believe this was meant to load local images (as opposed to from the
-        // api), but this no longer seems to work.
-        $this->eagerLoadListingRelations(['medias']);
         $this->enableAugmentedModel();
-        // The images don't always render, but this was also an issue before
-        // upgrading.
-        $this->enableShowImage();
         $this->setModuleName('exhibitions');
         $this->setPreviewView('site.exhibitionDetail');
     }
@@ -34,42 +27,14 @@ class ExhibitionController extends BaseApiController
     {
         $columns = TableColumns::make();
         $columns->add(
-            Text::make()
+            Presenter::make()
                 ->title('Dates')
                 ->field('date')
                 ->sortable()
                 ->sortKey('aic_start_at')
                 ->sortByDefault(direction: 'desc')
-                ->customRender(self::renderDate(...))
         );
         return $columns;
-    }
-
-    protected function renderDate(Exhibition $exhibition)
-    {
-        $date = '';
-
-        // Strangely, we cannot use isset() or empty() here
-        $hasStart = $exhibition->aic_start_at !== null;
-        $hasEnd = $exhibition->aic_end_at !== null;
-
-        // These default gracefully to `now` if the attrs are empty
-        $start = $exhibition->asDateTime($exhibition->aic_start_at);
-        $end = $exhibition->asDateTime($exhibition->aic_end_at);
-
-        if ($hasStart) {
-            $date .= $start->format('m d Y');
-        }
-
-        if ($hasStart && $hasEnd) {
-            $date .= '–';
-        }
-
-        if ($hasEnd) {
-            $date .= $end->format('m d Y');
-        }
-
-        return $date;
     }
 
     protected function formData($request)
