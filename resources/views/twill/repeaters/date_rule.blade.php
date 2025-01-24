@@ -53,9 +53,7 @@
     </x-slot:right>
 </x-twill::formColumns>
 
-@component('twill::partials.form.utils._collapsed_fields')
-    @slot('label', 'Edit weekly/monthly options')
-
+<x-twill::formCollapsedFields label='Edit admission' label='Edit weekly/monthly options'>
 
     @component('twill::partials.form.utils._inline_checkboxes')
         @slot('label', 'If repeated weekly, which days?')
@@ -96,4 +94,4 @@
         default='0'
         :options='\App\Models\DateRule::getMonthlyRepeat()'
     />
-@endcomponent
+</x-twill::formCollapsedFields>
