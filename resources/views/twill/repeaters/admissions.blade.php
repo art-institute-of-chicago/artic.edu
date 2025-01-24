@@ -9,7 +9,7 @@
     :required='true'
 />
 
-@component('twill::partials.form.utils._collapsed_fields', ['label' => 'Edit admission'])
+<x-twill::formCollapsedFields label='Edit admission'>
     <x-twill::date-picker
         name='date'
         label='Date'
@@ -34,4 +34,4 @@
         type='textarea'
         :required='true'
     />
-@endcomponent
+</x-twill::formCollapsedFields>

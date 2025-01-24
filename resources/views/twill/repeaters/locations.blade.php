@@ -9,7 +9,7 @@
     :required='true'
 />
 
-@component('twill::partials.form.utils._collapsed_fields', ['label' => 'Edit location'])
+<x-twill::formCollapsedFields label='Edit location'>
     <x-twill::input
         name='street'
         label='Street'
@@ -35,4 +35,4 @@
         name='directions_link'
         label='Directions Link'
     />
-@endcomponent
+</x-twill::formCollapsedFields>
