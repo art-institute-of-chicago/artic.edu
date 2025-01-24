@@ -8,14 +8,15 @@ use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilder;
 use App\Helpers\StringHelpers;
 use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasApiFactory;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasMediasApi;
 
 class Exhibition extends BaseApiModel
 {
     use HasFeaturedRelated {
         getCustomRelatedItems as traitGetCustomRelatedItems;
     }
-
     use HasApiFactory;
+    use HasMediasApi;
 
     protected array $endpoints = [
         'collection' => '/api/v1/exhibitions',

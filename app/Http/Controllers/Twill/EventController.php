@@ -2,49 +2,38 @@
 
 namespace App\Http\Controllers\Twill;
 
+use A17\Twill\Services\Listings\Columns\Presenter;
+use A17\Twill\Services\Listings\TableColumns;
+use App\Models\Event;
 use App\Repositories\EventProgramRepository;
 
-class EventController extends \App\Http\Controllers\Twill\ModuleController
+class EventController extends BaseController
 {
-    protected $moduleName = 'events';
-    protected $previewView = 'site.events.detail';
+    protected function setUpController(): void
+    {
+        $this->eagerLoadFormRelations(['revisions', 'dateRules']);
+        $this->enableBulkFeature();
+        $this->enableDuplicate();
+        $this->enableFeature();
+        $this->enableShowImage();
+        $this->setFeatureField('landing');
+        $this->setModuleName('events');
+        $this->setPreviewView('site.events.detail');
+        parent::setUpController();
+    }
 
-    protected $indexOptions = [
-        'publish' => true,
-        'bulkPublish' => true,
-        'duplicate' => true,
-    ];
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = new TableColumns();
+        $columns->add(
+            Presenter::make()
+                ->field('formattedNextOccurrence')
+                ->title('Event Date')
+                ->sortable()
+        );
 
-    protected $indexColumns = [
-        'image' => [
-            'thumb' => true,
-            'optional' => false,
-            'variant' => [
-                'role' => 'hero',
-                'crop' => 'default',
-            ],
-        ],
-        'title' => [
-            'title' => 'Title',
-            'field' => 'title',
-        ],
-        'formattedNextOccurrence' => [
-            'title' => 'Event Date',
-            'field' => 'formattedNextOccurrence',
-            'present' => true,
-            'sort' => true,
-        ]
-    ];
-
-    protected $featureField = 'landing';
-
-    protected $indexWith = ['medias'];
-
-    protected $formWith = ['revisions', 'dateRules'];
-
-    protected $filters = [];
-
-    protected $defaultOrders;
+        return $columns;
+    }
 
     /**
      * Twill has trouble ordering items by a column on related items.
