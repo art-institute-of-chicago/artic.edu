@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Twill;
 
-class EmailSeriesController extends \App\Http\Controllers\Twill\ModuleController
+class EmailSeriesController extends BaseController
 {
-    protected $moduleName = 'emailSeries';
-
-    protected $indexOptions = [
-        'reorder' => true,
-    ];
+    protected function setUpController(): void
+    {
+        parent::setUpController();
+        $this->enableReorder();
+        $this->setModuleName('emailSeries');
+    }
 }
