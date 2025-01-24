@@ -82,7 +82,7 @@ class BaseApiController extends ModuleController
 
     public function feature()
     {
-        if (($id = $this->request->get('id'))) {
+        if ($id = $this->request->get('id')) {
             if ($apiModel = $this->getApiRepository()->getById($id)) {
                 $augmentedModel = $this->getRepository()->firstOrCreate(['datahub_id' => $apiModel->id]);
                 $this->request->merge(['id' => $augmentedModel->id]);
@@ -339,13 +339,11 @@ class BaseApiController extends ModuleController
     }
 
     /**
-     * Disable default Twill orders, and do an API search first.
-     * See \Apppp\Repositories\Api\BaseApiRepository::filter().
+     * Disable default Twill order by `created_at`.
      */
     protected function orderScope(): array
     {
         $orderScope = parent::orderScope();
-        $orderScope['search'] ??= 'search';
         unset($orderScope['created_at']);
 
         return $orderScope;
