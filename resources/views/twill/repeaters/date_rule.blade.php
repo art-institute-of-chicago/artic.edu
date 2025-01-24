@@ -55,7 +55,7 @@
 
 <x-twill::formCollapsedFields label='Edit admission' label='Edit weekly/monthly options'>
 
-    @component('twill::partials.form.utils._inline_checkboxes')
+    <x-twill::formInlineCheckboxes>
         @slot('label', 'If repeated weekly, which days?')
 
         <x-twill::checkbox
@@ -86,7 +86,7 @@
             name='sunday'
             label='Sunday'
         />
-    @endcomponent
+    </x-twill::formInlineCheckboxes>
 
     <x-twill::select
         name='monthly_repeat_pattern'
