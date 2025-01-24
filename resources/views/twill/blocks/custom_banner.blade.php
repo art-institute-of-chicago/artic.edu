@@ -85,21 +85,21 @@
         :options="$options"
     />
 
-    @component('twill::partials.form.utils._columns')
-    @slot('left')
-        <x-twill::input
-            name='link_label'
-            label='Link label'
-        />
-    @endslot
+    <x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='link_label'
+                label='Link label'
+            />
+        </x-slot>
 
-    @slot('right')
-        <x-twill::input
-            name='link_url'
-            label='Link URL'
-        />
-    @endslot
-    @endcomponent
+        <x-slot:right>
+            <x-twill::input
+                name='link_url'
+                label='Link URL'
+            />
+        </x-slot:right>
+    </x-twill::formColumns>
 
 </x-twill::formConnectedFields>
 

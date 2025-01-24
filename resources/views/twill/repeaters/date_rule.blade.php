@@ -10,15 +10,15 @@
     :options='\App\Models\DateRule::getRuleTypes()'
 />
 
-@component('twill::partials.form.utils._columns')
-    @slot('left')
+<x-twill::formColumns>
+    <x-slot:left>
         <x-twill::date-picker
             name='start_date'
             label='Start Date'
             withTime='false'
         />
-    @endslot
-    @slot('right')
+    </x-slot:left>
+    <x-slot:right>
         <x-twill::date-picker
             name='end_date'
             label='Ends'
@@ -31,28 +31,27 @@
             type='number'
             placeholder='1, 2, 3.... etc'
         />
-    @endslot
-@endcomponent
+    </x-slot:right>
+</x-twill::formColumns>
 
-
-@component('twill::partials.form.utils._columns')
-    @slot('left')
+<x-twill::formColumns>
+    <x-slot:left>
         <x-twill::input
             name='every'
             label='Repeat every'
             type='number'
             placeholder='1, 2, 3.... etc'
         />
-    @endslot
-    @slot('right')
+    </x-slot:left>
+    <x-slot:right>
         <x-twill::select
             name='recurring_type'
             label='Days/Week/Month'
             default='0'
             :options='\App\Models\DateRule::getRecurringTypes()'
         />
-    @endslot
-@endcomponent
+    </x-slot:right>
+</x-twill::formColumns>
 
 @component('twill::partials.form.utils._collapsed_fields')
     @slot('label', 'Edit weekly/monthly options')

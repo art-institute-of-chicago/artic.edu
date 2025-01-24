@@ -114,37 +114,36 @@
         :toolbar-options="[ 'italic' ]"
     />
 
-    @component('twill::partials.form.utils._columns')
-    @slot('left')
-        <x-twill::input
-            name='labels.header_my_museum_tour_primary_button_label'
-            label='Primary Button Label'
-        />
-    @endslot
+    <x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='labels.header_my_museum_tour_primary_button_label'
+                label='Primary Button Label'
+            />
+        </x-slot:left>
 
-    @slot('right')
-        <x-twill::input
-            name='labels.header_my_museum_tour_primary_button_link'
-            label='Primary Button Link'
-        />
-    @endslot
-    @endcomponent
+        <x-slot:right>
+            <x-twill::input
+                name='labels.header_my_museum_tour_primary_button_link'
+                label='Primary Button Link'
+            />
+        </x-slot:right>
+    </x-twill::formColumns>
 
-    @component('twill::partials.form.utils._columns')
-    @slot('left')
-        <x-twill::input
-            name='labels.header_my_museum_tour_secondary_button_label'
-            label='Secondary Button Label'
-        />
-    @endslot
-
-    @slot('right')
-        <x-twill::input
-            name='labels.header_my_museum_tour_secondary_button_link'
-            label='Secondary Button Link'
-        />
-    @endslot
-    @endcomponent
+    <x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='labels.header_my_museum_tour_secondary_button_label'
+                label='Secondary Button Label'
+            />
+        </x-slot:left>
+        <x-slot:right>
+            <x-twill::input
+                name='labels.header_my_museum_tour_secondary_button_link'
+                label='Secondary Button Link'
+            />
+        </x-slot:right>
+    </x-twill::formColumns>
 
     <x-twill::medias
         name='header_my_museum_tour_header_image'
@@ -161,53 +160,53 @@
         label='PDF hero Image'
     />
 
-    @component('twill::partials.form.utils._columns')
-    @slot('left')
-        <x-twill::input
-            name='labels.header_my_museum_tour_icon_choose_title'
-            label='`Choose` Title'
-        />
-    @endslot
+    <x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='labels.header_my_museum_tour_icon_choose_title'
+                label='`Choose` Title'
+            />
+        </x-slot:left>
 
-    @slot('right')
-        <x-twill::input
-            name='labels.header_my_museum_tour_icon_choose_desc'
-            label='`Choose` Description'
-        />
-    @endslot
-    @endcomponent
+        <x-slot:right>
+            <x-twill::input
+                name='labels.header_my_museum_tour_icon_choose_desc'
+                label='`Choose` Description'
+            />
+        </x-slot:right>
+    </x-twill::formColumns>
 
-    @component('twill::partials.form.utils._columns')
-    @slot('left')
-        <x-twill::input
-            name='labels.header_my_museum_tour_icon_personalize_title'
-            label='`Personalize` Title'
-        />
-    @endslot
+    <x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='labels.header_my_museum_tour_icon_personalize_title'
+                label='`Personalize` Title'
+            />
+        </x-slot:left>
 
-    @slot('right')
-        <x-twill::input
-            name='labels.header_my_museum_tour_icon_personalize_desc'
-            label='`Personalize` Description'
-        />
-    @endslot
-    @endcomponent
+        <x-slot:right>
+            <x-twill::input
+                name='labels.header_my_museum_tour_icon_personalize_desc'
+                label='`Personalize` Description'
+            />
+        </x-slot:right>
+    </x-twill::formColumns>
 
-    @component('twill::partials.form.utils._columns')
-    @slot('left')
-        <x-twill::input
-            name='labels.header_my_museum_tour_icon_finish_title'
-            label='`Finish` Title'
-        />
-    @endslot
+    <x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='labels.header_my_museum_tour_icon_finish_title'
+                label='`Finish` Title'
+            />
+        </x-slot:left>
 
-    @slot('right')
-        <x-twill::input
-            name='labels.header_my_museum_tour_icon_finish_desc'
-            label='`Finish` Description'
-        />
-    @endslot
-    @endcomponent
+        <x-slot:right>
+            <x-twill::input
+                name='labels.header_my_museum_tour_icon_finish_desc'
+                label='`Finish` Description'
+            />
+        </x-slot:right>
+    </x-twill::formColumns>
 
 </x-twill::formConnectedFields>
 

@@ -15,8 +15,8 @@
 
 <x-twill::formFieldset title="Top Stories" id="stories_top">
 
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
+    <x-twill::formColumns>
+        <x-slot:left>
             <x-twill::browser
                 name='top_stories'
                 label='Top Stories'
@@ -43,9 +43,8 @@
                 ]"
                 :params="[ 'published' => true ]"
             />
-        @endslot
-
-        @slot('right')
+        </x-slot:left>
+        <x-slot:right>
             <x-twill::browser
                 name='most_popular_stories'
                 label='Most popular stories'
@@ -71,8 +70,8 @@
                     ],
                 ]"
             />
-        @endslot
-        @endcomponent
+        </x-slot:right>
+    </x-twill::formColumns>
 
 </x-twill::formFieldset>
 

@@ -149,20 +149,20 @@
     :render-for-blocks='true'
 >
 
-    @component('twill::partials.form.utils._columns')
-    @slot('left')
-        <x-twill::input
-            name='browse_label'
-            label='Browse More Label'
-        />
-    @endslot
-    @slot('right')
-        <x-twill::input
-            name='browse_link'
-            label='Browse More Link'
-        />
-    @endslot
-    @endcomponent
+    <x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='browse_label'
+                label='Browse More Label'
+            />
+        </x-slot>
+        <x-slot:right>
+            <x-twill::input
+                name='browse_link'
+                label='Browse More Link'
+            />
+        </x-slot>
+    </x-twill::formColumns>
 
     <x-twill::browser
         name='videos'
@@ -199,20 +199,20 @@
     :render-for-blocks='true'
 >
 
-    @component('twill::partials.form.utils._columns')
-    @slot('left')
-        <x-twill::input
-            name='browse_label'
-            label='Browse More Label'
-        />
-    @endslot
-    @slot('right')
-        <x-twill::input
-            name='browse_link'
-            label='Browse More Link'
-        />
-    @endslot
-    @endcomponent
+    <x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='browse_label'
+                label='Browse More Label'
+            />
+        </x-slot>
+        <x-slot:right>
+            <x-twill::input
+                name='browse_link'
+                label='Browse More Link'
+            />
+        </x-slot>
+    </x-twill::formColumns>
 
     <x-twill::browser
         name='stories'

@@ -37,21 +37,21 @@
         ]"
     />
 
-    @component('twill::partials.form.utils._columns')
-        @slot('left')
+    <x-twill::formColumns>
+        <x-slot:left>
             <x-twill::checkbox
                 name='hide_title'
                 label='Hide title in listing view'
             />
-        @endslot
+        </x-slot>
 
-        @slot('right')
+        <x-slot:right>
             <x-twill::checkbox
                 name='suppress_listing'
                 label='Hide from listing view'
             />
-        @endslot
-    @endcomponent
+        </x-slot>
+    </x-twill::formColumns>
 @stop
 
 @section('fieldsets')

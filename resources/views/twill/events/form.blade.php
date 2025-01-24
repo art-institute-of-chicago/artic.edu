@@ -47,8 +47,8 @@
             :rows='2'
         />
 
-        @component('twill::partials.form.utils._columns')
-            @slot('left')
+        <x-twill::formColumns>
+            <x-slot:left>
                 <x-twill::select
                     name='start_time'
                     label='Start Time'
@@ -61,16 +61,16 @@
                     label='Door Time'
                     :options="DateHelpers::hoursSelectOptions()"
                 />
-            @endslot
-            @slot('right')
+            </x-slot:left>
+            <x-slot:right>
                 <x-twill::select
                     name='end_time'
                     label='End Time'
                     :options='DateHelpers::hoursSelectOptions()'
                     :required='true'
                 />
-            @endslot
-        @endcomponent
+            </x-slot:right>
+        </x-twill::formColumns>
 
         <x-twill::input
             name='forced_date'
