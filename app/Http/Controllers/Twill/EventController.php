@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Twill;
 
-use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\Columns\Presenter;
 use A17\Twill\Services\Listings\TableColumns;
 use App\Models\Event;
 use App\Repositories\EventProgramRepository;
@@ -12,7 +12,6 @@ class EventController extends BaseController
     protected function setUpController(): void
     {
         $this->eagerLoadFormRelations(['revisions', 'dateRules']);
-        $this->eagerLoadListingRelations(['medias']); // I don't believe this is necessary anymore
         $this->enableBulkFeature();
         $this->enableDuplicate();
         $this->enableFeature();
@@ -27,30 +26,13 @@ class EventController extends BaseController
     {
         $columns = new TableColumns();
         $columns->add(
-            Text::make()
+            Presenter::make()
                 ->field('formattedNextOccurrence')
                 ->title('Event Date')
                 ->sortable()
-                ->customRender(self::renderDate(...))
         );
 
         return $columns;
-    }
-
-    private function renderDate(Event $event)
-    {
-        if (!empty($event->forced_date)) {
-            return $event->forced_date;
-        }
-
-        if ($next = $event->nextOccurrenceExclusive) {
-            return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
-        }
-
-        if ($last = $event->lastOccurrence) {
-            return '<time datetime="' . $last->date->format('c') . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format('c') . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
-        }
-        return '';
     }
 
     /**
