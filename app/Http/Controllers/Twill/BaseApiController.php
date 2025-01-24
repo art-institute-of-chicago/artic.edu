@@ -54,7 +54,6 @@ class BaseApiController extends ModuleController
         $this->disableBulkPublish();
         $this->disableCreate();
         $this->disableDelete();
-        $this->disableEdit();
         $this->disablePermalink();
         $this->disablePublish();
         $this->disableRestore();
