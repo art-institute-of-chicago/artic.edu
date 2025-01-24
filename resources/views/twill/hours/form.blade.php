@@ -47,32 +47,32 @@
         field-values="false"
         :render-for-blocks='false'
     >
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            <x-twill::select
-                name='monday_member_open'
-                label='Member open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='monday_public_open'
-                label='Public open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @slot('right')
-            <x-twill::select
-                name='monday_member_close'
-                label='Member close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='monday_public_close'
-                label='Public close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @endcomponent
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::select
+                    name='monday_member_open'
+                    label='Member open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='monday_public_open'
+                    label='Public open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+            <x-slot:right>
+                <x-twill::select
+                    name='monday_member_close'
+                    label='Member close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='monday_public_close'
+                    label='Public close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+        </x-twill::formColumns>
     </x-twill::formConnectedFields>
 </x-twill::formFieldset>
 
@@ -87,32 +87,32 @@
         field-values="false"
         :render-for-blocks='false'
     >
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            <x-twill::select
-                name='tuesday_member_open'
-                label='Member open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='tuesday_public_open'
-                label='Public open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @slot('right')
-            <x-twill::select
-                name='tuesday_member_close'
-                label='Member close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='tuesday_public_close'
-                label='Public close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @endcomponent
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::select
+                    name='tuesday_member_open'
+                    label='Member open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='tuesday_public_open'
+                    label='Public open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+            <x-slot:right>
+                <x-twill::select
+                    name='tuesday_member_close'
+                    label='Member close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='tuesday_public_close'
+                    label='Public close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+        </x-twill::formColumns>
     </x-twill::formConnectedFields>
 </x-twill::formFieldset>
 
@@ -127,32 +127,32 @@
         field-values="false"
         :render-for-blocks='false'
     >
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            <x-twill::select
-                name='wednesday_member_open'
-                label='Member open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='wednesday_public_open'
-                label='Public open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @slot('right')
-            <x-twill::select
-                name='wednesday_member_close'
-                label='Member close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='wednesday_public_close'
-                label='Public close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @endcomponent
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::select
+                    name='wednesday_member_open'
+                    label='Member open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='wednesday_public_open'
+                    label='Public open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+            <x-slot:right>
+                <x-twill::select
+                    name='wednesday_member_close'
+                    label='Member close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='wednesday_public_close'
+                    label='Public close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+        </x-twill::formColumns>
     </x-twill::formConnectedFields>
 </x-twill::formFieldset>
 
@@ -167,32 +167,32 @@
         field-values="false"
         :render-for-blocks='false'
     >
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            <x-twill::select
-                name='thursday_member_open'
-                label='Member open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='thursday_public_open'
-                label='Public open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @slot('right')
-            <x-twill::select
-                name='thursday_member_close'
-                label='Member close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='thursday_public_close'
-                label='Public close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @endcomponent
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::select
+                    name='thursday_member_open'
+                    label='Member open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='thursday_public_open'
+                    label='Public open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+            <x-slot:right>
+                <x-twill::select
+                    name='thursday_member_close'
+                    label='Member close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='thursday_public_close'
+                    label='Public close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+        </x-twill::formColumns>
     </x-twill::formConnectedFields>
 </x-twill::formFieldset>
 
@@ -207,32 +207,32 @@
         field-values="false"
         :render-for-blocks='false'
     >
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            <x-twill::select
-                name='friday_member_open'
-                label='Member open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='friday_public_open'
-                label='Public open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @slot('right')
-            <x-twill::select
-                name='friday_member_close'
-                label='Member close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='friday_public_close'
-                label='Public close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @endcomponent
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::select
+                    name='friday_member_open'
+                    label='Member open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='friday_public_open'
+                    label='Public open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+            <x-slot:right>
+                <x-twill::select
+                    name='friday_member_close'
+                    label='Member close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='friday_public_close'
+                    label='Public close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+        </x-twill::formColumns>
     </x-twill::formConnectedFields>
 </x-twill::formFieldset>
 
@@ -247,32 +247,32 @@
         field-values="false"
         :render-for-blocks='false'
     >
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            <x-twill::select
-                name='saturday_member_open'
-                label='Member open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='saturday_public_open'
-                label='Public open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @slot('right')
-            <x-twill::select
-                name='saturday_member_close'
-                label='Member close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='saturday_public_close'
-                label='Public close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @endcomponent
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::select
+                    name='saturday_member_open'
+                    label='Member open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='saturday_public_open'
+                    label='Public open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+            <x-slot:right>
+                <x-twill::select
+                    name='saturday_member_close'
+                    label='Member close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='saturday_public_close'
+                    label='Public close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+        </x-twill::formColumns>
     </x-twill::formConnectedFields>
 </x-twill::formFieldset>
 
@@ -287,32 +287,32 @@
         field-values="false"
         :render-for-blocks='false'
     >
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            <x-twill::select
-                name='sunday_member_open'
-                label='Member open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='sunday_public_open'
-                label='Public open'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @slot('right')
-            <x-twill::select
-                name='sunday_member_close'
-                label='Member close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-            <x-twill::select
-                name='sunday_public_close'
-                label='Public close'
-                :options="DateHelpers::hoursSelectOptions()"
-            />
-        @endslot
-        @endcomponent
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::select
+                    name='sunday_member_open'
+                    label='Member open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='sunday_public_open'
+                    label='Public open'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+            <x-slot:right>
+                <x-twill::select
+                    name='sunday_member_close'
+                    label='Member close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+                <x-twill::select
+                    name='sunday_public_close'
+                    label='Public close'
+                    :options="DateHelpers::hoursSelectOptions()"
+                />
+            </x-slot>
+        </x-twill::formColumns>
     </x-twill::formConnectedFields>
 </x-twill::formFieldset>
 

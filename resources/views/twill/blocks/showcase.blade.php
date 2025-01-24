@@ -177,17 +177,17 @@
     />
 </x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._columns')
-    @slot('left')
+<x-twill::formColumns>
+    <x-slot:left>
         <x-twill::input
             name='link_label'
             label='Link Label'
         />
-    @endslot
-    @slot('right')
+    </x-slot:left>
+    <x-slot:right>
         <x-twill::input
             name='link_url'
             label='Link Url'
         />
-    @endslot
-@endcomponent
+    </x-slot:right>
+</x-twill::formColumns>
