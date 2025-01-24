@@ -2,18 +2,18 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
-use App\Libraries\Api\Builders\ApiModelBuilderSearch;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilderSearch;
 use App\Libraries\Search\Filters\Departments as DepartmentFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use App\Helpers\DateHelpers;
-use App\Libraries\Api\Builders\ApiModelBuilder;
+use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilder;
 
 class Search extends BaseApiModel
 {
-    protected $endpoints = [
+    protected array $endpoints = [
         'search' => '/api/v1/search',
         'msearch' => '/api/v1/msearch',
     ];
