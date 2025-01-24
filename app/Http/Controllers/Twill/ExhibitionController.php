@@ -2,90 +2,39 @@
 
 namespace App\Http\Controllers\Twill;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController;
+use A17\Twill\Services\Listings\Columns\Presenter;
+use A17\Twill\Services\Listings\TableColumns;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\SiteTagRepository;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Http\Request;
 
-class ExhibitionController extends \App\Http\Controllers\Twill\BaseApiController
+class ExhibitionController extends BaseApiController
 {
-    protected $moduleName = 'exhibitions';
-    protected $hasAugmentedModel = true;
-    protected $previewView = 'site.exhibitionDetail';
-
-    protected $indexOptions = [
-        'publish' => true,
-        'bulkEdit' => false,
-        'create' => false,
-        'permalink' => true,
-    ];
-
-    protected $indexColumns = [
-        'image' => [
-            'thumb' => true,
-            'optional' => false,
-            'variant' => [
-                'role' => 'hero',
-                'crop' => 'default',
-            ],
-        ],
-        'title' => [
-            'title' => 'Title',
-            'field' => 'title',
-            'sort' => true,
-        ],
-        'augmented' => [
-            'title' => 'Augmented?',
-            'field' => 'augmented',
-            'present' => true,
-        ],
-        'date' => [
-            'title' => 'Dates',
-            'field' => 'date',
-            'present' => true,
-            'optional' => false,
-            'sort' => true,
-            'sortKey' => 'aic_start_at',
-        ],
-    ];
-
-    protected $indexWith = ['medias'];
-
-    protected $formWith = ['revisions', 'siteTags'];
-
-    protected $defaultOrders;
-
-    protected $filters = [];
-
-    public function __construct(Application $app, Request $request)
+    public function setUpController(): void
     {
-        parent::__construct(...func_get_args());
-
-        $filters = $this->getRequestFilters();
-
-        if (is_array($filters) && ($filters['search'] ?? false)) {
-            $this->defaultOrders = ['_score' => 'desc'];
-        } else {
-            $this->defaultOrders = ['aic_start_at' => 'desc'];
-        }
+        $this->disableBulkDelete();
+        $this->disableBulkEdit();
+        $this->disableCreate();
+        $this->disableDelete();
+        $this->disableEdit();
+        $this->disableRestore();
+        $this->eagerLoadFormRelations(['revisions', 'siteTags']);
+        $this->enableAugmentedModel();
+        $this->setModuleName('exhibitions');
+        $this->setPreviewView('site.exhibitionDetail');
     }
 
-    /**
-     * Use the default order scope from Twill.
-     * Added this as an exception on exhibitions because it's the only API listing that
-     * sorting has been implemented.
-     *
-     * @see App\Models\Api\Exhibition::scopeOrderBy
-     */
-    protected function orderScope(): array
+    protected function additionalIndexTableColumns(): TableColumns
     {
-        return ModuleController::orderScope();
-    }
-
-    protected function indexData($request)
-    {
-        return [];
+        $columns = TableColumns::make();
+        $columns->add(
+            Presenter::make()
+                ->title('Dates')
+                ->field('date')
+                ->sortable()
+                ->sortKey('aic_start_at')
+                ->sortByDefault(direction: 'desc')
+        );
+        return $columns;
     }
 
     protected function formData($request)
