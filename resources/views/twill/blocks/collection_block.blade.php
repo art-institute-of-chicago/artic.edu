@@ -20,34 +20,34 @@
     type='textarea'
 />
 
-@component('twill::partials.form.utils._columns')
-    @slot('left')
-        <x-twill::input
-            name='primary_button_label'
-            label='Primary Button Label'
-        />
-    @endslot
+<x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='primary_button_label'
+                label='Primary Button Label'
+            />
+        </x-slot>
 
-    @slot('right')
-        <x-twill::input
-            name='primary_button_link'
-            label='Primary Button Link'
-        />
-    @endslot
-@endcomponent
+        <x-slot:right>
+            <x-twill::input
+                name='primary_button_link'
+                label='Primary Button Link'
+            />
+        </x-slot>
+</x-twill::formColumns>
 
-@component('twill::partials.form.utils._columns')
-    @slot('left')
-        <x-twill::input
-            name='secondary_button_label'
-            label='Secondary Button Label'
-        />
-    @endslot
+<x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='secondary_button_label'
+                label='Secondary Button Label'
+            />
+        </x-slot>
 
-    @slot('right')
-        <x-twill::input
-            name='secondary_button_link'
-            label='Secondary Button Link'
-        />
-    @endslot
-@endcomponent
+        <x-slot:right>
+            <x-twill::input
+                name='secondary_button_link'
+                label='Secondary Button Link'
+            />
+        </x-slot>
+</x-twill::formColumns>

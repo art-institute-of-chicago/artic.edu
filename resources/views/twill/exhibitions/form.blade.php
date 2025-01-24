@@ -26,43 +26,43 @@
 
     @include('twill.partials.hero')
 
-    @component('twill::partials.form.utils._columns')
-        @slot('left')
+    <x-twill::formColumns>
+        <x-slot:left>
             <x-twill::date-picker
                 name='public_start_date'
                 label='Public Start Date'
                 withTime='false'
                 placeholder='{{ isset($item) && $item->aic_start_at ? (new \Carbon\Carbon($item->aic_start_at))->toFormattedDateString() : null }}'
             />
-        @endslot
-        @slot('right')
+        </x-slot:left>
+        <x-slot:right>
             <x-twill::date-picker
                 name='public_end_date'
                 label='Public End Date'
                 withTime='false'
                 placeholder='{{ isset($item) && $item->aic_end_at ? (new \Carbon\Carbon($item->aic_end_at))->toFormattedDateString() : null }}'
             />
-        @endslot
-    @endcomponent
+        </x-slot:right>
+    </x-twill::formColumns>
 
-    @component('twill::partials.form.utils._columns')
-        @slot('left')
+    <x-twill::formColumns>
+        <x-slot:left>
             <x-twill::date-picker
                 name='member_preview_start_date'
                 label='Member Preview Start Date'
                 withTime='false'
                 placeholder=''
             />
-        @endslot
-        @slot('right')
+        </x-slot:left>
+        <x-slot:right>
             <x-twill::date-picker
                 name='member_preview_end_date'
                 label='Member Preview End Date'
                 withTime='false'
                 placeholder=''
             />
-        @endslot
-    @endcomponent
+        </x-slot:right>
+    </x-twill::formColumns>
 
     <x-twill::input
         name='date_display_override'

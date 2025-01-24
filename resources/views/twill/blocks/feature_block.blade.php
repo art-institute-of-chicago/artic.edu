@@ -90,20 +90,20 @@
         label='Heading'
     />
 
-    @component('twill::partials.form.utils._columns')
-        @slot('left')
+    <x-twill::formColumns>
+        <x-slot:left>
             <x-twill::input
                 name='browse_label'
                 label='Browse More Label'
             />
-        @endslot
-        @slot('right')
+        </x-slot>
+        <x-slot:right>
             <x-twill::input
                 name='browse_link'
                 label='Browse More Link'
             />
-        @endslot
-    @endcomponent
+        </x-slot>
+    </x-twill::formColumns>
 
 </x-twill::formConnectedFields>
 
