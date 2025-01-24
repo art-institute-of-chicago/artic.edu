@@ -29,34 +29,33 @@
     :toolbar-options="[ 'italic' ]"
 />
 
-@component('twill::partials.form.utils._columns')
-@slot('left')
+<x-twill::formColumns>
+    <x-slot:left>
+        <x-twill::input
+            name='label'
+            label='Label'
+        />
+    </x-slot:left>
 
-<x-twill::input
-    name='label'
-    label='Label'
-/>
-@endslot
-
-@slot('right')
-<x-twill::radios
-    name='label_position'
-    label='Label position'
-    note=''
-    :inline='true'
-    :options="[
-        [
-            'value' => 'overlay',
-            'label' => 'Bottom of image'
-        ],
-        [
-            'value' => 'description',
-            'label' => 'Below description'
-        ]
-    ]"
-/>
-@endslot
-@endcomponent
+    <x-slot:right>
+        <x-twill::radios
+            name='label_position'
+            label='Label position'
+            note=''
+            :inline='true'
+            :options="[
+                [
+                    'value' => 'overlay',
+                    'label' => 'Bottom of image'
+                ],
+                [
+                    'value' => 'description',
+                    'label' => 'Below description'
+                ]
+            ]"
+        />
+    </x-slot:right>
+</x-twill::formColumns>
 
 <x-twill::input
     name='url'
