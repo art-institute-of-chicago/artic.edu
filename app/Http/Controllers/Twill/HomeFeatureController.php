@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Twill;
 
-class HomeFeatureController extends \App\Http\Controllers\Twill\ModuleController
+class HomeFeatureController extends BaseController
 {
-    protected $moduleName = 'homeFeatures';
-
-    protected $indexOptions = [
-        'permalink' => false,
-    ];
+    public function setUpController(): void
+    {
+        parent::setUpController();
+        $this->setModuleName('homeFeatures');
+    }
 }
