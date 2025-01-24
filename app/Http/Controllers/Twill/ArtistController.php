@@ -6,14 +6,7 @@ class ArtistController extends BaseApiController
 {
     public function setUpController(): void
     {
-        $this->disableBulkDelete();
-        $this->disableBulkEdit();
-        $this->disableBulkPublish();
-        $this->disableCreate();
-        $this->disableDelete();
-        $this->disablePermalink();
-        $this->disablePublish();
-        $this->disableRestore();
+        parent::setUpController();
         $this->enableAugmentedModel();
         $this->setModuleName('artists');
         $this->setTitleColumnLabel('Name');

@@ -6,14 +6,7 @@ class GalleryController extends BaseApiController
 {
     protected function setUpController(): void
     {
-        $this->disableBulkDelete();
-        $this->disableBulkEdit();
-        $this->disableBulkPublish();
-        $this->disableCreate();
-        $this->disableDelete();
-        $this->disablePermalink();
-        $this->disablePublish();
-        $this->disableRestore();
+        parent::setUpController();
         $this->setModuleName('galleries');
         $this->enableAugmentedModel();
     }
