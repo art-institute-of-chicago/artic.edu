@@ -20,6 +20,12 @@
     <br/><h1><strong>Kiosk URL:</strong> <a href={{ $kiosk_url }}>{{ $kiosk_url }}</a></h1>
     <br/><h1><strong>Bundle ID: </strong>{{ $item->id }}</h1>
 
+    @php
+        $groupingsList = App\Models\InteractiveFeature::all()->map(function (App\Models\InteractiveFeature $item) {
+            return ['value' => $item->id, 'label' => $item->title];
+        })->toArray();
+    @endphp
+
     <x-twill::select
         name='interactive_feature_id'
         label='Grouping'

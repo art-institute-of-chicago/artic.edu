@@ -6,7 +6,7 @@
     label='Media Type'
     :required='true'
     :unpack='true'
-    :options='[
+    :options="[
         [
             'value' => 'image',
             'label' => 'Image'
@@ -44,7 +44,7 @@
     name='description'
     label='Description'
     :required='true'
-    :toolbar-options="[ 'bold', 'italic', 'underline', 'link', ['list' => 'bullet'], ['list' => 'ordered'] ]"
+    :toolbar-options="[ 'bold', 'italic', 'underline', 'link', 'bullet', 'ordered' ]"
 />
 
 <x-twill::formColumns>
