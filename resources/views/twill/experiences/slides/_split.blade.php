@@ -36,7 +36,7 @@
         label='Primary Copy Side'
         default='left'
         :inline='true'
-        // The value and label not matched because on FE, it's controlling the image's side, but client want to rename the label to primary copy side
+        {{-- The value and label not matched because on FE, it's controlling the image's side, but client want to rename the label to primary copy side. --}}
         :options="[
             [
                 'value' => 'right',

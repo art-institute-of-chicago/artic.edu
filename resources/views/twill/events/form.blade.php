@@ -29,7 +29,7 @@
             name='layout_type'
             label='Hero type'
             default='0'
-            :options='$eventLayoutsList'
+            :options="$eventLayoutsList"
         />
 
         @include('twill.partials.hero')
@@ -276,7 +276,7 @@
         @endphp
 
         <x-twill::block-editor
-            :blocks='$blocks'
+            :blocks="$blocks"
         />
     </x-twill::formFieldset>
 
@@ -312,7 +312,7 @@
             name='event_type'
             label='Event type (preferred)'
             :options="$eventTypesList"
-            default='\App\Models\Event::NULL_OPTION' {{-- No effect? --}}
+            default='{{ \App\Models\Event::NULL_OPTION }}' {{-- No effect? --}}
         />
 
         <x-twill::multi-select
@@ -350,7 +350,7 @@
             name='program_urls'
             label='Program URLs'
             type='textarea'
-            :rows='{{ $item->programs->count() }}'
+            :rows="$item->programs->count()"
             readonly='true'
         />
     </x-twill::formFieldset>
@@ -403,12 +403,11 @@
             <x-twill::select
                 name='event_host_id'
                 label='Event Host'
-                default='{{ \App\Models\Event::NULL_OPTION_EVENT_HOST }}' // No effect?
+                default='{{ \App\Models\Event::NULL_OPTION_EVENT_HOST }}' {{-- No effect? --}}
                 note='This field is mandatory and will be used to determine audience list for email send'
                 :required='true'
                 :options="$options"
             />
-
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
             <p>Please select the emails you wish to opt-in to:</p>
@@ -424,13 +423,14 @@
                     }
                 @endphp
 
+
                 <x-twill::checkbox
-                    name='$currentSeriesName'
-                    label='$currentSeriesTitle'
+                    name="$currentSeriesName"
+                    label="$currentSeriesTitle"
                 />
 
                 <x-twill::formConnectedFields
-                    field-name='{{ $currentSeriesName }}'
+                    field-name="$currentSeriesName"
                     field-values='true'
                     :render-for-blocks='false'
                 >
@@ -486,7 +486,6 @@
                             </div>
 
                         </x-twill::formConnectedFields>
-
                     @endforeach
 
                     </div>
@@ -539,6 +538,7 @@
 
                 <p>Please select which test emails you'd like to send:</p>
 
+
                 @foreach ( \App\Models\EmailSeries::ordered()->get() as $series)
 
                     @php
@@ -551,7 +551,7 @@
                     @endphp
 
                     <x-twill::formConnectedFields
-                        field-name='{{ $currentSeriesName }}'
+                        field-name='$currentSeriesName'
                         field-values='true'
                         :render-for-blocks='false'
                     >
@@ -613,6 +613,7 @@
                         @endif
 
                     </x-twill::formConnectedFields>
+
 
                 @endforeach
 
