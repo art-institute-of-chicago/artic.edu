@@ -1,14 +1,14 @@
 @extends('twill::layouts.form', [
     'disableContentFieldset' => true,
     'additionalFieldsets' => [
-        ['fieldset' => 'title_and_image', 'label' => 'Title and Image'],
+        ['fieldset' => 'title_and_image', 'label' => 'Title'],
         ['fieldset' => 'dates', 'label' => 'Date Rules'],
-        ['fieldset' => 'ticketing', 'label' => 'Ticketing Info'],
-        ['fieldset' => 'sales_site', 'label' => 'Sales Site'],
+        ['fieldset' => 'ticketing', 'label' => 'Ticketing'],
+        ['fieldset' => 'sales_site', 'label' => 'Sales'],
         ['fieldset' => 'content', 'label' => 'Content'],
         ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
         ['fieldset' => 'related_elements', 'label' => 'Related'],
-        ['fieldset' => 'filters_and_types', 'label' => 'Filters and Types'],
+        ['fieldset' => 'filters_and_types', 'label' => 'Filters'],
         ['fieldset' => 'metadata', 'label' => 'Metadata'],
         ['fieldset' => 'event_series', 'label' => 'Email Series'],
     ]
