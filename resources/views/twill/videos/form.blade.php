@@ -75,6 +75,7 @@
             name='categories'
             label='Categories'
             placeholder='Select some categories'
+            unpack='true'
             :options="$categoriesList"
         />
 
