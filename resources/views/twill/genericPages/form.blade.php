@@ -2,6 +2,7 @@
     'additionalFieldsets' => [
         ['fieldset' => 'hours', 'label' => 'Hours'],
         ['fieldset' => 'side_related', 'label' => 'Sidebar Related'],
+        ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
         ['fieldset' => 'metadata', 'label' => 'Metadata'],
     ]
 ])
