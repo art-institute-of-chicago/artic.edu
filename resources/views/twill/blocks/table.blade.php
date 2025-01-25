@@ -52,7 +52,7 @@
     name='table_caption'
     label='Caption'
     note='Optional'
-    :toolbar-options="[ ['header' => 3], 'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered', ['script' => 'super'] ]"
+    :toolbar-options="[ ['header' => 3], 'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered', 'superscript' ]"
 />
 
 <x-twill::checkbox

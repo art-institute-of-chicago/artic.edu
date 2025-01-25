@@ -65,7 +65,7 @@
         <x-twill::wysiwyg
             name='welcome_note_display'
             label='Preview text'
-            note="If empty, we use the article's \"List description\""
+            note="If empty, we use the article's 'List description'"
             :maxlength="255"
             :toolbar-options="[ 'italic' ]"
         />
