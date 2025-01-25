@@ -68,8 +68,11 @@
             :render-for-blocks='false'
             :keep-alive='true'
         >
+            @php
+                $name = $moduleType . '_standard_media_type';
+            @endphp
             <x-twill::radios
-                name="{{ $moduleType . '_standard_media_type' }}"
+                :name="$name"
                 label='Media Type'
                 default='type_image'
                 :inline='true'
@@ -176,14 +179,17 @@
     :keep-alive='true'
 >
     @foreach(['split', 'fullwidthmedia'] as $moduleType)
+        @php
+            $name = $moduleType . '_standard_media_type';
+        @endphp
         <x-twill::formConnectedFields
-            field-name='{{ $moduleType . '_standard_media_type' }}'
+            :field-name="$name"
             field-values="type_video"
             :keep-alive='true'
         >
             <x-twill::formConnectedFields
                 field-name='module_type'
-                field-values="$moduleType"
+                :field-values="$moduleType"
                 :render-for-blocks='false'
                 :keep-alive='true'
             >
