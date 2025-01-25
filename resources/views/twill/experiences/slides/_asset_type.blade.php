@@ -64,7 +64,7 @@
     @foreach(['split', 'fullwidthmedia'] as $moduleType)
         <x-twill::formConnectedFields
             field-name='module_type'
-            field-values="$moduleType"
+            :field-values="$moduleType"
             :render-for-blocks='false'
             :keep-alive='true'
         >
