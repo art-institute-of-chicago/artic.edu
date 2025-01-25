@@ -113,12 +113,13 @@
             name='welcome_note_section'
             label='Welcome note section'
             :max='1'
-            :modules="[
+            :endpoints="[
                 [
-                    'name' => route('twill.collection.articlesPublications.digitalPublications.articles.subbrowser', [ 'digitalPublication' => $item->id, ])
-                    'label' => 'Articles'
+                    'label' => 'Articles',
+                    'value' => '/collection/articlesPublications/digitalPublications/articles/subbrowser'
                 ]
             ]"
+            :params="[ 'digitalPublication' => $item->id, ]"
         />
 
         <x-twill::wysiwyg
