@@ -20,12 +20,17 @@
     :toolbar-options="[ 'italic', 'link' ]"
 />
 
+@php
+    $default = $type === 'digitalPublications' ? 'l' : 'm';
+    $disabled = $type === 'digitalPublications' ? true : false;
+@endphp
+
 <x-twill::select
     name='size'
     label='Size'
     placeholder='Select size'
-    default='{{ $type === 'digitalPublications' ? 'l' : 'm' }}'
-    disabled='{{ $type === 'digitalPublications' ? true : false }}'
+    default='$default'
+    disabled='$disabled'
     :options="[
         [
             'value' => 's',

@@ -206,11 +206,15 @@
             label='Is After Hours'
         />
 
+        @php
+            $eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]');
+        @endphp
+
         <x-twill::select
             name='entrance'
             label='Entrance'
-            default='{{ \App\Models\Event::NULL_OPTION }}' // No effect?
-            :options="$eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]')"
+            default='{{ \App\Models\Event::NULL_OPTION }}' {{-- No effect? --}}
+            :options="$eventEntrancesList"
         />
 
         <x-twill::checkbox
@@ -315,28 +319,31 @@
             name='alt_types'
             label='Event type (alternative)'
             note='Used to enhance filtering'
-            :options='$eventTypesList'
+            unpack='true'
+            :options="$eventTypesList"
         />
 
         <x-twill::select
             name='audience'
             label='Event audience (preferred)'
-            default='{{ \App\Models\Event::NULL_OPTION }}' {{-- No effect? --}}
             :options="$eventAudiencesList"
+            default='{{ \App\Models\Event::NULL_OPTION }}' {{-- No effect? --}}
         />
 
         <x-twill::multi-select
             name='alt_audiences'
             label='Event audience (alternative)'
             note='Used to enhance filtering'
-            :options='$eventAudiencesList'
+            unpack='true'
+            :options="$eventAudiencesList"
         />
 
         <x-twill::multi-select
             name='programs'
             label='Programs'
             note='To view program URLS, select programs below, update event, and refresh the page'
-            :options='$eventProgramsList'
+            unpack='true'
+            :options="$eventProgramsList"
         />
 
         <x-twill::input
@@ -389,10 +396,8 @@
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
             @php
-                $options = $eventHostsList->put(
-                    // TODO: Use new null option!
-                    strval(\App\Models\Event::NULL_OPTION_EVENT_HOST), '[None]'
-                );
+                // TODO: Use new null option!
+                $options = $eventHostsList->put(strval(\App\Models\Event::NULL_OPTION_EVENT_HOST), '[None]');
             @endphp
 
             <x-twill::select
@@ -450,22 +455,31 @@
 
                     @foreach ($enabledSubFields as $subFieldName => $subFieldLabel)
 
+                        @php
+                            $name = $currentSeriesName . '_' . $subFieldName . '_override';
+                            $label = $useShortLabel ? 'Override default copy' : 'Include ' . $subFieldLabel . '-specific copy (overrides default copy)';
+                        @endphp
+
                         <x-twill::checkbox
-                            name='{{ $currentSeriesName . '_' . $subFieldName . '_override' }}''
-                            label='{{ ($useShortLabel ? 'Override default copy' : 'Include ' . $subFieldLabel . '-specific copy (overrides default copy)') }}'
+                            name="$name"
+                            label="$label"
                         />
 
                         <x-twill::formConnectedFields
-                            field-name='{{ $currentSeriesName . '_' . $subFieldName . '_override' }}'
+                            field-name="$name"
                             field-values='true'
                             :render-for-blocks='false'
                         >
 
                             <div style="padding-left: 35px">
 
+                            @php
+                                $name = $currentSeriesName . '_' . $subFieldName . '_copy';
+                            @endphp
+
                             <x-twill::wysiwyg
-                                name='{{ $currentSeriesName . '_' . $subFieldName . '_copy' }}'
-                                label=''
+                                name="$name"
+                                label='Copy'
                                 :toolbar-options="[ 'bold', 'italic', 'link' ]"
                             />
 
@@ -542,9 +556,13 @@
                         :render-for-blocks='false'
                     >
 
+                        @php
+                            $name = $currentSeriesName . '_test';
+                        @endphp
+
                         <x-twill::checkbox
-                            name='{{ $currentSeriesName . '_test' }}'
-                            label='{{ $currentSeriesTitle }}'
+                            name="$name"
+                            label='$currentSeriesTitle'
                         />
 
                         @php
@@ -563,8 +581,12 @@
 
                         @elseif(count($enabledSubFields) > 1)
 
+                            @php
+                                $name = $currentSeriesName . '_test';
+                            @endphp
+
                             <x-twill::formConnectedFields
-                                field-name='{{ $currentSeriesName . '_test' }}'
+                                field-name="$name"
                                 field-values='true'
                                 :render-for-blocks='false'
                             >
@@ -573,9 +595,13 @@
 
                                     @foreach ($enabledSubFields as $subFieldName => $subFieldLabel)
 
+                                        @php
+                                            $name = $currentSeriesName . '_test_' . $subFieldName;
+                                            $label = 'Send ' . $subFieldLabel . ' test';
+                                        @endphp
                                         <x-twill::checkbox
-                                            name='{{ $currentSeriesName . '_test_' . $subFieldName }}'
-                                            label='{{ 'Send ' . $subFieldLabel . ' test' }}'
+                                            name="$name"
+                                            label="$label"
                                         />
 
                                     @endforeach

@@ -1,10 +1,17 @@
+@php
+    $name = isset($moduleType) && $moduleType === 'split' ? 'split_video_url' : 'video_url';
+@endphp
 <x-twill::input
-    name='{{ isset($moduleType) && $moduleType === 'split' ? 'split_video_url' : 'video_url' }}'
+    name='$name'
     label='Vimeo URL'
 />
 
+@php
+    $name = isset($moduleType) && $moduleType === 'split' ? 'split_video_play_settings' : 'video_play_settings';
+@endphp
+
 <x-twill::multi-select
-    name='{{ isset($moduleType) && $moduleType === 'split' ? 'split_video_play_settings' : 'video_play_settings' }}'
+    name='$name'
     label='Video Player Setting'
     default='autoplay'
     :options="[

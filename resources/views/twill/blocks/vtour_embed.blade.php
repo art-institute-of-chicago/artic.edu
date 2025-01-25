@@ -12,12 +12,16 @@
     note='Upload a .xml file'
 />
 
+@php
+    $disabled = $type === 'digitalPublications' ? true : false;
+@endphp
+
 <x-twill::select
     name='size'
     label='Size'
     placeholder='Select size'
     default='l'
-    disabled='{{ $type === 'digitalPublications' ? true : false }}'
+    disabled='$disabled'
     :options="[
         [
             'value' => 'm',

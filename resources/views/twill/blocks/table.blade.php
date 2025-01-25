@@ -10,12 +10,17 @@
 
 <hr>
 
+@php
+    $default = $type === 'digitalPublications' ? 'l' : 's';
+    $disabled = $type === 'digitalPublications' ? true : false;
+@endphp
+
 <x-twill::select
     name='size'
     label='Size'
     placeholder='Select size'
-    default='{{ $type === 'digitalPublications' ? 'l' : 's' }}'
-    disabled='{{ $type === 'digitalPublications' ? true : false }}'
+    default='$default'
+    disabled='$disabled'
     :options="[
         [
             'value' => 's',

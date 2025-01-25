@@ -8,8 +8,12 @@
     :maxlength='60'
 />
 
+@php
+    $options = \App\Models\ExactTargetList::getList()->toArray();
+@endphp
+
 <x-twill::select
     name='list'
     label='Newsletter target list'
-    :options="\App\Models\ExactTargetList::getList()->toArray()"
+    :options="$options"
 />

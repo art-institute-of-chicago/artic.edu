@@ -1,29 +1,33 @@
 @twillBlockTitle('Magazine Item')
 @twillBlockIcon('text')
 
+@php
+    $options = [
+        [
+            'value' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
+            'label' => 'Article'
+        ],
+        [
+            'value' => \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT,
+            'label' => 'Highlights'
+        ],
+        [
+            'value' => \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE,
+            'label' => 'Interactive Features'
+        ],
+        [
+            'value' => \App\Models\MagazineItem::ITEM_TYPE_CUSTOM,
+            'label' => 'Custom'
+        ]
+    ];
+@endphp
+
 <x-twill::radios
     name='feature_type'
     label='Feature type'
     default='\App\Models\MagazineItem::ITEM_TYPE_ARTICLE'
     :inline='true'
-    :options="[
-        [
-            'value' => '{{ \App\Models\MagazineItem::ITEM_TYPE_ARTICLE }}',
-            'label' => 'Article'
-        ],
-        [
-            'value' => '{{ \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT }}',
-            'label' => 'Highlights'
-        ],
-        [
-            'value' => '{{ \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE }}',
-            'label' => 'Interactive Features'
-        ],
-        [
-            'value' => '{{ \App\Models\MagazineItem::ITEM_TYPE_CUSTOM }}',
-            'label' => 'Custom'
-        ]
-    ]"
+    :options="$options"
 />
 
 <x-twill::formConnectedFields

@@ -61,10 +61,14 @@
 
     <x-twill::formFieldset id="mirador" title="Mirador">
         <p>Add a Mirador modal to the artwork page by either checking the box below to use the default manifest file or uploading your own.</p>
+
+        @php
+            $note = 'i.e. ' . config('api.public_uri') . '/api/v1/artworks/' . $item->datahub_id . '/manifest.json';
+        @endphp
         <x-twill::checkbox
             name='default_manifest_url'
             label='Use default manifest file.'
-            note='{{ 'i.e. ' . config('api.public_uri') . '/api/v1/artworks/' . $item->datahub_id . '/manifest.json' }}'
+            :note="$note"
             default='false'
         />
         <x-twill::files
