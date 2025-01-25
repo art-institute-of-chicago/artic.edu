@@ -72,31 +72,31 @@
             :modules="[
                 [
                     'label' => 'Articles',
-                    'value' => '/collection/articlesPublications/articles/browser'
+                    'name' => 'collection.articlesPublications.articles'
                 ],
                 [
                     'label' => 'Digital Publications',
-                    'value' => '/collection/articlesPublications/digitalPublications/browser'
+                    'name' => 'collection.articlesPublications.digitalPublications'
                 ],
                 [
                     'label' => 'Print Publications',
-                    'value' => '/collection/articlesPublications/printedPublications/browser'
+                    'name' => 'collection.articlesPublications.printedPublications'
                 ],
                 [
                     'label' => 'Educational Resources',
-                    'value' => '/collection/researchResources/educatorResources/browser'
+                    'name' => 'collection.researchResources.educatorResources'
                 ],
                 [
                     'label' => 'Interactive Features',
-                    'value' => '/collection/interactiveFeatures/experiences/browser'
+                    'name' => 'collection.interactiveFeatures.experiences'
                 ],
                 [
                     'label' => 'Videos',
-                    'value' => '/collection/articlesPublications/videos/browser'
+                    'name' => 'collection.articlesPublications.videos'
                 ],
                 [
                     'label' => 'Exhibitions',
-                    'value' => '/exhibitionsEvents/exhibitions/browser'
+                    'name' => 'exhibitionsEvents.exhibitions'
                 ],
             ]"
         />
@@ -124,11 +124,11 @@
             :modules="[
                 [
                     'label' => 'Exhibition',
-                    'value' => '/exhibitionsEvents/exhibitions/browser'
+                    'name' => 'exhibitionsEvents.exhibitions'
                 ],
                 [
                     'label' => 'Videos',
-                    'value' => '/collection/articlesPublications/videos/browser'
+                    'name' => 'collection.articlesPublications.videos'
                 ],
             ]"
         />

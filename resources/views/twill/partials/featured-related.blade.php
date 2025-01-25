@@ -5,38 +5,38 @@
         route-prefix='$routePrefix'
         module-name='$moduleName'
         :max='6'
-        :modules="[
+        :endpoints="[
             [
                 'label' => 'Article',
-                'name' => 'collection.articlesPublications.articles'
+                'value' => '/collection/articlesPublications/articles/browser'
             ],
             [
                 'label' => 'Highlight',
-                'name' => 'collection.highlights'
+                'value' => '/collection/highlights/browser'
             ],
             [
                 'label' => 'Event',
-                'name' => 'exhibitionsEvents.events'
+                'value' => '/exhibitionsEvents/events/browser'
             ],
             [
                 'label' => 'Exhibition',
-                'name' => 'exhibitionsEvents.exhibitions'
+                'value' => '/exhibitionsEvents/exhibitions/browser'
             ],
             [
                 'label' => 'Interactive Feature',
-                'name' => 'collection.interactiveFeatures.experiences'
+                'value' => '/collection/interactiveFeatures/experiences/browser'
             ],
             [
                 'label' => 'Digital Publication',
-                'name' => 'collection.articlesPublication.digitalPublications'
+                'value' => '/collection/articlesPublication/digitalPublications/browser'
             ],
             [
                 'label' => 'Digital Publication Article',
-                'name' => 'collection.articlesPublications.digitalPublications.articles.browserbrowser'
+                'value' => '/collection/articlesPublications/digitalPublications/articles/browserbrowser'
             ],
             [
                 'label' => 'Video',
-                'name' => 'collection.articlesPublications.videos'
+                'value' => '/collection/articlesPublications/videos/browser'
             ],
         ]"
     />
