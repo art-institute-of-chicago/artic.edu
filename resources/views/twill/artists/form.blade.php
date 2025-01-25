@@ -1,4 +1,8 @@
-@extends('twill::layouts.form')
+@extends('twill::layouts.form', [
+    'additionalFieldsets' => [
+        ['fieldset' => 'attributes', 'label' => 'Attributes'],
+    ]
+])
 
 @section('contentFields')
     <x-twill::input
