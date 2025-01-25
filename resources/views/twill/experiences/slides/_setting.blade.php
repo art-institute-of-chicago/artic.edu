@@ -41,6 +41,7 @@
     <x-twill::multi-select
         name='split_attributes'
         label='Attributes'
+        unpack='true'
         :options="[
             [
                 'value' => 'inset',
