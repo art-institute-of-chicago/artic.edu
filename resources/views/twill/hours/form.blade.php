@@ -44,7 +44,7 @@
 
     <x-twill::formConnectedFields
         field-name='monday_is_closed'
-        field-values="false"
+        :field-values="false"
         :render-for-blocks='false'
     >
         <x-twill::formColumns>
@@ -84,7 +84,7 @@
 
     <x-twill::formConnectedFields
         field-name='tuesday_is_closed'
-        field-values="false"
+        :field-values="false"
         :render-for-blocks='false'
     >
         <x-twill::formColumns>
@@ -124,7 +124,7 @@
 
     <x-twill::formConnectedFields
         field-name='wednesday_is_closed'
-        field-values="false"
+        :field-values="false"
         :render-for-blocks='false'
     >
         <x-twill::formColumns>
@@ -164,7 +164,7 @@
 
     <x-twill::formConnectedFields
         field-name='thursday_is_closed'
-        field-values="false"
+        :field-values="false"
         :render-for-blocks='false'
     >
         <x-twill::formColumns>
@@ -204,7 +204,7 @@
 
     <x-twill::formConnectedFields
         field-name='friday_is_closed'
-        field-values="false"
+        :field-values="false"
         :render-for-blocks='false'
     >
         <x-twill::formColumns>
@@ -244,7 +244,7 @@
 
     <x-twill::formConnectedFields
         field-name='saturday_is_closed'
-        field-values="false"
+        :field-values="false"
         :render-for-blocks='false'
     >
         <x-twill::formColumns>
@@ -284,7 +284,7 @@
 
     <x-twill::formConnectedFields
         field-name='sunday_is_closed'
-        field-values="false"
+        :field-values="false"
         :render-for-blocks='false'
     >
         <x-twill::formColumns>

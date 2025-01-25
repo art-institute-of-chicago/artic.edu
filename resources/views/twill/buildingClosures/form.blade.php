@@ -2,8 +2,8 @@
 
 @section('contentFields')
     <x-twill::select
-        name='"type"'
-        label='"Type"'
+        name='type'
+        label='Type'
         placeholder='Select a type'
         :required='true'
         :options='$typesList'

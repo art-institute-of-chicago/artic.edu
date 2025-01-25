@@ -8,6 +8,8 @@ use App\Repositories\FeeRepository;
 
 class FeeController extends \App\Http\Controllers\Twill\ModuleController
 {
+    protected FeeRepository $fees;
+
     public function __construct(FeeRepository $fees)
     {
         $this->fees = $fees;

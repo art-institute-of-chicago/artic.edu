@@ -102,13 +102,13 @@
             <x-twill::input
                 name='author_display'
                 label='Author display'
-                note='On Entry type articles, authorship is prepended with "Entry by"'
+                note="On Entry type articles, authorship is prepended with 'Entry by'"
             />
 
             <x-twill::browser
                 name='authors'
                 label='Authors'
-                note='On Entry type articles, authorship is prepended with "Entry by"'
+                note="On Entry type articles, authorship is prepended with 'Entry by'"
                 route-prefix='collection'
                 module-name='authors'
                 :max='10'
@@ -117,9 +117,10 @@
 
         <x-twill::formConnectedFields
             field-name='article_type'
-            field-values="['about', 'text', 'work']"
+            :field-values="['about', 'text', 'work']"
             :render-for-blocks='false'
         >
+
             <x-twill::medias
                 name='hero'
                 label='Hero image'
@@ -144,6 +145,7 @@
                 module-name='authors'
                 :max='10'
             />
+
         </x-twill::formConnectedFields>
 
         <x-twill::formConnectedFields
@@ -217,6 +219,7 @@
                 :blocks='$blocks'
             />
         </x-twill::formConnectedFields>
+
     </x-twill::formFieldset>
 
     @include('twill.partials.meta')

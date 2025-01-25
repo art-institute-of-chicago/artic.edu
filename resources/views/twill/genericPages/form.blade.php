@@ -45,7 +45,8 @@
         name='categories'
         label='Categories'
         placeholder='Select some categories'
-        :options='$categoriesList'
+        unpack='true'
+        :options="$categoriesList"
     />
 
     <x-twill::input
@@ -92,12 +93,12 @@
     <x-twill::formFieldset id="sponsors" title="Sponsors">
         <x-twill::browser
             name='sponsors'
-            label-'Sponsors'
+            label='Sponsors'
             note='Display content blocks from this sponsor'
             route-prefix='exhibitionsEvents'
             module-name='sponsors'
             :max='1'
-        ])
+        />
     </x-twill::formFieldset>
 
     {{-- WEB-2236: Use 'twill.partials.meta' as a component --}}
