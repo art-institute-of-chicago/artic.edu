@@ -1,25 +1,25 @@
 @twillBlockTitle('Featured Pages Grid')
 @twillBlockIcon('image')
 
-@formField('input', [
-    'name' => 'heading',
-    'label' => 'Heading',
-])
+<x-twill::input
+    name='heading'
+    label='Heading'
+/>
 
-@formField('browser', [
-    'routePrefix' => 'generic',
-    'moduleName' => 'genericPages',
-    'name' => 'genericPages',
-    'endpoints' => [
+<x-twill::browser
+    name='genericPages'
+    label='Featured Pages'
+    route-prefix='generic'
+    module-name='genericPages'
+    :max='8'
+    :modules="[
         [
             'label' => 'Generic Pages',
-            'value' => moduleRoute('genericPages', 'generic', 'browser', [], false)
+            'name' => 'generic.genericPages'
         ],
         [
             'label' => 'Landing Pages',
-            'value' => moduleRoute('landingPages', 'generic', 'browser', [], false)
+            'name' => 'generic.landingPages'
         ]
-    ],
-    'max' => 8,
-    'label' => 'Featured Pages',
-])
+    ]"
+/>

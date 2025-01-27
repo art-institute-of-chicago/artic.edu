@@ -1,10 +1,10 @@
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'module_type',
-    'fieldValues' => '3dtour',
-    'keepAlive' => true,
-])
+<x-twill::formConnectedFields
+    field-name='module_type'
+    field-values="3dtour"
+    :keep-alive='true'
+>
     <a17-block-aic_3d_model name="aic_3d_model" :thumbnail="false" :caption="false" :browser="false" :cc0="false" :optional-annotation="true" :optional-annotation-title="true"/>
-@endcomponent
+</x-twill::formConnectedFields>
 
 @push('vuexStore')
     @php($model3d = $item->model3d)

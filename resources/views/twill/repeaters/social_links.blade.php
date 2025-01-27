@@ -2,7 +2,7 @@
 @twillRepeaterTrigger('Add Social Media Link')
 @twillRepeaterComponent('a17-block-social_link')
 
-@formField('input', [
-    'name' => 'link',
-    'label' => 'Link',
-])
+<x-twill::input
+    name='link'
+    label='Link'
+/>

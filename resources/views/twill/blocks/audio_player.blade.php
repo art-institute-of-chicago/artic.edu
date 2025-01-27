@@ -1,40 +1,34 @@
 @twillBlockTitle('Audio Player')
 @twillBlockIcon('image')
 
-@formField('files', [
-    'name' => 'audio_file',
-    'label' => 'Audio file',
-    'note' => 'Upload a .mp3 file',
-])
+<x-twill::files
+    name='audio_file'
+    label='Audio file'
+    note='Upload a .mp3 file'
+/>
 
-@formField('input', [
-    'name' => 'title_display',
-    'label' => 'Title',
-    'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-])
+<x-twill::input
+    name='title_display'
+    label='Title'
+    note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'transcript',
-    'label' => 'Transcript',
-    'toolbarOptions' => [
-        'italic', 'link'
-    ],
-])
+<x-twill::wysiwyg
+    name='transcript'
+    label='Transcript'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption_title',
-    'label' => 'Caption title',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption_title'
+    label='Caption title'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption',
-    'label' => 'Caption',
-    'maxlength' => 300,
-    'note' => 'Max 300 characters',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption'
+    label='Caption'
+    note='Max 300 characters'
+    :maxlength='300'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>

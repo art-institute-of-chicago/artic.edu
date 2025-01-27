@@ -2,10 +2,7 @@
     $relatedTos = $item->relatedTos;
 @endphp
 @if ($relatedTos->isNotEmpty())
-    @formFieldset([
-        'id' => 'related_from',
-        'title' => 'Related (inverse)',
-    ])
+    <x-twill::formFieldset id='related_from' title='Related (inverse)'>
         <p>
             The following content has been related to this one. These will be
             used to bring this item into global search results.
@@ -20,5 +17,5 @@
                 </li>
             @endforeach
         </ol>
-    @endformFieldset
+    </x-twill::formFieldset>
 @endif

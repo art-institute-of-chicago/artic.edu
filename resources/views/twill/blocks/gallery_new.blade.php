@@ -10,43 +10,39 @@
 @include('twill.partials.gallery-shared')
 
 @if ($type === 'digitalPublications')
-    @formField('checkbox', [
-        'name' => 'hide_figure_number',
-        'label' => 'Hide figure number',
-        'default' => false,
-    ])
+    <x-twill::checkbox
+        name='hide_figure_number'
+        label='Hide figure number'
+        default='false'
+    />
 @endif
 
-@formField('wysiwyg', [
-    'name' => 'title',
-    'label' => 'Title',
-    'maxlength' => 60,
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='title'
+    label='Title'
+    :maxlength='60'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'description',
-    'label' => 'Description',
-    'rows' => 4,
-    'maxlength' => 500,
-    'note' => 'Will be hidden if title is empty',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='description'
+    label='Description'
+    note='Will be hidden if title is empty'
+    :maxlength='500'
+    :rows='4'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
 
-@formField('checkbox', [
-    'name' => 'disable_gallery_modals',
-    'label' => 'Disable modals for this gallery',
-])
+<x-twill::checkbox
+    name='disable_gallery_modals'
+    label='Disable modals for this gallery'
+/>
 
-@formField('checkbox', [
-    'name' => 'is_gallery_zoomable',
-    'label' => 'Make all image modals zoomable (override)',
-])
+<x-twill::checkbox
+    name='is_gallery_zoomable'
+    label='Make all image modals zoomable (override)'
+/>
 
-@formField('repeater', [
-    'type' => 'gallery_new_item',
-])
+<x-twill::repeater
+    type='gallery_new_item'
+/>

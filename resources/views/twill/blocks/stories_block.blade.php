@@ -1,46 +1,47 @@
 @twillBlockTitle('Stories Block')
 @twillBlockIcon('Image')
 
-@formField('input', [
-    'name' => 'stories_heading',
-    'label' => 'Heading'
-])
+<x-twill::input
+    name='stories_heading'
+    label='Heading'
+/>
 
-@component('twill::partials.form.utils._columns')
-    @slot('left')
-        @formField('input', [
-            'name' => 'browse_label',
-            'label' => 'Browse More Label',
-        ])
-    @endslot
-    @slot('right')
-        @formField('input', [
-            'name' => 'browse_link',
-            'label' => 'Browse More Link',
-        ])
-    @endslot
-@endcomponent
+<x-twill::formColumns>
+    <x-slot:left>
+        <x-twill::input
+            name='browse_label'
+            label='Browse More Label'
+        />
+    </x-slot:left>
+    <x-slot:right>
+        <x-twill::input
+            name='browse_link'
+            label='Browse More Link'
+        />
+    </x-slot:right>
+</x-twill::formColumns>
 
-@formField('browser', [
-    'name' => 'content',
-    'label' => 'Stories',
-    'max' => 5,
-    'endpoints' => [
+<x-twill::browser
+    name='content'
+    label='Stories'
+    :max='5'
+    :modules="[
         [
             'label' => 'Article',
-            'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['is_unlisted' => false]),
+            'name' => 'collection.articlesPublications.articles',
         ],
         [
             'label' => 'Video',
-            'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
+            'name' => 'collection.articlesPublications.videos'
         ],
         [
             'label' => 'Highlight',
-            'value' => moduleRoute('highlights', 'collection', 'browser'),
+            'name' => 'collection.highlights'
         ],
         [
             'label' => 'Interactive Feature',
-            'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser'),
+            'name' => 'collection.interactiveFeatures.experiences'
         ],
-    ],
-])
+    ]"
+    :params="[ 'is_unlisted' => false ]"
+/>

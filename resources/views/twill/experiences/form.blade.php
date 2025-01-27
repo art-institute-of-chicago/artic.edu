@@ -20,62 +20,67 @@
     <br/><h1><strong>Kiosk URL:</strong> <a href={{ $kiosk_url }}>{{ $kiosk_url }}</a></h1>
     <br/><h1><strong>Bundle ID: </strong>{{ $item->id }}</h1>
 
-    @formField('select', [
-        'name' => 'interactive_feature_id',
-        'label' => 'Grouping',
-        'placeholder' => 'Select an grouping',
-        'options' => $groupingsList,
-    ])
+    @php
+        $groupingsList = App\Models\InteractiveFeature::all()->map(function (App\Models\InteractiveFeature $item) {
+            return ['value' => $item->id, 'label' => $item->title];
+        })->toArray();
+    @endphp
 
-    @formField('medias', [
-        'name' => 'thumbnail',
-        'label' => 'Thumbnail',
-        'max' => 1,
-    ])
+    <x-twill::select
+        name='interactive_feature_id'
+        label='Grouping'
+        placeholder='Select an grouping'
+        :options="$groupingsList"
+    />
 
-    @formField('input', [
-        'name' => 'subtitle',
-        'label' => 'Subtitle',
-        'maxlength' => 300
-    ])
+    <x-twill::medias
+        name='thumbnail'
+        label='Thumbnail'
+        :max='1'
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'listing_description',
-        'label' => 'Listing Description',
-        'type' => 'textarea',
-        'maxlength' => 225,
-        'note' => 'Used in listings and for social media',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
+    <x-twill::input
+        name='subtitle'
+        label='Subtitle'
+        :maxlength='300'
+    />
+
+    <x-twill::wysiwyg
+        name='listing_description'
+        label='Listing Description'
+        type='textarea'
+        note='Used in listings and for social media'
+        :maxlength='225'
+        :toolbar-options="[ 'italic' ]"
+    />
 
     @include('twill.partials.authors')
 
-    @formField('checkbox', [
-        'name' => 'archived',
-        'label' => 'Archived'
-    ])
+    <x-twill::checkbox
+        name='archived'
+        label='Archived'
+    />
 
-    @formField('checkbox', [
-        'name' => 'kiosk_only',
-        'label' => 'Kiosk only',
-    ])
+    <x-twill::checkbox
+        name='kiosk_only'
+        label='Kiosk only'
+    />
 
-    @formField('checkbox', [
-        'name' => 'is_unlisted',
-        'label' => "Don't show this experience in listings",
-    ])
+    <x-twill::checkbox
+        name='is_unlisted'
+        label="Don't show this experience in listings"
+    />
 
-    @formField('checkbox', [
-        'name' => 'is_in_magazine',
-        'label' => 'Assume this experience is featured in a magazine issue',
-    ])
+    <x-twill::checkbox
+        name='is_in_magazine'
+        label='Assume this experience is featured in a magazine issue'
+    />
 
-    @formField('multi_select', [
-        'name' => 'categories',
-        'label' => 'Categories',
-        'options' => $categoriesList,
-        'placeholder' => 'Select some categories',
-    ])
+    <x-twill::multi-select
+        name='categories'
+        label='Categories'
+        placeholder='Select some categories'
+        unpack='true'
+        :options='$categoriesList'
+    />
 @stop

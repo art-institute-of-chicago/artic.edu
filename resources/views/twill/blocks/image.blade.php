@@ -24,71 +24,75 @@
 @twillBlockIcon('image')
 
 @if ($type === 'digitalPublications')
-    @formField('checkbox', [
-        'name' => 'hide_figure_number',
-        'label' => 'Hide figure number',
-        'default' => false,
-    ])
+    <x-twill::checkbox
+        name='hide_figure_number'
+        label='Hide figure number'
+        default='false'
+    />
 @endif
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
-    'options' => $options,
-])
+@php
+    $default = $type === 'digitalPublications' ? 'l' : 'm';
+@endphp
 
-@formField('checkbox', [
-    'name' => 'use_contain',
-    'label' => 'Always show the whole image instead of cropping to the container',
-    'default' => ($type === 'digitalPublications' ? true : false),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-])
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='$default'
+    :options='$options'
+/>
 
-@formField('checkbox', [
-    'name' => 'use_alt_background',
-    'label' => 'Use white instead of gray to pillarbox the image',
-    'default' => ($type === 'digitalPublications' ? true : false),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-])
+@php
+    $default = $type === 'digitalPublications' ? true : false;
+    $disabled = $type === 'digitalPublications' ? true : false;
+@endphp
 
-@formField('checkbox', [
-    'name' => 'is_modal',
-    'label' => 'Allow this image to be viewed in a modal',
-])
+<x-twill::checkbox
+    name='use_contain'
+    label='Always show the whole image instead of cropping to the container'
+    default='$default'
+    disabled='$disabled'
+/>
 
-@formField('checkbox', [
-    'name' => 'is_zoomable',
-    'label' => 'Make the image modal zoomable',
-])
+<x-twill::checkbox
+    name='use_alt_background'
+    label='Use white instead of gray to pillarbox the image'
+    default='$default'
+    disabled='$disabled'
+/>
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Image'
-])
+<x-twill::checkbox
+    name='is_modal'
+    label='Allow this image to be viewed in a modal'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption_title',
-    'label' => 'Caption title',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::checkbox
+    name='is_zoomable'
+    label='Make the image modal zoomable'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption',
-    'label' => 'Caption',
-    'maxlength' => 300,
-    'note' => 'Max 300 characters',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::medias
+    name='image'
+    label='Image'
+/>
 
-@formField('input', [
-    'name' => 'image_link',
-    'label' => 'Link (optional)',
-    'note' => 'Makes image clickable',
-    'type' => 'text'
-])
+<x-twill::wysiwyg
+    name='caption_title'
+    label='Caption title'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
+
+<x-twill::wysiwyg
+    name='caption'
+    label='Caption'
+    note='Max 300 characters'
+    :maxlength='300'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
+
+<x-twill::input
+    name='image_link'
+    label='Link (optional)'
+    note='Makes image clickable'
+/>

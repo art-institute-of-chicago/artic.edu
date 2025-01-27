@@ -9,30 +9,32 @@
         default:
             $themes = ['default'];
     }
-@endphp
 
-@formField('select', [
-    'name' => 'theme',
-    'label' => 'Theme',
-    'default' => 'default',
-    'options' => collect($themes)->map(function($theme) {
+    $options = collect($themes)->map(function($theme) {
         return [
             'value' => $theme,
             'label' => ucfirst($theme),
         ];
-    })->toArray(),
-])
+    })->toArray();
+@endphp
 
-@formConnectedFields([
-    'fieldName' => 'theme',
-    'fieldValues' => 'rlc',
-    'renderForBlocks' => true,
-    ])
+<x-twill::select
+    name='theme'
+    label='Theme'
+    default='default'
+    :options="$options"
+/>
 
-    @formField('select', [
-        'name' => 'variation',
-        'label' => 'Variation',
-        'options' => [
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="rlc"
+    :render-for-blocks='true'
+>
+
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
             [
                 'value' => 'make-with-us',
                 'label' => 'Make with us',
@@ -44,25 +46,25 @@
             [
                 'value' => 'learn-with-us',
                 'label' => 'Learn with us',
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
-@endcomponent
+</x-twill::formConnectedFields>
 
 @twillBlockTitle('Showcase Multiple')
 @twillBlockIcon('image')
 
-@formField('input', [
-    'name' => 'heading',
-    'label' => 'Heading',
-    'type' => 'text',
-])
+<x-twill::input
+    name='heading'
+    label='Heading'
+/>
 
-@formField('input', [
-    'name' => 'intro',
-    'label' => 'Intro',
-    'type' => 'text',
-])
+<x-twill::input
+    name='intro'
+    label='Intro'
+/>
 
-@formField('repeater', ['type' => 'showcase_item'])
+<x-twill::repeater
+    type="showcase_item"
+/>

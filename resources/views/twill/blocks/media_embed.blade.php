@@ -6,13 +6,18 @@
 @twillBlockTitle('Media embed')
 @twillBlockIcon('text')
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 's'),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-    'options' => [
+@php
+    $default = $type === 'digitalPublications' ? 'l' : 's';
+    $disabled = $type === 'digitalPublications' ? true : false;
+@endphp
+
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='$default'
+    disabled='$disabled'
+    :options="[
         [
             'value' => 's',
             'label' => 'Small'
@@ -25,15 +30,15 @@
             'value' => 'l',
             'label' => 'Large'
         ]
-    ]
-])
+    ]"
+/>
 
-@formField('radios', [
-    'name' => 'embed_type',
-    'label' => 'Embed type',
-    'default' => 'html',
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='embed_type'
+    label='Embed type'
+    default='html'
+    :inline='true'
+    :options="[
         [
             'value' => 'html',
             'label' => 'HTML code'
@@ -41,58 +46,54 @@
         [
             'value' => 'url',
             'label' => 'Embed URL'
-        ],
-    ]
-])
+        ]
+    ]"
+/>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'embed_type',
-    'fieldValues' => 'html',
-    'renderForBlocks' => true
-])
-    @formField('input', [
-        'name' => 'embed_code',
-        'label' => 'Media embed code',
-        'type' => 'textarea'
-    ])
-@endcomponent
+<x-twill::formConnectedFields
+    field-name='embed_type'
+    field-values="html"
+    :render-for-blocks='true'
+>
+    <x-twill::input
+        name='embed_code'
+        label='Media embed code'
+        type='textarea'
+    />
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'embed_type',
-    'fieldValues' => 'url',
-    'renderForBlocks' => true
-])
-    @formField('input', [
-        'name' => 'embed_url',
-        'label' => 'Media embed URL',
-    ])
-@endcomponent
+<x-twill::formConnectedFields
+    field-name='embed_type'
+    field-values="url"
+    :render-for-blocks='true'
+>
+    <x-twill::input
+        name='embed_url'
+        label='Media embed URL'
+    />
+</x-twill::formConnectedFields>
 
-@formField('input', [
-    'name' => 'embed_height',
-    'label' => 'Height override',
-    'note' => 'Optional. Use CSS units, e.g. "400px"',
-])
+<x-twill::input
+    name='embed_height'
+    label='Height override'
+    note='Optional. Use CSS units, e.g. "400px"'
+/>
 
-@formField('checkbox', [
-    'name' => 'disable_placeholder',
-    'label' => 'Disable placeholder element',
-])
+<x-twill::checkbox
+    name='disable_placeholder'
+    label='Disable placeholder element'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption_title',
-    'label' => 'Caption title',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption_title'
+    label='Caption title'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption',
-    'label' => 'Caption',
-    'maxlength' => 300,
-    'note' => 'Max 300 characters',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption'
+    label='Caption'
+    note='Max 300 characters'
+    :maxlength='300'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>

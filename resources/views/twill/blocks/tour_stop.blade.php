@@ -1,21 +1,21 @@
 @twillBlockTitle('Audio Tour Stop')
 @twillBlockIcon('image')
 
-@formField('browser', [
-    'routePrefix' => 'general',
-    'name' => 'tour_stop',
-    'moduleName' => 'tourStops',
-    'label' => 'Audio Tour Stop',
-    'max' => 1
-])
+<x-twill::browser
+    name='tour_stop'
+    label='Audio Tour Stop'
+    route-prefix='general'
+    module-name='tourStops'
+    :max='1'
+/>
 
-@formField('input', [
-    'name' => 'title_display',
-    'label' => 'Title override (optional)',
-    'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-])
+<x-twill::input
+    name='title_display'
+    label='Title override (optional)'
+    note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+/>
 
-@formField('checkbox', [
-    'name' => 'hidePromoText',
-    'label' => 'Hide promo text'
-])
+<x-twill::checkbox
+    name='hidePromoText'
+    label='Hide promo text'
+/>

@@ -21,65 +21,67 @@
 
     @include('twill.partials.meta')
 
-    <a17-fieldset id="api" title="Datahub fields">
-        @formField('input', [
-            'name' => 'datahub_id',
-            'label' => 'Datahub ID',
-            'disabled' => true
-        ])
-    </a17-fieldset>
+    <x-twill::formFieldset id="api" title="Datahub fields">
+        <x-twill::input
+            name='datahub_id'
+            label='Datahub ID'
+            disabled='true'
+        />
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="3D Object" id="3dModel">
+    <x-twill::formFieldset title="3D Object" id="3dModel">
         <a17-block-aic_3d_model name="aic_3d_model" :thumbnail="false" :caption="false" :browser="false" :cc0="false" />
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset title="Hi-Res" id="high_res">
+    <x-twill::formFieldset title="Hi-Res" id="high_res">
         <p>This functionality is meant to support super-resolution images. It is a work-around for the 3000-pixel limit on images coming from our DAMS. If you upload an image here, it will replace the primary zoomable image for the artwork on the website.</p>
 
-        @formField('medias', [
-            'with_multiple' => false,
-            'no_crop' => true,
-            'label' => 'Custom image',
-            'name' => 'iiif',
-            'note' => 'Minimum image width 3000px'
-        ])
+        <x-twill::medias
+            name='iiif'
+            label='Custom image'
+            note='Minimum image width 3000px'
+        />
 
-        @formField('checkbox', [
-            'name' => 'force_iiif_regenerate',
-            'label' => 'Force tile regeneration',
-            'default' => false,
-        ])
+        <x-twill::checkbox
+            name='force_iiif_regenerate'
+            label='Force tile regeneration'
+            default='false'
+        />
 
         <p>This checkbox is meant as a fail-safe. If for some reason, you see missing tiles when you zoom and pan around the deep-zoom viewer, check this option and re-publish. There's no need to use it under normal circumstances. Please note that it may take up to 10 minutes to generate tiles.</p>
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="360file" title="360 File">
-        @formField('files', [
-            'name' => 'image_sequence_file',
-            'label' => 'Image Sequence Zip',
-            'note' => 'Upload a .zip file'
-        ])
-    </a17-fieldset>
+    <x-twill::formFieldset id="360file" title="360 File">
+        <x-twill::files
+            name='image_sequence_file'
+            label='Image Sequence Zip'
+            note='Upload a .zip file'
+        />
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="mirador" title="Mirador">
+    <x-twill::formFieldset id="mirador" title="Mirador">
         <p>Add a Mirador modal to the artwork page by either checking the box below to use the default manifest file or uploading your own.</p>
-        @formField('checkbox', [
-            'name' => 'default_manifest_url',
-            'label' => 'Use default manifest file.',
-            'note' => 'i.e. ' . config('api.public_uri') . '/api/v1/artworks/' . $item->datahub_id . '/manifest.json',
-            'default' => false,
-        ])
-        @formField('files', [
-            'name' => 'upload_manifest_file',
-            'label' => 'Alternative manifest file',
-            'note' => 'Upload a .json file'
-        ])
-        @formField('radios', [
-            'name' => 'default_view',
-            'label' => 'Default View',
-            'default' => 'single',
-            'inline' => true,
-            'options' => [
+
+        @php
+            $note = 'i.e. ' . config('api.public_uri') . '/api/v1/artworks/' . $item->datahub_id . '/manifest.json';
+        @endphp
+        <x-twill::checkbox
+            name='default_manifest_url'
+            label='Use default manifest file.'
+            :note="$note"
+            default='false'
+        />
+        <x-twill::files
+            name='upload_manifest_file'
+            label='Alternative manifest file'
+            note='Upload a .json file'
+        />
+        <x-twill::radios
+            name='default_view'
+            label='Default View'
+            default='single'
+            :inline='true'
+            :options="[
                 [
                     'value' => 'single',
                     'label' => 'Single'
@@ -87,18 +89,18 @@
                 [
                     'value' => 'book',
                     'label' => 'Book'
-                ],
-            ]
-        ])
-    </a17-fieldset>
+                ]
+            ]"
+        />
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="website" title="Artwork website">
+    <x-twill::formFieldset id="website" title="Artwork website">
         <p>When the work of art is itself a website, enter its information here.</p>
-        @formField('input', [
-            'name' => 'artwork_website_url',
-            'label' => 'Artwork website URL',
-        ])
-    </a17-fieldset>
+        <x-twill::input
+            name='artwork_website_url'
+            label='Artwork website URL'
+        />
+    </x-twill::formFieldset>
 @stop
 
 @push('vuexStore')

@@ -3,66 +3,61 @@
 @twillRepeaterComponent('a17-block-grid_item')
 @twillRepeaterMax('48')
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Image',
-    'max' => '1'
-])
+<x-twill::medias
+    name='image'
+    label='Image'
+    :max='1'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'title',
-    'label' => 'Title',
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    name='title'
+    label='Title'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-@formField('input', [
-    'name' => 'tag',
-    'label' => 'Tag',
-    'note' => 'Displayed in smaller font above title',
-])
+<x-twill::input
+    name='tag'
+    label='Tag'
+    note='Displayed in smaller font above title'
+/>
 
-@formField('wysiwyg', [
-    'type' => 'textarea',
-    'name' => 'description',
-    'label' => 'Description',
-    'rows' => 4,
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    type='textarea'
+    name='description'
+    label='Description'
+    :rows='4'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-@component('twill::partials.form.utils._columns')
-@slot('left')
+<x-twill::formColumns>
+    <x-slot:left>
+        <x-twill::input
+            name='label'
+            label='Label'
+        />
+    </x-slot:left>
 
-@formField('input', [
-    'name' => 'label',
-    'label' => 'Label',
-])
-@endslot
+    <x-slot:right>
+        <x-twill::radios
+            name='label_position'
+            label='Label position'
+            note=''
+            :inline='true'
+            :options="[
+                [
+                    'value' => 'overlay',
+                    'label' => 'Bottom of image'
+                ],
+                [
+                    'value' => 'description',
+                    'label' => 'Below description'
+                ]
+            ]"
+        />
+    </x-slot:right>
+</x-twill::formColumns>
 
-@slot('right')
-@formField('radios', [
-    'name' => 'label_position',
-    'label' => 'Label position',
-    'note' => '',
-    'inline' => true,
-    'options' => [
-        [
-            'value' => 'overlay',
-            'label' => 'Bottom of image'
-        ],
-        [
-            'value' => 'description',
-            'label' => 'Below description'
-        ]
-    ]
-])
-@endslot
-@endcomponent
-
-@formField('input', [
-    'name' => 'url',
-    'label' => 'URL'
-])
+<x-twill::input
+    name='url'
+    label='URL'
+/>

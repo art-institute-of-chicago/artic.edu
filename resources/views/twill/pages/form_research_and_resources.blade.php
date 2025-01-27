@@ -1,41 +1,41 @@
 @section('contentFields')
-    @formField('input', [
-        'name' => 'resources_landing_title',
-        'label' => 'Title',
-    ])
+    <x-twill::input
+        name='resources_landing_title'
+        label='Title'
+    />
 
-    @formField('input', [
-        'name' => 'resources_landing_intro',
-        'label' => 'Intro text',
-        'type' => 'textarea'
-    ])
+    <x-twill::input
+        name='resources_landing_intro'
+        label='Intro text'
+        type='textarea'
+    />
 
-    @formField('medias', [
-        'label' => 'Hero image',
-        'name' => 'research_landing_image'
-    ])
+    <x-twill::medias
+        label='Hero image'
+        name='research_landing_image'
+    />
 
-    @formField('browser', [
-    'routePrefix' => 'generic',
-        'max' => 9,
-        'moduleName' => 'genericPages',
-        'name' => 'researchResourcesFeaturePages',
-        'label' => 'Featured pages'
-    ])
+    <x-twill::browser
+        name='researchResourcesFeaturePages'
+        label='Featured pages'
+        route-prefix='generic'
+        module-name='genericPages'
+        :max='9'
+    />
 
-    @formField('browser', [
-    'routePrefix' => 'generic',
-        'max' => 3,
-        'moduleName' => 'genericPages',
-        'name' => 'researchResourcesStudyRooms',
-        'label' => 'Study room pages'
-    ])
+    <x-twill::browser
+        name='researchResourcesStudyRooms'
+        label='Study room pages'
+        route-prefix='generic'
+        module-name='genericPages'
+        :max='3'
+    />
 
-    @formField('browser', [
-    'routePrefix' => 'generic',
-        'max' => 1,
-        'moduleName' => 'genericPages',
-        'name' => 'researchResourcesStudyRoomMore',
-        'label' => 'Study room more link'
-    ])
+    <x-twill::browser
+        name='researchResourcesStudyRoomMore'
+        label='Study room more link'
+        route-prefix='generic'
+        module-name='genericPages'
+        :max='1'
+    />
 @stop

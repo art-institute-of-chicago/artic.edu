@@ -1,54 +1,58 @@
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'module_type',
-    'fieldValues' => 'fullwidthmedia',
-    'keepAlive' => true,
-])
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'asset_type',
-        'fieldValues' => 'standard',
-        'keepAlive' => true,
-    ])
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'fullwidthmedia_standard_media_type',
-            'fieldValues' => 'type_image',
-            'keepAlive' => true,
-        ])
-            @formField('repeater', ['type' => 'fullwidthmedia_experience_image'])
-        @endcomponent
-    @endcomponent
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'fullwidthmedia_standard_media_type',
-        'fieldValues' => 'type_image',
-        'keepAlive' => true,
-    ])
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'asset_type',
-            'fieldValues' => '3dModel',
-            'isEqual' => false
-        ])
-            @formField('repeater', ['type' => 'experience_modal'])
-        @endcomponent
-    @endcomponent
+<x-twill::formConnectedFields
+    field-name='module_type'
+    field-values="fullwidthmedia"
+    :keep-alive='true'
+>
+    <x-twill::formConnectedFields
+        field-name='asset_type'
+        field-values="standard"
+        :keep-alive='true'
+    >
+        <x-twill::formConnectedFields
+            field-name='fullwidthmedia_standard_media_type'
+            field-values='type_image'
+            :keep-alive='true'
+        >
+            <x-twill::repeater
+                type="fullwidthmedia_experience_image"
+            />
+        </x-twill::formConnectedFields>
+    </x-twill::formConnectedFields>
+    <x-twill::formConnectedFields
+        field-name='fullwidthmedia_standard_media_type'
+        field-values="type_image"
+        :keep-alive='true'
+    >
+        <x-twill::formConnectedFields
+            field-name='asset_type'
+            field-values='3dModel'
+            :is-equal='false'
+        >
+            <x-twill::repeater
+                type="experience_modal"
+            />
+        </x-twill::formConnectedFields>
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'asset_type',
-        'fieldValues' => '3dModel',
-        'keepAlive' => true
-    ])
+    <x-twill::formConnectedFields
+        field-name='asset_type'
+        field-values="3dModel"
+        :keep-alive='true'
+    >
         <br />
-        <a17-fieldset title="3D Object" id="3dModel">
+        <x-twill::formFieldset title="3D Object" id="3dModel">
             <a17-block-aic_3d_model name="aic_3d_model" :thumbnail="false" :caption="true" :browser="false" :cc0="false" />
-        </a17-fieldset>
-    @endcomponent
+        </x-twill::formFieldset>
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'asset_type',
-        'fieldValues' => '3dModel',
-        'isEqual' => false
-    ])
-    @endcomponent
-    @formField('checkbox', [
-        'name' => 'fullwidth_inset',
-        'label' => 'Inset',
-    ])
-@endcomponent
+    <x-twill::formConnectedFields
+        field-name='asset_type'
+        field-values="3dModel"
+        :is-equal='false'
+    >
+    </x-twill::formConnectedFields>
+    <x-twill::checkbox
+        name='fullwidth_inset'
+        label='Inset'
+    />
+</x-twill::formConnectedFields>

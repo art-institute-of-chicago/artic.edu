@@ -3,98 +3,95 @@
 @twillRepeaterComponent('a17-block-date_rule')
 @twillRepeaterMax('10')
 
-@formField('select', [
-    'name' => 'type',
-    'label' => 'Type of rule',
-    'options' => \App\Models\DateRule::getRuleTypes(),
-    'default' => 0
-])
+<x-twill::select
+    name='type'
+    label='Type of rule'
+    default='0'
+    :options='\App\Models\DateRule::getRuleTypes()'
+/>
 
-@component('twill::partials.form.utils._columns')
-    @slot('left')
-        @formField('date_picker', [
-            'name' => 'start_date',
-            'label' => 'Start Date',
-            'withTime' => false
-        ])
-    @endslot
-    @slot('right')
-        @formField('date_picker', [
-            'name' => 'end_date',
-            'label' => 'Ends',
-            'withTime' => false
-        ])
+<x-twill::formColumns>
+    <x-slot:left>
+        <x-twill::date-picker
+            name='start_date'
+            label='Start Date'
+            withTime='false'
+        />
+    </x-slot:left>
+    <x-slot:right>
+        <x-twill::date-picker
+            name='end_date'
+            label='Ends'
+            withTime='false'
+        />
 
-        @formField('input', [
-            'name' => 'ocurrencies',
-            'label' => 'Or stop after the following amount of ocurrencies:',
-            'type' => 'number',
-            'placeholder' => '1, 2, 3.... etc',
-        ])
-    @endslot
-@endcomponent
+        <x-twill::input
+            name='ocurrencies'
+            label='Or stop after the following amount of ocurrencies:'
+            type='number'
+            placeholder='1, 2, 3.... etc'
+        />
+    </x-slot:right>
+</x-twill::formColumns>
 
+<x-twill::formColumns>
+    <x-slot:left>
+        <x-twill::input
+            name='every'
+            label='Repeat every'
+            type='number'
+            placeholder='1, 2, 3.... etc'
+        />
+    </x-slot:left>
+    <x-slot:right>
+        <x-twill::select
+            name='recurring_type'
+            label='Days/Week/Month'
+            default='0'
+            :options='\App\Models\DateRule::getRecurringTypes()'
+        />
+    </x-slot:right>
+</x-twill::formColumns>
 
-@component('twill::partials.form.utils._columns')
-    @slot('left')
-        @formField('input', [
-            'name' => 'every',
-            'label' => 'Repeat every',
-            'type' => 'number',
-            'placeholder' => '1, 2, 3.... etc'
-        ])
-    @endslot
-    @slot('right')
-        @formField('select', [
-            'name' => 'recurring_type',
-            'label' => 'Days/Week/Month',
-            'options' => \App\Models\DateRule::getRecurringTypes(),
-            'default' => 0
-        ])
-    @endslot
-@endcomponent
+<x-twill::formCollapsedFields label='Edit admission' label='Edit weekly/monthly options'>
 
-@component('twill::partials.form.utils._collapsed_fields')
-    @slot('label', 'Edit weekly/monthly options')
-
-
-    @component('twill::partials.form.utils._inline_checkboxes')
+    <x-twill::formInlineCheckboxes>
         @slot('label', 'If repeated weekly, which days?')
 
-        @formField('checkbox', [
-            'name' => 'monday',
-            'label' => 'Monday',
-        ])
-        @formField('checkbox', [
-            'name' => 'tuesday',
-            'label' => 'Tuesday',
-        ])
-        @formField('checkbox', [
-            'name' => 'wednesday',
-            'label' => 'Wednesday',
-        ])
-        @formField('checkbox', [
-            'name' => 'thursday',
-            'label' => 'Thursday',
-        ])
-        @formField('checkbox', [
-            'name' => 'friday',
-            'label' => 'Friday',
-        ])
-        @formField('checkbox', [
-            'name' => 'saturday',
-            'label' => 'Saturday',
-        ])
-        @formField('checkbox', [
-            'name' => 'sunday',
-            'label' => 'Sunday',
-        ])
-    @endcomponent
+        <x-twill::checkbox
+            name='monday'
+            label='Monday'
+        />
+        <x-twill::checkbox
+            name='tuesday'
+            label='Tuesday'
+        />
+        <x-twill::checkbox
+            name='wednesday'
+            label='Wednesday'
+        />
+        <x-twill::checkbox
+            name='thursday'
+            label='Thursday'
+        />
+        <x-twill::checkbox
+            name='friday'
+            label='Friday'
+        />
+        <x-twill::checkbox
+            name='saturday'
+            label='Saturday'
+        />
+        <x-twill::checkbox
+            name='sunday'
+            label='Sunday'
+        />
+    </x-twill::formInlineCheckboxes>
 
-    @formField('select', [
-        'name' => 'monthly_repeat_pattern',
-        'label' => 'If repeated monthly, select a pattern',
-        'options' => \App\Models\DateRule::getMonthlyRepeat(),
-        'default' => 0
-    ])
-@endcomponent
+    <x-twill::select
+        name='monthly_repeat_pattern'
+        label='If repeated monthly, select a pattern'
+        default='0'
+        :options='\App\Models\DateRule::getMonthlyRepeat()'
+    />
+</x-twill::formCollapsedFields>

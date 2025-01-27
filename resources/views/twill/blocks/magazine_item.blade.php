@@ -1,12 +1,8 @@
 @twillBlockTitle('Magazine Item')
 @twillBlockIcon('text')
 
-@formField('radios', [
-    'name' => 'feature_type',
-    'label' => 'Feature type',
-    'default' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
-    'inline' => true,
-    'options' => [
+@php
+    $options = [
         [
             'value' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
             'label' => 'Article'
@@ -22,88 +18,94 @@
         [
             'value' => \App\Models\MagazineItem::ITEM_TYPE_CUSTOM,
             'label' => 'Custom'
-        ],
-    ]
-])
+        ]
+    ];
+@endphp
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
-    'renderForBlocks' => true
-])
-    @formField('browser', [
-        'routePrefix' => 'collection.articlesPublications',
-        'moduleName' => 'articles',
-        'name' => \App\Models\MagazineItem::ITEM_TYPE_ARTICLE,
-        'label' => 'Article'
-    ])
-@endcomponent
+<x-twill::radios
+    name='feature_type'
+    label='Feature type'
+    default='\App\Models\MagazineItem::ITEM_TYPE_ARTICLE'
+    :inline='true'
+    :options="$options"
+/>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT,
-    'renderForBlocks' => true
-])
-    @formField('browser', [
-        'routePrefix' => 'collection',
-        'moduleName' => 'highlights',
-        'name' => \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT,
-        'label' => 'Highlight'
-    ])
-@endcomponent
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="{{ \App\Models\MagazineItem::ITEM_TYPE_ARTICLE }}"
+    :render-for-blocks='true'
+>
+    <x-twill::browser
+        name='{{ \App\Models\MagazineItem::ITEM_TYPE_ARTICLE }}'
+        label='Article'
+        route-prefix='collection.articlesPublications'
+        module-name='articles'
+    />
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE,
-    'renderForBlocks' => true
-])
-    @formField('browser', [
-        'routePrefix' => 'collection.interactiveFeatures',
-        'moduleName' => 'experiences',
-        'name' => \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE,
-        'label' => 'Interactive Feature'
-    ])
-@endcomponent
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="{{ \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT }}"
+    :render-for-blocks='true'
+>
+    <x-twill::browser
+        name='{{ \App\Models\MagazineItem::ITEM_TYPE_HIGHLIGHT }}'
+        label='Highlight'
+        route-prefix='collection'
+        module-name='highlights'
+    />
+</x-twill::formConnectedFields>
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'feature_type',
-    'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_CUSTOM,
-    'renderForBlocks' => true
-])
-    @formField('medias', [
-        'name' => 'listing_image',
-        'label' => 'Hero image',
-    ])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="{{ \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE }}"
+    :render-for-blocks='true'
+>
+    <x-twill::browser
+        name='{{ \App\Models\MagazineItem::ITEM_TYPE_EXPERIENCE }}'
+        label='Interactive Feature'
+        route-prefix='collection.interactiveFeatures'
+        module-name='experiences'
+    />
+</x-twill::formConnectedFields>
 
-    @formField('input', [
-        'name' => 'tag',
-        'label' => 'Tag',
-        'note' => 'Small text, e.g. "Exhibition"'
-    ])
+<x-twill::formConnectedFields
+    field-name='feature_type'
+    field-values="{{ \App\Models\MagazineItem::ITEM_TYPE_CUSTOM }}"
+    :render-for-blocks='true'
+>
+    <x-twill::medias
+        name='listing_image'
+        label='Hero image'
+    />
 
-    @formField('input', [
-        'name' => 'title',
-        'label' => 'Title',
-        'note' => 'Use <i> tag to add italics, e.g. <i>Nighthawks</i>'
-    ])
+    <x-twill::input
+        name='tag'
+        label='Tag'
+        note='Small text e.g. "Exhibition"'
+    />
 
-    @formField('input', [
-        'name' => 'url',
-        'label' => 'URL for link'
-    ])
+    <x-twill::input
+        name='title'
+        label='Title'
+        note='Use <i> tag to add italics, e.g. <i>Nighthawks</i>'
+    />
 
-    @formField('input', [
-        'name' => 'author_display',
-        'label' => 'Author'
-    ])
-@endcomponent
+    <x-twill::input
+        name='url'
+        label='URL for link'
+    />
 
-@formField('wysiwyg', [
-    'name' => 'list_description',
-    'label' => 'List description',
-    'maxlength' => 255,
-    'note' => 'Max 255 characters',
-    'toolbarOptions' => [
-        'italic'
-    ],
-])
+    <x-twill::input
+        name='author_display'
+        label='Author'
+    />
+</x-twill::formConnectedFields>
+
+<x-twill::wysiwyg
+    name='list_description'
+    label='List description'
+    note='Max 255 characters'
+    :maxlength='255'
+    :toolbar-options="[ 'italic' ]"
+/>

@@ -1,59 +1,59 @@
-<a17-fieldset id="side_related" title="Sidebar Related">
-    @formField('browser', [
-        'routePrefix' => $routePrefix,
-        'moduleName' => $moduleName,
-        'name' => 'sidebar_items',
-        'label' => 'Sidebar items',
-        'max' => 6,
-        'endpoints' => [
+<x-twill::formFieldset id="side_related" title="Sidebar Related">
+    <x-twill::browser
+        name='sidebar_items'
+        label='Sidebar items'
+        route-prefix='$routePrefix'
+        module-name='$moduleName'
+        :max='6'
+        :endpoints="[
             [
                 'label' => 'Article',
-                'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['is_unlisted' => false]),
+                'value' => '/collection/articlesPublications/articles/browser'
             ],
             [
                 'label' => 'Highlight',
-                'value' => moduleRoute('highlights', 'collection', 'browser'),
+                'value' => '/collection/highlights/browser'
             ],
             [
                 'label' => 'Event',
-                'value' => moduleRoute('events', 'exhibitionsEvents', 'browser'),
+                'value' => '/exhibitionsEvents/events/browser'
             ],
             [
                 'label' => 'Exhibition',
-                'value' => moduleRoute('exhibitions', 'exhibitionsEvents', 'browser'),
+                'value' => '/exhibitionsEvents/exhibitions/browser'
             ],
             [
                 'label' => 'Interactive Feature',
-                'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser'),
+                'value' => '/collection/interactiveFeatures/experiences/browser'
             ],
             [
                 'label' => 'Digital Publication',
-                'value' => moduleRoute('digitalPublications', 'collection.articlesPublications', 'browser'),
+                'value' => '/collection/articlesPublication/digitalPublications/browser'
             ],
             [
                 'label' => 'Digital Publication Article',
-                'value' => moduleRoute('digitalPublications.articles', 'collection.articlesPublications', 'browserbrowser'),
+                'value' => '/collection/articlesPublications/digitalPublications/articles/browserbrowser'
             ],
             [
                 'label' => 'Video',
-                'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
+                'value' => '/collection/articlesPublications/videos/browser'
             ],
-        ],
-    ])
+        ]"
+    />
 
-    @formField('checkbox', [
-        'name' => 'toggle_autorelated',
-        'label' => 'Suppress auto-related items',
-        'default' => false,
-    ])
+    <x-twill::checkbox
+        name='toggle_autorelated'
+        label='Suppress auto-related items'
+        default='false'
+    />
 
     <br>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'toggle_autorelated',
-        'fieldValues' => false,
-        'renderForBlocks' => false
-    ])
+    <x-twill::formConnectedFields
+        field-name='toggle_autorelated'
+        field-values="false"
+        :render-for-blocks='false'
+    >
 
         @if(count($autoRelated) > 0)
             <p>These items are automatically related and will fill the sidebar along with any of the above selected items.</p>
@@ -67,5 +67,5 @@
             </ol>
         @endif
 
-    @endcomponent
-</a17-fieldset>
+    </x-twill::formConnectedFields>
+</x-twill::formFieldset>

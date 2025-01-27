@@ -1,33 +1,31 @@
 @section('contentFields')
-    @formField('input', [
-        'name' => 'art_intro',
-        'label' => 'Intro text',
-    ])
+    <x-twill::input
+        name='art_intro'
+        label='Intro text'
+    />
 
-    @formField('browser', [
-        'routePrefix' => 'collection',
-        'max' => 25,
-        'moduleName' => 'categoryTerms',
-        'name' => 'artCategoryTerms',
-        'label' => 'Quick filters'
-    ])
+    <x-twill::browser
+        name='artCategoryTerms'
+        label='Quick filters'
+        route-prefix='collection'
+        module-name='categoryTerms'
+        :max='25'
+    />
 
-    @formField('browser', [
-        'routePrefix' => 'collection.articlesPublications',
-        'max' => 5,
-        'moduleName' => 'articles',
-        'name' => 'featured_items',
-        'endpoints' => [
+    <x-twill::browser
+        name='featured_items'
+        label='Featured items'
+        :max='5'
+        :modules="[
             [
                 'label' => 'Article',
-                'value' => '/collection/articlesPublications/articles/browser'
+                'name' => 'collection.articlesPublications.articles'
             ],
             [
                 'label' => 'Interactive feature',
-                'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser')
+                'name' => 'collection.interactiveFeatures.experiences'
             ]
-        ],
-        'label' => 'Featured items',
-    ])
+        ]"
+    />
 
 @stop

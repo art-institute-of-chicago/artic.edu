@@ -92,23 +92,22 @@
         </dl>
     @endif
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 3000px'
-    ])
-    @formField('input', [
-        'label' => 'Subtitle',
-        'name' => 'sub_title',
-    ])
+    <x-twill::medias
+        name='hero'
+        label='Image'
+        note='Minimum image width 3000px'
+    />
+    <x-twill::input
+        label='Subtitle'
+        name='sub_title'
+    />
 
-    @formField('radios', [
-        'name' => 'grouping_background_color',
-        'label' => 'Grouping Background Color',
-        'default' => 'grey',
-        'inline' => true,
-        'options' => [
+    <x-twill::radios
+        name='grouping_background_color'
+        label='Grouping Background Color'
+        default='grey'
+        :inline='true'
+        :options="[
             [
                 'value' => '#f7f7f7',
                 'label' => 'Grey'
@@ -116,30 +115,30 @@
             [
                 'value' => '#ffffff',
                 'label' => 'White'
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
-    @formField('select', [
-        'name' => 'color',
-        'label' => 'Color',
-        'placeholder' => 'Select a color',
-        'options' => $colors
-    ])
+    <x-twill::select
+        name='color'
+        label='Color'
+        placeholder='Select a color'
+        :options="$colors"
+    />
 
     @foreach($colors as $color)
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'color',
-            'fieldValues' => $color['value'],
-        ])
+        <x-twill::formConnectedFields
+            field-name='color'
+            field-values="$color['value']"
+        >
             <div style="background-color: {{ $color['value'] }}; width: 30px; height: 30px; margin-top: 10px"></div>
-        @endcomponent
+        </x-twill::formConnectedFields>
     @endforeach
 
-    @formField('checkbox', [
-        'name' => 'archived',
-        'label' => 'Archived'
-    ])
+    <x-twill::checkbox
+        name='archived'
+        label='Archived'
+    />
 @stop
 
 @section('fieldsets')

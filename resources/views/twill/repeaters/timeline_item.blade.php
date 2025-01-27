@@ -3,26 +3,24 @@
 @twillRepeaterComponent('a17-block-timeline_item')
 @twillRepeaterMax('10')
 
-@formField('input', [
-    'name' => 'time',
-    'label' => 'Time'
-])
+<x-twill::input
+    name='time'
+    label='Time'
+/>
 
-@formField('input', [
-    'name' => 'title',
-    'label' => 'Title'
-])
+<x-twill::input
+    name='title'
+    label='Title'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'description',
-    'label' => 'Description',
-    'toolbarOptions' => [
-        'italic', 'link'
-    ],
-])
+<x-twill::wysiwyg
+    name='description'
+    label='Description'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Image',
-    'max' => '1'
-])
+<x-twill::medias
+    name='image'
+    label='Image'
+    :max='1'
+/>
