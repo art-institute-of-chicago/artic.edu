@@ -166,6 +166,9 @@
     }
 
     &.showcase--rlc {
+        .showcase-header {
+            letter-spacing: 1.89px;
+        }
 
         &.showcase--variation-default {
 
@@ -254,6 +257,9 @@
 
 .m-showcase-multiple-block {
     &.showcase--rlc {
+        .showcase-header {
+            letter-spacing: 1.89px;
+        }
 
         &.showcase--variation-make-with-us {
             background-color: $color__rlc__apricot;

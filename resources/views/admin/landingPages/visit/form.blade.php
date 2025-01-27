@@ -225,7 +225,6 @@
             'stories_block',
             'tour_stop',
             'video',
-            'vtour_embed'
         ])
     ])
 

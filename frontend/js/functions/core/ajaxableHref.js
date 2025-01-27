@@ -67,7 +67,6 @@ const ajaxableHref = function(href, event) {
       || target.pathname.includes('/highlights/')
       || target.pathname.includes('/artinstitutereview')
       || target.pathname.includes('/videos/')
-      || target.pathname.includes('/virtual-tours/')
       || target.pathname.includes('/collection')
       || target.pathname.includes('/events')) {
     return false;
@@ -80,7 +79,6 @@ const ajaxableHref = function(href, event) {
       || window.location.pathname.includes('/highlights/')
       || window.location.pathname.includes('/artinstitutereview')
       || window.location.pathname.includes('/videos/')
-      || window.location.pathname.includes('/virtual-tours/')
       || window.location.pathname.includes('/collection')
       || window.location.pathname.includes('/events')) {
     return false;

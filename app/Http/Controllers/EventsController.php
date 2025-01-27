@@ -7,6 +7,7 @@ use App\Models\Page;
 use App\Models\EventProgram;
 use App\Repositories\EventRepository;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use View;
 
 class EventsController extends FrontController
@@ -39,9 +40,30 @@ class EventsController extends FrontController
             $ongoing = null;
             $eventsByDay = $this->repository->groupByDate($collection);
 
+            $programName = null;
             if (request('program')) {
-                $subtitle = 'These are events related to ' . EventProgram::find(request('program'))->name . '.';
+                $programName = EventProgram::find(request('program'))->name;
+                $subtitle = 'These are events related to ' . $programName . '.';
             }
+
+            $type = collect(Event::$eventTypes)->first(function ($value, $key) {
+                return $key == request('type');
+            });
+            $audience = collect(Event::$eventAudiences)->first(function ($value, $key) {
+                return $key == request('audience');
+            });
+            $titles = array_filter([
+                'Events',
+                request('start') ? Carbon::parse(request('start'))->toFormattedDateString() : null,
+                request('end') ? Carbon::parse(request('end'))->toFormattedDateString() : null,
+                Str::title(request('time')),
+                $type,
+                $audience,
+                $programName,
+                request('page') ? 'Page ' . request('page') : null,
+            ]);
+
+            $this->seo->setTitle(implode(', ', $titles));
         } else {
             // Divide the collection by normal events and ongoing ones
             $ongoing = $collection->filter(function ($item) {

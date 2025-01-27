@@ -65,9 +65,16 @@ class CollectionController extends BaseScopedController
         $activeFilters = $this->collection()->activeFilters();
 
         if ($activeFilters->count()) {
-            $this->seo->setTitle(implode(', ', $activeFilters->pluck('label')->all()));
+            $titles = $activeFilters->pluck('label')->all();
+            $titles[] = request('page') ? 'Page ' . request('page') : null;
+            $titles = array_filter($titles);
+            $this->seo->setTitle(implode(', ', $titles));
         } else {
-            $this->seo->setTitle('Discover Art & Artists');
+            $titles = array_filter([
+                'Discover Art & Artists',
+                request('page') ? 'Page ' . request('page') : null,
+            ]);
+            $this->seo->setTitle(implode(', ', $titles));
         }
 
         if ($collection->count()) {

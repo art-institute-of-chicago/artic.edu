@@ -3,8 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use App\Models\Vendor\Block;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         $types = [
@@ -16,7 +15,6 @@ return new class extends Migration
             'mirador_embed' => [],
             'table' => [],
             'video' => ['use_alt_background'],
-            'vtour_embed' => [],
         ];
 
         foreach ($types as $type => $fieldsToSetToTrue) {

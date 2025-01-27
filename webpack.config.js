@@ -7,6 +7,19 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const generateRevManifestPlugin = require('./scripts/webpack/GenerateRevManifestPlugin');
 
+class TimestampPlugin {
+  apply(compiler) {
+    compiler.hooks.done.tap('TimestampPlugin', (stats) => {
+      const timestamp = new Date().toLocaleString();
+      const hasErrors = stats.hasErrors();
+      const emoji = hasErrors ? "❌" : "✅";
+      setImmediate(() => {
+        console.log(`${emoji} build ${hasErrors ? "failed" : "completed"} ${timestamp}`);
+      });
+    });
+  }
+}
+
 const outputDir = path.resolve(__dirname, 'public', 'dist');
 
 // Async delete any directories passed in and wait for all deletions to complete
@@ -56,7 +69,6 @@ module.exports = async () => {
       myMuseumTourBuilder: ['./frontend/js/myMuseumTourBuilder.js'],
       recaptcha: ['./frontend/js/recaptcha.js'],
       videojs: ['./frontend/js/videojs.js'],
-      virtualTour: ['./frontend/js/virtualTour.js'],
       html4css: ['./frontend/scss/html4css.scss'],
       'mirador-kiosk': ['./frontend/scss/mirador-kiosk.scss'],
       'my-museum-tour-pdf': ['./frontend/scss/my-museum-tour-pdf.scss'],
@@ -108,7 +120,8 @@ module.exports = async () => {
             manifestPath: path.resolve(outputDir, 'rev-manifest.json'),
           }),
         ] : []
-      )
+      ),
+      new TimestampPlugin(),
     ],
     module: {
       rules: [

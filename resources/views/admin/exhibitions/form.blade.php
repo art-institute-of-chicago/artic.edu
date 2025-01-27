@@ -120,7 +120,7 @@
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
-            'paragraph', 'image', 'hr', 'artwork', 'split_block', 'gallery_new', 'link', 'video', 'quote', 'tour_stop', 'accordion', 'media_embed', 'list', 'timeline', 'button', 'newsletter_signup_inline', 'audio_player', '360_embed', 'vtour_embed', 'mirador_embed', 'event', 'feature_2x', 'layered_image_viewer', '3d_model', 'feature_4x', 'mobile_app', 'mirador_modal', '360_modal'
+            'paragraph', 'image', 'hr', 'artwork', 'split_block', 'gallery_new', 'link', 'video', 'quote', 'tour_stop', 'accordion', 'media_embed', 'list', 'timeline', 'button', 'newsletter_signup_inline', 'audio_player', '360_embed', 'mirador_embed', 'event', 'feature_2x', 'layered_image_viewer', '3d_model', 'feature_4x', 'mobile_app', 'mirador_modal', '360_modal'
         ])
     ])
 @stop

@@ -6,6 +6,7 @@ use App\Models\Admission;
 use App\Models\Hour;
 use App\Models\Lightbox;
 use App\Models\LandingPage;
+use App\Models\PrintedPublication;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -59,12 +60,6 @@ class LandingPagesController extends FrontController
                 $this->seo->setTitle($item->meta_title ?: $item->title ?: 'Visit a Chicago Landmark');
                 $this->seo->setDescription($item->meta_description ?: 'Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!');
                 $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('visit_mobile'));
-                break;
-
-            case $types->search('Research and Resources'):
-                $this->seo->setTitle($item->meta_title ?: $item->title ?: 'Research & Resources');
-                $this->seo->setDescription($item->resources_landing_intro);
-                $this->seo->setImage($item->imageFront('research_landing_image'));
                 break;
 
             case $types->search('My Museum Tour'):
@@ -162,19 +157,10 @@ class LandingPagesController extends FrontController
         ];
 
         $title = '';
-
-        switch ($item->type_id) {
-            case $types->search('Visit'):
-                $title = __('Visit');
-                break;
-
-            case $types->search('Research and Resources'):
-                $title = 'The Collection';
-                break;
-
-            default:
-                $title = $item->title;
-                break;
+        if ($item->type_id === $types->search('Visit')) {
+            $title = __('Visit');
+        } else {
+            $title = $item->title;
         }
 
         $commonViewData = [
@@ -250,28 +236,6 @@ class LandingPagesController extends FrontController
                 ];
                 break;
 
-            case $types->search('Research and Resources'):
-                $viewData = [
-                    'primaryNavCurrent' => 'collection',
-                    'intro' => $item->labels->get('resources_landing_intro'),
-                    'linksBar' => [
-                        [
-                            'href' => route('collection'),
-                            'label' => 'Artworks',
-                        ],
-                        [
-                            'href' => route('articles_publications'),
-                            'label' => 'Publications',
-                        ],
-                        [
-                            'href' => route('collection.research_resources'),
-                            'label' => 'Research',
-                            'active' => true,
-                        ],
-                    ],
-                ];
-                break;
-
             case $types->search('RLC'):
                 $viewData = [
                     'contrastHeader' => true,
@@ -287,6 +251,12 @@ class LandingPagesController extends FrontController
                 $viewData = [
                     'hours' => $hours,
                     'subnav' => collect(['Top Stories'])->concat($blockHeadings)->all(),
+                ];
+                break;
+
+            case $types->search('Publications'):
+                $viewData = [
+                    'publications' => PrintedPublication::all(),
                 ];
                 break;
 
