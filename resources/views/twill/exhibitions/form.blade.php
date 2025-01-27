@@ -174,6 +174,7 @@
             name='exhibitions'
             label='Related exhibitions'
             route-prefix='exhibitionsEvents'
+            module-name='exhibitions'
             :max='4'
         />
 
