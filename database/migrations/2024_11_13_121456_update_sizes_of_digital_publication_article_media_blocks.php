@@ -15,7 +15,6 @@ return new class () extends Migration {
             'mirador_embed' => [],
             'table' => [],
             'video' => ['use_alt_background'],
-            'vtour_embed' => [],
         ];
 
         foreach ($types as $type => $fieldsToSetToTrue) {

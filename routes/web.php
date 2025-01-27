@@ -34,7 +34,6 @@ use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\VideoController;
-use App\Http\Controllers\VirtualTourController;
 use App\Http\Controllers\Forms\EducatorAdmissionController;
 use App\Http\Controllers\Forms\EmailSubscriptionsController;
 use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
@@ -137,12 +136,6 @@ Route::get('videos', function () {
     return abort(404);
 })->name('videos');
 Route::get('/videos/{id}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
-
-// Virtual Tours routes
-Route::get('virtual-tours', function () {
-    return abort(404);
-})->name('virtualTours');
-Route::get('/virtual-tours/{id}/{slug?}', [VirtualTourController::class, 'show'])->name('virtualTours.show');
 
 // Mirador kiosk routes
 Route::get('mirador', function () {

@@ -5,7 +5,6 @@ return [
     'protocol' => env('APP_PROTOCOL', 'https'),
     'iiif_s3_endpoint' => env('IIIF_S3_ENDPOINT'),
     'sales_site_url' => env('SALES_SITE_URL', 'https://sales.artic.edu'),
-    'vtour_bucket' => env('AWS_VTOUR_BUCKET'),
     'http_username' => env('HTTP_USERNAME'),
     'http_password' => env('HTTP_PASSWORD'),
     'exhibition_update_recipients' => env('EXHIBITION_UPDATE_RECIPIENTS'),

@@ -9,11 +9,12 @@ const generateRevManifestPlugin = require('./scripts/webpack/GenerateRevManifest
 
 class TimestampPlugin {
   apply(compiler) {
-    compiler.hooks.done.tap('TimestampPlugin', () => {
+    compiler.hooks.done.tap('TimestampPlugin', (stats) => {
       const timestamp = new Date().toLocaleString();
+      const hasErrors = stats.hasErrors();
+      const emoji = hasErrors ? "❌" : "✅";
       setImmediate(() => {
-        const emoji = "✅"
-        console.log(`${emoji} build completed ${timestamp}`);
+        console.log(`${emoji} build ${hasErrors ? "failed" : "completed"} ${timestamp}`);
       });
     });
   }
@@ -68,7 +69,6 @@ module.exports = async () => {
       myMuseumTourBuilder: ['./frontend/js/myMuseumTourBuilder.js'],
       recaptcha: ['./frontend/js/recaptcha.js'],
       videojs: ['./frontend/js/videojs.js'],
-      virtualTour: ['./frontend/js/virtualTour.js'],
       html4css: ['./frontend/scss/html4css.scss'],
       'mirador-kiosk': ['./frontend/scss/mirador-kiosk.scss'],
       'my-museum-tour-pdf': ['./frontend/scss/my-museum-tour-pdf.scss'],
