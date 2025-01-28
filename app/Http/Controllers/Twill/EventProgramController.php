@@ -2,43 +2,37 @@
 
 namespace App\Http\Controllers\Twill;
 
-class EventProgramController extends \App\Http\Controllers\Twill\ModuleController
+use A17\Twill\Services\Listings\Columns\Presenter;
+use A17\Twill\Services\Listings\TableColumns;
+
+class EventProgramController extends BaseController
 {
-    protected $moduleName = 'eventPrograms';
+    protected function setUpController(): void
+    {
+        $this->disablePermalink();
+        $this->disablePublish();
+        $this->enableEditInModal();
+        $this->setModuleName('eventPrograms');
+        $this->setTitleColumnKey('name');
+        $this->setTitleColumnLabel('Name');
+    }
 
-    protected $indexOptions = [
-        'publish' => false,
-        'editInModal' => true,
-        'permalink' => false,
-    ];
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Presenter::make()
+                ->field('isAffiliateGroup')
+                ->title('Affiliate Group?')
+                ->optional()
+        );
+        $columns->add(
+            Presenter::make()
+                ->field('isEventHost')
+                ->title('Event Host?')
+                ->optional()
+        );
 
-    protected $titleColumnKey = 'name';
-
-    protected $indexColumns = [
-        'name' => [
-            'title' => 'Name',
-            'edit_link' => true,
-            'field' => 'name',
-        ],
-        'is_affiliate_group' => [
-            'title' => 'Affiliate Group?',
-            'edit_link' => false,
-            'field' => 'isAffiliateGroup',
-            'optional' => true,
-            'present' => true,
-            'visible' => true,
-        ],
-        'is_event_host' => [
-            'title' => 'Event Host?',
-            'edit_link' => false,
-            'field' => 'isEventHost',
-            'optional' => true,
-            'present' => true,
-            'visible' => true,
-        ],
-    ];
-
-    protected $defaultOrders = [
-        'name' => 'asc',
-    ];
+        return $columns;
+    }
 }
