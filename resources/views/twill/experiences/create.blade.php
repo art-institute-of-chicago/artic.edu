@@ -4,5 +4,5 @@
     'name' => 'interactive_feature_id',
     'label' => 'Grouping',
     'placeholder' => 'Select an grouping',
-    'options' => $groupingsList,
+    'options' => [], //$groupingsList,
 ])
