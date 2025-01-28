@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Twill;
 
 use App\Repositories\CatalogCategoryRepository;
 
-class PrintedPublicationController extends \App\Http\Controllers\Twill\ModuleController
+class PrintedPublicationController extends BaseController
 {
-    protected $moduleName = 'printedPublications';
-    protected $previewView = 'site.genericPage.show';
+    protected function setUpController(): void
+    {
+        $this->setModuleName('printedPublications');
+        $this->setPreviewView('site.genericPage.show');
+    }
 
     protected function formData($request)
     {
