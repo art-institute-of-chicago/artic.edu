@@ -2,69 +2,37 @@
 
 namespace App\Http\Controllers\Twill;
 
-class ArtworkController extends \App\Http\Controllers\Twill\BaseApiController
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
+use Illuminate\Http\JsonResponse;
+
+class ArtworkController extends BaseApiController
 {
-    protected $moduleName = 'artworks';
-    protected $hasAugmentedModel = true;
-
-    protected $indexOptions = [
-        'publish' => false,
-        'bulkPublish' => false,
-        'feature' => false,
-        'bulkFeature' => false,
-        'restore' => false,
-        'bulkRestore' => false,
-        'bulkDelete' => false,
-        'reorder' => false,
-        'permalink' => true,
-    ];
-
-    protected $indexColumns = [
-        'image' => [
-            'thumb' => true,
-            'present' => true,
-            'presenter' => 'imageThumb',
-            'variant' => [
-                'role' => 'hero',
-                'crop' => 'default',
-            ],
-        ],
-        'fullTitle' => [
-            'title' => 'Title',
-            'field' => 'fullTitle',
-        ],
-        'main_reference_number' => [
-            'title' => 'Reference number',
-            'field' => 'main_reference_number',
-        ],
-        'augmented' => [
-            'title' => 'Augmented?',
-            'field' => 'augmented',
-            'present' => true,
-        ],
-        'artist_display' => [
-            'title' => 'Artist',
-            'field' => 'artist_display',
-        ],
-    ];
-
-    protected $titleColumnKey = 'fullTitle';
-
-    protected $browserColumns = [
-        'fullTitle' => [
-            'title' => 'Title',
-            'field' => 'fullTitle',
-        ],
-    ];
-
-    /**
-     * Relations to eager load for the form view
-     */
-    protected $formWith = [];
-
-    protected function indexData($request)
+    public function setUpController(): void
     {
-        return [];
+        parent::setUpController();
+        $this->enableAugmentedModel();
+        $this->enableShowImage();
+        $this->setTitleColumnKey('fullTitle');
+        $this->setModuleName('artworks');
+    }
+
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Text::make()
+                ->title('Reference number')
+                ->field('main_reference_number')
+                ->optional()
+        );
+        $columns->add(
+            Text::make()
+                ->title('Artist')
+                ->field('artist_display')
+                ->optional()
+        );
+        return $columns;
     }
 
     protected function formData($request)
@@ -80,7 +48,7 @@ class ArtworkController extends \App\Http\Controllers\Twill\BaseApiController
         ];
     }
 
-    public function browser(): \Illuminate\Http\JsonResponse
+    public function browser(): JsonResponse
     {
         // Allow to filter by IDS when listing artworks.
         return response()->json($this->getBrowserData(['id' => request('artwork_ids')]));

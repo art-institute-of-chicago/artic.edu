@@ -2,33 +2,30 @@
 
 namespace App\Http\Controllers\Twill;
 
+use A17\Twill\Services\Listings\Columns\Presenter;
+use A17\Twill\Services\Listings\TableColumns;
 use App\Models\InteractiveFeature;
 
-class InteractiveFeatureController extends \App\Http\Controllers\Twill\ModuleController
+class InteractiveFeatureController extends BaseController
 {
-    protected $moduleName = 'interactiveFeatures';
+    protected function setUpController(): void
+    {
+        parent::setUpController();
+        $this->eagerLoadFormRelationCounts(['revisions']);
+        $this->setModuleName('interactiveFeatures');
+    }
 
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'field' => 'title',
-            'sort' => true,
-        ],
-        'updated_at' => [
-            'title' => 'Updated At',
-            'field' => 'updatedDate',
-            'present' => true,
-        ],
-    ];
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Presenter::make()
+                ->field('updatedDate')
+                ->title('Updated At')
+        );
 
-    protected $formWith = ['revisions'];
-
-    protected $defaultOrders = ['title' => 'desc'];
-
-    protected $indexOptions = [
-        'permalink' => false,
-    ];
-    protected $filters = [];
+        return $columns;
+    }
 
     protected function getIndexTableMainFilters($items, $scopes = [])
     {

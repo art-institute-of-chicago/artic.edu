@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Twill;
 
-class AuthorController extends \App\Http\Controllers\Twill\ModuleController
+class AuthorController extends BaseController
 {
-    protected $moduleName = 'authors';
+    protected function setUpController(): void
+    {
+        parent::setUpController();
+        $this->setModuleName('authors');
+    }
 
     protected function formData($request)
     {
