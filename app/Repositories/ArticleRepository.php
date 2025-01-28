@@ -14,6 +14,7 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Repositories\Behaviors\HandleMagazine;
 use App\Repositories\Behaviors\HandleAuthors;
+use Illuminate\Database\Eloquent\Builder;
 
 class ArticleRepository extends ModuleRepository
 {
@@ -30,6 +31,14 @@ class ArticleRepository extends ModuleRepository
     public function __construct(Article $model)
     {
         $this->model = $model;
+    }
+
+    public function order(Builder $query, array $orders = []): Builder
+    {
+        // Default sort by date instead of created_at.
+        $orders['date'] ??= 'desc';
+        unset($orders['created_at']);
+        return parent::order($query, $orders);
     }
 
     public function afterSave(TwillModelContract $object, array $fields): void

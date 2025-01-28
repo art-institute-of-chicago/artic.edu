@@ -59,7 +59,7 @@ class DigitalPublicationPresenter extends BasePresenter
         return $this->articles[$type];
     }
 
-    protected function isDscStub()
+    public function isDscStub()
     {
         return $this->entity->is_dsc_stub ? 'Yes' : 'No';
     }

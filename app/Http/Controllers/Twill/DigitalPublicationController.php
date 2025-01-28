@@ -2,29 +2,35 @@
 
 namespace App\Http\Controllers\Twill;
 
-class DigitalPublicationController extends \App\Http\Controllers\Twill\ModuleController
-{
-    protected $moduleName = 'digitalPublications';
-    protected $previewView = 'site.genericPage.show';
+use A17\Twill\Services\Listings\Columns\NestedData;
+use A17\Twill\Services\Listings\Columns\Presenter;
+use A17\Twill\Services\Listings\TableColumns;
 
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'edit_link' => true,
-            'sort' => true,
-            'field' => 'title',
-        ],
-        'type' => [
-            'title' => 'Is DSC stub?',
-            'field' => 'is_dsc_stub',
-            'sort' => true,
-            'present' => true,
-        ],
-        'articles' => [
-            'title' => 'Articles',
-            'nested' => 'articles',
-        ],
-    ];
+class DigitalPublicationController extends BaseController
+{
+    protected function setUpController(): void
+    {
+        $this->disablePermalink();
+        $this->setModuleName('digitalPublications');
+        $this->setPreviewView('site.genericPage.show');
+    }
+
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Presenter::make()
+                ->field('is_dsc_stub')
+                ->title('Is DSC stub?')
+                ->sortable()
+        );
+        $columns->add(
+            NestedData::make()
+                ->field('articles')
+        );
+
+        return $columns;
+    }
 
     protected function formData($request)
     {
