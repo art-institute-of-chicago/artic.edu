@@ -4,38 +4,12 @@ namespace App\Http\Controllers\Twill;
 
 use App\Repositories\CategoryRepository;
 
-class VideoController extends \App\Http\Controllers\Twill\ModuleController
+class VideoController extends BaseController
 {
-    protected $moduleName = 'videos';
-    protected $previewView = 'site.videoDetail';
-
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'field' => 'title',
-            'sort' => true,
-        ],
-    ];
-
-    /**
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
-
-    /**
-     * Relations to eager load for the form view
-     */
-    protected $formWith = [];
-
-    /**
-     * Filters mapping ('filterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (filterNameList)
-     */
-    protected $filters = [];
-
-    protected function indexData($request)
+    protected function setUpController(): void
     {
-        return [];
+        $this->setModuleName('videos');
+        $this->setPreviewView('site.videoDetail');
     }
 
     protected function formData($request)
