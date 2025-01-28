@@ -2,27 +2,15 @@
 
 namespace App\Http\Controllers\Twill;
 
-class CategoryController extends \App\Http\Controllers\Twill\ModuleController
+class CategoryController extends BaseController
 {
-    protected $moduleName = 'categories';
-
-    protected $indexOptions = [
-        'publish' => false,
-        'editInModal' => true,
-        'permalink' => false,
-    ];
-
-    protected $titleColumnKey = 'name';
-
-    protected $indexColumns = [
-        'name' => [
-            'title' => 'Name',
-            'edit_link' => true,
-            'field' => 'name',
-        ],
-    ];
-
-    protected $defaultOrders = [
-        'name' => 'asc',
-    ];
+    protected function setUpController(): void
+    {
+        $this->disablePermalink();
+        $this->disablePublish();
+        $this->enableEditInModal();
+        $this->setModuleName('categories');
+        $this->setTitleColumnKey('name');
+        $this->setTitleColumnLabel('Name');
+    }
 }
