@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers\Twill;
 
-class SearchTermController extends \App\Http\Controllers\Twill\ModuleController
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
+
+class SearchTermController extends BaseController
 {
-    protected $moduleName = 'searchTerms';
+    protected function setUpController(): void
+    {
+        $this->disablePermalink();
+        $this->disablePublish();
+        $this->enableReorder();
+        $this->setModuleName('searchTerms');
+        $this->setTitleColumnKey('name');
+        $this->setTitleColumnLabel('Name');
+    }
 
-    protected $indexOptions = [
-        'publish' => false,
-        'reorder' => true,
-        'editInModal' => true,
-        'permalink' => false,
-    ];
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Text::make()
+                ->field('direct_url')
+                ->title('Direct URL')
+        );
 
-    protected $titleColumnKey = 'name';
-
-    protected $indexColumns = [
-        'name' => [
-            'title' => 'Name',
-            'edit_link' => true,
-            'field' => 'name',
-        ],
-        'direct_url' => [
-            'title' => 'Direct URL',
-            'field' => 'direct_url',
-        ],
-    ];
-
-    protected $defaultOrders = ['position' => 'asc'];
+        return $columns;
+    }
 }
