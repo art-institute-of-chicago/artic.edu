@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers\Twill;
 
-class PressReleaseController extends \App\Http\Controllers\Twill\ModuleController
+use A17\Twill\Services\Listings\Columns\Presenter;
+use A17\Twill\Services\Listings\TableColumns;
+
+class PressReleaseController extends BaseController
 {
-    protected $moduleName = 'pressReleases';
-    protected $previewView = 'site.genericPage.show';
+    protected function setUpController(): void
+    {
+        $this->setModuleName('pressReleases');
+        $this->setPreviewView('site.genericPage.show');
+    }
 
-    protected $defaultOrders = ['publish_start_date' => 'desc'];
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Presenter::make()
+                ->field('presentPublishStartDate')
+                ->title('Publish Date')
+                ->sortable()
+                ->sortKey('publish_start_date')
+        );
 
-    protected $indexColumns = [
-        'title' => [
-            'field' => 'title',
-            'title' => 'Title',
-        ],
-        // The key must equal the field, else sortKey cannot be reached
-        'presentPublishStartDate' => [
-            'title' => 'Publish Date',
-            'present' => true,
-            'field' => 'presentPublishStartDate',
-            'sort' => true,
-            'sortKey' => 'publish_start_date',
-        ],
-    ];
+        return $columns;
+    }
 
     protected function formData($request)
     {

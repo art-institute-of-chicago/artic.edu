@@ -3,32 +3,30 @@
 namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Models\Contracts\TwillModelContract;
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
 use App\Http\Controllers\LandingPagesController;
 use App\Models\LandingPage;
 use App\Repositories\LandingPageRepository;
 
-class LandingPageController extends \App\Http\Controllers\Twill\ModuleController
+class LandingPageController extends BaseController
 {
-    protected $moduleName = 'landingPages';
+    protected function setUpController(): void
+    {
+        $this->setModuleName('landingPages') ;
+        $this->setPreviewView('site.landingPageDetail');
+    }
 
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'edit_link' => true,
-            'sort' => true,
-            'field' => 'title',
-        ],
-        'type' => [
-            'title' => 'Type',
-            'field' => 'type',
-        ],
-    ];
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Text::make()
+                ->field('type')
+        );
 
-    protected $indexWith = [];
-
-    protected $defaultOrders = [];
-
-    protected $previewView = 'site.landingPageDetail';
+        return $columns;
+    }
 
     /**
      * Dynamically set the view prefix to include the landing page type.

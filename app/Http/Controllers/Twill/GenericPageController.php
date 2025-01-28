@@ -4,39 +4,14 @@ namespace App\Http\Controllers\Twill;
 
 use App\Repositories\PageCategoryRepository;
 
-class GenericPageController extends \App\Http\Controllers\Twill\ModuleController
+class GenericPageController extends BaseController
 {
-    protected $moduleName = 'genericPages';
-    protected $previewView = 'site.genericPage.show';
-
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'field' => 'title',
-            'sort' => true,
-        ],
-    ];
-
-    protected $indexOptions = [
-        'reorder' => true,
-        'permalink' => true,
-    ];
-
-    /**
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
-
-    /**
-     * Relations to eager load for the form view
-     */
-    protected $formWith = [];
-
-    /**
-     * Filters mapping ('filterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (filterNameList)
-     */
-    protected $filters = [];
+    protected function setUpController(): void
+    {
+        $this->enableReorder();
+        $this->setModuleName('genericPages');
+        $this->setPreviewView('site.genericPage.show');
+    }
 
     /**
      * Exposed as public for sitemap:generate command.
