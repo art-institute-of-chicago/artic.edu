@@ -6,13 +6,18 @@
 @twillBlockTitle('360 Embed')
 @twillBlockIcon('image')
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 's'),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-    'options' => [
+@php
+    $default = $type === 'digitalPublications' ? 'l' : 's';
+    $disabled = $type === 'digitalPublications' ? true : false;
+@endphp
+
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='$default'
+    disabled='$disabled'
+    :options="[
         [
             'value' => 's',
             'label' => 'Small'
@@ -25,34 +30,30 @@
             'value' => 'l',
             'label' => 'Large'
         ]
-    ]
-])
+    ]"
+/>
 
-@formField('files', [
-    'name' => 'image_sequence_file',
-    'label' => '360 Zip',
-    'note' => 'Upload a .zip file',
-])
+<x-twill::files
+    name='image_sequence_file'
+    label='360 Zip'
+    note='Upload a .zip file'
+/>
 
-@formField('input', [
-    'name' => 'alt_text',
-    'label' => 'Alt Text',
-])
+<x-twill::input
+    name='alt_text'
+    label='Alt Text'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption_title',
-    'label' => 'Caption title',
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption_title'
+    label='Caption title'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption',
-    'label' => 'Caption',
-    'maxlength' => 300,
-    'note' => 'Max 300 characters',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption'
+    label='Caption'
+    note='Max 300 characters'
+    :maxlength='300'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>

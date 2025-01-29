@@ -1,10 +1,10 @@
 @unless($item->module_type === 'attract' || $item->module_type === 'end')
-@formField('select', [
-    'name' => 'module_type',
-    'required' => true,
-    'label' => 'Module Type',
-    'placeholder' => 'Select a type',
-    'options' => [
+<x-twill::select
+    name='module_type'
+    label='Module Type'
+    placeholder='Select a type'
+    :required='true'
+    :options="[
         [
             'value' => 'split',
             'label' => 'Split'
@@ -29,19 +29,20 @@
             'value' => '3dtour',
             'label' => '3D Tour'
         ]
-    ]
-])
+    ]"
+/>
 @endunless
 
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'module_type',
-    'fieldValues' => 'split',
-    'keepAlive' => true,
-])
-    @formField('multi_select', [
-        'name' => 'split_attributes',
-        'label' => 'Attributes',
-        'options' => [
+<x-twill::formConnectedFields
+    field-name='module_type'
+    field-values="split"
+    :keep-alive='true'
+>
+    <x-twill::multi-select
+        name='split_attributes'
+        label='Attributes'
+        unpack='true'
+        :options="[
             [
                 'value' => 'inset',
                 'label' => 'Inset'
@@ -62,6 +63,6 @@
                 'value' => 'secondary_modal',
                 'label' => 'Secondary Modal'
             ]
-        ]
-    ])
-@endcomponent
+        ]"
+    />
+</x-twill::formConnectedFields>

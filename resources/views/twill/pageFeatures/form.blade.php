@@ -1,27 +1,23 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Hero image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        label='Hero image'
+        name='hero'
+        note='Minimum image width 3000px'
+    />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Mobile Hero Image',
-        'name' => 'mobile_hero',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        label='Mobile Hero Image'
+        name='mobile_hero'
+        note='Minimum image width 3000px'
+    />
 
-    @formField('files', [
-        'name' => 'video',
-        'label' => 'Video file',
-        'note' => 'Add an MP4 file'
-    ])
+    <x-twill::files
+        name='video'
+        label='Video file'
+        note='Add an MP4 file'
+    />
 
     @php
         $selectedFeature = 'articles';
@@ -35,12 +31,12 @@
         }
     @endphp
 
-    @formField('radios', [
-        'name' => '_featureType',
-        'label' => 'Feature type',
-        'default' => $selectedFeature,
-        'inline' => true,
-        'options' => [
+    <x-twill::radios
+        name='_featureType'
+        label='Feature type'
+        default='$selectedFeature'
+        :inline='true'
+        :options="[
             [
                 'value' => 'articles',
                 'label' => 'Article'
@@ -60,83 +56,83 @@
             [
                 'value' => 'custom',
                 'label' => 'Custom'
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'articles'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'collection.articlesPublications',
-            'moduleName' => 'articles',
-            'name' => 'articles',
-            'label' => 'Article'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='articles'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='articles'
+            label='Article'
+            route-prefix='collection.articlesPublications'
+            module-name='articles'
+        />
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'events'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'events',
-            'name' => 'events',
-            'label' => 'Event'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='events'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='events'
+            label='Event'
+            route-prefix='exhibitionsEvents'
+            module-name='events'
+        />
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'exhibitions'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'exhibitions',
-            'name' => 'exhibitions',
-            'label' => 'Exhibition'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='exhibitions'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='exhibitions'
+            label='Exhibition'
+            route-prefix='exhibitionsEvents'
+            module-name='exhibitions'
+        />
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'highlights'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'moduleName' => 'highlights',
-            'name' => 'highlights',
-            'label' => 'Collection Highlights'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='highlights'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='highlights'
+            label='Collection Highlights'
+            route-prefix='collection'
+            module-name='highlights'
+        />
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'custom'
-    ])
-        @formField('input', [
-            'name' => 'tag',
-            'label' => 'Tag',
-            'note' => 'Small text, eg "Exhibition"'
-        ])
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='custom'
+        :render-for-blocks='false'
+    >
+        <x-twill::input
+            name='tag'
+            label='Tag'
+            note='Small text eg "Exhibition"'
+        />
 
-        @formField('input', [
-            'name' => 'call_to_action',
-            'label' => 'Call to action',
-            'note' => 'Displays where dates do for Exhibitions'
-        ])
+        <x-twill::input
+            name='call_to_action'
+            label='Call to action'
+            note='Displays where dates do for Exhibitions'
+        />
 
-        @formField('input', [
-            'name' => 'url',
-            'label' => 'URL for link'
-        ])
-    @endcomponent
+        <x-twill::input
+            name='url'
+            label='URL for link'
+        />
+    </x-twill::formConnectedFields>
 @stop

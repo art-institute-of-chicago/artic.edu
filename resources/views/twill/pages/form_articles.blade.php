@@ -1,27 +1,27 @@
 @section('contentFields')
-    @formField('browser', [
-        'routePrefix' => 'collection.articlesPublications',
-        'max' => 3,
-        'moduleName' => 'articles',
-        'name' => 'featured_items',
-        'endpoints' => [
+    <x-twill::browser
+        name='featured_items'
+        label='Featured items'
+        route-prefix='collection.articlesPublications'
+        module-name='articles'
+        :max='3'
+        :modules="[
             [
                 'label' => 'Article',
-                'value' => '/collection/articlesPublications/articles/browser'
+                'name' => 'collection.articlesPublications.articles'
             ],
             [
                 'label' => 'Interactive feature',
-                'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser')
+                'name' => 'collection.interactiveFeatures.experiences'
             ]
-        ],
-        'label' => 'Featured items',
-    ])
+        ]"
+    />
 
-    @formField('browser', [
-        'routePrefix' => 'collection.articlesPublications',
-        'max' => 10,
-        'moduleName' => 'categories',
-        'name' => 'articlesCategories',
-        'label' => 'Categories'
-    ])
+    <x-twill::browser
+        name='articlesCategories'
+        label='Categories'
+        route-prefix='collection.articlesPublications'
+        module-name='categories'
+        :max='10'
+    />
 @stop

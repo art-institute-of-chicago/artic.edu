@@ -1,5 +1,5 @@
-@formField('input', [
-    'name' => 'title',
-    'label' => 'Title',
-    'required' => true
-])
+<x-twill::input
+    name='title'
+    label='Title'
+    :required='true'
+/>
