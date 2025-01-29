@@ -10,6 +10,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\PressRelease;
 use App\Models\Api\Search;
+use Illuminate\Database\Eloquent\Builder;
 
 class PressReleaseRepository extends ModuleRepository
 {
@@ -28,6 +29,14 @@ class PressReleaseRepository extends ModuleRepository
     public function __construct(PressRelease $model)
     {
         $this->model = $model;
+    }
+
+    public function order(Builder $query, array $orders = []): Builder
+    {
+        $orders['publish_start_date'] ??= 'desc';
+        unset($orders['created_at']);
+
+        return parent::order($query, $orders);
     }
 
     public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
