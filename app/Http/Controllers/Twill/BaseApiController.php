@@ -54,7 +54,6 @@ class BaseApiController extends ModuleController
         $this->disableBulkPublish();
         $this->disableCreate();
         $this->disableDelete();
-        $this->disableEdit();
         $this->disablePermalink();
         $this->disablePublish();
         $this->disableRestore();
@@ -239,21 +238,22 @@ class BaseApiController extends ModuleController
         $title = $this->titleColumnKey === 'title' && $this->titleColumnLabel === 'Title'
             ? twillTrans('twill::lang.main.title')
             : $this->titleColumnLabel;
-        $columns->add(
-            Text::make()
-                ->field($this->titleColumnKey)
-                ->title($title)
-                ->linkCell(function (TwillModelContract $model) {
-                    if ($model->is_augmented) {
-                        $action = 'edit';
-                        $id = $model->getAugmentedModel()->id;
-                    } else {
-                        $action = 'augment';
-                        $id = $model->id;
-                    }
-                    return moduleRoute($this->moduleName, $this->routePrefix, $action, [$id]);
-                })
-        );
+        $titleColumn = Text::make()
+            ->field($this->titleColumnKey)
+            ->title($title);
+        if ($this->getIndexOption('edit')) {
+            $titleColumn->linkCell(function (TwillModelContract $model) {
+                if ($model->is_augmented) {
+                    $action = 'edit';
+                    $id = $model->getAugmentedModel()->id;
+                } else {
+                    $action = 'augment';
+                    $id = $model->id;
+                }
+                return moduleRoute($this->moduleName, $this->routePrefix, $action, [$id]);
+            });
+        }
+        $columns->add($titleColumn);
 
         $columns = $columns->merge($this->additionalIndexTableColumns());
 
@@ -351,7 +351,7 @@ class BaseApiController extends ModuleController
 
     protected function indexItemData($item)
     {
-        if ($this->hasAugmentedModel) {
+        if ($this->hasAugmentedModel && $this->getIndexOption('edit', $item)) {
             if ($localItem = collect($this->localElements)->where('datahub_id', $item->id)->first()) {
                 $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'edit', [$localItem->id]);
             } else {
