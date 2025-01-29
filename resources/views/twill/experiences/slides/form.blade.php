@@ -1,21 +1,21 @@
 @extends('twill::layouts.form', [
     'contentFieldsetLabel' => 'Setting'
-    ])
+])
 
 @section('contentFields')
     @include('twill.experiences.slides._setting')
 @stop
 
 @section('fieldsets')
-    <a17-fieldset title="Content" id="content">
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'module_type',
-            'fieldValues' => '3dtour',
-            'keepAlive' => true,
-            'isEqual' => false
-        ])
+    <x-twill::formFieldset title="Content" id="content">
+        <x-twill::formConnectedFields
+            field-name='module_type'
+            field-values='3dtour'
+            :keep-alive='true'
+            :is-equal='false'
+        >
             @include('twill.experiences.slides._asset_type')
-        @endcomponent
+        </x-twill::formConnectedFields>
 
         @include('twill.experiences.slides._attract')
         @include('twill.experiences.slides._end')
@@ -25,7 +25,7 @@
         @include('twill.experiences.slides._tooltip')
         @include('twill.experiences.slides._compare')
         @include('twill.experiences.slides._3dtour')
-    </a17-fieldset>
+    </x-twill::formFieldset>
 @stop
 @push('extra_js')
     <script>

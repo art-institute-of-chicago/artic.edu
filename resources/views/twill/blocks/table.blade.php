@@ -10,13 +10,18 @@
 
 <hr>
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 's'),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-    'options' => [
+@php
+    $default = $type === 'digitalPublications' ? 'l' : 's';
+    $disabled = $type === 'digitalPublications' ? true : false;
+@endphp
+
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='$default'
+    disabled='$disabled'
+    :options="[
         [
             'value' => 's',
             'label' => 'Small'
@@ -25,46 +30,42 @@
             'value' => 'l',
             'label' => 'Large'
         ]
-    ]
-])
+    ]"
+/>
 
-@formField('input', [
-    'name' => 'table_title',
-    'label' => 'Title',
-    'maxlength' => 60,
-    'note' => 'Optional',
-])
+<x-twill::input
+    name='table_title'
+    label='Title'
+    note='Optional'
+    :maxlength='60'
+/>
 
-@formField('input', [
-    'type' => 'textarea',
-    'name' => 'table_markdown',
-    'label' => 'Table (Markdown)',
-    'rows' => 4,
-    'note' => 'Limited to one table per block',
-])
+<x-twill::input
+    type='textarea'
+    name='table_markdown'
+    label='Table (Markdown)'
+    note='Limited to one table per block'
+    :rows='4'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'table_caption',
-    'label' => 'Caption',
-    'note' => 'Optional',
-    'toolbarOptions' => [
-        ['header' => 3],
-        'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered',
-        ['script' => 'super'],
-    ],
-])
+<x-twill::wysiwyg
+    name='table_caption'
+    label='Caption'
+    note='Optional'
+    :toolbar-options="[ ['header' => 3], 'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered', 'superscript' ]"
+/>
 
-@formField('checkbox', [
-    'name' => 'has_side_header',
-    'label' => 'Leftmost column is also a header',
-])
+<x-twill::checkbox
+    name='has_side_header'
+    label='Leftmost column is also a header'
+/>
 
-@formField('checkbox', [
-    'name' => 'allow_word_wrap',
-    'label' => 'Allow word wrap in table cells',
-])
+<x-twill::checkbox
+    name='allow_word_wrap'
+    label='Allow word wrap in table cells'
+/>
 
-@formField('checkbox', [
-    'name' => 'hide_columns',
-    'label' => 'Hide vertical cell borders',
-])
+<x-twill::checkbox
+    name='hide_columns'
+    label='Hide vertical cell borders'
+/>

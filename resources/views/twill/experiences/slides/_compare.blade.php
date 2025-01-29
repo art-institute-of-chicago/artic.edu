@@ -1,22 +1,28 @@
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'module_type',
-    'fieldValues' => 'compare',
-    'keepAlive' => true,
-])
-    @formField('wysiwyg', [
-        'name' => 'compare_title',
-        'label' => 'Primary Copy',
-        'maxlength' => 500,
-    ])
+<x-twill::formConnectedFields
+    field-name='module_type'
+    field-values="compare"
+    :keep-alive='true'
+>
+    <x-twill::wysiwyg
+        name='compare_title'
+        label='Primary Copy'
+        :maxlength='500'
+    />
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'asset_type',
-        'fieldValues' => 'standard',
-        'keepAlive' => true,
-    ])
-        @formField('repeater', ['type' => 'compare_experience_image_1'])
-    @endcomponent
-    @formField('repeater', ['type' => 'compare_experience_image_2'])
+    <x-twill::formConnectedFields
+        field-name='asset_type'
+        field-values="standard"
+        :keep-alive='true'
+    >
+        <x-twill::repeater
+            type='compare_experience_image_1'
+        />
+    </x-twill::formConnectedFields>
+    <x-twill::repeater
+        type='compare_experience_image_2'
+    />
 
-    @formField('repeater', ['type' => 'compare_experience_modal'])
-@endcomponent
+    <x-twill::repeater
+        type="compare_experience_modal"
+    />
+</x-twill::formConnectedFields>

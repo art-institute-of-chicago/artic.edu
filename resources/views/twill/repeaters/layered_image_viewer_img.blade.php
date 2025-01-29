@@ -4,16 +4,15 @@
 @twillRepeaterMax('10')
 
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Image',
-    'max' => 1
-])
+<x-twill::medias
+    name='image'
+    label='Image'
+    :max='1'
+/>
 
-@formField('input', [
-    'name' => 'label',
-    'label' => 'Label',
-    'note' => 'Displayed at bottom of image',
-    'maxlength' => 82,
-])
-
+<x-twill::input
+    name='label'
+    label='Label'
+    note='Displayed at bottom of image'
+    :maxlength='82'
+/>

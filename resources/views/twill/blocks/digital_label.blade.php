@@ -1,10 +1,10 @@
 @twillBlockTitle('Interactive feature')
 @twillBlockIcon('text')
 
-@formField('browser', [
-    'routePrefix' => 'collection.interactiveFeatures',
-    'name' => 'experiences',
-    'moduleName' => 'experiences',
-    'label' => 'Interactive Feature',
-    'max' => 1
-])
+<x-twill::browser
+    name='experiences'
+    label='Interactive Feature'
+    route-prefix='collection.interactiveFeatures'
+    module-name='experiences'
+    :max='1'
+/>

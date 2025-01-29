@@ -1,4 +1,6 @@
 @twillBlockTitle('List')
 @twillBlockIcon('text')
 
-@formField('repeater', ['type' => 'list_item'])
+<x-twill::repeater
+    type="list_item"
+/>
