@@ -10,12 +10,12 @@
         }
     @endphp
 
-    @formField('radios', [
-        'name' => '_featureType',
-        'label' => 'Feature type',
-        'default' => $selectedFeature,
-        'inline' => true,
-        'options' => [
+    <x-twill::radios
+        name='_featureType'
+        label='Feature type'
+        default='$selectedFeature'
+        :inline='true'
+        :options="[
             [
                 'value' => 'articles',
                 'label' => 'Article'
@@ -31,59 +31,59 @@
             [
                 'value' => 'experiences',
                 'label' => 'Interactive Feature'
-            ],
-        ]
-    ])
+            ]
+        ]"
+    />
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'articles'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'collection.articlesPublications',
-            'moduleName' => 'articles',
-            'name' => 'articles',
-            'label' => 'Article'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='articles'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='articles'
+            label='Article'
+            route-prefix='collection.articlesPublications'
+            module-name='articles'
+        />
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'artworks'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'moduleName' => 'artworks',
-            'name' => 'artworks',
-            'label' => 'Artworks'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='artworks'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='artworks'
+            label='Artworks'
+            route-prefix='collection'
+            module-name='artworks'
+        />
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'highlights'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'moduleName' => 'highlights',
-            'name' => 'highlights',
-            'label' => 'Highlight'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='highlights'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='highlights'
+            label='Highlight'
+            route-prefix='collection'
+            module-name='highlights'
+        />
+    </x-twill::formConnectedFields>
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => '_featureType',
-        'renderForBlocks' => false,
-        'fieldValues' => 'experiences'
-    ])
-        @formField('browser', [
-            'routePrefix' => 'collection.interactiveFeatures',
-            'moduleName' => 'experiences',
-            'name' => 'experiences',
-            'label' => 'Interactive Feature'
-        ])
-    @endcomponent
+    <x-twill::formConnectedFields
+        field-name='_featureType'
+        field-values='experiences'
+        :render-for-blocks='false'
+    >
+        <x-twill::browser
+            name='experiences'
+            label='Interactive Feature'
+            route-prefix='collection.interactiveFeatures'
+            module-name='experiences'
+        />
+    </x-twill::formConnectedFields>
 @stop

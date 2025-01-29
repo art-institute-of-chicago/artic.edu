@@ -1,26 +1,26 @@
 @twillBlockTitle('Grid')
 @twillBlockIcon('image')
 
-@formField('wysiwyg', [
-    'name' => 'heading',
-    'label' => 'Heading',
-    'maxlength' => 60,
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    name='heading'
+    label='Heading'
+    :maxlength='60'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-@formField('input', [
-    'name' => 'grid_link_label',
-    'label' => 'Link Label',
-    'maxlength' => 60,
-    'note' => 'Displayed at top-right of title bar',
-])
+<x-twill::input
+    name='grid_link_label'
+    label='Link Label'
+    note='Displayed at top-right of title bar'
+    :maxlength='60'
+/>
 
-@formField('input', [
-    'name' => 'grid_link_href',
-    'label' => 'Link URL',
-    'maxlength' => 60,
-])
+<x-twill::input
+    name='grid_link_href'
+    label='Link URL'
+    :maxlength='60'
+/>
 
-@formField('repeater', ['type' => 'grid_item'])
+<x-twill::repeater
+    type="grid_item"
+/>

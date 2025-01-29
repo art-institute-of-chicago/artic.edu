@@ -1,13 +1,20 @@
-@formField('input', [
-    'name' => isset($moduleType) && $moduleType === 'split' ? 'split_video_url' : 'video_url',
-    'label' => 'Vimeo URL'
-])
+@php
+    $name = isset($moduleType) && $moduleType === 'split' ? 'split_video_url' : 'video_url';
+@endphp
+<x-twill::input
+    name='$name'
+    label='Vimeo URL'
+/>
 
-@formField('multi_select', [
-    'name' => isset($moduleType) && $moduleType === 'split' ? 'split_video_play_settings' : 'video_play_settings',
-    'label' => 'Video Player Setting',
-    'default' => 'autoplay',
-    'options' => [
+@php
+    $name = isset($moduleType) && $moduleType === 'split' ? 'split_video_play_settings' : 'video_play_settings';
+@endphp
+
+<x-twill::multi-select
+    name='$name'
+    label='Video Player Setting'
+    default='autoplay'
+    :options="[
         [
             'value' => 'autoplay',
             'label' => 'Autoplay'
@@ -28,5 +35,5 @@
             'value' => 'loop',
             'label' => 'Loop'
         ]
-    ]
-])
+    ]"
+/>

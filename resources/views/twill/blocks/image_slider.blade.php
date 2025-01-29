@@ -6,18 +6,23 @@
 @twillBlockTitle('Image Slider')
 @twillBlockIcon('image')
 
-@formField('checkbox', [
-    'name' => 'is_slider_zoomable',
-    'label' => 'Enable zoom',
-])
+<x-twill::checkbox
+    name='is_slider_zoomable'
+    label='Enable zoom'
+/>
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-    'options' => [
+@php
+    $default = $type === 'digitalPublications' ? 'l' : 'm';
+    $disabled = $type === 'digitalPublications' ? true : false;
+@endphp
+
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='$default'
+    disabled='$disabled'
+    :options="[
         [
             'value' => 's',
             'label' => 'Small'
@@ -30,35 +35,31 @@
             'value' => 'l',
             'label' => 'Large'
         ]
-    ]
-])
+    ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption_title',
-    'label' => 'Caption title',
-    'toolbarOptions' => [
-        'italic',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption_title'
+    label='Caption title'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'caption_text',
-    'label' => 'Caption text',
-    'maxlength' => 300,
-    'note' => 'Max 300 characters',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='caption_text'
+    label='Caption text'
+    note='Max 300 characters'
+    :maxlength='300'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>
 
 <hr>
 
-@formField('medias', [
-    'name' => 'left_image',
-    'label' => 'Left image',
-])
+<x-twill::medias
+    name='left_image'
+    label='Left image'
+/>
 
-@formField('medias', [
-    'name' => 'right_image',
-    'label' => 'Right image',
-])
+<x-twill::medias
+    name='right_image'
+    label='Right image'
+/>

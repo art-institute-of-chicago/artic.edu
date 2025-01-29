@@ -1,12 +1,12 @@
 @twillBlockTitle('Magazine Call to Action')
 @twillBlockIcon('text')
 
-@formField('radios', [
-    'name' => 'theme',
-    'label' => 'Theme',
-    'default' => 'dark',
-    'inline' => true,
-    'options' => [
+<x-twill::radios
+    name='theme'
+    label='Theme'
+    default='dark'
+    :inline='true'
+    :options="[
         [
             'value' => 'dark',
             'label' => 'Dark'
@@ -14,30 +14,28 @@
         [
             'value' => 'light',
             'label' => 'Light'
-        ],
-    ]
-])
+        ]
+    ]"
+/>
 
-@formField('input', [
-    'name' => 'tag',
-    'label' => 'Tag',
-    'note' => 'Small text, e.g. "Exhibition"'
-])
+<x-twill::input
+    name='tag'
+    label='Tag'
+    note='Small text e.g. "Exhibition"'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'title',
-    'label' => 'Title',
-    'toolbarOptions' => [
-        'italic'
-    ],
-])
+<x-twill::wysiwyg
+    name='title'
+    label='Title'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-@formField('input', [
-    'name' => 'link_text',
-    'label' => 'Link text'
-])
+<x-twill::input
+    name='link_text'
+    label='Link text'
+/>
 
-@formField('input', [
-    'name' => 'link_url',
-    'label' => 'Link URL'
-])
+<x-twill::input
+    name='link_url'
+    label='Link URL'
+/>

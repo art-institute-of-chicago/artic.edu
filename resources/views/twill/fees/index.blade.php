@@ -14,10 +14,10 @@
     @foreach($feeAges as $feeAge)
         @if($loop->first)
             @foreach($feeCategories as $feeCategory)
-                @formField('input', [
-                    'label' => $feeCategory->title,
-                    'name' => 'price['. $feeAge->id .']['. $feeCategory->id .']'
-                ])
+                <x-twill::input
+                    label='{{ $feeCategory->title }}'
+                    name='price[{{ $feeAge->id }}][{{ $feeCategory->id }}]'
+                />
             @endforeach
         @else
             @break
@@ -28,14 +28,14 @@
 @section('fieldsets')
     @foreach($feeAges as $feeAge)
         @if(!$loop->first)
-            <a17-fieldset id="fieldset{{ $feeAge->id }}" title="{{ $feeAge->title }}">
+            <x-twill::formFieldset id="fieldset{{ $feeAge->id }}" title="{{ $feeAge->title }}">
                 @foreach($feeCategories as $feeCategory)
-                    @formField('input', [
-                        'label' => $feeCategory->title,
-                        'name' => 'price['. $feeAge->id .']['. $feeCategory->id .']'
-                    ])
+                    <x-twill::input
+                        label='{{ $feeCategory->title }}'
+                        name='price[{{ $feeAge->id }}][{{ $feeCategory->id }}]'
+                    />
                 @endforeach
-            </a17-fieldset>
+            </x-twill::formFieldset>
         @endif
     @endforeach
 @stop

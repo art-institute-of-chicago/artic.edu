@@ -1,15 +1,9 @@
 @twillBlockTitle('Paragraph')
 @twillBlockIcon('text')
 
-@formField('wysiwyg', [
-    'name' => 'paragraph',
-    'label' => 'Paragraph',
-    'note' => 'Wrap footnote text with [ref]...[/ref]',
-    'toolbarOptions' => [
-        ['header' => 2],
-        ['header' => 3],
-        ['header' => 4],
-        'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered',
-        ['script' => 'super'],
-    ],
-])
+<x-twill::wysiwyg
+    name='paragraph'
+    label='Paragraph'
+    note="Wrap footnote text with [ref]...[/ref]"
+    :toolbar-options="[ [ 'header' => [ 2, 3, 4 ] ], 'bold', 'italic', 'underline', 'strike', 'link', 'ordered', 'bullet', 'superscript' ]"
+/>

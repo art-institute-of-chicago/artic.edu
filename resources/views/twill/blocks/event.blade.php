@@ -1,9 +1,9 @@
 @twillBlockTitle('Event')
 @twillBlockIcon('text')
 
-@formField('browser', [
-    'routePrefix' => 'exhibitionsEvents',
-    'moduleName' => 'events',
-    'name' => 'events',
-    'label' => 'Event'
-])
+<x-twill::browser
+    name='events'
+    label='Event'
+    route-prefix='exhibitionsEvents'
+    module-name='events'
+/>

@@ -1,53 +1,53 @@
 @twillBlockTitle('Collection Block')
 @twillBlockIcon('Image')
 
-@formField('input', [
-    'name' => 'collection_heading',
-    'label' => 'Heading'
-])
+<x-twill::input
+    name='collection_heading'
+    label='Heading'
+/>
 
-@formField('browser', [
-    'name' => 'artworks',
-    'routePrefix' => 'collection',
-    'moduleName' => 'artworks',
-    'label' => 'Artworks',
-    'max' => 20,
-])
+<x-twill::browser
+    name='artworks'
+    label='Artworks'
+    route-prefix='collection'
+    module-name='artworks'
+    :max='20'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'bottom_desc',
-    'label' => 'Description',
-    'type' => 'textarea'
-])
+<x-twill::wysiwyg
+    name='bottom_desc'
+    label='Description'
+    type='textarea'
+/>
 
-@component('twill::partials.form.utils._columns')
-    @slot('left')
-        @formField('input', [
-            'name' => 'primary_button_label',
-            'label' => 'Primary Button Label'
-        ])
-    @endslot
+<x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='primary_button_label'
+                label='Primary Button Label'
+            />
+        </x-slot>
 
-    @slot('right')
-        @formField('input', [
-            'name' => 'primary_button_link',
-            'label' => 'Primary Button Link'
-        ])
-    @endslot
-@endcomponent
+        <x-slot:right>
+            <x-twill::input
+                name='primary_button_link'
+                label='Primary Button Link'
+            />
+        </x-slot>
+</x-twill::formColumns>
 
-@component('twill::partials.form.utils._columns')
-    @slot('left')
-        @formField('input', [
-            'name' => 'secondary_button_label',
-            'label' => 'Secondary Button Label'
-        ])
-    @endslot
+<x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='secondary_button_label'
+                label='Secondary Button Label'
+            />
+        </x-slot>
 
-    @slot('right')
-        @formField('input', [
-            'name' => 'secondary_button_link',
-            'label' => 'Secondary Button Link'
-        ])
-    @endslot
-@endcomponent
+        <x-slot:right>
+            <x-twill::input
+                name='secondary_button_link'
+                label='Secondary Button Link'
+            />
+        </x-slot>
+</x-twill::formColumns>

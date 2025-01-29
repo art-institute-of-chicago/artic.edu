@@ -1,10 +1,10 @@
-@formField('input', [
-    'name' => 'title',
-    'label' => 'Title',
-    'required' => true
-])
-@formField('input', [
-    'name' => 'tooltip',
-    'label' => 'Tooltip',
-    'required' => true
-])
+<x-twill::input
+    name='title'
+    label='Title'
+    :required='true'
+/>
+<x-twill::input
+    name='tooltip'
+    label='Tooltip'
+    :required='true'
+/>

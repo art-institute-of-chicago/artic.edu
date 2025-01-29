@@ -7,20 +7,25 @@
 @twillBlockIcon('image')
 
 @if ($type === 'digitalPublications')
-    @formField('checkbox', [
-        'name' => 'hide_figure_number',
-        'label' => 'Hide figure number',
-        'default' => false,
-    ])
+    <x-twill::checkbox
+        name='hide_figure_number'
+        label='Hide figure number'
+        default='false'
+    />
 @endif
 
-@formField('select', [
-    'name' => 'size',
-    'label' => 'Size',
-    'placeholder' => 'Select size',
-    'default' => ($type === 'digitalPublications' ? 'l' : 'm'),
-    'disabled' => ($type === 'digitalPublications' ? true : false),
-    'options' => [
+@php
+    $default = $type === 'digitalPublications' ? 'l' : 'm';
+    $disabled = $type === 'digitalPublications' ? true : false;
+@endphp
+
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    default='$default'
+    disabled='$disabled'
+    :options="[
         [
             'value' => 's',
             'label' => 'Small'
@@ -33,24 +38,22 @@
             'value' => 'l',
             'label' => 'Large'
         ]
-    ]
-])
+    ]"
+/>
 
 <p>Note: if the chosen artwork does not have rights to be viewed at a large size, it will display as size small</p>
 
-@formField('browser', [
-    'routePrefix' => 'collection',
-    'name' => 'artworks',
-    'moduleName' => 'artworks',
-    'label' => 'Artworks',
-    'max' => 1
-])
+<x-twill::browser
+    name='artworks'
+    label='Artworks'
+    route-prefix='collection'
+    module-name='artworks'
+    :max='1'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'captionAddendum',
-    'label' => 'Caption addendum',
-    'note' => 'Appended to generated tombstone',
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    name='captionAddendum'
+    label='Caption addendum'
+    note='Appended to generated tombstone'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>

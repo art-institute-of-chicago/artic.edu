@@ -1,31 +1,27 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('wysiwyg', [
-        'name' => 'description',
-        'label' => 'Description',
-        'maxlength' => 1000,
-        'type' => 'textarea',
-        'rows' => 6,
-        'toolbarOptions' => [
-            'bold', 'italic', 'link', 'strike'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='description'
+        label='Description'
+        type='textarea'
+        :maxlength='1000'
+        :rows='6'
+        :toolbar-options="[ 'bold', 'italic', 'link', 'strike' ]"
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'list_description',
-        'label' => 'Listing Description',
-        'type' => 'textarea',
-        'maxlength' => 300,
-        'note' => 'Used in listings and for social media',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='list_description'
+        label='Listing Description'
+        type='textarea'
+        note='Used in listings and for social media'
+        :maxlength='300'
+        :toolbar-options="[ 'italic' ]"
+    />
 
-    @formField('medias', [
-        'label' => 'Hero Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 2000px'
-    ])
+    <x-twill::medias
+        name='hero'
+        label='Hero Image'
+        note='Minimum image width 2000px'
+    />
 @stop

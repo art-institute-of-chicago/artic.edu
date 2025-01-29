@@ -1,10 +1,8 @@
 @twillBlockTitle('Mobile app promo')
 @twillBlockIcon('text')
 
-@formField('wysiwyg', [
-    'name' => 'callout',
-    'label' => 'Callout text',
-    'toolbarOptions' => [
-        'bold', 'italic', 'link'
-    ],
-])
+<x-twill::wysiwyg
+    name='callout'
+    label='Callout text'
+    :toolbar-options="[ 'bold', 'italic', 'link' ]"
+/>

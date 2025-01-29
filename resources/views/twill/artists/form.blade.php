@@ -1,114 +1,109 @@
-@extends('twill::layouts.form')
+@extends('twill::layouts.form', [
+    'additionalFieldsets' => [
+        ['fieldset' => 'attributes', 'label' => 'Attributes'],
+    ]
+])
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'datahub_id',
-        'label' => 'Datahub ID',
-        'disabled' => true
-    ])
+    <x-twill::input
+        name='datahub_id'
+        label='Datahub ID'
+        disabled='true'
+    />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Hero Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 2000px'
-    ])
+    <x-twill::medias
+        name='hero'
+        label='Hero Image'
+        note='Minimum image width 2000px'
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'caption',
-        'label' => 'Caption',
-        'toolbarOptions' => [
-            'italic', 'link'
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='caption'
+        label='Caption'
+        :toolbar-options="[ 'italic', 'link' ]"
+    />
 
-    @formField('input', [
-        'name' => 'birth_date',
-        'label' => 'Birth Date',
-        'disabled' => true
-    ])
+    <x-twill::input
+        name='birth_date'
+        label='Birth Date'
+        disabled='true'
+    />
 
-    @formField('input', [
-        'name' => 'death_date',
-        'label' => 'Death Date',
-        'disabled' => true
-    ])
+    <x-twill::input
+        name='death_date'
+        label='Death Date'
+        disabled='true'
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'intro',
-        'label' => 'Intro',
-        'toolbarOptions' => [
-            'italic', 'link', 'strike'
-        ],
-
-    ])
+    <x-twill::wysiwyg
+        name='intro'
+        label='Intro'
+        :toolbar-options="[ 'italic', 'link', 'strike' ]"
+    />
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="related" title="Related">
+    <x-twill::formFieldset id="related" title="Related">
         <p>These fields will be used for the homepage carousel.</p>
 
-        @formField('medias', [
-            'with_multiple' => false,
-            'no_crop' => false,
-            'label' => 'Carousel Image',
-            'name' => 'carousel',
-            'note' => 'If left blank, hero image will be used instead',
-        ])
+        <x-twill::medias
+            name='carousel'
+            label='Carousel Image'
+            note='If left blank, hero image will be used instead'
+        />
 
-        @formField('input', [
-            'name' => 'short_name_caption',
-            'label' => 'Short name qualifier',
-            'note' => 'Override default of "' .$item->getApiModelFilledCached()->short_name_qualifer . '"',
-        ])
+        <x-twill::input
+            name='short_name_caption'
+            label='Short name qualifier'
+            note='Override default of "{{ $item->getApiModelFilledCached()->short_name_qualifer }}"'
+        />
 
-        @formField('input', [
-            'name' => 'short_name_display',
-            'label' => 'Short name',
-            'note' => 'Override default of "' .$item->getApiModelFilledCached()->short_name . '"',
-        ])
-    </a17-fieldset>
+        <x-twill::input
+            name='short_name_display'
+            label='Short name'
+            note='Override default of "{{ $item->getApiModelFilledCached()->short_name }}"'
+        />
+    </x-twill::formFieldset>
 
-    <a17-fieldset id="related" title="Related">
+    <x-twill::formFieldset id="related" title="Related">
 
         <p>Use "Custom related items" to relate as many items as possible. No more than 12 will be shown on the artist's detail page, but all of them will be used to augment search. See special note on exhibitions below.</p>
 
-        @formField('browser', [
-            'name' => 'related_items',
-            'endpoints' => [
+        <x-twill::browser
+            name='related_items'
+            label='Custom related items'
+            :max='1000'
+            :modules="[
                 [
                     'label' => 'Articles',
-                    'value' => '/collection/articlesPublications/articles/browser'
+                    'name' => 'collection.articlesPublications.articles'
                 ],
                 [
                     'label' => 'Digital Publications',
-                    'value' => '/collection/articlesPublications/digitalPublications/browser'
+                    'name' => 'collection.articlesPublications.digitalPublications'
                 ],
                 [
                     'label' => 'Print Publications',
-                    'value' => '/collection/articlesPublications/printedPublications/browser'
+                    'name' => 'collection.articlesPublications.printedPublications'
                 ],
                 [
                     'label' => 'Educational Resources',
-                    'value' => '/collection/researchResources/educatorResources/browser'
+                    'name' => 'collection.researchResources.educatorResources'
                 ],
                 [
                     'label' => 'Interactive Features',
-                    'value' => '/collection/interactiveFeatures/experiences/browser'
+                    'name' => 'collection.interactiveFeatures.experiences'
                 ],
                 [
                     'label' => 'Videos',
-                    'value' => '/collection/articlesPublications/videos/browser'
+                    'name' => 'collection.articlesPublications.videos'
                 ],
                 [
                     'label' => 'Exhibitions',
-                    'value' => '/exhibitionsEvents/exhibitions/browser'
+                    'name' => 'exhibitionsEvents.exhibitions'
                 ],
-            ],
-            'max' => 1000,
-            'label' => 'Custom related items',
-        ])
+            ]"
+        />
 
         <p>We use CITI data to determine which exhibitions are related to each artist by checking which artworks were featured in each exhibition. We automatically append any exhibition related in this way to the "Related Content" section in reverse chronological order. The following exhibitions would be shown on this artist's page automatically:</p>
 
@@ -126,23 +121,23 @@
 
         <p style="margin-top: 1em">If this logic is satisfactory, there's no need to add exhibitions to the "Custom related items" field. However, if you'd like to control the order of exhibitions relative to other related content, feel free to add them using the field above. If you'd like to ensure that certain exhibitions never show up on this artist's detail page, use the following field:</p>
 
-        @formField('browser', [
-            'name' => 'hidden_related_items',
-            'endpoints' => [
+        <x-twill::browser
+            name='hidden_related_items'
+            label='Suppressed related items'
+            :max='1000'
+            :modules="[
                 [
                     'label' => 'Exhibition',
-                    'value' => '/exhibitionsEvents/exhibitions/browser'
+                    'name' => 'exhibitionsEvents.exhibitions'
                 ],
                 [
                     'label' => 'Videos',
-                    'value' => '/collection/articlesPublications/videos/browser'
+                    'name' => 'collection.articlesPublications.videos'
                 ],
-            ],
-            'max' => 1000,
-            'label' => 'Suppressed related items',
-        ])
+            ]"
+        />
 
-    </a17-fieldset>
+    </x-twill::formFieldset>
 
     @include('twill.partials.meta')
 
