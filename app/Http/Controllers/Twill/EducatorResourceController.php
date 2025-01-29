@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Twill;
 
 use App\Repositories\ResourceCategoryRepository;
 
-class EducatorResourceController extends \App\Http\Controllers\Twill\ModuleController
+class EducatorResourceController extends BaseController
 {
-    protected $moduleName = 'educatorResources';
-    protected $previewView = 'site.genericPage.show';
+    protected function setUpController(): void
+    {
+        parent::setUpController();
+        $this->setModuleName('educatorResources');
+        $this->setPreviewView('site.genericPage.show');
+    }
 
     protected function formData($request)
     {
