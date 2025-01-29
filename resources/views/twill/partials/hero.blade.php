@@ -1,26 +1,20 @@
-@formField('medias', [
-    'with_multiple' => false,
-    'no_crop' => false,
-    'label' => 'Hero image',
-    'name' => 'hero',
-    'note' => 'Minimum image width 3000px'
-])
+<x-twill::medias
+    name='hero'
+    label='Hero image'
+    note='Minimum image width 3000px'
+/>
 
-@formField('medias', [
-    'with_multiple' => false,
-    'no_crop' => false,
-    'label' => 'Mobile hero image',
-    'name' => 'mobile_hero',
-    'note' => 'Minimum image width 3000px'
-])
+<x-twill::medias
+    name='mobile_hero'
+    label='Mobile hero image'
+    note='Minimum image width 3000px'
+/>
 
-@formField('wysiwyg', [
-    'type' => 'textarea',
-    'name' => 'hero_caption',
-    'label' => 'Hero image caption',
-    'note' => 'Usually used for copyright',
-    'maxlength' => 255,
-    'toolbarOptions' => [
-        'italic', 'link',
-    ],
-])
+<x-twill::wysiwyg
+    type='textarea'
+    name='hero_caption'
+    label='Hero image caption'
+    note='Usually used for copyright'
+    :maxlength='255'
+    :toolbar-options="[ 'italic', 'link' ]"
+/>

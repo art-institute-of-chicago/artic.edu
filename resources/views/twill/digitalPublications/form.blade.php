@@ -16,27 +16,23 @@
         </a>
     </div>
 
-    @formField('wysiwyg', [
-        'name' => 'header_subtitle_display',
-        'label' => 'Subtitle for header',
-        'toolbarOptions' => [
-            'italic',
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='header_subtitle_display'
+        label='Subtitle for header'
+        :toolbar-options="[ 'italic' ]"
+    />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Hero image',
-        'name' => 'listing',
-        'note' => 'Minimum image width 3000px'
-    ])
+    <x-twill::medias
+        name='listing'
+        label='Hero image'
+        note='Minimum image width 3000px'
+    />
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Hero image, mobile',
-        'name' => 'mobile_listing',
-        'note' => 'Minimum image width 2000px',
-    ])
+    <x-twill::medias
+        name='mobile_listing'
+        label='Hero image, mobile'
+        note='Minimum image width 2000px'
+    />
 
     @formField('color_select', [
         'name' => 'bgcolor',
@@ -45,53 +41,45 @@
         'columns' => 3,
     ])
 
-    @formField('wysiwyg', [
-        'type' => 'textarea',
-        'name' => 'hero_caption',
-        'label' => 'Hero image caption',
-        'note' => 'Usually used for copyright',
-        'maxlength' => 255,
-        'toolbarOptions' => [
-            'italic', 'link',
-        ],
-    ])
+    <x-twill::wysiwyg
+        type='textarea'
+        name='hero_caption'
+        label='Hero image caption'
+        note='Usually used for copyright'
+        :maxlength='255'
+        :toolbar-options="[ 'italic', 'link' ]"
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'listing_description',
-        'label' => 'Listing description',
-        'maxlength' => 300,
-        'toolbarOptions' => [
-            'italic',
-        ],
-    ])
+    <x-twill::wysiwyg
+        name='listing_description'
+        label='Listing description'
+        :maxlength='300'
+        :toolbar-options="[ 'italic' ]"
+    />
 
-    @formField('checkbox', [
-        'name' => 'is_dsc_stub',
-        'label' => 'This page is a stub that links out to publications.artic.edu',
-    ])
+    <x-twill::checkbox
+        name='is_dsc_stub'
+        label='This page is a stub that links out to publications.artic.edu'
+    />
 @stop
 
 @section('fieldsets')
-    @formConnectedFields([
-        'fieldName' => 'is_dsc_stub',
-        'fieldValues' => true,
-    ])
-        @formFieldset([
-            'id' => 'fields_for_dsc_stub',
-            'title' => 'DSC Stub Fields',
-        ])
+    <x-twill::formConnectedFields
+        field-name='is_dsc_stub'
+        field-values="true"
+    >
+        <x-twill::formFieldset id='fields_for_dsc_stub' title='DSC Stub Fields'>
             <p style="margin-bottom: -20px">This content is only shown when the page is a DSC stub.</p>
             <hr>
 
-            @formField('medias', [
-                'with_multiple' => false,
-                'label' => 'Banner image',
-                'name' => 'banner',
-                'note' => 'Minimum image width 3000px'
-            ])
+            <x-twill::medias
+                name='banner'
+                label='Banner image'
+                note='Minimum image width 3000px'
+            />
 
-            @formField('block_editor', [
-                'blocks' => BlockHelpers::getBlocksForEditor([
+            @php
+                $blocks = BlockHelpers::getBlocksForEditor([
                     '3d_model',
                     'accordion',
                     'hr',
@@ -105,48 +93,49 @@
                     'split_block',
                     'timeline',
                     'video',
-                ]),
-            ])
-        @endformFieldset
-    @endformConnectedFields
+                ]);
+            @endphp
 
-    @formFieldset([
-        'id' => 'fields_for_full_publication',
-        'title' => 'Publication Fields',
-    ])
-        @formField('wysiwyg', [
-            'name' => 'welcome_note_display',
-            'label' => 'Welcome note text',
-            'toolbarOptions' => [
-                'italic',
-            ],
-        ])
+            <x-twill::block-editor
+                :blocks='$blocks'
+            />
 
-        @formField('browser', [
-            'name' => 'welcome_note_section',
-            'label' => 'Welcome note section',
-            'endpoint' => route('twill.collection.articlesPublications.digitalPublications.articles.subbrowser',[
-                'digitalPublication' => $item->id,
-            ]),
-            'max' => 1,
-        ])
+        </x-twill::formFieldset>
+    </x-twill::formConnectedFields>
 
-        @formField('wysiwyg', [
-            'name' => 'sponsor_display',
-            'label' => 'Sponsors',
-            'toolbarOptions' => [
-                'italic',
-            ],
-        ])
+    <x-twill::formFieldset id='fields_for_full_publication' title='Publication Fields'>
+        <x-twill::wysiwyg
+            name='welcome_note_display'
+            label='Welcome note text'
+            :toolbar-options="[ 'italic' ]"
+        />
 
-        @formField('wysiwyg', [
-            'name' => 'cite_as',
-            'label' => 'How to Cite',
-            'toolbarOptions' => [
-                'italic',
-            ],
-        ])
-    @endformConnectedFields
+        <x-twill::browser
+            name='welcome_note_section'
+            label='Welcome note section'
+            :max='1'
+            :endpoints="[
+                [
+                    'label' => 'Articles',
+                    'value' => '/collection/articlesPublications/digitalPublications/articles/subbrowser'
+                ]
+            ]"
+            :params="[ 'digitalPublication' => $item->id, ]"
+        />
+
+        <x-twill::wysiwyg
+            name='sponsor_display'
+            label='Sponsors'
+            :toolbar-options="[ 'italic' ]"
+        />
+
+        <x-twill::wysiwyg
+            name='cite_as'
+            label='How to Cite'
+            :toolbar-options="[ 'italic' ]"
+        />
+
+    </x-twill::formFieldset>
 
     @include('twill.partials.related')
 

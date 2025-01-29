@@ -2,89 +2,93 @@
 
 @section('contentFields')
 
-    @formField('input', [
-        'name' => 'intro',
-        'label' => 'Intro Text',
-        'maxlength' => 100,
-        'required' => true,
-    ])
+    <x-twill::input
+        name='intro'
+        label='Intro Text'
+        :maxlength='100'
+        :required='true'
+    />
 
 @stop
 
 @section('fieldsets')
 
-<a17-fieldset title="Top Stories" id="stories_top">
+<x-twill::formFieldset title="Top Stories" id="stories_top">
 
-        @component('twill::partials.form.utils._columns')
-        @slot('left')
-            @formField('browser', [
-                'routePrefix' => 'collection.articlesPublications',
-                'moduleName' => 'articles',
-                'name' => 'top_stories',
-                'endpoints' => [
+    <x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::browser
+                name='top_stories'
+                label='Top Stories'
+                route-prefix='collection.articlesPublications'
+                module-name='articles'
+                :max='3'
+                :modules="[
                     [
                         'label' => 'Article',
-                        'value' => moduleRoute('articles', 'collection.articlesPublications', 'browser', ['published' => true]),
+                        'name' => 'collection.articlesPublications.articles',
                     ],
                     [
                         'label' => 'Highlight',
-                        'value' => moduleRoute('highlights', 'collection', 'browser')
+                        'name' => 'collection.highlights'
                     ],
                     [
                         'label' => 'Interactive feature',
-                        'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser')
+                        'name' => 'collection.interactiveFeatures.experiences'
                     ],
                     [
                         'label' => 'Video',
-                        'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
+                        'name' => 'collection.articlesPublications.videos'
                     ],
-                ],
-                'max' => 3,
-                'label' => 'Top Stories',
-            ])
-        @endslot
-
-        @slot('right')
-            @formField('browser', [
-                'routePrefix' => 'collection.articlesPublications',
-                'moduleName' => 'articles',
-                'name' => 'most_popular_stories',
-                'endpoints' => [
+                ]"
+                :params="[ 'published' => true ]"
+            />
+        </x-slot:left>
+        <x-slot:right>
+            <x-twill::browser
+                name='most_popular_stories'
+                label='Most popular stories'
+                route-prefix='collection.articlesPublications'
+                module-name='articles'
+                :max='5'
+                :modules="[
                     [
                         'label' => 'Article',
-                        'value' => '/collection/articlesPublications/articles/browser'
+                        'name' => 'collection.articlesPublications.articles'
                     ],
                     [
                         'label' => 'Highlight',
-                        'value' => moduleRoute('highlights', 'collection', 'browser')
+                        'name' => 'collection.highlights'
                     ],
                     [
                         'label' => 'Interactive feature',
-                        'value' => moduleRoute('experiences', 'collection.interactiveFeatures', 'browser')
+                        'name' => 'collection.interactiveFeatures.experiences'
                     ],
                     [
                         'label' => 'Video',
-                        'value' => moduleRoute('videos', 'collection.articlesPublications', 'browser'),
+                        'name' => 'collection.articlesPublications.videos'
                     ],
-                ],
-                'max' => 5,
-                'label' => 'Most popular stories',
-            ])
-        @endslot
-        @endcomponent
+                ]"
+            />
+        </x-slot:right>
+    </x-twill::formColumns>
 
-</a17-fieldset>
+</x-twill::formFieldset>
 
-<a17-fieldset title="Custom Content" id="custom_content">
+<x-twill::formFieldset title="Custom Content" id="custom_content">
 
-    @formField('block_editor', [
-        'blocks' => BlockHelpers::getBlocksForEditor([
+    @php
+        $blocks = BlockHelpers::getBlocksForEditor([
             'feature_block',
             'editorial_block',
             'custom_banner',
-        ])
-    ])
+        ]);
+    @endphp
 
-</a17-fieldset>
+    <x-twill::block-editor
+        :blocks='$blocks'
+    />
+
+</x-twill::formFieldset>
 
 @stop

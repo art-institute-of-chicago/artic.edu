@@ -2,30 +2,28 @@
 
 @section('contentFields')
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Hero Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 2000px'
-    ])
+    <x-twill::medias
+        name='hero'
+        label='Hero Image'
+        note='Minimum image width 2000px'
+    />
 
-    @formField('input', [
-        'name' => 'caption',
-        'label' => 'Caption',
-        'maxlength' => 255
-    ])
+    <x-twill::input
+        name='caption'
+        label='Caption'
+        :maxlength='255'
+    />
 
-    @formField('wysiwyg', [
-        'name' => 'intro',
-        'label' => 'Intro',
-    ])
+    <x-twill::wysiwyg
+        name='intro'
+        label='Intro'
+    />
 
-    @formField('input', [
-        'name' => 'datahub_id',
-        'label' => 'Datahub ID',
-        'disabled' => true
-    ])
+    <x-twill::input
+        name='datahub_id'
+        label='Datahub ID'
+        disabled='true'
+    />
 @stop
 
 @section('fieldsets')

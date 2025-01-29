@@ -1,208 +1,187 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'title_display',
-        'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-    ])
+    <x-twill::input
+        name='title_display'
+        label='Title formatting (optional)'
+        note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+    />
 
-    @formField('date_picker', [
-        'name' => 'date',
-        'label' => 'Display date',
-        'required' => true,
-        'withTime' => false,
-        'note' => 'Required',
-    ])
+    <x-twill::date-picker
+        name='date'
+        label='Display date'
+        :required='true'
+        withTime='false'
+        note='Required'
+    />
 
-    @formField('select', [
-        'name' => 'article_type',
-        'label' => 'Type',
-        'placeholder' => 'Select a type',
-        'default' => 'text',
-        'options' => $types,
-    ])
-    @formField('select', [
-        'name' => 'listing_display',
-        'label' => 'Listing display',
-        'placeholder' => 'Select a listing display',
-        'default' => 'default',
-        'options' => [
+    <x-twill::select
+        name='article_type'
+        label='Type'
+        placeholder='Select a type'
+        default='text'
+        :options='$types'
+    />
+    <x-twill::select
+        name='listing_display'
+        label='Listing display'
+        placeholder='Select a listing display'
+        default='default'
+        :options="[
             ['value' => 'feature', 'label' => 'Feature'],
             ['value' => '3-across', 'label' => '3-Across'],
             ['value' => 'entries', 'label' => 'Entries'],
             ['value' => 'group_entries', 'label' => 'Group of Entries'],
             ['value' => 'list', 'label' => 'List view'],
             ['value' => 'simple_list', 'label' => 'Text list view'],
-        ],
-    ])
+        ]"
+    />
 
-    @component('twill::partials.form.utils._columns')
-        @slot('left')
-            @formField('checkbox', [
-                'name' => 'hide_title',
-                'label' => 'Hide title in listing view',
-            ])
-        @endslot
+    <x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::checkbox
+                name='hide_title'
+                label='Hide title in listing view'
+            />
+        </x-slot>
 
-        @slot('right')
-            @formField('checkbox', [
-                'name' => 'suppress_listing',
-                'label' => 'Hide from listing view',
-            ])
-        @endslot
-    @endcomponent
+        <x-slot:right>
+            <x-twill::checkbox
+                name='suppress_listing'
+                label='Hide from listing view'
+            />
+        </x-slot>
+    </x-twill::formColumns>
 @stop
 
 @section('fieldsets')
-    @formFieldset([
-        'id' => 'editorial-content',
-        'title' => 'Editorial Content',
-    ])
-        @formConnectedFields([
-            'fieldName' => 'article_type',
-            'fieldValues' => 'grouping',
-            'renderForBlocks' => false,
-        ])
-            @formField('wysiwyg', [
-                'name' => 'grouping_description',
-                'label' => 'Description',
-                'maxlength' => 255,
-                'note' => 'Max 255 characters',
-                'toolbarOptions' => [
-                    'italic', 'link',
-                ],
-            ])
+    <x-twill::formFieldset id='editorial-content' title='Editorial Content'>
+        <x-twill::formConnectedFields
+            field-name='article_type'
+            field-values="grouping"
+            :render-for-blocks='false'
+        >
+            <x-twill::wysiwyg
+                name='grouping_description'
+                label='Description'
+                note='Max 255 characters'
+                :maxlength='255'
+                :toolbar-options="[ 'italic', 'link' ]"
+            />
 
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Grouping image',
-                'name' => 'grouping_hero',
-                'note' => 'Minimum image width 3000px'
-            ])
+            <x-twill::medias
+                name='grouping_hero'
+                label='Grouping image'
+                note='Minimum image width 3000px'
+            />
 
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Mobile grouping image',
-                'name' => 'grouping_mobile_hero',
-                'note' => 'Minimum image width 2000px'
-            ])
-        @endformConnectedFields
+            <x-twill::medias
+                name='grouping_mobile_hero'
+                label='Mobile grouping image'
+                note='Minimum image width 2000px'
+            />
+        </x-twill::formConnectedFields>
 
-        @formConnectedFields([
-            'fieldName' => 'article_type',
-            'fieldValues' => 'entry',
-            'renderForBlocks' => false,
-        ])
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Listing image',
-                'name' => 'hero',
-                'note' => 'Minimum image width 3000px'
-            ])
+        <x-twill::formConnectedFields
+            field-name='article_type'
+            field-values="entry"
+            :render-for-blocks='false'
+        >
+            <x-twill::medias
+                name='hero'
+                label='Listing image'
+                note='Minimum image width 3000px'
+            />
 
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Mobile listing image',
-                'name' => 'mobile_hero',
-                'note' => 'Minimum image width 2000px'
-            ])
+            <x-twill::medias
+                name='mobile_hero'
+                label='Mobile listing image'
+                note='Minimum image width 2000px'
+            />
 
-            @formField('input', [
-                'name' => 'author_display',
-                'label' => 'Author display',
-                'note' => 'On Entry type articles, authorship is prepended with "Entry by"',
-            ])
+            <x-twill::input
+                name='author_display'
+                label='Author display'
+                note="On Entry type articles, authorship is prepended with 'Entry by'"
+            />
 
-            @formField('browser', [
-                'routePrefix' => 'collection',
-                'moduleName' => 'authors',
-                'name' => 'authors',
-                'label' => 'Authors',
-                'max' => 10,
-                'note' => 'On Entry type articles, authorship is prepended with "Entry by"',
-            ])
-        @endformConnectedFields
+            <x-twill::browser
+                name='authors'
+                label='Authors'
+                note="On Entry type articles, authorship is prepended with 'Entry by'"
+                route-prefix='collection'
+                module-name='authors'
+                :max='10'
+            />
+        </x-twill::formConnectedFields>
 
-        @formConnectedFields([
-            'fieldName' => 'article_type',
-            'fieldValues' => ['about', 'text', 'work'],
-            'renderForBlocks' => false,
-        ])
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Hero image',
-                'name' => 'hero',
-                'note' => 'Minimum image width 3000px'
-            ])
+        <x-twill::formConnectedFields
+            field-name='article_type'
+            :field-values="['about', 'text', 'work']"
+            :render-for-blocks='false'
+        >
 
-            @formField('medias', [
-                'with_multiple' => false,
-                'no_crop' => false,
-                'label' => 'Mobile hero image',
-                'name' => 'mobile_hero',
-                'note' => 'Minimum image width 2000px'
-            ])
+            <x-twill::medias
+                name='hero'
+                label='Hero image'
+                note='Minimum image width 3000px'
+            />
 
-            @formField('input', [
-                'name' => 'author_display',
-                'label' => 'Author display',
-            ])
+            <x-twill::medias
+                name='mobile_hero'
+                label='Mobile hero image'
+                note='Minimum image width 2000px'
+            />
 
-            @formField('browser', [
-                'routePrefix' => 'collection',
-                'moduleName' => 'authors',
-                'name' => 'authors',
-                'label' => 'Authors',
-                'max' => 10,
-            ])
-        @endformConnectedFields
+            <x-twill::input
+                name='author_display'
+                label='Author display'
+            />
 
-        @formConnectedFields([
-            'fieldName' => 'article_type',
-            'fieldValues' => 'grouping',
-            'isEqual' => false,
-            'renderForBlocks' => false,
-        ])
-            @formField('input', [
-                'name' => 'label',
-                'label' => 'Article label',
-                'note' => 'Used in the "eyebrow" of cards on the publication page',
-            ])
+            <x-twill::browser
+                name='authors'
+                label='Authors'
+                route-prefix='collection'
+                module-name='authors'
+                :max='10'
+            />
 
-            @formField('wysiwyg', [
-                'name' => 'list_description',
-                'label' => 'List description',
-                'maxlength' => 255,
-                'note' => 'Max 255 characters. Will be used on the main landing, search, and social media.',
-                'toolbarOptions' => [
-                    'italic',
-                ],
-            ])
+        </x-twill::formConnectedFields>
 
-            @formField('wysiwyg', [
-                'name' => 'cite_as',
-                'label' => 'How to Cite',
-                'toolbarOptions' => [
-                    'italic',
-                ],
-            ])
+        <x-twill::formConnectedFields
+            field-name='article_type'
+            field-values="grouping"
+            :is-equal='false'
+            :render-for-blocks='false'
+        >
+            <x-twill::input
+                name='label'
+                label='Article label'
+                note='Used in the "eyebrow" of cards on the publication page'
+            />
 
-            @formField('wysiwyg', [
-                'name' => 'references',
-                'label' => 'References',
-                'toolbarOptions' => [
-                    'italic', 'link', 'list-ordered', 'list-unordered',
-                ],
-            ])
+            <x-twill::wysiwyg
+                name='list_description'
+                label='List description'
+                note='Max 255 characters. Will be used on the main landing, search, and social media.'
+                :maxlength='255'
+                :toolbar-options="[ 'italic' ]"
+            />
 
-            @formField('block_editor', [
-                'blocks' => BlockHelpers::getBlocksForEditor([
+            <x-twill::wysiwyg
+                name='cite_as'
+                label='How to Cite'
+                :toolbar-options="[ 'italic' ]"
+            />
+
+            <x-twill::wysiwyg
+                name='references'
+                label='References'
+                :toolbar-options="[ 'italic', 'link', 'list-ordered', 'list-unordered' ]"
+            />
+
+            @php
+                $blocks = BlockHelpers::getBlocksForEditor([
                     '360_embed',
                     '360_modal',
                     '3d_embed',
@@ -233,10 +212,15 @@
                     'tombstone',
                     'tour_stop',
                     'video',
-                ])
-            ])
-        @endformConnectedFields
-    @endformFieldset
+                ]);
+            @endphp
+
+            <x-twill::block-editor
+                :blocks='$blocks'
+            />
+        </x-twill::formConnectedFields>
+
+    </x-twill::formFieldset>
 
     @include('twill.partials.meta')
 @stop

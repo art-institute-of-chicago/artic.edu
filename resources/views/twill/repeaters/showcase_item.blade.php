@@ -1,66 +1,63 @@
 @twillRepeaterTitle('Showcase Item')
 @twillRepeaterMax('4')
 
-@formField('select', [
-    'name' => 'media_type',
-    'label' => 'Media Type',
-    'required' => true,
-    'unpack' => true,
-    'options' => collect(['image' => 'Image', 'video' => 'Video']),
-])
+<x-twill::select
+    name='media_type'
+    label='Media Type'
+    :required='true'
+    :unpack='true'
+    :options="[
+        [
+            'value' => 'image',
+            'label' => 'Image'
+        ],
+        [
+            'value' => 'video',
+            'label' => 'Video'
+        ]
+    ]"
+/>
 
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Media',
-    'max' => 1,
-    'withVideoUrl' => false,
-    'required' => true,
-])
+<x-twill::medias
+    name='image'
+    label='Media'
+    :max='1'
+    :required='true'
+    :withVideoUrl='false'
+/>
 
-@formField('input', [
-    'name' => 'tag',
-    'label' => 'Tag',
-    'maxlength' => 100,
-    'type' => 'text',
-])
+<x-twill::input
+    name='tag'
+    label='Tag'
+    :maxlength='100'
+/>
 
-@formField('wysiwyg', [
-    'name' => 'title',
-    'label' => 'Title',
-    'maxlength' => 100,
-    'required' => true,
-    'toolbarOptions' => [
-        'italic'
-    ],
-])
+<x-twill::wysiwyg
+    name='title'
+    label='Title'
+    :maxlength='100'
+    :required='true'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-@formField('wysiwyg', [
-    'name' => 'description',
-    'label' => 'Description',
-    'required' => true,
-    'toolbarOptions' => [
-        'bold',
-        'italic',
-        'underline',
-        'link',
-        ['list' => 'bullet'],
-        ['list' => 'ordered'],
-    ],
-])
+<x-twill::wysiwyg
+    name='description'
+    label='Description'
+    :required='true'
+    :toolbar-options="[ 'bold', 'italic', 'underline', 'link', 'bullet', 'ordered' ]"
+/>
 
-@component('twill::partials.form.utils._columns')
-    @slot('left')
-        @formField('input', [
-            'name' => 'link_label',
-            'label' => 'Link Label',
-            'type' => 'text',
-        ])
-    @endslot
-    @slot('right')
-        @formField('input', [
-            'name' => 'link_url',
-            'label' => 'Link Url',
-            'type' => 'text',
-        ])
-    @endslot
-@endcomponent
+<x-twill::formColumns>
+    <x-slot:left>
+        <x-twill::input
+            name='link_label'
+            label='Link Label'
+        />
+    </x-slot:left>
+    <x-slot:right>
+        <x-twill::input
+            name='link_url'
+            label='Link Url'
+        />
+    </x-slot:right>
+</x-twill::formColumns>
