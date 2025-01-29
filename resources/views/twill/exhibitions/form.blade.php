@@ -222,10 +222,8 @@
         />
     </x-twill::formFieldset>
 
-    @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
-        @slot('routePrefix', 'exhibitionsEvents')
-        @slot('moduleName', 'exhibitions')
-    @endcomponent
+    <x-aic::featuredRelated
+        :auto-related="$autoRelated" />
 
     @include('twill.partials.related')
 
