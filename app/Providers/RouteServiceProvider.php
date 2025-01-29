@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use App\Helpers\FrontendHelpers;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -46,13 +45,6 @@ class RouteServiceProvider extends ServiceProvider
             $allowedDomains = config('app.allowed_domains') ?? [config('app.url')];
             $host = request()->getHttpHost();
             $domain = in_array($host, $allowedDomains) ? $host : config('app.url');
-            if (filter_var($host, FILTER_VALIDATE_IP) !== false) {
-                $interfaces = net_get_interfaces();
-                $ip = FrontendHelpers::ip($interfaces);
-                if ($host == $ip) {
-                    $domain = $host;
-                }
-            }
 
             Route::middleware('web')
                 ->domain($domain)
