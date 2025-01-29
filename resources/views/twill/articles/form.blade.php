@@ -170,10 +170,8 @@
         <p style="margin-top: 1em">If this logic is satisfactory, there's no need to add exhibitions to the "Custom related items" field. However, if you'd like to control the order of exhibitions relative to other related content, feel free to add them using the field above.</p>
     </x-twill::formFieldset>
 
-    @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated, 'item' => $item])
-        @slot('routePrefix', 'collection.articlesPublications')
-        @slot('moduleName', 'articles')
-    @endcomponent
+    <x-aic::featuredRelated
+        :auto-related="$autoRelated" />
 
     @include('twill.partials.related')
 

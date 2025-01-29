@@ -86,10 +86,8 @@
         <p>The page must have a banner image in order to display museum hours.</p>
     </x-twill::formFieldset>
 
-    @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
-        @slot('routePrefix', 'generic')
-        @slot('moduleName', 'genericPages')
-    @endcomponent
+    <x-aic::featuredRelated
+        :auto-related="$autoRelated" />
 
     <x-twill::formFieldset id="sponsors" title="Sponsors">
         <x-twill::browser
