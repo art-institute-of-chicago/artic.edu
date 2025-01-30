@@ -2,27 +2,28 @@
 
 namespace App\Http\Controllers\Twill;
 
-class VanityRedirectController extends \App\Http\Controllers\Twill\ModuleController
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
+
+class VanityRedirectController extends BaseController
 {
-    protected $moduleName = 'vanityRedirects';
+    protected function setUpController(): void
+    {
+        $this->disablePermalink();
+        $this->enableEditInModal();
+        $this->setModuleName('vanityRedirects');
+        $this->setTitleColumnKey('path');
+        $this->setTitleColumnLabel('Vanity path');
+    }
 
-    protected $indexOptions = [
-        'editInModal' => true,
-        'permalink' => false,
-    ];
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Text::make()
+                ->field('destination')
+        );
 
-    protected $titleColumnKey = 'path';
-
-    protected $indexColumns = [
-        'path' => [
-            'title' => 'Vanity path',
-            'field' => 'path',
-        ],
-        'destination' => [
-            'title' => 'Destination',
-            'field' => 'destination',
-        ],
-    ];
-
-    protected $defaultOrders = ['path' => 'asc'];
+        return $columns;
+    }
 }
