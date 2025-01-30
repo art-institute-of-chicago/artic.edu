@@ -2,56 +2,39 @@
 
 namespace App\Http\Controllers\Twill;
 
+use A17\Twill\Services\Listings\Columns\Presenter;
+use A17\Twill\Services\Listings\Columns\Relation;
+use A17\Twill\Services\Listings\TableColumns;
 use App\Repositories\CategoryRepository;
 
-class ArticleController extends \App\Http\Controllers\Twill\ModuleController
+class ArticleController extends BaseController
 {
-    protected $moduleName = 'articles';
-
-    protected $indexColumns = [
-        'image' => [
-            'title' => 'Hero',
-            'thumb' => true,
-            'variant' => [
-                'role' => 'hero',
-                'crop' => 'default',
-            ],
-        ],
-        'title' => [
-            'title' => 'Title',
-            'edit_link' => true,
-            'sort' => true,
-            'field' => 'title',
-        ],
-        'date' => [
-            'title' => 'Date',
-            'edit_link' => true,
-            'sort' => true,
-            'field' => 'date',
-            'present' => true,
-        ],
-        'author' => [
-            'title' => 'Author',
-            'edit_link' => true,
-            'sort' => true,
-            'field' => 'author',
-        ],
-    ];
-
-    protected $indexWith = [];
-
-    protected $formWith = ['revisions', 'categories'];
-
-    protected $filters = [];
-
-    protected $formWithCount = ['revisions'];
-    protected $defaultOrders = ['date' => 'desc'];
-
-    protected $previewView = 'site.articleDetail';
-
-    protected function indexData($request)
+    protected function setUpController(): void
     {
-        return [];
+        $this->eagerLoadFormRelationCounts(['revisions']);
+        $this->eagerLoadFormRelations(['revisions', 'categories']);
+        $this->enableShowImage();
+        $this->setModuleName('articles');
+        $this->setPreviewView('site.articleDetail');
+        parent::setUpController();
+    }
+
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Presenter::make()
+                ->field('date')
+                ->sortable()
+        );
+        $columns->add(
+            Relation::make()
+                ->field('title')
+                ->title('Author')
+                ->relation('authors')
+        );
+
+        return $columns;
     }
 
     protected function formData($request)
