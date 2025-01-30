@@ -219,28 +219,32 @@
                                 @slot('cols_xlarge','4')
 
                                 @foreach ($topLevelArticle->children->filter(function($item) use($topLevelArticle) {
-                                    return !$item->suppress_listing;
+                                    return !$item->suppress_listing && $item->published;
                                 })->sortBy('position')->take($showAll ? $topLevelArticle->children->count() : (count($topLevelArticle->children) >= 8 ? 8 : 4)) as $item)
-                                    @if (count($topLevelArticle->children) > 0)
-                                        @component('components.molecules._m-listing----digital-publication-article-entry')
-                                            @slot('href', $item->present()->url)
-                                            @slot('image', $item->imageFront('hero', 'square') ?? $item->imageFront('hero'))
-                                            @slot('title', $item->present()->title)
-                                            @slot('title_display', $item->present()->title_display)
-                                            @slot('label', $item->present()->label)
-                                            @slot('imageSettings', array(
-                                                'fit' => 'crop',
-                                                'ratio' => $item->imageFront('hero', 'square') ? '1' : '16:9',
-                                                'srcset' => array(200,400,600),
-                                                'sizes' => ImageHelpers::aic_imageSizes(array(
-                                                    'xsmall' => '216px',
-                                                    'small' => '216px',
-                                                    'medium' => '18',
-                                                    'large' => '13',
-                                                    'xlarge' => '13',
-                                                )),
-                                            ))
-                                        @endcomponent
+                                    @if (count($item->children) > 0)
+                                        @foreach ($item->children->filter(function($childItem) {
+                                            return !$childItem->suppress_listing && $childItem->published;
+                                        })->sortBy('position') as $childItem)
+                                            @component('components.molecules._m-listing----digital-publication-article-entry')
+                                                @slot('href', $childItem->present()->url)
+                                                @slot('image', $childItem->imageFront('hero', 'square') ?? $childItem->imageFront('hero'))
+                                                @slot('title', $childItem->present()->title)
+                                                @slot('title_display', $childItem->present()->title_display)
+                                                @slot('label', $childItem->present()->label)
+                                                @slot('imageSettings', array(
+                                                    'fit' => 'crop',
+                                                    'ratio' => $childItem->imageFront('hero', 'square') ? '1' : '16:9',
+                                                    'srcset' => array(200,400,600),
+                                                    'sizes' => ImageHelpers::aic_imageSizes(array(
+                                                        'xsmall' => '216px',
+                                                        'small' => '216px',
+                                                        'medium' => '18',
+                                                        'large' => '13',
+                                                        'xlarge' => '13',
+                                                    )),
+                                                ))
+                                            @endcomponent
+                                        @endforeach
                                     @endif
                                 @endforeach
 
@@ -285,7 +289,9 @@
                                                 @slot('cols_large','4')
                                                 @slot('cols_xlarge','4')
 
-                                                @foreach ($item->children as $child)
+                                                @foreach ($item->children->filter(function($item) {
+                                                    return !$item->suppress_listing && $item->published;
+                                                })->sortBy('position') as $child)
                                                     @component('components.molecules._m-listing----digital-publication-article-entry')
                                                         @slot('href', $child->present()->url)
                                                         @slot('image', $child->imageFront('grouping_hero') ?? $child->imageFront('hero'))
