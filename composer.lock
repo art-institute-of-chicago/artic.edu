@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4405d5c8b38d4bce2720e98ae3665a7d",
+    "content-hash": "59c5416166ef010ac32ef17f19b0ec4d",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -10996,7 +10996,7 @@
         },
         {
             "name": "vendor/package-patches",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "require": {
                 "netresearch/composer-patches-plugin": "~1.2"
             },
@@ -11005,12 +11005,16 @@
                 "patches": {
                     "area17/twill": [
                         {
-                            "title": "WEB-2103: Get repository model of API models",
+                            "title": "WEB-2301: Get repository model of API models",
                             "url": "patches/WEB-2301---get-repository-of-API-models.diff"
                         },
                         {
                             "title": "WEB-2678: Backport Node 10 syntax",
                             "url": "patches/WEB-2678---backport-node-10-syntax.diff"
+                        },
+                        {
+                            "title": "WEB-2982: Fix Relation column",
+                            "url": "patches/WEB-2982---fix-relation-column.diff"
                         }
                     ]
                 }
