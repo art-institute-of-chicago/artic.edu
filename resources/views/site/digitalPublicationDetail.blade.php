@@ -288,7 +288,7 @@
                                                 @foreach ($item->children as $child)
                                                     @component('components.molecules._m-listing----digital-publication-article-entry')
                                                         @slot('href', $child->present()->url)
-                                                        @slot('image', $child->imageFront('hero'))
+                                                        @slot('image', $child->imageFront('grouping_hero') ?? $child->imageFront('hero'))
                                                         @slot('title', $child->present()->title)
                                                         @slot('title_display', $child->present()->title_display)
                                                         @slot('label', $child->present()->label)
@@ -331,7 +331,7 @@
                                                         'slug' => $item->digitalPublication->getSlug()
                                                     ]
                                                 ) . '#' . Str::kebab($item->title))
-                                                @slot('image', $item->imageFront('hero'))
+                                                @slot('image', $item->imageFront('grouping_hero') ?? $item->imageFront('hero'))
                                                 @slot('title', $item->present()->title)
                                             @endcomponent
                                         @endif
