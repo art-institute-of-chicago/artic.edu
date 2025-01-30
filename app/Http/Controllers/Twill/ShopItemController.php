@@ -2,34 +2,27 @@
 
 namespace App\Http\Controllers\Twill;
 
-class ShopItemController extends \App\Http\Controllers\Twill\BaseApiController
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
+
+class ShopItemController extends BaseApiController
 {
-    protected $moduleName = 'shopItems';
-    protected $hasAugmentedModel = false;
+    protected function setUpController(): void
+    {
+        parent::setUpController();
+        $this->enableAugmentedModel();
+        $this->setModuleName('shopItems');
+    }
 
-    protected $indexOptions = [
-        'publish' => false,
-        'bulkPublish' => false,
-        'feature' => false,
-        'bulkFeature' => false,
-        'restore' => false,
-        'create' => false,
-        'delete' => false,
-        'bulkRestore' => false,
-        'bulkDelete' => false,
-        'bulkEdit' => false,
-        'reorder' => false,
-        'permalink' => false,
-    ];
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Text::make()
+                ->field('description')
+                ->title('Description')
+        );
 
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'field' => 'title',
-        ],
-        'description' => [
-            'title' => 'Description',
-            'field' => 'description',
-        ],
-    ];
+        return $columns;
+    }
 }
