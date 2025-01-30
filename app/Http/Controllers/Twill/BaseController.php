@@ -14,10 +14,14 @@ class BaseController extends ModuleController
 
     public function edit(TwillModelContract|int $id): mixed
     {
-        return parent::edit($id)->with([
-            'editableTitle' =>
-                $this->repository->isFillable($this->titleColumnKey)
-                || $this->repository->isTranslatable($this->titleColumnKey),
-        ]);
+        $view = parent::edit($id);
+        if (!$this->indexOptions['editInModal']) {
+            $view = $view->with([
+                'editableTitle' =>
+                    $this->repository->isFillable($this->titleColumnKey)
+                    || $this->repository->isTranslatable($this->titleColumnKey),
+            ]);
+        }
+        return $view;
     }
 }
