@@ -2,124 +2,62 @@
 
 namespace App\Http\Controllers\Twill;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use App\Models\Experience;
+use A17\Twill\Services\Listings\Columns\NestedData;
+use A17\Twill\Services\Listings\Columns\Presenter;
+use A17\Twill\Services\Listings\Columns\Relation;
+use A17\Twill\Services\Listings\Filters\QuickFilter;
+use A17\Twill\Services\Listings\Filters\QuickFilters;
+use A17\Twill\Services\Listings\TableColumns;
 use App\Models\InteractiveFeature;
 use App\Models\Article;
 use App\Repositories\CategoryRepository;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
-class ExperienceController extends \App\Http\Controllers\Twill\ModuleController
+class ExperienceController extends BaseController
 {
-    protected $moduleName = 'experiences';
-    protected $modelName = 'Experience';
-    protected $previewView = 'site.experienceDetail';
-
-    protected $indexOptions = [
-        'reorder' => true,
-    ];
-
-    protected $indexColumns = [
-        'image' => [
-            'thumb' => true,
-            'variant' => [
-                'role' => 'image',
-                'crop' => 'default',
-            ],
-        ],
-        'isWebPublished' => [
-            'title' => 'Is web published?',
-            'field' => 'isWebPublished',
-            'present' => true,
-        ],
-        'title' => [
-            'title' => 'Title',
-            'field' => 'title',
-        ],
-        'interactiveFeatureTitle' => [ // Relation column
-            'title' => 'Grouping',
-            'relationship' => 'interactiveFeature',
-            'field' => 'title'
-        ],
-        'experiences' => [
-            'title' => 'Slides',
-            'nested' => 'slides',
-        ],
-    ];
-
-    /**
-     * Intend to override the lines:
-     * thumbnail
-     * $value .= moduleRoute("experiences.slides", $this->routePrefix, 'index', [$item->id]);
-     */
-    protected function getItemColumnData($item, $column)
+    protected function setUpController(): void
     {
-        if (isset($column['thumb']) && $column['thumb']) {
-            if (isset($column['present']) && $column['present']) {
-                return [
-                    'thumbnail' => $item->presentAdmin()->{$column['presenter']},
-                ];
-            }
-            $variant = isset($column['variant']);
-            $params = $variant && isset($column['variant']['params'])
-            ? $column['variant']['params']
-            : ['w' => 80, 'h' => 80, 'fit' => 'crop'];
-
-            $thumbnail_image = $item->defaultCmsImage($params);
-
-            return [
-                'thumbnail' => $thumbnail_image,
-            ];
-        }
-
-        if (isset($column['nested']) && $column['nested']) {
-            $field = $column['nested'];
-            $nestedCount = $item->{$column['nested']}->count();
-            $value = '<a href="';
-            $value .= moduleRoute('experiences.slides', $this->routePrefix, 'index', [$item->id]);
-            $value .= '">' . $nestedCount . ' ' . (strtolower($nestedCount > 1
-                ? Str::plural($column['title'])
-                : Str::singular($column['title']))) . '</a>';
-        } else {
-            $field = $column['field'];
-            $value = $item->{$field};
-        }
-
-        if (isset($column['relationship'])) {
-            $field = $column['relationship'] . ucfirst($column['field']);
-            $value = Arr::get($item, "{$column['relationship']}.{$column['field']}");
-        } elseif (isset($column['present']) && $column['present']) {
-            $value = $item->presentAdmin()->{$column['field']};
-        }
-
-        return [
-            $field => $value,
-        ];
+        $this->enableReorder();
+        $this->enableShowImage();
+        $this->setModelName('Experience');
+        $this->setModuleName('experiences');
+        $this->setPreviewView('site.experienceDetail');
     }
 
-    protected function getIndexTableMainFilters($items, $scopes = [])
+    protected function additionalIndexTableColumns(): TableColumns
     {
-        $statusFilters = parent::getIndexTableMainFilters($items, $scopes);
-        array_push($statusFilters, [
-            'name' => 'Archived',
-            'slug' => 'archived',
-            'number' => Experience::archived()->count(),
-        ]);
+        $columns = TableColumns::make();
+        $columns->add(
+            Presenter::make()
+                ->field('isWebPublished')
+                ->title('Is web published?')
+        );
+        $columns->add(
+            Relation::make()
+                ->relation('interactiveFeature')
+                ->field('title')
+                ->title('Grouping')
+        );
+        $columns->add(
+            NestedData::make()
+                ->field('slides')
+        );
 
-        return $statusFilters;
+        return $columns;
     }
 
-    protected function getIndexItems(array $scopes = [], bool $forcePagination = false)
+    public function quickFilters(): QuickFilters
     {
-        $requestFilters = $this->getRequestFilters();
+        $filters = parent::quickFilters();
+        $filters->add(
+            QuickFilter::make()
+            ->queryString('archived')
+            ->label('Archived')
+            ->amount(fn() => $this->repository->archived()->count())
+            ->apply(fn(Builder $query) => $query->archived())
+        );
 
-        if (array_key_exists('status', $requestFilters) && $requestFilters['status'] == 'archived') {
-            $scopes = $scopes + ['archived' => true];
-        } else {
-            $scopes = $scopes + ['unarchived' => true];
-        }
-
-        return parent::getIndexItems($scopes, $forcePagination);
+        return $filters;
     }
 
     public function getPermalinkBaseUrl()
@@ -148,13 +86,6 @@ class ExperienceController extends \App\Http\Controllers\Twill\ModuleController
     {
         return [
             'categoriesList' => app(CategoryRepository::class)->listAll('name'),
-            'groupingsList' => InteractiveFeature::all()->pluck('title', 'id')
-        ];
-    }
-
-    protected function indexData($request)
-    {
-        return [
             'groupingsList' => InteractiveFeature::all()->pluck('title', 'id')
         ];
     }
