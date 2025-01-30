@@ -2,56 +2,47 @@
 
 namespace App\Http\Controllers\Twill;
 
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\Filters\QuickFilter;
+use A17\Twill\Services\Listings\Filters\QuickFilters;
+use A17\Twill\Services\Listings\TableColumns;
 use App\Models\InteractiveFeature;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
-class InteractiveFeatureController extends \App\Http\Controllers\Twill\ModuleController
+class InteractiveFeatureController extends BaseController
 {
-    protected $moduleName = 'interactiveFeatures';
-
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'field' => 'title',
-            'sort' => true,
-        ],
-        'updated_at' => [
-            'title' => 'Updated At',
-            'field' => 'updatedDate',
-            'present' => true,
-        ],
-    ];
-
-    protected $formWith = ['revisions'];
-
-    protected $defaultOrders = ['title' => 'desc'];
-
-    protected $indexOptions = [
-        'permalink' => false,
-    ];
-    protected $filters = [];
-
-    protected function getIndexTableMainFilters($items, $scopes = [])
+    protected function setUpController(): void
     {
-        $statusFilters = parent::getIndexTableMainFilters($items, $scopes);
-        array_push($statusFilters, [
-            'name' => 'Archived',
-            'slug' => 'archived',
-            'number' => InteractiveFeature::archived()->count(),
-        ]);
-
-        return $statusFilters;
+        $this->disablePermalink();
+        $this->eagerLoadFormRelations(['revisions']);
+        $this->setModuleName('interactiveFeatures');
     }
 
-    protected function getIndexItems(array $scopes = [], bool $forcePagination = false)
+    protected function additionalIndexTableColumns(): TableColumns
     {
-        $requestFilters = $this->getRequestFilters();
+        $columns = TableColumns::make();
+        $columns->add(
+            Text::make()
+                ->field('updated_at')
+                ->customRender(function (InteractiveFeature $interactiveFeature) {
+                    return $interactiveFeature->updated_at->format('M j, Y \a\t g:ia');
+                })
+        );
 
-        if (array_key_exists('status', $requestFilters) && $requestFilters['status'] == 'archived') {
-            $scopes = $scopes + ['archived' => true];
-        } else {
-            $scopes = $scopes + ['unarchived' => true];
-        }
+        return $columns;
+    }
 
-        return parent::getIndexItems($scopes, $forcePagination);
+    public function quickFilters(): QuickFilters
+    {
+        $filters = parent::quickFilters();
+        $filters->add(
+            QuickFilter::make()
+            ->queryString('archived')
+            ->label('Archived')
+            ->amount(fn() => $this->repository->archived()->count())
+            ->apply(fn(Builder $query) => $query->archived())
+        );
+
+        return $filters;
     }
 }
