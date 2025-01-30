@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Services\Listings\Columns\Presenter;
-use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\Columns\Relation;
 use A17\Twill\Services\Listings\TableColumns;
 use App\Repositories\CategoryRepository;
 
@@ -25,10 +25,13 @@ class ArticleController extends BaseController
         $columns->add(
             Presenter::make()
                 ->field('date')
+                ->sortable()
         );
         $columns->add(
-            Text::make()
-                ->field('author')
+            Relation::make()
+                ->field('title')
+                ->title('Author')
+                ->relation('authors')
         );
 
         return $columns;
