@@ -10,6 +10,7 @@ use App\Http\Controllers\Twill\ExhibitionController;
 use App\Http\Controllers\Twill\FeeController;
 use App\Http\Controllers\Twill\GalleryController;
 use App\Http\Controllers\Twill\PageController;
+use App\Http\Controllers\Twill\ShopItemController;
 
 TwillRoutes::module('pages');
 
@@ -117,6 +118,7 @@ Route::group(['prefix' => 'general'], function () {
     TwillRoutes::module('catalogCategories');
     TwillRoutes::module('resourceCategories');
     TwillRoutes::module('shopItems');
+    Route::get('shopItems/augment/{datahub_id}', [ShopItemController::class, 'augment'])->name('general.shopItems.augment');
     TwillRoutes::module('eventPrograms');
     TwillRoutes::module('tourStops');
     TwillRoutes::module('vanityRedirects');
