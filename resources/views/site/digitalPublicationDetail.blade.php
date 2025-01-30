@@ -95,7 +95,7 @@
                                                 @component('components.molecules._m-listing----digital-publication-article')
                                                     @slot('href', $item->present()->url)
                                                     @slot('image', $item->imageFront('hero'))
-                                                    @slot('type', $item->present()->articleType)
+                                                    @slot('type', $item->present()->label ?? $item->present()->articleType)
                                                     @slot('title', $item->present()->title)
                                                     @slot('title_display', $item->present()->title_display)
                                                     @slot('list_description', $item->present()->list_description)
@@ -122,7 +122,7 @@
                             @else
                                 @component('components.molecules._m-showcase')
                                     @slot('variation', 'showcase--digital-publication')
-                                    @slot('tag', $topLevelArticle->present()->articleType)
+                                    @slot('tag', $topLevelArticle->present()->label ?? $topLevelArticle->present()->articleType)
                                     @slot('title', $topLevelArticle->present()->title_display ?? $topLevelArticle->present()->title)
                                     @slot('author_display', $topLevelArticle->showAuthors())
                                     @slot('description', $topLevelArticle->present()->list_description)
@@ -173,7 +173,7 @@
                                     @component('components.molecules._m-listing----digital-publication-article')
                                         @slot('href', $item->present()->url)
                                         @slot('image', $item->imageFront('hero'))
-                                        @slot('type', $item->present()->articleType)
+                                        @slot('type', $item->present()->label ?? $item->present()->articleType)
                                         @slot('title', $item->present()->title)
                                         @slot('title_display', $item->present()->title_display)
                                         @slot('list_description', $item->present()->list_description)
@@ -368,7 +368,7 @@
                                             @slot('variation', 'm-listing--seventy-thirty')
                                             @slot('href', $item->present()->url)
                                             @slot('image', $item->imageFront('hero'))
-                                            @slot('type', $item->present()->articleType)
+                                            @slot('type', $item->present()->label ?? $item->present()->articleType)
                                             @slot('title', $item->present()->title)
                                             @slot('title_display', $item->present()->title_display)
                                             @slot('list_description', $item->present()->list_description)
@@ -424,14 +424,14 @@
                                                 'variation' => 'm-title-bar--compact m-title-bar--no-hr',
                                             ])
                                                 @slot('item', $item)
-                                                {!! $item->present()->articleType !!}
+                                                {!! $item->present()->label ?? $item->present()->articleType !!}
                                             @endcomponent
                                         @else
                                             @component('components.molecules._m-listing----digital-publication-article')
                                                 @slot('variation', 'm-listing--title-only')
                                                 @slot('href', $item->present()->url)
                                                 @slot('image', $item->imageFront('hero'))
-                                                @slot('type', $item->present()->articleType)
+                                                @slot('type', $item->present()->label ?? $item->present()->articleType)
                                                 @slot('title', $item->present()->title)
                                                 @slot('title_display', $item->present()->title_display)
                                                 @slot('list_description', $item->present()->list_description)
@@ -456,7 +456,7 @@
                                         'variation' => 'm-title-bar--compact m-title-bar--no-hr',
                                     ])
                                         @slot('item', $topLevelArticle)
-                                        {!! $topLevelArticle->present()->articleType !!}
+                                        {!! $topLevelArticle->present()->label ?? $topLevelArticle->present()->articleType !!}
                                     @endcomponent
                                 @endif
 
@@ -494,7 +494,7 @@
                                 @component('components.molecules._m-listing----digital-publication-article')
                                     @slot('href', $item->present()->url)
                                     @slot('image', $item->imageFront('hero'))
-                                    @slot('type', $item->present()->articleType)
+                                    @slot('type', $item->present()->label ?? $item->present()->articleType)
                                     @slot('title', $item->present()->title)
                                     @slot('title_display', $item->present()->title_display)
                                     @slot('list_description', $item->present()->list_description)
