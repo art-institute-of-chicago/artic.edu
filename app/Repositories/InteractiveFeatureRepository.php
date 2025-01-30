@@ -6,8 +6,9 @@ use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
-use App\Models\InteractiveFeature;
 use App\Models\Experience;
+use App\Models\InteractiveFeature;
+use Illuminate\Database\Eloquent\Builder;
 
 class InteractiveFeatureRepository extends ModuleRepository
 {
@@ -19,6 +20,14 @@ class InteractiveFeatureRepository extends ModuleRepository
     public function __construct(InteractiveFeature $model)
     {
         $this->model = $model;
+    }
+
+    public function order(Builder $query, array $orders = []): Builder
+    {
+        $orders['title'] ??= 'desc';
+        unset($orders['created_at']);
+
+        return parent::order($query, $orders);
     }
 
     public function getCountByStatusSlug(string $slug, array $scope = []): int
