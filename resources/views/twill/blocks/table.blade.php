@@ -52,7 +52,8 @@
     name='table_caption'
     label='Caption'
     note='Optional'
-    :toolbar-options="[ ['header' => 3], 'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered', 'superscript' ]"
+    type="quill" {{-- Twill's use of the Tip Tap editor doesn't support the 'superscript' toolbar option out of the box. So use quill until it does --}}
+    :toolbar-options="[ ['header' => 3], 'bold', 'italic', 'underline', 'strike', 'link', 'list-ordered', 'list-unordered', ['script' => 'super'] ]"
 />
 
 <x-twill::checkbox
