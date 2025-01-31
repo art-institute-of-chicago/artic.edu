@@ -14,10 +14,9 @@
 @stop
 
 @section('fieldsets')
-    @component('twill.partials.featured-related', ['form_fields' => $form_fields, 'autoRelated' => $autoRelated])
-        @slot('routePrefix', 'collection')
-        @slot('moduleName', 'artworks')
-    @endcomponent
+
+    <x-aic::featuredRelated
+        :auto-related="$autoRelated" />
 
     @include('twill.partials.meta')
 
