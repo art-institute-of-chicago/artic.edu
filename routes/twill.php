@@ -28,9 +28,8 @@ Route::group(['prefix' => 'visit'], function () {
     TwillRoutes::module('questions');
     TwillRoutes::module('feeAges');
     TwillRoutes::module('feeCategories');
+    TwillRoutes::module('fees');
     TwillRoutes::module('shopItems');
-    Route::name('visit.fees')->get('fees', [\App\Http\Controllers\Twill\FeeController::class, 'index']);
-    Route::name('visit.fees.update')->post('fees', [\App\Http\Controllers\Twill\FeeController::class, 'update']);
     TwillRoutes::module('virtualTours');
     TwillRoutes::module('myMuseumTourItems');
 });
