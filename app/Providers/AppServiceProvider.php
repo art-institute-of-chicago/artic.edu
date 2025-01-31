@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerPrintService();
         $this->composeTemplatesViews();
         File::observe(FileObserver::class);
+        $this->extendBlade();
 
         \Illuminate\Pagination\AbstractPaginator::defaultView('site.pagination.aic');
         \Illuminate\Pagination\AbstractPaginator::defaultSimpleView('site.pagination.simple-aic');
@@ -414,5 +415,21 @@ class AppServiceProvider extends ServiceProvider
                 ];
             }));
         });
+    }
+
+    /**
+     * Defines the package additional Blade Directives.
+     */
+    private function extendBlade(): void
+    {
+        $blade = $this->app['view']->getEngineResolver()->resolve('blade')->getCompiler();
+
+        $blade->component('twill.partials.featured-related', 'featuredRelated');
+
+        $blade->component('twill.partials.featured-related', 'aic::featuredRelated');
+
+        if (method_exists($blade, 'aliasComponent')) {
+            $blade->aliasComponent('twill.partials.featured-related', 'featuredRelated');
+        }
     }
 }
