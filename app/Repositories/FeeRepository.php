@@ -3,33 +3,21 @@
 namespace App\Repositories;
 
 use App\Models\Fee;
+use Illuminate\Database\Eloquent\Builder;
 
-class FeeRepository
+class FeeRepository extends ModuleRepository
 {
     public function __construct(Fee $model)
     {
         $this->model = $model;
     }
 
-    public function getFormFields(): array
+    public function order(Builder $query, array $orders = []): Builder
     {
-        $fields = ['price' => []];
-
-        foreach ($this->model->get() as $fee) {
-            $fields['price'][$fee->fee_age_id][$fee->fee_category_id] = $fee->price;
-        }
-
-        return $fields;
-    }
-
-    public function update($feeFields): void
-    {
-        foreach ($feeFields['price'] as $feeAgeId => $feeCategories) {
-            foreach ($feeCategories as $feeCategoryId => $price) {
-                $fee = $this->model->firstOrNew(['fee_age_id' => $feeAgeId, 'fee_category_id' => $feeCategoryId]);
-                $fee->price = $price;
-                $fee->save();
-            }
-        }
+        $orders['fee_category_id'] ??= 'asc';
+        $orders['fee_age_id'] ??= 'asc';
+        $orders['fee_age_id'] ??= 'asc';
+        unset($orders['created_at']);
+        return parent::order($query, $orders);
     }
 }
