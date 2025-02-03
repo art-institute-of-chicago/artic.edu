@@ -2,47 +2,39 @@
 
 namespace App\Http\Controllers\Twill;
 
-use App\Models\FeeAge;
-use App\Models\FeeCategory;
-use App\Repositories\FeeRepository;
+use A17\Twill\Services\Listings\TableColumns;
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\Columns\Relation;
 
 class FeeController extends \App\Http\Controllers\Twill\ModuleController
 {
-    protected FeeRepository $fees;
-
-    public function __construct(FeeRepository $fees)
+    protected function setUpController(): void
     {
-        $this->fees = $fees;
-        $this->request = request();
+        $this->disablePermalink();
+        $this->disablePublish();
+        $this->enableEditInModal();
+        $this->setModuleName('fees');
+        $this->setTitleColumnKey('fee_category.title');
+        $this->setTitleColumnLabel('Category');
     }
 
-    public function index($parentModuleId = null): mixed
+    protected function additionalIndexTableColumns(): TableColumns
     {
-        $feeCategories = FeeCategory::ordered()->get();
-        $feeAges = FeeAge::ordered()->get();
+        $columns = new TableColumns();
+        $columns->add(
+            Relation::make()
+                ->field('title')
+                ->title('Age')
+                ->relation('fee_age')
+        );
 
-        return view('twill.fees.index', [
-            'customForm' => true,
-            'editableTitle' => false,
-            'customTitle' => 'Update admission fees',
-            'form_fields' => $this->fees->getFormFields(),
-            'feeCategories' => $feeCategories,
-            'feeAges' => $feeAges,
-            'saveUrl' => route('twill.visit.fees.update'),
-            'publish' => false,
-        ]);
-    }
+        $columns->add(
+            Text::make()
+                ->title('Price')
+                ->field('price')
+                ->optional()
+        );
 
-    public function update($id, $submoduleId = null): \Illuminate\Http\JsonResponse
-    {
-        if (array_key_exists('cancel', request()->all())) {
-            return redirect()->route('twill.visit.fees.update');
-        }
-
-        $this->fees->update(request()->except('_token'));
-
-        $this->fireEvent();
-
-        return redirect()->route('twill.visit.fees.update');
+        return $columns;
     }
 }
