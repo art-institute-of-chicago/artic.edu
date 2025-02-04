@@ -133,7 +133,7 @@ class StringHelpers
         $string = preg_replace("/^(.{1,${limit}})(\s.*|$)/s", '\1...', $string);
 
         if (strpos($string, '<') < 0) {
-            return $truncatedString;
+            return $string;
         }
 
         // https://stackoverflow.com/questions/16583676/shorten-text-without-splitting-words-or-breaking-html-tags

@@ -2,10 +2,10 @@
 
 namespace App\Repositories\Behaviors;
 
-use ImageService;
 use App\Models\ApiRelation;
 use App\Helpers\UrlHelpers;
 use A17\Twill\Models\RelatedItem;
+use A17\Twill\Services\MediaLibrary\ImageService;
 
 trait HandleApiRelations
 {
