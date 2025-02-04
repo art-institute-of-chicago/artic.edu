@@ -376,7 +376,7 @@ class MigrateOSCIPublicationOne extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): void
     {
         $pubId = $this->argument('id');
 

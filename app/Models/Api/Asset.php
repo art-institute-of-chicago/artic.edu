@@ -5,6 +5,7 @@ namespace App\Models\Api;
 use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilder;
 use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasMediasApi;
+use App\Facades\EmbedConverterFacade;
 use App\Helpers\ImageHelpers;
 use Illuminate\Support\Str;
 
@@ -57,7 +58,7 @@ class Asset extends BaseApiModel
 
     public function imageFront($role = 'hero', $crop = 'default')
     {
-        $image = \EmbedConverter::getYoutubeThumbnailImage($this->content);
+        $image = EmbedConverterFacade::getYoutubeThumbnailImage($this->content);
 
         if (!empty($image)) {
             return ImageHelpers::aic_convertFromImageProxy($image, ['source' => 'misc']);
@@ -66,7 +67,7 @@ class Asset extends BaseApiModel
 
     public function getVideoContentAttribute()
     {
-        return \EmbedConverter::convertUrl($this->content);
+        return EmbedConverterFacade::convertUrl($this->content);
     }
 
     public function getContentAttribute($content)

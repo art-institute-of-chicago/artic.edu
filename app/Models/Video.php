@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
+use App\Facades\EmbedConverterFacade;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
@@ -91,7 +92,7 @@ class Video extends AbstractModel
 
     public function getEmbedAttribute()
     {
-        return \EmbedConverter::convertUrl($this->video_url);
+        return EmbedConverterFacade::convertUrl($this->video_url);
     }
 
     /**

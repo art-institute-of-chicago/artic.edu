@@ -14,6 +14,7 @@ class HourTest extends BaseTestCase
 
     private $hour;
     private $hourAllClosed;
+    private $hourEdgeCases;
 
     protected function setUp(): void
     {

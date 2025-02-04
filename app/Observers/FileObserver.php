@@ -3,10 +3,11 @@
 namespace App\Observers;
 
 use A17\Twill\Models\File;
-use DB;
 use Exception;
 use Illuminate\Http\File as HttpFile;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 
@@ -75,7 +76,7 @@ class FileObserver
             $this->uploadToS3($zipFolderName, $file);
             $this->cleanAssets();
         } catch (Exception $e) {
-            debug($e);
+            Log::debug($e);
         }
     }
 

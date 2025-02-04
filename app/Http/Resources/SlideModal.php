@@ -72,5 +72,6 @@ class SlideModal extends JsonResource
 
                 break;
         }
+        return [];
     }
 }
