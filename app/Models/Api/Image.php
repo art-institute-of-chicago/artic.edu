@@ -3,7 +3,7 @@
 namespace App\Models\Api;
 
 use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
-use DamsImageService;
+use App\Libraries\DamsImageService;
 
 class Image extends BaseApiModel
 {

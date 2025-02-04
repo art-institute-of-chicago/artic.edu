@@ -10,6 +10,8 @@ use App\Libraries\EmbedConverterService;
 use App\Libraries\DamsImageService;
 use App\Observers\FileObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -48,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
         $seo->width = config('twill.seo.width');
         $seo->height = config('twill.seo.height');
 
-        \View::share('seo', $seo);
+        View::share('seo', $seo);
     }
 
     public function registerMorphMap(): void
@@ -158,7 +160,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // WEB-2269: Consider moving some of this to a config?
         view()->composer('*', function ($view) {
-            $view->with(\Cache::remember('navArray', 3600, function () {
+            $view->with(Cache::remember('navArray', 3600, function () {
                 return [
                     '_pages' => [
                         'visit' => '/visit',
