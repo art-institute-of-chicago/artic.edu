@@ -11,7 +11,7 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasUnlisted;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class PressRelease extends AbstractModel
 {

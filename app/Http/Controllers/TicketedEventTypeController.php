@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\TicketedEventTypeRepository;
+
 class TicketedEventTypeController extends FrontController
 {
     protected $repository;

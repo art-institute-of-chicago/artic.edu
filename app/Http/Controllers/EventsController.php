@@ -7,8 +7,9 @@ use App\Models\Page;
 use App\Models\EventProgram;
 use App\Repositories\EventRepository;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
-use View;
 
 class EventsController extends FrontController
 {
@@ -154,7 +155,7 @@ class EventsController extends FrontController
             'Content-Disposition' => 'attachment; filename="' . $event->title . '.ics"',
         ];
 
-        return \Response::make($content, 200, $headers);
+        return Response::make($content, 200, $headers);
     }
 
     protected function collection()

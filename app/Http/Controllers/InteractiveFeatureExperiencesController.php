@@ -11,6 +11,7 @@ class InteractiveFeatureExperiencesController extends FrontController
     protected $apiRepository;
     protected $moduleName = 'interactiveFeature.experiences';
     protected $hasAugmentedModel = true;
+    protected $repository;
 
     protected $indexColumns = [
         'image' => [

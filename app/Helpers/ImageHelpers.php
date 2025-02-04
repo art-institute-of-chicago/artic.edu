@@ -2,9 +2,9 @@
 
 namespace App\Helpers;
 
+use A17\Twill\Services\MediaLibrary\ImageService;
 use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
-use ImageService;
 
 class ImageHelpers
 {
@@ -177,8 +177,8 @@ class ImageHelpers
             }
 
             if ($sourceType === 'dams') {
-                $fullVal = strpos($originalSrc, '!3000,3000') ? '!3000,3000' : 'full';
-                $base = explode('/full/' . $fullVal . '/0/default.jpg', $originalSrc)[0];
+                $fullVal = strpos($src, '!3000,3000') ? '!3000,3000' : 'full';
+                $base = explode('/full/' . $fullVal . '/0/default.jpg', $src)[0];
                 $resizeVal = 'full';
                 $strposterSrcingSrc = $base . '/' . $resizeVal . '/150,/0/default.jpg';
             }

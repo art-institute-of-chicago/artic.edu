@@ -2,6 +2,7 @@
 
 namespace App\Facades;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -22,7 +23,7 @@ class EmbedConverterFacade extends Facade
 
     public static function convertUrl($url)
     {
-        $service = \App::make('embedconverterservice');
+        $service = App::make('embedconverterservice');
 
         return $service->convertUrl($url);
     }

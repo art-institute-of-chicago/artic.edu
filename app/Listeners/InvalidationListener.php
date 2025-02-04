@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\UpdateEvent;
-use Artisan;
+use Illuminate\Support\Facades\Artisan;
 
 class InvalidationListener
 {

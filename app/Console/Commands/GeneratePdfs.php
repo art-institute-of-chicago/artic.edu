@@ -9,6 +9,7 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 use Prince\Prince;
 
 class GeneratePdfs extends Command
@@ -126,7 +127,7 @@ class GeneratePdfs extends Command
                 $fileName,
                 'public'
             );
-            if (!\App::environment('local')) {
+            if (!App::environment('local')) {
                 unlink($localPath);
             }
         }

@@ -2,6 +2,7 @@
 
 namespace App\Facades;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -22,21 +23,21 @@ class DamsImageServiceFacade extends Facade
 
     public static function getUrl($id, array $params = [])
     {
-        $service = \App::make('damsimageservice');
+        $service = App::make('damsimageservice');
 
         return $service->getUrl($id, $params);
     }
 
     public static function getBaseUrl()
     {
-        $service = \App::make('damsimageservice');
+        $service = App::make('damsimageservice');
 
         return $service->getBaseUrl();
     }
 
     public static function getVersion()
     {
-        $service = \App::make('damsimageservice');
+        $service = App::make('damsimageservice');
 
         return $service->getVersion();
     }

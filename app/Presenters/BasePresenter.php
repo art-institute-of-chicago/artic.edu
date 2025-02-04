@@ -104,4 +104,9 @@ abstract class BasePresenter
 
         return $result;
     }
+
+    public function headerType()
+    {
+        return null;
+    }
 }

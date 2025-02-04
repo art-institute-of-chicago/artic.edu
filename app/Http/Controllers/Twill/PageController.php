@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Twill;
 
 use App\Repositories\PageRepository;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class PageController extends \App\Http\Controllers\Twill\ModuleController
 {
