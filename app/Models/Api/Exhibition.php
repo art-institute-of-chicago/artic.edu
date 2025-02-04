@@ -37,6 +37,11 @@ class Exhibition extends BaseApiModel
      */
     public const SEARCH_FIELDS = ['id', 'title', 'status', 'aic_start_at', 'aic_end_at', 'is_boosted', 'thumbnail', 'short_description', 'gallery_title', 'gallery_id', 'image_id', 'api_model'];
 
+    // Don't define the mediasParams here, so it will fall back to the augmented model
+    public $mediasParams = [
+        'null' => [],
+    ];
+
     /**
      * Generates the id-slug type of URL
      */
