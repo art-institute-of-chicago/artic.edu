@@ -3,37 +3,37 @@
 namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Http\Controllers\Admin\NestedModuleController;
-use App\Repositories\DigitalPublicationRepository;
+use A17\Twill\Services\Listings\Columns\Presenter;
+use A17\Twill\Services\Listings\TableColumns;
 use App\Http\Controllers\Twill\Behaviors\IsNestedModule;
-use Illuminate\Support\Collection;
+use App\Repositories\DigitalPublicationRepository;
 
 class DigitalPublicationArticleController extends NestedModuleController
 {
-    use \App\Http\Controllers\Twill\Behaviors\IsNestedModule;
-
-    protected $moduleName = 'digitalPublications.articles';
-    protected $modelName = 'DigitalPublicationArticle';
-    protected $previewView = 'site.digitalPublicationArticleDetail';
+    use IsNestedModule;
 
     protected $permalinkBase = 'digital-publications/';
 
-    protected $indexOptions = [
-        'permalink' => true,
-        'reorder' => true,
-    ];
+    protected function setUpController(): void
+    {
+        parent::setUpController();
+        $this->enableReorder();
+        $this->setModelName('DigitalPublicationArticle');
+        $this->setModuleName('digitalPublications.articles');
+        $this->setPreviewView('site.digitalPublicationArticleDetail');
+    }
 
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
-            'edit_link' => true,
-            'field' => 'title',
-        ],
-        'article_type' => [
-            'title' => 'Type',
-            'field' => 'articleType',
-            'present' => true,
-        ],
-    ];
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Presenter::make()
+                ->field('articleType')
+                ->title('Type')
+        );
+
+        return $columns;
+    }
 
     protected function getParentModuleForeignKey()
     {
