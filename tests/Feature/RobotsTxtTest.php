@@ -37,4 +37,13 @@ class RobotsTxtTest extends BaseTestCase
         $response = $this->get(route('robots-txt'));
         $this->assertNotEquals("User-agent: *\nDisallow: /", $response->getContent());
     }
+
+    public function test_disallow_recently_viewed(): void
+    {
+        Config::set('app.env', 'production');
+        Config::set('app.debug', false);
+
+        $response = $this->get(route('robots-txt'));
+        $this->assertStringContainsString("Disallow: /artworks/recentlyViewed", $response->getContent());
+    }
 }
