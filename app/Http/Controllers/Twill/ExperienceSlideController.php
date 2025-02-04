@@ -6,21 +6,21 @@ use App\Models\Article;
 use App\Repositories\ExperienceRepository;
 use App\Repositories\SlideRepository;
 
-class ExperienceSlideController extends \App\Http\Controllers\Twill\ModuleController
+class ExperienceSlideController extends BaseController
 {
-    protected $moduleName = 'experiences.slides';
-    protected $modelName = 'Slide';
-    protected $previewView = 'site.experienceDetail';
+    protected function setUpController(): void
+    {
+        parent::setUpController();
+        $this->enableReorder();
+        $this->setModelName('Slide');
+        $this->setModuleName('experiences.slides');
+        $this->setPreviewView('site.experienceDetail');
+    }
 
     protected function getParentModuleForeignKey()
     {
         return 'experience_id';
     }
-
-    protected $indexOptions = [
-        'reorder' => true,
-        'permalink' => false,
-    ];
 
     protected function indexData($request)
     {
