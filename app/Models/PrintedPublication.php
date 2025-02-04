@@ -10,6 +10,7 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use Illuminate\Support\Facades\DB;
 
 class PrintedPublication extends AbstractModel
 {
@@ -106,7 +107,7 @@ class PrintedPublication extends AbstractModel
 
     public function scopeOrdered($query): Builder
     {
-        return $query->orderBy(\DB::raw("COALESCE(publication_date, '1970-01-01')"), 'desc');
+        return $query->orderBy(DB::raw("COALESCE(publication_date, '1970-01-01')"), 'desc');
     }
 
     /**
