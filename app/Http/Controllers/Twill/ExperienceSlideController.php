@@ -2,25 +2,43 @@
 
 namespace App\Http\Controllers\Twill;
 
+use A17\Twill\Services\Listings\Columns\Text;
+use A17\Twill\Services\Listings\TableColumns;
 use App\Models\Article;
 use App\Repositories\ExperienceRepository;
 use App\Repositories\SlideRepository;
 
-class ExperienceSlideController extends \App\Http\Controllers\Twill\ModuleController
+class ExperienceSlideController extends BaseController
 {
-    protected $moduleName = 'experiences.slides';
-    protected $modelName = 'Slide';
-    protected $previewView = 'site.experienceDetail';
+    protected function setUpController(): void
+    {
+        parent::setUpController();
+        $this->enableReorder();
+        $this->setModelName('Slide');
+        $this->setModuleName('experiences.slides');
+        $this->setPreviewView('site.experienceDetail');
+    }
+
+    // Replace the default title field with an unsortable version.
+    protected function getIndexTableColumns(): TableColumns
+    {
+        $columns = parent::getIndexTableColumns();
+        return $columns->map(function ($column) {
+            if ($column->getKey() == $this->titleColumnKey) {
+                $column = Text::make()
+                    ->field($this->titleColumnKey)
+                    ->title($this->titleColumnLabel)
+                    ->linkToEdit()
+                    ->sortable(false);
+            }
+            return $column;
+        });
+    }
 
     protected function getParentModuleForeignKey()
     {
         return 'experience_id';
     }
-
-    protected $indexOptions = [
-        'reorder' => true,
-        'permalink' => false,
-    ];
 
     protected function indexData($request)
     {
