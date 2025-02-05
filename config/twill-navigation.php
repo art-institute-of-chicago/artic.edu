@@ -32,7 +32,7 @@ $nav = [
             ],
             'fees' => [
                 'title' => 'Admission Fees',
-                'route' => 'twill.visit.fees',
+                'module' => true,
             ],
             'feeAges' => [
                 'title' => 'Admission Ages',
