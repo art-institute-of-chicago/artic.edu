@@ -115,6 +115,10 @@
             "@putenv COMPOSER=vendor/aic/data-hub-foundation/composer.json",
             "@composer format"
         ],
+        "analyze": [
+            "@putenv COMPOSER=vendor/aic/data-hub-foundation/composer.json",
+            "@composer analyze"
+        ],
         "test": [
             "Composer\\Config::disableProcessTimeout",
             "php artisan test --parallel --stop-on-failure"

@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use Artisan;
+use Illuminate\Support\Facades\Artisan;
 
 class GeneratePdf extends BaseJob
 {
