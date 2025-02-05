@@ -15,7 +15,7 @@ class BaseController extends ModuleController
     public function edit(TwillModelContract|int $id): mixed
     {
         $view = parent::edit($id);
-        if (!$this->indexOptions['editInModal']) {
+        if (!$this->getIndexOption('editInModal')) {
             $view = $view->with([
                 'editableTitle' =>
                     $this->repository->isFillable($this->titleColumnKey)

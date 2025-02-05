@@ -47,4 +47,9 @@ trait IsNestedModule
             ] : []);
         })->toArray();
     }
+
+    protected function setPreviewView(string $previewView): void
+    {
+        $this->previewView = $previewView;
+    }
 }
