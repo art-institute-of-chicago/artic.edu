@@ -54,7 +54,6 @@ class PressReleaseRepository extends ModuleRepository
         return [
             'borderlessHeader' => !(empty($item->imageFront('banner'))),
             'subNav' => null,
-            'nav' => null,
             'intro' => $item->short_description,
             'headerImage' => $item->imageFront('banner'),
             'title' => $item->title,

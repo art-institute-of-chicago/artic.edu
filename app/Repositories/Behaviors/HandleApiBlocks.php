@@ -3,7 +3,7 @@
 namespace App\Repositories\Behaviors;
 
 use A17\Twill\Repositories\ModuleRepository;
-use ImageService;
+use A17\Twill\Services\MediaLibrary\ImageService;
 use Illuminate\Support\Str;
 use App\Helpers\UrlHelpers;
 
