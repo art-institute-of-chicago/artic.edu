@@ -1,3 +1,6 @@
+includes:
+	- vendor/aic/data-hub-foundation/phpstan.neon
+
 parameters:
 
   level: 0
