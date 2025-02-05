@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class ReportAltText extends Command
@@ -42,11 +43,11 @@ class ReportAltText extends Command
             $table = with(new $model())->getTable();
             $query = $model::whereHas('medias');
 
-            if (\Schema::hasColumn($table, 'published')) {
+            if (Schema::hasColumn($table, 'published')) {
                 $query->published();
             }
 
-            if (\Schema::hasColumn($table, 'deleted_at')) {
+            if (Schema::hasColumn($table, 'deleted_at')) {
                 $query->whereNull('deleted_at');
             }
 
