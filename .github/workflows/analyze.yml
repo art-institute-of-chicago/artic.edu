@@ -12,5 +12,5 @@ jobs:
               uses: actions/checkout@v3
             - name: Install PHP dependencies
               run: composer install --no-interaction --no-progress --no-scripts
-            - name: Run PHP CodeSniffer
-              run: ./vendor/bin/phpstan analyze --no-progress --no-interaction --no-ansi
+            - name: Run PHPStan
+              run: composer analyze --no-interaction --no-ansi
