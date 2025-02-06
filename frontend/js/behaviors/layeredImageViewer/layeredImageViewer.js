@@ -814,11 +814,15 @@ class LayeredImageViewer {
     this.viewer.controls.bottomright.appendChild(this.toolbar.layers.element);
 
     // Control for opacity (if more than one image)
-    this._addOpacityControl();
+    if (this.images.items.length > 1) {
+      this._addOpacityControl();
+    }
 
     // Control menu for image layer controls if neccessary
     // (overlays present/more than one image)
-    this._addImageLayerControlMenu();
+    if (this.overlays.items.length || this.images.items.length > 1) {
+      this._addImageLayerControlMenu();
+    }
 
     // Reset
     // Add button to layers controls
@@ -865,8 +869,6 @@ class LayeredImageViewer {
    * @method
    */
   _addOpacityControl() {
-    if (this.images.items.length < 2) return;
-
     const opacityTemplate = document.createElement('template');
     opacityTemplate.innerHTML = `
       <div class="o-layered-image-viewer__opacity">
@@ -915,9 +917,6 @@ class LayeredImageViewer {
    * @method
    */
   _addImageLayerControlMenu() {
-    // Only show if overlays or multiple images exist
-    if (!this.overlays.items.length && this.images.items.length < 2) return;
-
     // Create template markup
     const detailsTemplate = document.createElement('template');
     detailsTemplate.innerHTML = `
