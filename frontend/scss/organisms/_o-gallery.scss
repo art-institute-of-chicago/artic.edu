@@ -367,7 +367,8 @@
     }
   }
 
-  &.o-gallery----theme-2 {
+  &.o-gallery----theme-2,
+  &.o-gallery----theme-3 {
     .o-gallery--slider__controls {
       .btn {
         color: $color__text--title;
@@ -652,6 +653,12 @@
   hr,
   .hr {
     border-top-color: $color__rules--secondary;
+  }
+
+  .o-gallery--slider__controls {
+    .btn {
+      color: $color__text--title;
+    }
   }
 }
 
