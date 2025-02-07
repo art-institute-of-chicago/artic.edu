@@ -1,15 +1,14 @@
-includes:
-	- vendor/aic/data-hub-foundation/phpstan.neon
-
 parameters:
 
   level: 0
 
   paths:
-    - app
-    - tests
+    - ./
 
   excludePaths:
+    - node_modules
+    - vendor
+    - storage
     - app/Models/SiteTag.php
 
   ignoreErrors:
@@ -19,7 +18,15 @@ parameters:
     -
       message: '#Array has 2 duplicate keys with value.*#'
       path: app/Helpers/StringHelpers.php
+    -
+      message: '#Undefined variable: \$this#'
+      path: routes/console.php
     - '#Function moduleRoute not found\.#'
     - '#Function twillTrans not found\.#'
     - '#Function getLocales not found\.#'
     - '#Function classHasTrait not found\.#'
+    - '#Function createDefaultTableFields not found\.#'
+    - '#Function createDefaultRelationshipTableFields not found\.#'
+    - '#Function createDefaultSlugsTableFields not found\.#'
+    - '#Function createDefaultRevisionsTableFields not found\.#'
+    - '#Function createDefaultTranslationsTableFields not found\.#'

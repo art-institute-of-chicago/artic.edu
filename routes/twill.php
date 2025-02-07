@@ -1,5 +1,6 @@
 <?php
 
+use A17\Twill\Facades\TwillRoutes;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Twill\ArtworkController;
 use App\Http\Controllers\Twill\ArtistController;
