@@ -77,6 +77,7 @@
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^7.0",
         "orchestra/testbench": "^7.8 || ^8.0 || ^9.0",
+        "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^10.0",
         "spatie/laravel-ignition": "^2.0"
     },
@@ -115,8 +116,7 @@
             "@composer format"
         ],
         "analyze": [
-            "@putenv COMPOSER=vendor/aic/data-hub-foundation/composer.json",
-            "@composer analyze"
+            "phpstan analyze ."
         ],
         "test": [
             "Composer\\Config::disableProcessTimeout",
