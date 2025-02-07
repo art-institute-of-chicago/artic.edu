@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\StringHelpers;
 use Illuminate\Database\Migrations\Migration;
 use App\Models\PressRelease;
 
