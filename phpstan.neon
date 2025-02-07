@@ -10,7 +10,6 @@ parameters:
     - vendor
     - storage
     - app/Models/SiteTag.php
-    - scripts/rector/twill-3-upgrade-type-compatibility.php
 
   ignoreErrors:
     -
