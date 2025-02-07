@@ -73,7 +73,6 @@ return [
         'highlights' => 'collection',
         'artworks' => 'collection',
         'authors' => 'collection',
-        'highlights' => 'collection',
         'articles' => 'collection.articlesPublications',
         'experiences' => 'collection.interactiveFeatures',
         'landingPages' => 'generic',
