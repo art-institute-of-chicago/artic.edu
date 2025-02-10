@@ -166,21 +166,36 @@ class StringHelpers
      * PUB-137: Split the last "word" from a text. Used to keep reference
      * numbers and backref arrows from being orphaned onto the next line.
      *
-     * Will *not* work with HTML! Plain text only.
+     * If the last word contains HTML, we can't use it because it would break
+     * that element. Instead, we can try to use any terminating punctuation as
+     * the "last word". If the last word contains HTML and there is no
+     * punctuation this will not return a last word.
      */
-    public static function getLastWord($originalText)
+    public static function getLastWord(string $originalText): array
     {
         $originalText = rtrim($originalText);
+        // Split on the last space (" ") character as long as the final set of
+        // characters does not contain angle brackets (likely an HTML element).
         preg_match('/(.* )([^<>]+)$$/', $originalText, $textParts);
+        $beforeLastWord = $textParts[1] ?? $originalText;
+        $lastWord = $textParts[2] ?? '';
+        // If the last word did contain an HTML elment, find the last non-space,
+        // non-word character (usually punctuation) and use that as the last
+        // "word".
+        if (empty($lastWord)) {
+            preg_match('/(.*)([\S\W])$/', $originalText, $textAndPunctuation);
+            $beforeLastWord = $textAndPunctuation[1] ?? $originalText;
+            $lastWord = $textAndPunctuation[2] ?? '';
+        }
 
-        return [$textParts[1] ?? $originalText, $textParts[2] ?? ''];
+        return [$beforeLastWord, $lastWord];
     }
 
     public static function convertReferenceLinks($text, $_collectedReferences)
     {
         $codes = \App\Libraries\ShortcodeService::parse_ref($text);
 
-        foreach ($codes as $index => $code) {
+        foreach ($codes as $code) {
             if (isset($code['name']) && ($code['name'] == 'ref')) {
                 $_collectedReferences[] = ['id' => sizeof($_collectedReferences) + 1, 'reference' => $code['content']];
                 $pos = sizeof($_collectedReferences);
