@@ -25,7 +25,7 @@ class MagazineIssueController extends FrontController
 
     public function show($id, $slug = null, $isRequestForLatest = false)
     {
-        $item = $this->repository->findOrFail($id);
+        $item = $this->repository->published()->findOrFail($id);
         $canonicalPath = route('magazine-issues.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
 
         if (!$isRequestForLatest) {
