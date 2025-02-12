@@ -488,21 +488,4 @@ class Artwork extends BaseApiModel
 
         return 'data-gtm-event="' . $event . '" data-gtm-event-category="collection-nav"';
     }
-
-    /**
-     * WEB-2065: Deduplicate with actual Explore Further query?
-     */
-    private function getMostSimilarIds()
-    {
-        return Search::query()
-            ->resources(['artworks'])
-            ->forceEndpoint('search')
-            ->byMostSimilar($this, true)
-            ->getPaginatedModel(13, self::SEARCH_FIELDS)
-            ->filter(function ($value, $key) {
-                return $this->id != $value->id;
-            })
-            ->pluck('id')
-            ->all();
-    }
 }
