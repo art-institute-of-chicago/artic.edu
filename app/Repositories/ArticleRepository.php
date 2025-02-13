@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -13,6 +14,7 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Repositories\Behaviors\HandleMagazine;
 use App\Repositories\Behaviors\HandleAuthors;
+use Illuminate\Database\Eloquent\Builder;
 
 class ArticleRepository extends ModuleRepository
 {
@@ -31,7 +33,15 @@ class ArticleRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
+    public function order(Builder $query, array $orders = []): Builder
+    {
+        // Default sort by date instead of created_at.
+        $orders['date'] ??= 'desc';
+        unset($orders['created_at']);
+        return parent::order($query, $orders);
+    }
+
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $object->categories()->sync($fields['categories'] ?? []);
 
@@ -44,7 +54,7 @@ class ArticleRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object)
+    public function getFormFields(TwillModelContract $object): array
     {
         $fields = parent::getFormFields($object);
 

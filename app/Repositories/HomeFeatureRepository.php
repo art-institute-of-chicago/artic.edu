@@ -17,10 +17,10 @@ class HomeFeatureRepository extends ModuleRepository
 
     protected $browsers = [
         'articles' => [
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
         ],
         'events' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
         ],
         'highlights' => [
             'routePrefix' => 'collection',
@@ -29,7 +29,7 @@ class HomeFeatureRepository extends ModuleRepository
 
     protected $apiBrowsers = [
         'exhibitions' => [
-            'routePrefix' => 'exhibitions_events'
+            'routePrefix' => 'exhibitionsEvents'
         ],
     ];
 

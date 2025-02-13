@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -9,6 +10,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\PressRelease;
 use App\Models\Api\Search;
+use Illuminate\Database\Eloquent\Builder;
 
 class PressReleaseRepository extends ModuleRepository
 {
@@ -20,7 +22,7 @@ class PressReleaseRepository extends ModuleRepository
 
     protected $browsers = [
         'sponsors' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
         ],
     ];
 
@@ -29,7 +31,15 @@ class PressReleaseRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
+    public function order(Builder $query, array $orders = []): Builder
+    {
+        $orders['publish_start_date'] ??= 'desc';
+        unset($orders['created_at']);
+
+        return parent::order($query, $orders);
+    }
+
+    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
 
@@ -44,7 +54,6 @@ class PressReleaseRepository extends ModuleRepository
         return [
             'borderlessHeader' => !(empty($item->imageFront('banner'))),
             'subNav' => null,
-            'nav' => null,
             'intro' => $item->short_description,
             'headerImage' => $item->imageFront('banner'),
             'title' => $item->title,

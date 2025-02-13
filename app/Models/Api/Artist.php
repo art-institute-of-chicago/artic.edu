@@ -2,12 +2,15 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasMediasApi;
 use App\Helpers\StringHelpers;
 
 class Artist extends BaseApiModel
 {
-    protected $endpoints = [
+    use HasMediasApi;
+
+    protected array $endpoints = [
         'collection' => '/api/v1/artists',
         'resource' => '/api/v1/artists/{id}',
         'search' => '/api/v1/artists/search'

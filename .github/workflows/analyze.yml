@@ -1,0 +1,24 @@
+name: Analyze
+on: [push]
+jobs:
+    analyze:
+        runs-on: ubuntu-20.04
+        steps:
+            - name: Install PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.2
+            - name: Install Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: lts/iron
+            - name: Checkout code
+              uses: actions/checkout@v3
+            - name: Install PHP dependencies
+              run: composer install --no-interaction --no-progress --no-scripts
+            - name: Remove private NPM package
+              run: npm uninstall closer-look --save
+            - name: Install Javascript dependencies
+              run: npm ci
+            - name: Run PHPStan
+              run: composer analyze --no-interaction --no-ansi

@@ -27,7 +27,7 @@
         @slot('cols_medium','3')
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
-        @foreach ($block->childs as $item)
+        @foreach ($block->children as $item)
             @component('components.molecules._m-listing----grid-item')
                 @slot('url', $item->input('url'))
                 @slot('image', $item->imageAsArray('image', 'desktop'))

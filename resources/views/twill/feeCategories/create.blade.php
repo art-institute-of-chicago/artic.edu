@@ -1,0 +1,10 @@
+<x-twill::input
+    name='title'
+    label='Title'
+    :required='true'
+/>
+<x-twill::input
+    name='tooltip'
+    label='Tooltip'
+    :required='true'
+/>

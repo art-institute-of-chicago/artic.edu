@@ -2,18 +2,14 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
-use App\Models\Article;
-use App\Models\Highlight;
-use App\Models\Experience;
-use App\Models\Video;
-use App\Models\Vendor\Block;
-use App\Models\Behaviors\HasMediasApi;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilder;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasMediasApi;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Helpers\DateHelpers;
 use App\Helpers\ImageHelpers;
 use App\Helpers\StringHelpers;
-use Database\Factories\Api\HasApiFactory;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasApiFactory;
 
 class Artwork extends BaseApiModel
 {
@@ -33,7 +29,7 @@ class Artwork extends BaseApiModel
 
     protected $showDefaultRelatedItems = true;
 
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/artworks',
         'resource' => '/api/v1/artworks/{id}',
         'search' => '/api/v1/artworks/search',
@@ -326,7 +322,7 @@ class Artwork extends BaseApiModel
         return join('/', array_filter([$this->id, StringHelpers::getUtf8Slug($this->title)]));
     }
 
-    public function getSlugAttribute()
+    public function getSlugAttribute(): string
     {
         return route('artworks.show', $this->id, StringHelpers::getUtf8Slug($this->title));
     }
@@ -364,7 +360,7 @@ class Artwork extends BaseApiModel
         }
     }
 
-    public function scopeAggregationClassification($query)
+    public function scopeAggregationClassification($query): ApiModelBuilder
     {
         $aggs = [
             'types' => [
@@ -377,7 +373,7 @@ class Artwork extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
-    public function scopeAggregationArtworkType($query)
+    public function scopeAggregationArtworkType($query): ApiModelBuilder
     {
         $aggs = [
             'types' => [
@@ -390,7 +386,7 @@ class Artwork extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
-    public function scopeByClassifications($query, $ids)
+    public function scopeByClassifications($query, $ids): ApiModelBuilder
     {
         if (empty($ids)) {
             return $query;
@@ -413,7 +409,7 @@ class Artwork extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByArtworkType($query, $id)
+    public function scopeByArtworkType($query, $id): ApiModelBuilder
     {
         if (empty($id)) {
             return $query;
@@ -436,7 +432,7 @@ class Artwork extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByArtists($query, $ids)
+    public function scopeByArtists($query, $ids): ApiModelBuilder
     {
         if (empty($ids)) {
             return $query;
@@ -459,7 +455,7 @@ class Artwork extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByStyles($query, $ids)
+    public function scopeByStyles($query, $ids): ApiModelBuilder
     {
         if (empty($ids)) {
             return $query;
@@ -491,22 +487,5 @@ class Artwork extends BaseApiModel
         }
 
         return 'data-gtm-event="' . $event . '" data-gtm-event-category="collection-nav"';
-    }
-
-    /**
-     * WEB-2065: Deduplicate with actual Explore Further query?
-     */
-    private function getMostSimilarIds()
-    {
-        return Search::query()
-            ->resources(['artworks'])
-            ->forceEndpoint('search')
-            ->byMostSimilar($this, true)
-            ->getPaginatedModel(13, self::SEARCH_FIELDS)
-            ->filter(function ($value, $key) {
-                return $this->id != $value->id;
-            })
-            ->pluck('id')
-            ->all();
     }
 }

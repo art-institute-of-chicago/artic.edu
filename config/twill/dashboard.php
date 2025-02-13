@@ -13,7 +13,7 @@ return [
     'modules' => [
         'events' => [
             'name' => 'events',
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'count' => true,
             'create' => true,
             'search' => true,
@@ -22,7 +22,7 @@ return [
         ],
         'articles' => [
             'name' => 'articles',
-            'routePrefix' => 'collection.articles_publications',
+            'routePrefix' => 'collection.articlesPublications',
             'count' => true,
             'create' => true,
             'search' => true,
@@ -31,7 +31,7 @@ return [
         ],
         'exhibitions' => [
             'name' => 'exhibitions',
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
             'count' => false,
             'create' => false,
             'search' => true,
@@ -76,5 +76,5 @@ return [
         'enabled' => false,
         'service_account_credentials_json' => storage_path('app/analytics/service-account-credentials.json'),
     ],
-    'search_endpoint' => 'admin.search',
+    'search_endpoint' => 'twill.search',
 ];

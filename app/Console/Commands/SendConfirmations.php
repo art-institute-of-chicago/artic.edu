@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\MyMuseumTour;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\App;
 
 class SendConfirmations extends Command
 {
@@ -103,7 +104,7 @@ class SendConfirmations extends Command
             'template_id' => $templateId,
         ];
 
-        if (!\App::environment('local')) {
+        if (!App::environment('local')) {
             $dynamicContent = array_merge($dynamicContent, [
                 'attachments' => [
                     [

@@ -17,6 +17,7 @@ use App\Models\Slugs\LandingPageSlug;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Kalnoy\Nestedset\NodeTrait;
 
 class LandingPage extends AbstractModel implements Sortable
@@ -245,12 +246,12 @@ class LandingPage extends AbstractModel implements Sortable
         );
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }
 
-    public function scopeById($query, $id = null)
+    public function scopeById($query, $id = null): Builder
     {
         if (empty($id)) {
             return $query;
