@@ -7,8 +7,8 @@
         $alt = $media['alt'];
         $width = $media['width'];
         $height = $media['height'];
-        $crop_x = $media['crop_x'];
-        $crop_y = $media['crop_y'];
+        $crop_x = $media['crop_x'] ?? 0;
+        $crop_y = $media['crop_y'] ?? 0;
         $startingView = $item['starting_view'] ? $item['starting_view'] : false;
 
         // Set empty $imageSettings, this will be populated based on $size
