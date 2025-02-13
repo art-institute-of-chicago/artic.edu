@@ -10,7 +10,7 @@ trait HandleMagazine
 {
     private $magazineItems = [];
 
-    public function getMagazineItem($item): MagazineItem
+    public function getMagazineItem($item): ?MagazineItem
     {
         return $magazineItems[$item->id] ?? $magazineItems[$item->id] = MagazineItem::query()
             ->where('magazinable_type', $this->morphType)
