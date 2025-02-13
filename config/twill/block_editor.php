@@ -21,109 +21,6 @@ return [
     'inline_blocks_templates' => true,
     'custom_vue_blocks_resource_path' => 'assets/js/blocks',
     'use_twill_blocks' => ['text', 'image'],
-    'crops' => [
-        'image' => [
-            'desktop' => [
-                [
-                    'name' => 'desktop',
-                    'ratio' => 0,
-                ],
-            ],
-        ],
-        'family_cover' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 16 / 9,
-                ],
-            ],
-        ],
-        'banner' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 200 / 24,
-                ],
-            ],
-        ],
-        'membership_banner_image' => [
-            'desktop' => [
-                [
-                    'name' => 'desktop',
-                    'ratio' => 0,
-                ],
-            ],
-        ],
-        'listing_image' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 16 / 9,
-                ],
-            ],
-        ],
-        'dining_cover' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 16 / 9,
-                ],
-            ],
-        ],
-        'experience_image' => [
-            'default' => [
-                [
-                    'name' => 'free',
-                    'ratio' => null,
-                ],
-                [
-                    'name' => '16:9',
-                    'ratio' => 16 / 9
-                ],
-                [
-                    'name' => '9:16',
-                    'ratio' => 9 / 16
-                ],
-                [
-                    'name' => '4:3',
-                    'ratio' => 4 / 3
-                ],
-                [
-                    'name' => '1:1',
-                    'ratio' => 1 / 1
-                ],
-                [
-                    'name' => '3:4',
-                    'ratio' => 3 / 4
-                ]
-            ]
-        ],
-        'artist_image' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 3 / 4,
-                ],
-            ],
-        ],
-        'left_image' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => null,
-                ],
-            ],
-        ],
-        'right_image' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => null,
-                ],
-            ],
-        ],
-
-    ],
     'repeaters' => [],
     'directories' => [
         'source' => [
@@ -133,14 +30,14 @@ return [
                     'source' => A17\Twill\Services\Blocks\Block::SOURCE_TWILL,
                 ],
                 [
-                    'path' => resource_path('views/admin/blocks'),
+                    'path' => resource_path('views/twill/blocks'),
                     'source' => A17\Twill\Services\Blocks\Block::SOURCE_APP,
                 ],
             ],
 
             'repeaters' => [
                 [
-                    'path' => resource_path('views/admin/repeaters'),
+                    'path' => resource_path('views/twill/repeaters'),
                     'source' => A17\Twill\Services\Blocks\Block::SOURCE_APP,
                 ],
                 [
@@ -158,9 +55,9 @@ return [
         'destination' => [
             'make_dir' => true,
 
-            'blocks' => resource_path('views/admin/blocks'),
+            'blocks' => resource_path('views/twill/blocks'),
 
-            'repeaters' => resource_path('views/admin/repeaters'),
+            'repeaters' => resource_path('views/twill/repeaters'),
         ],
     ],
     'files' => [
@@ -171,17 +68,16 @@ return [
         'upload_manifest_file',
     ],
     'browser_route_prefixes' => [
-        'events' => 'exhibitions_events',
-        'exhibitions' => 'exhibitions_events',
+        'events' => 'exhibitionsEvents',
+        'exhibitions' => 'exhibitionsEvents',
         'highlights' => 'collection',
         'artworks' => 'collection',
         'authors' => 'collection',
-        'highlights' => 'collection',
-        'articles' => 'collection.articles_publications',
-        'experiences' => 'collection.interactive_features',
+        'articles' => 'collection.articlesPublications',
+        'experiences' => 'collection.interactiveFeatures',
         'landingPages' => 'generic',
         'genericPages' => 'generic',
-        'videos' => 'collection.articles_publications',
+        'videos' => 'collection.articlesPublications',
         'myMuseumTourItems' => 'visit',
     ],
     'block-order' => [

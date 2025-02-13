@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use A17\Twill\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Sentry\Laravel\Integration;
 use Throwable;
 

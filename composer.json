@@ -19,7 +19,7 @@
             "package": {
                 "type": "metapackage",
                 "name": "vendor/package-patches",
-                "version": "1.5.0",
+                "version": "1.6.0",
                 "require": {
                     "netresearch/composer-patches-plugin": "~1.2"
                 },
@@ -27,12 +27,16 @@
                     "patches": {
                         "area17/twill": [
                             {
-                                "title": "WEB-2103: Get repository model of API models",
+                                "title": "WEB-2301: Get repository model of API models",
                                 "url": "patches/WEB-2301---get-repository-of-API-models.diff"
                             },
                             {
                                 "title": "WEB-2678: Backport Node 10 syntax",
                                 "url": "patches/WEB-2678---backport-node-10-syntax.diff"
+                            },
+                            {
+                                "title": "WEB-2982: Fix Relation column",
+                                "url": "patches/WEB-2982---fix-relation-column.diff"
                             }
                         ]
                     }
@@ -41,9 +45,9 @@
         }
     ],
     "require": {
-        "php": "^8.1",
-        "aic/data-hub-foundation": "^2.0",
-        "area17/twill": "2.13.*",
+        "php": "^8.2",
+        "aic/data-hub-foundation": "^3.0",
+        "area17/twill": "^3.0",
         "chillerlan/php-qrcode": "^5.0",
         "eluceo/ical": "2.0",
         "erusev/parsedown": "^1.7",
@@ -67,14 +71,15 @@
     },
     "require-dev": {
         "brianium/paratest": "^7.0",
-        "spatie/laravel-ignition": "^2.0",
         "fakerphp/faker": "^1.0",
         "itsgoingd/clockwork": "^5.0",
         "laravel/sail": "^1.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^7.0",
-        "orchestra/testbench": "^6.0|^7.0|^8.0",
-        "phpunit/phpunit": "^10.0"
+        "orchestra/testbench": "^7.8 || ^8.0 || ^9.0",
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -109,6 +114,9 @@
         "format": [
             "@putenv COMPOSER=vendor/aic/data-hub-foundation/composer.json",
             "@composer format"
+        ],
+        "analyze": [
+            "phpstan analyze ."
         ],
         "test": [
             "Composer\\Config::disableProcessTimeout",

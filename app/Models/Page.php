@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -248,12 +249,12 @@ class Page extends AbstractModel
         10 => 'Dining'
     ];
 
-    public function scopeForType($query, $type)
+    public function scopeForType($query, $type): Builder
     {
         return $query->where('type', array_flip(self::$types)[$type]);
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }

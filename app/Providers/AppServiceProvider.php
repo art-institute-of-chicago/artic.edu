@@ -5,11 +5,13 @@ namespace App\Providers;
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
 use App\Models\Hour;
-use App\Libraries\Api\Consumers\GuzzleApiConsumer;
+use Aic\Hub\Foundation\Library\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\EmbedConverterService;
 use App\Libraries\DamsImageService;
 use App\Observers\FileObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerPrintService();
         $this->composeTemplatesViews();
         File::observe(FileObserver::class);
+        $this->extendBlade();
 
         \Illuminate\Pagination\AbstractPaginator::defaultView('site.pagination.aic');
         \Illuminate\Pagination\AbstractPaginator::defaultSimpleView('site.pagination.simple-aic');
@@ -47,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
         $seo->width = config('twill.seo.width');
         $seo->height = config('twill.seo.height');
 
-        \View::share('seo', $seo);
+        View::share('seo', $seo);
     }
 
     public function registerMorphMap(): void
@@ -157,7 +160,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // WEB-2269: Consider moving some of this to a config?
         view()->composer('*', function ($view) {
-            $view->with(\Cache::remember('navArray', 3600, function () {
+            $view->with(Cache::remember('navArray', 3600, function () {
                 return [
                     '_pages' => [
                         'visit' => '/visit',
@@ -414,5 +417,21 @@ class AppServiceProvider extends ServiceProvider
                 ];
             }));
         });
+    }
+
+    /**
+     * Defines the package additional Blade Directives.
+     */
+    private function extendBlade(): void
+    {
+        $blade = $this->app['view']->getEngineResolver()->resolve('blade')->getCompiler();
+
+        $blade->component('twill.partials.featured-related', 'featuredRelated');
+
+        $blade->component('twill.partials.featured-related', 'aic::featuredRelated');
+
+        if (method_exists($blade, 'aliasComponent')) {
+            $blade->aliasComponent('twill.partials.featured-related', 'featuredRelated');
+        }
     }
 }

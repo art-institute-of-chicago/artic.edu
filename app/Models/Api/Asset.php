@@ -2,8 +2,10 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
-use App\Models\Behaviors\HasMediasApi;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilder;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasMediasApi;
+use App\Facades\EmbedConverterFacade;
 use App\Helpers\ImageHelpers;
 use Illuminate\Support\Str;
 
@@ -15,7 +17,7 @@ class Asset extends BaseApiModel
         imageFront as public imageDams;
     }
 
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/assets',
         'resource' => '/api/v1/assets/{id}',
         'search' => '/api/v1/assets/search',
@@ -56,7 +58,7 @@ class Asset extends BaseApiModel
 
     public function imageFront($role = 'hero', $crop = 'default')
     {
-        $image = \EmbedConverter::getYoutubeThumbnailImage($this->content);
+        $image = EmbedConverterFacade::getYoutubeThumbnailImage($this->content);
 
         if (!empty($image)) {
             return ImageHelpers::aic_convertFromImageProxy($image, ['source' => 'misc']);
@@ -65,7 +67,7 @@ class Asset extends BaseApiModel
 
     public function getVideoContentAttribute()
     {
-        return \EmbedConverter::convertUrl($this->content);
+        return EmbedConverterFacade::convertUrl($this->content);
     }
 
     public function getContentAttribute($content)
@@ -145,7 +147,7 @@ class Asset extends BaseApiModel
         }
     }
 
-    public function scopeMultimediaAssets($query)
+    public function scopeMultimediaAssets($query): ApiModelBuilder
     {
         $params = [
             'resources' => ['images', 'sounds', 'texts', 'videos', 'articles', 'sites']
@@ -154,7 +156,7 @@ class Asset extends BaseApiModel
         return $query->rawQuery($params);
     }
 
-    public function scopeEducationalAssets($query)
+    public function scopeEducationalAssets($query): ApiModelBuilder
     {
         $params = [
             'resources' => ['images', 'sounds', 'texts', 'videos']
@@ -163,7 +165,7 @@ class Asset extends BaseApiModel
         return $query->rawQuery($params);
     }
 
-    public function scopeMultimediaForArtwork($query, $artworkId)
+    public function scopeMultimediaForArtwork($query, $artworkId): ApiModelBuilder
     {
         $params = [
             'bool' => [
@@ -242,7 +244,7 @@ class Asset extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeEducationalForArtwork($query, $artworkId)
+    public function scopeEducationalForArtwork($query, $artworkId): ApiModelBuilder
     {
         $params = [
             'bool' => [

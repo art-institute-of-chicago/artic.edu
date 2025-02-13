@@ -12,6 +12,7 @@ class ExhibitionsController extends FrontController
 {
     protected $apiRepository;
     protected $eventRepository;
+    protected $repository;
 
     public const RELATED_EVENTS_PER_PAGE = 3;
 

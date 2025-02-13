@@ -1,0 +1,32 @@
+parameters:
+
+  level: 0
+
+  paths:
+    - ./
+
+  excludePaths:
+    - node_modules
+    - vendor
+    - storage
+    - app/Models/SiteTag.php
+
+  ignoreErrors:
+    -
+      message: '#Function sanitizeFilename not found\.#'
+      path: app/Console/Commands/MigrateOSCIPublicationOne.php
+    -
+      message: '#Array has 2 duplicate keys with value.*#'
+      path: app/Helpers/StringHelpers.php
+    -
+      message: '#Undefined variable: \$this#'
+      path: routes/console.php
+    - '#Function moduleRoute not found\.#'
+    - '#Function twillTrans not found\.#'
+    - '#Function getLocales not found\.#'
+    - '#Function classHasTrait not found\.#'
+    - '#Function createDefaultTableFields not found\.#'
+    - '#Function createDefaultRelationshipTableFields not found\.#'
+    - '#Function createDefaultSlugsTableFields not found\.#'
+    - '#Function createDefaultRevisionsTableFields not found\.#'
+    - '#Function createDefaultTranslationsTableFields not found\.#'

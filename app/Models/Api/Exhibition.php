@@ -4,19 +4,21 @@ namespace App\Models\Api;
 
 use Illuminate\Support\Carbon;
 use App\Models\Behaviors\HasFeaturedRelated;
-use App\Libraries\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Builders\ApiModelBuilder;
 use App\Helpers\StringHelpers;
-use Database\Factories\Api\HasApiFactory;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasApiFactory;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasMediasApi;
 
 class Exhibition extends BaseApiModel
 {
     use HasFeaturedRelated {
         getCustomRelatedItems as traitGetCustomRelatedItems;
     }
-
     use HasApiFactory;
+    use HasMediasApi;
 
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/exhibitions',
         'resource' => '/api/v1/exhibitions/{id}',
         'search' => '/api/v1/exhibitions/search',
@@ -34,6 +36,11 @@ class Exhibition extends BaseApiModel
      * Fields used when performing a search so we avoid a double call retrieving the complete entities
      */
     public const SEARCH_FIELDS = ['id', 'title', 'status', 'aic_start_at', 'aic_end_at', 'is_boosted', 'thumbnail', 'short_description', 'gallery_title', 'gallery_id', 'image_id', 'api_model'];
+
+    // Don't define the mediasParams here, so it will fall back to the augmented model
+    public $mediasParams = [
+        'null' => [],
+    ];
 
     /**
      * Generates the id-slug type of URL
@@ -239,7 +246,7 @@ class Exhibition extends BaseApiModel
     /**
      * Used for sorting in the admin interface.
      */
-    public function scopeOrderBy($query, $field, $direction = 'asc')
+    public function scopeOrderBy($query, $field, $direction = 'asc'): ApiModelBuilder
     {
         $params = [
             'sort' => [
@@ -250,7 +257,7 @@ class Exhibition extends BaseApiModel
         return $query->rawQuery($params);
     }
 
-    public function scopeOrderByDate($query, $direction = 'asc')
+    public function scopeOrderByDate($query, $direction = 'asc'): ApiModelBuilder
     {
         $params = [
             'sort' => [
@@ -264,7 +271,7 @@ class Exhibition extends BaseApiModel
     /**
      * Search for all exhibitions for the next 2 weeks, not closed
      */
-    public function scopeCurrent($query)
+    public function scopeCurrent($query): ApiModelBuilder
     {
         $params = [
             'bool' => [
@@ -295,7 +302,7 @@ class Exhibition extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeUpcoming($query)
+    public function scopeUpcoming($query): ApiModelBuilder
     {
         $params = [
             'bool' => [
@@ -314,7 +321,7 @@ class Exhibition extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeHistory($query, $year = null)
+    public function scopeHistory($query, $year = null): ApiModelBuilder
     {
         if ($year == null) {
             $params = [
