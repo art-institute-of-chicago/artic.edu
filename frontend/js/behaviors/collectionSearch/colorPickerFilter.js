@@ -1,5 +1,5 @@
 import { triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
-import '../../libs/conic-gradient';
+import 'conic-gradient';
 
 const colorPickerFilter = function(container) {
 
