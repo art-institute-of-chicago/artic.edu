@@ -13,11 +13,11 @@ folders:
 sites:
   - map: www.test
     to: /home/vagrant/aic/public
-    php: 7.2
+    php: 8.2
 
   - map: admin.www.test
     to: /home/vagrant/aic/public
-    php: 7.2
+    php: 8.2
 
 databases:
   - homestead
