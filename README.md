@@ -33,9 +33,6 @@ Portions of the website rely heavily on our [API](https://api.artic.edu). Check 
 
 For local development, we run our website in a [Homestead](https://laravel.com/docs/master/homestead) environment which provides all the software required to run the website.
 
-* Rename `Homestead.sample.yaml` to `Homestead.yaml`.
-* Update `folders.map` in `Homestead.yaml` with your local path to the website repository.
-* If you have another vagrant machine running at the same IP as the one at the top of `Homestead.yaml`, change it.
 * Run `composer install` to install composer dependencies. This step should typically be done inside the VM, but in order to get the VM running, you may need to install the dependencies from outside the VM.
 * Run `vagrant up` to provision your vagrant machine.
 * In case the system didn't update your `/etc/hosts` file automatically:
@@ -45,7 +42,7 @@ Once Homestead is set up, then install the website code itself:
 
 * Run `vagrant ssh` to ssh into the VM.
 * `cd` into the website project directory that you mapped in your `Homestead.yaml`.
-* Set the PHP version for the VM shell by running `php81`.
+* Set the PHP version for the VM shell by running `php82`.
 * Run `composer install` inside the VM to ensure dependencies are installed.
 * Copy `.env.example` as `.env` and update with your local settings (if necessary).
 * Run `php artisan key:generate` to generate your application key.

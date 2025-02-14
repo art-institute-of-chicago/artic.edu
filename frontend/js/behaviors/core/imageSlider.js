@@ -1,4 +1,4 @@
-import OpenSeadragon from '../../libs/openseadragon';
+import OpenSeadragon from 'openseadragon';
 import '../../libs/imgixtilesource';
 
 const imageSlider = function(container) {
