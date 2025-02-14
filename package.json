@@ -46,6 +46,7 @@
     "lodash": "^4.17.21",
     "mirador": "^3.0.0",
     "my-museum-tour-builder": "github:art-institute-of-chicago/my-museum-tour#semver:^1.0.0",
+    "nouislider": "^15.8.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "text-contrast": "^1.0.2",
