@@ -46,8 +46,6 @@ const fontObservers = function(fonts) {
   } else {
     // Go check on those fonts, using fontfaceonload https://github.com/zachleat/fontfaceonload
     for (var i = 0; i < total; i++) {
-      // eslint-disable-next-line no-console
-      console.log('Loading font: ' + fonts.variants[i].name);
       FontFaceOnload(fonts.variants[i].name, {
         success: loaded,
         error: loaded,
