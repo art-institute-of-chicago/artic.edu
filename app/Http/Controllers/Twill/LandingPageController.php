@@ -35,7 +35,7 @@ class LandingPageController extends BaseController
     {
         $landingPage = $this->repository->getById($id);
         $prefix = str($landingPage->type)->camel();
-        $this->viewPrefix = "admin.$this->moduleName.$prefix";
+        $this->viewPrefix = "twill.$this->moduleName.$prefix";
         return parent::edit($id, $submoduleId);
     }
 
