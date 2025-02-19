@@ -1,7 +1,6 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-
 <x-twill::select
     name='header_variation'
     label='Header Style'
@@ -31,7 +30,7 @@
 
 <x-twill::formConnectedFields
     field-name='header_variation'
-    field-values="['default', 'small', 'cta']"
+    :field-values="['default', 'small', 'cta']"
     :render-for-blocks='false'
 >
 
