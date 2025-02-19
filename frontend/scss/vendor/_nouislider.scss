@@ -1,4 +1,4 @@
-/*! nouislider - 11.0.3 - 2018-01-21 14:04:07 */
+/* Copied from node_modules/nouislider/dist/nouislider.css */
 /* Functional styling;
  * These styles are required for noUiSlider to function.
  * You don't need to change these rules to apply your design.
@@ -18,7 +18,6 @@
 }
 .noUi-target {
   position: relative;
-  direction: ltr;
 }
 .noUi-base,
 .noUi-connects {
@@ -39,29 +38,39 @@
   position: absolute;
   z-index: 1;
   top: 0;
-  left: 0;
+  right: 0;
   height: 100%;
   width: 100%;
+  -ms-transform-origin: 0 0;
   -webkit-transform-origin: 0 0;
+  -webkit-transform-style: preserve-3d;
   transform-origin: 0 0;
+  transform-style: flat;
 }
 /* Offset direction
  */
-html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
-  left: auto;
-  right: 0;
+.noUi-txt-dir-rtl.noUi-horizontal .noUi-origin {
+  left: 0;
+  right: auto;
 }
 /* Give origins 0 height/width so they don't interfere with clicking the
  * connect elements.
  */
 .noUi-vertical .noUi-origin {
+  top: -100%;
   width: 0;
 }
 .noUi-horizontal .noUi-origin {
   height: 0;
 }
 .noUi-handle {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   position: absolute;
+}
+.noUi-touch-area {
+  height: 100%;
+  width: 100%;
 }
 .noUi-state-tap .noUi-connect,
 .noUi-state-tap .noUi-origin {
@@ -77,42 +86,38 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   height: 18px;
 }
 .noUi-horizontal .noUi-handle {
-  width: 16px;
-  height: 16px;
+  width: 34px;
+  height: 28px;
+  right: -17px;
   top: -6px;
-  left: -8px;
 }
 .noUi-vertical {
   width: 18px;
 }
 .noUi-vertical .noUi-handle {
-  width: 16px;
-  height: 16px;
-  top: -8px;
-  left: -6px;
+  width: 28px;
+  height: 34px;
+  right: -6px;
+  bottom: -17px;
 }
-html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
-  right: -8px;
-  left: auto;
+.noUi-txt-dir-rtl.noUi-horizontal .noUi-handle {
+  left: -17px;
+  right: auto;
 }
 /* Styling;
  * Giving the connect element a border radius causes issues with using transform: scale
  */
 .noUi-target {
-  height: 4px;
-  margin: 24px 8px 0;
-  border: 0;
-  background-color: $color__black--10;
+  background: #FAFAFA;
+  border-radius: 4px;
+  border: 1px solid #D3D3D3;
+  box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
 }
 .noUi-connects {
   border-radius: 3px;
 }
 .noUi-connect {
-  background-color: $color__black--40;
-
-  .noUi-state-drag & {
-    background-color: $color__black--80;
-  }
+  background: #3FB8AF;
 }
 /* Handles and cursors;
  */
@@ -123,37 +128,40 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   cursor: ns-resize;
 }
 .noUi-handle {
-  border: 1px solid $color__black--20;
-  border-radius: 50%;
-  background-color: $color__white;
-  /* autoprefixer: off */
-  cursor: move;
-  cursor: -webkit-grab;
-  cursor: -moz-grab;
-  cursor: grab;
-
-  &:hover {
-    border-color: $color__black--80;
-  }
-
-  .noUi-state-drag & {
-    border-color: $color__black--20;
-  }
-
-  &.noUi-active {
-    border-color: $color__black--80;
-    /* autoprefixer: off */
-    cursor: move;
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing;
-    cursor: grabbing;
-  }
-
-  .noUi-state-drag &.noUi-active {
-    border-color: $color__black--80;
-  }
+  border: 1px solid #D9D9D9;
+  border-radius: 3px;
+  background: #FFF;
+  cursor: default;
+  box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
 }
 .noUi-active {
+  box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #DDD, 0 3px 6px -3px #BBB;
+}
+/* Handle stripes;
+ */
+.noUi-handle:before,
+.noUi-handle:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 14px;
+  width: 1px;
+  background: #E8E7E6;
+  left: 14px;
+  top: 6px;
+}
+.noUi-handle:after {
+  left: 17px;
+}
+.noUi-vertical .noUi-handle:before,
+.noUi-vertical .noUi-handle:after {
+  width: 14px;
+  height: 1px;
+  left: 6px;
+  top: 14px;
+}
+.noUi-vertical .noUi-handle:after {
+  top: 17px;
 }
 /* Disabled state;
  */
@@ -242,7 +250,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 .noUi-value-vertical {
   -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%, 0);
+  transform: translate(0, -50%);
   padding-left: 25px;
 }
 .noUi-rtl .noUi-value-vertical {
@@ -282,4 +290,16 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   transform: translate(0, -50%);
   top: 50%;
   right: 120%;
+}
+.noUi-horizontal .noUi-origin > .noUi-tooltip {
+  -webkit-transform: translate(50%, 0);
+  transform: translate(50%, 0);
+  left: auto;
+  bottom: 10px;
+}
+.noUi-vertical .noUi-origin > .noUi-tooltip {
+  -webkit-transform: translate(0, -18px);
+  transform: translate(0, -18px);
+  top: auto;
+  right: 28px;
 }

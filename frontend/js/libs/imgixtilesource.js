@@ -64,7 +64,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import OpenSeadragon from './openseadragon';
+import OpenSeadragon from 'openseadragon';
 
 var $ = OpenSeadragon;
 
