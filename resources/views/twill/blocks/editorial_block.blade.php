@@ -105,7 +105,7 @@
 
 <x-twill::formConnectedFields
     field-name='variation'
-    field-values="['feature-5-side', 'feature-5-top', '3-across', '4-across']"
+    :field-values="['feature-5-side', 'feature-5-top', '3-across', '4-across']"
     :render-for-blocks='true'
 >
 
@@ -129,7 +129,7 @@
 
 <x-twill::formConnectedFields
     field-name='variation'
-    field-values="['feature-5-side', 'feature-5-top']"
+    :field-values="['feature-5-side', 'feature-5-top']"
     :render-for-blocks='true'
 >
 
