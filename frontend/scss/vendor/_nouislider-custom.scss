@@ -1,0 +1,89 @@
+.noUi-touch-area::after {
+  display: none;
+}
+/* Slider size and handle placement;
+ */
+.noUi-horizontal {
+  height: 18px;
+}
+.noUi-horizontal .noUi-handle {
+  width: 16px;
+  height: 16px;
+  top: -6px;
+  left: -8px;
+}
+.noUi-vertical {
+  width: 18px;
+}
+.noUi-vertical .noUi-handle {
+  width: 16px;
+  height: 16px;
+  top: -8px;
+  left: -6px;
+}
+html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
+  right: -8px;
+  left: auto;
+}
+/* Styling;
+ * Giving the connect element a border radius causes issues with using transform: scale
+ */
+ .noUi-target {
+  height: 4px;
+  margin: 24px 8px 0;
+  border: 0;
+  background-color: $color__black--10;
+}
+.noUi-connects {
+  border-radius: 3px;
+}
+.noUi-connect {
+  background-color: $color__black--40;
+
+  .noUi-state-drag & {
+    background-color: $color__black--80;
+  }
+}
+/* Handles and cursors;
+ */
+.noUi-draggable {
+  cursor: ew-resize;
+}
+.noUi-vertical .noUi-draggable {
+  cursor: ns-resize;
+}
+.noUi-handle {
+  border: 1px solid $color__black--20;
+  border-radius: 50%;
+  background-color: $color__white;
+  /* autoprefixer: off */
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
+
+  &:hover {
+    border-color: $color__black--80;
+  }
+
+  .noUi-state-drag & {
+    border-color: $color__black--20;
+  }
+
+  &.noUi-active {
+    border-color: $color__black--80;
+    /* autoprefixer: off */
+    cursor: move;
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    cursor: grabbing;
+  }
+
+  .noUi-state-drag &.noUi-active {
+    border-color: $color__black--80;
+  }
+}
+.noUi-handle:before,
+.noUi-handle:after {
+  display: none;
+}
