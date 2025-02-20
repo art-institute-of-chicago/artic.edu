@@ -121,9 +121,15 @@ return [
                 ],
             ],
         ],
-
+        'gallery_item' => [
+            'conservation_and_science' => [
+                [
+                    'name' => 'conservation_and_science',
+                    'ratio' => 3 / 4,
+                ],
+            ],
+        ]
     ],
-
     'repeaters' => [],
 
     'core_icons' => base_path('frontend/icons'),
