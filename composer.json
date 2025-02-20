@@ -55,7 +55,6 @@
         "intervention/httpauth": "^4.0",
         "kalnoy/nestedset": "^6.0",
         "laravel/framework": "^10.0",
-        "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.0",
         "league/csv": "^9.0",
         "michelf/php-smartypants": "^1.8",
