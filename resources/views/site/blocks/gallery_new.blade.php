@@ -84,6 +84,26 @@
                   'maxZoomWindowSize' => $artwork->max_zoom_window_size,
                 ]);
                 break;
+            case \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM_WITH_LINK:
+                $title = $item->present()->input('captionTitle');
+                $subtitle = $item->present()->input('captionText');
+                $captionFields = BlockHelpers::getCaptionFields($title, $subtitle);
+                $mediaItem = array_merge($captionFields, [
+                    'type' => 'image',
+                    'size' => 'gallery',
+                    'fullscreen' => $block->input('disable_gallery_modals') ? false : true,
+                    'media' => $item->imageAsArray('gallery_item', 'conservation_and_science'),
+                    'videoUrl' => $item->input('videoUrl'),
+                    'href' => 'https://google.com', //$item->input('linkUrl'),
+                    'linkLabel' => $item->input('linkLabel'),
+                ]);
+                if (($block->input('is_gallery_zoomable') ?? false) || $item->input('is_zoomable')) {
+                    if (isset($mediaItem['media'])) {
+                        $mediaItem['media']['iiifId'] = \App\Helpers\ImageHelpers::getImgixTileSource($item, 'image', 'desktop');
+                    }
+                }
+                $items[] = $mediaItem;
+                break;
             default:
                 $title = $item->present()->input('captionTitle');
                 $subtitle = $item->present()->input('captionText');

@@ -327,6 +327,9 @@
         @if (isset($item['caption']) && $item['caption'])
             <div class="{{ $fitCaptionTitle ? 'f-fit-text' : '' }} f-caption">{!! $item['caption'] !!}</div>
         @endif
+        @if (isset($item['linkLabel']) && $item['linkLabel'] && isset($item['href']) && $item['href'])
+            <a class="f-link" href="{!! $item['href'] !!}">{!! $item['linkLabel'] !!}</a>
+        @endif
     </figcaption>
     @endif
 </{{ $tag ?? 'figure' }}>
