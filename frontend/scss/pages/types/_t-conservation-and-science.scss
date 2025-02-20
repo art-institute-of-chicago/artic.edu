@@ -1,0 +1,38 @@
+.conservation-and-science {
+  .o-gallery {
+    margin-left: unset !important;
+
+    .m-media__img:not(.m-media__img--video) img {
+      max-width: 20vw;
+    }
+  }
+
+  .o-gallery__caption {
+    margin-top: 24px;
+    width: 100%;
+
+    .f-caption {
+      font-size: 17px;
+      line-height: 28px;
+    }
+  }
+
+  .o-gallery__media-wrapper {
+    padding-top: 24px;
+
+    figcaption {
+      max-width: 20vw;;
+      padding-right: 0;
+
+      .f-caption {
+        color: $color__black--90;
+        font-size: 22px;
+        line-height: 28px;
+      }
+
+      .f-link {
+        color: $color__grey--100 !important;
+      }
+    }
+  }
+}
