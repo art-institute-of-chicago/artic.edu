@@ -109,8 +109,8 @@ return new class () extends Migration {
      */
     private function dropAllIndexes($tableName)
     {
-        $indexes = Schema::getConnection()->getDoctrineSchemaManager()->listTableIndexes($tableName);
-        $foreignKeys = Schema::getConnection()->getDoctrineSchemaManager()->listTableForeignKeys($tableName);
+        $indexes = Schema::getIndexes($tableName);
+        $foreignKeys = Schema::getForeignKeys($tableName);
 
         if (env('APP_ENV') != 'testing') {
             foreach ($foreignKeys as $foreignKey) {
