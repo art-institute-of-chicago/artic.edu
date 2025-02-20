@@ -13,7 +13,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('experience_images', function (Blueprint $table) {
-            $table->text('caption')->change();
+            $table->text('caption')->nullable()->change();
         });
     }
 
