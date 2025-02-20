@@ -64,7 +64,7 @@
         "sentry/sentry-laravel": "^4.9",
         "spatie/calendar-links": "^1.0",
         "spatie/laravel-feed": "^4.0",
-        "spatie/laravel-sitemap": "^6.0",
+        "spatie/laravel-sitemap": "^7.0",
         "vendor/package-patches": "^1.0",
         "yeslogic/prince-php-wrapper": "^1.5"
     },
