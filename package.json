@@ -50,7 +50,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "text-contrast": "^1.0.2",
-    "video.js": "^8.17.2",
+    "video.js": "^8.21.1",
     "videojs-event-tracking": "^1.0.3"
   },
   "engines": {
