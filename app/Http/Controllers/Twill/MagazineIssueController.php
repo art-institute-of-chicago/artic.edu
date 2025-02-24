@@ -19,7 +19,7 @@ class MagazineIssueController extends BaseController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('magazineIssue') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/' . $this->permalinkBase . $item->id . '/';
+        $baseUrl = config('app.url') . '/' . $this->permalinkBase . $item->id . '/';
 
         return [
             'baseUrl' => $baseUrl,

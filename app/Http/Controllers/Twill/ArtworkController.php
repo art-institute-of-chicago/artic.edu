@@ -38,7 +38,7 @@ class ArtworkController extends BaseApiController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('artwork') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/artworks/' . $item->datahub_id . '/';
+        $baseUrl = config('app.url') . '/artworks/' . $item->datahub_id . '/';
 
         return [
             'autoRelated' => $this->getAutoRelated($item),

@@ -83,7 +83,7 @@ class CollectionController extends BaseScopedController
             $this->seo->setImage($artwork->imageFront('hero'));
         } else {
             // Otherwise, fall back to La Grande Jatte as social image
-            $this->seo->image = 'https://' . rtrim(config('app.url'), '/') . '/iiif/2/4eddcf49-3efd-d993-fb1a-75d7e7d5b5a1/full/843,/0/default.jpg';
+            $this->seo->image = rtrim(config('app.url'), '/') . '/iiif/2/4eddcf49-3efd-d993-fb1a-75d7e7d5b5a1/full/843,/0/default.jpg';
             $this->seo->width = 1200;
             $this->seo->height = 799;
         }
