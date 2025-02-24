@@ -52,7 +52,5 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Sentrty error reporting
-        $exceptions->reportable(function (Throwable $e) {
-            Integration::captureUnhandledException($e);
-        });
+        Integration::handles($exceptions);
     })->create();
