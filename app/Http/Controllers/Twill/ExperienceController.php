@@ -62,7 +62,7 @@ class ExperienceController extends BaseController
 
     public function getPermalinkBaseUrl()
     {
-        return request()->getScheme() . '://' . config('app.url') . '/interactive-features/';
+        return config('app.url') . '/interactive-features/';
     }
 
     protected function previewData($item)

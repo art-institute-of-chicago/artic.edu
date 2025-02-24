@@ -79,7 +79,7 @@ class SendConfirmations extends Command
         $senderName = config('sendgrid.name');
         $templateId = config('sendgrid.template_id');
 
-        $baseUrl = config('aic.protocol') . '://' . config('app.url');
+        $baseUrl = config('app.url');
         $tourUrl = $baseUrl . route('my-museum-tour.show', [ 'id' => $model->id ], false);
 
         $dynamicContent = [
