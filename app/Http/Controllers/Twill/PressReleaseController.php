@@ -29,7 +29,7 @@ class PressReleaseController extends BaseController
 
     protected function formData($request)
     {
-        $baseUrl = '//' . config('app.url') . '/press/press-releases/' . request('pressRelease') . '/';
+        $baseUrl = config('app.url') . '/press/press-releases/' . request('pressRelease') . '/';
 
         return [
             'baseUrl' => $baseUrl,

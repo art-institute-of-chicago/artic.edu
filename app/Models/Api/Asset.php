@@ -91,7 +91,7 @@ class Asset extends BaseApiModel
     {
         switch ($this->api_model) {
             case 'videos':
-                return '//' . config('app.url') . '/videos/' . $this->id;
+                return config('app.url') . '/videos/' . $this->id;
             case 'articles':
             case 'sites':
                 return $this->web_url;
