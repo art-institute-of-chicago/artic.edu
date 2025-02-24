@@ -71,7 +71,7 @@ class GeneratePdfs extends Command
         if (empty($route)) {
             return false;
         }
-        $baseUrl = config('aic.protocol') . '://' . config('app.url');
+        $baseUrl = config('app.url');
         $fullUrl = $baseUrl . $this->path($model, $route);
 
         // Now, produce the PDF

@@ -105,7 +105,7 @@ class MyMuseumTourController extends FrontController
     {
         $myMuseumTour = MyMuseumTour::findOrFail($id);
 
-        $baseUrl = config('aic.protocol') . '://' . config('app.url');
+        $baseUrl = config('app.url');
         $fullUrl = $baseUrl . route('my-museum-tour.show', [ 'id' => $myMuseumTour->id ], false);
 
         $options = new QROptions(

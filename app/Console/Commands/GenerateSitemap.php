@@ -30,7 +30,7 @@ class GenerateSitemap extends Command
 
     public function handle()
     {
-        $this->prefix = config('sitemap.base_url') ?? ('https://' . config('app.url'));
+        $this->prefix = config('sitemap.base_url') ?? config('app.url');
         $this->prefix = rtrim($this->prefix, '/');
 
         $this->crawlPrefix = config('sitemap.crawl_url') ?? $this->prefix;
