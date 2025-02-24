@@ -13,7 +13,7 @@ class AuthorController extends BaseController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('author') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/authors/' . $item->id . '/';
+        $baseUrl = config('app.url') . '/authors/' . $item->id . '/';
 
         return [
             'baseUrl' => $baseUrl,

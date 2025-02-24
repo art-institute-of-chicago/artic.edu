@@ -15,7 +15,7 @@ class ArtistController extends BaseApiController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('artist') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/artists/' . $item->datahub_id . '/';
+        $baseUrl = config('app.url') . '/artists/' . $item->datahub_id . '/';
 
         return [
             'baseUrl' => $baseUrl,

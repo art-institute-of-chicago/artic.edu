@@ -35,7 +35,7 @@ class DigitalPublicationController extends BaseController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('digitalPublication') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/digital-publications/' . $item->id . '/';
+        $baseUrl = config('app.url') . '/digital-publications/' . $item->id . '/';
         $heroBackgroundColors = collect(config('aic.branding.digital_publications.colors'))
             ->mapWithKeys(fn ($hexColor) => [$hexColor => $hexColor]);
 

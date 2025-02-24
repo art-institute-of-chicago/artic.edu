@@ -33,7 +33,7 @@ class HighlightController extends BaseController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('highlight') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/highlights/' . request('highlight') . '/';
+        $baseUrl = config('app.url') . '/highlights/' . request('highlight') . '/';
 
         return [
             'autoRelated' => $this->getAutoRelated($item),
