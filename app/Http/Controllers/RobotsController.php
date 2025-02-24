@@ -8,7 +8,7 @@ class RobotsController extends FrontController
 {
     public function index(Request $request)
     {
-        if (config('app.env') === 'production' && config('app.url') === $request->getHttpHost()) {
+        if (config('app.env') === 'production' && config('app.url') === $request->getSchemeAndHttpHost()) {
             return response()
                 ->view('site.robots')
                 ->header('Content-Type', 'text/plain');
