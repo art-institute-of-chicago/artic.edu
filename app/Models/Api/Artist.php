@@ -22,6 +22,10 @@ class Artist extends BaseApiModel
     protected $presenter = 'App\Presenters\Admin\ArtistPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArtistPresenter';
 
+    public $mediasParams = [
+        'null' => [],
+    ];
+
     protected $artworks;
 
     public function getTypeAttribute()
