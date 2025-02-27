@@ -1,6 +1,6 @@
 @php
-    $leftImage = $block->getImgixTileSource('left_image');
-    $rightImage = $block->getImgixTileSource('right_image');
+    $leftImage = \App\Helpers\ImageHelpers::getImgixTileSource($block, 'left_image');
+    $rightImage = \App\Helpers\ImageHelpers::getImgixTileSource($block, 'right_image');
 
     $referenceImage = $block->imageAsArray('left_image', 'default');
 @endphp

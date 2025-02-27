@@ -99,7 +99,7 @@
 
                 if (($block->input('is_gallery_zoomable') ?? false) || $item->input('is_zoomable')) {
                     if (isset($mediaItem['media'])) {
-                        $mediaItem['media']['iiifId'] = $item->getImgixTileSource('image', 'desktop');
+                        $mediaItem['media']['iiifId'] = \App\Helpers\ImageHelpers::getImgixTileSource($item, 'image', 'desktop');
                     }
                 }
 
