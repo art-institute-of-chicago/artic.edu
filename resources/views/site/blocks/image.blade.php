@@ -34,7 +34,7 @@
                 'restrict' => $image['restict'] ?? false,
                 'fullscreen' => $isZoomable,
                 'iiifId' => $isZoomable
-                    ? $block->getImgixTileSource('image', 'desktop')
+                    ? \App\Helpers\ImageHelpers::getImgixTileSource($block, 'image', 'desktop')
                     : null,
             ],
             'showUrl' => !empty($block->input('image_link')),
