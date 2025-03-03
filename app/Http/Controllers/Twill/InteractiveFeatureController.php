@@ -39,8 +39,8 @@ class InteractiveFeatureController extends BaseController
             QuickFilter::make()
             ->queryString('archived')
             ->label('Archived')
-            ->amount(fn() => $this->repository->archived()->count())
-            ->apply(fn(Builder $query) => $query->archived())
+            ->amount(fn () => $this->repository->archived()->count())
+            ->apply(fn (Builder $query) => $query->archived())
         );
 
         return $filters;
