@@ -101,7 +101,7 @@
     @endif
   </div>
 
-  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium+">
+  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }}">
     @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
     @endcomponent
