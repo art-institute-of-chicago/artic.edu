@@ -68,6 +68,8 @@ return [
         'upload_manifest_file',
     ],
     'browser_route_prefixes' => [
+        'digitalPublications' => 'collection.articlesPublications',
+        'publications' => 'collection.articlesPublications',
         'events' => 'exhibitionsEvents',
         'exhibitions' => 'exhibitionsEvents',
         'highlights' => 'collection',
