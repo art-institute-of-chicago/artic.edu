@@ -257,6 +257,7 @@ class LandingPagesController extends FrontController
             case $types->search('Publications'):
                 $viewData = [
                     'publications' => PrintedPublication::all(),
+                    'subnav' => collect($blockHeadings)->all(),
                 ];
                 break;
 
