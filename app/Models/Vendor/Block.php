@@ -13,6 +13,7 @@ class Block extends BaseModel
     use HasMedias;
 
     public const GALLERY_ITEM_TYPE_CUSTOM = 'custom';
+    public const GALLERY_ITEM_TYPE_CUSTOM_WITH_LINK = 'custom_with_link';
     public const GALLERY_ITEM_TYPE_ARTWORK = 'artwork';
 
     public function setAttribute($key, $value)

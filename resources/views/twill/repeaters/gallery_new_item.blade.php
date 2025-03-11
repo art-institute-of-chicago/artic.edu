@@ -9,6 +9,10 @@
             'label' => 'Custom',
         ],
         [
+            'value' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM_WITH_LINK,
+            'label' => 'Custom with link',
+        ],
+        [
             'value' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK,
             'label' => 'Artwork',
         ]
@@ -55,6 +59,40 @@
     <x-twill::checkbox
         name='is_zoomable'
         label='Make this image modal zoomable'
+    />
+</x-twill::formConnectedFields>
+
+<x-twill::formConnectedFields
+    field-name='gallery_item_type'
+    field-values="{{ \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM_WITH_LINK }}"
+    :render-for-blocks='true'
+>
+    <x-twill::medias
+        name='image'
+        label='Image'
+        :max='1'
+    />
+
+    <x-twill::wysiwyg
+        name='captionTitle'
+        label='Caption title'
+        :toolbar-options="[ 'italic', 'link' ]"
+    />
+
+    <x-twill::wysiwyg
+        name='captionText'
+        label='Caption text'
+        :toolbar-options="[ 'italic', 'link' ]"
+    />
+
+    <x-twill::input
+        name='linkUrl'
+        label='Link URL'
+    />
+    j
+    <x-twill::input
+        name='linkLabel'
+        label='Link Label'
     />
 </x-twill::formConnectedFields>
 
