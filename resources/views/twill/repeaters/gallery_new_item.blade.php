@@ -27,6 +27,7 @@
     field-name='gallery_item_type'
     field-values="{{ \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM }}"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
     <x-twill::medias
         name='image'
@@ -62,6 +63,7 @@
     field-name='gallery_item_type'
     field-values="{{ \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK }}"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
     <x-twill::browser
         name='artworks'

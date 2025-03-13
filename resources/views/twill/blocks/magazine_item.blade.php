@@ -73,6 +73,7 @@
     field-name='feature_type'
     field-values="{{ \App\Models\MagazineItem::ITEM_TYPE_CUSTOM }}"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
     <x-twill::medias
         name='listing_image'

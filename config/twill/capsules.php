@@ -17,8 +17,7 @@ return [
         'requests' => 'Http\Requests',
     ],
 
-    'list' => [
-    ],
+    'list' => [],
 
     'capsule_config_prefix' => 'twill.capsule',
     'capsule_repository_prefix' => env('CAPSULE_REPOSITORY_PREFIX', 'area17')

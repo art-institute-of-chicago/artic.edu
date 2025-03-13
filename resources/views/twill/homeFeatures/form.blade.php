@@ -115,6 +115,7 @@
         field-name="_featureType"
         field-values="custom"
         :render-for-blocks="false"
+        :keep-alive='true'
     >
         <x-twill::input
             name='tag'

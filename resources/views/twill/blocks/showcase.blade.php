@@ -62,6 +62,7 @@
     field-name='theme'
     field-values="rlc"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::select

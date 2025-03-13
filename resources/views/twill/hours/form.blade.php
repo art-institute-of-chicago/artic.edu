@@ -46,6 +46,7 @@
         field-name='monday_is_closed'
         :field-values="false"
         :render-for-blocks='false'
+        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -86,6 +87,7 @@
         field-name='tuesday_is_closed'
         :field-values="false"
         :render-for-blocks='false'
+        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -126,6 +128,7 @@
         field-name='wednesday_is_closed'
         :field-values="false"
         :render-for-blocks='false'
+        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -166,6 +169,7 @@
         field-name='thursday_is_closed'
         :field-values="false"
         :render-for-blocks='false'
+        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -206,6 +210,7 @@
         field-name='friday_is_closed'
         :field-values="false"
         :render-for-blocks='false'
+        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -246,6 +251,7 @@
         field-name='saturday_is_closed'
         :field-values="false"
         :render-for-blocks='false'
+        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -286,6 +292,7 @@
         field-name='sunday_is_closed'
         :field-values="false"
         :render-for-blocks='false'
+        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>

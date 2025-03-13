@@ -1,6 +1,7 @@
 <x-twill::formConnectedFields
     field-name='module_type'
     field-values="tooltip"
+    :keep-alive='true'
 >
     <x-twill::input
         name='object_title'
@@ -15,6 +16,7 @@
     <x-twill::formConnectedFields
         field-name='asset_type'
         field-values="standard"
+        :keep-alive='true'
     >
         <x-twill::repeater
             type="tooltip_experience_image"
