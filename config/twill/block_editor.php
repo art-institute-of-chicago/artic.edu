@@ -23,7 +23,7 @@ return [
     'crops' => [],
     'repeaters' => [],
 
-    'core_icons' => dirname(__DIR__) . '/frontend/icons',
+    'core_icons' => base_path('frontend/icons'),
 
     'directories' => [
         'source' => [
@@ -50,7 +50,7 @@ return [
             ],
 
             'icons' => [
-                dirname(__DIR__) . '/frontend/icons',
+                base_path('frontend/icons'),
                 resource_path('views/twill/icons'),
             ],
         ],
