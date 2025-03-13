@@ -18,6 +18,8 @@ return [
     ],
 
     'list' => [
+        // ['name' => 'Artists', 'enabled' => true],
+        // ['name' => 'Posts', 'enabled' => true],
     ],
 
     'capsule_config_prefix' => 'twill.capsule',
