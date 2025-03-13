@@ -9,7 +9,7 @@ return new class () extends Migration {
     {
         if (Schema::hasTable('fileables') && Schema::hasColumn('fileables', 'locale')) {
             Schema::table('fileables', function (Blueprint $table) {
-                $table->string('locale', 7)->index()->change();
+                $table->string('locale', 7)->change();
             });
         }
     }
@@ -18,7 +18,7 @@ return new class () extends Migration {
     {
         if (Schema::hasTable('fileables') && Schema::hasColumn('fileables', 'locale')) {
             Schema::table('fileables', function (Blueprint $table) {
-                $table->string('locale', 6)->index()->change();
+                $table->string('locale', 6)->change();
             });
         }
     }
