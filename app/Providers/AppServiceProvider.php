@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
-use App\Models\Hour;
 use Aic\Hub\Foundation\Library\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\EmbedConverterService;
 use App\Libraries\DamsImageService;
@@ -30,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
         $this->registerEmbedConverterService();
         $this->registerClosureService();
         $this->registerPrintService();
+        $this->registerDebugMethod();
+        $this->registerVendorClasses();
+        $this->registerAliases();
         $this->composeTemplatesViews();
         File::observe(FileObserver::class);
         $this->extendBlade();
