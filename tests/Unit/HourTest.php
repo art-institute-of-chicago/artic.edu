@@ -6,12 +6,9 @@ use App\Models\Hour;
 use App\Models\BuildingClosure;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Tests\CreatesApplication;
 
 class HourTest extends BaseTestCase
 {
-    use CreatesApplication;
-
     private $hour;
     private $hourAllClosed;
     private $hourEdgeCases;
