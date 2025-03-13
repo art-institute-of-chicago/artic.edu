@@ -392,6 +392,7 @@
             field-name='add_to_event_email_series'
             field-values='true'
             :render-for-blocks='false'
+            :keep-alive='true'
         >
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
@@ -433,6 +434,7 @@
                     field-name="$currentSeriesName"
                     field-values='true'
                     :render-for-blocks='false'
+                    :keep-alive='true'
                 >
 
                     <div style="padding-left: 35px">
@@ -522,6 +524,7 @@
                 field-name='send_test_emails'
                 field-values='true'
                 :render-for-blocks='false'
+                :keep-alive='true'
             >
 
                 <hr style="height: 5px; margin: 30px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
@@ -554,6 +557,7 @@
                         field-name='$currentSeriesName'
                         field-values='true'
                         :render-for-blocks='false'
+                        :keep-alive='true'
                     >
 
                         @php
@@ -589,6 +593,7 @@
                                 field-name="$name"
                                 field-values='true'
                                 :render-for-blocks='false'
+                                :keep-alive='true'
                             >
 
                                 <div style="padding-left: 35px">

@@ -73,8 +73,21 @@ return [
         ],
     ],
     'analytics' => [
-        'enabled' => false,
+        'enabled' => true,
+        'property_id' => env('ANALYTICS_PROPERTY_ID'),
         'service_account_credentials_json' => storage_path('app/analytics/service-account-credentials.json'),
     ],
-    'search_endpoint' => 'twill.search',
+    'search_endpoint' => config('twill.admin_route_name_prefix') . 'search',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Twill Auth activity related configuration
+    |--------------------------------------------------------------------------
+    |
+     */
+    'auth_activity_log' => [
+        'login' => false,
+        'logout' => false,
+    ],
+    'auth_activity_causer' => 'users',
 ];
