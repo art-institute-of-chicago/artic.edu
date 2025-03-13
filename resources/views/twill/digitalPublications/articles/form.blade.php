@@ -60,6 +60,7 @@
             field-name='article_type'
             field-values="grouping"
             :render-for-blocks='false'
+            :keep-alive='true'
         >
             <x-twill::wysiwyg
                 name='grouping_description'
@@ -86,6 +87,7 @@
             field-name='article_type'
             field-values="entry"
             :render-for-blocks='false'
+            :keep-alive='true'
         >
             <x-twill::medias
                 name='hero'
@@ -119,6 +121,7 @@
             field-name='article_type'
             :field-values="['about', 'text', 'work']"
             :render-for-blocks='false'
+            :keep-alive='true'
         >
 
             <x-twill::medias
@@ -153,6 +156,7 @@
             field-values="grouping"
             :is-equal='false'
             :render-for-blocks='false'
+            :keep-alive='true'
         >
             <x-twill::input
                 name='label'
