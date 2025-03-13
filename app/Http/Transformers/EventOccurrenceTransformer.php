@@ -9,6 +9,7 @@ class EventOccurrenceTransformer extends ApiTransformer
         return [
             'id' => $item->id,
             'title' => $item->title,
+            'title_display' => $item->title_display,
             'short_description' => $this->getString($item->list_description),
             'description' => $item->present()->copy(),
             'image_url' => $item->present()->imageUrl() ?? null,
