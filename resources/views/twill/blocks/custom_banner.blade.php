@@ -190,6 +190,7 @@
         field-name='button_type'
         field-values="custom"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
 
         <x-twill::input

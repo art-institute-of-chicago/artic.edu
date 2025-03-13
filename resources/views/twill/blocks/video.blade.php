@@ -54,6 +54,7 @@
     field-name='media_type'
     field-values="loop"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
     <x-twill::medias
         name='image'
@@ -83,6 +84,7 @@
     field-name='media_type'
     field-values="youtube"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
     <x-twill::medias
         name='image'
