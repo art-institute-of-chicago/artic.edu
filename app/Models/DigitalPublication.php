@@ -133,9 +133,30 @@ class DigitalPublication extends AbstractModel
     /**
      * For pinboard and listings
      */
+
+    public function getTypeAttribute()
+    {
+        return 'digital_publication';
+    }
     public function getSubtypeAttribute()
     {
         return 'Digital Publication';
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\CatalogCategory', 'catalog_category_digital_publication', 'digital_publication_id');
+    }
+
+    public function scopeByCategories($query, $categories = null): Builder
+    {
+        if (empty($categories)) {
+            return $query;
+        }
+
+        return $query->whereHas('categories', function ($query) use ($categories) {
+            $query->whereIn('category_id', is_array($categories) ? $categories : [$categories]);
+        });
     }
 
     public function scopeIds($query, $ids = []): Builder

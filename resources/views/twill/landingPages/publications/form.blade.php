@@ -101,4 +101,67 @@
 
 @section('fieldsets')
 
+<x-twill::formFieldset title="Custom Content" id="custom_content">
+
+    @formField('block_editor', [
+        'blocks' => BlockHelpers::getBlocksForEditor([
+            '3d_embed',
+            '3d_model',
+            '3d_tour',
+            '360_embed',
+            '360_modal',
+            'artwork',
+            'audio_player',
+            'button',
+            'citation',
+            'collection_block',
+            'custom_banner',
+            'digital_label',
+            'feature_block',
+            'editorial_block',
+            'featured_pages_grid',
+            'gallery_new',
+            'grid',
+            'hr',
+            'image',
+            'image_slider',
+            'media_embed',
+            'membership_banner',
+            'mirador_embed',
+            'mirador_modal',
+            'paragraph',
+            'quote',
+            'showcase',
+            'split_block',
+            'stories_block',
+            'tour_stop',
+            'video',
+            'vtour_embed'
+        ])
+    ])
+
+</x-twill::formFieldset>
+
+<x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
+    <x-twill::input
+        name='meta_title'
+        label='Metadata Title'
+    />
+
+    <x-twill::input
+        name='meta_description'
+        label='Metadata Description'
+        type='textarea'
+    />
+
+
+    <x-twill::input
+        name='search_tags'
+        label='Internal Search Tags'
+        type='textarea'
+    />
+
+    <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
+</x-twill::formFieldset>
+
 @stop
