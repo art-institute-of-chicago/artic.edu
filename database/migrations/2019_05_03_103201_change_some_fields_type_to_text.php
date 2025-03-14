@@ -13,26 +13,26 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('slides', function (Blueprint $table) {
-            $table->text('caption')->change();
-            $table->text('body_copy')->change();
-            $table->text('split_primary_copy')->change();
-            $table->text('seamless_alt_text')->change();
+            $table->text('caption')->nullable()->change();
+            $table->text('body_copy')->nullable()->change();
+            $table->text('split_primary_copy')->nullable()->change();
+            $table->text('seamless_alt_text')->nullable()->change();
         });
 
         Schema::table('experience_images', function (Blueprint $table) {
-            $table->text('alt_text')->change();
-            $table->text('credit_title')->change();
-            $table->text('medium')->change();
-            $table->text('credit_line')->change();
-            $table->text('copyright_notice')->change();
+            $table->text('alt_text')->nullable()->change();
+            $table->text('credit_title')->nullable()->change();
+            $table->text('medium')->nullable()->change();
+            $table->text('credit_line')->nullable()->change();
+            $table->text('copyright_notice')->nullable()->change();
         });
 
         Schema::table('experience_modals', function (Blueprint $table) {
-            $table->text('image_sequence_caption')->change();
-            $table->text('alt_text')->change();
-            $table->text('medium')->change();
-            $table->text('credit_line')->change();
-            $table->text('copyright_notice')->change();
+            $table->text('image_sequence_caption')->nullable()->change();
+            $table->text('alt_text')->nullable()->change();
+            $table->text('medium')->nullable()->change();
+            $table->text('credit_line')->nullable()->change();
+            $table->text('copyright_notice')->nullable()->change();
         });
     }
 

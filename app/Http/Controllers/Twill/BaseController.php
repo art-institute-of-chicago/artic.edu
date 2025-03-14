@@ -8,7 +8,6 @@ class BaseController extends ModuleController
 {
     protected function setUpController(): void
     {
-        $this->disablePermalink();
         $this->enableSkipCreateModal();
     }
 

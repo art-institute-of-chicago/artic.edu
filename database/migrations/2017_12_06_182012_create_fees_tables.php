@@ -14,7 +14,7 @@ return new class () extends Migration {
             $table->foreign('fee_age_id')->references('id')->on('fee_ages')->onDelete('CASCADE');
             $table->integer('fee_category_id')->unsigned();
             $table->foreign('fee_category_id')->references('id')->on('fee_categories')->onDelete('CASCADE');
-            $table->double('price', 8, 2)->nullable();
+            $table->double('price')->nullable();
         });
     }
 
