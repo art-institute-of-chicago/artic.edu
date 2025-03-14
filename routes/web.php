@@ -50,6 +50,10 @@ use App\Models\Slugs\LandingPageSlug;
 |
 */
 
+Route::get('/up', function () {
+    return response('OK', 200);
+});
+
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 
 Route::get('/today', [RedirectController::class, 'today'])->name('today');
