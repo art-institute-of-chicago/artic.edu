@@ -1,0 +1,13 @@
+.conservation-and-science {
+  .o-gallery {
+    margin-left: unset !important;
+
+    .m-media__img:not(.m-media__img--video) img {
+      max-width: 20vw;
+    }
+  }
+
+  .o-gallery__caption {
+    width: 100%;
+  }
+}
