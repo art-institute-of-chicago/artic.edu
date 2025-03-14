@@ -369,6 +369,11 @@ class LandingPage extends AbstractModel implements Sortable
         return $this->belongsToMany(\App\Models\GenericPage::class, 'landing_page_generic_pages')->withPivot('position')->orderBy('landing_page_generic_pages.position', 'asc');
     }
 
+    public function shouldGenerateSlugOnSave()
+    {
+        return empty($this->slug);
+    }
+
     public function landingPageSlug()
     {
         return $this->hasOne(LandingPageSlug::class, 'slug');
