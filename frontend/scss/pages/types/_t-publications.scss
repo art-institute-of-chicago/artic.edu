@@ -1,0 +1,10 @@
+.o-landingpage__footer.publications {
+    .publications-title-bar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        border-bottom: 1px solid $color__black--10;
+        margin-bottom: 30px;
+    }
+}
