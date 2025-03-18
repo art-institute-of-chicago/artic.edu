@@ -11,4 +11,9 @@ class PrintedPublicationPresenter extends PagePresenter
             'slug' => $this->entity->getSlug(),
         ]);
     }
+
+    public function type()
+    {
+        return \Illuminate\Support\Str::title(\Illuminate\Support\Str::replace('_', ' ', $this->entity->type));
+    }
 }
