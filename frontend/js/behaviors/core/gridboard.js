@@ -5,8 +5,6 @@ const gridboard = function(container) {
     let colCount = 0;
     let cols;
     let active = false;
-    let btnRandoms = Array.from(container.querySelectorAll('.o-gridboard__btn-random'));
-    let btnPages = Array.from(container.querySelectorAll('.o-gridboard__btn-page'));
     const re = /([0-9])-col@(\w*)/gi;
 
     function _getColCounts(classes) {
@@ -23,17 +21,16 @@ const gridboard = function(container) {
 
     function _unpositionBlocks() {
         if (active) {
-            forEach(container.getElementsByClassName('o-gridboard')[0].children, function(index, block) {
-                block.style.left = '';
-                block.style.top = '';
-                block.style.height = '';
-                block.classList.remove('s-positioned');
-            });
             container.getElementsByClassName('o-gridboard')[0].style.height = '';
         }
     }
 
     function _positionBlocks(resetPreviousPositions) {
+        // When positioning blocks, first clear positioning state but keep coordinates for animation
+        if (resetPreviousPositions) {
+            _unpositionBlocks();
+        }
+        
         let allBlocks = container.getElementsByClassName('o-gridboard')[0].children;
 
         let blocks = Array.from(allBlocks).filter(child => {
@@ -46,67 +43,71 @@ const gridboard = function(container) {
 
         // Get the top margin of the first block
         let firstChild = blocks[0];
-        firstChild.classList.add('s-repositioning');
         let marginTop = _getMarginTop(firstChild);
         marginTop = typeof marginTop === 'number' ? marginTop : 60; // Default margin top to 60px if calculation fails
-        firstChild.classList.remove('s-repositioning');
 
         let colWidth = firstChild.offsetWidth;
         let marginLeft = (container.getElementsByClassName('o-gridboard')[0].offsetWidth - colWidth * colCount) / (colCount - 1);
 
+        // Initialize rows structure with proper dimensions based on current colCount
         let rows = [];
-        let currentRow = [];
-        let currentRowHeight = 0;
-
-        // Loop through each block and position them based on the column layout
+        let rowHeights = [];
+        
+        // Pre-calculate the rows needed based on the number of blocks and colCount
+        const totalRows = Math.ceil(blocks.length / colCount);
+        for (let i = 0; i < totalRows; i++) {
+            rows[i] = [];
+            rowHeights[i] = 0;
+        }
+        
+        // First pass: assign blocks to rows
         forEach(blocks, function(index, block) {
-            if (
-                !block.classList.contains('s-positioned') ||
-                resetPreviousPositions
-            ) {
-              let colIndex = index % colCount;
-                let rowIndex = Math.floor(index / colCount);
-
-                if (rowIndex !== rows.length) {
-                  rows.push(currentRow);
-                  currentRow = [];
-                  currentRowHeight = 0;
-                }
-
-                currentRow.push(block);
-
-                // Calculate the top position based on the tallest element in the previous row
-                let prevTop = 0;
-                let prevHeight = 0
-
-                if (rowIndex !== 0) {
-                  prevTop = rows[rowIndex - 1][0].offsetTop;
-                  prevHeight = rows[rowIndex - 1].reduce((maxHeight, el) => {
-                    return Math.max(maxHeight, el.offsetHeight);
-                  }, 0);
-                }
-                let topPosition = prevHeight + prevTop + marginTop;
-
-
+            const rowIndex = Math.floor(index / colCount);
+            rows[rowIndex].push(block);
+        });
+        
+        // Second pass: position blocks and calculate heights
+        let totalHeight = 0;
+        
+        for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
+            const row = rows[rowIndex];
+            let rowTop = 0;
+            
+            // Calculate top position based on previous rows
+            if (rowIndex === 0) {
+                rowTop = 0;
+            } else {
+                rowTop = totalHeight + marginTop + 25;
+            }
+            
+            // Position blocks in the current row
+            forEach(row, function(colIndex, block) {
                 // Set the `top` and `left` positions for the block
                 let leftPosition = colIndex * (colWidth + marginLeft);
+                
                 block.style.position = "absolute";
                 block.style.left = `${Math.round(leftPosition)}px`;
-                block.style.top = `${Math.round(topPosition)}px`;
-
-                currentRowHeight = Math.max(currentRowHeight, block.offsetHeight);
-
-                container.getElementsByClassName('o-gridboard')[0].style.height = (topPosition + currentRowHeight) + 'px';
-
+                block.style.top = `${Math.round(rowTop)}px`;
+                
+                // Update the maximum height for this row
+                rowHeights[rowIndex] = Math.max(rowHeights[rowIndex], block.offsetHeight);
+                
                 // Add the 's-positioned' class after a delay to mark it as positioned
+                // and remove the repositioning class to ensure proper animation
                 setTimeout(function() {
                     block.classList.add('s-positioned');
-                }, 250);
-
-                // Trigger a custom event to signal that the page has been updated
-                triggerCustomEvent(document, 'page:updated');
-            }
-        });
+                }, 50);
+            });
+            
+            // Update the total height after this row
+            totalHeight = rowTop + rowHeights[rowIndex];
+        }
+        
+        // Set the container height
+        container.getElementsByClassName('o-gridboard')[0].style.height = totalHeight + 'px';
+        
+        // Trigger a custom event to signal that the page has been updated
+        triggerCustomEvent(document, 'page:updated');
     }
 
     function _setupBlocks() {
@@ -129,84 +130,24 @@ const gridboard = function(container) {
     }
 
     function _resized() {
+        // Keep track of previous column count to detect changes
+        const previousColCount = colCount;
+        
         setTimeout(function() {
             _getColCounts(container.getElementsByClassName('o-gridboard')[0].className);
+            
+            // Always call setupBlocks which will reposition all items with animation
             _setupBlocks();
         }, 32);
-    }
-
-    function _executeRandom(tag, hash) {
-      let blocks = container.getElementsByClassName('o-gridboard')[0].children;
-      if (blocks.length === 0) {
-          return;
-      }
-
-      let hashes = hash.split('');
-
-      // Loop through each block and position them based on the column layout
-      forEach(blocks, function(index, block) {
-        if (hashes[index] == '1') {
-          block.style.display = 'flex';
-        }
-        else {
-          block.style.display = 'none';
-        }
-      });
-      setTimeout(function() {
-        _setupBlocks();
-        triggerCustomEvent(document, 'page:updated');
-        // Update history
-        triggerCustomEvent(document, 'history:pushstate', {
-          url: '?tag=' + kebabCase(tag),
-        });
-      }, 32);
-    }
-
-    function _executePage(page) {
-      let blocks = container.getElementsByClassName('o-gridboard')[0].children;
-      if (blocks.length === 0) {
-          return;
-      }
-
-      // Loop through each block and position them based on the column layout
-      forEach(blocks, function(index, block) {
-        if ((Math.floor(index / 50) + 1) == page) {
-          block.style.display = 'flex';
-        }
-        else {
-          block.style.display = 'none';
-        }
-      });
-      setTimeout(function() {
-        _setupBlocks();
-        triggerCustomEvent(document, 'page:updated', {'page': page});
-
-        triggerCustomEvent(document, 'history:pushstate', {
-          url: '?page=' + page,
-        });
-      }, 32);
-    }
-
-    function kebabCase(string) {
-      return string.replace(/\W+/g, " ")
-        .split(/ |\B(?=[A-Z])/)
-        .map(word => word.toLowerCase())
-        .join('-');
     }
 
     function _init() {
         _getColCounts(container.getElementsByClassName('o-gridboard')[0].className);
 
-        let page = getUrlParameterByName('page', window.location.search);
-
-        if (page) {
-          _executePage(page);
-        }
-        else {
-            setTimeout(function() {
-              _setupBlocks();
-          }, 32); // Add a slight delay for the initial setup similar to how resize behaves
-        }
+        setTimeout(function() {
+            _setupBlocks();
+        }, 32); // Add a slight delay for the initial setup similar to how resize behaves
+        
         container.getElementsByClassName('o-gridboard')[0].addEventListener(
             'gridboard:contentAdded',
             _contentAdded,
@@ -214,24 +155,13 @@ const gridboard = function(container) {
         );
         document.addEventListener('resized', _resized, false);
         document.addEventListener('ajaxPageLoad:complete', _resized, false);
-        forEach(btnRandoms, function(index, btn) {
-          btn.addEventListener('click', _executeRandom.bind(this, btn.innerText, btn.getAttribute('data-hash')), false);
-        });
-        forEach(btnPages, function(index, btn) {
-          btn.addEventListener('click', _executePage.bind(this, btn.innerText), false);
-        });
+        document.addEventListener('filter:updated', _resized);
     }
 
     this.destroy = function() {
         container.removeEventListener('gridboard:contentAdded', _contentAdded);
         document.removeEventListener('resized', _resized);
         document.removeEventListener('ajaxPageLoad:complete', _resized);
-        forEach(btnPages, function(index, btn) {
-          btn.removeEventListener('click', _executePage.bind(this, btn.innerText), false);
-        });
-        forEach(btnRandoms, function(index, btn) {
-          btn.removeEventListener('click', _executeRandom.bind(this, btn.innerText, btn.getAttribute('data-hash')), false);
-        });
         A17.Helpers.purgeProperties(this);
     };
 
