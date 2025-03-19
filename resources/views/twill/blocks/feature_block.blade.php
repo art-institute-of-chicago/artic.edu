@@ -53,12 +53,14 @@
     field-name='theme'
     field-values="editorial"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::formConnectedFields
         field-name='variation'
         field-values="default"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
 
         <x-twill::input
@@ -83,6 +85,7 @@
     field-name='theme'
     field-values="default"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::input
@@ -164,6 +167,7 @@
     field-name='feature_type'
     field-values="articles"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::select
@@ -200,6 +204,7 @@
     field-name='feature_type'
     field-values="digital_publications"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::select
@@ -236,6 +241,7 @@
     field-name='feature_type'
     field-values="events"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::checkbox
@@ -268,6 +274,7 @@
     field-name='feature_type'
     field-values="exhibitions"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::select
@@ -318,6 +325,7 @@
     field-name='feature_type'
     field-values="experiences"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::select
@@ -354,6 +362,7 @@
     field-name='feature_type'
     field-values="highlights"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::select
@@ -390,6 +399,7 @@
     field-name='feature_type'
     field-values="videos"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::select

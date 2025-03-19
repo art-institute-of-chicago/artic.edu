@@ -147,6 +147,7 @@
     field-name='variation'
     field-values="video"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::formColumns>
@@ -197,6 +198,7 @@
     field-name='variation'
     field-values="4-across"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::formColumns>

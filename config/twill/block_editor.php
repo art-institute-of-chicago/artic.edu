@@ -14,7 +14,6 @@ return [
     'block_single_layout' => 'layouts.block',
     'block_views_path' => 'site.blocks', // Path where a view file per block type is stored
     'block_views_mappings' => [], // Custom mapping of block types and views
-    'block_preview_render_childs' => false,
     'block_presenter_path' => App\Presenters\Admin\BlockPresenter::class, // Allow to set a custom presenter to a block model
     // Indicates if blocks templates should be inlined in HTML.
     // When setting to false, make sure to build Twill with your all your custom blocks.
@@ -125,6 +124,9 @@ return [
 
     ],
     'repeaters' => [],
+
+    'core_icons' => base_path('frontend/icons'),
+
     'directories' => [
         'source' => [
             'blocks' => [
@@ -150,8 +152,8 @@ return [
             ],
 
             'icons' => [
-                base_path('vendor/area17/twill/frontend/icons'),
-                resource_path('views/admin/icons'),
+                base_path('frontend/icons'),
+                resource_path('views/twill/icons'),
             ],
         ],
 

@@ -33,6 +33,7 @@
     field-name='header_variation'
     :field-values="['default', 'small', 'cta']"
     :render-for-blocks='false'
+    :keep-alive='true'
 >
 
     <x-twill::medias
@@ -59,6 +60,7 @@
     field-name='header_variation'
     field-values="cta"
     :render-for-blocks='false'
+    :keep-alive='true'
 >
 
     <x-twill::input

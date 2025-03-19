@@ -37,6 +37,7 @@
     field-name='header_variation'
     :field-values="['default', 'small', 'cta']",
     :render-for-blocks='false'
+    :keep-alive='true'
 >
 
     <x-twill::medias
@@ -63,6 +64,7 @@
     field-name='header_variation'
     field-values="cta"
     :render-for-blocks='false'
+    :keep-alive='true'
 >
 
     <x-twill::input
@@ -86,6 +88,7 @@
     field-name='header_variation'
     field-values="feature"
     :render-for-blocks='false'
+    :keep-alive='true'
 >
 
     <x-twill::formFieldset title="Home Features" id="home-features">
@@ -107,6 +110,7 @@
     field-name='header_variation'
     field-values="my_museum_tour"
     :render-for-blocks='false'
+    :keep-alive='true'
 >
     <x-twill::wysiwyg
         name='labels.header_my_museum_tour_text'
