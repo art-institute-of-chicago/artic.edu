@@ -11,6 +11,10 @@
             $themes = ['default', 'rlc'];
             $mediaTypes = ['image', 'video'];
             break;
+        case 'Publications';
+            $themes = ['default', 'publications'];
+            $mediaTypes = ['image', 'video'];
+            break;
         default:
             $themes = ['default'];
             $mediaTypes = ['image', 'video'];

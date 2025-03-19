@@ -165,6 +165,33 @@
         }
     }
 
+    &.showcase--publications {
+        flex-direction: row-reverse !important;
+        background-color: unset !important;
+
+        .showcase-title {
+            margin: 0px !important;
+        }
+
+        .m-showcase-wrapper {
+            flex-direction: row-reverse;
+
+            .showcase-header {
+                flex-basis: 100%;
+                order: -1;
+            }
+
+            @include breakpoint('xsmall') {
+                flex-direction: column-reverse;
+
+                .showcase-header {
+                    flex-basis: fit-content;
+                    order: 1;
+                }
+            }
+        }
+    }
+
     &.showcase--rlc {
         .showcase-header {
             letter-spacing: 1.89px;

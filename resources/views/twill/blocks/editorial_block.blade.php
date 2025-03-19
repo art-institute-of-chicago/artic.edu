@@ -2,24 +2,38 @@
     $currentUrl = explode('/', request()->url());
     $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
     $categoriesList = \App\Models\Category::all()->pluck('name', 'id')->toArray();
-    $endpoints = [
-        [
-            'label' => 'Article',
-            'name' => 'collection.articlesPublications.articles'
-        ],
-        [
-            'label' => 'Highlight',
-            'name' => 'collection.highlights'
-        ],
-        [
-            'label' => 'Interactive feature',
-            'name' => 'collection.interactiveFeatures.experiences'
-        ],
-        [
-            'label' => 'Video',
-            'name' => 'collection.articlesPublications.videos'
-        ],
-    ];
+
+    if($type !== 'Publications') {
+        $endpoints = [
+            [
+                'label' => 'Article',
+                'name' => 'collection.articlesPublications.articles'
+            ],
+            [
+                'label' => 'Highlight',
+                'name' => 'collection.highlights'
+            ],
+            [
+                'label' => 'Interactive feature',
+                'name' => 'collection.interactiveFeatures.experiences'
+            ],
+            [
+                'label' => 'Video',
+                'name' => 'collection.articlesPublications.videos'
+            ],
+        ];
+    } else {
+        $endpoints = [
+            [
+                'label' => 'Digital Publications',
+                'name' => 'collection.articlesPublications.digitalPublications'
+            ],
+            [
+                'label' => 'Print Publications',
+                'name' => 'collection.articlesPublications.printedPublications'
+            ],
+        ];
+    }
 
     $params = [
         'published' => true,
@@ -29,6 +43,9 @@
     switch ($type) {
         case 'Editorial':
             $themes = ['default'];
+            break;
+        case 'Publications';
+            $themes = ['default', 'publications'];
             break;
         default:
             $themes = ['default'];
@@ -89,6 +106,37 @@
 
 </x-twill::formConnectedFields>
 
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="publications"
+    :render-for-blocks='true'
+>
+
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
+            [
+                'value' => 'feature-5-side',
+                'label' => 'Feature 5 Side',
+            ],
+            [
+                'value' => 'video',
+                'label' => 'Video',
+            ],
+            [
+                'value' => '3-across',
+                'label' => '3 Across',
+            ],
+            [
+                'value' => '4-across',
+                'label' => '4 Across',
+            ]
+        ]"
+    />
+
+</x-twill::formConnectedFields>
+
 <x-twill::input
     name='heading'
     label='Heading'
@@ -110,19 +158,20 @@
 >
 
     @php
-        $options = collect($categoriesList)->map(function($name, $id) {
+        $categories = collect($categoriesList)->map(function($name, $id) {
             return [
                 'value' => $id,
                 'label' => $name,
             ];
-        })->toArray();
+        })->values()->toArray();
+
     @endphp
 
     <x-twill::multi-select
         name='categories'
         label='Categories'
         placeholder='Add categories'
-        :options="$options"
+        :options='$categories'
     />
 
 </x-twill::formConnectedFields>
@@ -136,6 +185,7 @@
     <x-twill::browser
         name='stories'
         label='Stories'
+        label="{{ $type == 'Editorial' ? 'Stories' : 'Items' }}"
         :max='5'
         :modules='$endpoints'
         :params='$params'
