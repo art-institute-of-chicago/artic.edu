@@ -112,7 +112,6 @@
                                         "restrict" => false,
                                     ];
                                 @endphp
-                                what
                                 <a href="{{ url('artworks/' . $artwork['id']) }}/"
                                    aria-label="View full artwork page for {{ $artwork['title'] }}{{ isset($artwork['thumbnail']['alt_text']) ? ': ' . $artwork['thumbnail']['alt_text'] : '' }}">
                                     @component('components.atoms._img')
