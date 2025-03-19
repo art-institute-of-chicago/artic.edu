@@ -52,7 +52,7 @@ class LandingPageController extends BaseController
     protected function formData($request)
     {
         $types = collect(LandingPage::TYPES);
-        $baseUrl = '//' . config('app.url') . '/';
+        $baseUrl = config('app.url') . '/';
 
         return [
             'defaultType' => $types->search(LandingPage::DEFAULT_TYPE),

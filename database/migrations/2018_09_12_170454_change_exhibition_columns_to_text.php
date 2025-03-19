@@ -14,7 +14,7 @@ return new class () extends Migration {
     {
         Schema::table('exhibitions', function (Blueprint $table) {
             $table->text('title')->change();
-            $table->text('header_copy')->change();
+            $table->text('header_copy')->nullable()->change();
         });
     }
 
@@ -27,7 +27,7 @@ return new class () extends Migration {
     {
         Schema::table('exhibitions', function (Blueprint $table) {
             $table->string('title')->change();
-            $table->string('header_copy')->change();
+            $table->string('header_copy')->nullable()->change();
         });
     }
 };

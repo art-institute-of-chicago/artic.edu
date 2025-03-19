@@ -13,8 +13,6 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        $this->dropAllIndexes('digital_catalog_page');
-        $this->dropAllIndexes('page_printed_catalog');
 
         $this->rename('digital_catalog', 'digital_publication');
         $this->rename('printed_catalog', 'printed_publication');
@@ -109,24 +107,24 @@ return new class () extends Migration {
      */
     private function dropAllIndexes($tableName)
     {
-        $indexes = Schema::getConnection()->getDoctrineSchemaManager()->listTableIndexes($tableName);
-        $foreignKeys = Schema::getConnection()->getDoctrineSchemaManager()->listTableForeignKeys($tableName);
+        $indexes = Schema::getIndexes($tableName);
+        $foreignKeys = Schema::getForeignKeys($tableName);
 
         if (env('APP_ENV') != 'testing') {
             foreach ($foreignKeys as $foreignKey) {
                 Schema::table($tableName, function (Blueprint $table) use ($foreignKey) {
-                    $table->dropForeign($foreignKey->getName());
+                    $table->dropForeign($foreignKey['name']);
                 });
             }
         }
 
         foreach ($indexes as $index) {
-            if ($index->isPrimary()) {
+            if (isset($index['primary']) && $index['primary']) {
                 continue;
             }
 
             Schema::table($tableName, function (Blueprint $table) use ($index) {
-                $table->dropIndex($index->getName());
+                $table->dropIndex($index['name']);
             });
         }
     }

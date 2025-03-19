@@ -59,8 +59,7 @@ class AbstractModel extends Model
 
     public function getPreviewUrl($baseUrl)
     {
-        // $baseUrl is missing protocol, starts with //, and ends with /
-        // config('app.url') should have no https://
-        return '//' . config('app.url') . '/p/' . encrypt($baseUrl . $this->slug);
+        // $baseUrl ends with /
+        return config('app.url') . '/p/' . encrypt($baseUrl . $this->slug);
     }
 }
