@@ -123,7 +123,7 @@ return [
         ],
 
     ],
-    
+
     'repeaters' => [],
 
     'core_icons' => base_path('frontend/icons'),
