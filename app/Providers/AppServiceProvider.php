@@ -79,7 +79,7 @@ class AppServiceProvider extends ServiceProvider
             'exhibitions' => 'App\Models\Exhibition',
             'exhibitionPressRooms' => 'App\Models\ExhibitionPressRoom',
             'departments' => 'App\Models\Department',
-            'blocks' => 'App\Models\Vendor\Block',
+            'blocks' => 'A17\Twill\Models\Block',
         ]);
     }
 
