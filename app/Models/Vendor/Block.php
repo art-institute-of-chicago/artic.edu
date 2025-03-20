@@ -43,4 +43,9 @@ class Block extends BaseModel
 
         return null;
     }
+
+    public function getMorphClass()
+    {
+        return 'blocks';
+    }
 }
