@@ -207,6 +207,9 @@ class Event extends AbstractModel
         self::WEST_BOX => 'West Box',
     ];
 
+    // Number of days to look ahead for upcoming events
+    public const UPCOMING_IN_DAYS = 28;
+
     public $slugAttributes = [
         'title',
     ];
@@ -446,6 +449,13 @@ class Event extends AbstractModel
     public function scopeNotPrivate($query): Builder
     {
         return $query->whereIsPrivate(false);
+    }
+
+    public function scopeUpcoming($query): Builder
+    {
+        return $query->whereHas('eventMetas', function ($query) {
+            $query->where('date', '<=', Carbon::now()->addDays(Event::UPCOMING_IN_DAYS));
+        });
     }
 
     public function scopeFuture($query): Builder
