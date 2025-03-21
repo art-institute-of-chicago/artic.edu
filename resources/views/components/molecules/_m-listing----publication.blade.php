@@ -31,9 +31,9 @@
             </span>
         </span>
         <span class="m-listing__meta">
-            @if (isset($tag))
+            @if (isset($label))
                 @component('components.atoms._type')
-                    {!! $tag !!}
+                    {!! $label !!}
                 @endcomponent
                 <br>
             @endif
