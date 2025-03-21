@@ -213,7 +213,7 @@ const dynamicFilter = function(container) {
               let showItem = false;
               
               // First try to get the title from data attribute
-              let itemTitle = item.getAttribute('data-title');
+              let itemTitle = item.getAttribute('data-filter-title');
               
               // If no data-title attribute, try to find a title element
               if (!itemTitle) {
