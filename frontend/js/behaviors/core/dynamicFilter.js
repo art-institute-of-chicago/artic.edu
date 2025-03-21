@@ -285,12 +285,6 @@ const dynamicFilter = function(container) {
     }
   }
 
-  function resetFilter() {
-    triggerCustomEvent(document, 'filter:reset');
-
-    document.querySelector('[data-filter-default]').classList.add('s-active');
-  }
-
   function _setup() {
     console.log('Setup called, current status:', setup);
     if (!setup) {
