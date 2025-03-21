@@ -26,6 +26,9 @@ const dynamicFilter = function(container) {
           parameter: item.parameter,
           value: paramValue
         });
+      } else {
+        url.searchParams.set('filter', 'all');
+        window.history.pushState({}, '', url);
       }
     });
 
