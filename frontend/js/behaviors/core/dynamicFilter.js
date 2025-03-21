@@ -1,447 +1,342 @@
+// dynamicFilter.js
 import { forEach, triggerCustomEvent } from "@area17/a17-helpers";
-import { dynamicFilterSetup } from ".";
+import getStringSimilarity from '../../functions/core/getStringSimilarity';
+
 
 const dynamicFilter = function(container) {
-
-  // Filter elements
-  const filterButtonsContainer = document.querySelector('[data-filter-buttons]');
-  const filterButtons = filterButtonsContainer ? filterButtonsContainer.querySelectorAll('[data-button-value]') : [];
   const listingContainer = container.querySelector('[data-filter-target]');
-  const filterItems = listingContainer ? listingContainer.querySelectorAll('.m-listing') : [];
-  const dropdownList = document.querySelector('[data-dropdown-list]');
-  const dropdownItems = dropdownList ? dropdownList.querySelectorAll('[data-button-value]') : [];
-  
-  let activeFilter = '';
-  let activeSearchText = '';
-  let lastURLUpdate = 0; // Track last URL update time
-  const URL_UPDATE_DEBOUNCE = 300; // Minimum ms between URL updates
+  const listingItems = listingContainer ? listingContainer.querySelectorAll('.m-listing') : [];
 
+  let setup = false; // State tracking of if setup is done so we don't reflow calling and looping the components
+  let registeredParameters = []; // Parameters pulled from components to evaluate and update
+  
   function initFromUrl() {
     const url = new URL(window.location.href);
+    let castParameters = [];
     
-    // Reset active filter
-    activeFilter = '';
-    activeSearchText = '';
-    
-    // Get filter from URL parameters
-    let filterParam = url.searchParams.get('filter') || '';
-    
-    if (filterParam) {
-      activeFilter = filterParam.split(',')[0].trim();
-    }
-    
-    // Get search text from URL if available
-    const searchParam = url.searchParams.get('search');
-    if (searchParam) {
-      activeSearchText = searchParam;
-    }
-    
-    // If no filter but there's a category, use that
-    if (!activeFilter) {
-      const categoryParam = url.searchParams.get('category');
-      if (categoryParam && categoryParam !== 'all') {
-        activeFilter = categoryParam;
-      }
-    }
-    
-    // Apply initial active states to primary filter buttons
-    if (filterButtonsContainer) {
-      // Handle top-level primary filters
-      const topLevelItems = filterButtonsContainer.querySelectorAll('[data-button-value]');
-      forEach(topLevelItems, function(index, item) {
-        const buttonValue = item.getAttribute('data-button-value');
-        
-        // Check if this button value is our active filter
-        if (buttonValue && buttonValue === activeFilter) {
-          item.classList.add('s-active');
-        } else {
-          item.classList.remove('s-active');
-        }
-      });
-    }
-    
-    // Highlight active dropdown items if it's the active filter
-    if (dropdownList) {
-      forEach(dropdownItems, function(index, item) {
-        const buttonValue = item.getAttribute('data-button-value');
-        
-        if (buttonValue && buttonValue === activeFilter) {
-          item.classList.add('s-active');
-        } else {
-          item.classList.remove('s-active');
-        }
-      });
-    }
-    
-    // Apply initial filtering
-    filterListingItems(false); // Don't update URL when initializing
-  }
-  
-  function setupEventListeners() {
-    document.addEventListener('click', documentClickHandler);
-    
-    // Listen for any filter changes
-    document.addEventListener('filter:updated', function(event) {
-      if (event.data) {
-        let shouldUpdateURL = true;
-        
-        // Check if this is a category filter update
-        if (event.data.value && event.data.value !== 'all') {
-          // Always replace the active filter with the new value
-          activeFilter = event.data.value;
-          // Reset search when using category filters
-          activeSearchText = '';
-        }
-        
-        // Check if this is a search text filter update
-        if (event.data.filterText !== undefined) {
-          activeSearchText = event.data.filterText;
-          // When searching, clear category filter
-          if (activeSearchText) {
-            activeFilter = '';
-            // Deactivate all buttons
-            forEach(filterButtons, function(index, item) {
-              item.classList.remove('s-active');
-            });
-            
-            // Deactivate all dropdown items
-            forEach(dropdownItems, function(index, item) {
-              item.classList.remove('s-active');
-            });
-            
-            // Set the "all" button to active if it exists
-            if (filterButtonsContainer) {
-              const allButton = filterButtonsContainer.querySelector('[data-button-value="all"]');
-              if (allButton) {
-                allButton.classList.add('s-active');
-              }
-            }
-          }
-        }
-        
-        // Check if the event explicitly says not to update URL
-        if (event.data.updateURL === false) {
-          shouldUpdateURL = false;
-        }
-        
-        filterListingItems(shouldUpdateURL);
+    console.log('init from url');
+    console.log(registeredParameters);
+
+    registeredParameters.forEach(item => {
+      const paramValue = url.searchParams.get(item.parameter);
+
+      if (paramValue !== null && (item.value.includes(paramValue) || item.value === "")) {
+        castParameters.push({
+          id: item.id,
+          parameter: item.parameter,
+          value: paramValue
+        });
       }
     });
+
+    if (castParameters.length > 0) {
+      castParameters.forEach(item => {
+        castFilterUpdate(item.id, item.parameter, item.value);
+      });
+    }
+
+    setup = true;
   }
   
-  // Update the URL with current filter value and search text
-  function updateURL() {
-    const now = Date.now();
-    
-    // Debounce URL updates to prevent Safari rate limiting
-    if (now - lastURLUpdate < URL_UPDATE_DEBOUNCE) {
-      return;
-    }
-    
-    lastURLUpdate = now;
-    
+  function castFilterUpdate(id, parameter, value) {
+    triggerCustomEvent(document, 'filter:castUpdate', {
+      id: id,
+      parameter: parameter,
+      value: value,
+    });
+  }
+
+  function updateFilter(parameter, value) {
+    console.log('update filter: param: ' + parameter + ' value: ' + value);
     const url = new URL(window.location.href);
     
-    if (activeFilter) {
-      url.searchParams.set('filter', activeFilter);
+    if (!parameter) {
+      filterItems('filter', 'all');
+    };
+    
+    // If value is undefined, null, empty string, or setup is false, remove the parameter
+    if (value === undefined || value === null || value === '' || !setup) {
+      console.log('no value ' + value);
+      url.searchParams.delete(parameter);
+      window.history.pushState({}, '', url);
+      filterItems();
     } else {
-      url.searchParams.delete('filter');
-      url.searchParams.delete('type');
-      url.searchParams.delete('category');
-    }
-    
-    if (activeSearchText) {
-      url.searchParams.set('search', activeSearchText);
-    } else {
-      url.searchParams.delete('search');
-    }
-    
-    window.history.pushState({}, '', url.toString());
-  }
-  
-  // Set a filter button and update the URL
-  function toggleFilterButton(buttonElement, value) {
-    // Special case for "all" - clear filter
-    if (value === 'all') {
-      // Remove active class from all buttons
-      forEach(filterButtons, function(index, item) {
-        item.classList.remove('s-active');
-      });
+      // Get the current value (if any)
+      const currentValue = url.searchParams.get(parameter);
       
-      // Remove active class from all dropdown items
-      forEach(dropdownItems, function(index, item) {
-        item.classList.remove('s-active');
-      });
-      
-      // Set active class just on the "all" button
-      buttonElement.classList.add('s-active');
-      
-      // Clear filter
-      activeFilter = '';
-    } else {
-      // If clicking the same filter, toggle it off
-      if (value === activeFilter) {
-        activeFilter = '';
-        buttonElement.classList.remove('s-active');
-        
-        // Set the "all" button to active if it exists
-        if (filterButtonsContainer) {
-          const allButton = filterButtonsContainer.querySelector('[data-button-value="all"]');
-          if (allButton) {
-            allButton.classList.add('s-active');
-          }
-        }
-      } 
-      // Otherwise set it as the only active filter
-      else {
-        // First, deactivate all buttons
-        forEach(filterButtons, function(index, item) {
-          item.classList.remove('s-active');
-        });
-        
-        // Deactivate all dropdown items
-        forEach(dropdownItems, function(index, item) {
-          item.classList.remove('s-active');
-        });
-        
-        // Set new active filter
-        activeFilter = value;
-        buttonElement.classList.add('s-active');
-      }
-    }
-    
-    // When toggling category filter, clear search text
-    activeSearchText = '';
-    
-    // Filter items and update URL
-    filterListingItems(true);
-  }
-  
-  // Calculate string similarity for fuzzy search (Levenshtein distance)
-  function getStringSimilarity(a, b) {
-    if (a.length === 0) return b.length;
-    if (b.length === 0) return a.length;
-    
-    a = a.toLowerCase();
-    b = b.toLowerCase();
-    
-    const matrix = [];
-    
-    // Initialize matrix
-    for (let i = 0; i <= b.length; i++) {
-      matrix[i] = [i];
-    }
-    
-    for (let i = 0; i <= a.length; i++) {
-      matrix[0][i] = i;
-    }
-    
-    // Fill matrix
-    for (let i = 1; i <= b.length; i++) {
-      for (let j = 1; j <= a.length; j++) {
-        if (b.charAt(i - 1) === a.charAt(j - 1)) {
-          matrix[i][j] = matrix[i - 1][j - 1];
-        } else {
-          matrix[i][j] = Math.min(
-            matrix[i - 1][j - 1] + 1, // substitution
-            matrix[i][j - 1] + 1,     // insertion
-            matrix[i - 1][j] + 1      // deletion
-          );
-        }
-      }
-    }
-    
-    // Return similarity score (lower is better)
-    return matrix[b.length][a.length];
-  }
-  
-  // Check if an item's title is a close match for the search text
-  function isSearchMatch(item, searchText) {
-    if (!searchText) return true;
-    
-    // First try to get the title from data attribute
-    let itemTitle = item.getAttribute('data-title');
-    
-    // If no data-title attribute, try to find a title element within the item
-    if (!itemTitle) {
-      const titleElement = item.querySelector('.title, h2, h3, h4');
-      if (titleElement) {
-        itemTitle = titleElement.textContent;
-      }
-    }
-    
-    // If still no title found, use any text content
-    if (!itemTitle) {
-      itemTitle = item.textContent;
-    }
-    
-    if (!itemTitle) return false;
-    
-    itemTitle = itemTitle.trim();
-    searchText = searchText.trim();
-    
-    // Exact match
-    if (itemTitle.toLowerCase().includes(searchText.toLowerCase())) {
-      return true;
-    }
-    
-    // For short search terms (2-3 chars), require exact substring match
-    if (searchText.length <= 3) {
-      return itemTitle.toLowerCase().includes(searchText.toLowerCase());
-    }
-    
-    // For longer search terms, use fuzzy matching
-    const words = itemTitle.split(/\s+/);
-    for (const word of words) {
-      // Calculate similarity - lower score is better
-      const similarity = getStringSimilarity(word, searchText);
-      // Allow matches with distance less than 1/3 of the search text length
-      if (similarity <= Math.ceil(searchText.length / 3)) {
-        return true;
-      }
-    }
-    
-    // Also check if any word in the title starts with the search text
-    for (const word of words) {
-      if (word.toLowerCase().startsWith(searchText.toLowerCase())) {
-        return true;
-      }
-    }
-    
-    return false;
-  }
-  
-  // Filter listing items based on active filter and search text
-  function filterListingItems(shouldUpdateURL = true) {
-    if (!filterItems.length) {
-      return;
-    }
-    
-    let visibleCount = 0;
-    
-    // If no active filter and no search text, show everything
-    if (!activeFilter && !activeSearchText) {
-      forEach(filterItems, function(index, item) {
-        item.classList.remove('s-hidden');
-        item.style.display = '';
-        visibleCount++;
-      });
-      
-      // Trigger filter:reset event when there are no active filters
-      triggerCustomEvent(document, 'filter:reset');
-      
-      // Also trigger filter:updated event to maintain compatibility
-      triggerCustomEvent(document, 'filter:updated', { 
-        activeFilter, 
-        activeSearchText,
-        updateURL: false // Prevent additional URL updates from this event
-      });
-      
-      // Trigger layout:refresh event for masonry layout
-      if (typeof(window.A17) !== 'undefined' && window.A17.Helpers && window.A17.Helpers.triggerCustomEvent) {
-        window.A17.Helpers.triggerCustomEvent(document, 'layout:refresh');
-      }
-      
-      // Only update URL if explicitly requested
-      if (shouldUpdateURL) {
-        updateURL();
-      }
-      
-      return;
-    }
-    
-    forEach(filterItems, function(index, item) {
-      const filterValues = item.getAttribute('data-filter-values');
-      
-      let showItem = true;
-      
-      // Check category filter first
-      if (activeFilter && filterValues) {
-        // Parse the item's filter values
-        const itemFilterValues = filterValues.split(',').map(val => val.trim().toLowerCase());
-        const normalizedActiveFilter = activeFilter.toLowerCase().replace(/[_\s-]+/g, '-');
-        
-        // Check if this item matches the active filter
-        showItem = false;
-        for (const itemValue of itemFilterValues) {
-          const normalizedItemValue = itemValue.replace(/[_\s-]+/g, '-');
-          
-          if (normalizedItemValue === normalizedActiveFilter) {
-            showItem = true;
-            break;
-          }
-        }
-      }
-      
-      // If item passes category filter (or no category filter active), 
-      // then check search text match
-      if (showItem && activeSearchText) {
-        showItem = isSearchMatch(item, activeSearchText);
-      }
-      
-      // Show or hide item
-      if (showItem) {
-        item.classList.add('s-positioned');
-        item.style.transition = 'opacity 1s ease, top .5s ease, left .5s ease';
-        item.style.opacity = "0";
-        item.style.display = '';
-        item.style.opacity = "1";
-        visibleCount++;
+      // If the current value is the same as the new value, remove it (toggle behavior)
+      if (currentValue === value) {
+        url.searchParams.delete(parameter);
       } else {
-        item.classList.remove('s-positioned');
-        item.style.display = 'none';
+        // Otherwise set the new value (replaces any existing value)
+        url.searchParams.set(parameter, value);
       }
-    });
-    
-    // Trigger custom event for other components to react
-    triggerCustomEvent(document, 'filter:updated', { 
-      activeFilter, 
-      activeSearchText,
-      updateURL: false // Prevent additional URL updates from this event
-    });
-    
-    // If you're using a masonry layout, you might need to trigger a reflow
-    if (typeof(window.A17) !== 'undefined' && window.A17.Helpers && window.A17.Helpers.triggerCustomEvent) {
-      window.A17.Helpers.triggerCustomEvent(document, 'layout:refresh');
-    }
-    
-    // Only update URL if explicitly requested
-    if (shouldUpdateURL) {
-      updateURL();
+      
+      window.history.pushState({}, '', url);
+      filterItems(parameter, value);
+      console.log('filter items?: ' + parameter + ' ' + value);
     }
   }
-  
+
+  function filterItems(parameter, value) {
+    
+    if (!listingItems.length) {
+      return;
+    }
+    
+    if (parameter) {
+      switch(parameter) {
+        case "filter":
+          // Filter by category
+          if (value !== 'all') {
+            const normalizedValue = value.toLowerCase().replace(/[_\s-]+/g, '-');
+            
+            // Loop through all items
+            listingItems.forEach(item => {
+              const filterValues = item.getAttribute('data-filter-values');
+              let showItem = false;
+              
+              if (filterValues) {
+                // Parse the item's filter values
+                const itemFilterValues = filterValues.split(',').map(val => val.trim().toLowerCase());
+                
+                // Check if this item matches the active filter
+                for (const itemValue of itemFilterValues) {
+                  const normalizedItemValue = itemValue.replace(/[_\s-]+/g, '-');
+                  if (normalizedItemValue === normalizedValue) {
+                    showItem = true;
+                    break;
+                  }
+                }
+              }
+              
+              // Show or hide item
+              if (showItem) {
+                item.style.display = '';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+          } else {
+            // No filter value, show all items
+            listingItems.forEach(item => {
+              item.style.display = '';
+            });
+          }
+          break;
+          
+        case "sort":
+          // Sort items
+          if (!listingContainer) break;
+          
+          // Only collect items that are currently visible (not display:none)
+          const itemsArray = Array.from(listingItems).filter(item => {
+            return item.style.display !== 'none';
+          });
+          
+          const container = listingItems.length > 0 ? listingItems[0].parentNode : null;
+          if (!container) break;
+          
+          // Sort based on value parameter
+          switch(value) {
+            case "title::desc":
+              itemsArray.sort((a, b) => {
+                const titleA = a.getAttribute('data-filter-title') || a.textContent.trim();
+                const titleB = b.getAttribute('data-filter-title') || b.textContent.trim();
+                return titleA.localeCompare(titleB);
+              });
+              break;
+            case "datetime::asc":
+              itemsArray.sort((a, b) => {
+                const dateStrA = a.getAttribute('data-filter-date') || '';
+                const dateStrB = b.getAttribute('data-filter-date') || '';
+                // Parse dates from DD-MM-YYYY format
+                const [dayA, monthA, yearA] = (dateStrA || '').split('-');
+                const [dayB, monthB, yearB] = (dateStrB || '').split('-');
+                // Create date objects for comparison
+                const dateA = dateStrA ? new Date(yearA, monthA - 1, dayA) : new Date(0);
+                const dateB = dateStrB ? new Date(yearB, monthB - 1, dayB) : new Date(0);
+                return dateA - dateB;
+              });
+              break;
+            case "datetime::desc":
+              itemsArray.sort((a, b) => {
+                const dateStrA = a.getAttribute('data-filter-date') || '';
+                const dateStrB = b.getAttribute('data-filter-date') || '';
+                // Parse dates from DD-MM-YYYY format
+                const [dayA, monthA, yearA] = (dateStrA || '').split('-');
+                const [dayB, monthB, yearB] = (dateStrB || '').split('-');
+                // Create date objects for comparison
+                const dateA = dateStrA ? new Date(yearA, monthA - 1, dayA) : new Date(0);
+                const dateB = dateStrB ? new Date(yearB, monthB - 1, dayB) : new Date(0);
+                return dateB - dateA;
+              });
+              break;
+            case null:
+              itemsArray.sort((a, b) => {
+                const titleA = a.getAttribute('data-filter-title') || a.textContent.trim();
+                const titleB = b.getAttribute('data-filter-title') || b.textContent.trim();
+                return titleA.localeCompare(titleB);
+              });
+          }
+          
+          // Reorder without changing visibility
+          // This uses the DocumentFragment API for better performance
+          const fragment = document.createDocumentFragment();
+          
+          // Append to fragment in sorted order
+          itemsArray.forEach(item => {
+            fragment.appendChild(item);
+          });
+          
+          // Append fragment to container
+          container.appendChild(fragment);
+          
+          // Force reflow
+          container.offsetHeight;
+          break;
+
+        case "search":
+          // Search by text
+          if (value) {
+            const searchText = value.trim();
+            
+            // Loop through all items
+            listingItems.forEach(item => {
+              let showItem = false;
+              
+              // First try to get the title from data attribute
+              let itemTitle = item.getAttribute('data-title');
+              
+              // If no data-title attribute, try to find a title element
+              if (!itemTitle) {
+                const titleElement = item.querySelector('.title, h2, h3, h4');
+                if (titleElement) {
+                  itemTitle = titleElement.textContent;
+                }
+              }
+              
+              // If still no title found, use any text content
+              if (!itemTitle) {
+                itemTitle = item.textContent;
+              }
+              
+              if (itemTitle) {
+                itemTitle = itemTitle.trim();
+                
+                // Exact match
+                if (itemTitle.toLowerCase().includes(searchText.toLowerCase())) {
+                  showItem = true;
+                } else if (searchText.length <= 3) {
+                  // For short search terms (2-3 chars), require exact substring match
+                  showItem = itemTitle.toLowerCase().includes(searchText.toLowerCase());
+                } else {
+                  // For longer search terms, use fuzzy matching
+                  const words = itemTitle.split(/\s+/);
+                  
+                  // Check each word
+                  for (const word of words) {
+                    // Calculate similarity
+                    const similarity = getStringSimilarity(word, searchText);
+                    
+                    // Allow matches with distance less than 1/3 of the search text length
+                    if (similarity <= Math.ceil(searchText.length / 3)) {
+                      showItem = true;
+                      break;
+                    }
+                    
+                    // Also check if any word in the title starts with the search text
+                    if (word.toLowerCase().startsWith(searchText.toLowerCase())) {
+                      showItem = true;
+                      break;
+                    }
+                  }
+                }
+              }
+              
+              // Show or hide item
+              if (showItem) {
+                item.style.display = '';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+          } else {
+            // No search value, show all items
+            listingItems.forEach(item => {
+              item.style.display = '';
+            });
+          }
+          break;
+          
+        default:
+          // Default case: show all items
+          listingItems.forEach(item => {
+            item.style.display = '';
+          });
+      }
+    } else {
+      // No parameter provided, show all items
+      listingItems.forEach(item => {
+        item.style.display = '';
+      });
+    }
+  }
+
+  function resetFilter() {
+    triggerCustomEvent(document, 'filter:reset');
+
+    document.querySelector('[data-filter-default]').classList.add('s-active');
+  }
+
+  function _setup() {
+    console.log('Setup called, current status:', setup);
+    if (!setup) {
+      console.log('Adding filter:register event listener');
+      document.addEventListener('filter:register', _registerComponent);
+      
+      console.log('Triggering filter:init event');
+      triggerCustomEvent(document, 'filter:init');
+    }
+
+    document.addEventListener('filter:updated', function(event) {
+      updateFilter(event.data.parameter, event.data.value);
+      console.log(event);
+    });
+  }
+
+  function _registerComponent(event) {
+    console.log('A component wants to register!')
+    if (!event || !event.data) {
+      console.log('Event or event.detail is missing:', event);
+      return;
+    }
+    
+    let filterData = event.data;
+    console.log('Filter data received:', filterData);
+    
+    registeredParameters.push({
+      id: filterData.id,
+      parameter: filterData.parameter,
+      value: filterData.value !== undefined ? filterData.value : filterData.values
+    });
+    
+    setup = true;
+    console.log('Setup status: '+ setup);
+    console.log('Registration complete! Params:', registeredParameters);
+  }
+
   function _init() {
-    initFromUrl();
-    setupEventListeners();
-    
-    window.addEventListener('popstate', function() {
-      initFromUrl();
-    });
-  }
-  
-  // Store document click handler for cleanup
-  const documentClickHandler = function(event) {
-    // Find if the click is on or within an li with data-button-value
-    const li = event.target.closest('[data-button-value]');
-    
-    if (li) {
-      event.preventDefault();
-      
-      const buttonValue = li.getAttribute('data-button-value');
-      
-      if (buttonValue) {
-        toggleFilterButton(li, buttonValue);
-      }
-    }
-  };
+    _setup();
+    setTimeout(initFromUrl, 200)
+    window.addEventListener('popstate', initFromUrl);
+  } 
 
   this.destroy = function() {
-    // Remove document event listeners
-    document.removeEventListener('click', documentClickHandler);
     window.removeEventListener('popstate', initFromUrl);
+    document.removeEventListener('filter:register', _registerComponent);
   };
-  
+
   this.init = function() {
     _init();
   };
