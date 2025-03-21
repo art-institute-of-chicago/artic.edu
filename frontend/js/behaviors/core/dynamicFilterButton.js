@@ -41,8 +41,8 @@ const dynamicFilterButton = function(container) {
         if ((event.data.id === id) && (event.data.parameter === parameter) && (event.data.value === buttonValue)) {
             container.classList.add('s-active');
         } else {
-            if (event.data.parameter !== parameter) {
-                container.classList.remove('s-active');
+            if (event.data.parameter === parameter && event.data.value !== buttonValue) {
+              container.classList.remove('s-active');
             }
         }
     }
