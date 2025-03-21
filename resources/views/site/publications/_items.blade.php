@@ -4,6 +4,7 @@
 
 @foreach ($publications as $item)
     @component('components.molecules._m-listing----publication')
+        @slot('item', $item)
         @slot('href', $item->present()->url)
         @slot('image', $item->imageFront('listing'))
         @slot('type', $item->present()->type)
