@@ -256,74 +256,74 @@ class LandingPagesController extends FrontController
                 ];
                 break;
 
-                case $types->search('Publications'):
-                    $publications = PrintedPublication::published()->get()->merge(DigitalPublication::published()->get())->sortByDesc('publish_start_date');
-                    $filters = $item->labels?->get('filters')
-                        ? collect($item->labels->get('filters'))->map(function ($filterId) {
-                            $category = CatalogCategory::find($filterId);
-                            return $category ? [
-                                'label' => $category->name,
-                                'value' => Str::kebab(Str::lower($category->name))
-                            ] : null;
-                        })->filter()->values()->toArray()
-                        : [];
-                    $primaryFilters = array_merge(
+            case $types->search('Publications'):
+                $publications = PrintedPublication::published()->get()->merge(DigitalPublication::published()->get())->sortByDesc('publish_start_date');
+                $filters = $item->labels?->get('filters')
+                    ? collect($item->labels->get('filters'))->map(function ($filterId) {
+                        $category = CatalogCategory::find($filterId);
+                        return $category ? [
+                            'label' => $category->name,
+                            'value' => Str::kebab(Str::lower($category->name))
+                        ] : null;
+                    })->filter()->values()->toArray()
+                    : [];
+                $primaryFilters = array_merge(
+                    [
                         [
-                            [
-                                'label' => 'All Publications',
-                                'value' => 'all'
-                            ],
-                            [
-                                'label' => 'Digital Publications',
-                                'value' => 'digital-publication'
-                            ],
-                            [
-                                'label' => 'Printed Publications',
-                                'value' => 'printed-publication'
-                            ]
+                            'label' => 'All Publications',
+                            'value' => 'all'
                         ],
-                        $filters
-                    );
-                    
-                    // Get all active categories
-                    $allCategories = $this->getItemCategories($publications);
-                    
-                    // Filter out categories that exist in primaryFilters
-                    $primaryFilterValues = collect($primaryFilters)->pluck('value')->toArray();
-                    $categories = collect($allCategories)->filter(function ($category) use ($primaryFilterValues) {
-                        return !in_array($category['data-button-value'], $primaryFilterValues);
-                    })->values()->toArray();
-                    
-                    $viewData = [
-                        'publications' => $publications,
-                        'primaryFilters' => $primaryFilters,
-                        'categories' => $categories,
-                        'sortOptions' => [
-                            [
-                            'label' => 'Newest To Oldest',
-                            'active' => request()->get('sort') == 'datetime::desc',
-                            'ajaxScrollTarget' => 'listing',
-                            'id' => null,
-                            'data-button-value' => 'datetime::desc'
-                            ],
-                            [
-                            'label' => 'Oldest To Newest',
-                            'active' => request()->get('sort') == 'datetime::asc',
-                            'ajaxScrollTarget' => 'listing',
-                            'id' => null,
-                            'data-button-value' => 'datetime::asc'
-                            ],
-                            [
-                            'label' => 'Alphabetically',
-                            'active' => request()->get('sort') == 'title::desc',
-                            'ajaxScrollTarget' => 'listing',
-                            'id' => null,
-                            'data-button-value' => 'title::desc'
-                            ],
+                        [
+                            'label' => 'Digital Publications',
+                            'value' => 'digital-publication'
                         ],
-                        'subnav' => collect($blockHeadings)->all(),
-                    ];
-                    break;
+                        [
+                            'label' => 'Printed Publications',
+                            'value' => 'printed-publication'
+                        ]
+                    ],
+                    $filters
+                );
+
+                // Get all active categories
+                $allCategories = $this->getItemCategories($publications);
+
+                // Filter out categories that exist in primaryFilters
+                $primaryFilterValues = collect($primaryFilters)->pluck('value')->toArray();
+                $categories = collect($allCategories)->filter(function ($category) use ($primaryFilterValues) {
+                    return !in_array($category['data-button-value'], $primaryFilterValues);
+                })->values()->toArray();
+
+                $viewData = [
+                    'publications' => $publications,
+                    'primaryFilters' => $primaryFilters,
+                    'categories' => $categories,
+                    'sortOptions' => [
+                        [
+                        'label' => 'Newest To Oldest',
+                        'active' => request()->get('sort') == 'datetime::desc',
+                        'ajaxScrollTarget' => 'listing',
+                        'id' => null,
+                        'data-button-value' => 'datetime::desc'
+                        ],
+                        [
+                        'label' => 'Oldest To Newest',
+                        'active' => request()->get('sort') == 'datetime::asc',
+                        'ajaxScrollTarget' => 'listing',
+                        'id' => null,
+                        'data-button-value' => 'datetime::asc'
+                        ],
+                        [
+                        'label' => 'Alphabetically',
+                        'active' => request()->get('sort') == 'title::desc',
+                        'ajaxScrollTarget' => 'listing',
+                        'id' => null,
+                        'data-button-value' => 'title::desc'
+                        ],
+                    ],
+                    'subnav' => collect($blockHeadings)->all(),
+                ];
+                break;
 
             default:
                 $viewData = array();
@@ -438,7 +438,7 @@ class LandingPagesController extends FrontController
     {
         $categories = collect();
         $categoryIds = [];
-        
+
         foreach ($items as $item) {
             if ($item->categories) {
                 foreach ($item->categories as $category) {
@@ -455,7 +455,7 @@ class LandingPagesController extends FrontController
                 }
             }
         }
-        
+
         return $categories;
     }
 }

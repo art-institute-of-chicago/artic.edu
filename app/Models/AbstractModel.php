@@ -68,5 +68,4 @@ class AbstractModel extends Model
     {
         return empty($this->slug);
     }
-
 }
