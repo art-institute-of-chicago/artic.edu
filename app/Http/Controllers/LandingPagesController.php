@@ -300,16 +300,25 @@ class LandingPagesController extends FrontController
                         'categories' => $categories,
                         'sortOptions' => [
                             [
-                                'label' => 'Newest To Oldest',
-                                'value' => 'datetime::desc'
+                            'label' => 'Newest To Oldest',
+                            'active' => request()->get('sort') == 'datetime::desc',
+                            'ajaxScrollTarget' => 'listing',
+                            'id' => null,
+                            'data-button-value' => 'datetime::desc'
                             ],
                             [
-                                'label' => 'Oldest To Newest',
-                                'value' => 'datetime::asc'
+                            'label' => 'Oldest To Newest',
+                            'active' => request()->get('sort') == 'datetime::asc',
+                            'ajaxScrollTarget' => 'listing',
+                            'id' => null,
+                            'data-button-value' => 'datetime::asc'
                             ],
                             [
-                                'label' => 'Alphabetically',
-                                'value' => 'title::desc'
+                            'label' => 'Alphabetically',
+                            'active' => request()->get('sort') == 'title::desc',
+                            'ajaxScrollTarget' => 'listing',
+                            'id' => null,
+                            'data-button-value' => 'title::desc'
                             ],
                         ],
                         'subnav' => collect($blockHeadings)->all(),
