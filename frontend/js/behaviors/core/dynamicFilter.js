@@ -26,11 +26,15 @@ const dynamicFilter = function(container) {
           parameter: item.parameter,
           value: paramValue
         });
-      } else {
-        url.searchParams.set('filter', 'all');
-        window.history.pushState({}, '', url);
       }
     });
+
+    if (url.searchParams.size === 0) {
+      url.searchParams.set('filter', 'all');
+      window.history.pushState({}, '', url);
+    }
+
+    console.log('cast params: '+ castParameters);
 
     if (castParameters.length > 0) {
       castParameters.forEach(item => {
@@ -62,7 +66,7 @@ const dynamicFilter = function(container) {
       console.log('no value ' + value);
       url.searchParams.delete(parameter);
       window.history.pushState({}, '', url);
-      filterItems();
+      filterItems('filter', 'all');
     } else {
       // Get the current value (if any)
       const currentValue = url.searchParams.get(parameter);
