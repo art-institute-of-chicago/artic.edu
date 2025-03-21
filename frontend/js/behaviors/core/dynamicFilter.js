@@ -53,8 +53,7 @@ const dynamicFilter = function(container) {
     console.log('update filter: param: ' + parameter + ' value: ' + value);
     const url = new URL(window.location.href);
     
-    if (!parameter || !url.searchParams) {
-      console.log('no param')
+    if (!parameter) {
       filterItems('filter', 'all');
     };
     
@@ -62,9 +61,8 @@ const dynamicFilter = function(container) {
     if (value === undefined || value === null || value === '' || !setup) {
       console.log('no value ' + value);
       url.searchParams.delete(parameter);
-      url.searchParams.set('filter', 'all');
       window.history.pushState({}, '', url);
-      filterItems('filter', 'all');
+      filterItems();
     } else {
       // Get the current value (if any)
       const currentValue = url.searchParams.get(parameter);
