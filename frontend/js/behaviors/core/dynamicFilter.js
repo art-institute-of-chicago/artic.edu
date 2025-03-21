@@ -278,11 +278,6 @@ const dynamicFilter = function(container) {
             item.style.display = '';
           });
       }
-    } else {
-      // No parameter provided, show all items
-      listingItems.forEach(item => {
-        item.style.display = '';
-      });
     }
   }
 
