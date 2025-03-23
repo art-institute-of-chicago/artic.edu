@@ -37,7 +37,7 @@
     <x-twill::date-picker
         name='publication_date'
         label='Publication date'
-        withTime='false'
+        :withTime='false'
     />
 
     <x-twill::multi-select

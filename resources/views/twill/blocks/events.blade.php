@@ -54,14 +54,14 @@ $programs = app(EventProgramRepository::class)->listAll('name');
         <x-twill::date-picker
             name='date_start'
             label='Start date'
-            withTime='false'
+            :withTime='false'
         />
     </x-slot>
     <x-slot:right>
         <x-twill::date-picker
             name='date_end'
             label='End date'
-            withTime='false'
+            :withTime='false'
         />
     </x-slot>
 </x-twill::formColumns>
