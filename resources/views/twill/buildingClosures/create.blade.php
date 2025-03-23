@@ -10,14 +10,14 @@
     <x-twill::date-picker
         name='date_start'
         label='Start date'
-        withTime='false'
+        :withTime='false'
         :required='true'
     />
 
     <x-twill::date-picker
         name='date_end'
         label='End date'
-        withTime='false'
+        :withTime='false'
         :required='true'
     />
 

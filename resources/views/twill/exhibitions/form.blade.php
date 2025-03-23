@@ -31,7 +31,7 @@
             <x-twill::date-picker
                 name='public_start_date'
                 label='Public Start Date'
-                withTime='false'
+                :withTime='false'
                 placeholder='{{ isset($item) && $item->aic_start_at ? (new \Carbon\Carbon($item->aic_start_at))->toFormattedDateString() : null }}'
             />
         </x-slot:left>
@@ -39,7 +39,7 @@
             <x-twill::date-picker
                 name='public_end_date'
                 label='Public End Date'
-                withTime='false'
+                :withTime='false'
                 placeholder='{{ isset($item) && $item->aic_end_at ? (new \Carbon\Carbon($item->aic_end_at))->toFormattedDateString() : null }}'
             />
         </x-slot:right>
@@ -50,7 +50,7 @@
             <x-twill::date-picker
                 name='member_preview_start_date'
                 label='Member Preview Start Date'
-                withTime='false'
+                :withTime='false'
                 placeholder=''
             />
         </x-slot:left>
@@ -58,7 +58,7 @@
             <x-twill::date-picker
                 name='member_preview_end_date'
                 label='Member Preview End Date'
-                withTime='false'
+                :withTime='false'
                 placeholder=''
             />
         </x-slot:right>
