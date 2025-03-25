@@ -3,7 +3,7 @@
 
     $event = Event::published()->future()->find($block->browserIds('events'))->first();
     if (is_null($event) && $block->input('display_upcoming')) {
-        $event = Event::published()->upcoming()->byProgram($block->input('programs'))->first();
+        $event = Event::published()->future()->upcoming()->byProgram($block->input('programs'))->first();
     }
 @endphp
 
