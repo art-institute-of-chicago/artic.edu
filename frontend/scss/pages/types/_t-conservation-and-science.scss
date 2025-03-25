@@ -1,4 +1,68 @@
 .conservation-and-science {
+  .o-row-listing.o-blocks__block {
+    background-color: $color__black--5;
+
+    .m-listing--inline {
+      border-top: none;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    @include breakpoint('small+') {
+      padding: 25px 38px 30px;
+
+      .m-listing__link {
+        flex-flow: unset;
+      }
+
+      .m-listing__img {
+        width: colspan(18, large);
+      }
+
+      .m-listing__meta {
+        padding-left: 36px;
+      }
+    }
+
+    @include breakpoint('xsmall') {
+      padding: 15px;
+
+      .m-listing__link {
+        flex-flow: column;
+      }
+
+      .m-listing__img {
+        width: 100%;
+      }
+
+      .m-listing__meta {
+        padding-top: 15px;
+        margin: 0;
+
+        .short-description {
+          color: $color__black--80;
+        }
+      }
+
+      .m-listing__meta-bottom::after {
+        border: 1px $color__black--80 solid;
+        border-radius: 2px;
+        color: $color__black--80;
+        content: "Register";
+        display: block;
+        font-family: $sans-serif-font--loaded;
+        font-size: 16px;
+        height: 48px;
+        line-height: 24px;
+        margin-top: 24px;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+
   .o-gallery {
     margin-left: unset !important;
 
