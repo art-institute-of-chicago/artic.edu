@@ -40,6 +40,12 @@ const dynamicFilter = function(container) {
       castParameters.forEach(item => {
         castFilterUpdate(item.id, item.parameter, item.value);
       });
+      window.requestAnimationFrame(() => {
+        window.scrollTo({
+            top: container.offsetTop -20,
+            behavior: 'smooth'
+        });
+    });
     }
 
     setup = true;
