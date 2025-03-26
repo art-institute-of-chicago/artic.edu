@@ -296,6 +296,7 @@ class LandingPagesController extends FrontController
 
                 $viewData = [
                     'publications' => $publications,
+                    'publicationResources' => $item->publicationResources,
                     'primaryFilters' => $primaryFilters,
                     'categories' => $categories,
                     'sortOptions' => [
@@ -321,7 +322,11 @@ class LandingPagesController extends FrontController
                         'data-button-value' => 'title::desc'
                         ],
                     ],
-                    'subnav' => collect($blockHeadings)->all(),
+                    'subnav' => collect($blockHeadings) // Using proper curly brace syntax for dynamic property
+                    ->concat(['Publications'])
+                    ->concat($item->publicationResources()->pluck('resource_target')->filter())
+                    ->concat(['Resources'])
+                    ->all(),
                 ];
                 break;
 
