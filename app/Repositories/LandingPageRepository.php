@@ -52,6 +52,7 @@ class LandingPageRepository extends ModuleRepository
         'faqs',
         'families',
         'what_to_expects',
+        'publication_resources'
     ];
 
     protected TwillModelContract $model;
