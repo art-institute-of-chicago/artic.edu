@@ -1,6 +1,6 @@
 <div class="o-landingpage__footer publications" data-behavior="dynamicFilter"> {{-- wrapper for container here --}}
     <div class="publications-title-bar">
-        <h2 class="title f-module-title-2">
+        <h2 class="title f-module-title-2" id="publications">
             Publications
         </h2>
         <div class="m-links-bar__item m-links-bar__item--primary" data-filter-buttons>
@@ -56,4 +56,20 @@
             @endcomponent
         @endcomponent
     </div>
+    @if ($item->publicationResources)
+        <div class="publications-title-bar publication-resources">
+            <h2 style="margin-top: 75px" class="title f-module-title-2" id="resources">
+                Resources
+            </h2>
+        </div>
+        <div class="publication-resources-container">
+            @foreach ($item->publicationResources as $resource)
+                <div class="publication-resource">
+                    <h3 id={{$resource->resource_target}}>{{$resource->resource_title}}</h3>
+                    <p>{!!$resource->resource_description!!}</p>
+                    <a href={{$resource->resource_link_url}}>{{$resource->resource_link_label}}<svg class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow--24"></use></svg></a>
+                </div>
+            @endforeach
+        </div>
+    @endif
 </div>
