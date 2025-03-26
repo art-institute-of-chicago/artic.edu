@@ -1,4 +1,38 @@
+.publications-subnav {
+    text-align: left !important;
+    padding-bottom: 28px;
+    border-bottom: 1px solid $color__black--10;
+    margin-bottom: 40px;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    @include breakpoint('small-') {
+        padding-bottom: 20px;
+    }
+
+    ul {
+        display: block;
+        text-align: left;
+        white-space: nowrap;
+        min-width: 100%;
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    .m-links-bar__item>.f-link {
+        color: $color__black--90;
+        font-family: $sans-serif-font--loaded;
+        font-size: 17px;
+        font-weight: 300;
+        line-height: 28px;
+        letter-spacing: 0.01em;
+    }
+}
+
 .o-landingpage__footer.publications {
+
     .publications-title-bar {
         display: flex;
         flex-direction: row;
@@ -6,5 +40,77 @@
         padding-bottom: 20px;
         border-bottom: 1px solid $color__black--10;
         margin-bottom: 30px;
+
+        &.publication-resources {
+            font-size: 21px;
+            margin-bottom: 30px;
+            > * {
+                padding-bottom: 20px;
+            }
+        }
+    }
+
+    .o-gridboard {
+        border-top: none;
+
+        &::before, &::after {
+            display: none;
+        }
+
+        .m-listing {
+            border: none;
+
+            .m-listing__img {
+                aspect-ratio: 1/1;
+                
+                background-color: transparent;
+
+                img {
+                    object-fit: contain;
+                    object-position: bottom;
+                }
+            }
+        }
+    }
+
+    .publication-resources-container {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+
+        .publication-resource {
+            max-width: 30%;
+            display: flex;
+            justify-content: space-between;
+            height: max-content;
+            flex-direction: column;
+
+            >h3 {
+                font-family: $serif-font--loaded;
+                font-size: 28px;
+                margin-bottom: 14px;
+            }
+
+            >p {
+                font-family: $sans-serif-font--loaded;
+                font-size: 17px;
+                margin-bottom: 60px;
+                font-weight: 300;
+                line-height: 28px;
+            }
+
+            >a {
+                font-family: $sans-serif-font--loaded;
+                font-size: 17px;
+            }
+
+            &::after {
+                display: block;
+                content: "";
+                height: 100%;
+                width: 1px;
+                background-color: $color__black--10;
+            }
+        }
     }
 }
