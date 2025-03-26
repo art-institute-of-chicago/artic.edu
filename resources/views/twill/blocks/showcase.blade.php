@@ -94,6 +94,30 @@
     />
 </x-twill::formConnectedFields>
 
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values="publications"
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
+
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
+            [
+                'value' => 'default',
+                'label' => 'Default',
+            ],
+        ]"
+    />
+
+    <x-twill::input
+        name='heading'
+        label='Heading'
+    />
+</x-twill::formConnectedFields>
+
 @if (count($mediaTypes) > 1)
 
     @php
