@@ -166,6 +166,14 @@
 
 </x-twill::formFieldset>
 
+<x-twill::formFieldset id="resources" title="Section of provided resources">
+
+    <x-twill::repeater
+        type='publication_resources'
+    />
+
+</x-twill::formFieldset>
+
 <x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
     <x-twill::input
         name='meta_title'
