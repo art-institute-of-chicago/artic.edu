@@ -11,8 +11,41 @@
     $categories = collect($block->input('categories'))->take(12);
     $tags = \App\Models\Category::whereIn('id', $categories)->get();
 
-    $stories = $block->getRelated('stories');
     $videos = $block->getRelated('videos');
+    if ($block->children) {
+    $stories = collect();
+        foreach ($block->children as $child) {
+            if ($child->getRelated('publication_item')->isNotEmpty()) {
+                $childStories = $child->getRelated('publication_item')->map(function ($item) use ($child) {
+                    $item->type = 'augmented';
+                    $item->image = $child->hasImage('listing_image') ? $child->imageAsArray('listing_image') : ($item->imageAsArray('listing', 'listing'));
+                    $item->title = $child->input('title') ?? $item->title;
+                    $item->label = $child->input('label') ?? $item->type;
+                    $item->url_without_slug = $child->input('linkUrl') ?? $item->url_without_slug;
+                    $item->list_description = $child->input('description') ?? $item->list_description;
+
+                    return $item;
+                });
+
+            } else {
+                $childStories = collect([
+                    (object) [
+                        'type' => 'custom',
+                        'image' => $child->hasImage('listing_image') ? $child->imageAsArray('listing_image') : null,
+                        'title' => $child->input('title') ?? null,
+                        'label' => $child->input('label') ?? null,
+                        'url_without_slug' => $child->input('linkUrl') ?? null,
+                        'list_description' => $child->input('description') ?? null,
+                    ]
+                ]);
+
+            }
+            $stories = $stories->merge($childStories);
+        }
+    } else {
+        $stories = $block->getRelated('stories');
+    }
+
 
 @endphp
 
@@ -50,7 +83,7 @@
     </div>
     <div class="editorial-block__content">
         <div class="editorial-block__content-wrapper">
-        @if ($variation !== 'video')
+        @if ($variation !== 'video' && empty($block->children))
             @foreach ($stories as $item)
                 @php
                     $hasFeatured = ($variation !== '3-across' && $variation !== '4-across');
@@ -75,7 +108,7 @@
                 @endcomponent
                 {!! ($loop->first && $hasFeatured) || $loop->last ? '</div>' : '' !!}
             @endforeach
-        @else
+        @elseif ($variation == 'video')
             @foreach ($videos as $item)
                 @component('components.molecules._m-listing----media')
                     @slot('item', $item)
@@ -97,6 +130,31 @@
                         )),
                     ))
                 @endcomponent
+            @endforeach
+        @else
+            @foreach ($stories as $item)
+                @php
+                    $hasFeatured = ($variation !== '3-across' && $variation !== '4-across');
+                @endphp
+                {!! (($loop->iteration == 2 && $hasFeatured) || ($loop->first && !$hasFeatured)) ? '<div class="editorial-block__list">' : '' !!}
+                {!! (($loop->first && $hasFeatured) ? '<div class="editorial-block__featured">' : '') !!}
+                @component('components.molecules._m-listing----stories-custom-listing')
+                    @slot('isFeatured', $loop->first && $hasFeatured)
+                    @slot('item', $item)
+                    @slot('fullscreen', false)
+                    @slot('titleFont', ($loop->first && $hasFeatured) ? 'f-list-3' : 'f-list-1')
+                    @slot('imageSettings', array(
+                        'srcset' => array(300,600,800,1200,1600),
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                            'xsmall' => '58',
+                            'small' => '58',
+                            'medium' => '38',
+                            'large' => '28',
+                            'xlarge' => '28',
+                        )),
+                    ))
+                @endcomponent
+                {!! ($loop->first && $hasFeatured) || $loop->last ? '</div>' : '' !!}
             @endforeach
         @endif
         </div>
