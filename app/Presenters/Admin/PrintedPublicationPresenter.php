@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Presenters\Admin;
+use Illuminate\Support\Str;
 
 class PrintedPublicationPresenter extends PagePresenter
 {
@@ -14,6 +15,6 @@ class PrintedPublicationPresenter extends PagePresenter
 
     public function type()
     {
-        return \Illuminate\Support\Str::title(\Illuminate\Support\Str::replace('_', ' ', $this->entity->type));
+        return Str::title(Str::replace('_', ' ', $this->entity->type));
     }
 }
