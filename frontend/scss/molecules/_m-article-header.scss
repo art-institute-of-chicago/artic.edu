@@ -402,7 +402,8 @@
   }
 }
 
-.m-article-header--digital-publication .m-info-trigger {
+.m-article-header--digital-publication .m-info-trigger,
+.m-article-header--digital-publication-article .m-info-trigger {
   right: 0;
   z-index: 2;
   bottom: initial;
@@ -423,7 +424,8 @@
   }
 }
 
-.m-article-header--digital-publication .m-info-trigger__info {
+.m-article-header--digital-publication .m-info-trigger__info,
+.m-article-header--digital-publication-article .m-info-trigger__info {
   right: 0;
   z-index: 2;
   bottom: initial;
