@@ -118,11 +118,10 @@
             :endpoints="[
                 [
                     'label' => 'Articles',
-                    'value' => '/collection/articlesPublications/digitalPublications/articles/subbrowser'
+                    'value' => '/collection/articlesPublications/digitalPublicationsBrowser/articles/browser?digitalPublication=' . $item->id
                 ]
             ]"
-            :params="[ 'digitalPublication' => $item->id, ]"
-        />
+    />
 
         <x-twill::wysiwyg
             name='sponsor_display'
