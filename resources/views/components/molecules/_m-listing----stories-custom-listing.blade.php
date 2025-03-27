@@ -54,7 +54,7 @@
                 </div>
             </span>
             <div class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
-                @if ($item->type === 'custom' && isset($item->label) && $item->label)
+                @if (isset($item->label) && $item->label)
                     @component('components.atoms._type')
                         {{ $item->label }}
                     @endcomponent
