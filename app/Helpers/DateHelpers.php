@@ -16,7 +16,7 @@ class DateHelpers
             return;
         }
 
-        if (!is_string($value)) {
+        if (!is_string($value) && !($value instanceof Carbon)) {
             return;
         }
 
