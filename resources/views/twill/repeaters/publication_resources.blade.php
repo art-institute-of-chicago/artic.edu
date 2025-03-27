@@ -1,5 +1,6 @@
-@twillRepeaterTitle('Publications Item')
-@twillRepeaterTrigger('Add publications item')
+@twillRepeaterTitle('Publications Resource')
+@twillRepeaterTrigger('Add publications resource')
+@twillRepeaterComponent('a17-block-publication_resource')
 
 
 <x-twill::formColumns>
