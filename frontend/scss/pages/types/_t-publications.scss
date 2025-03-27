@@ -78,12 +78,21 @@
         justify-content: space-between;
         flex-direction: row;
 
+        @include breakpoint('medium-') {
+            flex-direction: column;
+        }
+
         .publication-resource {
             max-width: 30%;
             display: flex;
             justify-content: space-between;
             height: max-content;
             flex-direction: column;
+
+            @include breakpoint('medium-') {
+                padding-top: 40px;
+                max-width: 100%;
+            }
 
             >h3 {
                 font-family: $serif-font--loaded;
