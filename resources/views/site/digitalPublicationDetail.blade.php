@@ -327,7 +327,7 @@
                                     @foreach ($topLevelArticle->children->filter(function($item) {
                                         return !$item->suppress_listing;
                                     })->sortBy('position') as $item)
-                                        @if($loop->iteration <= 9 || $showAll == true)
+                                        @if($loop->iteration <= 12 || $showAll == true)
                                             @component('components.molecules._m-listing----cover')
                                                 @slot('variation', 'm-listing--cover--digital-publication')
                                                 @slot('href', route(
