@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Presenters\Admin;
+
 use Illuminate\Support\Str;
 
 class PrintedPublicationPresenter extends PagePresenter
