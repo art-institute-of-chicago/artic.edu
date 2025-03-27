@@ -4,6 +4,7 @@ namespace App\Presenters\Admin;
 
 use App\Enums\DigitalPublicationArticleType;
 use App\Presenters\BasePresenter;
+use Illuminate\Support\Str;
 
 class DigitalPublicationPresenter extends BasePresenter
 {
@@ -24,7 +25,7 @@ class DigitalPublicationPresenter extends BasePresenter
 
     public function type()
     {
-        return \Illuminate\Support\Str::title(\Illuminate\Support\Str::replace('_', ' ', $this->entity->type));
+        return Str::title(Str::replace('_', ' ', $this->entity->type));
     }
 
     public function date()
