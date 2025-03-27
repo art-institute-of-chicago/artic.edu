@@ -233,6 +233,14 @@ class LandingPage extends AbstractModel implements Sortable
                 ],
             ],
         ],
+        'listing_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
     ];
 
     /**
@@ -334,6 +342,11 @@ class LandingPage extends AbstractModel implements Sortable
     public function menuItems()
     {
         return $this->hasMany(MenuItem::class)->orderBy('position');
+    }
+
+    public function publicationResources()
+    {
+        return $this->hasMany(PublicationResource::class)->orderBy('position');
     }
 
     public function articlesCategories()

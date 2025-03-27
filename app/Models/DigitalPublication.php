@@ -85,6 +85,12 @@ class DigitalPublication extends AbstractModel
                     'ratio' => 4 / 3,
                 ],
             ],
+            'listing' => [
+                [
+                    'name' => 'listing',
+                    'ratio' => null,
+                ],
+            ],
         ],
         'mobile_listing' => [
             [

@@ -2,6 +2,8 @@
 
 namespace App\Presenters\Admin;
 
+use Illuminate\Support\Str;
+
 class PrintedPublicationPresenter extends PagePresenter
 {
     public function getCanonicalUrl()
@@ -10,5 +12,10 @@ class PrintedPublicationPresenter extends PagePresenter
             'id' => $this->entity->id,
             'slug' => $this->entity->getSlug(),
         ]);
+    }
+
+    public function type()
+    {
+        return Str::title(Str::replace('_', ' ', $this->entity->type));
     }
 }
