@@ -1,4 +1,19 @@
-<{{ $tag ?? 'li' }} class="m-listing m-listing--publication m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'li' }}
+ class="m-listing m-listing--publication m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}"
+ data-filter-values="{{
+    str_replace('_', '-', $item->type) . 
+    (count($item->categories) > 0 ? ',' : '') .
+    $item->categories->pluck('name')->map(function($name) {
+        return \Illuminate\Support\Str::kebab($name);
+    })->implode(',')
+ }}"
+ data-filter-date="{{
+    date('d-m-Y', strtotime($item->publish_start_date))
+ }}"
+  data-filter-title="{{
+    Str::lower(Str::kebab($item->title))
+ }}"
+>
     <a href="{{ $href ?? '' }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         <span class="m-listing__img">
             @if ($image)
@@ -16,9 +31,9 @@
             </span>
         </span>
         <span class="m-listing__meta">
-            @if (isset($type))
+            @if (isset($label))
                 @component('components.atoms._type')
-                    {!! $type !!}
+                    {!! $label !!}
                 @endcomponent
                 <br>
             @endif

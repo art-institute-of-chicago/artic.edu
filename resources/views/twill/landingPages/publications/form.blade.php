@@ -1,3 +1,7 @@
+@php
+    $categoriesList = \App\Models\CatalogCategory::all()->pluck('name', 'id')->toArray();
+@endphp
+
 @extends('twill::layouts.form')
 
 @section('contentFields')
@@ -139,6 +143,34 @@
             'vtour_embed'
         ])
     ])
+
+</x-twill::formFieldset>
+
+<x-twill::formFieldset id="filter" title="Set primary filters for search">
+
+    @php
+        $categories = collect($categoriesList)->map(function($name, $id) {
+            return [
+                'value' => $id,
+                'label' => $name,
+            ];
+        })->values()->toArray();
+    @endphp
+
+    <x-twill::multi-select
+        name='labels.filters'
+        label='Filters'
+        placeholder='Add filters'
+        :options='$categories'
+    />
+
+</x-twill::formFieldset>
+
+<x-twill::formFieldset id="resources" title="Section of provided resources">
+
+    <x-twill::repeater
+        type='publication_resources'
+    />
 
 </x-twill::formFieldset>
 

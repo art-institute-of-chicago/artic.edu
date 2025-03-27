@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div class="stories-subnav">
+    <div class="{{$landingPageType}}-subnav">
         @include('components.molecules._m-auto-subnav', ['subnav' => $subnav])
     </div>
 

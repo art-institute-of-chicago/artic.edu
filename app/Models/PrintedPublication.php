@@ -73,6 +73,12 @@ class PrintedPublication extends AbstractModel
                     'ratio' => 1,
                 ],
             ],
+            'listing' => [
+                [
+                    'name' => 'listing',
+                    'ratio' => null,
+                ],
+            ],
         ],
         'banner' => [
             'default' => [
