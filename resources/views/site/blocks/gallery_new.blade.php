@@ -94,7 +94,7 @@
                     'fullscreen' => $block->input('disable_gallery_modals') ? false : true,
                     'media' => $item->imageAsArray('gallery_item', 'conservation_and_science'),
                     'videoUrl' => $item->input('videoUrl'),
-                    'href' => 'https://google.com', //$item->input('linkUrl'),
+                    'href' => $item->input('linkUrl'),
                     'linkLabel' => $item->input('linkLabel'),
                 ]);
                 if (($block->input('is_gallery_zoomable') ?? false) || $item->input('is_zoomable')) {
