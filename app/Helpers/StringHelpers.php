@@ -275,9 +275,7 @@ class StringHelpers
             $oldInternalErrors = libxml_use_internal_errors(true);
 
             $dom = new \DomDocument();
-            $newContent = html_entity_decode($newContent, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-            $newContent = mb_convert_encoding($newContent, 'HTML-ENTITIES', 'UTF-8');
-            $dom->loadHTML($newContent, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $newContent, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
             $xpath = new \DOMXpath($dom);
 
