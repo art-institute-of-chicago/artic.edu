@@ -10,12 +10,12 @@ return new class () extends Migration {
         Schema::create('publication_resources', function (Blueprint $table) {
             createDefaultTableFields($table);
             $table->string('position');
-            $table->string('resource_target');
-            $table->string('resource_title');
-            $table->string('resource_description');
-            $table->string('resource_link_label');
-            $table->string('resource_link_url');
-            $table->foreignId('landing_page_id')->constrained('landing_pages')->onDelete('CASCADE');
+            $table->string('resource_target')->nullable();
+            $table->string('resource_title')->nullable();
+            $table->string('resource_description')->nullable();
+            $table->string('resource_link_label')->nullable();
+            $table->string('resource_link_url')->nullable();
+            $table->foreignId('landing_page_id');
         });
     }
 
