@@ -174,16 +174,23 @@ class StringHelpers
     public static function getLastWord(string $originalText): array
     {
         $originalText = rtrim($originalText);
-        // Split on the last space (" ") character as long as the final set of
-        // characters does not contain angle brackets (likely an HTML element).
-        preg_match('/(.* )([^<>]+)$$/', $originalText, $textParts);
+
+        // First check if the string ends with an HTML entity
+        if (preg_match('/(.*)(&(?:#\d+|[a-zA-Z]+);)$/', $originalText, $entityMatch)) {
+            // If it ends with an HTML entity, use that as the last "word"
+            return [$entityMatch[1], $entityMatch[2]];
+        }
+
+        // Otherwise, look for the last space followed by non-HTML, non-space characters
+        preg_match('/(.* )([^<>\s]+(?:(?!&(?:#\d+|[a-zA-Z]+);).)+)$/', $originalText, $textParts);
+
         $beforeLastWord = $textParts[1] ?? $originalText;
         $lastWord = $textParts[2] ?? '';
-        // If the last word did contain an HTML elment, find the last non-space,
-        // non-word character (usually punctuation) and use that as the last
-        // "word".
+
+        // Fallback for other cases
         if (empty($lastWord)) {
-            preg_match('/(.*)([\S\W])$/', $originalText, $textAndPunctuation);
+            // Match the very last character/punctuation
+            preg_match('/(.*)(.)$/', $originalText, $textAndPunctuation);
             $beforeLastWord = $textAndPunctuation[1] ?? $originalText;
             $lastWord = $textAndPunctuation[2] ?? '';
         }
@@ -268,7 +275,9 @@ class StringHelpers
             $oldInternalErrors = libxml_use_internal_errors(true);
 
             $dom = new \DomDocument();
-            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $newContent, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $newContent = html_entity_decode($newContent, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            $newContent = mb_convert_encoding($newContent, 'HTML-ENTITIES', 'UTF-8');
+            $dom->loadHTML($newContent, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
             $xpath = new \DOMXpath($dom);
 
