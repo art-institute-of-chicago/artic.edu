@@ -15,6 +15,10 @@
             $themes = ['default', 'publications'];
             $mediaTypes = ['image', 'video'];
             break;
+        case 'Conservation and Science';
+            $themes = ['default', 'conservation-and-science'];
+            $mediaTypes = ['image', 'video'];
+            break;
         default:
             $themes = ['default'];
             $mediaTypes = ['image', 'video'];
