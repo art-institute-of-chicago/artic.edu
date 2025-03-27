@@ -57,6 +57,12 @@
         :toolbar-options="[ 'italic' ]"
     />
 
+    <x-twill::date-picker
+        name='publication_date'
+        label='Publication date'
+        withTime='false'
+    />
+
     <x-twill::checkbox
         name='is_dsc_stub'
         label='This page is a stub that links out to publications.artic.edu'
