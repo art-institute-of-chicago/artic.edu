@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e486e0a3dd8cee851b7651e33daf9051",
+    "content-hash": "65fa20b0ced1b9d766c79220495c793d",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -11781,7 +11781,7 @@
         },
         {
             "name": "vendor/package-patches",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "require": {
                 "netresearch/composer-patches-plugin": "~1.2"
             },
@@ -11796,10 +11796,6 @@
                         {
                             "title": "WEB-2678: Backport Node 10 syntax",
                             "url": "patches/WEB-2678---backport-node-10-syntax.diff"
-                        },
-                        {
-                            "title": "WEB-2982: Fix Relation column",
-                            "url": "patches/WEB-2982---fix-relation-column.diff"
                         }
                     ]
                 }
