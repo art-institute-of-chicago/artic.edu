@@ -116,6 +116,14 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
                 ],
             ],
         ],
+        'image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => null,
+                ]
+            ]
+        ]
     ];
 
     public function scopePublished($query): Builder
