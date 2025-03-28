@@ -74,6 +74,7 @@
     }
 
     .publication-resources-container {
+        position: relative;
         display: flex;
         justify-content: space-between;
         flex-direction: row;
@@ -83,14 +84,18 @@
         }
 
         .publication-resource {
+            min-height: 100%;
+            position: relative;
             max-width: 30%;
             display: flex;
-            justify-content: space-between;
-            height: max-content;
             flex-direction: column;
 
             @include breakpoint('medium-') {
-                padding-top: 40px;
+                &:not(:first-child) {
+                    border-top: 1px solid $color__black--10;
+                    padding-top: 20px;
+                }
+                padding-bottom: 20px;
                 max-width: 100%;
             }
 
@@ -113,13 +118,21 @@
                 font-size: 17px;
             }
 
-            &::after {
+            &:not(:last-child)::after {
                 display: block;
-                content: "";
+                content: '';
+                position: absolute;
+                top: 0;
+                right: -6%;
                 height: 100%;
                 width: 1px;
                 background-color: $color__black--10;
-            }
+                pointer-events: none;
+
+                @include breakpoint('medium-') {
+                    display: none;
+                }
+              }
         }
     }
 }
