@@ -1,4 +1,29 @@
 .conservation-and-science {
+  .showcase--conservation-and-science {
+    &.m-showcase-block {
+      background-color: $color__white;
+    }
+
+    .m-showcase-wrapper {
+      flex-direction: row-reverse;
+    }
+
+    .m-showcase-block__text-wrapper {
+      gap: 11px;
+    }
+
+    .showcase-title {
+      font-size: 22px;
+      line-height: 28px;
+      margin: 0;
+    }
+
+    .showcase-description {
+      color: $color__black--80;
+      margin: 0;
+    }
+  }
+
   .o-row-listing.o-blocks__block {
     background-color: $color__black--5;
 
