@@ -65,7 +65,7 @@
         <div class="publication-resources-container">
             @foreach ($item->publicationResources as $resource)
                 <div class="publication-resource">
-                    <h3 id={{$resource->resource_target}}>{{$resource->resource_title}}</h3>
+                    <h3 id={{Str::kebab(Str::lower($resource->resource_target))}}>{{$resource->resource_title}}</h3>
                     <p>{!!$resource->resource_description!!}</p>
                     <a href={{$resource->resource_link_url}}>{{$resource->resource_link_label}}<svg class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow--24"></use></svg></a>
                 </div>
