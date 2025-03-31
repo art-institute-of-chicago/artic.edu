@@ -34,6 +34,12 @@
         :maxlength='255'
     />
 
+    <x-twill::date-picker
+        name='publication_date'
+        label='Publication date'
+        withTime='false'
+    />
+
     <x-twill::multi-select
         name='categories'
         label='Categories'
