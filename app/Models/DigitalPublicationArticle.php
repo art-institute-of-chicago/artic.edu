@@ -41,6 +41,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         'article_type',
         'listing_display',
         'suppress_listing',
+        'hero_caption',
         'heading',
         'author_display',
         'publish_start_date',
