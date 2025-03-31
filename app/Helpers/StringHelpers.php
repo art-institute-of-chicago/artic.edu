@@ -175,14 +175,15 @@ class StringHelpers
     {
         $originalText = rtrim($originalText);
 
-        // First check if the string ends with an HTML entity
-        if (preg_match('/(.*)(&(?:#\d+|[a-zA-Z]+);)$/', $originalText, $entityMatch)) {
-            // If it ends with an HTML entity, use that as the last "word"
+        // Check if the string ends with an HTML entity including curly quotes
+        if (preg_match('/(.*)(&(?:#\d+|[a-zA-Z]+);|&(?:ldquo|rdquo|lsquo|rsquo|ndash|mdash|hellip|nbsp|amp|lt|gt|quot);|\x{201C}|\x{201D}|\x{2018}|\x{2019}|\x{2013}|\x{2014}|\x{2026})$/u', $originalText, $entityMatch)) {
+            // If it ends with an HTML entity or special character, use that as the last "word"
             return [$entityMatch[1], $entityMatch[2]];
         }
 
         // Otherwise, look for the last space followed by non-HTML, non-space characters
-        preg_match('/(.* )([^<>\s]+(?:(?!&(?:#\d+|[a-zA-Z]+);).)+)$/', $originalText, $textParts);
+        // Excluding HTML entities and special characters from the last word pattern
+        preg_match('/(.* )([^<>\s]+(?:(?!(&(?:#\d+|[a-zA-Z]+);|&(?:ldquo|rdquo|lsquo|rsquo|ndash|mdash|hellip|nbsp|amp|lt|gt|quot);|\x{201C}|\x{201D}|\x{2018}|\x{2019}|\x{2013}|\x{2014}|\x{2026})).)+)$/u', $originalText, $textParts);
 
         $beforeLastWord = $textParts[1] ?? $originalText;
         $lastWord = $textParts[2] ?? '';
