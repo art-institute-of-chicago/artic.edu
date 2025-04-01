@@ -4,25 +4,27 @@
 
     switch ($type) {
         case 'RLC':
-            $themes = ['rlc'];
+            $themes = [
+                ['value' => 'rlc', 'label' => $type],
+            ];
+            break;
+        case 'Conservation and Science':
+            $themes = [
+                ['value' => 'conservation-and-science', 'label' => $type],
+            ];
             break;
         default:
-            $themes = ['default'];
+            $themes = [
+                ['value' => 'default', 'label' => 'Default'],
+            ];
     }
-
-    $options = collect($themes)->map(function($theme) {
-        return [
-            'value' => $theme,
-            'label' => ucfirst($theme),
-        ];
-    })->toArray();
 @endphp
 
 <x-twill::select
     name='theme'
     label='Theme'
     default='default'
-    :options="$options"
+    :options="$themes"
 />
 
 <x-twill::formConnectedFields
