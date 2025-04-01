@@ -1,13 +1,5 @@
 .conservation-and-science {
   .showcase--conservation-and-science {
-    .showcase-title {
-      margin: 0;
-    }
-
-    .showcase-description {
-      color: $color__black--80;
-      margin: 0;
-    }
   }
 
   .showcase--conservation-and-science.m-showcase-block {
@@ -17,75 +9,19 @@
       flex-direction: row-reverse;
     }
 
-    .showcase-title {
-      font-size: 22px;
-      line-height: 28px;
-    }
-
     .m-showcase-block__text-wrapper {
       gap: 11px;
     }
-  }
 
-  .showcase--conservation-and-science.m-showcase-multiple-block {
-    @include breakpoint('small+') {
-      .m-showcase-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-row-gap: 10px;
-      }
-
-      .m-showcase-block__header-wrapper {
-        grid-column-end: 4;
-        grid-column-start: 1;
-      }
-
-      .m-showcase-media {
-        grid-row: 2;
-      }
-
-      @for $i from 1 through 3 {
-        .m-showcase-media:nth-of-type($i) {
-          grid-column: $i;
-        }
-      }
-
-      .showcase-header {
-        margin-bottom: 30px;
-        padding-bottom: 30px;
-      }
-    }
-
-    @include breakpoint('xsmall') {
-      .m-showcase-block__header-wrapper {
-        margin-bottom: 16px;
-      }
-
-      .m-showcase-wrapper {
-        gap: 16px;
-      }
-    }
-
-    .m-showcase-background {
-      background-color: $color__white;
-    }
-
-    .m-showcase-block__text-wrapper {
-      margin-bottom: 30px;
-    }
-
-    .showcase-header {
-      border-bottom: 1px solid $color__black--20;
-      font-family: $sans-serif-font--loaded;
-      font-size: 21px;
-      height: 50px;
-      line-height: 28px;
-      text-transform: uppercase;
+    .showcase-description {
+      color: $color__black--80;
+      margin: 0;
     }
 
     .showcase-title {
-      font-size: 24px;
-      line-height: 32px;
+      font-size: 22px;
+      line-height: 28px;
+      margin: 0;
     }
   }
 
@@ -186,6 +122,42 @@
 
       .f-link {
         color: $color__grey--100 !important;
+      }
+    }
+  }
+
+  .o-grid-block {
+    @include breakpoint('large+') {
+      margin-left: unset !important;
+    }
+
+    .m-title-bar::before {
+      content: none;
+    }
+
+    .hr {
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+            margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+        }
+      }
+    }
+
+    .m-listing {
+      &::before, &::after {
+        content: none;
+      }
+
+      .title {
+        color: $color__black--90;
+        font-size: 24px;
+        line-height: 32px;
+      }
+
+      .intro {
+        color: $color__black--80;
+        font-size: 17px;
+        line-height: 28px;
       }
     }
   }
