@@ -12,8 +12,8 @@
     $tags = \App\Models\Category::whereIn('id', $categories)->get();
 
     $videos = $block->getRelated('videos');
-    if ($block->children) {
-    $stories = collect();
+    if ($block->children->isNotEmpty()) {
+        $stories = collect();
         foreach ($block->children as $child) {
             if ($child->getRelated('publication_item')->isNotEmpty()) {
                 $childStories = $child->getRelated('publication_item')->map(function ($item) use ($child) {
@@ -49,12 +49,11 @@
     } else {
         $stories = $block->getRelated('stories');
     }
-
-
 @endphp
 
 <div id="{{ str(strip_tags($heading))->kebab() }}" class="m-editorial-block {{ $theme ? 'editorial-block--'.$theme : '' }} {{ $variation ? 'editorial-block--variation-'.$variation : '' }}">
     {!! $variation == 'video' ? '<div class="editorial-block__video-wrapper">' : '' !!}
+
     <div class="editorial-block__header">
         <div class="editorial-block__heading">
             <h2>{{ $heading }}</h2>
@@ -87,7 +86,7 @@
     </div>
     <div class="editorial-block__content">
         <div class="editorial-block__content-wrapper">
-        @if ($variation !== 'video' && empty($block->children))
+        @if ($variation !== 'video' && $block->children->isEmpty())
             @foreach ($stories as $item)
                 @php
                     $hasFeatured = ($variation !== '3-across' && $variation !== '4-across');
