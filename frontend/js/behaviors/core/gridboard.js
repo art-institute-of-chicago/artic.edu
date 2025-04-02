@@ -82,10 +82,21 @@ const gridboard = function(container) {
             
             // Position blocks in the current row
             forEach(row, function(colIndex, block) {
-                // Set the `top` and `left` positions for the block
+                // Set initial state
+                block.classList.remove('s-positioned');
+                block.classList.add('s-animating');
+                
+                // Calculate the final position
                 let leftPosition = colIndex * (colWidth + marginLeft);
                 
+                // Set the position without transition first
                 block.style.position = "absolute";
+                block.style.transition = "none";
+                
+                // Force a reflow to ensure the initial position is set before animation starts
+                void block.offsetWidth;
+                
+                block.style.transition = "all 1s cubic-bezier(0.25, 0.1, 0.25, 1)";
                 block.style.left = `${Math.round(leftPosition)}px`;
                 block.style.top = `${Math.round(rowTop)}px`;
                 
@@ -95,9 +106,10 @@ const gridboard = function(container) {
                 // Add the 's-positioned' class after a delay to mark it as positioned
                 // and remove the repositioning class to ensure proper animation
                 setTimeout(function() {
-                    block.classList.add('s-positioned');
-                }, 50);
-            });
+                  block.classList.remove('s-animating');
+                  block.classList.add('s-positioned');
+                }, 1000); // Match this with your transition duration
+              });
             
             // Update the total height after this row
             totalHeight = rowTop + rowHeights[rowIndex];
