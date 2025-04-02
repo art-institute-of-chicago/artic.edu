@@ -34,6 +34,12 @@
         note='Minimum image width 2000px'
     />
 
+    <x-twill::medias
+        name='publications_listing'
+        label='Publications listing image'
+        note='Minimum image width 3000px'
+    />
+
     @formField('color_select', [
         'name' => 'bgcolor',
         'label' => 'Hero background color',

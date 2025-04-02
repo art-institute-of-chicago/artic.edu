@@ -18,7 +18,11 @@
             if ($child->getRelated('publication_item')->isNotEmpty()) {
                 $childStories = $child->getRelated('publication_item')->map(function ($item) use ($child) {
                     $item->type = 'augmented';
-                    $item->image = $child->hasImage('listing_image') ? $child->imageAsArray('listing_image') : ($item->imageAsArray('listing', 'listing'));
+                    $item->image = $child->hasImage('listing_image') 
+                        ? $child->imageAsArray('listing_image', 'default') 
+                        : ($item->hasImage('publications_listing') 
+                            ? $item->imageAsArray('publications_listing', 'default') 
+                            : $item->imageAsArray('listing', 'listing'));
                     $item->title = $child->input('title') ?? $item->title;
                     $item->label = $child->input('label') ?? $item->type;
                     $item->url_without_slug = $child->input('linkUrl') ?? $item->url_without_slug;
