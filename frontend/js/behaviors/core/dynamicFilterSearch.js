@@ -32,12 +32,6 @@ const dynamicFilterSearch = function(container) {
             console.log('search hears castupdate');
             if (event.data.id === id) {
                 searchBar.value = event.data.value;
-
-                triggerCustomEvent(document, 'filter:updated', {
-                    id: id,
-                    parameter: 'search',
-                    value: searchBar.value,
-                });
             }
         });
     }

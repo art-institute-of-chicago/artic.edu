@@ -146,12 +146,6 @@ const dynamicFilterDropdown = function(container) {
           matchingItem.classList.add('s-active');
           updateButtonText(matchingItem.innerText);
         }
-
-        triggerCustomEvent(document, 'filter:updated', {
-          id: id,
-          parameter: filterType,
-          value: event.data.value
-        });
       }
     });
     
