@@ -30,7 +30,6 @@ return new class () extends Migration {
         ];
 
         $digitalPublicationsCategories = [
-            ['name' => 'Digital Publications', 'ids' => [38, 37, 36, 34, 33, 32, 31, 30, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2]],
             ['name' => 'Modern Art', 'ids' => [34, 6, 3]],
             ['name' => 'American Art', 'ids' => [33, 32, 30, 13, 2]],
             ['name' => 'European Art', 'ids' => [31, 13, 12, 11, 10, 9, 8, 7, 5, 4]],
