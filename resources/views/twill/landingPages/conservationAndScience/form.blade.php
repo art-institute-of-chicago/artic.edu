@@ -19,10 +19,11 @@
                 'editorial_block',
                 'event',
                 'gallery_new',
-                'image_slider',
-                'showcase',
-                'list',
+                'grid',
                 'hr',
+                'image_slider',
+                'list',
+                'showcase',
             ];
         @endphp
         <x-twill::block-editor
