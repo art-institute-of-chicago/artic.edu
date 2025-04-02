@@ -10,17 +10,7 @@
         {{ $title }}
     @endcomponent
 
-    <div class="o-menu-bar">
-        @if(!empty($item->menuItems))
-            <ul>
-                @foreach($item->menuItems as $item)
-                    <li class="m-links-bar__item">
-                        <a class="m-links-bar__item-trigger f-link" href={{ $item->link }}>
-                            {{ $item->label }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-        @endif
+    <div class="{{$landingPageType}}-subnav">
+        @include('components.molecules._m-auto-subnav', ['subnav' => $subnav])
     </div>
 </section>

@@ -8,11 +8,6 @@
 @stop
 
 @section('fieldsets')
-    <x-twill::formFieldset title="Navigation Menu" id="conservationAndScience-nav-menu">
-        <x-twill::repeater
-            type="menu_items"
-        />
-    </x-twill::formFieldset>
     <x-twill::formFieldset title="Custom Content" id="conservationAndScience-custom_content">
         @php
             $blocks = [
