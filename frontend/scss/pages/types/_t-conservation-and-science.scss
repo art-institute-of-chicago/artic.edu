@@ -1,8 +1,9 @@
 .conservation-and-science {
   .showcase--conservation-and-science {
-    &.m-showcase-block {
-      background-color: $color__white;
-    }
+  }
+
+  .showcase--conservation-and-science.m-showcase-block {
+    background-color: $color__white;
 
     .m-showcase-wrapper {
       flex-direction: row-reverse;
@@ -12,14 +13,14 @@
       gap: 11px;
     }
 
-    .showcase-title {
-      font-size: 22px;
-      line-height: 28px;
+    .showcase-description {
+      color: $color__black--80;
       margin: 0;
     }
 
-    .showcase-description {
-      color: $color__black--80;
+    .showcase-title {
+      font-size: 22px;
+      line-height: 28px;
       margin: 0;
     }
   }
@@ -121,6 +122,42 @@
 
       .f-link {
         color: $color__grey--100 !important;
+      }
+    }
+  }
+
+  .o-grid-block {
+    @include breakpoint('large+') {
+      margin-left: unset !important;
+    }
+
+    .m-title-bar::before {
+      content: none;
+    }
+
+    .hr {
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+            margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+        }
+      }
+    }
+
+    .m-listing {
+      &::before, &::after {
+        content: none;
+      }
+
+      .title {
+        color: $color__black--90;
+        font-size: 24px;
+        line-height: 32px;
+      }
+
+      .intro {
+        color: $color__black--80;
+        font-size: 17px;
+        line-height: 28px;
       }
     }
   }
