@@ -39,7 +39,7 @@ return new class () extends Migration {
 
         foreach ($printedPublicationsCategories as $category) {
             $categoryId = DB::table('catalog_categories')->where('name', $category['name'])->value('id');
-            
+
             if (!$categoryId) {
                 $categoryId = DB::table('catalog_categories')->insertGetId([
                     'name' => $category['name'],
@@ -63,7 +63,7 @@ return new class () extends Migration {
 
         foreach ($digitalPublicationsCategories as $category) {
             $categoryId = DB::table('catalog_categories')->where('name', $category['name'])->value('id');
-            
+
             if (!$categoryId) {
                 $categoryId = DB::table('catalog_categories')->insertGetId([
                     'name' => $category['name'],
