@@ -67,6 +67,7 @@
     field-name='gallery_item_type'
     field-values="{{ \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM_WITH_LINK }}"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
     <x-twill::medias
         name='gallery_item'
@@ -93,8 +94,7 @@
 
     <x-twill::input
         name='linkLabel'
-        label='Link Label'
-        default='Learn more >'
+        label='Link label'
     />
 </x-twill::formConnectedFields>
 
