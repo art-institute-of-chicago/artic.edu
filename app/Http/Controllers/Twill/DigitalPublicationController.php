@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Twill;
 use A17\Twill\Services\Listings\Columns\NestedData;
 use A17\Twill\Services\Listings\Columns\Presenter;
 use A17\Twill\Services\Listings\TableColumns;
+use App\Repositories\CatalogCategoryRepository;
 
 class DigitalPublicationController extends BaseController
 {
@@ -40,6 +41,7 @@ class DigitalPublicationController extends BaseController
             ->mapWithKeys(fn ($hexColor) => [$hexColor => $hexColor]);
 
         return [
+            'categoriesList' => app(CatalogCategoryRepository::class)->listAll('name'),
             'baseUrl' => $baseUrl,
             'heroBackgroundColors' => $heroBackgroundColors,
         ];
