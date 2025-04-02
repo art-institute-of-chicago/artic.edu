@@ -28,26 +28,53 @@ const dynamicFilter = function(container) {
         });
       }
     });
-
-    if (url.searchParams.size === 0) {
+    
+    if (!url.searchParams.get('filter')) {
       url.searchParams.set('filter', 'all');
       window.history.pushState({}, '', url);
     }
-
-    console.log('cast params: '+ castParameters);
-
+    
+    console.log('cast params: ', castParameters);
+    
+    // Sort the cast parameters to ensure they're processed in the right order:
+    // 1. filter (categories) first
+    // 2. search second
+    // 3. sort last
     if (castParameters.length > 0) {
+      const parameterPriority = {
+        'filter': 1, 
+        'search': 2, 
+        'sort': 3
+      };
+      
+      // Sort the parameters based on priority
+      castParameters.sort((a, b) => {
+        const priorityA = parameterPriority[a.parameter] || 999; // Default high number for unknown parameters
+        const priorityB = parameterPriority[b.parameter] || 999;
+        return priorityA - priorityB;
+      });
+      
+      // Process each filter parameter in the prioritized order
       castParameters.forEach(item => {
+        console.log(`Applying ${item.parameter}=${item.value}`);
+        // Call filterItems for each parameter
+        filterItems(item.parameter, item.value);
+        
+        // Update the UI to reflect the filter state
         castFilterUpdate(item.id, item.parameter, item.value);
       });
+      
+      // Scroll to container after all filters are applied
       window.requestAnimationFrame(() => {
         window.scrollTo({
-            top: container.offsetTop -20,
-            behavior: 'smooth'
+          top: container.offsetTop - 20,
+          behavior: 'smooth'
         });
-    });
-    }
 
+        triggerCustomEvent(document, 'resized');
+      });
+    }
+    
     setup = true;
   }
   
