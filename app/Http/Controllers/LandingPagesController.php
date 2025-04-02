@@ -331,6 +331,11 @@ class LandingPagesController extends FrontController
                     ->all(),
                 ];
                 break;
+            case $types->search('Conservation and Science'):
+                $viewData = [
+                    'subnav' => collect($blockHeadings),
+                ];
+                break;
 
             default:
                 $viewData = array();
