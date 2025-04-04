@@ -12,6 +12,7 @@ use App\Models\PrintedPublication;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\View;
 
 class LandingPagesController extends FrontController
 {
@@ -77,6 +78,7 @@ class LandingPagesController extends FrontController
                 break;
         }
 
+        View::share('landingPageType', Str::slug($item->type)); // This helps render conditional fields for LP types in all components :)
         return view('site.landingPageDetail', $this->viewData($item));
     }
 
