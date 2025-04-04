@@ -69,6 +69,14 @@
         withTime='false'
     />
 
+    <x-twill::multi-select
+        name='categories'
+        label='Categories'
+        placeholder='Select some categories'
+        unpack='true'
+        :options='$categoriesList'
+    />
+
     <x-twill::checkbox
         name='is_dsc_stub'
         label='This page is a stub that links out to publications.artic.edu'

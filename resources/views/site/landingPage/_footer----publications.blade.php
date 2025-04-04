@@ -26,7 +26,7 @@
         @slot('dataAttributes', 'data-filter-buttons') {{-- data-filter-buttons here --}}
         @slot('primaryHtml')
             @foreach ($primaryFilters as $filter)
-                <li data-filter-default data-behavior="dynamicFilterButton" data-button-value="{{$filter['value']}}" class="m-links-bar__item m-links-bar__item--primary">
+                <li data-filter-default data-behavior="dynamicFilterButton" data-button-value="{{Str::lower(Str::slug($filter['value']))}}" class="m-links-bar__item m-links-bar__item--primary">
                     <a class="f-link">{{$filter['label']}}</a>
                 </li>
             @endforeach

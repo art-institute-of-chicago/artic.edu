@@ -157,6 +157,17 @@ class DigitalPublication extends AbstractModel
         return $this->belongsToMany('App\Models\CatalogCategory', 'catalog_category_digital_publication', 'digital_publication_id');
     }
 
+    public function scopeByCategory($query, $category = null): Builder
+    {
+        if (!empty($category)) {
+            $query->whereHas('categories', function ($query) use ($category) {
+                $query->where('catalog_category_id', $category);
+            });
+        }
+
+        return $this->scopeOrdered($query);
+    }
+
     public function scopeByCategories($query, $categories = null): Builder
     {
         if (empty($categories)) {
