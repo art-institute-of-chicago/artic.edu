@@ -4,14 +4,14 @@
     str_replace('_', '-', $item->type) . 
     (count($item->categories) > 0 ? ',' : '') .
     $item->categories->pluck('name')->map(function($name) {
-        return \Illuminate\Support\Str::kebab($name);
+        return Str::lower(Str::slug($name));
     })->implode(',')
  }}"
  data-filter-date="{{
     date('d-m-Y', strtotime($item->publish_start_date))
  }}"
   data-filter-title="{{
-    Str::lower(Str::kebab($item->title))
+    Str::lower(Str::slug($item->title))
  }}"
 >
     <a href="{{ $href ?? '' }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -23,6 +24,13 @@ class DigitalPublicationRepository extends ModuleRepository
             'relation' => 'welcome_note_section'
         ]
     ];
+
+    public function afterSave(TwillModelContract $object, array $fields): void
+    {
+        $object->categories()->sync($fields['categories'] ?? []);
+        parent::afterSave($object, $fields);
+    }
+
 
     public function __construct(DigitalPublication $model)
     {
