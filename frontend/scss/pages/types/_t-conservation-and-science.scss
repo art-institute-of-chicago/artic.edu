@@ -126,7 +126,7 @@
     }
   }
 
-  .o-grid-block {
+  .o-grid-block:has(#our-work) {
     @include breakpoint('large+') {
       margin-left: unset !important;
     }
@@ -158,6 +158,24 @@
         color: $color__black--80;
         font-size: 17px;
         line-height: 28px;
+      }
+    }
+  }
+
+  .o-grid-block:has(#resources) {
+    .m-listing__img {
+      display: none;
+    }
+
+    @include breakpoint('xsmall') {
+      .m-listing__meta {
+        min-height: unset;
+      }
+    }
+
+    @include breakpoint('small+') {
+      .m-listing__meta .f-link {
+        margin: auto 0 0;
       }
     }
   }
