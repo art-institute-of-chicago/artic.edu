@@ -14,7 +14,7 @@
                             @slot('settings', $imageSettings ?? '')
                             @slot('class', 'img-hero-mobile')
                         @endcomponent
-                    @else 
+                    @else
                         @component('components.atoms._img')
                             @slot('image', $image ?? $item->imageFront('hero') ?? $item->imageFront('listing'))
                             @slot('settings', $imageSettings ?? '')
@@ -48,31 +48,18 @@
                     @slot('title_display', $item->present()->title_display)
                 @endcomponent
                 <br>
-                @if ($isFeatured)
-                    @if (isset($item->authors) && (count($item->authors) > 0) || $item->author_display)
-                        <div class="author f-body-editorial">
-                            @if ($item->author_display)
-                                by ⁠{!! $item->author_display !!}
-                            @elseif (count($item->authors) > 0)
-                                <span class="author__name">
-                                    by {{StringHelpers::summation($item->authors->pluck('title')->all())}}                                </span>
-                            @endif
-                        </div>
-                    @endif
-                    @if ($item->present()->list_description)
-                        <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description !!}</div>
-                    @endif
-                @endif
-                @if ((isset($item->authors) && (count($item->authors) > 0) || $item->author_display) && !$isFeatured)
+                @if (isset($item->authors) && (count($item->authors) > 0) || $item->author_display)
                     <div class="author f-body-editorial">
                         @if ($item->author_display)
                             by ⁠{!! $item->author_display !!}
                         @elseif (count($item->authors) > 0)
                             <span class="author__name">
-                                by {{StringHelpers::summation($item->authors->pluck('title')->all())}}
-                            </span>
+                                by {{StringHelpers::summation($item->authors->pluck('title')->all())}}                                </span>
                         @endif
                     </div>
+                @endif
+                @if (isset($showDescription) && $showDescription && $item->present()->list_description)
+                    <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description !!}</div>
                 @endif
             </div>
         </a>
