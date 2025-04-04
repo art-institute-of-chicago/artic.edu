@@ -5,12 +5,15 @@
 @php
   $titleFormKey = $titleFormKey ?? 'title';
   $titleFormLabel = $titleFormLabel ?? 'Title';
+  /* Added */
+  $noteHelperText = $noteHelperText ?? 'Avoid HTML in this field. Use the "Title formatting (optional)" field for italics.';
+  /* /Added */
 @endphp
 <x-twill::input
   :name="$titleFormKey"
   :label="$titleFormKey === 'title' && $titleFormLabel === 'Title' ? twillTrans('twill::lang.modal.title-field') : $titleFormLabel"
   {{-- Added --}}
-  note='Avoid HTML in this field. Use the "Title formatting (optional)" field for italics.'
+  :note="$noteHelperText"
   {{-- /Added --}}
   :translated="$translateTitle ?? false"
   :required="true"
