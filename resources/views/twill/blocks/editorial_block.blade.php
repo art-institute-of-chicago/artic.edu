@@ -47,23 +47,27 @@
         case 'Publications';
             $themes = ['default', 'publications'];
             break;
+        case 'Conservation and Science':
+            $themes = ['default', 'conservation-and-science'];
+            break;
         default:
             $themes = ['default'];
     }
-    
+
     $themeOptions = collect($themes)->map(function($theme) {
         return [
             'value' => $theme,
             'label' => ucfirst($theme),
         ];
     })->toArray();
-    
+
     $categories = collect($categoriesList)->map(function($name, $id) {
         return [
             'value' => $id,
             'label' => $name,
         ];
     })->values()->toArray();
+
 @endphp
 
 @twillBlockTitle('Editorial Block')
@@ -79,7 +83,7 @@
 {{-- Default Theme Fields --}}
 <x-twill::formConnectedFields
     field-name='theme'
-    field-values="default"
+    :field-values="['default', 'conservation-and-science']"
     :render-for-blocks='true'
     :keep-alive='true'
 >
@@ -106,7 +110,11 @@
             [
                 'value' => '4-across',
                 'label' => '4 Across',
-            ]
+            ],
+            [
+                'value' => '1-and-2',
+                'label' => '1 Primary, 2 Secondary',
+            ],
         ]"
     />
 
@@ -234,6 +242,37 @@
             :params='$params'
         />
     </x-twill::formConnectedFields>
+
+    {{-- 1-and-2 variation fields --}}
+    <x-twill::formConnectedFields
+        field-name='variation'
+        field-values="1-and-2"
+        :render-for-blocks='true'
+        :keep-alive='true'
+    >
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::input
+                    name='browse_label'
+                    label='Browse More Label'
+                />
+            </x-slot>
+            <x-slot:right>
+                <x-twill::input
+                    name='browse_link'
+                    label='Browse More Link'
+                />
+            </x-slot>
+        </x-twill::formColumns>
+
+        <x-twill::browser
+            name='stories'
+            label='Stories'
+            :max='3'
+            :modules='$endpoints'
+            :params='$params'
+        />
+    </x-twill::formConnectedFields>
 </x-twill::formConnectedFields>
 
 {{-- Publications Theme Fields --}}
@@ -255,7 +294,7 @@
             ],
         ]"
     />
-    
+
     <x-twill::input
         name='heading'
         label='Heading'
