@@ -51,8 +51,6 @@ const dynamicFilterDropdown = function(container) {
         }
       });
 
-      console.log(value);
-    
       if (value) {
         trigger.classList.add('s-active');
         updateButtonText(selectedItem.innerText);

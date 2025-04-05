@@ -29,7 +29,6 @@ const dynamicFilterSearch = function(container) {
         _filterRegister();
         container.addEventListener('submit', _handleSubmit);
         document.addEventListener('filter:castUpdate', function(event) {
-            console.log('search hears castupdate');
             if (event.data.id === id) {
                 searchBar.value = event.data.value;
             }
