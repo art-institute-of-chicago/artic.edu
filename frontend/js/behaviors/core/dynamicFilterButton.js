@@ -1,8 +1,8 @@
 import { triggerCustomEvent } from "@area17/a17-helpers";
-import generateUUID from '../../functions/core/generateUUID';
+import generateComponentId from '../../functions/core/generateComponentId';
 
 const dynamicFilterButton = function(container) {
-    const id = generateUUID();
+    const id = generateComponentId();
     const parameter = 'filter';
     const buttonValue = container.getAttribute('data-button-value');
 

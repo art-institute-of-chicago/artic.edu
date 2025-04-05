@@ -1,11 +1,11 @@
 // dynamicFilterDropdown.js
 import { triggerCustomEvent } from '@area17/a17-helpers';
-import generateUUID from '../../functions/core/generateUUID';
+import generateComponentId from '../../functions/core/generateComponentId';
 import { drop, forEach, indexOf } from 'lodash';
 
 const dynamicFilterDropdown = function(container) {
   
-  const id = generateUUID();
+  const id = generateComponentId();
 
   container.setAttribute("data-filter-id", id);
 
