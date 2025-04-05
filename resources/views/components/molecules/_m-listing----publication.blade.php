@@ -11,7 +11,7 @@
     date('d-m-Y', strtotime($item->publish_start_date))
  }}"
   data-filter-title="{{
-    Str::lower(Str::slug($item->title))
+    htmlspecialchars($item->title)
  }}"
 >
     <a href="{{ $href ?? '' }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
