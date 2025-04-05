@@ -24,6 +24,9 @@
             @else
                 <span class="default-img"></span>
             @endif
+            @if ((isset($landingPageType) && $landingPageType === 'publications') && $item->type === 'digital_publication')
+                <span class="digital__overlay">Digital</span>
+            @endif
             <span class="m-listing__img__overlay">
                 <svg class="icon--slideshow--24">
                     <use xlink:href="#icon--slideshow--24"></use>
@@ -34,6 +37,12 @@
             @if (isset($label))
                 @component('components.atoms._type')
                     {!! $label !!}
+                @endcomponent
+                <br>
+            @endif
+            @if (isset($landingPageType) && $landingPageType === 'publications')
+                @component('components.atoms._type')
+                    {!! date('Y', strtotime($item->publication_date ?? $item->publish_start_date)) !!}
                 @endcomponent
                 <br>
             @endif
