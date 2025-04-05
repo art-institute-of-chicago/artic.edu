@@ -58,11 +58,12 @@
         }
 
         .m-listing {
+            background-color: $color__white;
             border: none;
 
             .m-listing__img {
                 aspect-ratio: 1/1;
-                
+
                 background-color: transparent;
 
                 img {
