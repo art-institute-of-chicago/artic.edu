@@ -62,7 +62,7 @@
 
             .m-listing__img {
                 aspect-ratio: 1/1;
-                
+
                 background-color: transparent;
 
                 img {
@@ -91,12 +91,13 @@
             flex-direction: column;
 
             @include breakpoint('medium-') {
+                max-width: 100%;
+                padding-bottom: 20px;
+
                 &:not(:first-child) {
                     border-top: 1px solid $color__black--10;
                     padding-top: 20px;
                 }
-                padding-bottom: 20px;
-                max-width: 100%;
             }
 
             >h3 {
