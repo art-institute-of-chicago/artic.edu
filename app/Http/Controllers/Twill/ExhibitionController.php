@@ -15,10 +15,10 @@ class ExhibitionController extends BaseApiController
         $this->disableBulkEdit();
         $this->disableCreate();
         $this->disableDelete();
-        $this->disableEdit();
         $this->disableRestore();
         $this->eagerLoadFormRelations(['revisions', 'siteTags']);
         $this->enableAugmentedModel();
+        $this->enableShowImage();
         $this->setModuleName('exhibitions');
         $this->setPreviewView('site.exhibitionDetail');
     }
