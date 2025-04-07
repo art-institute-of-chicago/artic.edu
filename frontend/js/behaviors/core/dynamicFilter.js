@@ -155,17 +155,27 @@ const dynamicFilter = function(container) {
   function getActiveFiltersFromURL() {
     const url = new URL(window.location.href);
     const activeFilters = [];
-    const params = ['filter', 'search', 'sort', 'page'];
 
-    params.forEach(param => {
-      const value = param === 'filter'
-        ? (url.searchParams.get(param) || 'all')
-        : url.searchParams.get(param);
+    // Always include 'filter' param (default to 'all' if not present)
+    const filterValue = url.searchParams.get('filter') || 'all';
+    activeFilters.push({parameter: 'filter', value: filterValue});
 
-      if (param === 'filter' || value) {
-        activeFilters.push({ parameter: param, value });
-      }
-    });
+    // Check for search parameter
+    const searchValue = url.searchParams.get('search');
+    if (searchValue) {
+      activeFilters.push({parameter: 'search', value: searchValue});
+    }
+
+    // Check for sort parameter
+    const sortValue = url.searchParams.get('sort');
+    if (sortValue) {
+      activeFilters.push({parameter: 'sort', value: sortValue});
+    }
+
+    const pageValue = url.searchParams.get('page');
+    if (pageValue) {
+      activeFilters.push({parameter: 'page', value: pageValue});
+    }
 
     return activeFilters;
   }
