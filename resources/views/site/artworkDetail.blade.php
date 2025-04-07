@@ -105,16 +105,7 @@
     @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
     @endcomponent
-    </div>
-
-  {{-- WEB-2243: Integrate related elements? Could be loaded indirectly from related entities --}}
-  @if ($item->hasFeaturedRelated())
-      <div class="o-article__related{{ (empty($item->description) or $item->description === '') ? ' o-article__related--no-description' : '' }}">
-        @component('site.shared._loadRelatedSidebar')
-            @slot('item', $item)
-        @endcomponent
-    </div>
-  @endif
+  </div>
 
   <div class="o-article__body{{ (empty($item->description) or $item->description === '') ? ' o-article__body--no-description' : '' }} o-blocks">
 
@@ -131,6 +122,12 @@
   </div>
 
 </article>
+
+<div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium-">
+    @component('site.shared._loadRelatedSidebar')
+        @slot('item', $item)
+    @endcomponent
+</div>
 
 @if (isset($exploreFurtherTags) && count($exploreFurtherTags) > 0)
 <div id="exploreFurther">
