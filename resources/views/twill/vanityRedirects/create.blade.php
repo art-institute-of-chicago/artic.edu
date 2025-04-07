@@ -1,10 +1,8 @@
-<x-twill::input
-    name='{{ $titleFormKey ?? 'title' }}'
-    label='{{ ucfirst($titleFormKey ?? 'title') }}'
-    translated='{{ $translateTitle ?? false }}'
-    note='Must be defined in lowercase'
-    :required='true'
-/>
+@php
+  $noteHelperText = 'Must be defined in lowercase';
+@endphp
+
+@include('twill.partials.create')
 
 @if (!isset($item))
     <x-twill::input
