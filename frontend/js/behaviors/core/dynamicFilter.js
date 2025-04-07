@@ -24,7 +24,7 @@ const dynamicFilter = function(container) {
     registeredParameters.forEach(item => {
       const paramValue = url.searchParams.get(item.parameter);
 
-      if (paramValue !== null || paramValue == "" || typeof paramValue == "integer") {
+      if (paramValue !== null || paramValue == "" || typeof paramValue == "number") {
         castParameters.push({
           id: item.id,
           parameter: item.parameter,
