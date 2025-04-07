@@ -31,17 +31,9 @@
                 ))
             @endcomponent
         @endif
-        @if (($variation ?? '') !== 'm-article-header--digital-publication')
-            @if ((isset($credit) and !empty($credit)) or ($img and isset($img['credit']) and $img['credit'] !== ""))
-                @component('components.molecules._m-info-trigger')
-                    @slot('creditUrl', $creditUrl ?? $img['creditUrl'] ?? null)
-                    @slot('creditText', $credit ?? $img['credit'] ?? null)
-                @endcomponent
-            @endif
-        @endif
     </div>
 
-    @if (($variation ?? '') === 'm-article-header--digital-publication')
+    @if (($variation ?? '') !== 'm-article-header--digital-publication')
         @if ((isset($credit) and !empty($credit)) or ($img and isset($img['credit']) and $img['credit'] !== ""))
             @component('components.molecules._m-info-trigger')
                 @slot('creditUrl', $creditUrl ?? $img['creditUrl'] ?? null)
