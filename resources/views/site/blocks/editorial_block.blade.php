@@ -18,10 +18,10 @@
             if ($child->getRelated('publication_item')->isNotEmpty()) {
                 $childStories = $child->getRelated('publication_item')->map(function ($item) use ($child) {
                     $item->type = 'augmented';
-                    $item->image = $child->hasImage('listing_image') 
-                        ? $child->imageAsArray('listing_image', 'default') 
-                        : ($item->hasImage('publications_listing') 
-                            ? $item->imageAsArray('publications_listing', 'default') 
+                    $item->image = $child->hasImage('listing_image')
+                        ? $child->imageAsArray('listing_image', 'default')
+                        : ($item->hasImage('publications_listing')
+                            ? $item->imageAsArray('publications_listing', 'default')
                             : $item->imageAsArray('listing', 'listing'));
                     $item->title = $child->input('title') ?? $item->title;
                     $item->label = $child->input('label') ?? $item->type;
@@ -58,7 +58,7 @@
     <div class="editorial-block__header">
         <div class="editorial-block__heading">
             <h2>{{ $heading }}</h2>
-            @if ( ($variation == 'video' || $variation == '4-across') && ($browse_link || $browse_label) )
+            @if (($variation == 'video' || $variation == '4-across' || $variation == '1-and-2') && ($browse_link || $browse_label))
                 @component('components.atoms._link')
                     @slot('font', 'f-secondary')
                     @slot('href', $browse_link)
@@ -91,14 +91,17 @@
             @foreach ($stories as $item)
                 @php
                     $hasFeatured = ($variation !== '3-across' && $variation !== '4-across');
+                    $isFeatured = $loop->first && $hasFeatured;
                 @endphp
                 {!! (($loop->iteration == 2 && $hasFeatured) || ($loop->first && !$hasFeatured)) ? '<div class="editorial-block__list">' : '' !!}
-                {!! (($loop->first && $hasFeatured) ? '<div class="editorial-block__featured">' : '') !!}
+                {!! (($isFeatured) ? '<div class="editorial-block__featured">' : '') !!}
                 @component('components.molecules._m-listing----stories-listing')
-                    @slot('isFeatured', $loop->first && $hasFeatured)
+                    @slot('variation', $variation)
+                    @slot('showDescription', $isFeatured || $variation == '1-and-2')
+                    @slot('isFeatured', $isFeatured)
                     @slot('item', $item)
                     @slot('fullscreen', false)
-                    @slot('titleFont', ($loop->first && $hasFeatured) ? 'f-list-3' : 'f-list-1')
+                    @slot('titleFont', ($isFeatured) ? 'f-list-3' : 'f-list-1')
                     @slot('imageSettings', array(
                         'srcset' => array(300,600,800,1200,1600),
                         'sizes' => ImageHelpers::aic_imageSizes(array(

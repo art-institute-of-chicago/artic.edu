@@ -40,6 +40,7 @@
                     {!! $loop->iteration == 2 ? '<div class="stories-top-stories__side">' : '' !!}
                     {!! $isFeatured ? '<div class="stories-top-stories__featured">' : '' !!}
                     @component('components.molecules._m-listing----stories-listing')
+                        @slot('showDescription', $isFeatured)
                         @slot('isFeatured', $isFeatured)
                         @slot('item', $item)
                         @slot('fullscreen', false)
@@ -57,7 +58,7 @@
                             )),
                         ))
                     @endcomponent
-                    {!! $isFeatured || $loop->last ? '</div>' : '' !!}                
+                    {!! $isFeatured || $loop->last ? '</div>' : '' !!}
                 @endforeach
             </div>
         @endif
