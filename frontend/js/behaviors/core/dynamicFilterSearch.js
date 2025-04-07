@@ -1,8 +1,8 @@
 import { triggerCustomEvent } from "@area17/a17-helpers"
-import generateUUID from '../../functions/core/generateUUID';
+import generateComponentId from '../../functions/core/generateComponentId';
 
 const dynamicFilterSearch = function(container) {
-    let id = generateUUID();
+    let id = generateComponentId();
     let searchBar = container.querySelector('input');
 
     container.setAttribute("data-filter-id", id);
@@ -29,7 +29,6 @@ const dynamicFilterSearch = function(container) {
         _filterRegister();
         container.addEventListener('submit', _handleSubmit);
         document.addEventListener('filter:castUpdate', function(event) {
-            console.log('search hears castupdate');
             if (event.data.id === id) {
                 searchBar.value = event.data.value;
             }

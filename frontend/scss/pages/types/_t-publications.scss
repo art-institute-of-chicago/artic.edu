@@ -58,6 +58,7 @@
         }
 
         .m-listing {
+            background-color: $color__white;
             border: none;
 
             .m-listing__img {
@@ -68,6 +69,18 @@
                 img {
                     object-fit: contain;
                     object-position: bottom;
+                }
+            }
+
+            .m-listing__meta {
+                font-size: 13px;
+                font-weight: 400;
+                padding-top: 14px;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+
+                .type {
+                    font-size: 13px;
                 }
             }
         }
