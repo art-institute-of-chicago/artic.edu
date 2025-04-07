@@ -218,7 +218,6 @@ class BaseApiController extends ModuleController
                 Boolean::make()
                     ->field('is_augmented')
                     ->optional()
-                    ->hide()
             );
             $columns->add(
                 Text::make()
