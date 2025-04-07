@@ -30,7 +30,7 @@ const gridboard = function(container) {
         if (resetPreviousPositions) {
             _unpositionBlocks();
         }
-        
+
         let allBlocks = container.getElementsByClassName('o-gridboard')[0].children;
 
         let blocks = Array.from(allBlocks).filter(child => {
@@ -52,72 +52,62 @@ const gridboard = function(container) {
         // Initialize rows structure with proper dimensions based on current colCount
         let rows = [];
         let rowHeights = [];
-        
+
         // Pre-calculate the rows needed based on the number of blocks and colCount
         const totalRows = Math.ceil(blocks.length / colCount);
         for (let i = 0; i < totalRows; i++) {
             rows[i] = [];
             rowHeights[i] = 0;
         }
-        
+
         // First pass: assign blocks to rows
         forEach(blocks, function(index, block) {
             const rowIndex = Math.floor(index / colCount);
             rows[rowIndex].push(block);
         });
-        
+
         // Second pass: position blocks and calculate heights
         let totalHeight = 0;
-        
+
         for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
             const row = rows[rowIndex];
             let rowTop = 0;
-            
+
             // Calculate top position based on previous rows
             if (rowIndex === 0) {
                 rowTop = 0;
             } else {
                 rowTop = totalHeight + marginTop + 25;
             }
-            
+
             // Position blocks in the current row
             forEach(row, function(colIndex, block) {
-                // Set initial state
-                block.classList.remove('s-positioned');
-                block.classList.add('s-animating');
-                
-                // Calculate the final position
+                if (block.style.display === 'none') {
+                    block.classList.remove('s-positioned');
+                }
+                // Set the `top` and `left` positions for the block
                 let leftPosition = colIndex * (colWidth + marginLeft);
-                
-                // Set the position without transition first
+
                 block.style.position = "absolute";
-                block.style.transition = "none";
-                
-                // Force a reflow to ensure the initial position is set before animation starts
-                void block.offsetWidth;
-                
-                block.style.transition = "all 1s cubic-bezier(0.25, 0.1, 0.25, 1)";
                 block.style.left = `${Math.round(leftPosition)}px`;
                 block.style.top = `${Math.round(rowTop)}px`;
-                
+
                 // Update the maximum height for this row
                 rowHeights[rowIndex] = Math.max(rowHeights[rowIndex], block.offsetHeight);
-                
+
                 // Add the 's-positioned' class after a delay to mark it as positioned
-                // and remove the repositioning class to ensure proper animation
                 setTimeout(function() {
-                  block.classList.remove('s-animating');
-                  block.classList.add('s-positioned');
-                }, 1000); // Match this with your transition duration
-              });
-            
+                    block.classList.add('s-positioned');
+                }, 50);
+            });
+
             // Update the total height after this row
             totalHeight = rowTop + rowHeights[rowIndex];
         }
-        
+
         // Set the container height
         container.getElementsByClassName('o-gridboard')[0].style.height = totalHeight + 'px';
-        
+
         // Trigger a custom event to signal that the page has been updated
         triggerCustomEvent(document, 'page:updated');
     }
@@ -144,10 +134,10 @@ const gridboard = function(container) {
     function _resized() {
         // Keep track of previous column count to detect changes
         const previousColCount = colCount;
-        
+
         setTimeout(function() {
             _getColCounts(container.getElementsByClassName('o-gridboard')[0].className);
-            
+
             // Always call setupBlocks which will reposition all items with animation
             _setupBlocks();
         }, 32);
@@ -159,7 +149,7 @@ const gridboard = function(container) {
         setTimeout(function() {
             _setupBlocks();
         }, 32); // Add a slight delay for the initial setup similar to how resize behaves
-        
+
         container.getElementsByClassName('o-gridboard')[0].addEventListener(
             'gridboard:contentAdded',
             _contentAdded,
