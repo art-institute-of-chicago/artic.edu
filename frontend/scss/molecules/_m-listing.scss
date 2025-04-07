@@ -2102,7 +2102,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 5;
+    z-index: map-get($map: $zindexs, $key: 'overlay');
   }
 
   .m-listing__meta {
