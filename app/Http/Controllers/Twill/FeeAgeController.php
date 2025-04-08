@@ -9,7 +9,6 @@ class FeeAgeController extends BaseController
 {
     public function setUpController(): void
     {
-        parent::setUpController();
         $this->disablePublish();
         $this->disableBulkPublish();
         $this->enableReorder();

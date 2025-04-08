@@ -9,7 +9,6 @@ class ShopItemController extends BaseApiController
 {
     protected function setUpController(): void
     {
-        parent::setUpController();
         $this->enableAugmentedModel();
         $this->setModuleName('shopItems');
     }

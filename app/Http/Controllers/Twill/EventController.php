@@ -20,7 +20,6 @@ class EventController extends BaseController
         $this->setFeatureField('landing');
         $this->setModuleName('events');
         $this->setPreviewView('site.events.detail');
-        parent::setUpController();
     }
 
     protected function additionalIndexTableColumns(): TableColumns

@@ -20,6 +20,7 @@ class ArticlePresenter extends BasePresenter
         if ($this->entity->date) {
             return $this->entity->date->format('M j, Y');
         }
+        return '';
     }
 
     public function headerType()

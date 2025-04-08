@@ -8,7 +8,6 @@ class EducatorResourceController extends BaseController
 {
     protected function setUpController(): void
     {
-        parent::setUpController();
         $this->setModuleName('educatorResources');
         $this->setPreviewView('site.genericPage.show');
     }

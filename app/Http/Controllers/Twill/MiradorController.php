@@ -6,7 +6,6 @@ class MiradorController extends BaseController
 {
     protected function setUpController(): void
     {
-        parent::setUpController();
         $this->setModuleName('miradors');
         $this->setPreviewView('site.miradorDetail');
     }

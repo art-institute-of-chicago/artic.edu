@@ -9,7 +9,6 @@ class FeeCategoryController extends BaseController
 {
     public function setUpController(): void
     {
-        parent::setUpController();
         $this->disableBulkPublish();
         $this->disablePublish();
         $this->enableReorder();

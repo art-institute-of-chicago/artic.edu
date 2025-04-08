@@ -6,7 +6,6 @@ class ArtistController extends BaseApiController
 {
     public function setUpController(): void
     {
-        parent::setUpController();
         $this->enableAugmentedModel();
         $this->setModuleName('artists');
         $this->setTitleColumnLabel('Name');
