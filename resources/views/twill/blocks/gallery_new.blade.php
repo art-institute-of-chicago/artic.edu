@@ -1,21 +1,36 @@
 @php
     $currentUrl = explode('/', request()->url());
     $type = $currentUrl[5] ?? null;
+    if ($type) {
+        if (in_array('landingPages', $currentUrl)) {
+            $type = \App\Models\LandingPage::find(intval($currentUrl[5]))->type;
+        }
+    }
 @endphp
 
 @twillBlockTitle('Gallery')
 @twillBlockIcon('image')
 
+@include('twill.partials.theme', [
+        'types' => [$type],
+        'field' => 'pageType',
+        'label' => 'Theme',
+    ])
 {{-- WEB-1251: Inline contents partial for shared gallery block --}}
 @include('twill.partials.gallery-shared')
 
-@if ($type === 'digitalPublications')
+<x-twill::formConnectedFields
+    field-name='pageType'
+    field-values='digitalpublications'
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
     <x-twill::checkbox
         name='hide_figure_number'
         label='Hide figure number'
         default='false'
     />
-@endif
+</x-twill::formConnectedFields>
 
 <x-twill::wysiwyg
     name='title'

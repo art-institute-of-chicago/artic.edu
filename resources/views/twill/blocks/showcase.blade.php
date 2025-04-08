@@ -1,26 +1,13 @@
 @php
     $currentUrl = explode('/', request()->url());
     $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
-
     switch ($type) {
         case 'Home':
-            $themes = ['default', 'home'];
             $mediaTypes = ['image'];
-            break;
         case 'RLC':
-            $themes = ['default', 'rlc'];
-            $mediaTypes = ['image', 'video'];
-            break;
         case 'Publications';
-            $themes = ['default', 'publications'];
-            $mediaTypes = ['image', 'video'];
-            break;
         case 'Conservation and Science';
-            $themes = ['default', 'conservation-and-science'];
-            $mediaTypes = ['image', 'video'];
-            break;
         default:
-            $themes = ['default'];
             $mediaTypes = ['image', 'video'];
     }
 @endphp
@@ -28,21 +15,7 @@
 @twillBlockTitle('Showcase')
 @twillBlockIcon('image')
 
-@php
-    $options = collect($themes)->map(function($theme) {
-        return [
-            'value' => $theme,
-            'label' => ucfirst($theme),
-        ];
-    })->toArray();
-@endphp
-
-<x-twill::select
-    name='theme'
-    label='Theme'
-    default='default'
-    :options="$options"
-/>
+@include('twill.partials.theme', ['types' => [$type]])
 
 <x-twill::formConnectedFields
     field-name='theme'
@@ -100,11 +73,10 @@
 
 <x-twill::formConnectedFields
     field-name='theme'
-    field-values="publications"
+    :field-values="['publications', 'conservation-and-science']"
     :render-for-blocks='true'
     :keep-alive='true'
 >
-
     <x-twill::select
         name='variation'
         label='Variation'
