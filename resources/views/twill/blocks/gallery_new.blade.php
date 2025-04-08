@@ -16,8 +16,47 @@
         'field' => 'pageType',
         'label' => 'Theme',
     ])
-{{-- WEB-1251: Inline contents partial for shared gallery block --}}
-@include('twill.partials.gallery-shared')
+
+<x-twill::select
+    name='theme'
+    label='Color'
+    placeholder='Select color'
+    default='1'
+    :options="[
+        [
+            'value' => 1,
+            'label' => 'Dark'
+        ],
+        [
+            'value' => 2,
+            'label' => 'Light'
+        ],
+        [
+            'value' => 3,
+            'label' => 'White'
+        ]
+    ]"
+/>
+
+<x-twill::select
+    name='layout'
+    label='Layout'
+    placeholder='Select layout'
+    :options="[
+        [
+            'value' => 1,
+            'label' => 'Layout 1 (Mosaic)'
+        ],
+        [
+            'value' => 2,
+            'label' => 'Layout 2 (Carousel)'
+        ],
+        [
+            'value' => 3,
+            'label' => 'Layout 3 (Small mosaic)'
+        ]
+    ]"
+/>
 
 <x-twill::formConnectedFields
     field-name='pageType'
