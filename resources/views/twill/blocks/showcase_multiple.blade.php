@@ -1,31 +1,9 @@
 @php
     $currentUrl = explode('/', request()->url());
     $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
-
-    switch ($type) {
-        case 'RLC':
-            $themes = [
-                ['value' => 'rlc', 'label' => $type],
-            ];
-            break;
-        case 'Conservation and Science':
-            $themes = [
-                ['value' => 'conservation-and-science', 'label' => $type],
-            ];
-            break;
-        default:
-            $themes = [
-                ['value' => 'default', 'label' => 'Default'],
-            ];
-    }
 @endphp
 
-<x-twill::select
-    name='theme'
-    label='Theme'
-    default='default'
-    :options="$themes"
-/>
+@include('twill.partials.theme', ['types' => [$type], 'includeDefault' => false])
 
 <x-twill::formConnectedFields
     field-name='theme'
