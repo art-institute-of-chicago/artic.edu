@@ -1,7 +1,4 @@
 .conservation-and-science {
-  .showcase--conservation-and-science {
-  }
-
   .showcase--conservation-and-science.m-showcase-block {
     background-color: $color__white;
 
@@ -127,8 +124,6 @@
   }
 
   .editorial-block--conservation-and-science {
-    margin-top: 0;
-
     .editorial-block__header {
       border: none;
       margin-bottom: 20px;
@@ -187,6 +182,8 @@
     }
 
     @include breakpoint('small+') {
+      margin-top: 60px;
+
       .editorial-block__header {
         margin-bottom: 20px;
       }
