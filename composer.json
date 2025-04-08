@@ -19,7 +19,7 @@
             "package": {
                 "type": "metapackage",
                 "name": "vendor/package-patches",
-                "version": "1.7.0",
+                "version": "1.8.0",
                 "require": {
                     "netresearch/composer-patches-plugin": "~1.2"
                 },
@@ -33,6 +33,10 @@
                             {
                                 "title": "WEB-2678: Backport Node 10 syntax",
                                 "url": "patches/WEB-2678---backport-node-10-syntax.diff"
+                            },
+                            {
+                                "title": "WEB-3051: Fix DatePicker.vue from using timezones",
+                                "url": "patches/WEB-3051---fix-date-picker-from-using-timezones.diff"
                             }
                         ]
                     }

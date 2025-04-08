@@ -1,0 +1,18 @@
+diff --git a/frontend/js/components/DatePicker.vue b/frontend/js/components/DatePicker.vue
+index d2a09f99..0bd11fc0 100644
+--- a/frontend/js/components/DatePicker.vue
++++ b/frontend/js/components/DatePicker.vue
+@@ -149,11 +149,11 @@
+           parseDate: function (date, format) {
+             const fullFormat = 'yyyy-MM-dd HH:mm:ss';
+             if (date.length === fullFormat.length) {
+-              return parse(date + 'Z', fullFormat + 'X', Date.UTC());
++              return parse(date, fullFormat, Date.UTC());
+             }
+             const fullFormatNoSeconds = 'yyyy-MM-dd HH:mm';
+             if (date.length === fullFormatNoSeconds.length) {
+-              return parse(date + 'Z', fullFormat + 'X', Date.UTC());
++              return parse(date, fullFormat, Date.UTC());
+             }
+             const fullFormatNoTime = 'yyyy-MM-dd';
+             if (date.length === fullFormatNoTime.length) {
