@@ -32,6 +32,18 @@
     />
 </x-twill::formConnectedFields>
 
+<x-twill::formConnectedFields
+    field-name='pageType'
+    :field-values="['conservation-and-science']"
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
+    <x-twill::input
+        name='heading'
+        label='Heading'
+    />
+</x-twill::formConnectedFields>
+
 <x-twill::wysiwyg
     name='title'
     label='Title'
