@@ -11,7 +11,6 @@ class HighlightController extends BaseController
 {
     protected function setUpController(): void
     {
-        parent::setupController();
         $this->eagerLoadFormRelationCounts(['siteTags']);
         $this->enableReorder();
         $this->enableShowImage();

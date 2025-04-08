@@ -11,7 +11,6 @@ class MagazineIssueController extends BaseController
 
     protected function setUpController(): void
     {
-        parent::setUpController();
         $this->enableShowImage();
         $this->setModuleName('magazineIssues');
     }

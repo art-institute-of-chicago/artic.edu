@@ -6,7 +6,6 @@ class AuthorController extends BaseController
 {
     protected function setUpController(): void
     {
-        parent::setUpController();
         $this->setModuleName('authors');
     }
 

@@ -6,7 +6,6 @@ class DepartmentController extends BaseApiController
 {
     protected function setUpController(): void
     {
-        parent::setUpController();
         $this->setModuleName('departments');
         $this->enableAugmentedModel();
     }
