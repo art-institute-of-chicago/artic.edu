@@ -89,7 +89,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerApiClient(): void
     {
-        $this->app->singleton('ApiClient', function ($app) {
+        $this->app->singleton('ApiClient', function () {
             return new GuzzleApiConsumer([
                 'base_uri' => config('api.base_uri'),
                 'exceptions' => false,
@@ -100,21 +100,21 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerEmbedConverterService(): void
     {
-        $this->app->singleton('embedconverterservice', function ($app) {
+        $this->app->singleton('embedconverterservice', function () {
             return new EmbedConverterService();
         });
     }
 
     public function registerDamsImageService(): void
     {
-        $this->app->singleton('damsimageservice', function ($app) {
+        $this->app->singleton('damsimageservice', function () {
             return new DamsImageService();
         });
     }
 
     public function registerClosureService(): void
     {
-        $this->app->singleton('closureservice', function ($app) {
+        $this->app->singleton('closureservice', function () {
             return new class () {
                 private $checkedForClosure = false;
 
@@ -135,7 +135,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerPrintService(): void
     {
-        $this->app->singleton('printservice', function ($app) {
+        $this->app->singleton('printservice', function () {
             return new class () {
                 private $isPrintMode;
 
@@ -159,7 +159,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function registerDebugMethod(): void
     {
-        $this->app->singleton('debug', function ($app) {
+        $this->app->singleton('debug', function () {
             return new class () {
                 private $output = [];
 
