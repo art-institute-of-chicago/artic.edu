@@ -10,7 +10,6 @@ class LightboxController extends BaseController
 {
     public function setUpController(): void
     {
-        parent::setUpController();
         $this->setModuleName('lightboxes');
     }
 
