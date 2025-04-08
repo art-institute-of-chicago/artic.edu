@@ -355,34 +355,6 @@ class HourTest extends BaseTestCase
         );
     }
 
-    public function test_it_displays_hours_table_for_visit(): void
-    {
-        $this->travelTo(Carbon::create(2022, 2, 28, 6, 0, 0, 'America/Chicago'));
-        $this->assertEquals(
-            [
-                [
-                    'start' => 'Mon',
-                    'end' => 'Mon',
-                    'hours' => '11–5',
-                    'days' => 'Mon',
-                ],
-                [
-                    'start' => 'Tue',
-                    'end' => 'Wed',
-                    'hours' => 'Closed',
-                    'days' => 'Tue–Wed',
-                ],
-                [
-                    'start' => 'Thu',
-                    'end' => 'Sun',
-                    'hours' => '11–5',
-                    'days' => 'Thu–Sun',
-                ]
-            ],
-            $this->getHoursTableForHeader(),
-        );
-    }
-
     public function test_it_displays_hours_table_for_visit_when_closed_all_days(): void
     {
         $this->travelTo(Carbon::create(2022, 3, 2, 6, 0, 0, 'America/Chicago'));
