@@ -2,34 +2,12 @@
     $currentUrl = explode('/', request()->url());
     $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
     $categoriesList = \App\Models\Category::all()->pluck('name', 'id')->toArray();
-
-    switch ($type) {
-        case 'Editorial':
-            $themes = ['default', 'editorial'];
-            break;
-        default:
-            $themes = ['default'];
-    }
 @endphp
 
 @twillBlockTitle('Custom Banner')
 @twillBlockIcon('image')
 
-@php
-    $options = collect($themes)->map(function($theme) {
-        return [
-            'value' => $theme,
-            'label' => ucfirst($theme),
-        ];
-    })->toArray()
-@endphp
-
-<x-twill::select
-    name='theme'
-    label='Theme'
-    default='default'
-    :options="$options"
-/>
+@include('twill.partials.theme', ['types' => [$type]])
 
 <x-twill::formConnectedFields
     field-name='theme'

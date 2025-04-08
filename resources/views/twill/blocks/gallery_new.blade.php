@@ -1,21 +1,87 @@
 @php
     $currentUrl = explode('/', request()->url());
     $type = $currentUrl[5] ?? null;
+    if ($type) {
+        if (in_array('landingPages', $currentUrl)) {
+            $type = \App\Models\LandingPage::find(intval($currentUrl[5]))->type;
+        }
+    }
 @endphp
 
 @twillBlockTitle('Gallery')
 @twillBlockIcon('image')
 
-{{-- WEB-1251: Inline contents partial for shared gallery block --}}
-@include('twill.partials.gallery-shared')
+@include('twill.partials.theme', [
+        'types' => [$type],
+        'field' => 'pageType',
+        'label' => 'Theme',
+    ])
 
-@if ($type === 'digitalPublications')
+<x-twill::select
+    name='theme'
+    label='Color'
+    placeholder='Select color'
+    default='1'
+    :options="[
+        [
+            'value' => 1,
+            'label' => 'Dark'
+        ],
+        [
+            'value' => 2,
+            'label' => 'Light'
+        ],
+        [
+            'value' => 3,
+            'label' => 'White'
+        ]
+    ]"
+/>
+
+<x-twill::select
+    name='layout'
+    label='Layout'
+    placeholder='Select layout'
+    :options="[
+        [
+            'value' => 1,
+            'label' => 'Layout 1 (Mosaic)'
+        ],
+        [
+            'value' => 2,
+            'label' => 'Layout 2 (Carousel)'
+        ],
+        [
+            'value' => 3,
+            'label' => 'Layout 3 (Small mosaic)'
+        ]
+    ]"
+/>
+
+<x-twill::formConnectedFields
+    field-name='pageType'
+    field-values='digitalpublications'
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
     <x-twill::checkbox
         name='hide_figure_number'
         label='Hide figure number'
         default='false'
     />
-@endif
+</x-twill::formConnectedFields>
+
+<x-twill::formConnectedFields
+    field-name='pageType'
+    :field-values="['conservation-and-science']"
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
+    <x-twill::input
+        name='heading'
+        label='Heading'
+    />
+</x-twill::formConnectedFields>
 
 <x-twill::wysiwyg
     name='title'
