@@ -21,6 +21,22 @@
     :maxlength='60'
 />
 
+<x-twill::select
+    name='variation'
+    label='Variation'
+    default="3-wide"
+    :options="[
+        [
+            'value' => '3-wide',
+            'label' => 'Default (3 wide)',
+        ],
+        [
+            'value' => '4-wide',
+            'label' => '4 wide',
+        ],
+    ]"
+/>
+
 <x-twill::repeater
     type="grid_item"
 />
