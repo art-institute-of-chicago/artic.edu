@@ -7,38 +7,33 @@
         $endpoints = [
             [
                 'label' => 'Article',
-                'name' => 'collection.articlesPublications.articles'
+                'value' => '/collection/articlesPublications/articles/browser?published=true&is_published=true'
             ],
             [
                 'label' => 'Highlight',
-                'name' => 'collection.highlights'
+                'value' => '/collection/highlights/browser?published=true&is_published=true'
             ],
             [
                 'label' => 'Interactive feature',
-                'name' => 'collection.interactiveFeatures.experiences'
+                'value' => '/collection/interactiveFeatures/experiences/browser?published=true&is_published=true'
             ],
             [
                 'label' => 'Video',
-                'name' => 'collection.articlesPublications.videos'
+                'value' => '/collection/articlesPublications/videos/browser?published=true&is_published=true'
             ],
         ];
     } else {
         $endpoints = [
             [
                 'label' => 'Digital Publications',
-                'name' => 'collection.articlesPublications.digitalPublications'
+                'name' => '/collection/articlesPublications/digitalPublications/browser?published=true&is_published=true'
             ],
             [
                 'label' => 'Print Publications',
-                'name' => 'collection.articlesPublications.printedPublications'
+                'name' => '/collection/articlesPublications/printedPublications/browser?published=true&is_published=true'
             ],
         ];
     }
-
-    $params = [
-        'published' => true,
-        'is_published' => true
-    ];
 
     switch ($type) {
         case 'Editorial':
@@ -47,23 +42,27 @@
         case 'Publications';
             $themes = ['default', 'publications'];
             break;
+        case 'Conservation and Science':
+            $themes = ['default', 'conservation-and-science'];
+            break;
         default:
             $themes = ['default'];
     }
-    
+
     $themeOptions = collect($themes)->map(function($theme) {
         return [
             'value' => $theme,
             'label' => ucfirst($theme),
         ];
     })->toArray();
-    
+
     $categories = collect($categoriesList)->map(function($name, $id) {
         return [
             'value' => $id,
             'label' => $name,
         ];
     })->values()->toArray();
+
 @endphp
 
 @twillBlockTitle('Editorial Block')
@@ -79,7 +78,7 @@
 {{-- Default Theme Fields --}}
 <x-twill::formConnectedFields
     field-name='theme'
-    field-values="default"
+    :field-values="['default', 'conservation-and-science']"
     :render-for-blocks='true'
     :keep-alive='true'
 >
@@ -106,7 +105,11 @@
             [
                 'value' => '4-across',
                 'label' => '4 Across',
-            ]
+            ],
+            [
+                'value' => '1-and-2',
+                'label' => '1 Primary, 2 Secondary',
+            ],
         ]"
     />
 
@@ -148,8 +151,7 @@
             name='stories'
             label="{{ $type == 'Editorial' ? 'Stories' : 'Items' }}"
             :max='5'
-            :modules='$endpoints'
-            :params='$params'
+            :endpoints='$endpoints'
         />
     </x-twill::formConnectedFields>
 
@@ -179,13 +181,12 @@
             name='videos'
             label='Videos'
             :max='6'
-            :modules="[
+            :endpoints="[
                 [
                     'label' => 'Video',
-                    'name' => 'collection.articlesPublications.videos'
+                    'value' => '/collection/articlesPublications/videos/browser?published=true&is_published=true'
                 ]
             ]"
-            :params='$params'
         />
     </x-twill::formConnectedFields>
 
@@ -199,8 +200,7 @@
             name='stories'
             label='Stories'
             :max='6'
-            :modules='$endpoints'
-            :params='$params'
+            :endpoints='$endpoints'
         />
     </x-twill::formConnectedFields>
 
@@ -230,8 +230,37 @@
             name='stories'
             label='Stories'
             :max='8'
-            :modules='$endpoints'
-            :params='$params'
+            :endpoints='$endpoints'
+        />
+    </x-twill::formConnectedFields>
+
+    {{-- 1-and-2 variation fields --}}
+    <x-twill::formConnectedFields
+        field-name='variation'
+        field-values="1-and-2"
+        :render-for-blocks='true'
+        :keep-alive='true'
+    >
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::input
+                    name='browse_label'
+                    label='Browse More Label'
+                />
+            </x-slot>
+            <x-slot:right>
+                <x-twill::input
+                    name='browse_link'
+                    label='Browse More Link'
+                />
+            </x-slot>
+        </x-twill::formColumns>
+
+        <x-twill::browser
+            name='stories'
+            label='Stories'
+            :max='3'
+            :endpoints='$endpoints'
         />
     </x-twill::formConnectedFields>
 </x-twill::formConnectedFields>
@@ -255,7 +284,7 @@
             ],
         ]"
     />
-    
+
     <x-twill::input
         name='heading'
         label='Heading'
