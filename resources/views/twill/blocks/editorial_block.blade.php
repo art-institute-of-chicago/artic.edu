@@ -35,27 +35,6 @@
         ];
     }
 
-    switch ($type) {
-        case 'Editorial':
-            $themes = ['default'];
-            break;
-        case 'Publications';
-            $themes = ['default', 'publications'];
-            break;
-        case 'Conservation and Science':
-            $themes = ['default', 'conservation-and-science'];
-            break;
-        default:
-            $themes = ['default'];
-    }
-
-    $themeOptions = collect($themes)->map(function($theme) {
-        return [
-            'value' => $theme,
-            'label' => ucfirst($theme),
-        ];
-    })->toArray();
-
     $categories = collect($categoriesList)->map(function($name, $id) {
         return [
             'value' => $id,
@@ -68,12 +47,7 @@
 @twillBlockTitle('Editorial Block')
 @twillBlockIcon('image')
 
-<x-twill::select
-    name='theme'
-    label='Theme'
-    default='default'
-    :options="$themeOptions"
-/>
+@include('twill.partials.theme', ['types' => [$type]])
 
 {{-- Default Theme Fields --}}
 <x-twill::formConnectedFields
