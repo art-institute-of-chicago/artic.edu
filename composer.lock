@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aic/data-hub-foundation",
-            "version": "3.7",
+            "version": "3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/art-institute-of-chicago/data-hub-foundation.git",
-                "reference": "8976c01524376288399369378189f5f85c48b853"
+                "reference": "73d7b12bc410a4677f9dbbd527d86d4009497c81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/art-institute-of-chicago/data-hub-foundation/zipball/8976c01524376288399369378189f5f85c48b853",
-                "reference": "8976c01524376288399369378189f5f85c48b853",
+                "url": "https://api.github.com/repos/art-institute-of-chicago/data-hub-foundation/zipball/73d7b12bc410a4677f9dbbd527d86d4009497c81",
+                "reference": "73d7b12bc410a4677f9dbbd527d86d4009497c81",
                 "shasum": ""
             },
             "require": {
@@ -82,10 +82,10 @@
             ],
             "description": "Shared components for our data hub services.",
             "support": {
-                "source": "https://github.com/art-institute-of-chicago/data-hub-foundation/tree/3.7",
+                "source": "https://github.com/art-institute-of-chicago/data-hub-foundation/tree/3.8",
                 "issues": "https://github.com/art-institute-of-chicago/data-hub-foundation/issues"
             },
-            "time": "2025-04-07T22:21:53+00:00"
+            "time": "2025-04-08T19:31:37+00:00"
         },
         {
             "name": "area17/twill",
