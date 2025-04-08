@@ -16,7 +16,6 @@ class DigitalPublicationArticleController extends NestedModuleController
 
     protected function setUpController(): void
     {
-        parent::setUpController();
         $this->enableReorder();
         $this->setModelName('DigitalPublicationArticle');
         $this->setModuleName('digitalPublications.articles');

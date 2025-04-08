@@ -6,7 +6,6 @@ class GalleryController extends BaseApiController
 {
     protected function setUpController(): void
     {
-        parent::setUpController();
         $this->setModuleName('galleries');
         $this->enableAugmentedModel();
     }

@@ -9,7 +9,6 @@ class MyMuseumTourItemController extends BaseController
 {
     public function setUpController(): void
     {
-        parent::setUpController();
         $this->enableShowImage();
         $this->setModuleName('myMuseumTourItems');
         $this->setSearchColumns(['title', 'teaser_text', 'tour_id']);

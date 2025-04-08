@@ -13,7 +13,6 @@ class BuildingClosureController extends BaseController
 {
     public function setUpController(): void
     {
-        parent::setUpController();
         $this->setModuleName('buildingClosures');
         $this->setSearchColumns(['closure_copy']);
         $this->setTitleColumnKey('presentType');

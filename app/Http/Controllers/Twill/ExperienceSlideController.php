@@ -12,7 +12,6 @@ class ExperienceSlideController extends BaseController
 {
     protected function setUpController(): void
     {
-        parent::setUpController();
         $this->enableReorder();
         $this->setModelName('Slide');
         $this->setModuleName('experiences.slides');

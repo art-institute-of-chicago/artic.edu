@@ -10,7 +10,6 @@ class HourController extends BaseController
 {
     public function setUpController(): void
     {
-        parent::setUpController();
         $this->setModuleName('hours');
     }
 

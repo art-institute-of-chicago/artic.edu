@@ -10,7 +10,6 @@ class ArtworkController extends BaseApiController
 {
     public function setUpController(): void
     {
-        parent::setUpController();
         $this->enableAugmentedModel();
         $this->enableShowImage();
         $this->setTitleColumnKey('fullTitle');
