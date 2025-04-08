@@ -7,38 +7,33 @@
         $endpoints = [
             [
                 'label' => 'Article',
-                'name' => 'collection.articlesPublications.articles'
+                'value' => '/collection/articlesPublications/articles/browser?published=true&is_published=true'
             ],
             [
                 'label' => 'Highlight',
-                'name' => 'collection.highlights'
+                'value' => '/collection/highlights/browser?published=true&is_published=true'
             ],
             [
                 'label' => 'Interactive feature',
-                'name' => 'collection.interactiveFeatures.experiences'
+                'value' => '/collection/interactiveFeatures/experiences/browser?published=true&is_published=true'
             ],
             [
                 'label' => 'Video',
-                'name' => 'collection.articlesPublications.videos'
+                'value' => '/collection/articlesPublications/videos/browser?published=true&is_published=true'
             ],
         ];
     } else {
         $endpoints = [
             [
                 'label' => 'Digital Publications',
-                'name' => 'collection.articlesPublications.digitalPublications'
+                'name' => '/collection/articlesPublications/digitalPublications/browser?published=true&is_published=true'
             ],
             [
                 'label' => 'Print Publications',
-                'name' => 'collection.articlesPublications.printedPublications'
+                'name' => '/collection/articlesPublications/printedPublications/browser?published=true&is_published=true'
             ],
         ];
     }
-
-    $params = [
-        'published' => true,
-        'is_published' => true
-    ];
 
     switch ($type) {
         case 'Editorial':
@@ -156,8 +151,7 @@
             name='stories'
             label="{{ $type == 'Editorial' ? 'Stories' : 'Items' }}"
             :max='5'
-            :modules='$endpoints'
-            :params='$params'
+            :endpoints='$endpoints'
         />
     </x-twill::formConnectedFields>
 
@@ -187,13 +181,12 @@
             name='videos'
             label='Videos'
             :max='6'
-            :modules="[
+            :endpoints="[
                 [
                     'label' => 'Video',
-                    'name' => 'collection.articlesPublications.videos'
+                    'value' => '/collection/articlesPublications/videos/browser?published=true&is_published=true'
                 ]
             ]"
-            :params='$params'
         />
     </x-twill::formConnectedFields>
 
@@ -207,8 +200,7 @@
             name='stories'
             label='Stories'
             :max='6'
-            :modules='$endpoints'
-            :params='$params'
+            :endpoints='$endpoints'
         />
     </x-twill::formConnectedFields>
 
@@ -238,8 +230,7 @@
             name='stories'
             label='Stories'
             :max='8'
-            :modules='$endpoints'
-            :params='$params'
+            :endpoints='$endpoints'
         />
     </x-twill::formConnectedFields>
 
@@ -269,8 +260,7 @@
             name='stories'
             label='Stories'
             :max='3'
-            :modules='$endpoints'
-            :params='$params'
+            :endpoints='$endpoints'
         />
     </x-twill::formConnectedFields>
 </x-twill::formConnectedFields>
