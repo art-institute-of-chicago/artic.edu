@@ -126,42 +126,6 @@
     }
   }
 
-  .o-grid-block:has(#our-work) {
-    @include breakpoint('large+') {
-      margin-left: unset !important;
-    }
-
-    .m-title-bar::before {
-      content: none;
-    }
-
-    .hr {
-      @each $name, $point in $breakpoints {
-        @include breakpoint('#{$name}') {
-            margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
-        }
-      }
-    }
-
-    .m-listing {
-      &::before, &::after {
-        content: none;
-      }
-
-      .title {
-        color: $color__black--90;
-        font-size: 24px;
-        line-height: 32px;
-      }
-
-      .intro {
-        color: $color__black--80;
-        font-size: 17px;
-        line-height: 28px;
-      }
-    }
-  }
-
   .editorial-block--conservation-and-science {
     margin-top: 0;
 
