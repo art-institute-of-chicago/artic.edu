@@ -38,6 +38,10 @@
     }
   }
 
+  .o-article .m-listing--publication {
+    border: thin solid $color__rules--primary;
+  }
+
   .o-article__related .m-inline-aside &,
   .o-article__secondary-actions .m-inline-aside &,
   .f-module-title-1+& {
@@ -2088,7 +2092,6 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 // Shared styles for .m-listing--journal and .m-listing--magazine
 .m-listing--publication {
-  border: thin solid $color__rules--primary;
 
   .m-listing__img img {
     transition: transform .35s ease-in-out;
