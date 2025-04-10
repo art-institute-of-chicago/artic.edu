@@ -1,3 +1,8 @@
+@php
+    $currentUrl = explode('/', request()->url());
+    $isLandingPage = in_array('landingPages', $currentUrl);
+@endphp
+
 @twillRepeaterTitle('Gallery Item')
 @twillRepeaterTrigger('Add gallery item')
 @twillRepeaterComponent('a17-block-gallery_new_item')
@@ -9,14 +14,17 @@
             'label' => 'Custom',
         ],
         [
-            'value' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM_WITH_LINK,
-            'label' => 'Custom with link',
-        ],
-        [
             'value' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_ARTWORK,
             'label' => 'Artwork',
-        ]
+        ],
     ];
+    if ($isLandingPage) {
+        $options []=
+            [
+                'value' => \App\Models\Vendor\Block::GALLERY_ITEM_TYPE_CUSTOM_WITH_LINK,
+                'label' => 'Custom with link',
+            ];
+    }
 @endphp
 
 <x-twill::radios
