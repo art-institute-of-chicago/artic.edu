@@ -89,13 +89,13 @@
         <x-twill::date-picker
             name='lightbox_start_date'
             label='Start Date'
-            withTime='false'
+            :withTime='false'
         />
 
         <x-twill::date-picker
             name='lightbox_end_date'
             label='End Date'
-            withTime='false'
+            :withTime='false'
         />
 
         {{-- Expiry period is in seconds --}}
