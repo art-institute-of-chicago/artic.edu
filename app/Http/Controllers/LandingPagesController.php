@@ -179,7 +179,13 @@ class LandingPagesController extends FrontController
             'seo' => $this->seo,
         ];
 
-        $blockHeadings = $item->blocks->pluck('content')->pluck('heading')->filter();
+        $blockHeadingsContent = $item->blocks->pluck('content')->pluck('heading')->filter();
+        $blockHeadings = collect($blockHeadingsContent)->map(function ($blockHeadingsContent) {
+            return [
+                'label' => $blockHeadingsContent,
+                'target' => '#'.Str::slug($blockHeadingsContent)
+            ];
+        });
 
         switch ($item->type_id) {
             case $types->search('Home'):
@@ -196,7 +202,14 @@ class LandingPagesController extends FrontController
                 $viewData = [
                     'contrastHeader' => true,
                     'primaryNavCurrent' => 'visit',
-                    'subnav' => collect(['hours', 'location', 'admission'])->concat($blockHeadings)->concat(['FAQs'])->all(),
+                    'subnav' => collect([
+                        ['label' => 'hours', 'target' => '#hours'],
+                        ['label' => 'location', 'target' => '#location'],
+                        ['label' => 'admission', 'target' => '#admission']
+                    ])
+                        ->concat($blockHeadings)
+                        ->concat([['label' => 'FAQs', 'target' => '#FAQs']])
+                        ->all(),
                     'hours' => $hours,
                     'itemprops' => $itemprops,
                     'visit_map' => $item->imageFront('visit_map'),
@@ -254,7 +267,7 @@ class LandingPagesController extends FrontController
             case $types->search('Editorial'):
                 $viewData = [
                     'hours' => $hours,
-                    'subnav' => collect(['Top Stories'])->concat($blockHeadings)->all(),
+                    'subnav' => collect([['label' => 'Top Stories', 'target' => '#Top Stories']])->concat($blockHeadings)->all(),
                 ];
                 break;
 
@@ -296,6 +309,15 @@ class LandingPagesController extends FrontController
                     return !in_array($category['data-button-value'], $primaryFilterValues);
                 })->values()->toArray();
 
+                $publicationResourcesItems = collect($item->publicationResources()->pluck('resource_title', 'resource_target')->filter());
+
+                if (count($publicationResourcesItems) > 0) {
+                    $publicationResources = $publicationResourcesItems->map(function ($title, $target) {
+                        return [
+                            'label' => $title, 'target' => $target
+                        ];
+                    });
+                }
                 $viewData = [
                     'publications' => $publications,
                     'publicationResources' => $item->publicationResources,
@@ -324,10 +346,10 @@ class LandingPagesController extends FrontController
                             'data-button-value' => 'title::desc'
                         ],
                     ],
-                    'subnav' => collect($blockHeadings) // Using proper curly brace syntax for dynamic property
-                    ->concat(['Publications'])
-                    ->concat($item->publicationResources()->pluck('resource_target')->filter())
-                    ->concat(['Resources'])
+                    'subnav' => collect($blockHeadings)
+                    ->concat([['label' => 'Publications', 'target' => '#Publications']])
+                    ->concat($publicationResources->toArray())
+                    ->concat([['label' => 'Resources', 'target' => '#Resources'], ['label' => 'Shop<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>', 'target' => 'https://shop.artic.edu']])
                     ->all(),
                 ];
                 break;
