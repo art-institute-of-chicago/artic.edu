@@ -1,8 +1,23 @@
+@php
+    $currentUrl = explode('/', request()->url());
+    $isLandingPage = in_array('landingPages', $currentUrl);
+@endphp
+
 @twillRepeaterTitle('FAQ')
 @twillRepeaterTrigger('Add FAQ')
 @twillRepeaterComponent('a17-block-faqs')
 @twillRepeaterMax('10')
 
+@if ($isLandingPage)
+    <x-twill::wysiwyg
+        name='question'
+        label='Question'
+    />
+    <x-twill::wysiwyg
+        name='answer'
+        label='Answer'
+    />
+@else
     <div class="col">
         <x-twill::input
             name='title'
@@ -12,14 +27,5 @@
             name='link'
             label='Link'
         />
-        <x-twill::wysiwyg
-            name='question'
-            label='Question'
-            note='For use only in Landing Pages'
-        />
-        <x-twill::wysiwyg
-            name='answer'
-            label='Answer'
-            note='For use only in Landing Pages'
-        />
     </div>
+@endif
