@@ -319,7 +319,7 @@ class LandingPagesController extends FrontController
                     $publicationResourceLinks = $publicationResourcesItems->map(function ($title, $target) {
                         return [
                             'label' => $target,
-                            'target' => '#'.$target
+                            'target' => '#' . $target
                         ];
                     });
                 }
