@@ -2,7 +2,7 @@
     text-align: left !important;
     padding-bottom: 28px;
     border-bottom: 1px solid $color__black--10;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     overflow-x: auto;
     overflow-y: hidden;
 
@@ -43,10 +43,17 @@
 
         &.publication-resources {
             font-size: 21px;
-            margin-bottom: 30px;
+            margin-bottom: 0;
             > * {
                 padding-bottom: 20px;
             }
+        }
+    }
+
+    .dropdown--filter__sort {
+        .icon--arrow {
+            margin-left: 6px;
+            transform: rotate(90deg);
         }
     }
 
@@ -102,6 +109,7 @@
             max-width: 30%;
             display: flex;
             flex-direction: column;
+            padding-top: 30px;
 
             @include breakpoint('medium-') {
                 max-width: 100%;
