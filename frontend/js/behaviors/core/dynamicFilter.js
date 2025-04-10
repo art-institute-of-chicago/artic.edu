@@ -72,15 +72,17 @@ const dynamicFilter = function(container) {
         castFilterUpdate(item.id, item.parameter, item.value);
       });
 
-      // Scroll to container after all filters are applied
-      window.requestAnimationFrame(() => {
-        window.scrollTo({
-          top: container.offsetTop - 200,
-          behavior: 'smooth'
-        });
+      triggerCustomEvent(document, 'resized');
 
-        triggerCustomEvent(document, 'resized');
-      });
+      if (url.searchParams.get('filter') !== 'all' && url.searchParams.get('page') !== 1) {
+        // Scroll to container only after non-default filters
+        window.requestAnimationFrame(() => {
+          window.scrollTo({
+            top: container.offsetTop - 200,
+            behavior: 'smooth'
+          });
+        });
+      }
     }
 
     setup = true;
