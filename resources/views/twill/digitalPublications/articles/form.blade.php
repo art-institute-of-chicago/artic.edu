@@ -11,7 +11,7 @@
         name='date'
         label='Display date'
         :required='true'
-        withTime='false'
+        :withTime='false'
         note='Required'
     />
 
