@@ -21,6 +21,17 @@ const dynamicFilter = function(container) {
 
   function initFromUrl() {
     const url = new URL(window.location.href);
+
+    if (!url.searchParams.get('filter')) {
+      url.searchParams.set('filter', 'all');
+      window.history.pushState({}, '', url);
+    }
+
+    if (!url.searchParams.get('page')) {
+      url.searchParams.set('page', 1);
+      window.history.pushState({}, '', url);
+    }
+
     registeredParameters.forEach(item => {
       const paramValue = url.searchParams.get(item.parameter);
 
@@ -32,16 +43,6 @@ const dynamicFilter = function(container) {
         });
       }
     });
-
-    if (!url.searchParams.get('filter')) {
-      url.searchParams.set('filter', 'all');
-      window.history.pushState({}, '', url);
-    }
-
-    if (!url.searchParams.get('page')) {
-      url.searchParams.set('page', 1);
-      window.history.pushState({}, '', url);
-    }
 
     // Sort the cast parameters to ensure they're processed in the right order:
     // 1. filter (categories) first
