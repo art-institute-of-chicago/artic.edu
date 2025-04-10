@@ -314,8 +314,9 @@ class LandingPagesController extends FrontController
                     return !empty($target);
                 });
 
+                $publicationResourceLinks = collect();
                 if (count($publicationResourcesItems) > 0) {
-                    $publicationResources = $publicationResourcesItems->map(function ($title, $target) {
+                    $publicationResourceLinks = $publicationResourcesItems->map(function ($title, $target) {
                         return [
                             'label' => $title,
                             'target' => $target
@@ -353,7 +354,7 @@ class LandingPagesController extends FrontController
                     ],
                     'subnav' => collect($blockHeadings)
                     ->concat([['label' => 'Publications', 'target' => '#Publications']])
-                    ->concat($publicationResources->toArray())
+                    ->concat($publicationResourceLinks->toArray())
                     ->concat([['label' => 'Resources', 'target' => '#Resources'], ['label' => 'Shop<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>', 'target' => 'https://shop.artic.edu']])
                     ->all(),
                 ];
