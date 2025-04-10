@@ -183,7 +183,7 @@ class LandingPagesController extends FrontController
         $blockHeadings = collect($blockHeadingsContent)->map(function ($blockHeadingsContent) {
             return [
                 'label' => $blockHeadingsContent,
-                'target' => '#' . Str::slug($blockHeadingsContent)
+                'target' => '#' . Str::slug(strip_tags($blockHeadingsContent))
             ];
         });
 
