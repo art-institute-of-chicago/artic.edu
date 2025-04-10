@@ -7,7 +7,7 @@
             @component('components.atoms._dropdown')
                 @slot('prompt', 'Sort By')
                 @slot('ariaTitle', 'Sort By')
-                @slot('variation','dropdown--filter f-link')
+                @slot('variation','dropdown--filter dropdown--filter__sort f-link')
                 @slot('font', null)
                 @slot('options', $sortOptions)
                 @slot('behavior', 'dynamicFilterDropdown')
