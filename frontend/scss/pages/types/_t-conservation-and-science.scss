@@ -285,15 +285,19 @@
     }
   }
 
-  .o-grid-block:has(#our-work) {
-    @include breakpoint('large+') {
-      margin-left: unset !important;
-    }
+  .o-grid-block {
+    margin-bottom: 100px;
 
     .m-title-bar::before {
       content: none;
     }
 
+    @include breakpoint('large+') {
+      margin-left: unset !important;
+    }
+  }
+
+  .o-grid-block:has(#our-work) {
     .hr {
       @each $name, $point in $breakpoints {
         @include breakpoint('#{$name}') {
