@@ -198,7 +198,8 @@
                         }
 
                         &:nth-child(3), &:nth-child(4) {
-                            .m-listing__img {
+                            .m-listing__link {
+                                padding-top: 5%;
                                 border-top: 1px solid $color__black--10;
                             }
                         }
@@ -234,7 +235,7 @@
 
                     .m-listing__link {
                         flex-direction: column;
-                        padding: 0 5% 5% 5%;
+                        margin: 0 5% 5% 5%;
 
                         .m-listing__img {
                             width: 100%;
