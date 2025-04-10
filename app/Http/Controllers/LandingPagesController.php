@@ -309,15 +309,20 @@ class LandingPagesController extends FrontController
                     return !in_array($category['data-button-value'], $primaryFilterValues);
                 })->values()->toArray();
 
-                $publicationResourcesItems = collect($item->publicationResources()->pluck('resource_title', 'resource_target')->filter());
+                $publicationResourcesItems = collect($item->publicationResources()->pluck('resource_title', 'resource_target'))
+                ->filter(function ($title, $target) {
+                    return !empty($target);
+                });
 
                 if (count($publicationResourcesItems) > 0) {
                     $publicationResources = $publicationResourcesItems->map(function ($title, $target) {
                         return [
-                            'label' => $title, 'target' => $target
+                            'label' => $title,
+                            'target' => $target
                         ];
                     });
                 }
+
                 $viewData = [
                     'publications' => $publications,
                     'publicationResources' => $item->publicationResources,
