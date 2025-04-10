@@ -34,6 +34,7 @@
 
 .conservation-and-science {
   .showcase--conservation-and-science.m-showcase-block {
+    margin-top: 25px;
     background-color: $color__white;
 
     .m-showcase-wrapper {
@@ -143,6 +144,7 @@
   }
 
   .o-gallery__media-wrapper {
+    padding-bottom: 0;
     padding-top: 24px;
 
     figcaption {
@@ -162,6 +164,8 @@
   }
 
   .editorial-block--conservation-and-science {
+    margin-bottom: 0;
+
     .editorial-block__header {
       border: none;
       margin-bottom: 20px;
@@ -200,6 +204,8 @@
     }
 
     @include breakpoint('xsmall') {
+      margin-top: 20px;
+
       .editorial-block__header {
         margin-bottom: 10px;
       }
@@ -220,7 +226,7 @@
     }
 
     @include breakpoint('small+') {
-      margin-top: 60px;
+      margin-top: 30px;
 
       .editorial-block__header {
         margin-bottom: 20px;
@@ -287,18 +293,14 @@
   }
 
   .o-grid-block {
-    margin-bottom: 100px;
-
     .m-title-bar::before {
       content: none;
     }
 
-    @include breakpoint('large+') {
-      margin-left: unset !important;
+    .title {
+      margin-top: 0;
     }
-  }
 
-  .o-grid-block:has(#our-work) {
     .hr {
       @each $name, $point in $breakpoints {
         @include breakpoint('#{$name}') {
@@ -307,6 +309,16 @@
       }
     }
 
+    @include breakpoint('large+') {
+      margin-left: unset !important;
+    }
+
+    @include breakpoint('small+') {
+      margin-top: 75px;
+    }
+  }
+
+  .o-grid-block:has(#our-work) {
     .m-listing {
       &::before, &::after {
         content: none;
@@ -341,6 +353,16 @@
       .m-listing__meta .f-link {
         margin: auto 0 0;
       }
+    }
+  }
+
+  .m-prefooter-section, &~.m-aside-newsletter {
+    @include breakpoint('xsmall') {
+      margin-top: 45px;
+    }
+
+    @include breakpoint('small+') {
+      margin-top: 75px;
     }
   }
 }
