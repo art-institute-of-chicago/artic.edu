@@ -68,9 +68,8 @@ abstract class BaseApiRepository extends ModuleRepository
             $query = $query->accessible();
         }
 
-        switch ($slug) {
-            case 'all':
-                return $query->count();
+        if ($slug == 'all') {
+            return $query->count();
         }
 
         return parent::getCountByStatusSlug($slug, $scope);
