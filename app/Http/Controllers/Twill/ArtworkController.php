@@ -11,6 +11,7 @@ class ArtworkController extends BaseApiController
     public function setUpController(): void
     {
         $this->enableAugmentedModel();
+        $this->disablePublish();
         $this->enableShowImage();
         $this->setTitleColumnKey('fullTitle');
         $this->setModuleName('artworks');

@@ -16,6 +16,7 @@ class ExhibitionController extends BaseApiController
         $this->disableCreate();
         $this->disableDelete();
         $this->disableRestore();
+        $this->disablePublish();
         $this->eagerLoadFormRelations(['revisions', 'siteTags']);
         $this->enableAugmentedModel();
         $this->enableShowImage();
