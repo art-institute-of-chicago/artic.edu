@@ -318,8 +318,8 @@ class LandingPagesController extends FrontController
                 if (count($publicationResourcesItems) > 0) {
                     $publicationResourceLinks = $publicationResourcesItems->map(function ($title, $target) {
                         return [
-                            'label' => $title,
-                            'target' => $target
+                            'label' => $target,
+                            'target' => '#' . $target
                         ];
                     });
                 }
@@ -355,7 +355,7 @@ class LandingPagesController extends FrontController
                     'subnav' => collect($blockHeadings)
                     ->concat([['label' => 'Publications', 'target' => '#Publications']])
                     ->concat($publicationResourceLinks->toArray())
-                    ->concat([['label' => 'Resources', 'target' => '#Resources'], ['label' => 'Shop<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>', 'target' => 'https://shop.artic.edu']])
+                    ->concat([['label' => 'Resources', 'target' => '#Resources'], ['label' => 'Shop<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>', 'target' => 'https://shop.artic.edu/collections/art-institute-books']])
                     ->all(),
                 ];
                 break;
