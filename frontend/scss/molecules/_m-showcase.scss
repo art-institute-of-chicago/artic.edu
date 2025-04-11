@@ -165,7 +165,7 @@
     }
 
     &.showcase--publications {
-        margin-top: 25px;
+        margin-top: 0px;
         flex-direction: row-reverse !important;
         background-color: unset !important;
 
@@ -200,7 +200,7 @@
                 @include breakpoint('small') {
                     top: 25px;
                 }
-            
+
                 @include breakpoint('xsmall') {
                     top: 25px;
                 }

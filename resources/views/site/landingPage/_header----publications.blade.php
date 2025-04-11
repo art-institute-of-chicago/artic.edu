@@ -1,4 +1,4 @@
-<h2 style="margin-top: 75px" class="title f-display-1">Publications</h2>
+<h2 style="margin-top: 84px" class="title f-display-1">Publications</h2>
 <hr>
 @if (isset($subnav) && (count($subnav) > 0))
     <div class="{{$landingPageType}}-subnav">
