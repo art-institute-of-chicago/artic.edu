@@ -34,16 +34,17 @@ jobs:
           EOF
           )
 
-          JSON_PAYLOAD=$(jq -n \
+          jq -n \
             --arg system_prompt "$SYSTEM_PROMPT" \
             --rawfile content pr_diff.txt \
-            '{messages: [{role: "system", content: $system_prompt}, {role: "user", content: $content}], max_tokens: 500, temperature: 0.7}')
+            '{messages: [{role: "system", content: $system_prompt}, {role: "user", content: $content}], max_tokens: 500, temperature: 0.7}' \
+            > payload.json
 
           # Call Azure OpenAI API
           RESPONSE=$(curl -s -X POST "$AZURE_OPENAI_ENDPOINT/deployments/gpt-4/chat/completions?api-version=2023-07-01-preview" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer $AZURE_OPENAI_API_KEY" \
-            -d "$JSON_PAYLOAD")
+            -d @payload.json)
 
           # Extract response
           ANALYSIS=$(echo "$RESPONSE" | jq -r '.choices[0].message.content')
