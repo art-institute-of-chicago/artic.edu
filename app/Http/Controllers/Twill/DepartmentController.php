@@ -8,6 +8,7 @@ class DepartmentController extends BaseApiController
     {
         $this->setModuleName('departments');
         $this->enableAugmentedModel();
+        $this->disablePublish();
     }
 
     protected function formData($request)

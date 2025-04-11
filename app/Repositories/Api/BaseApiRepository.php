@@ -5,6 +5,7 @@ namespace App\Repositories\Api;
 use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Model;
 use A17\Twill\Models\Contracts\TwillModelContract;
+use A17\Twill\Facades\TwillPermissions;
 use App\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleApiRelations;
 
@@ -50,5 +51,27 @@ abstract class BaseApiRepository extends ModuleRepository
         $results = $search->getSearch($perPage, $columns, $pageName, $page, $options);
 
         return $results;
+    }
+
+
+    public function getCountByStatusSlug(string $slug, array $scope = []): int
+    {
+        $query = ($this->model->getApiModel())::query();
+
+        if (
+            TwillPermissions::enabled() &&
+            (
+                TwillPermissions::getPermissionModule(getModuleNameByModel($this->model)) ||
+                method_exists($this->model, 'scopeAccessible')
+            )
+        ) {
+            $query = $query->accessible();
+        }
+
+        if ($slug == 'all') {
+            return $query->count();
+        }
+
+        return parent::getCountByStatusSlug($slug, $scope);
     }
 }
