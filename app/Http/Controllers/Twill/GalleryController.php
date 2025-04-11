@@ -8,6 +8,7 @@ class GalleryController extends BaseApiController
     {
         $this->setModuleName('galleries');
         $this->enableAugmentedModel();
+        $this->disablePublish();
     }
 
     protected function formData($request)
