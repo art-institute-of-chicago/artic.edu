@@ -61,7 +61,7 @@
     </div>
     @if ($item->publicationResources)
         <div class="publications-title-bar publication-resources">
-            <h2 style="margin-top: 75px" class="title f-module-title-2" id="resources">
+            <h2 style="margin-top: 91px" class="title f-module-title-2" id="resources">
                 Resources
             </h2>
         </div>
