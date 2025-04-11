@@ -24,8 +24,6 @@ jobs:
           AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
           AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
         run: |
-          PR_DIFF=$(cat pr_diff.txt)
-
           SYSTEM_PROMPT=$(cat <<'EOF'
             You are an AI assistant that reviews code changes. Do the following:
 
@@ -38,7 +36,7 @@ jobs:
 
           JSON_PAYLOAD=$(jq -n \
             --arg system_prompt "$SYSTEM_PROMPT" \
-            --arg content "$PR_DIFF" \
+            --rawfile content pr_diff.txt \
             '{messages: [{role: "system", content: $system_prompt}, {role: "user", content: $content}], max_tokens: 500, temperature: 0.7}')
 
           # Call Azure OpenAI API
