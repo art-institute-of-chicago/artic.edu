@@ -24,6 +24,7 @@ parameters:
     - '#Function moduleRoute not found\.#'
     - '#Function twillTrans not found\.#'
     - '#Function getLocales not found\.#'
+    - '#Function getModuleNameByModel not found\.#'
     - '#Function classHasTrait not found\.#'
     - '#Function createDefaultTableFields not found\.#'
     - '#Function createDefaultRelationshipTableFields not found\.#'
