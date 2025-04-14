@@ -14,6 +14,7 @@ class ArtworkController extends BaseApiController
         $this->disablePublish();
         $this->enableShowImage();
         $this->setTitleColumnKey('fullTitle');
+        $this->setSearchColumns(['title', 'artist_title', 'main_reference_number']);
         $this->setModuleName('artworks');
     }
 
