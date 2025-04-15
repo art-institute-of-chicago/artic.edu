@@ -165,9 +165,21 @@
     }
 
     &.showcase--publications {
-        margin-top: 0px;
+        margin: 50px auto;
         flex-direction: row-reverse !important;
         background-color: unset !important;
+        padding: 0;
+        width: 100%;
+
+        @include breakpoint('small') {
+            padding: 0;
+            margin: 100px auto !important;
+        }
+
+        @include breakpoint('xsmall') {
+            padding: 0;
+            margin: 100px auto !important;
+        }
 
         .showcase-title {
             font-size: 28px;
