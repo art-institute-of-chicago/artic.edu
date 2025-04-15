@@ -1,0 +1,101 @@
+name: Summarize
+on: [pull_request]
+jobs:
+  analyze-pr:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR Diff
+        id: diff
+        run: |
+          git fetch origin ${{ github.event.pull_request.base.ref }} --depth=1
+          git diff origin/${{ github.event.pull_request.base.ref }} --unified=0 > pr_diff.txt
+
+      - name: Call Azure AI for Analysis
+        id: azure-ai
+        env:
+          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+        run: |
+          SYSTEM_PROMPT=$(cat <<'EOF'
+            You are an AI assistant that reviews code changes. Do the following:
+
+              1. Summarize the PR in 1-3 plain-language sentences. Don't use headings or emojis. Do not list file-specific changes. Explain what the PR does at a high level. Provide this as an unnumbered opening paragraph.
+              2. If function names are unclear or overly long, provide feedback in a single, brief, unnumbered paragraph. Otherwise, say nothing.
+              3. If the PR includes PHP code, suggest up to 3 PHPUnit tests under the heading "### Suggestions for unit test". Only make suggestions that test the ultimate user experience, for example, a test that creates XYZ models, sets ABC values, and tests that this URL shows this would meet this criterion. Only suggest tests that are easy to write and clearly valuable. Do not suggest anything involving JavaScript or the Twill CMS. Omit this section entirely if no suggestions meet the criteria.
+              4. Identify up to 3 concrete, likely bugs under the heading "### Potential bugs". Only include items with a high likelihood of causing issues. Do not include speculative risks, edge cases, or anything related to security. Omit this section if there are no suggestions.
+          EOF
+          )
+
+          jq -n \
+            --arg system_prompt "$SYSTEM_PROMPT" \
+            --rawfile content pr_diff.txt \
+            '{messages: [{role: "system", content: $system_prompt}, {role: "user", content: $content}], max_tokens: 500, temperature: 0.7}' \
+            > payload.json
+
+          # Call Azure OpenAI API
+          RESPONSE=$(curl -s -X POST "$AZURE_OPENAI_ENDPOINT/deployments/gpt-4/chat/completions?api-version=2023-07-01-preview" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $AZURE_OPENAI_API_KEY" \
+            -d @payload.json)
+
+          # Extract response
+          ANALYSIS=$(echo "$RESPONSE" | jq -r '.choices[0].message.content')
+
+          # Store analysis output for later use
+          {
+            echo "analysis<<EOF"
+            echo "$ANALYSIS"
+            echo "EOF"
+          } >> $GITHUB_ENV
+
+      - name: Post or update comment on PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const analysis = process.env.analysis;
+            const issue_number = context.payload.pull_request.number;
+            const repo = context.repo;
+
+            const marker = '<!-- azure-ai-pr-summary -->';
+            const body = `${marker}
+            ## Automated PR Summary
+
+              ${analysis}`;
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              {
+                owner: repo.owner,
+                repo: repo.repo,
+                issue_number
+              }
+            );
+
+            const existingComment = comments.find(comment =>
+              comment.body.includes(marker)
+            );
+
+            if (existingComment) {
+              await github.rest.issues.updateComment({
+                owner: repo.owner,
+                repo: repo.repo,
+                comment_id: existingComment.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: repo.owner,
+                repo: repo.repo,
+                issue_number,
+                body
+              });
+            }

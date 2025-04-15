@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -24,7 +25,7 @@ class ExperienceModalRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $this->updateExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'modal_experience_image');
 
@@ -34,7 +35,7 @@ class ExperienceModalRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function prepareFieldsBeforeSave($object, $fields)
+    public function prepareFieldsBeforeSave(TwillModelContract $object, array $fields): array
     {
         if (isset($fields['blocks']) && !empty($fields['blocks'])) {
             $fields['repeaters'] = $fields['blocks'];

@@ -2,12 +2,14 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\DigitalPublication;
+use App\Models\DigitalPublicationArticle;
 
 class DigitalPublicationRepository extends ModuleRepository
 {
@@ -23,12 +25,19 @@ class DigitalPublicationRepository extends ModuleRepository
         ]
     ];
 
+    public function afterSave(TwillModelContract $object, array $fields): void
+    {
+        $object->categories()->sync($fields['categories'] ?? []);
+        parent::afterSave($object, $fields);
+    }
+
+
     public function __construct(DigitalPublication $model)
     {
         $this->model = $model;
     }
 
-    public function getShowData($item, $slug = null, $previewPage = null)
+    public function getShowData($item, $slug = null, $previewPage = null): array
     {
         return [
             'borderlessHeader' => !(empty($item->imageFront('banner'))),
@@ -43,7 +52,7 @@ class DigitalPublicationRepository extends ModuleRepository
         ];
     }
 
-    public function getWelcomeNote($item)
+    public function getWelcomeNote($item): DigitalPublicationArticle
     {
         $welcomeNotes = $item->getRelated('welcome_note_section');
 

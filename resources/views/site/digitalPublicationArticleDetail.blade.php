@@ -25,6 +25,7 @@
             @slot('pub_title_display', $item->digitalPublication->present()->title_display)
             @slot('img', $item->imageAsArray('hero', 'special') ?? $item->imageFront('hero'))
             @slot('imgMobile', $item->imageFront('mobile_hero'))
+            @slot('credit', $item->hero_caption)
         @endcomponent
     @endif
 
@@ -116,7 +117,7 @@
 
         @endphp
 
-        {!! $item->renderBlocks(false, [], [
+        {!! $item->renderBlocks(data: [
             'pageTitle' => $item->meta_title ?: $item->title,
         ]) !!}
 

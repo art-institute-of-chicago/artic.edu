@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -10,6 +11,7 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Models\Exhibition;
 use App\Repositories\Api\BaseApiRepository;
+use Illuminate\Support\Collection;
 
 class ExhibitionRepository extends BaseApiRepository
 {
@@ -22,22 +24,22 @@ class ExhibitionRepository extends BaseApiRepository
 
     protected $browsers = [
         'sponsors' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
         ],
         'events' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
         ]
     ];
 
     protected $apiBrowsers = [
         'exhibitions' => [
-            'routePrefix' => 'exhibitions_events'
+            'routePrefix' => 'exhibitionsEvents'
         ],
         'shopItems',
         'waitTimes',
     ];
 
-    protected $repeaters = [
+    protected array $repeaters = [
         'offers'
     ];
 
@@ -51,7 +53,7 @@ class ExhibitionRepository extends BaseApiRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
+    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
@@ -59,18 +61,18 @@ class ExhibitionRepository extends BaseApiRepository
         return parent::hydrate($object, $fields);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
         parent::afterSave($object, $fields);
     }
 
-    public function getExhibitionTypesList()
+    public function getExhibitionTypesList(): Collection
     {
         return collect($this->model::$exhibitionTypes);
     }
 
-    public function getExhibitionStatusesList()
+    public function getExhibitionStatusesList(): Collection
     {
         return collect($this->model::$exhibitionStatuses);
     }

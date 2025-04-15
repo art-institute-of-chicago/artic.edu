@@ -195,6 +195,22 @@
   & + & {
     margin-left: -20px;
   }
+
+  &.s-active {
+    .f-link {
+      font-weight: 400;
+      color: $color__black;
+      text-decoration: underline;
+    }
+  }
+
+  .dropdown__trigger.s-active {
+    .f-secondary {
+      font-weight: 400;
+      color: $color__black;
+      text-decoration: underline;
+    }
+  }
 }
 
 .m-links-bar__item--primary:last-child {
@@ -641,6 +657,22 @@
       align-self: center;
       @include untuck;
     }
+  }
+}
+
+.m-links-bar--publications {
+  margin-top: 0;
+
+  &::before {
+    content: unset;
+  }
+
+  .m-links-bar__item--primary + .m-links-bar__item--primary {
+    margin-left: 0;
+  }
+
+  .m-links-bar__item--primary {
+    padding-left: 0;
   }
 }
 

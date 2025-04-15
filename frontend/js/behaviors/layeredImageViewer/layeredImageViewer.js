@@ -1,4 +1,4 @@
-import OpenSeadragon from '../../libs/openseadragon4.min';
+import OpenSeadragon from 'openseadragon';
 
 
 /**

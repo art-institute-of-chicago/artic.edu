@@ -44,7 +44,7 @@ class MigrateOSCIPublicationMedia extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): void
     {
         foreach ($this->publications as $pub) {
             $this->call('migrate:osci-media-one', ['id' => $pub]);

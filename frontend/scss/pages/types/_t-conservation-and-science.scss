@@ -1,0 +1,368 @@
+.conservation-and-science-subnav {
+    border-bottom: 1px solid $color__black--10;
+    border-top: 1px solid $color__black--10;
+    margin-bottom: 40px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 28px;
+    text-align: left !important;
+
+    @include breakpoint('small-') {
+        padding-bottom: 20px;
+    }
+
+    ul {
+        display: block;
+        text-align: left;
+        white-space: nowrap;
+        min-width: 100%;
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    .m-links-bar__item>.f-link {
+        color: $color__black--90;
+        font-family: $sans-serif-font--loaded;
+        font-size: 17px;
+        font-weight: 300;
+        line-height: 28px;
+        letter-spacing: 0.01em;
+    }
+}
+
+.conservation-and-science {
+  .showcase--conservation-and-science.m-showcase-block {
+    margin-top: 25px;
+    background-color: $color__white;
+
+    .m-showcase-wrapper {
+      flex-direction: row-reverse;
+    }
+
+    .m-showcase-block__text-wrapper {
+      gap: 11px;
+    }
+
+    .showcase-header {
+      display: none;
+    }
+
+    .showcase-description {
+      color: $color__black--80;
+      margin: 0;
+    }
+
+    .showcase-title {
+      font-size: 22px;
+      line-height: 28px;
+      margin: 0;
+    }
+  }
+
+  .o-row-listing.o-blocks__block {
+    background-color: $color__black--5;
+
+    .m-listing--inline {
+      border-top: none;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    @include breakpoint('small+') {
+      padding: 25px 38px 30px;
+
+      .m-listing__link {
+        flex-flow: unset;
+      }
+
+      .m-listing__img {
+        width: colspan(18, large);
+      }
+
+      .m-listing__meta {
+        padding-left: 36px;
+      }
+    }
+
+    @include breakpoint('xsmall') {
+      padding: 15px;
+
+      .m-listing__link {
+        flex-flow: column;
+      }
+
+      .m-listing__img {
+        width: 100%;
+      }
+
+      .m-listing__meta {
+        padding-top: 15px;
+        margin: 0;
+
+        .short-description {
+          color: $color__black--80;
+        }
+      }
+
+      .m-listing__meta-bottom::after {
+        border: 1px $color__black--80 solid;
+        border-radius: 2px;
+        color: $color__black--80;
+        content: "Register";
+        display: block;
+        font-family: $sans-serif-font--loaded;
+        font-size: 16px;
+        height: 48px;
+        line-height: 24px;
+        margin-top: 24px;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+
+  .o-gallery {
+    margin-left: unset !important;
+
+    .m-media__img:not(.m-media__img--video) img {
+      max-width: 20vw;
+    }
+  }
+
+  .o-gallery__caption {
+    margin-top: 24px;
+    width: 100%;
+
+    .f-caption {
+      font-size: 17px;
+      line-height: 28px;
+    }
+  }
+
+  .o-gallery__media-wrapper {
+    padding-bottom: 0;
+    padding-top: 24px;
+
+    figcaption {
+      max-width: 20vw;
+      padding-right: 0;
+
+      .f-caption {
+        color: $color__black--90;
+        font-size: 22px;
+        line-height: 28px;
+      }
+
+      .f-link {
+        color: $color__grey--100 !important;
+      }
+    }
+  }
+
+  .editorial-block--conservation-and-science {
+    margin-bottom: 0;
+
+    .editorial-block__header {
+      border: none;
+      margin-bottom: 20px;
+    }
+
+    .editorial-block__heading {
+      h2 {
+        color: $color__black;
+        font-family: $sans-serif-font--loaded;
+        font-size: 21px;
+        font-weight: normal;
+        letter-spacing: 0.08em;
+        line-height: 28px;
+        text-transform: uppercase;
+      }
+
+      .link::before {
+        content: none;
+      }
+    }
+
+    .editorial-block__content-wrapper {
+      border-top: 1px solid $color__black--20;
+    }
+
+    .author {
+      color: $color__black--54;
+      font-family: $sans-serif-font--loaded;
+      font-size: 15px;
+      font-weight: 325;
+      line-height: 20px;
+    }
+
+    .editorial-block__body, .editorial-block__tags {
+      display: none;
+    }
+
+    @include breakpoint('xsmall') {
+      margin-top: 20px;
+
+      .editorial-block__header {
+        margin-bottom: 10px;
+      }
+
+      .m-listing--article {
+        padding-top: 40px;
+      }
+
+      .m-listing__meta {
+        min-height: unset;
+      }
+
+      .intro {
+        color: $color__black--81;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+
+    @include breakpoint('small+') {
+      margin-top: 30px;
+
+      .editorial-block__header {
+        margin-bottom: 20px;
+      }
+
+      .editorial-block__content-wrapper {
+        padding-top: 40px;
+      }
+
+      .editorial-block__featured {
+        padding-right: 20px;
+
+        .title {
+          font-size: 38px;
+          line-height: 44px;
+          text-align: center;
+        }
+
+        .author {
+          text-align: center;
+        }
+
+        .intro {
+          color: $color__black--81;
+          font-family: $serif-font--loaded;
+          font-size: 19px;
+          line-height: 28px;
+        }
+
+        .m-listing__meta {
+          min-height: unset;
+        }
+      }
+
+      .editorial-block__list {
+        padding-left: 20px;
+
+        .m-listing--article:first-child {
+          margin-bottom: 20px;
+          padding-bottom: 20px;
+        }
+
+        .m-listing__link {
+          margin-right: 40px;
+        }
+
+        .m-listing__img {
+          margin-right: 40px;
+        }
+
+        .title {
+          font-size: 22px;
+          line-height: 28px;
+        }
+
+        .intro {
+          color: $color__black--80;
+          font-size: 17px;
+          line-height: 28px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
+  .o-grid-block {
+    .m-title-bar::before {
+      content: none;
+    }
+
+    .title {
+      margin-top: 0;
+    }
+
+    .hr {
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+            margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+        }
+      }
+    }
+
+    @include breakpoint('large+') {
+      margin-left: unset !important;
+    }
+
+    @include breakpoint('small+') {
+      margin-top: 75px;
+    }
+  }
+
+  .o-grid-block:has(#our-work) {
+    .m-listing {
+      &::before, &::after {
+        content: none;
+      }
+
+      .title {
+        color: $color__black--90;
+        font-size: 24px;
+        line-height: 32px;
+      }
+
+      .intro {
+        color: $color__black--80;
+        font-size: 17px;
+        line-height: 28px;
+      }
+    }
+  }
+
+  .o-grid-block:has(#resources) {
+    .m-listing__img {
+      display: none;
+    }
+
+    @include breakpoint('xsmall') {
+      .m-listing__meta {
+        min-height: unset;
+      }
+    }
+
+    @include breakpoint('small+') {
+      .m-listing__meta .f-link {
+        margin: auto 0 0;
+      }
+    }
+  }
+
+  .m-prefooter-section, &~.m-aside-newsletter {
+    @include breakpoint('xsmall') {
+      margin-top: 45px;
+    }
+
+    @include breakpoint('small+') {
+      margin-top: 75px;
+    }
+  }
+}

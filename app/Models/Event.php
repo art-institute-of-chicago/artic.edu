@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use PDO;
 
 class Event extends AbstractModel
@@ -206,6 +207,9 @@ class Event extends AbstractModel
         self::WEST_BOX => 'West Box',
     ];
 
+    // Number of days to look ahead for upcoming events
+    public const UPCOMING_IN_DAYS = 28;
+
     public $slugAttributes = [
         'title',
     ];
@@ -275,7 +279,7 @@ class Event extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.exhibitions_events.events.edit', $this->id);
+        return route('twill.exhibitionsEvents.events.edit', $this->id);
     }
 
     public function getTimeStartAttribute()
@@ -345,12 +349,12 @@ class Event extends AbstractModel
         return $this->getMultiSelectFromJsonColumn($value);
     }
 
-    public function setAltTypesAttribute($value)
+    public function setAltTypesAttribute($value): void
     {
         $this->attributes['alt_types'] = $this->getJsonColumnFromMultiSelect($value);
     }
 
-    public function setAltAudiencesAttribute($value)
+    public function setAltAudiencesAttribute($value): void
     {
         $this->attributes['alt_audiences'] = $this->getJsonColumnFromMultiSelect($value);
     }
@@ -424,7 +428,7 @@ class Event extends AbstractModel
         });
     }
 
-    public function scopeToday($query)
+    public function scopeToday($query): Builder
     {
         $today = Carbon::today();
 
@@ -432,22 +436,29 @@ class Event extends AbstractModel
     }
 
 
-    public function scopeLanding($query)
+    public function scopeLanding($query): Builder
     {
         return $query->whereLanding(true);
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }
 
-    public function scopeNotPrivate($query)
+    public function scopeNotPrivate($query): Builder
     {
         return $query->whereIsPrivate(false);
     }
 
-    public function scopeFuture($query)
+    public function scopeUpcoming($query): Builder
+    {
+        return $query->whereHas('eventMetas', function ($query) {
+            $query->where('date', '<=', Carbon::now()->addDays(Event::UPCOMING_IN_DAYS));
+        });
+    }
+
+    public function scopeFuture($query): Builder
     {
         return $query->whereHas('eventMetas', function ($query) {
             $query->where('date_end', '>=', Carbon::now());
@@ -459,7 +470,7 @@ class Event extends AbstractModel
         return self::future()->find($this->id) != null;
     }
 
-    public function scopeBetweenDates($query, $startDate, $endDate = null)
+    public function scopeBetweenDates($query, $startDate, $endDate = null): Builder
     {
         $query->rightJoin('event_metas', function ($join) {
             $join->on('events.id', '=', 'event_metas.event_id');
@@ -480,7 +491,7 @@ class Event extends AbstractModel
      *
      * @see WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
      */
-    public function scopeByType($query, $types)
+    public function scopeByType($query, $types): Builder
     {
         collect($types)->map(function ($type) {
             return (int) $type;
@@ -498,7 +509,7 @@ class Event extends AbstractModel
      * NOTE: This works only while there are less than 10 possible audience values
      * @see WEB-2260: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
      */
-    public function scopeByAudience($query, $audiences)
+    public function scopeByAudience($query, $audiences): Builder
     {
         collect($audiences)->map(function ($audience) {
             return (int) $audience;
@@ -512,7 +523,7 @@ class Event extends AbstractModel
         return $query;
     }
 
-    public function scopeByProgram($query, $programs = null)
+    public function scopeByProgram($query, $programs = null): Builder
     {
         if (empty($programs)) {
             return $query;
@@ -541,47 +552,47 @@ class Event extends AbstractModel
         return $field . " LIKE '%" . QueryHelpers::escape_like($value) . "%'";
     }
 
-    public function setEventTypeAttribute($value)
+    public function setEventTypeAttribute($value): void
     {
         $this->attributes['event_type'] = $value > max(array_keys(self::$eventTypes)) ? null : $value; // 1-based
     }
 
-    public function setAudienceAttribute($value)
+    public function setAudienceAttribute($value): void
     {
         $this->attributes['audience'] = $value > max(array_keys(self::$eventAudiences)) ? null : $value; // 1-based
     }
 
-    public function setEntranceAttribute($value)
+    public function setEntranceAttribute($value): void
     {
         $this->attributes['entrance'] = $value > max(array_keys(self::$eventEntrances)) ? null : $value; // 1-based
     }
 
-    public function setAffiliateGroupIdAttribute($value)
+    public function setAffiliateGroupIdAttribute($value): void
     {
         $this->attributes['affiliate_group_id'] = ($value == self::NULL_OPTION_AFFILIATE_GROUP) ? null : $value;
     }
 
-    public function setEventHostIdAttribute($value)
+    public function setEventHostIdAttribute($value): void
     {
         $this->attributes['event_host_id'] = ($value == self::NULL_OPTION_EVENT_HOST) ? null : $value;
     }
 
-    public function scopeDefault($query)
+    public function scopeDefault($query): Builder
     {
         return $this->scopeSixMonths($query);
     }
 
-    public function scopeSixMonths($query)
+    public function scopeSixMonths($query): Builder
     {
         return $query->betweenDates(Carbon::today(), Carbon::today()->addMonths(6));
     }
 
-    public function scopeYear($query)
+    public function scopeYear($query): Builder
     {
         return $query->betweenDates(Carbon::today(), Carbon::today()->addYear());
     }
 
-    public function scopeWeekend($query)
+    public function scopeWeekend($query): Builder
     {
         return $query->betweenDates(Carbon::today()->nextWeekendDay(), Carbon::today()->nextWeekendDay()->addDays(2));
     }

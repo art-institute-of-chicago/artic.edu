@@ -4,6 +4,7 @@ namespace App\Presenters\Admin;
 
 use App\Enums\DigitalPublicationArticleType;
 use App\Presenters\BasePresenter;
+use Illuminate\Support\Str;
 
 class DigitalPublicationPresenter extends BasePresenter
 {
@@ -20,6 +21,11 @@ class DigitalPublicationPresenter extends BasePresenter
             'id' => $this->entity->id,
             'slug' => $this->entity->getSlug(),
         ]);
+    }
+
+    public function type()
+    {
+        return Str::title(Str::replace('_', ' ', $this->entity->type));
     }
 
     public function date()
@@ -59,7 +65,7 @@ class DigitalPublicationPresenter extends BasePresenter
         return $this->articles[$type];
     }
 
-    protected function isDscStub()
+    public function isDscStub()
     {
         return $this->entity->is_dsc_stub ? 'Yes' : 'No';
     }

@@ -133,7 +133,7 @@ class StringHelpers
         $string = preg_replace("/^(.{1,${limit}})(\s.*|$)/s", '\1...', $string);
 
         if (strpos($string, '<') < 0) {
-            return $truncatedString;
+            return $string;
         }
 
         // https://stackoverflow.com/questions/16583676/shorten-text-without-splitting-words-or-breaking-html-tags
@@ -174,16 +174,24 @@ class StringHelpers
     public static function getLastWord(string $originalText): array
     {
         $originalText = rtrim($originalText);
-        // Split on the last space (" ") character as long as the final set of
-        // characters does not contain angle brackets (likely an HTML element).
-        preg_match('/(.* )([^<>]+)$$/', $originalText, $textParts);
+
+        // Check if the string ends with an HTML entity including curly quotes
+        if (preg_match('/(.*)(&(?:#\d+|[a-zA-Z]+);|&(?:ldquo|rdquo|lsquo|rsquo|ndash|mdash|hellip|nbsp|amp|lt|gt|quot);|\x{201C}|\x{201D}|\x{2018}|\x{2019}|\x{2013}|\x{2014}|\x{2026})$/u', $originalText, $entityMatch)) {
+            // If it ends with an HTML entity or special character, use that as the last "word"
+            return [$entityMatch[1], $entityMatch[2]];
+        }
+
+        // Otherwise, look for the last space followed by non-HTML, non-space characters
+        // Excluding HTML entities and special characters from the last word pattern
+        preg_match('/(.* )([^<>\s]+(?:(?!(&(?:#\d+|[a-zA-Z]+);|&(?:ldquo|rdquo|lsquo|rsquo|ndash|mdash|hellip|nbsp|amp|lt|gt|quot);|\x{201C}|\x{201D}|\x{2018}|\x{2019}|\x{2013}|\x{2014}|\x{2026})).)+)$/u', $originalText, $textParts);
+
         $beforeLastWord = $textParts[1] ?? $originalText;
         $lastWord = $textParts[2] ?? '';
-        // If the last word did contain an HTML elment, find the last non-space,
-        // non-word character (usually punctuation) and use that as the last
-        // "word".
+
+        // Fallback for other cases
         if (empty($lastWord)) {
-            preg_match('/(.*)([\S\W])$/', $originalText, $textAndPunctuation);
+            // Match the very last character/punctuation
+            preg_match('/(.*)(.)$/', $originalText, $textAndPunctuation);
             $beforeLastWord = $textAndPunctuation[1] ?? $originalText;
             $lastWord = $textAndPunctuation[2] ?? '';
         }

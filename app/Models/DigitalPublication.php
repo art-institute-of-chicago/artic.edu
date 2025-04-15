@@ -12,6 +12,7 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class DigitalPublication extends AbstractModel
 {
@@ -27,6 +28,7 @@ class DigitalPublication extends AbstractModel
 
     protected $fillable = [
         'listing_description',
+        'publication_date',
         'hero_caption',
         'title',
         'title_display',
@@ -85,6 +87,14 @@ class DigitalPublication extends AbstractModel
                 ],
             ],
         ],
+        'publications_listing' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => null,
+                ],
+            ],
+        ],
         'mobile_listing' => [
             [
                 'name' => 'default',
@@ -126,18 +136,50 @@ class DigitalPublication extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('admin.collection.articles_publications.digitalPublications.edit', $this->id);
+        return route('twill.collection.articlesPublications.digitalPublications.edit', $this->id);
     }
 
     /**
      * For pinboard and listings
      */
+
+    public function getTypeAttribute()
+    {
+        return 'digital_publication';
+    }
     public function getSubtypeAttribute()
     {
         return 'Digital Publication';
     }
 
-    public function scopeIds($query, $ids = [])
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\CatalogCategory', 'catalog_category_digital_publication', 'digital_publication_id');
+    }
+
+    public function scopeByCategory($query, $category = null): Builder
+    {
+        if (!empty($category)) {
+            $query->whereHas('categories', function ($query) use ($category) {
+                $query->where('catalog_category_id', $category);
+            });
+        }
+
+        return $this->scopeOrdered($query);
+    }
+
+    public function scopeByCategories($query, $categories = null): Builder
+    {
+        if (empty($categories)) {
+            return $query;
+        }
+
+        return $query->whereHas('categories', function ($query) use ($categories) {
+            $query->whereIn('category_id', is_array($categories) ? $categories : [$categories]);
+        });
+    }
+
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }
@@ -147,7 +189,7 @@ class DigitalPublication extends AbstractModel
      * @link https://stackoverflow.com/questions/3252577
      * @link https://stackoverflow.com/questions/47903727
      */
-    public function scopeOrdered($query)
+    public function scopeOrdered($query): Builder
     {
         $driver = DB::connection()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
 

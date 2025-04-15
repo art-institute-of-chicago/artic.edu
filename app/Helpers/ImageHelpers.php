@@ -2,9 +2,9 @@
 
 namespace App\Helpers;
 
+use A17\Twill\Services\MediaLibrary\ImageService;
 use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
-use ImageService;
 
 class ImageHelpers
 {
@@ -177,8 +177,8 @@ class ImageHelpers
             }
 
             if ($sourceType === 'dams') {
-                $fullVal = strpos($originalSrc, '!3000,3000') ? '!3000,3000' : 'full';
-                $base = explode('/full/' . $fullVal . '/0/default.jpg', $originalSrc)[0];
+                $fullVal = strpos($src, '!3000,3000') ? '!3000,3000' : 'full';
+                $base = explode('/full/' . $fullVal . '/0/default.jpg', $src)[0];
                 $resizeVal = 'full';
                 $strposterSrcingSrc = $base . '/' . $resizeVal . '/150,/0/default.jpg';
             }
@@ -680,6 +680,7 @@ class ImageHelpers
 
         return Str::kebab($icons[$key]);
     }
+
     public static function getSocialIcon($url)
     {
         $host = parse_url($url, PHP_URL_HOST);
@@ -687,5 +688,15 @@ class ImageHelpers
         $domains = explode('.', $host);
         // The second-to-last domain item is the host domain
         return $domains[count($domains) - 2] ?? null;
+    }
+
+    /**
+     * @link https://github.com/openseadragon/openseadragon/pull/1285/files
+     */
+    public static function getImgixTileSource($model, $role, $crop = 'default')
+    {
+        if ($media = $model->imageObject($role, $crop)) {
+            return 'https://' . config('twill.imgix_source_host') . '/' . $media->uuid . '?fm=json&osd=imgix';
+        }
     }
 }

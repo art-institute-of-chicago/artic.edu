@@ -14,7 +14,6 @@ return [
     'block_single_layout' => 'layouts.block',
     'block_views_path' => 'site.blocks', // Path where a view file per block type is stored
     'block_views_mappings' => [], // Custom mapping of block types and views
-    'block_preview_render_childs' => false,
     'block_presenter_path' => App\Presenters\Admin\BlockPresenter::class, // Allow to set a custom presenter to a block model
     // Indicates if blocks templates should be inlined in HTML.
     // When setting to false, make sure to build Twill with your all your custom blocks.
@@ -58,7 +57,7 @@ return [
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 16 / 9,
+                    'ratio' => null,
                 ],
             ],
         ],
@@ -90,7 +89,7 @@ return [
                 ],
                 [
                     'name' => '1:1',
-                    'ratio' => 1 / 1
+                    'ratio' => 1,
                 ],
                 [
                     'name' => '3:4',
@@ -122,9 +121,19 @@ return [
                 ],
             ],
         ],
-
+        'gallery_item' => [
+            'conservation_and_science' => [
+                [
+                    'name' => 'conservation_and_science',
+                    'ratio' => 3 / 4,
+                ],
+            ],
+        ]
     ],
     'repeaters' => [],
+
+    'core_icons' => base_path('frontend/icons'),
+
     'directories' => [
         'source' => [
             'blocks' => [
@@ -133,14 +142,14 @@ return [
                     'source' => A17\Twill\Services\Blocks\Block::SOURCE_TWILL,
                 ],
                 [
-                    'path' => resource_path('views/admin/blocks'),
+                    'path' => resource_path('views/twill/blocks'),
                     'source' => A17\Twill\Services\Blocks\Block::SOURCE_APP,
                 ],
             ],
 
             'repeaters' => [
                 [
-                    'path' => resource_path('views/admin/repeaters'),
+                    'path' => resource_path('views/twill/repeaters'),
                     'source' => A17\Twill\Services\Blocks\Block::SOURCE_APP,
                 ],
                 [
@@ -150,17 +159,17 @@ return [
             ],
 
             'icons' => [
-                base_path('vendor/area17/twill/frontend/icons'),
-                resource_path('views/admin/icons'),
+                base_path('frontend/icons'),
+                resource_path('views/twill/icons'),
             ],
         ],
 
         'destination' => [
             'make_dir' => true,
 
-            'blocks' => resource_path('views/admin/blocks'),
+            'blocks' => resource_path('views/twill/blocks'),
 
-            'repeaters' => resource_path('views/admin/repeaters'),
+            'repeaters' => resource_path('views/twill/repeaters'),
         ],
     ],
     'files' => [
@@ -171,17 +180,18 @@ return [
         'upload_manifest_file',
     ],
     'browser_route_prefixes' => [
-        'events' => 'exhibitions_events',
-        'exhibitions' => 'exhibitions_events',
+        'digitalPublications' => 'collection.articlesPublications',
+        'printedPublications' => 'collection.articlesPublications',
+        'events' => 'exhibitionsEvents',
+        'exhibitions' => 'exhibitionsEvents',
         'highlights' => 'collection',
         'artworks' => 'collection',
         'authors' => 'collection',
-        'highlights' => 'collection',
-        'articles' => 'collection.articles_publications',
-        'experiences' => 'collection.interactive_features',
+        'articles' => 'collection.articlesPublications',
+        'experiences' => 'collection.interactiveFeatures',
         'landingPages' => 'generic',
         'genericPages' => 'generic',
-        'videos' => 'collection.articles_publications',
+        'videos' => 'collection.articlesPublications',
         'myMuseumTourItems' => 'visit',
     ],
     'block-order' => [

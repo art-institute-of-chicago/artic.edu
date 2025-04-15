@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admission;
+use App\Models\CatalogCategory;
+use App\Models\DigitalPublication;
 use App\Models\Hour;
 use App\Models\Lightbox;
 use App\Models\LandingPage;
@@ -10,6 +12,7 @@ use App\Models\PrintedPublication;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\View;
 
 class LandingPagesController extends FrontController
 {
@@ -75,6 +78,7 @@ class LandingPagesController extends FrontController
                 break;
         }
 
+        View::share('landingPageType', Str::slug($item->type)); // This helps render conditional fields for LP types in all components :)
         return view('site.landingPageDetail', $this->viewData($item));
     }
 
@@ -175,7 +179,13 @@ class LandingPagesController extends FrontController
             'seo' => $this->seo,
         ];
 
-        $blockHeadings = $item->blocks->pluck('content')->pluck('heading')->filter();
+        $blockHeadingsContent = $item->blocks->pluck('content')->pluck('heading')->filter();
+        $blockHeadings = collect($blockHeadingsContent)->map(function ($blockHeadingsContent) {
+            return [
+                'label' => $blockHeadingsContent,
+                'target' => '#' . Str::slug(strip_tags($blockHeadingsContent))
+            ];
+        });
 
         switch ($item->type_id) {
             case $types->search('Home'):
@@ -192,7 +202,14 @@ class LandingPagesController extends FrontController
                 $viewData = [
                     'contrastHeader' => true,
                     'primaryNavCurrent' => 'visit',
-                    'subnav' => collect(['hours', 'location', 'admission'])->concat($blockHeadings)->concat(['FAQs'])->all(),
+                    'subnav' => collect([
+                        ['label' => 'hours', 'target' => '#hours'],
+                        ['label' => 'location', 'target' => '#location'],
+                        ['label' => 'admission', 'target' => '#admission']
+                    ])
+                        ->concat($blockHeadings)
+                        ->concat([['label' => 'FAQs', 'target' => '#FAQs']])
+                        ->all(),
                     'hours' => $hours,
                     'itemprops' => $itemprops,
                     'visit_map' => $item->imageFront('visit_map'),
@@ -250,13 +267,101 @@ class LandingPagesController extends FrontController
             case $types->search('Editorial'):
                 $viewData = [
                     'hours' => $hours,
-                    'subnav' => collect(['Top Stories'])->concat($blockHeadings)->all(),
+                    'subnav' => collect([['label' => 'Top Stories', 'target' => '#Top Stories']])->concat($blockHeadings)->all(),
                 ];
                 break;
 
             case $types->search('Publications'):
+                $publications = PrintedPublication::published()->get()->merge(DigitalPublication::published()->get())->sortByDesc('publish_start_date');
+                $filters = $item->labels?->get('filters')
+                    ? collect($item->labels->get('filters'))->map(function ($filterId) {
+                        $category = CatalogCategory::find($filterId);
+                        return $category ? [
+                            'label' => $category->name,
+                            'value' => Str::kebab(Str::lower($category->name))
+                        ] : null;
+                    })->filter()->values()->toArray()
+                    : [];
+                $primaryFilters = array_merge(
+                    [
+                        [
+                            'label' => 'All Publications',
+                            'value' => 'all'
+                        ],
+                        [
+                            'label' => 'Digital Publications',
+                            'value' => 'digital-publication'
+                        ],
+                        [
+                            'label' => 'Printed Publications',
+                            'value' => 'printed-publication'
+                        ]
+                    ],
+                    $filters
+                );
+
+                // Get all active categories
+                $allCategories = $this->getItemCategories($publications);
+
+                // Filter out categories that exist in primaryFilters
+                $primaryFilterValues = collect($primaryFilters)->pluck('value')->toArray();
+                $categories = collect($allCategories)->filter(function ($category) use ($primaryFilterValues) {
+                    return !in_array($category['data-button-value'], $primaryFilterValues);
+                })->values()->toArray();
+
+                $publicationResourcesItems = collect($item->publicationResources()->pluck('resource_title', 'resource_target'))
+                ->filter(function ($title, $target) {
+                    return !empty($target);
+                });
+
+                $publicationResourceLinks = collect();
+                if (count($publicationResourcesItems) > 0) {
+                    $publicationResourceLinks = $publicationResourcesItems->map(function ($title, $target) {
+                        return [
+                            'label' => $target,
+                            'target' => '#' . $target
+                        ];
+                    });
+                }
+
                 $viewData = [
-                    'publications' => PrintedPublication::all(),
+                    'publications' => $publications,
+                    'publicationResources' => $item->publicationResources,
+                    'primaryFilters' => $primaryFilters,
+                    'categories' => $categories,
+                    'sortOptions' => [
+                        [
+                            'label' => 'Newest To Oldest',
+                            'active' => request()->get('sort') == 'datetime::desc',
+                            'ajaxScrollTarget' => 'listing',
+                            'id' => null,
+                            'data-button-value' => 'datetime::desc'
+                        ],
+                        [
+                            'label' => 'Oldest To Newest',
+                            'active' => request()->get('sort') == 'datetime::asc',
+                            'ajaxScrollTarget' => 'listing',
+                            'id' => null,
+                            'data-button-value' => 'datetime::asc'
+                        ],
+                        [
+                            'label' => 'Alphabetically',
+                            'active' => request()->get('sort') == 'title::desc',
+                            'ajaxScrollTarget' => 'listing',
+                            'id' => null,
+                            'data-button-value' => 'title::desc'
+                        ],
+                    ],
+                    'subnav' => collect($blockHeadings)
+                    ->concat([['label' => 'Publications', 'target' => '#Publications']])
+                    ->concat($publicationResourceLinks->toArray())
+                    ->concat([['label' => 'Resources', 'target' => '#Resources'], ['label' => 'Shop<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>', 'target' => 'https://shop.artic.edu/collections/art-institute-books']])
+                    ->all(),
+                ];
+                break;
+            case $types->search('Conservation and Science'):
+                $viewData = [
+                    'subnav' => collect($blockHeadings),
                 ];
                 break;
 
@@ -367,5 +472,30 @@ class LandingPagesController extends FrontController
 
                 break;
         }
+    }
+
+    private function getItemCategories($items)
+    {
+        $categories = collect();
+        $categoryIds = [];
+
+        foreach ($items as $item) {
+            if ($item->categories) {
+                foreach ($item->categories as $category) {
+                    if (!in_array($category->id, $categoryIds)) {
+                        $categories->push([
+                            'label' => $category->name,
+                            'active' => request()->get('category') == $category->id,
+                            'ajaxScrollTarget' => 'listing',
+                            'id' => $category->id,
+                            'data-button-value' => Str::kebab(Str::lower($category->name))
+                        ]);
+                        $categoryIds[] = $category->id;
+                    }
+                }
+            }
+        }
+
+        return $categories;
     }
 }

@@ -21,8 +21,9 @@ class EventPresenter extends BasePresenter
     public function type()
     {
         if ($this->entity->event_type) {
-            return \App\Models\Event::$eventTypes[$this->entity->event_type] ?? null;
+            return \App\Models\Event::$eventTypes[$this->entity->event_type] ?? '';
         }
+        return '';
     }
 
     public function headerType()
@@ -33,16 +34,15 @@ class EventPresenter extends BasePresenter
 
                 break;
             case \App\Models\Event::BASIC_LAYOUT:
-                return null;
-
-                break;
+            default:
+                return '';
         }
     }
 
     public function ticketStatus()
     {
         if ($this->nextOccurrence == null) {
-            return null;
+            return '';
         }
 
         if ($this->isSoldOut) {
@@ -68,6 +68,7 @@ class EventPresenter extends BasePresenter
         if ($this->isTicketed) {
             return 'buy-ticket';
         }
+        return '';
     }
 
     protected function formatDate($date)
@@ -84,6 +85,7 @@ class EventPresenter extends BasePresenter
         if (isset($this->entity->date)) {
             return $this->formatDate($this->entity->date);
         }
+        return '';
     }
 
     public function formattedNextOccurrence()
@@ -92,13 +94,13 @@ class EventPresenter extends BasePresenter
             return $this->entity->forced_date;
         }
 
+        $formatted = '';
         if ($next = $this->entity->nextOccurrenceExclusive) {
-            return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
+            $formatted = '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
+        } elseif ($last = $this->entity->lastOccurrence) {
+            $formatted = '<time datetime="' . $last->date->format('c') . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format('c') . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
         }
-
-        if ($last = $this->entity->lastOccurrence) {
-            return '<time datetime="' . $last->date->format('c') . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format('c') . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
-        }
+        return $formatted;
     }
 
     public function nextOccurrenceDate()
@@ -106,6 +108,7 @@ class EventPresenter extends BasePresenter
         if ($next = $this->entity->nextOccurrence) {
             return $this->formatDate($next->date);
         }
+        return '';
     }
 
     public function nextOccurrenceTime()
@@ -113,6 +116,7 @@ class EventPresenter extends BasePresenter
         if ($next = $this->entity->nextOccurrence) {
             return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
         }
+        return '';
     }
 
     public function navigation()

@@ -1,5 +1,5 @@
 import { setFocusOnTarget, triggerCustomEvent } from '@area17/a17-helpers';
-import OpenSeadragon from '../../libs/openseadragon';
+import OpenSeadragon from 'openseadragon';
 
 const imageZoomArea = function(container) {
 

@@ -1,4 +1,19 @@
-<{{ $tag ?? 'li' }} class="m-listing m-listing--publication m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'li' }}
+ class="m-listing m-listing--publication m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}"
+ data-filter-values="{{
+    str_replace('_', '-', $item->type) . 
+    (count($item->categories) > 0 ? ',' : '') .
+    $item->categories->pluck('name')->map(function($name) {
+        return Str::lower(Str::slug($name));
+    })->implode(',')
+ }}"
+ data-filter-date="{{
+    date('d-m-Y', strtotime($item->publish_start_date))
+ }}"
+  data-filter-title="{{
+    htmlspecialchars($item->title)
+ }}"
+>
     <a href="{{ $href ?? '' }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         <span class="m-listing__img">
             @if ($image)
@@ -9,6 +24,9 @@
             @else
                 <span class="default-img"></span>
             @endif
+            @if ((isset($landingPageType) && $landingPageType === 'publications') && $item->type === 'digital_publication')
+                <span class="digital__overlay">Digital</span>
+            @endif
             <span class="m-listing__img__overlay">
                 <svg class="icon--slideshow--24">
                     <use xlink:href="#icon--slideshow--24"></use>
@@ -16,9 +34,15 @@
             </span>
         </span>
         <span class="m-listing__meta">
-            @if (isset($type))
+            @if (isset($label))
                 @component('components.atoms._type')
-                    {!! $type !!}
+                    {!! $label !!}
+                @endcomponent
+                <br>
+            @endif
+            @if (isset($landingPageType) && $landingPageType === 'publications')
+                @component('components.atoms._type')
+                    {!! date('Y', strtotime($item->publication_date ?? $item->publish_start_date)) !!}
                 @endcomponent
                 <br>
             @endif

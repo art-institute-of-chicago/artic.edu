@@ -211,20 +211,32 @@
 
                         {{-- Listing Component --}}
                         @if (!$topLevelArticle->suppress_listing)
+                            @php
+                                $children = $topLevelArticle->children->filter(function($item) use($topLevelArticle) {
+                                    return !$item->suppress_listing && $item->published;
+                                })->sortBy('position');
+                                
+                                $limitedChildren = isset($showAll) && $showAll 
+                                    ? $children 
+                                    : $children->take(count($children) >= 8 ? 8 : 4);
+                            @endphp
+                            
                             @component('components.organisms._o-grid-listing')
                                 @slot('cols_xsmall','2')
                                 @slot('cols_small','2')
                                 @slot('cols_medium','4')
                                 @slot('cols_large','4')
                                 @slot('cols_xlarge','4')
-
-                                @foreach ($topLevelArticle->children->filter(function($item) use($topLevelArticle) {
-                                    return !$item->suppress_listing && $item->published;
-                                })->sortBy('position')->take($showAll ? $topLevelArticle->children->count() : (count($topLevelArticle->children) >= 8 ? 8 : 4)) as $item)
+                                
+                                @foreach ($limitedChildren as $item)
                                     @if (count($item->children) > 0)
-                                        @foreach ($item->children->filter(function($childItem) {
-                                            return !$childItem->suppress_listing && $childItem->published;
-                                        })->sortBy('position') as $childItem)
+                                        @php
+                                            $publishedChildren = $item->children->filter(function($childItem) {
+                                                return !$childItem->suppress_listing && $childItem->published;
+                                            })->sortBy('position');
+                                        @endphp
+                                        
+                                        @foreach ($publishedChildren as $childItem)
                                             @component('components.molecules._m-listing----digital-publication-article-entry')
                                                 @slot('href', $childItem->present()->url)
                                                 @slot('image', $childItem->imageFront('hero', 'square') ?? $childItem->imageFront('hero'))
@@ -245,9 +257,28 @@
                                                 ))
                                             @endcomponent
                                         @endforeach
+                                    @else
+                                        @component('components.molecules._m-listing----digital-publication-article-entry')
+                                            @slot('href', $item->present()->url)
+                                            @slot('image', $item->imageFront('hero', 'square') ?? $item->imageFront('hero'))
+                                            @slot('title', $item->present()->title)
+                                            @slot('title_display', $item->present()->title_display)
+                                            @slot('label', $item->present()->label)
+                                            @slot('imageSettings', array(
+                                                'fit' => 'crop',
+                                                'ratio' => $item->imageFront('hero', 'square') ? '1' : '16:9',
+                                                'srcset' => array(200,400,600),
+                                                'sizes' => ImageHelpers::aic_imageSizes(array(
+                                                    'xsmall' => '216px',
+                                                    'small' => '216px',
+                                                    'medium' => '18',
+                                                    'large' => '13',
+                                                    'xlarge' => '13',
+                                                )),
+                                            ))
+                                        @endcomponent
                                     @endif
                                 @endforeach
-
                             @endcomponent
                         @endif
                     @break
@@ -327,7 +358,7 @@
                                     @foreach ($topLevelArticle->children->filter(function($item) {
                                         return !$item->suppress_listing;
                                     })->sortBy('position') as $item)
-                                        @if($loop->iteration <= 9 || $showAll == true)
+                                        @if($loop->iteration <= 12 || $showAll == true)
                                             @component('components.molecules._m-listing----cover')
                                                 @slot('variation', 'm-listing--cover--digital-publication')
                                                 @slot('href', route(

@@ -6,6 +6,7 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
+use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Repositories\Behaviors\HandleRecurrence;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleApiRelations;
@@ -14,6 +15,7 @@ use App\Models\EmailSeries;
 use App\Models\Api\Search;
 use App\Models\Api\TicketedEvent;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 class EventRepository extends ModuleRepository
 {
@@ -23,10 +25,10 @@ class EventRepository extends ModuleRepository
 
     protected $browsers = [
         'sponsors' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
         ],
         'events' => [
-            'routePrefix' => 'exhibitions_events',
+            'routePrefix' => 'exhibitionsEvents',
         ]
     ];
 
@@ -34,7 +36,7 @@ class EventRepository extends ModuleRepository
         'ticketedEvent',
     ];
 
-    protected $repeaters = [
+    protected array $repeaters = [
         'date_rule' => [
             'relation' => 'dateRules'
         ],
@@ -45,7 +47,7 @@ class EventRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
+    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
     {
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
@@ -57,7 +59,7 @@ class EventRepository extends ModuleRepository
      * Some editors paste links to our sales site instead of browsing for the ticketed event.
      * Find and auto-attach the ticketed event if it's a match.
      */
-    public function prepareFieldsBeforeSave($object, $fields)
+    public function prepareFieldsBeforeSave(TwillModelContract $object, array $fields): array
     {
         if (isset($fields['rsvp_link'])) {
             $isTicketedEvent = preg_match('/https*:\/\/sales\.artic\.edu\/Events\/Event\/([0-9]+)\?date=([0-9]+\/[0-9]+\/[0-9]+)/', $fields['rsvp_link'], $matches);
@@ -131,14 +133,14 @@ class EventRepository extends ModuleRepository
         return parent::prepareFieldsBeforeSave($object, $fields);
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $object->programs()->sync($fields['programs'] ?? []);
 
         parent::afterSave($object, $fields);
     }
 
-    public function getFormFields($object)
+    public function getFormFields(TwillModelContract $object): array
     {
         $fields = parent::getFormFields($object);
 
@@ -164,22 +166,22 @@ class EventRepository extends ModuleRepository
         return $fields;
     }
 
-    public function getEventTypesList()
+    public function getEventTypesList(): Collection
     {
         return collect($this->model::$eventTypes);
     }
 
-    public function getEventAudiencesList()
+    public function getEventAudiencesList(): Collection
     {
         return collect($this->model::$eventAudiences);
     }
 
-    public function getEventLayoutsList()
+    public function getEventLayoutsList(): Collection
     {
         return collect($this->model::$eventLayouts);
     }
 
-    public function getEventEntrancesList()
+    public function getEventEntrancesList(): Collection
     {
         return collect($this->model::$eventEntrances);
     }
@@ -298,7 +300,7 @@ class EventRepository extends ModuleRepository
         return $results;
     }
 
-    public function duplicate($id, $titleColumnKey = 'title')
+    public function duplicate(int|string $id, string $titleColumnKey = 'title'): ?TwillModelContract
     {
         $newObject = parent::duplicate($id, $titleColumnKey);
 

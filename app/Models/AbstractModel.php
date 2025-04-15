@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Behaviors\LintsAttributes;
 use Aic\Hub\Foundation\Models\Concerns\HasByLastModScope;
 use A17\Twill\Models\Model;
@@ -26,7 +27,7 @@ class AbstractModel extends Model
      * `publish_start_date` and `publish_end_date`. See
      * `scopeVisible` on `\A17\Twill\Models\Model`.
      */
-    public function scopePublished($query)
+    public function scopePublished($query): Builder
     {
         if (config('aic.is_preview_mode')) {
             return $query;
@@ -42,7 +43,7 @@ class AbstractModel extends Model
         return $query;
     }
 
-    public function scopeVisible($query)
+    public function scopeVisible($query): Builder
     {
         if (config('aic.is_preview_mode')) {
             return $query;
@@ -61,5 +62,10 @@ class AbstractModel extends Model
         // $baseUrl is missing protocol, starts with //, and ends with /
         // config('app.url') should have no https://
         return '//' . config('app.url') . '/p/' . encrypt($baseUrl . $this->slug);
+    }
+
+    public function shouldGenerateSlugOnSave()
+    {
+        return empty($this->slug);
     }
 }

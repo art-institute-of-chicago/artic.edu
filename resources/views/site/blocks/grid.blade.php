@@ -2,6 +2,17 @@
     $gridTitle = $block->input('heading');
     $gridLinkLabel = $block->input('grid_link_label');
     $gridLinkHref = $block->input('grid_link_href');
+    $variation = $block->input('variation');
+    switch ($variation) {
+        case '4-wide':
+            $width = $widthSmall = '4';
+            break;
+        case '3-wide':
+        default:
+            $width = '3';
+            $widthSmall = '2';
+            break;
+    }
 @endphp
 
 <div class="o-grid-block">
@@ -23,11 +34,11 @@
 
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
-        @slot('cols_small','2')
-        @slot('cols_medium','3')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','3')
-        @foreach ($block->childs as $item)
+        @slot('cols_small', $widthSmall)
+        @slot('cols_medium', $width)
+        @slot('cols_large', $width)
+        @slot('cols_xlarge', $width)
+        @foreach ($block->children as $item)
             @component('components.molecules._m-listing----grid-item')
                 @slot('url', $item->input('url'))
                 @slot('image', $item->imageAsArray('image', 'desktop'))

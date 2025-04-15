@@ -230,7 +230,7 @@ The form behaves as a normal Browser:
 
 ```php
 @formField('browser', [
-    'routePrefix' => 'exhibitions_events',
+    'routePrefix' => 'exhibitionsEvents',
     'max' => 4,
     'name' => 'exhibitions',
     'label' => 'Related exhibitions'
@@ -326,7 +326,7 @@ $results = \App\Models\Api\Exhibition::query()->rawSearch($params)->getSearch();
 Remember that you could simply build scopes as you would normally do with Eloquent models. Let's use the above query as a scope on the `Exhibition` model:
 
 ```php
-public function scopeNextTwoWeeks($query) {
+public function scopeNextTwoWeeks($query): ApiModelBuilder {
     $params = [
       'bool' => [
         'must' => [
@@ -444,7 +444,7 @@ You could also use scopes directly:
 
 ```php
 // This is the scope on the search model
-public function scopeAggregationType($query)
+public function scopeAggregationType($query): ApiModelBuilder
 {
     $aggs = [
         'types' => [
@@ -470,7 +470,7 @@ If you don't want to use the general endpoints, you can specify the name for the
 ```php
 class Artwork extends BaseApiModel
 {
-    protected $endpoints = [
+    protected array $endpoints = [
         'collection' => '/api/v1/artworks',
         'resource'   => '/api/v1/artworks/{id}',
         'search'     => '/api/v1/artworks/search',

@@ -17,6 +17,7 @@ use App\Models\Slugs\LandingPageSlug;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Kalnoy\Nestedset\NodeTrait;
 
 class LandingPage extends AbstractModel implements Sortable
@@ -50,6 +51,7 @@ class LandingPage extends AbstractModel implements Sortable
        10 => 'Editorial',
        11 => 'My Museum Tour',
        12 => 'Publications',
+       13 => 'Conservation and Science',
        99 => 'Custom',
     ];
 
@@ -231,6 +233,14 @@ class LandingPage extends AbstractModel implements Sortable
                 ],
             ],
         ],
+        'listing_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
     ];
 
     /**
@@ -245,12 +255,12 @@ class LandingPage extends AbstractModel implements Sortable
         );
     }
 
-    public function scopeIds($query, $ids = [])
+    public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
     }
 
-    public function scopeById($query, $id = null)
+    public function scopeById($query, $id = null): Builder
     {
         if (empty($id)) {
             return $query;
@@ -332,6 +342,11 @@ class LandingPage extends AbstractModel implements Sortable
     public function menuItems()
     {
         return $this->hasMany(MenuItem::class)->orderBy('position');
+    }
+
+    public function publicationResources()
+    {
+        return $this->hasMany(PublicationResource::class)->orderBy('position');
     }
 
     public function articlesCategories()

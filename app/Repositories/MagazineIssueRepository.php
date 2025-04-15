@@ -4,11 +4,13 @@ namespace App\Repositories;
 
 use App\Models\MagazineIssue;
 use App\Models\MagazineItem;
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use App\Repositories\Behaviors\HandleApiBlocks;
+use Illuminate\Database\Eloquent\Builder;
 
 class MagazineIssueRepository extends ModuleRepository
 {
@@ -27,18 +29,26 @@ class MagazineIssueRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getLatestIssue()
+    public function order(Builder $query, array $orders = []): Builder
+    {
+        // Default sort by publish_start_date instead of created_at.
+        $orders['publish_start_date'] ??= 'desc';
+        unset($orders['created_at']);
+        return parent::order($query, $orders);
+    }
+
+    public function getLatestIssue(): MagazineIssue
     {
         return MagazineIssue::query()->published()->orderBy('publish_start_date', 'desc')->first();
     }
 
-    public function afterSave($object, $fields)
+    public function afterSave(TwillModelContract $object, array $fields): void
     {
         $this->syncMagazineItems($object, $fields);
         parent::afterSave($object, $fields);
     }
 
-    public function getWelcomeNote($item)
+    public function getWelcomeNote($item): MagazineItem
     {
         $welcomeNotes = $item->getRelated('welcome_note');
 
@@ -52,7 +62,7 @@ class MagazineIssueRepository extends ModuleRepository
     /**
      * Replace all MagazineItems associated with this MagazineIssue by filtering blocks
      */
-    private function syncMagazineItems($object, $fields)
+    private function syncMagazineItems(TwillModelContract $object, array $fields): void
     {
         $object->magazineItems()->delete();
 

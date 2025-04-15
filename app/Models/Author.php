@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
@@ -62,7 +63,7 @@ class Author extends AbstractModel
         return $this->morphedByMany('App\Models\Experience', 'authorable');
     }
 
-    public function scopeOrdered($query)
+    public function scopeOrdered($query): Builder
     {
         if ($this->isFillable('title')) {
             $query->orderByRaw("reverse(split_part(reverse(title), ' ', 1))")->get();

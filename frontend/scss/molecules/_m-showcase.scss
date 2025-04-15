@@ -139,7 +139,6 @@
             }
             & {
                 font-size: 28px;
-                margin-top: 12px !important;
             }
         }
 
@@ -162,6 +161,59 @@
 
         .showcase-title {
             margin: 0px !important;
+        }
+    }
+
+    &.showcase--publications {
+        margin-top: 0px;
+        flex-direction: row-reverse !important;
+        background-color: unset !important;
+
+        .showcase-title {
+            font-size: 28px;
+            margin-top: 18px !important;
+        }
+
+        .showcase-description {
+            font-size: 17px;
+        }
+
+        .m-showcase-wrapper {
+            flex-direction: row-reverse;
+
+            .showcase-header {
+                flex-basis: 100%;
+                order: -1;
+                color: $color__black--60;
+                font-size: 13px;
+                font-family: $sans-serif-font--loaded;
+                font-weight: 400;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                position: relative;
+                top: 50px;
+
+                @include breakpoint('medium-') {
+                    margin-top: 0;
+                }
+
+                @include breakpoint('small') {
+                    top: 25px;
+                }
+
+                @include breakpoint('xsmall') {
+                    top: 25px;
+                }
+            }
+
+            @include breakpoint('xsmall') {
+                flex-direction: column-reverse;
+
+                .showcase-header {
+                    flex-basis: fit-content;
+                    order: 1;
+                }
+            }
         }
     }
 
