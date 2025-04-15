@@ -179,13 +179,17 @@ class LandingPagesController extends FrontController
             'seo' => $this->seo,
         ];
 
-        $blockHeadingsContent = $item->blocks->pluck('content')->pluck('heading')->filter();
-        $blockHeadings = collect($blockHeadingsContent)->map(function ($blockHeadingsContent) {
-            return [
-                'label' => $blockHeadingsContent,
-                'target' => '#' . Str::slug(strip_tags($blockHeadingsContent))
-            ];
-        });
+        $blockHeadings = $item->blocks
+            ->pluck('content')
+            ->pluck('heading')
+            ->filter()
+            ->map(function ($blockContentHeading) {
+                $heading = strip_tags($blockContentHeading);
+                return [
+                    'label' => $heading,
+                    'target' => '#' . Str::slug($heading)
+                ];
+            });
 
         switch ($item->type_id) {
             case $types->search('Home'):
