@@ -152,12 +152,20 @@
             .editorial-block__list {
                 padding-top: 32px;
                 position: relative;
-                height: 100%;
+                max-height: 1200px;
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 grid-auto-flow: dense;
                 align-items: center; /* This prevents stretching to match tallest item */
                 flex-wrap: wrap;
+
+                @include breakpoint('medium') {
+                    max-height: 900px;
+                }
+
+                @include breakpoint('small-') {
+                    max-height: min-content;
+                }
 
                 @include breakpoint('medium+') {
                     &::after {
@@ -190,6 +198,22 @@
 
                     @include breakpoint('medium+') {
 
+                        &:nth-child(1) {
+                            order: 1;
+                        }
+
+                        &:nth-child(2) {
+                            order: 3;
+                        }
+
+                        &:nth-child(3) {
+                            order: 2;
+                        }
+
+                        &:nth-child(4) {
+                            order: 4;
+                        }
+
                         .m-listing__img {
                             width: 100% !important;
                         }
@@ -214,7 +238,8 @@
                         width: 100% !important;
 
                         .m-listing__link {
-                            flex-direction: row ;
+                            flex-direction: row;
+                            margin: unset !important;
                         }
 
                         .m-listing__img {
@@ -253,7 +278,11 @@
                                 aspect-ratio: 1/1;
                                 height: fit-content;
                                 width: 100%;
-                                object-fit: cover;
+                                object-fit: contain;
+
+                                img {
+                                    object-position: top;
+                                }
                             }
                         }
                     }
