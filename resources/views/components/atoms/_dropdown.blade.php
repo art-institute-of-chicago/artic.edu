@@ -5,7 +5,7 @@
             {{ $slot }}
         @else
             @foreach ($options as $option)
-            <li{!! (isset($option['active']) and $option['active']) ? ' class="s-active"' : '' !!} {!! (isset($option['data-button-value']) ? "data-button-value='".Str::lower(Str::slug($option['data-button-value']))."'" : '') !!}><a {!! isset($option['href']) ? 'href='. $option['href'] .'' : '' !!}"{!! (isset($option['ajaxScrollTarget']) and $option['ajaxScrollTarget']) ? ' data-ajax-scroll-target="'.$option['ajaxScrollTarget'].'"' : '' !!}{!! (!empty($option['ajaxTabTarget'])) ? ' data-ajax-tab-target="'.$option['ajaxTabTarget'].'"' : '' !!}{!! (isset($link['gtmAttributes'])) ? ' '.$link['gtmAttributes'].'' : '' !!}{!! (isset($option['lang']) and $option['lang']) ? ' lang="'.$option['lang'].'"' : '' !!}>{!! $option['label'] ?? '' !!}</a></li>
+            <li{!! (isset($option['active']) and $option['active']) ? ' class="s-active"' : '' !!} {!! (isset($option['data-button-value']) ? "data-button-value='".Str::lower(Str::slug($option['data-button-value']))."'" : '') !!}><a {!! isset($option['href']) ? 'href='. $option['href'] .'' : '' !!}{!! (isset($option['ajaxScrollTarget']) and $option['ajaxScrollTarget']) ? ' data-ajax-scroll-target="'.$option['ajaxScrollTarget'].'"' : '' !!}{!! (!empty($option['ajaxTabTarget'])) ? ' data-ajax-tab-target="'.$option['ajaxTabTarget'].'"' : '' !!}{!! (isset($link['gtmAttributes'])) ? ' '.$link['gtmAttributes'].'' : '' !!}{!! (isset($option['lang']) and $option['lang']) ? ' lang="'.$option['lang'].'"' : '' !!}>{!! $option['label'] ?? '' !!}</a></li>
             @endforeach
         @endif
     </ul>
