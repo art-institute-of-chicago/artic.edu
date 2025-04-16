@@ -48,7 +48,7 @@ class MagazineIssueRepository extends ModuleRepository
         parent::afterSave($object, $fields);
     }
 
-    public function getWelcomeNote($item): MagazineItem
+    public function getWelcomeNote($item): mixed
     {
         $welcomeNotes = $item->getRelated('welcome_note');
 
