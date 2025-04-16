@@ -25,6 +25,7 @@ class Kernel extends HttpKernel
 
         // Our custom ones
         \App\Http\Middleware\RedirectVanityPaths::class,
+        \App\Http\Middleware\AllowIPForHealthCheck::class,
     ];
 
     /**
@@ -60,5 +61,6 @@ class Kernel extends HttpKernel
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'allowIP' => \App\Http\Middleware\AllowIPForHealthCheck::class,
     ];
 }

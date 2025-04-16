@@ -56,6 +56,10 @@ Route::get('/today', [RedirectController::class, 'today'])->name('today');
 
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 
+Route::get('/health-check', function () {
+    return response('OK', 200);
+})->middleware('allowIP');
+
 Route::get('/ajaxData', [FrontController::class, 'getAjaxData']);
 
 // Landing Page
