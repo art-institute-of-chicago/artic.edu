@@ -15,7 +15,11 @@ trait HasMediasEloquent
         $imageObject = $this->imageObject(...$parameters);
 
         if (!$imageObject) {
-            return;
+            $parameters[1] = $parameters[1] ?? 'default';
+            $imageObject = $this->imageObject(...$parameters);
+            if (!$imageObject) {
+                return;
+            }
         }
 
         return $this->convertImageFront($imageObject);
