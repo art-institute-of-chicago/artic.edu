@@ -21,7 +21,7 @@ trait HandleMagazine
     /**
      * Be sure to add `protected $morphType = '___';` to your repository.
      */
-    public function getAlsoInThisIssue($item): Collection
+    public function getAlsoInThisIssue($item): mixed
     {
         $magItem = $this->getMagazineItem($item);
 
