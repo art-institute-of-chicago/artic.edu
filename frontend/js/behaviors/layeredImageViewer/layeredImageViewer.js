@@ -1327,11 +1327,117 @@ class LayeredImageViewer {
 }
 
 const layeredImageViewer = function(container) {
-  this.init = function() {
-    new LayeredImageViewer(container);
+  let viewer = null;
+  let observer = null;
+  let resizeObserver = null;
+  let containerDimensions = null;
+
+  const updateDimensions = () => {
+    // Only update if we don't have an active viewer
+    if (!viewer) {
+      const parentWidth = container.parentElement.offsetWidth;
+      const maxWidth = container.dataset.maxWidth || parentWidth;
+      const width = Math.min(parentWidth, maxWidth);
+
+      // Get aspect ratio from data attribute or compute from existing dimensions
+      const aspect = container.dataset.aspect ||
+                     (containerDimensions ? containerDimensions.aspect : 1);
+
+      // Store updated dimensions
+      containerDimensions = {
+        width: width,
+        height: width / parseFloat(aspect),
+        aspect: parseFloat(aspect)
+      };
+
+      container.style.width = `${containerDimensions.width}px`;
+      container.style.height = `${containerDimensions.height}px`;
+      container.style.backgroundColor = '#f5f5f5';
+    }
   };
+
+  // Function to set up resize observer
+  const setupResizeObserver = () => {
+    if (resizeObserver) return;
+
+    resizeObserver = new ResizeObserver(() => {
+      // Update dimensions when parent container resizes
+      updateDimensions();
+    });
+
+    // Observe the parent element to detect layout changes
+    resizeObserver.observe(container.parentElement);
+  };
+
+  // Function to check if element is visible in viewport
+  this.setupObserver = function() {
+    // Set initial dimensions
+    updateDimensions();
+
+    // Set up resize observer
+    setupResizeObserver();
+
+    // Create new IntersectionObserver
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // If container is visible and viewer doesn't exist
+        if (entry.isIntersecting && !viewer) {
+          console.log('Viewer in viewport - initializing');
+          // Initialize viewer with current dimensions
+          viewer = new LayeredImageViewer(container);
+          container.style.backgroundColor = '';
+        }
+        // If container is not visible and viewer exists
+        else if (!entry.isIntersecting && viewer) {
+          console.log('Viewer out of viewport - destroying');
+          LayeredImageViewer.destroy(container);
+          viewer = null;
+          // Reapply dimensions after destruction
+          updateDimensions();
+        }
+      });
+    }, {
+      rootMargin: '200px 0px',
+      threshold: 0.01
+    });
+
+    // Start observing the container
+    observer.observe(container);
+  };
+
+  this.init = function() {
+    this.setupObserver();
+  };
+
   this.destroy = function() {
-    LayeredImageViewer.destroy(container);
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
+
+    if (resizeObserver) {
+      resizeObserver.disconnect();
+      resizeObserver = null;
+    }
+
+    if (viewer) {
+      LayeredImageViewer.destroy(container);
+      viewer = null;
+    }
+
+    // Reset container styles
+    container.style.width = '';
+    container.style.height = '';
+    container.style.backgroundColor = '';
+    containerDimensions = null;
+  };
+
+  // Force initialization
+  this.forceInit = function() {
+    if (!viewer) {
+      viewer = new LayeredImageViewer(container);
+      container.style.backgroundColor = '';
+    }
   };
 };
 
