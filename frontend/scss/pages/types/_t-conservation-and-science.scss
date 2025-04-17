@@ -233,11 +233,12 @@
       }
 
       .editorial-block__content-wrapper {
-        padding-top: 40px;
+        margin-top: 40px;
       }
 
       .editorial-block__featured {
         padding-right: 20px;
+        padding-top: 40px;
 
         .title {
           font-size: 38px;
@@ -262,7 +263,7 @@
       }
 
       .editorial-block__list {
-        padding-left: 20px;
+        padding-top: 40px;
 
         .m-listing--article:first-child {
           margin-bottom: 20px;
@@ -270,6 +271,7 @@
         }
 
         .m-listing__link {
+          margin-left: 20px;
           margin-right: 40px;
         }
 
@@ -301,10 +303,10 @@
       margin-top: 0;
     }
 
-    .hr {
-      @each $name, $point in $breakpoints {
-        @include breakpoint('#{$name}') {
-            margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        .hr {
+          margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
         }
       }
     }
@@ -319,10 +321,9 @@
   }
 
   .o-grid-block:has(#our-work) {
-    .m-listing {
-      &::before, &::after {
-        content: none;
-      }
+    .m-listing__meta {
+      min-height: unset;
+      padding-top: 14px;
 
       .title {
         color: $color__black--90;
@@ -334,6 +335,12 @@
         color: $color__black--80;
         font-size: 17px;
         line-height: 28px;
+      }
+    }
+
+    @include breakpoint('xsmall') {
+      .m-listing__meta .intro:last-of-type {
+        margin-bottom: 0;
       }
     }
   }
