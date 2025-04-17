@@ -70,9 +70,8 @@
       padding: 0;
     }
 
-
     @include breakpoint('small+') {
-      padding: 25px 38px 30px;
+      padding: 30px;
 
       .m-listing__link {
         flex-flow: unset;
@@ -83,7 +82,28 @@
       }
 
       .m-listing__meta {
+        gap: 12px;
         padding-left: 36px;
+      }
+
+      .m-listing__meta, .m-listing__meta-bottom {
+        &>* {
+          margin: 0;
+
+          &::after, &::before {
+            display: none;
+          }
+        }
+
+        .f-tag {
+          font-size: 13px;
+          line-height: 16px;
+        }
+
+        .title {
+          font-size: 28px;
+          line-height: 36px;
+        }
       }
     }
 
