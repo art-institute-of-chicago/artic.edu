@@ -8,7 +8,7 @@
     $exhibitionRepository = new ExhibitionRepository(new Exhibition);
     $exhibitions = $exhibitionIds->map(function($id) use ($exhibitionRepository) {
         return $exhibitionRepository->getById($id, ['apiElements']);
-    });
+    })->filter();
 
     $orderedExhibitions = collect($exhibitionIds)->map(function($id) use ($exhibitions) {
         return $exhibitions->firstWhere('id', $id);
