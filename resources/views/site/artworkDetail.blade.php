@@ -69,6 +69,12 @@
 @endif
   </div>
 
+  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium+">
+    @component('site.shared._loadRelatedSidebar')
+        @slot('item', $item)
+    @endcomponent
+  </div>
+
   <div class="o-article__inline-header">
     @if ($item->title)
       @component('components.atoms._title')
@@ -99,12 +105,7 @@
           {!! $item->present()->artist_display !!}
       @endcomponent
     @endif
-  </div>
 
-  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium+">
-    @component('site.shared._loadRelatedSidebar')
-        @slot('item', $item)
-    @endcomponent
   </div>
 
   <div class="o-article__body{{ (empty($item->description) or $item->description === '') ? ' o-article__body--no-description' : '' }} o-blocks">
@@ -123,7 +124,7 @@
 
 </article>
 
-<div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium-">
+<div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@small-">
     @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
     @endcomponent
