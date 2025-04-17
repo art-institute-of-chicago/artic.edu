@@ -2,10 +2,10 @@
     <a href="{!! route(($module ?? 'articles') .'.show', ($routeParameters ?? $item)) !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @if (!isset($hideImage) || (isset($hideImage) && !($hideImage)))
             <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront) ? ' m-listing__img--video' : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-blur-img' : '' }}>
-                @if (isset($image) || $item->imageFront('hero'))
+                @if (isset($image) || $item->imageFront('hero') || $item->imageFront('listing'))
                     @if ($isHero ?? false)
                         @component('components.atoms._img')
-                            @slot('image', $image ?? $item->imageFront('hero'))
+                            @slot('image', $image ?? $item->imageFront('hero') ?? $item->imageFront('listing'))
                             @slot('settings', $imageSettings ?? '')
                             @slot('class', 'img-hero-desktop')
                         @endcomponent
@@ -16,7 +16,7 @@
                         @endcomponent
                     @else
                         @component('components.atoms._img')
-                            @slot('image', $image ?? $item->imageFront('hero'))
+                            @slot('image', $image ?? $item->imageFront('hero') ?? $item->imageFront('listing'))
                             @slot('settings', $imageSettings ?? '')
                         @endcomponent
                     @endif
