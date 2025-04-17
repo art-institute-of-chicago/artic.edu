@@ -19,7 +19,7 @@ class LandingPageFactory extends Factory
 
     public function published(): Factory
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             return [
                 'published' => true,
             ];
