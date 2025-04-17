@@ -24,6 +24,10 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->routes(function () {
+            Route::get('/health-check', function () {
+                return response('OK', 200);
+            })->middleware('allowIP');
+
             // API routes
             Route::prefix('api')
                 ->middleware('api')
