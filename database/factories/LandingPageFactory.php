@@ -14,7 +14,15 @@ class LandingPageFactory extends Factory
         return [
             'type_id' => $this->faker->randomElement(array_keys(LandingPage::TYPES)),
             'title' => $this->faker->words(3, true),
-            'published' => true,
         ];
+    }
+
+    public function published(): Factory
+    {
+        return $this->state(function () {
+            return [
+                'published' => true,
+            ];
+        });
     }
 }

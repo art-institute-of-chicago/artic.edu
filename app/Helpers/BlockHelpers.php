@@ -2,6 +2,9 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+
 class BlockHelpers
 {
     /**
@@ -43,5 +46,24 @@ class BlockHelpers
         }
 
         return $fields;
+    }
+
+    /**
+     * Get the heading field from the content of each block, formatted as a
+     * label and an anchor target. For use in generating landing page subnavs.
+     */
+    public static function getHeadings(Collection $blocks): Collection
+    {
+        return $blocks
+            ->pluck('content')
+            ->pluck('heading')
+            ->filter()
+            ->map(function ($blockContentHeading) {
+                $heading = strip_tags($blockContentHeading);
+                return [
+                    'label' => $heading,
+                    'target' => '#' . Str::slug($heading)
+                ];
+            });
     }
 }

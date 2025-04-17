@@ -74,6 +74,6 @@ class MyMuseumTourSeeder extends Seeder
         $myMuseumTour->tour_json = $tourJson;
         $myMuseumTour->save();
 
-        LandingPage::factory(['title' => 'My Museum Tour'])->create();
+        LandingPage::factory(['title' => 'My Museum Tour'])->published()->create();
     }
 }

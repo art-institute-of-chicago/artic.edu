@@ -6,11 +6,13 @@ use App\Models\Behaviors\LintsAttributes;
 use App\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Block as BaseModel;
 use App\Models\SeamlessImage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Block extends BaseModel
 {
     use LintsAttributes;
     use HasMedias;
+    use HasFactory;
 
     public const GALLERY_ITEM_TYPE_CUSTOM = 'custom';
     public const GALLERY_ITEM_TYPE_CUSTOM_WITH_LINK = 'custom_with_link';
