@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\BlockHelpers;
 use App\Models\Admission;
 use App\Models\CatalogCategory;
 use App\Models\DigitalPublication;
@@ -179,18 +180,6 @@ class LandingPagesController extends FrontController
             'seo' => $this->seo,
         ];
 
-        $blockHeadings = $item->blocks
-            ->pluck('content')
-            ->pluck('heading')
-            ->filter()
-            ->map(function ($blockContentHeading) {
-                $heading = strip_tags($blockContentHeading);
-                return [
-                    'label' => $heading,
-                    'target' => '#' . Str::slug($heading)
-                ];
-            });
-
         switch ($item->type_id) {
             case $types->search('Home'):
                 $viewData = [
@@ -211,7 +200,7 @@ class LandingPagesController extends FrontController
                         ['label' => 'location', 'target' => '#location'],
                         ['label' => 'admission', 'target' => '#admission']
                     ])
-                        ->concat($blockHeadings)
+                        ->concat(BlockHelpers::getHeadings($item->blocks))
                         ->concat([['label' => 'FAQs', 'target' => '#FAQs']])
                         ->all(),
                     'hours' => $hours,
@@ -271,7 +260,9 @@ class LandingPagesController extends FrontController
             case $types->search('Editorial'):
                 $viewData = [
                     'hours' => $hours,
-                    'subnav' => collect([['label' => 'Top Stories', 'target' => '#Top Stories']])->concat($blockHeadings)->all(),
+                    'subnav' => collect([['label' => 'Top Stories', 'target' => '#Top Stories']])
+                        ->concat(BlockHelpers::getHeadings($item->blocks))
+                        ->all(),
                 ];
                 break;
 
@@ -356,16 +347,25 @@ class LandingPagesController extends FrontController
                             'data-button-value' => 'title::desc'
                         ],
                     ],
-                    'subnav' => collect($blockHeadings)
-                    ->concat([['label' => 'Publications', 'target' => '#Publications']])
-                    ->concat($publicationResourceLinks->toArray())
-                    ->concat([['label' => 'Resources', 'target' => '#Resources'], ['label' => 'Shop<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>', 'target' => 'https://shop.artic.edu/collections/art-institute-books']])
-                    ->all(),
+                    'subnav' => collect(BlockHelpers::getHeadings($item->blocks))
+                        ->concat([['label' => 'Publications', 'target' => '#Publications']])
+                        ->concat($publicationResourceLinks->toArray())
+                        ->concat([
+                            [
+                                'label' => 'Resources',
+                                'target' => '#Resources'
+                            ],
+                            [
+                                'label' => 'Shop<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg>',
+                                'target' => 'https://shop.artic.edu/collections/art-institute-books'
+                            ],
+                        ])
+                        ->all(),
                 ];
                 break;
             case $types->search('Conservation and Science'):
                 $viewData = [
-                    'subnav' => collect($blockHeadings),
+                    'subnav' => collect(BlockHelpers::getHeadings($item->blocks)),
                 ];
                 break;
 
