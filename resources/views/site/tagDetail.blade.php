@@ -77,7 +77,7 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @foreach ($relatedItems as $item)
-            @component('components.molecules._m-listing----' . (Str::slug($item->type ?? 'article')))
+            @component('components.molecules._m-listing----' . (Str::slug($item->type ? ($item->type !== 'digital_publication' && $item->type !== 'printed_publication' ? $item->type : 'article') : 'article')))
                 @slot('item', $item)
                 @slot('hideImage', false)
                 @slot('imageSettings', array(
