@@ -74,7 +74,7 @@ const dynamicFilter = function(container) {
 
       triggerCustomEvent(document, 'resized');
 
-      if (url.searchParams.get('filter') !== 'all' && url.searchParams.get('page') !== 1) {
+      if (url.searchParams.get('filter') !== 'all' && url.searchParams.get('page') !== '1') {
         // Scroll to container only after non-default filters
         window.requestAnimationFrame(() => {
           window.scrollTo({
