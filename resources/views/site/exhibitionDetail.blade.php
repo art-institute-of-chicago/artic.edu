@@ -70,10 +70,12 @@
         @endcomponent
     @endunless
 
-    @component('site.shared._loadRelatedSidebar')
-        @slot('item', $item)
-    @endcomponent
+    <div class="u-show@medium+">
+        @component('site.shared._loadRelatedSidebar')
+            @slot('item', $item)
+        @endcomponent
     </div>
+  </div>
 
   @if ($item->header_copy and $item->present()->headerType !== 'super-hero')
   <div class="o-article__intro">
@@ -83,14 +85,6 @@
         {!! $item->present()->header_copy !!}
     @endcomponent
   </div>
-  @endif
-
-  @if ($item->hasFeaturedRelated())
-      <div class="o-article__related">
-        @component('site.shared._loadRelatedSidebar')
-            @slot('item', $item)
-        @endcomponent
-      </div>
   @endif
 
   <div class="o-article__body o-blocks">
@@ -215,6 +209,14 @@
         @slot('articleType', 'exhibition')
     @endcomponent
   </div>
+
+  @if ($item->hasFeaturedRelated())
+    <div class="u-show@small-">
+        @component('site.shared._loadRelatedSidebar')
+            @slot('item', $item)
+        @endcomponent
+    </div>
+  @endif
 
 </article>
 

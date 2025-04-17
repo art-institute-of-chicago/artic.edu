@@ -74,9 +74,11 @@
         @endcomponent
     @endif
 
-    @component('site.shared._loadRelatedSidebar')
-        @slot('item', $item)
-    @endcomponent
+    <div class="u-show@medium+">
+        @component('site.shared._loadRelatedSidebar')
+            @slot('item', $item)
+        @endcomponent
+    </div>
   </div>
 
   @if ($item->headerType === 'gallery')
@@ -114,13 +116,6 @@
 
   @if ($item->showAuthorsWithLinks())
       <p class="print-authors type f-tag">By {{ $item->showAuthorsWithLinks() ?? null }}</p>
-  @endif
-
-  {{-- For articles, this shows below body, not float-right --}}
-  @if ($item->hasFeaturedRelated())
-    @component('site.shared._loadRelatedSidebar')
-        @slot('item', $item)
-    @endcomponent
   @endif
 
   <div class="o-article__body o-blocks" itemprop="articleBody">
@@ -219,6 +214,12 @@
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
         @slot('articleType', $item->articleType)
+    @endcomponent
+  </div>
+
+  <div class="u-show@small-">
+    @component('site.shared._loadRelatedSidebar')
+        @slot('item', $item)
     @endcomponent
   </div>
 
