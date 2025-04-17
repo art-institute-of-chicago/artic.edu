@@ -1,9 +1,14 @@
 @php
     use App\Models\Api\Exhibition;
     use App\Repositories\Api\ExhibitionRepository;
+    use App\Helpers\UrlHelpers;
 
-    $exhibitionIds = $block->browserIds('exhibitions');
-    $exhibitions = (new ExhibitionRepository(new Exhibition))->getById($exhibitionIds, ['apiElements']);
+
+    $exhibitionIds = collect($block->browserIds('exhibitions'));
+    $exhibitionRepository = new ExhibitionRepository(new Exhibition);
+    $exhibitions = $exhibitionIds->map(function($id) use ($exhibitionRepository) {
+        return $exhibitionRepository->getById($id, ['apiElements']);
+    });
 
     $orderedExhibitions = collect($exhibitionIds)->map(function($id) use ($exhibitions) {
         return $exhibitions->firstWhere('id', $id);
