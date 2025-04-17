@@ -49,7 +49,7 @@
 @if ($isBlockReady)
     @component('components.molecules._m-listing----publication')
         @slot('variation', implode(' ', $variation))
-        @slot('item', $item)
+        @slot('item', $item ?? null)
         @slot('href', $href ?? null)
         @slot('image', $image ?? null)
         @slot('type', $type ?? null)
