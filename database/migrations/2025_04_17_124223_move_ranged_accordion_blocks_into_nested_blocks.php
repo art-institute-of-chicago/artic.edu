@@ -14,12 +14,12 @@ return new class () extends Migration {
         $ending = null;
 
         foreach ($accordionBlocks as $accordion) {
-            if ($accordion->content['type'] && ($accordion->content['type'] == 'start') && $initial && ($accordion['position'] !== $initial->position) && ($accordion['blockable_id'] !== $initial->blockable_id)) {
+            if (!empty($accordion->content['type']) && ($accordion->content['type'] == 'start') && $initial && ($accordion['position'] !== $initial->position) && ($accordion['blockable_id'] !== $initial->blockable_id)) {
                 $accordion->delete();
                 continue;
             }
 
-            if ($accordion->content['type'] && ($accordion->content['type'] == 'start') && !$ending) {
+            if (!empty($accordion->content['type']) && ($accordion->content['type'] == 'start') && !$ending) {
                 $initial = (object)[
                     'id' => $accordion['id'],
                     'position' => $accordion['position'],
@@ -27,7 +27,7 @@ return new class () extends Migration {
                 ];
             }
 
-            if ($accordion->content['type'] && ($accordion->content['type'] == 'end') && $initial && !$ending) {
+            if (!empty($accordion->content['type']) && ($accordion->content['type'] == 'end') && $initial && !$ending) {
                 $ending = (object)[
                     'id' => $accordion['id'],
                     'position' => $accordion['position'],
