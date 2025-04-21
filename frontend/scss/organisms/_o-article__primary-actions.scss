@@ -277,7 +277,7 @@
   }
 
   .is-sidebar-overlay & .o-sticky-sidebar__sticker {
-    overflow-y: unset;
+    overflow-y: scroll;
     padding-bottom: 60px;
   }
 

@@ -91,16 +91,20 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
 
     @include breakpoint('xsmall') {
       .o-sticky-sidebar__sticker {
+        overflow-y: scroll !important;
+        height: 100vh;
         width: 100vw;
       }
     }
     @include breakpoint('small') {
       .o-sticky-sidebar__sticker {
+        height: 100vh;
         width: calc(colspan(19, 'small') + map-get($outer-gutters, 'small'));
       }
     }
     @include breakpoint('medium') {
       .o-sticky-sidebar__sticker {
+        height: 100vh;
         width: calc(colspan(19, 'medium') + map-get($outer-gutters, 'medium'));
       }
     }
