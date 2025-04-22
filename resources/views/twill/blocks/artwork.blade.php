@@ -24,7 +24,7 @@
     label='Size'
     placeholder='Select size'
     default='$default'
-    disabled='$disabled'
+    :disabled='$disabled'
     :options="[
         [
             'value' => 's',
