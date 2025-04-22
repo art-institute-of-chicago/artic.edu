@@ -19,7 +19,6 @@ class ExhibitionController extends BaseApiController
         $this->disablePublish();
         $this->eagerLoadFormRelations(['revisions', 'siteTags']);
         $this->enableAugmentedModel();
-        $this->enableShowImage();
         $this->setModuleName('exhibitions');
         $this->setPreviewView('site.exhibitionDetail');
     }
