@@ -1,7 +1,6 @@
 .conservation-and-science-subnav {
     border-bottom: 1px solid $color__black--10;
     border-top: 1px solid $color__black--10;
-    margin-bottom: 40px;
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 28px;
@@ -34,7 +33,7 @@
 
 .conservation-and-science {
   .showcase--conservation-and-science.m-showcase-block {
-    margin-top: 25px;
+    margin-top: 50px;
     background-color: $color__white;
 
     .m-showcase-wrapper {
@@ -151,6 +150,10 @@
     .m-media__img:not(.m-media__img--video) img {
       max-width: 20vw;
     }
+
+    @include breakpoint('small+') {
+      margin-top: 100px;
+    }
   }
 
   .o-gallery__caption {
@@ -247,14 +250,15 @@
     }
 
     @include breakpoint('small+') {
-      margin-top: 30px;
+      margin-top: 50px;
 
       .editorial-block__header {
-        margin-bottom: 20px;
+        margin-bottom: 0;
+        padding-top: 0;
       }
 
       .editorial-block__content-wrapper {
-        margin-top: 40px;
+        margin-top: 20px;
       }
 
       .editorial-block__featured {
@@ -337,7 +341,7 @@
     }
 
     @include breakpoint('small+') {
-      margin-top: 75px;
+      margin-top: 100px;
     }
   }
 
@@ -390,7 +394,7 @@
     }
 
     @include breakpoint('small+') {
-      margin-top: 75px;
+      margin-top: 100px;
     }
   }
 }
