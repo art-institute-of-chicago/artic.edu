@@ -1,5 +1,5 @@
 <div class="o-gallery o-gallery--small-mosaic o-gallery--mosaic{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
-    @if (!empty($title))
+    @if (!empty(strip_tags($title)))
         <h3 id="{{ Str::slug(html_entity_decode($title)) }}" class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
     @endif
     @if (!empty($allLink))
@@ -10,7 +10,7 @@
         @endcomponent
     </p>
     @endif
-    @if (!empty($title) && !empty($caption))
+    @if (!empty(strip_tags($title)) && !empty(strip_tags($caption)))
         <div class="o-gallery__caption">
             @component('components.atoms._hr')
             @endcomponent
