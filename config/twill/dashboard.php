@@ -11,15 +11,6 @@ return [
     |
      */
     'modules' => [
-        'events' => [
-            'name' => 'events',
-            'routePrefix' => 'exhibitionsEvents',
-            'count' => true,
-            'create' => true,
-            'search' => true,
-            'activity' => true,
-            'drafts' => true,
-        ],
         'articles' => [
             'name' => 'articles',
             'routePrefix' => 'collection.articlesPublications',
@@ -38,6 +29,16 @@ return [
             'search_fields' => ['title', 'datahub_id'],
             'activity' => true,
             'drafts' => false,
+        ],
+        'events' => [
+            'name' => 'events',
+            'routePrefix' => 'exhibitionsEvents',
+            'count' => true,
+            'create' => true,
+            'activity' => true,
+            'draft' => true,
+            'search' => true,
+            'search_fields' => ['title'],
         ],
         'artists' => [
             'name' => 'artists',

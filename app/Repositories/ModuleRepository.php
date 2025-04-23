@@ -5,9 +5,11 @@ namespace App\Repositories;
 use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Repositories\Behaviors\HandleRelatedBrowsers;
 use A17\Twill\Repositories\ModuleRepository as BaseModuleRepository;
+use A17\Twill\Services\Listings\Filters\FreeTextSearch;
 use App\Helpers\StringHelpers;
 use App\Repositories\Behaviors\HandleApiBrowsers;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
+use Illuminate\Support\Collection;
 
 abstract class ModuleRepository extends BaseModuleRepository
 {
@@ -65,5 +67,24 @@ abstract class ModuleRepository extends BaseModuleRepository
         }
 
         return parent::prepareFieldsBeforeSave($object, $fields);
+    }
+
+    /**
+     * Dupes Twill PR https://github.com/area17/twill/pull/2763.
+     * This can be deleted once that is merges and we update
+     */
+    public function cmsSearch(string $search, array $fields = [], callable $query = null): Collection
+    {
+        $searchFilter = new FreeTextSearch();
+        $searchFilter->queryString($search);
+        $searchFilter->searchFor($search);
+        $searchFilter->searchColumns($fields);
+        $searchFilter->searchQuery($query);
+
+        $builder = $this->model->latest();
+
+        $searchFilter->applyFilter($builder);
+
+        return $builder->get();
     }
 }
