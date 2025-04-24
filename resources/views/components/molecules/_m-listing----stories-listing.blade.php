@@ -31,7 +31,7 @@
                     @endif
                     @component('components.molecules._m-listing-video')
                         @slot('item', $item)
-                        @slot('image', $image ?? null)
+                        @slot('image', $image ?? $item->imageFront('hero') ?? $item->imageFront('listing'))
                     @endcomponent
                 @else
                     <span class="default-img"></span>
