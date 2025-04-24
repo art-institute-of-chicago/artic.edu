@@ -98,6 +98,11 @@
             margin: 18px 0 0 0;
         }
 
+        .showcase-button {
+            width: max-content;
+            margin: 18px 0 0 0;
+        }
+
         .showcase-link {
             color: $color__text--secondary;
             margin: 18px 0 0 0;
@@ -316,6 +321,12 @@
         .showcase-title {
             color: $color__white;
         }
+    }
+    &.showcase--educator-resources {
+        margin: 50px auto;
+        background-color: unset !important;
+        padding: 0;
+        width: 100%;
     }
 }
 
