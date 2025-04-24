@@ -327,8 +327,8 @@
         @if (isset($item['caption']) && $item['caption'])
             <div class="{{ $fitCaptionTitle ? 'f-fit-text' : '' }} f-caption">{!! $item['caption'] !!}</div>
         @endif
-        @if (isset($item['linkLabel']) && $item['linkLabel'] && isset($item['href']) && $item['href'])
-            <a href="{!! $item['href'] !!}">
+        @if (isset($item['linkLabel']) && $item['linkLabel'] && isset($item['linkUrl']) && $item['linkUrl'])
+            <a href="{!! $item['linkUrl'] !!}">
                 <span class="f-link">
                     {!! $item['linkLabel'] !!} <svg class='icon--arrow'><use xlink:href='#icon--arrow'></use></svg>
                 </span>
