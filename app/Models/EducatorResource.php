@@ -111,7 +111,7 @@ class EducatorResource extends AbstractModel
         return join('-', [$this->id, $this->getSlug()]);
     }
 
-    public function getTypeAttribut()
+    public function getTypeAttribute()
     {
         return 'educator_resources';
     }
