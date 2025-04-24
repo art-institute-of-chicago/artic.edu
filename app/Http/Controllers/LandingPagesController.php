@@ -374,13 +374,12 @@ class LandingPagesController extends FrontController
                 break;
 
             case $types->search('Educator Resources'):
-
                 $contentCategories = collect(ResourceCategory::where('type', 'content')->get());
                 $audienceCategories = collect(ResourceCategory::where('type', 'audience')->get());
 
                 $viewData = [
                     'contrastHeader' => true,
-                    'contentSortOptions' => $contentCategories->map( function ($category) {
+                    'contentSortOptions' => $contentCategories->map(function ($category) {
                         return [
                             'label' => $category->name,
                             'active' => null,
@@ -389,7 +388,7 @@ class LandingPagesController extends FrontController
                             'data-button-value' => $category->name
                         ];
                     }),
-                    'audienceSortOptions' => $audienceCategories->map( function ($category) {
+                    'audienceSortOptions' => $audienceCategories->map(function ($category) {
                         return [
                             'label' => $category->name,
                             'active' => null,
