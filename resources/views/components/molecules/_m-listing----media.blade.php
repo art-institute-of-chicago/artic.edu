@@ -6,9 +6,9 @@
     <a href="{{ route('videos.show', $item) }}" class="m-listing__link" {!! $fullscreen ? 'data-behavior="triggerMediaModal"' : '' !!} {!! $gtmAttributes ?? '' !!}>
         @if (!isset($hideImage) || (isset($hideImage) && !($hideImage)))
             <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront) ? ' m-listing__img--video' : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-blur-img' : '' }}>
-                @if (isset($image) || $item->imageFront('hero'))
+                @if (isset($image) || $item->imageFront('hero') || $item->imageFront('listing'))
                     @component('components.atoms._img')
-                        @slot('image', $image ?? $item->imageFront('hero'))
+                        @slot('image', $image ?? $item->imageFront('hero') ?? $item->imageFront('listing'))
                         @slot('settings', $imageSettings ?? '')
                     @endcomponent
                     @component('components.molecules._m-listing-video')
@@ -20,7 +20,7 @@
                 @endif
                 <svg class="icon--play--{!! isset($playIconSize) ? $playIconSize : '48' !!}">
                     <use xlink:href="#icon--play--{!! isset($playIconSize) ? $playIconSize : '48' !!}"></use>
-                </svg>            
+                </svg>
             </span>
         @endif
         <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
