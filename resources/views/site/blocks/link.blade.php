@@ -1,7 +1,7 @@
 @php
     $file = $block->file('attachment');
 
-    $link = $block->input('link');
+    $link = $block->present()->input('link');
     $label = $block->present()->input('title');
 
     if ($file) {
