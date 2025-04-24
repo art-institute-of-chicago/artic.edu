@@ -308,8 +308,12 @@
             <div class="header-cta">
                 <div>
                     <strong class="title f-display-1 header-cta-title">{!! $item['ctaTitle'] !!}</strong>
-                    <a href="{{ $item['ctaButtonLink'] }}" class="header-cta-button f-buttons btn btn--secondary">{{ $item['ctaButtonLabel'] }}</a>
-                </div>
+                    {!! $item['ctaDescription']
+                        ? '<span class="header-cta-description">'. $item['ctaDescription'] . '</span>' : '' !!}
+                    {!! ($item['ctaButtonLink'] && $item['ctaButtonLabel'])
+                        ? '<a href="' . $item['ctaButtonLink'] . '" class="header-cta-button f-buttons btn btn--secondary">' . $item['ctaButtonLabel'] . '</a>'
+                        : '' !!}
+                  </div>
             </div>
         @endif
     </div>
