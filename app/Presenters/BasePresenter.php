@@ -36,7 +36,7 @@ abstract class BasePresenter
      */
     public function input($name)
     {
-        return $this->{$name};
+        return $this->getLocalizedField($this->{$name});
     }
 
     public function contrastHeader()
@@ -109,4 +109,39 @@ abstract class BasePresenter
     {
         return null;
     }
+
+    public function getLocalizedField($name)
+    {
+        $field = $name ?? null;
+
+        // If it's not an array return
+        if (!is_array($field)) {
+            return $field;
+        }
+
+        if (empty($field)) {
+            return '';
+        }
+
+        $requestLocale = app('request')->input('locale');
+
+        if ($requestLocale && isset($field[$requestLocale]) && !empty($field[$requestLocale])) {
+            dump( $field[$requestLocale]);
+            return $field[$requestLocale];
+        }
+
+        $currentLocale = app()->getLocale();
+        if (isset($field[$currentLocale]) && !empty($field[$currentLocale])) {
+            return $field[$currentLocale];
+        }
+
+        $fallbackLocale = config('app.fallback_locale', 'en');
+        if (isset($field[$fallbackLocale]) && !empty($field[$fallbackLocale])) {
+            return $field[$fallbackLocale];
+        }
+
+        // Last resort return any locale we have
+        return collect($field)->filter()->first() ?? '';
+    }
 }
+
