@@ -16,10 +16,9 @@ return [
             'routePrefix' => 'exhibitionsEvents',
             'count' => true,
             'create' => true,
+            'search' => true,
             'activity' => true,
             'draft' => true,
-            'search' => true,
-            'search_fields' => ['title'],
         ],
         'articles' => [
             'name' => 'articles',
