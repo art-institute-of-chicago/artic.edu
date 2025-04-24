@@ -1,9 +1,13 @@
+
 .m-editorial-block {
     width: 100%;
     margin: 56px 0;
     display: flex;
     flex-direction: column;
     max-width: 1500px;
+
+    @import './m-block----quick-look';
+
 
     .editorial-block__header {
         width: 100%;
@@ -304,6 +308,11 @@
                 width: 50%;
             }
         }
+    }
+
+    &.editorial-block--educator-resources {
+        border-bottom: 2px solid #1c1c1c;
+        padding-bottom: 20px;
     }
 
     // Variations
