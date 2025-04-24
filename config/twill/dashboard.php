@@ -18,7 +18,7 @@ return [
             'create' => true,
             'search' => true,
             'activity' => true,
-            'drafts' => true,
+            'draft' => true,
         ],
         'articles' => [
             'name' => 'articles',
