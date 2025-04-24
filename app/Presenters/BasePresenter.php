@@ -126,7 +126,7 @@ abstract class BasePresenter
         $requestLocale = app('request')->input('locale');
 
         if ($requestLocale && isset($field[$requestLocale]) && !empty($field[$requestLocale])) {
-            dump( $field[$requestLocale]);
+            dump($field[$requestLocale]);
             return $field[$requestLocale];
         }
 
@@ -144,4 +144,3 @@ abstract class BasePresenter
         return collect($field)->filter()->first() ?? '';
     }
 }
-
