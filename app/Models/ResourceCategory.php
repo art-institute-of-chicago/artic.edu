@@ -12,6 +12,7 @@ class ResourceCategory extends AbstractModel
 
     protected $fillable = [
         'name',
+        'type'
     ];
 
     public $slugAttributes = [
