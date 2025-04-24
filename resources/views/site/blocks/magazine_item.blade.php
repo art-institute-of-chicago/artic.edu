@@ -19,9 +19,9 @@
             $author_display = $item->showAuthors();
 
             if ($featureType === MagazineItem::ITEM_TYPE_ARTICLE) {
-                $type = $item->present()->subtype;
+                $label = $item->present()->subtype;
             } else {
-                $type = $item->present()->type;
+                $label = $item->present()->type;
             }
 
             if ($featureType === MagazineItem::ITEM_TYPE_HIGHLIGHT) {
@@ -34,7 +34,7 @@
     } else {
         $href = $block->input('url');
         $image = $block->imageAsArray('listing_image', 'default');
-        $type = $block->input('tag');
+        $label = $block->input('tag');
         $title = $block->input('title');
         $title_display = null;
         $list_description = $block->input('list_description');
@@ -52,7 +52,7 @@
         @slot('item', $item ?? null)
         @slot('href', $href ?? null)
         @slot('image', $image ?? null)
-        @slot('type', $type ?? null)
+        @slot('label', $label ?? null)
         @slot('title', $title ?? null)
         @slot('title_display', $title_display ?? null)
         @slot('list_description', $list_description ?? null)
