@@ -5,6 +5,7 @@
         name='title_display'
         label='Title formatting (optional)'
         note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+        :translated='true'
     />
 
     <x-twill::medias
@@ -25,6 +26,7 @@
         note='Max 255 characters'
         :maxlength="255"
         :toolbar-options="[ 'italic' ]"
+        :translated='true'
     />
 
     <x-twill::input
@@ -32,6 +34,7 @@
         label='Short description'
         type='textarea'
         :maxlength='255'
+        :translated='true'
     />
 
     <x-twill::multi-select
@@ -40,6 +43,11 @@
         placeholder='Select some categories'
         unpack='true'
         :options='$categoriesList'
+    />
+
+    <x-twill::checkbox
+        name='has_media_content'
+        label='Has media content?'
     />
 
     @php
