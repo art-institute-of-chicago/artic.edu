@@ -17,7 +17,6 @@
 
 @endphp
 <div class="m-custom-banner-block {{ $theme ? 'custom-banner-block--'.$theme : '' }} {{ $variation ? 'custom-banner-block--variation-'.$variation : '' }}">
-    <span class="hr"></span>
     <div class="content-wrapper">
         <div class="background-wrapper">
             @if($bg_type == 'background_color')
@@ -47,10 +46,10 @@
                 @endcomponent
             </div>
             <div class="button-wrapper">
-                @if ($theme =='editorial' && $variation == 'cloud')
+                @if (($theme =='editorial' || $theme =='educator-resources') && $variation == 'cloud')
                     <div class="tag-cloud">
                         @foreach ($tags as $tag)
-                            <a class="tag f-tag" href="{{ route('articles', ['category' => $tag->id]) }}">{{ $tag->name }}</a>                    
+                            <a class="tag f-tag" href="{{ route('articles', ['category' => $tag->id]) }}">{{ $tag->name }}</a>
                         @endforeach
                     </div>
                     @if ($link_label && $link_url)
