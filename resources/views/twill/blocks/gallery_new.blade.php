@@ -88,6 +88,7 @@
     label='Title'
     :maxlength='60'
     :toolbar-options="[ 'italic', 'link' ]"
+    :translated='true'
 />
 
 <x-twill::wysiwyg
@@ -97,6 +98,7 @@
     :maxlength='500'
     :rows='4'
     :toolbar-options="[ 'italic', 'link' ]"
+    :translated='true'
 />
 
 <x-twill::checkbox

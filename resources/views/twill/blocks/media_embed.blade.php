@@ -88,6 +88,7 @@
     name='caption_title'
     label='Caption title'
     :toolbar-options="[ 'italic', 'link' ]"
+    :translated='true'
 />
 
 <x-twill::wysiwyg
@@ -96,4 +97,5 @@
     note='Max 300 characters'
     :maxlength='300'
     :toolbar-options="[ 'italic', 'link' ]"
+    :translated='true'
 />

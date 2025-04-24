@@ -56,4 +56,5 @@
     label='Caption addendum'
     note='Appended to generated tombstone'
     :toolbar-options="[ 'italic', 'link' ]"
+    :translated='true'
 />

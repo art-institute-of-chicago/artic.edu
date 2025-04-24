@@ -110,6 +110,7 @@
     name='caption_title'
     label='Caption title'
     :toolbar-options="[ 'italic' ]"
+    :translated='true'
 />
 
 <x-twill::wysiwyg
@@ -118,4 +119,5 @@
     note='Max 200 characters'
     :maxlength='200'
     :toolbar-options="[ 'italic', 'link' ]"
+    :translated='true'
 />
