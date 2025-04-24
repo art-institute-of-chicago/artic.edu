@@ -2092,6 +2092,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 // Shared styles for .m-listing--journal and .m-listing--magazine
 .m-listing--publication {
+  border: thin solid $color__rules--primary;
 
   .m-listing__img img {
     transition: transform .35s ease-in-out;
