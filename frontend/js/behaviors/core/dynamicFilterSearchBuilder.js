@@ -1,5 +1,3 @@
-import { triggerCustomEvent } from "@area17/a17-helpers";
-
 const dynamicFilterSearchBuilder = function(container) {
   const baseUrl = '/educator-resources';
   let searchParams = {};
