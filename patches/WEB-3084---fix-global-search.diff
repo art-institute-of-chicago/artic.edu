@@ -1,0 +1,11 @@
+diff --git a/src/Repositories/ModuleRepository.php b/src/Repositories/ModuleRepository.php
+index 5c8a1b3754..702e62eea7 100644
+--- a/src/Repositories/ModuleRepository.php
++++ b/src/Repositories/ModuleRepository.php
+@@ -157,6 +157,7 @@ public function cmsSearch(string $search, array $fields = [], callable $query =
+     {
+         $searchFilter = new FreeTextSearch();
+         $searchFilter->queryString($search);
++        $searchFilter->searchFor($search);
+         $searchFilter->searchColumns($fields);
+         $searchFilter->searchQuery($query);
