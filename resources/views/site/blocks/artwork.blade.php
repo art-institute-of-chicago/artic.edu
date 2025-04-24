@@ -28,7 +28,7 @@
 
         $captionAddendum = '';
         if (!empty($block->input('captionAddendum'))) {
-            $captionAddendum .= $block->input('captionAddendum');
+            $captionAddendum .= $block->present()->input('captionAddendum');
         }
 
         $urlTitle = route('artworks.show', $artwork);
