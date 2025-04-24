@@ -72,3 +72,4 @@ export { default as dynamicFilterButton } from './dynamicFilterButton';
 export { default as dynamicFilterDropdown } from './dynamicFilterDropdown';
 export { default as dynamicFilterPagination } from './dynamicFilterPagination';
 export { default as dynamicFilterSearch } from './dynamicFilterSearch';
+export { default as dynamicFilterSearchBuilder } from './dynamicFilterSearchBuilder';
