@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Presenters\Admin;
+
 use App\Presenters\BasePresenter;
 use App\Libraries\SmartyPants;
 use Illuminate\Support\Str;
@@ -15,8 +17,7 @@ class BlockPresenter extends BasePresenter
         // Check if the property exists directly on the entity
         if (property_exists($this->entity, $name) || isset($this->entity->{$name})) {
             $fieldValue = $this->entity->{$name};
-        }
-        elseif (method_exists($this->entity, 'input')) {
+        } elseif (method_exists($this->entity, 'input')) {
             $fieldValue = $this->entity->input($name);
         }
 
