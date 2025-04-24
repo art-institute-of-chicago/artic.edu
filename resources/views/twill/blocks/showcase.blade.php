@@ -98,6 +98,48 @@
     />
 </x-twill::formConnectedFields>
 
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values='educator-resources'
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
+            [
+                'value' => 'default',
+                'label' => 'Default',
+            ],
+        ]"
+    />
+
+    <x-twill::formConnectedFields
+        field-name='variation'
+        field-values='default'
+        :render-for-blocks='true'
+    >
+
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::input
+                    name='button_label'
+                    label='Button Label'
+                />
+            </x-slot:left>
+            <x-slot:right>
+                <x-twill::input
+                    name='button_url'
+                    label='Button Url'
+                />
+            </x-slot:right>
+        </x-twill::formColumns>
+
+    </x-twill::formConnectedFields>
+
+</x-twill::formConnectedFields>
+
 @if (count($mediaTypes) > 1)
 
     @php
