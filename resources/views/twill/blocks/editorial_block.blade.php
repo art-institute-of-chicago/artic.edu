@@ -40,6 +40,14 @@
                 'value' => '/general/illuminatedLinks/browser?published=true&is_published=true',
             ]]);
             break;
+        case 'Educator Resources':
+            $endpoints = [
+                [
+                    'label' => 'Educator Resources',
+                    'name' => '/collection/researchResources/educatorResources/browser?published=true&is_published=true'
+                ],
+            ];
+
         default:
             $endpoints = $defaultEndpoints;
     }
@@ -287,4 +295,142 @@
     <x-twill::repeater
         type='publication_items'
     />
+</x-twill::formConnectedFields>
+
+{{-- Educator Resources Theme Fields --}}
+<x-twill::formConnectedFields
+    field-name='theme'
+    :field-values="['educator-resources']"
+    :render-for-blocks='true'
+>
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
+            [
+                'value' => 'quick-look',
+                'label' => 'Quick Look',
+            ],
+            [
+                'value' => 'feature-5-side',
+                'label' => 'Feature 5 Side',
+            ],
+            [
+                'value' => 'video',
+                'label' => 'Video',
+            ],
+        ]"
+    />
+
+    <x-twill::input
+        name='heading'
+        label='Heading'
+        :maxlength='100'
+        :required='true'
+        :translated='true'
+    />
+
+    <x-twill::wysiwyg
+        name='body'
+        label='Body'
+        type='textarea'
+        :required='true'
+        :translated='true'
+    />
+
+    {{-- Quick look browser --}}
+    <x-twill::formConnectedFields
+        field-name='variation'
+        :field-values="['quick-look']"
+        :render-for-blocks='true'
+        >
+
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::browser
+                    name='featured_items'
+                    label='Featured Items'
+                    :max='3'
+                    :endpoints="[
+                        [
+                            'label' => 'Educator Resources',
+                            'value' => '/collection/researchResources/educatorResources/browser?published=true&is_published=true'
+                        ]
+                    ]"
+                />
+            </x-slot:left>
+            <x-slot:right>
+                <x-twill::input
+                    name='list_title'
+                    label='List title'
+                />
+
+                <x-twill::browser
+                    name='list_items'
+                    label='Listed Items'
+                    :max='5'
+                    :endpoints="[
+                        [
+                            'label' => 'Educator Resources',
+                            'value' => '/collection/researchResources/educatorResources/browser?published=true&is_published=true'
+                        ]
+                    ]"
+                />
+            </x-slot:right>
+        </x-twill::formColumns>
+    </x-twill::formConnectedFields>
+
+    {{-- Feature-5 variations browser --}}
+    <x-twill::formConnectedFields
+        field-name='variation'
+        :field-values="['feature-5-side']"
+        :render-for-blocks='true'
+    >
+        <x-twill::browser
+            name='stories'
+            label="{{ $type == 'Editorial' ? 'Stories' : 'Items' }}"
+            :max='5'
+            :endpoints="[
+                [
+                    'label' => 'Educator Resources',
+                    'value' => '/collection/researchResources/educatorResources/browser?published=true&is_published=true'
+                ]
+            ]"
+        />
+    </x-twill::formConnectedFields>
+
+    {{-- Video variation fields --}}
+    <x-twill::formConnectedFields
+        field-name='variation'
+        field-values="video"
+        :render-for-blocks='true'
+    >
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::input
+                    name='browse_label'
+                    label='Browse More Label'
+                />
+            </x-slot>
+            <x-slot:right>
+                <x-twill::input
+                    name='browse_link'
+                    label='Browse More Link'
+                />
+            </x-slot>
+        </x-twill::formColumns>
+
+        <x-twill::browser
+            name='videos'
+            label='Items'
+            :max='6'
+            :endpoints="[
+                [
+                    'label' => 'Educator Resources',
+                    'value' => '/collection/researchResources/educatorResources/browser?published=true&is_published=true'
+                ]
+            ]"
+        />
+    </x-twill::formConnectedFields>
+
 </x-twill::formConnectedFields>
