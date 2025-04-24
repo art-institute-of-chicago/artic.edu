@@ -13,9 +13,9 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('experience_images', function (Blueprint $table) {
-            $table->text('artist')->change();
-            $table->text('credit_date')->change();
-            $table->text('dimensions')->change();
+            $table->text('artist')->nullable()->change();
+            $table->text('credit_date')->nullable()->change();
+            $table->text('dimensions')->nullable()->change();
         });
     }
 
@@ -27,9 +27,9 @@ return new class () extends Migration {
     public function down(): void
     {
         Schema::table('experience_images', function (Blueprint $table) {
-            $table->string('artist')->change();
-            $table->string('credit_date')->change();
-            $table->string('dimensions')->change();
+            $table->string('artist')->nullable()->change();
+            $table->string('credit_date')->nullable()->change();
+            $table->string('dimensions')->nullable()->change();
         });
     }
 };

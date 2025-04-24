@@ -14,7 +14,7 @@ class PrintedPublicationController extends BaseController
 
     protected function formData($request)
     {
-        $baseUrl = '//' . config('app.url') . '/print-publications/';
+        $baseUrl = config('app.url') . '/print-publications/';
 
         return [
             'categoriesList' => app(CatalogCategoryRepository::class)->listAll('name'),

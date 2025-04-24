@@ -31,8 +31,8 @@ return new class () extends Migration {
     {
         foreach ($this->tablesToAddLandingPageIdTo as $t) {
             Schema::table($t, function (Blueprint $table) {
-                $table->integer('page_id')->nullable()->change();
-                $table->integer('landing_page_id')->nullable()->change();
+                $table->integer('page_id')->unsigned()->nullable()->change();
+                $table->integer('landing_page_id')->references('id')->on('landing_pages')->nullable()->change();
             });
         }
     }

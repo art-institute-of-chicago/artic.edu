@@ -15,13 +15,13 @@ return new class () extends Migration {
         Schema::table('medias', function (Blueprint $table) {
             $table->text('uuid')->change();
             $table->text('alt_text')->nullable(true)->change();
-            $table->text('caption')->change();
-            $table->text('filename')->change();
+            $table->text('caption')->nullable()->change();
+            $table->text('filename')->nullable()->change();
         });
 
         Schema::table('files', function (Blueprint $table) {
             $table->text('uuid')->change();
-            $table->text('filename')->change();
+            $table->text('filename')->nullable()->change();
         });
     }
 
@@ -35,13 +35,13 @@ return new class () extends Migration {
         Schema::table('medias', function (Blueprint $table) {
             $table->string('uuid')->change();
             $table->string('alt_text')->nullable(false)->change();
-            $table->string('caption')->change();
-            $table->string('filename')->change();
+            $table->string('caption')->nullable()->change();
+            $table->string('filename')->nullable()->change();
         });
 
         Schema::table('files', function (Blueprint $table) {
             $table->string('uuid')->change();
-            $table->string('filename')->change();
+            $table->string('filename')->nullable()->change();
         });
     }
 };
