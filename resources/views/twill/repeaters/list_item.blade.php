@@ -13,12 +13,14 @@
     name='tag'
     label='Tag'
     :maxlength='20'
+    :translated='true'
 />
 
 <x-twill::input
     name='header'
     label='Header'
     :maxlength='60'
+    :translated='true'
 />
 
 <x-twill::wysiwyg
@@ -26,6 +28,7 @@
     label='Description'
     :rows='4'
     :toolbar-options="[ 'italic' ]"
+    :translated='true'
 />
 
 <x-twill::input

@@ -11,18 +11,21 @@
     name='title_display'
     label='Title'
     note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+    :translated='true'
 />
 
 <x-twill::wysiwyg
     name='transcript'
     label='Transcript'
     :toolbar-options="[ 'italic', 'link' ]"
+    :translated='true'
 />
 
 <x-twill::wysiwyg
     name='caption_title'
     label='Caption title'
     :toolbar-options="[ 'italic', 'link' ]"
+    :translated='true'
 />
 
 <x-twill::wysiwyg
@@ -31,4 +34,5 @@
     note='Max 300 characters'
     :maxlength='300'
     :toolbar-options="[ 'italic', 'link' ]"
+    :translated='true'
 />
