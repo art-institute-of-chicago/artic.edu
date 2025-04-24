@@ -53,6 +53,7 @@ class LandingPage extends AbstractModel implements Sortable
        12 => 'Publications',
        13 => 'Conservation and Science',
        14 => 'Research Center',
+       15 => 'Educator Resources',
        99 => 'Custom',
     ];
 
@@ -76,6 +77,7 @@ class LandingPage extends AbstractModel implements Sortable
         'header_cta_button_link',
         'header_cta_button_label',
         'header_cta_title',
+        'header_cta_description',
         'hide_hours',
         'hour_intro',
         'hour_image_caption',
