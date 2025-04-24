@@ -1,5 +1,12 @@
+@php
+    $currentUrl = explode('/', request()->url());
+    $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
+@endphp
+
 @twillBlockTitle('Grid')
 @twillBlockIcon('image')
+
+@include('twill.partials.theme', ['types' => [$type]])
 
 <x-twill::wysiwyg
     name='heading'
@@ -7,6 +14,21 @@
     :maxlength='60'
     :toolbar-options="[ 'italic' ]"
 />
+
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values='educator-resources'
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
+
+    <x-twill::wysiwyg
+        name='description'
+        label='Description'
+        :toolbar-options="[ 'italic', 'link', 'bold' ]"
+    />
+
+</x-twill::formConnectedFields>
 
 <x-twill::input
     name='grid_link_label'
