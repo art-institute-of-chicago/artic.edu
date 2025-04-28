@@ -252,7 +252,7 @@
 
     <x-twill::formConnectedFields
         field-name='override_event'
-        field-values="true"
+        :field-values="true"
         :render-for-blocks='true'
     >
         <br/>
@@ -305,7 +305,7 @@
 
     <x-twill::formConnectedFields
         field-name='override_exhibition'
-        field-values="true"
+        :field-values="true"
         :render-for-blocks='true'
     >
 

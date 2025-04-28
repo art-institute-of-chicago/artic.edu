@@ -61,7 +61,7 @@
 
         <x-twill::formConnectedFields
             field-name='should_append_artworks'
-            field-values='true'
+            :field-values='true'
             :render-for-blocks='false'
         >
 

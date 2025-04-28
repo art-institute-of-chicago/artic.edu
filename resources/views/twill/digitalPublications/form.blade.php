@@ -86,7 +86,7 @@
 @section('fieldsets')
     <x-twill::formConnectedFields
         field-name='is_dsc_stub'
-        field-values="true"
+        :field-values="true"
         :keep-alive='true'
     >
         <x-twill::formFieldset id='fields_for_dsc_stub' title='DSC Stub Fields'>

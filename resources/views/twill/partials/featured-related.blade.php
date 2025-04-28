@@ -51,7 +51,7 @@
 
     <x-twill::formConnectedFields
         field-name='toggle_autorelated'
-        field-values="false"
+        :field-values="false"
         :render-for-blocks='false'
     >
 

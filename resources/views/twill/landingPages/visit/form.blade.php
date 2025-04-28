@@ -136,7 +136,7 @@
 
     <x-twill::formConnectedFields
         field-name='is_custom_hours'
-        field-values='true'
+        :field-values='true'
     >
         <x-twill::repeater
             type="featured_hours"
