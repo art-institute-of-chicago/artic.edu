@@ -1,0 +1,12 @@
+diff --git a/src/Repositories/BlockRepository.php b/src/Repositories/BlockRepository.php
+index 86dc0ac8..dee2f30d 100644
+--- a/src/Repositories/BlockRepository.php
++++ b/src/Repositories/BlockRepository.php
+@@ -45,7 +45,6 @@ class BlockRepository extends ModuleRepository
+                 ])));
+ 
+         $model->setRelation('relatedItems', $relatedItems);
+-        $model->loadMissing('relatedItems.related');
+ 
+         return parent::hydrate($model, $fields);
+     }
