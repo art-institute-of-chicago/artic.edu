@@ -390,7 +390,7 @@
 
         <x-twill::formConnectedFields
             field-name='add_to_event_email_series'
-            field-values='true'
+            :field-values='true'
             :render-for-blocks='false'
             :keep-alive='true'
         >
@@ -432,7 +432,7 @@
 
                 <x-twill::formConnectedFields
                     field-name="$currentSeriesName"
-                    field-values='true'
+                    :field-values='true'
                     :render-for-blocks='false'
                     :keep-alive='true'
                 >
@@ -469,7 +469,7 @@
 
                         <x-twill::formConnectedFields
                             field-name="$name"
-                            field-values='true'
+                            :field-values='true'
                             :render-for-blocks='false'
                         >
 
@@ -522,7 +522,7 @@
 
             <x-twill::formConnectedFields
                 field-name='send_test_emails'
-                field-values='true'
+                :field-values='true'
                 :render-for-blocks='false'
                 :keep-alive='true'
             >
@@ -555,7 +555,7 @@
 
                     <x-twill::formConnectedFields
                         field-name='$currentSeriesName'
-                        field-values='true'
+                        :field-values='true'
                         :render-for-blocks='false'
                         :keep-alive='true'
                     >
@@ -591,7 +591,7 @@
 
                             <x-twill::formConnectedFields
                                 field-name="$name"
-                                field-values='true'
+                                :field-values='true'
                                 :render-for-blocks='false'
                                 :keep-alive='true'
                             >
