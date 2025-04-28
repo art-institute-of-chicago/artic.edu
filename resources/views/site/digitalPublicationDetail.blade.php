@@ -57,20 +57,20 @@
                         {{-- Listing Component --}}
                         @if (!$topLevelArticle->suppress_listing)
                             @if(count($topLevelArticle->children) > 0)
-                                @foreach ($topLevelArticle->children->filter(function($item) {
-                                    return !$item->suppress_listing;
-                                    })->sortBy('position') as $item)
+                                @foreach ($topLevelArticle->children->filter(function($articleItem) {
+                                    return !$articleItem->suppress_listing;
+                                    })->sortBy('position') as $articleItem)
                                     @if ($loop->iteration <= 4)
                                         @if($loop->first)
                                             @component('components.molecules._m-showcase')
                                                 @slot('variation', 'showcase--digital-publication')
-                                                @slot('tag', $item->present()->label ?: null)
-                                                @slot('title', $item->present()->title_display ?? $item->present()->title)
-                                                @slot('author_display', $item->showAuthors())
-                                                @slot('description', $item->present()->list_description)
+                                                @slot('tag', $articleItem->present()->label ?: null)
+                                                @slot('title', $articleItem->present()->title_display ?? $articleItem->present()->title)
+                                                @slot('author_display', $articleItem->showAuthors())
+                                                @slot('description', $articleItem->present()->list_description)
                                                 @slot('linkLabel', 'Read more')
-                                                @slot('linkUrl', $item->present()->url)
-                                                @slot('image', $item->imageFront('hero'))
+                                                @slot('linkUrl', $articleItem->present()->url)
+                                                @slot('image', $articleItem->imageFront('hero'))
                                                 @slot('imageSettings', array(
                                                     'fit' => 'crop',
                                                     'ratio' => '16:9',
@@ -93,13 +93,13 @@
                                                     @slot('cols_xlarge','3')
                                             @endif
                                                 @component('components.molecules._m-listing----digital-publication-article')
-                                                    @slot('href', $item->present()->url)
-                                                    @slot('image', $item->imageFront('hero'))
-                                                    @slot('type', $item->present()->label ?: null)
-                                                    @slot('title', $item->present()->title)
-                                                    @slot('title_display', $item->present()->title_display)
-                                                    @slot('list_description', $item->present()->list_description)
-                                                    @slot('author_display', $item->showAuthors())
+                                                    @slot('href', $articleItem->present()->url)
+                                                    @slot('image', $articleItem->imageFront('hero'))
+                                                    @slot('type', $articleItem->present()->label ?: null)
+                                                    @slot('title', $articleItem->present()->title)
+                                                    @slot('title_display', $articleItem->present()->title_display)
+                                                    @slot('list_description', $articleItem->present()->list_description)
+                                                    @slot('author_display', $articleItem->showAuthors())
                                                     @slot('imageSettings', array(
                                                         'fit' => 'crop',
                                                         'ratio' => '16:9',
@@ -166,18 +166,18 @@
                                 @slot('cols_large','3')
                                 @slot('cols_xlarge','3')
 
-                                @foreach ($topLevelArticle->children->filter(function($item) {
-                                    return !$item->suppress_listing;
-                                })->sortBy('position') as $item)
+                                @foreach ($topLevelArticle->children->filter(function($articleItem) {
+                                    return !$articleItem->suppress_listing;
+                                })->sortBy('position') as $articleItem)
                                     @if ($loop->iteration <= 3 || $showAll == true)
                                     @component('components.molecules._m-listing----digital-publication-article')
-                                        @slot('href', $item->present()->url)
-                                        @slot('image', $item->imageFront('hero'))
-                                        @slot('type', $item->present()->label ?: null)
-                                        @slot('title', $item->present()->title)
-                                        @slot('title_display', $item->present()->title_display)
-                                        @slot('list_description', $item->present()->list_description)
-                                        @slot('author_display', $item->showAuthors())
+                                        @slot('href', $articleItem->present()->url)
+                                        @slot('image', $articleItem->imageFront('hero'))
+                                        @slot('type', $articleItem->present()->label ?: null)
+                                        @slot('title', $articleItem->present()->title)
+                                        @slot('title_display', $articleItem->present()->title_display)
+                                        @slot('list_description', $articleItem->present()->list_description)
+                                        @slot('author_display', $articleItem->showAuthors())
                                         @slot('imageSettings', array(
                                             'fit' => 'crop',
                                             'ratio' => '16:9',
@@ -212,30 +212,30 @@
                         {{-- Listing Component --}}
                         @if (!$topLevelArticle->suppress_listing)
                             @php
-                                $children = $topLevelArticle->children->filter(function($item) use($topLevelArticle) {
-                                    return !$item->suppress_listing && $item->published;
+                                $children = $topLevelArticle->children->filter(function($articleItem) use($topLevelArticle) {
+                                    return !$articleItem->suppress_listing && $articleItem->published;
                                 })->sortBy('position');
-                                
-                                $limitedChildren = isset($showAll) && $showAll 
-                                    ? $children 
+
+                                $limitedChildren = isset($showAll) && $showAll
+                                    ? $children
                                     : $children->take(count($children) >= 8 ? 8 : 4);
                             @endphp
-                            
+
                             @component('components.organisms._o-grid-listing')
                                 @slot('cols_xsmall','2')
                                 @slot('cols_small','2')
                                 @slot('cols_medium','4')
                                 @slot('cols_large','4')
                                 @slot('cols_xlarge','4')
-                                
-                                @foreach ($limitedChildren as $item)
-                                    @if (count($item->children) > 0)
+
+                                @foreach ($limitedChildren as $articleItem)
+                                    @if (count($articleItem->children) > 0)
                                         @php
-                                            $publishedChildren = $item->children->filter(function($childItem) {
+                                            $publishedChildren = $articleItem->children->filter(function($childItem) {
                                                 return !$childItem->suppress_listing && $childItem->published;
                                             })->sortBy('position');
                                         @endphp
-                                        
+
                                         @foreach ($publishedChildren as $childItem)
                                             @component('components.molecules._m-listing----digital-publication-article-entry')
                                                 @slot('href', $childItem->present()->url)
@@ -259,14 +259,14 @@
                                         @endforeach
                                     @else
                                         @component('components.molecules._m-listing----digital-publication-article-entry')
-                                            @slot('href', $item->present()->url)
-                                            @slot('image', $item->imageFront('hero', 'square') ?? $item->imageFront('hero'))
-                                            @slot('title', $item->present()->title)
-                                            @slot('title_display', $item->present()->title_display)
-                                            @slot('label', $item->present()->label)
+                                            @slot('href', $articleItem->present()->url)
+                                            @slot('image', $articleItem->imageFront('hero', 'square') ?? $articleItem->imageFront('hero'))
+                                            @slot('title', $articleItem->present()->title)
+                                            @slot('title_display', $articleItem->present()->title_display)
+                                            @slot('label', $articleItem->present()->label)
                                             @slot('imageSettings', array(
                                                 'fit' => 'crop',
-                                                'ratio' => $item->imageFront('hero', 'square') ? '1' : '16:9',
+                                                'ratio' => $articleItem->imageFront('hero', 'square') ? '1' : '16:9',
                                                 'srcset' => array(200,400,600),
                                                 'sizes' => ImageHelpers::aic_imageSizes(array(
                                                     'xsmall' => '216px',
@@ -301,16 +301,16 @@
 
                             @if ($showAll == true)
 
-                                    @foreach ($topLevelArticle->children->filter(function($item) {
-                                        return !$item->suppress_listing;
-                                    })->sortBy('position') as $item)
+                                    @foreach ($topLevelArticle->children->filter(function($articleItem) {
+                                        return !$articleItem->suppress_listing;
+                                    })->sortBy('position') as $articleItem)
 
-                                        @if ($item->children && $item->children->count() > 0)
+                                        @if ($articleItem->children && $articleItem->children->count() > 0)
                                             @component('components.molecules._m-title-bar', [
                                                 'variation' => 'm-title-bar--no-hr m-digipub-subgrouping-title-bar',
                                                 'titleFont' => 'f-list-2',
                                             ])
-                                            {!! $item->title !!}
+                                            {!! $articleItem->title !!}
                                             @endcomponent
 
                                             @component('components.organisms._o-grid-listing')
@@ -320,8 +320,8 @@
                                                 @slot('cols_large','4')
                                                 @slot('cols_xlarge','4')
 
-                                                @foreach ($item->children->filter(function($item) {
-                                                    return !$item->suppress_listing && $item->published;
+                                                @foreach ($articleItem->children->filter(function($articleItemChild) {
+                                                    return !$articleItemChild->suppress_listing && $articleItemChild->published;
                                                 })->sortBy('position') as $child)
                                                     @component('components.molecules._m-listing----digital-publication-article-entry')
                                                         @slot('href', $child->present()->url)
@@ -355,21 +355,21 @@
                                     @slot('cols_large','3')
                                     @slot('cols_xlarge','3')
 
-                                    @foreach ($topLevelArticle->children->filter(function($item) {
-                                        return !$item->suppress_listing;
-                                    })->sortBy('position') as $item)
+                                    @foreach ($topLevelArticle->children->filter(function($articleItem) {
+                                        return !$articleItem->suppress_listing;
+                                    })->sortBy('position') as $articleItem)
                                         @if($loop->iteration <= 12 || $showAll == true)
                                             @component('components.molecules._m-listing----cover')
                                                 @slot('variation', 'm-listing--cover--digital-publication')
                                                 @slot('href', route(
                                                     'collection.publications.digital-publications.showListing',
                                                     [
-                                                        'id' => $item->digitalPublication->id,
-                                                        'slug' => $item->digitalPublication->getSlug()
+                                                        'id' => $articleItem->digitalPublication->id,
+                                                        'slug' => $articleItem->digitalPublication->getSlug()
                                                     ]
-                                                ) . '#' . Str::kebab($item->title))
-                                                @slot('image', $item->imageFront('grouping_hero') ?? $item->imageFront('hero'))
-                                                @slot('title', $item->present()->title)
+                                                ) . '#' . Str::kebab($articleItem->title))
+                                                @slot('image', $articleItem->imageFront('grouping_hero') ?? $articleItem->imageFront('hero'))
+                                                @slot('title', $articleItem->present()->title)
                                             @endcomponent
                                         @endif
                                     @endforeach
@@ -397,19 +397,19 @@
                             @component('components.organisms._o-grid-listing')
                                 @slot('cols_small','1')
 
-                                @foreach ($topLevelArticle->children->filter(function($item) {
-                                    return !$item->suppress_listing;
-                                })->sortBy('position') as $item)
+                                @foreach ($topLevelArticle->children->filter(function($articleItem) {
+                                    return !$articleItem->suppress_listing;
+                                })->sortBy('position') as $articleItem)
                                     @if ($loop->iteration <= 3 || $showAll == true)
                                         @component('components.molecules._m-listing----digital-publication-article')
                                             @slot('variation', 'm-listing--seventy-thirty')
-                                            @slot('href', $item->present()->url)
-                                            @slot('image', $item->imageFront('hero'))
-                                            @slot('type', $item->present()->label ?: null)
-                                            @slot('title', $item->present()->title)
-                                            @slot('title_display', $item->present()->title_display)
-                                            @slot('list_description', $item->present()->list_description)
-                                            @slot('author_display', $item->showAuthors())
+                                            @slot('href', $articleItem->present()->url)
+                                            @slot('image', $articleItem->imageFront('hero'))
+                                            @slot('type', $articleItem->present()->label ?: null)
+                                            @slot('title', $articleItem->present()->title)
+                                            @slot('title_display', $articleItem->present()->title_display)
+                                            @slot('list_description', $articleItem->present()->list_description)
+                                            @slot('author_display', $articleItem->showAuthors())
                                             @slot('imageSettings', array(
                                                 'fit' => 'crop',
                                                 'ratio' => '16:9',
@@ -453,26 +453,26 @@
                             @endif
 
                                 @if(count($topLevelArticle->children) > 0)
-                                    @foreach ($topLevelArticle->children->filter(function($item) {
-                                        return !$item->suppress_listing;
-                                    })->sortBy('position')->take($showAll ? count($topLevelArticle->children) : 3) as $item)
+                                    @foreach ($topLevelArticle->children->filter(function($articleItem) {
+                                        return !$articleItem->suppress_listing;
+                                    })->sortBy('position')->take($showAll ? count($topLevelArticle->children) : 3) as $articleItem)
                                         @if ($showAll !== true)
                                             @component('components.molecules._m-digipub-title-bar', [
                                                 'variation' => 'm-title-bar--compact m-title-bar--no-hr',
                                             ])
-                                                @slot('item', $item)
-                                                {!! $item->present()->label ?: null !!}
+                                                @slot('item', $articleItem)
+                                                {!! $articleItem->present()->label ?: null !!}
                                             @endcomponent
                                         @else
                                             @component('components.molecules._m-listing----digital-publication-article')
                                                 @slot('variation', 'm-listing--title-only')
-                                                @slot('href', $item->present()->url)
-                                                @slot('image', $item->imageFront('hero'))
-                                                @slot('type', $item->present()->label ?: null)
-                                                @slot('title', $item->present()->title)
-                                                @slot('title_display', $item->present()->title_display)
-                                                @slot('list_description', $item->present()->list_description)
-                                                @slot('author_display', $item->showAuthors())
+                                                @slot('href', $articleItem->present()->url)
+                                                @slot('image', $articleItem->imageFront('hero'))
+                                                @slot('type', $articleItem->present()->label ?: null)
+                                                @slot('title', $articleItem->present()->title)
+                                                @slot('title_display', $articleItem->present()->title_display)
+                                                @slot('list_description', $articleItem->present()->list_description)
+                                                @slot('author_display', $articleItem->showAuthors())
                                                 @slot('imageSettings', array(
                                                     'fit' => 'crop',
                                                     'ratio' => '16:9',
@@ -524,18 +524,18 @@
                             @slot('cols_large','3')
                             @slot('cols_xlarge','3')
 
-                            @foreach ($topLevelArticle->children->filter(function($item) {
-                                return !$item->suppress_listing;
-                            })->sortBy('position') as $item)
+                            @foreach ($topLevelArticle->children->filter(function($articleItem) {
+                                return !$articleItem->suppress_listing;
+                            })->sortBy('position') as $articleItem)
                                 @if ($loop->iteration <= 3 || $showAll == true)
                                 @component('components.molecules._m-listing----digital-publication-article')
-                                    @slot('href', $item->present()->url)
-                                    @slot('image', $item->imageFront('hero'))
-                                    @slot('type', $item->present()->label ?: null)
-                                    @slot('title', $item->present()->title)
-                                    @slot('title_display', $item->present()->title_display)
-                                    @slot('list_description', $item->present()->list_description)
-                                    @slot('author_display', $item->showAuthors())
+                                    @slot('href', $articleItem->present()->url)
+                                    @slot('image', $articleItem->imageFront('hero'))
+                                    @slot('type', $articleItem->present()->label ?: null)
+                                    @slot('title', $articleItem->present()->title)
+                                    @slot('title_display', $articleItem->present()->title_display)
+                                    @slot('list_description', $articleItem->present()->list_description)
+                                    @slot('author_display', $articleItem->showAuthors())
                                     @slot('imageSettings', array(
                                         'fit' => 'crop',
                                         'ratio' => '16:9',
