@@ -363,7 +363,14 @@ class LandingPagesController extends FrontController
                         ->all(),
                 ];
                 break;
+
             case $types->search('Conservation and Science'):
+                $viewData = [
+                    'subnav' => collect(BlockHelpers::getHeadings($item->blocks)),
+                ];
+                break;
+
+            case $types->search('Research Center'):
                 $viewData = [
                     'subnav' => collect(BlockHelpers::getHeadings($item->blocks)),
                 ];
