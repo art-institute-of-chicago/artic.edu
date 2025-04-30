@@ -1,12 +1,12 @@
 .m-showcase-block, .m-showcase,
 .m-showcase-background { // The showcase background is used in the Showcase Multiple block
-    width: 100vw;
+    // width: 100vw;
     margin-top: 50px;
-    margin-left: calc(50% - 50vw);
+    // margin-left: calc(50% - 50vw);
     display: flex;
     flex-direction: row;
     background-color: $color__bg--secondary;
-    padding: 50px;
+    // padding: 50px;
 
     @include breakpoint('small') {
         padding: 25px;

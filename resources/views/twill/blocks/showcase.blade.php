@@ -4,11 +4,16 @@
     switch ($type) {
         case 'Home':
             $mediaTypes = ['image'];
-        case 'RLC':
-        case 'Publications';
+            break;
+        case 'Research Center':
+            $mediaTypes = ['image', 'video', 'slideshow'];
+            break;
         case 'Conservation and Science';
+        case 'Publications';
+        case 'RLC':
         default:
-            $mediaTypes = ['image', 'video'];
+            // $mediaTypes = ['image', 'video'];
+            $mediaTypes = ['image', 'video', 'slideshow'];
     }
 @endphp
 
@@ -141,6 +146,25 @@
         />
     </x-twill::formConnectedFields>
 
+    <x-twill::formConnectedFields
+        field-name='media_type'
+        field-values="slideshow"
+        :render-for-blocks='true'
+    >
+        <x-twill::medias
+            name='showcase_slides'
+            label='Slides'
+            :max='5'
+            :withVideoUrl='false'
+            :required='true'
+        />
+        <x-twill::select
+            name='_implementation'
+            label='Implementation'
+            :required='true'
+            :options="['1', '2']"
+        />
+    </x-twill::formConnectedFields>
 @else
     <x-twill::medias
         name='image'

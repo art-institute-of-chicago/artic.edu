@@ -10,6 +10,7 @@
     $linkUrl = $block->input('link_url');
     $theme = $block->input('theme');
     $variation = $block->input('variation');
+    $_implementation = $block->input('_implementation');
 @endphp
 
 <div id="{{ str(strip_tags($heading))->kebab() }}" class="m-showcase-block {{ $theme ? 'showcase--'.$theme : '' }} {{ $variation ? 'showcase--variation-'.$variation : '' }}">
@@ -17,7 +18,17 @@
         @if ($heading)
             <h3 id="{{ Str::slug(strip_tags($heading)) }}" class="showcase-header">{!! $heading !!}</h3>
         @endif
-        @if ($theme == 'rlc')
+        @if ($mediaType == 'slideshow')
+            @component('components.molecules._m-slideshow')
+                @slot('variation', 'm-showcase-media')
+                @slot('slides', $block->imagesAsArrays('showcase_slides', 'default'))
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                ))
+                @slot('_implementation', $_implementation)
+            @endcomponent
+        @elseif ($theme == 'rlc')
             @component('components.molecules._m-media')
                 @slot('variation', 'm-showcase-media')
                 @slot('item', [

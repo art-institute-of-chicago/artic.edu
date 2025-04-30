@@ -128,7 +128,15 @@ return [
                     'ratio' => 3 / 4,
                 ],
             ],
-        ]
+        ],
+        'showcase_slides' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
     ],
     'repeaters' => [],
 
