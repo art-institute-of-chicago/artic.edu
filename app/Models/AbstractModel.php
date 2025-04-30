@@ -63,9 +63,4 @@ class AbstractModel extends Model
         // config('app.url') should have no https://
         return '//' . config('app.url') . '/p/' . encrypt($baseUrl . $this->slug);
     }
-
-    public function shouldGenerateSlugsOnSave()
-    {
-        return empty($this->slug);
-    }
 }
