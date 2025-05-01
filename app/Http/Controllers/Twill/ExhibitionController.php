@@ -40,7 +40,7 @@ class ExhibitionController extends BaseApiController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('exhibition') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/exhibitions/' . $item->datahub_id . '/';
+        $baseUrl = config('app.url') . '/exhibitions/' . $item->datahub_id . '/';
 
         return [
             'autoRelated' => $this->getAutoRelated($item),

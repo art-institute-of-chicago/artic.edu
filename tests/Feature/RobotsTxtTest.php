@@ -24,7 +24,7 @@ class RobotsTxtTest extends BaseTestCase
     {
         Config::set('app.env', 'production');
         Config::set('app.debug', false);
-        Config::set('app.url', 'www.example.com');
+        Config::set('app.url', 'http://www.example.com');
         $response = $this->get(route('robots-txt'));
         $this->assertEquals("User-agent: *\nDisallow: /", $response->getContent());
     }
