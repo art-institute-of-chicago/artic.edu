@@ -318,7 +318,7 @@ class AppServiceProvider extends ServiceProvider
                                 ],
                                 [
                                     'name' => 'Articles &amp; Videos',
-                                    'url' => '/articles-and-videos',
+                                    'url' => '/articles-videos',
                                 ],
                                 [
                                     'name' => 'Research',

@@ -62,9 +62,4 @@ class AbstractModel extends Model
         // $baseUrl ends with /
         return config('app.url') . '/p/' . encrypt($baseUrl . $this->slug);
     }
-
-    public function shouldGenerateSlugsOnSave()
-    {
-        return empty($this->slug);
-    }
 }
