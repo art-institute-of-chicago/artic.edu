@@ -7,6 +7,10 @@
         case '4-wide':
             $width = $widthSmall = '4';
             break;
+        case '2-wide':
+        case '2-wide-combined':
+            $width = $widthSmall = '2';
+            break;
         case '3-wide':
         default:
             $width = '3';
@@ -15,7 +19,7 @@
     }
 @endphp
 
-<div class="o-grid-block">
+<div class="o-grid-block {{ $variation ? 'variation-'.$variation : '' }}">
     @component('components.molecules._m-title-bar')
         @slot('links', !empty($gridLinkLabel) && !empty($gridLinkHref) ? [
             [

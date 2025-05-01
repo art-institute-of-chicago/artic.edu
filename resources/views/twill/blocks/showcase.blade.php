@@ -4,9 +4,13 @@
     switch ($type) {
         case 'Home':
             $mediaTypes = ['image'];
-        case 'RLC':
-        case 'Publications';
+            break;
+        case 'Research Center';
+            $mediaTypes = ['image', 'video', 'slideshow'];
+            break;
         case 'Conservation and Science';
+        case 'Publications';
+        case 'RLC':
         default:
             $mediaTypes = ['image', 'video'];
     }
@@ -94,6 +98,32 @@
     />
 </x-twill::formConnectedFields>
 
+<x-twill::formConnectedFields
+    field-name='theme'
+    :field-values="['research-center']"
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
+    <x-twill::select
+        name='variation'
+        label='Variation'
+        :options="[
+            [
+                'value' => 'default',
+                'label' => 'Default',
+            ],
+            [
+                'value' => 'combined',
+                'label' => 'Combined with Grid',
+            ],
+        ]"
+    />
+
+    <x-twill::input
+        name='heading'
+        label='Heading'
+    />
+</x-twill::formConnectedFields>
 @if (count($mediaTypes) > 1)
 
     @php
