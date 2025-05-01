@@ -180,6 +180,10 @@
             .text-wrapper {
                 flex-direction: row;
                 justify-content: space-between;
+
+                @include breakpoint('small-') {
+                    flex-direction: column;
+                }
             }
 
             .custom-banner-title {
