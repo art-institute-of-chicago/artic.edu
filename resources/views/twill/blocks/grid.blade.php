@@ -1,32 +1,5 @@
-@php
-    $currentUrl = explode('/', request()->url());
-    $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
-    $variations = [
-        [
-            'value' => '2-wide',
-            'label' => '2 wide',
-        ],
-        [
-            'value' => '3-wide',
-            'label' => 'Default (3 wide)',
-        ],
-        [
-            'value' => '4-wide',
-            'label' => '4 wide',
-        ],
-    ];
-    if ($type === 'Research Center') {
-        array_unshift($variations, [
-            'value' => '2-wide-combined',
-            'label' => '2 wide, combined with Showcase',
-        ]);
-    }
-@endphp
-
 @twillBlockTitle('Grid')
 @twillBlockIcon('image')
-
-@include('twill.partials.theme', ['types' => [$type]])
 
 <x-twill::wysiwyg
     name='heading'
@@ -52,7 +25,20 @@
     name='variation'
     label='Variation'
     default="3-wide"
-    :options="$variations"
+    :options="[
+        [
+            'value' => '2-wide',
+            'label' => '2 wide',
+        ],
+        [
+            'value' => '3-wide',
+            'label' => 'Default (3 wide)',
+        ],
+        [
+            'value' => '4-wide',
+            'label' => '4 wide',
+        ],
+    ]"
 />
 
 <x-twill::repeater

@@ -32,7 +32,8 @@
 }
 
 .research-center {
-  .showcase--variation-combined {
+  // Showcase immediately followed by Grid
+  .showcase--research-center:has(+ .o-grid-block) {
     background-color: unset;
     padding-bottom: 0;
 
@@ -50,7 +51,8 @@
       margin-top: 18px;
     }
   }
-  .o-grid-block.variation-2-wide-combined {
+  // Grid immediately following Showcase
+  .showcase--research-center + .o-grid-block {
     margin-left: unset !important;
     margin-top: 40px;
 
