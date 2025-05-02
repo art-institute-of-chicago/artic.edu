@@ -1,0 +1,10 @@
+.m-tag-banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+
+  .m-tag-banner__tag::before, .m-tag-banner__tag::after {
+    display: none;
+  }
+}

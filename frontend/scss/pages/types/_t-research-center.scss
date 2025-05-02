@@ -68,10 +68,6 @@
 
   .m-tag-banner {
     background-color: $color__black--10;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
     padding: 30px;
 
     .m-tag-banner__tag {
@@ -83,11 +79,6 @@
       line-height: 16px;
       padding: 8px 15px;
       text-transform: uppercase;
-
-      &::before, &::after {
-        display: none;
-      }
     }
-
   }
 }
