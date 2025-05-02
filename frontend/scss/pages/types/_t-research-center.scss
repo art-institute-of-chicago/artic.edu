@@ -1,0 +1,32 @@
+.research-center-subnav {
+  border-bottom: 1px solid $color__black--10;
+  border-top: 1px solid $color__black--10;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 28px;
+  text-align: left !important;
+
+  @include breakpoint('small-') {
+      padding-bottom: 20px;
+  }
+
+  ul {
+      display: block;
+      text-align: left;
+      white-space: nowrap;
+      min-width: 100%;
+  }
+
+  li {
+      display: inline-block;
+  }
+
+  .m-links-bar__item>.f-link {
+      color: $color__black--90;
+      font-family: $sans-serif-font--loaded;
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 28px;
+      letter-spacing: 0.01em;
+  }
+}
