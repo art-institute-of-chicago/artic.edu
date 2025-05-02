@@ -1,7 +1,6 @@
 @php
     $currentUrl = explode('/', request()->url());
     $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
-    $categoriesList = \App\Models\Category::all()->pluck('name', 'id')->toArray();
 @endphp
 
 @twillBlockTitle('Custom Banner')
@@ -48,14 +47,8 @@
     />
 
     @php
-        $options = collect($categoriesList)->map(function($name, $id) {
-            return [
-                'value' => $id,
-                'label' => $name,
-            ];
-        })->toArray();
+        $options = \App\Models\Category::orderBy('name')->pluck('name', 'id');
     @endphp
-
     <x-twill::multi-select
         name='categories'
         label='Categories'
