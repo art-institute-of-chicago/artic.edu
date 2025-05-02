@@ -7,27 +7,54 @@
   text-align: left !important;
 
   @include breakpoint('small-') {
-      padding-bottom: 20px;
+    padding-bottom: 20px;
   }
 
   ul {
-      display: block;
-      text-align: left;
-      white-space: nowrap;
-      min-width: 100%;
+    display: block;
+    text-align: left;
+    white-space: nowrap;
+    min-width: 100%;
   }
 
   li {
-      display: inline-block;
+    display: inline-block;
   }
 
   .m-links-bar__item>.f-link {
-      color: $color__black--90;
-      font-family: $sans-serif-font--loaded;
-      font-size: 17px;
-      font-weight: 300;
-      line-height: 28px;
-      letter-spacing: 0.01em;
+    color: $color__black--90;
+    font-family: $sans-serif-font--loaded;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 28px;
+    letter-spacing: 0.01em;
+  }
+}
+
+.research-center {
+  .m-tag-banner {
+    background-color: $color__black--10;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    padding: 30px;
+
+    .m-tag-banner__tag {
+      background-color: $color__white;
+      border: 1px solid $color__black--20;
+      color: $color__black--80;
+      font-size: 12px;
+      font-weight: 350;
+      line-height: 16px;
+      padding: 8px 15px;
+      text-transform: uppercase;
+
+      &::before, &::after {
+        display: none;
+      }
+    }
+
   }
 }
 
