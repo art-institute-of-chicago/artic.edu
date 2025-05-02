@@ -4,9 +4,13 @@
     switch ($type) {
         case 'Home':
             $mediaTypes = ['image'];
-        case 'RLC':
-        case 'Publications';
+            break;
+        case 'Research Center';
+            $mediaTypes = ['image', 'video', 'slideshow'];
+            break;
         case 'Conservation and Science';
+        case 'Publications';
+        case 'RLC':
         default:
             $mediaTypes = ['image', 'video'];
     }
@@ -73,7 +77,7 @@
 
 <x-twill::formConnectedFields
     field-name='theme'
-    :field-values="['publications', 'conservation-and-science']"
+    :field-values="['publications', 'conservation-and-science', 'research-center']"
     :render-for-blocks='true'
     :keep-alive='true'
 >

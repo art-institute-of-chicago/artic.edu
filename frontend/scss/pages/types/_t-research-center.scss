@@ -30,3 +30,39 @@
       letter-spacing: 0.01em;
   }
 }
+
+.research-center {
+  // Showcase immediately followed by Grid
+  .showcase--research-center:has(+ .o-grid-block) {
+    background-color: unset;
+    padding-bottom: 0;
+
+    .m-showcase-wrapper {
+      flex-direction: row-reverse;
+    }
+
+    .showcase-header {
+      display: none;
+    }
+
+    .showcase-title {
+      font-size: 28px;
+      line-height: 36px;
+      margin-top: 18px;
+    }
+  }
+  // Grid immediately following Showcase
+  .showcase--research-center + .o-grid-block {
+    margin-left: unset !important;
+    margin-top: 40px;
+
+    .m-title-bar, .hr, .m-listing__img {
+      display: none;
+    }
+
+    .title {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+}

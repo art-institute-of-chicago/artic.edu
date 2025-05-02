@@ -27,6 +27,10 @@
     default="3-wide"
     :options="[
         [
+            'value' => '2-wide',
+            'label' => '2 wide',
+        ],
+        [
             'value' => '3-wide',
             'label' => 'Default (3 wide)',
         ],

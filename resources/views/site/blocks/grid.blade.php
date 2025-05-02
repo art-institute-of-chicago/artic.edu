@@ -7,6 +7,9 @@
         case '4-wide':
             $width = $widthSmall = '4';
             break;
+        case '2-wide':
+            $width = $widthSmall = '2';
+            break;
         case '3-wide':
         default:
             $width = '3';
