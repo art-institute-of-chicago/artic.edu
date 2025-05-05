@@ -82,6 +82,7 @@
             'feature_block',
             'editorial_block',
             'custom_banner',
+            'tag_banner',
         ]);
     @endphp
 

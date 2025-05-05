@@ -1,6 +1,10 @@
 @twillRepeaterTitle('Link Tag')
 @twillRepeaterTitleField('label', ['hidePrefix' => true])
 @twillRepeaterTrigger('Add tag')
+@twillBlockValidationRules([
+    'label' => 'required|string',
+    'url' => 'required|string',
+])
 
 <x-twill::formColumns>
     <x-slot:left>
