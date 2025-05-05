@@ -14,7 +14,7 @@
         </div>
         <div class="m-slideshow__navigation">
             @foreach ($slides as $slide)
-                <a href="#i-{{ $_implementation }}-slide-{{ $loop->iteration }}" clas="m-slideshow__position">
+                <a href="#i-{{ $_implementation }}-slide-{{ $loop->iteration }}" clas="m-slideshow__position" data-no-ajax="true">
                     {{ $loop->iteration }}
                 </a>
             @endforeach
@@ -41,7 +41,7 @@
             <ol class="m-slideshow__navigation-list">
                 @foreach ($slides as $slide)
                     <li class="m-slideshow__navigation-item">
-                        <a href="#i-{{ $_implementation }}-slide-{{ $loop->iteration }}" class="m-slideshow__position">
+                        <a href="#i-{{ $_implementation }}-slide-{{ $loop->iteration }}" class="m-slideshow__position" data-no-ajax="true">
                             {{ $loop->iteration }}
                         </a>
                     </li>

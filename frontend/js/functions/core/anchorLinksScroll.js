@@ -3,42 +3,44 @@ import { setFocusOnTarget, scrollToY, getOffset, triggerCustomEvent } from '@are
 const anchorLinksScroll = function(container) {
 
   function _handleClicks(event) {
-    if (event.target.host === window.location.host && event.target.pathname === window.location.pathname && event.target.hash) {
-      event.preventDefault();
-      event.stopPropagation();
-      if (event.target.classList.contains('return-link')) {
-        triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': true });
-      }
-      let updateHash = (window.location.hash !== event.target.hash);
-      let hash = event.target.hash.replace('#','');
-      let target = document.getElementById(hash); // Fails on quotes
-      let offsetTarget = getOffset(target).top - 20;
-      event.target.blur();
-      triggerCustomEvent(document, 'navMobile:close');
-      scrollToY({
-        el: document,
-        offset: offsetTarget,
-        duration: 500,
-        easing: 'easeInOut',
-        onComplete: function() {
-          setTimeout(function(){ setFocusOnTarget(target); }, 0)
-          if (event.target.classList.contains('return-link')) {
-            triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': false });
-          }
-          if (updateHash) {
-            if (hash === 'a17' || hash === 'content') {
-              hash = window.location.href.replace(window.location.hash, '');
-            } else {
-              hash = '#' + hash;
-            }
-            triggerCustomEvent(document, 'history:pushstate', {
-              url: hash,
-              type: 'anchor',
-              title: document.title,
-            });
-          }
+    if (!container.hasAttribute('data-no-ajax') && !container.hasAttribute('download')) {
+      if (event.target.host === window.location.host && event.target.pathname === window.location.pathname && event.target.hash) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.target.classList.contains('return-link')) {
+          triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': true });
         }
-      });
+        let updateHash = (window.location.hash !== event.target.hash);
+        let hash = event.target.hash.replace('#','');
+        let target = document.getElementById(hash); // Fails on quotes
+        let offsetTarget = getOffset(target).top - 20;
+        event.target.blur();
+        triggerCustomEvent(document, 'navMobile:close');
+        scrollToY({
+          el: document,
+          offset: offsetTarget,
+          duration: 500,
+          easing: 'easeInOut',
+          onComplete: function() {
+            setTimeout(function(){ setFocusOnTarget(target); }, 0)
+            if (event.target.classList.contains('return-link')) {
+              triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': false });
+            }
+            if (updateHash) {
+              if (hash === 'a17' || hash === 'content') {
+                hash = window.location.href.replace(window.location.hash, '');
+              } else {
+                hash = '#' + hash;
+              }
+              triggerCustomEvent(document, 'history:pushstate', {
+                url: hash,
+                type: 'anchor',
+                title: document.title,
+              });
+            }
+          }
+        });
+      }
     }
   }
 
