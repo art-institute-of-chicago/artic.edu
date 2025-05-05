@@ -67,15 +67,27 @@
   }
 
   .tag-banner-block--research-center {
+    .body-wrapper {
+      padding: 30px;
+
+      @include breakpoint('xsmall') {
+        padding: 15px;
+      }
+    }
+
     .text-wrapper {
       display: none;
     }
+
     .tag-wrapper {
       width: 100%;
 
       .m-tag-banner {
-
         gap: 40px;
+
+        @include breakpoint('xsmall') {
+          gap: 15px;
+        }
       }
     }
   }
