@@ -6,6 +6,8 @@
 @twillBlockTitle('Custom Banner')
 @twillBlockIcon('image')
 
+@include('twill.partials.theme', ['types' => [$type]])
+
 <x-twill::radios
     name='background_type'
     label='Background Type'
@@ -51,7 +53,19 @@
         default='#000000'
     />
 
+</x-twill::formConnectedFields>
 
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values='research-center'
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
+    <x-twill::input
+        name='heading'
+        label='Heading'
+        :required='true'
+    />
 </x-twill::formConnectedFields>
 
 <x-twill::input
@@ -105,4 +119,24 @@
         :required='true'
     />
 
+    <x-twill::formConnectedFields
+        field-name='theme'
+        field-values='research-center'
+        :render-for-blocks='true'
+        :keep-alive='true'
+    >
+        <x-twill::input
+            name='second_button_text'
+            label='Second Button Text'
+            :maxlength='100'
+            :required='true'
+        />
+
+        <x-twill::input
+            name='second_button_url'
+            label='Second Button URL'
+            :maxlength='100'
+            :required='true'
+        />
+    </x-twill::formConnectedFields>
 </x-twill::formConnectedFields>
