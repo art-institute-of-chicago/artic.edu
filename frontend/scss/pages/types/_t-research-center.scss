@@ -67,6 +67,10 @@
   }
 
   .tag-banner-block--research-center {
+    .background-wrapper::before {
+      background-color: $color__black--10;
+    }
+
     .body-wrapper {
       padding: 30px;
 
