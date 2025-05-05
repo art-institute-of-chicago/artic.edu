@@ -89,7 +89,11 @@
       .m-tag-banner {
         gap: 40px;
 
-        @include breakpoint('xsmall') {
+        @include breakpoint('medium') {
+          gap: 25px;
+        }
+
+        @include breakpoint('small-') {
           gap: 15px;
         }
       }
