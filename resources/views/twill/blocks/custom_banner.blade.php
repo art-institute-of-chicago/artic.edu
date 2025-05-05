@@ -21,6 +21,23 @@
 
 @include('twill.partials.theme', ['types' => [$type]])
 
+<x-twill::radios
+    name='background_type'
+    label='Background Type'
+    default='mobile_app'
+    :inline='true'
+    :options="[
+        [
+            'value' => 'background_image',
+            'label' => 'Image'
+        ],
+        [
+            'value' => 'background_color',
+            'label' => 'Color'
+        ]
+    ]"
+/>
+
 <x-twill::formConnectedFields
     field-name='theme'
     field-values="editorial"
@@ -44,6 +61,64 @@
     field-name='variation'
     field-values="cloud"
     :render-for-blocks='true'
+>
+
+    <x-twill::color
+        name='bgcolor'
+        label='Background color'
+        default='#000000'
+    />
+
+</x-twill::formConnectedFields>
+
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values='research-center'
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
+    <x-twill::input
+        name='heading'
+        label='Heading'
+        :required='true'
+    />
+</x-twill::formConnectedFields>
+
+<x-twill::input
+    name='title'
+    label='Title'
+    :maxlength='100'
+    :required='true'
+/>
+
+<x-twill::wysiwyg
+    name='body'
+    label='Body'
+    :required='true'
+/>
+
+<x-twill::radios
+    name='button_type'
+    label='Variation'
+    default='mobile_app'
+    :inline='true'
+    :options="[
+        [
+            'value' => 'mobile_app',
+            'label' => 'Mobile App'
+        ],
+        [
+            'value' => 'custom',
+            'label' => 'Custom'
+        ]
+    ]"
+/>
+
+<x-twill::formConnectedFields
+    field-name='button_type'
+    field-values="custom"
+    :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::input
@@ -147,50 +222,24 @@
         :required='true'
     />
 
-    <x-twill::wysiwyg
-        name='body'
-        label='Body'
-        :required='true'
-    />
-
-    <x-twill::radios
-        name='button_type'
-        label='Variation'
-        default='mobile_app'
-        :inline='true'
-        :options="[
-            [
-                'value' => 'mobile_app',
-                'label' => 'Mobile App'
-            ],
-            [
-                'value' => 'custom',
-                'label' => 'Custom'
-            ]
-        ]"
-    />
-
     <x-twill::formConnectedFields
-        field-name='button_type'
-        field-values="custom"
+        field-name='theme'
+        field-values='research-center'
         :render-for-blocks='true'
         :keep-alive='true'
     >
-
         <x-twill::input
-            name='button_text'
-            label='Button Text'
+            name='second_button_text'
+            label='Second Button Text'
             :maxlength='100'
             :required='true'
         />
 
         <x-twill::input
-            name='button_url'
-            label='Button URL'
+            name='second_button_url'
+            label='Second Button URL'
             :maxlength='100'
             :required='true'
         />
-
     </x-twill::formConnectedFields>
-
 </x-twill::formConnectedFields>

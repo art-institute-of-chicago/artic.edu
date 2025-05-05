@@ -17,7 +17,7 @@
     <div class="content-wrapper">
         <div class="background-wrapper">
             @if($bgType == 'background_color')
-                <div class="background_color" {{ $block->input('bgcolor') ? 'style="background-color: ' . $block->input('bgcolor') . '"' : '' }}></div>
+                <div class="background_color" style="{{ $bgColor ? "background-color: $bgColor" : '' }}"></div>
             @endif
 
             @if($bgType == 'background_image')
@@ -29,7 +29,16 @@
         </div>
 
         <div class="text-wrapper">
-            <div>
+            <div class="custom-banner-text">
+                @if ($heading)
+                    @component('components.atoms._title')
+                        @slot('tag', 'h3')
+                        @slot('id', Str::slug($heading))
+                        @slot('font', 'f-tag')
+                        @slot('variation', 'custom-banner-heading')
+                        @slot('title', $heading)
+                    @endcomponent
+                @endif
                 @component('components.atoms._title')
                     @slot('font', 'f-headline-editorial')
                     @slot('variation', 'custom-banner-title')
@@ -60,8 +69,8 @@
                         @component('components.atoms._btn')
                             @slot('variation', 'primary')
                             @slot('tag', 'a')
-                            @slot('href', $block->input('button_url'))
-                            {!! SmartyPants::defaultTransform($block->input('button_text')) !!}
+                            @slot('href', $block->input('second_button_url'))
+                            {!! SmartyPants::defaultTransform($block->input('second_button_text')) !!}
                         @endcomponent
                     @endif
                 @endif

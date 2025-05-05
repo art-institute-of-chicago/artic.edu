@@ -15,6 +15,7 @@
                 'editorial_block',
                 'grid',
                 'showcase',
+                'tag_banner',
             ];
         @endphp
         <x-twill::block-editor
