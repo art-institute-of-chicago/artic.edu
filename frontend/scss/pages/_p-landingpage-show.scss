@@ -1,4 +1,5 @@
 @import 'types/t-conservation-and-science';
+@import 'types/t-educator-resources';
 @import 'types/t-editorial';
 @import 'types/t-home';
 @import 'types/t-mmt';
@@ -16,5 +17,22 @@
 .m-home-header {
   .header-cta-button {
     color: $color__red--100;
+  }
+}
+
+.m-educator-resources-header {
+  .header-cta-title {
+    margin-top: 0;
+    font-family: $serif-font--loaded;
+    font-size: 38px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .header-cta-description {
+    margin-top: 32px;
+    color: $color__white;
+    font-family: $sans-serif-font--loaded;
+    font-size: 18px;
   }
 }

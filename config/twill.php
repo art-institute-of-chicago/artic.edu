@@ -218,6 +218,12 @@ return [
     'locale' => 'en',
     'fallback_locale' => 'en',
 
+    'locales' => [
+        'en' => 'English',
+        'es' => 'Spanish',
+    ],
+    'locale_picker_active' => true,
+
     'available_user_locales' => [
         'en',
         'ar',
@@ -331,6 +337,15 @@ return [
     |
      */
     'bind_exception_handler' => false,
+
+    'capsules' => [
+        'list' => [
+            [
+                'name' => 'EducatorResource',
+                'enabled' => true,
+            ],
+        ],
+    ],
 
     'buckets' => [
         'homepage' => [

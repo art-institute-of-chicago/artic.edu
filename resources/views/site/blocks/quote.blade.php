@@ -10,7 +10,7 @@
     @slot('variation', (isset($editorial) and $editorial) ? 'quote--editorial o-blocks__block' : 'o-blocks__block')
     @slot('font', (isset($editorial) and $editorial) ? 'f-deck' : null)
 
-    @if (!empty($block->input('attribution')))
+    @if (!empty($block->present()->input('attribution')))
         @slot('attribution', $attribution)
     @endif
 

@@ -7,6 +7,7 @@
     name='header'
     label='Header'
     :maxlength='60'
+    :translated='true'
 />
 
 <x-twill::wysiwyg
@@ -15,4 +16,5 @@
     label='Description'
     :rows='4'
     :toolbar-options="[ ['header' => 4], 'bold', 'italic', 'underline', 'link', 'list-unordered' ]"
+    :translated='true'
 />

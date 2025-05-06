@@ -11,12 +11,14 @@
     name='headline'
     label='Headline'
     :maxlength='50'
+    :translated='true'
 />
 
 <x-twill::input
     name='short_copy'
     label='Short copy'
     :maxlength='80'
+    :translated='true'
 />
 
 <x-twill::input
@@ -27,4 +29,5 @@
 <x-twill::input
     name='link_text'
     label='Button text'
+    :translated='true'
 />
