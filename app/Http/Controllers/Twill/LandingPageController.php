@@ -35,6 +35,9 @@ class LandingPageController extends BaseController
     {
         $landingPage = $this->repository->getById($id);
         $prefix = str($landingPage->type)->camel();
+        if (str($landingPage->type)->upper() == $landingPage->type) { // Account for landing page types that are acronyms, e.g., RLC should live in a folder `rlc`
+            $prefix = str($landingPage->type)->lower();
+        }
         $this->viewPrefix = "twill.$this->moduleName.$prefix";
         return parent::edit($id, $submoduleId);
     }
