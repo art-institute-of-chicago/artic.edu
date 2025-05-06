@@ -35,7 +35,7 @@
     <hr/>
     <x-twill::formConnectedFields
         field-name='header_variation'
-        :field-values="['default', 'small', 'cta']",
+        :field-values="['default', 'small', 'cta']"
         :render-for-blocks='false'
         :keep-alive='true'
     >
@@ -55,7 +55,6 @@
             note='Minimum image width 2000px'
         />
     </x-twill::formConnectedFields>
-
     <x-twill::formConnectedFields
         field-name='header_variation'
         field-values="cta"
