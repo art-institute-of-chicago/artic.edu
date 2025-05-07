@@ -7,27 +7,27 @@
   text-align: left !important;
 
   @include breakpoint('small-') {
-      padding-bottom: 20px;
+    padding-bottom: 20px;
   }
 
   ul {
-      display: block;
-      text-align: left;
-      white-space: nowrap;
-      min-width: 100%;
+    display: block;
+    text-align: left;
+    white-space: nowrap;
+    min-width: 100%;
   }
 
   li {
-      display: inline-block;
+    display: inline-block;
   }
 
   .m-links-bar__item>.f-link {
-      color: $color__black--90;
-      font-family: $sans-serif-font--loaded;
-      font-size: 17px;
-      font-weight: 300;
-      line-height: 28px;
-      letter-spacing: 0.01em;
+    color: $color__black--90;
+    font-family: $sans-serif-font--loaded;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 28px;
+    letter-spacing: 0.01em;
   }
 }
 
@@ -63,6 +63,40 @@
     .title {
       font-size: 28px;
       line-height: 36px;
+    }
+  }
+
+  .tag-banner-block--research-center {
+    .background-wrapper::before {
+      background-color: $color__black--10;
+    }
+
+    .body-wrapper {
+      padding: 30px;
+
+      @include breakpoint('xsmall') {
+        padding: 15px;
+      }
+    }
+
+    .text-wrapper {
+      display: none;
+    }
+
+    .tag-wrapper {
+      width: 100%;
+
+      .m-tag-banner {
+        gap: 40px;
+
+        @include breakpoint('medium') {
+          gap: 25px;
+        }
+
+        @include breakpoint('small-') {
+          gap: 15px;
+        }
+      }
     }
   }
 }

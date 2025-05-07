@@ -11,7 +11,7 @@
     <x-twill::formFieldset title="Custom Content" id="researchCenter-custom_content">
         @php
             $blocks = [
-                'custom_banner',
+                'tag_banner',
                 'editorial_block',
                 'grid',
                 'showcase',
