@@ -7,27 +7,27 @@
   text-align: left !important;
 
   @include breakpoint('small-') {
-      padding-bottom: 20px;
+    padding-bottom: 20px;
   }
 
   ul {
-      display: block;
-      text-align: left;
-      white-space: nowrap;
-      min-width: 100%;
+    display: block;
+    text-align: left;
+    white-space: nowrap;
+    min-width: 100%;
   }
 
   li {
-      display: inline-block;
+    display: inline-block;
   }
 
   .m-links-bar__item>.f-link {
-      color: $color__black--90;
-      font-family: $sans-serif-font--loaded;
-      font-size: 17px;
-      font-weight: 300;
-      line-height: 28px;
-      letter-spacing: 0.01em;
+    color: $color__black--90;
+    font-family: $sans-serif-font--loaded;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 28px;
+    letter-spacing: 0.01em;
   }
 }
 
