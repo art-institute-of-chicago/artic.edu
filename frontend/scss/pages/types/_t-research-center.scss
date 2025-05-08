@@ -71,6 +71,9 @@
   }
 
   .tag-banner-block--research-center {
+    border-top: none;
+    padding-top: 0;
+
     .background-wrapper::before {
       background-color: $color__black--10;
     }
@@ -149,6 +152,20 @@
           padding-top: 20px;
         }
       }
+    }
+  }
+
+  .m-tag-banner-block,
+  .o-grid-block:has(#tools),
+  .m-custom-banner-block,
+  .m-prefooter-section,
+  &~.m-aside-newsletter {
+    @include breakpoint('xsmall') {
+      margin-top: 45px;
+    }
+
+    @include breakpoint('small+') {
+      margin-top: 100px;
     }
   }
 }
