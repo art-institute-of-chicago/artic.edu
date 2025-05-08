@@ -1,6 +1,15 @@
 @php
     $currentUrl = explode('/', request()->url());
     $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
+    switch ($type) {
+        case 'Research Center':
+            $pallet = 'research_center';
+            break;
+        default:
+            $pallet = 'general';
+    }
+    $backgroundColors = collect(config("aic.branding.colors.$pallet"))
+        ->mapWithKeys(fn ($hexColor) => [$hexColor => $hexColor]);
 @endphp
 
 @twillBlockTitle('Custom Banner')
@@ -47,11 +56,12 @@
     :render-for-blocks='true'
 >
 
-    <x-twill::color
-        name='bgcolor'
-        label='Background color'
-        default='#000000'
-    />
+    @formField('color_select', [
+        'name' => 'bgcolor',
+        'label' => 'Background color',
+        'options' => $backgroundColors,
+        'columns' => 3,
+    ])
 
 </x-twill::formConnectedFields>
 
