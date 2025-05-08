@@ -151,4 +151,71 @@
       }
     }
   }
+
+  .m-custom-banner-block {
+    .background-wrapper::before {
+        background: unset;
+    }
+
+    .text-wrapper {
+      align-items: end;
+      display: flex;
+      gap: 60px;
+
+      @include breakpoint('small-') {
+        gap: 20px;
+        padding: 15px;
+      }
+
+      @include breakpoint('medium+') {
+        flex-direction: row;
+      }
+
+      .custom-banner-text {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+
+        .title::before, .title::after {
+          display: none;
+        }
+      }
+
+      .custom-banner-heading {
+        color: $color__black--54;
+        font-size: 13px;
+        line-height: 16px;
+      }
+
+      .custom-banner-title {
+        color: $color__black--90 !important;
+        font-size: 22px;
+        line-height: 28px;
+      }
+
+      .custom-banner-body {
+        color: $color__black--80 !important;
+        font-size: 17px;
+        line-height: 28px;
+        margin: unset;
+      }
+    }
+
+    .button-wrapper {
+      align-items: end;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+
+      @include breakpoint('small-') {
+        gap: 15px;
+        width: 100%;
+      }
+
+      .btn {
+        background-color: $color__yankees-blue;
+        width: 100%;
+      }
+    }
+  }
 }

@@ -42,8 +42,12 @@ return [
 
     // Branding
     'branding' => [
-        'digital_publications' => [
-            'colors' => [
+        'colors' => [
+            'general' => [
+                '#1E3F49',
+                '#282829',
+            ],
+            'digital_publications' => [
                 '#282829',
                 '#422E22',
                 '#284725',
@@ -62,6 +66,9 @@ return [
                 '#D58FA2',
                 '#EC9E6C',
                 '#F8EB83',
+            ],
+            'research_center' => [
+                '#CED8EE',
             ],
         ]
     ],
