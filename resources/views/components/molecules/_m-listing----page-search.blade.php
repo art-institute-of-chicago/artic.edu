@@ -14,10 +14,10 @@
             </span>
         </span>
         {{-- Don't leave space for image if it's missing --}}
-        @if (isset($image) || $item->imageFront('default'))
+        @if (isset($image) || $item->imageFront('default') || $item->imageFront('hero') || $item->imageFront('header_my_museum_tour_header_image'))
             <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
                 @component('components.atoms._img')
-                    @slot('image', $image ?? $item->imageFront('default'))
+                    @slot('image', $image ?? $item->imageFront('default') ?? $item->imageFront('hero') ?? $item->imageFront('header_my_museum_tour_header_image'))
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
                 @component('components.molecules._m-listing-video')
