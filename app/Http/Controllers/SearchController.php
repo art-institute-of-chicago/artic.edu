@@ -414,8 +414,8 @@ class SearchController extends BaseScopedController
             array_push($links, $this->buildLabel('Artists/Cultures', QueryHelpers::extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }
 
-        if (QueryHelpers::extractAggregation($aggregations, 'generic-pages')) {
-            array_push($links, $this->buildLabel('Pages', QueryHelpers::extractAggregation($aggregations, 'generic-pages'), route('search.pages', ['q' => request('q')]), $active == 'generic-pages'));
+        if (QueryHelpers::extractAggregation($aggregations, ['landing-pages', 'generic-pages'])) {
+            array_push($links, $this->buildLabel('Pages', QueryHelpers::extractAggregation($aggregations, ['landing-pages', 'generic-pages']), route('search.pages', ['q' => request('q')]), $active == 'generic-pages'));
         }
 
         if (QueryHelpers::extractAggregation($aggregations, 'artworks')) {
