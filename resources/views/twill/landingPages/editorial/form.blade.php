@@ -9,6 +9,14 @@
         :required='true'
     />
 
+    <x-twill::wysiwyg
+        name='listing_description'
+        label='Listing description'
+        note='Max 255 characters'
+        :maxlength="255"
+        :toolbar-options="[ 'italic' ]"
+    />
+
 @stop
 
 @section('fieldsets')
