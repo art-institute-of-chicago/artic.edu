@@ -34,6 +34,7 @@ class Search extends BaseApiModel
         'digital-publication-articles' => 'App\Models\DigitalPublicationArticle',
         'static-pages' => 'App\Models\Page',
         'generic-pages' => 'App\Models\GenericPage',
+        'landing-pages' => 'App\Models\LandingPage',
         'educator-resources' => 'App\Models\EducatorResource',
         'press-releases' => 'App\Models\PressRelease',
         'highlights' => 'App\Models\Highlight',
