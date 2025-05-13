@@ -1,10 +1,21 @@
 @php
     $currentUrl = explode('/', request()->url());
     $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
+    switch ($type) {
+        case 'Research Center':
+            $pallet = 'research_center';
+            break;
+        default:
+            $pallet = 'general';
+    }
+    $backgroundColors = collect(config("aic.branding.colors.$pallet"))
+        ->mapWithKeys(fn ($hexColor) => [$hexColor => $hexColor]);
 @endphp
 
 @twillBlockTitle('Custom Banner')
 @twillBlockIcon('image')
+
+@include('twill.partials.theme', ['types' => [$type]])
 
 <x-twill::radios
     name='background_type'
@@ -45,13 +56,26 @@
     :render-for-blocks='true'
 >
 
-    <x-twill::color
-        name='bgcolor'
-        label='Background color'
-        default='#000000'
+    @formField('color_select', [
+        'name' => 'bgcolor',
+        'label' => 'Background color',
+        'options' => $backgroundColors,
+        'columns' => 3,
+    ])
+
+</x-twill::formConnectedFields>
+
+<x-twill::formConnectedFields
+    field-name='theme'
+    field-values='research-center'
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
+    <x-twill::input
+        name='heading'
+        label='Heading'
+        :required='true'
     />
-
-
 </x-twill::formConnectedFields>
 
 <x-twill::input
@@ -105,4 +129,24 @@
         :required='true'
     />
 
+    <x-twill::formConnectedFields
+        field-name='theme'
+        field-values='research-center'
+        :render-for-blocks='true'
+        :keep-alive='true'
+    >
+        <x-twill::input
+            name='second_button_text'
+            label='Second Button Text'
+            :maxlength='100'
+            :required='true'
+        />
+
+        <x-twill::input
+            name='second_button_url'
+            label='Second Button URL'
+            :maxlength='100'
+            :required='true'
+        />
+    </x-twill::formConnectedFields>
 </x-twill::formConnectedFields>
