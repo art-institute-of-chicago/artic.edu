@@ -63,12 +63,13 @@
                             by ⁠{!! $item->author_display !!}
                         @elseif (count($item->authors) > 0)
                             <span class="author__name">
-                                by {{StringHelpers::summation($item->authors->pluck('title')->all())}}                                </span>
+                                by {{StringHelpers::summation($item->authors->pluck('title')->all())}}
+                            </span>
                         @endif
                     </div>
                 @endif
-                @if (isset($showDescription) && $showDescription && $item->present()->list_description)
-                    <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description !!}</div>
+                @if (isset($showDescription) && $showDescription && ($item->present()->list_description ?? $item->present()->listing_description))
+                    <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description ?? $item->present()->listing_description !!}</div>
                 @endif
             </div>
         </a>
