@@ -25,16 +25,10 @@ class EducatorResource extends AbstractModel
     use HasTranslation;
 
     protected $fillable = [
-        'listing_description',
-        'short_description',
-        'title',
-        'title_display',
         'published',
         'public',
         'publish_start_date',
         'publish_end_date',
-        'meta_title',
-        'meta_description',
         'has_media_content'
     ];
 
