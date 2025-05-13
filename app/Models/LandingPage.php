@@ -469,6 +469,11 @@ class LandingPage extends AbstractModel implements Sortable
         ];
     }
 
+    public function getUrlAttribute()
+    {
+        return $this->getUrl();
+    }
+
     public function getUrl($prefix = '')
     {
         return $prefix . '/' . $this->slug;
