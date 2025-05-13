@@ -43,7 +43,7 @@
           @slot('attribute', 'data-filter-behavior="audience"')
         @endcomponent
 
-        <a data-behavior="dynamicFilterSearchBuilder" href="" ><button class="btn f-buttons btn--primary">Search</button></a>
+        <a data-behavior="dynamicFilterSearchBuilder" data-base-url="/educator-resources" href="#" ><button class="btn f-buttons btn--primary">Search</button></a>
       </div>
   </div>
 
