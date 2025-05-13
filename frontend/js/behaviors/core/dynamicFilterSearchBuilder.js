@@ -1,5 +1,5 @@
 const dynamicFilterSearchBuilder = function(container) {
-  const baseUrl = '/educator-resources';
+  let baseUrl = container.getAttribute('data-base-url');
   let searchParams = {};
 
   function updateSearchTarget(parameter, value) {
