@@ -41,9 +41,13 @@
                 @foreach ($listItems as $item)
                     <li>
                         <a class="m-listing__link quick-look__item-listing" href="{{ method_exists($item, 'getUrl') ? $item->getUrl() : $item->url_without_slug }}">
-                            <span class="quick-look__list-count">{{ $loop->iteration }}</span>
+                            @if (isset($hideListCount) && !$hideListCount)
+                                <span class="quick-look__list-count">{{ $loop->iteration }}</span>
+                            @endif
                             <div class="quick-look__item-meta">
-                                <span class="quick-look__item-type f-tag">{!! $item->type !!}</span>
+                                @if (isset($hideListTag) && !$hideListTag)
+                                    <span class="quick-look__item-type f-tag">{!! $item->type !!}</span>
+                                @endif
                                 @component('components.atoms._title')
                                     @slot('font', $titleFont ?? 'f-list-3')
                                     @slot('title', $item->present()->title)
