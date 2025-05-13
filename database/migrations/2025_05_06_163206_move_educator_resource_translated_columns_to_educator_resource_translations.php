@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Vendor\Block;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         $normalIds = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151];
@@ -109,7 +108,6 @@ return new class extends Migration
         // Translated table is the same as a model table just with a 'locale' identifier
 
         foreach ($normalIds as $id) {
-
             $resource = DB::table('educator_resources')->where('id', $id)->first();
 
             if ($resource) {
@@ -152,8 +150,7 @@ return new class extends Migration
 
                 $blocks = Block::where('blockable_type', 'educatorResources')->where('blockable_id', $id)->get();
 
-                foreach($blocks as $block) {
-
+                foreach ($blocks as $block) {
                     if (!empty($translatedBlocks[$block->type])) {
                         $blockFields = $translatedBlocks[$block->type]['translatedFields'];
                         foreach ($blockFields as $field) {
@@ -169,11 +166,9 @@ return new class extends Migration
                                 $block['content'] = $content;
                                 $block->save();
 
-                                dump($block->type.': '.json_encode($block['content'][$field]));
-
+                                dump($block->type . ': ' . json_encode($block['content'][$field]));
                             }
                         }
-
                     }
                 }
             }
@@ -293,10 +288,11 @@ return new class extends Migration
                             ];
 
                             // If there's a matching Spanish block, add its content
-                            if (isset($spanishBlocks[$position]) &&
+                            if (
+                                isset($spanishBlocks[$position]) &&
                                 $spanishBlocks[$position]->type === $enBlock->type &&
-                                !empty($spanishBlocks[$position]['content'][$field])) {
-
+                                !empty($spanishBlocks[$position]['content'][$field])
+                            ) {
                                 $translatedContent['es'] = $spanishBlocks[$position]['content'][$field];
                             }
 
