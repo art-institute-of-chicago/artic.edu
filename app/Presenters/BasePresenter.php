@@ -110,9 +110,9 @@ abstract class BasePresenter
         return null;
     }
 
-    public function getLocalizedField($name)
+    public function getLocalizedField($name = null)
     {
-        $field = $name ?? null;
+        $field = $name;
 
         // If it's not an array return
         if (!is_array($field)) {
