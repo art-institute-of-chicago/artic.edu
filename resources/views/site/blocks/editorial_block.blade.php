@@ -208,10 +208,12 @@
                 @break
 
             @case($variation == 'quick-look')
-                @component('components.molecules._m-block----quick-look')
+                @component('components.molecules._m-editorial-block----quick-look')
                     @slot('items', $block->getRelated('featured_items'))
                     @slot('listItems', $block->getRelated('list_items'))
                     @slot('listTitle', $block->present()->input('list_title'))
+                    @slot('hideListCount', ($landingPageType == 'educator-resources') ? true : false)
+                    @slot('hideListTag', ($landingPageType == 'educator-resources') ? true : false)
                 @endcomponent
                 @break
 
