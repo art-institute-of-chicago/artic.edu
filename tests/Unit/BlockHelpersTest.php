@@ -5,12 +5,13 @@ namespace Tests\Unit;
 use App\Helpers\BlockHelpers;
 use App\Models\LandingPage;
 use App\Models\Vendor\Block;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Tests\CreatesApplication;
 
 class BlockHelpersTest extends BaseTestCase
 {
-    use CreatesApplication;
+    use RefreshDatabase;
 
     public function test_it_gets_headings_with_a_link_label_and_target(): void
     {
