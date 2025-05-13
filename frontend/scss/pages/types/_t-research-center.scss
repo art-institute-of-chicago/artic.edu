@@ -162,12 +162,12 @@
       display: flex;
       gap: 60px;
 
-      @include breakpoint('xsmall') {
+      @include breakpoint('small-') {
         gap: 20px;
         padding: 15px;
       }
 
-      @include breakpoint('small+') {
+      @include breakpoint('medium+') {
         flex-direction: row;
       }
 
@@ -207,8 +207,9 @@
       flex-direction: column;
       gap: 28px;
 
-      @include breakpoint('xsmall') {
+      @include breakpoint('small-') {
         gap: 15px;
+        width: 100%;
       }
 
       .btn {
