@@ -222,7 +222,6 @@ return [
         'en' => 'English',
         'es' => 'Spanish',
     ],
-    'locale_picker_active' => true,
 
     'available_user_locales' => [
         'en',
@@ -337,15 +336,6 @@ return [
     |
      */
     'bind_exception_handler' => false,
-
-    'capsules' => [
-        'list' => [
-            [
-                'name' => 'EducatorResource',
-                'enabled' => true,
-            ],
-        ],
-    ],
 
     'buckets' => [
         'homepage' => [
