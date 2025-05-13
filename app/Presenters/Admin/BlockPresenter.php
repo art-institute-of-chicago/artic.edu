@@ -21,7 +21,7 @@ class BlockPresenter extends BasePresenter
             $fieldValue = $this->entity->input($name);
         }
 
-        $content = is_array($fieldValue) ? $this->getLocalizedField($fieldValue) : $fieldValue;
+        $content = $this->getLocalizedField($fieldValue);
 
         // WEB-1783: Adding anchor navigation to FAQ
         if ($name === 'description') {
