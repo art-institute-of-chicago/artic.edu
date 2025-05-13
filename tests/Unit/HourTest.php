@@ -5,10 +5,13 @@ namespace Tests\Unit;
 use App\Models\Hour;
 use App\Models\BuildingClosure;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 class HourTest extends BaseTestCase
 {
+    use RefreshDatabase;
+
     private $hour;
     private $hourAllClosed;
     private $hourEdgeCases;
