@@ -1,0 +1,22 @@
+@extends('twill::layouts.form')
+
+@section('contentFields')
+    <x-twill::input
+        name='title'
+        label='Title'
+    />
+    <x-twill::input
+        name='url'
+        label='URL'
+    />
+    <x-twill::medias
+        name='hero'
+        label='Image'
+    />
+    <x-twill::input
+        name='description'
+        label='Description'
+        type='textarea'
+        :maxlength='255'
+    />
+@stop
