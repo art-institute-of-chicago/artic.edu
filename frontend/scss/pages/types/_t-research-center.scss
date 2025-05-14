@@ -235,4 +235,135 @@
       margin-top: 100px;
     }
   }
+
+  .editorial-block--research-center {
+    margin-bottom: 0;
+
+    .editorial-block__header {
+      border: none;
+      margin-bottom: 20px;
+    }
+
+    .editorial-block__heading {
+      h2 {
+        color: $color__black;
+        font-family: $sans-serif-font--loaded;
+        font-size: 21px;
+        font-weight: normal;
+        letter-spacing: 0.08em;
+        line-height: 28px;
+        text-transform: uppercase;
+      }
+
+      .link::before {
+        content: none;
+      }
+    }
+
+    .editorial-block__content-wrapper {
+      border-top: 1px solid $color__black--20;
+    }
+
+    .author {
+      color: $color__black--54;
+      font-family: $sans-serif-font--loaded;
+      font-size: 15px;
+      font-weight: 325;
+      line-height: 20px;
+    }
+
+    .editorial-block__body, .editorial-block__tags {
+      display: none;
+    }
+
+    @include breakpoint('xsmall') {
+      margin-top: 20px;
+
+      .editorial-block__header {
+        margin-bottom: 10px;
+      }
+
+      .m-listing--article {
+        padding-top: 40px;
+      }
+
+      .m-listing__meta {
+        min-height: unset;
+      }
+
+      .intro {
+        color: $color__black--81;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+
+    @include breakpoint('small+') {
+      margin-top: 50px;
+
+      .editorial-block__header {
+        margin-bottom: 0;
+        padding-top: 0;
+      }
+
+      .editorial-block__content-wrapper {
+        margin-top: 20px;
+      }
+
+      .editorial-block__featured {
+        padding-right: 20px;
+        padding-top: 40px;
+
+        .title {
+          font-size: 38px;
+          line-height: 44px;
+        }
+
+        .author {
+          text-align: center;
+        }
+
+        .intro {
+          color: $color__black--81;
+          font-family: $serif-font--loaded;
+          font-size: 19px;
+          line-height: 28px;
+        }
+
+        .m-listing__meta {
+          min-height: unset;
+        }
+      }
+
+      .editorial-block__list {
+        padding-top: 40px;
+
+        .m-listing--article:first-child {
+          margin-bottom: 20px;
+          padding-bottom: 20px;
+        }
+
+        .m-listing__link {
+          margin-left: 20px;
+          margin-right: 40px;
+        }
+
+        .m-listing__img {
+          margin-right: 40px;
+        }
+
+        .title {
+          font-size: 22px;
+          line-height: 28px;
+        }
+
+        .intro {
+          color: $color__black--80;
+          font-size: 17px;
+          line-height: 28px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
 }
