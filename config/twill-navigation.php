@@ -264,6 +264,10 @@ $nav = [
             'vanityRedirects' => [
                 'title' => 'Vanity Redirects',
                 'module' => true
+            ],
+            'illuminatedLinks' => [
+                'title' => 'Illuminated Links',
+                'module' => true,
             ]
         ],
     ],
