@@ -396,7 +396,8 @@ class StringHelpers
         return $string;
     }
 
-    public static function addLinkArrows($string) {
+    public static function addLinkArrows($string)
+    {
         $arrowSvg = '<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>';
         return preg_replace('/<\/a>/', $arrowSvg . '</a>', $string);
     }
