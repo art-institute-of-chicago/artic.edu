@@ -9,7 +9,11 @@ use App\Models\EventProgram;
 
 class EventTest extends BaseTestCase
 {
-    protected $seed = true;
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
 
     public function test_event_page_displays_events(): void
     {
