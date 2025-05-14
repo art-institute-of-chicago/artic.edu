@@ -12,9 +12,10 @@ class IlluminatedLinkFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => '',
-            'url' => '',
-            'description' => '',
+            'title' => fake()->text(maxNbChars: 200),
+            'url' => fake()->url(),
+            'description' => fake()->paragraph(),
+            'published' => true,
         ];
     }
 }
