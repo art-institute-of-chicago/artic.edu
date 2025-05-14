@@ -7,7 +7,11 @@ use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
 
 class MyMuseumTourViewerTest extends BaseTestCase
 {
-    protected $seed = true;
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
 
     /**
      * A test to check whether the title renders on the viewer page
