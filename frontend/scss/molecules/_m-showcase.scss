@@ -327,6 +327,12 @@
         background-color: unset !important;
         padding: 0;
         width: 100%;
+
+        .showcase-callout {
+            a {
+                color: $color__link--accent;
+            }
+        }
     }
 }
 
