@@ -2,38 +2,48 @@
     $currentUrl = explode('/', request()->url());
     $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
     $categoriesList = \App\Models\Category::all()->pluck('name', 'id')->toArray();
-
-    if($type !== 'Publications') {
-        $endpoints = [
-            [
-                'label' => 'Article',
-                'value' => '/collection/articlesPublications/articles/browser?published=true&is_published=true'
-            ],
-            [
-                'label' => 'Highlight',
-                'value' => '/collection/highlights/browser?published=true&is_published=true'
-            ],
-            [
-                'label' => 'Interactive feature',
-                'value' => '/collection/interactiveFeatures/experiences/browser?published=true&is_published=true'
-            ],
-            [
-                'label' => 'Video',
-                'value' => '/collection/articlesPublications/videos/browser?published=true&is_published=true'
-            ],
-        ];
-    } else {
-        $endpoints = [
-            [
-                'label' => 'Digital Publications',
-                'name' => '/collection/articlesPublications/digitalPublications/browser?published=true&is_published=true'
-            ],
-            [
-                'label' => 'Print Publications',
-                'name' => '/collection/articlesPublications/printedPublications/browser?published=true&is_published=true'
-            ],
-        ];
+    $defaultEndpoints = [
+        [
+            'label' => 'Article',
+            'value' => '/collection/articlesPublications/articles/browser?published=true&is_published=true'
+        ],
+        [
+            'label' => 'Highlight',
+            'value' => '/collection/highlights/browser?published=true&is_published=true'
+        ],
+        [
+            'label' => 'Interactive feature',
+            'value' => '/collection/interactiveFeatures/experiences/browser?published=true&is_published=true'
+        ],
+        [
+            'label' => 'Video',
+            'value' => '/collection/articlesPublications/videos/browser?published=true&is_published=true'
+        ],
+    ];
+    $publicationEndpoints = [
+        [
+            'label' => 'Digital Publications',
+            'value' => '/collection/articlesPublications/digitalPublications/browser?published=true&is_published=true'
+        ],
+        [
+            'label' => 'Print Publications',
+            'value' => '/collection/articlesPublications/printedPublications/browser?published=true&is_published=true'
+        ],
+    ];
+    switch ($type) {
+        case 'Publications':
+            $endpoints = $publicationEndpoints;
+            break;
+        case 'Research Center':
+            $endpoints = array_merge($defaultEndpoints, $publicationEndpoints, [[
+                'label' => 'Illuminated Links',
+                'value' => '/general/illuminatedLinks/browser?published=true&is_published=true',
+            ]]);
+            break;
+        default:
+            $endpoints = $defaultEndpoints;
     }
+    $endpoints = collect($endpoints)->sortBy('label')->values()->toArray();
 
     $categories = collect($categoriesList)->map(function($name, $id) {
         return [
@@ -52,7 +62,7 @@
 {{-- Default Theme Fields --}}
 <x-twill::formConnectedFields
     field-name='theme'
-    :field-values="['default', 'conservation-and-science']"
+    :field-values="['default', 'conservation-and-science', 'research-center']"
     :render-for-blocks='true'
     :keep-alive='true'
 >

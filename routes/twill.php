@@ -122,4 +122,5 @@ Route::group(['prefix' => 'general'], function () {
     TwillRoutes::module('eventPrograms');
     TwillRoutes::module('tourStops');
     TwillRoutes::module('vanityRedirects');
+    TwillRoutes::module('illuminatedLinks');
 });
