@@ -38,7 +38,7 @@ class IlluminatedLinkController extends BaseController
 
     protected function additionalBrowserTableColumns(): TableColumns
     {
-        $columns = parent::additionalIndexTableColumns();
+        $columns = parent::additionalBrowserTableColumns();
         $columns->add(
             Text::make()
                 ->field('url')
