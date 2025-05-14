@@ -136,6 +136,11 @@
             </x-slot:right>
         </x-twill::formColumns>
 
+        <x-twill::wysiwyg
+            name='callout'
+            label='Callout'
+        />
+
     </x-twill::formConnectedFields>
 
 </x-twill::formConnectedFields>
