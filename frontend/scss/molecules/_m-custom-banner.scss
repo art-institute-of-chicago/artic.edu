@@ -70,14 +70,12 @@
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
-            padding: 50px;
         }
 
         @include breakpoint('small') {
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
-            padding: 50px;
         }
 
         @include breakpoint('xsmall') {
