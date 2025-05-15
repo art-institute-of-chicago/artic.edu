@@ -79,8 +79,6 @@
     }
 
     .body-wrapper {
-      padding: 30px;
-
       @include breakpoint('xsmall') {
         padding: 15px;
       }
