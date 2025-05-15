@@ -6,6 +6,9 @@
     $description = $block->present()->input('description');
     $date = $block->present()->input('date');
     $tag = $block->input('tag');
+    $buttonLabel = $block->input('button_label');
+    $buttonLink = $block->input('button_link');
+    $callout = $block->input('callout');
     $linkLabel = $block->present()->input('link_label');
     $linkUrl = $block->input('link_url');
     $theme = $block->input('theme');
@@ -67,6 +70,22 @@
                     @slot('font', 'f-secondary')
                     @slot('variation', 'showcase-date')
                     {!! SmartyPants::defaultTransform($date) !!}
+                @endcomponent
+            @endif
+            @if ($buttonLabel || $buttonLink)
+                @component('components.atoms._btn')
+                    @slot('variation', 'primary showcase-button')
+                    @slot('tag', 'a')
+                    @slot('href', $buttonLink)
+                    {!! SmartyPants::defaultTransform($buttonLabel) !!}
+                @endcomponent
+            @endif
+            @if ($callout)
+                @component('components.blocks._text')
+                    @slot('tag', 'div')
+                    @slot('font', 'f-secondary')
+                    @slot('variation', 'showcase-callout')
+                    {!! StringHelpers::addLinkArrows($callout) !!}
                 @endcomponent
             @endif
             @if ($linkLabel || $linkUrl)

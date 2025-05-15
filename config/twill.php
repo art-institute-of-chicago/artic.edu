@@ -218,6 +218,11 @@ return [
     'locale' => 'en',
     'fallback_locale' => 'en',
 
+    'locales' => [
+        'en' => 'English',
+        'es' => 'Spanish',
+    ],
+
     'available_user_locales' => [
         'en',
         'ar',

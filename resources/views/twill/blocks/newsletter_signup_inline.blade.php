@@ -6,6 +6,7 @@
     label='Custom copy'
     note='Override default copy'
     :maxlength='60'
+    :translated='true'
 />
 
 @php
@@ -15,5 +16,5 @@
 <x-twill::select
     name='list'
     label='Newsletter target list'
-    :options="$options"
+    :options='$options'
 />

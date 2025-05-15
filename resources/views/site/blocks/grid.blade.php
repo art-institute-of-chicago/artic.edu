@@ -29,7 +29,10 @@
             ]
         ] : null)
         @if (!empty($gridTitle))
-            {!! $gridTitle !!}
+            {!!'<span class="o-grid-block__title">'. $gridTitle .'</span>'!!}
+        @endif
+        @if (!empty($gridDescription))
+            {!!'<span class="o-grid-block__description">'. $gridDescription .'</span>'!!}
         @endif
     @endcomponent
 

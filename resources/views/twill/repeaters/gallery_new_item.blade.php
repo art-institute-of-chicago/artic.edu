@@ -51,12 +51,14 @@
         name='captionTitle'
         label='Caption title'
         :toolbar-options="[ 'italic', 'link' ]"
+        :translated='true'
     />
 
     <x-twill::wysiwyg
         name='captionText'
         label='Caption text'
         :toolbar-options="[ 'italic', 'link' ]"
+        :translated='true'
     />
 
     <x-twill::input
@@ -87,12 +89,14 @@
         name='captionTitle'
         label='Caption title'
         :toolbar-options="[ 'italic', 'link' ]"
+        :translated='true'
     />
 
     <x-twill::wysiwyg
         name='captionText'
         label='Caption text'
         :toolbar-options="[ 'italic', 'link' ]"
+        :translated='true'
     />
 
     <x-twill::input
@@ -103,6 +107,7 @@
     <x-twill::input
         name='linkLabel'
         label='Link label'
+        :translated='true'
     />
 </x-twill::formConnectedFields>
 
@@ -125,5 +130,6 @@
         label='Caption addendum'
         note='Appended to generated tombstone'
         :toolbar-options="[ 'italic', 'link' ]"
+        :translated='true'
     />
 </x-twill::formConnectedFields>

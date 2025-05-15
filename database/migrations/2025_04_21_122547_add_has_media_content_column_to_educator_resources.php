@@ -7,15 +7,15 @@ use Illuminate\Support\Facades\Schema;
 return new class () extends Migration {
     public function up(): void
     {
-        Schema::table('landing_pages', function (Blueprint $table) {
-            $table->text('listing_description')->nullable();
+        Schema::table('educator_resources', function (Blueprint $table) {
+            $table->boolean('has_media_content')->nullable();
         });
     }
 
     public function down(): void
     {
-        Schema::table('landing_pages', function (Blueprint $table) {
-            $table->dropColumn('listing_description');
+        Schema::table('educator_resources', function (Blueprint $table) {
+            $table->dropColumn('has_media_content');
         });
     }
 };
