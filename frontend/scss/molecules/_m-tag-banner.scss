@@ -126,6 +126,18 @@
     }
   }
 
+  &.tag-banner-block--educator-resources {
+    .body-wrapper {
+      padding: 56px 0;
+    }
+
+    .background-wrapper {
+      &::before {
+        background: transparent !important;
+      }
+    }
+  }
+
   &.tag-banner-block--variation-categories {
     @include breakpoint('medium-') {
       .m-tag-banner {
