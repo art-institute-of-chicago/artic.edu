@@ -255,5 +255,6 @@ return [
         'editorial_block',
         'tombstone',
         'ranged_accordion',
+        'tag_banner'
     ]
 ];

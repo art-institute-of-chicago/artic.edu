@@ -5,12 +5,23 @@
     $body = $block->input('body');
     if ($variation == 'categories') {
         $categories = collect($block->input('categories'))->take(12);
-        $tags = \App\Models\Category::whereIn('id', $categories)->get()->transform(function ($category) {
-            return (object) [
-                'url' => route('articles', ['category' => $category->id]),
-                'label' => $category->name,
-            ];
-        });
+
+        // Move this to a switch statement if we're adding any more category types
+        if ($theme == 'educator-resources') {
+            $tags = \App\Models\ResourceCategory::whereIn('id', $categories)->get()->transform(function ($category) {
+                return (object) [
+                    'url' => route('articles', ['category' => $category->id]), // fix this route for edu resources
+                    'label' => $category->name,
+                ];
+            });
+        } else {
+            $tags = \App\Models\Category::whereIn('id', $categories)->get()->transform(function ($category) {
+                return (object) [
+                    'url' => route('articles', ['category' => $category->id]),
+                    'label' => $category->name,
+                ];
+            });
+        }
     } else {
         $tags = $block->repeater('link_tag');
     }

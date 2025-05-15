@@ -13,6 +13,24 @@
                     'label' => 'Categories'
                 ],
             ];
+
+            $categories = \App\Models\Category::orderBy('name')->pluck('name', 'id');
+
+            break;
+        case 'Educator Resources':
+            $variations = [
+                [
+                    'value' => 'default',
+                    'label' => 'Default'
+                ],
+                [
+                    'value' => 'categories',
+                    'label' => 'Categories'
+                ],
+            ];
+
+            $categories = \App\Models\ResourceCategory::orderBy('name')->pluck('name', 'id');
+
             break;
         default:
             $variations = [
@@ -21,6 +39,9 @@
                     'label' => 'Default'
                 ],
             ];
+
+            $categories = \App\Models\Category::orderBy('name')->pluck('name', 'id');
+
             break;
     }
 @endphp
@@ -66,14 +87,11 @@
         :required='true'
     />
 
-    @php
-        $options = \App\Models\Category::orderBy('name')->pluck('name', 'id');
-    @endphp
     <x-twill::multi-select
         name='categories'
         label='Categories'
         placeholder='Add categories to the tag cloud'
-        :options="$options"
+        :options="$categories"
     />
 
     <x-twill::formColumns>

@@ -7,9 +7,9 @@
 @if (isset($audioFile))
     @component('components.molecules._m-listing----sound')
         @slot('item', (object) [
-            'title' => $block->input('title_display'),
+            'title' => $block->present()->input('title_display'),
             'href' => FileService::getUrl($audioFile->uuid),
-            'transcript' => $block->input('transcript'),
+            'transcript' => $block->present()->input('transcript'),
             'subtitle' => null,
             'captionTitle' => $block->present()->input('caption_title'),
             'caption' => $block->present()->input('caption'),

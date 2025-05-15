@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use A17\Twill\Models\Behaviors\HasTranslation;
 use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
@@ -21,16 +22,21 @@ class EducatorResource extends AbstractModel
     use HasMediasEloquent;
     use Transformable;
     use HasRelated;
+    use HasTranslation;
 
     protected $fillable = [
-        'listing_description',
-        'short_description',
-        'title',
-        'title_display',
         'published',
         'public',
         'publish_start_date',
         'publish_end_date',
+        'has_media_content'
+    ];
+
+    public $translatedAttributes = [
+        'title',
+        'title_display',
+        'listing_description',
+        'short_description',
         'meta_title',
         'meta_description',
     ];
@@ -43,12 +49,14 @@ class EducatorResource extends AbstractModel
         'published' => 'boolean',
         'public' => 'boolean',
         'publish_start_date' => 'date',
-        'publish_end_date' => 'date'
+        'publish_end_date' => 'date',
+        'has_media_content' => 'boolean'
     ];
 
     public $attributes = [
         'published' => false,
         'public' => false,
+        'has_media_content' => false
     ];
 
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
@@ -95,6 +103,11 @@ class EducatorResource extends AbstractModel
     public function getIdSlugAttribute()
     {
         return join('-', [$this->id, $this->getSlug()]);
+    }
+
+    public function getTypeAttribute()
+    {
+        return 'educator_resources';
     }
 
     public function getUrlWithoutSlugAttribute()
