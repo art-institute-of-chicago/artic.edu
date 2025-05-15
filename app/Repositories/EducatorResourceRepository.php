@@ -8,13 +8,14 @@ use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
+use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Models\EducatorResource;
 use App\Models\Api\Search;
 
 class EducatorResourceRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleApiBlocks {
+    use HandleTranslations, HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleApiBlocks {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 

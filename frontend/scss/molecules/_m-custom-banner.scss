@@ -150,7 +150,7 @@
         }
     }
 
-    &.custom-banner-block--default {
+    &.custom-banner-block--default, &.custom-banner-block--educator-resources {
         .custom-banner-body {
             font-size: 24px;
             font-family: $serif-font--loaded !important;
@@ -173,4 +173,148 @@
         }
     }
 
+    &.custom-banner-block--educator-resources {
+
+        &.custom-banner-block--variation-default {
+
+            .text-wrapper {
+                flex-direction: row;
+                justify-content: space-between;
+
+                @include breakpoint('small-') {
+                    flex-direction: column;
+                }
+            }
+
+            .custom-banner-title {
+                font-family: $sans-serif-font--loaded;
+                font-size: 21px;
+                font-weight: 400;
+                line-height: 28px;
+                letter-spacing: 0.08em;
+                text-align: left;
+                text-transform: uppercase;
+            }
+
+            .custom-banner-body {
+                font-family: $serif-font--loaded;
+                font-size: 22px;
+                font-weight: 300;
+                line-height: 28px;
+                letter-spacing: -0.005em;
+                text-align: left;
+
+                &::before {
+                    padding: 12px 0 0 0 !important;
+                }
+            }
+        }
+
+        &.custom-banner-block--variation-cloud {
+            .background-wrapper {
+                &::before {
+                    background: transparent !important;
+                }
+            }
+
+            .text-wrapper {
+                flex-direction: row;
+                padding: 50px 0;
+
+                @include breakpoint('medium-') {
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+
+    &.custom-banner-block--editorial, &.custom-banner-block--educator-resources {
+        margin-top: 50px;
+        padding-top: 50px;
+
+        &.custom-banner-block--variation-cloud {
+            border-top: 1px solid $color__black--20;
+            .content-wrapper {
+                height: 276px;
+                display: flex;
+            }
+
+            .text-wrapper {
+                align-items: center;
+                height: unset;
+
+                @include breakpoint('medium-') {
+                    align-items: flex-start;
+                }
+
+                >div:first-child {
+                    align-self: baseline;
+                }
+            }
+
+            .button-wrapper {
+                max-width: 70%;
+            }
+
+            .custom-banner-title {
+                font-family: $sans-serif-font--loaded;
+                font-size: 21px;
+                font-weight: 400;
+                line-height: 28px;
+                letter-spacing: 0.08em;
+                text-align: left;
+                text-transform: uppercase;
+                color: $color__black--90 !important;
+            }
+
+            .custom-banner-body {
+                font-family: $serif-font--loaded;
+                font-size: 22px;
+                font-weight: 300;
+                line-height: 28px;
+                letter-spacing: -0.005em;
+                text-align: left;
+                color: $color__black--90 !important;
+            }
+
+            .tag-cloud {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                align-items: center;
+
+                @include breakpoint('medium-') {
+                    display: none;
+                }
+
+                .f-tag {
+                    background-color: $color__white;
+                    padding: 6px 12px;
+                    margin: 6px;
+                    font-family: $sans-serif-font--loaded;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 16px;
+                    letter-spacing: 0.14em;
+                    color: $color__black;
+                    border: 1px solid $color__black--20;
+                    border-radius: 2px;
+                }
+            }
+
+            .tag-cloud__link {
+                display: block;
+                margin: auto;
+                color: $color__rules--brand;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 300;
+                line-height: 28px;
+                letter-spacing: 0.0001em;
+                text-transform: none;
+                padding-top: 17px;
+                white-space: nowrap;
+            }
+        }
+    }
 }

@@ -8,14 +8,14 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('landing_pages', function (Blueprint $table) {
-            $table->text('listing_description')->nullable();
+            $table->string('header_cta_description')->nullable();
         });
     }
 
     public function down(): void
     {
         Schema::table('landing_pages', function (Blueprint $table) {
-            $table->dropColumn('listing_description');
+            $table->dropColumn('header_cta_description');
         });
     }
 };

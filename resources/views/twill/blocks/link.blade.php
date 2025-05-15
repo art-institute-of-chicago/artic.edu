@@ -5,11 +5,13 @@
     name='title'
     label='Title'
     :maxlength='60'
+    :translated='true'
 />
 
 <x-twill::input
     name='link'
     label='Link'
+    :translated='true'
 />
 
 <x-twill::files
