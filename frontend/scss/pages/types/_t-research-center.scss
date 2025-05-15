@@ -161,7 +161,7 @@
     .text-wrapper {
       align-items: end;
       display: flex;
-      gap: 60px;
+      gap: 75px;
 
       @include breakpoint('small-') {
         gap: 20px;
