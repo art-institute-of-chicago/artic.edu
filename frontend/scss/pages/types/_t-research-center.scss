@@ -355,6 +355,11 @@
         .title {
           font-size: 22px;
           line-height: 28px;
+          margin-top: 0;
+
+          &::before {
+            display: none;
+          }
         }
 
         .intro {
